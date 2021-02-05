@@ -13,6 +13,7 @@
     "no-alert": "off",
     "no-param-reassign": "off",
     "no-return-assign": "off",
+    "no-console": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "max-depth": ["error", 1],
