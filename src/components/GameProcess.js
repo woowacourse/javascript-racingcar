@@ -37,7 +37,7 @@ export default class GameProcess extends Component {
             </div>
           </div>
         </div>
-      </section>;
+      </section>
     `;
   }
 }

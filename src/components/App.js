@@ -6,14 +6,17 @@ import State from '../library/core/State.js';
 
 export default class App extends Component {
   cars;
+  raceTimes;
 
   constructor($target, props) {
     super($target, props);
     this.initStates();
+    this.raceTimes.subscribe(this.render);
   }
 
   initStates() {
     this.cars = new State([]);
+    this.raceTimes = new State(null);
   }
 
   mountTemplate() {
@@ -30,8 +33,15 @@ export default class App extends Component {
   mountChildComponents() {
     new UserInput(document.querySelector('#user-input-component'), {
       cars: this.cars,
+      raceTimes: this.raceTimes,
+      mountGameProcess: this.mountGameProcess,
     });
-    new GameProcess(document.querySelector('#game-process-component'));
     new GameResult(document.querySelector('#game-result-component'));
+  }
+
+  mountGameProcess() {
+    new GameProcess(document.querySelector('#game-process-component'), {
+      cars: this.cars,
+    });
   }
 }

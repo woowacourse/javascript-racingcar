@@ -8,6 +8,8 @@ export default class UserInput extends Component {
 
   initEvent() {
     const $submitCarName = document.querySelector('#submit-car-name');
+    const $submitRaceTimes = document.querySelector('#submit-race-times');
+
     $submitCarName.addEventListener('click', () => {
       const { value } = document.querySelector('#input-car-name');
       const carNames = value.split(',').map(name => name.trim());
@@ -21,7 +23,13 @@ export default class UserInput extends Component {
       }
       this.props.cars = document
         .querySelector('#section-race-times')
-        .removeAttribute('hidden');
+        .classList.remove('hidden');
+    });
+
+    $submitRaceTimes.addEventListener('click', () => {
+      const { value } = document.querySelector('#input-race-times');
+      this.props.raceTimes = value;
+      this.props.mountGameProcess();
     });
   }
 
@@ -39,11 +47,11 @@ export default class UserInput extends Component {
           <button type="submit" id="submit-car-name" class="btn btn-cyan">확인</button>
         </div>
       </section>
-      <section id="section-race-times" class="mt-5" hidden>
+      <section id="section-race-times" class="mt-5 hidden" >
         <p>시도할 횟수를 입력해주세요.</p>
         <div class="d-flex">
-          <input type="number" class="w-100 mr-2" placeholder="시도 횟수" />
-          <button type="button" class="btn btn-cyan">확인</button>
+          <input type="number" id="input-race-times" class="w-100 mr-2" placeholder="시도 횟수" />
+          <button type="submit" id="submit-race-times" class="btn btn-cyan">확인</button>
         </div>
       </section>
     `;
