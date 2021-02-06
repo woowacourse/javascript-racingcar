@@ -6,7 +6,16 @@ export default class Component {
     this.$target = $target;
     this.props = props;
     this.render();
+    this.initEvent();
   }
 
-  render() {}
+  initEvent() {}
+
+  render() {
+    this.mountTemplate();
+    this.mountChildComponents();
+  }
+
+  mountTemplate() {}
+  mountChildComponents() {}
 }
