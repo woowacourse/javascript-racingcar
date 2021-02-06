@@ -24,6 +24,7 @@ export default class UserInput extends Component {
       this.props.cars = document
         .querySelector('#section-race-times')
         .classList.remove('hidden');
+      $submitCarName.disabled = true;
     });
 
     $submitRaceTimes.addEventListener('click', () => {
@@ -39,6 +40,7 @@ export default class UserInput extends Component {
 
       this.props.raceTimes = value;
       this.props.mountGameProcess();
+      $submitRaceTimes.disabled = true;
     });
   }
 
