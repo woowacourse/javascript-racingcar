@@ -1,0 +1,8 @@
+{
+  "name": "1.racingcar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jho2301/javascript-racingcar.git",
+  "author": "jho2301 <jho2301@gmail.com>",
+  "license": "MIT"
+}
