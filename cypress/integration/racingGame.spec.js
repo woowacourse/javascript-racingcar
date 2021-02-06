@@ -22,8 +22,10 @@ describe('레이싱 게임', () => {
   });
 
   it('사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.', () => {
-    cy.get('#input-race-times').type('0');
+    cy.get('#input-car-name').type('aaa,bbb,ccc');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('2');
     cy.get('#submit-race-times').click();
-    cy.get('#section-race-times').should('be.visible');
+    cy.get('#game-process-component').should('be.visible');
   });
 });
