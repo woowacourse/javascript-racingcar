@@ -8,20 +8,24 @@ export default class CarRacingController {
   }
 
   onClickCarNamesSubmit() {
+    const $racingCountContainer = document.querySelector('.racing-count-container');
     const $carNamesInput = document.querySelector('#car-names-input');
     const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
 
-    carNames.forEach((carName) => {
-      if (carName.length > 5) {
-        alert(alertConstants.MAXIMUM_LENGTH_EXCEEDED);
+    for (let i = 0; i < carNames.length; i++) {
+      if (carNames[i].length > 5 || carNames[i].length <= 0) {
+        alert(alertConstants.INVALID_CAR_NAME);
         return;
       }
-    });
+    }
 
     carNames.forEach((carName) => this.model.addCars(carName));
+
+    this.view.removeHidden($racingCountContainer);
   }
 
   onClickRacingCountSubmit() {
+    const $racingContainer = document.querySelector('.racing-container');
     const $racingCountInput = document.querySelector('#racing-count-input');
     const racingCount = $racingCountInput.value;
 
@@ -31,6 +35,9 @@ export default class CarRacingController {
     }
 
     this.model.racingCount = racingCount;
+
+    this.view.removeHidden($racingContainer);
+    this.view.renderRacingCars(this.model.cars);
   }
 
   setEventListener() {
