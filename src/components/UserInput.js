@@ -28,6 +28,15 @@ export default class UserInput extends Component {
 
     $submitRaceTimes.addEventListener('click', () => {
       const { value } = document.querySelector('#input-race-times');
+      try {
+        if (value <= 0) {
+          throw new Error('레이싱 횟수는 1이상이어야 합니다.');
+        }
+      } catch (err) {
+        alert(err);
+        return;
+      }
+
       this.props.raceTimes = value;
       this.props.mountGameProcess();
     });
