@@ -14,4 +14,10 @@ describe('레이싱 게임', () => {
     cy.get('#submit-car-name').click();
     cy.get('#section-race-times').should('not.to.be.visible');
   });
+
+  it('이름은 공백일 수 없다', () => {
+    cy.get('#input-car-name').type('             ');
+    cy.get('#submit-car-name').click();
+    cy.get('#section-race-times').should('not.to.be.visible');
+  });
 });
