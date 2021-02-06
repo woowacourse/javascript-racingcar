@@ -8,4 +8,10 @@ describe('레이싱 게임', () => {
     cy.get('#submit-car-name').click();
     cy.get('#section-race-times').should('be.visible');
   });
+
+  it('이름은 1자이상, 5자 이하만 가능합니다.', () => {
+    cy.get('#input-car-name').type(',bbbbbb,aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#section-race-times').should('not.to.be.visible');
+  });
 });
