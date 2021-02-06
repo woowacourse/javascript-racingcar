@@ -36,4 +36,13 @@ describe('레이싱 게임', () => {
     cy.get('#submit-race-times').click();
     cy.get('#game-process-component').should('not.to.be.visible');
   });
+
+  it('입력이 완료된 정보는 다시 입력할 수 없다.', () => {
+    cy.get('#input-car-name').type('aaa,bbb,ccc');
+    cy.get('#submit-car-name').click();
+    cy.get('#submit-car-name').should('have.attr', 'disabled');
+    cy.get('#input-race-times').type('10');
+    cy.get('#submit-race-times').click();
+    cy.get('#submit-race-times').should('have.attr', 'disabled');
+  });
 });
