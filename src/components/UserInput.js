@@ -10,8 +10,18 @@ export default class UserInput extends Component {
     const $submitCarName = document.querySelector('#submit-car-name');
     $submitCarName.addEventListener('click', () => {
       const { value } = document.querySelector('#input-car-name');
-      this.props.cars = value.split(',').map(name => new Car(name.trim()));
-      document.querySelector('#section-race-times').removeAttribute('hidden');
+      const carNames = value.split(',').map(name => name.trim());
+      try {
+        if (carNames.some(name => name.length < 1 || name.length > 5)) {
+          throw new Error('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
+        }
+      } catch (err) {
+        alert(err);
+        return;
+      }
+      this.props.cars = document
+        .querySelector('#section-race-times')
+        .removeAttribute('hidden');
     });
   }
 
