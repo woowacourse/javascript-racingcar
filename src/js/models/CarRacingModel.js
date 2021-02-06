@@ -1,6 +1,7 @@
 export default class CarRacingModel {
   constructor() {
     this.cars = [];
+    this.racingCount = 0;
   }
 
   addCars(name) {
