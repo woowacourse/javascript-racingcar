@@ -3,6 +3,7 @@ import Component from '../library/core/Component.js';
 export default class GameResult extends Component {
   constructor($target, props) {
     super($target, props);
+    this.render();
   }
 
   initEvent() {}
