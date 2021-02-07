@@ -64,4 +64,12 @@ describe('레이싱 게임', () => {
       expect(randomNumber >= 0 && randomNumber < 10).be.equal(true);
     }
   });
+
+  it('주어진 횟수 동안 진행한 n대의 자동차의 레이싱 상태를 표시한다.', () => {
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('100');
+    cy.get('#submit-race-times').click();
+    cy.get('.forward-icon').should('exist');
+  });
 });
