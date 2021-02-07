@@ -4,44 +4,54 @@ import Car from '../library/models/Car.js';
 export default class UserInput extends Component {
   constructor($target, props) {
     super($target, props);
+    this.render();
   }
 
   initEvent() {
-    const $submitCarName = document.querySelector('#submit-car-name');
-    const $submitRaceTimes = document.querySelector('#submit-race-times');
-
-    $submitCarName.addEventListener('click', () => {
-      const { value } = document.querySelector('#input-car-name');
-      const carNames = value.split(',').map(name => name.trim());
-      try {
-        if (carNames.some(name => name.length < 1 || name.length > 5)) {
-          throw new Error('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
+    this.$target.addEventListener(
+      'click',
+      ({ target }) => {
+        if (target.id === 'submit-car-name') {
+          this.#handleSubmitCarName(target);
+        } else if (target.id === 'submit-race-times') {
+          this.#handleSubmitRaceTimes(target);
         }
-      } catch (err) {
-        alert(err);
-        return;
-      }
-      this.props.cars = document
-        .querySelector('#section-race-times')
-        .classList.remove('hidden');
-      $submitCarName.disabled = true;
-    });
+      },
+      true
+    );
+  }
 
-    $submitRaceTimes.addEventListener('click', () => {
-      const { value } = document.querySelector('#input-race-times');
-      try {
-        if (value <= 0) {
-          throw new Error('레이싱 횟수는 1이상이어야 합니다.');
-        }
-      } catch (err) {
-        alert(err);
-        return;
+  #handleSubmitCarName(target) {
+    const { value } = document.querySelector('#input-car-name');
+    const carNames = value.split(',').map(name => name.trim());
+    try {
+      if (carNames.some(name => name.length < 1 || name.length > 5)) {
+        throw new Error('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
       }
+    } catch (err) {
+      alert(err);
+      return;
+    }
+    this.props.cars = document
+      .querySelector('#section-race-times')
+      .classList.remove('hidden');
+    target.disabled = true;
+  }
 
-      this.props.raceTimes = value;
-      this.props.mountGameProcess();
-      $submitRaceTimes.disabled = true;
-    });
+  #handleSubmitRaceTimes(target) {
+    const { value } = document.querySelector('#input-race-times');
+    try {
+      if (value <= 0) {
+        throw new Error('레이싱 횟수는 1이상이어야 합니다.');
+      }
+    } catch (err) {
+      alert(err);
+      return;
+    }
+
+    this.props.raceTimes = value;
+    this.props.mountGameProcess();
+    target.disabled = true;
   }
 
   render() {

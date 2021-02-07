@@ -11,7 +11,7 @@ export default class App extends Component {
   constructor($target, props) {
     super($target, props);
     this.initStates();
-    this.raceTimes.subscribe(this.render);
+    this.render();
   }
 
   initStates() {
@@ -30,18 +30,18 @@ export default class App extends Component {
     `;
   }
 
-  mountChildComponents() {
+  mountGameProcess = () => {
+    new GameProcess(document.querySelector('#game-process-component'), {
+      cars: this.cars,
+    });
+  };
+
+  mountChildComponents = () => {
     new UserInput(document.querySelector('#user-input-component'), {
       cars: this.cars,
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
     });
     new GameResult(document.querySelector('#game-result-component'));
-  }
-
-  mountGameProcess() {
-    new GameProcess(document.querySelector('#game-process-component'), {
-      cars: this.cars,
-    });
-  }
+  };
 }
