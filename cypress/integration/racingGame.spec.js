@@ -3,15 +3,11 @@ describe('racing-game', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 해당 자동차 이름들을 표시하는 테스트를 한다.', () => {
+  it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
     const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
     typeCarNameAndSubmit(carNames);
-    cy.get('.car-player')
-      .should('have.length', carNames.length)
-      .each(($div, index, $lis) => {
-        return cy.get($div).should('have.text', carNames[index]);
-      });
+    cy.get('#racing-count-section').should('have.css', 'display', 'block');
   });
 
   it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력한다.', () => {
