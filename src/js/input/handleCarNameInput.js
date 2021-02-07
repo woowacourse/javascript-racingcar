@@ -5,11 +5,15 @@ const carTemplate = (carName) => {
 };
 
 export const handleCarNameInput = () => {
-  const $carNameInput = document.querySelector('#car-name-input');
-  const $gameProcessScreen = document.querySelector('#game-process-screen');
+  //const $carNameInput = document.querySelector('#car-name-input');
+  const $racingCountSection = document.querySelector('#racing-count-section');
 
-  const carNames = $carNameInput.value.split(',').map((car) => car.trim());
-  $gameProcessScreen.innerHTML = carNames
-    .map((car) => carTemplate(car))
-    .join('');
+  // 유효성검사
+  // 시도횟수 표시
+  // 카네임 넣어주기
+  $racingCountSection.removeAttribute('hidden');
+  // const carNames = $carNameInput.value.split(',').map((car) => car.trim());
+  // $gameProcessScreen.innerHTML = carNames
+  //   .map((car) => carTemplate(car))
+  //   .join('');
 };
