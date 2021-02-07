@@ -20,10 +20,12 @@ export default class GameProcess extends Component {
       </section>
     `;
   }
+
   #createCarProcessTemplate(car) {
     return `
       <div>
         <div class="car-player mr-2">${car.name}</div>
+        ${'<div class="forward-icon mt-2">⬇️</div>'.repeat(car.position)}
       </div>
     `;
   }

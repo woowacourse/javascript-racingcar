@@ -17,6 +17,7 @@ export default class App extends Component {
   initStates() {
     this.cars = new State([]);
     this.raceTimes = new State(null);
+    this.raceTimes.subscribe(this.#race);
   }
 
   mountTemplate() {
@@ -30,12 +31,6 @@ export default class App extends Component {
     `;
   }
 
-  mountGameProcess = () => {
-    new GameProcess(document.querySelector('#game-process-component'), {
-      cars: this.cars,
-    });
-  };
-
   mountChildComponents = () => {
     new UserInput(document.querySelector('#user-input-component'), {
       cars: this.cars,
@@ -43,5 +38,21 @@ export default class App extends Component {
       mountGameProcess: this.mountGameProcess,
     });
     new GameResult(document.querySelector('#game-result-component'));
+  };
+
+  mountGameProcess = () => {
+    new GameProcess(document.querySelector('#game-process-component'), {
+      cars: this.cars,
+    });
+  };
+
+  #race = () => {
+    console.log(this.cars.value);
+    for (let i = 0; i < this.raceTimes.value; i++) {
+      this.cars.value = this.cars.value.map(car => {
+        car.process();
+        return car;
+      });
+    }
   };
 }
