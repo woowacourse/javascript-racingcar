@@ -81,8 +81,7 @@ describe('레이싱 게임', () => {
 
     cy.get('.car').then($cars => {
       const $carAaa = $cars[0];
-      const $carBbb = $cars[0];
-
+      const $carBbb = $cars[1];
       let aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
       let bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
 
@@ -94,5 +93,28 @@ describe('레이싱 게임', () => {
         cy.get('#winners').should('have.text', 'bbb');
       }
     });
+  });
+
+  it('우승자가 여러 명일 경우 `,`를 이용하여 구분한다.', () => {
+    for (let i = 0; i < 10; i++) {
+      cy.visit('http://localhost:5500');
+      cy.get('#input-car-name').type('aaa,bbb');
+      cy.get('#submit-car-name').click();
+      cy.get('#input-race-times').type('1');
+      cy.get('#submit-race-times').click();
+
+      cy.get('.car').then($cars => {
+        const $carAaa = $cars[0];
+        const $carBbb = $cars[1];
+        let aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
+        let bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
+
+        if (aaaPosition === bbbPosition) {
+          cy.get('#winners')
+            .then(element => element[0].innerText.includes('aaa, bbb'))
+            .should('is.true');
+        }
+      });
+    }
   });
 });
