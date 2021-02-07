@@ -1,7 +1,5 @@
 import { testCorrectValue, testIncorrectValue } from '../utils/test_value.js';
-
-const INPUT = '.car-name-input';
-const BTN = '.car-name-btn';
+import { CAR_INPUT, CAR_BTN } from '../../src/js/constants/index.js';
 
 describe('Car name input test', () => {
   before(() => {
@@ -9,39 +7,39 @@ describe('Car name input test', () => {
   });
 
   it('Can check the number of car.', () => {
-    testIncorrectValue(INPUT, BTN, '', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'a', 'alertMessage');
-    testCorrectValue(INPUT, BTN, 'a,b');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, '', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a', 'alertMessage');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a,b');
   });
 
   it('Can check space.', () => {
-    testCorrectValue(INPUT, BTN, 'name1,name2');
-    testCorrectValue(INPUT, BTN, 'name1, name2');
-    testCorrectValue(INPUT, BTN, 'name1,n ame2');
-    testCorrectValue(INPUT, BTN, 'name1,name2 ');
-    testCorrectValue(INPUT, BTN, 'name1, n ame2 ');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1,name2');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1, name2');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1,n ame2');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1,name2 ');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1, n ame2 ');
   });
 
   it('Can check length.', () => {
-    testIncorrectValue(INPUT, BTN, 'a,', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'a,name11', 'alertMessage');
-    testCorrectValue(INPUT, BTN, 'a,b');
-    testCorrectValue(INPUT, BTN, 'name1, name2');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a,', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a,name11', 'alertMessage');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a,b');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'name1, name2');
   });
 
   it('Can check character.', () => {
-    testIncorrectValue(INPUT, BTN, 'a, ㄱ', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'a, !', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'a, 🙂', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'a, 汉', 'alertMessage');
-    testCorrectValue(INPUT, BTN, 'a, 가힣');
-    testCorrectValue(INPUT, BTN, 'a, az');
-    testCorrectValue(INPUT, BTN, 'a, 09');
-    testCorrectValue(INPUT, BTN, 'a, 테스트a1');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a, ㄱ', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a, !', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a, 🙂', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a, 汉', 'alertMessage');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a, 가힣');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a, az');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a, 09');
+    testCorrectValue(CAR_INPUT, CAR_BTN, 'a, 테스트a1');
   });
 
   it('Can check overlap.', () => {
-    testIncorrectValue(INPUT, BTN, 'a,a', 'alertMessage');
-    testIncorrectValue(INPUT, BTN, 'ab,a b', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'a,a', 'alertMessage');
+    testIncorrectValue(CAR_INPUT, CAR_BTN, 'ab,a b', 'alertMessage');
   });
 });
