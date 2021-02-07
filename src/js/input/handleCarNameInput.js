@@ -1,8 +1,10 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 
 const carTemplate = (carName) => {
-  return `<div dataset-forward-count=0 >
-            <div class="car-player mr-2">${carName}</div>
+  return `<div >
+            <div class="car-player mr-2" dataset-forward-count="0">
+              ${carName}
+            </div>
           </div>`;
 };
 
@@ -26,6 +28,14 @@ const isValidCarName = (carNames) => {
   return true;
 };
 
+const createCars = (carNames) => {
+  const $gameProcessSection = document.querySelector('#game-process-section');
+
+  carNames.forEach((carName) => {
+    $gameProcessSection.insertAdjacentHTML('beforend', carTemplate(carName));
+  });
+};
+
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
   const $racingCountSection = document.querySelector('#racing-count-section');
@@ -35,4 +45,5 @@ export const handleCarNameInput = () => {
     return ($carNameInput.value = '');
   }
   $racingCountSection.removeAttribute('hidden');
+  createCars(carNames);
 };

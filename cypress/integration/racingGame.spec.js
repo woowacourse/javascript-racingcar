@@ -80,6 +80,7 @@ describe('racing-game', () => {
       .each(($div, index, $lis) => {
         return cy.get($div).should('have.text', carNames[index]);
       });
+    cy.get('#game-process-section').should('be.visible');
   });
 
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
