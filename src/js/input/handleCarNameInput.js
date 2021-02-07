@@ -1,4 +1,4 @@
-import { VALIDATOR } from '../utils/constant.js';
+import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 
 const carTemplate = (carName) => {
   return `<div dataset-forward-count=0 >
@@ -16,11 +16,11 @@ const isBlank = (name) => {
 
 const isValidCarName = (carNames) => {
   if (!carNames.every((carName) => isValidLength(carName))) {
-    alert('이름은 5글자 이하로 입력해 주세요.');
+    alert(ERR_MESSAGE.NAME_TOO_LONG);
     return false;
   }
   if (!carNames.every((carName) => isBlank(carName))) {
-    alert('공백만으로는 이름을 구성할 수 없습니다.');
+    alert(ERR_MESSAGE.NAME_BLANK);
     return false;
   }
   return true;

@@ -51,7 +51,6 @@ describe('racing-game', () => {
 
   it('양의 정수만을 시도횟수로 입력할 수 있는지 테스트 한다.', () => {
     const negativeRacingCount = -7;
-    const emptyRacingCount = '';
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
@@ -63,12 +62,14 @@ describe('racing-game', () => {
       cy.get('#racing-count-input').should('have.text', '');
     });
 
-    typeRacingCountAndSubmit(emptyRacingCount).then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(
-        '1 이상의 숫자를 입력해주세요.',
-      );
-      cy.get('#racing-count-input').should('have.text', '');
-    });
+    cy.get('#racing-count-submit')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(1)).to.be.calledWith(
+          '1 이상의 숫자를 입력해주세요.',
+        );
+        cy.get('#racing-count-input').should('have.text', '');
+      });
   });
 
   it('시도횟수가 올바르게 입력된 경우 자동차경주 화면이 보이는지 테스트 한다.', () => {
