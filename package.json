@@ -5,6 +5,9 @@
   "repository": "https://github.com/seojihwan/javascript-racingcar.git",
   "author": "Kyle <mkitigy@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "test": "cypress open" 
+  },
   "devDependencies": {
     "cypress": "^6.4.0",
     "eslint": "^7.19.0",
