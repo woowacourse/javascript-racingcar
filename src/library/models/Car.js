@@ -1,3 +1,4 @@
+import { getRandomNumber } from '../utils/random.js';
 export default class Car {
   #name;
   #position;
@@ -5,6 +6,10 @@ export default class Car {
   constructor(name) {
     this.#name = name;
     this.#position = 0;
+  }
+
+  process() {
+    this.go(getRandomNumber(0, 10));
   }
 
   go(value) {
