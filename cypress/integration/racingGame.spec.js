@@ -72,4 +72,27 @@ describe('레이싱 게임', () => {
     cy.get('#submit-race-times').click();
     cy.get('.forward-icon').should('exist');
   });
+
+  it('자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.', () => {
+    cy.get('#input-car-name').type('aaa,bbb');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('10');
+    cy.get('#submit-race-times').click();
+
+    cy.get('.car').then($cars => {
+      const $carAaa = $cars[0];
+      const $carBbb = $cars[0];
+
+      let aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
+      let bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
+
+      if (aaaPosition >= bbbPosition) {
+        cy.get('#winners')
+          .then(element => element[0].innerText.includes('aaa'))
+          .should('is.true');
+      } else {
+        cy.get('#winners').should('have.text', 'bbb');
+      }
+    });
+  });
 });
