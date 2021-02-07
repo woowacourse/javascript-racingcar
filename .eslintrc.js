@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: ['eslint:recommended', 'eslint-config-prettier'],
-  plugins: ['prettier'],
+  plugins: ['prettier', 'classPrivateMethods'],
   rules: {
     'no-new': 'off',
     'class-methods-use-this': 'off',
@@ -21,4 +21,5 @@ module.exports = {
     sourceType: 'module',
   },
   parser: 'babel-eslint',
+  ignorePatterns: ['cypress', '.eslintrc.js'],
 };
