@@ -37,7 +37,6 @@ export default class App extends Component {
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
     });
-    new GameResult(document.querySelector('#game-result-component'));
   };
 
   mountGameProcess = () => {
@@ -46,13 +45,26 @@ export default class App extends Component {
     });
   };
 
+  mountGameResult = winners => {
+    new GameResult(document.querySelector('#game-result-component'), {
+      winners,
+    });
+  };
+
   #race = () => {
-    console.log(this.cars.value);
     for (let i = 0; i < this.raceTimes.value; i++) {
       this.cars.value = this.cars.value.map(car => {
         car.process();
         return car;
       });
     }
+    let winners = [];
+    let maxPosition = Math.max(...this.cars.value.map(car => car.position));
+    this.cars.value.forEach(car => {
+      if (car.position === maxPosition) {
+        winners.push(car.name);
+      }
+    });
+    this.mountGameResult(winners);
   };
 }
