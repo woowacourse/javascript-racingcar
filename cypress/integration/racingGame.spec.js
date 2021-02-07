@@ -48,12 +48,12 @@ describe('레이싱 게임', () => {
     cy.get('#submit-race-times').should('have.attr', 'disabled');
   });
 
-  it('전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.', () => {
-    cy.get('#input-car-name').type('aaa,bbb');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('10');
-    cy.get('#submit-race-times').click();
-    cy.get('.car-player').contains('aaa').should('exist');
-    cy.get('.car-player').contains('bbb').should('exist');
+  it('자동차는 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.', () => {
+    const Car = require('../../src/library/models/Car');
+    const testCar = new Car('test');
+    testCar.go(4);
+    expect(testCar.position).to.equal(1);
+    testCar.go(3);
+    expect(testCar.position).to.equal(1);
   });
 });
