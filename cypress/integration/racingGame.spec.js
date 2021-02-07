@@ -1,8 +1,12 @@
+import { getRandomNumber } from '../../src/js/utils/getRandomNumber.js';
+import { getForwardCount } from '../../src/js/utils/getForwardCount.js';
+
 describe('racing-game', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
 
+  const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
   const typeCarNameAndSubmit = (
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
   ) => {
@@ -23,7 +27,6 @@ describe('racing-game', () => {
   it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력하는지 테스트 한다.', () => {
     const longCarName = ['YUJOYOONHO'];
     const blankCarName = ['   '];
-    const emptyCarName = [''];
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
@@ -84,16 +87,17 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
-    const possibleScores = Array.from({ length: 10 }).map((v, i) => i + 1);
+    const possibleScores = Array.from({ length: 10 }).map((v, i) => i);
 
     for (let i = 0; i < 10; i++) {
       expect(possibleScores).to.include(getRandomNumber());
     }
-    expect(getForwardCount([1, 3, 3, 7]).to.be.equal(1));
+    expect(getForwardCount([1, 3, 3, 7])).to.equal(1);
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player').each(($div, index, $lis) => {
-      const forwardCount = $div.dataset['forward-count'];
+      // const forwardCount = $div.dataset['forward-count'];
+      const forwardCount = cy.get(['forward-count']);
 
       return cy
         .get($div)

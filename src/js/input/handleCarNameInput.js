@@ -2,10 +2,18 @@ import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 
 const carTemplate = (carName) => {
   return `<div >
-            <div class="car-player mr-2" dataset-forward-count="0">
-              ${carName}
-            </div>
+            <div class="car-player mr-2" dataset-forward-count="0">${carName}</div>
           </div>`;
+};
+
+const createCars = (carNames) => {
+  const $gameProcessScreen = document.querySelector(
+    '#game-process-section > div',
+  );
+
+  carNames.forEach((carName) => {
+    $gameProcessScreen.insertAdjacentHTML('beforeend', carTemplate(carName));
+  });
 };
 
 const isValidLength = (name) => {
@@ -26,14 +34,6 @@ const isValidCarName = (carNames) => {
     return false;
   }
   return true;
-};
-
-const createCars = (carNames) => {
-  const $gameProcessSection = document.querySelector('#game-process-section');
-
-  carNames.forEach((carName) => {
-    $gameProcessSection.insertAdjacentHTML('beforend', carTemplate(carName));
-  });
 };
 
 export const handleCarNameInput = () => {
