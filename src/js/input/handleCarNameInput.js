@@ -2,7 +2,7 @@ import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 
 const carTemplate = (carName) => {
   return `<div >
-            <div class="car-player mr-2" dataset-forward-count="0">${carName}</div>
+            <div class="car-player mr-2" data-forward-count="0">${carName}</div>
           </div>`;
 };
 
