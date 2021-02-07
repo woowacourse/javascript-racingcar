@@ -6,32 +6,33 @@ const carTemplate = (carName) => {
           </div>`;
 };
 
+const isValidLength = (name) => {
+  return name.length <= VALIDATOR.MAX_NAME_LENGTH;
+};
+
+const isBlank = (name) => {
+  return name.length >= VALIDATOR.MIN_NAME_LENGTH;
+};
+
+const isValidCarName = (carNames) => {
+  if (!carNames.every((carName) => isValidLength(carName))) {
+    alert('이름은 5글자 이하로 입력해 주세요.');
+    return false;
+  }
+  if (!carNames.every((carName) => isBlank(carName))) {
+    alert('공백만으로는 이름을 구성할 수 없습니다.');
+    return false;
+  }
+  return true;
+};
+
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
   const $racingCountSection = document.querySelector('#racing-count-section');
 
-  // 유효성검사
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
-
-  if (
-    !carNames.every((carName) => carName.length <= VALIDATOR.MAX_NAME_LENGTH)
-  ) {
-    $carNameInput.value = '';
-    return alert('이름은 5글자 이하로 입력해 주세요.');
+  if (!isValidCarName(carNames)) {
+    return ($carNameInput.value = '');
   }
-
-  if (
-    !carNames.every((carName) => carName.length >= VALIDATOR.MIN_NAME_LENGTH)
-  ) {
-    $carNameInput.value = '';
-    return alert('공백만으로는 이름을 구성할 수 없습니다.');
-  }
-
   $racingCountSection.removeAttribute('hidden');
 };
-
-// 시도횟수 표시
-// 카네임 넣어주기
-// $gameProcessScreen.innerHTML = carNames
-//   .map((car) => carTemplate(car))
-//   .join('');
