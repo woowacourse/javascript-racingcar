@@ -56,4 +56,12 @@ describe('레이싱 게임', () => {
     testCar.go(3);
     expect(testCar.position).to.equal(1);
   });
+
+  it('자동차는 전진의 조건으로 0에서 9 사이에서 랜덤값을 받는다.', () => {
+    const { getRandomNumber } = require('../../src/library/utils/random.js');
+    for (let i = 0; i < 100; i++) {
+      let randomNumber = getRandomNumber(0, 10);
+      expect(randomNumber >= 0 && randomNumber < 10).be.equal(true);
+    }
+  });
 });
