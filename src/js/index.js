@@ -16,5 +16,3 @@ export default function RacingGame() {
 window.onload = () => {
   new RacingGame();
 };
-
-// 경주 진행될 때 전진하는 차에 표시해줄 화살표 템플릿 <div class="forward-icon mt-2">⬇️️</div>

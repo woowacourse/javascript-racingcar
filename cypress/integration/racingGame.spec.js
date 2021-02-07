@@ -1,5 +1,5 @@
 import { getRandomNumber } from '../../src/js/utils/getRandomNumber.js';
-import { getForwardCount } from '../../src/js/utils/getForwardCount.js';
+import { isEffectiveScore } from '../../src/js/utils/isEffectiveScore.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -92,18 +92,16 @@ describe('racing-game', () => {
     for (let i = 0; i < 10; i++) {
       expect(possibleScores).to.include(getRandomNumber());
     }
-    expect(getForwardCount([1, 3, 3, 7])).to.equal(1);
+    expect(isEffectiveScore(3)).to.equal(false);
+    expect(isEffectiveScore(4)).to.equal(true);
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player').each(($div, index, $lis) => {
-      // const forwardCount = $div.dataset['forward-count'];
-      const forwardCount = cy.get(['forward-count']);
-
       return cy
         .get($div)
         .should('have.text', carNames[index])
         .siblings('.forward-icon')
-        .should('have.length', forwardCount);
+        .should('have.length', cy.get(['forward-count']));
     });
   });
 

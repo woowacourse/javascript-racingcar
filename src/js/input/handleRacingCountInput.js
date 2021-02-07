@@ -1,4 +1,5 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
+import { startGame } from '../game/startGame.js';
 
 const isValidRacingCount = (racingCount) => {
   if (racingCount < VALIDATOR.MIN_COUNT) {
@@ -17,4 +18,5 @@ export const handleRacingCountInput = () => {
     return ($racingCountInput.value = '');
   }
   $gameProcessSection.removeAttribute('hidden');
+  startGame(racingCount);
 };
