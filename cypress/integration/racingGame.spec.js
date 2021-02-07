@@ -7,12 +7,12 @@ describe('racing-game', () => {
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
   ) => {
     cy.get('#car-name-input').type(carNames.join(','));
-    cy.get('#car-name-submit').click();
+    return cy.get('#car-name-submit').click();
   };
 
   const typeRacingCountAndSubmit = (racingCount = 4) => {
     cy.get('#racing-count-input').type(racingCount);
-    cy.get('#racing-count-submit').click();
+    return cy.get('#racing-count-submit').click();
   };
 
   it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
@@ -34,17 +34,19 @@ describe('racing-game', () => {
       cy.get('#car-name-input').should('have.text', '');
     });
     typeCarNameAndSubmit(blankCarName).then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(
+      expect(alertStub.getCall(1)).to.be.calledWith(
         '공백만으로는 이름을 구성할 수 없습니다.',
       );
       cy.get('#car-name-input').should('have.text', '');
     });
-    typeCarNameAndSubmit(emptyCarName).then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(
-        '공백만으로는 이름을 구성할 수 없습니다.',
-      );
-      cy.get('#car-name-input').should('have.text', '');
-    });
+    cy.get('#car-name-submit')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(2)).to.be.calledWith(
+          '공백만으로는 이름을 구성할 수 없습니다.',
+        );
+        cy.get('#car-name-input').should('have.text', '');
+      });
   });
 
   it('양의 정수만을 시도횟수로 입력할 수 있는지 테스트 한다.', () => {
