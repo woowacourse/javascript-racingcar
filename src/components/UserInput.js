@@ -48,7 +48,7 @@ export default class UserInput extends Component {
       return;
     }
 
-    this.props.raceTimes = value;
+    this.props.raceTimes.value = value;
     this.props.mountGameProcess();
     target.disabled = true;
   }
