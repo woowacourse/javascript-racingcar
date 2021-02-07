@@ -7,6 +7,12 @@ export default class Car {
     this.#position = 0;
   }
 
+  go(value) {
+    if (value >= 4) {
+      this.#position++;
+    }
+  }
+
   get name() {
     return this.#name;
   }
