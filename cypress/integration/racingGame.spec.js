@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable no-undef */
 describe('레이싱 게임', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
@@ -44,5 +46,14 @@ describe('레이싱 게임', () => {
     cy.get('#input-race-times').type('10');
     cy.get('#submit-race-times').click();
     cy.get('#submit-race-times').should('have.attr', 'disabled');
+  });
+
+  it('전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.', () => {
+    cy.get('#input-car-name').type('aaa,bbb');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('10');
+    cy.get('#submit-race-times').click();
+    cy.get('.car-player').contains('aaa').should('exist');
+    cy.get('.car-player').contains('bbb').should('exist');
   });
 });
