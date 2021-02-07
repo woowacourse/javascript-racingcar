@@ -32,9 +32,8 @@ export default class UserInput extends Component {
       alert(err);
       return;
     }
-    this.props.cars = document
-      .querySelector('#section-race-times')
-      .classList.remove('hidden');
+    this.props.cars.value = carNames.map(carName => new Car(carName));
+    document.querySelector('#section-race-times').classList.remove('hidden');
     target.disabled = true;
   }
 
