@@ -1,5 +1,3 @@
-const { should } = require('chai');
-
 describe('racing-game', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -22,7 +20,7 @@ describe('racing-game', () => {
     cy.get('#racing-count-section').should('be.visible');
   });
 
-  it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력한다.', () => {
+  it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력하는지 테스트 한다.', () => {
     const longCarName = ['YUJOYOONHO'];
     const blankCarName = ['   '];
     const emptyCarName = [''];
@@ -49,7 +47,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('양의 정수만을 시도횟수로 입력할 수 있다.', () => {
+  it('양의 정수만을 시도횟수로 입력할 수 있는지 테스트 한다.', () => {
     const negativeRacingCount = -7;
     const emptyRacingCount = '';
     const alertStub = cy.stub();
@@ -71,7 +69,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('시도횟수가 올바르게 입력된 경우 경주 화면이 보이는지 테스트 한다.', () => {
+  it('시도횟수가 올바르게 입력된 경우 자동차경주 화면이 보이는지 테스트 한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player')
@@ -87,11 +85,17 @@ describe('racing-game', () => {
     for (let i = 0; i < 10; i++) {
       expect(possibleScores).to.include(getRandomNumber());
     }
-
+    expect(getForwardCount([1, 3, 3, 7]).to.be.equal(1));
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player').each(($div, index, $lis) => {
-      return cy.get($div).should('have.text', carNames[index]);
+      const forwardCount = $div.dataset['forward-count'];
+
+      return cy
+        .get($div)
+        .should('have.text', carNames[index])
+        .siblings('.forward-icon')
+        .should('have.length', forwardCount);
     });
   });
 
