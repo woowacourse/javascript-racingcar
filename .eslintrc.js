@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
   },
   extends: ['eslint:recommended', 'eslint-config-prettier'],
-  plugins: ['prettier', 'classPrivateMethods'],
+  plugins: ['prettier'],
   rules: {
     'no-new': 'off',
     'class-methods-use-this': 'off',
@@ -20,6 +20,6 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   ignorePatterns: ['cypress', '.eslintrc.js'],
 };
