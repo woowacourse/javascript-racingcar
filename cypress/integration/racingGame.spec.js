@@ -12,6 +12,8 @@ describe('racing-game', () => {
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
   ) => {
     cy.get('#car-name-input').type(carNames.join(','));
+    cy.get('#car-name-submit').click();
+    cy.get('#car-name-submit').click();
     return cy.get('#car-name-submit').click();
   };
 

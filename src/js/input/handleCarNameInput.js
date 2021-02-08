@@ -7,13 +7,11 @@ const carTemplate = (carName) => {
 };
 
 const createCars = (carNames) => {
-  const $gameProcessScreen = document.querySelector(
-    '#game-process-section > div',
-  );
+  const $gameProcessScreen = document.querySelector('#game-process-screen');
 
-  carNames.forEach((carName) => {
-    $gameProcessScreen.insertAdjacentHTML('beforeend', carTemplate(carName));
-  });
+  $gameProcessScreen.innerHTML = carNames
+    .map((carName) => carTemplate(carName))
+    .join('');
 };
 
 const isValidLength = (name) => {
