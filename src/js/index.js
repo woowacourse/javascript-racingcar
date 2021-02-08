@@ -1,6 +1,9 @@
 import Car from "./Car.js";
 
 const sections = document.getElementsByTagName("section");
+const state = {
+  cars: [],
+};
 
 const hideElement = (element) => {
   return (element.style.display = "none");
@@ -29,9 +32,32 @@ carNamesBtn.addEventListener("click", () => {
     return carName.trim();
   });
 
-  const cars = carNames.map((carName) => {
+  state.cars = carNames.map((carName) => {
     return new Car(carName);
   });
+
+  showElement(sections[2]);
+});
+
+const getRandomNum = () => {
+  const min = 0;
+  const max = 9;
+
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+const tryNumBtn = document.getElementsByTagName("button")[1];
+tryNumBtn.addEventListener("click", () => {
+  const tryNumInput = document.getElementsByTagName("input")[1];
+
+  for (let i = 0; i < tryNumInput.value; i++) {
+    state.cars.forEach((car) => {
+      const randomNum = getRandomNum();
+      if (randomNum > 3) {
+        car.go();
+      }
+    });
+  }
 
   showElement(sections[2]);
 });
