@@ -29,6 +29,7 @@ export const handleCarNamesSubmit = function () {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
-
+  document.querySelector("#racing-container").style.visibility = "visible";
+  document.querySelector("#winner-container").style.visibility = "visible";
   // Car 생성
 };
