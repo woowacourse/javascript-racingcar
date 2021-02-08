@@ -126,12 +126,12 @@ describe('racing-game', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
 
-    setTimeout(() => {
-      const gameResult = `🏆 최종 우승자: ${getWinners()} 🏆`;
-    }, 1000);
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
     cy.get('#game-process-section').should('not.be.visible');
     cy.get('#game-result-section').should('not.be.visible');
+    cy.get('#game-process-screen').should('have.text', '');
+    cy.get('#car-name-input').should('have.text', '');
+    cy.get('#racing-count-input').should('have.text', '');
   });
 });
