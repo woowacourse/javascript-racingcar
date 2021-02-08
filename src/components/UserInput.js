@@ -21,6 +21,16 @@ export default class UserInput extends Component {
         this.#handleSubmitRaceTimes(target);
       }
     });
+
+    this.$target.addEventListener('keyup', event => {
+      if (event.key === 'Enter') {
+        if (event.target.id === 'input-car-name') {
+          this.#handleSubmitCarName(event.target);
+        } else if (event.target.id === 'input-race-times') {
+          this.#handleSubmitRaceTimes(event.target);
+        }
+      }
+    });
   }
 
   #handleSubmitCarName($target) {
