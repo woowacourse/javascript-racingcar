@@ -1,4 +1,6 @@
 import alertConstants from '../constants/alertConstants.js';
+import racingConstants from '../constants/racingConstants.js';
+
 export default class CarRacingController {
   constructor(model, view) {
     this.model = model;
@@ -10,6 +12,7 @@ export default class CarRacingController {
   onClickCarNamesSubmit() {
     const $racingCountContainer = document.querySelector('.racing-count-container');
     const $carNamesInput = document.querySelector('#car-names-input');
+
     const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
 
     for (let i = 0; i < carNames.length; i++) {
@@ -38,6 +41,31 @@ export default class CarRacingController {
 
     this.view.removeHidden($racingContainer);
     this.view.renderRacingCars(this.model.cars);
+
+    this.startRacing();
+  }
+
+  startRacing() {
+    const { START_THRESHOLD_NUMBER } = racingConstants;
+
+    this.model.initCarsDistance();
+
+    for (let i = 0; i < this.model.racingCount; i++) {
+      const movedCars = [];
+
+      this.model.cars.forEach((car) => {
+        const { name } = car;
+        const randomNumber = Math.floor(Math.random() * 10);
+
+        if (randomNumber >= START_THRESHOLD_NUMBER) {
+          this.model.moveCar(name);
+          movedCars.push(name);
+        }
+      });
+
+      this.view.renderRacingRoundResult(movedCars);
+    }
+    console.log(this.model.cars);
   }
 
   setEventListener() {

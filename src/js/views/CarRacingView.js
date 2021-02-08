@@ -7,6 +7,18 @@ export default class CarRacingView {
     element.classList.remove('hidden');
   }
 
+  renderRacingRoundResult(movedCars) {
+    const $carPlayers = document.querySelectorAll('.car-player');
+
+    $carPlayers.forEach((carPlayer) => {
+      const carName = carPlayer.innerText;
+
+      if (movedCars.includes(carName)) {
+        carPlayer.parentNode.insertAdjacentHTML('beforeend', `<div class="forward-icon mt-2">⬇️️</div>`);
+      }
+    });
+  }
+
   renderRacingCars(cars) {
     const $racingContainer = document.querySelector('.racing-container');
 
