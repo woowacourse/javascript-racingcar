@@ -1,9 +1,19 @@
-import { $resultArea, $tryCountInput, $winners, $restartButton } from '../elements.js';
+import {
+  $resultArea,
+  $tryCountInput,
+  $winners,
+  $restartButton,
+  $carNameInput,
+} from '../elements.js';
 import { getResultAreaTemplate, getWinnersTemplate } from '../templates.js';
 
 export default class RacingCarGameView {
   static updateResultArea(carList) {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
+  }
+
+  static clearCarNamesInput() {
+    $carNameInput.value = '';
   }
 
   static clearTryCountInput() {
@@ -17,8 +27,12 @@ export default class RacingCarGameView {
   static showRestartButton() {
     $restartButton.style.display = '';
   }
-  
+
   static hideRestartButton() {
     $restartButton.style.display = 'none';
+  }
+
+  static hideWinners() {
+    $winners.innerText = '';
   }
 }
