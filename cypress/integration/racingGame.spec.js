@@ -6,11 +6,9 @@ describe('racing-game', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
+  const defaultCarNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
-  const typeCarNameAndSubmit = (
-    carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
-  ) => {
+  const typeCarNameAndSubmit = (carNames = defaultCarNames) => {
     cy.get('#car-name-input').type(carNames.join(','));
     cy.get('#car-name-submit').click();
     cy.get('#car-name-submit').click();
@@ -22,14 +20,13 @@ describe('racing-game', () => {
     return cy.get('#racing-count-submit').click();
   };
 
-  it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
+  it('정상적인 자동차이름을 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
     typeCarNameAndSubmit();
     cy.get('#racing-count-section').should('be.visible');
   });
 
-  it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력하는지 테스트 한다.', () => {
-    const longCarName = ['YUJOYOONHO'];
-    const blankCarName = ['   '];
+  it('5글자 초과 자동차 이름이 입력된 경우 경고메세지를 출력하고 입력창을 초기화 하는지 테스트를 한다.', () => {
+    const longCarName = ['YUJO_YOONHO'];
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
@@ -39,8 +36,15 @@ describe('racing-game', () => {
       );
       cy.get('#car-name-input').should('have.text', '');
     });
+  });
+
+  it('자동차 이름에 공백이 입력된 경우 경고메세지를 출력하고 입력창을 초기화 하는지 테스트를 한다.', () => {
+    const blankCarName = ['   '];
+    const alertStub = cy.stub();
+
+    cy.on('window:alert', alertStub);
     typeCarNameAndSubmit(blankCarName).then(() => {
-      expect(alertStub.getCall(1)).to.be.calledWith(
+      expect(alertStub.getCall(0)).to.be.calledWith(
         '공백만으로는 이름을 구성할 수 없습니다.',
       );
       cy.get('#car-name-input').should('have.text', '');
@@ -48,14 +52,14 @@ describe('racing-game', () => {
     cy.get('#car-name-submit')
       .click()
       .then(() => {
-        expect(alertStub.getCall(2)).to.be.calledWith(
+        expect(alertStub.getCall(1)).to.be.calledWith(
           '공백만으로는 이름을 구성할 수 없습니다.',
         );
         cy.get('#car-name-input').should('have.text', '');
       });
   });
 
-  it('양의 정수만을 시도횟수로 입력할 수 있는지 테스트 한다.', () => {
+  it('음수의 시도횟수가 입력된 경우 경고메세지를 출력하고 입력창을 초기화 하는지 테스트를 한다.', () => {
     const negativeRacingCount = -7;
     const alertStub = cy.stub();
 
@@ -67,38 +71,63 @@ describe('racing-game', () => {
       );
       cy.get('#racing-count-input').should('have.text', '');
     });
+  });
+
+  it('시도횟수에 공백이 입력된 경우 경고메세지를 출력하고 입력창을 초기화 하는지 테스트를 한다.', () => {
+    const alertStub = cy.stub();
+
+    cy.on('window:alert', alertStub);
+    typeCarNameAndSubmit();
     cy.get('#racing-count-submit')
       .click()
       .then(() => {
-        expect(alertStub.getCall(1)).to.be.calledWith(
+        expect(alertStub.getCall(0)).to.be.calledWith(
           '1 이상의 숫자를 입력해주세요.',
         );
         cy.get('#racing-count-input').should('have.text', '');
       });
   });
 
-  it('시도횟수가 올바르게 입력된 경우 자동차경주 화면이 보이는지 테스트 한다.', () => {
+  it('올바른 시도횟수가 입력된 경우 게임진행 화면에 정상적으로 표시되는지 테스트를 한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
-    cy.get('.car-player')
-      .should('have.length', carNames.length)
-      .each(($div, index) => cy.get($div).should('have.text', carNames[index]));
     cy.get('#game-process-section').should('be.visible');
   });
 
-  it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
+  it('게임진행 화면에 표시된 자동차 대수와 입력된 자동차 대수가 일치하는지 테스트를 한다.', () => {
+    typeCarNameAndSubmit();
+    typeRacingCountAndSubmit();
+    cy.get('.car-player').should('have.length', defaultCarNames.length);
+    cy.get('#game-process-section').should('be.visible');
+  });
+
+  it('게임진행 화면에 표시된 자동차 이름과 입력된 자동차 이름이 일치하는지 테스트를 한다.', () => {
+    typeCarNameAndSubmit();
+    typeRacingCountAndSubmit();
+    cy.get('.car-player').each(($div, index) =>
+      cy.get($div).should('have.text', defaultCarNames[index]),
+    );
+  });
+
+  it('난수를 생성하는 함수가 0 ~ 9 사이의 정수를 반환하는지 확인하는 테스트한다.', () => {
     const possibleScores = Array.from({ length: 10 }).map((v, i) => i);
 
     for (let i = 0; i < 10; i++) {
       expect(possibleScores).to.include(getRandomNumber());
     }
+  });
+
+  it('전진횟수를 결정하는 함수가 "[1, 3, 3, 7]"을 입력받았을 때 "1"을 반환하는지 확인하는 테스트한다.', () => {
     expect(isEffectiveScore(3)).to.equal(false);
     expect(isEffectiveScore(4)).to.equal(true);
+  });
+
+  it('게임진행 결과에 따라 각 자동차에 화살표 갯수가 제대로 표시되는지 테스트한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player').each(($div, index) => {
       cy.get($div)
-        .should('have.text', carNames[index])
+        .should('have.text', defaultCarNames[index])
         .parent()
         .children('div')
         .its('length')
@@ -108,7 +137,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('자동차 경주 진행을 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
+  it('최종 우승자가 정상적으로 출력되는지 테스트한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
 
@@ -121,7 +150,7 @@ describe('racing-game', () => {
 
       counts.forEach((carCount, index) => {
         if (carCount === maxScore) {
-          winners.push(carNames[index]);
+          winners.push(defaultCarNames[index]);
         }
       });
       cy.get('#game-result-text').should(
@@ -131,14 +160,25 @@ describe('racing-game', () => {
     });
   });
 
-  it('다시 시작버튼을 누르면 초기 화면을 출력해서 게임을 정상적으로 다시 시작하는지 테스트한다.', () => {
+  it('시도횟수 입력창, 게임진행 화면, 게임 결과 화면이 모두 보이지 않는 상태인지 테스트한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
     cy.get('#game-process-section').should('not.be.visible');
     cy.get('#game-result-section').should('not.be.visible');
+  });
+
+  it('게임 진행 내용을 초기화 되었는지 테스트한다.', () => {
+    typeCarNameAndSubmit();
+    typeRacingCountAndSubmit();
+    cy.get('#game-restart-button').click();
     cy.get('#game-process-screen').should('have.text', '');
+  });
+
+  it('자동차이름 입력창과 시도횟수 입력창이 초기화 되었는지 테스트한다.', () => {
+    typeCarNameAndSubmit();
+    typeRacingCountAndSubmit();
     cy.get('#car-name-input').should('have.text', '');
     cy.get('#racing-count-input').should('have.text', '');
   });
