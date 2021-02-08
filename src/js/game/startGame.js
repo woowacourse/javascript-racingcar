@@ -1,4 +1,4 @@
-import { isEffectiveScore } from '../utils/isEffectiveScore.js';
+import { isEffectiveScore } from './isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { printGameResult } from './printGameResult.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
