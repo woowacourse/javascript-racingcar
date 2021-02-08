@@ -11,13 +11,63 @@
   </a>
 </p>
 
-
 ## 🔥 Projects!
+
 <p align="middle">
   <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/7c76e809d82a4a3aa0fd78a86be25427">
 </p>
 
+### :point_right: commit principle
+
+- :hammer_and_wrench: `:hammer_and_wrench:`when refactoring the code
+- :racehorse: `:racehorse:` when adding the function or something
+- :memo: `:memo:` when writing docs
+- :bug: `:bug:` when fixing a bug
+- :fire: `:fire:` when removing code or files
+- :white_check_mark: `:white_check_mark:` when adding tests
+- :ballot_box_with_check: `:ballot_box_with_check:` when resolving tests
+- :shirt: `:shirt:` when removing linter warnings
+- :beginner: `:beginner:` when inital commit
+
+### :technologist: feat list
+
+![자동차경주게임](./src/image/carGameImage.png)
+
+#### major feature
+
+- 이름 입력 칸과 확인 버튼이 있다.
+- 이름 입력 칸에 place holder('자동차 이름')가 있다.
+- 이름 입력 칸에 이름을 입력할 수 있다.
+- 이름은 ‘,’로 구분한다.
+- 이름 입력 칸은 알파벳, 한글, ‘,’만 입력된다.
+- 이름 입력 칸에 이름을 입력하고 확인 버튼을 누르면 칸이 비워지고, 횟수 입력 칸이 나온다.
+- 횟수 입력 칸에 place holder('시도 횟수')가 있다.
+- 횟수 입력 칸은 숫자만 입력된다.
+- 횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 칸이 비워진다.
+- 횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 진행창/결과창/리셋 버튼이 나온다.
+- 입력한 이름이 ‘,’를 기준으로 진행창에 출력된다.
+- 입력한 횟수만큼 진행창에서 게임이 시도된다.
+- 랜덤한 숫자를 생성한다. (TDD)
+- 각 자동차에 랜덤 값을 부여한다. (TDD)
+- 랜덤 값이 4~9일 때 전진, 0~3일 때 멈춘다. (TDD)
+- 가장 많이 전진한 자동차가 우승인지 판별한다. (TDD)
+- 우승자를 출력한다. (TDD)
+- 각 자동차의 최대 전진 횟수가 입력한 횟수보다 적거나 같다. (TDD)
+- 우승자가 2명 이상일 경우 ‘,’로 구분하여 출력한다. (TDD)
+- 우승자의 수는 입력한 이름의 수보다 적거나 같다. (TDD)
+- 리셋 버튼을 누르면 초기 상태로 돌아간다.
+
+#### exceptions
+
+- 빈 문자인 이름을 등록하면 alert 메시지를 표시한다.
+- 5자 초과인 이름을 등록하면 alert 메시지를 표시한다.
+- 이름을 등록한 뒤에 다시 이름을 등록하려 할 경우 alert 메시지를 표시한다.
+- 횟수를 설정한 뒤에 다시 횟수를 설정하려 할 경우 alert 메시지를 표시한다.
+- 횟수를 설정하려 할 때 횟수가 자연수가 아닐 경우 alert 메시지를 표시한다.
+- 시도할 횟수 입력 칸에 문자, 0, 기호를 입력할 경우 alert 메시지를 표시한다.
+
 ### 🎯 step1
+
 - [ ] 주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다.
 - [ ] 자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.
 - [ ] 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
@@ -27,8 +77,9 @@
 - [ ] 우승자가 여러명일 경우 ,를 이용하여 구분한다.
 
 ### 🎯🎯 step2
+
 - [ ] 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
-    - [ ] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
+  - [ ] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
 - [ ] 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
 - [ ] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
 
@@ -54,7 +105,7 @@ live-server 폴더명
 
 ## 👏 Contributing
 
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요. 
+만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
 
 <br>
 
