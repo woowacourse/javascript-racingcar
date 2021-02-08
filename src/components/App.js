@@ -17,7 +17,7 @@ export default class App extends Component {
   initStates() {
     this.cars = new State([]);
     this.raceTimes = new State(null);
-    this.raceTimes.subscribe(this.#race);
+    this.raceTimes.subscribe(this.race);
   }
 
   mountTemplate() {
@@ -48,10 +48,11 @@ export default class App extends Component {
   mountGameResult = winners => {
     new GameResult(document.querySelector('#game-result-component'), {
       winners,
+      reset: this.reset,
     });
   };
 
-  #race = () => {
+  race = () => {
     for (let i = 0; i < this.raceTimes.value; i++) {
       this.cars.value = this.cars.value.map(car => {
         car.process();
@@ -66,5 +67,10 @@ export default class App extends Component {
       }
     });
     this.mountGameResult(winners);
+  };
+
+  reset = () => {
+    this.initStates();
+    this.render();
   };
 }
