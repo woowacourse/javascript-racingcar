@@ -31,7 +31,7 @@ export default class CarRacingView {
     $racingContainer.innerHTML = cars
       .map(
         (car) => `
-          <div>
+          <div class="racing-round-container">
             <div class="car-player mr-2">${car.name}</div>
           </div>
         `

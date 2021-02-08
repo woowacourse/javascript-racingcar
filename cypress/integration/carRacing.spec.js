@@ -70,4 +70,34 @@ context('carRacing', () => {
 
     checkRacingRound('car1, car2, car3');
   });
+
+  it('최종 우승자가 정상적으로 출력되는지 확인한다.', () => {
+    inputCarNames('car1, car2, car3');
+    inputRacingCount(5);
+
+    const winners = [];
+    let maxCount = -1;
+
+    cy.document().then((doc) => {
+      const $racingRoundContainers = doc.querySelectorAll('.racing-round-container');
+
+      $racingRoundContainers.forEach((racingRoundContainer) => {
+        const childNodesLength = racingRoundContainer.childNodes.length;
+        if (maxCount < childNodesLength) {
+          maxCount = childNodesLength;
+        }
+      });
+
+      $racingRoundContainers.forEach((racingRoundContainer) => {
+        const childNodesLength = racingRoundContainer.childNodes.length;
+        if (maxCount === childNodesLength) {
+          maxCount = childNodesLength;
+          const carName = racingRoundContainer.querySelector('.car-player').innerText;
+          winners.push(carName);
+        }
+      });
+
+      cy.get('.winners-list').should('have.text', winners.join(', '));
+    });
+  });
 });

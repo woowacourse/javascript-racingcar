@@ -12,7 +12,6 @@ export default class CarRacingController {
   onClickCarNamesSubmit() {
     const $racingCountContainer = document.querySelector('.racing-count-container');
     const $carNamesInput = document.querySelector('#car-names-input');
-
     const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
     const carNamesSet = new Set(carNames);
 
