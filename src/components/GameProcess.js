@@ -6,19 +6,21 @@ export default class GameProcess extends Component {
     this.render();
   }
 
-  initEvent() {}
-
   render() {
     this.$target.innerHTML = `
       <section class="mt-4">
         <div class="d-flex">
-          ${this.props.cars.value.reduce(
-            (acc, car) => acc + this.#createCarProcessTemplate(car),
-            ''
-          )}
+          ${this.#createCarProcess()}
         </div>
       </section>
     `;
+  }
+
+  #createCarProcess() {
+    return this.props.cars.value.reduce(
+      (acc, car) => acc + this.#createCarProcessTemplate(car),
+      ''
+    )
   }
 
   #createCarProcessTemplate(car) {
