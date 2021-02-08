@@ -7,17 +7,19 @@ import State from '../library/core/State.js';
 export default class App extends Component {
   cars;
   raceTimes;
+  winners;
 
   constructor($target, props) {
     super($target, props);
-    this.initStates();
+    this.initialize();
     this.render();
   }
 
-  initStates() {
-    this.cars = new State([]);
-    this.raceTimes = new State(null);
-  }
+  initialize = () => {
+    this.winners = [];
+    this.#initStates();
+    this.render();
+  };
 
   mountTemplate() {
     this.$target.innerHTML = `
@@ -31,13 +33,17 @@ export default class App extends Component {
   }
 
   mountChildComponents = () => {
+    this.mountUserInput();
+  };
+
+  mountUserInput = () => {
     new UserInput(document.querySelector('#user-input-component'), {
       cars: this.cars,
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
       race: this.race,
     });
-  };
+  }
 
   mountGameProcess = () => {
     new GameProcess(document.querySelector('#game-process-component'), {
@@ -45,32 +51,39 @@ export default class App extends Component {
     });
   };
 
-  mountGameResult = winners => {
+  mountGameResult = () => {
     new GameResult(document.querySelector('#game-result-component'), {
-      winners,
-      reset: this.reset,
+      winners: this.winners,
+      reset: this.initialize,
     });
   };
 
   race = () => {
     for (let i = 0; i < this.raceTimes.value; i++) {
-      this.cars.value = this.cars.value.map(car => {
-        car.process();
-        return car;
-      });
+      this.#processRaceOnce();
     }
-    let winners = [];
+    this.#determineWinners();
+    this.mountGameResult();
+  };
+
+  #processRaceOnce() {
+    this.cars.value = this.cars.value.map(car => {
+      car.process();
+      return car;
+    });
+  }
+
+  #determineWinners() {
     let maxPosition = Math.max(...this.cars.value.map(car => car.position));
     this.cars.value.forEach(car => {
       if (car.position === maxPosition) {
-        winners.push(car.name);
+        this.winners.push(car.name);
       }
     });
-    this.mountGameResult(winners);
-  };
+  }
 
-  reset = () => {
-    this.initStates();
-    this.render();
-  };
+  #initStates() {
+    this.cars = new State([]);
+    this.raceTimes = new State(null);
+  }
 }
