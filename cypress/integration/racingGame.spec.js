@@ -40,12 +40,14 @@ describe('racing-game', () => {
       );
       cy.get('#car-name-input').should('have.text', '');
     });
+
     typeCarNameAndSubmit(blankCarName).then(() => {
       expect(alertStub.getCall(1)).to.be.calledWith(
         '공백만으로는 이름을 구성할 수 없습니다.',
       );
       cy.get('#car-name-input').should('have.text', '');
     });
+
     cy.get('#car-name-submit')
       .click()
       .then(() => {
@@ -68,6 +70,7 @@ describe('racing-game', () => {
       );
       cy.get('#racing-count-input').should('have.text', '');
     });
+
     cy.get('#racing-count-submit')
       .click()
       .then(() => {
@@ -137,6 +140,7 @@ describe('racing-game', () => {
           winners.push(carNames[index]);
         }
       });
+
       cy.get('#game-result-text').should(
         'have.text',
         `🏆 최종 우승자: ${winners.join(', ')} 🏆`,
