@@ -38,7 +38,7 @@ export default class CarRacingController {
     const $racingCountSubmit = document.querySelector('#racing-count-submit');
     const racingCount = $racingCountInput.value;
 
-    if (racingCount <= 0) {
+    if (racingCount <= 0 || racingCount > racingConstants.MAX_RACING_COUNT) {
       alert(alertConstants.INVALID_RACING_COUNT);
       return;
     }
@@ -72,24 +72,32 @@ export default class CarRacingController {
     $racingCountInput.value = '';
   }
 
-  startRacing() {
+  moveCars(cars) {
+    cars.forEach((car) => {
+      this.model.moveCar(car);
+    });
+  }
+
+  getMovedCars() {
+    const movedCars = [];
     const { START_THRESHOLD_NUMBER } = racingConstants;
 
-    this.model.initCarsDistance();
+    this.model.cars.forEach((car) => {
+      const { name } = car;
+      const randomNumber = Math.floor(Math.random() * 10);
 
+      if (randomNumber >= START_THRESHOLD_NUMBER) {
+        movedCars.push(name);
+      }
+    });
+
+    return movedCars;
+  }
+
+  startRacing() {
     for (let i = 0; i < this.model.racingCount; i++) {
-      const movedCars = [];
-
-      this.model.cars.forEach((car) => {
-        const { name } = car;
-        const randomNumber = Math.floor(Math.random() * 10);
-
-        if (randomNumber >= START_THRESHOLD_NUMBER) {
-          this.model.moveCar(name);
-          movedCars.push(name);
-        }
-      });
-
+      const movedCars = this.getMovedCars();
+      this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
     }
 

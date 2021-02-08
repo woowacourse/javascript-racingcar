@@ -15,7 +15,6 @@ function clickRestartButton() {
 }
 
 function checkAlertMessage(alertMessage) {
-  // TODO: alert가 발생했는지의 여부 확인 필요
   cy.on('window:alert', (txt) => {
     expect(txt).to.contains(alertMessage);
   });
@@ -92,7 +91,6 @@ context('carRacing', () => {
       $carContainers.forEach((carContainer) => {
         const childNodesLength = carContainer.childNodes.length;
         if (maxCount === childNodesLength) {
-          maxCount = childNodesLength;
           const carName = carContainer.querySelector('.car-player').innerText;
           winners.push(carName);
         }
