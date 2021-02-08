@@ -14,11 +14,15 @@ export default class CarRacingController {
     const $carNamesInput = document.querySelector('#car-names-input');
 
     const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
+    const carNamesSet = new Set(carNames);
+
+    if (carNames.length !== carNamesSet.size) {
+      return alert(alertConstants.DUPLICATE_CAR_NAME);
+    }
 
     for (let i = 0; i < carNames.length; i++) {
       if (carNames[i].length > 5 || carNames[i].length <= 0) {
-        alert(alertConstants.INVALID_CAR_NAME);
-        return;
+        return alert(alertConstants.INVALID_CAR_NAME);
       }
     }
 
