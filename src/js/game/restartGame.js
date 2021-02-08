@@ -11,9 +11,9 @@ const resetGame = () => {
 };
 
 export const restartGame = () => {
-  toggleVisibility('racingCountSection');
-  toggleVisibility('gameProcessSection');
-  toggleVisibility('gameResultSection');
+  toggleVisibility('$racingCountSection');
+  toggleVisibility('$gameProcessSection');
+  toggleVisibility('$gameResultSection');
 
   resetGame();
 };

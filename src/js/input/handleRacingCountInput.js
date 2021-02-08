@@ -18,6 +18,6 @@ export const handleRacingCountInput = () => {
     return ($racingCountInput.value = '');
   }
 
-  toggleVisibility('gameProcessSection');
+  toggleVisibility('$gameProcessSection');
   startGame(racingCount);
 };

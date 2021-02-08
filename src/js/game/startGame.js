@@ -25,6 +25,6 @@ export const startGame = (racingCount) => {
     updateRacingCount(cars);
   }
 
-  toggleVisibility('gameResultSection');
+  toggleVisibility('$gameResultSection');
   printGameResult();
 };

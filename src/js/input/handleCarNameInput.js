@@ -43,6 +43,6 @@ export const handleCarNameInput = () => {
     return ($carNameInput.value = '');
   }
 
-  toggleVisibility('racingCountSection');
+  toggleVisibility('$racingCountSection');
   createCars(carNames);
 };
