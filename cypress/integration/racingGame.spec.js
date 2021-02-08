@@ -61,7 +61,8 @@ describe('레이싱 게임', () => {
     const { getRandomNumber } = require('../../src/library/utils/random.js');
     for (let i = 0; i < 100; i++) {
       let randomNumber = getRandomNumber(0, 10);
-      expect(randomNumber >= 0 && randomNumber < 10).be.equal(true);
+      expect(randomNumber).to.be.at.least(0);
+      expect(randomNumber).to.be.at.most(9);
     }
   });
 
