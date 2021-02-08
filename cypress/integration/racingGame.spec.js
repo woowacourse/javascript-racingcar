@@ -97,14 +97,15 @@ describe('racing-game', () => {
     expect(isEffectiveScore(4)).to.equal(true);
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
-    cy.get('.car-player').each(($div, index, $lis) => {
+    cy.get('.car-player').each(($div, index) => {
       return cy
         .get($div)
         .should('have.text', carNames[index])
-        .siblings('.forward-icon')
+        .parent()
+        .children('div')
         .its('length')
-        .then((len) => {
-          cy.get($div).should('have.data', 'forwardCount', len);
+        .then((childrenNum) => {
+          cy.get($div).should('have.data', 'forwardCount', childrenNum - 1);
         });
     });
   });
@@ -113,9 +114,9 @@ describe('racing-game', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
 
-    cy.get('#game-result-text').should(
-      'have.text',
-      '🏆 최종 우승자: ' + getWinners() + '🏆',
-    );
+    setTimeout(() => {
+      const gameResult = `🏆 최종 우승자: ${getWinners()} 🏆`;
+      cy.get('#game-result-text').should('have.text', gameResult);
+    }, 1000);
   });
 });
