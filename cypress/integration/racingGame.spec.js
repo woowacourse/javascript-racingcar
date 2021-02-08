@@ -97,7 +97,6 @@ describe('레이싱 게임', () => {
 
   it('우승자가 여러 명일 경우 `,`를 이용하여 구분한다.', () => {
     for (let i = 0; i < 10; i++) {
-      cy.visit('http://localhost:5500');
       cy.get('#input-car-name').type('aaa,bbb');
       cy.get('#submit-car-name').click();
       cy.get('#input-race-times').type('1');
@@ -115,6 +114,8 @@ describe('레이싱 게임', () => {
             .should('is.true');
         }
       });
+
+      cy.get('#retry').click();
     }
   });
 
