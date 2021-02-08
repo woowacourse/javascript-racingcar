@@ -16,32 +16,33 @@ export default class UserInput extends Component {
   initEvent() {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id === 'submit-car-name') {
-        this.#handleSubmitCarName(target);
+        this.#handleSubmitCarName();
       } else if (target.id === 'submit-race-times') {
-        this.#handleSubmitRaceTimes(target);
+        this.#handleSubmitRaceTimes();
       }
     });
 
-    this.$target.addEventListener('keyup', event => {
-      if (event.key === 'Enter') {
-        if (event.target.id === 'input-car-name') {
-          this.#handleSubmitCarName(event.target);
-        } else if (event.target.id === 'input-race-times') {
-          this.#handleSubmitRaceTimes(event.target);
+    this.$target.addEventListener('keyup', ({ key, target }) => {
+      if (key === 'Enter') {
+        if (target.id === 'input-car-name') {
+          this.#handleSubmitCarName();
+        } else if (target.id === 'input-race-times') {
+          this.#handleSubmitRaceTimes();
         }
       }
     });
   }
 
-  #handleSubmitCarName($target) {
+  #handleSubmitCarName() {
     const $inputCarName = document.querySelector('#input-car-name');
+    const $buttonCarName = document.querySelector('#submit-car-name');
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
     if (!this.#isValidCarNames(carNames)) {
       alert(INVALID_CAR_NAME_LENGTH_MESSAGE);
       return;
     }
     this.props.cars.value = carNames.map(carName => new Car(carName));
-    disableDOMElement($target, $inputCarName);
+    disableDOMElement($buttonCarName, $inputCarName);
     this.showRaceTimesInput();
   }
 
@@ -57,14 +58,16 @@ export default class UserInput extends Component {
     document.querySelector('#input-race-times').focus();
   }
 
-  #handleSubmitRaceTimes($target) {
+  #handleSubmitRaceTimes() {
     const $inputRaceTimes = document.querySelector('#input-race-times');
+    const $buttonRaceTimes = document.querySelector('#submit-race-times');
+    console.log($inputRaceTimes.value);
     if (!this.#isValidRaceTimes($inputRaceTimes.value)) {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
     }
     this.props.raceTimes.value = $inputRaceTimes.value;
-    disableDOMElement($target, $inputRaceTimes);
+    disableDOMElement($buttonRaceTimes, $inputRaceTimes);
     this.props.race();
     this.props.mountGameProcess();
   }
