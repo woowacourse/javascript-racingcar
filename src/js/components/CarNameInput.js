@@ -20,25 +20,36 @@ export default class CarNameInput {
     const inputCarName = this.$carNameInput.value;
     const carNames = inputCarName.split(',').map((name) => name.trim());
 
-    if (this.isEmptyCarName(inputCarName.trim())) {
-      alert(ERROR_MESSAGE.EMPTY_CAR_NAME_INPUT);
+    const errorMessage = this.checkValidInput({ inputCarName, carNames });
+
+    if (errorMessage) {
+      alert(errorMessage);
       return;
+    }
+  }
+
+  checkValidInput({ inputCarName, carNames }) {
+    if (this.isEmptyCarName(inputCarName.trim())) {
+      return ERROR_MESSAGE.EMPTY_CAR_NAME_INPUT;
     }
 
     if (this.isOneCarName(carNames)) {
-      alert(ERROR_MESSAGE.ONE_CAR_NAME_INPUT);
-      return;
+      return ERROR_MESSAGE.ONE_CAR_NAME_INPUT;
     }
 
     if (this.isContainEmptyString(carNames)) {
-      alert(ERROR_MESSAGE.EMPTY_STRING_CAR_NAME_INPUT);
-      return;
+      return ERROR_MESSAGE.EMPTY_STRING_CAR_NAME_INPUT;
     }
 
     if (this.isDuplicatedCarName(carNames)) {
-      alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME_INPUT);
-      return;
+      return ERROR_MESSAGE.DUPLICATED_CAR_NAME_INPUT;
     }
+
+    if (this.isOverMaxLengthCarName(carNames)) {
+      return ERROR_MESSAGE.OVER_MAX_LENGTH_CAR_NAME_INPUT;
+    }
+
+    return '';
   }
 
   isEmptyCarName(inputCarName) {
@@ -55,5 +66,9 @@ export default class CarNameInput {
 
   isDuplicatedCarName(carNames) {
     return carNames.length !== new Set(carNames).size;
+  }
+
+  isOverMaxLengthCarName(carNames) {
+    return carNames.some((carName) => carName.length > CAR_NAME_MAX_LENGTH);
   }
 }
