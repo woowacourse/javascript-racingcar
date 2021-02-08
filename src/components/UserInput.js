@@ -54,6 +54,7 @@ export default class UserInput extends Component {
 
   showRaceTimesInput() {
     document.querySelector('#section-race-times').classList.remove('hidden');
+    document.querySelector('#input-race-times').focus();
   }
 
   #handleSubmitRaceTimes($target) {
