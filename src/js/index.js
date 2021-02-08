@@ -79,7 +79,7 @@ const setResultView = () => {
     const resultDivString = `<div></div>`;
     const resultDiv = parseHTML(resultDivString);
 
-    resultDiv.appendChild(showCarName(car.carName));
+    resultDiv.appendChild(showCarName(car.name));
     for (let idx = 0; idx < car.totalStep; idx++) {
       const step = showTotalStep();
       resultDiv.appendChild(step);
@@ -88,10 +88,44 @@ const setResultView = () => {
   });
 };
 
+const getWinner = () => {
+  state.cars.sort((a, b) => {
+    return b.totalStep - a.totalStep;
+  });
+
+  const maxTotalStep = state.cars[0].totalStep;
+  const winners = state.cars.filter((car) => {
+    if (car.totalStep === maxTotalStep) {
+      return car;
+    }
+  });
+
+  return winners.map((winner) => {
+    return winner.name;
+  });
+};
+
+const setWinnerView = (winners) => {
+  let winnerText = "";
+  if (winners.length === 1) {
+    winnerText = winners[0];
+  } else {
+    winnerText = winners.join(", ");
+  }
+
+  const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>
+                          <div class="d-flex justify-center">
+                            <button type="button" class="btn btn-cyan">다시 시작하기</button>
+                          </div>`;
+  const winnerTemplate = parseHTML(winnerTemplateString);
+  sections[4].append(winnerTemplate);
+};
+
 const tryNumBtn = document.getElementsByTagName("button")[1];
 tryNumBtn.addEventListener("click", () => {
   playGame();
   setResultView();
+  setWinnerView(getWinner());
   showElement(sections[3]);
   showElement(sections[4]);
 });
