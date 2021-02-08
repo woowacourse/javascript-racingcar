@@ -1,4 +1,4 @@
-import { SELECTOR } from "../../src/js/util/constants.js";
+import { SELECTOR } from "../../src/js/constants.js";
 
 describe("자동차 이름 입력하기", () => {
   beforeEach(() => {
