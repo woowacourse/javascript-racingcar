@@ -7,6 +7,7 @@ import State from '../library/core/State.js';
 export default class App extends Component {
   cars;
   raceTimes;
+  winners;
 
   constructor($target, props) {
     super($target, props);
@@ -17,6 +18,7 @@ export default class App extends Component {
   initStates() {
     this.cars = new State([]);
     this.raceTimes = new State(null);
+    this.winners = '';
   }
 
   mountTemplate() {
@@ -45,32 +47,39 @@ export default class App extends Component {
     });
   };
 
-  mountGameResult = winners => {
+  mountGameResult = () => {
     new GameResult(document.querySelector('#game-result-component'), {
-      winners,
+      winners: this.winners,
       reset: this.reset,
     });
-  };
-
-  race = () => {
-    for (let i = 0; i < this.raceTimes.value; i++) {
-      this.cars.value = this.cars.value.map(car => {
-        car.process();
-        return car;
-      });
-    }
-    let winners = [];
-    let maxPosition = Math.max(...this.cars.value.map(car => car.position));
-    this.cars.value.forEach(car => {
-      if (car.position === maxPosition) {
-        winners.push(car.name);
-      }
-    });
-    this.mountGameResult(winners);
   };
 
   reset = () => {
     this.initStates();
     this.render();
   };
+
+  race = () => {
+    this.#processRacing();
+    this.winners = this.#getWinners();
+    this.mountGameResult();
+  };
+
+  #processRacing() {
+    for (let i = 0; i < this.raceTimes.value; i++) {
+      this.cars.value.forEach(car => car.process());
+    }
+  }
+
+  #getWinners() {
+    const winners = [];
+    const maxPosition = Math.max(...this.cars.value.map(car => car.position));
+    this.cars.value.forEach(car => {
+      if (car.position === maxPosition) {
+        winners.push(car.name);
+      }
+    });
+
+    return winners;
+  }
 }

@@ -1,5 +1,6 @@
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
+import { disableDOMElement } from '../library/utils/dom.js';
 
 export default class UserInput extends Component {
   constructor($target, props) {
@@ -20,36 +21,44 @@ export default class UserInput extends Component {
   #handleSubmitCarName($target) {
     const $inputCarName = document.querySelector('#input-car-name');
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
-    try {
-      if (carNames.some(name => name.length < 1 || name.length > 5)) {
-        throw new Error('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
-      }
-    } catch (err) {
-      alert(err);
+    if (!this.#isValidCarNames(carNames)) {
+      alert('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
       return;
     }
     this.props.cars.value = carNames.map(carName => new Car(carName));
+    disableDOMElement($target, $inputCarName);
+    this.showRaceTimesInput();
+  }
+
+  #isValidCarNames(carNames) {
+    const MIN_LENGTH = 1;
+    const MAX_LENGTH = 5;
+
+    return carNames.some(
+      ({ length }) => length >= MIN_LENGTH && length <= MAX_LENGTH
+    );
+  }
+
+  showRaceTimesInput() {
     document.querySelector('#section-race-times').classList.remove('hidden');
-    $target.disabled = true;
-    $inputCarName.disabled = true;
   }
 
   #handleSubmitRaceTimes($target) {
     const $inputRaceTimes = document.querySelector('#input-race-times');
-    try {
-      if ($inputRaceTimes.value <= 0) {
-        throw new Error('레이싱 횟수는 1이상이어야 합니다.');
-      }
-    } catch (err) {
-      alert(err);
+    if (this.#isValidRaceTimes($inputRaceTimes.value)) {
+      alert('레이싱 횟수는 1이상이어야 합니다.');
       return;
     }
-
     this.props.raceTimes.value = $inputRaceTimes.value;
+    disableDOMElement($target, $inputRaceTimes);
     this.props.race();
     this.props.mountGameProcess();
-    $target.disabled = true;
-    $inputRaceTimes.disabled = true;
+  }
+
+  #isValidRaceTimes(raceTimes) {
+    const MIN_RACE_TIMES = 0;
+
+    return raceTimes > MIN_RACE_TIMES;
   }
 
   render() {
