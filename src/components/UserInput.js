@@ -1,3 +1,8 @@
+import {
+  INVALID_CAR_NAME_LENGTH_MESSAGE,
+  TOO_FEW_RACE_TIMES_MESSAGE,
+} from '../library/constants/errorMessage.js';
+import { CAR_NAME, MIN_RACE_TIMES } from '../library/constants/validation.js';
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
 import { disableDOMElement } from '../library/utils/dom.js';
@@ -22,7 +27,7 @@ export default class UserInput extends Component {
     const $inputCarName = document.querySelector('#input-car-name');
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
     if (!this.#isValidCarNames(carNames)) {
-      alert('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
+      alert(INVALID_CAR_NAME_LENGTH_MESSAGE);
       return;
     }
     this.props.cars.value = carNames.map(carName => new Car(carName));
@@ -31,11 +36,9 @@ export default class UserInput extends Component {
   }
 
   #isValidCarNames(carNames) {
-    const MIN_LENGTH = 1;
-    const MAX_LENGTH = 5;
-
     return carNames.every(
-      ({ length }) => length >= MIN_LENGTH && length <= MAX_LENGTH
+      ({ length }) =>
+        length >= CAR_NAME.MIN_LENGTH && length <= CAR_NAME.MAX_LENGTH
     );
   }
 
@@ -46,7 +49,7 @@ export default class UserInput extends Component {
   #handleSubmitRaceTimes($target) {
     const $inputRaceTimes = document.querySelector('#input-race-times');
     if (!this.#isValidRaceTimes($inputRaceTimes.value)) {
-      alert('레이싱 횟수는 1이상이어야 합니다.');
+      alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
     }
     this.props.raceTimes.value = $inputRaceTimes.value;
@@ -56,8 +59,6 @@ export default class UserInput extends Component {
   }
 
   #isValidRaceTimes(raceTimes) {
-    const MIN_RACE_TIMES = 0;
-
     return raceTimes > MIN_RACE_TIMES;
   }
 
