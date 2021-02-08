@@ -27,12 +27,14 @@ export default class RacingGameView {
           </button>
         </div>
       </section>
+      <section class="count-container mt-5">
+      </section>
     `;
   }
 
   renderCountInput() {
-    this.$inputContainer.innerHTML += `
-      <section class="count-container mt-5">
+    this.$countContainer = document.querySelector('.count-container');
+    this.$countContainer.innerHTML = `
         <p>시도할 횟수를 입력해주세요.</p>
         <div class="d-flex">
           <input
@@ -42,7 +44,6 @@ export default class RacingGameView {
           />
           <button type="button" class="count-btn btn btn-cyan">확인</button>
         </div>
-      </section>
     `;
   }
 }
