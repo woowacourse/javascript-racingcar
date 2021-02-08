@@ -16,6 +16,14 @@ const setSectionDataID = () => {
   }
 };
 
+const carNamesBtn = document.getElementsByTagName("button")[0];
+carNamesBtn.addEventListener("click", () => {
+  const carNamesInput = document.getElementsByTagName("input")[0];
+  const carNames = carNamesInput.value.split(",").map((carName) => {
+    return carName.trim();
+  });
+});
+
 const init = () => {
   setSectionDataID();
   resetView([2, 3, 4]);
