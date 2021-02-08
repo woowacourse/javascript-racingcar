@@ -1,6 +1,6 @@
 import { getRandomNumber } from '../../src/js/utils/getRandomNumber.js';
-import { isEffectiveScore } from '../../src/js/utils/isEffectiveScore.js';
 import { getWinners } from '../../src/js/utils/getWinners.js';
+import { isEffectiveScore } from '../../src/js/utils/isEffectiveScore.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -110,14 +110,12 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주 진행을 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
-    let winners;
-
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
-    winners = getWinners(); // return example) 'WEST, NORTH'
+
     cy.get('#game-result-text').should(
       'have.text',
-      `🏆 최종 우승자: ${winners} 🏆`,
+      '🏆 최종 우승자: ' + getWinners() + '🏆',
     );
   });
 });

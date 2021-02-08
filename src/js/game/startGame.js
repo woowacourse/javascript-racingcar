@@ -1,6 +1,7 @@
 import { isEffectiveScore } from '../utils/isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
-e;
+import { printGameResult } from './printGameResult.js';
+
 const arrowTemplate = () => {
   return `<div class="forward-icon mt-2">⬇️️</div>`;
 };
