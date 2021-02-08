@@ -47,6 +47,16 @@ describe("ui-input-click-show", () => {
         });
       });
   });
+
+  it("다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다", () => {
+    cy.get("#result button").click();
+    cy.get("#count").should("have.css", "display", "none");
+    cy.get("#process").should("have.css", "display", "none");
+    cy.get("#result").should("have.css", "display", "none");
+    cy.get("#process > .d-flex").children().should("not.exist");
+    cy.get("#car-input").should("have.value", "");
+    cy.get("#count-input").should("have.value", "");
+  });
 });
 
 describe("ui-input-vaild-check", () => {
