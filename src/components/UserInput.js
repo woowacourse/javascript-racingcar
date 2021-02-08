@@ -34,7 +34,7 @@ export default class UserInput extends Component {
     const MIN_LENGTH = 1;
     const MAX_LENGTH = 5;
 
-    return carNames.some(
+    return carNames.every(
       ({ length }) => length >= MIN_LENGTH && length <= MAX_LENGTH
     );
   }
@@ -45,7 +45,7 @@ export default class UserInput extends Component {
 
   #handleSubmitRaceTimes($target) {
     const $inputRaceTimes = document.querySelector('#input-race-times');
-    if (this.#isValidRaceTimes($inputRaceTimes.value)) {
+    if (!this.#isValidRaceTimes($inputRaceTimes.value)) {
       alert('레이싱 횟수는 1이상이어야 합니다.');
       return;
     }
