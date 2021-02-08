@@ -105,6 +105,14 @@ const getWinner = () => {
   });
 };
 
+const resetGame = () => {
+  const resetBtn = document.getElementsByTagName("button")[2];
+  resetBtn.addEventListener("click", () => {
+    resetView([2, 3, 4]);
+    state.cars = [];
+  });
+};
+
 const setWinnerView = (winners) => {
   let winnerText = "";
   if (winners.length === 1) {
@@ -113,12 +121,17 @@ const setWinnerView = (winners) => {
     winnerText = winners.join(", ");
   }
 
-  const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>
-                          <div class="d-flex justify-center">
+  const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>`;
+  const winnerTemplate = parseHTML(winnerTemplateString);
+  const resetBtnString = `<div class="d-flex justify-center">
                             <button type="button" class="btn btn-cyan">다시 시작하기</button>
                           </div>`;
-  const winnerTemplate = parseHTML(winnerTemplateString);
+  const resetBtn = parseHTML(resetBtnString);
+
   sections[4].append(winnerTemplate);
+  sections[4].append(resetBtn);
+
+  resetGame();
 };
 
 const tryNumBtn = document.getElementsByTagName("button")[1];
