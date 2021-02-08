@@ -1,6 +1,6 @@
 export default class CarRacingView {
-  constructor(model) {
-    this.model = model;
+  addHidden(element) {
+    element.classList.add('hidden');
   }
 
   removeHidden(element) {
@@ -17,6 +17,12 @@ export default class CarRacingView {
         carPlayer.parentNode.insertAdjacentHTML('beforeend', `<div class="forward-icon mt-2">⬇️️</div>`);
       }
     });
+  }
+
+  renderRacingResult(winners) {
+    const $winnersList = document.querySelector('.winners-list');
+
+    $winnersList.innerText = winners.map((winner) => winner.name).join(', ');
   }
 
   renderRacingCars(cars) {

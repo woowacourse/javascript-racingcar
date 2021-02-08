@@ -45,6 +45,21 @@ export default class CarRacingController {
     this.startRacing();
   }
 
+  onClickRestartButton() {
+    const $racingCountContainer = document.querySelector('.racing-count-container');
+    const $racingContainer = document.querySelector('.racing-container');
+    const $resultContainer = document.querySelector('.result-container');
+    const $carNamesInput = document.querySelector('#car-names-input');
+    const $racingCountInput = document.querySelector('#racing-count-input');
+
+    this.model.init();
+    this.view.addHidden($racingCountContainer);
+    this.view.addHidden($racingContainer);
+    this.view.addHidden($resultContainer);
+    $carNamesInput.value = '';
+    $racingCountInput.value = '';
+  }
+
   startRacing() {
     const { START_THRESHOLD_NUMBER } = racingConstants;
 
@@ -65,14 +80,21 @@ export default class CarRacingController {
 
       this.view.renderRacingRoundResult(movedCars);
     }
-    console.log(this.model.cars);
+
+    const $resultContainer = document.querySelector('.result-container');
+    this.view.removeHidden($resultContainer);
+
+    const winners = this.model.getWinners();
+    this.view.renderRacingResult(winners);
   }
 
   setEventListener() {
     const $carNamesSubmit = document.querySelector('#car-names-submit');
     const $racingCountSubmit = document.querySelector('#racing-count-submit');
+    const $restartButton = document.querySelector('#restart-button');
 
     $carNamesSubmit.addEventListener('click', this.onClickCarNamesSubmit.bind(this));
     $racingCountSubmit.addEventListener('click', this.onClickRacingCountSubmit.bind(this));
+    $restartButton.addEventListener('click', this.onClickRestartButton.bind(this));
   }
 }
