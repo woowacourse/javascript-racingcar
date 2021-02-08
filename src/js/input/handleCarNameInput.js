@@ -1,4 +1,5 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
+import { toggleVisibility } from '../utils/toggleVisibility.js';
 
 const carTemplate = (carName) => {
   return `<div >
@@ -36,12 +37,12 @@ const isValidCarName = (carNames) => {
 
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
-  const $racingCountSection = document.querySelector('#racing-count-section');
 
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
   if (!isValidCarName(carNames)) {
     return ($carNameInput.value = '');
   }
-  $racingCountSection.removeAttribute('hidden');
+
+  toggleVisibility('racingCountSection');
   createCars(carNames);
 };

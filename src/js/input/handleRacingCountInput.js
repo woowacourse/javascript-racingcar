@@ -1,5 +1,6 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 import { startGame } from '../game/startGame.js';
+import { toggleVisibility } from '../utils/toggleVisibility.js';
 
 const isValidRacingCount = (racingCount) => {
   if (racingCount < VALIDATOR.MIN_COUNT) {
@@ -11,12 +12,12 @@ const isValidRacingCount = (racingCount) => {
 
 export const handleRacingCountInput = () => {
   const $racingCountInput = document.querySelector('#racing-count-input');
-  const $gameProcessSection = document.querySelector('#game-process-section');
 
   const racingCount = $racingCountInput.value;
   if (!isValidRacingCount(racingCount)) {
     return ($racingCountInput.value = '');
   }
-  $gameProcessSection.removeAttribute('hidden');
+
+  toggleVisibility('gameProcessSection');
   startGame(racingCount);
 };

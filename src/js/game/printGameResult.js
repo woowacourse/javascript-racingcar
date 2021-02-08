@@ -1,13 +1,10 @@
 import { getWinners } from '../utils/getWinners.js';
+import { toggleVisibility } from '../utils/toggleVisibility.js';
 
 const restartGame = () => {
-  const $racingCountSection = document.querySelector('#racing-count-section');
-  const $gameProcessSection = document.querySelector('#game-process-section');
-  const $gameResultSection = document.querySelector('#game-result-section');
-
-  $racingCountSection.setAttribute('hidden', true);
-  $gameProcessSection.setAttribute('hidden', true);
-  $gameResultSection.setAttribute('hidden', true);
+  toggleVisibility('racingCountSection');
+  toggleVisibility('gameProcessSection');
+  toggleVisibility('gameResultSection');
 };
 
 export const printGameResult = () => {
