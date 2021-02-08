@@ -1,3 +1,4 @@
+import { result } from 'lodash';
 import { 
   MAX_CAR_NAME_EXCEEDED, 
   CAR_NAME_EMPTY, 
@@ -51,31 +52,52 @@ describe('step1', () => {
     cy.get('#try-count-input').should('have.value', '');
   });
 
-  it('수행 횟수는 0 이 될 수 없다.', () => {
-    cy.get('#car-name-input').type('chris, beuc');
-    cy.get('#car-name-submit').click();
-    cy.get('#try-count-input').type('0')
-    cy.on('window:alert', (txt) => {
-      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
-    });
-    cy.get('#try-count-input').should('have.value', '');
-  });
+  // it('수행 횟수는 0 이 될 수 없다.', () => {
+  //   cy.get('#car-name-input').type('chris, beuc');
+  //   cy.get('#car-name-submit').click();
+  //   cy.get('#try-count-input').type('0')
+  //   cy.on('window:alert', (txt) => {
+  //     expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+  //   });
+  //   cy.get('#try-count-input').should('have.value', '');
+  // });
 
-  it('수행 횟수는 음수가 될 수 없다.', () => {
-    cy.get('#car-name-input').type('chris, beuc');
-    cy.get('#car-name-submit').click();
-    cy.get('#try-count-input').type('-1')
-    cy.on('window:alert', (txt) => {
-      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
-    });
-    cy.get('#try-count-input').should('have.value', '');
-  });
+  // it('수행 횟수는 음수가 될 수 없다.', () => {
+  //   cy.get('#car-name-input').type('chris, beuc');
+  //   cy.get('#car-name-submit').click();
+  //   cy.get('#try-count-input').type('-1')
+  //   cy.on('window:alert', (txt) => {
+  //     expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+  //   });
+  //   cy.get('#try-count-input').should('have.value', '');
+  // });
 
-  it('경주가 정상적으로 수행되는지 확인한다.', () => {
+  it('우승자를 제대로 가려냈는지 확인한다.', () => {
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
-    cy.get('#try-count-input').type('10000')
-    cy.get('#result-area').should('contain', '⬇️️');
+    cy.get('#try-count-input').type('10');
+    cy.get('#play-game-button').click();
+    cy.get('#result-area div')
+      .then((results) => {
+        for(let i=0; i<1000; i++) {
+          const record = [];
+          Array.from(results).forEach((element) => {
+            if (element.className === 'car-player mr-2') {
+              record.push(0);
+            } else if (element.className === 'forward-icon mt-2') {
+              record[record.length - 1]++;
+            }
+          });
+
+          if (record[0] === record[1]) {
+            cy.get('#winners').should('have.text', '🏆 최종 우승자: chris, beuc 🏆');
+          } else if (record[0] > record[1]) {
+            cy.get('#winners').should('have.text', '🏆 최종 우승자: chris 🏆');
+          } else {
+            cy.get('#winners').should('have.text', '🏆 최종 우승자: beuc 🏆');
+          }
+        }
+      });
   });
 
   // it('경주 결과가 항상 같은 지를 확인한다.', () => {
