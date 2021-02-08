@@ -21,12 +21,31 @@ describe("ui-input-click-show", () => {
       cy.get(v).should("have.text", cars[i]);
     });
   });
+
   it("시도횟수보다 화살표의 개수가 적거나 같아야한다", () => {
     cy.get("#process > .d-flex > div").each(v => {
       if (v.find(".forward-icon").length > 0) {
         cy.get(v).find(".forward-icon").its("length").should("be.lte", 5);
       }
     });
+  });
+
+  it("가장많은 화살표를 가지고 있는 차의 이름이 우승자에 있어야 한다", () => {
+    let largestCount = 0;
+    cy.get("#process > .d-flex > div")
+      .each(v => {
+        if (v.find(".forward-icon").length > largestCount) {
+          console.log(v.find(".forward-icon").length);
+          largestCount = v.find(".forward-icon").length;
+        }
+      })
+      .then(() => {
+        cy.get("#process > .d-flex > div").each(v => {
+          if (v.find(".forward-icon").length === largestCount) {
+            cy.get("#result > h2").contains(v.find(".car-player")[0].outerText);
+          }
+        });
+      });
   });
 });
 
