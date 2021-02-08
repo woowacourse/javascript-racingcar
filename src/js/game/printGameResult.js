@@ -10,15 +10,27 @@ export const printGameResult = () => {
 };
 
 const restartGame = () => {
-  const $carNameInput = document.querySelector('#car-name-input');
-  const $racingCountInput = document.querySelector('#racing-count-input');
+  clearGameResult();
+  clearInputs();
+  setInitialView();
+};
+
+export const clearGameResult = () => {
   const $gameProcessScreen = document.querySelector('#game-process-screen');
 
-  setInvisible('racingCountSection');
-  setInvisible('gameProcessSection');
-  setInvisible('gameResultSection');
+  $gameProcessScreen.innerHTML = '';
+};
+
+const clearInputs = () => {
+  const $carNameInput = document.querySelector('#car-name-input');
+  const $racingCountInput = document.querySelector('#racing-count-input');
 
   $carNameInput.value = '';
   $racingCountInput.value = '';
-  $gameProcessScreen.innerHTML = '';
+};
+
+const setInitialView = () => {
+  setInvisible('racingCountSection');
+  setInvisible('gameProcessSection');
+  setInvisible('gameResultSection');
 };

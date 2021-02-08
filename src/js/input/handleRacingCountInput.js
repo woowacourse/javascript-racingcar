@@ -1,6 +1,7 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 import { startGame } from '../game/startGame.js';
 import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
+import { clearGameResult } from '../game/printGameResult.js';
 
 export const handleRacingCountInput = () => {
   const $racingCountInput = document.querySelector('#racing-count-input');

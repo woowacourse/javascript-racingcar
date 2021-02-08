@@ -4,24 +4,31 @@ import { printGameResult } from './printGameResult.js';
 import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
 
 export const startGame = (racingCount) => {
-  const cars = document.querySelectorAll('.car-player');
-
-  for (let i = 0; i < racingCount; i++) {
-    updateRacingCount(cars);
-  }
+  playAllGame(racingCount);
   setVisible('gameResultSection');
   printGameResult();
 };
 
-const updateRacingCount = (cars) => {
-  cars.forEach(($car) => {
-    const isForward = isEffectiveScore(getRandomNumber());
+const playAllGame = (racingCount) => {
+  const cars = document.querySelectorAll('.car-player');
 
-    if (isForward) {
-      $car.dataset.forwardCount = Number($car.dataset.forwardCount) + 1;
-      $car.parentNode.insertAdjacentHTML('beforeend', arrowTemplate());
+  for (let i = 0; i < racingCount; i++) {
+    playOneGame(cars);
+  }
+};
+
+const playOneGame = (cars) => {
+  cars.forEach(($car) => {
+    if (!isEffectiveScore(getRandomNumber())) {
+      return;
     }
+    $car.dataset.forwardCount = Number($car.dataset.forwardCount) + 1;
+    insertArrowHTML($car);
   });
+};
+
+const insertArrowHTML = ($car) => {
+  $car.parentNode.insertAdjacentHTML('beforeEnd', arrowTemplate());
 };
 
 const arrowTemplate = () => {

@@ -9,9 +9,8 @@ export const handleCarNameInput = () => {
   if (!isValidCarName(carNames)) {
     return ($carNameInput.value = '');
   }
-
   setVisible('racingCountSection');
-  createCars(carNames);
+  insertCarHTML(carNames);
 };
 
 const isValidCarName = (carNames) => {
@@ -26,7 +25,7 @@ const isValidCarName = (carNames) => {
   return true;
 };
 
-const createCars = (carNames) => {
+const insertCarHTML = (carNames) => {
   const $gameProcessScreen = document.querySelector('#game-process-screen');
 
   $gameProcessScreen.innerHTML = carNames

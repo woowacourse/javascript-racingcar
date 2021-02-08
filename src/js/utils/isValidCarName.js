@@ -1,3 +1,5 @@
+import { VALIDATOR } from '../utils/constant.js';
+
 export const isValidLength = (name) => {
   return name.length <= VALIDATOR.MAX_NAME_LENGTH;
 };
