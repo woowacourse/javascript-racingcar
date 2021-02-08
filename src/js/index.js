@@ -1,7 +1,13 @@
+import Car from "./Car.js";
+
 const sections = document.getElementsByTagName("section");
 
 const hideElement = (element) => {
   return (element.style.display = "none");
+};
+
+const showElement = (element) => {
+  return (element.style.display = "block");
 };
 
 const resetView = (elementIdArray) => {
@@ -22,6 +28,12 @@ carNamesBtn.addEventListener("click", () => {
   const carNames = carNamesInput.value.split(",").map((carName) => {
     return carName.trim();
   });
+
+  const cars = carNames.map((carName) => {
+    return new Car(carName);
+  });
+
+  showElement(sections[2]);
 });
 
 const init = () => {
