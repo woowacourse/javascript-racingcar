@@ -1,5 +1,6 @@
 import { getRandomNumber } from '../../src/js/utils/getRandomNumber.js';
 import { isEffectiveScore } from '../../src/js/utils/isEffectiveScore.js';
+import { getWinners } from '../../src/js/utils/getWinners.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
