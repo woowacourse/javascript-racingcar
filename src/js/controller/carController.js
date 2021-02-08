@@ -1,3 +1,17 @@
+/*
+외부 라이브러리(jQuery, Lodash 등)를 사용하지 않고, 순수 Vanilla JS로만 구현한다.
+indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
+예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
+힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
+가능하면 const로만 변수를 선언한다.
+동등연산자는 '===' 로만 사용한다.
+전역변수를 지양한다.
+한 함수나 메서드는 한 가지 기능만 하도록 한다.
+*/
+
+import { app } from "../index.js";
+import Car from "../model/Car.js";
+
 // 자동차와 관련된 검증, 조작 및 뷰?
 
 // 자동차 이름 검증 함수
@@ -29,7 +43,14 @@ export const handleCarNamesSubmit = function () {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
+  // for testing
   document.querySelector("#racing-container").style.visibility = "visible";
   document.querySelector("#winner-container").style.visibility = "visible";
+  
   // Car 생성
+  carNamesInput.forEach( (carName) => {
+    app.cars.push(new Car(carName));
+  })
+
+  console.log(app.cars);
 };
