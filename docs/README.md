@@ -21,7 +21,7 @@
    1. `lap-input-container`을 렌더한다.
    2. `car-player`을 렌더한다.
    3. `forward-icon`을 렌더한다.
-   4. `result-container`을 렌더한다.
+   4. `game-result-container`을 렌더한다.
 
 3. Controller
    1. 이름 입력 받기
@@ -30,3 +30,31 @@
    4. 갈지 안갈지 결정하는 기능
    5. 다시 시작하면 초기화하는 기능
 
+## 3. 기능 구현
+1. 자동차 이름 입력하기
+   Given(주어진 환경)
+   - 유저에게 자동차 경주 화면이 렌더링 된다.
+   When(행위)
+   - 유저가 자동차 이름 입력 란에 자동차 이름을 입력한다.
+   1. 성공
+      행위: EAST, WEST, SOUTH, NORTH
+      Then(기대 결과)
+      - 횟수를 입력 받는 화면이 렌더링 된다.
+      - car-player(EAST, WEST, SOUTH, NORTH) 렌더링 된다.
+      - 자동차 이름은 쉼표(,)를 기준으로 구분된다.
+  
+   2. 실패
+      행위 : WOOCOURSE, SIMBA, DONGDONG
+      Then(기대 결과)
+      - alert - '자동차 이름은 5자 이하로 지어주세요.'
+      - 자동차 이름은 5자 이하이다.
+  
+      행위 : SIMBA
+      Then(기대 결과)
+      - alert - '두 개 이상의 자동차 이름을 입력해주세요.'
+      - 자동차 이름은 두 개 이상이다.
+
+      행위 :
+      Then(기대 결과)
+      - alert - '두 개 이상의 자동차 이름을 입력해주세요.'
+      - 자동차 이름은 빈 값이 아니다.
