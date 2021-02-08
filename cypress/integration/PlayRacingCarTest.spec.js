@@ -24,4 +24,12 @@ describe('자동차 경주 게임 테스트', () => {
     cy.get('#display-game-progress').should('be.visible');
     cy.get('#display-game-result').should('be.visible');
   });
+
+  it('사용자가 다시시작 버튼을 누르면 게임이 초기화된다.', () => {
+    cy.get('#display-game-result > div > button').click();
+    cy.get('#input-car-names').should('be.visible');
+    cy.get('#input-try-count').should('not.be.visible');
+    cy.get('#display-game-progress').should('not.be.visible');
+    cy.get('#display-game-result').should('not.be.visible');
+  });
 });
