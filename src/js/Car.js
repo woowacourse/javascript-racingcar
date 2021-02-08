@@ -1,5 +1,5 @@
 export default function Car(name) {
-  this.carName = name;
+  this.name = name;
   this.totalStep = 0;
 
   this.go = () => {
