@@ -37,6 +37,7 @@ const isValidCarName = (carNames) => {
 
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
+  const $carNameSubmit = document.querySelector('#car-name-submit');
 
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
   if (!isValidCarName(carNames)) {
@@ -45,4 +46,5 @@ export const handleCarNameInput = () => {
 
   toggleVisibility('$racingCountSection');
   createCars(carNames);
+  $carNameSubmit.setAttribute('disabled', true);
 };

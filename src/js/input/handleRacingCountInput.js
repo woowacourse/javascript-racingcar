@@ -12,6 +12,7 @@ const isValidRacingCount = (racingCount) => {
 
 export const handleRacingCountInput = () => {
   const $racingCountInput = document.querySelector('#racing-count-input');
+  const $racingCountSubmit = document.querySelector('#racing-count-submit');
 
   const racingCount = $racingCountInput.value;
   if (!isValidRacingCount(racingCount)) {
@@ -19,5 +20,6 @@ export const handleRacingCountInput = () => {
   }
 
   toggleVisibility('$gameProcessSection');
+  $racingCountSubmit.setAttribute('disabled', true);
   startGame(racingCount);
 };
