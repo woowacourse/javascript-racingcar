@@ -3,8 +3,11 @@ import {
   MAX_CAR_NAME_EXCEEDED,
   CAR_NAME_EMPTY,
   SHOULD_BE_INTEGER,
-  SHOULD_GREATER_THAN_ZERO
-  } from '../constants.js';
+  SHOULD_GREATER_THAN_ZERO,
+  SHOULD_REGISTER_CAR_FIRST,
+} from '../constants.js';
+
+import { racingCarGameModel } from '../store.js';
 
 export default class RacingCarGameValidation {
   static isCarNameValid(carName) {
@@ -36,5 +39,14 @@ export default class RacingCarGameValidation {
     }
 
     return isValid
+  }
+
+  static isCarListEmpty() {
+    if (racingCarGameModel.carList.length === 0) {
+      alert(SHOULD_REGISTER_CAR_FIRST)
+      return true
+    }
+
+    return false;
   }
 }

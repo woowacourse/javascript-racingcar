@@ -25,6 +25,12 @@ export default class RacingCarGameController {
       RacingCarGameView.clearTryCountInput();
       return
     }
-    console.log(tryCount);
+    if (!RacingCarGameValidation.isCarListEmpty()) {
+      for (let i = 0; i < tryCount; i += 1) {
+        racingCarGameModel.moveCarsForward();
+      }
+      RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+      racingCarGameModel.clearCarsRecord();
+    }
   }
 }

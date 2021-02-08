@@ -71,6 +71,21 @@ describe('step1', () => {
     cy.get('#try-count-input').should('have.value', '');
   });
 
+  it('경주가 정상적으로 수행되는지 확인한다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
+    cy.get('#try-count-input').type('10000')
+    cy.get('#result-area').should('contain', '⬇️️');
+  });
+
+  // it('경주 결과가 항상 같은 지를 확인한다.', () => {
+  //   cy.get('#car-name-input').type('chris, beuc');
+  //   cy.get('#car-name-submit').click();
+  //   cy.get('#try-count-input').type('100')
+  //   cy.get('#result-area').
+  //   cy.get('#try-count-input').should('have.value', '');
+  // });
+
   
   // it('AC(All Clear)버튼을 누르면 0으로 초기화', () => {
   //   cy.get('.digits').contains('2').click();
