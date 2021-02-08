@@ -19,6 +19,16 @@ export default class RacingCarGameController {
     }
   }
 
+  static getWinners(carList) {
+    const sortedCarList = [...carList].sort((a, b) => b.record - a.record);
+    const maxCarRecord = sortedCarList[0].record;
+    const winners = sortedCarList
+      .filter(car => car.record === maxCarRecord)
+      .map(car => car.carName);
+    
+    return winners;
+  }
+
   static playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
     if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
@@ -30,6 +40,9 @@ export default class RacingCarGameController {
         racingCarGameModel.moveCarsForward();
       }
       RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+      const winners = RacingCarGameController.getWinners(racingCarGameModel.carList);
+      RacingCarGameView.showWinners(winners);
+      RacingCarGameView.showRestartButton();
       racingCarGameModel.clearCarsRecord();
     }
   }

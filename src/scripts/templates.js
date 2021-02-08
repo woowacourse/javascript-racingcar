@@ -18,6 +18,11 @@ export const getResultAreaTemplate = (carList) => {
   return resultAreaList.join('');
 }
 
+export const getWinnersTemplate = (winners) => {
+  return `🏆 최종 우승자: ${winners.join(', ')} 🏆`
+}
+
 export default {
-  getResultAreaTemplate
+  getResultAreaTemplate,
+  getWinnersTemplate
 }
