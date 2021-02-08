@@ -8,17 +8,13 @@ export default class UserInput extends Component {
   }
 
   initEvent() {
-    this.$target.addEventListener(
-      'click',
-      ({ target }) => {
-        if (target.id === 'submit-car-name') {
-          this.#handleSubmitCarName(target);
-        } else if (target.id === 'submit-race-times') {
-          this.#handleSubmitRaceTimes(target);
-        }
-      },
-      true
-    );
+    this.$target.addEventListener('click', ({ target }) => {
+      if (target.id === 'submit-car-name') {
+        this.#handleSubmitCarName(target);
+      } else if (target.id === 'submit-race-times') {
+        this.#handleSubmitRaceTimes(target);
+      }
+    });
   }
 
   #handleSubmitCarName(target) {
