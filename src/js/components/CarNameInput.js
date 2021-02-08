@@ -6,7 +6,6 @@ export default class CarNameInput {
     this.$target = document.querySelector('.car-name-input-containter');
     this.$carNameInput = this.$target.querySelector('input[type=text]');
     this.$carNameSummitBtn = this.$target.querySelector('button');
-    this.carNames = [];
     this.setCars = setCars;
 
     this.bindEvents();
@@ -19,13 +18,15 @@ export default class CarNameInput {
   handleSubmitCarName() {
     const inputCarName = this.$carNameInput.value;
     const carNames = inputCarName.split(',').map((name) => name.trim());
-
     const errorMessage = this.checkValidInput({ inputCarName, carNames });
 
     if (errorMessage) {
       alert(errorMessage);
       return;
     }
+
+    this.$carNameInput.disabled = true;
+    this.$carNameSummitBtn.disabled = true;
   }
 
   checkValidInput({ inputCarName, carNames }) {

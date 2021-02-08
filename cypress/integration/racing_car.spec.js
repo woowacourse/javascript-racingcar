@@ -58,4 +58,14 @@ describe('Racing Car 게임', () => {
         expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGE.OVER_MAX_LENGTH_CAR_NAME_INPUT);
       });
   });
+
+  it('자동차 이름이 정상적으로 입력된 경우', () => {
+    cy.get('[data-test=car-name-input]').type('자동차1, 자동차2, 자동차3, 자동차4');
+    cy.get('[data-test=car-name-button]')
+      .click()
+      .then(() => {});
+
+    cy.get('[data-test=car-name-input]').should('be.disabled');
+    cy.get('[data-test=car-name-button]').should('be.disabled');
+  });
 });
