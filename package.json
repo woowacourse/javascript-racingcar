@@ -1,0 +1,11 @@
+{
+  "name": "javascript-racingcar",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/zereight/javascript-racingcar",
+  "author": "<fullstackmachinelearning@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^6.2.1"
+  }
+}
