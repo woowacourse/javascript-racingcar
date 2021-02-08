@@ -28,7 +28,7 @@ describe('레이싱 게임', () => {
     cy.get('#submit-car-name').click();
     cy.get('#input-race-times').type('2');
     cy.get('#submit-race-times').click();
-    cy.get('#game-process-component').should('be.visible');
+    cy.get('#game-process-component > section').should('exist');
   });
 
   it('시도할 횟수는 1 이상이어야 한다.', () => {
@@ -36,7 +36,7 @@ describe('레이싱 게임', () => {
     cy.get('#submit-car-name').click();
     cy.get('#input-race-times').type('0');
     cy.get('#submit-race-times').click();
-    cy.get('#game-process-component').should('not.to.be.visible');
+    cy.get('#game-process-component > section').should('not.exist');
   });
 
   it('입력이 완료된 정보는 다시 입력할 수 없다.', () => {
