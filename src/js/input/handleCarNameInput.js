@@ -2,7 +2,7 @@ import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
 
 const carTemplate = (carName) => {
-  return `<div >
+  return `<div class="car" data-name=${carName}>
             <div class="car-player mr-2" data-forward-count="0">${carName}</div>
           </div>`;
 };
