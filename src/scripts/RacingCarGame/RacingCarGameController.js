@@ -12,11 +12,19 @@ export default class RacingCarGameController {
   
   static registerCarNames(carNames) {
     const carNameList = RacingCarGameController.getCarNameList(carNames);
-    console.log(carNameList);
     const isCarNameListValid = carNameList.every(carName => RacingCarGameValidation.isCarNameValid(carName));
     if (isCarNameListValid) {
       racingCarGameModel.registerCars(carNameList);
       RacingCarGameView.updateResultArea(racingCarGameModel.carList);
     }
+  }
+
+  static playRacingCarGame(tryCountInput) {
+    const tryCount = Number(tryCountInput);
+    if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
+      RacingCarGameView.clearTryCountInput();
+      return
+    }
+    console.log(tryCount);
   }
 }

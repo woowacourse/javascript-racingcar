@@ -1,4 +1,10 @@
-import { MAX_CAR_NAME_LENGTH, MAX_CAR_NAME_EXCEEDED, CAR_NAME_EMPTY } from '../constants.js';
+import { 
+  MAX_CAR_NAME_LENGTH,
+  MAX_CAR_NAME_EXCEEDED,
+  CAR_NAME_EMPTY,
+  SHOULD_BE_INTEGER,
+  SHOULD_GREATER_THAN_ZERO
+  } from '../constants.js';
 
 export default class RacingCarGameValidation {
   static isCarNameValid(carName) {
@@ -12,5 +18,23 @@ export default class RacingCarGameValidation {
     }
 
     return isValid;
+  }
+
+  static isInteger(number) {
+    return number === parseInt(number);
+  }
+
+  static isTryCountValid(tryCount) {
+    let isValid = true;
+    if (!RacingCarGameValidation.isInteger(tryCount)) {
+      alert(SHOULD_BE_INTEGER);
+      isValid = false;
+    }
+    if (tryCount <= 0) {
+      alert(SHOULD_GREATER_THAN_ZERO);
+      isValid = false;
+    }
+
+    return isValid
   }
 }

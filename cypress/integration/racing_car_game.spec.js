@@ -1,4 +1,9 @@
-import { MAX_CAR_NAME_EXCEEDED, CAR_NAME_EMPTY } from '../../src/scripts/constants.js';
+import { 
+  MAX_CAR_NAME_EXCEEDED, 
+  CAR_NAME_EMPTY, 
+  SHOULD_BE_INTEGER, 
+  SHOULD_GREATER_THAN_ZERO 
+} from '../../src/scripts/constants.js';
 
 describe('step1', () => {
   beforeEach(() => {
@@ -37,8 +42,36 @@ describe('step1', () => {
     cy.get('#result-area').should('have.text', '');
   });
 
+  it('수행 횟수는 소수점을 포함할 수 없다.', () => {
+    cy.get('#try-count-input').type('1.5');
+    cy.get('#play-game-button').click();
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains(SHOULD_BE_INTEGER);
+    });
+    cy.get('#try-count-input').should('have.value', '');
+  });
 
+  it('수행 횟수는 0 이 될 수 없다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
+    cy.get('#try-count-input').type('0')
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+    });
+    cy.get('#try-count-input').should('have.value', '');
+  });
 
+  it('수행 횟수는 음수가 될 수 없다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
+    cy.get('#try-count-input').type('-1')
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+    });
+    cy.get('#try-count-input').should('have.value', '');
+  });
+
+  
   // it('AC(All Clear)버튼을 누르면 0으로 초기화', () => {
   //   cy.get('.digits').contains('2').click();
   //   cy.get('.digits').contains('2').click();
