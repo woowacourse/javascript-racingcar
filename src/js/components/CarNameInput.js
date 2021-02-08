@@ -25,6 +25,8 @@ export default class CarNameInput {
       return;
     }
 
+    this.setCars(carNames);
+
     this.$carNameInput.disabled = true;
     this.$carNameSummitBtn.disabled = true;
   }
