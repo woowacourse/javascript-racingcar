@@ -21,6 +21,13 @@ describe("ui-input-click-show", () => {
       cy.get(v).should("have.text", cars[i]);
     });
   });
+  it("시도횟수보다 화살표의 개수가 적거나 같아야한다", () => {
+    cy.get("#process > .d-flex > div").each(v => {
+      if (v.find(".forward-icon").length > 0) {
+        cy.get(v).find(".forward-icon").its("length").should("be.lte", 5);
+      }
+    });
+  });
 });
 
 describe("ui-input-vaild-check", () => {
