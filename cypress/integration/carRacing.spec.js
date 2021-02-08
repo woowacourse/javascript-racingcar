@@ -15,6 +15,7 @@ function clickRestartButton() {
 }
 
 function checkAlertMessage(alertMessage) {
+  // TODO: alert가 발생했는지의 여부 확인 필요
   cy.on('window:alert', (txt) => {
     expect(txt).to.contains(alertMessage);
   });
@@ -79,20 +80,20 @@ context('carRacing', () => {
     let maxCount = -1;
 
     cy.document().then((doc) => {
-      const $racingRoundContainers = doc.querySelectorAll('.racing-round-container');
+      const $carContainers = doc.querySelectorAll('.car-container');
 
-      $racingRoundContainers.forEach((racingRoundContainer) => {
-        const childNodesLength = racingRoundContainer.childNodes.length;
+      $carContainers.forEach((carContainer) => {
+        const childNodesLength = carContainer.childNodes.length;
         if (maxCount < childNodesLength) {
           maxCount = childNodesLength;
         }
       });
 
-      $racingRoundContainers.forEach((racingRoundContainer) => {
-        const childNodesLength = racingRoundContainer.childNodes.length;
+      $carContainers.forEach((carContainer) => {
+        const childNodesLength = carContainer.childNodes.length;
         if (maxCount === childNodesLength) {
           maxCount = childNodesLength;
-          const carName = racingRoundContainer.querySelector('.car-player').innerText;
+          const carName = carContainer.querySelector('.car-player').innerText;
           winners.push(carName);
         }
       });

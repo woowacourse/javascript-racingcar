@@ -7,6 +7,14 @@ export default class CarRacingView {
     element.classList.remove('hidden');
   }
 
+  addDisabled(element) {
+    element.disabled = true;
+  }
+
+  removeDisabled(element) {
+    element.disabled = false;
+  }
+
   renderRacingRoundResult(movedCars) {
     const $carPlayers = document.querySelectorAll('.car-player');
 
@@ -31,7 +39,7 @@ export default class CarRacingView {
     $racingContainer.innerHTML = cars
       .map(
         (car) => `
-          <div class="racing-round-container">
+          <div class="car-container">
             <div class="car-player mr-2">${car.name}</div>
           </div>
         `

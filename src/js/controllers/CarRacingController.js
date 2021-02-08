@@ -12,6 +12,7 @@ export default class CarRacingController {
   onClickCarNamesSubmit() {
     const $racingCountContainer = document.querySelector('.racing-count-container');
     const $carNamesInput = document.querySelector('#car-names-input');
+    const $carNamesSubmit = document.querySelector('#car-names-submit');
     const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
     const carNamesSet = new Set(carNames);
 
@@ -28,11 +29,13 @@ export default class CarRacingController {
     carNames.forEach((carName) => this.model.addCars(carName));
 
     this.view.removeHidden($racingCountContainer);
+    this.view.addDisabled($carNamesSubmit);
   }
 
   onClickRacingCountSubmit() {
     const $racingContainer = document.querySelector('.racing-container');
     const $racingCountInput = document.querySelector('#racing-count-input');
+    const $racingCountSubmit = document.querySelector('#racing-count-submit');
     const racingCount = $racingCountInput.value;
 
     if (racingCount <= 0) {
@@ -45,6 +48,7 @@ export default class CarRacingController {
     this.view.removeHidden($racingContainer);
     this.view.renderRacingCars(this.model.cars);
 
+    this.view.addDisabled($racingCountSubmit);
     this.startRacing();
   }
 
@@ -54,11 +58,16 @@ export default class CarRacingController {
     const $resultContainer = document.querySelector('.result-container');
     const $carNamesInput = document.querySelector('#car-names-input');
     const $racingCountInput = document.querySelector('#racing-count-input');
+    const $carNamesSubmit = document.querySelector('#car-names-submit');
+    const $racingCountSubmit = document.querySelector('#racing-count-submit');
 
     this.model.init();
     this.view.addHidden($racingCountContainer);
     this.view.addHidden($racingContainer);
     this.view.addHidden($resultContainer);
+    this.view.removeDisabled($carNamesSubmit);
+    this.view.removeDisabled($racingCountSubmit);
+
     $carNamesInput.value = '';
     $racingCountInput.value = '';
   }

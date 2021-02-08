@@ -34,3 +34,8 @@ body {
 .hidden {
   display: none;
 }
+
+input[disabled],
+button[disabled] {
+  pointer-events: none;
+}
