@@ -1,11 +1,14 @@
 import { MESSAGE, SELECTOR } from "./constants.js";
-import { Car } from "./Model.js";
-import { show } from "./View.js";
+import CarModel from "./CarModel.js";
+import ViewController from "./ViewController.js";
 
 export class Controller {
   constructor() {
     const carNameInput = document.querySelector(SELECTOR.CAR_NAME.INPUT);
     const carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
+
+    this.carModels = [];
+    this.viewController = new ViewController();
 
     carNameButton.addEventListener("click", () => {
       const userInput = carNameInput.value;
@@ -24,8 +27,10 @@ export class Controller {
         return;
       }
 
-      const cars = splittedCarNames.map((carName) => new Car(carName));
-      show(SELECTOR.LAP.CONTAINER);
+      this.carModels = splittedCarNames.map((carName) => new CarModel(carName));
+
+      this.viewController.renderCarNameTag(this.carModels);
+      this.viewController.show(SELECTOR.LAP.CONTAINER);
     });
   }
 }
