@@ -7,10 +7,10 @@ const arrowTemplate = () => {
 
 const updateRacingCount = (cars) => {
   cars.forEach(($car) => {
-    let isForward = isEffectiveScore(getRandomNumber());
+    const isForward = isEffectiveScore(getRandomNumber());
 
     if (isForward) {
-      $car.dataset.forwardCount += 1;
+      $car.dataset.forwardCount = Number($car.dataset.forwardCount) + 1;
       $car.parentNode.insertAdjacentHTML('beforeend', arrowTemplate());
     }
   });

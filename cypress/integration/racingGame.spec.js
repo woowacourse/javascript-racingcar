@@ -101,7 +101,10 @@ describe('racing-game', () => {
         .get($div)
         .should('have.text', carNames[index])
         .siblings('.forward-icon')
-        .should('have.length', cy.get(['forward-count']));
+        .its('length')
+        .then((len) => {
+          cy.get($div).should('have.data', 'forwardCount', len);
+        });
     });
   });
 
