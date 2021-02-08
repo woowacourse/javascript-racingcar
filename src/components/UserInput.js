@@ -1,5 +1,6 @@
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
+import { ERROR, RESTRICT } from '../library/utils/constant.js';
 import { disableElement, showElement } from '../library/utils/dom.js';
 
 export default class UserInput extends Component {
@@ -59,8 +60,8 @@ export default class UserInput extends Component {
   }
 
   #verifyCarNamesLength(carNames) {
-    if (carNames.some(name => name.length < 1 || name.length > 5)) {
-      throw new Error('자동차의 이름은 1자이상, 5자 이하만 가능합니다.');
+    if (carNames.some(name => name.length < RESTRICT.MIN_CAR_NAME_LENGTH || name.length > RESTRICT.MAX_CAR_NAME_LENGTH)) {
+      throw new Error(ERROR.RANGE_CAR_NAME_LENGTH);
     }
   }
 
@@ -81,8 +82,8 @@ export default class UserInput extends Component {
   }
 
   #verifyMinRacingTimes(value) {
-    if (value <= 0) {
-      throw new Error('레이싱 횟수는 1이상이어야 합니다.');
+    if (value < RESTRICT.MIN_RACING_TIME) {
+      throw new Error(ERROR.MIN_RACING_TIME);
     }
   }
 }
