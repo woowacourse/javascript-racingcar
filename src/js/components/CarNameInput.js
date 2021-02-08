@@ -34,6 +34,11 @@ export default class CarNameInput {
       alert(ERROR_MESSAGE.EMPTY_STRING_CAR_NAME_INPUT);
       return;
     }
+
+    if (this.isDuplicatedCarName(carNames)) {
+      alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME_INPUT);
+      return;
+    }
   }
 
   isEmptyCarName(inputCarName) {
@@ -46,5 +51,9 @@ export default class CarNameInput {
 
   isContainEmptyString(carNames) {
     return carNames.some((carName) => this.isEmptyCarName(carName));
+  }
+
+  isDuplicatedCarName(carNames) {
+    return carNames.length !== new Set(carNames).size;
   }
 }
