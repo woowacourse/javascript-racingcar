@@ -1,5 +1,6 @@
 import { getRandomNumber } from '../../src/js/utils/getRandomNumber.js';
-import { isEffectiveScore } from '../../src/js/utils/isEffectiveScore.js';
+import { isEffectiveScore } from '../../src/js/game/isEffectiveScore.js';
+import { GAME } from '../../src/js/utils/constant.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -86,14 +87,26 @@ describe('racing-game', () => {
     cy.get('#game-process-section').should('be.visible');
   });
 
-  it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
-    const possibleScores = Array.from({ length: 10 }).map((v, i) => i);
+  it('랜덤 함수가 정상적으로 동작하는지 테스트 한다.', () => {
+    const possibleScores = Array.from({
+      length: GAME.MAX_SCORE - GAME.MIN_SCORE + 1,
+    }).map((v, i) => i);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       expect(possibleScores).to.include(getRandomNumber());
     }
-    expect(isEffectiveScore(3)).to.equal(false);
-    expect(isEffectiveScore(4)).to.equal(true);
+  });
+
+  it('자동차가 정상적으로 전진, 멈춤하는지 테스트한다.', () => {
+    for (let i = GAME.MAX_SCORE; i < GAME.MAX_SCORE; i++) {
+      if (i < GAME.EFFECTIVE_SCORE) {
+        return expect(isEffectiveScore(i)).to.equal(false);
+      }
+      return expect(isEffectiveScore(i)).to.equal(true);
+    }
+  });
+
+  it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
     cy.get('.car-player').each(($div, index) => {
@@ -108,7 +121,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('자동차 경주 진행을 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
+  it('자동차 경주를 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
     typeCarNameAndSubmit();
     typeRacingCountAndSubmit();
 
