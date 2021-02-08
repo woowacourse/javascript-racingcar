@@ -1,18 +1,12 @@
 import { handleCarNameInput } from './input/handleCarNameInput.js';
 import { handleRacingCountInput } from './input/handleRacingCountInput.js';
 
-const init = () => {
+export default function RacingGame() {
   const $carNameSubmit = document.querySelector('#car-name-submit');
   const $racingCountSubmit = document.querySelector('#racing-count-submit');
 
   $carNameSubmit.addEventListener('click', handleCarNameInput);
   $racingCountSubmit.addEventListener('click', handleRacingCountInput);
-};
-
-export default function RacingGame() {
-  init();
 }
 
-window.onload = () => {
-  new RacingGame();
-};
+new RacingGame();

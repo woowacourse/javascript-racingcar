@@ -1,10 +1,16 @@
 import { isEffectiveScore } from '../utils/isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { printGameResult } from './printGameResult.js';
-import { toggleVisibility } from '../utils/toggleVisibility.js';
+import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
 
-const arrowTemplate = () => {
-  return `<div class="forward-icon mt-2">⬇️️</div>`;
+export const startGame = (racingCount) => {
+  const cars = document.querySelectorAll('.car-player');
+
+  for (let i = 0; i < racingCount; i++) {
+    updateRacingCount(cars);
+  }
+  setVisible('gameResultSection');
+  printGameResult();
 };
 
 const updateRacingCount = (cars) => {
@@ -18,13 +24,6 @@ const updateRacingCount = (cars) => {
   });
 };
 
-export const startGame = (racingCount) => {
-  const cars = document.querySelectorAll('.car-player');
-
-  for (let i = 0; i < racingCount; i++) {
-    updateRacingCount(cars);
-  }
-
-  toggleVisibility('gameResultSection');
-  printGameResult();
+const arrowTemplate = () => {
+  return `<div class="forward-icon mt-2">⬇️️</div>`;
 };
