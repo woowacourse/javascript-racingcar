@@ -117,4 +117,13 @@ describe('레이싱 게임', () => {
       });
     }
   });
+
+  it('사용자는 자동차 경주 게임을 다시 시작할 수 있다.', () => {
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('1');
+    cy.get('#submit-race-times').click();
+    cy.get('#retry').click();
+    cy.get('#game-result-component > section').should('not.exist');
+  });
 });
