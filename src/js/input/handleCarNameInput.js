@@ -9,7 +9,7 @@ export const handleCarNameInput = () => {
   if (!isValidCarName(carNames)) {
     return ($carNameInput.value = '');
   }
-  setVisible('racingCountSection');
+  setVisible('$racingCountSection');
   insertCarHTML(carNames);
 };
 

@@ -4,21 +4,37 @@ import { printGameResult } from './printGameResult.js';
 import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
 
 export const startGame = (racingCount) => {
-  playAllGame(racingCount);
-  setVisible('gameResultSection');
+  const $cars = document.querySelectorAll('.car-player');
+
+  resetGame($cars);
+  playAllGame($cars, racingCount);
+  setVisible('$gameResultSection');
   printGameResult();
 };
 
-const playAllGame = (racingCount) => {
-  const cars = document.querySelectorAll('.car-player');
+const resetGame = ($cars) => {
+  clearCarScore($cars);
+  clearResidueArrow();
+};
 
+const clearCarScore = ($cars) => {
+  $cars.forEach(($car) => ($car.dataset.forwardCount = '0'));
+};
+
+const clearResidueArrow = () => {
+  const $arrows = document.querySelectorAll('.forward-icon');
+
+  $arrows.forEach(($arrow) => $arrow.remove());
+};
+
+const playAllGame = ($cars, racingCount) => {
   for (let i = 0; i < racingCount; i++) {
-    playOneGame(cars);
+    playOneGame($cars);
   }
 };
 
-const playOneGame = (cars) => {
-  cars.forEach(($car) => {
+const playOneGame = ($cars) => {
+  $cars.forEach(($car) => {
     if (!isEffectiveScore(getRandomNumber())) {
       return;
     }

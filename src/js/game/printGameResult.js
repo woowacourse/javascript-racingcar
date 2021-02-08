@@ -15,7 +15,7 @@ const restartGame = () => {
   setInitialView();
 };
 
-export const clearGameResult = () => {
+const clearGameResult = () => {
   const $gameProcessScreen = document.querySelector('#game-process-screen');
 
   $gameProcessScreen.innerHTML = '';
@@ -30,7 +30,7 @@ const clearInputs = () => {
 };
 
 const setInitialView = () => {
-  setInvisible('racingCountSection');
-  setInvisible('gameProcessSection');
-  setInvisible('gameResultSection');
+  setInvisible('$racingCountSection');
+  setInvisible('$gameProcessSection');
+  setInvisible('$gameResultSection');
 };
