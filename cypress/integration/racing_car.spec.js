@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../../src/js/errorMessage.js';
+import { ERROR_MESSAGE } from '../../src/js/util/errorMessage.js';
 
 describe('Racing Car 게임', () => {
   beforeEach(() => {
