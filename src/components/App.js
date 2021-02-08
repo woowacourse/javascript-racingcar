@@ -17,7 +17,6 @@ export default class App extends Component {
   initStates() {
     this.cars = new State([]);
     this.raceTimes = new State(null);
-    this.raceTimes.subscribe(this.race);
   }
 
   mountTemplate() {
@@ -36,6 +35,7 @@ export default class App extends Component {
       cars: this.cars,
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
+      race: this.race,
     });
   };
 
