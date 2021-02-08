@@ -8,10 +8,16 @@ export {
   RESULT_CONTAINER,
   RESET_BTN,
 } from './DOM.js';
-
 export {
   ALERT_VALID_NUMBER_OF_CARS,
   ALERT_VALID_LENGTH,
   ALERT_VALID_LETTER,
   ALERT_OVERLAP,
+  ALERT_VALID_COUNT_RANGE,
+  ALERT_DECIMAL,
 } from './alert_message.js';
+export {
+  MIN_NAMES_NUMBER,
+  MIN_NAME_LENGTH,
+  MAX_NAME_LENGTH,
+} from './standard.js';

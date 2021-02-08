@@ -1,4 +1,3 @@
-import { CAR_INPUT } from '../../src/js/constants/index.js';
 const resetValue = input => cy.get(input).then($input => $input.val(''));
 
 export const setGameData = (input, button, value) => {
@@ -19,5 +18,5 @@ export const testIncorrectValue = (input, button, value, alertMessage) => {
   cy.on('window:alert', message => {
     expect(message).to.equal(alertMessage);
   });
-  cy.get(input).should('have.value', input === CAR_INPUT ? '' : 0);
+  cy.get(input).should('have.value', '');
 };

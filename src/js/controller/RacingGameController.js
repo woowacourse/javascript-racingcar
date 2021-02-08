@@ -46,6 +46,14 @@ export default class RacingGameController {
   }
 
   handleCountInput() {
+    const $input = document.querySelector('.count-input');
+    const validator = new InputValidator();
+    try {
+      validator.checkCountInput(Number($input.value));
+      this.count = Number($input.value);
+    } catch (error) {
+      this.handleInputError($input, error.message);
+    }
     // 유효성 검사
     // this.count에 할당
     // const { result } = new RacingGame(this.names, this.count);
