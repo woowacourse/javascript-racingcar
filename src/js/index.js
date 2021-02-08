@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-
+const parser = new DOMParser();
 const sections = document.getElementsByTagName("section");
 const state = {
   cars: [],
@@ -17,6 +17,10 @@ const resetView = (elementIdArray) => {
   for (let elementId of elementIdArray) {
     hideElement(sections[elementId]);
   }
+};
+
+const parseHTML = (html) => {
+  return parser.parseFromString(html, "text/html").body.firstElementChild;
 };
 
 const setSectionDataID = () => {
@@ -46,20 +50,50 @@ const getRandomNum = () => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
+const setTotalStep = () => {
+  state.cars.forEach((car) => {
+    const randomNum = getRandomNum();
+    if (randomNum > 3) {
+      car.go();
+    }
+  });
+};
+
+const playGame = () => {
+  const tryNumInput = document.getElementsByTagName("input")[1];
+  for (let i = 0; i < tryNumInput.value; i++) {
+    setTotalStep();
+  }
+};
+
+const showCarName = (carName) => {
+  return parseHTML(`<div class="car-player mr-2">${carName}</div>`);
+};
+
+const showTotalStep = () => {
+  return parseHTML(`<div class="forward-icon mt-2">⬇️️</div>`);
+};
+
+const setResultView = () => {
+  state.cars.forEach((car) => {
+    const resultDivString = `<div></div>`;
+    const resultDiv = parseHTML(resultDivString);
+
+    resultDiv.appendChild(showCarName(car.carName));
+    for (let idx = 0; idx < car.totalStep; idx++) {
+      const step = showTotalStep();
+      resultDiv.appendChild(step);
+    }
+    sections[3].querySelector("div").append(resultDiv);
+  });
+};
+
 const tryNumBtn = document.getElementsByTagName("button")[1];
 tryNumBtn.addEventListener("click", () => {
-  const tryNumInput = document.getElementsByTagName("input")[1];
-
-  for (let i = 0; i < tryNumInput.value; i++) {
-    state.cars.forEach((car) => {
-      const randomNum = getRandomNum();
-      if (randomNum > 3) {
-        car.go();
-      }
-    });
-  }
-
-  showElement(sections[2]);
+  playGame();
+  setResultView();
+  showElement(sections[3]);
+  showElement(sections[4]);
 });
 
 const init = () => {
