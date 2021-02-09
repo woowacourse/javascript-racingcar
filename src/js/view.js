@@ -37,8 +37,14 @@ class RacingCarView {
   }
 
   showResult(winners) {
-    style.display = "block";
-    innerHTML = `<h2>${winners.join(",")}</h2>`;
+    const $resultSection = document.querySelector("#result");
+    $resultSection.style.display = "block";
+    $result.innerHTML = `
+      <h2>🏆 최종 우승자: ${winners.join(",")} 🏆</h2>
+      <div class="d-flex justify-center">
+        <button type="button" class="btn btn-cyan">다시 시작하기</button>
+      </div>
+    `;
   }
 
   hideCount() {}
