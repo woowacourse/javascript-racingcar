@@ -29,19 +29,22 @@ const setSectionDataID = () => {
   }
 };
 
-const carNamesBtn = document.getElementsByTagName("button")[0];
-carNamesBtn.addEventListener("click", () => {
-  const carNamesInput = document.getElementsByTagName("input")[0];
-  const carNames = carNamesInput.value.split(",").map((carName) => {
-    return carName.trim();
-  });
+const onClickedCarNamesBtn = () => {
+  const carNamesBtn = document.getElementsByTagName("button")[0];
+  carNamesBtn.addEventListener("click", () => {
+    const carNamesInput = document.getElementsByTagName("input")[0];
+    const carNames = carNamesInput.value.split(",").map((carName) => {
+      return carName.trim();
+    });
 
-  state.cars = carNames.map((carName) => {
-    return new Car(carName);
-  });
+    state.cars = carNames.map((carName) => {
+      return new Car(carName);
+    });
 
-  showElement(sections[2]);
-});
+    showElement(sections[2]);
+    carNamesBtn.disabled = true;
+  });
+};
 
 const getRandomNum = () => {
   const min = 0;
@@ -61,6 +64,10 @@ const setTotalStep = () => {
 
 const playGame = () => {
   const tryNumInput = document.getElementsByTagName("input")[1];
+  state.cars.forEach((car) => {
+    car.totalStep = 0;
+  });
+
   for (let i = 0; i < tryNumInput.value; i++) {
     setTotalStep();
   }
@@ -75,6 +82,8 @@ const showTotalStep = () => {
 };
 
 const setResultView = () => {
+  sections[3].querySelector("div").innerHTML = "";
+
   state.cars.forEach((car) => {
     const resultDivString = `<div></div>`;
     const resultDiv = parseHTML(resultDivString);
@@ -106,17 +115,23 @@ const getWinner = () => {
 };
 
 const resetGame = () => {
+  const carNamesBtn = document.getElementsByTagName("button")[0];
+  const tryNumBtn = document.getElementsByTagName("button")[1];
   const resetBtn = document.getElementsByTagName("button")[2];
+
   resetBtn.addEventListener("click", () => {
     resetView([2, 3, 4]);
     state.cars = [];
 
     sections[1].querySelector("input").value = "";
     sections[2].querySelector("input").value = "";
+    tryNumBtn.disabled = false;
+    carNamesBtn.disabled = false;
   });
 };
 
 const setWinnerView = (winners) => {
+  sections[4].innerHTML = "";
   let winnerText = "";
   if (winners.length === 1) {
     winnerText = winners[0];
@@ -137,18 +152,23 @@ const setWinnerView = (winners) => {
   resetGame();
 };
 
-const tryNumBtn = document.getElementsByTagName("button")[1];
-tryNumBtn.addEventListener("click", () => {
-  playGame();
-  setResultView();
-  setWinnerView(getWinner());
-  showElement(sections[3]);
-  showElement(sections[4]);
-});
+const onClickedtryNumBtn = () => {
+  const tryNumBtn = document.getElementsByTagName("button")[1];
+  tryNumBtn.addEventListener("click", () => {
+    playGame();
+    setResultView();
+    setWinnerView(getWinner());
+    showElement(sections[3]);
+    showElement(sections[4]);
+    tryNumBtn.disabled = true;
+  });
+};
 
 const init = () => {
   setSectionDataID();
   resetView([2, 3, 4]);
+  onClickedCarNamesBtn();
+  onClickedtryNumBtn();
 };
 
 init();
