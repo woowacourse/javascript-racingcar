@@ -33,7 +33,16 @@ export default class Racing {
   }
 
   getTryCount() {
-    this.tryCount = document.querySelector('.try-count').value;
+    const tryCountInput = document.querySelector('.try-count').value;
+    const tryCountNumber = Number(tryCountInput);
+    if (!tryCountInput) {
+      alert('시도 횟수를 입력해주세요.');
+      return;
+    } else if (tryCountNumber <= 0) {
+      alert('양수를 입력해주세요.');
+      return;
+    }
+    this.tryCount = tryCountNumber;
   }
 
   addListeners() {

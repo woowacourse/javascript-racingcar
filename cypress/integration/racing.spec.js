@@ -17,12 +17,11 @@ describe('자동차 경주', () => {
   });
 
   it('자동차 이름은 5자 이하여야 한다.', () => {
-    cy.get('.car-name').type('easttt, west, south, north');
-
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
-    cy.get('.car-name-btn').click();
 
+    cy.get('.car-name').type('easttt, west, south, north');
+    cy.get('.car-name-btn').click();
     cy.get('.car-name')
       .invoke('val')
       .then(carNameInput => {
@@ -41,6 +40,9 @@ describe('자동차 경주', () => {
   });
 
   it('이동 횟수를 입력 받아서 저장한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
     cy.get('.car-name').type('east, west, south, north');
     cy.get('.car-name-btn').click();
 
@@ -49,7 +51,16 @@ describe('자동차 경주', () => {
     cy.get('.try-count')
       .invoke('val')
       .then(tryCountInput => {
-        console.log(tryCountInput);
+        if (!tryCountInput) {
+          expect(alertStub.getCall(0)).to.be.calledWith(
+            '시도 횟수를 입력해주세요.',
+          );
+        }
+        if (Number(tryCountInput) <= 0) {
+          expect(alertStub.getCall(0)).to.be.calledWith(
+            '양수를 입력해주세요.',
+          );
+        }
       });
   });
 });
