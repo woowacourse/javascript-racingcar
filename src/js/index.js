@@ -41,6 +41,9 @@ export default class Racing {
     } else if (tryCountNumber <= 0) {
       alert('양수를 입력해주세요.');
       return;
+    } else if (tryCountNumber !== Math.floor(tryCountNumber)) {
+      alert('정수를 입력해주세요.');
+      return;
     }
     this.tryCount = tryCountNumber;
   }

@@ -51,14 +51,18 @@ describe('자동차 경주', () => {
     cy.get('.try-count')
       .invoke('val')
       .then(tryCountInput => {
+        const tryCount = Number(tryCountInput);
         if (!tryCountInput) {
           expect(alertStub.getCall(0)).to.be.calledWith(
             '시도 횟수를 입력해주세요.',
           );
-        }
-        if (Number(tryCountInput) <= 0) {
+        } else if (tryCount <= 0) {
           expect(alertStub.getCall(0)).to.be.calledWith(
             '양수를 입력해주세요.',
+          );
+        } else if (Math.floor(tryCount) !== tryCount) {
+          expect(alertStub.getCall(0)).to.be.calledWith(
+            '정수를 입력해주세요.',
           );
         }
       });
