@@ -17,7 +17,9 @@ export default class CarGameView {
 
   init() {
     this.showView(this.inputCarNamesView);
+    this.inputCarNamesView.querySelector('input').value = '';
     this.hideView(this.inputTryCountView);
+    this.inputTryCountView.querySelector('input').value = '';
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }

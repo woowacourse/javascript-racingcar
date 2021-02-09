@@ -9,6 +9,7 @@ export default class CarGameManager {
     this.carNames = '';
     this.bindInputCarNamesEvent();
     this.bindInputTryCountEvent();
+    this.bindResetEvent();
   }
 
   initGame() {
@@ -28,6 +29,12 @@ export default class CarGameManager {
     });
   }
 
+  bindResetEvent() {
+    document.querySelector('#display-game-result > div > button').addEventListener('click', () => {
+      this.resetHandler();
+    });
+  }
+
   carNamesInputHandler() {
     this.carGameView.showView(document.querySelector('#input-try-count'));
     this.carNames = document.querySelector('#input-car-names > div > input').value.split(',');
@@ -39,6 +46,10 @@ export default class CarGameManager {
     this.playGame(tryCount);
     this.carGameView.showView(document.querySelector('#display-game-progress'));
     this.carGameView.showView(document.querySelector('#display-game-result'));
+  }
+
+  resetHandler() {
+    this.initGame();
   }
 
   createCar() {
