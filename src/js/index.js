@@ -110,6 +110,9 @@ const resetGame = () => {
   resetBtn.addEventListener("click", () => {
     resetView([2, 3, 4]);
     state.cars = [];
+
+    sections[1].querySelector("input").value = "";
+    sections[2].querySelector("input").value = "";
   });
 };
 
