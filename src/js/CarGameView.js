@@ -4,6 +4,7 @@ export default class CarGameView {
     this.inputTryCountView = $element.querySelector('#input-try-count');
     this.gameProgressView = $element.querySelector('#display-game-progress');
     this.gameResultView = $element.querySelector('#display-game-result');
+    this.carNames = '';
   }
 
   showView($element) {
