@@ -29,7 +29,9 @@ describe('자동차 경주', () => {
         const carNames = carNameInput.split(',');
         if (carNames.some(name => name.trim().length > 5)) {
           console.log('over length 5');
-          expect(alertStub.getCall(0)).to.be.calledWith('자동차 이름을 5자 이하로 입력해 주세요.');
+          expect(alertStub.getCall(0)).to.be.calledWith(
+            '자동차 이름을 5자 이하로 입력해 주세요.',
+          );
         }
       });
   });
