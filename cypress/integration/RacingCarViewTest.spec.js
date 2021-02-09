@@ -42,9 +42,7 @@ describe('자동차 경주 게임 View 테스트', () => {
     inputTryCount('10');
 
     defaultCarNames.split(',')
-      .map((name, index) =>
-        cy.get('.car-player').eq(index).should('have.text', name)
-      );
+      .map((name, index) => cy.get('.car-player').eq(index).should('have.text', name),);
   });
 
   it('사용자가 다시시작 버튼을 누르면 게임이 초기화된다.', () => {
@@ -69,9 +67,27 @@ describe('자동차 경주 게임 View 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount('10');
-    cy.get('.car-player').each((position, idx) => {
-      const currentPosition = position[0].dataset.position;
+    cy.get('.car-player').each((car, idx) => {
+      const currentPosition = car[0].dataset.position;
       cy.get('.car-player').eq(idx).siblings('.forward-icon').should('have.length', currentPosition);
+    });
+  });
+
+
+  it('최종 우승자가 제대로 표시되는지 확인한다.', () => {
+    initGame();
+    inputCarNames();
+    inputTryCount('10');
+
+    const positions = [];
+    cy.get('.car-player').each((car) => {
+      positions.push(Number(car[0].dataset.position));
+    }).then(() => {
+      const maxPosition = Math.max(...positions);
+      const winners = [];  
+      cy.get(`[data-position=${maxPosition}]`)
+        .each((winner) => winners.push(winner[0].innerText))
+        .then(() => cy.get('#display-game-result > h2').should('have.text', `🏆 최종 우승자: ${winners.join(", ")} 🏆`));
     });
   });
 });
