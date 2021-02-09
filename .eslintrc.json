@@ -2,7 +2,8 @@
   "plugins": ["prettier"],
   "extends": ["eslint:recommended", "google", "plugin:prettier/recommended"],
   "rules": {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "require-jsdoc" : 0
   },
   "env": {
     "browser": true,
