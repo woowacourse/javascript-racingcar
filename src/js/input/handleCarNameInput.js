@@ -1,4 +1,5 @@
 import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
+import { toggleDisabled } from '../utils/toggleDisabled.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
 
 const carTemplate = (carName) => {
@@ -37,7 +38,6 @@ const isValidCarName = (carNames) => {
 
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
-  const $carNameSubmit = document.querySelector('#car-name-submit');
 
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
   if (!isValidCarName(carNames)) {
@@ -45,6 +45,6 @@ export const handleCarNameInput = () => {
   }
 
   toggleVisibility('$racingCountSection');
+  toggleDisabled('$carNameSubmit');
   createCars(carNames);
-  $carNameSubmit.setAttribute('disabled', true);
 };
