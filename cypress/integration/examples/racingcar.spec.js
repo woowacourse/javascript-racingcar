@@ -9,7 +9,7 @@ describe("ui-input-click-show", () => {
     cy.get("#count").should("have.css", "display", "block");
   });
 
-  it("횟수를 입력하고 버튼을 클릭하면 진행 영역이 보여진다", () => {
+  it("시도 횟수를 입력하고 버튼을 클릭하면 진행 영역이 보여진다", () => {
     cy.get("#count-input").type(5);
     cy.get("#count-btn").click();
     cy.get("#process").should("have.css", "display", "block");
@@ -22,7 +22,7 @@ describe("ui-input-click-show", () => {
     });
   });
 
-  it("시도횟수보다 화살표의 개수가 적거나 같아야한다", () => {
+  it("시도 횟수보다 화살표의 개수가 적거나 같아야한다", () => {
     cy.get("#process > .d-flex > div").each(v => {
       if (v.find(".forward-icon").length > 0) {
         cy.get(v).find(".forward-icon").its("length").should("be.lte", 5);
@@ -102,7 +102,7 @@ describe("ui-input-vaild-check", () => {
     cy.get("#count-btn").click();
     cy.get("@alertStub").should(
       "be.calledWith",
-      "시도 횟수는 숫자여야 합니다."
+      "시도 횟수는 자연수여야 합니다."
     );
   });
 
@@ -111,6 +111,18 @@ describe("ui-input-vaild-check", () => {
     cy.get("#car-btn").click();
     cy.get("#count").should("have.css", "display", "block");
     cy.get("#count-input").type(-1);
+    cy.get("#count-btn").click();
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "시도 횟수는 자연수여야 합니다."
+    );
+  });
+
+  it("입력한 시도 횟수가 소수면 alert 출력", () => {
+    cy.get("#car-input").type("a,b,c,d");
+    cy.get("#car-btn").click();
+    cy.get("#count").should("have.css", "display", "block");
+    cy.get("#count-input").type(4.21);
     cy.get("#count-btn").click();
     cy.get("@alertStub").should(
       "be.calledWith",
