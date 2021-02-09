@@ -24,12 +24,6 @@ describe('Car name input test', () => {
     testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1, name2', ALERT_VALID_LETTER);
     testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1,n ame2', ALERT_VALID_LETTER);
     testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1,name2 ', ALERT_VALID_LETTER);
-    testIncorrectValue(
-      CAR_INPUT,
-      CAR_BTN,
-      'name1, n ame2 ',
-      ALERT_VALID_LETTER
-    );
   });
 
   it('Can check length.', () => {
