@@ -9,20 +9,20 @@ describe('racing-game', () => {
 
   const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
-  const typeCarNameAndSubmit = (
+  const typeCarNameAndClickToSubmitButton = (
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
   ) => {
     cy.get('#car-name-input').type(carNames.join(','));
     return cy.get('#car-name-submit').click();
   };
 
-  const typeRacingCountAndSubmit = (racingCount = 4) => {
+  const typeRacingCountAndClickToSubmitButton = (racingCount = 5) => {
     cy.get('#racing-count-input').type(racingCount);
     return cy.get('#racing-count-submit').click();
   };
 
   it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
-    typeCarNameAndSubmit();
+    typeCarNameAndClickToSubmitButton();
     cy.get('#racing-count-section').should('be.visible');
   });
 
@@ -32,14 +32,14 @@ describe('racing-game', () => {
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
-    typeCarNameAndSubmit(longCarName).then(() => {
+    typeCarNameAndClickToSubmitButton(longCarName).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(
         '이름은 5글자 이하로 입력해 주세요.',
       );
       cy.get('#car-name-input').should('have.text', '');
     });
 
-    typeCarNameAndSubmit(blankCarName).then(() => {
+    typeCarNameAndClickToSubmitButton(blankCarName).then(() => {
       expect(alertStub.getCall(1)).to.be.calledWith(
         '공백만으로는 이름을 구성할 수 없습니다.',
       );
@@ -61,8 +61,8 @@ describe('racing-game', () => {
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
-    typeCarNameAndSubmit();
-    typeRacingCountAndSubmit(negativeRacingCount).then(() => {
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton(negativeRacingCount).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(
         '1 이상의 숫자를 입력해주세요.',
       );
@@ -80,8 +80,8 @@ describe('racing-game', () => {
   });
 
   it('시도횟수가 올바르게 입력된 경우 자동차경주 화면이 보이는지 테스트 한다.', () => {
-    typeCarNameAndSubmit();
-    typeRacingCountAndSubmit();
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
     cy.get('.car-player')
       .should('have.length', carNames.length)
       .each(($div, index) => cy.get($div).should('have.text', carNames[index]));
@@ -108,8 +108,8 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
-    typeCarNameAndSubmit();
-    typeRacingCountAndSubmit();
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
     cy.get('.car-player').each(($div, index) => {
       cy.get($div)
         .should('have.text', carNames[index])
@@ -123,8 +123,8 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주를 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
-    typeCarNameAndSubmit();
-    typeRacingCountAndSubmit();
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
 
     cy.get('.car').then(($cars) => {
       const counts = [...$cars].map(($car) => {
@@ -147,8 +147,8 @@ describe('racing-game', () => {
   });
 
   it('다시 시작버튼을 누르면 초기 화면을 출력해서 게임을 정상적으로 다시 시작하는지 테스트한다.', () => {
-    typeCarNameAndSubmit();
-    typeRacingCountAndSubmit();
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
     cy.get('#game-process-section').should('not.be.visible');
