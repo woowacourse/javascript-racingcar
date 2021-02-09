@@ -25,9 +25,8 @@ export default class TryCountInput {
       return;
     }
 
-    this.setTryCount(tryCount);
-
     disableElements(this.$tryCountInput, this.$tryCountSummitBtn);
+    this.setTryCount(tryCount);
   }
 
   isNaturalTryCount(number) {
