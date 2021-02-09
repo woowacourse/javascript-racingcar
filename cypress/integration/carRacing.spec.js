@@ -2,23 +2,25 @@ import alertConstants from '../../src/js/constants/alertConstants.js';
 
 function inputCarNames(carInputs) {
   cy.get('#car-names-input').type(carInputs);
-  cy.get('#car-names-submit').click();
+  return cy.get('#car-names-submit').click();
 }
 
 function inputRacingCount(racingCountInput) {
   cy.get('#racing-count-input').type(racingCountInput);
-  cy.get('#racing-count-submit').click();
+  return cy.get('#racing-count-submit').click();
 }
 
 function clickRestartButton() {
   cy.get('#restart-button').click();
 }
 
-function checkAlertMessage(alertMessage) {
-  cy.on('window:alert', (txt) => {
-    expect(txt).to.contains(alertMessage);
-  });
-}
+// function checkAlertMessage(alertMessage) {
+//   const alertStub = cy.stub();
+//   cy.on('window:alert', alertStub);
+//   cy.on('window:alert', () => {
+//     // expect(txt).to.contains(alertMessage);
+//   });
+// }
 
 function checkRacingRound(carNamesInputText) {
   const carNames = carNamesInputText.split(',').map((name) => name.trim());
@@ -34,29 +36,46 @@ function checkRacingRound(carNamesInputText) {
 
 context('carRacing', () => {
   beforeEach(() => {
-    // cy.visit('http://127.0.0.1:5501/javascript-racingcar');
     cy.visit('http://127.0.0.1:5500');
   });
 
   it('자동차 이름이 비어있는 경우 경고창을 띄운다.', () => {
-    cy.get('#car-names-submit').click();
-    checkAlertMessage(alertConstants.INVALID_CAR_NAME);
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get('#car-names-submit')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.INVALID_CAR_NAME);
+      });
   });
 
   it('5자 이상의 자동차 이름을 입력받으면 경고창을 띄운다.', () => {
-    inputCarNames('car1, car2, car3');
-    checkAlertMessage(alertConstants.INVALID_CAR_NAME);
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    inputCarNames('car1, car2, car3, car100').then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.INVALID_CAR_NAME);
+    });
   });
 
   it('중복된 자동차 이름을 입력받으면 경고창을 띄운다.', () => {
-    inputCarNames('car1, car2, car3, car1');
-    checkAlertMessage(alertConstants.DUPLICATE_CAR_NAME);
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    inputCarNames('car1, car2, car3, car1').then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.DUPLICATE_CAR_NAME);
+    });
   });
 
   it('0 이하의 시도할 횟수를 입력받으면 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
     inputCarNames('car1, car2, car3');
-    inputRacingCount(0);
-    checkAlertMessage(alertConstants.INVALID_RACING_COUNT);
+    inputRacingCount(0).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.INVALID_RACING_COUNT);
+    });
   });
 
   it('자동차 이름과 시도 횟수를 입력했을 때, 자동차 이름이 출력되는지 확인한다.', () => {
