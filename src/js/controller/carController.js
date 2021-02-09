@@ -8,12 +8,12 @@ import { displayRacing } from "../view/racingView.js";
 
 // 공백 이름 검증 함수
 // 리팩토링 할 때 수정 (함수 표현 방식)
-// refactoring - 형식
+// refactoring - 형식, utils
 function isAlphanumeric(input) {
   return /^[a-zA-Z0-9]+$/.test(input);
 }
 
-// refactoring - 형식
+// refactoring - 형식, utils
 function isNotDuplicatedArray(array) {
   return Array.from(new Set(array)).length === array.length;
 }
