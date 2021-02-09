@@ -21,9 +21,6 @@ export const resetView = (elementIdArray) => {
   elementIdArray.forEach((elementId) => {
     hideElement(sections[elementId]);
   });
-  // for (let elementId of elementIdArray) {
-  //   hideElement(sections[elementId]);
-  // }
 };
 
 const showCarName = (carName) => {
