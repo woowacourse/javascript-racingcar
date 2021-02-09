@@ -1,4 +1,4 @@
-describe('자동차 경주 게임 테스트', () => {
+describe('자동차 경주 게임 View 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
@@ -18,7 +18,7 @@ describe('자동차 경주 게임 테스트', () => {
     cy.get('#input-try-count').should('be.visible');
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
-  }
+  };
 
   const inputTryCount = (count) => {
     cy.get('#input-try-count > div > input').type(count);
