@@ -8,15 +8,14 @@ export const setGameData = (input, button, value) => {
   cy.get(button).click();
 };
 
-export const testCorrectValue = (input, button, value) => {
+export const testValue = (input, button, ...testSet) => {
+  const value = testSet[0];
+  const alertMessage = testSet[1];
   setGameData(input, button, value);
-  cy.get(input).should('have.value', value);
-};
-
-export const testIncorrectValue = (input, button, value, alertMessage) => {
-  setGameData(input, button, value);
-  cy.on('window:alert', message => {
-    expect(message).to.equal(alertMessage);
-  });
-  cy.get(input).should('have.value', '');
+  if (alertMessage) {
+    cy.on('window:alert', message => {
+      expect(message).to.equal(alertMessage);
+    });
+  }
+  cy.get(input).should('have.value', alertMessage ? '' : value);
 };

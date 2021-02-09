@@ -1,8 +1,4 @@
-import {
-  testCorrectValue,
-  testIncorrectValue,
-  setGameData,
-} from '../utils/test_value.js';
+import { testValue, setGameData } from '../utils/test_value.js';
 import {
   CAR_INPUT,
   CAR_BTN,
@@ -19,15 +15,15 @@ describe('Car name input test', () => {
   });
 
   it('Can check less than zero.', () => {
-    testIncorrectValue(COUNT_INPUT, COUNT_BTN, 0, ALERT_VALID_COUNT_RANGE);
-    testIncorrectValue(COUNT_INPUT, COUNT_BTN, -5, ALERT_VALID_COUNT_RANGE);
+    testValue(COUNT_INPUT, COUNT_BTN, 0, ALERT_VALID_COUNT_RANGE);
+    testValue(COUNT_INPUT, COUNT_BTN, -5, ALERT_VALID_COUNT_RANGE);
   });
 
   it('Can check decimal.', () => {
-    testIncorrectValue(COUNT_INPUT, COUNT_BTN, 1.5, ALERT_DECIMAL);
+    testValue(COUNT_INPUT, COUNT_BTN, 1.5, ALERT_DECIMAL);
   });
 
   it('Can check correct number', () => {
-    testCorrectValue(COUNT_INPUT, COUNT_BTN, 5);
+    testValue(COUNT_INPUT, COUNT_BTN, 5);
   });
 });
