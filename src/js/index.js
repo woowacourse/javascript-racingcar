@@ -5,6 +5,9 @@ const state = {
   cars: [],
 };
 
+// To Do
+// 1. 현재는 index를 통해 직접적으로 element들을 가져오고 있다. 바꾸는 것이 좋을 것 같다.
+
 const hideElement = (element) => {
   return (element.style.display = "none");
 };
@@ -29,6 +32,33 @@ const setSectionDataID = () => {
   }
 };
 
+const resetCarNamesInput = () => {
+  sections[1].querySelector("input").value = "";
+};
+
+const resetTryNumInput = () => {
+  sections[2].querySelector("input").value = "";
+};
+
+const isCarNameEmpty = (carNames) => {
+  if (carNames.includes("")) {
+    alert("올바른 자동차 이름을 입력하세요.");
+    resetCarNamesInput();
+
+    return true;
+  }
+};
+
+const isCarNameLengthValid = (carNames) => {
+  const invalidCarNames = carNames.filter((carName) => carName.length > 5);
+  if (invalidCarNames.length !== 0) {
+    alert("올바른 자동차 이름을 입력하세요.");
+    resetCarNamesInput();
+
+    return true;
+  }
+};
+
 const onClickedCarNamesBtn = () => {
   const carNamesBtn = document.getElementsByTagName("button")[0];
   carNamesBtn.addEventListener("click", () => {
@@ -36,11 +66,12 @@ const onClickedCarNamesBtn = () => {
     const carNames = carNamesInput.value.split(",").map((carName) => {
       return carName.trim();
     });
-
+    if (isCarNameEmpty(carNames) || isCarNameLengthValid(carNames)) {
+      return;
+    }
     state.cars = carNames.map((carName) => {
       return new Car(carName);
     });
-
     showElement(sections[2]);
     carNamesBtn.disabled = true;
   });
@@ -122,9 +153,8 @@ const resetGame = () => {
   resetBtn.addEventListener("click", () => {
     resetView([2, 3, 4]);
     state.cars = [];
-
-    sections[1].querySelector("input").value = "";
-    sections[2].querySelector("input").value = "";
+    resetCarNamesInput();
+    resetTryNumInput();
     tryNumBtn.disabled = false;
     carNamesBtn.disabled = false;
   });
