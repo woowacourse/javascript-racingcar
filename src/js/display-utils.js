@@ -18,9 +18,12 @@ export const resetTryNumInput = () => {
 };
 
 export const resetView = (elementIdArray) => {
-  for (let elementId of elementIdArray) {
+  elementIdArray.forEach((elementId) => {
     hideElement(sections[elementId]);
-  }
+  });
+  // for (let elementId of elementIdArray) {
+  //   hideElement(sections[elementId]);
+  // }
 };
 
 const showCarName = (carName) => {
