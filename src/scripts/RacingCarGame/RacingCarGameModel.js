@@ -16,14 +16,20 @@ export default class RacingCarGameModel {
     this.carList = [];
   }
 
-  moveCarsForward() {
+  moveCarForward(car, randomNumber) {
+    if (randomNumber >= CAR_MOVE_STANDARD_NUMBER) {
+      car.record += 1;
+    }
+  }
+
+  getRandomNumber(rangeNumber) {
+    return Math.floor(Math.random() * rangeNumber);
+  }
+
+  moveCarsByRandom() {
     this.carList.forEach((car) => {
-      const randomNumber = Math.floor(
-        Math.random() * CAR_MOVE_DECIDE_NUMBER_RANGE
-      );
-      if (randomNumber >= CAR_MOVE_STANDARD_NUMBER) {
-        car.record += 1;
-      }
+      const randomNumber = this.getRandomNumber(CAR_MOVE_DECIDE_NUMBER_RANGE)
+      this.moveCarForward(car, randomNumber);
     });
   }
 

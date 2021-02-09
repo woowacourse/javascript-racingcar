@@ -1,9 +1,10 @@
-import { result } from 'lodash';
+import RacingCarGameModel from '../../src/scripts/RacingCarGame/RacingCarGameModel.js';
 import { 
   MAX_CAR_NAME_EXCEEDED, 
   CAR_NAME_EMPTY, 
   SHOULD_BE_INTEGER, 
-  SHOULD_GREATER_THAN_ZERO 
+  SHOULD_GREATER_THAN_ZERO,
+  CAR_MOVE_STANDARD_NUMBER
 } from '../../src/scripts/constants.js';
 
 describe('step1', () => {
@@ -52,39 +53,53 @@ describe('step1', () => {
     cy.get('#try-count-input').should('have.value', '');
   });
 
-  // it('수행 횟수는 0 이 될 수 없다.', () => {
-  //   cy.get('#car-name-input').type('chris, beuc');
-  //   cy.get('#car-name-submit').click();
-  //   cy.get('#try-count-input').type('0')
-  //   cy.on('window:alert', (txt) => {
-  //     expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
-  //   });
-  //   cy.get('#try-count-input').should('have.value', '');
-  // });
+  it('수행 횟수는 0 이 될 수 없다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
+    cy.get('#try-count-input').type('0')
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+    });
+  });
 
-  // it('수행 횟수는 음수가 될 수 없다.', () => {
-  //   cy.get('#car-name-input').type('chris, beuc');
-  //   cy.get('#car-name-submit').click();
-  //   cy.get('#try-count-input').type('-1')
-  //   cy.on('window:alert', (txt) => {
-  //     expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
-  //   });
-  //   cy.get('#try-count-input').should('have.value', '');
-  // });
+  it('수행 횟수는 음수가 될 수 없다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
+    cy.get('#try-count-input').type('-1')
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contains(SHOULD_GREATER_THAN_ZERO);
+    });
+  });
 
+  it(`랜덤한 숫자가 ${CAR_MOVE_STANDARD_NUMBER}이상 일 때 전진한다.`, () => {
+    const racingCarGameModel = new RacingCarGameModel();
+    racingCarGameModel.registerCars(['beuc']);
+    const car = racingCarGameModel.carList[0];
+    racingCarGameModel.moveCarForward(car, CAR_MOVE_STANDARD_NUMBER);
+    expect(car.record).to.equal(1);
+  });
+
+  it(`랜덤한 숫자가 ${CAR_MOVE_STANDARD_NUMBER - 1}이하 일 때 전진하지 않는다`, () => {
+    const racingCarGameModel = new RacingCarGameModel();
+    racingCarGameModel.registerCars(['chris']);
+    const car = racingCarGameModel.carList[0]
+    racingCarGameModel.moveCarForward(car, CAR_MOVE_STANDARD_NUMBER - 1);
+    expect(car.record).to.equal(0)    
+  })
+  
   it('우승자를 제대로 가려냈는지 확인한다.', () => {
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
     cy.get('#try-count-input').type('10');
-    cy.get('#play-game-button').click();
-    cy.get('#result-area div')
-      .then((results) => {
-        for(let i=0; i<1000; i++) {
+    for(let i=0; i<100; i++) {
+      cy.get('#play-game-button').click();
+      cy.get('#result-area div')
+        .then((results) => {
           const record = [];
           Array.from(results).forEach((element) => {
-            if (element.className === 'car-player mr-2') {
+            if (element.classList.contains('car-player')) {
               record.push(0);
-            } else if (element.className === 'forward-icon mt-2') {
+            } else if (element.classList.contains('forward-icon')) {
               record[record.length - 1]++;
             }
           });
@@ -96,35 +111,7 @@ describe('step1', () => {
           } else {
             cy.get('#winners').should('have.text', '🏆 최종 우승자: beuc 🏆');
           }
-        }
-      });
+        });
+    }
   });
-
-  // it('경주 결과가 항상 같은 지를 확인한다.', () => {
-  //   cy.get('#car-name-input').type('chris, beuc');
-  //   cy.get('#car-name-submit').click();
-  //   cy.get('#try-count-input').type('100')
-  //   cy.get('#result-area').
-  //   cy.get('#try-count-input').should('have.value', '');
-  // });
-
-  
-  // it('AC(All Clear)버튼을 누르면 0으로 초기화', () => {
-  //   cy.get('.digits').contains('2').click();
-  //   cy.get('.digits').contains('2').click();
-  //   cy.get('#total').should('have.text', '22');
-  //   cy.get('.modifier').click();
-  //   cy.get('#total').should('have.text', '0');
-  // });
-
-  // it('숫자 자리수 제한 테스트', () => {
-  //   cy.get('.digits').contains('2').click();
-  //   cy.get('.digits').contains('2').click();
-  //   cy.get('.digits').contains('2').click();
-  //   cy.get('.digits').contains('2').click();
-  //   cy.on('window:alert', (txt) => {
-  //     expect(txt).to.contains(OPERAND_LENGTH_EXCEEDED_LIMIT);
-  //   });
-  //   cy.get('#total').should('have.text', '222');
-  // });
 });

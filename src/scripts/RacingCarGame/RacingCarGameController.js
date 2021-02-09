@@ -37,7 +37,7 @@ export default class RacingCarGameController {
     }
     if (!RacingCarGameValidation.isCarListEmpty()) {
       for (let i = 0; i < tryCount; i += 1) {
-        racingCarGameModel.moveCarsForward();
+        racingCarGameModel.moveCarsByRandom();
       }
       RacingCarGameView.updateResultArea(racingCarGameModel.carList);
       const winners = RacingCarGameController.getWinners(
@@ -51,7 +51,6 @@ export default class RacingCarGameController {
 
   static restartRacingCarGame() {
     racingCarGameModel.clearCarList();
-    RacingCarGameView.showWinners([]);
     RacingCarGameView.clearTryCountInput();
     RacingCarGameView.clearCarNamesInput();
     RacingCarGameView.updateResultArea(racingCarGameModel.carList);
