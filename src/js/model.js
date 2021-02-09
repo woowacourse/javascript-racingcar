@@ -4,13 +4,21 @@ class RacingCarModel {
     this.count = 0;
   }
 
-  getCars() {}
+  getCars() {
+    return this.cars;
+  }
 
-  setCars() {}
+  setCars(cars) {
+    this.cars = cars;
+  }
 
-  getCount() {}
+  getCount() {
+    return this.count;
+  }
 
-  setCount() {}
+  setCount(count) {
+    this.count = count;
+  }
 }
 
 export default RacingCarModel;
