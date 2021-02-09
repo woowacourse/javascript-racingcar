@@ -1,12 +1,11 @@
 /* eslint-disable max-lines-per-function */
 
 export default class RacingGameView {
-  constructor() {
-    this.$app = document.querySelector('#app');
-  }
+  constructor() {}
 
   renderInitialView() {
-    this.$app.innerHTML = `
+    const $app = document.querySelector('#app');
+    $app.innerHTML = `
       <div class="d-flex justify-center mt-5">
         <div class="input-container">
           <section>
@@ -53,6 +52,14 @@ export default class RacingGameView {
 
   renderProgressBar(cars) {
     const $progressContainer = document.querySelector('.progress-container');
+    $progressContainer.innerHTML = `
+      <section class="mt-4">
+        <div class="d-flex">
+          ${cars.map(car => progressTemplate(car)).join('')}
+        </div>
+      </section>
+    `;
+
     function progressTemplate(car) {
       return `
         <div>
@@ -61,14 +68,6 @@ export default class RacingGameView {
         </div>
       `;
     }
-
-    $progressContainer.innerHTML = `
-      <section class="mt-4">
-        <div class="d-flex">
-          ${cars.map(car => progressTemplate(car)).join('')}
-        </div>
-      </section>
-    `;
   }
 
   renderResult(winners) {

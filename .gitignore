@@ -8,6 +8,7 @@
 .DS_Store
 .vscode
 node_modules
+cypress.json
 
 # User-specific stuff
 .idea/**/workspace.xml

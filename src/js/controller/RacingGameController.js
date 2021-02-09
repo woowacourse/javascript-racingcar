@@ -9,10 +9,10 @@ export default class RacingGameController {
     this.count;
     this.isEnd;
     this.view = new RacingGameView();
-    this.init();
+    this.initGame();
   }
 
-  init() {
+  initGame() {
     this.names = [];
     this.count = 0;
     this.isEnd = false;
@@ -32,6 +32,10 @@ export default class RacingGameController {
       return;
     }
     this.setNames();
+    if (this.names.length > 0) {
+      this.view.renderCountInput();
+      this.setEvent('click', '.count-btn', this.handleCountInput);
+    }
   }
 
   setNames() {
@@ -40,11 +44,14 @@ export default class RacingGameController {
     try {
       validator.checkNameInput($input.value);
       this.names = $input.value.split(',');
-      this.view.renderCountInput();
-      this.setEvent('click', '.count-btn', this.handleCountInput);
     } catch (error) {
       this.handleInputException($input, error.message);
     }
+  }
+
+  handleInputException($input, alertMessage) {
+    alert(alertMessage);
+    $input.value = '';
   }
 
   handleCountInput() {
@@ -55,11 +62,6 @@ export default class RacingGameController {
     }
     this.setCount();
     this.count > 0 && this.runGame();
-  }
-
-  handleInputException($input, alertMessage) {
-    alert(alertMessage);
-    $input.value = '';
   }
 
   setCount() {
@@ -78,6 +80,6 @@ export default class RacingGameController {
     this.isEnd = true;
     this.view.renderProgressBar(game.cars);
     this.view.renderResult(game.getWinners());
-    this.setEvent('click', '.reset-btn', this.init);
+    this.setEvent('click', '.reset-btn', this.initGame);
   }
 }
