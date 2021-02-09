@@ -97,4 +97,19 @@ describe('Racing Car 게임', () => {
     cy.get('[data-test=try-count-input]').should('be.disabled');
     cy.get('[data-test=try-count-button]').should('be.disabled');
   });
+
+  it('이름/횟수를 입력한 이후 게임결과 창에 이름이 나타나는지 확인', () => {
+    const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
+
+    cy.get('[data-test=car-name-input]').type(carNames.join(','));
+    cy.get('[data-test=car-name-button]').click();
+    cy.get('[data-test=try-count-input]').type('4');
+    cy.get('[data-test=car-name-input]').should('be.disabled');
+    cy.get('[data-test=car-name-button]').should('be.disabled');
+    cy.get('[data-test=try-count-button]').click();
+    cy.get('[data-test=try-count-input]').should('be.disabled');
+    cy.get('[data-test=try-count-button]').should('be.disabled');
+    cy.get('.racing-result-container').should('be.visible');
+    cy.get('.car-player').each(($el, index) => cy.wrap($el).should('have.text', carNames[index]));
+  });
 });
