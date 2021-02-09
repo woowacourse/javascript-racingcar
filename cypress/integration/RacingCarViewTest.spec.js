@@ -40,6 +40,9 @@ describe('자동차 경주 게임 View 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount('10');
+
+    defaultCarNames.split(',')
+      .map((name, index) => cy.get('.car-player').eq(index).should('have.text', name));
   });
 
   it('사용자가 다시시작 버튼을 누르면 게임이 초기화된다.', () => {
