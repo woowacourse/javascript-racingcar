@@ -23,4 +23,8 @@ export default class CarGameView {
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }
+
+  displayProgress(distance) {
+    alert(distance);
+  };
 }

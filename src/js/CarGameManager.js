@@ -57,7 +57,26 @@ export default class CarGameManager {
     console.log(this.cars);
   }
 
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  playOneRound() {
+    this.cars.map((car) => {
+      if (this.getRandomInt(10) >= 4) {
+        car.run();
+      }
+    });
+  }
+
   playGame(tryCount) {
-    // TODO : 게임 진행
+    for (let i = 0; i < tryCount; i++) {
+      this.playOneRound();
+    }
+    const players = document.querySelectorAll('.car-player');
+    this.cars.map((car, index) => {
+      Array.from(players)[index].dataset.position = car.getDistance();
+    });
+    // TODO : this.carGameView.displayProgress();
   }
 }
