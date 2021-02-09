@@ -9,6 +9,14 @@ export const showElement = (element) => {
   return (element.style.display = "block");
 };
 
+export const resetCarNamesInput = () => {
+  sections[1].querySelector("input").value = "";
+};
+
+export const resetTryNumInput = () => {
+  sections[2].querySelector("input").value = "";
+};
+
 export const resetView = (elementIdArray) => {
   for (let elementId of elementIdArray) {
     hideElement(sections[elementId]);
@@ -39,14 +47,20 @@ export const setResultView = () => {
   });
 };
 
-export const setWinnerView = (winners) => {
-  sections[4].innerHTML = "";
+const getWinnerText = (winners) => {
   let winnerText = "";
   if (winners.length === 1) {
     winnerText = winners[0];
   } else {
     winnerText = winners.join(", ");
   }
+
+  return winnerText;
+};
+
+export const setWinnerView = (winners) => {
+  sections[4].innerHTML = "";
+  const winnerText = getWinnerText(winners);
 
   const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>`;
   const winnerTemplate = parseHTML(winnerTemplateString);

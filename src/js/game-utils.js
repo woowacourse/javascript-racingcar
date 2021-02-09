@@ -1,5 +1,11 @@
 import { state } from "./index.js";
-import { resetView } from "./display-utils.js";
+import {
+  resetView,
+  resetCarNamesInput,
+  resetTryNumInput,
+} from "./display-utils.js";
+
+const GO_NUMBER = 3;
 
 const getRandomNum = () => {
   const min = 0;
@@ -11,7 +17,7 @@ const getRandomNum = () => {
 const setTotalStep = () => {
   state.cars.forEach((car) => {
     const randomNum = getRandomNum();
-    if (randomNum > 3) {
+    if (randomNum > GO_NUMBER) {
       car.go();
     }
   });
@@ -54,8 +60,8 @@ export const resetGame = () => {
     resetView([2, 3, 4]);
     state.cars = [];
 
-    sections[1].querySelector("input").value = "";
-    sections[2].querySelector("input").value = "";
+    resetCarNamesInput();
+    resetTryNumInput();
     tryNumBtn.disabled = false;
     carNamesBtn.disabled = false;
   });
