@@ -33,7 +33,7 @@ export const playGame = () => {
     setTotalStep();
   }
 };
-
+// 우승자 이름을 배열로 리턴한다.
 export const getWinner = () => {
   state.cars.sort((a, b) => {
     return b.totalStep - a.totalStep;
@@ -45,10 +45,11 @@ export const getWinner = () => {
       return car;
     }
   });
-
-  return winners.map((winner) => {
+  const winnerNames = winners.map((winner) => {
     return winner.name;
   });
+
+  return winnerNames;
 };
 
 export const resetGame = () => {
