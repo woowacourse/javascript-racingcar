@@ -41,6 +41,7 @@ export class Controller {
     lapCountButton.addEventListener("click", () => {
       const userInput = lapCountInput.value;
 
+      // TODO: try-catch 형식으로 리팩토링하자!
       if (this.carModels.length === 0) {
         alert(MESSAGE.COMMON.INVALID_ACCESS);
         return;
@@ -51,6 +52,28 @@ export class Controller {
         lapCountInput.value = "";
         return;
       }
+
+      const userInputNumber = Number(userInput);
+
+      if (userInputNumber < 1) {
+        alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
+        lapCountInput.value = "";
+        return;
+      }
+
+      if (userInputNumber > 20) {
+        alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
+        lapCountInput.value = "";
+        return;
+      }
+
+      if (!Number.isInteger(userInputNumber)) {
+        alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
+        lapCountInput.value = "";
+        return;
+      }
+
+      // TODO: 성공 케이스
     });
   }
 }
