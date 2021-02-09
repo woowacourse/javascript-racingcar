@@ -4,8 +4,8 @@ export default class Car {
     this.name = name;
     this.position = 0;
   }
-  moveForward = function(number){
-    if(number >= 4){
+  moveForward = function (number) {
+    if (number >= 4) {
       this.position++;
       return true;
     }

@@ -1,4 +1,6 @@
-export const displayRacing = function (cars) { // displayCar로 바꾸기
+// result 바꾸기 -> racingContent
+export const displayRacing = function (cars) {
+  // displayCar로 바꾸기
   let result = "";
 
   cars.forEach((car) => {
@@ -10,6 +12,6 @@ export const displayRacing = function (cars) { // displayCar로 바꾸기
   document.querySelector("#racing-cars").innerHTML = result;
 };
 
-export const displayArrow = function(element) {
-  element.innerHTML+=`<div class="forward-icon mt-2">⬇️️</div>`;
-}
+export const displayArrow = function (element) {
+  element.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
+};
