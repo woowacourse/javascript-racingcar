@@ -14,14 +14,6 @@ function clickRestartButton() {
   cy.get('#restart-button').click();
 }
 
-// function checkAlertMessage(alertMessage) {
-//   const alertStub = cy.stub();
-//   cy.on('window:alert', alertStub);
-//   cy.on('window:alert', () => {
-//     // expect(txt).to.contains(alertMessage);
-//   });
-// }
-
 function checkRacingRound(carNamesInputText) {
   const carNames = carNamesInputText.split(',').map((name) => name.trim());
   const racingCount = 5;
