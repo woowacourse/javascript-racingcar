@@ -3,45 +3,24 @@ describe("자동차 경주 게임 테스트", () => {
     cy.visit("http://127.0.0.1:5500/javascript-racingcar");
   });
 
-  // it("자동차 이름이 입력됐을 경우", () => {
-  //   cy.get("input[type='text']")
-  //     .type("엘라, 그루밍 , 준,포코")
-  //     .should("have.value", "엘라, 그루밍 , 준,포코");
-  // });
-
-  // it("올바르지 않은 자동차 이름이 입력됐을 경우 - 1. 5자 초과일 때", () => {
-  //   const txt = "엘라라라라라, 그루밍 , 준,포코";
-  //   cy.get("input[type='text']").type(txt);
-
-  //   cy.get(".btn").first().click();
-  // 자동차 이름에 대한 Validation
-  // if validation 이 잘못되면
-  // alert
-
-  // cy.on("window:alert", (txt) => {
-  //   expect(txt).to.contains("올바르지 않은 자동차 이름이 입력되었습니다.");
-  // });
-
-  // 입력 값 초기화
-
-  // cy.get(".w-100").first().should("have.value", "");
-  // });
-
-  // it("올바르지 않은 자동차 이름이 입력됐을 경우 - 2. 이름 앞뒤에 공백이 있을 때", () => {
-  //   cy.get(".w-100").first().should("have.property", "top");
-  // });
-
-  // it("올바르지 않은 자동차 이름이 입력됐을 경우 - 3. 입력이 없을 때", () => {
-  //   cy.get(".w-100").first().should("have.property", "top");
-  // });
-
-  it("자동차 이름이 입력됐을 경우", () => {
+  it("자동차 이름이 잘 입력되었는지 테스트합니다.", () => {
     cy.get("input[type='text']")
       .type("엘라, 그루밍 , 준,포코")
       .should("have.value", "엘라, 그루밍 , 준,포코");
-    cy.get("button").first().click();
+  });
 
+  it("첫번째 확인 버튼을 눌렀을 때, 시도 횟수 section이 보여지는지 테스트합니다.", () => {
+    cy.get("button").first().click();
+    cy.get("section.mt-5").should("exist");
+  });
+
+  it("시도할 횟수가 잘 입력되었는지 테스트합니다.", () => {
     cy.get("input[type='number']").type(5).should("have.value", 5);
     cy.get("section.mt-5 > div > button").click();
+  });
+
+  it("두번째 확인 버튼을 눌렀을 때, 결과 section이 보여지는지 테스트합니다.", () => {
+    cy.get("button").first().click();
+    cy.get("section.mt-4").should("exist");
   });
 });
