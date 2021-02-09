@@ -163,6 +163,7 @@ const resetGame = () => {
 const setWinnerView = (winners) => {
   sections[4].innerHTML = "";
   let winnerText = "";
+
   if (winners.length === 1) {
     winnerText = winners[0];
   } else {
@@ -182,9 +183,31 @@ const setWinnerView = (winners) => {
   resetGame();
 };
 
-const onClickedtryNumBtn = () => {
+const isTryNumInvalid = (tryNum) => {
+  if (Number(tryNum) <= 0) {
+    alert("올바른 시도 횟수를 입력하세요.");
+    resetTryNumInput();
+
+    return true;
+  }
+};
+
+const isTyrNumNotNumber = (tryNum) => {
+  if (isNaN(tryNum)) {
+    alert("올바른 시도 횟수를 입력하세요.");
+    resetTryNumInput();
+
+    return true;
+  }
+};
+
+const onClickedTryNumBtn = () => {
   const tryNumBtn = document.getElementsByTagName("button")[1];
   tryNumBtn.addEventListener("click", () => {
+    const tryNum = document.getElementsByTagName("input")[1].value;
+    if (isTryNumInvalid(tryNum) || isTyrNumNotNumber(tryNum)) {
+      return;
+    }
     playGame();
     setResultView();
     setWinnerView(getWinner());
@@ -198,7 +221,7 @@ const init = () => {
   setSectionDataID();
   resetView([2, 3, 4]);
   onClickedCarNamesBtn();
-  onClickedtryNumBtn();
+  onClickedTryNumBtn();
 };
 
 init();
