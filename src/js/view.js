@@ -1,5 +1,5 @@
 class RacingCarView {
-  showCount() {
+  renderCount() {
     const $countSection = document.querySelector("#count");
     $countSection.style.display = "block";
     $countSection.innerHTML = `
@@ -18,7 +18,7 @@ class RacingCarView {
     `;
   }
 
-  showProcess(cars) {
+  renderProcess(cars) {
     const $processSection = document.querySelector("#process");
     $processSection.style.display = "block";
 
@@ -36,7 +36,7 @@ class RacingCarView {
     `;
   }
 
-  showResult(winners) {
+  renderResult(winners) {
     const $resultSection = document.querySelector("#result");
     $resultSection.style.display = "block";
     $result.innerHTML = `
@@ -47,9 +47,28 @@ class RacingCarView {
     `;
   }
 
-  hideCount() {}
+  resetCount() {
+    const $countSection = document.querySelector("#count");
+    $countSection.style.display = "none";
+    $countSection.innerHTML = ``;
+  }
 
-  hideProcess() {}
+  resetProcess() {
+    const $processSection = document.querySelector("#process");
+    $processSection.style.display = "none";
 
-  hideResult() {}
+    $processSection.innerHTML = ``;
+  }
+
+  resetResult() {
+    const $resultSection = document.querySelector("#result");
+    $resultSection.style.display = "none";
+    $result.innerHTML = ``;
+  }
+
+  reset() {
+    this.resetCount();
+    this.resetProcess();
+    this.resetResult();
+  }
 }
