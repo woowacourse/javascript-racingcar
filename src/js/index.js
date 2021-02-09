@@ -24,7 +24,7 @@ export default class Racing {
       if (name.trim().length > 5) {
         alert('자동차 이름을 5자 이하로 입력해 주세요.');
         return;
-      } 
+      }
       const car = new Car(name.trim());
       this.cars.push(car);
     }
@@ -46,6 +46,20 @@ export default class Racing {
       return;
     }
     this.tryCount = tryCountNumber;
+    this.moveCars();
+  }
+
+  moveCars() {
+    for (let i = 0; i < this.tryCount; i++) {
+      for (let car of this.cars) {
+        car.move();
+      }
+    }
+    this.showProgress();
+  }
+
+  showProgress() {
+    document.querySelector('.progress-container').style.display = '';
   }
 
   addListeners() {

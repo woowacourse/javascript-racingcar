@@ -57,14 +57,19 @@ describe('자동차 경주', () => {
             '시도 횟수를 입력해주세요.',
           );
         } else if (tryCount <= 0) {
-          expect(alertStub.getCall(0)).to.be.calledWith(
-            '양수를 입력해주세요.',
-          );
+          expect(alertStub.getCall(0)).to.be.calledWith('양수를 입력해주세요.');
         } else if (Math.floor(tryCount) !== tryCount) {
-          expect(alertStub.getCall(0)).to.be.calledWith(
-            '정수를 입력해주세요.',
-          );
+          expect(alertStub.getCall(0)).to.be.calledWith('정수를 입력해주세요.');
         }
       });
+  });
+
+  it('자동차 이름과 시도 횟수 입력 후 확인을 누르면 레이싱 진행 상황이 출력된다.', () => {
+    cy.get('.car-name').type('east, west, south, north');
+    cy.get('.car-name-btn').click();
+    cy.get('.try-count').type('5');
+    cy.get('.try-count-btn').click();
+
+    cy.get('.progress-container').should('be.visible');
   });
 });
