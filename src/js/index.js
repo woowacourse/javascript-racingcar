@@ -2,6 +2,7 @@ import Car from './models/Car.js';
 export default class Racing {
   constructor() {
     this.cars = [];
+    this.tryCount = 0;
 
     this.resetUI();
     this.addListeners();
@@ -28,10 +29,17 @@ export default class Racing {
     document.querySelector('.try-count-form').style.display = 'block';
   }
 
+  getTryCount() {
+    this.tryCount = document.querySelector('.try-count').value;
+  }
+
   addListeners() {
     document
       .querySelector('.car-name-btn')
       .addEventListener('click', this.getCarNames.bind(this));
+    document
+      .querySelector('.try-count-btn')
+      .addEventListener('click', this.getTryCount.bind(this));
   }
 }
 

@@ -28,11 +28,23 @@ describe('자동차 경주', () => {
       .then(carNameInput => {
         const carNames = carNameInput.split(',');
         if (carNames.some(name => name.trim().length > 5)) {
-          console.log('over length 5');
           expect(alertStub.getCall(0)).to.be.calledWith(
             '자동차 이름을 5자 이하로 입력해 주세요.',
           );
         }
+      });
+  });
+
+  it('이동 횟수를 입력 받아서 저장한다.', () => {
+    cy.get('.car-name').type('east, west, south, north');
+    cy.get('.car-name-btn').click();
+
+    cy.get('.try-count').type('5');
+    cy.get('.try-count-btn').click();
+    cy.get('.try-count')
+      .invoke('val')
+      .then(tryCountInput => {
+        console.log(tryCountInput);
       });
   });
 });
