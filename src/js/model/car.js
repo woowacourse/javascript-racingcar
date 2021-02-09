@@ -5,6 +5,10 @@ export default class Car {
     this.position = 0;
   }
   moveForward = function(number){
-    if(number >= 4) this.position++;
+    if(number >= 4){
+      this.position++;
+      return true;
+    }
+    return false;
   }
 }

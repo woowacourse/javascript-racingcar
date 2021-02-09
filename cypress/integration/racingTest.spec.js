@@ -1,6 +1,7 @@
 // import { expect } from "chai";
 import { getRandomNumber } from "../../src/js/controller/utils.js";
 import Car from "../../src/js/model/Car.js";
+import { displayArrow } from "../../src/js/view/racingView.js";
 
 describe("자동차 레이싱 테스트", () => {
   before(() => {
@@ -28,11 +29,25 @@ describe("자동차 레이싱 테스트", () => {
   //   }
   // });
 
-  it("자동차는 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈추는지 확인한다.", ()=>{
+  // it("자동차는 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈추는지 확인한다.", ()=>{
+  //   const newCar = new Car('test');
+  //   newCar.moveForward(1);
+  //   expect(newCar.position).to.equal(0);
+  //   newCar.moveForward(4);
+  //   expect(newCar.position).to.equal(1);
+  // });
+
+  it("자동차가 전진했을 경우만 화살표가 나타나는지 확인한다.", ()=>{
+    const newElement = document.createElement('div');
     const newCar = new Car('test');
-    newCar.moveForward(1);
-    expect(newCar.position).to.equal(0);
-    newCar.moveForward(4);
-    expect(newCar.position).to.equal(1);
+    if(newCar.moveForward(1)){
+      displayArrow(newElement);
+    }
+    expect(newElement).to.not.contain('⬇️');
+
+    if(newCar.moveForward(6)){
+      displayArrow(newElement);
+    }
+    expect(newElement).to.contain('⬇️');
   });
 });
