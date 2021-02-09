@@ -5,17 +5,19 @@ import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
   constructor() {
-    this.names = [];
-    this.count = 0;
-    this.isEnd = false;
+    this.names;
+    this.count;
+    this.isEnd;
     this.view = new RacingGameView();
     this.init();
   }
 
   init() {
+    this.names = [];
+    this.count = 0;
     this.isEnd = false;
     this.view.renderInitialView();
-    this.setEvent('click', '.input-container', this.handleInput);
+    this.setEvent('click', '.car-name-btn', this.handleNameInput);
   }
 
   setEvent(type, targetName, eventHandler) {
@@ -23,19 +25,13 @@ export default class RacingGameController {
     $target.addEventListener(type, eventHandler.bind(this));
   }
 
-  handleInput({ target: { classList } }) {
+  handleNameInput() {
     if (this.isEnd) {
       alert(ALERT_RESTART);
 
       return;
     }
-    if (classList.contains('car-name-btn')) {
-      this.setNames();
-    }
-    if (classList.contains('count-btn')) {
-      this.setCount();
-      this.count > 0 && this.runGame();
-    }
+    this.setNames();
   }
 
   setNames() {
@@ -45,9 +41,20 @@ export default class RacingGameController {
       validator.checkNameInput($input.value);
       this.names = $input.value.split(',');
       this.view.renderCountInput();
+      this.setEvent('click', '.count-btn', this.handleCountInput);
     } catch (error) {
       this.handleInputException($input, error.message);
     }
+  }
+
+  handleCountInput() {
+    if (this.isEnd) {
+      alert(ALERT_RESTART);
+
+      return;
+    }
+    this.setCount();
+    this.count > 0 && this.runGame();
   }
 
   handleInputException($input, alertMessage) {
