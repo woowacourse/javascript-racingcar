@@ -21,12 +21,12 @@ describe('racing-game', () => {
     return cy.get('#racing-count-submit').click();
   };
 
-  it('"EAST, WEST, SOUTH, NORTH"를 입력하면 화면에 시도횟수 입력창을 표시하는지 테스트 한다.', () => {
+  it('자동차 이름 입력 시, 화면에 시도 횟수 입력창이 표시되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     cy.get('#racing-count-section').should('be.visible');
   });
 
-  it('올바르지 않은 자동차 이름을 입력한 경우 경고메세지를 출력하는지 테스트 한다.', () => {
+  it('올바르지 않은 자동차 이름을 입력 시, 경고메세지가 출력되는지 테스트 한다.', () => {
     const longCarName = ['YUJOYOONHO'];
     const blankCarName = ['   '];
     const alertStub = cy.stub();
@@ -56,7 +56,7 @@ describe('racing-game', () => {
       });
   });
 
-  it('양의 정수만을 시도횟수로 입력할 수 있는지 테스트 한다.', () => {
+  it('음수와 공백을 시도 횟수로 입력 시, 경고메세지가 출력되는지 테스트 한다.', () => {
     const negativeRacingCount = -7;
     const alertStub = cy.stub();
 
@@ -79,7 +79,7 @@ describe('racing-game', () => {
       });
   });
 
-  it('시도횟수가 올바르게 입력된 경우 자동차경주 화면이 보이는지 테스트 한다.', () => {
+  it('올바른 시도 횟수 입력 시, 화면에 자동차 경주 섹션이 표시되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
     cy.get('.car-player')
@@ -122,7 +122,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('자동차 경주를 마쳤을 때 우승자를 정상적으로 출력하는지 테스트 한다.', () => {
+  it('자동차 경주가 끝났을 때 우승자가 정상적으로 출력되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
 
@@ -146,7 +146,7 @@ describe('racing-game', () => {
     });
   });
 
-  it('다시 시작버튼을 누르면 초기 화면을 출력해서 게임을 정상적으로 다시 시작하는지 테스트한다.', () => {
+  it('다시 시작버튼을 눌렀을 때 화면이 초기화 되는지 테스트한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
     cy.get('#game-restart-button').click();
