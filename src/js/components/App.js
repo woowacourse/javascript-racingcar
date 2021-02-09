@@ -2,6 +2,8 @@ import CarNameInput from './CarNameInput.js';
 import TryCountInput from './TryCountInput.js';
 import RacingResult from './RacingResult.js';
 import Car from '../model/Car.js';
+import { MIN_NUMBER, MAX_NUMBER, MOVE_BOUNDED_NUMBER } from '../util/constant.js';
+import { getRandomNumber } from '../util/gameUtil.js';
 
 export default class App {
   constructor() {
@@ -34,6 +36,16 @@ export default class App {
     return this.carNames.map((carName) => new Car(carName));
   }
 
+  play() {
+    this.cars.forEach((car) => {
+      for (let i = 0; i < this.tryCount; i++) {
+        if (getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER) {
+          car.move();
+        }
+      }
+    });
+  }
+
   setState({ nextCarNames, nextTryCount }) {
     if (nextCarNames) {
       this.carNames = nextCarNames;
@@ -45,6 +57,7 @@ export default class App {
 
     if (this.carNames.length && this.tryCount > 0) {
       this.cars = this.createCars();
+      this.play();
       this.racingResult.setState({ nextCars: this.cars });
     }
   }

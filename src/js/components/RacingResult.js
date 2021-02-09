@@ -7,16 +7,9 @@ export default class RacingResult {
   }
 
   init() {
-    const $container = document.createElement("div");
-    const containerClassList = [
-      "d-flex",
-      "justify-center",
-      "mt-5",
-      "racing-result-container",
-    ];
-    containerClassList.forEach((className) =>
-      $container.classList.add(className),
-    );
+    const $container = document.createElement('div');
+    const containerClassList = ['d-flex', 'justify-center', 'mt-5', 'racing-result-container'];
+    containerClassList.forEach((className) => $container.classList.add(className));
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
@@ -31,6 +24,7 @@ export default class RacingResult {
     return `
     <div class="car-player-container">
       <div class="car-player mr-2">${car.name}</div>
+      ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.score)}
     </div>
     `;
   }
@@ -39,13 +33,12 @@ export default class RacingResult {
     return `        
     <section class="mt-4">
       <div class="d-flex">
-        ${this.cars.map(this.createCarHTML).join("")}
+        ${this.cars.map(this.createCarHTML).join('')}
       </div>
     </section>`;
   }
+
   render() {
-    this.$container.innerHTML = this.cars.length
-      ? this.createRacingResultHTML()
-      : "";
+    this.$container.innerHTML = this.cars.length ? this.createRacingResultHTML() : '';
   }
 }
