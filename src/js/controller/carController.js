@@ -22,12 +22,12 @@ function isAlphanumeric(input) {
   return /^[a-zA-Z0-9]+$/.test(input);
 }
 
-function isNotDuplicatedArray(array){
+function isNotDuplicatedArray(array) {
   return Array.from(new Set(array)).length === array.length;
 }
 
 // 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
-const isValidCarNames = function(carNamesInput) {
+const isValidCarNames = function (carNamesInput) {
   return isNotDuplicatedArray(carNamesInput) && carNamesInput.every(
     (carName) =>
       1 <= carName.length && carName.length <= 5 && isAlphanumeric(carName)
@@ -43,14 +43,17 @@ export const handleCarNamesSubmit = function () {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
+
+  document.querySelector("#count-container").style.display = "block";
   // for testing
-  document.querySelector("#racing-container").style.visibility = "visible";
-  document.querySelector("#winner-container").style.visibility = "visible";
-  
+  // document.querySelector("#racing-container").style.visibility = "visible";
+  // document.querySelector("#winner-container").style.visibility = "visible";
+
   // Car 생성
-  carNamesInput.forEach( (carName) => {
+  carNamesInput.forEach((carName) => {
     app.cars.push(new Car(carName));
   })
 
+  //
   console.log(app.cars);
 };

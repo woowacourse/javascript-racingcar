@@ -5,13 +5,12 @@ describe("자동차 이름 검증 테스트", () => {
 
   const inputTest = (value, shouldBeVisible) => {
     // 초기화
-    cy.get("#racing-container").invoke("attr", "style", "visibility: hidden");
-    cy.get("#winner-container").invoke("attr", "style", "visibility: hidden");
+    cy.get("#count-container").invoke("attr", "style", "display: none");
     cy.get("#car-names-input").clear();
 
     cy.get("#car-names-input").type(value);
     cy.get("#car-names-submit").click();
-    cy.get("#racing-container").should(
+    cy.get("#count-container").should(
       shouldBeVisible ? "to.be.visible" : "not.to.be.visible"
     );
   };
