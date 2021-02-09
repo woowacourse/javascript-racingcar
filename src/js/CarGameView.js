@@ -24,7 +24,19 @@ export default class CarGameView {
     this.hideView(this.gameResultView);
   }
 
-  displayProgress(distance) {
-    alert(distance);
-  };
+  displayProgress(cars) {
+    this.gameProgressView.querySelector('.d-flex').innerHTML = this.displayProgressContainer(cars);
+  }
+
+  displayProgressContainer(cars) {
+    return cars.map((car) => `
+        <div>
+          <div class="car-player mr-2" data-position=${car.distance}>${car.name}</div>
+          ${this.displayForwardIcons(car.distance)}
+        </div>`).join('');
+  }
+
+  displayForwardIcons(count) {
+    return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
+  }
 }

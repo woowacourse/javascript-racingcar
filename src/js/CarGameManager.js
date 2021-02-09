@@ -73,10 +73,6 @@ export default class CarGameManager {
     for (let i = 0; i < tryCount; i++) {
       this.playOneRound();
     }
-    const players = document.querySelectorAll('.car-player');
-    this.cars.map((car, index) => {
-      Array.from(players)[index].dataset.position = car.getDistance();
-    });
-    // TODO : this.carGameView.displayProgress();
+    this.carGameView.displayProgress(this.cars);
   }
 }
