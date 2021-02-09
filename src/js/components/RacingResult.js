@@ -29,7 +29,7 @@ export default class RacingResult {
 
   createCarHTML(car) {
     return `
-    <div>
+    <div class="car-player-container">
       <div class="car-player mr-2">${car.name}</div>
     </div>
     `;
