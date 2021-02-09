@@ -6,8 +6,6 @@ export default class GameProcess extends Component {
     this.render();
   }
 
-  initEvent() {}
-
   render() {
     this.$target.innerHTML = `
       <section class="mt-4">

@@ -61,7 +61,6 @@ export default class UserInput extends Component {
   #handleSubmitRaceTimes() {
     const $inputRaceTimes = document.querySelector('#input-race-times');
     const $buttonRaceTimes = document.querySelector('#submit-race-times');
-    console.log($inputRaceTimes.value);
     if (!this.#isValidRaceTimes($inputRaceTimes.value)) {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
