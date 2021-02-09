@@ -1,4 +1,5 @@
-import { parseHTML, sections, state, resetGame } from "./index.js";
+import { parseHTML, sections, state } from "./index.js";
+import { resetGame } from "./game-utils.js";
 
 const hideElement = (element) => {
   return (element.style.display = "none");
