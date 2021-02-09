@@ -1,6 +1,6 @@
 describe("자동차 경주 게임 테스트", () => {
   before(() => {
-    cy.visit("http://127.0.0.1:5500");
+    cy.visit("http://127.0.0.1:5500/javascript-racingcar/");
   });
   const carNames = "엘라, 그루밍 , 준,포코";
   it("자동차 이름이 잘 입력되었는지 테스트합니다.", () => {
@@ -29,6 +29,36 @@ describe("자동차 경주 게임 테스트", () => {
 
     cy.get(".car-player").each((car, idx) => {
       expect(car).to.contain(carNamesArray[idx]);
+    });
+  });
+
+  it("다시 시작하기 버튼이 잘 눌리는지 테스트합니다.", () => {
+    cy.get("button").eq(2).click();
+    cy.get("section").eq(0).should("exist");
+    cy.get("section").eq(1).should("exist");
+    //console.log(cy.get("input[type='text']").invoke("text") === "");
+  });
+
+  // TODO
+  // 1. 이름이 없을 때 (,, 입력 될 때 )
+  //    1-1. 입력이 아예 없을 때
+  //    1-2. 다수의 이름이 들어왔지만 자동차 이름이 하나라도 빈 문자열일 때
+  // 2. 5글자 초과일 때
+  // 1번 2번 섞여서 들어갈 때
+
+  it("빈 자동차 이름이 입력되었을 때", () => {
+    cy.get("input[type='text']").type("포코, ,, 엘라, 그루밍");
+    cy.get("button").eq(0).click();
+    cy.on("window:alert", (txt) => {
+      expect(txt).to.contains("올바른 자동차 이름을 입력하세요.");
+    });
+  });
+
+  it("5글자 초과인 이름이 입력되었을 때", () => {
+    cy.get("input[type='text']").type("포코포포코코,,엘라, 그루밍");
+    cy.get("button").eq(0).click();
+    cy.on("window:alert", (txt) => {
+      expect(txt).to.contains("올바른 자동차 이름을 입력하세요.");
     });
   });
 });
