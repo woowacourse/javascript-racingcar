@@ -94,7 +94,9 @@ describe('racing-game', () => {
     }).map((v, i) => i);
 
     for (let i = 0; i < 100; i++) {
-      expect(possibleScores).to.include(getRandomNumber());
+      expect(possibleScores).to.include(
+        getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE),
+      );
     }
   });
 
