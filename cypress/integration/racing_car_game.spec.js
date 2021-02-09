@@ -48,4 +48,18 @@ describe("Racing Car 게임", () => {
         .should("have.text", `🏆 최종 우승자: ${winners.join(", ")} 🏆`);
     });
   });
+
+  it.only("재시작 버튼 동작 확인", () => {
+    cy.get("[data-test=restart-button]").click();
+
+    cy.get("[data-test=car-name-input]").should("not.be.disabled");
+    cy.get("[data-test=car-name-input]").should("have.value", "");
+    cy.get("[data-test=car-name-button]").should("not.be.disabled");
+
+    cy.get("[data-test=try-count-input]").should("not.be.disabled");
+    cy.get("[data-test=try-count-input]").should("have.value", "");
+    cy.get("[data-test=try-count-button]").should("not.be.disabled");
+
+    cy.get(".racing-result-container").should("not.be.visible");
+  });
 });
