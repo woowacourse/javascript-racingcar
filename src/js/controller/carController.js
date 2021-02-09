@@ -28,10 +28,17 @@ function isNotDuplicatedArray(array) {
 
 // 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
 const isValidCarNames = function (carNamesInput) {
-  return isNotDuplicatedArray(carNamesInput) && carNamesInput.every(
-    (carName) =>
-      1 <= carName.length && carName.length <= 5 && isAlphanumeric(carName)
+  return (
+    isNotDuplicatedArray(carNamesInput) &&
+    carNamesInput.every(
+      (carName) =>
+        1 <= carName.length && carName.length <= 5 && isAlphanumeric(carName)
+    )
   );
+};
+
+const isValidCount = function (value) {
+  return Number(value) >= 1;
 };
 
 export const handleCarNamesSubmit = function () {
@@ -43,17 +50,15 @@ export const handleCarNamesSubmit = function () {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
-
+  // 시도 횟수 영역 노출
   document.querySelector("#count-container").style.display = "block";
-  // for testing
-  // document.querySelector("#racing-container").style.visibility = "visible";
-  // document.querySelector("#winner-container").style.visibility = "visible";
+};
 
-  // Car 생성
-  carNamesInput.forEach((carName) => {
-    app.cars.push(new Car(carName));
-  })
-
-  //
-  console.log(app.cars);
+export const handleCountSubmit = function () {
+  const countInput = document.querySelector("#count-input").value;
+  if (!isValidCount(countInput)){
+    alert("시도할 횟수는 1이상이어야 합니다.");
+    return;
+  }
+  document.querySelector("#racing-container").style.display = "block";
 };

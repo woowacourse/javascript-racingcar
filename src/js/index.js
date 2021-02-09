@@ -1,4 +1,4 @@
-import { handleCarNamesSubmit } from "./controller/carController.js";
+import { handleCarNamesSubmit, handleCountSubmit } from "./controller/carController.js";
 
 class App {
   constructor() {
@@ -10,6 +10,9 @@ class App {
     document
       .querySelector("#car-names-submit")
       .addEventListener("click", handleCarNamesSubmit);
+    document
+      .querySelector("#count-submit")
+      .addEventListener("click", handleCountSubmit);
   }
 }
 
