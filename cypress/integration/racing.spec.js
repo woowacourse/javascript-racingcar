@@ -19,8 +19,8 @@ describe('자동차 경주', () => {
   it('자동차 이름은 5자 이하여야 한다.', () => {
     cy.get('.car-name').type('easttt, west, south, north');
 
-    let alerted = false;
-    cy.on('window:alert', msg => (alerted = msg));
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
     cy.get('.car-name-btn').click();
 
     cy.get('.car-name')
@@ -29,8 +29,7 @@ describe('자동차 경주', () => {
         const carNames = carNameInput.split(',');
         if (carNames.some(name => name.trim().length > 5)) {
           console.log('over length 5');
-          expect(alerted).to.equal('자동차 이름을 5자 이하로 입력해 주세요.');
-          cy.on('window:confirm', () => true);
+          expect(alertStub.getCall(0)).to.be.calledWith('자동차 이름을 5자 이하로 입력해 주세요.');
         }
       });
   });
