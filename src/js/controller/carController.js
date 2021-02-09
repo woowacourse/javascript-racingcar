@@ -1,6 +1,7 @@
 import { app } from "../index.js";
 import Car from "../model/Car.js";
 import { displayRacing } from "../view/racingView.js";
+import { gameStart } from "./racingController.js";
 
 // 자동차와 관련된 검증, 조작 및 뷰?
 
@@ -64,7 +65,8 @@ export const handleCountSubmit = function () {
 
   // display~
   displayRacing(app.cars);
-
   // 레이싱 영역 노출
   document.querySelector("#racing-container").style.display = "flex";
+  
+  gameStart(countInput);
 };
