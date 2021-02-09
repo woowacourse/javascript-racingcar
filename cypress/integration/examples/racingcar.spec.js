@@ -41,7 +41,8 @@ describe("ui-input-click-show", () => {
       .then(() => {
         cy.get("#process > .d-flex > div").each(v => {
           if (v.find(".forward-icon").length === largestCount) {
-            cy.get("#result > h2").contains(v.find(".car-player")[0].outerText);
+            const winner = v.find(".car-player")[0].outerText;
+            cy.get("#result > h2").contains(winner);
           }
         });
       });
@@ -81,6 +82,15 @@ describe("ui-input-vaild-check", () => {
     cy.get("@alertStub").should(
       "be.calledWith",
       "자동차 이름은 공백이 될 수 없습니다."
+    );
+  });
+
+  it("자동차 이름에 중복 있으면 alert 출력", () => {
+    cy.get("#car-input").type("a,b,a,c,d");
+    cy.get("#car-btn").click();
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "자동차 이름은 중복이 될 수 없습니다."
     );
   });
 
