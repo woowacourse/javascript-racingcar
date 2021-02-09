@@ -5,7 +5,7 @@ import {
 
 export default class RacingCarGameModel {
   constructor() {
-    this.carList = [];
+    this.carList = []; // [ { carName, record }, ]
   }
 
   registerCars(carNameList) {

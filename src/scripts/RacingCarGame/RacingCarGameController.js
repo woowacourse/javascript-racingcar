@@ -5,7 +5,9 @@ import { CAR_NAME_SEPERATOR } from '../constants.js';
 
 export default class RacingCarGameController {
   static getCarNameList(carNames) {
-    return carNames.split(CAR_NAME_SEPERATOR).map((carName) => carName.trim());
+    return carNames
+      .split(CAR_NAME_SEPERATOR)
+      .map((carName) => carName.trim());
   }
 
   static registerCarNames(carNames) {
