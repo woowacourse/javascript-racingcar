@@ -1,4 +1,4 @@
-describe('자동차 경주 게임 View 테스트', () => {
+describe('자동차 이름 유효성 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
