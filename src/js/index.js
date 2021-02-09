@@ -1,4 +1,7 @@
-import { handleCarNamesSubmit, handleCountSubmit } from "./controller/carController.js";
+import {
+  handleCarNamesSubmit,
+  handleCountSubmit,
+} from "./controller/carController.js";
 
 class App {
   constructor() {

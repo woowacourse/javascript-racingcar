@@ -1,16 +1,6 @@
-/*
-외부 라이브러리(jQuery, Lodash 등)를 사용하지 않고, 순수 Vanilla JS로만 구현한다.
-indent(인덴트, 들여쓰기) depth를 3이 넘지 않도록 구현한다. 2까지만 허용한다.
-예를 들어 while문 안에 if문이 있으면 들여쓰기는 2이다.
-힌트: indent(인덴트, 들여쓰기) depth를 줄이는 좋은 방법은 함수(또는 메소드)를 분리하면 된다.
-가능하면 const로만 변수를 선언한다.
-동등연산자는 '===' 로만 사용한다.
-전역변수를 지양한다.
-한 함수나 메서드는 한 가지 기능만 하도록 한다.
-*/
-
 import { app } from "../index.js";
 import Car from "../model/Car.js";
+import { displayRacing } from "../view/racingView.js";
 
 // 자동차와 관련된 검증, 조작 및 뷰?
 
@@ -18,10 +8,12 @@ import Car from "../model/Car.js";
 
 // 공백 이름 검증 함수
 // 리팩토링 할 때 수정 (함수 표현 방식)
+// refactoring - 형식
 function isAlphanumeric(input) {
   return /^[a-zA-Z0-9]+$/.test(input);
 }
 
+// refactoring - 형식
 function isNotDuplicatedArray(array) {
   return Array.from(new Set(array)).length === array.length;
 }
@@ -55,10 +47,24 @@ export const handleCarNamesSubmit = function () {
 };
 
 export const handleCountSubmit = function () {
+  const carNames = document.querySelector("#car-names-input").value.split(",");
   const countInput = document.querySelector("#count-input").value;
-  if (!isValidCount(countInput)){
+
+  if (!isValidCount(countInput)) {
     alert("시도할 횟수는 1이상이어야 합니다.");
     return;
   }
-  document.querySelector("#racing-container").style.display = "block";
+
+  // 자동차 객체 생성
+  carNames.forEach((carName) => {
+    app.cars.push(new Car(carName));
+  });
+
+  // 0-9 랜덤 숫자 계산해서 자동차 움직이도록
+
+  // display~
+  displayRacing(app.cars);
+
+  // 레이싱 영역 노출
+  document.querySelector("#racing-container").style.display = "flex";
 };
