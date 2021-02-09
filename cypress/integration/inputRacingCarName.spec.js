@@ -9,7 +9,7 @@ describe("자동차 이름 입력하기", () => {
   const testInitialState = () => {
     cy.get(SELECTOR.TITLE.CONTAINER).should("be.visible");
     cy.get(SELECTOR.CAR_NAME.CONTAINER).should("be.visible");
-    cy.get(SELECTOR.LAP.CONTAINER).should("not.be.visible");
+    cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("not.be.visible");
     cy.get(SELECTOR.GAME_PROGRESS.CONTAINER).should("not.be.visible");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("not.be.visible");
   };
@@ -46,7 +46,7 @@ describe("자동차 이름 입력하기", () => {
     cy.get(SELECTOR.CAR_NAME.INPUT).type(userInput);
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
 
-    cy.get(SELECTOR.LAP.CONTAINER).should("be.visible");
+    cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("be.visible");
     cy.get(SELECTOR.GAME_PROGRESS.CONTAINER).should("be.visible");
     cy.get(SELECTOR.GAME_PROGRESS.CONTAINER)
       .get(".car-player")
