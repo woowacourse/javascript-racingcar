@@ -5,7 +5,7 @@ import {
   COUNT_INPUT,
   COUNT_BTN,
   COUNT_CONTAINER,
-  PROGRESSIVE_CONTAINER,
+  PROGRESS_CONTAINER,
   RESET_BTN,
   RESULT_CONTAINER,
 } from '../../src/js/constants/index.js';
@@ -19,14 +19,14 @@ describe('Racing car game test', () => {
 
   it('Can render result.', () => {
     cy.get(COUNT_CONTAINER).should('exist');
-    cy.get(PROGRESSIVE_CONTAINER).should('exist');
+    cy.get(PROGRESS_CONTAINER).should('exist');
     cy.get(RESULT_CONTAINER).should('exist');
   });
 
   it('Can reset game when clicking reset button.', () => {
     cy.get(RESET_BTN).click();
-    cy.get(COUNT_CONTAINER).should('not.exist');
-    cy.get(PROGRESSIVE_CONTAINER).should('not.exist');
-    cy.get(RESULT_CONTAINER).should('not.exist');
+    cy.get(COUNT_CONTAINER).children().should('not.exist');
+    cy.get(PROGRESS_CONTAINER).children().should('not.exist');
+    cy.get(RESULT_CONTAINER).children().should('not.exist');
   });
 });

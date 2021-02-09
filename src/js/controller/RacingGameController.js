@@ -1,6 +1,7 @@
 import { RacingGameView } from '../view/index.js';
 import { RacingGame } from '../model/index.js';
 import { InputValidator } from '../utils/index.js';
+import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
   constructor() {
@@ -24,7 +25,7 @@ export default class RacingGameController {
 
   handleInput({ target: { classList } }) {
     if (this.isEnd) {
-      alert('재시작 버튼을 눌러주세요.');
+      alert(ALERT_RESTART);
 
       return;
     }
@@ -66,11 +67,10 @@ export default class RacingGameController {
   }
 
   runGame() {
-    const { cars, winners } = new RacingGame(this.names, this.count);
+    const game = new RacingGame(this.names, this.count);
     this.isEnd = true;
-    console.log(cars, winners);
-    // this.view.renderProgressBar(cars);
-    // this.view.renderResult(winners);
-    // this.setEvent('click', '.reset-btn', this.init);
+    this.view.renderProgressBar(game.cars);
+    this.view.renderResult(game.getWinners());
+    this.setEvent('click', '.reset-btn', this.init);
   }
 }

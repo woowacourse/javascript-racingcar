@@ -5,10 +5,8 @@ import { MOVE_TRIGGER } from '../constants/index.js';
 export default class RacingGame {
   constructor(names, count) {
     this.cars = [];
-    this.winners = [];
     this.setCars(names);
     this.runRace(count);
-    this.getWinner();
   }
 
   setCars(names) {
@@ -29,11 +27,14 @@ export default class RacingGame {
     return getRandomNumber() >= MOVE_TRIGGER;
   }
 
-  getWinner() {
+  getWinners() {
+    const winners = [];
     const maxDistance = this.getMaxDistance();
     this.cars.forEach(car => {
-      car.position === maxDistance && this.winners.push(car.name);
+      car.position === maxDistance && winners.push(car.name);
     });
+
+    return winners;
   }
 
   getMaxDistance() {
