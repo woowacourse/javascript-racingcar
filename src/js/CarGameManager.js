@@ -69,10 +69,16 @@ export default class CarGameManager {
     });
   }
 
+  getWinner() {
+    const maxPosition = this.cars.reduce((max, car) => Math.max(max, car.distance), 0);
+    return this.cars.filter((car) => car.distance === maxPosition).map((car) => car.name).join(', ');
+  }
+
   playGame(tryCount) {
     for (let i = 0; i < tryCount; i++) {
       this.playOneRound();
     }
     this.carGameView.displayProgress(this.cars);
+    this.carGameView.displayWinners(this.getWinner());
   }
 }

@@ -39,4 +39,8 @@ export default class CarGameView {
   displayForwardIcons(count) {
     return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
   }
+
+  displayWinners(winner) {
+    this.gameResultView.querySelector('h2').innerText = `🏆 최종 우승자: ${winner} 🏆`;
+  }
 }
