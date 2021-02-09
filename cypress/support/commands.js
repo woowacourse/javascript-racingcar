@@ -1,25 +1,30 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add('registerCarNames', (value) => {
+  cy.get('#car-name-input').type(value);
+  cy.get('#car-name-submit').click();
+});
+
+Cypress.Commands.add('checkResultContain', (value) => {
+  cy.get('#result-area').should('contain', value);
+});
+
+Cypress.Commands.add('checkResultNotContain', (value) => {
+  cy.get('#result-area').should('not.contain', value);
+});
+
+Cypress.Commands.add('checkResultIs', (value) => {
+  cy.get('#result-area').should('have.text', value);
+});
+
+Cypress.Commands.add('checkAlertIs', (value) => {
+  cy.on('window:alert', (txt) => {
+    expect(txt).to.equal(value);
+  });
+});
+
+Cypress.Commands.add('typeTryCount', (value) => {
+  cy.get('#try-count-input').type(value);
+});
+
+Cypress.Commands.add('playRacingGame', () => {
+  cy.get('#play-game-button').click();
+});
