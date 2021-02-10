@@ -4,14 +4,16 @@ import { racingCarGameModel } from '../store.js';
 import { CAR_NAME_SEPERATOR } from '../constants.js';
 
 export default class RacingCarGameController {
-  static getCarNameList(carNames) {
+  constructor() {}
+
+  static seperateCarNames(carNames, seperator) {
     return carNames
-      .split(CAR_NAME_SEPERATOR)
+      .split(seperator)
       .map((carName) => carName.trim());
   }
 
   static registerCarNames(carNames) {
-    const carNameList = RacingCarGameController.getCarNameList(carNames);
+    const carNameList = this.seperateCarNames(carNames, CAR_NAME_SEPERATOR);
     const isCarNameListValid = carNameList.every((carName) =>
       RacingCarGameValidation.isCarNameValid(carName)
     );
@@ -31,32 +33,35 @@ export default class RacingCarGameController {
     return winners;
   }
 
+  static finishGame() {
+    const winners = this.getWinners(
+      racingCarGameModel.carList
+    );
+    RacingCarGameView.showWinners(winners);
+    RacingCarGameView.showRestartButton();
+    racingCarGameModel.clearCarsRecord();
+  }
+
   static playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
+
     if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
       RacingCarGameView.clearTryCountInput();
       return;
     }
-    if (!RacingCarGameValidation.isCarListEmpty()) {
-      for (let i = 0; i < tryCount; i += 1) {
-        racingCarGameModel.moveCarsByRandom();
-      }
-      RacingCarGameView.updateResultArea(racingCarGameModel.carList);
-      const winners = RacingCarGameController.getWinners(
-        racingCarGameModel.carList
-      );
-      RacingCarGameView.showWinners(winners);
-      RacingCarGameView.showRestartButton();
-      racingCarGameModel.clearCarsRecord();
+    if (RacingCarGameValidation.isCarListEmpty()) {
+      return;
     }
+
+    for (let i = 0; i < tryCount; i += 1) {
+      racingCarGameModel.moveCarsByRandom();
+    }
+    RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+    this.finishGame();
   }
 
   static restartRacingCarGame() {
     racingCarGameModel.clearCarList();
-    RacingCarGameView.clearTryCountInput();
-    RacingCarGameView.clearCarNamesInput();
-    RacingCarGameView.updateResultArea(racingCarGameModel.carList);
-    RacingCarGameView.hideRestartButton();
-    RacingCarGameView.hideWinners();
+    RacingCarGameView.resetGameView();
   }
 }

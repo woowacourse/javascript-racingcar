@@ -11,6 +11,14 @@ export default class RacingCarGameView {
   static updateResultArea(carList) {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
   }
+  
+  static showWinners(winners) {
+    $winners.innerText = getWinnersTemplate(winners);
+  }
+  
+  static showRestartButton() {
+    $restartButton.style.display = '';
+  }
 
   static clearCarNamesInput() {
     $carNameInput.value = '';
@@ -20,12 +28,8 @@ export default class RacingCarGameView {
     $tryCountInput.value = '';
   }
 
-  static showWinners(winners) {
-    $winners.innerText = getWinnersTemplate(winners);
-  }
-
-  static showRestartButton() {
-    $restartButton.style.display = '';
+  static clearResultArea() {
+    $resultArea.innerHTML = '';
   }
 
   static hideRestartButton() {
@@ -34,5 +38,13 @@ export default class RacingCarGameView {
 
   static hideWinners() {
     $winners.innerText = '';
+  }
+
+  static resetGameView() {
+    this.clearCarNamesInput();
+    this.clearTryCountInput();
+    this.clearResultArea();
+    this.hideRestartButton();
+    this.hideWinners();
   }
 }
