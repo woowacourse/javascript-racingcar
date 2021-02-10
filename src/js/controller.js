@@ -30,11 +30,18 @@ class RacingCarController {
 
   reset() {}
 
-  handleCars() {}
+  handleCars() {
+    const $carBtn = document.querySelector("#car-btn");
+    $carBtn.addEventListener("click", this.manageCars);
+  }
 
-  handleCount() {}
+  handleCount() {
+    const $countBtn = document.querySelector("#count-btn");
+    $countBtn.addEventListener("click", this.manageCount);
+  }
 
   handleReset() {
-    // 리셋
+    const $resetBtn = document.querySelector("#reset-btn");
+    $resetBtn.addEventListener("click", this.reset);
   }
 }
