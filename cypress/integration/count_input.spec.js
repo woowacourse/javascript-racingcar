@@ -12,7 +12,7 @@ import {
   ALERT_VALID_COUNT_RANGE,
 } from '../../src/js/constants/index.js';
 
-describe('Car name input test', () => {
+describe('Count input test', () => {
   before(() => {
     cy.visit('http://127.0.0.1:5500/index.html');
     setGameData(CAR_INPUT, CAR_BTN, 'a,b');

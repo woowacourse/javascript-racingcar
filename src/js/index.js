@@ -8,5 +8,4 @@ class App {
     new RacingGameController();
   }
 }
-
 new App();

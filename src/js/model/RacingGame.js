@@ -1,20 +1,40 @@
-import RacingCar from './RacingCar.js';
 import { getRandomNumber } from '../utils/index.js';
 import { MOVE_TRIGGER } from '../constants/index.js';
 
 export default class RacingGame {
-  constructor(names, count) {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {
     this.cars = [];
-    this.setCars(names);
-    this.runRace(count);
+    this.count = 0;
+    this.isEnd = false;
   }
 
-  setCars(names) {
-    this.cars = names.map(name => new RacingCar(name));
+  setCars(cars) {
+    this.cars = cars;
   }
 
-  runRace(count) {
-    for (let i = 0; i < count; i++) {
+  getCars() {
+    return this.cars;
+  }
+
+  setCount(count) {
+    this.count = count;
+  }
+
+  getCount() {
+    return this.count;
+  }
+
+  runGame() {
+    this.runRace();
+    this.isEnd = true;
+  }
+
+  runRace() {
+    for (let i = 0; i < this.count; i++) {
       this.runRound();
     }
   }
@@ -28,21 +48,14 @@ export default class RacingGame {
   }
 
   getWinners() {
-    const winners = [];
-    const maxDistance = this.getMaxDistance();
-    this.cars.forEach(car => {
-      car.position === maxDistance && winners.push(car.name);
-    });
-
-    return winners;
+    return this.cars
+      .filter(({ position }) => {
+        position === this.getMaxDistance();
+      })
+      .map(({ name }) => name);
   }
 
   getMaxDistance() {
-    let maxDistance = 0;
-    this.cars.forEach(car => {
-      maxDistance = Math.max(maxDistance, car.position);
-    });
-
-    return maxDistance;
+    return Math.max(this.cars.map(({ position }) => position));
   }
 }
