@@ -22,11 +22,10 @@ describe('자동차 이름 유효성 테스트', () => {
       .should(
         'be.calledWith',
         errorMessage,
-      ).then(() => {
-      cy.get('#input-try-count').should('not.be.visible');
-      cy.get('#display-game-progress').should('not.be.visible');
-      cy.get('#display-game-result').should('not.be.visible');
-    });
+      )
+    cy.get('#input-try-count').should('not.be.visible');
+    cy.get('#display-game-progress').should('not.be.visible');
+    cy.get('#display-game-result').should('not.be.visible');
   };
 
   it('자동차 이름이 5자 초과인 경우 경고창을 띄운다.', () => {

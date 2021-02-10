@@ -32,10 +32,9 @@ describe('시도 횟수 유효성 테스트', () => {
       .should(
         'be.calledWith',
         errorMessage,
-      ).then(() => {
-        cy.get('#display-game-progress').should('not.be.visible');
-        cy.get('#display-game-result').should('not.be.visible');
-      });
+      )
+    cy.get('#display-game-progress').should('not.be.visible');
+    cy.get('#display-game-result').should('not.be.visible');
   };
 
   it('입력된 값이 정수가 아닌 경우 경고창을 띄운다.', () => {
