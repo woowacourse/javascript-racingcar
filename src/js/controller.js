@@ -17,10 +17,11 @@ class RacingCarController {
 
   getWinners() {}
 
+  // T면 1(전진), F면 0(스톱) 반환
   goStop() {
-    // 랜덤수 가져와서 전진 or 스톱 값
-    // return T/F
-    // 필요한주석 : T면 1(전진), F면 0(스톱) 반환
+    const randomNumber = generateRandomNumber();
+
+    return randomNumber >= 4 ? 1 : 0;
   }
 
   play(cars) {
