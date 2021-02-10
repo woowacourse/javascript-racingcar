@@ -1,5 +1,6 @@
 import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
+import { isCarValid, isCountValid } from "./vaild.js";
 
 class RacingCarController {
   constructor() {

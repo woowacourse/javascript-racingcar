@@ -29,3 +29,5 @@ class Valid {
     return true;
   }
 }
+
+export const { isCarValid, isCountValid } = new Valid();
