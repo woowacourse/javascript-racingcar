@@ -1,10 +1,12 @@
+import { NUMBERS } from '../Utils/constants.js';
+
 export default class CarNameValidator {
   constructor(carNames) {
     this.carNames = carNames;
   }
 
   isNotValidLength() {
-    return this.carNames.some((carName) => (carName.length > 5 || carName.length < 1));
+    return this.carNames.some((carName) => (carName.length > NUMBERS.MAX_NAME_LENGTH || carName.length < NUMBERS.MIN_NAME_LENGTH));
   }
 
   isIncludingBlank() {
