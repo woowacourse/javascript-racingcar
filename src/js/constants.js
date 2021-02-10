@@ -40,4 +40,5 @@ const MESSAGE = {
   },
 };
 
+export const RANDOM_NUMBER_RANGE = { MIN: 0, MAX: 9 };
 export { SELECTOR, MESSAGE };
