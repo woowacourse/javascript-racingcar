@@ -32,7 +32,9 @@ export class Controller {
       this.carModels = splittedCarNames.map((carName) => new CarModel(carName));
 
       // TODO: input하면 중복 생성되지 않게하기
-      this.viewController.renderCarNameTag(this.carModels);
+      this.viewController.renderCarNameTag(
+        this.carModels.map(({ name }) => name)
+      );
       this.viewController.show(SELECTOR.LAP_COUNT.CONTAINER);
     });
 
