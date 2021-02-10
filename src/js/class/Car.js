@@ -8,7 +8,7 @@ export class Car {
   }
 
   isMovingForward(score = getRandomNumber()) {
-    return score >= GAME.THRESHOLD;
+    return score >= GAME.THRESHOLD_SCORE;
   }
 
   resetForwardCount() {

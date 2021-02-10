@@ -70,18 +70,13 @@
 
 1. Model-View 분리
 
-- [x] $cars를 통해 DOM을 직접 다루지 않고 클래스를 이용한다.
+- [x] $cars를 통해 DOM을 직접 다루지 않고 Class를 이용한다.
 - [x] getWinners()에서 DOM 접근 부분과 비즈니스 로직을 분리한다.
 - [x] 테스트에서 getWinners()과 비슷한 로직의 코드를 중복되는 부분을 정리한다.
 
 2. 변수명을 더 명확하게
 
-<<<<<<< HEAD
-- [x] 'NAME_BLANK', 'VALIDATOR' 보다 더 의미를 명확하게 나타내는 이름으로 짓는다.
-=======
-- [x] 'NAME_BLANK', 'IS_EFFECTIVE' 보다 더 명확한 이름으로 짓는다.
->>>>>>> 2ccb9764558c68e4fbf28282b6d44f6d0a8cd134
-- [x] 객체를 'List'는 라고 명명하지 않는다.
+- [x] 'NAME_BLANK', 'VALIDATOR', 'EFFECTIVE_SCORE' 보다 더 의미를 명확하게 나타내는 이름으로 짓는다.
 
 3. 함수명은 의도를 드러내도록
 

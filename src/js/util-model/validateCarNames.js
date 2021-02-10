@@ -2,10 +2,10 @@ import { ERR_MESSAGE, CAR } from './constant.js';
 
 export const validateCarNames = (cars) => {
   if (!cars.every((car) => isValidLength(car.name))) {
-    return ERR_MESSAGE.NAME_TOO_LONG;
+    return ERR_MESSAGE.CAR_NAME_TOO_LONG;
   }
   if (!cars.every((car) => !isBlank(car.name))) {
-    return ERR_MESSAGE.NAME_CANNOT_BE_BLANK;
+    return ERR_MESSAGE.CAR_NAME_CANNOT_BE_BLANK;
   }
 };
 
