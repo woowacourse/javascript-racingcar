@@ -2,6 +2,7 @@ import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
 import { isCarValid, isCountValid } from "./vaild.js";
 import { generateRandomNumber } from "./util.js";
+import { RANDOM, INIT, GAME } from "./constants/constant.js";
 
 class RacingCarController {
   constructor() {
@@ -35,9 +36,11 @@ class RacingCarController {
 
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
-    const randomNumber = generateRandomNumber(1, 9);
+    const randomNumber = generateRandomNumber(RANDOM.MIN_NUM, RANDOM.MAX_NUM);
 
-    return randomNumber >= 4 ? 1 : 0;
+    return randomNumber >= GAME.FORWARD_STANDARD_NUM
+      ? GAME.GO_NUM
+      : GAME.STOP_NUM;
   }
 
   play(cars) {
@@ -59,7 +62,7 @@ class RacingCarController {
     const carNames = this.getCarsInput();
     if (isCarValid(carNames)) {
       const cars = carNames.map(carName => {
-        return { name: carName, forward: 0 };
+        return { name: carName, forward: INIT.FORWARD };
       });
 
       this.model.setCars(cars);
@@ -85,8 +88,8 @@ class RacingCarController {
   }
 
   reset() {
-    this.model.setCars([]);
-    this.model.setCount(0);
+    this.model.setCars(INIT.CARS);
+    this.model.setCount(INIT.COUNT);
     this.view.reset();
   }
 

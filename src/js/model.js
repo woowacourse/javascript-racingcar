@@ -1,7 +1,9 @@
+import { INIT } from "./constants/constant.js";
+
 class RacingCarModel {
   constructor() {
-    this.cars = [];
-    this.count = 0;
+    this.cars = INIT.CARS;
+    this.count = INIT.COUNT;
   }
 
   getCars() {

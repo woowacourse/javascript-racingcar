@@ -1,11 +1,12 @@
 import { ERROR_MESSAGE } from "./constants/message.js";
+import { VALID } from "./constants/constant.js";
 
 class Valid {
   isCarValid(carNames) {
-    if (carNames.some(carName => carName.length > 5)) {
+    if (carNames.some(carName => carName.length > VALID.CARNAME_MAX_LENGTH)) {
       return alert(ERROR_MESSAGE.OVER_CARNAME_MAX_LENGTH);
     }
-    if (carNames.some(carName => carName.length <= 0)) {
+    if (carNames.some(carName => carName.length < VALID.CARNAME_MIN_LENGTH)) {
       return alert(ERROR_MESSAGE.BLANK_CARNAME);
     }
     if (carNames.length !== new Set(carNames).size) {
@@ -16,7 +17,7 @@ class Valid {
   }
 
   isCountValid(count) {
-    if (parseInt(count, 10) <= 0) {
+    if (parseInt(count, 10) < VALID.COUNT_MIN_NUM) {
       return alert(ERROR_MESSAGE.ZERO_OR_MINUS_COUNT);
     }
 
