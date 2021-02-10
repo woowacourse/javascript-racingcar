@@ -2,7 +2,7 @@
 
 context("bdd", () => {
 	beforeEach(() => {
-		cy.visit("http://localhost:5500/");
+		cy.visit("http://127.0.0.1:5500/javascript-racingcar/index.html");
 	});
 
 	it("이름 입력 칸과 확인 버튼만 있다.", () => {
@@ -38,5 +38,14 @@ context("bdd", () => {
 		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
 		cy.get("#name-submit-button").click();
 		cy.get("#count-input").should("have.attr", "placeholder", "시도 횟수");
+	});
+
+	it("횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 칸이 비워진다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+		cy.get("#count-input").should("have.value", "");
 	});
 });
