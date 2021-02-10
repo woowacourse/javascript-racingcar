@@ -1,9 +1,10 @@
-import { app } from "../index.js";
 import {
   displayCountView,
   toggleCarNameInputDisable,
   toggleCountInputDisable,
 } from "../view/inputView.js";
+import { app } from "../index.js";
+import { alertMsg, selectors } from "../keys.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
 import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
@@ -24,7 +25,7 @@ const isValidCount = function (value) {
 
 const getCarNamesInput = function () {
   return document
-    .querySelector("#car-names-input")
+    .querySelector(selectors.carNamesInput)
     .value.split(",")
     .map((e) => e.trim());
 };
@@ -32,11 +33,11 @@ const getCarNamesInput = function () {
 export const handleCarNamesSubmit = function () {
   const carNamesInput = getCarNamesInput();
   if (!isValidCarNames(carNamesInput)) {
-    alert("유효한 자동차이름이 아닙니다.");
+    alert(alertMsg.isNotValidCarNames);
     return;
   }
   if (10 < carNamesInput.length) {
-    alert("자동차는 10대를 넘을 수 없습니다.");
+    alert(alertMsg.isNotValidCarNamesLength);
     return;
   }
   toggleCarNameInputDisable();
@@ -45,10 +46,10 @@ export const handleCarNamesSubmit = function () {
 
 export const handleCountSubmit = function () {
   const carNamesInput = getCarNamesInput();
-  const countInput = document.querySelector("#count-input").value;
+  const countInput = document.querySelector(selectors.countInput).value;
 
   if (!isValidCount(countInput)) {
-    alert("시도할 횟수는 1이상 100이하여야 합니다.");
+    alert(alertMsg.isNotValidCount);
     return;
   }
   toggleCountInputDisable();

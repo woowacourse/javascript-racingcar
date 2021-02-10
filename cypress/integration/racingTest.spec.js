@@ -1,5 +1,6 @@
-import { getRandomNumber } from "../../src/js/controller/utils.js";
 import Car from "../../src/js/model/Car.js";
+import { getRandomNumber } from "../../src/js/controller/utils.js";
+import { selectors } from "../../src/js/keys.js";
 import { displayArrow } from "../../src/js/view/racingView.js";
 
 describe("자동차 레이싱 테스트", () => {
@@ -9,11 +10,11 @@ describe("자동차 레이싱 테스트", () => {
 
   it("자동차 객체가 올바르게 생성되었는지 확인한다.", () => {
     const carNames = ["a", "b", "c", "d", "e"];
-    cy.get("#car-names-input").type(carNames.join(","));
-    cy.get("#car-names-submit").click();
-    cy.get("#count-input").type(5);
-    cy.get("#count-submit").click();
-    cy.get(".car-player").each((element, index) => {
+    cy.get(selectors.carNamesInput).type(carNames.join(","));
+    cy.get(selectors.carNamesSubmit).click();
+    cy.get(selectors.countInput).type(5);
+    cy.get(selectors.countSubmit).click();
+    cy.get(selectors.carPlayer).each((element, index) => {
       const carNameElement = element[0];
       expect(carNameElement.innerText).to.equal(carNames[index]);
     });

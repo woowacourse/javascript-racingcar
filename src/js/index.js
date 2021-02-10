@@ -6,6 +6,7 @@ import {
   handleRestartButton,
   resetAllViews,
 } from "./controller/winnerController.js";
+import { selectors } from "./keys.js";
 import Car from "./model/Car.js";
 
 class App {
@@ -14,13 +15,13 @@ class App {
     resetAllViews();
 
     document
-      .querySelector("#car-names-submit")
+      .querySelector(selectors.carNamesSubmit)
       .addEventListener("click", handleCarNamesSubmit);
     document
-      .querySelector("#count-submit")
+      .querySelector(selectors.countSubmit)
       .addEventListener("click", handleCountSubmit);
     document
-      .querySelector("#restart-button")
+      .querySelector(selectors.restartButton)
       .addEventListener("click", handleRestartButton);
   }
 

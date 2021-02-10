@@ -1,3 +1,5 @@
+import { selectors, texts } from "../../src/js/keys.js";
+
 describe("레이싱 우승자 테스트", () => {
   before(() => {
     cy.visit("http://localhost:5500/index.html");
@@ -7,12 +9,12 @@ describe("레이싱 우승자 테스트", () => {
     let winners = [];
     let maxPosition = 0;
 
-    cy.get("#car-names-input").type("a,b,c,d,e");
-    cy.get("#car-names-submit").click();
-    cy.get("#count-input").type(5);
-    cy.get("#count-submit").click();
+    cy.get(selectors.carNamesInput).type("a,b,c,d,e");
+    cy.get(selectors.carNamesSubmit).click();
+    cy.get(selectors.countInput).type(5);
+    cy.get(selectors.countSubmit).click();
 
-    cy.get("#racing-container > section > div > div")
+    cy.get(`${selectors.racingCarsArea} > div`)
       .each((element) => {
         const carElement = element[0];
         const length = carElement.innerText.split("\n").length;
@@ -24,9 +26,9 @@ describe("레이싱 우승자 테스트", () => {
         }
       })
       .then(() => {
-        cy.get("#winner-container > section > h2").should(
+        cy.get(selectors.winnerTextArea).should(
           "have.text",
-          `🏆 최종 우승자: ${winners.join(", ")} 🏆`
+          texts.makeWinnerText(winners)
         );
       });
   });

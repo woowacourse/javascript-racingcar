@@ -1,15 +1,13 @@
+import { selectors, texts } from "../keys.js";
+
 export const displayWinnerView = function (winners) {
-  const winnerElement = document.querySelector(
-    "#winner-container > section > h2"
-  );
-  winnerElement.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
-  document.querySelector("#winner-container").style.display = "flex";
+  const winnerElement = document.querySelector(selectors.winnerTextArea);
+  winnerElement.innerText = texts.makeWinnerText(winners);
+  document.querySelector(selectors.winnerContainer).style.display = "flex";
 };
 
 export const initializeWinnerView = function () {
-  const winnerElement = document.querySelector(
-    "#winner-container > section > h2"
-  );
-  document.querySelector("#winner-container").style.display = "none";
-  winnerElement.innerText = "🏆 최종 우승자 🏆";
+  const winnerElement = document.querySelector(selectors.winnerTextArea);
+  document.querySelector(selectors.winnerContainer).style.display = "none";
+  winnerElement.innerText = texts.winnerText;
 };

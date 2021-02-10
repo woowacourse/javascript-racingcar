@@ -1,24 +1,26 @@
-export const displayRacingCars = function (cars) {
-  let carPlayersElement = "";
+import { selectors } from "../keys.js";
 
+export const displayRacingCars = function (cars) {
+  const classes = ["car-player", "mr-2"];
+  let carPlayersTemplate = "";
   cars.forEach((car) => {
-    carPlayersElement += `<div>
-      <div class="car-player mr-2">${car.name}</div>
+    carPlayersTemplate += `<div>
+      <div class=${classes.join(" ")}>${car.name}</div>
     </div>`;
   });
 
   document.querySelector(
-    "#racing-container > section > div"
-  ).innerHTML = carPlayersElement;
-
-  document.querySelector("#racing-container").style.display = "flex";
+    selectors.racingCarsArea
+  ).innerHTML = carPlayersTemplate;
+  document.querySelector(selectors.racingContainer).style.display = "flex";
 };
 
 export const displayArrow = function (element) {
-  element.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
+  const classes = ["forward-icon", "mt-2"];
+  element.innerHTML += `<div class=${classes.join(" ")}>⬇️️</div>`;
 };
 
 export const initializeRacingView = function () {
-  document.querySelector("#racing-container").style.display = "none";
-  document.querySelector("#racing-container > section > div").innerHTML = "";
+  document.querySelector(selectors.racingContainer).style.display = "none";
+  document.querySelector(selectors.racingCarsArea).innerHTML = "";
 };

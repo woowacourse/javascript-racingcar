@@ -1,18 +1,20 @@
+import { selectors } from "../../src/js/keys.js";
+
 describe("시도 횟수 입력 테스트", () => {
     const countInputTest = function (count, shouldBeVisible) {
         cy.visit("http://localhost:5500/index.html");
-        cy.get("#car-names-input").type("a,b,c,d,e");
-        cy.get("#car-names-submit").click();
-        cy.get("#count-input").type(count);
-        cy.get("#count-submit").click();
+        cy.get(selectors.carNamesInput).type("a,b,c,d,e");
+        cy.get(selectors.carNamesSubmit).click();
+        cy.get(selectors.countInput).type(count);
+        cy.get(selectors.countSubmit).click();
 
         if(shouldBeVisible){
-            cy.get("#racing-container").should("to.be.visible");    
-            cy.get("#count-input").should('have.attr', 'disabled');
-            cy.get("#count-submit").should('have.attr', 'disabled');
+            cy.get(selectors.racingContainer).should("to.be.visible");    
+            cy.get(selectors.countInput).should('have.attr', 'disabled');
+            cy.get(selectors.countSubmit).should('have.attr', 'disabled');
 
         }else{
-            cy.get("#racing-container").should("not.to.be.visible");    
+            cy.get(selectors.racingContainer).should("not.to.be.visible");    
         }
     };
 

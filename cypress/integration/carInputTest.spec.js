@@ -1,19 +1,21 @@
+import { selectors } from "../../src/js/keys.js";
+
 describe("자동차 이름 검증 테스트", () => {
 
   const inputTest = function (value, shouldBeVisible) {
     cy.visit("http://localhost:5500/index.html");
-    cy.get("#count-container").invoke("attr", "style", "display: none");
-    cy.get("#car-names-input").clear();
+    cy.get(selectors.countContainer).invoke("attr", "style", "display: none");
+    cy.get(selectors.carNamesInput).clear();
 
-    cy.get("#car-names-input").type(value);
-    cy.get("#car-names-submit").click();
+    cy.get(selectors.carNamesInput).type(value);
+    cy.get(selectors.carNamesSubmit).click();
 
     if(shouldBeVisible){
-      cy.get("#count-container").should("to.be.visible");  
-      cy.get("#car-names-input").should('have.attr', 'disabled');
-      cy.get("#car-names-submit").should('have.attr', 'disabled');
+      cy.get(selectors.countContainer).should("to.be.visible");  
+      cy.get(selectors.carNamesInput).should('have.attr', 'disabled');
+      cy.get(selectors.carNamesSubmit).should('have.attr', 'disabled');
     }else{
-      cy.get("#count-container").should("not.to.be.visible");  
+      cy.get(selectors.countContainer).should("not.to.be.visible");  
     }
   };
 
