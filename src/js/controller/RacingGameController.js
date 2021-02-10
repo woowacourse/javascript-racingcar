@@ -10,9 +10,7 @@ export default class RacingGameController {
   }
 
   initGame() {
-    this.names = [];
-    this.count = 0;
-    this.isEnd = false;
+    this.game = new RacingGame();
     this.view.renderInitialView();
     this.setEvent('click', '.car-name-btn', this.handleNameInput.bind(this));
   }
@@ -26,13 +24,13 @@ export default class RacingGameController {
   handleNameInput() {
     const $input = document.querySelector('.car-name-input');
 
-    if (this.isEnd) {
+    if (this.game.isEnd) {
       alert(ALERT_RESTART);
 
       return;
     }
     if (this.checkNames($input)) {
-      this.setNames($input);
+      this.game.setCars($input.value.split(','));
       this.view.renderCountInput();
       this.setEvent('click', '.count-btn', this.handleCountInput.bind(this));
     }
@@ -52,10 +50,6 @@ export default class RacingGameController {
     }
   }
 
-  setNames($input) {
-    this.names = $input.value.split(',');
-  }
-
   handleInputException($input, alertMessage) {
     alert(alertMessage);
     $input.value = '';
@@ -64,14 +58,13 @@ export default class RacingGameController {
   handleCountInput() {
     const $input = document.querySelector('.count-input');
 
-    if (this.isEnd) {
+    if (this.game.isEnd) {
       alert(ALERT_RESTART);
 
       return;
     }
     if (this.checkCount($input)) {
-      this.setCount($input);
-      this.runGame();
+      this.runGame($input);
     }
   }
 
@@ -89,16 +82,10 @@ export default class RacingGameController {
     }
   }
 
-  setCount($input) {
-    this.count = Number($input.value);
-  }
-
-  runGame() {
-    const game = new RacingGame(this.names, this.count);
-
-    this.isEnd = true;
-    this.view.renderProgressBar(game.cars);
-    this.view.renderResult(game.getWinners());
+  runGame($input) {
+    this.game.runRace(Number($input.value));
+    this.view.renderProgressBar(this.game.cars);
+    this.view.renderResult(this.game.getWinners());
     this.setEvent('click', '.reset-btn', this.initGame.bind(this));
   }
 }

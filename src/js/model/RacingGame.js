@@ -3,10 +3,9 @@ import { getRandomNumber } from '../utils/index.js';
 import { MOVE_TRIGGER } from '../constants/index.js';
 
 export default class RacingGame {
-  constructor(names, count) {
+  constructor() {
     this.cars = [];
-    this.setCars(names);
-    this.runRace(count);
+    this.isEnd = false;
   }
 
   setCars(names) {
@@ -17,6 +16,7 @@ export default class RacingGame {
     for (let i = 0; i < count; i++) {
       this.runRound();
     }
+    this.isEnd = true;
   }
 
   runRound() {
