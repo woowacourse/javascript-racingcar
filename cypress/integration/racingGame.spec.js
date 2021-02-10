@@ -169,6 +169,21 @@ describe('racing-game', () => {
     });
   });
 
+  it('경주를 마치고 2초 후, 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
+    const alertStub = cy.stub();
+
+    cy.on('window:alert', alertStub);
+    cy.clock();
+
+    typeCarNameAndClickToSubmitButton(['yujo']);
+    typeRacingCountAndClickToSubmitButton().then(() => {
+      cy.tick(2000);
+      expect(alertStub.getCall(1)).to.be.calledWith(
+        '🎉 축하드립니다! 우승자는 yujo입니다! 🎉',
+      );
+    });
+  });
+
   it('다시 시작버튼을 눌렀을 때 화면이 초기화 되는지 테스트한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
