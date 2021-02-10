@@ -114,7 +114,7 @@ describe("ui-input-vaild-check", () => {
     cy.get("#count-btn").click();
     cy.get("@alertStub").should(
       "be.calledWith",
-      "시도 횟수는 자연수여야 합니다."
+      "시도 횟수는 0보다 작거나 같을 수 없습니다."
     );
   });
 
@@ -126,7 +126,7 @@ describe("ui-input-vaild-check", () => {
     cy.get("#count-btn").click();
     cy.get("@alertStub").should(
       "be.calledWith",
-      "시도 횟수는 자연수여야 합니다."
+      "시도 횟수는 소수가 될 수 없습니다."
     );
   });
 });
