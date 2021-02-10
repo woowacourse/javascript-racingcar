@@ -14,7 +14,6 @@ class RacingCarView {
   renderProcess(cars) {
     const $processSection = document.querySelector("#process");
     $processSection.style.display = "block";
-
     $processSection.innerHTML = processSectionTemplate(cars);
   }
 
