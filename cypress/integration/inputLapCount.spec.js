@@ -8,7 +8,7 @@ describe("시도할 횟수 입력하기", () => {
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
   });
 
-  const testFailCaseOne = (userInput, { errorMessage, callCount = 1 }) => {
+  const testEachFailCase = (userInput, { errorMessage, callCount = 1 }) => {
     cy.get(SELECTOR.LAP_COUNT.INPUT).type(userInput);
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
 
@@ -18,6 +18,8 @@ describe("시도할 횟수 입력하기", () => {
       .should("be.calledWith", errorMessage);
 
     cy.get(SELECTOR.LAP_COUNT.INPUT).should("have.text", "");
+    cy.get(SELECTOR.GAME_PROGRESS.FORWARD_ICON).should("not.exist");
+    cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.hidden");
   };
 
   const testFailCaseArrayWithSameErrorMessage = (
@@ -25,7 +27,7 @@ describe("시도할 횟수 입력하기", () => {
     errorMessage
   ) => {
     userInputArray.forEach((userInput, index) =>
-      testFailCaseOne(userInput, {
+      testEachFailCase(userInput, {
         errorMessage,
         callCount: index + 1,
       })
@@ -59,5 +61,12 @@ describe("시도할 횟수 입력하기", () => {
       ["1.342", "-2.43", "0.111111"],
       MESSAGE.LAP_COUNT.OUT_OF_RANGE
     );
+  });
+
+  it("올바른 시도할 횟수가 입력됐을 때", () => {
+    const userInput = 12;
+
+    cy.get(SELECTOR.LAP_COUNT.INPUT).type(userInput);
+    cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
   });
 });

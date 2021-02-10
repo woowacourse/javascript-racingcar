@@ -17,6 +17,8 @@ const SELECTOR = {
 
   GAME_PROGRESS: {
     CONTAINER: ".game-progress-container",
+    CAR_NAME: ".car-player",
+    FORWARD_ICON: ".forward-icon",
   },
 
   GAME_RESULT: {
