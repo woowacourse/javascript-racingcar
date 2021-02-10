@@ -1,24 +1,24 @@
+import { $, $all } from '../utils/index.js';
+
 export default class CarRacingView {
-  addHidden(element) {
+  hideElement(element) {
     element.classList.add('hidden');
   }
 
-  removeHidden(element) {
+  showElement(element) {
     element.classList.remove('hidden');
   }
 
-  addDisabled(element) {
+  setDisabled(element) {
     element.disabled = true;
   }
 
-  removeDisabled(element) {
+  unsetDisabled(element) {
     element.disabled = false;
   }
 
   renderRacingRoundResult(movedCars) {
-    const $carPlayers = document.querySelectorAll('.car-player');
-
-    $carPlayers.forEach((carPlayer) => {
+    $all('.car-player').forEach((carPlayer) => {
       const carName = carPlayer.innerText;
 
       if (movedCars.map((car) => car.name).includes(carName)) {
@@ -28,15 +28,11 @@ export default class CarRacingView {
   }
 
   renderRacingResult(winners) {
-    const $winnersList = document.querySelector('.winners-list');
-
-    $winnersList.innerText = winners.map((winner) => winner.name).join(', ');
+    $('.winners-list').innerText = winners.map((winner) => winner.name).join(', ');
   }
 
   renderRacingCars(cars) {
-    const $racingContainer = document.querySelector('.racing-container');
-
-    $racingContainer.innerHTML = cars
+    $('.racing-container').innerHTML = cars
       .map(
         (car) => `
           <div class="car-container">
