@@ -1,4 +1,4 @@
-const SELECTOR = {
+export const SELECTOR = {
   TITLE: {
     CONTAINER: ".title-container",
   },
@@ -26,7 +26,7 @@ const SELECTOR = {
   },
 };
 
-const MESSAGE = {
+export const MESSAGE = {
   CAR_NAME: {
     MIN_NUMBER: "두 개 이상의 자동차 이름을 입력해주세요.",
     MAX_LENGTH: "자동차 이름은 5자 이하로 지어주세요.",
@@ -41,4 +41,3 @@ const MESSAGE = {
 };
 
 export const RANDOM_NUMBER_RANGE = { MIN: 0, MAX: 9 };
-export { SELECTOR, MESSAGE };
