@@ -91,27 +91,18 @@ describe('step1', () => {
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
     cy.get('#try-count-input').type('10');
-    for(let i=0; i<100; i++) {
-      cy.get('#play-game-button').click();
-      cy.get('#result-area div')
-        .then((results) => {
-          const record = [];
-          Array.from(results).forEach((element) => {
-            if (element.classList.contains('car-player')) {
-              record.push(0);
-            } else if (element.classList.contains('forward-icon')) {
-              record[record.length - 1]++;
-            }
-          });
+    cy.get('#play-game-button').click();
+    cy.get('#result-area > div').then((results) => {
+      const chrisResult = Array.from(results)[0].children.length;
+      const beucResult = Array.from(results)[1].children.length;
 
-          if (record[0] === record[1]) {
-            cy.get('#winners').should('have.text', '🏆 최종 우승자: chris, beuc 🏆');
-          } else if (record[0] > record[1]) {
-            cy.get('#winners').should('have.text', '🏆 최종 우승자: chris 🏆');
-          } else {
-            cy.get('#winners').should('have.text', '🏆 최종 우승자: beuc 🏆');
-          }
-        });
-    }
+      if (chrisResult === beucResult) {
+        cy.get('#winners').should('have.text', '🏆 최종 우승자: chris, beuc 🏆');
+      } else if (chrisResult > beucResult[1]) {
+        cy.get('#winners').should('have.text', '🏆 최종 우승자: chris 🏆');
+      } else {
+        cy.get('#winners').should('have.text', '🏆 최종 우승자: beuc 🏆');
+      }
+    });
   });
 });
