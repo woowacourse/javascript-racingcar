@@ -5,7 +5,7 @@ import {
 import { CAR_NAME, MIN_RACE_TIMES } from '../library/constants/validation.js';
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
-import { $, disableDOMElement } from '../library/utils/dom.js';
+import { $, disableDOMElements } from '../library/utils/dom.js';
 
 export default class UserInput extends Component {
   constructor($target, props) {
@@ -44,7 +44,7 @@ export default class UserInput extends Component {
       return;
     }
     this.props.cars.value = carNames.map(carName => new Car(carName));
-    disableDOMElement($buttonCarName, $inputCarName);
+    disableDOMElements($buttonCarName, $inputCarName);
     this.showRaceTimesInput();
   }
 
@@ -68,7 +68,7 @@ export default class UserInput extends Component {
       return;
     }
     this.props.raceTimes.value = $inputRaceTimes.value;
-    disableDOMElement($buttonRaceTimes, $inputRaceTimes);
+    disableDOMElements($buttonRaceTimes, $inputRaceTimes);
     this.props.race();
     this.props.mountGameProcess();
   }

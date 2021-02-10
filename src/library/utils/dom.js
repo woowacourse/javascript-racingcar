@@ -1,4 +1,4 @@
-export const disableDOMElement = (...elements) => {
+export const disableDOMElements = (...elements) => {
   elements.forEach(element => (element.disabled = true));
 };
 
