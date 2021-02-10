@@ -83,10 +83,14 @@ export default class Racing {
       <section>
         <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
         <div class="d-flex justify-center">
-          <button type="button" class="btn btn-cyan">다시 시작하기</button>
+          <button type="button" class="btn btn-cyan restart-btn">다시 시작하기</button>
         </div>
       </section>
     `;
+
+    document
+      .querySelector('.restart-btn')
+      .addEventListener('click', this.restartGame.bind(this));
   }
 
   getWinners() {
@@ -102,6 +106,17 @@ export default class Racing {
     }, []);
 
     return winners;
+  }
+
+  restartGame() {
+    document.querySelector('.progress-cars').innerHTML = '';
+    document.querySelector('.result-container').innerHTML = '';
+    document.querySelector('.car-name').value = '';
+    document.querySelector('.try-count').value = '';
+
+    this.resetUI();
+    this.cars = [];
+    this.tryCount = 0;
   }
 
   addListeners() {

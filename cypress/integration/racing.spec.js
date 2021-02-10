@@ -90,10 +90,10 @@ describe('자동차 경주', () => {
 
     cy.get('.result-container').should('be.visible');
 
-    cy.document().then((doc) => {
-      const cars = doc.querySelectorAll('.car-player'); 
+    cy.document().then(doc => {
+      const cars = doc.querySelectorAll('.car-player');
       const progresses = [...cars].map(car => car.parentNode.childNodes.length);
-      const maxPosition = Math.max(...progresses); 
+      const maxPosition = Math.max(...progresses);
       const winners = [];
 
       cars.forEach(car => {
@@ -104,7 +104,24 @@ describe('자동차 경주', () => {
 
       const winnerResult = winners.join(', ');
 
-      cy.get('.result-container').find('section').find('h2').contains(winnerResult);
+      cy.get('.result-container')
+        .find('section')
+        .find('h2')
+        .contains(winnerResult);
     });
+  });
+
+  it('다시 시작하기 버튼 클릭 시 게임이 리셋된다', () => {
+    cy.get('.car-name').type('east, west, south, north');
+    cy.get('.car-name-btn').click();
+    cy.get('.try-count').type('5');
+    cy.get('.try-count-btn').click();
+    cy.get('.restart-btn').click();
+
+    cy.get('.car-name').should('have.value', '');
+    cy.get('.try-count').should('have.value', '');
+    cy.get('.try-count-form').should('have.css', 'display', 'none');
+    cy.get('.progress-container').should('have.css', 'display', 'none');
+    cy.get('.result-container').should('have.css', 'display', 'none');
   });
 });
