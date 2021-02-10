@@ -42,9 +42,16 @@ class RacingCarController {
 
   manageCount() {
     // 유효한지 테스트, 횟수 set,  게임 스타트, showProcess,
+    const count = this.getCountInput();
+    if (isCountValid(count)) {
+      this.model.setCount(parseInt(count, 10));
+      this.startGame();
+      this.view.renderProcess(this.model.getCars());
+      this.showResult();
+    }
   }
 
-  manageProcess() {
+  showResult() {
     //  우승자 선정, showResult
   }
 
