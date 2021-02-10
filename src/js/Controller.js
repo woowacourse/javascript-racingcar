@@ -1,6 +1,7 @@
-import { MESSAGE, SELECTOR } from "./constants.js";
+import { MESSAGE, RANDOM_NUMBER_RANGE, SELECTOR } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
+import { getRandomIntInclusive } from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -74,6 +75,22 @@ export class Controller {
       }
 
       // TODO: 성공 케이스
+      const lapCount = userInputNumber;
+
+      for (let i = 0; i < lapCount; i++) {
+        const lapResult = this.carModels.map((carModel) => {
+          const { MIN, MAX } = RANDOM_NUMBER_RANGE;
+          const randomNumber = getRandomIntInclusive(MIN, MAX);
+
+          if (randomNumber <= 3) return false;
+
+          carModel.move();
+          return true;
+        });
+
+        this.viewController.renderGameProgress(lapResult);
+      }
+
       this.viewController.show(SELECTOR.GAME_RESULT.CONTAINER);
     });
   }
