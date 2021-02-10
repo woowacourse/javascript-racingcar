@@ -42,7 +42,7 @@ class RacingCarController {
 
   play(cars) {
     const newCars = cars.map(car => {
-      return { ...car, forward: forward + this.goStop() };
+      return { ...car, forward: car.forward + this.goStop() };
     });
     return newCars;
   }
