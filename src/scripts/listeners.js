@@ -1,10 +1,22 @@
-import handler from "./handlers.js";
-import { $carNameSubmit, $playGameButton, $restartButton } from "./elements.js";
+import RacingCarGameController from "./RacingCarGame/RacingCarGameController.js";
+import {
+  $carNameSubmit,
+  $playGameButton,
+  $restartButton,
+  $carNameInput,
+  $tryCountInput,
+} from "./elements.js";
 
 export const addRacingCarGameListener = () => {
-  $carNameSubmit.addEventListener("click", handler.onCarNameSubmit);
-  $playGameButton.addEventListener("click", handler.onClickPlayGameButton);
-  $restartButton.addEventListener("click", handler.onRestartButtonClick);
+  const controller = new RacingCarGameController();
+
+  $carNameSubmit.addEventListener("click", () =>
+    controller.onCarNameSubmit($carNameInput.value)
+  );
+  $playGameButton.addEventListener("click", () =>
+    controller.onClickPlayGameButton($tryCountInput.value)
+  );
+  $restartButton.addEventListener("click", controller.onRestartButtonClick);
 };
 
 export default {

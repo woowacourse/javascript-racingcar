@@ -9,15 +9,11 @@ export default class RacingCarGameController {
     this.racingCarGameModel = getRacingCarGameModel();
   }
 
-  static getModel() {
-    return new this().racingCarGameModel;
-  }
-
-  static seperateCarNames(carNames, seperator) {
+  seperateCarNames(carNames, seperator) {
     return carNames.split(seperator).map((carName) => carName.trim());
   }
 
-  static registerCarNames(carNames) {
+  registerCarNames(carNames) {
     const carNameList = this.seperateCarNames(carNames, CAR_NAME_SEPERATOR);
     const isCarNameListValid = carNameList.every((carName) =>
       RacingCarGameValidation.isCarNameValid(carName)
@@ -27,13 +23,13 @@ export default class RacingCarGameController {
       return;
     }
 
-    this.getModel().registerCars(carNameList);
-    console.log(this.getModel());
-    RacingCarGameView.updateResultArea(this.getModel().carList);
+    this.racingCarGameModel.registerCars(carNameList);
+    console.log(this.racingCarGameModel);
+    RacingCarGameView.updateResultArea(this.racingCarGameModel.carList);
     RacingCarGameView.changeInnerText($carNameSubmit, "수정");
   }
 
-  static getWinners(carList) {
+  getWinners(carList) {
     const sortedCarList = [...carList].sort((a, b) => b.record - a.record);
     const maxCarRecord = sortedCarList[0].record;
     const winners = sortedCarList
@@ -43,17 +39,17 @@ export default class RacingCarGameController {
     return winners;
   }
 
-  static finishGame() {
-    const winners = this.getWinners(this.getModel().carList);
+  finishGame() {
+    const winners = this.getWinners(this.racingCarGameModel.carList);
 
     RacingCarGameView.deactivateCarNameSubmitButton();
     RacingCarGameView.deactivatePlayGameButton();
     RacingCarGameView.showWinners(winners);
     RacingCarGameView.showRestartButton();
-    this.getModel().clearCarsRecord();
+    this.racingCarGameModel.clearCarsRecord();
   }
 
-  static playRacingCarGame(tryCountInput) {
+  playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
 
     if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
@@ -65,14 +61,26 @@ export default class RacingCarGameController {
     }
 
     for (let i = 0; i < tryCount; i += 1) {
-      this.getModel().moveCarsByRandom();
+      this.racingCarGameModel.moveCarsByRandom();
     }
-    RacingCarGameView.updateResultArea(this.getModel().carList);
+    RacingCarGameView.updateResultArea(this.racingCarGameModel.carList);
     this.finishGame();
   }
 
-  static restartRacingCarGame() {
-    this.getModel().clearCarList();
+  restartRacingCarGame() {
+    this.racingCarGameModel.clearCarList();
     RacingCarGameView.resetGameView();
+  }
+
+  onCarNameSubmit(carNamesString) {
+    this.registerCarNames(carNamesString);
+  }
+
+  onClickPlayGameButton(tryCount) {
+    this.playRacingCarGame(tryCount);
+  }
+
+  onClickRestartButton() {
+    this.restartRacingCarGame();
   }
 }
