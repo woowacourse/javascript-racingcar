@@ -44,6 +44,15 @@ describe("step1", () => {
     cy.get("#result-area").should("have.text", "");
   });
 
+  it("자동차를 한 번 등록하면 다시 등록할 수 없다.", () => {
+    cy.get("#car-name-input").type(",chris,");
+    cy.get("#car-name-submit").click();
+    cy.on("window:alert", (txt) => {
+      expect(txt).to.contains(CAR_NAME_EMPTY);
+    });
+    cy.get("#result-area").should("have.text", "");
+  });
+
   it("수행 횟수는 소수점을 포함할 수 없다.", () => {
     cy.get("#try-count-input").type("1.5");
     cy.get("#play-game-button").click();

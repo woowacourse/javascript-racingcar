@@ -1,9 +1,11 @@
 import {
-  $resultArea,
+  $carNameInput,
   $tryCountInput,
+  $carNameSubmit,
+  $playGameButton,
+  $resultArea,
   $winners,
   $restartButton,
-  $carNameInput,
 } from "../elements.js";
 import { getResultAreaTemplate, getWinnersTemplate } from "../templates.js";
 
@@ -12,8 +14,28 @@ export default class RacingCarGameView {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
   }
 
+  static changeInnerText($target, text) {
+    $target.innerText = text;
+  }
+
   static showWinners(winners) {
     $winners.innerText = getWinnersTemplate(winners);
+  }
+
+  static deactivateCarNameSubmitButton() {
+    $carNameSubmit.disabled = "disabled";
+  }
+
+  static activateCarNameSubmitButton() {
+    $carNameSubmit.disabled = false;
+  }
+
+  static deactivatePlayGameButton() {
+    $playGameButton.disabled = "disabled";
+  }
+
+  static activatePlayGameButton() {
+    $playGameButton.disabled = false;
   }
 
   static showRestartButton() {
@@ -43,6 +65,9 @@ export default class RacingCarGameView {
   static resetGameView() {
     this.clearCarNamesInput();
     this.clearTryCountInput();
+    this.changeInnerText($carNameSubmit, "등록");
+    this.activateCarNameSubmitButton();
+    this.activatePlayGameButton();
     this.clearResultArea();
     this.hideRestartButton();
     this.hideWinners();

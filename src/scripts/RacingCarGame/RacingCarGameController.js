@@ -2,6 +2,7 @@ import RacingCarGameValidation from "./RacingCarGameValidation.js";
 import RacingCarGameView from "./RacingCarGameView.js";
 import { racingCarGameModel } from "../store.js";
 import { CAR_NAME_SEPERATOR } from "../constants.js";
+import { $carNameSubmit } from "../elements.js";
 
 export default class RacingCarGameController {
   constructor() {}
@@ -15,10 +16,14 @@ export default class RacingCarGameController {
     const isCarNameListValid = carNameList.every((carName) =>
       RacingCarGameValidation.isCarNameValid(carName)
     );
-    if (isCarNameListValid) {
-      racingCarGameModel.registerCars(carNameList);
-      RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+
+    if (!isCarNameListValid) {
+      return;
     }
+
+    racingCarGameModel.registerCars(carNameList);
+    RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+    RacingCarGameView.changeInnerText($carNameSubmit, "수정");
   }
 
   static getWinners(carList) {
@@ -33,6 +38,9 @@ export default class RacingCarGameController {
 
   static finishGame() {
     const winners = this.getWinners(racingCarGameModel.carList);
+
+    RacingCarGameView.deactivateCarNameSubmitButton();
+    RacingCarGameView.deactivatePlayGameButton();
     RacingCarGameView.showWinners(winners);
     RacingCarGameView.showRestartButton();
     racingCarGameModel.clearCarsRecord();
@@ -52,6 +60,7 @@ export default class RacingCarGameController {
     for (let i = 0; i < tryCount; i += 1) {
       racingCarGameModel.moveCarsByRandom();
     }
+    console.log(racingCarGameModel.carList);
     RacingCarGameView.updateResultArea(racingCarGameModel.carList);
     this.finishGame();
   }
