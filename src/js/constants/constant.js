@@ -1,6 +1,6 @@
 export const RANDOM = {
   MAX_NUM: 9,
-  MIN_NUM: 1,
+  MIN_NUM: 0,
 };
 
 export const INIT = {
