@@ -11,4 +11,8 @@ context("bdd", () => {
 		cy.get("#count-input").should("not.exist");
 		cy.get("#count-submit-button").should("not.exist");
 	});
+
+	it("이름 입력 칸에 placeholder('자동차 이름')가 있다.", () => {
+		cy.get("#name-input").should("have.attr", "placeholder", "자동차 이름");
+	});
 });
