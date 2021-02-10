@@ -21,7 +21,7 @@ class RacingCarView {
   renderResult(winners) {
     const $resultSection = document.querySelector("#result");
     $resultSection.style.display = "block";
-    $result.innerHTML = resultSectionTemplate(winners);
+    $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
   resetCount() {

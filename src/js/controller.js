@@ -79,7 +79,7 @@ class RacingCarController {
     }
   }
 
-  manageResult() {
+  showResult() {
     const winners = this.getWinners();
     this.view.renderResult(winners);
     this.handleReset();
