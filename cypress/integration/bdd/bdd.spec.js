@@ -22,4 +22,15 @@ context("bdd", () => {
 		cy.get("#count-input").should("exist");
 		cy.get("#count-submit-button").should("exist");
 	});
+
+	it("이름 입력 칸은 알파벳, 한글, ‘,’만 입력 가능하다.", () => {
+		cy.get("#name-input").type("EA45ST3?S가!능");
+		cy.get("#name-input").should("have.value", "EASTS가능");
+		cy.reload();
+		cy.get("#name-input").type("1234자동차");
+		cy.get("#name-input").should("have.value", "자동차");
+		cy.reload();
+		cy.get("#name-input").type("!@#1자동#$,123차");
+		cy.get("#name-input").should("have.value", "자동,차");
+	});
 });
