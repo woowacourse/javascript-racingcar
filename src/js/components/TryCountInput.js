@@ -1,4 +1,5 @@
 import {
+  $,
   resetInput,
   disableElements,
   activateElements,
@@ -7,9 +8,9 @@ import { ERROR_MESSAGE } from "../util/errorMessage.js";
 
 export default class TryCountInput {
   constructor({ setTryCount }) {
-    this.$target = document.querySelector(".try-count-input-containter");
-    this.$tryCountInput = this.$target.querySelector("input[type=number]");
-    this.$tryCountSummitBtn = this.$target.querySelector("button");
+    this.$target = $(".try-count-input-containter");
+    this.$tryCountInput = $(".try-count-input-containter input[type=number]");
+    this.$tryCountSummitBtn = $(".try-count-input-containter button");
     this.setTryCount = setTryCount;
 
     this.bindEvents();

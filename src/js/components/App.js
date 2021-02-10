@@ -9,10 +9,11 @@ import {
   MOVE_BOUNDED_NUMBER,
 } from "../util/constant.js";
 import { getRandomNumber, getWinners } from "../util/gameUtil.js";
+import { $ } from "../util/domUtil.js";
 
 export default class App {
   constructor() {
-    this.$app = document.querySelector("#app");
+    this.$app = $("#app");
     this.carNames = [];
     this.tryCount = 0;
     this.cars = [];

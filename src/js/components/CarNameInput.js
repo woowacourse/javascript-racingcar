@@ -1,4 +1,5 @@
 import {
+  $,
   resetInput,
   disableElements,
   activateElements,
@@ -8,9 +9,9 @@ import { CAR_NAME_MAX_LENGTH } from "../util/constant.js";
 
 export default class CarNameInput {
   constructor({ setCarNames }) {
-    this.$target = document.querySelector(".car-name-input-containter");
-    this.$carNameInput = this.$target.querySelector("input[type=text]");
-    this.$carNameSummitBtn = this.$target.querySelector("button");
+    this.$target = $(".car-name-input-containter");
+    this.$carNameInput = $(".car-name-input-containter input[type=text]");
+    this.$carNameSummitBtn = $(".car-name-input-containter button");
     this.setCarNames = setCarNames;
 
     this.bindEvents();
