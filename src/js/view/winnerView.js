@@ -1,8 +1,8 @@
-import { selectors, globalTexts, globalClasses } from '../keys.js';
+import { selectors, globalTexts, globalAttr } from '../keys.js';
 import { $ } from '../utils.js';
 
 const toggleDisplayCountView = function () {
-	$(selectors.winnerContainer).classList.toggle(globalClasses.displayNone);
+	$(selectors.winnerContainer).classList.toggle(globalAttr.displayNoneClass);
 };
 
 export const displayWinnerView = function (winners) {

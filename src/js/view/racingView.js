@@ -1,12 +1,12 @@
-import { globalClasses, selectors } from '../keys.js';
+import { globalAttr, selectors } from '../keys.js';
 import { $ } from '../utils.js';
 
 const toggleDisplayCountView = function () {
-	$(selectors.racingContainer).classList.toggle(globalClasses.displayNone);
+	$(selectors.racingContainer).classList.toggle(globalAttr.displayNoneClass);
 };
 
 export const displayRacingCars = function (cars) {
-	const classes = ['car-player', 'mr-2'];
+	const classes = [globalAttr.carPlayerClass, globalAttr.marginTop(2)];
 	cars.forEach((car) => {
 		$(selectors.racingCarsArea).innerHTML += `<div>
       <div class=${classes.join(' ')}>${car.name}</div>
@@ -16,7 +16,7 @@ export const displayRacingCars = function (cars) {
 };
 
 export const appendArrowElement = function (element) {
-	const classes = ['forward-icon', 'mt-2'];
+	const classes = [globalAttr.forwardIconClass, globalAttr.marginTop(2)];
 	element.innerHTML += `<div class=${classes.join(' ')}>⬇️️</div>`;
 };
 

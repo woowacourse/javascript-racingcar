@@ -22,8 +22,12 @@ export const bounds = {
     goOrStopBound : 4
 };
 
-export const globalClasses = {
-    displayNone : 'strong-display-none',
+export const globalAttr = {
+    displayNoneClass : 'strong-display-none',
+    carPlayerClass : 'car-player',
+    forwardIconClass : 'forward-icon',
+    marginTop : (num) => `mt-${num}`,
+    disabledAttr : 'disabled',
 }
 
 export const globalTexts = {
