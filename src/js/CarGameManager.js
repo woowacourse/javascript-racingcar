@@ -1,12 +1,14 @@
 import CarGameView from './CarGameView.js';
 import Car from './Car.js';
+import CarNameValidator from './CarNameValidator.js';
+import { CAR_NAME_ERROR_MESSAGE } from './constants.js';
 
 export default class CarGameManager {
   constructor($element) {
     this.$element = $element;
     this.carGameView = new CarGameView($element);
     this.cars = [];
-    this.carNames = '';
+    this.carNames = [];
     this.bindInputCarNamesEvent();
     this.bindInputTryCountEvent();
     this.bindResetEvent();
@@ -35,10 +37,36 @@ export default class CarGameManager {
     });
   }
 
+  validateCarNames() {
+    this.carNames = this.carNames.map((name) => name.trim());
+    const carNameValidator = new CarNameValidator();
+
+    const checkNameValue = {
+      lengthCheck: () => (carNameValidator.isNotValidLength(this.carNames)
+        ? alert(CAR_NAME_ERROR_MESSAGE.INVALID_LENGTH) : true),
+      blankCheck: () => (carNameValidator.isIncludingBlank(this.carNames)
+        ? alert(CAR_NAME_ERROR_MESSAGE.INCLUDE_BLANK) : true),
+      duplicateCheck: () => (carNameValidator.isDuplicated(this.carNames)
+        ? alert(CAR_NAME_ERROR_MESSAGE.DUPLICATED) : true),
+      incompleteWordCheck: () => (carNameValidator.isInCompleteWord(this.carNames)
+        ? alert(CAR_NAME_ERROR_MESSAGE.INCOMPLETE_WORD) : true),
+    };
+
+    for (const check in checkNameValue) {
+      if (!checkNameValue[check]()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   carNamesInputHandler() {
-    this.carGameView.showView(document.querySelector('#input-try-count'));
     this.carNames = document.querySelector('#input-car-names > div > input').value.split(',');
+    if (!this.validateCarNames()) {
+      return this.initGame();
+    }
     this.createCar();
+    this.carGameView.showView(document.querySelector('#input-try-count'));
   }
 
   tryCountInputHandler() {
