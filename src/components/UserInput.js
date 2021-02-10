@@ -5,7 +5,7 @@ import {
 import { CAR_NAME, MIN_RACE_TIMES } from '../library/constants/validation.js';
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
-import { disableDOMElement } from '../library/utils/dom.js';
+import { $, disableDOMElement } from '../library/utils/dom.js';
 
 export default class UserInput extends Component {
   constructor($target, props) {
@@ -34,8 +34,8 @@ export default class UserInput extends Component {
   }
 
   #handleSubmitCarName() {
-    const $inputCarName = document.querySelector('#input-car-name');
-    const $buttonCarName = document.querySelector('#submit-car-name');
+    const $inputCarName = $('#input-car-name');
+    const $buttonCarName = $('#submit-car-name');
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
     if (!this.#isValidCarNames(carNames)) {
       alert(INVALID_CAR_NAME_LENGTH_MESSAGE);
@@ -54,13 +54,13 @@ export default class UserInput extends Component {
   }
 
   showRaceTimesInput() {
-    document.querySelector('#section-race-times').classList.remove('hidden');
-    document.querySelector('#input-race-times').focus();
+    $('#section-race-times').classList.remove('hidden');
+    $('#input-race-times').focus();
   }
 
   #handleSubmitRaceTimes() {
-    const $inputRaceTimes = document.querySelector('#input-race-times');
-    const $buttonRaceTimes = document.querySelector('#submit-race-times');
+    const $inputRaceTimes = $('#input-race-times');
+    const $buttonRaceTimes = $('#submit-race-times');
     if (!this.#isValidRaceTimes($inputRaceTimes.value)) {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;

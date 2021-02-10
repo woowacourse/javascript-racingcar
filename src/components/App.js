@@ -3,6 +3,7 @@ import UserInput from './UserInput.js';
 import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import State from '../library/core/State.js';
+import { $ } from '../library/utils/dom.js';
 
 export default class App extends Component {
   cars;
@@ -33,7 +34,7 @@ export default class App extends Component {
   }
 
   mountChildComponents = () => {
-    new UserInput(document.querySelector('#user-input-component'), {
+    new UserInput($('#user-input-component'), {
       cars: this.cars,
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
@@ -42,13 +43,13 @@ export default class App extends Component {
   };
 
   mountGameProcess = () => {
-    new GameProcess(document.querySelector('#game-process-component'), {
+    new GameProcess($('#game-process-component'), {
       cars: this.cars,
     });
   };
 
   mountGameResult = () => {
-    new GameResult(document.querySelector('#game-result-component'), {
+    new GameResult($('#game-result-component'), {
       winners: this.winners,
       reset: this.reset,
     });
