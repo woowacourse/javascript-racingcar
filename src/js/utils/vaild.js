@@ -17,6 +17,10 @@ class Valid {
   }
 
   isCountValid(count) {
+    if (isNaN(parseInt(count, 10))) {
+      return alert(ERROR_MESSAGE.ISNAN_COUNT);
+    }
+
     if (parseInt(count, 10) < VALID.COUNT_MIN_NUM) {
       return alert(ERROR_MESSAGE.ZERO_OR_MINUS_COUNT);
     }

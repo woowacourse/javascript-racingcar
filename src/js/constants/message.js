@@ -4,5 +4,6 @@ export const ERROR_MESSAGE = {
   DUPLICATE_CARNAME: "자동차 이름은 중복이 될 수 없습니다.",
 
   ZERO_OR_MINUS_COUNT: "시도 횟수는 0보다 작거나 같을 수 없습니다.",
+  ISNAN_COUNT: "시도 횟수는 공백 혹은 문자가 될 수 없습니다.",
   FLOAT_COUNT: "시도 횟수는 소수가 될 수 없습니다.",
 };

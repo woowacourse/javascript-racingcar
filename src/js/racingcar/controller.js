@@ -13,7 +13,6 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input").value;
-    console.log($carInput.split(",").map(car => car.trim()));
     return $carInput.split(",").map(car => car.trim());
   }
 
