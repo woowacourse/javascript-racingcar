@@ -13,11 +13,11 @@ export const chooseWinners = function () {
 };
 
 export const handleRestartButton = function () {
-  // 자동차 이름 input 빈칸인지 체크
-  // 시도횟수 input 빈칸, display none 인지 체크
-  // racing car도 display none // , 엘리먼트 없어야함
-  // winner container도 display none // , 엘리먼트 없어야함
+  app.initializeCars();
+  resetAllViews();
+};
 
+export const resetAllViews = function () {
   initializeInputView();
   initializeRacingView();
   initializeWinnerView();

@@ -1,15 +1,17 @@
 import {
   handleCarNamesSubmit,
   handleCountSubmit,
-} from "./controller/carController.js";
-import { handleRestartButton } from "./controller/winnerController.js";
+} from "./controller/inputController.js";
+import {
+  handleRestartButton,
+  resetAllViews,
+} from "./controller/winnerController.js";
+import Car from "./model/Car.js";
 
 class App {
   constructor() {
     this.cars = [];
-    document.querySelector("#count-container").style.display = "none";
-    document.querySelector("#racing-container").style.display = "none";
-    document.querySelector("#winner-container").style.display = "none";
+    resetAllViews();
 
     document
       .querySelector("#car-names-submit")
@@ -20,6 +22,16 @@ class App {
     document
       .querySelector("#restart-button")
       .addEventListener("click", handleRestartButton);
+  }
+
+  initializeCars() {
+    this.cars = [];
+  }
+
+  generateCars(carNames) {
+    carNames.forEach((carName) => {
+      this.cars.push(new Car(carName));
+    });
   }
 }
 

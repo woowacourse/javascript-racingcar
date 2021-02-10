@@ -3,9 +3,10 @@ import { displayArrow } from "../view/racingView.js";
 import { getRandomNumber } from "./utils.js";
 import { chooseWinners } from "./winnerController.js";
 
-// refactor : 함수명 확인
-export const gameStart = function (count) {
-  const racingCarElements = document.querySelector("#racing-cars");
+export const startRacingGame = function (count) {
+  const racingCarElements = document.querySelector(
+    "#racing-container > section > div"
+  );
 
   for (let round = 0; round < Number(count); round++) {
     app.cars.forEach((car, index) => {

@@ -1,11 +1,9 @@
 import { app } from "../index.js";
-import Car from "../model/Car.js";
 import { displayCountView } from "../view/inputView.js";
-import { displayRacing } from "../view/racingView.js";
-import { gameStart } from "./racingController.js";
+import { displayRacingCars } from "../view/racingView.js";
+import { startRacingGame } from "./racingController.js";
 import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
 
-// 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
 const isValidCarNames = function (carNamesInput) {
   return (
     isNotDuplicatedArray(carNamesInput) &&
@@ -24,7 +22,7 @@ export const handleCarNamesSubmit = function () {
   const carNamesInput = document
     .querySelector("#car-names-input")
     .value.split(",");
-  // 자동차 이름 검증
+
   if (!isValidCarNames(carNamesInput)) {
     alert("유효한 자동차이름이 아닙니다.");
     return;
@@ -42,15 +40,7 @@ export const handleCountSubmit = function () {
     return;
   }
 
-  // 자동차 객체 생성
-  carNames.forEach((carName) => {
-    app.cars.push(new Car(carName));
-  });
-
-  // 0-9 랜덤 숫자 계산해서 자동차 움직이도록
-
-  // display~
-  displayRacing(app.cars);
-
-  gameStart(countInput);
+  app.generateCars(carNames);
+  displayRacingCars(app.cars);
+  startRacingGame(countInput);
 };

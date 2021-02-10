@@ -1,17 +1,16 @@
-// result 바꾸기 -> racingContent
-export const displayRacing = function (cars) {
-  // displayCar로 바꾸기
-  let result = "";
+export const displayRacingCars = function (cars) {
+  let carPlayersElement = "";
 
   cars.forEach((car) => {
-    result += `<div>
+    carPlayersElement += `<div>
       <div class="car-player mr-2">${car.name}</div>
     </div>`;
   });
 
-  document.querySelector("#racing-cars").innerHTML = result;
+  document.querySelector(
+    "#racing-container > section > div"
+  ).innerHTML = carPlayersElement;
 
-  // 레이싱 영역 노출
   document.querySelector("#racing-container").style.display = "flex";
 };
 
@@ -20,6 +19,6 @@ export const displayArrow = function (element) {
 };
 
 export const initializeRacingView = function () {
-  document.querySelector("#racing-cars").style.display = "none";
-  document.querySelector("#racing-cars").innerHTML = "";
+  document.querySelector("#racing-container").style.display = "none";
+  document.querySelector("#racing-container > section > div").innerHTML = "";
 };

@@ -1,7 +1,3 @@
-import { getRandomNumber } from "../../src/js/controller/utils.js";
-import Car from "../../src/js/model/Car.js";
-import { displayArrow } from "../../src/js/view/racingView.js";
-
 describe("레이싱 우승자 테스트", () => {
   before(() => {
     cy.visit("http://localhost:5500/index.html");
@@ -16,14 +12,8 @@ describe("레이싱 우승자 테스트", () => {
     cy.get("#count-input").type(5);
     cy.get("#count-submit").click();
 
-    // 우승자 영역에서 자동차 이름 가져오기
-    // document로 자동차별 화살표 개수 세기
-    // 비교
-
-    cy.get("#racing-cars > div")
+    cy.get("#racing-container > section > div > div")
       .each((element, index) => {
-        //   console.log(element[0].innerText.split("\n"));
-        // expect(carNameElement.innerText).to.equal(carNames.split(",")[index]);
         const carElement = element[0];
         const length = carElement.innerText.split("\n").length;
         if (maxPosition < length) {
@@ -32,7 +22,6 @@ describe("레이싱 우승자 테스트", () => {
         } else if (maxPosition === length) {
           winners.push(carElement.innerText.split("\n")[0]);
         }
-        // console.log(winners);
       })
       .then(() => {
         cy.get("#winner-container > section > h2").should(
