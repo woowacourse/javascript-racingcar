@@ -10,7 +10,12 @@ export default class ViewController {
   }
 
   renderGameProgress(lapResult) {
-    // TODO: lapResult를 바탕으로 각 Forward Icon 출력하는 기능 만들기
+    lapResult.forEach((canMove, index) => {
+      if (!canMove) return;
+
+      this.carViews[index].addForwardIcon();
+    });
+  }
   }
 
   show(selector) {
