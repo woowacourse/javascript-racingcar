@@ -1,7 +1,7 @@
 class RacingCarController {
   constructor() {
-    this.model = new RacingCarModel();
-    this.view = new RacingCarView();
+    //this.model = new RacingCarModel();
+    //this.view = new RacingCarView();
   }
 
   getCarsInput() {
@@ -15,7 +15,17 @@ class RacingCarController {
     return $countInput.value;
   }
 
-  getWinners() {}
+  getWinners() {
+    const cars = this.model.getCars();
+    const maxForward = Math.max(...cars.map(car => car.forward));
+
+    const winner = [];
+    cars.forEach(car => {
+      car.forward === maxForward && winner.push(car.name);
+    });
+
+    return winner;
+  }
 
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
