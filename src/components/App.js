@@ -72,14 +72,10 @@ export default class App extends Component {
   }
 
   #getWinners() {
-    const winners = [];
     const maxPosition = Math.max(...this.cars.value.map(car => car.position));
-    this.cars.value.forEach(car => {
-      if (car.position === maxPosition) {
-        winners.push(car.name);
-      }
-    });
 
-    return winners;
+    return this.cars.value
+      .filter(({ position }) => position === maxPosition)
+      .map(({ name }) => name);
   }
 }
