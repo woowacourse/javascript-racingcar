@@ -7,11 +7,3 @@ export {
   ALERT_DECIMAL,
   ALERT_RESTART,
 } from './alert_message.js';
-export {
-  MIN_NAMES_NUMBER,
-  MIN_NAME_LENGTH,
-  MAX_NAME_LENGTH,
-  MIN_NUMBER,
-  MAX_NUMBER,
-  MOVE_TRIGGER,
-} from './standard.js';

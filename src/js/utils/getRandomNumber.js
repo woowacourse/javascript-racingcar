@@ -1,4 +1,5 @@
-import { MAX_NUMBER, MIN_NUMBER } from '../constants/index.js';
-
-export const getRandomNumber = () =>
+export const getRandomNumber = () => {
+  const MIN_NUMBER = 0;
+  const MAX_NUMBER = 9;
   Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
+};

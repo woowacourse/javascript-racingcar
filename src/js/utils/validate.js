@@ -5,9 +5,6 @@ import {
   ALERT_VALID_LENGTH,
   ALERT_VALID_LETTER,
   ALERT_VALID_NUMBER_OF_CARS,
-  MAX_NAME_LENGTH,
-  MIN_NAMES_NUMBER,
-  MIN_NAME_LENGTH,
 } from '../constants/index.js';
 
 export const isValidateNameInput = names => {
@@ -20,6 +17,7 @@ export const isValidateNameInput = names => {
 };
 
 const hasMoreThan2Cars = names => {
+  const MIN_NAMES_NUMBER = 2;
   if (names.length < MIN_NAMES_NUMBER) {
     alert(ALERT_VALID_NUMBER_OF_CARS);
     return false;
@@ -29,6 +27,8 @@ const hasMoreThan2Cars = names => {
 };
 
 const isValidLength = names => {
+  const MIN_NAME_LENGTH = 1;
+  const MAX_NAME_LENGTH = 5;
   const isValid = names.every(
     name => name.length >= MIN_NAME_LENGTH && name.length <= MAX_NAME_LENGTH
   );
