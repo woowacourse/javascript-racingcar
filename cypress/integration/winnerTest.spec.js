@@ -13,7 +13,7 @@ describe("레이싱 우승자 테스트", () => {
     cy.get("#count-submit").click();
 
     cy.get("#racing-container > section > div > div")
-      .each((element, index) => {
+      .each((element) => {
         const carElement = element[0];
         const length = carElement.innerText.split("\n").length;
         if (maxPosition < length) {
