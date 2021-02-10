@@ -78,6 +78,7 @@ export default class Racing {
   restartGame() {
     this.UIController.clearUI();
     this.UIController.hideUI();
+    this.UIController.enableButtons();
     this.resetValues();
   }
 

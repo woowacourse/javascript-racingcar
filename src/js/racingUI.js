@@ -14,6 +14,16 @@ export default class RacingUI {
     document.querySelector(CLASS.TRY_COUNT_INPUT).value = '';
   }
 
+  disableButtons() {
+    document.querySelector(CLASS.CAR_NAME_BTN).disabled = true;
+    document.querySelector(CLASS.TRY_COUNT_BTN).disabled = true;
+  }
+
+  enableButtons() {
+    document.querySelector(CLASS.CAR_NAME_BTN).disabled = false;
+    document.querySelector(CLASS.TRY_COUNT_BTN).disabled = false;
+  }
+
   focusElement(className) {
     document.querySelector(className).focus();
   }
@@ -46,5 +56,7 @@ export default class RacingUI {
         </div>
       </section>
     `;
+
+    this.disableButtons();
   }
 }
