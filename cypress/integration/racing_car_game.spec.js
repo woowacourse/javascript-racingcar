@@ -112,7 +112,7 @@ describe("step1", () => {
           "have.text",
           "🏆 최종 우승자: chris, beuc 🏆"
         );
-      } else if (chrisResult > beucResult[1]) {
+      } else if (chrisResult > beucResult) {
         cy.get("#winners").should("have.text", "🏆 최종 우승자: chris 🏆");
       } else {
         cy.get("#winners").should("have.text", "🏆 최종 우승자: beuc 🏆");
