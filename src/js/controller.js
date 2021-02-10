@@ -10,13 +10,15 @@ class RacingCarController {
   }
 
   getCarsInput() {
-    const $carInput = document.querySelector("#car-input");
-    return $carInput.value.split(",");
+    const $carInput = document.querySelector("#car-input").value;
+
+    return $carInput.replace(/ /g, "").split(",");
   }
 
   getCountInput() {
-    const $countInput = document.querySelector("#count-input");
-    return $countInput.value;
+    const $countInput = document.querySelector("#count-input").value;
+
+    return $countInput;
   }
 
   getWinners() {
