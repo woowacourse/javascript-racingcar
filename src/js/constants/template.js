@@ -22,7 +22,7 @@ class Template {
     ${cars
       .map(car => {
         return `
-        <div>
+        <div class="process-car">
           <div class="car-player mr-2">${car.name}</div>
           ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.forward)}
         </div>
@@ -35,7 +35,7 @@ class Template {
 
   resultSectionTemplate(winners) {
     return `
-      <h2>🏆 최종 우승자: ${winners.join(",")} 🏆</h2>
+      <h2 id="result-winner">🏆 최종 우승자: ${winners.join(",")} 🏆</h2>
       <div class="d-flex justify-center">
         <button type="button" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
       </div>

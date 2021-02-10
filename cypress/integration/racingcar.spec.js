@@ -23,7 +23,7 @@ describe("ui-input-click-show", () => {
   });
 
   it("시도 횟수보다 화살표의 개수가 적거나 같아야한다", () => {
-    cy.get("#process > .d-flex > div").each(v => {
+    cy.get(".process-car").each(v => {
       if (v.find(".forward-icon").length > 0) {
         cy.get(v).find(".forward-icon").its("length").should("be.lte", 5);
       }
@@ -32,24 +32,24 @@ describe("ui-input-click-show", () => {
 
   it("가장많은 화살표를 가지고 있는 차의 이름이 우승자에 있어야 한다", () => {
     let largestCount = 0;
-    cy.get("#process > .d-flex > div")
+    cy.get(".process-car")
       .each(v => {
         if (v.find(".forward-icon").length > largestCount) {
           largestCount = v.find(".forward-icon").length;
         }
       })
       .then(() => {
-        cy.get("#process > .d-flex > div").each(v => {
+        cy.get(".process-car").each(v => {
           if (v.find(".forward-icon").length === largestCount) {
             const winner = v.find(".car-player")[0].outerText;
-            cy.get("#result > h2").contains(winner);
+            cy.get("#result-winner").contains(winner);
           }
         });
       });
   });
 
   it("다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다", () => {
-    cy.get("#result button").click();
+    cy.get("#reset-btn").click();
     cy.get("#count").should("have.css", "display", "none");
     cy.get("#process").should("have.css", "display", "none");
     cy.get("#result").should("have.css", "display", "none");
