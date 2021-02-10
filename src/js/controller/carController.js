@@ -3,16 +3,7 @@ import Car from "../model/Car.js";
 import { displayCountView } from "../view/inputView.js";
 import { displayRacing } from "../view/racingView.js";
 import { gameStart } from "./racingController.js";
-
-// refactoring - utils
-const isAlphanumeric = function (input) {
-  return /^[a-zA-Z0-9]+$/.test(input);
-};
-
-// refactoring - utils
-const isNotDuplicatedArray = function (array) {
-  return Array.from(new Set(array)).length === array.length;
-};
+import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
 
 // 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
 const isValidCarNames = function (carNamesInput) {
