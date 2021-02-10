@@ -1,7 +1,5 @@
 import { testCorrectValue, testIncorrectValue } from '../utils/test_value.js';
 import {
-  CAR_INPUT,
-  CAR_BTN,
   ALERT_VALID_NUMBER_OF_CARS,
   ALERT_VALID_LETTER,
   ALERT_VALID_LENGTH,
@@ -9,6 +7,9 @@ import {
 } from '../../src/js/constants/index.js';
 
 describe('Car name input test', () => {
+  const CAR_INPUT = '.car-name-input';
+  const CAR_BTN = '.car-name-btn';
+
   before(() => {
     cy.visit('/');
   });

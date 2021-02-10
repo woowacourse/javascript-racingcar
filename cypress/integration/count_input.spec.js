@@ -4,15 +4,16 @@ import {
   setGameData,
 } from '../utils/test_value.js';
 import {
-  CAR_INPUT,
-  CAR_BTN,
-  COUNT_INPUT,
-  COUNT_BTN,
   ALERT_DECIMAL,
   ALERT_VALID_COUNT_RANGE,
 } from '../../src/js/constants/index.js';
 
 describe('Count input test', () => {
+  const CAR_INPUT = '.car-name-input';
+  const CAR_BTN = '.car-name-btn';
+  const COUNT_INPUT = '.count-input';
+  const COUNT_BTN = '.count-btn';
+
   before(() => {
     cy.visit('/');
     setGameData(CAR_INPUT, CAR_BTN, 'a,b');
