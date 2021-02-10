@@ -93,6 +93,17 @@ describe("ui-input-vaild-check", () => {
     );
   });
 
+  it("입력한 시도 횟수가 공백이면 alert 출력", () => {
+    cy.get("#car-input").type("a,b,c,d");
+    cy.get("#car-btn").click();
+    cy.get("#count").should("have.css", "display", "block");
+    cy.get("#count-btn").click();
+    cy.get("@alertStub").should(
+      "be.calledWith",
+      "시도 횟수는 공백 혹은 문자가 될 수 없습니다."
+    );
+  });
+
   it("입력한 시도 횟수가 0 이하면 alert 출력", () => {
     cy.get("#car-input").type("a,b,c,d");
     cy.get("#car-btn").click();
