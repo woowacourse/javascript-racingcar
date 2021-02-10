@@ -1,49 +1,46 @@
 import Car from './models/Car.js';
+import { returnAlert } from './utils.js';
+import { ALERT, CLASS } from './constants.js';
 export default class Racing {
   constructor() {
-    this.cars = [];
-    this.tryCount = 0;
-
-    this.resetUI();
+    this.reset();
     this.addListeners();
   }
 
-  resetUI() {
-    document.querySelector('.try-count-form').style.display = 'none';
-    document.querySelector('.progress-container').style.display = 'none';
-    document.querySelector('.result-container').style.display = 'none';
+  reset() {
+    this.cars = [];
+    this.tryCount = 0;
+
+    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'none';
+    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = 'none';
+    document.querySelector(CLASS.RESULT_CONTAINER).style.display = 'none';
   }
 
   getCarNames() {
-    const carNameInput = document.querySelector('.car-name').value;
+    const carNameInput = document.querySelector(CLASS.CAR_NAME).value;
     if (!carNameInput) {
-      alert('자동차 이름을 입력해주세요.');
-      return;
+      returnAlert(ALERT.CAR_NAME_EMPTY);
     }
     for (let name of carNameInput.split(',')) {
       if (name.trim().length > 5) {
-        alert('자동차 이름을 5자 이하로 입력해 주세요.');
-        return;
+        returnAlert(ALERT.CAR_NAME_OVER_FIVE);
       }
       const car = new Car(name.trim());
       this.cars.push(car);
     }
 
-    document.querySelector('.try-count-form').style.display = 'block';
+    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'block';
   }
 
   getTryCount() {
-    const tryCountInput = document.querySelector('.try-count').value;
+    const tryCountInput = document.querySelector(CLASS.TRY_COUNT).value;
     const tryCountNumber = Number(tryCountInput);
     if (!tryCountInput) {
-      alert('시도 횟수를 입력해주세요.');
-      return;
+      returnAlert(ALERT.TRY_COUNT_EMPTY);
     } else if (tryCountNumber <= 0) {
-      alert('양수를 입력해주세요.');
-      return;
+      returnAlert(ALERT.TRY_COUNT_NEG);
     } else if (tryCountNumber !== Math.floor(tryCountNumber)) {
-      alert('정수를 입력해주세요.');
-      return;
+      returnAlert(ALERT.TRY_COUNT_NOT_INT);
     }
     this.tryCount = tryCountNumber;
     this.moveCars();
@@ -59,9 +56,9 @@ export default class Racing {
   }
 
   showProgress() {
-    document.querySelector('.progress-container').style.display = '';
+    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = '';
 
-    document.querySelector('.progress-cars').innerHTML = this.cars
+    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = this.cars
       .map(
         car => `
         <div>
@@ -76,10 +73,10 @@ export default class Racing {
   }
 
   showWinners() {
-    document.querySelector('.result-container').style.display = '';
-    const winners = this.getWinners();
+    document.querySelector(CLASS.RESULT_CONTAINER).style.display = '';
 
-    document.querySelector('.result-container').innerHTML = `
+    const winners = this.getWinners();
+    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = `
       <section>
         <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
         <div class="d-flex justify-center">
@@ -89,7 +86,7 @@ export default class Racing {
     `;
 
     document
-      .querySelector('.restart-btn')
+      .querySelector(CLASS.RESTART_BTN)
       .addEventListener('click', this.restartGame.bind(this));
   }
 
@@ -109,22 +106,20 @@ export default class Racing {
   }
 
   restartGame() {
-    document.querySelector('.progress-cars').innerHTML = '';
-    document.querySelector('.result-container').innerHTML = '';
-    document.querySelector('.car-name').value = '';
-    document.querySelector('.try-count').value = '';
+    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = '';
+    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = '';
+    document.querySelector(CLASS.CAR_NAME).value = '';
+    document.querySelector(CLASS.TRY_COUNT).value = '';
 
-    this.resetUI();
-    this.cars = [];
-    this.tryCount = 0;
+    this.reset();
   }
 
   addListeners() {
     document
-      .querySelector('.car-name-btn')
+      .querySelector(CLASS.CAR_NAME_BTN)
       .addEventListener('click', this.getCarNames.bind(this));
     document
-      .querySelector('.try-count-btn')
+      .querySelector(CLASS.TRY_COUNT_BTN)
       .addEventListener('click', this.getTryCount.bind(this));
   }
 }
