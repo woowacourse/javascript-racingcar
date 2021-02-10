@@ -30,8 +30,8 @@ export default class CarGameView {
   displayProgressContainer(cars) {
     return cars.map((car) => `
         <div>
-          <div class="car-player mr-2" data-position=${car.distance}>${car.name}</div>
-          ${this.displayForwardIcons(car.distance)}
+          <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
+          ${this.displayForwardIcons(car.getPosition())}
         </div>`).join('');
   }
 

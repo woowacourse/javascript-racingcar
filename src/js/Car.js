@@ -1,14 +1,18 @@
 export default class Car {
   constructor(name) {
     this.name = name;
-    this.distance = 0;
+    this.position = 0;
   }
 
   run() {
-    this.distance += 1;
+    this.position += 1;
   }
 
-  getDistance() {
-    return this.distance;
+  getPosition() {
+    return this.position;
+  }
+
+  getName() {
+    return this.name;
   }
 }
