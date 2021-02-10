@@ -33,4 +33,10 @@ context("bdd", () => {
 		cy.get("#name-input").type("!@#1자동#$,123차");
 		cy.get("#name-input").should("have.value", "자동,차");
 	});
+
+	it("횟수 입력 칸에 placeholder('시도 횟수')가 있다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").should("have.attr", "placeholder", "시도 횟수");
+	});
 });
