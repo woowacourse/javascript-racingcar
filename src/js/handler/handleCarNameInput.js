@@ -7,7 +7,7 @@ import { handleRacingCountInput } from './handleRacingCountInput.js';
 export const handleCarNameInput = () => {
   const $carNameInput = $('#car-name-input');
   const cars = generateCarInstances($carNameInput.value);
-  let errorMessage = validateCarNames(cars);
+  const errorMessage = validateCarNames(cars);
 
   if (errorMessage) {
     alert(errorMessage);

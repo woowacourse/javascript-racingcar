@@ -153,7 +153,7 @@ describe('racing-game', () => {
     cy.get('#game-process-screen').should('have.text', '');
   });
 
-  it('다시사작 버튼을 누르면 자동차이름 입력창과 시도횟수 입력창이 초기화한다.', () => {
+  it('다시시작 버튼을 누르면 자동차이름 입력창과 시도횟수 입력창이 초기화한다.', () => {
     submitCarnames();
     submitRacingCount();
     cy.get('#game-restart-button').click();
