@@ -9,4 +9,4 @@ export default function RacingGame() {
   $racingCountSubmit.addEventListener('click', handleRacingCountInput);
 }
 
-new RacingGame();
+RacingGame();
