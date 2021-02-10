@@ -1,0 +1,9 @@
+{
+  "baseUrl": "http://127.0.0.1:5500",
+  "testFiles": [
+    "initial_rendering.spec.js",
+    "car_name_input.spec.js",
+    "count_input.spec.js",
+    "racing_car_game.spec.js"
+  ]
+}
