@@ -110,63 +110,38 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주가 진행될 때 매 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
+  it('자동차 경주 진행 중 때 매 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton(['yujo']);
-    typeRacingCountAndClickToSubmitButton(2);
+    typeRacingCountAndClickToSubmitButton(3);
 
     cy.clock();
     cy.tick(500);
     cy.get('.car-player').should('have.data', 'fowardCount', 0);
-    cy.tick(500);
-    cy.get('.car-player').should('have.data', 'fowardCount', 1);
   });
 
-  it('자동차 경주의 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
+  it('자동차 경주 진행 중 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton(['yujo']);
     typeRacingCountAndClickToSubmitButton(2);
 
     cy.clock();
-    cy.tick(500).then(() => {
-      cy.get('.spinner').should('have.data', 'fowardCount', 1);
-    });
-  });
-
-  it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
-    typeCarNameAndClickToSubmitButton();
-    typeRacingCountAndClickToSubmitButton();
-    cy.get('.car-player').each(($div, index) => {
-      cy.get($div)
-        .should('have.text', carNames[index])
-        .parent()
-        .children('div')
-        .its('length')
-        .then((childrenNum) => {
-          cy.get($div).should('have.data', 'forwardCount', childrenNum - 1);
-        });
-    });
-  });
-
-  it('자동차 경주가 끝났을 때 우승자가 정상적으로 출력되는지 테스트 한다.', () => {
-    typeCarNameAndClickToSubmitButton();
-    typeRacingCountAndClickToSubmitButton();
-
-    cy.get('.car').then(($cars) => {
-      const counts = [...$cars].map(($car) => {
-        return $car.querySelectorAll('.forward-icon').length;
+    cy.tick(500);
+    cy.get('.spinner-container')
+      .its('length')
+      .then((len) => {
+        len.equal(1);
       });
-      const maxScore = Math.max(...counts);
-      const winners = [];
-
-      counts.forEach((carCount, index) => {
-        if (carCount === maxScore) {
-          winners.push(carNames[index]);
-        }
+    cy.tick(1000);
+    cy.get('.spinner-container')
+      .its('length')
+      .then((len) => {
+        len.equal(1);
       });
-
-      cy.get('#game-result-text').should(
-        'have.text',
-        `🏆 최종 우승자: ${winners.join(', ')} 🏆`,
-      );
-    });
+    cy.tick(1000);
+    cy.get('.spinner-container')
+      .its('length')
+      .then((len) => {
+        len.equal(1);
+      });
   });
 
   it('경주를 마치고 2초 후, 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
