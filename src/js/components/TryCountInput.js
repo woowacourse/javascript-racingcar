@@ -1,29 +1,21 @@
-import {
-  resetInput,
-  disableElements,
-  activateElements,
-} from "../util/domUtil.js";
-import { ERROR_MESSAGE } from "../util/errorMessage.js";
+import { resetInput, disableElements, activateElements } from '../util/domUtil.js';
+import { ERROR_MESSAGE } from '../util/errorMessage.js';
 
 export default class TryCountInput {
   constructor({ setTryCount }) {
-    this.$target = document.querySelector(".try-count-input-containter");
-    this.$tryCountInput = this.$target.querySelector("input[type=number]");
-    this.$tryCountSummitBtn = this.$target.querySelector("button");
+    this.$target = document.querySelector('.try-count-input-containter');
+    this.$tryCountInput = this.$target.querySelector('input[type=number]');
+    this.$tryCountSummitBtn = this.$target.querySelector('button');
     this.setTryCount = setTryCount;
 
     this.bindEvents();
   }
 
   bindEvents() {
-    this.$tryCountSummitBtn.addEventListener(
-      "click",
-      this.handleSubmitTryCount.bind(this),
-    );
+    this.$tryCountSummitBtn.addEventListener('click', this.handleSubmitTryCount.bind(this));
   }
 
   handleSubmitTryCount() {
-    // TODO: tryCount가 빈 문자열인 경우 처리하기
     const tryCount = Number(this.$tryCountInput.value);
 
     if (!this.isNaturalTryCount(tryCount)) {
