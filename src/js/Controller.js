@@ -101,5 +101,14 @@ export class Controller {
 
       this.viewController.renderGameResult(winners);
     });
+
+    const restartButton = document.querySelector(SELECTOR.GAME_RESULT.BUTTON);
+    restartButton.addEventListener("click", () => {
+      this.carModels = [];
+      carNameInput.value = "";
+      lapCountInput.value = "";
+
+      this.viewController.clear();
+    });
   }
 }

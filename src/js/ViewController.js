@@ -29,4 +29,17 @@ export default class ViewController {
   show(selector) {
     document.querySelector(selector).hidden = false;
   }
+
+  hide(selector) {
+    document.querySelector(selector).hidden = true;
+  }
+
+  clear() {
+    this.carViews = [];
+    document.querySelector(SELECTOR.GAME_PROGRESS.CONTAINER).innerHTML = "";
+    document.querySelector(SELECTOR.GAME_RESULT.WINNERS).innerText = "";
+
+    this.hide(SELECTOR.LAP_COUNT.CONTAINER);
+    this.hide(SELECTOR.GAME_RESULT.CONTAINER);
+  }
 }
