@@ -7,7 +7,7 @@ class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
 		countInput.value = "";
-		console.log(countInput);
+		View.progressContainerRender();
 	}
 
 	onNameSubmit() {

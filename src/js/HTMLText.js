@@ -1,6 +1,6 @@
-export const openingSettingContainer = `<div class="d-flex justify-center mt-5"><div id="setting-container">`;
+export const openingSettingContainerTemplate = `<div class="d-flex justify-center mt-5"><div id="setting-container">`;
 
-export const titleSection = `<section>
+export const titleSectionTemplate = `<section>
         <h1 class="text-center">🏎️ 자동차 경주 게임</h1>
         <p>
             5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요. <br />
@@ -8,7 +8,7 @@ export const titleSection = `<section>
         </p>
     </section>`;
 
-export const carNameSection = `<section>
+export const carNameSectionTemplate = `<section>
         <div class="d-flex">
             <input type="text" id="name-input" class="w-100 mr-2" placeholder="자동차 이름" />
             <button type="button" id="name-submit-button" class="btn btn-cyan">확인</button>
@@ -23,11 +23,21 @@ export const countTemplate = `
         </div>
     `;
 
-export const closingSettingContainer = `</div></div>`;
+export const closingSettingContainerTemplate = `</div></div>`;
 
-export const raceProgressContainer = `<div id="race-progress-container" class="d-flex justify-center mt-5">
+export const raceProgressContainerTemplate = `<div id="race-progress-container" class="d-flex justify-center mt-5">
         <section class="mt-4">
             <div id="race-progress-screen" class="d-flex">
             </div>
         </section>
     </div>`;
+
+// :trophy: 최종 우승자: EAST, WEST :trophy:
+export const resultContainerTemplate = `<div id="result-container" class="d-flex justify-center mt-5">
+    <section>
+        <h2></h2>
+        <div class="d-flex justify-center">
+            <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
+        </div>
+    </section>
+</div>`;

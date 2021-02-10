@@ -1,15 +1,20 @@
 import ElementManager from "./ElementManager.js";
 import {
-	openingSettingContainer,
-	titleSection,
-	carNameSection,
-	closingSettingContainer,
+	openingSettingContainerTemplate,
+	titleSectionTemplate,
+	carNameSectionTemplate,
+	closingSettingContainerTemplate,
 	countTemplate,
+	raceProgressContainerTemplate,
+	resultContainerTemplate,
 } from "./HTMLText.js";
 class View {
 	initialRender($parentElement) {
 		$parentElement.innerHTML =
-			openingSettingContainer + titleSection + carNameSection + closingSettingContainer;
+			openingSettingContainerTemplate +
+			titleSectionTemplate +
+			carNameSectionTemplate +
+			closingSettingContainerTemplate;
 	}
 
 	clearInputValue(inputElement) {
@@ -21,6 +26,12 @@ class View {
 		const $countSection = ElementManager.createElement("section", { class: "mt-5" });
 		$countSection.innerHTML = countTemplate;
 		$settingContainer.appendChild($countSection);
+	}
+
+	progressContainerRender() {
+		const $app = ElementManager.getAppDIV();
+		$app.insertAdjacentHTML("beforeend", raceProgressContainerTemplate);
+		$app.insertAdjacentHTML("beforeend", resultContainerTemplate);
 	}
 }
 

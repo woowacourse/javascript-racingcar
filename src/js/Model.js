@@ -17,7 +17,6 @@ class Model {
 	addCountButtonEvent(callback) {
 		const countButton = ElementManager.getCountButton();
 		countButton.addEventListener("click", callback);
-		console.log({ callback });
 	}
 }
 
