@@ -10,7 +10,7 @@ describe("자동차 이름 검증 테스트", () => {
 
     cy.get("#car-names-input").type(value);
     cy.get("#car-names-submit").click();
-    cy.get("#count-container").should(
+e    cy.get("#count-container").should(
       shouldBeVisible ? "to.be.visible" : "not.to.be.visible"
     );
   };
