@@ -20,5 +20,6 @@ describe("시도 횟수 입력 테스트", () => {
         countInputTest("-1", false);
         countInputTest("0", false);
         countInputTest("1", true);
+        countInputTest("101", false);
     });
 });

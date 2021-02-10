@@ -21,6 +21,7 @@ describe("자동차 이름 검증 테스트", () => {
     inputTest("123,12", true);
     inputTest("123123213,1", false);
     inputTest("EAST, WEST, SOUTH, NORTH", true);
+    inputTest("EAST, WEST, SOUTH, NORTH, EAST2, WEST2, SOUTH2, NORTH2, 1", false);
   });
 
   it("자동차 이름은 최소 1자 이상이어야 한다.", () => {

@@ -19,7 +19,7 @@ const isValidCarNames = function (carNamesInput) {
 };
 
 const isValidCount = function (value) {
-  return Number(value) >= 1;
+  return 1<=Number(value) && Number(value)<=100;
 };
 
 const getCarNamesInput = function () {
@@ -31,13 +31,15 @@ const getCarNamesInput = function () {
 
 export const handleCarNamesSubmit = function () {
   const carNamesInput = getCarNamesInput();
-
   if (!isValidCarNames(carNamesInput)) {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
+  if (10 < carNamesInput.length) {
+    alert("자동차는 10대를 넘을 수 없습니다.");
+    return;
+  }
   toggleCarNameInputDisable();
-
   displayCountView();
 };
 
@@ -46,7 +48,7 @@ export const handleCountSubmit = function () {
   const countInput = document.querySelector("#count-input").value;
 
   if (!isValidCount(countInput)) {
-    alert("시도할 횟수는 1이상이어야 합니다.");
+    alert("시도할 횟수는 1이상 100이하여야 합니다.");
     return;
   }
   toggleCountInputDisable();
