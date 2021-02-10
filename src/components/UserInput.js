@@ -17,18 +17,20 @@ export default class UserInput extends Component {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id === 'submit-car-name') {
         this.#handleSubmitCarName();
-      } else if (target.id === 'submit-race-times') {
+      }
+      if (target.id === 'submit-race-times') {
         this.#handleSubmitRaceTimes();
       }
     });
 
     this.$target.addEventListener('keyup', ({ key, target }) => {
-      if (key === 'Enter') {
-        if (target.id === 'input-car-name') {
-          this.#handleSubmitCarName();
-        } else if (target.id === 'input-race-times') {
-          this.#handleSubmitRaceTimes();
-        }
+      if (key !== 'Enter') return;
+
+      if (target.id === 'input-car-name') {
+        this.#handleSubmitCarName();
+      }
+      if (target.id === 'input-race-times') {
+        this.#handleSubmitRaceTimes();
       }
     });
   }
