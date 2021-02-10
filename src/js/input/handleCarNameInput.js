@@ -1,4 +1,4 @@
-import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
+import { GAME, ERR_MESSAGE } from '../utils/constant.js';
 import { toggleDisabled } from '../utils/toggleDisabled.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
 
@@ -17,11 +17,11 @@ const createCars = (carNames) => {
 };
 
 const isValidLength = (name) => {
-  return name.length <= VALIDATOR.MAX_NAME_LENGTH;
+  return name.length <= GAME.MAX_NAME_LENGTH;
 };
 
 const isBlank = (name) => {
-  return name.length >= VALIDATOR.MIN_NAME_LENGTH;
+  return name.length >= GAME.MIN_NAME_LENGTH;
 };
 
 const isValidCarName = (carNames) => {
