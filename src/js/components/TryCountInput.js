@@ -1,9 +1,4 @@
-import {
-  $,
-  resetInput,
-  disableElements,
-  activateElements,
-} from "../util/domUtil.js";
+import { $, clearInput, deActivate, activate } from "../util/domUtil.js";
 import { ERROR_MESSAGE } from "../util/errorMessage.js";
 
 export default class TryCountInput {
@@ -34,17 +29,17 @@ export default class TryCountInput {
 
     if (!this.isNaturalTryCount(tryCount)) {
       alert(ERROR_MESSAGE.NOT_NATURAL_NUMBER);
-      resetInput(this.$tryCountInput);
+      clearInput(this.$tryCountInput);
       return;
     }
 
-    disableElements(this.$tryCountInput, this.$tryCountSummitBtn);
+    deActivate(this.$tryCountInput, this.$tryCountSummitBtn);
     setTryCount(tryCount);
   }
 
   resetElements() {
-    activateElements(this.$tryCountInput, this.$tryCountSummitBtn);
-    resetInput(this.$tryCountInput);
+    activate(this.$tryCountInput, this.$tryCountSummitBtn);
+    clearInput(this.$tryCountInput);
   }
 
   isNaturalTryCount(number) {

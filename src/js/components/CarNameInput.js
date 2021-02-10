@@ -1,9 +1,4 @@
-import {
-  $,
-  resetInput,
-  disableElements,
-  activateElements,
-} from "../util/domUtil.js";
+import { $, clearInput, deActivate, activate } from "../util/domUtil.js";
 import { ERROR_MESSAGE } from "../util/errorMessage.js";
 import { CAR_NAME_MAX_LENGTH } from "../util/constant.js";
 
@@ -36,17 +31,17 @@ export default class CarNameInput {
 
     if (errorMessage) {
       alert(errorMessage);
-      resetInput(this.$carNameInput);
+      clearInput(this.$carNameInput);
       return;
     }
 
-    disableElements(this.$carNameInput, this.$carNameSummitBtn);
+    deActivate(this.$carNameInput, this.$carNameSummitBtn);
     setCarNames(carNames);
   }
 
   resetElements() {
-    activateElements(this.$carNameInput, this.$carNameSummitBtn);
-    resetInput(this.$carNameInput);
+    activate(this.$carNameInput, this.$carNameSummitBtn);
+    clearInput(this.$carNameInput);
   }
 
   checkValidInput({ inputCarName, carNames }) {
