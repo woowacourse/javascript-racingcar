@@ -16,7 +16,8 @@ export const handleRacingCountInput = () => {
   const racingCount = $racingCountInput.value;
   if (!isValidRacingCount(racingCount)) {
     alert(ERR_MESSAGE.COUNT_TOO_SMALL);
-    return ($racingCountInput.value = '');
+    $racingCountInput.value = '';
+    return;
   }
 
   toggleVisibility('$gameProcessSection');

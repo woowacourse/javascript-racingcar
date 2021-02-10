@@ -41,7 +41,8 @@ export const handleCarNameInput = () => {
 
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
   if (!isValidCarName(carNames)) {
-    return ($carNameInput.value = '');
+    $carNameInput.value = '';
+    return;
   }
 
   toggleVisibility('$racingCountSection');
