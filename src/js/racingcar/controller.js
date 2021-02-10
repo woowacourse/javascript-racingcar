@@ -1,6 +1,6 @@
 import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
-import { isCarValid, isCountValid } from "../utils/vaild.js";
+import { validator } from "../validator/validator.js";
 import { generateRandomNumber } from "../utils/util.js";
 import { RANDOM, INIT, GAME } from "../constants/constant.js";
 
@@ -62,7 +62,7 @@ class RacingCarController {
 
   manageCars() {
     const carNames = this.getCarsInput();
-    if (isCarValid(carNames)) {
+    if (validator.isCarValid(carNames)) {
       const cars = carNames.map(carName => {
         return { name: carName, forward: INIT.FORWARD };
       });
@@ -75,7 +75,7 @@ class RacingCarController {
 
   manageCount() {
     const count = this.getCountInput();
-    if (isCountValid(count)) {
+    if (validator.isCountValid(count)) {
       this.model.setCount(parseInt(count, 10));
       this.startGame();
       this.view.renderProcess(this.model.getCars());
