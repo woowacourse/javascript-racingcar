@@ -1,6 +1,7 @@
 import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
 import { isCarValid, isCountValid } from "./vaild.js";
+import { generateRandomNumber } from "./util.js";
 
 class RacingCarController {
   constructor() {
@@ -35,7 +36,7 @@ class RacingCarController {
 
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
-    const randomNumber = generateRandomNumber();
+    const randomNumber = generateRandomNumber(1, 9);
 
     return randomNumber >= 4 ? 1 : 0;
   }
