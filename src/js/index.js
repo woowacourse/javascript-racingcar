@@ -13,7 +13,6 @@ class App {
   constructor() {
     this.cars = [];
     resetAllViews();
-
     document
       .querySelector(selectors.carNamesSubmit)
       .addEventListener("click", handleCarNamesSubmit);
@@ -29,7 +28,7 @@ class App {
     this.cars = [];
   }
 
-  generateCars(carNames) {
+  addCars(carNames) {
     carNames.forEach((carName) => {
       this.cars.push(new Car(carName));
     });

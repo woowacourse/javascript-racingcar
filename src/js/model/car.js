@@ -3,7 +3,6 @@ export default class Car {
     this.name = name;
     this.position = 0;
   }
-
   moveForward(number) {
     if (number >= 4) {
       this.position++;

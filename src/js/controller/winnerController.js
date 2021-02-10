@@ -8,7 +8,6 @@ export const chooseWinners = function () {
   const winners = app.cars
     .filter((car) => car.position === maxPosition)
     .map((car) => car.name);
-
   displayWinnerView(winners);
 };
 

@@ -13,7 +13,7 @@ export const selectors = {
     restartButton : '#restart-button'
 }
 
-export const texts = {
+export const globalTexts = {
     winnerText : "🏆 최종 우승자 🏆",
     makeWinnerText : (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`
 }

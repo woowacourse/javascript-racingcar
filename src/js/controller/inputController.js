@@ -19,15 +19,16 @@ const isValidCarNames = function (carNamesInput) {
   );
 };
 
-const isValidCount = function (value) {
-  return 1<=Number(value) && Number(value)<=100;
-};
 
 const getCarNamesInput = function () {
   return document
-    .querySelector(selectors.carNamesInput)
-    .value.split(",")
-    .map((e) => e.trim());
+  .querySelector(selectors.carNamesInput)
+  .value.split(",")
+  .map((e) => e.trim());
+};
+
+const isValidCount = function (value) {
+  return 1<=Number(value) && Number(value)<=100;
 };
 
 export const handleCarNamesSubmit = function () {
@@ -52,8 +53,8 @@ export const handleCountSubmit = function () {
     alert(alertMsg.isNotValidCount);
     return;
   }
+  app.addCars(carNamesInput);
   toggleCountInputDisable();
-  app.generateCars(carNamesInput);
   displayRacingCars(app.cars);
   startRacingGame(countInput);
 };
