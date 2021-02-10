@@ -76,7 +76,11 @@ class RacingCarController {
     this.view.renderResult(winners);
   }
 
-  reset() {}
+  reset() {
+    this.model.setCars([]);
+    this.model.setCount(0);
+    this.view.reset();
+  }
 
   handleCars() {
     const $carBtn = document.querySelector("#car-btn");
