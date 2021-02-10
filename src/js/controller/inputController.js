@@ -1,20 +1,20 @@
 import {
-	displayCountView,
 	toggleCarNameInputDisable,
 	toggleCountInputDisable,
+	toggleDisplayCountView,
 } from '../view/inputView.js';
 import { app } from '../index.js';
 import { alertMsg, bounds, selectors } from '../keys.js';
 import { displayRacingCars } from '../view/racingView.js';
 import { startRacingGame } from './racingController.js';
-import { isNotDuplicatedArray, isAlphanumeric } from '../utils.js';
+import { isNotDuplicatedArray, isAlphanumeric, $ } from '../utils.js';
 
 const isValidCarNames = function (carNamesInput) {
 	return (
 		isNotDuplicatedArray(carNamesInput) &&
 		carNamesInput.every(
 			(carName) =>
-      bounds.lengthLowerBound <= carName.length &&
+				bounds.lengthLowerBound <= carName.length &&
 				carName.length <= bounds.lengthUpperBound &&
 				isAlphanumeric(carName),
 		)
@@ -22,14 +22,16 @@ const isValidCarNames = function (carNamesInput) {
 };
 
 const getCarNamesInput = function () {
-	return document
-		.querySelector(selectors.carNamesInput)
+	return $(selectors.carNamesInput)
 		.value.split(',')
 		.map((e) => e.trim());
 };
 
 const isValidCount = function (count) {
-	return bounds.countLowerBound <= Number(count) && Number(count) <= bounds.countUpperBound;
+	return (
+		bounds.countLowerBound <= Number(count) &&
+		Number(count) <= bounds.countUpperBound
+	);
 };
 
 export const handleCarNamesSubmit = function () {
@@ -38,17 +40,17 @@ export const handleCarNamesSubmit = function () {
 		alert(alertMsg.isNotValidCarNames);
 		return;
 	}
-	if (10 < carNamesInput.length) {
+	if (bounds.carNamesUpperBound < carNamesInput.length) {
 		alert(alertMsg.isNotValidCarNamesLength);
 		return;
 	}
 	toggleCarNameInputDisable();
-	displayCountView();
+	toggleDisplayCountView();
 };
 
 export const handleCountSubmit = function () {
 	const carNamesInput = getCarNamesInput();
-	const countInput = document.querySelector(selectors.countInput).value;
+	const countInput = $(selectors.countInput).value;
 
 	if (!isValidCount(countInput)) {
 		alert(alertMsg.isNotValidCount);

@@ -1,22 +1,26 @@
-import { selectors } from "../keys.js";
-import { $ } from "../utils.js";
+import { globalClasses, selectors } from '../keys.js';
+import { $ } from '../utils.js';
+
+const toggleDisplayCountView = function () {
+	$(selectors.racingContainer).classList.toggle(globalClasses.displayNone);
+};
 
 export const displayRacingCars = function (cars) {
-  const classes = ["car-player", "mr-2"];
-  cars.forEach((car) => {
-    $(selectors.racingCarsArea).innerHTML += `<div>
-      <div class=${classes.join(" ")}>${car.name}</div>
+	const classes = ['car-player', 'mr-2'];
+	cars.forEach((car) => {
+		$(selectors.racingCarsArea).innerHTML += `<div>
+      <div class=${classes.join(' ')}>${car.name}</div>
     </div>`;
-  });
-  $(selectors.racingContainer).style.display = "flex";
+	});
+	toggleDisplayCountView();
 };
 
 export const appendArrowElement = function (element) {
-  const classes = ["forward-icon", "mt-2"];
-  element.innerHTML += `<div class=${classes.join(" ")}>⬇️️</div>`;
+	const classes = ['forward-icon', 'mt-2'];
+	element.innerHTML += `<div class=${classes.join(' ')}>⬇️️</div>`;
 };
 
 export const initializeRacingView = function () {
-  $(selectors.racingContainer).style.display = "none";
-  $(selectors.racingCarsArea).innerHTML = "";
+	toggleDisplayCountView();
+	$(selectors.racingCarsArea).innerHTML = '';
 };

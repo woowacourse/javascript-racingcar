@@ -1,14 +1,18 @@
-import { selectors, globalTexts } from "../keys.js";
-import { $ } from "../utils.js";
+import { selectors, globalTexts, globalClasses } from '../keys.js';
+import { $ } from '../utils.js';
+
+const toggleDisplayCountView = function () {
+	$(selectors.winnerContainer).classList.toggle(globalClasses.displayNone);
+};
 
 export const displayWinnerView = function (winners) {
-  const $winnerElement = $(selectors.winnerTextArea);
-  $winnerElement.innerText = globalTexts.makeWinnerText(winners);
-  $(selectors.winnerContainer).style.display = "flex";
+	const $winnerElement = $(selectors.winnerTextArea);
+	$winnerElement.innerText = globalTexts.makeWinnerText(winners);
+	toggleDisplayCountView();
 };
 
 export const initializeWinnerView = function () {
-  const $winnerElement = $(selectors.winnerTextArea);
-  $(selectors.winnerContainer).style.display = "none";
-  $winnerElement.innerText = globalTexts.winnerText;
+	const $winnerElement = $(selectors.winnerTextArea);
+	$winnerElement.innerText = globalTexts.winnerText;
+	toggleDisplayCountView();
 };

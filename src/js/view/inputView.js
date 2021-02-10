@@ -1,22 +1,22 @@
-import { selectors } from "../keys.js";
-import { $ } from "../utils.js";
+import { selectors, globalClasses } from '../keys.js';
+import { $ } from '../utils.js';
 
 export const initializeInputView = function () {
-  $(selectors.carNamesInput).value = "";
-  $(selectors.countInput).value = "";
-  $(selectors.countContainer).style.display = "none";
+	$(selectors.carNamesInput).value = '';
+	$(selectors.countInput).value = '';
+	toggleDisplayCountView();
 };
 
-export const displayCountView = function () {
-  $(selectors.countContainer).style.display = "block";
+export const toggleDisplayCountView = function () {
+	$(selectors.countContainer).classList.toggle(globalClasses.displayNone);
 };
 
 export const toggleCarNameInputDisable = function () {
-  $(selectors.carNamesInput).toggleAttribute("disabled");
-  $(selectors.carNamesSubmit).toggleAttribute("disabled");
+	$(selectors.carNamesInput).toggleAttribute('disabled');
+	$(selectors.carNamesSubmit).toggleAttribute('disabled');
 };
 
 export const toggleCountInputDisable = function () {
-  $(selectors.countInput).toggleAttribute("disabled");
-  $(selectors.countSubmit).toggleAttribute("disabled");
+	$(selectors.countInput).toggleAttribute('disabled');
+	$(selectors.countSubmit).toggleAttribute('disabled');
 };

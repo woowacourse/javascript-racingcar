@@ -18,7 +18,13 @@ export const bounds = {
 	lengthUpperBound: 5,
 	countLowerBound: 1,
 	countUpperBound: 100,
+    carNamesUpperBound : 10,
+    goOrStopBound : 4
 };
+
+export const globalClasses = {
+    displayNone : 'strong-display-none',
+}
 
 export const globalTexts = {
 	winnerText: '🏆 최종 우승자 🏆',

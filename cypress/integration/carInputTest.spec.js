@@ -4,7 +4,6 @@ describe("자동차 이름 검증 테스트", () => {
 
   const inputTest = function (value, shouldBeVisible) {
     cy.visit("http://localhost:5500/index.html");
-    cy.get(selectors.countContainer).invoke("attr", "style", "display: none");
     cy.get(selectors.carNamesInput).clear();
 
     cy.get(selectors.carNamesInput).type(value);

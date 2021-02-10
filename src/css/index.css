@@ -10,6 +10,10 @@ body {
   height: 100%;
 }
 
+.strong-display-none {
+  display: none !important;
+}
+
 .car-player {
   height: 36px;
   min-width: 64px;
