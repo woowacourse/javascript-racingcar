@@ -1,8 +1,8 @@
 import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
-import { isCarValid, isCountValid } from "./vaild.js";
-import { generateRandomNumber } from "./util.js";
-import { RANDOM, INIT, GAME } from "./constants/constant.js";
+import { isCarValid, isCountValid } from "../utils/vaild.js";
+import { generateRandomNumber } from "../utils/util.js";
+import { RANDOM, INIT, GAME } from "../constants/constant.js";
 
 class RacingCarController {
   constructor() {

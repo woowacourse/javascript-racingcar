@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from "./constants/message.js";
-import { VALID } from "./constants/constant.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
+import { VALID } from "../constants/constant.js";
 
 class Valid {
   isCarValid(carNames) {
