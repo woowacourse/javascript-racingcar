@@ -2,7 +2,7 @@
 
 context("bdd", () => {
 	beforeEach(() => {
-		cy.visit("http://127.0.0.1:5500/javascript-racingcar/index.html");
+		cy.visit("http://localhost:5500/");
 	});
 
 	it("이름 입력 칸과 확인 버튼만 있다.", () => {
