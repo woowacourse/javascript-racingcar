@@ -10,7 +10,7 @@ import {
 
 describe('Car name input test', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:5500/index.html');
+    cy.visit('/');
   });
 
   it('Can check the number of car.', () => {
@@ -21,9 +21,7 @@ describe('Car name input test', () => {
 
   it('Can check space.', () => {
     testCorrectValue(CAR_INPUT, CAR_BTN, 'name1,name2');
-    testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1, name2', ALERT_VALID_LETTER);
     testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1,n ame2', ALERT_VALID_LETTER);
-    testIncorrectValue(CAR_INPUT, CAR_BTN, 'name1,name2 ', ALERT_VALID_LETTER);
     testIncorrectValue(
       CAR_INPUT,
       CAR_BTN,

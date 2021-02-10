@@ -11,10 +11,8 @@ import {
 } from '../constants/index.js';
 
 export default class InputValidator {
-  constructor() {}
-
   checkNameInput(value) {
-    const names = value.split(',');
+    const names = value.split(',').map(name => name.trim());
 
     return (
       this.hasMoreThan2Cars(names) &&

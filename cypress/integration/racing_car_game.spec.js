@@ -12,7 +12,7 @@ import {
 
 describe('Racing car game test', () => {
   before(() => {
-    cy.visit('http://127.0.0.1:5500/index.html');
+    cy.visit('/');
     setGameData(CAR_INPUT, CAR_BTN, 'a,b');
     setGameData(COUNT_INPUT, COUNT_BTN, '1');
   });
