@@ -18,18 +18,18 @@ class Template {
 
   processSectionTemplate(cars) {
     return `
-    <div class="d-flex">
-    ${cars
-      .map(car => {
-        return `
-        <div class="process-car">
-          <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.forward)}
-        </div>
-      `;
-      })
-      .join("")}
-    </div>
+      <div class="d-flex">
+      ${cars
+        .map(car => {
+          return `
+          <div class="process-car">
+            <div class="car-player mr-2">${car.name}</div>
+            ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.forward)}
+          </div>
+        `;
+        })
+        .join("")}
+      </div>
     `;
   }
 

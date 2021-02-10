@@ -13,6 +13,7 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input").value;
+
     return $carInput.split(",").map(car => car.trim());
   }
 
@@ -47,6 +48,7 @@ class RacingCarController {
     const newCars = cars.map(car => {
       return { ...car, forward: car.forward + this.goStop() };
     });
+
     return newCars;
   }
 
