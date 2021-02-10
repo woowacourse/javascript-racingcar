@@ -1,23 +1,18 @@
 import { $ } from '../utils/querySelector.js';
-import { CAR, ERR_MESSAGE } from '../utils/constant.js';
-import { startGame } from '../game/startGame.js';
+import { validateRacingCount } from '../utils/validateRacingCount.js';
 import { setVisibility } from '../utils/setVisibility.js';
+import { startGame } from '../game/startGame.js';
 
 export const handleRacingCountInput = () => {
   const $racingCountInput = document.querySelector('#racing-count-input');
   const racingCount = $racingCountInput.value;
+  const errorMessage = validateRacingCount(racingCount);
 
-  if (!isValidRacingCount(racingCount)) {
-    return ($racingCountInput.value = '');
+  if (errorMessage) {
+    alert(errorMessage);
+    $racingCountInput.value = '';
+    return;
   }
   setVisibility($('#game-process-section'), true);
   startGame(racingCount);
-};
-
-const isValidRacingCount = (racingCount) => {
-  if (racingCount < CAR.MIN_RACING_COUNT) {
-    alert(ERR_MESSAGE.COUNT_TOO_SMALL);
-    return false;
-  }
-  return true;
 };
