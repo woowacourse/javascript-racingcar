@@ -13,8 +13,9 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input").value;
+    const carNames = $carInput.split(",").map(car => car.trim());
 
-    return $carInput.split(",").map(car => car.trim());
+    return carNames;
   }
 
   getCountInput() {
@@ -38,10 +39,10 @@ class RacingCarController {
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
     const randomNumber = generateRandomNumber(RANDOM.MIN_NUM, RANDOM.MAX_NUM);
+    const move =
+      randomNumber >= GAME.FORWARD_STANDARD_NUM ? GAME.GO_NUM : GAME.STOP_NUM;
 
-    return randomNumber >= GAME.FORWARD_STANDARD_NUM
-      ? GAME.GO_NUM
-      : GAME.STOP_NUM;
+    return move;
   }
 
   play(cars) {
