@@ -120,6 +120,16 @@ describe('racing-game', () => {
     cy.get('.car-player').should('have.data', 'fowardCount', 1);
   });
 
+  it('자동차 경주의 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton(['yujo']);
+    typeRacingCountAndClickToSubmitButton(2);
+
+    cy.clock();
+    cy.tick(500).then(() => {
+      cy.get('.spinner').should('have.data', 'fowardCount', 1);
+    });
+  });
+
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
