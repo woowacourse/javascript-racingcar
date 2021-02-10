@@ -1,12 +1,15 @@
+import RacingCarModel from "./model.js";
+import RacingCarView from "./view.js";
+
 class RacingCarController {
   constructor() {
-    //this.model = new RacingCarModel();
-    //this.view = new RacingCarView();
+    this.model = new RacingCarModel();
+    this.view = new RacingCarView();
+    this.handleCars();
   }
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input");
-
     return $carInput.value.split(",");
   }
 
@@ -58,6 +61,7 @@ class RacingCarController {
 
       this.model.setCars(cars);
       this.view.renderCount();
+      this.handleCount();
     }
   }
 
@@ -74,6 +78,7 @@ class RacingCarController {
   manageResult() {
     const winners = this.getWinners();
     this.view.renderResult(winners);
+    this.handleReset();
   }
 
   reset() {
@@ -84,16 +89,24 @@ class RacingCarController {
 
   handleCars() {
     const $carBtn = document.querySelector("#car-btn");
-    $carBtn.addEventListener("click", this.manageCars);
+    $carBtn.addEventListener("click", () => {
+      this.manageCars();
+    });
   }
 
   handleCount() {
     const $countBtn = document.querySelector("#count-btn");
-    $countBtn.addEventListener("click", this.manageCount);
+    $countBtn.addEventListener("click", () => {
+      this.manageCount();
+    });
   }
 
   handleReset() {
     const $resetBtn = document.querySelector("#reset-btn");
-    $resetBtn.addEventListener("click", this.reset);
+    $resetBtn.addEventListener("click", () => {
+      this.reset();
+    });
   }
 }
+
+export default RacingCarController;

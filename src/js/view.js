@@ -49,3 +49,5 @@ class RacingCarView {
     this.resetResult();
   }
 }
+
+export default RacingCarView;
