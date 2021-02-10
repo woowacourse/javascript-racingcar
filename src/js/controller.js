@@ -15,7 +15,7 @@ class RacingCarController {
     return $countInput.value;
   }
 
-  getWinners(largestCount) {}
+  getWinners() {}
 
   goStop() {
     // 랜덤수 가져와서 전진 or 스톱 값
@@ -28,7 +28,6 @@ class RacingCarController {
   }
 
   manageCars() {
-    // 유효한지 테스트, 자동차 set, showCount
     const carNames = this.getCarsInput();
     if (isCarValid(carNames)) {
       const cars = carNames.map(carName => {
@@ -41,7 +40,6 @@ class RacingCarController {
   }
 
   manageCount() {
-    // 유효한지 테스트, 횟수 set,  게임 스타트, showProcess,
     const count = this.getCountInput();
     if (isCountValid(count)) {
       this.model.setCount(parseInt(count, 10));
@@ -51,8 +49,9 @@ class RacingCarController {
     }
   }
 
-  showResult() {
-    //  우승자 선정, showResult
+  manageResult() {
+    const winners = this.getWinners();
+    this.view.renderResult(winners);
   }
 
   reset() {}
