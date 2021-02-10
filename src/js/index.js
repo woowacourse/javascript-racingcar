@@ -60,6 +60,14 @@ export default class Racing {
 
   showProgress() {
     document.querySelector('.progress-container').style.display = '';
+
+    document.querySelector('.progress-cars').innerHTML = 
+      this.cars.map(car => `
+        <div>
+          <div class="car-player mr-2">${car.name}</div>
+          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
+        </div>
+      `).join('');
   }
 
   addListeners() {

@@ -65,11 +65,14 @@ describe('자동차 경주', () => {
   });
 
   it('자동차 이름과 시도 횟수 입력 후 확인을 누르면 레이싱 진행 상황이 출력된다.', () => {
-    cy.get('.car-name').type('east, west, south, north');
+    cy.get('.car-name').type('east, west, south, north, mid');
     cy.get('.car-name-btn').click();
     cy.get('.try-count').type('5');
     cy.get('.try-count-btn').click();
 
     cy.get('.progress-container').should('be.visible');
+    cy.get('.car-name').invoke('val').then(carNameInput => {
+      cy.get('.car-player').should('have.length', carNameInput.split(',').length);
+    });
   });
 });
