@@ -6,11 +6,9 @@ context("bdd", () => {
 	});
 
 	it("이름 입력 칸과 확인 버튼만 있다.", () => {
-		cy.get(".w-100").should(($input) => {
-			expect($input).to.have.length(1);
-		});
-		cy.get(".btn-cyan").should(($button) => {
-			expect($button).to.have.length(1);
-		});
+		cy.get("#name-input").should("exist");
+		cy.get("#name-submit-button").should("exist");
+		cy.get("#count-input").should("not.exist");
+		cy.get("#count-submit-button").should("not.exist");
 	});
 });

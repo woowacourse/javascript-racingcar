@@ -12,16 +12,16 @@ class View {
 
 		this.carNameSection = `<section>
         <div class="d-flex">
-            <input type="text" class="w-100 mr-2" placeholder="자동차 이름" />
-            <button type="button" class="btn btn-cyan">확인</button>
+            <input type="text" id="name-input" class="w-100 mr-2" placeholder="자동차 이름" />
+            <button type="button" id="name-submit-button" class="btn btn-cyan">확인</button>
         </div>
     </section>`;
 
 		this.countSection = `<section class="mt-5">
         <p>시도할 횟수를 입력해주세요.</p>
         <div class="d-flex">
-            <input type="number" class="w-100 mr-2" placeholder="시도 횟수" />
-            <button type="button" class="btn btn-cyan">확인</button>
+            <input type="number" id="count-input" class="w-100 mr-2" placeholder="시도 횟수" />
+            <button type="button" id="count-submit-button" class="btn btn-cyan">확인</button>
         </div>
     </section>`;
 
