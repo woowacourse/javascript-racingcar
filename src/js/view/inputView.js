@@ -11,17 +11,17 @@ export const displayCountView = function () {
 export const toggleCarNameInputDisable = function () {
   document
     .querySelector("#car-names-input")
-    .toggleAttribute("disabled", "disabled");
+    .toggleAttribute("disabled");
   document
     .querySelector("#car-names-submit")
-    .toggleAttribute("disabled", "disabled");
+    .toggleAttribute("disabled");
 };
 
 export const toggleCountInputDisable = function () {
   document
     .querySelector("#count-input")
-    .toggleAttribute("disabled", "disabled");
+    .toggleAttribute("disabled");
   document
     .querySelector("#count-submit")
-    .toggleAttribute("disabled", "disabled");
+    .toggleAttribute("disabled");
 };

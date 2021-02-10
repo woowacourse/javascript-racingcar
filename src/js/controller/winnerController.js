@@ -1,5 +1,5 @@
 import { app } from "../index.js";
-import { initializeInputView } from "../view/inputView.js";
+import { initializeInputView, toggleCarNameInputDisable, toggleCountInputDisable } from "../view/inputView.js";
 import { initializeRacingView } from "../view/racingView.js";
 import { displayWinnerView, initializeWinnerView } from "../view/winnerView.js";
 
@@ -14,6 +14,8 @@ export const chooseWinners = function () {
 
 export const handleRestartButton = function () {
   app.initializeCars();
+  toggleCarNameInputDisable();
+  toggleCountInputDisable();
   resetAllViews();
 };
 
