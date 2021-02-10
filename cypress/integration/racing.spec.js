@@ -82,11 +82,29 @@ describe('자동차 경주', () => {
   });
 
   it('레이싱 진행 상황과 함께 우승자가 출력된다', () => {
-    cy.get('.car-name').type('east, west, south, north, mid');
+    const carNameString = 'east, west, south, north, mid';
+    cy.get('.car-name').type(carNameString);
     cy.get('.car-name-btn').click();
-    cy.get('.try-count').type('5');
+    cy.get('.try-count').type('3');
     cy.get('.try-count-btn').click();
 
     cy.get('.result-container').should('be.visible');
+
+    cy.document().then((doc) => {
+      const cars = doc.querySelectorAll('.car-player'); 
+      const progresses = [...cars].map(car => car.parentNode.childNodes.length);
+      const maxPosition = Math.max(...progresses); 
+      const winners = [];
+
+      cars.forEach(car => {
+        if (car.parentNode.childNodes.length === maxPosition) {
+          winners.push(car.innerHTML);
+        }
+      });
+
+      const winnerResult = winners.join(', ');
+
+      cy.get('.result-container').find('section').find('h2').contains(winnerResult);
+    });
   });
 });
