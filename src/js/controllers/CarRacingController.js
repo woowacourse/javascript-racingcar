@@ -54,7 +54,7 @@ export default class CarRacingController {
     this.view.addHidden($('.racing-count-container'));
     this.view.addHidden($('.racing-container'));
     this.view.addHidden($('.result-container'));
-    this.view.removeDisabled($('#car-names-input'));
+    this.view.removeDisabled($('#car-names-submit'));
     this.view.removeDisabled($('#racing-count-submit'));
 
     $('#car-names-input').value = '';
@@ -63,24 +63,18 @@ export default class CarRacingController {
 
   moveCars(cars) {
     cars.forEach((car) => {
-      this.model.moveCar(car);
+      this.model.moveCar(car.name);
     });
   }
 
   getMovedCars() {
-    const movedCars = [];
     const { START_THRESHOLD_NUMBER } = racingConstants;
 
-    this.model.cars.forEach((car) => {
-      const { name } = car;
+    return this.model.cars.filter(() => {
       const randomNumber = Math.floor(Math.random() * 10);
 
-      if (randomNumber >= START_THRESHOLD_NUMBER) {
-        movedCars.push(name);
-      }
+      return randomNumber >= START_THRESHOLD_NUMBER;
     });
-
-    return movedCars;
   }
 
   startRacing() {

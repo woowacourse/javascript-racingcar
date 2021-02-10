@@ -21,7 +21,7 @@ export default class CarRacingView {
     $carPlayers.forEach((carPlayer) => {
       const carName = carPlayer.innerText;
 
-      if (movedCars.includes(carName)) {
+      if (movedCars.map((car) => car.name).includes(carName)) {
         carPlayer.parentNode.insertAdjacentHTML('beforeend', `<div class="forward-icon mt-2">⬇️️</div>`);
       }
     });
