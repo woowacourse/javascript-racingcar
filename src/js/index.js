@@ -4,6 +4,8 @@ import {
   resetView,
   setResultView,
   setWinnerView,
+  resetCarNamesInput,
+  resetTryNumInput,
 } from "./display-utils.js";
 import { playGame, getWinner } from "./game-utils.js";
 import {
@@ -42,6 +44,9 @@ const onClickedCarNamesBtn = () => {
     });
 
     if (isCarNameEmpty(carNames) || isCarNameLengthValid(carNames)) {
+      alert("올바른 자동차 이름을 입력하세요.");
+      resetCarNamesInput();
+
       return;
     }
 
@@ -57,6 +62,9 @@ const onClickedTryNumBtn = () => {
     const tryNum = document.getElementsByTagName("input")[1].value;
 
     if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
+      alert("올바른 시도 횟수를 입력하세요.");
+      resetTryNumInput();
+
       return;
     }
     playGame();
