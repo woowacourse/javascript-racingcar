@@ -22,7 +22,7 @@ export default class CarRacingModel {
   }
 
   moveCar(name) {
-    const carIndex = this.cars.findIndex((car) => car.name === name);
-    this.cars[carIndex].distance += 1;
+    const car = this.cars.find((car) => car.name === name);
+    car.distance += 1;
   }
 }
