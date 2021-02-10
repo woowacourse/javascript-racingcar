@@ -1,4 +1,4 @@
-import { $, $$ } from './querySelector.js';
+import { $ } from './querySelector.js';
 import { setVisibility } from './setVisibility.js';
 
 export const setToInitialView = () => {
