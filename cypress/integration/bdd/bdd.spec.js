@@ -15,4 +15,11 @@ context("bdd", () => {
 	it("이름 입력 칸에 placeholder('자동차 이름')가 있다.", () => {
 		cy.get("#name-input").should("have.attr", "placeholder", "자동차 이름");
 	});
+
+	it("이름 입력 칸에 이름을 입력하고 확인 버튼을 누르면 칸이 비워지고, 횟수 입력 칸이 나온다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").should("exist");
+		cy.get("#count-submit-button").should("exist");
+	});
 });
