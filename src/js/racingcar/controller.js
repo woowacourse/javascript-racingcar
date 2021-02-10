@@ -1,6 +1,11 @@
 import RacingCarModel from './model.js';
 import RacingCarView from './view.js';
-import {isCarValid, isCountValid} from '../utils/vaild.js';
+import {
+  isCarExist,
+  isCountExist,
+  isCarValid,
+  isCountValid,
+} from '../utils/vaild.js';
 import {generateRandomNumber} from '../utils/util.js';
 import {RANDOM, INIT, GAME} from '../constants/constant.js';
 
@@ -62,6 +67,10 @@ class RacingCarController {
   }
 
   manageCars() {
+    if (isCarExist(this.model.getCars())) {
+      return;
+    }
+
     const carNames = this.getCarsInput();
     if (isCarValid(carNames)) {
       const cars = carNames.map((carName) => ({

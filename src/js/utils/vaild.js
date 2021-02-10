@@ -1,12 +1,21 @@
-import { ERROR_MESSAGE } from "../constants/message.js";
-import { VALID } from "../constants/constant.js";
+import {ERROR_MESSAGE} from '../constants/message.js';
+import {VALID} from '../constants/constant.js';
 
 class Valid {
+  isCarExist(car) {
+    if (car.length > VALID.ZERO) {
+      alert(ERROR_MESSAGE.CAR_EXIST);
+      return true;
+    }
+
+    return false;
+  }
+
   isCarValid(carNames) {
-    if (carNames.some(carName => carName.length > VALID.CARNAME_MAX_LENGTH)) {
+    if (carNames.some((carName) => carName.length > VALID.CARNAME_MAX_LENGTH)) {
       return alert(ERROR_MESSAGE.OVER_CARNAME_MAX_LENGTH);
     }
-    if (carNames.some(carName => carName.length < VALID.CARNAME_MIN_LENGTH)) {
+    if (carNames.some((carName) => carName.length < VALID.CARNAME_MIN_LENGTH)) {
       return alert(ERROR_MESSAGE.BLANK_CARNAME);
     }
     if (carNames.length !== new Set(carNames).size) {
@@ -33,4 +42,4 @@ class Valid {
   }
 }
 
-export const { isCarValid, isCountValid } = new Valid();
+export const {isCarExist, isCountExist, isCarValid, isCountValid} = new Valid();

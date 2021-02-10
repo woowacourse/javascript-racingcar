@@ -16,6 +16,7 @@ export const GAME = {
 };
 
 export const VALID = {
+  ZERO: 0,
   CARNAME_MAX_LENGTH: 5,
   CARNAME_MIN_LENGTH: 1,
   COUNT_MIN_NUM: 1,
