@@ -4,6 +4,16 @@ class RacingCarController {
     this.view = new RacingCarView();
   }
 
+  getCarsInput() {
+    const $carInput = document.querySelector("#car-input");
+    return $carInput.value;
+  }
+
+  getCountInput() {
+    const $countInput = document.querySelector("#count-input");
+    return $countInput.value;
+  }
+
   getWinners(largestCount) {}
 
   goStop() {
@@ -18,6 +28,7 @@ class RacingCarController {
 
   manageCars() {
     // 유효한지 테스트, 자동차 set, showCount
+    // checkCarValid()
   }
 
   manageCount() {
