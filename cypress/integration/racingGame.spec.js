@@ -75,8 +75,8 @@ describe('racing-game', () => {
         expect(alertStub.getCall(1)).to.be.calledWith(
           '1 이상의 숫자를 입력해주세요.',
         );
-        cy.get('#racing-count-input').should('have.text', '');
       });
+    cy.get('#racing-count-input').should('have.text', '');
   });
 
   it('올바른 시도 횟수 입력 시, 화면에 자동차 경주 섹션이 표시되는지 테스트 한다.', () => {
@@ -170,17 +170,15 @@ describe('racing-game', () => {
   });
 
   it('경주를 마치고 2초 후, 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
-    const alertStub = cy.stub();
-
-    cy.on('window:alert', alertStub);
     cy.clock();
-
     typeCarNameAndClickToSubmitButton(['yujo']);
-    typeRacingCountAndClickToSubmitButton().then(() => {
-      cy.tick(2000);
-      expect(alertStub.getCall(1)).to.be.calledWith(
-        '🎉 축하드립니다! 우승자는 yujo입니다! 🎉',
-      );
+    typeRacingCountAndClickToSubmitButton(3);
+
+    // 자동차 경주 진행시간 3000ms + alert 출력 대기시간 2000ms
+    cy.tick(5000);
+
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.contain('🎉 축하드립니다! 우승자는 yujo입니다! 🎉');
     });
   });
 
