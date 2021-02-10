@@ -1,6 +1,7 @@
 describe('자동차 이름 유효성 테스트', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5500/');
+    cy.visit('http://localhost:5500/')
+    cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
   });
 
   const initGame = () => {
@@ -11,26 +12,29 @@ describe('자동차 이름 유효성 테스트', () => {
   };
 
   const alertCarNameError = (carNames, errorMessage) => {
-    const stub = cy.stub();
     initGame();
     cy.get('#input-car-names > div > input').type(carNames);
-    cy.on('window:alert', stub);
-    cy
-      .get('#input-car-names > div > button').click()
-      .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(errorMessage);
-        cy.get('#input-try-count').should('not.be.visible');
-        cy.get('#display-game-progress').should('not.be.visible');
-        cy.get('#display-game-result').should('not.be.visible');
-      });
+    cy.get('#input-car-names > div > button').click();
+
+    cy.get('@windowAlert')
+      .should('have.callCount', 1) //  몇번째 호출되었는지 반드시 확인!
+      .its('lastCall')
+      .should(
+        'be.calledWith',
+        errorMessage,
+      ).then(() => {
+      cy.get('#input-try-count').should('not.be.visible');
+      cy.get('#display-game-progress').should('not.be.visible');
+      cy.get('#display-game-result').should('not.be.visible');
+    });
   };
 
   it('자동차 이름이 5자 초과인 경우 경고창을 띄운다.', () => {
-    alertCarNameError('aaaaa, aaaaaaa, aaaa', '자동차 이름은 5글자 이하여야합니다.(앞 뒤 공백 제외)');
+    alertCarNameError('aaaaa, aaaaaaa, aaaa', '자동차 이름은 1글자 이상 5글자 이하로 입력해 주세요.');
   });
 
   it('자동차 이름이 공백인 경우 경고창을 띄운다.', () => {
-    alertCarNameError('aaaaa, , aaaa', '자동차 이름은 1글자 이상으로 입력해 주세요');
+    alertCarNameError('aaaaa, , aaaa', '자동차 이름은 1글자 이상 5글자 이하로 입력해 주세요.');
   });
 
   it('자동차 이름이 공백을 포함하면 경고창을 띄운다.', () => {
