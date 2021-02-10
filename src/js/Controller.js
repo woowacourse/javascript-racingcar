@@ -1,16 +1,18 @@
 import Model from "./Model.js";
-import Elements from "./Elements.js";
+import ElementManager from "./ElementManager.js";
+import View from "./View.js";
 
 class Controller {
 	onNameSubmit() {
-		const nameInputValue = Elements.getNameInput().value;
-		Model.setCarNames(nameInputValue);
+		const nameInput = ElementManager.getNameInput();
+		Model.setCarNames(nameInput.value);
+		View.clearInputValue(nameInput);
+		View.countSectionRender();
 	}
 
 	initializeEvents() {
-		const nameButton = Elements.getNameButton();
+		const nameButton = ElementManager.getNameButton();
 		nameButton.addEventListener("click", this.onNameSubmit);
-		console.log("abcd");
 	}
 }
 
