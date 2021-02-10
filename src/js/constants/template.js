@@ -35,7 +35,7 @@ class Template {
 
   resultSectionTemplate(winners) {
     return `
-      <h2 id="result-winner">🏆 최종 우승자: ${winners.join(",")} 🏆</h2>
+      <h2 id="result-winner">🏆 최종 우승자: ${winners.join(", ")} 🏆</h2>
       <div class="d-flex justify-center">
         <button type="button" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
       </div>
