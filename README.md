@@ -14,7 +14,7 @@
 
 ## 🔥 Projects!
 <p align="middle">
-  <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/7c76e809d82a4a3aa0fd78a86be25427">
+  <img width="500" src="./documents/preview.gif">
 </p>
 
 ### 🧾 구현 테스트 목록 
@@ -42,44 +42,6 @@
 
 <br>
 
----
-### 🎯🎯 step2
-- [ ] 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
-    - [ ] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
-- [ ] 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
-- [ ] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
-
-<br>
-
-## ⚙️ Before Started
-
-#### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 static resources 변경 및 확인하는 방법
-
-로컬에서 웹서버를 띄워 html, css, js 등을 실시간으로 손쉽게 테스트해 볼 수 있습니다. 이를 위해서는 우선 npm이 설치되어 있어야 합니다. 구글에 `npm install` 이란 키워드로 각자의 운영체제에 맞게끔 npm을 설치해주세요. 이후 아래의 명령어를 통해 실시간으로 웹페이지를 테스트해볼 수 있습니다.
-
-```
-npm install -g live-server
-```
-
-실행은 아래의 커맨드로 할 수 있습니다.
-
-```
-live-server 폴더명
-```
-
-<br>
-
-## 👏 Contributing
-
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요. 
-
-<br>
-
-## 🐞 Bug Report
-
-버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-racingcar/issues) 에 등록 후 @eastjun에게 dm을 보내주세요.
-
-<br>
 
 ## 📝 License
 
