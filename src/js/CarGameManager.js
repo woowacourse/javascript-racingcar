@@ -1,12 +1,8 @@
 import CarGameView from './CarGameView.js';
 import Car from './Car.js';
 import CarNameValidator from './CarNameValidator.js';
-<<<<<<< HEAD
 import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from './constants.js';
 import TryCountValidator from './TryCountValidator.js';
-=======
-import { CAR_NAME_ERROR_MESSAGE } from './constants.js';
->>>>>>> d25fa9081458ac173b7859b05a084157fe850ca0
 
 export default class CarGameManager {
   constructor($element) {
@@ -57,15 +53,9 @@ export default class CarGameManager {
         ? alert(CAR_NAME_ERROR_MESSAGE.INCOMPLETE_WORD) : true),
     };
 
-    for (const check in checkNameValue) {
-      if (!checkNameValue[check]()) {
-        return false;
-      }
-    }
-    return true;
+    return Object.keys(checkNameValue).every((checker) => checkNameValue[checker]());
   }
 
-<<<<<<< HEAD
   validateTryCount(tryCount) {
     const tryCountValidator = new TryCountValidator(tryCount);
 
@@ -79,8 +69,6 @@ export default class CarGameManager {
     return Object.keys(checkTryCount).every((checker) => checkTryCount[checker]());
   }
 
-=======
->>>>>>> d25fa9081458ac173b7859b05a084157fe850ca0
   carNamesInputHandler() {
     this.carNames = document.querySelector('#input-car-names > div > input').value.split(',');
     if (!this.validateCarNames()) {

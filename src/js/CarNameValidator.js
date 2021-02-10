@@ -12,10 +12,6 @@ export default class CarNameValidator {
   }
 
   isInCompleteWord(carNames) {
-<<<<<<< HEAD
     return carNames.some((carName) => /[^가-힣a-zA-Z0-9]/.test(carName));
-=======
-    return carNames.some((carName) => /[^가-힣a-z0-9]/.test(carName));
->>>>>>> d25fa9081458ac173b7859b05a084157fe850ca0
   }
 }
