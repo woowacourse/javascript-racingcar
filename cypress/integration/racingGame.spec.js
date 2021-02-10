@@ -109,6 +109,17 @@ describe('racing-game', () => {
     }
   });
 
+  it('자동차 경주가 진행될 때 매 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton(['yujo']);
+    typeRacingCountAndClickToSubmitButton(2);
+
+    cy.clock();
+    cy.tick(500);
+    cy.get('.car-player').should('have.data', 'fowardCount', 0);
+    cy.tick(500);
+    cy.get('.car-player').should('have.data', 'fowardCount', 1);
+  });
+
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
