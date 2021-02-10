@@ -53,9 +53,8 @@ describe("ui-input-click-show", () => {
     cy.get("#count").should("have.css", "display", "none");
     cy.get("#process").should("have.css", "display", "none");
     cy.get("#result").should("have.css", "display", "none");
-    cy.get("#process > .d-flex").children().should("not.exist");
+    cy.get("#process").children().should("not.exist");
     cy.get("#car-input").should("have.value", "");
-    cy.get("#count-input").should("have.value", "");
   });
 });
 
