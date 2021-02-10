@@ -1,11 +1,17 @@
 import RacingCarGameValidation from "./RacingCarGameValidation.js";
 import RacingCarGameView from "./RacingCarGameView.js";
-import { racingCarGameModel } from "../store.js";
+import { getRacingCarGameModel } from "../store.js";
 import { CAR_NAME_SEPERATOR } from "../constants.js";
 import { $carNameSubmit } from "../elements.js";
 
 export default class RacingCarGameController {
-  constructor() {}
+  constructor() {
+    this.racingCarGameModel = getRacingCarGameModel();
+  }
+
+  static getModel() {
+    return new this().racingCarGameModel;
+  }
 
   static seperateCarNames(carNames, seperator) {
     return carNames.split(seperator).map((carName) => carName.trim());
@@ -21,8 +27,9 @@ export default class RacingCarGameController {
       return;
     }
 
-    racingCarGameModel.registerCars(carNameList);
-    RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+    this.getModel().registerCars(carNameList);
+    console.log(this.getModel());
+    RacingCarGameView.updateResultArea(this.getModel().carList);
     RacingCarGameView.changeInnerText($carNameSubmit, "수정");
   }
 
@@ -37,13 +44,13 @@ export default class RacingCarGameController {
   }
 
   static finishGame() {
-    const winners = this.getWinners(racingCarGameModel.carList);
+    const winners = this.getWinners(this.getModel().carList);
 
     RacingCarGameView.deactivateCarNameSubmitButton();
     RacingCarGameView.deactivatePlayGameButton();
     RacingCarGameView.showWinners(winners);
     RacingCarGameView.showRestartButton();
-    racingCarGameModel.clearCarsRecord();
+    this.getModel().clearCarsRecord();
   }
 
   static playRacingCarGame(tryCountInput) {
@@ -58,15 +65,14 @@ export default class RacingCarGameController {
     }
 
     for (let i = 0; i < tryCount; i += 1) {
-      racingCarGameModel.moveCarsByRandom();
+      this.getModel().moveCarsByRandom();
     }
-    console.log(racingCarGameModel.carList);
-    RacingCarGameView.updateResultArea(racingCarGameModel.carList);
+    RacingCarGameView.updateResultArea(this.getModel().carList);
     this.finishGame();
   }
 
   static restartRacingCarGame() {
-    racingCarGameModel.clearCarList();
+    this.getModel().clearCarList();
     RacingCarGameView.resetGameView();
   }
 }

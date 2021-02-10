@@ -7,7 +7,7 @@ import {
   SHOULD_REGISTER_CAR_FIRST,
 } from "../constants.js";
 
-import { racingCarGameModel } from "../store.js";
+import { getRacingCarGameModel } from "../store.js";
 
 export default class RacingCarGameValidation {
   static isCarNameValid(carName) {
@@ -40,7 +40,7 @@ export default class RacingCarGameValidation {
   }
 
   static isCarListEmpty() {
-    if (racingCarGameModel.carList.length === 0) {
+    if (getRacingCarGameModel().carList.length === 0) {
       alert(SHOULD_REGISTER_CAR_FIRST);
       return true;
     }
