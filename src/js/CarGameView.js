@@ -8,7 +8,7 @@ export default class CarGameView {
   }
 
   showView($element) {
-    $element.style.display = '';
+    $element.style.display = 'block';
   }
 
   hideView($element) {
