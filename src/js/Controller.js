@@ -35,7 +35,6 @@ export class Controller {
       this.viewController.renderCarNameTag(
         this.carModels.map(({ name }) => name)
       );
-      this.viewController.show(SELECTOR.LAP_COUNT.CONTAINER);
     });
 
     const lapCountInput = document.querySelector(SELECTOR.LAP_COUNT.INPUT);
@@ -93,7 +92,14 @@ export class Controller {
         this.viewController.renderGameProgress(lapResult);
       }
 
-      this.viewController.show(SELECTOR.GAME_RESULT.CONTAINER);
+      const maxMoveCount = Math.max(
+        ...this.carModels.map(({ moveCount }) => moveCount)
+      );
+      const winners = this.carModels
+        .filter(({ moveCount }) => moveCount === maxMoveCount)
+        .map(({ name }) => name);
+
+      this.viewController.renderGameResult(winners);
     });
   }
 }
