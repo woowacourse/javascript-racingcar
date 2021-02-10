@@ -1,3 +1,3 @@
-import { addRacingCarGameListener } from './listeners.js';
+import { addRacingCarGameListener } from "./listeners.js";
 
 addRacingCarGameListener();

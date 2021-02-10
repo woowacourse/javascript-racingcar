@@ -1,5 +1,5 @@
-import RacingCarGameController from './RacingCarGame/RacingCarGameController.js';
-import { $carNameInput, $tryCountInput } from './elements.js';
+import RacingCarGameController from "./RacingCarGame/RacingCarGameController.js";
+import { $carNameInput, $tryCountInput } from "./elements.js";
 
 export const onCarNameSubmit = () => {
   RacingCarGameController.registerCarNames($carNameInput.value);

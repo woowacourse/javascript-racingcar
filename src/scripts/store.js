@@ -1,7 +1,7 @@
-import RacingCarGameModel from './RacingCarGame/RacingCarGameModel.js';
+import RacingCarGameModel from "./RacingCarGame/RacingCarGameModel.js";
 
 export const racingCarGameModel = new RacingCarGameModel();
 
 export default {
-  racingCarGameModel
-}
+  racingCarGameModel,
+};

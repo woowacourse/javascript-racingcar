@@ -1,15 +1,13 @@
-import RacingCarGameValidation from './RacingCarGameValidation.js';
-import RacingCarGameView from './RacingCarGameView.js';
-import { racingCarGameModel } from '../store.js';
-import { CAR_NAME_SEPERATOR } from '../constants.js';
+import RacingCarGameValidation from "./RacingCarGameValidation.js";
+import RacingCarGameView from "./RacingCarGameView.js";
+import { racingCarGameModel } from "../store.js";
+import { CAR_NAME_SEPERATOR } from "../constants.js";
 
 export default class RacingCarGameController {
   constructor() {}
 
   static seperateCarNames(carNames, seperator) {
-    return carNames
-      .split(seperator)
-      .map((carName) => carName.trim());
+    return carNames.split(seperator).map((carName) => carName.trim());
   }
 
   static registerCarNames(carNames) {
@@ -34,9 +32,7 @@ export default class RacingCarGameController {
   }
 
   static finishGame() {
-    const winners = this.getWinners(
-      racingCarGameModel.carList
-    );
+    const winners = this.getWinners(racingCarGameModel.carList);
     RacingCarGameView.showWinners(winners);
     RacingCarGameView.showRestartButton();
     racingCarGameModel.clearCarsRecord();
