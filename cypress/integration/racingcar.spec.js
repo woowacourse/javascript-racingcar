@@ -94,18 +94,6 @@ describe("ui-input-vaild-check", () => {
     );
   });
 
-  it("입력한 시도 횟수가 숫자가 아니면 alert 출력", () => {
-    cy.get("#car-input").type("a,b,c,d");
-    cy.get("#car-btn").click();
-    cy.get("#count").should("have.css", "display", "block");
-    cy.get("#count-input").type("string");
-    cy.get("#count-btn").click();
-    cy.get("@alertStub").should(
-      "be.calledWith",
-      "시도 횟수는 자연수여야 합니다."
-    );
-  });
-
   it("입력한 시도 횟수가 0 이하면 alert 출력", () => {
     cy.get("#car-input").type("a,b,c,d");
     cy.get("#car-btn").click();
