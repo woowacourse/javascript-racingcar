@@ -64,9 +64,46 @@ describe("시도할 횟수 입력하기", () => {
   });
 
   it("올바른 시도할 횟수가 입력됐을 때", () => {
+    let winners = [];
+    let max = -Infinity;
+
+    const testWinnerIsCorrect = () => {
+      cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
+        .invoke("text")
+        .then((text) => {
+          const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
+
+          expect(winners.sort()).to.deep.equal(matched.sort());
+        });
+    };
+
+    const findWhoIsWinner = ($carName, len) => {
+      const [{ innerText: winnerCandidate }] = $carName;
+
+      if (len === max) {
+        winners.push(winnerCandidate);
+      } else if (len > max) {
+        max = len;
+        winners = [winnerCandidate];
+      }
+    };
+
     const userInput = 12;
 
     cy.get(SELECTOR.LAP_COUNT.INPUT).type(userInput);
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
+
+    cy.get("@windowAlert").should("have.callCount", 0);
+    cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
+
+    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME)
+      .each(($carName) => {
+        cy.wrap($carName)
+          .parent()
+          .children()
+          .its("length")
+          .then((len) => findWhoIsWinner($carName, len));
+      })
+      .then(testWinnerIsCorrect);
   });
 });

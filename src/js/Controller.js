@@ -74,6 +74,7 @@ export class Controller {
       }
 
       // TODO: 성공 케이스
+      this.viewController.show(SELECTOR.GAME_RESULT.CONTAINER);
     });
   }
 }
