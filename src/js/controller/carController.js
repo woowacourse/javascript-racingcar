@@ -3,21 +3,15 @@ import Car from "../model/Car.js";
 import { displayRacing } from "../view/racingView.js";
 import { gameStart } from "./racingController.js";
 
-// 자동차와 관련된 검증, 조작 및 뷰?
-
-// 자동차 이름 검증 함수
-
-// 공백 이름 검증 함수
-// 리팩토링 할 때 수정 (함수 표현 방식)
-// refactoring - 형식, utils
-function isAlphanumeric(input) {
+// refactoring - utils
+const isAlphanumeric = function (input) {
   return /^[a-zA-Z0-9]+$/.test(input);
-}
+};
 
-// refactoring - 형식, utils
-function isNotDuplicatedArray(array) {
+// refactoring - utils
+const isNotDuplicatedArray = function (array) {
   return Array.from(new Set(array)).length === array.length;
-}
+};
 
 // 자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.
 const isValidCarNames = function (carNamesInput) {
@@ -67,6 +61,6 @@ export const handleCountSubmit = function () {
   displayRacing(app.cars);
   // 레이싱 영역 노출
   document.querySelector("#racing-container").style.display = "flex";
-  
+
   gameStart(countInput);
 };

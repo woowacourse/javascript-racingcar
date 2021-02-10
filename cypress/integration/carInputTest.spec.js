@@ -3,14 +3,14 @@ describe("자동차 이름 검증 테스트", () => {
     cy.visit("http://localhost:5500/index.html");
   });
 
-  const inputTest = (value, shouldBeVisible) => {
+  const inputTest = function (value, shouldBeVisible) {
     // 초기화
     cy.get("#count-container").invoke("attr", "style", "display: none");
     cy.get("#car-names-input").clear();
 
     cy.get("#car-names-input").type(value);
     cy.get("#car-names-submit").click();
-e    cy.get("#count-container").should(
+    cy.get("#count-container").should(
       shouldBeVisible ? "to.be.visible" : "not.to.be.visible"
     );
   };

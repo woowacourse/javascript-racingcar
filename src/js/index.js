@@ -17,7 +17,9 @@ class App {
     document
       .querySelector("#count-submit")
       .addEventListener("click", handleCountSubmit);
-    document.querySelector('#restart-button').addEventListener('click', handleRestartButton);
+    document
+      .querySelector("#restart-button")
+      .addEventListener("click", handleRestartButton);
   }
 }
 
