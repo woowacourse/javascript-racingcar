@@ -1,6 +1,6 @@
 import { RacingGame, Car } from '../model/index.js';
 import { RacingGameView } from '../view/index.js';
-import { $, InputValidator } from '../utils/index.js';
+import { $, isValidateNameInput, isValidCountInput } from '../utils/index.js';
 import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
@@ -42,15 +42,14 @@ export default class RacingGameController {
 
   getCarNameInput() {
     const $input = $('.car-name-input');
-    const validator = new InputValidator();
-    try {
-      validator.checkNameInput($input.value);
-      const carNames = $input.value.split(',');
-      this.racingGame.setCars(carNames.map(carName => new Car(carName)));
-      this.view.renderCountInput();
-    } catch (error) {
-      this.handleInputException($input, error.message);
+    const carNames = $input.value.split(',').map(name => name.trim());
+    if (!isValidateNameInput(carNames)) {
+      $input.value = '';
+      return;
     }
+
+    this.racingGame.setCars(carNames.map(carName => new Car(carName)));
+    this.view.renderCountInput();
   }
 
   handleInputException($input, message) {
@@ -76,13 +75,12 @@ export default class RacingGameController {
 
   getCountInput() {
     const $input = $('.count-input');
-    const validator = new InputValidator();
-    try {
-      validator.checkCountInput(Number($input.value));
-      this.racingGame.setCount(Number($input.value));
-    } catch (error) {
-      this.handleInputException($input, error.message);
+    if (!isValidCountInput(Number($input.value))) {
+      $input.value = '';
+      return;
     }
+
+    this.racingGame.setCount(Number($input.value));
   }
 
   handleClickResetBtn({ target: { classList } }) {
