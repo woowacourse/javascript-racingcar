@@ -1,6 +1,7 @@
+import { $ } from '../utils/querySelector.js';
 import { ERR_MESSAGE } from '../utils/constant.js';
-import { isValidLength, isNotBlank } from '../utils/isValidCarName.js';
-import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
+import { isValidLength, isBlank } from '../utils/isValidCarName.js';
+import { setVisibility } from '../utils/setVisibility.js';
 
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
@@ -9,7 +10,7 @@ export const handleCarNameInput = () => {
   if (!isValidCarName(carNames)) {
     return ($carNameInput.value = '');
   }
-  setVisible('$racingCountSection');
+  setVisibility($('#racing-count-section'), true);
   insertCarHTML(carNames);
 };
 
@@ -18,7 +19,7 @@ const isValidCarName = (carNames) => {
     alert(ERR_MESSAGE.NAME_TOO_LONG);
     return false;
   }
-  if (!carNames.every((carName) => isNotBlank(carName))) {
+  if (!carNames.every((carName) => !isBlank(carName))) {
     alert(ERR_MESSAGE.NAME_CANNOT_BE_BLANK);
     return false;
   }

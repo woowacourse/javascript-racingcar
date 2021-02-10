@@ -1,14 +1,15 @@
+import { $ } from '../utils/querySelector.js';
 import { isEffectiveScore } from '../utils/isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { printGameResult } from './printGameResult.js';
-import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
+import { setVisibility } from '../utils/setVisibility.js';
 
 export const startGame = (racingCount) => {
   const $cars = document.querySelectorAll('.car-player');
 
   resetGame($cars);
   playAllGame($cars, racingCount);
-  setVisible('$gameResultSection');
+  setVisibility($('#game-result-section'), true);
   printGameResult();
 };
 

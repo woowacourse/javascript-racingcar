@@ -1,6 +1,7 @@
+import { $ } from '../utils/querySelector.js';
 import { CAR, ERR_MESSAGE } from '../utils/constant.js';
 import { startGame } from '../game/startGame.js';
-import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
+import { setVisibility } from '../utils/setVisibility.js';
 
 export const handleRacingCountInput = () => {
   const $racingCountInput = document.querySelector('#racing-count-input');
@@ -9,7 +10,7 @@ export const handleRacingCountInput = () => {
   if (!isValidRacingCount(racingCount)) {
     return ($racingCountInput.value = '');
   }
-  setVisible('$gameProcessSection');
+  setVisibility($('#game-process-section'), true);
   startGame(racingCount);
 };
 

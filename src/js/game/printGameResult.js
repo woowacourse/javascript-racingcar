@@ -1,5 +1,6 @@
+import { $ } from '../utils/querySelector.js'
 import { getWinners } from '../utils/getWinners.js';
-import { toggleVisibility as setInvisible } from '../utils/toggleVisibility.js';
+import { setVisibility } from '../utils/setVisibility.js';
 
 export const printGameResult = () => {
   const $gameResultText = document.querySelector('#game-result-text');
@@ -30,7 +31,7 @@ const clearInputs = () => {
 };
 
 const setInitialView = () => {
-  setInvisible('$racingCountSection');
-  setInvisible('$gameProcessSection');
-  setInvisible('$gameResultSection');
+  setVisibility($('#racing-count-section'), false);
+  setVisibility($('#game-process-section'), false);
+  setVisibility($('#game-result-section'), false);
 };
