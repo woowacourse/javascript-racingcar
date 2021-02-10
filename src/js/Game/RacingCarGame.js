@@ -12,15 +12,15 @@ export default class RacingCarGame {
   }
 
   playOneRound() {
-    this.cars = this.cars.map((car) => {
+    this.cars.map((car) => {
       if (this.getRandomInt() >= NUMBERS.RUN_POINT) {
         car.run();
       }
     });
   }
 
-  playGame(tryCount) {
-    for (let i = 0; i < tryCount; i++) {
+  playGame() {
+    for (let i = 0; i < this.tryCount; i++) {
       this.playOneRound();
     }
   }
