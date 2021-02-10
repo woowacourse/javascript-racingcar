@@ -24,6 +24,11 @@ class RacingCarView {
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
+  resetCar() {
+    const $carInputSection = document.querySelector("#car-input");
+    $carInputSection.value = "";
+  }
+
   resetCount() {
     const $countSection = document.querySelector("#count");
     $countSection.style.display = "none";
@@ -44,6 +49,7 @@ class RacingCarView {
   }
 
   reset() {
+    this.resetCar();
     this.resetCount();
     this.resetProcess();
     this.resetResult();
