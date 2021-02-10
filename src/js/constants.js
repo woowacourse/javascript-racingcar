@@ -23,6 +23,8 @@ export const SELECTOR = {
 
   GAME_RESULT: {
     CONTAINER: ".game-result-container",
+    WINNERS: ".game-result-container > h2",
+    BUTTON: ".game-result-container__button",
   },
 };
 

@@ -20,9 +20,7 @@ export default class ViewController {
   }
 
   renderGameResult(winners) {
-    const winnersTag = document.querySelector(
-      `${SELECTOR.GAME_RESULT.CONTAINER} > h2`
-    );
+    const winnersTag = document.querySelector(SELECTOR.GAME_RESULT.WINNERS);
 
     winnersTag.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
     this.show(SELECTOR.GAME_RESULT.CONTAINER);
