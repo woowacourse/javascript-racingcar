@@ -12,7 +12,6 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input").value;
-
     return $carInput.replace(/ /g, "").split(",");
   }
 
