@@ -7,12 +7,10 @@ class Model {
 		return nameInputValue.split(",");
 	}
 
-	makeCarNames(nameInputValue) {
+	setCarNames(nameInputValue) {
 		const carNames = this.generateCarNameArray(nameInputValue);
-
-		for (let i = 0; i < carNames.length; i++) {
-			this.cars.push(carNames[i]);
-		}
+		carNames.forEach((carName) => this.cars.push(carName));
+		console.log({ cars: this.cars });
 	}
 }
 
