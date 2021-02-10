@@ -1,4 +1,4 @@
-describe("ui-input-click-show", () => {
+describe("ui-play", () => {
   before(() => {
     cy.visit("http://localhost:5500/");
   });
@@ -128,5 +128,3 @@ describe("ui-input-vaild-check", () => {
     );
   });
 });
-
-// TDD 방식으로 random 함수 테스트하기
