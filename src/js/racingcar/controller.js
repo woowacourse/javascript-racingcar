@@ -27,7 +27,6 @@ class RacingCarController {
   getWinners() {
     const cars = this.model.getCars();
     const maxForward = Math.max(...cars.map(car => car.forward));
-
     const winner = [];
     cars.forEach(car => {
       car.forward === maxForward && winner.push(car.name);
@@ -39,10 +38,11 @@ class RacingCarController {
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
     const randomNumber = generateRandomNumber(RANDOM.MIN_NUM, RANDOM.MAX_NUM);
-    const move =
-      randomNumber >= GAME.FORWARD_STANDARD_NUM ? GAME.GO_NUM : GAME.STOP_NUM;
+    if (randomNumber >= GAME.FORWARD_STANDARD_NUM) {
+      return GAME.GO_NUM;
+    }
 
-    return move;
+    return GAME.STOP_NUM;
   }
 
   play(cars) {
@@ -67,7 +67,6 @@ class RacingCarController {
       const cars = carNames.map(carName => {
         return { name: carName, forward: INIT.FORWARD };
       });
-
       this.model.setCars(cars);
       this.view.renderCount();
       this.handleCount();
