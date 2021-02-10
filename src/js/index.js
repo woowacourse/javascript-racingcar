@@ -1,49 +1,49 @@
 import Car from './models/Car.js';
-import { returnAlert } from './utils.js';
-import { ALERT, CLASS } from './constants.js';
+import RacingUI from './racingUI.js';
+import { CLASS } from './constants.js';
+import {
+  isCarNameFilled,
+  isCarNameUnderFive,
+  isValidTryCount,
+} from './validation.js';
+
 export default class Racing {
   constructor() {
-    this.reset();
+    this.UIController = new RacingUI();
+
+    this.resetValues();
+    this.UIController.hideUI();
     this.addListeners();
   }
 
-  reset() {
+  resetValues() {
     this.cars = [];
     this.tryCount = 0;
-
-    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'none';
-    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = 'none';
-    document.querySelector(CLASS.RESULT_CONTAINER).style.display = 'none';
   }
 
   getCarNames() {
     const carNameInput = document.querySelector(CLASS.CAR_NAME).value;
-    if (!carNameInput) {
-      returnAlert(ALERT.CAR_NAME_EMPTY);
-    }
+
+    if (!isCarNameFilled(carNameInput)) return;
+
     for (let name of carNameInput.split(',')) {
-      if (name.trim().length > 5) {
-        returnAlert(ALERT.CAR_NAME_OVER_FIVE);
-      }
+      if (!isCarNameUnderFive(name.trim().length)) return;
       const car = new Car(name.trim());
       this.cars.push(car);
     }
 
-    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'block';
+    this.UIController.showElement(CLASS.TRY_COUNT_FORM);
   }
 
   getTryCount() {
     const tryCountInput = document.querySelector(CLASS.TRY_COUNT).value;
     const tryCountNumber = Number(tryCountInput);
-    if (!tryCountInput) {
-      returnAlert(ALERT.TRY_COUNT_EMPTY);
-    } else if (tryCountNumber <= 0) {
-      returnAlert(ALERT.TRY_COUNT_NEG);
-    } else if (tryCountNumber !== Math.floor(tryCountNumber)) {
-      returnAlert(ALERT.TRY_COUNT_NOT_INT);
-    }
+
+    if (!isValidTryCount(tryCountInput, tryCountNumber)) return;
+
     this.tryCount = tryCountNumber;
     this.moveCars();
+    this.getWinners();
   }
 
   moveCars() {
@@ -52,42 +52,7 @@ export default class Racing {
         car.move();
       }
     }
-    this.showProgress();
-  }
-
-  showProgress() {
-    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = '';
-
-    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = this.cars
-      .map(
-        car => `
-        <div>
-          <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
-        </div>
-      `,
-      )
-      .join('');
-
-    this.showWinners();
-  }
-
-  showWinners() {
-    document.querySelector(CLASS.RESULT_CONTAINER).style.display = '';
-
-    const winners = this.getWinners();
-    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = `
-      <section>
-        <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
-        <div class="d-flex justify-center">
-          <button type="button" class="btn btn-cyan restart-btn">다시 시작하기</button>
-        </div>
-      </section>
-    `;
-
-    document
-      .querySelector(CLASS.RESTART_BTN)
-      .addEventListener('click', this.restartGame.bind(this));
+    this.UIController.showProgress(this.cars);
   }
 
   getWinners() {
@@ -102,16 +67,16 @@ export default class Racing {
       return winners;
     }, []);
 
-    return winners;
+    this.UIController.showWinners(winners);
+    document
+      .querySelector(CLASS.RESTART_BTN)
+      .addEventListener('click', this.restartGame.bind(this));
   }
 
   restartGame() {
-    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = '';
-    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = '';
-    document.querySelector(CLASS.CAR_NAME).value = '';
-    document.querySelector(CLASS.TRY_COUNT).value = '';
-
-    this.reset();
+    this.UIController.clearUI();
+    this.UIController.hideUI();
+    this.resetValues();
   }
 
   addListeners() {

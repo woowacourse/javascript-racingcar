@@ -21,13 +21,9 @@ describe('자동차 경주', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    cy.get(className)
-      .invoke('val')
-      .then(() => {
-        expect(alertStub.getCall(0)).to.be.calledWith(
-          alertMessage,
-        );
-      });
+    cy.get(className).invoke('val').then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(alertMessage);
+    });
   }
 
   function resetUI() {
@@ -62,14 +58,9 @@ describe('자동차 경주', () => {
     typeTryCountAndClick();
 
     cy.get('.progress-container').should('be.visible');
-    cy.get('.car-name')
-      .invoke('val')
-      .then(carNameInput => {
-        cy.get('.car-player').should(
-          'have.length',
-          carNameInput.split(',').length,
-        );
-      });
+    cy.get('.car-name').invoke('val').then(carNameInput => {
+        cy.get('.car-player').should('have.length', carNameInput.split(',').length);
+    });
   });
 
   it('시도 횟수에 빈 문자열을 입력하면 안 된다.', () => {
@@ -109,11 +100,7 @@ describe('자동차 경주', () => {
       });
       
       const winnerResult = winners.join(', ');
-      
-      cy.get('.result-container')
-        .find('section')
-        .find('h2')
-        .contains(winnerResult);
+      cy.get('.result-container').find('section').find('h2').contains(winnerResult);
     });
   });
 
