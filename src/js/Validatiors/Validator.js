@@ -1,6 +1,6 @@
 import CarNameValidator from './CarNameValidator.js';
 import TryCountValidator from './TryCountValidator.js';
-import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from '../constants.js';
+import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from '../Utils/constants.js';
 
 export default class Validator {
   checkCarNamesValidation(carNames) {

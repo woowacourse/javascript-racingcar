@@ -13,4 +13,4 @@ export const TRY_COUNT_ERROR_MESSAGE = {
 export const NUMBERS = {
   RANDOM_RANGE: 9,
   RUN_POINT: 4,
-}
+};

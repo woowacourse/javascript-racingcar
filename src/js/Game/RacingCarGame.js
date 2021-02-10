@@ -1,4 +1,4 @@
-import { NUMBERS } from './constants.js';
+import { NUMBERS } from '../Utils/constants.js';
 
 export default class RacingCarGame {
   constructor(cars, tryCount) {
