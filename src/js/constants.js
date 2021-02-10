@@ -42,4 +42,7 @@ export const MESSAGE = {
   },
 };
 
-export const RANDOM_NUMBER_RANGE = { MIN: 0, MAX: 9 };
+export const RANDOM_NUMBER = {
+  RANGE: { MIN: 0, MAX: 9 },
+  MOVING_POINT: 4,
+};

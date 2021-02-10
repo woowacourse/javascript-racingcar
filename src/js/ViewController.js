@@ -4,6 +4,12 @@ import { SELECTOR } from "./constants.js";
 export default class ViewController {
   constructor() {
     this.carViews = [];
+    this.gameResultWinners = document.querySelector(
+      SELECTOR.GAME_RESULT.WINNERS
+    );
+    this.gameProgressContainer = document.querySelector(
+      SELECTOR.GAME_PROGRESS.CONTAINER
+    );
   }
 
   renderCarNameTag(carNames) {
@@ -20,9 +26,9 @@ export default class ViewController {
   }
 
   renderGameResult(winners) {
-    const winnersTag = document.querySelector(SELECTOR.GAME_RESULT.WINNERS);
-
-    winnersTag.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
+    this.gameResultWinners.innerText = `🏆 최종 우승자: ${winners.join(
+      ", "
+    )} 🏆`;
     this.show(SELECTOR.GAME_RESULT.CONTAINER);
   }
 
@@ -36,8 +42,8 @@ export default class ViewController {
 
   clear() {
     this.carViews = [];
-    document.querySelector(SELECTOR.GAME_PROGRESS.CONTAINER).innerHTML = "";
-    document.querySelector(SELECTOR.GAME_RESULT.WINNERS).innerText = "";
+    this.gameResultWinners.innerText = "";
+    this.gameProgressContainer.innerHTML = "";
 
     this.hide(SELECTOR.LAP_COUNT.CONTAINER);
     this.hide(SELECTOR.GAME_RESULT.CONTAINER);
