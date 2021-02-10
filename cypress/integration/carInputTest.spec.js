@@ -20,6 +20,7 @@ describe("자동차 이름 검증 테스트", () => {
   it("자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.", () => {
     inputTest("123,12", true);
     inputTest("123123213,1", false);
+    inputTest("EAST, WEST, SOUTH, NORTH", true);
   });
 
   it("자동차 이름은 최소 1자 이상이어야 한다.", () => {

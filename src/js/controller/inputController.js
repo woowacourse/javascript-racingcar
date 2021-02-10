@@ -1,5 +1,9 @@
 import { app } from "../index.js";
-import { displayCountView, toggleCarNameInputDisable, toggleCountInputDisable } from "../view/inputView.js";
+import {
+  displayCountView,
+  toggleCarNameInputDisable,
+  toggleCountInputDisable,
+} from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
 import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
@@ -18,10 +22,15 @@ const isValidCount = function (value) {
   return Number(value) >= 1;
 };
 
-export const handleCarNamesSubmit = function () {
-  const carNamesInput = document
+const getCarNamesInput = function () {
+  return document
     .querySelector("#car-names-input")
-    .value.split(",");
+    .value.split(",")
+    .map((e) => e.trim());
+};
+
+export const handleCarNamesSubmit = function () {
+  const carNamesInput = getCarNamesInput();
 
   if (!isValidCarNames(carNamesInput)) {
     alert("유효한 자동차이름이 아닙니다.");
@@ -33,7 +42,7 @@ export const handleCarNamesSubmit = function () {
 };
 
 export const handleCountSubmit = function () {
-  const carNames = document.querySelector("#car-names-input").value.split(",");
+  const carNamesInput = getCarNamesInput();
   const countInput = document.querySelector("#count-input").value;
 
   if (!isValidCount(countInput)) {
@@ -41,7 +50,7 @@ export const handleCountSubmit = function () {
     return;
   }
   toggleCountInputDisable();
-  app.generateCars(carNames);
+  app.generateCars(carNamesInput);
   displayRacingCars(app.cars);
   startRacingGame(countInput);
 };
