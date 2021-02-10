@@ -2,7 +2,6 @@ import { $ } from '../util-view/querySelector.js';
 import { setVisibility } from '../util-view/setVisibility.js';
 import { validateRacingCount } from '../util-model/validateRacingCount.js';
 import { handleGameResult } from './handleGameResult.js';
-import { resetForwardCount } from '../util-model/resetCars.js';
 
 export const handleRacingCountInput = (cars) => {
   const $racingCountInput = $('#racing-count-input');
@@ -15,6 +14,6 @@ export const handleRacingCountInput = (cars) => {
     return;
   }
   setVisibility($('#game-process-section'), true);
-  resetForwardCount(cars);
+  cars.forEach((car) => car.resetForwardCount());
   handleGameResult(cars, racingCount);
 };

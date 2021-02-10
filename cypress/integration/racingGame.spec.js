@@ -1,7 +1,4 @@
-import {
-  isEffectiveScore,
-  getRandomNumber,
-} from '../../src/js/util-model/isEffectiveScore.js';
+import { getRandomNumber } from '../../src/js/util-model/getRandomNumber.js';
 import { getWinners } from '../../src/js/util-model/getWinners.js';
 import { Car } from '../../src/js/class/Car.js';
 
@@ -120,8 +117,9 @@ describe('racing-game', () => {
   });
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
-    expect(isEffectiveScore(3)).to.equal(false);
-    expect(isEffectiveScore(4)).to.equal(true);
+    const car = new Car();
+    expect(car.isMovingForward(3)).to.equal(false);
+    expect(car.isMovingForward(4)).to.equal(true);
   });
 
   it('우승자를 결정하는 함수는 forwardCount가 가장 큰 Car들의 이름을 ","로 이어 반환한다.', () => {

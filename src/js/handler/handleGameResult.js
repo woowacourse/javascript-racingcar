@@ -1,14 +1,13 @@
 import { $, $$ } from '../util-view/querySelector.js';
 import { setVisibility } from '../util-view/setVisibility.js';
 import { setToInitialView } from '../util-view/setToInitialView.js';
-import { isEffectiveScore } from '../util-model/isEffectiveScore.js';
 import { getWinners } from '../util-model/getWinners.js';
 
 export const handleGameResult = (cars, racingCount) => {
   clearResidueArrow();
   for (let i = 0; i < racingCount; i++) {
     cars.forEach((car, index) => {
-      if (isEffectiveScore()) {
+      if (car.isMovingForward()) {
         car.forwardCount += 1;
         insertArrowHTML(index);
       }
