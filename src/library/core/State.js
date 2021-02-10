@@ -1,9 +1,9 @@
 export default class State {
-  _value;
+  #_value;
   #handlers;
 
   constructor(initialValue) {
-    this._value = initialValue;
+    this.#_value = initialValue;
     this.#handlers = new Set();
   }
 
@@ -14,14 +14,14 @@ export default class State {
   };
 
   get value() {
-    return this._value;
+    return this.#_value;
   }
 
   set value(newValue) {
-    if (this._value === newValue) {
+    if (this.#_value === newValue) {
       return;
     }
-    this._value = newValue;
+    this.#_value = newValue;
     this.#notify();
   }
 
