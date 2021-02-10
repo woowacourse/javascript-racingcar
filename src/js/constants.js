@@ -4,3 +4,8 @@ export const CAR_NAME_ERROR_MESSAGE = {
   INCLUDE_BLANK: '자동차 이름은 공백을 포함할 수 없습니다.',
   INCOMPLETE_WORD: '완전한 글자로 입력해주세요.',
 };
+
+export const TRY_COUNT_ERROR_MESSAGE = {
+  NOT_INTEGER: '시도 횟수는 정수로 입력해주세요.',
+  NOT_POSITIVE: '시도 횟수는 1이상의 정수로 입력해주세요.',
+}

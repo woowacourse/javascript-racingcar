@@ -1,7 +1,8 @@
 import CarGameView from './CarGameView.js';
 import Car from './Car.js';
 import CarNameValidator from './CarNameValidator.js';
-import { CAR_NAME_ERROR_MESSAGE } from './constants.js';
+import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from './constants.js';
+import TryCountValidator from './TryCountValidator.js';
 
 export default class CarGameManager {
   constructor($element) {
@@ -60,6 +61,19 @@ export default class CarGameManager {
     return true;
   }
 
+  validateTryCount(tryCount) {
+    const tryCountValidator = new TryCountValidator(tryCount);
+
+    const checkTryCount = {
+      integerCheck: () => (tryCountValidator.isNotInteger()
+        ? alert(TRY_COUNT_ERROR_MESSAGE.NOT_INTEGER) : true),
+      positiveCheck: () => (tryCountValidator.isNotPositiveNumber()
+        ? alert(TRY_COUNT_ERROR_MESSAGE.NOT_POSITIVE) : true),
+    };
+
+    return Object.keys(checkTryCount).every((checker) => checkTryCount[checker]());
+  }
+
   carNamesInputHandler() {
     this.carNames = document.querySelector('#input-car-names > div > input').value.split(',');
     if (!this.validateCarNames()) {
@@ -71,6 +85,10 @@ export default class CarGameManager {
 
   tryCountInputHandler() {
     const tryCount = Number(document.querySelector('#input-try-count > div > input').value);
+    if (!this.validateTryCount(tryCount)) {
+      document.querySelector('#input-try-count > div > input').value = '';
+      return;
+    }
     this.playGame(tryCount);
     this.carGameView.showView(document.querySelector('#display-game-progress'));
     this.carGameView.showView(document.querySelector('#display-game-result'));
