@@ -1,3 +1,5 @@
+import { NUMBER } from '../constants.js';
+
 export default class Car {
   constructor(name) {
     this.name = name;
@@ -5,8 +7,8 @@ export default class Car {
   }
 
   move() {
-    const randNumber = Math.random() * 10;
-    if (randNumber >= 4) {
+    const randNumber = Math.random() * NUMBER.RANDOM_RANGE;
+    if (randNumber >= NUMBER.FORWARDING_THRESHOLD) {
       this.position++;
     }
   }

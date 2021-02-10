@@ -1,32 +1,40 @@
-import { ALERT } from './constants.js';
+import { ALERT, NUMBER } from './constants.js';
 
-export const isValidTryCount = (input, number) => {
-  let isValid = true;
+export const isTryCountNotValid = (input, number) => {
+  let isNotValid = false;
   if (!input) {
-    isValid = returnAlert(ALERT.TRY_COUNT_EMPTY);
+    isNotValid = returnAlert(ALERT.TRY_COUNT_EMPTY);
   } else if (number <= 0) {
-    isValid = returnAlert(ALERT.TRY_COUNT_NEG);
+    isNotValid = returnAlert(ALERT.TRY_COUNT_NEGATIVE);
   } else if (number !== Math.floor(number)) {
-    isValid = returnAlert(ALERT.TRY_COUNT_NOT_INT);
+    isNotValid = returnAlert(ALERT.TRY_COUNT_NOT_INT);
   }
-  return isValid;
+  return isNotValid;
 }
 
-export const isCarNameFilled = input => {
+export const isCarNameEmpty = input => {
   if (!input) {
     return returnAlert(ALERT.CAR_NAME_EMPTY);
   }
-  return true;
+  return false;
 }
 
-export const isCarNameUnderFive = nameLength => {
-  if (nameLength > 5) {
+export const isCarNameOverFive = nameLength => {
+  if (nameLength > NUMBER.MAX_NAME_LENGTH) {
     return returnAlert(ALERT.CAR_NAME_OVER_FIVE);
   }
-  return true;
+  return false;
+}
+
+export const isCarNamesDuplicate = input => {
+  const carNameArr = input.split(',').map(name => name.trim());
+  if (carNameArr.some((name, idx) => carNameArr.indexOf(name) !== idx)) {
+    return returnAlert(ALERT.CAR_NAMES_DUPLICATE);
+  }
+  return false;
 }
 
 const returnAlert = alertMessage => {
   alert(alertMessage);
-  return false;
+  return true;
 }

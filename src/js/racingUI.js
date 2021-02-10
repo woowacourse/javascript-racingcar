@@ -1,21 +1,25 @@
-import { CLASS } from './constants.js';
+import { CLASS, STRING } from './constants.js';
 
 export default class RacingUI {
   hideUI() {
-    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'none';
-    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = 'none';
-    document.querySelector(CLASS.RESULT_CONTAINER).style.display = 'none';
+    document.querySelector(CLASS.TRY_COUNT_FORM).classList.add(CLASS.HIDE);
+    document.querySelector(CLASS.PROGRESS_CONTAINER).classList.add(CLASS.HIDE);
+    document.querySelector(CLASS.RESULT_CONTAINER).classList.add(CLASS.HIDE);
   }
 
   clearUI() {
     document.querySelector(CLASS.PROGRESS_CARS).innerHTML = '';
     document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = '';
-    document.querySelector(CLASS.CAR_NAME).value = '';
-    document.querySelector(CLASS.TRY_COUNT).value = '';
+    document.querySelector(CLASS.CAR_NAME_INPUT).value = '';
+    document.querySelector(CLASS.TRY_COUNT_INPUT).value = '';
+  }
+
+  focusElement(className) {
+    document.querySelector(className).focus();
   }
 
   showElement(className) {
-    document.querySelector(className).style.display = '';
+    document.querySelector(className).classList.remove(CLASS.HIDE);
   }
 
   showProgress(cars) {
@@ -25,7 +29,7 @@ export default class RacingUI {
       .map(car => `
         <div>
           <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
+          ${`<div class="forward-icon mt-2">${STRING.ARROW}</div>`.repeat(car.position)}
         </div>
       `,)
       .join('');
@@ -36,9 +40,9 @@ export default class RacingUI {
 
     document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = `
       <section>
-        <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
+        <h2>🏆 ${STRING.FINAL_WINNER}: ${winners.join(', ')} 🏆</h2>
         <div class="d-flex justify-center">
-        <button type="button" class="btn btn-cyan restart-btn">다시 시작하기</button>
+        <button type="button" class="btn btn-cyan restart-btn">${STRING.RESTART}</button>
         </div>
       </section>
     `;

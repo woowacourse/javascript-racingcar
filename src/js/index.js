@@ -2,9 +2,10 @@ import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
 import { CLASS } from './constants.js';
 import { 
-  isCarNameFilled, 
-  isCarNameUnderFive, 
-  isValidTryCount 
+  isCarNameEmpty, 
+  isCarNamesDuplicate,
+  isCarNameOverFive, 
+  isTryCountNotValid 
 } from './validation.js';
 export default class Racing {
   constructor() {
@@ -21,24 +22,27 @@ export default class Racing {
   }
 
   getCarNames() {
-    const carNameInput = document.querySelector(CLASS.CAR_NAME).value;
+    const carNameInput = document.querySelector(CLASS.CAR_NAME_INPUT).value;
 
-    if(!isCarNameFilled(carNameInput)) return;
+    if (isCarNameEmpty(carNameInput)) return;
+    if (isCarNamesDuplicate(carNameInput)) return;
 
     for (let name of carNameInput.split(',')) {
-      if(!isCarNameUnderFive(name.trim().length)) return;
+      if (isCarNameOverFive(name.trim().length)) return;
+
       const car = new Car(name.trim());
       this.cars.push(car);
     }
 
     this.UIController.showElement(CLASS.TRY_COUNT_FORM);
+    this.UIController.focusElement(CLASS.TRY_COUNT_INPUT);
   }
 
   getTryCount() {
-    const tryCountInput = document.querySelector(CLASS.TRY_COUNT).value;
+    const tryCountInput = document.querySelector(CLASS.TRY_COUNT_INPUT).value;
     const tryCountNumber = Number(tryCountInput);
 
-    if(!isValidTryCount(tryCountInput, tryCountNumber)) return;
+    if (isTryCountNotValid(tryCountInput, tryCountNumber)) return;
 
     this.tryCount = tryCountNumber;
     this.moveCars();
@@ -51,6 +55,7 @@ export default class Racing {
         car.move();
       }
     }
+
     this.UIController.showProgress(this.cars);
   }
 
@@ -78,7 +83,17 @@ export default class Racing {
 
   addListeners() {
     document.querySelector(CLASS.CAR_NAME_BTN).addEventListener('click', this.getCarNames.bind(this));
+    document.querySelector(CLASS.CAR_NAME_INPUT).addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        this.getCarNames.bind(this)();
+      }
+    });
     document.querySelector(CLASS.TRY_COUNT_BTN).addEventListener('click', this.getTryCount.bind(this));
+    document.querySelector(CLASS.TRY_COUNT_INPUT).addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        this.getTryCount.bind(this)();
+      }
+    });
   }
 }
 
