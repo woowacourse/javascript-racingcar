@@ -11,16 +11,15 @@ import { racingCarGameModel } from '../store.js';
 
 export default class RacingCarGameValidation {
   static isCarNameValid(carName) {
-    let isValid = true;
     if (carName.length > MAX_CAR_NAME_LENGTH) {
       alert(MAX_CAR_NAME_EXCEEDED);
-      isValid = false;
+      return false;
     } else if (carName.length === 0) {
       alert(CAR_NAME_EMPTY);
-      isValid = false;
+      return false;
     }
 
-    return isValid;
+    return true;
   }
 
   static isInteger(number) {
@@ -28,17 +27,16 @@ export default class RacingCarGameValidation {
   }
 
   static isTryCountValid(tryCount) {
-    let isValid = true;
     if (!RacingCarGameValidation.isInteger(tryCount)) {
       alert(SHOULD_BE_INTEGER);
-      isValid = false;
+      return false;
     }
     if (tryCount <= 0) {
       alert(SHOULD_GREATER_THAN_ZERO);
-      isValid = false;
+      return false;
     }
 
-    return isValid
+    return true;
   }
 
   static isCarListEmpty() {
