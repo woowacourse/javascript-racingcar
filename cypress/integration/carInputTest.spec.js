@@ -1,17 +1,20 @@
 describe("자동차 이름 검증 테스트", () => {
-  before(() => {
-    cy.visit("http://localhost:5500/index.html");
-  });
 
   const inputTest = function (value, shouldBeVisible) {
+    cy.visit("http://localhost:5500/index.html");
     cy.get("#count-container").invoke("attr", "style", "display: none");
     cy.get("#car-names-input").clear();
 
     cy.get("#car-names-input").type(value);
     cy.get("#car-names-submit").click();
-    cy.get("#count-container").should(
-      shouldBeVisible ? "to.be.visible" : "not.to.be.visible"
-    );
+
+    if(shouldBeVisible){
+      cy.get("#count-container").should("to.be.visible");  
+      cy.get("#car-names-input").should('have.attr', 'disabled');
+      cy.get("#car-names-submit").should('have.attr', 'disabled');
+    }else{
+      cy.get("#count-container").should("not.to.be.visible");  
+    }
   };
 
   it("자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.", () => {

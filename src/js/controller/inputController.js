@@ -1,5 +1,5 @@
 import { app } from "../index.js";
-import { displayCountView } from "../view/inputView.js";
+import { displayCountView, toggleCarNameInputDisable, toggleCountInputDisable } from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
 import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
@@ -27,6 +27,7 @@ export const handleCarNamesSubmit = function () {
     alert("유효한 자동차이름이 아닙니다.");
     return;
   }
+  toggleCarNameInputDisable();
 
   displayCountView();
 };
@@ -39,7 +40,7 @@ export const handleCountSubmit = function () {
     alert("시도할 횟수는 1이상이어야 합니다.");
     return;
   }
-
+  toggleCountInputDisable();
   app.generateCars(carNames);
   displayRacingCars(app.cars);
   startRacingGame(countInput);

@@ -1,24 +1,19 @@
 describe("시도 횟수 입력 테스트", () => {
-    before(() => {
+    const countInputTest = function (count, shouldBeVisible) {
         cy.visit("http://localhost:5500/index.html");
-    });
-
-    const initialize = function () {
-        cy.get("#car-names-input").clear();
-        cy.get("#count-input").clear();
-        cy.get("#count-container").invoke("attr", "style", "display: none");
-        cy.get("#racing-container").invoke("attr", "style", "display: none");
-    };
-    const countInputTest = function (count, result) {
         cy.get("#car-names-input").type("a,b,c,d,e");
         cy.get("#car-names-submit").click();
         cy.get("#count-input").type(count);
         cy.get("#count-submit").click();
 
-        cy.get("#racing-container").should(
-            result ? "to.be.visible" : "not.to.be.visible"
-        );
-        initialize(); // count-input을 찾을 수 있게하기 위해 함수 마지막에 위치시킴.
+        if(shouldBeVisible){
+            cy.get("#racing-container").should("to.be.visible");    
+            cy.get("#count-input").should('have.attr', 'disabled');
+            cy.get("#count-submit").should('have.attr', 'disabled');
+
+        }else{
+            cy.get("#racing-container").should("not.to.be.visible");    
+        }
     };
 
     it("시도횟수는 1이상이어야 한다.", () => {
