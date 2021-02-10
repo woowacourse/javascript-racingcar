@@ -1,14 +1,13 @@
 import CarGameView from './CarGameView.js';
 import Car from './Car.js';
-import CarNameValidator from './CarNameValidator.js';
-import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from './constants.js';
-import TryCountValidator from './TryCountValidator.js';
 import RacingCarGame from './RacingCarGame.js';
+import Validator from './Validatiors/Validator.js';
 
 export default class CarGameManager {
   constructor($element) {
     this.$element = $element;
     this.carGameView = new CarGameView($element);
+    this.validator = new Validator();
     this.initGame();
     this.bindEvents();
   }
@@ -43,40 +42,12 @@ export default class CarGameManager {
     });
   }
 
-  validateCarNames() {
-    this.carNames = this.carNames.map((name) => name.trim());
-    const carNameValidator = new CarNameValidator();
-
-    const checkNameValue = {
-      lengthCheck: () => (carNameValidator.isNotValidLength(this.carNames)
-        ? alert(CAR_NAME_ERROR_MESSAGE.INVALID_LENGTH) : true),
-      blankCheck: () => (carNameValidator.isIncludingBlank(this.carNames)
-        ? alert(CAR_NAME_ERROR_MESSAGE.INCLUDE_BLANK) : true),
-      duplicateCheck: () => (carNameValidator.isDuplicated(this.carNames)
-        ? alert(CAR_NAME_ERROR_MESSAGE.DUPLICATED) : true),
-      incompleteWordCheck: () => (carNameValidator.isInCompleteWord(this.carNames)
-        ? alert(CAR_NAME_ERROR_MESSAGE.INCOMPLETE_WORD) : true),
-    };
-
-    return Object.keys(checkNameValue).every((checker) => checkNameValue[checker]());
-  }
-
-  validateTryCount(tryCount) {
-    const tryCountValidator = new TryCountValidator(tryCount);
-
-    const checkTryCount = {
-      integerCheck: () => (tryCountValidator.isNotInteger()
-        ? alert(TRY_COUNT_ERROR_MESSAGE.NOT_INTEGER) : true),
-      positiveCheck: () => (tryCountValidator.isNotPositiveNumber()
-        ? alert(TRY_COUNT_ERROR_MESSAGE.NOT_POSITIVE) : true),
-    };
-
-    return Object.keys(checkTryCount).every((checker) => checkTryCount[checker]());
-  }
-
   carNamesInputHandler() {
-    this.carNames = this.$element.querySelector('#input-car-names > div > input').value.split(',');
-    if (!this.validateCarNames()) {
+    this.carNames = this.$element.querySelector('#input-car-names > div > input').value
+      .split(',')
+      .map((name) => name.trim());
+
+    if (!this.validator.validateCarNames(this.carNames)) {
       return this.initGame();
     }
     this.carGameView.showView(this.$element.querySelector('#input-try-count'));
@@ -84,7 +55,7 @@ export default class CarGameManager {
 
   tryCountInputHandler() {
     const tryCount = Number(this.$element.querySelector('#input-try-count > div > input').value);
-    if (!this.validateTryCount(tryCount)) {
+    if (!this.validator.validateTryCount(tryCount)) {
       this.carGameView.resetInput(this.$element.querySelector('#input-try-count > div'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-progress'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-result'));
