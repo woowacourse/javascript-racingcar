@@ -1,12 +1,20 @@
-import { handleCarNameInput } from './input/handleCarNameInput.js';
-import { handleRacingCountInput } from './input/handleRacingCountInput.js';
+import { $ } from './util-view/querySelector.js';
+import { setToInitialView } from './util-view/setToInitialView.js';
+import { handleCarNameInput } from './handler/handleCarNameInput.js';
 
-export default function RacingGame() {
-  const $carNameSubmit = document.querySelector('#car-name-submit');
-  const $racingCountSubmit = document.querySelector('#racing-count-submit');
+export default class RacingGame {
+  constructor() {
+    this.cars = [];
+  }
 
-  $carNameSubmit.addEventListener('click', handleCarNameInput);
-  $racingCountSubmit.addEventListener('click', handleRacingCountInput);
+  init() {
+    setToInitialView();
+    $('#car-name-submit').addEventListener('click', () =>
+      handleCarNameInput(this.cars),
+    );
+  }
 }
 
-RacingGame();
+window.onload = () => {
+  new RacingGame().init();
+};
