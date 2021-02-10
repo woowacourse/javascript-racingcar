@@ -36,6 +36,7 @@ export default class InputValidator {
     const isValid = names.every(
       name => name.length >= MIN_NAME_LENGTH && name.length <= MAX_NAME_LENGTH
     );
+
     if (!isValid) {
       throw new Error(ALERT_VALID_LENGTH);
     }
@@ -46,6 +47,7 @@ export default class InputValidator {
   checkValidLetter(names) {
     const rExeption = /[^0-9a-z가-힣]/i;
     const isValid = names.every(name => !rExeption.test(name));
+
     if (!isValid) {
       throw new Error(ALERT_VALID_LETTER);
     }
@@ -55,6 +57,7 @@ export default class InputValidator {
 
   checkOverlap(names) {
     const hash = {};
+
     for (const name of names) {
       if (hash.hasOwnProperty(name)) {
         throw new Error(ALERT_OVERLAP);

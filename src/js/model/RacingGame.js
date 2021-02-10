@@ -30,6 +30,7 @@ export default class RacingGame {
   getWinners() {
     const winners = [];
     const maxDistance = this.getMaxDistance();
+
     this.cars.forEach(car => {
       car.position === maxDistance && winners.push(car.name);
     });
@@ -38,11 +39,8 @@ export default class RacingGame {
   }
 
   getMaxDistance() {
-    let maxDistance = 0;
-    this.cars.forEach(car => {
-      maxDistance = Math.max(maxDistance, car.position);
-    });
-
-    return maxDistance;
+    return this.cars.reduce((maxDistance, { position }) => {
+      return Math.max(maxDistance, position);
+    }, 0);
   }
 }

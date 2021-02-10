@@ -5,9 +5,6 @@ import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
   constructor() {
-    this.names;
-    this.count;
-    this.isEnd;
     this.view = new RacingGameView();
     this.initGame();
   }
@@ -17,36 +14,46 @@ export default class RacingGameController {
     this.count = 0;
     this.isEnd = false;
     this.view.renderInitialView();
-    this.setEvent('click', '.car-name-btn', this.handleNameInput);
+    this.setEvent('click', '.car-name-btn', this.handleNameInput.bind(this));
   }
 
   setEvent(type, targetName, eventHandler) {
     const $target = document.querySelector(targetName);
-    $target.addEventListener(type, eventHandler.bind(this));
+
+    $target.addEventListener(type, eventHandler);
   }
 
   handleNameInput() {
+    const $input = document.querySelector('.car-name-input');
+
     if (this.isEnd) {
       alert(ALERT_RESTART);
 
       return;
     }
-    this.setNames();
-    if (this.names.length > 0) {
+    if (this.checkNames($input)) {
+      this.setNames($input);
       this.view.renderCountInput();
-      this.setEvent('click', '.count-btn', this.handleCountInput);
+      this.setEvent('click', '.count-btn', this.handleCountInput.bind(this));
     }
   }
 
-  setNames() {
-    const $input = document.querySelector('.car-name-input');
+  checkNames($input) {
     const validator = new InputValidator();
+
     try {
       validator.checkNameInput($input.value);
-      this.names = $input.value.split(',');
+
+      return true;
     } catch (error) {
       this.handleInputException($input, error.message);
+
+      return false;
     }
+  }
+
+  setNames($input) {
+    this.names = $input.value.split(',');
   }
 
   handleInputException($input, alertMessage) {
@@ -55,31 +62,43 @@ export default class RacingGameController {
   }
 
   handleCountInput() {
+    const $input = document.querySelector('.count-input');
+
     if (this.isEnd) {
       alert(ALERT_RESTART);
 
       return;
     }
-    this.setCount();
-    this.count > 0 && this.runGame();
+    if (this.checkCount($input)) {
+      this.setCount($input);
+      this.runGame();
+    }
   }
 
-  setCount() {
-    const $input = document.querySelector('.count-input');
+  checkCount($input) {
     const validator = new InputValidator();
+
     try {
       validator.checkCountInput(Number($input.value));
-      this.count = Number($input.value);
+
+      return true;
     } catch (error) {
       this.handleInputException($input, error.message);
+
+      return false;
     }
+  }
+
+  setCount($input) {
+    this.count = Number($input.value);
   }
 
   runGame() {
     const game = new RacingGame(this.names, this.count);
+
     this.isEnd = true;
     this.view.renderProgressBar(game.cars);
     this.view.renderResult(game.getWinners());
-    this.setEvent('click', '.reset-btn', this.initGame);
+    this.setEvent('click', '.reset-btn', this.initGame.bind(this));
   }
 }
