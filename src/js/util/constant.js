@@ -1,3 +1,5 @@
+export const CAR_NAME_SEPARATOR = ',';
+export const WINNER_SEPARATOR = ', ';
 export const CAR_NAME_MAX_LENGTH = 5;
 export const MIN_NUMBER = 0;
 export const MAX_NUMBER = 9;

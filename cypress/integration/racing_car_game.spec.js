@@ -1,3 +1,5 @@
+import { WINNER_SEPARATOR } from '../../src/js/util/constant.js';
+
 describe('Racing Car 게임', () => {
   before(() => {
     cy.visit('http://localhost:5500/');
@@ -39,7 +41,7 @@ describe('Racing Car 게임', () => {
 
       cy.get('.racing-winner-container')
         .find('h2')
-        .should('have.text', `🏆 최종 우승자: ${winners.join(', ')} 🏆`);
+        .should('have.text', `🏆 최종 우승자: ${winners.join(WINNER_SEPARATOR)} 🏆`);
     });
   });
 

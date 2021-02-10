@@ -1,3 +1,5 @@
+import { WINNER_SEPARATOR } from '../util/constant.js';
+
 export default class RacingWinner {
   constructor({ $parent, resetRacingGame }) {
     this.$parent = $parent;
@@ -9,30 +11,20 @@ export default class RacingWinner {
   }
 
   init() {
-    const $container = document.createElement("div");
-    const containerClassList = [
-      "d-flex",
-      "justify-center",
-      "mt-5",
-      "racing-winner-container",
-    ];
-    containerClassList.forEach((className) =>
-      $container.classList.add(className),
-    );
+    const $container = document.createElement('div');
+    const containerClassList = ['d-flex', 'justify-center', 'mt-5', 'racing-winner-container'];
+    containerClassList.forEach((className) => $container.classList.add(className));
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
   }
 
   bindEvents() {
-    this.$container.addEventListener(
-      "click",
-      this.handleClickRestart.bind(this),
-    );
+    this.$container.addEventListener('click', this.handleClickRestart.bind(this));
   }
 
   handleClickRestart({ target }) {
-    if (!target.classList.contains("btn-restart")) {
+    if (!target.classList.contains('btn-restart')) {
       return;
     }
 
@@ -43,7 +35,7 @@ export default class RacingWinner {
   createWinnerHTML() {
     return `
     <section>
-      <h2>🏆 최종 우승자: ${this.winners.join(", ")} 🏆</h2>
+      <h2>🏆 최종 우승자: ${this.winners.join(WINNER_SEPARATOR)} 🏆</h2>
       <div class="d-flex justify-center">
         <button type="button" data-test="restart-button" class="btn btn-cyan btn-restart">다시 시작하기</button>
       </div>
@@ -57,8 +49,6 @@ export default class RacingWinner {
   }
 
   render() {
-    this.$container.innerHTML = this.winners.length
-      ? this.createWinnerHTML()
-      : "";
+    this.$container.innerHTML = this.winners.length ? this.createWinnerHTML() : '';
   }
 }
