@@ -1,18 +1,25 @@
-import { resetInput, disableElements } from '../util/domUtil.js';
-import { ERROR_MESSAGE } from '../util/errorMessage.js';
+import {
+  resetInput,
+  disableElements,
+  activateElements,
+} from "../util/domUtil.js";
+import { ERROR_MESSAGE } from "../util/errorMessage.js";
 
 export default class TryCountInput {
   constructor({ setTryCount }) {
-    this.$target = document.querySelector('.try-count-input-containter');
-    this.$tryCountInput = this.$target.querySelector('input[type=number]');
-    this.$tryCountSummitBtn = this.$target.querySelector('button');
+    this.$target = document.querySelector(".try-count-input-containter");
+    this.$tryCountInput = this.$target.querySelector("input[type=number]");
+    this.$tryCountSummitBtn = this.$target.querySelector("button");
     this.setTryCount = setTryCount;
 
     this.bindEvents();
   }
 
   bindEvents() {
-    this.$tryCountSummitBtn.addEventListener('click', this.handleSubmitTryCount.bind(this));
+    this.$tryCountSummitBtn.addEventListener(
+      "click",
+      this.handleSubmitTryCount.bind(this),
+    );
   }
 
   handleSubmitTryCount() {
@@ -27,6 +34,11 @@ export default class TryCountInput {
 
     disableElements(this.$tryCountInput, this.$tryCountSummitBtn);
     this.setTryCount(tryCount);
+  }
+
+  resetElements() {
+    activateElements(this.$tryCountInput, this.$tryCountSummitBtn);
+    resetInput(this.$tryCountInput);
   }
 
   isNaturalTryCount(number) {

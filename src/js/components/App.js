@@ -29,6 +29,7 @@ export default class App {
     });
     this.racingWinner = new RacingWinner({
       $parent: this.$app,
+      resetRacingGame: this.resetRacingGame.bind(this),
     });
   }
 
@@ -57,13 +58,24 @@ export default class App {
     });
   }
 
-  setState({ nextCarNames, nextTryCount }) {
+  resetRacingGame() {
+    this.setState({ nextCarNames: [], nextTryCount: 0, nextCars: [] });
+    this.carNameInput.resetElements();
+    this.tryCountInput.resetElements();
+  }
+
+  setState({ nextCarNames, nextTryCount, nextCars }) {
     if (nextCarNames) {
       this.carNames = nextCarNames;
     }
 
     if (typeof nextTryCount === "number") {
       this.tryCount = nextTryCount;
+    }
+
+    if (nextCars) {
+      this.cars = nextCars;
+      this.racingResult.setState({ nextCars });
     }
 
     if (this.carNames.length && this.tryCount > 0) {

@@ -1,9 +1,11 @@
 export default class RacingWinner {
-  constructor({ $parent }) {
+  constructor({ $parent, resetRacingGame }) {
     this.$parent = $parent;
     this.winners = [];
+    this.resetRacingGame = resetRacingGame;
 
     this.init();
+    this.bindEvents();
   }
 
   init() {
@@ -20,6 +22,22 @@ export default class RacingWinner {
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
+  }
+
+  bindEvents() {
+    this.$container.addEventListener(
+      "click",
+      this.handleClickRestart.bind(this),
+    );
+  }
+
+  handleClickRestart({ target }) {
+    if (!target.classList.contains("btn-restart")) {
+      return;
+    }
+
+    this.resetRacingGame();
+    this.setState({ nextWinners: [] });
   }
 
   createWinnerHTML() {

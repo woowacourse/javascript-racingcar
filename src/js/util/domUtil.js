@@ -5,3 +5,7 @@ export const resetInput = ($target) => {
 export const disableElements = (...elements) => {
   elements.forEach(($element) => ($element.disabled = true));
 };
+
+export const activateElements = (...elements) => {
+  elements.forEach(($element) => ($element.disabled = false));
+};
