@@ -1,4 +1,4 @@
-import { VALIDATOR, ERR_MESSAGE } from '../utils/constant.js';
+import { CAR, ERR_MESSAGE } from '../utils/constant.js';
 import { startGame } from '../game/startGame.js';
 import { toggleVisibility as setVisible } from '../utils/toggleVisibility.js';
 
@@ -14,7 +14,7 @@ export const handleRacingCountInput = () => {
 };
 
 const isValidRacingCount = (racingCount) => {
-  if (racingCount < VALIDATOR.MIN_COUNT) {
+  if (racingCount < CAR.MIN_RACING_COUNT) {
     alert(ERR_MESSAGE.COUNT_TOO_SMALL);
     return false;
   }

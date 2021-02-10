@@ -3,11 +3,11 @@ const $gameProcessSection = document.querySelector('#game-process-section');
 const $gameResultSection = document.querySelector('#game-result-section');
 
 export const toggleVisibility = (target) => {
-  const sectionList = {
+  const sectionObject = {
     $racingCountSection,
     $gameProcessSection,
     $gameResultSection,
   };
 
-  sectionList[target].toggleAttribute('hidden');
+  sectionObject[target].toggleAttribute('hidden');
 };
