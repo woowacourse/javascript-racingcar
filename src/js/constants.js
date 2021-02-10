@@ -9,3 +9,8 @@ export const TRY_COUNT_ERROR_MESSAGE = {
   NOT_INTEGER: '시도 횟수는 정수로 입력해주세요.',
   NOT_POSITIVE: '시도 횟수는 1이상의 정수로 입력해주세요.',
 };
+
+export const NUMBERS = {
+  RANDOM_RANGE: 9,
+  RUN_POINT: 4,
+}

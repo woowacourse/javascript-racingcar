@@ -3,6 +3,7 @@ import Car from './Car.js';
 import CarNameValidator from './CarNameValidator.js';
 import { CAR_NAME_ERROR_MESSAGE, TRY_COUNT_ERROR_MESSAGE } from './constants.js';
 import TryCountValidator from './TryCountValidator.js';
+import RacingCarGame from './RacingCarGame.js';
 
 export default class CarGameManager {
   constructor($element) {
@@ -87,8 +88,11 @@ export default class CarGameManager {
       return;
     }
     this.createCar();
-    this.playGame(tryCount);
+    const racingCarGame = new RacingCarGame(this.cars, tryCount);
+    this.carGameView.displayProgress(racingCarGame.getCars());
+    this.carGameView.displayWinners(racingCarGame.getWinners());
     this.carGameView.showView(document.querySelector('#display-game-progress'));
+
     this.carGameView.showView(document.querySelector('#display-game-result'));
   }
 
@@ -98,30 +102,5 @@ export default class CarGameManager {
 
   createCar() {
     this.cars = this.carNames.map((name) => new Car(name));
-  }
-
-  getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  playOneRound() {
-    this.cars.map((car) => {
-      if (this.getRandomInt(10) >= 4) {
-        car.run();
-      }
-    });
-  }
-
-  getWinner() {
-    const maxPosition = this.cars.reduce((max, car) => Math.max(max, car.distance), 0);
-    return this.cars.filter((car) => car.distance === maxPosition).map((car) => car.name).join(', ');
-  }
-
-  playGame(tryCount) {
-    for (let i = 0; i < tryCount; i++) {
-      this.playOneRound();
-    }
-    this.carGameView.displayProgress(this.cars);
-    this.carGameView.displayWinners(this.getWinner());
   }
 }
