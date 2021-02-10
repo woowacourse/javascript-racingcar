@@ -18,6 +18,13 @@ describe("자동차 이름 입력하기", () => {
     testInitialState();
   });
 
+  it('쉼표(,)로 구분한 이름이 빈 문자열("")이면 무시된다.', () => {
+    cy.get(SELECTOR.CAR_NAME.INPUT).type("a,,b");
+    cy.get(SELECTOR.CAR_NAME.BUTTON).click();
+    cy.get("@windowAlert").should("not.be.called");
+    cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("be.visible");
+  });
+
   it("자동차 이름은 두 개 이상이다.", () => {
     cy.get(SELECTOR.CAR_NAME.INPUT).type("SIMBA");
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
@@ -36,6 +43,16 @@ describe("자동차 이름 입력하기", () => {
     cy.get(SELECTOR.CAR_NAME.INPUT).type("WOOCOURSE, SIMBA, DONGDONG");
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
     cy.get("@windowAlert").should("be.calledWith", MESSAGE.CAR_NAME.MAX_LENGTH);
+    testInitialState();
+  });
+
+  it("자동차 이름은 서로 중복되지 않는다.", () => {
+    cy.get(SELECTOR.CAR_NAME.INPUT).type("WOOWA, SIMBA, SIMBA");
+    cy.get(SELECTOR.CAR_NAME.BUTTON).click();
+    cy.get("@windowAlert").should(
+      "be.calledWith",
+      MESSAGE.CAR_NAME.DUPLICATION
+    );
     testInitialState();
   });
 
