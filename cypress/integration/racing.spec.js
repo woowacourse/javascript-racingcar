@@ -71,8 +71,22 @@ describe('자동차 경주', () => {
     cy.get('.try-count-btn').click();
 
     cy.get('.progress-container').should('be.visible');
-    cy.get('.car-name').invoke('val').then(carNameInput => {
-      cy.get('.car-player').should('have.length', carNameInput.split(',').length);
-    });
+    cy.get('.car-name')
+      .invoke('val')
+      .then(carNameInput => {
+        cy.get('.car-player').should(
+          'have.length',
+          carNameInput.split(',').length,
+        );
+      });
+  });
+
+  it('레이싱 진행 상황과 함께 우승자가 출력된다', () => {
+    cy.get('.car-name').type('east, west, south, north, mid');
+    cy.get('.car-name-btn').click();
+    cy.get('.try-count').type('5');
+    cy.get('.try-count-btn').click();
+
+    cy.get('.result-container').should('be.visible');
   });
 });

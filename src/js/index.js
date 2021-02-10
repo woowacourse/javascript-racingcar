@@ -61,13 +61,47 @@ export default class Racing {
   showProgress() {
     document.querySelector('.progress-container').style.display = '';
 
-    document.querySelector('.progress-cars').innerHTML = 
-      this.cars.map(car => `
+    document.querySelector('.progress-cars').innerHTML = this.cars
+      .map(
+        car => `
         <div>
           <div class="car-player mr-2">${car.name}</div>
           ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
         </div>
-      `).join('');
+      `,
+      )
+      .join('');
+
+    this.showWinners();
+  }
+
+  showWinners() {
+    document.querySelector('.result-container').style.display = '';
+    const winners = this.getWinners();
+
+    document.querySelector('.result-container').innerHTML = `
+      <section>
+        <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
+        <div class="d-flex justify-center">
+          <button type="button" class="btn btn-cyan">다시 시작하기</button>
+        </div>
+      </section>
+    `;
+  }
+
+  getWinners() {
+    let maxPosition = 0;
+    const winners = this.cars.reduce((winners, car) => {
+      if (car.position === maxPosition) {
+        winners.push(car.name);
+      } else if (car.position > maxPosition) {
+        winners = [car.name];
+        maxPosition = car.position;
+      }
+      return winners;
+    }, []);
+
+    return winners;
   }
 
   addListeners() {
