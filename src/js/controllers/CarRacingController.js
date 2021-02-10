@@ -1,3 +1,4 @@
+import { $ } from '../utils/index.js';
 import alertConstants from '../constants/alertConstants.js';
 import racingConstants from '../constants/racingConstants.js';
 
@@ -10,10 +11,9 @@ export default class CarRacingController {
   }
 
   onClickCarNamesSubmit() {
-    const $racingCountContainer = document.querySelector('.racing-count-container');
-    const $carNamesInput = document.querySelector('#car-names-input');
-    const $carNamesSubmit = document.querySelector('#car-names-submit');
-    const carNames = $carNamesInput.value.split(',').map((name) => name.trim());
+    const carNames = $('#car-names-input')
+      .value.split(',')
+      .map((name) => name.trim());
     const carNamesSet = new Set(carNames);
 
     if (carNames.length !== carNamesSet.size) {
@@ -28,15 +28,12 @@ export default class CarRacingController {
 
     carNames.forEach((carName) => this.model.addCars(carName));
 
-    this.view.removeHidden($racingCountContainer);
-    this.view.addDisabled($carNamesSubmit);
+    this.view.removeHidden($('.racing-count-container'));
+    this.view.addDisabled($('#car-names-submit'));
   }
 
   onClickRacingCountSubmit() {
-    const $racingContainer = document.querySelector('.racing-container');
-    const $racingCountInput = document.querySelector('#racing-count-input');
-    const $racingCountSubmit = document.querySelector('#racing-count-submit');
-    const racingCount = $racingCountInput.value;
+    const racingCount = $('#racing-count-input').value;
 
     if (racingCount <= 0 || racingCount > racingConstants.MAX_RACING_COUNT) {
       alert(alertConstants.INVALID_RACING_COUNT);
@@ -45,31 +42,23 @@ export default class CarRacingController {
 
     this.model.racingCount = racingCount;
 
-    this.view.removeHidden($racingContainer);
+    this.view.removeHidden($('.racing-container'));
     this.view.renderRacingCars(this.model.cars);
 
-    this.view.addDisabled($racingCountSubmit);
+    this.view.addDisabled($('#racing-count-submit'));
     this.startRacing();
   }
 
   onClickRestartButton() {
-    const $racingCountContainer = document.querySelector('.racing-count-container');
-    const $racingContainer = document.querySelector('.racing-container');
-    const $resultContainer = document.querySelector('.result-container');
-    const $carNamesInput = document.querySelector('#car-names-input');
-    const $racingCountInput = document.querySelector('#racing-count-input');
-    const $carNamesSubmit = document.querySelector('#car-names-submit');
-    const $racingCountSubmit = document.querySelector('#racing-count-submit');
-
     this.model.init();
-    this.view.addHidden($racingCountContainer);
-    this.view.addHidden($racingContainer);
-    this.view.addHidden($resultContainer);
-    this.view.removeDisabled($carNamesSubmit);
-    this.view.removeDisabled($racingCountSubmit);
+    this.view.addHidden($('.racing-count-container'));
+    this.view.addHidden($('.racing-container'));
+    this.view.addHidden($('.result-container'));
+    this.view.removeDisabled($('#car-names-input'));
+    this.view.removeDisabled($('#racing-count-submit'));
 
-    $carNamesInput.value = '';
-    $racingCountInput.value = '';
+    $('#car-names-input').value = '';
+    $('#racing-count-input').value = '';
   }
 
   moveCars(cars) {
@@ -101,20 +90,15 @@ export default class CarRacingController {
       this.view.renderRacingRoundResult(movedCars);
     }
 
-    const $resultContainer = document.querySelector('.result-container');
-    this.view.removeHidden($resultContainer);
+    this.view.removeHidden($('.result-container'));
 
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
   }
 
   setEventListener() {
-    const $carNamesSubmit = document.querySelector('#car-names-submit');
-    const $racingCountSubmit = document.querySelector('#racing-count-submit');
-    const $restartButton = document.querySelector('#restart-button');
-
-    $carNamesSubmit.addEventListener('click', this.onClickCarNamesSubmit.bind(this));
-    $racingCountSubmit.addEventListener('click', this.onClickRacingCountSubmit.bind(this));
-    $restartButton.addEventListener('click', this.onClickRestartButton.bind(this));
+    $('#car-names-submit').addEventListener('click', this.onClickCarNamesSubmit.bind(this));
+    $('#racing-count-submit').addEventListener('click', this.onClickRacingCountSubmit.bind(this));
+    $('#restart-button').addEventListener('click', this.onClickRestartButton.bind(this));
   }
 }
