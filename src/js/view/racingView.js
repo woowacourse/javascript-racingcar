@@ -1,13 +1,14 @@
 import { selectors } from "../keys.js";
+import { $ } from "../utils.js";
 
 export const displayRacingCars = function (cars) {
   const classes = ["car-player", "mr-2"];
   cars.forEach((car) => {
-    document.querySelector(selectors.racingCarsArea).innerHTML += `<div>
+    $(selectors.racingCarsArea).innerHTML += `<div>
       <div class=${classes.join(" ")}>${car.name}</div>
     </div>`;
   });
-  document.querySelector(selectors.racingContainer).style.display = "flex";
+  $(selectors.racingContainer).style.display = "flex";
 };
 
 export const appendArrowElement = function (element) {
@@ -16,6 +17,6 @@ export const appendArrowElement = function (element) {
 };
 
 export const initializeRacingView = function () {
-  document.querySelector(selectors.racingContainer).style.display = "none";
-  document.querySelector(selectors.racingCarsArea).innerHTML = "";
+  $(selectors.racingContainer).style.display = "none";
+  $(selectors.racingCarsArea).innerHTML = "";
 };

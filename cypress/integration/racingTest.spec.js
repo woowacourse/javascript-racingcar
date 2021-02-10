@@ -1,5 +1,5 @@
 import Car from "../../src/js/model/Car.js";
-import { getRandomNumber } from "../../src/js/controller/utils.js";
+import { getRandomNumber } from "../../src/js/utils.js";
 import { selectors } from "../../src/js/keys.js";
 import { appendArrowElement } from "../../src/js/view/racingView.js";
 

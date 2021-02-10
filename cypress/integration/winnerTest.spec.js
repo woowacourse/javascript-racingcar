@@ -35,7 +35,7 @@ describe("레이싱 우승자 테스트", () => {
           cy.get(selectors.restartButton).click();
         });
     };
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10; i++) {
       checkWinnerTest();
     }
   });

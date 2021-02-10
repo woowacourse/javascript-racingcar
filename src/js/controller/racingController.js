@@ -1,7 +1,7 @@
 import { app } from "../index.js";
 import { selectors } from "../keys.js";
 import { appendArrowElement } from "../view/racingView.js";
-import { getRandomNumber } from "./utils.js";
+import { getRandomNumber } from "../utils.js";
 import { chooseWinners } from "./winnerController.js";
 
 const startRound = function($racingCarsAreaElement) {

@@ -9,3 +9,5 @@ export const isAlphanumeric = function (input) {
 export const isNotDuplicatedArray = function (array) {
     return Array.from(new Set(array)).length === array.length;
 };
+
+export const $ = selector => document.querySelector(selector);

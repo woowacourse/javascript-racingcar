@@ -7,7 +7,7 @@ import { app } from '../index.js';
 import { alertMsg, bounds, selectors } from '../keys.js';
 import { displayRacingCars } from '../view/racingView.js';
 import { startRacingGame } from './racingController.js';
-import { isNotDuplicatedArray, isAlphanumeric } from './utils.js';
+import { isNotDuplicatedArray, isAlphanumeric } from '../utils.js';
 
 const isValidCarNames = function (carNamesInput) {
 	return (
