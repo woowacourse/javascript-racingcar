@@ -43,7 +43,11 @@ export class Controller {
       return;
     }
 
-    // TODO: 동일한 이름이 있었을 때 alert하기
+    if (carNames.some((carName, i) => i !== carNames.lastIndexOf(carName))) {
+      alert(MESSAGE.CAR_NAME.DUPLICATION);
+      return;
+    }
+
     this.carModels = carNames.map((carName) => new CarModel(carName));
 
     // TODO: input하면 중복 생성되지 않게하기

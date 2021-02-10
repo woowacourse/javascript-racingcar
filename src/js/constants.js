@@ -32,6 +32,7 @@ export const MESSAGE = {
   CAR_NAME: {
     MIN_NUMBER: "두 개 이상의 자동차 이름을 입력해주세요.",
     MAX_LENGTH: "자동차 이름은 5자 이하로 지어주세요.",
+    DUPLICATION: "자동차 이름을 중복되지 않게 지어주세요.",
   },
   LAP_COUNT: {
     NOT_A_NUMBER: "숫자를 입력해주세요",
