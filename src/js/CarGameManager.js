@@ -85,7 +85,7 @@ export default class CarGameManager {
   tryCountInputHandler() {
     const tryCount = Number(this.$element.querySelector('#input-try-count > div > input').value);
     if (!this.validateTryCount(tryCount)) {
-      this.$element.querySelector('#input-try-count > div > input').value = '';
+      this.carGameView.resetInput(this.$element.querySelector('#input-try-count > div'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-progress'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-result'));
       return;
@@ -95,7 +95,6 @@ export default class CarGameManager {
     this.carGameView.displayProgress(racingCarGame.getCars());
     this.carGameView.displayWinners(racingCarGame.getWinners());
     this.carGameView.showView(this.$element.querySelector('#display-game-progress'));
-
     this.carGameView.showView(this.$element.querySelector('#display-game-result'));
   }
 

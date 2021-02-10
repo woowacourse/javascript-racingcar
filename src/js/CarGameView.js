@@ -14,11 +14,15 @@ export default class CarGameView {
     $element.style.display = 'none';
   }
 
+  resetInput($element) {
+    $element.querySelector('input').value = '';
+  }
+
   init() {
     this.showView(this.inputCarNamesView);
-    this.inputCarNamesView.querySelector('input').value = '';
+    this.resetInput(this.inputCarNamesView);
     this.hideView(this.inputTryCountView);
-    this.inputTryCountView.querySelector('input').value = '';
+    this.resetInput(this.inputTryCountView);
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }
