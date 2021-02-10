@@ -13,11 +13,15 @@ export default class ViewController {
   }
 
   renderCarNameTag(carNames) {
+    this.disable(SELECTOR.CAR_NAME.BUTTON);
+
     this.carViews = carNames.map((carName) => new CarView(carName));
     this.show(SELECTOR.LAP_COUNT.CONTAINER);
   }
 
   renderGameProgress(lapResult) {
+    this.disable(SELECTOR.LAP_COUNT.BUTTON);
+
     lapResult.forEach((canMove, index) => {
       if (!canMove) return;
 
@@ -40,11 +44,21 @@ export default class ViewController {
     document.querySelector(selector).hidden = true;
   }
 
+  disable(selector) {
+    document.querySelector(selector).disabled = true;
+  }
+
+  enable(selector) {
+    document.querySelector(selector).disabled = false;
+  }
+
   clear() {
     this.carViews = [];
     this.gameResultWinners.innerText = "";
     this.gameProgressContainer.innerHTML = "";
 
+    this.enable(SELECTOR.CAR_NAME.BUTTON);
+    this.enable(SELECTOR.LAP_COUNT.BUTTON);
     this.hide(SELECTOR.LAP_COUNT.CONTAINER);
     this.hide(SELECTOR.GAME_RESULT.CONTAINER);
   }
