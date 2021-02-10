@@ -24,17 +24,25 @@ export default class TryCountInput {
 
   handleSubmitTryCount() {
     const { setTryCount } = this.props;
-    // TODO: tryCount가 빈 문자열인 경우 처리하기
-    const tryCount = Number(this.$tryCountInput.value);
+    const inputTryCount = Number(this.$tryCountInput.value);
+    const errorMessage = this.getErrorMessage({ inputTryCount });
 
-    if (!this.isNaturalTryCount(tryCount)) {
-      alert(ERROR_MESSAGE.NOT_NATURAL_NUMBER);
+    if (errorMessage) {
+      alert(errorMessage);
       clearInput(this.$tryCountInput);
       return;
     }
 
     deActivate(this.$tryCountInput, this.$tryCountSummitBtn);
-    setTryCount(tryCount);
+    setTryCount(inputTryCount);
+  }
+
+  getErrorMessage({ inputTryCount }) {
+    if (!this.isNaturalTryCount(inputTryCount)) {
+      return ERROR_MESSAGE.NOT_NATURAL_NUMBER;
+    }
+
+    return "";
   }
 
   resetElements() {

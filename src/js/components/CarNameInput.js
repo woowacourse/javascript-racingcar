@@ -27,7 +27,7 @@ export default class CarNameInput {
     const { setCarNames } = this.props;
     const inputCarName = this.$carNameInput.value;
     const carNames = inputCarName.split(",").map((name) => name.trim());
-    const errorMessage = this.checkValidInput({ inputCarName, carNames });
+    const errorMessage = this.getErrorMessage({ inputCarName, carNames });
 
     if (errorMessage) {
       alert(errorMessage);
@@ -44,7 +44,7 @@ export default class CarNameInput {
     clearInput(this.$carNameInput);
   }
 
-  checkValidInput({ inputCarName, carNames }) {
+  getErrorMessage({ inputCarName, carNames }) {
     if (this.isEmptyCarName(inputCarName.trim())) {
       return ERROR_MESSAGE.EMPTY_CAR_NAME_INPUT;
     }
