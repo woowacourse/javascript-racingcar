@@ -4,19 +4,18 @@ import {
 	toggleCountInputDisable,
 } from '../view/inputView.js';
 import { app } from '../index.js';
-import { alertMsg, selectors } from '../keys.js';
+import { alertMsg, bounds, selectors } from '../keys.js';
 import { displayRacingCars } from '../view/racingView.js';
 import { startRacingGame } from './racingController.js';
 import { isNotDuplicatedArray, isAlphanumeric } from './utils.js';
 
 const isValidCarNames = function (carNamesInput) {
-	const [lengthLowerBound, lengthUpperBound] = [1, 5];
 	return (
 		isNotDuplicatedArray(carNamesInput) &&
 		carNamesInput.every(
 			(carName) =>
-				lengthLowerBound <= carName.length &&
-				carName.length <= lengthUpperBound &&
+      bounds.lengthLowerBound <= carName.length &&
+				carName.length <= bounds.lengthUpperBound &&
 				isAlphanumeric(carName),
 		)
 	);
@@ -29,8 +28,8 @@ const getCarNamesInput = function () {
 		.map((e) => e.trim());
 };
 
-const isValidCount = function (value) {
-	return 1 <= Number(value) && Number(value) <= 100;
+const isValidCount = function (count) {
+	return bounds.countLowerBound <= Number(count) && Number(count) <= bounds.countUpperBound;
 };
 
 export const handleCarNamesSubmit = function () {
