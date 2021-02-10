@@ -1,14 +1,22 @@
-export const RANDOM_MAX_NUM = 9;
-export const RANDOM_MIN_NUM = 1;
+export const RANDOM = {
+  MAX_NUM: 9,
+  MIN_NUM: 1,
+};
 
-export const FORWARD_STANDARD_NUM = 4;
-export const GO_NUM = 1;
-export const STOP_NUM = 0;
+export const INIT = {
+  CARS: [],
+  FORWARD: 0,
+  COUNT: 0,
+};
 
-export const START_FORWARD_NUM = 0;
+export const GAME = {
+  FORWARD_STANDARD_NUM: 4,
+  GO_NUM: 1,
+  STOP_NUM: 0,
+};
 
-export const INIT_CARS = [];
-export const INIT_COUNT = 0;
-
-export const CARNAME_MAX_LENGTH = 5;
-export const COUNT_MIN_NUM = 0;
+export const VALID = {
+  CARNAME_MAX_LENGTH: 5,
+  CARNAME_MIN_LENGTH: 1,
+  COUNT_MIN_NUM: 1,
+};
