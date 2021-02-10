@@ -20,11 +20,22 @@ class RacingCarController {
   goStop() {
     // 랜덤수 가져와서 전진 or 스톱 값
     // return T/F
+    // 필요한주석 : T면 1(전진), F면 0(스톱) 반환
+  }
+
+  play(cars) {
+    const newCars = cars.map(car => {
+      return { ...car, forward: forward + this.goStop() };
+    });
+    return newCars;
   }
 
   startGame() {
-    // 자동 횟수만큼 반복
-    //// goStop cars 객체에 저장(+= 1)
+    let cars = this.model.getCars();
+    for (let i = 0; i < this.model.getCount(); i++) {
+      cars = this.play(cars);
+    }
+    this.model.setCars(cars);
   }
 
   manageCars() {
