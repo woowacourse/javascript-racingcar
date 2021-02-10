@@ -1,6 +1,6 @@
 import { RacingGame, Car } from '../model/index.js';
 import { RacingGameView } from '../view/index.js';
-import { InputValidator } from '../utils/index.js';
+import { $, InputValidator } from '../utils/index.js';
 import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
@@ -13,15 +13,18 @@ export default class RacingGameController {
   }
 
   setEvent() {
-    document
-      .querySelector('.name-container')
-      .addEventListener('click', this.handleClickNameBtn.bind(this));
-    document
-      .querySelector('.count-container')
-      .addEventListener('click', this.handleClickCountBtn.bind(this));
-    document
-      .querySelector('.result-container')
-      .addEventListener('click', this.handleClickResetBtn.bind(this));
+    $('.name-container').addEventListener(
+      'click',
+      this.handleClickNameBtn.bind(this)
+    );
+    $('.count-container').addEventListener(
+      'click',
+      this.handleClickCountBtn.bind(this)
+    );
+    $('.result-container').addEventListener(
+      'click',
+      this.handleClickResetBtn.bind(this)
+    );
   }
 
   handleClickNameBtn({ target: { classList } }) {
@@ -38,7 +41,7 @@ export default class RacingGameController {
   }
 
   getCarNameInput() {
-    const $input = document.querySelector('.car-name-input');
+    const $input = $('.car-name-input');
     const validator = new InputValidator();
     try {
       validator.checkNameInput($input.value);
@@ -72,7 +75,7 @@ export default class RacingGameController {
   }
 
   getCountInput() {
-    const $input = document.querySelector('.count-input');
+    const $input = $('.count-input');
     const validator = new InputValidator();
     try {
       validator.checkCountInput(Number($input.value));

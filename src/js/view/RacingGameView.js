@@ -1,8 +1,10 @@
 /* eslint-disable max-lines-per-function */
 
+import { $ } from '../utils/index.js';
+
 export default class RacingGameView {
   renderCountInput() {
-    document.querySelector('.count-container').innerHTML = `
+    $('.count-container').innerHTML = `
       <p>시도할 횟수를 입력해주세요.</p>
       <div class="d-flex">
         <input 
@@ -25,7 +27,7 @@ export default class RacingGameView {
       `;
     }
 
-    document.querySelector('.progress-container').innerHTML = `
+    $('.progress-container').innerHTML = `
       <section class="mt-4">
         <div class="d-flex">
           ${cars.map(car => progressTemplate(car)).join('')}
@@ -35,7 +37,7 @@ export default class RacingGameView {
   }
 
   renderResult(winners) {
-    document.querySelector('.result-container').innerHTML = `
+    $('.result-container').innerHTML = `
       <section>
         <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
         <div class="d-flex justify-center">
@@ -48,9 +50,9 @@ export default class RacingGameView {
   }
 
   reset() {
-    document.querySelector('.car-name-input').value = '';
-    document.querySelector('.count-container').innerHTML = '';
-    document.querySelector('.progress-container').innerHTML = '';
-    document.querySelector('.result-container').innerHTML = '';
+    $('.car-name-input').value = '';
+    $('.count-container').innerHTML = '';
+    $('.progress-container').innerHTML = '';
+    $('.result-container').innerHTML = '';
   }
 }
