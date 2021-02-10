@@ -85,6 +85,10 @@ class RacingCarController {
   }
 
   manageCount() {
+    if (isCountExist(this.model.getCount())) {
+      return;
+    }
+
     const count = this.getCountInput();
     if (isCountValid(count)) {
       this.model.setCount(parseInt(count, 10));

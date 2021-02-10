@@ -11,6 +11,15 @@ class Valid {
     return false;
   }
 
+  isCountExist(count) {
+    if (count) {
+      alert(ERROR_MESSAGE.COUNT_EXIST);
+      return true;
+    }
+
+    return false;
+  }
+
   isCarValid(carNames) {
     if (carNames.some((carName) => carName.length > VALID.CARNAME_MAX_LENGTH)) {
       return alert(ERROR_MESSAGE.OVER_CARNAME_MAX_LENGTH);
