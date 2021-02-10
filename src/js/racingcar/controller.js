@@ -1,8 +1,8 @@
-import RacingCarModel from "./model.js";
-import RacingCarView from "./view.js";
-import { isCarValid, isCountValid } from "../utils/vaild.js";
-import { generateRandomNumber } from "../utils/util.js";
-import { RANDOM, INIT, GAME } from "../constants/constant.js";
+import RacingCarModel from './model.js';
+import RacingCarView from './view.js';
+import {isCarValid, isCountValid} from '../utils/vaild.js';
+import {generateRandomNumber} from '../utils/util.js';
+import {RANDOM, INIT, GAME} from '../constants/constant.js';
 
 class RacingCarController {
   constructor() {
@@ -12,23 +12,23 @@ class RacingCarController {
   }
 
   getCarsInput() {
-    const $carInput = document.querySelector("#car-input").value;
+    const $carInput = document.querySelector('#car-input').value;
 
-    return $carInput.split(",").map(car => car.trim());
+    return $carInput.split(',').map((car) => car.trim());
   }
 
   getCountInput() {
-    const $countInput = document.querySelector("#count-input").value;
+    const $countInput = document.querySelector('#count-input').value;
 
     return $countInput;
   }
 
   getWinners() {
     const cars = this.model.getCars();
-    const maxForward = Math.max(...cars.map(car => car.forward));
+    const maxForward = Math.max(...cars.map((car) => car.forward));
 
     const winner = [];
-    cars.forEach(car => {
+    cars.forEach((car) => {
       car.forward === maxForward && winner.push(car.name);
     });
 
@@ -45,9 +45,10 @@ class RacingCarController {
   }
 
   play(cars) {
-    const newCars = cars.map(car => {
-      return { ...car, forward: car.forward + this.goStop() };
-    });
+    const newCars = cars.map((car) => ({
+      ...car,
+      forward: car.forward + this.goStop(),
+    }));
 
     return newCars;
   }
@@ -63,9 +64,10 @@ class RacingCarController {
   manageCars() {
     const carNames = this.getCarsInput();
     if (isCarValid(carNames)) {
-      const cars = carNames.map(carName => {
-        return { name: carName, forward: INIT.FORWARD };
-      });
+      const cars = carNames.map((carName) => ({
+        name: carName,
+        forward: INIT.FORWARD,
+      }));
 
       this.model.setCars(cars);
       this.view.renderCount();
@@ -96,22 +98,22 @@ class RacingCarController {
   }
 
   handleCars() {
-    const $carBtn = document.querySelector("#car-btn");
-    $carBtn.addEventListener("click", () => {
+    const $carBtn = document.querySelector('#car-btn');
+    $carBtn.addEventListener('click', () => {
       this.manageCars();
     });
   }
 
   handleCount() {
-    const $countBtn = document.querySelector("#count-btn");
-    $countBtn.addEventListener("click", () => {
+    const $countBtn = document.querySelector('#count-btn');
+    $countBtn.addEventListener('click', () => {
       this.manageCount();
     });
   }
 
   handleReset() {
-    const $resetBtn = document.querySelector("#reset-btn");
-    $resetBtn.addEventListener("click", () => {
+    const $resetBtn = document.querySelector('#reset-btn');
+    $resetBtn.addEventListener('click', () => {
       this.reset();
     });
   }
