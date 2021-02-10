@@ -13,7 +13,8 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input").value;
-    return $carInput.replace(/ /g, "").split(",");
+    console.log($carInput.split(",").map(car => car.trim()));
+    return $carInput.split(",").map(car => car.trim());
   }
 
   getCountInput() {
