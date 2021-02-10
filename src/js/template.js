@@ -19,14 +19,16 @@ class Template {
   processSectionTemplate(cars) {
     return `
     <div class="d-flex">
-      ${cars.map(car => {
+    ${cars
+      .map(car => {
         return `
         <div>
           <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.count)}
+          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.forward)}
         </div>
       `;
-      })}
+      })
+      .join("")}
     </div>
     `;
   }

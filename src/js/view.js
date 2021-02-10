@@ -40,7 +40,7 @@ class RacingCarView {
   resetResult() {
     const $resultSection = document.querySelector("#result");
     $resultSection.style.display = "none";
-    $result.innerHTML = ``;
+    $resultSection.innerHTML = ``;
   }
 
   reset() {
