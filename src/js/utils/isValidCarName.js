@@ -1,9 +1,9 @@
-import { VALIDATOR } from '../utils/constant.js';
+import { CAR } from '../utils/constant.js';
 
 export const isValidLength = (name) => {
-  return name.length <= VALIDATOR.MAX_NAME_LENGTH;
+  return name.length <= CAR.MAX_NAME_LENGTH;
 };
 
 export const isNotBlank = (name) => {
-  return name.length >= VALIDATOR.MIN_NAME_LENGTH;
+  return name.length >= CAR.MIN_NAME_LENGTH;
 };

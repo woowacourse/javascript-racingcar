@@ -19,7 +19,7 @@ const isValidCarName = (carNames) => {
     return false;
   }
   if (!carNames.every((carName) => isNotBlank(carName))) {
-    alert(ERR_MESSAGE.NAME_BLANK);
+    alert(ERR_MESSAGE.NAME_CANNOT_BE_BLANK);
     return false;
   }
   return true;
