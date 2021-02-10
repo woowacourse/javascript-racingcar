@@ -1,15 +1,20 @@
 export default class RacingResult {
-  constructor({ $parent, cars }) {
-    this.$parent = $parent;
-    this.cars = cars;
+  constructor(props) {
+    this.props = props;
+    this.cars = this.props.cars;
 
-    this.init();
+    this.mountDOM();
   }
 
-  init() {
-    const $container = document.createElement('div');
-    const containerClassList = ['d-flex', 'justify-center', 'mt-5', 'racing-result-container'];
-    containerClassList.forEach((className) => $container.classList.add(className));
+  mountDOM() {
+    this.$parent = this.props.$parent;
+    const $container = document.createElement("div");
+    [
+      "d-flex",
+      "justify-center",
+      "mt-5",
+      "racing-result-container",
+    ].forEach((className) => $container.classList.add(className));
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
@@ -33,12 +38,14 @@ export default class RacingResult {
     return `        
     <section class="mt-4">
       <div class="d-flex">
-        ${this.cars.map(this.createCarHTML).join('')}
+        ${this.cars.map(this.createCarHTML).join("")}
       </div>
     </section>`;
   }
 
   render() {
-    this.$container.innerHTML = this.cars.length ? this.createRacingResultHTML() : '';
+    this.$container.innerHTML = this.cars.length
+      ? this.createRacingResultHTML()
+      : "";
   }
 }

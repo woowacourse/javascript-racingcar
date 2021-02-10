@@ -1,23 +1,20 @@
 export default class RacingWinner {
-  constructor({ $parent, resetRacingGame }) {
-    this.$parent = $parent;
+  constructor(props) {
+    this.props = props;
     this.winners = [];
-    this.resetRacingGame = resetRacingGame;
 
-    this.init();
+    this.mountDOM();
     this.bindEvents();
   }
 
-  init() {
+  mountDOM() {
+    this.$parent = this.props.$parent;
+
     const $container = document.createElement("div");
-    const containerClassList = [
-      "d-flex",
-      "justify-center",
-      "mt-5",
-      "racing-winner-container",
-    ];
-    containerClassList.forEach((className) =>
-      $container.classList.add(className),
+    ["d-flex", "justify-center", "mt-5", "racing-winner-container"].forEach(
+      (className) => {
+        $container.classList.add(className);
+      },
     );
 
     this.$container = $container;
@@ -32,11 +29,12 @@ export default class RacingWinner {
   }
 
   handleClickRestart({ target }) {
+    const { resetRacingGame } = this.props;
     if (!target.classList.contains("btn-restart")) {
       return;
     }
 
-    this.resetRacingGame();
+    resetRacingGame();
     this.setState({ nextWinners: [] });
   }
 

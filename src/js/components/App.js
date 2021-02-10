@@ -13,11 +13,22 @@ import { $ } from "../util/domUtil.js";
 
 export default class App {
   constructor() {
-    this.$app = $("#app");
+    this.mountDOM();
+    this.initState();
+    this.mountComponent();
+  }
+
+  mountDOM() {
+    this.$target = $("#app");
+  }
+
+  initState() {
     this.carNames = [];
     this.tryCount = 0;
     this.cars = [];
+  }
 
+  mountComponent() {
     this.carNameInput = new CarNameInput({
       setCarNames: this.setCarNames.bind(this),
     });
@@ -25,11 +36,11 @@ export default class App {
       setTryCount: this.setTryCount.bind(this),
     });
     this.racingResult = new RacingResult({
-      $parent: this.$app,
+      $parent: this.$target,
       cars: this.cars,
     });
     this.racingWinner = new RacingWinner({
-      $parent: this.$app,
+      $parent: this.$target,
       resetRacingGame: this.resetRacingGame.bind(this),
     });
   }

@@ -8,13 +8,17 @@ import { ERROR_MESSAGE } from "../util/errorMessage.js";
 import { CAR_NAME_MAX_LENGTH } from "../util/constant.js";
 
 export default class CarNameInput {
-  constructor({ setCarNames }) {
+  constructor(props) {
+    this.props = props;
+    this.mountDOM();
+
+    this.bindEvents();
+  }
+
+  mountDOM() {
     this.$target = $(".car-name-input-containter");
     this.$carNameInput = $(".car-name-input-containter input[type=text]");
     this.$carNameSummitBtn = $(".car-name-input-containter button");
-    this.setCarNames = setCarNames;
-
-    this.bindEvents();
   }
 
   bindEvents() {
@@ -25,6 +29,7 @@ export default class CarNameInput {
   }
 
   handleSubmitCarName() {
+    const { setCarNames } = this.props;
     const inputCarName = this.$carNameInput.value;
     const carNames = inputCarName.split(",").map((name) => name.trim());
     const errorMessage = this.checkValidInput({ inputCarName, carNames });
@@ -36,7 +41,7 @@ export default class CarNameInput {
     }
 
     disableElements(this.$carNameInput, this.$carNameSummitBtn);
-    this.setCarNames(carNames);
+    setCarNames(carNames);
   }
 
   resetElements() {
