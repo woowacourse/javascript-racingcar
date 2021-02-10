@@ -18,6 +18,7 @@ export default class CarGameManager {
   initGame() {
     this.carGameView.init();
     this.cars = [];
+    this.carNames = [];
   }
 
   bindInputCarNamesEvent() {
@@ -74,7 +75,6 @@ export default class CarGameManager {
     if (!this.validateCarNames()) {
       return this.initGame();
     }
-    this.createCar();
     this.carGameView.showView(document.querySelector('#input-try-count'));
   }
 
@@ -82,8 +82,11 @@ export default class CarGameManager {
     const tryCount = Number(document.querySelector('#input-try-count > div > input').value);
     if (!this.validateTryCount(tryCount)) {
       document.querySelector('#input-try-count > div > input').value = '';
+      this.carGameView.hideView(document.querySelector('#display-game-progress'));
+      this.carGameView.hideView(document.querySelector('#display-game-result'));
       return;
     }
+    this.createCar();
     this.playGame(tryCount);
     this.carGameView.showView(document.querySelector('#display-game-progress'));
     this.carGameView.showView(document.querySelector('#display-game-result'));
@@ -94,8 +97,7 @@ export default class CarGameManager {
   }
 
   createCar() {
-    this.carNames.map((name) => this.cars.push(new Car(name)));
-    console.log(this.cars);
+    this.cars = this.carNames.map((name) => new Car(name));
   }
 
   getRandomInt(max) {
