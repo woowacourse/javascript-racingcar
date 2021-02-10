@@ -48,4 +48,16 @@ context("bdd", () => {
 		cy.get("#count-submit-button").click();
 		cy.get("#count-input").should("have.value", "");
 	});
+
+	it("횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 진행창/결과창/리셋 버튼이 나온다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#race-progress-container").should("exist");
+		cy.get("#result-container").should("exist");
+		cy.get("#reset-button").should("exist");
+	});
 });
