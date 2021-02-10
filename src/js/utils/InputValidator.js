@@ -13,7 +13,6 @@ import {
 export default class InputValidator {
   checkNameInput(value) {
     const names = value.split(',').map(name => name.trim());
-
     return (
       this.hasMoreThan2Cars(names) &&
       this.checkValidLetter(names) &&

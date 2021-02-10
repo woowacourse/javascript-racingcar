@@ -28,11 +28,12 @@ export default class RacingGameController {
     if (!classList.contains('car-name-btn')) {
       return;
     }
+
     if (this.racingGame.isEnd) {
       alert(ALERT_RESTART);
-
       return;
     }
+
     this.getCarNameInput();
   }
 
@@ -58,11 +59,12 @@ export default class RacingGameController {
     if (!classList.contains('count-btn')) {
       return;
     }
+
     if (this.racingGame.isEnd) {
       alert(ALERT_RESTART);
-
       return;
     }
+
     this.getCountInput();
     this.racingGame.count > 0 && this.racingGame.runGame();
     this.view.renderProgress(this.racingGame.getCars());

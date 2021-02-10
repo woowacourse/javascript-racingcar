@@ -12,7 +12,6 @@ module.exports = {
   },
   rules: {
     'no-new': 'off',
-    'newline-before-return': 'error',
     'class-methods-use-this': 'off',
     'import/no-named-as-default': 'off',
     'no-underscore-dangle': 'off',
