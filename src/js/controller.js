@@ -6,7 +6,8 @@ class RacingCarController {
 
   getCarsInput() {
     const $carInput = document.querySelector("#car-input");
-    return $carInput.value;
+
+    return $carInput.value.split(",");
   }
 
   getCountInput() {
@@ -28,7 +29,15 @@ class RacingCarController {
 
   manageCars() {
     // 유효한지 테스트, 자동차 set, showCount
-    // checkCarValid()
+    const carNames = this.getCarsInput();
+    if (isCarValid(carNames)) {
+      const cars = carNames.map(carName => {
+        return { name: carName, forward: 0 };
+      });
+
+      this.model.setCars(cars);
+      this.view.renderCount();
+    }
   }
 
   manageCount() {
