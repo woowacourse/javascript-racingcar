@@ -28,10 +28,10 @@ export class Controller {
   }
 
   handleCarNameButtonClick() {
-    // 마지막 쉼표 뒤에 스페이스만 입력한 경우에 빈 이름이 만들어진다
     const carNames = this.carNameInput.value
       .split(",")
-      .map((carName) => carName.trim());
+      .map((carName) => carName.trim())
+      .filter((carName) => carName !== "");
 
     if (carNames.length < 2) {
       alert(MESSAGE.CAR_NAME.MIN_NUMBER);
