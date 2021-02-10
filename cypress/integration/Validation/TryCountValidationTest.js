@@ -1,6 +1,7 @@
 describe('시도 횟수 유효성 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
+    cy.window().then((win) => cy.stub(win, 'alert').as('windowAlert'));
   });
 
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
@@ -21,15 +22,17 @@ describe('시도 횟수 유효성 테스트', () => {
   };
 
   const alertTryCountError = (tryCount, errorMessage) => {
-    const stub = cy.stub();
     initGame();
     inputCarNames();
     cy.get('#input-try-count > div > input').type(tryCount);
-    cy.on('window:alert', stub);
-    cy
-      .get('#input-try-count > div > button').click()
-      .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(errorMessage);
+    cy.get('#input-try-count > div > button').click()
+    cy.get('@windowAlert')
+      .should('have.callCount', 1) //  몇번째 호출되었는지 반드시 확인!
+      .its('lastCall')
+      .should(
+        'be.calledWith',
+        errorMessage,
+      ).then(() => {
         cy.get('#display-game-progress').should('not.be.visible');
         cy.get('#display-game-result').should('not.be.visible');
       });
