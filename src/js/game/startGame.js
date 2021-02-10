@@ -13,7 +13,6 @@ const updateRacingCount = (cars) => {
     const isForward = isEffectiveScore(
       getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE),
     );
-
     if (isForward) {
       $car.dataset.forwardCount = Number($car.dataset.forwardCount) + 1;
       $car.parentNode.insertAdjacentHTML('beforeend', arrowTemplate());
@@ -21,13 +20,18 @@ const updateRacingCount = (cars) => {
   });
 };
 
-export const startGame = (racingCount) => {
+export const startGame = async (racingCount) => {
   const cars = document.querySelectorAll('.car-player');
 
-  for (let i = 0; i < racingCount; i++) {
+  const gameProcess = await setInterval(() => {
+    if (racingCount-- === 1) {
+      clearInterval(gameProcess);
+    }
     updateRacingCount(cars);
-  }
+  }, 1000);
 
-  toggleVisibility('$gameResultSection');
-  printGameResult();
+  setTimeout(() => {
+    toggleVisibility('$gameResultSection');
+    printGameResult();
+  }, racingCount * 1000);
 };
