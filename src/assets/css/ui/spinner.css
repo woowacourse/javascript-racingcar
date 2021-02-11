@@ -3,6 +3,10 @@
   height: 25px;
 }
 
+.spinner {
+  position:relative;
+}
+
 .spinner::after {
   content: "";
   box-sizing: border-box;
