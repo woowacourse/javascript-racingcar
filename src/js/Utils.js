@@ -20,6 +20,21 @@ class Utils {
 		if (attributes) this.setAttributes(result, attributes);
 		return result;
 	}
+
+	createRaceProgressContainerTemplate(cars) {
+		return `
+		<div id="race-progress-container" class="d-flex justify-center mt-5">
+		<section class="mt-4">
+			<div id="race-progress-screen" class="d-flex">
+				${cars.map((car) => {
+					return `<div>
+							<div class="car-player mr-2">${car}</div>
+						</div>`;
+				})}
+			</div>
+		</section>
+	</div>`;
+	}
 }
 
 export default new Utils();
