@@ -61,11 +61,10 @@ describe('레이싱 게임', () => {
   });
 
   it('자동차는 전진의 조건으로 0에서 9 사이에서 랜덤값을 받는다.', () => {
-    for (let i = 0; i < 100; i++) {
-      let randomNumber = getRandomNumber(0, 10);
-      expect(randomNumber).to.be.at.least(0);
-      expect(randomNumber).to.be.at.most(9);
-    }
+    const wrongCases = [...Array(100)]
+      .map(() => getRandomNumber(0, 10))
+      .filter(number => number < 0 || number > 9);
+    expect(wrongCases.length).to.be.lessThan(1);
   });
 
   it('주어진 횟수 동안 진행한 n대의 자동차의 레이싱 상태를 표시한다.', () => {
