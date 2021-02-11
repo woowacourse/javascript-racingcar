@@ -78,8 +78,9 @@ describe('레이싱 게임', () => {
   it('자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.', () => {
     cy.get('#input-car-name').type('aaa,bbb');
     cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('10');
+    cy.get('#input-race-times').type('1');
     cy.get('#submit-race-times').click();
+    cy.wait(1000);
 
     cy.get('.car').then($cars => {
       const $carAaa = $cars[0];
@@ -103,6 +104,7 @@ describe('레이싱 게임', () => {
       cy.get('#submit-car-name').click();
       cy.get('#input-race-times').type('1');
       cy.get('#submit-race-times').click();
+      cy.wait(1000);
 
       cy.get('.car').then($cars => {
         const $carAaa = $cars[0];
