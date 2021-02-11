@@ -49,6 +49,7 @@ export default class UserInput extends Component {
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
     try {
       this.#verifyCarNamesLength(carNames);
+      this._verifyPropsExist("cars");
     } catch (err) {
       alert(err);
       return;
