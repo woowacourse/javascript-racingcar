@@ -1,5 +1,4 @@
-import { toggleDisabled } from '../utils/toggleDisabled.js';
-import { toggleVisibility } from '../utils/toggleVisibility.js';
+import { setDisabled, setVisibility } from '../utils/setAttribute.js';
 
 const resetGame = () => {
   const $carNameInput = document.querySelector('#car-name-input');
@@ -12,11 +11,17 @@ const resetGame = () => {
 };
 
 export const restartGame = () => {
-  toggleVisibility('$racingCountSection');
-  toggleVisibility('$gameProcessSection');
-  toggleVisibility('$gameResultSection');
-  toggleDisabled('$carNameSubmit');
-  toggleDisabled('$racingCountSubmit');
+  const $carNameSubmit = document.querySelector('#car-name-submit');
+  const $racingCountSubmit = document.querySelector('#racing-count-submit');
+  const $racingCountSection = document.querySelector('#racing-count-section');
+  const $gameProcessSection = document.querySelector('#game-process-section');
+  const $gameResultSection = document.querySelector('#game-result-section');
+
+  setVisibility($racingCountSection, false);
+  setVisibility($gameProcessSection, false);
+  setVisibility($gameResultSection, false);
+  setDisabled($carNameSubmit, false);
+  setDisabled($racingCountSubmit, false);
 
   resetGame();
 };

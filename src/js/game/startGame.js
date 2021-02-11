@@ -1,14 +1,14 @@
 import { isEffectiveScore } from './isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { printGameResult } from './printGameResult.js';
-import { toggleVisibility } from '../utils/toggleVisibility.js';
 import { GAME } from '../utils/constant.js';
+import { setVisibility } from '../utils/setAttribute.js';
 
 const setHiddenWaitRacingAnimation = () => {
   const $spinnerContainers = document.querySelectorAll('.spinner-container');
 
   $spinnerContainers.forEach(($spinnerContainer) =>
-    $spinnerContainer.setAttribute('hidden', true),
+    setVisibility($spinnerContainer, false),
   );
 };
 
@@ -30,6 +30,7 @@ const updateRacingCount = (cars) => {
 
 export const startGame = (racingCount) => {
   const cars = document.querySelectorAll('.car-player');
+  const $gameResultSection = document.querySelector('#game-result-section');
   const totalRacingDurationTime = racingCount * 1000;
 
   const gameProcess = setInterval(() => {
@@ -40,7 +41,7 @@ export const startGame = (racingCount) => {
   }, 1000);
 
   setTimeout(() => {
-    toggleVisibility('$gameResultSection');
+    setVisibility($gameResultSection, true);
     setHiddenWaitRacingAnimation();
     printGameResult();
   }, totalRacingDurationTime);

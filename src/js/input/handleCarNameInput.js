@@ -1,6 +1,5 @@
 import { GAME, ERR_MESSAGE } from '../utils/constant.js';
-import { toggleDisabled } from '../utils/toggleDisabled.js';
-import { toggleVisibility } from '../utils/toggleVisibility.js';
+import { setDisabled, setVisibility } from '../utils/setAttribute.js';
 
 const carTemplate = (carName) => {
   return `<div class="car" data-name=${carName}>
@@ -43,6 +42,8 @@ const isValidCarName = (carNames) => {
 
 export const handleCarNameInput = () => {
   const $carNameInput = document.querySelector('#car-name-input');
+  const $carNameSubmit = document.querySelector('#car-name-submit');
+  const $racingCountSection = document.querySelector('#racing-count-section');
 
   const carNames = $carNameInput.value.split(',').map((car) => car.trim());
   if (!isValidCarName(carNames)) {
@@ -50,7 +51,7 @@ export const handleCarNameInput = () => {
     return;
   }
 
-  toggleVisibility('$racingCountSection');
-  toggleDisabled('$carNameSubmit');
+  setVisibility($racingCountSection, true);
+  setDisabled($carNameSubmit, true);
   createCars(carNames);
 };
