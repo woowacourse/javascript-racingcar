@@ -29,14 +29,6 @@ class Templates {
 
 		this.closingSettingContainerTemplate = `</div></div>`;
 
-		this.raceProgressContainerTemplate = `<div id="race-progress-container" class="d-flex justify-center mt-5">
-                <section class="mt-4">
-                    <div id="race-progress-screen" class="d-flex">
-                    </div>
-                </section>
-            </div>`;
-
-		// :trophy: 최종 우승자: EAST, WEST :trophy:
 		this.resultContainerTemplate = `<div id="result-container" class="d-flex justify-center mt-5">
             <section>
                 <h2></h2>
