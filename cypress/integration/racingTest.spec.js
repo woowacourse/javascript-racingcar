@@ -65,15 +65,15 @@ describe('자동차 레이싱 테스트', () => {
 	it('레이싱이 끝나기 전까지 spinner가 존재하는 지 확인한다.', () => {
 		cy.visit('http://localhost:5500/index.html');
 		const carNamesList = ['a', 'b', 'c', 'd', 'e'];
-		let count = 10;
+		let count = 5;
 		cy.get(selectors.carNamesInput).type(carNamesList.join(','));
 		cy.get(selectors.carNamesSubmit).click();
 		cy.get(selectors.countInput).type(count);
 		cy.get(selectors.countSubmit).click();
-		// 
-		while(count-- > 2){
+		
+		while(count-- > 2){ // cypress에서 2초빠르게 시작해서 맞춰주기 위함
 			cy.get(selectors.spinnerContainer).should('to.be.visible');
-			cy.wait(1000);
+			cy.wait(500); // cypress 실행이 약 2배 빨라서 맞춰주기 위함
 		}
 		cy.get(selectors.spinnerContainer).should('not.exist');
 	});

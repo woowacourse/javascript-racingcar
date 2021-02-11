@@ -51,4 +51,5 @@ export const alertMsg = {
 	isNotValidCarNames: '❌ 유효한 자동차이름이 아닙니다.',
 	isNotValidCarNamesLength: '❌ 자동차는 10대를 넘을 수 없습니다.',
 	isNotValidCount: '❌ 시도할 횟수는 1이상 100이하여야 합니다.',
+	printWinners : (nameList) => `👑 최종 우승자는 ${nameList.join(', ')} 입니다!`
 };
