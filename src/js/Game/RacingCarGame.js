@@ -29,14 +29,14 @@ export default class RacingCarGame {
     return this.cars;
   }
 
+  getMaxDistance() {
+    return Math.max(...this.cars.map((car) => car.getPosition()));
+  }
+
   // return (String)
   getWinners() {
-    const maxPosition = Math.max(...this.cars.map((car) => car.getPosition()));
-    // const maxPosition = this.cars
-    //   .reduce((max, car) => Math.max(max, car.getPosition()), 0);
-
     return this.cars
-      .filter((car) => car.getPosition() === maxPosition)
+      .filter((car) => car.getPosition() === this.getMaxDistance())
       .map((car) => car.getName()).join(', ');
   }
 }
