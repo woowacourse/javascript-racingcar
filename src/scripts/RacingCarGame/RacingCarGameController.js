@@ -55,7 +55,9 @@ export default class RacingCarGameController {
       RacingCarGameView.clearTryCountInput();
       return;
     }
-    if (RacingCarGameValidation.isCarListEmpty(this.racingCarGameModel)) {
+    if (
+      RacingCarGameValidation.isCarListEmpty(this.racingCarGameModel.carList)
+    ) {
       return;
     }
 

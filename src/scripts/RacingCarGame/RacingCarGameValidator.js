@@ -37,8 +37,8 @@ export default class RacingCarGameValidation {
     return true;
   }
 
-  static isCarListEmpty(model) {
-    if (model.carList.length === 0) {
+  static isCarListEmpty(carList) {
+    if (carList.length === 0) {
       alert(SHOULD_REGISTER_CAR_FIRST);
       return true;
     }
