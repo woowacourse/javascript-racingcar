@@ -13,6 +13,10 @@ class Model {
 		carNames.forEach((carName) => this.cars.push(carName));
 		console.log({ cars: this.cars });
 	}
+
+	getRandomNumber({ startNumber, endNumber }) {
+		return startNumber + Math.floor((1 - Math.random()) * (endNumber - startNumber + 1));
+	}
 }
 
 export default new Model();
