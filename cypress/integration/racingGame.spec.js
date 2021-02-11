@@ -89,7 +89,7 @@ describe('레이싱 게임', () => {
 
       if (aaaPosition >= bbbPosition) {
         cy.get('#winners')
-          .then(element => element[0].innerText.includes('aaa'))
+          .then(([element]) => element.innerText.includes('aaa'))
           .should('is.true');
       } else {
         cy.get('#winners').should('have.text', 'bbb');
@@ -112,8 +112,13 @@ describe('레이싱 게임', () => {
 
         if (aaaPosition === bbbPosition) {
           cy.get('#winners')
-            .then(element => element[0].innerText.includes('aaa, bbb'))
+            .then(([element]) => element.innerText.includes('aaa, bbb'))
             .should('is.true');
+        }
+        if (aaaPosition !== bbbPosition) {
+          cy.get('#winners')
+            .then(([element]) => element.innerText.includes(','))
+            .should('is.false');
         }
       });
 
