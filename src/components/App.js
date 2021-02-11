@@ -5,9 +5,10 @@ import GameResult from './GameResult.js';
 import { $ } from '../library/utils/dom.js';
 
 export default class App extends Component {
+  gameProcess;
   cars;
-  raceTimes;
   winners;
+  raceTimes;
 
   constructor($target, props) {
     super($target, props);
@@ -17,16 +18,18 @@ export default class App extends Component {
 
   initStates() {
     this.cars = [];
-    this.raceTimes = 0;
     this.winners = '';
+    this.raceTimes = { value: 0 };
   }
 
   setCars = newValue => {
     this.cars = newValue;
   };
 
+  getRaceTimes = () => this.raceTimes.value;
+
   setRaceTimes = newValue => {
-    this.raceTimes = newValue;
+    this.raceTimes.value = newValue;
   };
 
   mountTemplate() {
@@ -50,7 +53,8 @@ export default class App extends Component {
   };
 
   mountGameProcess = () => {
-    new GameProcess($('#game-process-component'), {
+    this.gameProcess = new GameProcess($('#game-process-component'), {
+      getRaceTimes: this.getRaceTimes,
       cars: this.cars,
     });
   };
@@ -67,16 +71,27 @@ export default class App extends Component {
     this.render();
   };
 
-  race = () => {
-    this.#processRacing();
+  race = async () => {
+    await this.#processRacing();
     this.winners = this.#getWinners();
     this.mountGameResult();
   };
 
   #processRacing() {
-    for (let i = 0; i < this.raceTimes; i++) {
+    const intervalId = setInterval(() => {
+      if (this.getRaceTimes() <= 0) return;
+
+      this.setRaceTimes(this.getRaceTimes() - 1);
       this.cars.forEach(car => car.process());
-    }
+      this.gameProcess.render();
+    }, 1000);
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        clearInterval(intervalId);
+        resolve();
+      }, (this.getRaceTimes() + 1) * 1000);
+    });
   }
 
   #getWinners() {

@@ -24,6 +24,17 @@ export default class GameProcess extends Component {
       <div class="car">
         <div class="car-player mr-2">${car.name}</div>
         ${'<div class="forward-icon mt-2">⬇️</div>'.repeat(car.position)}
+        ${this.props.getRaceTimes() ? this.#createLoadingTemplate() : ''}
+      </div>
+    `;
+  }
+
+  #createLoadingTemplate() {
+    return `
+      <div class="d-flex justify-center mt-4">
+        <div class="relative spinner-container">
+          <span class="material spinner"></span>
+        </div>
       </div>
     `;
   }
