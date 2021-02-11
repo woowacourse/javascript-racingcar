@@ -59,8 +59,8 @@ describe('racing-game', () => {
   it('음수와 공백을 시도 횟수로 입력 시, 경고메세지가 출력되는지 테스트 한다.', () => {
     const negativeRacingCount = -7;
     const alertStub = cy.stub();
-
     cy.on('window:alert', alertStub);
+
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton(negativeRacingCount).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(
@@ -75,13 +75,14 @@ describe('racing-game', () => {
         expect(alertStub.getCall(1)).to.be.calledWith(
           '1 이상의 숫자를 입력해주세요.',
         );
+        cy.get('#racing-count-input').should('have.text', '');
       });
-    cy.get('#racing-count-input').should('have.text', '');
   });
 
   it('올바른 시도 횟수 입력 시, 화면에 자동차 경주 섹션이 표시되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
+
     cy.get('.car-player')
       .should('have.length', carNames.length)
       .each(($div, index) => cy.get($div).should('have.text', carNames[index]));
@@ -89,15 +90,11 @@ describe('racing-game', () => {
   });
 
   it('랜덤 함수가 정상적으로 동작하는지 테스트 한다.', () => {
-    const possibleScores = Array.from({
-      length: GAME.MAX_SCORE - GAME.MIN_SCORE + 1,
-    }).map((v, i) => i);
+    const randomNumbers = [...Array(100)]
+      .map(() => getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE))
+      .filter((num) => GAME.MIN_SCORE <= num && num <= GAME.MAX_SCORE);
 
-    for (let i = 0; i < 100; i++) {
-      expect(possibleScores).to.include(
-        getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE),
-      );
-    }
+    expect(randomNumbers.length).to.equal(100);
   });
 
   it('자동차가 정상적으로 전진, 멈춤하는지 테스트한다.', () => {
@@ -110,16 +107,25 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주 진행 중 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
+    cy.clock();
+
+    // 첫번째 경기 진행시간 1000ms
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton(1);
 
-    cy.clock();
-
-    // 경기 진행시간 1000ms
     cy.tick(500);
     cy.get('#game-result-section').should('not.be.visible');
-
     cy.tick(500);
+    cy.get('#game-result-section').should('be.visible');
+
+    // 두번째 경기 진행시간 3000ms
+    cy.get('#game-restart-button').click();
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton(3);
+
+    cy.tick(1500);
+    cy.get('#game-result-section').should('not.be.visible');
+    cy.tick(1500);
     cy.get('#game-result-section').should('be.visible');
   });
 
@@ -129,11 +135,13 @@ describe('racing-game', () => {
 
     cy.clock();
 
-    cy.get('.spinner-container').should('be.visible');
-
     // 경주 진행시간 5000ms
-    cy.wait(5000);
-
+    cy.get('.spinner-container').should('be.visible');
+    cy.wait(2000);
+    cy.get('.spinner-container').should('be.visible');
+    cy.wait(2000);
+    cy.get('.spinner-container').should('be.visible');
+    cy.wait(1000);
     cy.get('.spinner-container').should('not.be.visible');
   });
 
