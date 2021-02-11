@@ -1,4 +1,4 @@
-import { MESSAGE, RANDOM_NUMBER, SELECTOR } from "./constants.js";
+import { LIMIT, MESSAGE, RANDOM_NUMBER, SELECTOR } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
 import { getRandomIntInclusive } from "./utils.js";
@@ -28,17 +28,45 @@ export class Controller {
   }
 
   handleCarNameButtonClick() {
+    const carNames = this.getCarName();
+    this.carModels = carNames.map((carName) => new CarModel(carName));
+
+    this.viewController.renderCarNameTag(carNames);
+  }
+
+  handleLapCountButtonClick() {
+    if (this.carModels.length === 0) {
+      alert(MESSAGE.COMMON.INVALID_ACCESS);
+      return;
+    }
+
+    this.startRacing(this.getLapCount());
+
+    this.viewController.renderGameResult(this.getWinners());
+  }
+
+  handleRestartButtonClick() {
+    this.carModels = [];
+    this.carNameInput.value = "";
+    this.lapCountInput.value = "";
+
+    this.viewController.clear();
+  }
+
+  getCarName() {
     const carNames = this.carNameInput.value
       .split(",")
       .map((carName) => carName.trim())
       .filter((carName) => carName !== "");
 
-    if (carNames.length < 2) {
+    if (carNames.length < LIMIT.CAR_NAME.MIN_NUMBER) {
       alert(MESSAGE.CAR_NAME.MIN_NUMBER);
       return;
     }
 
-    if (carNames.some((carName) => carName.length > 5)) {
+    if (
+      carNames.some((carName) => carName.length > LIMIT.CAR_NAME.MAX_LENGTH)
+    ) {
       alert(MESSAGE.CAR_NAME.MAX_LENGTH);
       return;
     }
@@ -48,20 +76,11 @@ export class Controller {
       return;
     }
 
-    this.carModels = carNames.map((carName) => new CarModel(carName));
-
-    // TODO: input하면 중복 생성되지 않게하기
-    this.viewController.renderCarNameTag(carNames);
+    return carNames;
   }
 
-  handleLapCountButtonClick() {
+  getLapCount() {
     const userInput = this.lapCountInput.value;
-
-    // TODO: try-catch 형식으로 리팩토링하자!
-    if (this.carModels.length === 0) {
-      alert(MESSAGE.COMMON.INVALID_ACCESS);
-      return;
-    }
 
     if (userInput === "") {
       alert(MESSAGE.LAP_COUNT.NOT_A_NUMBER);
@@ -71,13 +90,13 @@ export class Controller {
 
     const lapCount = Number(userInput);
 
-    if (lapCount < 1) {
+    if (lapCount < LIMIT.LAP_COUNT.MIN_NUMBER) {
       alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
       this.lapCountInput.value = "";
       return;
     }
 
-    if (lapCount > 20) {
+    if (lapCount > LIMIT.LAP_COUNT.MAX_NUMBER) {
       alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
       this.lapCountInput.value = "";
       return;
@@ -89,24 +108,7 @@ export class Controller {
       return;
     }
 
-    for (let i = 0; i < lapCount; i++) {
-      const lapResult = this.getLapResult();
-      this.carModels
-        .filter((_, i) => lapResult[i])
-        .forEach((carModel) => carModel.move());
-      this.viewController.renderGameProgress(lapResult);
-    }
-
-    const winners = this.getWinners();
-    this.viewController.renderGameResult(winners);
-  }
-
-  handleRestartButtonClick() {
-    this.carModels = [];
-    this.carNameInput.value = "";
-    this.lapCountInput.value = "";
-
-    this.viewController.clear();
+    return lapCount;
   }
 
   getLapResult() {
@@ -132,5 +134,16 @@ export class Controller {
     return this.carModels
       .filter(({ moveCount }) => moveCount === maxMoveCount)
       .map(({ name }) => name);
+  }
+
+  startRacing(lapCount) {
+    for (let i = 0; i < lapCount; i++) {
+      const lapResult = this.getLapResult();
+
+      this.carModels
+        .filter((_, i) => lapResult[i])
+        .forEach((carModel) => carModel.move());
+      this.viewController.renderGameProgress(lapResult);
+    }
   }
 }

@@ -30,9 +30,9 @@ export default class ViewController {
   }
 
   renderGameResult(winners) {
-    this.gameResultWinners.innerText = `🏆 최종 우승자: ${winners.join(
-      ", "
-    )} 🏆`;
+    this.gameResultWinners.innerText = `
+    🏆 최종 우승자: ${winners.join(", ")} 🏆
+    `;
     this.show(SELECTOR.GAME_RESULT.CONTAINER);
   }
 

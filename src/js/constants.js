@@ -43,6 +43,11 @@ export const MESSAGE = {
   },
 };
 
+export const LIMIT = {
+  CAR_NAME: { MIN_NUMBER: 2, MAX_LENGTH: 5 },
+  LAP_COUNT: { MIN_NUMBER: 1, MAX_NUMBER: 20 },
+};
+
 export const RANDOM_NUMBER = {
   RANGE: { MIN: 0, MAX: 9 },
   MOVING_POINT: 4,
