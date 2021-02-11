@@ -1,4 +1,4 @@
-import RacingCarGameValidation from "./RacingCarGameValidation.js";
+import RacingCarGameValidation from "./RacingCarGameValidator.js";
 import RacingCarGameView from "./RacingCarGameView.js";
 import RacingCarGameModel from "./RacingCarGameModel.js";
 import { CAR_NAME_SEPERATOR } from "../constants.js";
