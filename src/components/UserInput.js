@@ -1,7 +1,7 @@
 import {
   INVALID_CAR_NAME_LENGTH_MESSAGE,
   TOO_FEW_RACE_TIMES_MESSAGE,
-} from '../library/constants/errorMessage.js';
+} from '../library/constants/alertMessage.js';
 import { CAR_NAME, MIN_RACE_TIMES } from '../library/constants/validation.js';
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';

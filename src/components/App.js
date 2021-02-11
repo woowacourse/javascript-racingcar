@@ -4,6 +4,7 @@ import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import { $ } from '../library/utils/dom.js';
 import State from '../library/core/State.js';
+import { WINNING_MESSAGE } from '../library/constants/alertMessage.js';
 
 export default class App extends Component {
   gameProcess;
@@ -66,6 +67,7 @@ export default class App extends Component {
     await this.#processRacing();
     this.winners = this.#getWinners();
     this.mountGameResult();
+    setTimeout(() => alert(WINNING_MESSAGE), 2000);
   };
 
   #processRacing() {

@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 
+import { WINNING_MESSAGE } from '../../src/library/constants/alertMessage';
 import Car from '../../src/library/models/Car';
 import { getRandomNumber } from '../../src/library/utils/random.js';
 
@@ -157,6 +158,6 @@ describe('레이싱 게임', () => {
     cy.wait(2000);
     cy.get('@alert').should('not.be.called');
     cy.wait(2000);
-    cy.get('@alert').should('be.calledWith', 'ㅊㅋㅊㅋ 축하합니다!');
+    cy.get('@alert').should('be.calledWith', WINNING_MESSAGE);
   });
 });
