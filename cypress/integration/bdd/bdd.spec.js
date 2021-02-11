@@ -2,7 +2,7 @@
 
 context("bdd", () => {
 	beforeEach(() => {
-		cy.visit("http://127.0.0.1:5500/javascript-racingcar/index.html");
+		cy.visit("http://127.0.0.1:5500/index.html");
 	});
 
 	it("이름 입력 칸과 확인 버튼만 있다.", () => {
@@ -65,9 +65,6 @@ context("bdd", () => {
 		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
 		cy.get("#name-submit-button").click();
 
-		cy.get("#count-input").type("3");
-		cy.get("#count-submit-button").click();
-
 		cy.get("#setting-container")
 			.children()
 			.should(($children) => {
@@ -78,6 +75,33 @@ context("bdd", () => {
 		cy.get("#name-submit-button").click();
 
 		cy.get("#setting-container")
+			.children()
+			.should(($children) => {
+				expect($children.length).to.eq(3);
+			});
+	});
+
+	it("횟수 확인 버튼을 연달아 눌러도 진행창/결과창/리셋 버튼은 한 번만 나온다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#app")
+			.children()
+			.should(($children) => {
+				expect($children.length).to.eq(3);
+			});
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#app")
 			.children()
 			.should(($children) => {
 				expect($children.length).to.eq(3);
