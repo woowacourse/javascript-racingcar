@@ -3,7 +3,7 @@ import { selectors } from "../../src/js/keys.js";
 describe("자동차 이름 검증 테스트", () => {
 
   const inputTest = function (value, shouldBeVisible) {
-    cy.visit("http://localhost:5500/index.html");
+    cy.visit("http://localhost:5501/index.html");
     cy.get(selectors.carNamesInput).clear();
 
     cy.get(selectors.carNamesInput).type(value);

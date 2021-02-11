@@ -43,14 +43,6 @@ export const globalHtmlTemplate = {
   </div>`,
 };
 
-export const globalAttr = {
-    displayNoneClass : 'strong-display-none',
-    carPlayerClass : 'car-player',
-    forwardIconClass : 'forward-icon',
-    marginTop : (num) => `mt-${num}`,
-    disabledAttr : 'disabled',
-}
-
 export const globalTexts = {
 	winnerText: '🏆 최종 우승자 🏆',
 	makeWinnerText: (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`,

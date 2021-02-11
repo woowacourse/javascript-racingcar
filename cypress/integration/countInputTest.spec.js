@@ -2,7 +2,7 @@ import { selectors } from "../../src/js/keys.js";
 
 describe("시도 횟수 입력 테스트", () => {
     const countInputTest = function (count, shouldBeVisible) {
-        cy.visit("http://localhost:5500/index.html");
+        cy.visit("http://localhost:5501/index.html");
         cy.get(selectors.carNamesInput).type("a,b,c,d,e");
         cy.get(selectors.carNamesSubmit).click();
         cy.get(selectors.countInput).type(count);

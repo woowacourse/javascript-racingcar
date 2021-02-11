@@ -2,7 +2,7 @@ import { selectors } from "../../src/js/keys.js";
 
 describe("다시 시작 버튼 테스트", () => {
   before(() => {
-    cy.visit("http://localhost:5500/index.html");
+    cy.visit("http://localhost:5501/index.html");
   });
 
   it("다시 시작 버튼을 누르면 게임이 초기화 되는 것을 확인한다..", () => {

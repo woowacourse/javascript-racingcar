@@ -2,7 +2,7 @@ import { selectors, globalTexts, alertMsg } from '../../src/js/keys.js';
 
 describe('레이싱 우승자 테스트', () => {
 	before(() => {
-		cy.visit('http://localhost:5500/index.html');
+		cy.visit('http://localhost:5501/index.html');
 	});
 
 	const checkWinnerTest = (testFunction) => {
@@ -52,3 +52,4 @@ describe('레이싱 우승자 테스트', () => {
 		});
 		
 	});
+});

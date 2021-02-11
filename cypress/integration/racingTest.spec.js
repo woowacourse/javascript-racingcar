@@ -1,17 +1,16 @@
+  
 import Car from '../../src/js/model/Car.js';
 import { getRandomNumber } from '../../src/js/utils.js';
 import { bounds, selectors } from '../../src/js/keys.js';
 import { appendArrowElement } from '../../src/js/view/racingView.js';
 
 describe('자동차 레이싱 테스트', () => {
-  
 	before(() => {
-		cy.visit('http://localhost:5500/index.html');
+		cy.visit('http://localhost:5501/index.html');
 	});
-
 	it('자동차 객체가 올바르게 생성되었는지 확인한다.', () => {
 		const checkCarGenerator = (carNames) => {
-			cy.visit('http://localhost:5500/index.html');
+			cy.visit('http://localhost:5501/index.html');
 			const carNamesList = carNames.split(',');
 			cy.get(selectors.carNamesInput).type(carNamesList.join(','));
 			cy.get(selectors.carNamesSubmit).click();
@@ -48,9 +47,12 @@ describe('자동차 레이싱 테스트', () => {
 	it('자동차가 전진했을 경우만 화살표가 나타나는지 확인한다.', () => {
 		const newElement = document.createElement('div');
 		const newCar = new Car('test');
+
+		newElement.innerHTML = '<div class="car-player"></div>';
+
 		const arrowAppearTest = (moveCnt, shouldVisible) => {
-      if(bounds.goOrStopBound <= moveCnt) {
-        newCar.moveForward();
+			if (bounds.goOrStopBound <= moveCnt) {
+				newCar.moveForward();
 				appendArrowElement(newElement);
 			}
 			shouldVisible
@@ -59,5 +61,21 @@ describe('자동차 레이싱 테스트', () => {
 		};
 		arrowAppearTest(1, false);
 		arrowAppearTest(6, true);
+	});
+
+	it('레이싱이 끝나기 전까지 spinner가 존재하는 지 확인한다.', () => {
+		cy.visit('http://localhost:5501/index.html');
+		const carNamesList = ['a', 'b', 'c', 'd', 'e'];
+		let count = 5;
+		cy.get(selectors.carNamesInput).type(carNamesList.join(','));
+		cy.get(selectors.carNamesSubmit).click();
+		cy.get(selectors.countInput).type(count);
+		cy.get(selectors.countSubmit).click();
+		
+		while(count-- > 2){ // cypress에서 2초빠르게 시작해서 맞춰주기 위함
+			cy.get(selectors.spinnerContainer).should('to.be.visible');
+			cy.wait(500); // cypress 실행이 약 2배 빨라서 맞춰주기 위함
+		}
+		cy.get(selectors.spinnerContainer).should('not.exist');
 	});
 });
