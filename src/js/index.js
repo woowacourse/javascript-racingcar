@@ -1,61 +1,75 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { CLASS } from './constants.js';
+import { ALERT, CLASS } from './constants.js';
 import {
   isCarNameFilled,
   isCarNameUnderFive,
-  isValidTryCount,
+  isTryCountFilled,
+  isTryCountPos,
+  isTryCountInt,
 } from './validation.js';
 
 export default class Racing {
   constructor() {
     this.UIController = new RacingUI();
+  }
 
+  run = () => {
     this.resetValues();
     this.UIController.hideUI();
     this.addListeners();
-  }
+  };
 
-  resetValues() {
+  resetValues = () => {
     this.cars = [];
     this.tryCount = 0;
-  }
+  };
 
-  getCarNames() {
+  getCarNames = () => {
     const carNameInput = document.querySelector(CLASS.CAR_NAME).value;
-
-    if (!isCarNameFilled(carNameInput)) return;
+    if (!isCarNameFilled(carNameInput)) {
+      return alert(ALERT.CAR_NAME_EMPTY);
+    }
 
     for (let name of carNameInput.split(',')) {
-      if (!isCarNameUnderFive(name.trim().length)) return;
+      if (!isCarNameUnderFive(name.trim().length)) {
+        this.cars = [];
+        return alert(ALERT.CAR_NAME_OVER_FIVE);
+      }
       const car = new Car(name.trim());
       this.cars.push(car);
     }
 
     this.UIController.showElement(CLASS.TRY_COUNT_FORM);
-  }
+  };
 
-  getTryCount() {
+  getTryCount = () => {
     const tryCountInput = document.querySelector(CLASS.TRY_COUNT).value;
     const tryCountNumber = Number(tryCountInput);
 
-    if (!isValidTryCount(tryCountInput, tryCountNumber)) return;
+    if (!isTryCountFilled(tryCountInput)) {
+      return alert(ALERT.TRY_COUNT_EMPTY);
+    } else if (!isTryCountPos(tryCountNumber)) {
+      return alert(ALERT.TRY_COUNT_NEG);
+    } else if (!isTryCountInt(tryCountNumber)) {
+      return alert(ALERT.TRY_COUNT_NOT_INT);
+    }
 
     this.tryCount = tryCountNumber;
     this.moveCars();
     this.getWinners();
-  }
+  };
 
-  moveCars() {
+  moveCars = () => {
     for (let i = 0; i < this.tryCount; i++) {
       for (let car of this.cars) {
         car.move();
       }
     }
     this.UIController.showProgress(this.cars);
-  }
+  };
 
-  getWinners() {
+  getWinners = () => {
     let maxPosition = 0;
     const winners = this.cars.reduce((winners, car) => {
       if (car.position === maxPosition) {
@@ -70,23 +84,24 @@ export default class Racing {
     this.UIController.showWinners(winners);
     document
       .querySelector(CLASS.RESTART_BTN)
-      .addEventListener('click', this.restartGame.bind(this));
-  }
+      .addEventListener('click', this.restartGame);
+  };
 
-  restartGame() {
+  restartGame = () => {
     this.UIController.clearUI();
     this.UIController.hideUI();
     this.resetValues();
-  }
+  };
 
-  addListeners() {
+  addListeners = () => {
     document
       .querySelector(CLASS.CAR_NAME_BTN)
-      .addEventListener('click', this.getCarNames.bind(this));
+      .addEventListener('click', this.getCarNames);
     document
       .querySelector(CLASS.TRY_COUNT_BTN)
-      .addEventListener('click', this.getTryCount.bind(this));
-  }
+      .addEventListener('click', this.getTryCount);
+  };
 }
 
-new Racing();
+const racing = new Racing();
+racing.run();

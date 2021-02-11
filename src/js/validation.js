@@ -1,32 +1,19 @@
-import { ALERT } from './constants.js';
-
-export const isValidTryCount = (input, number) => {
-  let isValid = true;
-  if (!input) {
-    isValid = returnAlert(ALERT.TRY_COUNT_EMPTY);
-  } else if (number <= 0) {
-    isValid = returnAlert(ALERT.TRY_COUNT_NEG);
-  } else if (number !== Math.floor(number)) {
-    isValid = returnAlert(ALERT.TRY_COUNT_NOT_INT);
-  }
-  return isValid;
-}
-
 export const isCarNameFilled = input => {
-  if (!input) {
-    return returnAlert(ALERT.CAR_NAME_EMPTY);
-  }
-  return true;
-}
+  return input !== '';
+};
 
 export const isCarNameUnderFive = nameLength => {
-  if (nameLength > 5) {
-    return returnAlert(ALERT.CAR_NAME_OVER_FIVE);
-  }
-  return true;
-}
+  return nameLength <= 5;
+};
 
-const returnAlert = alertMessage => {
-  alert(alertMessage);
-  return false;
-}
+export const isTryCountFilled = input => {
+  return input !== '';
+};
+
+export const isTryCountPos = number => {
+  return number > 0;
+};
+
+export const isTryCountInt = number => {
+  return number === Math.floor(number);
+};
