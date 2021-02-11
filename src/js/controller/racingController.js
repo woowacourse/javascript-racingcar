@@ -19,7 +19,7 @@ const finishRacingGame = function () {
 }
 
 export const startRacingGame = function (rounds) {
-	const callback = function () {
+	const gameRafCallback = function () {
     if(rounds-- <= 0){
       requestAnimationFrame(addSpinners);
       sleep(1);
@@ -29,7 +29,8 @@ export const startRacingGame = function (rounds) {
     addSpinners();
 	  sleep(1);
 		requestAnimationFrame(startRound);
-    requestAnimationFrame(callback);
+    
+    requestAnimationFrame(gameRafCallback);
 	};
-  requestAnimationFrame(callback);
+  requestAnimationFrame(gameRafCallback);
 };
