@@ -24,7 +24,7 @@ const setTotalStep = () => {
 };
 
 export const playGame = () => {
-  const tryNumInput = document.getElementsByTagName("input")[1];
+  const tryNumInput = document.getElementById("try-num").querySelector("input");
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
@@ -53,12 +53,14 @@ export const getWinner = () => {
 };
 
 export const resetGame = () => {
-  const carNamesBtn = document.getElementsByTagName("button")[0];
-  const tryNumBtn = document.getElementsByTagName("button")[1];
-  const resetBtn = document.getElementsByTagName("button")[2];
+  const carNamesBtn = document
+    .getElementById("car-names")
+    .querySelector("button");
+  const tryNumBtn = document.getElementById("try-num").querySelector("button");
+  const resetBtn = document.getElementById("winners").querySelector("button");
 
   resetBtn.addEventListener("click", () => {
-    resetView([2, 3, 4]);
+    resetView();
     state.cars = [];
 
     resetCarNamesInput();

@@ -35,10 +35,14 @@ const getCarInstance = (carNames) => {
 };
 
 const onClickedCarNamesBtn = () => {
-  const carNamesBtn = document.getElementsByTagName("button")[0];
+  const carNamesBtn = document
+    .getElementById("car-names")
+    .querySelector("button");
 
   carNamesBtn.addEventListener("click", () => {
-    const carNamesInput = document.getElementsByTagName("input")[0];
+    const carNamesInput = document
+      .getElementById("car-names")
+      .querySelector("input");
     const carNames = carNamesInput.value.split(",").map((carName) => {
       return carName.trim();
     });
@@ -51,15 +55,16 @@ const onClickedCarNamesBtn = () => {
     }
 
     getCarInstance(carNames);
-    showElement(sections[2]);
+    showElement(document.getElementById("try-num"));
     carNamesBtn.disabled = true;
   });
 };
 
 const onClickedTryNumBtn = () => {
-  const tryNumBtn = document.getElementsByTagName("button")[1];
+  const tryNumBtn = document.getElementById("try-num").querySelector("button");
   tryNumBtn.addEventListener("click", () => {
-    const tryNum = document.getElementsByTagName("input")[1].value;
+    const tryNum = document.getElementById("try-num").querySelector("input")
+      .value;
 
     if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
       alert("올바른 시도 횟수를 입력하세요.");
@@ -71,14 +76,14 @@ const onClickedTryNumBtn = () => {
     // game이 잘 진행되었다면 game결과를 보여준다.
     setResultView();
     setWinnerView(getWinner());
-    showElement(sections[3]);
-    showElement(sections[4]);
+    showElement(document.getElementById("result"));
+    showElement(document.getElementById("winners"));
     tryNumBtn.disabled = true;
   });
 };
 
 const init = () => {
-  resetView([2, 3, 4]);
+  resetView();
   onClickedCarNamesBtn();
   onClickedTryNumBtn();
 };

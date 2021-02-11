@@ -1,4 +1,4 @@
-import { parseHTML, sections, state } from "./index.js";
+import { parseHTML, state } from "./index.js";
 import { resetGame } from "./game-utils.js";
 
 const hideElement = (element) => {
@@ -10,17 +10,17 @@ export const showElement = (element) => {
 };
 
 export const resetCarNamesInput = () => {
-  sections[1].querySelector("input").value = "";
+  document.getElementById("car-names").querySelector("input").value = "";
 };
 
 export const resetTryNumInput = () => {
-  sections[2].querySelector("input").value = "";
+  document.getElementById("try-num").querySelector("input").value = "";
 };
 
-export const resetView = (elementIdArray) => {
-  elementIdArray.forEach((elementId) => {
-    hideElement(sections[elementId]);
-  });
+export const resetView = () => {
+  hideElement(document.getElementById("try-num"));
+  hideElement(document.getElementById("result"));
+  hideElement(document.getElementById("winners"));
 };
 
 const showCarName = (carName) => {
@@ -32,7 +32,7 @@ const showTotalStep = () => {
 };
 
 export const setResultView = () => {
-  sections[3].querySelector("div").innerHTML = "";
+  document.getElementById("result").querySelector("div").innerHTML = "";
 
   state.cars.forEach((car) => {
     const resultDivString = `<div></div>`;
@@ -43,7 +43,7 @@ export const setResultView = () => {
       const step = showTotalStep();
       resultDiv.appendChild(step);
     }
-    sections[3].querySelector("div").append(resultDiv);
+    document.getElementById("result").querySelector("div").append(resultDiv);
   });
 };
 
@@ -59,7 +59,7 @@ const getWinnerText = (winners) => {
 };
 
 export const setWinnerView = (winners) => {
-  sections[4].innerHTML = "";
+  document.getElementById("winners").innerHTML = "";
   const winnerText = getWinnerText(winners);
 
   const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>`;
@@ -69,8 +69,8 @@ export const setWinnerView = (winners) => {
                           </div>`;
   const resetBtn = parseHTML(resetBtnString);
 
-  sections[4].append(winnerTemplate);
-  sections[4].append(resetBtn);
+  document.getElementById("winners").append(winnerTemplate);
+  document.getElementById("winners").append(resetBtn);
 
   resetGame();
 };
