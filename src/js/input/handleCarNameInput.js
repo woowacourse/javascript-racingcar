@@ -5,6 +5,11 @@ import { toggleVisibility } from '../utils/toggleVisibility.js';
 const carTemplate = (carName) => {
   return `<div class="car" data-name=${carName}>
             <div class="car-player mr-2" data-forward-count="0">${carName}</div>
+            <div class="d-flex justify-center mt-4">
+              <div class="relative spinner-container">
+                <span class="material spinner"></span>
+              </div>
+            </div>
           </div>`;
 };
 
@@ -30,7 +35,7 @@ const isValidCarName = (carNames) => {
     return false;
   }
   if (!carNames.every((carName) => isBlank(carName))) {
-    alert(ERR_MESSAGE.NAME_BLANK);
+    alert(ERR_MESSAGE.NAME_CANNOT_BE_BLANK);
     return false;
   }
   return true;

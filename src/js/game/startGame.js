@@ -4,6 +4,29 @@ import { printGameResult } from './printGameResult.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
 import { GAME } from '../utils/constant.js';
 
+const hiddenWaitRacingAnimation = () => {
+  const $spinnerContainers = document.querySelectorAll('.spinner-container');
+
+  $spinnerContainers.forEach(($spinnerContainer) =>
+    $spinnerContainer.setAttribute('hidden', true),
+  );
+};
+
+const setWaitRacingAnimation = (racingDurationTime) => {
+  const startTime = new Date().getTime();
+
+  const paintAnimation = () => {
+    const currentTime = new Date().getTime();
+
+    if (currentTime - racingDurationTime > startTime) {
+      hiddenWaitRacingAnimation();
+    } else {
+      requestAnimationFrame(paintAnimation);
+    }
+  };
+  requestAnimationFrame(paintAnimation);
+};
+
 const arrowTemplate = () => {
   return `<div class="forward-icon mt-2">⬇️️</div>`;
 };
@@ -15,15 +38,17 @@ const updateRacingCount = (cars) => {
     );
     if (isForward) {
       $car.dataset.forwardCount = Number($car.dataset.forwardCount) + 1;
-      $car.parentNode.insertAdjacentHTML('beforeend', arrowTemplate());
+      $car.insertAdjacentHTML('afterend', arrowTemplate());
     }
   });
 };
 
-export const startGame = async (racingCount) => {
+export const startGame = (racingCount) => {
   const cars = document.querySelectorAll('.car-player');
+  const racingDurationTime = racingCount * 1000;
 
-  const gameProcess = await setInterval(() => {
+  setWaitRacingAnimation(racingDurationTime);
+  const gameProcess = setInterval(() => {
     if (racingCount-- === 1) {
       clearInterval(gameProcess);
     }
@@ -33,5 +58,5 @@ export const startGame = async (racingCount) => {
   setTimeout(() => {
     toggleVisibility('$gameResultSection');
     printGameResult();
-  }, racingCount * 1000);
+  }, racingDurationTime);
 };
