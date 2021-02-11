@@ -85,8 +85,8 @@ describe('레이싱 게임', () => {
     cy.get('.car').then($cars => {
       const $carAaa = $cars[0];
       const $carBbb = $cars[1];
-      let aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
-      let bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
+      const aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
+      const bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
 
       if (aaaPosition >= bbbPosition) {
         cy.get('#winners')
@@ -108,8 +108,8 @@ describe('레이싱 게임', () => {
       cy.get('.car').then($cars => {
         const $carAaa = $cars[0];
         const $carBbb = $cars[1];
-        let aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
-        let bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
+        const aaaPosition = $carAaa.querySelectorAll('.forward-icon').length;
+        const bbbPosition = $carBbb.querySelectorAll('.forward-icon').length;
 
         if (aaaPosition === bbbPosition) {
           cy.get('#winners')
