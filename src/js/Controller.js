@@ -1,6 +1,7 @@
 import Model from "./Model.js";
 import ElementManager from "./ElementManager.js";
 import View from "./View.js";
+import Utils from "./Utils.js";
 
 // 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
@@ -8,7 +9,10 @@ class Controller {
 		const countInput = ElementManager.getCountInput();
 		countInput.value = "";
 		const $app = ElementManager.getAppDIV();
-		$app.childElementCount === 1 && View.progressContainerRender();
+		if ($app.childElementCount === 1) {
+			const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
+			View.progressContainerRender(raceProgressContainerTemplate);
+		}
 	}
 
 	onNameSubmit() {
