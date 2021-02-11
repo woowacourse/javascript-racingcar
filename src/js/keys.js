@@ -11,7 +11,7 @@ export const selectors = {
 	winnerContainer: '#winner-container',
 	winnerTextArea: `#winner-container > section > h2`,
 	restartButton: '#restart-button',
-	spinnerContainer: '.spinner-container'
+	spinnerContainer: '.spinner-container',
 };
 
 export const bounds = {
@@ -19,17 +19,28 @@ export const bounds = {
 	lengthUpperBound: 5,
 	countLowerBound: 1,
 	countUpperBound: 100,
-    carNamesUpperBound : 10,
-    goOrStopBound : 4
+	carNamesUpperBound: 10,
+	goOrStopBound: 4,
 };
 
 export const globalAttr = {
-    displayNoneClass : 'strong-display-none',
-    carPlayerClass : 'car-player',
-    forwardIconClass : 'forward-icon',
-    marginTop : (num) => `mt-${num}`,
-    disabledAttr : 'disabled',
-}
+	displayNoneClass: 'strong-display-none',
+	carPlayerClass: 'car-player',
+	forwardIconClass: 'forward-icon',
+	marginTop: (num) => `mt-${num}`,
+	disabledAttr: 'disabled',
+};
+
+export const globalHtmlTemplate = {
+	spinnerTemplate: `<div class="d-flex justify-center mt-4">
+	<div class="relative spinner-container">
+	  <span class="material spinner"></span>
+	</div>
+  </div>`,
+	carPlayerTemplate: (classes, car) => `<div>
+	<div class=${classes.join(' ')}>${car.name}</div>
+  </div>`,
+};
 
 export const globalTexts = {
 	winnerText: '🏆 최종 우승자 🏆',

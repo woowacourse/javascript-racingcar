@@ -1,4 +1,4 @@
-import { globalAttr, selectors } from '../keys.js';
+import { globalAttr, selectors, globalHtmlTemplate } from '../keys.js';
 import { $ } from '../utils.js';
 
 const toggleDisplayCountView = function () {
@@ -8,20 +8,16 @@ const toggleDisplayCountView = function () {
 export const addSpinners = function () {
 	const $racingCarsAreaElement = $(selectors.racingCarsArea);
 	$racingCarsAreaElement.childNodes.forEach((carElement) => {
-		const spinnerElement = carElement.querySelector('.spinner-container');
+		const spinnerElement = carElement.querySelector(selectors.spinnerContainer);
 		if (spinnerElement) return;
-		carElement.innerHTML += `<div class="d-flex justify-center mt-4">
-		<div class="relative spinner-container">
-		  <span class="material spinner"></span>
-		</div>
-	  </div>`;
+		carElement.innerHTML += globalHtmlTemplate.spinnerTemplate;
 	});
 };
 
 export const removeSpinners = function () {
 	const $racingCarsAreaElement = $(selectors.racingCarsArea);
 	$racingCarsAreaElement.childNodes.forEach((carElement) => {
-		const spinnerElement = carElement.querySelector('.spinner-container');
+		const spinnerElement = carElement.querySelector(selectors.spinnerContainer);
 		if (spinnerElement) carElement.removeChild(spinnerElement.parentNode);
 	});
 };
@@ -29,9 +25,7 @@ export const removeSpinners = function () {
 export const displayRacingCars = function (cars) {
 	const classes = [globalAttr.carPlayerClass, globalAttr.marginTop(2)];
 	cars.forEach((car) => {
-		$(selectors.racingCarsArea).innerHTML += `<div>
-      <div class=${classes.join(' ')}>${car.name}</div>
-    </div>`;
+		$(selectors.racingCarsArea).innerHTML += globalHtmlTemplate.carPlayerTemplate(classes, car);
 	});
 	toggleDisplayCountView();
 };
