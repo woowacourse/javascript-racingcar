@@ -7,4 +7,10 @@ context("tdd", () => {
 		Model.setCarNames("a,b,c");
 		expect(Model.cars).to.deep.equal(["a", "b", "c"]);
 	});
+
+	it("랜덤한 숫자가 0에서 9 사이의 정수여야 한다.", () => {
+		for (let i = 0; i < 909; i++) {
+			expect(/[0-9]/.test(Model.getRandomNumber({ startNumber: 0, endNumber: 9 }))).to.equal(true);
+		}
+	});
 });
