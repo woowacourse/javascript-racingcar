@@ -1,6 +1,6 @@
 import { RacingGame, Car } from '../model/index.js';
 import { RacingGameView } from '../view/index.js';
-import { $, isValidateNameInput, isValidCountInput } from '../utils/index.js';
+import { $, isValidNameInput, isValidCountInput } from '../utils/index.js';
 import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
@@ -43,7 +43,7 @@ export default class RacingGameController {
   getCarNameInput() {
     const $input = $('.car-name-input');
     const carNames = $input.value.split(',').map(name => name.trim());
-    if (!isValidateNameInput(carNames)) {
+    if (!isValidNameInput(carNames)) {
       $input.value = '';
       return;
     }
@@ -63,9 +63,7 @@ export default class RacingGameController {
     }
 
     this.getCountInput();
-    this.racingGame.count > 0 && this.racingGame.runGame();
-    this.view.renderProgress(this.racingGame.getCars());
-    this.view.renderResult(this.racingGame.getWinners());
+    this.racingGame.count > 0 && this.runGame();
   }
 
   getCountInput() {
@@ -76,6 +74,37 @@ export default class RacingGameController {
     }
 
     this.racingGame.setCount(Number($input.value));
+  }
+
+  runGame() {
+    this.racingGame.setIsEnd(true);
+    this.runRace(this.racingGame.getCount());
+  }
+
+  runRace(count) {
+    this.racingGame.runRound();
+    this.view.renderProgress(this.racingGame.getCars());
+    if (count > 1) {
+      setTimeout(this.runRace.bind(this), 2000, count - 1);
+      return;
+    }
+
+    this.finishProgress();
+  }
+
+  finishProgress() {
+    setTimeout(() => {
+      this.racingGame.finishProgress();
+      this.view.renderProgress(this.racingGame.getCars());
+      this.view.renderResult(this.racingGame.getWinners());
+      this.alertWinners();
+    }, 2000);
+  }
+
+  alertWinners() {
+    setTimeout(() => {
+      alert(`우승자 ${this.racingGame.getWinners().join(', ')} 축하합니다!`);
+    }, 2000);
   }
 
   handleClickResetBtn({ target: { classList } }) {

@@ -18,15 +18,6 @@ export default class RacingGameView {
   }
 
   renderProgress(cars) {
-    function progressTemplate(car) {
-      return `
-        <div>
-          <div class="car-player mr-2">${car.name}</div>
-          ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.position)}
-        </div>
-      `;
-    }
-
     $('.progress-container').innerHTML = `
       <section class="mt-4">
         <div class="d-flex">
@@ -34,6 +25,33 @@ export default class RacingGameView {
         </div>
       </section>
     `;
+
+    function progressTemplate(car) {
+      return `
+        <div>
+          <div class="car-player mr-2">${car.name}</div>
+          ${
+            car.isLoading
+              ? arrowTemplate().repeat(car.position - 1) + spinnerTemplate()
+              : arrowTemplate().repeat(car.position)
+          }
+        </div>
+      `;
+    }
+
+    function arrowTemplate() {
+      return '<div class="forward-icon mt-2">⬇️️</div>';
+    }
+
+    function spinnerTemplate() {
+      return `
+        <div class="d-flex justify-center mt-4">
+          <div class="relative spinner-container">
+            <span class="material spinner"></span>
+          </div>
+        </div>
+      `;
+    }
   }
 
   renderResult(winners) {

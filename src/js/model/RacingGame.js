@@ -27,19 +27,19 @@ export default class RacingGame {
     return this.count;
   }
 
-  runGame() {
-    this.runRace();
-    this.isEnd = true;
-  }
-
-  runRace() {
-    for (let i = 0; i < this.count; i++) {
-      this.runRound();
-    }
+  setIsEnd(isEnd) {
+    this.isEnd = isEnd;
   }
 
   runRound() {
-    this.cars.forEach(car => this.followRule() && car.moveForward());
+    this.cars.forEach(car => {
+      if (this.followRule()) {
+        car.moveForward();
+        return;
+      }
+
+      car.finishLoading();
+    });
   }
 
   followRule() {
@@ -47,16 +47,20 @@ export default class RacingGame {
     return getRandomNumber() >= MOVE_TRIGGER;
   }
 
+  finishProgress() {
+    this.cars.forEach(car => car.finishLoading());
+  }
+
   getWinners() {
     const maxDistance = this.getMaxDistance();
     return this.cars
       .filter(({ position }) => {
-        position === maxDistance;
+        return position === maxDistance;
       })
       .map(({ name }) => name);
   }
 
   getMaxDistance() {
-    return Math.max(this.cars.map(({ position }) => position));
+    return Math.max(...this.cars.map(({ position }) => position));
   }
 }
