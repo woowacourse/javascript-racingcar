@@ -7,7 +7,8 @@ class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
 		countInput.value = "";
-		View.progressContainerRender();
+		const $app = ElementManager.getAppDIV();
+		$app.childElementCount === 1 && View.progressContainerRender();
 	}
 
 	onNameSubmit() {
