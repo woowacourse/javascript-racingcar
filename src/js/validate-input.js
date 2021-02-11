@@ -1,4 +1,4 @@
-export const isCarNameEmpty = (carNames) => {
+export const isInputEmpty = (carNames) => {
   if (carNames.includes("")) {
     return true;
   }
@@ -13,14 +13,14 @@ export const isCarNameLengthValid = (carNames) => {
   return false;
 };
 
-export const isTryNumInvalid = (tryNum) => {
+export const isInputNegative = (tryNum) => {
   if (Number(tryNum) <= 0) {
     return true;
   }
   return false;
 };
 
-export const isTryNumNotNumber = (tryNum) => {
+export const isInputString = (tryNum) => {
   if (isNaN(tryNum)) {
     return true;
   }

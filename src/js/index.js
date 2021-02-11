@@ -9,10 +9,10 @@ import {
 } from "./display-utils.js";
 import { playGame, getWinner } from "./game-utils.js";
 import {
-  isCarNameEmpty,
+  isInputEmpty,
   isCarNameLengthValid,
-  isTryNumInvalid,
-  isTryNumNotNumber,
+  isInputNegative,
+  isInputString,
 } from "./validate-input.js";
 import {
   carNamesSection,
@@ -47,7 +47,7 @@ const onClickedCarNamesBtn = () => {
       return carName.trim();
     });
 
-    if (isCarNameEmpty(carNames) || isCarNameLengthValid(carNames)) {
+    if (isInputEmpty(carNames) || isCarNameLengthValid(carNames)) {
       alert("올바른 자동차 이름을 입력하세요.");
       resetCarNamesInput();
 
@@ -65,7 +65,7 @@ const onClickedTryNumBtn = () => {
   tryNumBtn.addEventListener("click", () => {
     const tryNum = tryNumSection.querySelector("input").value;
 
-    if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
+    if (isInputNegative(tryNum) || isInputString(tryNum)) {
       alert("올바른 시도 횟수를 입력하세요.");
       resetTryNumInput();
 
