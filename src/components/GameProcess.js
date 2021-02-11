@@ -10,13 +10,13 @@ export default class GameProcess extends Component {
     this.$target.innerHTML = `
       <section class="mt-4">
         <div class="d-flex">
-          ${this.#createCarProcess()}
+          ${this.#createCarElements()}
         </div>
       </section>
     `;
   }
 
-  #createCarProcess() {
+  #createCarElements() {
     return this.props.cars.value.reduce(
       (acc, car) => acc + this.#createCarProcessTemplate(car),
       ''
