@@ -27,23 +27,23 @@ export default class CarGameView {
     this.hideView(this.gameResultView);
   }
 
-  displayProgress(cars) {
-    this.gameProgressView.querySelector('.d-flex').innerHTML = this.displayProgressContainer(cars);
+  renderGameProgress(cars) {
+    this.gameProgressView.querySelector('.d-flex').innerHTML = this.getGameProgressTemplate(cars);
   }
 
-  displayProgressContainer(cars) {
+  getGameProgressTemplate(cars) {
     return cars.map((car) => `
         <div>
           <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
-          ${this.displayForwardIcons(car.getPosition())}
+          ${this.getForwardIconsTemplate(car.getPosition())}
         </div>`).join('');
   }
 
-  displayForwardIcons(count) {
+  getForwardIconsTemplate(count) {
     return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
   }
 
-  displayWinners(winner) {
+  renderWinners(winner) {
     this.gameResultView.querySelector('h2').innerText = `🏆 최종 우승자: ${winner} 🏆`;
   }
 }

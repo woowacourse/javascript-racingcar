@@ -66,8 +66,8 @@ export default class CarGameManager {
 
     this.createCar();
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
-    this.carGameView.displayProgress(racingCarGame.getCars());
-    this.carGameView.displayWinners(racingCarGame.getWinners());
+    this.carGameView.renderGameProgress(racingCarGame.getCars());
+    this.carGameView.renderWinners(racingCarGame.getWinners());
     this.carGameView.showView(this.$element.querySelector('#display-game-progress'));
     this.carGameView.showView(this.$element.querySelector('#display-game-result'));
   }
