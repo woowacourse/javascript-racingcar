@@ -67,10 +67,7 @@ export default class App extends Page {
   };
 
   #processRaceOnce() {
-    this.cars.value = this.cars.value.map(car => {
-      car.process();
-      return car;
-    });
+    this.cars.value.forEach(car => car.process());
   }
 
   #determineWinners() {
