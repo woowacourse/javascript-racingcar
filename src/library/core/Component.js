@@ -1,4 +1,4 @@
-import { ERROR } from "../utils/constant.js";
+import { ERROR_MESSAGE } from "../utils/constant.js";
 
 export default class Component {
   $target;
@@ -16,7 +16,7 @@ export default class Component {
 
   _verifyPropsExist(string) {
     if (!this.props[string]) {
-      throw new Error(ERROR.NOT_EXIST_PROPS);
+      throw new Error(ERROR_MESSAGE.NOT_EXIST_PROPS);
     }
   }
 }

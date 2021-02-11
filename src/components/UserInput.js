@@ -1,6 +1,6 @@
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
-import { ERROR, RESTRICT } from '../library/utils/constant.js';
+import { ERROR_MESSAGE, RESTRICT } from '../library/utils/constant.js';
 import { disableElement, showElement } from '../library/utils/dom.js';
 
 export default class UserInput extends Component {
@@ -62,7 +62,7 @@ export default class UserInput extends Component {
 
   #verifyCarNamesLength(carNames) {
     if (carNames.some(name => name.length < RESTRICT.MIN_CAR_NAME_LENGTH || name.length > RESTRICT.MAX_CAR_NAME_LENGTH)) {
-      throw new Error(ERROR.RANGE_CAR_NAME_LENGTH);
+      throw new Error(ERROR_MESSAGE.RANGE_CAR_NAME_LENGTH);
     }
   }
 
@@ -84,7 +84,7 @@ export default class UserInput extends Component {
 
   #verifyMinRacingTimes(value) {
     if (value < RESTRICT.MIN_RACING_TIME) {
-      throw new Error(ERROR.MIN_RACING_TIME);
+      throw new Error(ERROR_MESSAGE.MIN_RACING_TIME);
     }
   }
 }
