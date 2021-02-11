@@ -1,7 +1,7 @@
 import {
-  CAR_MOVE_DECIDE_NUMBER_RANGE,
+  RANDOM_NUMBER_RANGE,
   CAR_MOVE_STANDARD_NUMBER,
-} from "../constants.js";
+} from "../constants/racing_game_constants.js";
 
 export default class RacingCarGameModel {
   constructor() {
@@ -28,7 +28,7 @@ export default class RacingCarGameModel {
 
   moveCarsByRandom() {
     this.carList.forEach((car) => {
-      const randomNumber = this.getRandomNumber(CAR_MOVE_DECIDE_NUMBER_RANGE);
+      const randomNumber = this.getRandomNumber(RANDOM_NUMBER_RANGE);
       this.moveCarForward(car, randomNumber);
     });
   }

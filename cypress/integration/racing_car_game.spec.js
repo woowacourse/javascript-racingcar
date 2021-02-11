@@ -1,11 +1,11 @@
 import RacingCarGameModel from "../../src/scripts/RacingCarGame/RacingCarGameModel.js";
+import { CAR_MOVE_STANDARD_NUMBER } from "../../src/scripts/constants/racing_game_constants.js";
 import {
-  MAX_CAR_NAME_EXCEEDED,
+  CAR_NAME_LENGTH_EXCEEDED,
   CAR_NAME_EMPTY,
   SHOULD_BE_INTEGER,
   SHOULD_GREATER_THAN_ZERO,
-  CAR_MOVE_STANDARD_NUMBER,
-} from "../../src/scripts/constants.js";
+} from "../../src/scripts/constants/error_messages.js";
 
 describe("step1", () => {
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe("step1", () => {
     cy.get("#car-name-input").type("chris, beuccol");
     cy.get("#car-name-submit").click();
     cy.on("window:alert", (txt) => {
-      expect(txt).to.contains(MAX_CAR_NAME_EXCEEDED);
+      expect(txt).to.contains(CAR_NAME_LENGTH_EXCEEDED);
     });
     cy.get("#result-area").should("have.text", "");
   });

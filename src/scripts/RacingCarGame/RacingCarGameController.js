@@ -1,7 +1,7 @@
 import RacingCarGameValidation from "./RacingCarGameValidator.js";
 import RacingCarGameView from "./RacingCarGameView.js";
 import RacingCarGameModel from "./RacingCarGameModel.js";
-import { CAR_NAME_SEPERATOR } from "../constants.js";
+import { CAR_NAME_SEPERATOR } from "../constants/racing_game_constants.js";
 import { $carNameSubmit } from "../elements.js";
 
 export default class RacingCarGameController {

@@ -1,16 +1,16 @@
+import { MAX_CAR_NAME_LENGTH } from "../constants/racing_game_constants.js";
 import {
-  MAX_CAR_NAME_LENGTH,
-  MAX_CAR_NAME_EXCEEDED,
+  CAR_NAME_LENGTH_EXCEEDED,
   CAR_NAME_EMPTY,
   SHOULD_BE_INTEGER,
   SHOULD_GREATER_THAN_ZERO,
   SHOULD_REGISTER_CAR_FIRST,
-} from "../constants.js";
+} from "../constants/error_messages.js";
 
 export default class RacingCarGameValidation {
   static isCarNameValid(carName) {
     if (carName.length > MAX_CAR_NAME_LENGTH) {
-      alert(MAX_CAR_NAME_EXCEEDED);
+      alert(CAR_NAME_LENGTH_EXCEEDED);
       return false;
     } else if (carName.length === 0) {
       alert(CAR_NAME_EMPTY);
