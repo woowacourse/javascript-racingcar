@@ -60,4 +60,27 @@ context("bdd", () => {
 		cy.get("#result-container").should("exist");
 		cy.get("#reset-button").should("exist");
 	});
+
+	it("이름 확인 버튼을 연달아 눌러도 횟수 입력 칸과 버튼은 한 번만 나온다.", () => {
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#setting-container")
+			.children()
+			.should(($children) => {
+				expect($children.length).to.eq(3);
+			});
+
+		cy.get("#name-input").type("EAST, WEST, SOUTH, NORTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#setting-container")
+			.children()
+			.should(($children) => {
+				expect($children.length).to.eq(3);
+			});
+	});
 });
