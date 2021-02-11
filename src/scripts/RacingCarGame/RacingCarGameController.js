@@ -1,12 +1,12 @@
 import RacingCarGameValidation from "./RacingCarGameValidation.js";
 import RacingCarGameView from "./RacingCarGameView.js";
-import { getRacingCarGameModel } from "../store.js";
+import RacingCarGameModel from "./RacingCarGameModel.js";
 import { CAR_NAME_SEPERATOR } from "../constants.js";
 import { $carNameSubmit } from "../elements.js";
 
 export default class RacingCarGameController {
   constructor() {
-    this.racingCarGameModel = getRacingCarGameModel();
+    this.racingCarGameModel = new RacingCarGameModel();
   }
 
   seperateCarNames(carNames, seperator) {
@@ -24,7 +24,6 @@ export default class RacingCarGameController {
     }
 
     this.racingCarGameModel.registerCars(carNameList);
-    console.log(this.racingCarGameModel);
     RacingCarGameView.updateResultArea(this.racingCarGameModel.carList);
     RacingCarGameView.changeInnerText($carNameSubmit, "수정");
   }
@@ -56,7 +55,7 @@ export default class RacingCarGameController {
       RacingCarGameView.clearTryCountInput();
       return;
     }
-    if (RacingCarGameValidation.isCarListEmpty()) {
+    if (RacingCarGameValidation.isCarListEmpty(this.racingCarGameModel)) {
       return;
     }
 
