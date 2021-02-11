@@ -29,7 +29,7 @@ class Utils {
 				${cars
 					.map((car) => {
 						return `<div>
-							<div class="car-player mr-2">${car}</div>
+							<div class="car-player mr-2">${car.name}</div>
 						</div>`;
 					})
 					.join("")}

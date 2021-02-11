@@ -7,6 +7,7 @@ import Utils from "./Utils.js";
 class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
+		Model.setCount(Number(countInput.value));
 		countInput.value = "";
 		const $app = ElementManager.getAppDIV();
 		if ($app.childElementCount === 1) {
@@ -45,6 +46,24 @@ class Controller {
 			}
 		});
 	}
+
+	// for 문을 돌아서 (횟수만큼)
+	// for 문을 돌아서 (자동차만큼)
+	// 랜덤숫자가 자동차 수 * 횟수만큼 만들어짐
+	// if randomNumber >= 4
+	// Model의 cars[i] (자동차) .score += 1
+	// 자동차 for문 종료
+	// render 화살표
+	// 횟수 for문 종료
+
+	// for(let i=0; i<Model.count; i++) {
+	// 	for(let j=0; j<Model.cars.length; j++) {
+	// 		const num = Model.getRandomNumber({ startNumber: 0, endNumber: 9 })
+	// 		if(num >= 4) {
+	// 			Model.cars[j].score += 1
+	// 		}
+	// 	}
+	// }
 }
 
 export default new Controller();

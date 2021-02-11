@@ -1,6 +1,6 @@
 import ElementManager from "./ElementManager.js";
 import Templates from "./Templates.js";
-import Utils from "./Utils.js";
+// import Utils from "./Utils.js";
 
 class View {
 	initialRender($parentElement) {
