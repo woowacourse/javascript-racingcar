@@ -2,7 +2,6 @@ import Component from '../library/core/Component.js';
 import UserInput from './UserInput.js';
 import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
-import State from '../library/core/State.js';
 import { $ } from '../library/utils/dom.js';
 
 export default class App extends Component {
@@ -17,10 +16,18 @@ export default class App extends Component {
   }
 
   initStates() {
-    this.cars = new State([]);
-    this.raceTimes = new State(null);
+    this.cars = [];
+    this.raceTimes = 0;
     this.winners = '';
   }
+
+  setCars = newValue => {
+    this.cars = newValue;
+  };
+
+  setRaceTimes = newValue => {
+    this.raceTimes = newValue;
+  };
 
   mountTemplate() {
     this.$target.innerHTML = `
@@ -35,8 +42,8 @@ export default class App extends Component {
 
   mountChildComponents = () => {
     new UserInput($('#user-input-component'), {
-      cars: this.cars,
-      raceTimes: this.raceTimes,
+      setCars: this.setCars,
+      setRaceTimes: this.setRaceTimes,
       mountGameProcess: this.mountGameProcess,
       race: this.race,
     });
@@ -67,15 +74,15 @@ export default class App extends Component {
   };
 
   #processRacing() {
-    for (let i = 0; i < this.raceTimes.value; i++) {
-      this.cars.value.forEach(car => car.process());
+    for (let i = 0; i < this.raceTimes; i++) {
+      this.cars.forEach(car => car.process());
     }
   }
 
   #getWinners() {
-    const maxPosition = Math.max(...this.cars.value.map(car => car.position));
+    const maxPosition = Math.max(...this.cars.map(car => car.position));
 
-    return this.cars.value
+    return this.cars
       .filter(({ position }) => position === maxPosition)
       .map(({ name }) => name);
   }
