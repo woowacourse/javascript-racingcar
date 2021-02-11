@@ -1,39 +1,28 @@
 import ElementManager from "./ElementManager.js";
-import {
-	openingSettingContainerTemplate,
-	titleSectionTemplate,
-	carNameSectionTemplate,
-	closingSettingContainerTemplate,
-	countTemplate,
-	raceProgressContainerTemplate,
-	resultContainerTemplate,
-} from "./HTMLText.js";
+import Templates from "./Templates.js";
 import Utils from "./Utils.js";
 
 class View {
 	initialRender($parentElement) {
 		$parentElement.innerHTML =
-			openingSettingContainerTemplate +
-			titleSectionTemplate +
-			carNameSectionTemplate +
-			closingSettingContainerTemplate;
+			Templates.openingSettingContainerTemplate +
+			Templates.titleSectionTemplate +
+			Templates.carNameSectionTemplate +
+			Templates.closingSettingContainerTemplate;
 	}
 
 	clearInputValue(inputElement) {
 		inputElement.value = "";
 	}
 
-	countSectionRender() {
-		const $settingContainer = ElementManager.getSettingContainer();
-		const $countSection = Utils.createElement("section", { class: "mt-5" });
-		$countSection.innerHTML = countTemplate;
-		$settingContainer.childElementCount === 2 && $settingContainer.appendChild($countSection);
+	countSectionRender($settingContainer) {
+		$settingContainer.insertAdjacentHTML("beforeend", Templates.countSectionTemplate);
 	}
 
 	progressContainerRender() {
 		const $app = ElementManager.getAppDIV();
-		$app.insertAdjacentHTML("beforeend", raceProgressContainerTemplate);
-		$app.insertAdjacentHTML("beforeend", resultContainerTemplate);
+		$app.insertAdjacentHTML("beforeend", Templates.raceProgressContainerTemplate);
+		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
 	}
 }
 
