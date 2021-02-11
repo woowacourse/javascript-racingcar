@@ -17,6 +17,12 @@ export default class GameProcess extends Component {
   }
 
   #createCarElements() {
+    try {
+      this._verifyPropsExist("cars");
+    } catch (error) {
+      alert(error);
+      return;
+    }
     return this.props.cars.value.reduce(
       (acc, car) => acc + this.#createCarProcessTemplate(car),
       ''
