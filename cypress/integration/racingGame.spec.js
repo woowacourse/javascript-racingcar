@@ -1,6 +1,10 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 import { getRandomNumber } from '../../src/library/utils/random.js';
+/* 랜덤으로 0~9 사이의 값만 출력되는지는
+ 100번 정도의 테스트면 충분할 것으로 생각 */
+const RANDOM_TEST_TRY = 100;
+
 
 describe('레이싱 게임', () => {
   beforeEach(() => {
@@ -60,7 +64,7 @@ describe('레이싱 게임', () => {
   });
 
   it('자동차는 전진의 조건으로 0에서 9 사이에서 랜덤값을 받는다.', () => {
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < RANDOM_TEST_TRY; i++) {
       const randomNumber = getRandomNumber(0, 10);
       expect(randomNumber >= 0 && randomNumber < 10).be.equal(true);
     }
