@@ -18,7 +18,3 @@ export const addRacingCarGameListener = () => {
   );
   $restartButton.addEventListener("click", controller.onRestartButtonClick);
 };
-
-export default {
-  addRacingCarGameListener,
-};
