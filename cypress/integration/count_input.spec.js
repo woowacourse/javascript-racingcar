@@ -6,12 +6,17 @@ import {
   COUNT_BTN,
   ALERT_DECIMAL,
   ALERT_VALID_COUNT_RANGE,
+  COUNT_CONTAINER,
 } from '../../src/js/constants/index.js';
 
-describe('Car name input test', () => {
+describe('Count input test', () => {
   before(() => {
     cy.visit('http://127.0.0.1:5500/index.html');
     setGameData(CAR_INPUT, CAR_BTN, 'a,b');
+  });
+
+  it('Can render count input.', () => {
+    cy.get(COUNT_CONTAINER).children().should('exist');
   });
 
   it('Can check less than zero.', () => {
