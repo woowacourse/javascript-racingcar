@@ -31,7 +31,7 @@ describe('레이싱 게임', () => {
     cy.get('#game-process-component > section').should('exist');
   });
 
-  it('시도할 횟수는 1 이상이어야 한다.', () => {
+  it('사용자가 입력한 레이싱 횟수는 1 이상이어야 한다.', () => {
     cy.get('#input-car-name').type('aaa,bbb,ccc');
     cy.get('#submit-car-name').click();
     cy.get('#input-race-times').type('0');
