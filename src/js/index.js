@@ -21,8 +21,6 @@ import {
   winnerSection,
 } from "./elements.js";
 
-// section마다 고유한 id가 없어서, 각 section에 쉽게 접근하기 위해 sections Array 생성
-export const sections = document.getElementsByTagName("section");
 // 자동차 인스턴스 배열을 저장하는 state
 export const state = {
   cars: [],
