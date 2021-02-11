@@ -13,11 +13,6 @@ class Model {
 		carNames.forEach((carName) => this.cars.push(carName));
 		console.log({ cars: this.cars });
 	}
-
-	addCountButtonEvent(callback) {
-		const countButton = ElementManager.getCountButton();
-		countButton.addEventListener("click", callback);
-	}
 }
 
 export default new Model();

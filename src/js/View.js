@@ -8,6 +8,8 @@ import {
 	raceProgressContainerTemplate,
 	resultContainerTemplate,
 } from "./HTMLText.js";
+import Utils from "./Utils.js";
+
 class View {
 	initialRender($parentElement) {
 		$parentElement.innerHTML =
@@ -23,12 +25,9 @@ class View {
 
 	countSectionRender() {
 		const $settingContainer = ElementManager.getSettingContainer();
-		const $countSection = ElementManager.createElement("section", { class: "mt-5" });
+		const $countSection = Utils.createElement("section", { class: "mt-5" });
 		$countSection.innerHTML = countTemplate;
-
-		if ($settingContainer.childElementCount === 2) {
-			$settingContainer.appendChild($countSection);
-		}
+		$settingContainer.childElementCount === 2 && $settingContainer.appendChild($countSection);
 	}
 
 	progressContainerRender() {

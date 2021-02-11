@@ -15,17 +15,20 @@ class Controller {
 		Model.setCarNames(nameInput.value);
 		View.clearInputValue(nameInput);
 		View.countSectionRender();
-		Model.addCountButtonEvent(this.onCountSubmit);
+		this.addCountButtonEvent(this.onCountSubmit);
+	}
+
+	addCountButtonEvent(callback) {
+		const countButton = ElementManager.getCountButton();
+		countButton.addEventListener("click", callback);
 	}
 
 	initializeEvents() {
 		const nameButton = ElementManager.getNameButton();
 		const nameInput = ElementManager.getNameInput();
-
 		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
 		nameInput.addEventListener("input", (event) => {
 			const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
-
 			if (RegExp.test(event.target.value) === true) {
 				event.target.value = event.target.value.substring(0, event.target.value.length - 1);
 			}
