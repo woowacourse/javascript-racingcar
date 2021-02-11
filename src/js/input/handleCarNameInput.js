@@ -22,11 +22,11 @@ const createCars = (carNames) => {
 };
 
 const isValidLength = (name) => {
-  return name.length <= GAME.MAX_NAME_LENGTH;
+  return name.length <= GAME.MAX_CAR_NAME_LENGTH;
 };
 
 const isBlank = (name) => {
-  return name.length >= GAME.MIN_NAME_LENGTH;
+  return name.length >= GAME.MIN_CAR_NAME_LENGTH;
 };
 
 const isValidCarName = (carNames) => {

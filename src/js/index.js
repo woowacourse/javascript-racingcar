@@ -9,10 +9,10 @@ const init = () => {
   $racingCountSubmit.addEventListener('click', handleRacingCountInput);
 };
 
-export const RacingGame = () => {
+export const racingGame = () => {
   init();
 };
 
 window.onload = () => {
-  RacingGame();
+  racingGame();
 };
