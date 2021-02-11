@@ -43,7 +43,7 @@ export default class UserInput extends Component {
       alert(INVALID_CAR_NAME_LENGTH_MESSAGE);
       return;
     }
-    this.props.setCars(carNames.map(carName => new Car(carName)));
+    this.props.cars.set(carNames.map(carName => new Car(carName)));
     disableDOMElements($buttonCarName, $inputCarName);
     this.showRaceTimesInput();
   }
@@ -67,7 +67,7 @@ export default class UserInput extends Component {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
     }
-    this.props.setRaceTimes(Number($inputRaceTimes.value));
+    this.props.raceTimes.set(Number($inputRaceTimes.value));
     disableDOMElements($buttonRaceTimes, $inputRaceTimes);
     this.props.mountGameProcess();
     this.props.race();

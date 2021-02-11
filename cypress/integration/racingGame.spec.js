@@ -146,4 +146,12 @@ describe('레이싱 게임', () => {
     cy.wait(1000);
     cy.get('.forward-icon').should('exist');
   });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('1');
+    cy.get('#submit-race-times').click();
+    cy.wait(2000);
+  });
 });
