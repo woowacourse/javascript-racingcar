@@ -119,4 +119,28 @@ context("bdd", () => {
 		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "WEST");
 		cy.get("#race-progress-screen>div>.car-player").eq(2).should("have.text", "SOUTH");
 	});
+
+	it("가장 많이 전진한 자동차가 우승인지 판별한다.", () => {
+		cy.get("#name-input").type("EAST,WEST,SOUTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get(".car-player").then((cars) => {
+			const carObjects = [...cars].map((car) => ({
+				name: car.innerText,
+				score: car.parentNode.children.length - 1,
+			}));
+
+			const maxScore = Math.max(...carObjects.map((car) => car.score));
+			const winners = carObjects.reduce(
+				(winnerCars, currentCar) =>
+					currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars,
+				[]
+			);
+			const winnerResult = winners.join(", ");
+			cy.get("#result-container").find("section").find("h2").contains(winnerResult);
+		});
+	});
 });
