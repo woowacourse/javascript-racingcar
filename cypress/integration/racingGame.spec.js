@@ -61,7 +61,7 @@ describe('레이싱 게임', () => {
 
   it('자동차는 전진의 조건으로 0에서 9 사이에서 랜덤값을 받는다.', () => {
     for (let i = 0; i < 100; i++) {
-      let randomNumber = getRandomNumber(0, 10);
+      const randomNumber = getRandomNumber(0, 10);
       expect(randomNumber >= 0 && randomNumber < 10).be.equal(true);
     }
   });
