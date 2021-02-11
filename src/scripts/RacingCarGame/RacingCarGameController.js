@@ -1,12 +1,12 @@
-import RacingCarGameValidation from "./RacingCarGameValidator.js";
-import RacingCarGameView from "./RacingCarGameView.js";
-import RacingCarGameModel from "./RacingCarGameModel.js";
+import Validator from "./RacingCarGameValidator.js";
+import View from "./RacingCarGameView.js";
+import Model from "./RacingCarGameModel.js";
 import { CAR_NAME_SEPERATOR } from "../constants/racing_game_constants.js";
 import { $carNameSubmit } from "../elements.js";
 
 export default class RacingCarGameController {
   constructor() {
-    this.racingCarGameModel = new RacingCarGameModel();
+    this.model = new Model();
   }
 
   seperateCarNames(carNames, seperator) {
@@ -16,7 +16,7 @@ export default class RacingCarGameController {
   registerCarNames(carNames) {
     const carNameList = this.seperateCarNames(carNames, CAR_NAME_SEPERATOR);
     const isCarNameListValid = carNameList.every((carName) =>
-      RacingCarGameValidation.isCarNameValid(carName)
+      Validator.isCarNameValid(carName)
     );
 
     if (!isCarNameListValid) {
@@ -24,8 +24,8 @@ export default class RacingCarGameController {
     }
 
     this.racingCarGameModel.registerCars(carNameList);
-    RacingCarGameView.updateResultArea(this.racingCarGameModel.carList);
-    RacingCarGameView.changeInnerText($carNameSubmit, "수정");
+    View.updateResultArea(this.racingCarGameModel.carList);
+    View.changeInnerText($carNameSubmit, "수정");
   }
 
   getWinners(carList) {
@@ -41,36 +41,34 @@ export default class RacingCarGameController {
   finishGame() {
     const winners = this.getWinners(this.racingCarGameModel.carList);
 
-    RacingCarGameView.deactivateCarNameSubmitButton();
-    RacingCarGameView.deactivatePlayGameButton();
-    RacingCarGameView.showWinners(winners);
-    RacingCarGameView.showRestartButton();
+    View.deactivateCarNameSubmitButton();
+    View.deactivatePlayGameButton();
+    View.showWinners(winners);
+    View.showRestartButton();
     this.racingCarGameModel.clearCarsRecord();
   }
 
   playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
 
-    if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
-      RacingCarGameView.clearTryCountInput();
+    if (!Validator.isTryCountValid(tryCount)) {
+      View.clearTryCountInput();
       return;
     }
-    if (
-      RacingCarGameValidation.isCarListEmpty(this.racingCarGameModel.carList)
-    ) {
+    if (Validator.isCarListEmpty(this.model.carList)) {
       return;
     }
 
     for (let i = 0; i < tryCount; i += 1) {
       this.racingCarGameModel.moveCarsByRandom();
     }
-    RacingCarGameView.updateResultArea(this.racingCarGameModel.carList);
+    View.updateResultArea(this.racingCarGameModel.carList);
     this.finishGame();
   }
 
   restartRacingCarGame() {
     this.racingCarGameModel.clearCarList();
-    RacingCarGameView.resetGameView();
+    View.resetGameView();
   }
 
   onCarNameSubmit(carNamesString) {
