@@ -7,6 +7,7 @@ export default class CarGameManager {
   constructor($element) {
     this.$element = $element;
     this.carGameView = new CarGameView($element);
+    // 어디로 옮길지 고민해보기
     this.validator = new Validator();
     this.initGame();
     this.bindEvents();
@@ -50,17 +51,20 @@ export default class CarGameManager {
     if (!this.validator.validateCarNames(this.carNames)) {
       return this.initGame();
     }
+
     this.carGameView.showView(this.$element.querySelector('#input-try-count'));
   }
 
   tryCountInputHandler() {
     const tryCount = Number(this.$element.querySelector('#input-try-count > div > input').value);
+
     if (!this.validator.validateTryCount(tryCount)) {
       this.carGameView.resetInput(this.$element.querySelector('#input-try-count > div'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-progress'));
       this.carGameView.hideView(this.$element.querySelector('#display-game-result'));
       return;
     }
+
     this.createCar();
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
     this.carGameView.displayProgress(racingCarGame.getCars());

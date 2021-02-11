@@ -8,11 +8,11 @@ export default class Car {
     this.position += 1;
   }
 
-  getPosition() {
-    return this.position;
-  }
-
   getName() {
     return this.name;
+  }
+
+  getPosition() {
+    return this.position;
   }
 }
