@@ -21,12 +21,9 @@ class Controller {
 		// 모든 기능이 작동하지 않고, alert 띄우도록
 		const nameInput = ElementManager.getNameInput();
 		const $settingContainer = ElementManager.getSettingContainer();
-
-		Model.setCarNames(nameInput.value);
+		Model.initCars(nameInput.value);
 		View.clearInputValue(nameInput);
-
 		$settingContainer.childElementCount === 2 && View.countSectionRender($settingContainer);
-
 		this.addCountButtonEvent(this.onCountSubmit);
 	}
 
