@@ -8,6 +8,7 @@ export default class App extends Page {
   cars;
   raceTimes;
   winners;
+  #childComponents = {};
 
   constructor($target, props) {
     super($target, props);
@@ -36,7 +37,7 @@ export default class App extends Page {
   };
 
   mountUserInput = () => {
-    new UserInput(document.querySelector('#user-input-component'), {
+    this.#childComponents.userInput = new UserInput(document.querySelector('#user-input-component'), {
       cars: this.cars,
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
@@ -45,17 +46,17 @@ export default class App extends Page {
   }
 
   mountGameProcess = () => {
-    new GameProcess(document.querySelector('#game-process-component'), {
+    this.#childComponents.gameProcess = new GameProcess(document.querySelector('#game-process-component'), {
       cars: this.cars,
     });
-  };
+  }
 
   mountGameResult = () => {
-    new GameResult(document.querySelector('#game-result-component'), {
+    this.#childComponents.gameResult = new GameResult(document.querySelector('#game-result-component'), {
       winners: this.winners,
       reset: this.initialize,
     });
-  };
+  }
 
   race = () => {
     for (let i = 0; i < this.raceTimes.value; i++) {

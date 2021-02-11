@@ -1,6 +1,7 @@
 import Component from "./Component.js";
 
 export default class Page extends Component {
+
   constructor($target, props) {
     super($target, props);
   }
