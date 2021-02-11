@@ -26,11 +26,13 @@ class Utils {
 		<div id="race-progress-container" class="d-flex justify-center mt-5">
 		<section class="mt-4">
 			<div id="race-progress-screen" class="d-flex">
-				${cars.map((car) => {
-					return `<div>
+				${cars
+					.map((car) => {
+						return `<div>
 							<div class="car-player mr-2">${car}</div>
 						</div>`;
-				})}
+					})
+					.join("")}
 			</div>
 		</section>
 	</div>`;
