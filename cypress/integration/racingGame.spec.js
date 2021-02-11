@@ -101,7 +101,7 @@ describe('racing-game', () => {
   });
 
   it('자동차가 정상적으로 전진, 멈춤하는지 테스트한다.', () => {
-    for (let i = GAME.MAX_SCORE; i < GAME.MAX_SCORE; i++) {
+    for (let i = GAME.MAX_SCORE; i <= GAME.MAX_SCORE; i++) {
       if (i < GAME.EFFECTIVE_SCORE) {
         return expect(isEffectiveScore(i)).to.equal(false);
       }
@@ -109,15 +109,25 @@ describe('racing-game', () => {
     }
   });
 
-  it('자동차 경주가 진행될 때 매 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
-  it('자동차 경주 진행 중 때 매 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
-    typeCarNameAndClickToSubmitButton(['yujo']);
-    typeRacingCountAndClickToSubmitButton(3);
+  it('자동차 경주 진행 중 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton(1);
 
     cy.clock();
+
+    // 경기 진행시간 1000ms
     cy.tick(500);
-    cy.get('.car-player').should('have.data', 'fowardCount', 0);
+    cy.get('#game-result-section').should('not.be.visible');
+
+    cy.tick(500);
+    cy.get('#game-result-section').should('be.visible');
   });
+
+  it('자동차 경주 진행 중 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
+
+    cy.clock();
 
     cy.get('.spinner-container').should('be.visible');
 
@@ -127,9 +137,73 @@ describe('racing-game', () => {
     cy.get('.spinner-container').should('not.be.visible');
   });
 
+  it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
+
+    cy.clock();
+    cy.wait(5000);
+
+    cy.get('.car-player').each(($div, index) => {
+      cy.get($div)
+        .should('have.text', carNames[index])
+        .parent()
+        .children('div')
+        .its('length')
+        .then((childrenNum) => {
+          cy.get($div).should('have.data', 'forwardCount', childrenNum - 2);
+        });
+    });
+  });
+
+  it('자동차 경주가 끝났을 때 우승자가 정상적으로 출력되는지 테스트 한다.', () => {
+    typeCarNameAndClickToSubmitButton();
+    typeRacingCountAndClickToSubmitButton();
+
+    cy.clock();
+    cy.wait(5000);
+
+    cy.get('.car').then(($cars) => {
+      const counts = [...$cars].map(($car) => {
+        return $car.querySelectorAll('.forward-icon').length;
+      });
+      const maxScore = Math.max(...counts);
+      const winners = [];
+
+      counts.forEach((carCount, index) => {
+        if (carCount === maxScore) {
+          winners.push(carNames[index]);
+        }
+      });
+
+      cy.get('#game-result-text').should(
+        'have.text',
+        `🏆 최종 우승자: ${winners.join(', ')} 🏆`,
+      );
+    });
+  });
+
+  it('자동차 경주가 모두 끝났을 때, 2초 후 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
+    cy.clock();
+
+    typeCarNameAndClickToSubmitButton(['yujo']);
+    typeRacingCountAndClickToSubmitButton();
+
+    // 자동차 경주 진행시간 5000ms + alert 출력 대기시간 2000ms
+    cy.tick(7000);
+
+    cy.on('window:alert', (txt) => {
+      expect(txt).to.equal('🎉 축하드립니다! 우승자는 yujo입니다! 🎉');
+    });
+  });
+
   it('다시 시작버튼을 눌렀을 때 화면이 초기화 되는지 테스트한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
+
+    cy.clock();
+    cy.wait(5000);
+
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
     cy.get('#game-process-section').should('not.be.visible');
