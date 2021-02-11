@@ -19,9 +19,9 @@ class View {
 		$settingContainer.insertAdjacentHTML("beforeend", Templates.countSectionTemplate);
 	}
 
-	progressContainerRender() {
+	progressContainerRender(template) {
 		const $app = ElementManager.getAppDIV();
-		$app.insertAdjacentHTML("beforeend", Templates.raceProgressContainerTemplate);
+		$app.insertAdjacentHTML("beforeend", template);
 		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
 	}
 }
