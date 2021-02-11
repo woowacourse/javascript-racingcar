@@ -1,4 +1,4 @@
-describe('자동차 경주 게임 View 테스트', () => {
+describe('자동차 경주 게임 화면 렌더링 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
@@ -67,12 +67,12 @@ describe('자동차 경주 게임 View 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount('10');
+
     cy.get('.car-player').each((car, idx) => {
       const currentPosition = car[0].dataset.position;
       cy.get('.car-player').eq(idx).siblings('.forward-icon').should('have.length', currentPosition);
     });
   });
-
 
   it('최종 우승자가 제대로 표시되는지 확인한다.', () => {
     initGame();
@@ -80,14 +80,14 @@ describe('자동차 경주 게임 View 테스트', () => {
     inputTryCount('10');
 
     const positions = [];
+    const winners = [];
     cy.get('.car-player').each((car) => {
       positions.push(Number(car[0].dataset.position));
     }).then(() => {
       const maxPosition = Math.max(...positions);
-      const winners = [];
       cy.get(`[data-position=${maxPosition}]`)
         .each((winner) => winners.push(winner[0].innerText))
-        .then(() => cy.get('#display-game-result > h2').should('have.text', `🏆 최종 우승자: ${winners.join(", ")} 🏆`));
+        .then(() => cy.get('#display-game-result > h2').should('have.text', `🏆 최종 우승자: ${winners.join(', ')} 🏆`));
     });
   });
 });
