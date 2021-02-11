@@ -1,19 +1,21 @@
-import { $, $all } from '../utils/index.js';
+import { $, $all, isButton } from '../utils/index.js';
 
 export default class CarRacingView {
-  hideElement(element) {
+  hide(element) {
     element.classList.add('hidden');
   }
 
-  showElement(element) {
+  show(element) {
     element.classList.remove('hidden');
   }
 
-  setDisabled(element) {
+  disableButton(element) {
+    if (!isButton(element)) return;
     element.disabled = true;
   }
 
-  unsetDisabled(element) {
+  enableButton(element) {
+    if (!isButton(element)) return;
     element.disabled = false;
   }
 

@@ -28,8 +28,8 @@ export default class CarRacingController {
 
     carNames.forEach((carName) => this.model.addCars(carName));
 
-    this.view.removeHidden($('.racing-count-container'));
-    this.view.addDisabled($('#car-names-submit'));
+    this.view.show($('.racing-count-container'));
+    this.view.disableButton($('#car-names-submit'));
   }
 
   onClickRacingCountSubmit() {
@@ -42,20 +42,20 @@ export default class CarRacingController {
 
     this.model.racingCount = racingCount;
 
-    this.view.removeHidden($('.racing-container'));
+    this.view.show($('.racing-container'));
     this.view.renderRacingCars(this.model.cars);
 
-    this.view.addDisabled($('#racing-count-submit'));
+    this.view.disableButton($('#racing-count-submit'));
     this.startRacing();
   }
 
   onClickRestartButton() {
     this.model.init();
-    this.view.addHidden($('.racing-count-container'));
-    this.view.addHidden($('.racing-container'));
-    this.view.addHidden($('.result-container'));
-    this.view.removeDisabled($('#car-names-submit'));
-    this.view.removeDisabled($('#racing-count-submit'));
+    this.view.hide($('.racing-count-container'));
+    this.view.hide($('.racing-container'));
+    this.view.hide($('.result-container'));
+    this.view.enableButton($('#car-names-submit'));
+    this.view.enableButton($('#racing-count-submit'));
 
     $('#car-names-input').value = '';
     $('#racing-count-input').value = '';
@@ -84,7 +84,7 @@ export default class CarRacingController {
       this.view.renderRacingRoundResult(movedCars);
     }
 
-    this.view.removeHidden($('.result-container'));
+    this.view.show($('.result-container'));
 
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
