@@ -119,42 +119,12 @@ describe('racing-game', () => {
     cy.get('.car-player').should('have.data', 'fowardCount', 0);
   });
 
-  it('자동차 경주 진행 중 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
-    typeCarNameAndClickToSubmitButton(['yujo']);
-    typeRacingCountAndClickToSubmitButton(2);
+    cy.get('.spinner-container').should('be.visible');
 
-    cy.clock();
-    cy.tick(500);
-    cy.get('.spinner-container')
-      .its('length')
-      .then((len) => {
-        len.equal(1);
-      });
-    cy.tick(1000);
-    cy.get('.spinner-container')
-      .its('length')
-      .then((len) => {
-        len.equal(1);
-      });
-    cy.tick(1000);
-    cy.get('.spinner-container')
-      .its('length')
-      .then((len) => {
-        len.equal(1);
-      });
-  });
+    // 경주 진행시간 5000ms
+    cy.wait(5000);
 
-  it('경주를 마치고 2초 후, 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
-    cy.clock();
-    typeCarNameAndClickToSubmitButton(['yujo']);
-    typeRacingCountAndClickToSubmitButton(3);
-
-    // 자동차 경주 진행시간 3000ms + alert 출력 대기시간 2000ms
-    cy.tick(5000);
-
-    cy.on('window:alert', (txt) => {
-      expect(txt).to.contain('🎉 축하드립니다! 우승자는 yujo입니다! 🎉');
-    });
+    cy.get('.spinner-container').should('not.be.visible');
   });
 
   it('다시 시작버튼을 눌렀을 때 화면이 초기화 되는지 테스트한다.', () => {
