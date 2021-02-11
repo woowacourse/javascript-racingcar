@@ -135,12 +135,13 @@ describe('레이싱 게임', () => {
     cy.get('#game-result-component > section').should('not.exist');
   });
 
-  it('사용자는 자동차 경주 게임을 다시 시작할 수 있다.', () => {
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
     cy.get('#input-car-name').type('aaa');
     cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('1');
+    cy.get('#input-race-times').type('2');
     cy.get('#submit-race-times').click();
-    cy.get('#retry').click();
-    cy.get('#game-result-component > section').should('not.exist');
+    cy.get('.forward-icon').should('not.exist');
+    cy.wait(1000);
+    cy.get('.forward-icon').should('exist');
   });
 });
