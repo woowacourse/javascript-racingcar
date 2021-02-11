@@ -2,48 +2,48 @@ import {
   countSectionTemplate,
   processSectionTemplate,
   resultSectionTemplate,
-} from "../constants/template.js";
+} from '../constants/template.js';
 
 class RacingCarView {
   renderCount() {
-    const $countSection = document.querySelector("#count");
-    $countSection.style.display = "block";
+    const $countSection = document.querySelector('#count');
+    $countSection.style.display = 'block';
     $countSection.innerHTML = countSectionTemplate();
   }
 
   renderProcess(cars) {
-    const $processSection = document.querySelector("#process");
-    $processSection.style.display = "block";
+    const $processSection = document.querySelector('#process');
+    $processSection.style.display = 'block';
     $processSection.innerHTML = processSectionTemplate(cars);
   }
 
   renderResult(winners) {
-    const $resultSection = document.querySelector("#result");
-    $resultSection.style.display = "block";
+    const $resultSection = document.querySelector('#result');
+    $resultSection.style.display = 'block';
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
   resetCar() {
-    const $carInputSection = document.querySelector("#car-input");
-    $carInputSection.value = "";
+    const $carInputSection = document.querySelector('#car-input');
+    $carInputSection.value = '';
   }
 
   resetCount() {
-    const $countSection = document.querySelector("#count");
-    $countSection.style.display = "none";
+    const $countSection = document.querySelector('#count');
+    $countSection.style.display = 'none';
     $countSection.innerHTML = ``;
   }
 
   resetProcess() {
-    const $processSection = document.querySelector("#process");
-    $processSection.style.display = "none";
+    const $processSection = document.querySelector('#process');
+    $processSection.style.display = 'none';
 
     $processSection.innerHTML = ``;
   }
 
   resetResult() {
-    const $resultSection = document.querySelector("#result");
-    $resultSection.style.display = "none";
+    const $resultSection = document.querySelector('#result');
+    $resultSection.style.display = 'none';
     $resultSection.innerHTML = ``;
   }
 

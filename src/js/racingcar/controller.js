@@ -6,7 +6,7 @@ import {
   isCarValid,
   isCountValid,
 } from '../utils/vaild.js';
-import {generateRandomNumber} from '../utils/util.js';
+import {generateRandomNumber, getQuerySelector} from '../utils/util.js';
 import {RANDOM, INIT, GAME} from '../constants/constant.js';
 
 class RacingCarController {
@@ -17,15 +17,13 @@ class RacingCarController {
   }
 
   getCarsInput() {
-    const $carInput = document.querySelector('#car-input').value;
+    const $carInput = getQuerySelector('#car-input');
 
-    return $carInput.split(',').map((car) => car.trim());
+    return $carInput.value.split(',').map((car) => car.trim());
   }
 
   getCountInput() {
-    const $countInput = document.querySelector('#count-input').value;
-
-    return $countInput;
+    return getQuerySelector('#count-input').value;
   }
 
   getWinners() {
@@ -111,22 +109,19 @@ class RacingCarController {
   }
 
   handleCars() {
-    const $carBtn = document.querySelector('#car-btn');
-    $carBtn.addEventListener('click', () => {
+    getQuerySelector('#car-btn').addEventListener('click', () => {
       this.manageCars();
     });
   }
 
   handleCount() {
-    const $countBtn = document.querySelector('#count-btn');
-    $countBtn.addEventListener('click', () => {
+    getQuerySelector('#count-btn').addEventListener('click', () => {
       this.manageCount();
     });
   }
 
   handleReset() {
-    const $resetBtn = document.querySelector('#reset-btn');
-    $resetBtn.addEventListener('click', () => {
+    getQuerySelector('#reset-btn').addEventListener('click', () => {
       this.reset();
     });
   }
