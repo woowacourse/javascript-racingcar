@@ -148,10 +148,15 @@ describe('레이싱 게임', () => {
   });
 
   it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+
     cy.get('#input-car-name').type('aaa');
     cy.get('#submit-car-name').click();
     cy.get('#input-race-times').type('1');
     cy.get('#submit-race-times').click();
     cy.wait(2000);
+    cy.get('@alert').should('not.be.called');
+    cy.wait(2000);
+    cy.get('@alert').should('be.calledWith', 'ㅊㅋㅊㅋ 축하합니다!');
   });
 });
