@@ -1,0 +1,19 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true,
+		"node": true
+	},
+	"extends": [
+		"airbnb",
+		"prettier/react",
+		"eslint:recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"no-console": 0,
+		"no-unused-vars": 1,
+		"import/prefer-default-export": 1,
+		"linebreak-style": 0
+	}
+}
