@@ -11,6 +11,7 @@ export const selectors = {
 	winnerContainer: '#winner-container',
 	winnerTextArea: `#winner-container > section > h2`,
 	restartButton: '#restart-button',
+	spinnerContainer: '.spinner-container'
 };
 
 export const bounds = {

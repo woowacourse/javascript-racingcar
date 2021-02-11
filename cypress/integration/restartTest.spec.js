@@ -10,7 +10,9 @@ describe("다시 시작 버튼 테스트", () => {
       cy.get(selectors.carNamesInput).type(carNames);
       cy.get(selectors.carNamesSubmit).click();
       cy.get(selectors.countInput).type(round);
-      cy.get(selectors.countSubmit).click();
+      cy.get(selectors.countSubmit).click();  
+
+      cy.wait(round * 1000);
 
       cy.get(selectors.restartButton).click();
 
@@ -19,6 +21,7 @@ describe("다시 시작 버튼 테스트", () => {
       cy.get(selectors.countContainer).should("not.to.be.visible");
       cy.get(selectors.racingCarsArea).should("have.text", "");
       cy.get(selectors.racingCarsArea).should("not.to.be.visible");
+
       cy.get(selectors.winnerContainer).should("not.to.be.visible");
       cy.get(selectors.winnerContainer).should("not.have.text", "h2");
     };

@@ -5,6 +5,27 @@ const toggleDisplayCountView = function () {
 	$(selectors.racingContainer).classList.toggle(globalAttr.displayNoneClass);
 };
 
+export const addSpinners = function () {
+	const $racingCarsAreaElement = $(selectors.racingCarsArea);
+	$racingCarsAreaElement.childNodes.forEach((carElement) => {
+		const spinnerElement = carElement.querySelector('.spinner-container');
+		if (spinnerElement) return;
+		carElement.innerHTML += `<div class="d-flex justify-center mt-4">
+		<div class="relative spinner-container">
+		  <span class="material spinner"></span>
+		</div>
+	  </div>`;
+	});
+};
+
+export const removeSpinners = function () {
+	const $racingCarsAreaElement = $(selectors.racingCarsArea);
+	$racingCarsAreaElement.childNodes.forEach((carElement) => {
+		const spinnerElement = carElement.querySelector('.spinner-container');
+		if (spinnerElement) carElement.removeChild(spinnerElement.parentNode);
+	});
+};
+
 export const displayRacingCars = function (cars) {
 	const classes = [globalAttr.carPlayerClass, globalAttr.marginTop(2)];
 	cars.forEach((car) => {
@@ -15,9 +36,13 @@ export const displayRacingCars = function (cars) {
 	toggleDisplayCountView();
 };
 
-export const appendArrowElement = function (element) {
+export const appendArrowElement = function (carElement) {
+	const arrowElement = document.createElement('div');
+	const carNameElement = carElement.querySelector(selectors.carPlayer);
 	const classes = [globalAttr.forwardIconClass, globalAttr.marginTop(2)];
-	element.innerHTML += `<div class=${classes.join(' ')}>⬇️️</div>`;
+	arrowElement.classList.add(...classes);
+	arrowElement.innerText = '⬇️';
+	carNameElement.after(arrowElement);
 };
 
 export const initializeRacingView = function () {

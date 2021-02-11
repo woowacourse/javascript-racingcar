@@ -1,20 +1,35 @@
-import { app } from "../index.js";
-import { selectors, bounds } from "../keys.js";
-import { appendArrowElement } from "../view/racingView.js";
-import { getRandomNumber, $ } from "../utils.js";
-import { chooseWinners } from "./winnerController.js";
+import { app } from '../index.js';
+import { selectors, bounds } from '../keys.js';
+import { addSpinners, appendArrowElement, removeSpinners } from '../view/racingView.js';
+import { getRandomNumber, $, sleep } from '../utils.js';
+import { chooseWinners } from './winnerController.js';
 
-const startRound = function($racingCarsAreaElement) {
-  app.cars.forEach((car, index) => {
-    if (bounds.goOrStopBound <= getRandomNumber()) {
-      car.moveForward();
-      appendArrowElement($racingCarsAreaElement.childNodes[index]);
-    }
-  });
+const startRound = function () {
+	app.cars.forEach((car, index) => {
+		if (bounds.goOrStopBound <= getRandomNumber()) {
+			car.moveForward();
+			appendArrowElement($(selectors.racingCarsArea).childNodes[index]);
+		}
+	});
+};
+
+const finishRacingGame = function () {
+  removeSpinners();
+  chooseWinners();
 }
 
 export const startRacingGame = function (rounds) {
-  const $racingCarsAreaElement = $(selectors.racingCarsArea);
-  while (rounds--) startRound($racingCarsAreaElement);
-  chooseWinners();
+	const callback = function () {
+    if(rounds-- <= 0){
+      requestAnimationFrame(addSpinners);
+      sleep(1);
+      requestAnimationFrame(finishRacingGame);
+      return;
+    }
+    addSpinners();
+	  sleep(1);
+		requestAnimationFrame(startRound);
+    requestAnimationFrame(callback);
+	};
+  requestAnimationFrame(callback);
 };

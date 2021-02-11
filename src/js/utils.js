@@ -11,3 +11,11 @@ export const isNotDuplicatedArray = function (array) {
 };
 
 export const $ = selector => document.querySelector(selector);
+
+export const sleep = (seconds) => {
+	let now = new Date().getSeconds();
+	let last = now;
+	while (Math.abs(now - last) < seconds) {
+		now = new Date().getSeconds();
+	}
+};
