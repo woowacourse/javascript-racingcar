@@ -7,7 +7,7 @@ import {
   ALERT_VALID_NUMBER_OF_CARS,
 } from '../constants/index.js';
 
-export const isValidateNameInput = names => {
+export const isValidNameInput = names => {
   return (
     hasMoreThan2Cars(names) &&
     isValidLetter(names) &&

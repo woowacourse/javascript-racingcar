@@ -52,11 +52,6 @@ export default class RacingGameController {
     this.view.renderCountInput();
   }
 
-  handleInputException($input, message) {
-    $input.value = '';
-    alert(message);
-  }
-
   handleClickCountBtn({ target: { classList } }) {
     if (!classList.contains('count-btn')) {
       return;

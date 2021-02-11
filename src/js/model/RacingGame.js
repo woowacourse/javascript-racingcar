@@ -48,9 +48,10 @@ export default class RacingGame {
   }
 
   getWinners() {
+    const maxDistance = this.getMaxDistance();
     return this.cars
       .filter(({ position }) => {
-        position === this.getMaxDistance();
+        position === maxDistance;
       })
       .map(({ name }) => name);
   }
