@@ -3,7 +3,7 @@ import { startGame } from '../game/startGame.js';
 import { setDisabled, setVisibility } from '../utils/setAttribute.js';
 
 const isValidRacingCount = (racingCount) => {
-  if (racingCount < GAME.MIN_COUNT) {
+  if (racingCount < GAME.MIN_INPUT_COUNT) {
     return false;
   }
   return true;

@@ -1,3 +1,4 @@
+import { GAME } from '../utils/constant.js';
 import { getWinners } from './getWinners.js';
 import { restartGame } from './restartGame.js';
 
@@ -13,5 +14,5 @@ export const printGameResult = () => {
   $gameResultText.innerHTML = `🏆 최종 우승자: ${winners} 🏆`;
   $gameRestartButton.addEventListener('click', restartGame);
 
-  setTimeout(() => alertGameResult(winners), 2000);
+  setTimeout(() => alertGameResult(winners), GAME.RESULT_ALERT_DELAY);
 };
