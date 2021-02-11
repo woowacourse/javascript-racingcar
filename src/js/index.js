@@ -14,6 +14,12 @@ import {
   isTryNumInvalid,
   isTryNumNotNumber,
 } from "./validate-input.js";
+import {
+  carNamesSection,
+  tryNumSection,
+  resultSection,
+  winnerSection,
+} from "./elements.js";
 
 // section마다 고유한 id가 없어서, 각 section에 쉽게 접근하기 위해 sections Array 생성
 export const sections = document.getElementsByTagName("section");
@@ -35,14 +41,10 @@ const getCarInstance = (carNames) => {
 };
 
 const onClickedCarNamesBtn = () => {
-  const carNamesBtn = document
-    .getElementById("car-names")
-    .querySelector("button");
+  const carNamesBtn = carNamesSection.querySelector("button");
 
   carNamesBtn.addEventListener("click", () => {
-    const carNamesInput = document
-      .getElementById("car-names")
-      .querySelector("input");
+    const carNamesInput = carNamesSection.querySelector("input");
     const carNames = carNamesInput.value.split(",").map((carName) => {
       return carName.trim();
     });
@@ -55,16 +57,15 @@ const onClickedCarNamesBtn = () => {
     }
 
     getCarInstance(carNames);
-    showElement(document.getElementById("try-num"));
+    showElement(tryNumSection);
     carNamesBtn.disabled = true;
   });
 };
 
 const onClickedTryNumBtn = () => {
-  const tryNumBtn = document.getElementById("try-num").querySelector("button");
+  const tryNumBtn = tryNumSection.querySelector("button");
   tryNumBtn.addEventListener("click", () => {
-    const tryNum = document.getElementById("try-num").querySelector("input")
-      .value;
+    const tryNum = tryNumSection.querySelector("input").value;
 
     if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
       alert("올바른 시도 횟수를 입력하세요.");
@@ -76,8 +77,8 @@ const onClickedTryNumBtn = () => {
     // game이 잘 진행되었다면 game결과를 보여준다.
     setResultView();
     setWinnerView(getWinner());
-    showElement(document.getElementById("result"));
-    showElement(document.getElementById("winners"));
+    showElement(resultSection);
+    showElement(winnerSection);
     tryNumBtn.disabled = true;
   });
 };

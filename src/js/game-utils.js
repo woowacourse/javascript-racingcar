@@ -4,6 +4,7 @@ import {
   resetCarNamesInput,
   resetTryNumInput,
 } from "./display-utils.js";
+import { carNamesSection, tryNumSection, winnerSection } from "./elements.js";
 
 const GO_NUMBER = 3;
 
@@ -24,7 +25,7 @@ const setTotalStep = () => {
 };
 
 export const playGame = () => {
-  const tryNumInput = document.getElementById("try-num").querySelector("input");
+  const tryNumInput = tryNumSection.querySelector("input");
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
@@ -53,11 +54,9 @@ export const getWinner = () => {
 };
 
 export const resetGame = () => {
-  const carNamesBtn = document
-    .getElementById("car-names")
-    .querySelector("button");
-  const tryNumBtn = document.getElementById("try-num").querySelector("button");
-  const resetBtn = document.getElementById("winners").querySelector("button");
+  const carNamesBtn = carNamesSection.querySelector("button");
+  const tryNumBtn = tryNumSection.querySelector("button");
+  const resetBtn = winnerSection.querySelector("button");
 
   resetBtn.addEventListener("click", () => {
     resetView();
