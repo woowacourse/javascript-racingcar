@@ -7,6 +7,14 @@ class Util {
   getQuerySelector(selector) {
     return document.querySelector(selector);
   }
+
+  setElementDisplay($element, displayValue) {
+    $element.style.display = displayValue;
+  }
 }
 
-export const {generateRandomNumber, getQuerySelector} = new Util();
+export const {
+  generateRandomNumber,
+  getQuerySelector,
+  setElementDisplay,
+} = new Util();

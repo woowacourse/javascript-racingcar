@@ -1,3 +1,4 @@
+import {getQuerySelector, setElementDisplay} from '../utils/util.js';
 import {
   countSectionTemplate,
   processSectionTemplate,
@@ -6,44 +7,42 @@ import {
 
 class RacingCarView {
   renderCount() {
-    const $countSection = document.querySelector('#count');
-    $countSection.style.display = 'block';
+    const $countSection = getQuerySelector('#count');
+    setElementDisplay($countSection, 'block');
     $countSection.innerHTML = countSectionTemplate();
   }
 
   renderProcess(cars) {
-    const $processSection = document.querySelector('#process');
-    $processSection.style.display = 'block';
+    const $processSection = getQuerySelector('#process');
+    setElementDisplay($processSection, 'block');
     $processSection.innerHTML = processSectionTemplate(cars);
   }
 
   renderResult(winners) {
-    const $resultSection = document.querySelector('#result');
-    $resultSection.style.display = 'block';
+    const $resultSection = getQuerySelector('#result');
+    setElementDisplay($resultSection, 'block');
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
   resetCar() {
-    const $carInputSection = document.querySelector('#car-input');
-    $carInputSection.value = '';
+    getQuerySelector('#car-input').value = '';
   }
 
   resetCount() {
-    const $countSection = document.querySelector('#count');
-    $countSection.style.display = 'none';
+    const $countSection = getQuerySelector('#count');
+    setElementDisplay($countSection, 'none');
     $countSection.innerHTML = ``;
   }
 
   resetProcess() {
-    const $processSection = document.querySelector('#process');
-    $processSection.style.display = 'none';
-
+    const $processSection = getQuerySelector('#process');
+    setElementDisplay($processSection, 'none');
     $processSection.innerHTML = ``;
   }
 
   resetResult() {
-    const $resultSection = document.querySelector('#result');
-    $resultSection.style.display = 'none';
+    const $resultSection = getQuerySelector('#result');
+    setElementDisplay($resultSection, 'none');
     $resultSection.innerHTML = ``;
   }
 
