@@ -107,4 +107,16 @@ context("bdd", () => {
 				expect($children.length).to.eq(3);
 			});
 	});
+
+	it("입력한 이름이 ‘,’를 기준으로 진행창에 출력된다.", () => {
+		cy.get("#name-input").type("EAST,WEST,SOUTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "EAST");
+		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "WEST");
+		cy.get("#race-progress-screen>div>.car-player").eq(2).should("have.text", "SOUTH");
+	});
 });
