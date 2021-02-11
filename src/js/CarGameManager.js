@@ -7,7 +7,6 @@ export default class CarGameManager {
   constructor($element) {
     this.$element = $element;
     this.carGameView = new CarGameView($element);
-    // 어디로 옮길지 고민해보기
     this.validator = new Validator();
     this.initGame();
     this.bindEvents();
