@@ -19,6 +19,7 @@ export const bounds = {
 	lengthUpperBound: 5,
 	countLowerBound: 1,
 	countUpperBound: 100,
+
 	carNamesUpperBound: 10,
 	goOrStopBound: 4,
 };
@@ -41,6 +42,14 @@ export const globalHtmlTemplate = {
 	<div class=${classes.join(' ')}>${car.name}</div>
   </div>`,
 };
+
+export const globalAttr = {
+    displayNoneClass : 'strong-display-none',
+    carPlayerClass : 'car-player',
+    forwardIconClass : 'forward-icon',
+    marginTop : (num) => `mt-${num}`,
+    disabledAttr : 'disabled',
+}
 
 export const globalTexts = {
 	winnerText: '🏆 최종 우승자 🏆',

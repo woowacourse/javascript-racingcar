@@ -55,6 +55,7 @@
 -   [x] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
 
 <br>
+
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-racingcar/blob/main/LICENSE) licensed.

@@ -33,4 +33,5 @@ export const startRacingGame = function (rounds) {
     requestAnimationFrame(gameRafCallback);
 	};
   requestAnimationFrame(gameRafCallback);
+
 };

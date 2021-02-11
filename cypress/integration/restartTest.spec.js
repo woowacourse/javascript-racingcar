@@ -10,6 +10,7 @@ describe("다시 시작 버튼 테스트", () => {
       cy.get(selectors.carNamesInput).type(carNames);
       cy.get(selectors.carNamesSubmit).click();
       cy.get(selectors.countInput).type(round);
+
       cy.get(selectors.countSubmit).click();  
 
       cy.wait(round * 1000);
