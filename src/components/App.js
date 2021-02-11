@@ -1,10 +1,10 @@
-import Component from '../library/core/Component.js';
 import UserInput from './UserInput.js';
 import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import State from '../library/core/State.js';
+import Page from '../library/core/Page.js';
 
-export default class App extends Component {
+export default class App extends Page {
   cars;
   raceTimes;
   winners;
@@ -12,7 +12,6 @@ export default class App extends Component {
   constructor($target, props) {
     super($target, props);
     this.initialize();
-    this.render();
   }
 
   initialize = () => {

@@ -8,13 +8,7 @@ export default class Component {
     this.initEvent();
   }
 
-  initEvent() {}
+  initEvent() { }
 
-  render() {
-    this.mountTemplate();
-    this.mountChildComponents();
-  }
-
-  mountTemplate() {}
-  mountChildComponents() {}
+  render() { }
 }
