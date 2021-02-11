@@ -4,27 +4,12 @@ import { printGameResult } from './printGameResult.js';
 import { toggleVisibility } from '../utils/toggleVisibility.js';
 import { GAME } from '../utils/constant.js';
 
-const hiddenWaitRacingAnimation = () => {
+const setHiddenWaitRacingAnimation = () => {
   const $spinnerContainers = document.querySelectorAll('.spinner-container');
 
   $spinnerContainers.forEach(($spinnerContainer) =>
     $spinnerContainer.setAttribute('hidden', true),
   );
-};
-
-const setWaitRacingAnimation = (racingDurationTime) => {
-  const startTime = new Date().getTime();
-
-  const paintAnimation = () => {
-    const currentTime = new Date().getTime();
-
-    if (currentTime - racingDurationTime > startTime) {
-      hiddenWaitRacingAnimation();
-    } else {
-      requestAnimationFrame(paintAnimation);
-    }
-  };
-  requestAnimationFrame(paintAnimation);
 };
 
 const arrowTemplate = () => {
@@ -47,7 +32,6 @@ export const startGame = (racingCount) => {
   const cars = document.querySelectorAll('.car-player');
   const racingDurationTime = racingCount * 1000;
 
-  setWaitRacingAnimation(racingDurationTime);
   const gameProcess = setInterval(() => {
     if (racingCount-- === 1) {
       clearInterval(gameProcess);
@@ -57,6 +41,7 @@ export const startGame = (racingCount) => {
 
   setTimeout(() => {
     toggleVisibility('$gameResultSection');
+    setHiddenWaitRacingAnimation();
     printGameResult();
   }, racingDurationTime);
 };
