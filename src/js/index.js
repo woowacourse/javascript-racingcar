@@ -1,6 +1,6 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { ALERT, CLASS } from './constants.js';
+import { ALERT_MESSAGES, CLASS_NAMES } from './constants.js';
 import {
   isCarNameFilled,
   isCarNameUnderFive,
@@ -25,37 +25,42 @@ export default class Racing {
     this.tryCount = 0;
   };
 
-  getCarNames = () => {
-    const carNameInput = document.querySelector(CLASS.CAR_NAME).value;
+  createCars = () => {
+    const carNameInput = document.querySelector(CLASS_NAMES.CAR_NAME).value;
     if (!isCarNameFilled(carNameInput)) {
-      return alert(ALERT.CAR_NAME_EMPTY);
+      return alert(ALERT_MESSAGES.CAR_NAME_EMPTY);
     }
 
     for (let name of carNameInput.split(',')) {
       if (!isCarNameUnderFive(name.trim().length)) {
         this.cars = [];
-        return alert(ALERT.CAR_NAME_OVER_FIVE);
+        return alert(ALERT_MESSAGES.CAR_NAME_OVER_FIVE);
       }
       const car = new Car(name.trim());
       this.cars.push(car);
     }
 
-    this.UIController.showElement(CLASS.TRY_COUNT_FORM);
+    this.UIController.showElement(CLASS_NAMES.TRY_COUNT_FORM);
   };
 
-  getTryCount = () => {
-    const tryCountInput = document.querySelector(CLASS.TRY_COUNT).value;
-    const tryCountNumber = Number(tryCountInput);
+  mountTryCount = () => {
+    const tryCountInput = document.querySelector(CLASS_NAMES.TRY_COUNT);
+    if (!tryCountInput) return;
 
-    if (!isTryCountFilled(tryCountInput)) {
-      return alert(ALERT.TRY_COUNT_EMPTY);
+    const tryCountNumber = Number(tryCountInput.value);
+    if (!isTryCountFilled(tryCountInput.value)) {
+      return alert(ALERT_MESSAGES.TRY_COUNT_EMPTY);
     } else if (!isTryCountPos(tryCountNumber)) {
-      return alert(ALERT.TRY_COUNT_NEG);
+      return alert(ALERT_MESSAGES.TRY_COUNT_NEG);
     } else if (!isTryCountInt(tryCountNumber)) {
-      return alert(ALERT.TRY_COUNT_NOT_INT);
+      return alert(ALERT_MESSAGES.TRY_COUNT_NOT_INT);
     }
 
     this.tryCount = tryCountNumber;
+    this.startRace();
+  };
+
+  startRace = () => {
     this.moveCars();
     this.getWinners();
   };
@@ -83,7 +88,7 @@ export default class Racing {
 
     this.UIController.showWinners(winners);
     document
-      .querySelector(CLASS.RESTART_BTN)
+      .querySelector(CLASS_NAMES.RESTART_BTN)
       .addEventListener('click', this.restartGame);
   };
 
@@ -95,11 +100,11 @@ export default class Racing {
 
   addListeners = () => {
     document
-      .querySelector(CLASS.CAR_NAME_BTN)
-      .addEventListener('click', this.getCarNames);
+      .querySelector(CLASS_NAMES.CAR_NAME_BTN)
+      .addEventListener('click', this.createCars);
     document
-      .querySelector(CLASS.TRY_COUNT_BTN)
-      .addEventListener('click', this.getTryCount);
+      .querySelector(CLASS_NAMES.TRY_COUNT_BTN)
+      .addEventListener('click', this.mountTryCount);
   };
 }
 

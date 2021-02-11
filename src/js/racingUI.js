@@ -1,40 +1,57 @@
-import { CLASS } from './constants.js';
+import { CLASS_NAMES } from './constants.js';
 
 export default class RacingUI {
   hideUI() {
-    document.querySelector(CLASS.TRY_COUNT_FORM).style.display = 'none';
-    document.querySelector(CLASS.PROGRESS_CONTAINER).style.display = 'none';
-    document.querySelector(CLASS.RESULT_CONTAINER).style.display = 'none';
+    this.hideElement(CLASS_NAMES.TRY_COUNT_FORM);
+    this.hideElement(CLASS_NAMES.PROGRESS_CONTAINER);
+    this.hideElement(CLASS_NAMES.RESULT_CONTAINER);
   }
 
   clearUI() {
-    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = '';
-    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = '';
-    document.querySelector(CLASS.CAR_NAME).value = '';
-    document.querySelector(CLASS.TRY_COUNT).value = '';
+    this.clearText(CLASS_NAMES.PROGRESS_CARS);
+    this.clearText(CLASS_NAMES.RESULT_CONTAINER);
+    this.clearInput(CLASS_NAMES.CAR_NAME);
+    this.clearInput(CLASS_NAMES.TRY_COUNT);
+  }
+
+  hideElement(className) {
+    document.querySelector(className).style.display = 'none';
+  }
+
+  clearText(className) {
+    document.querySelector(className).innerHTML = '';
+  }
+
+  clearInput(className) {
+    document.querySelector(className).value = '';
   }
 
   showElement(className) {
+    if (!document.querySelector(className)) {
+      return;
+    }
     document.querySelector(className).style.display = '';
   }
 
   showProgress(cars) {
-    this.showElement(CLASS.PROGRESS_CONTAINER);
+    this.showElement(CLASS_NAMES.PROGRESS_CONTAINER);
 
-    document.querySelector(CLASS.PROGRESS_CARS).innerHTML = cars
-      .map(car => `
+    document.querySelector(CLASS_NAMES.PROGRESS_CARS).innerHTML = cars
+      .map(
+        car => `
         <div>
           <div class="car-player mr-2">${car.name}</div>
           ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
         </div>
-      `,)
+      `,
+      )
       .join('');
   }
 
   showWinners(winners) {
-    this.showElement(CLASS.RESULT_CONTAINER);
+    this.showElement(CLASS_NAMES.RESULT_CONTAINER);
 
-    document.querySelector(CLASS.RESULT_CONTAINER).innerHTML = `
+    document.querySelector(CLASS_NAMES.RESULT_CONTAINER).innerHTML = `
       <section>
         <h2>🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
         <div class="d-flex justify-center">
