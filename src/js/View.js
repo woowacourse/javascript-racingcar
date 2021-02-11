@@ -25,7 +25,10 @@ class View {
 		const $settingContainer = ElementManager.getSettingContainer();
 		const $countSection = ElementManager.createElement("section", { class: "mt-5" });
 		$countSection.innerHTML = countTemplate;
-		$settingContainer.appendChild($countSection);
+
+		if ($settingContainer.childElementCount === 2) {
+			$settingContainer.appendChild($countSection);
+		}
 	}
 
 	progressContainerRender() {
