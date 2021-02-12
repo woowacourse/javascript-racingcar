@@ -143,4 +143,22 @@ context("bdd", () => {
 			cy.get("#result-container").find("section").find("h2").contains(winnerResult);
 		});
 	});
+
+	it("각 자동차의 최대 전진 횟수가 입력한 횟수보다 적거나 같다.", () => {
+		cy.get("#name-input").type("EAST,WEST,SOUTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("10");
+		cy.get("#count-submit-button").click();
+
+		cy.get(".car-player").then((cars) => {
+			const carObjects = [...cars].map((car) => ({
+				name: car.innerText,
+				score: car.parentNode.children.length - 1,
+			}));
+
+			const maxScore = Math.max(...carObjects.map((car) => car.score));
+			expect(maxScore <= 10).to.equal(true);
+		});
+	});
 });
