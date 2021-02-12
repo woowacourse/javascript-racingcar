@@ -37,6 +37,8 @@ class Templates {
                 </div>
             </section>
         </div>`;
+
+		this.arrowTemplate = `<div class="forward-icon mt-2">⬇️</div>`;
 	}
 }
 

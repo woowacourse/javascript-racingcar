@@ -6,14 +6,17 @@ import Utils from "./Utils.js";
 // 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
 	onCountSubmit() {
+		const $app = ElementManager.getAppDIV();
 		const countInput = ElementManager.getCountInput();
 		Model.setCount(Number(countInput.value));
-		countInput.value = "";
-		const $app = ElementManager.getAppDIV();
 		if ($app.childElementCount === 1) {
 			const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
 			View.progressContainerRender(raceProgressContainerTemplate);
+			Model.runArrowRenderByCount();
+			View.winnerRender();
 		}
+
+		countInput.value = "";
 	}
 
 	onNameSubmit() {

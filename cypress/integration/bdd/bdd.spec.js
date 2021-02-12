@@ -124,7 +124,7 @@ context("bdd", () => {
 		cy.get("#name-input").type("EAST,WEST,SOUTH");
 		cy.get("#name-submit-button").click();
 
-		cy.get("#count-input").type("3");
+		cy.get("#count-input").type("100");
 		cy.get("#count-submit-button").click();
 
 		cy.get(".car-player").then((cars) => {

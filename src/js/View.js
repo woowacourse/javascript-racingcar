@@ -1,6 +1,6 @@
 import ElementManager from "./ElementManager.js";
+import Model from "./Model.js";
 import Templates from "./Templates.js";
-// import Utils from "./Utils.js";
 
 class View {
 	initialRender($parentElement) {
@@ -23,6 +23,20 @@ class View {
 		const $app = ElementManager.getAppDIV();
 		$app.insertAdjacentHTML("beforeend", template);
 		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
+	}
+
+	arrowRender(boolsAboutMovement) {
+		const renderedCars = document.getElementById("race-progress-screen").children;
+		const arrowTemplate = Templates.arrowTemplate;
+		boolsAboutMovement.forEach(
+			(isNeedToBeAdded, i) =>
+				isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate)
+		);
+	}
+
+	winnerRender() {
+		const $resultH2 = ElementManager.getResultContainer().querySelector("h2");
+		$resultH2.innerText = Model.getResultText();
 	}
 }
 

@@ -21,6 +21,10 @@ class ElementManager {
 	getCountButton() {
 		return document.getElementById("count-submit-button");
 	}
+
+	getResultContainer() {
+		return document.getElementById("result-container");
+	}
 }
 
 export default new ElementManager();
