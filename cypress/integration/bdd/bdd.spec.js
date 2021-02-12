@@ -161,4 +161,21 @@ context("bdd", () => {
 			expect(maxScore <= 10).to.equal(true);
 		});
 	});
+
+	it("우승자의 수는 입력한 이름의 수보다 적거나 같다.", () => {
+		const carNames = ["EAST", "WEST", "SOUTH"];
+		cy.get("#name-input").type(carNames.join(","));
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#result-container")
+			.find("section")
+			.find("h2")
+			.then(($resultH2) => {
+				const winners = $resultH2[0].innerText.slice(10, -2).split(",");
+				expect(winners.length <= carNames.length).to.equal(true);
+			});
+	});
 });
