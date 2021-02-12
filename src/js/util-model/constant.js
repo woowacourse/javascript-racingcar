@@ -15,4 +15,6 @@ export const GAME = {
   MAX_SCORE: 9,
   THRESHOLD_SCORE: 4,
   TURN_DURATION: 1000,
+  GAME_OVER_NOTICE_DELAY: 2000,
+  GAME_OVER_NOTICE_SUFFIX: `님의 우승을 축하드립니다! (୨୧ ❛ᴗ❛)✧🎉'`,
 };

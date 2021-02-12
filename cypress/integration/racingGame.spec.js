@@ -1,6 +1,7 @@
 import { getRandomNumber } from '../../src/js/util-model/getRandomNumber.js';
 import { getWinners } from '../../src/js/util-model/getWinners.js';
 import { Car } from '../../src/js/class/Car.js';
+import { GAME } from '../../src/js/util-model/constant.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -138,37 +139,36 @@ describe('racing-game', () => {
     });
   });
 
-  it('게임 한 판 시작 시 로더를 화면에 표시했다가 1초 후 로더 표시를 없앤다.', () => {
+  it('게임 진행 중에는 로더를 화면에 표시고 게임이 완료되면 표시를 없앤다.', () => {
     const carNames = ['피카츄', '라이츄', '파이리'];
     const racingCount = 3;
-    const turnDuration = 1000;
+    const { TURN_DURATION } = GAME;
+    const totalDuration = TURN_DURATION * racingCount;
 
-    cy.clock();
     submitCarnames(carNames);
     submitRacingCount(racingCount);
-    for (let i = 0; i < racingCount; i++) {
-      cy.tick(turnDuration / 2);
-      cy.get('.spinner-container').should('be.visible');
-      cy.tick(turnDuration / 2);
-      cy.get('spinner-container').should('not.be.visible');
-    }
+    cy.get('.spinner-container').should('be.visible');
+    cy.wait(totalDuration);
+    cy.get('.spinner-container').should('not.be.visible');
   });
 
   it('게임완료 2초 후 축하 alert 메세지를 표시한다.', () => {
     const carName = ['피카츄'];
     const racingCount = 3;
-    const turnDuration = 1000;
-    const gameOverNoticeDelay = 2000;
-    const totalDelay = turnDuration * racingCount + gameOverNoticeDelay;
+    const {
+      TURN_DURATION,
+      GAME_OVER_NOTICE_DELAY,
+      GAME_OVER_NOTICE_SUFFIX,
+    } = GAME;
+    const totalDelay = TURN_DURATION * racingCount + GAME_OVER_NOTICE_DELAY;
     const alertStub = cy.stub();
 
-    cy.clock();
     cy.on('window:alert', alertStub);
     submitCarnames(carName);
     submitRacingCount(racingCount);
-    cy.tick(totalDelay).then(() => {
+    cy.wait(totalDelay).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith(
-        `${carName} 님의 우승을 축하드립니다! (୨୧ ❛ᴗ❛)✧🎉'`,
+        `${carName} ${GAME_OVER_NOTICE_SUFFIX}`,
       );
     });
   });

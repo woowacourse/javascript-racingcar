@@ -6,7 +6,8 @@ import { getWinners } from '../util-model/getWinners.js';
 import { GAME } from '../util-model/constant.js';
 
 export const handleGameResult = async (cars, racingCount) => {
-  const { TURN_DURATION } = GAME;
+  const { TURN_DURATION, GAME_OVER_NOTICE_DELAY } = GAME;
+  let winnersStr;
 
   clearResidueArrow();
   $$('.spinner-container').forEach((spinner) => setVisibility(spinner, true));
@@ -20,14 +21,16 @@ export const handleGameResult = async (cars, racingCount) => {
     });
   }
   $$('.spinner-container').forEach((spinner) => setVisibility(spinner, false));
-  insertGameResultHTML(getWinners(cars));
+  winnersStr = getWinners(cars);
+  insertGameResultHTML(winnersStr);
   setVisibility($('#game-result-section'), true);
-  await wait(2000);
-  alertGameOver();
+  await wait(GAME_OVER_NOTICE_DELAY);
+  alertGameOver(winnersStr);
 };
 
-const alertGameOver = () => {
-  alert('game over');
+const alertGameOver = (winners) => {
+  const { GAME_OVER_NOTICE_SUFFIX } = GAME;
+  alert(`${winners} ${GAME_OVER_NOTICE_SUFFIX}`);
 };
 
 const clearResidueArrow = () => {
