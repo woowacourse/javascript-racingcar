@@ -40,6 +40,14 @@ const setTotalStep = () => {
   return getTotalStep();
 };
 
+const deleteLoading = (resultDivs) => {
+  resultDivs.forEach((resultDiv) => {
+    if (resultDiv.querySelector(".spinner-container") !== null) {
+      resultDiv.querySelector(".spinner-container").remove();
+    }
+  });
+};
+
 export const playGame = () => {
   const tryNumInput = tryNumSection.querySelector("input");
   state.cars.forEach((car) => {
@@ -66,11 +74,7 @@ export const playGame = () => {
       .querySelector("div")
       .querySelectorAll(".one-car-result");
     // loading 지우기
-    resultDivs.forEach((resultDiv) => {
-      if (resultDiv.querySelector(".spinner-container") !== null) {
-        resultDiv.querySelector(".spinner-container").remove();
-      }
-    });
+    deleteLoading(resultDivs);
     // 게임 진행 (가거나 or 멈추거나)
     resultDivs.forEach((resultDiv, i) => {
       if (prevTotalStep[i] !== currentTotalStep[i]) {
@@ -80,7 +84,7 @@ export const playGame = () => {
       // loading 띄우기
       const loading = parseHTML(`<div class="relative spinner-container">
                                     <span class="material spinner"></span>
-                                </div>`);
+                                    </div>`);
 
       resultDiv.appendChild(loading);
     });
@@ -89,13 +93,7 @@ export const playGame = () => {
 
     // 게임 종료 조건
     if (second === Number(tryNumInput.value)) {
-      // loading 지우기
-      resultDivs.forEach((resultDiv) => {
-        if (resultDiv.querySelector(".spinner-container") !== null) {
-          resultDiv.querySelector(".spinner-container").remove();
-        }
-      });
-
+      deleteLoading(resultDivs);
       clearInterval(goStep);
       setWinnerView(getWinner());
     }
