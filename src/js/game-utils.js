@@ -11,7 +11,7 @@ import {
   resultSection,
   winnerSection,
 } from "./elements.js";
-import { showCarName, showTotalStep } from "./display-utils.js";
+import { showCarName, showOneStep } from "./display-utils.js";
 import { isCarNameLengthValid } from "./validate-input.js";
 
 const GO_NUMBER = 3;
@@ -36,8 +36,6 @@ const setTotalStep = () => {
       car.go();
     }
   });
-
-  return getTotalStep();
 };
 
 const deleteLoading = (resultDivs) => {
@@ -58,39 +56,49 @@ const setCarNamesInResultView = () => {
   });
 };
 
-export const playGame = () => {
+const showLoading = () => {
+  return parseHTML(`<div class="relative spinner-container">
+  <span class="material spinner"></span>
+  </div>`);
+};
+
+const setLoadingInResultView = (resultDiv) => {
+  const loading = showLoading();
+  resultDiv.appendChild(loading);
+};
+
+const setStepInResultView = (resultDiv) => {
+  const step = showOneStep();
+  resultDiv.appendChild(step);
+};
+
+const playGameForSecond = (second) => {
   const tryNumInput = tryNumSection.querySelector("input");
-  state.cars.forEach((car) => {
-    car.totalStep = 0;
-  });
-  let second = 1;
   let prevTotalStep = getTotalStep();
+  console.log("시도 횟수", tryNumInput.value, prevTotalStep);
 
-  resultSection.querySelector("div").innerHTML = "";
   const goStep = setInterval(() => {
-    // 처음에만 car name 보여주기
-    if (second === 1) {
-      setCarNamesInResultView();
-    }
-
-    const currentTotalStep = setTotalStep();
     const resultDivs = resultSection
       .querySelector("div")
       .querySelectorAll(".one-car-result");
-    // loading 지우기
-    deleteLoading(resultDivs);
-    // 게임 진행 (가거나 or 멈추거나)
-    resultDivs.forEach((resultDiv, i) => {
-      if (prevTotalStep[i] !== currentTotalStep[i]) {
-        const step = showTotalStep();
-        resultDiv.appendChild(step);
-      }
-      // loading 띄우기
-      const loading = parseHTML(`<div class="relative spinner-container">
-                                    <span class="material spinner"></span>
-                                    </div>`);
 
-      resultDiv.appendChild(loading);
+    if (second === 1) {
+      setCarNamesInResultView(); // 처음에만 car name 보여주기
+    }
+
+    setTotalStep();
+    console.log("1초 흐름");
+    console.log("prev", prevTotalStep);
+    deleteLoading(resultDivs);
+
+    const currentTotalStep = getTotalStep();
+    resultDivs.forEach((resultDiv, i) => {
+      // 게임 진행 (가거나 or 멈추거나)
+      console.log(second, "prev", prevTotalStep, "cur", currentTotalStep);
+      if (prevTotalStep[i] !== currentTotalStep[i]) {
+        setStepInResultView(resultDiv);
+      }
+      setLoadingInResultView(resultDiv);
     });
 
     prevTotalStep = currentTotalStep;
@@ -98,11 +106,23 @@ export const playGame = () => {
     // 게임 종료 조건
     if (second === Number(tryNumInput.value)) {
       deleteLoading(resultDivs);
-      clearInterval(goStep);
       setWinnerView(getWinner());
+      clearInterval(goStep);
     }
+
     second++;
   }, 1000);
+};
+
+export const playGame = () => {
+  let second = 1;
+  state.cars.forEach((car) => {
+    car.totalStep = 0;
+  });
+
+  resultSection.querySelector("div").innerHTML = "";
+
+  playGameForSecond(second);
 };
 // 우승자 이름을 배열로 리턴한다.
 export const getWinner = () => {
