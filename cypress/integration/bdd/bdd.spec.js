@@ -178,4 +178,32 @@ context("bdd", () => {
 				expect(winners.length <= carNames.length).to.equal(true);
 			});
 	});
+
+	it("리셋 버튼을 누르면 초기 상태로 돌아간다.", () => {
+		cy.get("#name-input").type("EAST,WEST,SOUTH");
+		cy.get("#name-submit-button").click();
+
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "EAST");
+		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "WEST");
+		cy.get("#race-progress-screen>div>.car-player").eq(2).should("have.text", "SOUTH");
+
+		cy.get("#reset-button").click();
+		cy.get("#name-input").should("exist");
+		cy.get("#name-submit-button").should("exist");
+		cy.get("#count-input").should("not.exist");
+		cy.get("#count-submit-button").should("not.exist");
+
+		cy.get("#name-input").type("안,녕");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").should("exist");
+		cy.get("#count-submit-button").should("exist");
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+
+		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "안");
+		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "녕");
+	});
 });
