@@ -1,4 +1,4 @@
-import { INIT } from "../constants/constant.js";
+import { INIT, GAME } from "../constants/constant.js";
 
 class RacingCarModel {
   constructor() {
@@ -10,18 +10,29 @@ class RacingCarModel {
     return this._cars;
   }
 
-  set cars(newCars) {
-    if (newCars) {
-      this._cars = newCars;
-    }
-  }
-
   get count() {
     return this._count;
   }
 
   set count(newCount) {
     this._count = newCount;
+  }
+
+  moveCar(moves) {
+    this._cars = this._cars.map((car, index) => {
+      return { ...car, forward: car.forward + moves[index] };
+    });
+  }
+
+  initCar(carNames) {
+    this._cars = carNames.map(carName => {
+      return { name: carName, forward: INIT.FORWARD };
+    });
+  }
+
+  reset() {
+    this._cars = INIT.CARS;
+    this._count = INIT.COUNT;
   }
 }
 

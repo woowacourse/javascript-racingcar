@@ -46,29 +46,23 @@ class RacingCarController {
     return GAME.STOP_NUM;
   }
 
-  play(cars) {
-    const newCars = cars.map(car => {
-      return { ...car, forward: car.forward + this.goStop() };
+  play() {
+    const moves = this.model.cars.map(() => {
+      return this.goStop();
     });
-
-    return newCars;
+    this.model.moveCar(moves);
   }
 
   startGame() {
-    let cars = this.model.cars;
     for (let i = 0; i < this.model.count; i++) {
-      cars = this.play(cars);
+      this.play();
     }
-    this.model.cars = cars;
   }
 
   manageCars() {
     const carNames = this.carsInput;
     if (this.validator.isCarValid(carNames)) {
-      const cars = carNames.map(carName => {
-        return { name: carName, forward: INIT.FORWARD };
-      });
-      this.model.cars = cars;
+      this.model.initCar(carNames);
       this.view.renderCount();
       this.handleCount();
     }
@@ -91,8 +85,7 @@ class RacingCarController {
   }
 
   reset() {
-    this.model.cars = INIT.CARS;
-    this.model.count = INIT.COUNT;
+    this.model.reset();
     this.view.reset();
   }
 
