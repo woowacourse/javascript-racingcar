@@ -39,12 +39,16 @@ context('carRacing', () => {
   });
 
   it('자동차 이름이 비어있는 경우 경고창을 띄운다.', () => {
+    const alertStub = cy.stub();
+
     cy.get('#car-names-submit').click();
-    checkAlertMessage(alertConstants.INVALID_CAR_NAME);
+    cy.on('window:alert', alertStub).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.INVALID_CAR_NAME);
+    });
   });
 
   it('5자 이상의 자동차 이름을 입력받으면 경고창을 띄운다.', () => {
-    inputCarNames('car1, car2, car3');
+    inputCarNames('car1, car2, car3456');
     checkAlertMessage(alertConstants.INVALID_CAR_NAME);
   });
 
