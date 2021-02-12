@@ -1,104 +1,90 @@
-import { MESSAGE, RANDOM_NUMBER, SELECTOR } from "./constants.js";
+import { MESSAGE, RANDOM_NUMBER, SELECTOR, CONSTANT } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { getRandomIntInclusive } from "./utils.js";
+import { getRandomIntInclusive, splitCarName } from "./utils.js";
 
 export class Controller {
   constructor() {
     this.carModels = [];
     this.viewController = new ViewController();
 
+    this.getHTMLElements();
+    this.addEventListeners();
+  }
+
+  getHTMLElements() {
     this.carNameInput = document.querySelector(SELECTOR.CAR_NAME.INPUT);
     this.lapCountInput = document.querySelector(SELECTOR.LAP_COUNT.INPUT);
 
-    const carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
-    carNameButton.addEventListener("click", () =>
+    this.carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
+    this.lapCountButton = document.querySelector(SELECTOR.LAP_COUNT.BUTTON);
+    this.restartButton = document.querySelector(SELECTOR.GAME_RESULT.BUTTON);
+  }
+
+  addEventListeners() {
+    this.carNameButton.addEventListener("click", () =>
       this.handleCarNameButtonClick()
     );
 
-    const lapCountButton = document.querySelector(SELECTOR.LAP_COUNT.BUTTON);
-    lapCountButton.addEventListener("click", () =>
+    this.lapCountButton.addEventListener("click", () =>
       this.handleLapCountButtonClick()
     );
 
-    const restartButton = document.querySelector(SELECTOR.GAME_RESULT.BUTTON);
-    restartButton.addEventListener("click", () =>
+    this.restartButton.addEventListener("click", () =>
       this.handleRestartButtonClick()
     );
   }
 
   handleCarNameButtonClick() {
-    const carNames = this.carNameInput.value
-      .split(",")
-      .map((carName) => carName.trim())
-      .filter((carName) => carName !== "");
+    try {
+      const carNames = splitCarName(this.carNameInput.value);
+      const {
+        CAR_NAME: { MIN_NUMBER, MAX_LENGTH },
+      } = CONSTANT;
 
-    if (carNames.length < 2) {
-      alert(MESSAGE.CAR_NAME.MIN_NUMBER);
-      return;
+      if (carNames.length < MIN_NUMBER)
+        throw Error(MESSAGE.CAR_NAME.MIN_NUMBER);
+
+      if (carNames.some((carName) => carName.length > MAX_LENGTH))
+        throw Error(MESSAGE.CAR_NAME.MAX_LENGTH);
+
+      if (carNames.some((carName, i) => i !== carNames.lastIndexOf(carName)))
+        throw Error(MESSAGE.CAR_NAME.DUPLICATION);
+
+      this.carModels = carNames.map((carName) => new CarModel(carName));
+      this.viewController.renderCarNameTag(carNames);
+    } catch (error) {
+      alert(error.message);
     }
-
-    if (carNames.some((carName) => carName.length > 5)) {
-      alert(MESSAGE.CAR_NAME.MAX_LENGTH);
-      return;
-    }
-
-    if (carNames.some((carName, i) => i !== carNames.lastIndexOf(carName))) {
-      alert(MESSAGE.CAR_NAME.DUPLICATION);
-      return;
-    }
-
-    this.carModels = carNames.map((carName) => new CarModel(carName));
-
-    // TODO: input하면 중복 생성되지 않게하기
-    this.viewController.renderCarNameTag(carNames);
   }
 
   handleLapCountButtonClick() {
-    const userInput = this.lapCountInput.value;
+    try {
+      if (this.carModels.length === 0)
+        throw Error(MESSAGE.COMMON.INVALID_ACCESS);
 
-    // TODO: try-catch 형식으로 리팩토링하자!
-    if (this.carModels.length === 0) {
-      alert(MESSAGE.COMMON.INVALID_ACCESS);
-      return;
-    }
+      if (this.lapCountInput.value === "")
+        throw Error(MESSAGE.LAP_COUNT.NOT_A_NUMBER);
 
-    if (userInput === "") {
-      alert(MESSAGE.LAP_COUNT.NOT_A_NUMBER);
+      const lapCount = Number(this.lapCountInput.value);
+      const {
+        LAP_COUNT: { MIN, MAX },
+      } = CONSTANT;
+      if (lapCount < MIN || lapCount > MAX || !Number.isInteger(lapCount))
+        throw Error(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
+
+      for (let i = 0; i < lapCount; i++) {
+        const lapResult = this.getLapResult(this.carModels.length);
+        this.moveCarAlongWith(lapResult);
+        this.viewController.renderGameProgress(lapResult);
+      }
+
+      const winners = this.getWinners();
+      this.viewController.renderGameResult(winners);
+    } catch (error) {
+      alert(error.message);
       this.lapCountInput.value = "";
-      return;
     }
-
-    const lapCount = Number(userInput);
-
-    if (lapCount < 1) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    if (lapCount > 20) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    if (!Number.isInteger(lapCount)) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    for (let i = 0; i < lapCount; i++) {
-      const lapResult = this.getLapResult();
-      this.carModels
-        .filter((_, i) => lapResult[i])
-        .forEach((carModel) => carModel.move());
-      this.viewController.renderGameProgress(lapResult);
-    }
-
-    const winners = this.getWinners();
-    this.viewController.renderGameResult(winners);
   }
 
   handleRestartButtonClick() {
@@ -109,19 +95,22 @@ export class Controller {
     this.viewController.clear();
   }
 
-  getLapResult() {
-    const lapResult = [];
+  getLapResult(carModelsNumber) {
+    const {
+      RANGE: { MIN, MAX },
+      MOVING_POINT,
+    } = RANDOM_NUMBER;
 
-    for (let i = 0; i < this.carModels.length; i++) {
-      const {
-        RANGE: { MIN, MAX },
-        MOVING_POINT,
-      } = RANDOM_NUMBER;
-      const randomNumber = getRandomIntInclusive(MIN, MAX);
-      lapResult[i] = randomNumber >= MOVING_POINT;
-    }
+    return Array.from(
+      Array(carModelsNumber),
+      () => getRandomIntInclusive(MIN, MAX) >= MOVING_POINT
+    );
+  }
 
-    return lapResult;
+  moveCarAlongWith(lapResult) {
+    this.carModels
+      .filter((_, i) => lapResult[i])
+      .forEach((carModel) => carModel.move());
   }
 
   getWinners() {
