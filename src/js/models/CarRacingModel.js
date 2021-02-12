@@ -20,7 +20,7 @@ export default class CarRacingModel {
     return this.cars.filter((car) => car.distance === maxDistance);
   }
 
-  addCars(name) {
+  addCar(name) {
     this.cars.push({
       name,
       distance: 0,

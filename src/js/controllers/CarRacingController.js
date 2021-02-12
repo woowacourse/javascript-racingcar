@@ -33,7 +33,7 @@ export default class CarRacingController {
       }
     }
 
-    carNames.forEach((carName) => this.model.addCars(carName));
+    carNames.forEach((carName) => this.model.addCar(carName));
 
     this.view.show(this.$racingCountContainer);
     this.view.addDisabled(this.$carNamesSubmit);
