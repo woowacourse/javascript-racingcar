@@ -57,10 +57,22 @@ class Model {
 	}
 
 	getResultText() {
-		let maxScore = 0;
-		this.cars.forEach((car) => car.score > maxScore && (maxScore = car.score));
-		const winners = this.cars.filter((car) => car.score === maxScore).map((car) => car.name);
+		const winners = this.getWinners();
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
+	}
+
+	getWinners() {
+		const maxScore = this.getMaxScore();
+		const carObjectsWithMaxScore = this.getCarObjectsWithMaxScore(maxScore);
+		return carObjectsWithMaxScore.map((car) => car.name);
+	}
+
+	getMaxScore() {
+		return this.cars.reduce((maxScore, car) => (car.score > maxScore ? car.score : maxScore), 0);
+	}
+
+	getCarObjectsWithMaxScore(maxScore) {
+		return this.cars.filter((car) => car.score === maxScore);
 	}
 }
 
