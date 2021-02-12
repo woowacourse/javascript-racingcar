@@ -53,6 +53,7 @@ export default class CarRacingController {
 
     this.view.disableElement(this.$racingCountSubmit);
     this.startRacing();
+    this.endRacing();
   }
 
   onClickRestartButton() {
@@ -95,9 +96,10 @@ export default class CarRacingController {
       this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
     }
+  }
 
+  endRacing() {
     this.view.show(this.$resultContainer);
-
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
   }
