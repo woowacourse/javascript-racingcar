@@ -6,18 +6,21 @@ import Utils from "./Utils.js";
 // 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
 	onCountSubmit() {
-		const $app = ElementManager.getAppDIV();
 		const countInput = ElementManager.getCountInput();
-		Model.setCount(Number(countInput.value));
-		if ($app.childElementCount === 1) {
-			const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
-			View.progressContainerRender(raceProgressContainerTemplate);
-			Model.runArrowRenderByCount();
-			View.winnerRender();
-			this.addResetButtonEvent();
-		}
 
-		countInput.value = "";
+		const { validity, alertMessage } = Model.validateCount(countInput.value);
+		if (validity === false) {
+			alert(alertMessage);
+			View.clearInputValue(countInput);
+			return;
+		}
+		Model.setCount(Number(countInput.value));
+		const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
+		View.progressContainerRender(raceProgressContainerTemplate);
+		Model.runArrowRenderByCount();
+		View.winnerRender();
+		this.addResetButtonEvent();
+		View.clearInputValue(countInput);
 	}
 
 	onNameSubmit() {
@@ -32,9 +35,9 @@ class Controller {
 			return;
 		}
 		Model.initCars(nameInput.value);
-		View.clearInputValue(nameInput);
-		!Model.isAlreadyCountClicked($settingContainer) && View.countSectionRender($settingContainer);
+		View.countSectionRender($settingContainer);
 		this.addCountButtonEvent(this.onCountSubmit.bind(this));
+		View.clearInputValue(nameInput);
 	}
 
 	addCountButtonEvent(callback) {
