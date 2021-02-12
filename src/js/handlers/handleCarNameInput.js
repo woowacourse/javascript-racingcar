@@ -1,8 +1,9 @@
-import { $ } from '../utils/querySelector.js';
-import { setVisibility } from '../views/utils/setVisibility.js';
+import { $ } from '../views/utils/querySelector.js';
 import { showCarPlayers } from '../views/showCarPlayers.js';
-import { validateCarNames } from '../models/validateCarNames.js';
+import { showElement } from '../views/utils/showElement.js';
+import { clearInput } from '../views/utils/clearInput.js';
 import { generateCarInstances } from '../models/generateCarInstances.js';
+import { validateCarNames } from '../models/validateCarNames.js';
 import { handleRacingCountInput } from './handleRacingCountInput.js';
 
 export const handleCarNameInput = () => {
@@ -12,12 +13,12 @@ export const handleCarNameInput = () => {
 
   if (errorMessage) {
     alert(errorMessage);
-    $carNameInput.value = '';
+    clearInput($carNameInput);
     return;
   }
   showCarPlayers(cars);
   $('#racing-count-submit').addEventListener('click', () =>
     handleRacingCountInput(cars),
   );
-  setVisibility($('#racing-count-section'), true);
+  showElement($('#racing-count-section'));
 };

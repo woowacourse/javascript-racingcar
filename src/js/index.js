@@ -1,4 +1,4 @@
-import { $ } from './utils/querySelector.js';
+import { $ } from './views/utils/querySelector.js';
 import { setToInitialView } from './views/setToInitialView.js';
 import { handleCarNameInput } from './handlers/handleCarNameInput.js';
 

@@ -1,4 +1,4 @@
-import { $ } from '../utils/querySelector.js';
+import { $ } from './utils/querySelector.js';
 
 export const showCarPlayers = (cars) => {
   $('#game-process-screen').innerHTML = cars

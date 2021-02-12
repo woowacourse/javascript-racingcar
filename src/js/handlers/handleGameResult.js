@@ -1,12 +1,10 @@
 import { RACING_RULE } from '../constants/racingRule.js';
-import { wait } from '../utils/wait.js';
-import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
-import { showGameResult } from '../views/showGameResult.js';
+import { insertForwardIcon } from '../views/insertForwardIcon.js';
+import { clearResidueForwardIcon } from '../views/clearResidueForwardIcon.js';
 import { hideLoader, showLoader } from '../views/setLoaderVisibility.js';
-import {
-  clearResidueForwardIcon,
-  insertForwardIcon,
-} from '../views/insertClearForwardIcon.js';
+import { wait } from '../views/utils/wait.js';
+import { showGameResult } from '../views/showGameResult.js';
+import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
 import { getWinners } from '../models/getWinners.js';
 
 export const handleGameResult = async (cars, racingCount) => {

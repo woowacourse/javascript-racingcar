@@ -1,5 +1,6 @@
-import { $ } from '../utils/querySelector.js';
-import { setVisibility } from '../views/utils/setVisibility.js';
+import { $ } from '../views/utils/querySelector.js';
+import { showElement } from '../views/utils/showElement.js';
+import { clearInput } from '../views/utils/clearInput.js';
 import { validateRacingCount } from '../models/validateRacingCount.js';
 import { handleGameResult } from './handleGameResult.js';
 
@@ -10,10 +11,10 @@ export const handleRacingCountInput = (cars) => {
 
   if (errorMessage) {
     alert(errorMessage);
-    $racingCountInput.value = '';
+    clearInput($racingCountInput);
     return;
   }
-  setVisibility($('#game-process-section'), true);
+  showElement($('#game-process-section'));
   cars.forEach((car) => car.resetForwardCount());
   handleGameResult(cars, racingCount);
 };
