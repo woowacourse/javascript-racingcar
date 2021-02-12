@@ -48,6 +48,16 @@ const deleteLoading = (resultDivs) => {
   });
 };
 
+const setCarNamesInResultView = () => {
+  state.cars.forEach((car) => {
+    const resultDivString = `<div></div>`;
+    const resultDiv = parseHTML(resultDivString);
+    resultDiv.setAttribute("class", "one-car-result");
+    resultDiv.appendChild(showCarName(car.name));
+    resultSection.querySelector("div").append(resultDiv);
+  });
+};
+
 export const playGame = () => {
   const tryNumInput = tryNumSection.querySelector("input");
   state.cars.forEach((car) => {
@@ -60,13 +70,7 @@ export const playGame = () => {
   const goStep = setInterval(() => {
     // 처음에만 car name 보여주기
     if (second === 1) {
-      state.cars.forEach((car) => {
-        const resultDivString = `<div></div>`;
-        const resultDiv = parseHTML(resultDivString);
-        resultDiv.setAttribute("class", "one-car-result");
-        resultDiv.appendChild(showCarName(car.name));
-        resultSection.querySelector("div").append(resultDiv);
-      });
+      setCarNamesInResultView();
     }
 
     const currentTotalStep = setTotalStep();
