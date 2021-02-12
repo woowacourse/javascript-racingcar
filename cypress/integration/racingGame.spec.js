@@ -3,6 +3,9 @@ import { Car } from '../../src/js/models/Car.js';
 import { GAME_OVER_NOTICE } from '../../src/js/constants/gameOverNotice.js';
 import { RACING_RULE } from '../../src/js/constants/racingRule.js';
 
+const car = new Car();
+const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
+
 describe('racing-game', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -123,10 +126,15 @@ describe('racing-game', () => {
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
     const car = new Car();
-    const { THRESHOLD_SCORE } = RACING_RULE;
+    const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
 
-    expect(car.isEarningPoint(3)).to.equal(false);
-    expect(car.isEarningPoint(4)).to.equal(true);
+    for (let i = MIN_SCORE; i < MAX_SCORE; i++) {
+      if (i >= THRESHOLD_SCORE) {
+        expect(car.isMovingForward(i)).to.equal(true);
+      } else {
+        expect(car.isMovingForward(i)).to.equal(false);
+      }
+    }
   });
 
   it('우승자를 결정하는 함수는 forwardCount가 가장 큰 Car들의 이름을 ","로 이어 반환한다.', () => {
