@@ -214,4 +214,25 @@ context("bdd", () => {
 		cy.get("#name-input").clear().invoke("val", "123가,456나,     789다").trigger("input");
 		cy.get("#name-input").should("have.value", "가,나,다");
 	});
+
+	it("빈 문자인 이름을 등록하면 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+			});
+		cy.reload();
+
+		cy.get("#name-input").type("EAST,,SOUTH");
+		cy.get("#name-submit-button").click();
+		cy.get("#name-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+			});
+	});
 });
