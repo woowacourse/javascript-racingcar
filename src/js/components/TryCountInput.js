@@ -1,4 +1,4 @@
-import { resetInput, disableElements, activateElements } from '../util/domUtil.js';
+import { clearInput, disableElements, activateElements } from '../util/domUtil.js';
 import { isNaturalNumber } from '../util/general.js';
 import { ERROR_MESSAGE } from '../util/errorMessage.js';
 
@@ -22,7 +22,7 @@ export default class TryCountInput {
 
     if (!isNaturalNumber(tryCountInput)) {
       alert(ERROR_MESSAGE.NOT_NATURAL_NUMBER);
-      resetInput(this.$tryCountInput);
+      clearInput(this.$tryCountInput);
       return;
     }
 
@@ -33,7 +33,7 @@ export default class TryCountInput {
 
   reset() {
     activateElements(this.$tryCountInput, this.$tryCountSummitBtn);
-    resetInput(this.$tryCountInput);
+    clearInput(this.$tryCountInput);
   }
 
   setState(nextTryCount) {

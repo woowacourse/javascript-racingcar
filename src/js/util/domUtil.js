@@ -1,5 +1,5 @@
-export const resetInput = ($target) => {
-  $target.value = "";
+export const clearInput = ($target) => {
+  $target.value = '';
 };
 
 export const disableElements = (...elements) => {
