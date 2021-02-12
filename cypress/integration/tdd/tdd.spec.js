@@ -20,12 +20,20 @@ context("tdd", () => {
 
 	it("각 자동차는 입력한 횟수만큼 반복하여 랜덤 숫자를 배정받고, 랜덤 숫자가 4-9일 때 전진 횟수가 1 증가한다.", () => {
 		Model.initCars("가,나,다");
-		Model.setCount(3);
 		Model.move(Model.cars[0]);
 		expect(Model.cars[0].score).to.equal(1);
 		Model.move(Model.cars[0]);
 		expect(Model.cars[0].score).to.equal(2);
 		Model.move(Model.cars[0]);
 		expect(Model.cars[0].score).to.equal(3);
+	});
+
+	it("우승자를 리턴한다.", () => {
+		Model.initCars("가,나,다");
+		Model.move(Model.cars[0]);
+		Model.move(Model.cars[0]);
+		Model.move(Model.cars[1]);
+
+		expect(Model.getWinners()).to.deep.equal(["가"]);
 	});
 });
