@@ -24,8 +24,6 @@ class Controller {
 	}
 
 	onNameSubmit() {
-		// $settingContainer.childElementCount === 2가 아니면
-		// 모든 기능이 작동하지 않고, alert 띄우도록
 		const nameInput = ElementManager.getNameInput();
 		const $settingContainer = ElementManager.getSettingContainer();
 		const { validity, alertMessage } = Model.validateName(nameInput.value);
