@@ -79,6 +79,13 @@ class Model {
 		this.cars = [];
 		this.count = 0;
 	}
+
+	validateNameInput(inputValue) {
+		if (inputValue.split(",").includes("")) {
+			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+		}
+		return { validity: true, alertMessage: null };
+	}
 }
 
 export default new Model();
