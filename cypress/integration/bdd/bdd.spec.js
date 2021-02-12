@@ -359,4 +359,21 @@ context("bdd", () => {
 				expect(stub.getCall(0)).to.be.calledWith("중복된 이름은 등록할 수 없습니다.");
 			});
 	});
+
+	it("횟수를 너무 큰 숫자(최대 20000으로 설정)로 설정하려 할 경우 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee,dawit", { force: true });
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").type("30000", { force: true });
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith(
+					"원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다."
+				);
+			});
+	});
 });
