@@ -206,4 +206,12 @@ context("bdd", () => {
 		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "안");
 		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "녕");
 	});
+
+	it("이름 입력 칸에 어떤 문자열을 붙여넣어도 알파벳, 한글, ','만 붙여넣어진다.", () => {
+		cy.get("#name-input").clear().invoke("val", "a!b@c#,$d%e^f,g&*()").trigger("input");
+		cy.get("#name-input").should("have.value", "abc,def,g");
+
+		cy.get("#name-input").clear().invoke("val", "123가,456나,     789다").trigger("input");
+		cy.get("#name-input").should("have.value", "가,나,다");
+	});
 });
