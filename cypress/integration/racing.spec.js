@@ -103,15 +103,12 @@ describe('자동차 경주', () => {
       const cars = doc.querySelectorAll('.car-player');
       const progresses = [...cars].map(car => car.parentNode.childNodes.length);
       const maxPosition = Math.max(...progresses);
-      const winners = [];
       
-      cars.forEach(car => {
-        if (car.parentNode.childNodes.length === maxPosition) {
-          winners.push(car.innerHTML);
-        }
-      });
-      
-      const winnerResult = winners.join(', ');
+      const winnerResult = [...cars]
+        .filter(car => car.parentNode.childNodes.length === maxPosition)
+        .map(car => car.innerHTML)
+        .join(', ');
+
       cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).find('section').find('h2').contains(winnerResult);
     });
   });
