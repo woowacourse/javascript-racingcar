@@ -16,6 +16,8 @@ export {
   ALERT_VALID_COUNT_RANGE,
   ALERT_DECIMAL,
   ALERT_RESTART,
+  PREFIX_RESULT,
+  SUFFIX_RESULT,
 } from './alert_message.js';
 export {
   MIN_NAMES_NUMBER,
@@ -25,4 +27,5 @@ export {
   MIN_NUMBER,
   MAX_NUMBER,
   MOVE_TRIGGER,
+  MSG_INTERVAL,
 } from './standard.js';

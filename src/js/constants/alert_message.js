@@ -7,3 +7,6 @@ export const ALERT_OVERLAP = '이름은 중복되면 안됩니다.';
 export const ALERT_VALID_COUNT_RANGE = '1 이상의 숫자만 입력 가능합니다';
 export const ALERT_DECIMAL = '정수만 입력 가능합니다.';
 export const ALERT_RESTART = '재시작 버튼을 눌러주세요.';
+export const PREFIX_RESULT = '최종 우승자는 ';
+export const SUFFIX_RESULT =
+  '입니다!\n재시작을 원하시면 다시 시작하기 버튼을 눌러주세요.';

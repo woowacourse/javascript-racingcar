@@ -52,24 +52,50 @@ export default class RacingGameView {
     `;
   }
 
-  renderProgressBar(cars) {
+  renderProgress(cars) {
     const $progressContainer = document.querySelector('.progress-container');
 
     $progressContainer.innerHTML = `
-      <section class="mt-4">
-        <div class="d-flex">
-          ${cars.map(car => progressTemplate(car)).join('')}
-        </div>
-      </section>
-    `;
+    <section class="mt-4">
+      <div class="d-flex">
+        ${progressTemplate(cars)}
+      </div>
+    </section>
+  `;
+    this.animateProgress(cars);
 
-    function progressTemplate(car) {
-      return `
-        <div>
+    function progressTemplate(cars) {
+      return cars.reduce((innerHTML, car, idx) => {
+        return (innerHTML += `
+        <div class ="progress-${idx}">
           <div class="car-player mr-2">${car.name}</div>
-          ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.position)}
+          <div class="d-flex justify-center mt-4">
+            <div class="relative spinner-container">
+              <span class="material spinner"></span>
+            </div>
+          </div>
         </div>
+        `);
+      }, '');
+    }
+  }
+
+  animateProgress(cars) {
+    const intervalId = setInterval(animate, 1000, cars);
+    let idx = 0;
+
+    function animate(cars) {
+      const progress = document.querySelector(`.progress-${idx}`);
+      const car = cars[idx];
+
+      if (idx === cars.length - 1) {
+        clearInterval(intervalId);
+      }
+      progress.innerHTML = `
+        <div class="car-player mr-2">${car.name}</div>
+        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.position)}
       `;
+      idx++;
     }
   }
 

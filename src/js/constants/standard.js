@@ -5,3 +5,4 @@ export const DEFAULT_POSITION = 0;
 export const MIN_NUMBER = 0;
 export const MAX_NUMBER = 9;
 export const MOVE_TRIGGER = 4;
+export const MSG_INTERVAL = 2;
