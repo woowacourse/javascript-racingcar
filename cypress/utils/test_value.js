@@ -1,5 +1,8 @@
 const resetValue = input => cy.get(input).then($input => $input.val(''));
 
+export const checkAlert = alertMessage =>
+  cy.on('window:alert', message => expect(message).to.contains(alertMessage));
+
 export const setGameData = (input, button, value) => {
   resetValue(input);
 
@@ -15,12 +18,6 @@ export const testValue = (input, button, ...testSet) => {
   const alertMessage = testSet[1];
 
   setGameData(input, button, value);
-
-  if (alertMessage) {
-    cy.on('window:alert', message => {
-      expect(message).to.equal(alertMessage);
-    });
-  }
-
+  alertMessage && checkAlert(alertMessage);
   cy.get(input).should('have.value', alertMessage ? '' : value);
 };
