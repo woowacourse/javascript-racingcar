@@ -1,4 +1,4 @@
-export const ALERT = {
+export const ALERT_MESSAGE = {
   CAR_NAME_EMPTY: '자동차 이름을 입력해주세요.',
   CAR_NAME_OVER_FIVE: '자동차 이름을 5자 이하로 입력해 주세요.',
   CAR_NAMES_DUPLICATE: '중복되는 자동차 이름을 입력할 수 없습니다.',
@@ -7,7 +7,7 @@ export const ALERT = {
   TRY_COUNT_NOT_INT: '정수를 입력해주세요.',
 };
 
-export const CLASS = {
+export const ELEMENT_CLASS_NAME = {
   CAR_NAME_INPUT: '.car-name-input',
   CAR_NAME_BTN: '.car-name-btn',
   CAR_PLAYER: '.car-player',
@@ -21,14 +21,14 @@ export const CLASS = {
   HIDE: 'hide',
 };
 
-export const NUMBER = {
+export const CONSTANT_NUMBER = {
   MAX_NAME_LENGTH: 5,
   FORWARDING_THRESHOLD: 4,
   RANDOM_RANGE: 10,
 };
 
-export const STRING = {
+export const TEXT_CONTENT = {
   ARROW: '⬇️',
   RESTART: '다시 시작하기',
   FINAL_WINNER: '최종 우승자',
-}
+};

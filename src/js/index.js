@@ -1,6 +1,6 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { CLASS } from './constants.js';
+import { ELEMENT_CLASS_NAME } from './constants.js';
 import { 
   isCarNameEmpty, 
   isCarNamesDuplicate,
@@ -22,7 +22,7 @@ export default class Racing {
   }
 
   getCarNames() {
-    const carNameInput = document.querySelector(CLASS.CAR_NAME_INPUT).value;
+    const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
 
     if (isCarNameEmpty(carNameInput)) return;
     if (isCarNamesDuplicate(carNameInput)) return;
@@ -34,12 +34,12 @@ export default class Racing {
       this.cars.push(car);
     }
 
-    this.UIController.showElement(CLASS.TRY_COUNT_FORM);
-    this.UIController.focusElement(CLASS.TRY_COUNT_INPUT);
+    this.UIController.showElement(ELEMENT_CLASS_NAME.TRY_COUNT_FORM);
+    this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
   }
 
   getTryCount() {
-    const tryCountInput = document.querySelector(CLASS.TRY_COUNT_INPUT).value;
+    const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
     const tryCountNumber = Number(tryCountInput);
 
     if (isTryCountNotValid(tryCountInput, tryCountNumber)) return;
@@ -72,7 +72,7 @@ export default class Racing {
     }, []);
 
     this.UIController.showWinners(winners);
-    document.querySelector(CLASS.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
+    document.querySelector(ELEMENT_CLASS_NAME.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
   }
 
   restartGame() {
@@ -83,14 +83,14 @@ export default class Racing {
   }
 
   addListeners() {
-    document.querySelector(CLASS.CAR_NAME_BTN).addEventListener('click', this.getCarNames.bind(this));
-    document.querySelector(CLASS.CAR_NAME_INPUT).addEventListener('keydown', e => {
+    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_BTN).addEventListener('click', this.getCarNames.bind(this));
+    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         this.getCarNames.bind(this)();
       }
     });
-    document.querySelector(CLASS.TRY_COUNT_BTN).addEventListener('click', this.getTryCount.bind(this));
-    document.querySelector(CLASS.TRY_COUNT_INPUT).addEventListener('keydown', e => {
+    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_BTN).addEventListener('click', this.getTryCount.bind(this));
+    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         this.getTryCount.bind(this)();
       }
