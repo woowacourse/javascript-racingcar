@@ -28,7 +28,10 @@ export default class Racing {
     if (isCarNamesDuplicate(carNameInput)) return;
 
     for (let name of carNameInput.split(',')) {
-      if (isCarNameOverFive(name.trim().length)) return;
+      if (isCarNameOverFive(name.trim().length)) {
+        this.cars = [];
+        return;
+      }
 
       const car = new Car(name.trim());
       this.cars.push(car);
