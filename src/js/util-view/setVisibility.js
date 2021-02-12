@@ -1,7 +1,3 @@
-export const setVisibility = ($target, isToBeVisible) => {
-  if (isToBeVisible) {
-    $target.hidden = false;
-  } else {
-    $target.hidden = true;
-  }
+export const setVisibility = ($target, visibility) => {
+  $target.hidden = !visibility;
 };
