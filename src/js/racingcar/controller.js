@@ -1,7 +1,7 @@
 import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
 import Validator from "../validator/validator.js";
-import Util from "../utils/util.js";
+import { generateRandomNumber, $ } from "../utils/util.js";
 import { RANDOM, INIT, GAME } from "../constants/constant.js";
 
 class RacingCarController {
@@ -9,19 +9,18 @@ class RacingCarController {
     this.model = new RacingCarModel();
     this.view = new RacingCarView();
     this.validator = new Validator();
-    this.util = new Util();
     this.handleCars();
   }
 
   get carsInput() {
-    const $carInput = document.querySelector("#car-input").value;
+    const $carInput = $("#car-input") && $("#car-input").value;
     const carNames = $carInput.split(",").map(car => car.trim());
 
     return carNames;
   }
 
   get countInput() {
-    const $countInput = document.querySelector("#count-input").value;
+    const $countInput = $("#count-input") && $("#count-input").value;
 
     return $countInput;
   }
@@ -39,10 +38,7 @@ class RacingCarController {
 
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
-    const randomNumber = this.util.generateRandomNumber(
-      RANDOM.MIN_NUM,
-      RANDOM.MAX_NUM
-    );
+    const randomNumber = generateRandomNumber(RANDOM.MIN_NUM, RANDOM.MAX_NUM);
     if (randomNumber >= GAME.FORWARD_STANDARD_NUM) {
       return GAME.GO_NUM;
     }
@@ -101,21 +97,21 @@ class RacingCarController {
   }
 
   handleCars() {
-    const $carBtn = document.querySelector("#car-btn");
+    const $carBtn = $("#car-btn");
     $carBtn.addEventListener("click", () => {
       this.manageCars();
     });
   }
 
   handleCount() {
-    const $countBtn = document.querySelector("#count-btn");
+    const $countBtn = $("#count-btn");
     $countBtn.addEventListener("click", () => {
       this.manageCount();
     });
   }
 
   handleReset() {
-    const $resetBtn = document.querySelector("#reset-btn");
+    const $resetBtn = $("#reset-btn");
     $resetBtn.addEventListener("click", () => {
       this.reset();
     });
