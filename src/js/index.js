@@ -54,9 +54,7 @@ export default class Racing {
 
   moveCars() {
     for (let i = 0; i < this.tryCount; i++) {
-      for (let car of this.cars) {
-        car.move();
-      }
+      this.cars.forEach(car => car.move());
     }
 
     this.UIController.showProgress(this.cars);
