@@ -10,10 +10,10 @@ export default class TryCountInput {
     this.tryCount = 0;
     this.play = play;
 
-    this.bindEvents();
+    this.attachEvents();
   }
 
-  bindEvents() {
+  attachEvents() {
     this.$tryCountSummitBtn.addEventListener('click', this.handleSubmitTryCount.bind(this));
   }
 

@@ -7,7 +7,7 @@ export default class RacingWinner {
     this.resetCarGame = resetCarGame;
 
     this.init();
-    this.bindEvents();
+    this.attachEvents();
   }
 
   init() {
@@ -32,7 +32,7 @@ export default class RacingWinner {
     return cars.filter((car) => car.score === maxScore).map((car) => car.name);
   }
 
-  bindEvents() {
+  attachEvents() {
     this.$container.addEventListener('click', this.handleClickRestart.bind(this));
   }
 

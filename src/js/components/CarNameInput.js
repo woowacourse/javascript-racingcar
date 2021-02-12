@@ -12,10 +12,10 @@ export default class CarNameInput {
     this.createCars = createCars;
     this.play = play;
 
-    this.bindEvents();
+    this.attachEvents();
   }
 
-  bindEvents() {
+  attachEvents() {
     this.$carNameSummitBtn.addEventListener('click', this.handleSubmitCarName.bind(this));
   }
 
