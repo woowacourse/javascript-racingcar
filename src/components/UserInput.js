@@ -50,10 +50,6 @@ export default class UserInput extends Component {
       alert(ERROR_MESSAGE.RANGE_CAR_NAME_LENGTH);
       return;
     }
-    if (!this._verifyPropsExist("cars")) {
-      alert(ERROR_MESSAGE.NOT_EXIST_PROPS);
-      return;
-    }
 
     this.props.cars.value = carNames.map(carName => new Car(carName));
     showElement($sectionRaceTimes);

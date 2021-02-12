@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from "../utils/constant.js";
+
 export default class Component {
   $target;
   props;
@@ -5,6 +7,13 @@ export default class Component {
   constructor($target, props) {
     this.$target = $target;
     this.props = props;
+    if (!this.props) {
+      this.props = {};
+    }
+    if (!this.#verifyAllPropsExist()) {
+      alert(ERROR_MESSAGE.NOT_EXIST_PROPS);
+      return;
+    }
     this.initEvent();
   }
 
@@ -12,8 +21,9 @@ export default class Component {
 
   render() { }
 
-  _verifyPropsExist(string) {
-    if (!this.props[string]) {
+  #verifyAllPropsExist() {
+    const values = Object.values(this.props);
+    if (!values.every(value => value)) {
       return false;
     }
     return true;
