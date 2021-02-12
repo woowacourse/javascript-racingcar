@@ -1,4 +1,4 @@
-import { INIT, GAME } from "../constants/constant.js";
+import { INIT } from "../constants/constant.js";
 
 class RacingCarModel {
   constructor() {

@@ -9,6 +9,9 @@ class RacingCarController {
     this.model = new RacingCarModel();
     this.view = new RacingCarView();
     this.validator = new Validator();
+  }
+
+  init() {
     this.handleCars();
   }
 
