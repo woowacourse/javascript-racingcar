@@ -80,9 +80,12 @@ class Model {
 		this.count = 0;
 	}
 
-	validateNameInput(inputValue) {
+	validateName(inputValue) {
 		const names = inputValue.split(",");
-		if (names.includes("")) {
+
+		if (this.cars.length !== 0) {
+			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
+		} else if (names.includes("")) {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
 		} else if (names.some((name) => name.length > 5)) {
 			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
