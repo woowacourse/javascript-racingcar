@@ -1,40 +1,58 @@
 import { ALERT_MESSAGE, CONSTANT_NUMBER } from './constants.js';
 
-export const isTryCountNotValid = (input, number) => {
-  let isNotValid = false;
-  if (!input) {
-    isNotValid = returnAlert(ALERT_MESSAGE.TRY_COUNT_EMPTY);
-  } else if (number <= 0) {
-    isNotValid = returnAlert(ALERT_MESSAGE.TRY_COUNT_NEGATIVE);
-  } else if (number !== Math.floor(number)) {
-    isNotValid = returnAlert(ALERT_MESSAGE.TRY_COUNT_NOT_INT);
+export const checkTryCountValidity = input => {
+  const tryCountNumber = Number(input);
+  if (isInputValueEmpty(input)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_EMPTY);
+  } else if (isTryCountNegative(tryCountNumber)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_NEGATIVE);
+  } else if (isTryCountNotInt(tryCountNumber)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_NOT_INT);
   }
-  return isNotValid;
+  return true;
 }
 
-export const isCarNameEmpty = input => {
-  if (!input) {
-    return returnAlert(ALERT_MESSAGE.CAR_NAME_EMPTY);
+export const checkCarNameValidity = input => {
+  if (isInputValueEmpty(input)) {
+    return alert(ALERT_MESSAGE.CAR_NAME_EMPTY);
+  } else if (isCarNamesDuplicate(input)) {
+    return alert(ALERT_MESSAGE.CAR_NAMES_DUPLICATE);
   }
-  return false;
+  return true;
 }
 
 export const isCarNameOverFive = nameLength => {
   if (nameLength > CONSTANT_NUMBER.MAX_NAME_LENGTH) {
-    return returnAlert(ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
+    return true;
   }
   return false;
 }
 
-export const isCarNamesDuplicate = input => {
+const isInputValueEmpty = input => {
+  if (!input) {
+    return true;
+  }
+  return false;
+}
+
+const isTryCountNegative = number => {
+  if (number <= 0) {
+    return true;
+  }
+  return false;
+}
+
+const isTryCountNotInt = number => {
+  if (number !== Math.floor(number)) {
+    return true;
+  }
+  return false;
+}
+
+const isCarNamesDuplicate = input => {
   const carNameArr = input.split(',').map(name => name.trim());
   if (carNameArr.some((name, idx) => carNameArr.indexOf(name) !== idx)) {
-    return returnAlert(ALERT_MESSAGE.CAR_NAMES_DUPLICATE);
+    return true;
   }
   return false;
-}
-
-const returnAlert = alertMessage => {
-  alert(alertMessage);
-  return true;
 }

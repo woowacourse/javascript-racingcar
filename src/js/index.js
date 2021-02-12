@@ -1,11 +1,10 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { ELEMENT_CLASS_NAME } from './constants.js';
+import { ALERT_MESSAGE, ELEMENT_CLASS_NAME } from './constants.js';
 import { 
-  isCarNameEmpty, 
-  isCarNamesDuplicate,
   isCarNameOverFive, 
-  isTryCountNotValid 
+  checkCarNameValidity,
+  checkTryCountValidity,
 } from './validation.js';
 export default class Racing {
   constructor() {
@@ -23,12 +22,13 @@ export default class Racing {
 
   getCarNames() {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
+    const isCarNameInputValid = checkCarNameValidity(carNameInput);
 
-    if (isCarNameEmpty(carNameInput)) return;
-    if (isCarNamesDuplicate(carNameInput)) return;
+    if (!isCarNameInputValid) return;
 
     for (let name of carNameInput.split(',')) {
       if (isCarNameOverFive(name.trim().length)) {
+        alert(ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
         this.cars = [];
         return;
       }
@@ -43,11 +43,11 @@ export default class Racing {
 
   getTryCount() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
-    const tryCountNumber = Number(tryCountInput);
+    const isTryCountInputValid = checkTryCountValidity(tryCountInput);
 
-    if (isTryCountNotValid(tryCountInput, tryCountNumber)) return;
+    if(!isTryCountInputValid) return;
 
-    this.tryCount = tryCountNumber;
+    this.tryCount = Number(tryCountInput);
     this.moveCars();
     this.getWinners();
   }
