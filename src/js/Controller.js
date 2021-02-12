@@ -25,7 +25,7 @@ class Controller {
 		// 모든 기능이 작동하지 않고, alert 띄우도록
 		const nameInput = ElementManager.getNameInput();
 		const $settingContainer = ElementManager.getSettingContainer();
-		const { validity, alertMessage } = Model.validateNameInput(nameInput.value);
+		const { validity, alertMessage } = Model.validateName(nameInput.value);
 		if (validity === false) {
 			alert(alertMessage);
 			View.clearInputValue(nameInput);
