@@ -20,8 +20,9 @@ export default class Racing {
     this.tryCount = 0;
   }
 
-  handleCarNameInput() { // createCars? handleCarNameButton?
+  handleCarNameInput() {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
+    // check validity of car name input
     const isCarNameInputValid = checkCarNameValidity(carNameInput);
 
     if (!isCarNameInputValid) return;
@@ -32,36 +33,40 @@ export default class Racing {
         this.cars = [];
         return;
       }
-
+      // create car objects
       const car = new Car(name.trim());
       this.cars.push(car);
     }
-
+    // show try count input & button
     this.UIController.showElement(ELEMENT_CLASS_NAME.TRY_COUNT_FORM);
     this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
   }
 
   handleTryCountInput() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
+    // check validity of try count input
     const isTryCountInputValid = checkTryCountValidity(tryCountInput);
 
     if(!isTryCountInputValid) return;
 
     this.tryCount = Number(tryCountInput);
+    // move cars(start race)
     this.moveCars();
-    this.getWinners();
+    // show race progress & result
+    this.UIController.showProgress(this.cars);
+    this.UIController.showWinners(this.getWinners());
+    // add event listener to the restart button
+    document.querySelector(ELEMENT_CLASS_NAME.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
   }
 
   moveCars() {
     for (let i = 0; i < this.tryCount; i++) {
       this.cars.forEach(car => car.move());
     }
-
-    this.UIController.showProgress(this.cars);
   }
 
   getWinners() {
-    const winnerResult = this.cars.reduce((winners, car, idx) => {
+    return this.cars.reduce((winners, car, idx) => {
       if (idx === 0) return [this.cars[0]];
       
       if (car.position === winners[0].position) {
@@ -72,9 +77,6 @@ export default class Racing {
         return winners;
       }
     }, []).map(winner => winner.name);
-
-    this.UIController.showWinners(winnerResult);
-    document.querySelector(ELEMENT_CLASS_NAME.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
   }
 
   restartGame() {
