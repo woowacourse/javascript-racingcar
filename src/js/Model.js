@@ -97,12 +97,13 @@ class Model {
 	validateCount(inputValue) {
 		if (this.count !== 0) {
 			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
-		} else if (
-			Number(inputValue) === NaN ||
-			Number(inputValue) <= 0 ||
-			Number.isInteger(Number(inputValue)) === false
-		) {
+		} else if (Number(inputValue) === NaN || Number(inputValue) <= 0 || Number.isInteger(Number(inputValue)) === false) {
 			return { validity: false, alertMessage: "자연수만 설정할 수 있습니다." };
+		} else if (Number(inputValue) > 20000) {
+			return {
+				validity: false,
+				alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.",
+			};
 		} else return { validity: true, alertMessage: null };
 	}
 }
