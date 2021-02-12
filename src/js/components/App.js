@@ -4,7 +4,7 @@ import RacingResult from './RacingResult.js';
 import RacingWinner from './RacingWinner.js';
 import Car from '../model/Car.js';
 import { MIN_NUMBER, MAX_NUMBER, MOVE_BOUNDED_NUMBER } from '../util/constant.js';
-import { getRandomNumber, getWinners } from '../util/gameUtil.js';
+import { getRandomNumber } from '../util/general.js';
 
 export default class App {
   constructor() {
@@ -51,6 +51,13 @@ export default class App {
     });
   }
 
+  getWinners() {
+    const scores = this.cars.map((car) => car.score);
+    const maxScore = Math.max(...scores);
+
+    return this.cars.filter((car) => car.score === maxScore).map((car) => car.name);
+  }
+
   resetRacingGame() {
     this.setState({ nextCarNames: [], nextTryCount: 0, nextCars: [] });
     this.carNameInput.resetElements();
@@ -75,7 +82,7 @@ export default class App {
       this.cars = this.createCars();
       this.play();
       this.racingResult.setState({ nextCars: this.cars });
-      this.racingWinner.setState({ nextWinners: getWinners(this.cars) });
+      this.racingWinner.setState({ nextWinners: this.getWinners() });
     }
   }
 }
