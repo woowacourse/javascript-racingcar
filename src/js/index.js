@@ -61,18 +61,19 @@ export default class Racing {
   }
 
   getWinners() {
-    let maxPosition = 0;
-    const winners = this.cars.reduce((winners, car) => {
-      if (car.position === maxPosition) {
-        winners.push(car.name);
-      } else if (car.position > maxPosition) {
-        winners = [car.name];
-        maxPosition = car.position;
+    const winnerResult = this.cars.reduce((winners, car, idx) => {
+      if (idx === 0) return [this.cars[0]];
+      
+      if (car.position === winners[0].position) {
+        return winners.concat(car);
+      } else if (car.position > winners[0].position) {
+        return [car];
+      } else {
+        return winners;
       }
-      return winners;
-    }, []);
+    }, []).map(winner => winner.name);
 
-    this.UIController.showWinners(winners);
+    this.UIController.showWinners(winnerResult);
     document.querySelector(ELEMENT_CLASS_NAME.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
   }
 
