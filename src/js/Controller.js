@@ -8,7 +8,7 @@ class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
 
-		const { validity, alertMessage } = Model.validateCount(countInput.value);
+		const { validity, alertMessage } = Model.validateCount(Number(countInput.value));
 		if (validity === false) {
 			alert(alertMessage);
 			View.clearInputValue(countInput);
