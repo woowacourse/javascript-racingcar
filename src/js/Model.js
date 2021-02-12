@@ -89,8 +89,13 @@ class Model {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
 		} else if (names.some((name) => name.length > 5)) {
 			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
-		}
-		return { validity: true, alertMessage: null };
+		} else return { validity: true, alertMessage: null };
+	}
+
+	validateCount(inputValue) {
+		if (this.count !== 0) {
+			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
+		} else return { validity: true, alertMessage: null };
 	}
 }
 
