@@ -1,22 +1,27 @@
-import { carValidator } from "./carValidator.js";
-import { countValidator } from "./countValidator.js";
+import CarValidator from "./carValidator.js";
+import CountValidator from "./countValidator.js";
 
 class Validator {
+  constructor() {
+    this.carValidator = new CarValidator();
+    this.countValidator = new CountValidator();
+  }
+
   isCarValid(carNames) {
     return (
-      carValidator.isCarNameOverMaxLength(carNames) &&
-      carValidator.isCarNameBlank(carNames) &&
-      carValidator.isCarNameDuplicate(carNames)
+      this.carValidator.isCarNameBlank(carNames) &&
+      this.carValidator.isCarNameOverMaxLength(carNames) &&
+      this.carValidator.isCarNameDuplicate(carNames)
     );
   }
 
   isCountValid(count) {
     return (
-      countValidator.isCountNumber(count) &&
-      countValidator.isCountPositive(count) &&
-      countValidator.isCountInteger(count)
+      this.countValidator.isCountNumber(count) &&
+      this.countValidator.isCountPositive(count) &&
+      this.countValidator.isCountInteger(count)
     );
   }
 }
 
-export const validator = new Validator();
+export default Validator;

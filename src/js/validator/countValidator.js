@@ -27,4 +27,4 @@ class CountValidator {
   }
 }
 
-export const countValidator = new CountValidator();
+export default CountValidator;

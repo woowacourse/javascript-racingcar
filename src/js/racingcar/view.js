@@ -1,26 +1,25 @@
-import {
-  countSectionTemplate,
-  processSectionTemplate,
-  resultSectionTemplate,
-} from "../layouts/template.js";
+import Template from "../layouts/template.js";
 
 class RacingCarView {
+  constructor() {
+    this.template = new Template();
+  }
   renderCount() {
     const $countSection = document.querySelector("#count");
     $countSection.style.display = "block";
-    $countSection.innerHTML = countSectionTemplate();
+    $countSection.innerHTML = this.template.countSectionTemplate();
   }
 
   renderProcess(cars) {
     const $processSection = document.querySelector("#process");
     $processSection.style.display = "block";
-    $processSection.innerHTML = processSectionTemplate(cars);
+    $processSection.innerHTML = this.template.processSectionTemplate(cars);
   }
 
   renderResult(winners) {
     const $resultSection = document.querySelector("#result");
     $resultSection.style.display = "block";
-    $resultSection.innerHTML = resultSectionTemplate(winners);
+    $resultSection.innerHTML = this.template.resultSectionTemplate(winners);
   }
 
   resetCar() {

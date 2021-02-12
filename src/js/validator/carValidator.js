@@ -27,4 +27,4 @@ class CarValidator {
   }
 }
 
-export const carValidator = new CarValidator();
+export default CarValidator;

@@ -5,4 +5,4 @@ class Util {
   }
 }
 
-export const { generateRandomNumber } = new Util();
+export default Util;

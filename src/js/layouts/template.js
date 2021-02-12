@@ -43,8 +43,4 @@ class Template {
   }
 }
 
-export const {
-  countSectionTemplate,
-  processSectionTemplate,
-  resultSectionTemplate,
-} = new Template();
+export default Template;
