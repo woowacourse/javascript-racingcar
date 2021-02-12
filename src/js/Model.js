@@ -81,8 +81,11 @@ class Model {
 	}
 
 	validateNameInput(inputValue) {
-		if (inputValue.split(",").includes("")) {
+		const names = inputValue.split(",");
+		if (names.includes("")) {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+		} else if (names.some((name) => name.length > 5)) {
+			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
 		}
 		return { validity: true, alertMessage: null };
 	}
