@@ -1,13 +1,19 @@
 import { setGameData } from '../utils/test_value.js';
 
 describe('Racing car game test', () => {
-  const carNames = '1,2,3,4,5,6,7,8,9,10';
+  const carNames = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20';
   const count = '2';
   beforeEach(() => {
     cy.clock();
     cy.visit('/');
     setGameData('.car-name-input', '.car-name-btn', carNames);
     setGameData('.count-input', '.count-btn', count);
+  });
+
+  it('Can render animation', () => {
+    cy.get('.spinner-container').should('exist');
+    cy.tick(2000);
+    cy.get('.spinner-container').should('not.exist');
   });
 
   it('Can render progress', () => {
