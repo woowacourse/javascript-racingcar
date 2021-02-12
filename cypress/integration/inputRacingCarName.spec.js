@@ -14,7 +14,7 @@ describe("자동차 이름 입력하기", () => {
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("not.be.visible");
   };
 
-  it("최초 실행시 타이틀과 자동차 이름 입력란, 확인 버튼민 보인다.", () => {
+  it("최초 실행시 타이틀과 자동차 이름 입력란, 확인 버튼만 보인다.", () => {
     testInitialState();
   });
 
@@ -58,18 +58,18 @@ describe("자동차 이름 입력하기", () => {
 
   it("올바른 이름이 되었을 때", () => {
     const userInput = "EAST, WEST, SOUTH, NORTH";
-    const expectedNames = userInput.split(",").map((name) => name.trim());
+    const expectedNames = ["EAST", "WEST", "SOUTH", "NORTH"];
 
     cy.get(SELECTOR.CAR_NAME.INPUT).type(userInput);
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
 
     cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("be.visible");
     cy.get(SELECTOR.GAME_PROGRESS.CONTAINER).should("be.visible");
-    cy.get(SELECTOR.GAME_PROGRESS.CONTAINER)
-      .get(".car-player")
-      .each((car, index) => {
+    cy.get(`${SELECTOR.GAME_PROGRESS.CONTAINER} .car-player`).each(
+      (car, index) => {
         cy.wrap(car).should("have.text", expectedNames[index]);
-      });
+      }
+    );
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("not.be.visible");
   });
 });

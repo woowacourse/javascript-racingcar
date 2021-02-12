@@ -37,7 +37,7 @@ describe("시도할 횟수 입력하기", () => {
   // TODO: "10+10"  사용자가 입력하는 것과 cypress type이 상이한 것으로 보여짐. 검토 필요
   it("시도할 횟수는 숫자이다.", () => {
     testFailCaseArrayWithSameErrorMessage(
-      [" ", "+-", "ㄱ", "10+10"],
+      [" ", "+-", "ㄱ"],
       MESSAGE.LAP_COUNT.NOT_A_NUMBER
     );
   });
@@ -64,46 +64,38 @@ describe("시도할 횟수 입력하기", () => {
   });
 
   it("올바른 시도할 횟수가 입력됐을 때", () => {
-    let winners = [];
-    let max = -Infinity;
-
-    const testWinnerIsCorrect = () => {
-      cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
-        .invoke("text")
-        .then((text) => {
-          const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
-
-          expect(winners.sort()).to.deep.equal(matched.sort());
-        });
-    };
-
-    const findWhoIsWinner = ($carName, len) => {
-      const [{ innerText: winnerCandidate }] = $carName;
-
-      if (len === max) {
-        winners.push(winnerCandidate);
-      } else if (len > max) {
-        max = len;
-        winners = [winnerCandidate];
-      }
-    };
-
-    const userInput = 12;
-
-    cy.get(SELECTOR.LAP_COUNT.INPUT).type(userInput);
+    cy.get(SELECTOR.LAP_COUNT.INPUT).type(12);
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
 
-    cy.get("@windowAlert").should("have.callCount", 0);
+    cy.get("@windowAlert").should("not.be.called");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
 
-    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME)
-      .each(($carName) => {
-        cy.wrap($carName)
-          .parent()
-          .children()
-          .its("length")
-          .then((len) => findWhoIsWinner($carName, len));
-      })
-      .then(testWinnerIsCorrect);
+    let max = -Infinity;
+    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME).each(($carName) => {
+      cy.wrap($carName)
+        .parent()
+        .children()
+        .its("length")
+        .then((len) => (max = Math.max(max, len)));
+    });
+
+    let winners = [];
+    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME).each(($carName) => {
+      cy.wrap($carName)
+        .parent()
+        .children()
+        .its("length")
+        .then((len) => {
+          len === max && winners.push($carName.get(0).innerText);
+        });
+    });
+
+    cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
+      .invoke("text")
+      .should((text) => {
+        const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
+
+        expect(winners.sort()).to.deep.equal(matched.sort());
+      });
   });
 });

@@ -27,61 +27,54 @@ describe("다시 시작 버튼 클릭하기", () => {
 
   it("다시 시작된 후, 게임을 진행하면 정상적으로 작동한다.", () => {
     cy.get(SELECTOR.GAME_RESULT.BUTTON).click();
-
     testBackToIntialState();
 
     const userInput = "EAST, WEST, SOUTH, NORTH";
-    const expectedNames = userInput.split(",").map((name) => name.trim());
+    const expectedNames = ["EAST", "WEST", "SOUTH", "NORTH"];
 
     cy.get(SELECTOR.CAR_NAME.INPUT).type(userInput);
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
 
     cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("be.visible");
     cy.get(SELECTOR.GAME_PROGRESS.CONTAINER).should("be.visible");
-    cy.get(SELECTOR.GAME_PROGRESS.CONTAINER)
-      .get(".car-player")
-      .each((car, index) => {
+    cy.get(`${SELECTOR.GAME_PROGRESS.CONTAINER} .car-player`).each(
+      (car, index) => {
         cy.wrap(car).should("have.text", expectedNames[index]);
-      });
-
-    let winners = [];
-    let max = -Infinity;
-
-    const testWinnerIsCorrect = () => {
-      cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
-        .invoke("text")
-        .then((text) => {
-          const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
-
-          expect(winners.sort()).to.deep.equal(matched.sort());
-        });
-    };
-
-    const findWhoIsWinner = ($carName, len) => {
-      const [{ innerText: winnerCandidate }] = $carName;
-
-      if (len === max) {
-        winners.push(winnerCandidate);
-      } else if (len > max) {
-        max = len;
-        winners = [winnerCandidate];
       }
-    };
+    );
 
     cy.get(SELECTOR.LAP_COUNT.INPUT).type(12);
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
 
-    cy.get("@windowAlert").should("have.callCount", 0);
+    cy.get("@windowAlert").should("not.be.called");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
 
-    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME)
-      .each(($carName) => {
-        cy.wrap($carName)
-          .parent()
-          .children()
-          .its("length")
-          .then((len) => findWhoIsWinner($carName, len));
-      })
-      .then(testWinnerIsCorrect);
+    let max = -Infinity;
+    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME).each(($carName) => {
+      cy.wrap($carName)
+        .parent()
+        .children()
+        .its("length")
+        .then((len) => (max = Math.max(max, len)));
+    });
+
+    let winners = [];
+    cy.get(SELECTOR.GAME_PROGRESS.CAR_NAME).each(($carName) => {
+      cy.wrap($carName)
+        .parent()
+        .children()
+        .its("length")
+        .then((len) => {
+          len === max && winners.push($carName.get(0).innerText);
+        });
+    });
+
+    cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
+      .invoke("text")
+      .should((text) => {
+        const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
+
+        expect(winners.sort()).to.deep.equal(matched.sort());
+      });
   });
 });
