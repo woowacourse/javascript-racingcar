@@ -49,6 +49,11 @@ class Controller {
 		}
 	}
 
+	addResetButtonEvent() {
+		const resetButton = ElementManager.getResetButton();
+		resetButton.addEventListener("click", this.onResetButtonClick.bind(this));
+	}
+
 	onResetButtonClick() {
 		Model.clearStates();
 		const $app = ElementManager.getAppDIV();
