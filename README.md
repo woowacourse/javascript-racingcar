@@ -12,7 +12,7 @@
 </p>
 
 
-## 🔥 Projects!
+## 🔥 Projects! - [구현 과정](./docs/README.md)
 <p align="middle">
   <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/7c76e809d82a4a3aa0fd78a86be25427">
 </p>
