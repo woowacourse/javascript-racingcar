@@ -95,6 +95,12 @@ class Model {
 	validateCount(inputValue) {
 		if (this.count !== 0) {
 			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
+		} else if (
+			Number(inputValue) === NaN ||
+			Number(inputValue) <= 0 ||
+			Number.isInteger(Number(inputValue)) === false
+		) {
+			return { validity: false, alertMessage: "자연수만 설정할 수 있습니다." };
 		} else return { validity: true, alertMessage: null };
 	}
 }
