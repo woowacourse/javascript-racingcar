@@ -20,7 +20,7 @@ export default class Racing {
     this.tryCount = 0;
   }
 
-  getCarNames() {
+  handleCarNameInput() { // createCars? handleCarNameButton?
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
     const isCarNameInputValid = checkCarNameValidity(carNameInput);
 
@@ -41,7 +41,7 @@ export default class Racing {
     this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
   }
 
-  getTryCount() {
+  handleTryCountInput() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
     const isTryCountInputValid = checkTryCountValidity(tryCountInput);
 
@@ -86,16 +86,16 @@ export default class Racing {
   }
 
   addListeners() {
-    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_BTN).addEventListener('click', this.getCarNames.bind(this));
+    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_BTN).addEventListener('click', this.handleCarNameInput.bind(this));
     document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).addEventListener('keydown', e => {
       if (e.key === 'Enter') {
-        this.getCarNames.bind(this)();
+        this.handleCarNameInput.bind(this)();
       }
     });
-    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_BTN).addEventListener('click', this.getTryCount.bind(this));
+    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_BTN).addEventListener('click', this.handleTryCountInput.bind(this));
     document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).addEventListener('keydown', e => {
       if (e.key === 'Enter') {
-        this.getTryCount.bind(this)();
+        this.handleTryCountInput.bind(this)();
       }
     });
   }
