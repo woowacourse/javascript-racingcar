@@ -1,6 +1,6 @@
-import { $ } from './util-view/querySelector.js';
-import { setToInitialView } from './util-view/setToInitialView.js';
-import { handleCarNameInput } from './handler/handleCarNameInput.js';
+import { $ } from './utils/querySelector.js';
+import { setToInitialView } from './views/setToInitialView.js';
+import { handleCarNameInput } from './handlers/handleCarNameInput.js';
 
 export default class RacingGame {
   constructor() {

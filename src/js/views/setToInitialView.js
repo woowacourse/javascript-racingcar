@@ -1,5 +1,5 @@
-import { $ } from './querySelector.js';
-import { setVisibility } from './setVisibility.js';
+import { $ } from '../utils/querySelector.js';
+import { setVisibility } from './utils/setVisibility.js';
 
 export const setToInitialView = () => {
   $('#game-process-screen').innerHTML = '';

@@ -1,4 +1,5 @@
 import { RACING_RULE } from '../constants/racingRule.js';
+
 export class Car {
   constructor(name) {
     this.name = name;

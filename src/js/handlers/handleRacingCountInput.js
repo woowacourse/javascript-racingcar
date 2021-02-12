@@ -1,6 +1,6 @@
-import { $ } from '../util-view/querySelector.js';
-import { setVisibility } from '../util-view/setVisibility.js';
-import { validateRacingCount } from '../util-model/validateRacingCount.js';
+import { $ } from '../utils/querySelector.js';
+import { setVisibility } from '../views/utils/setVisibility.js';
+import { validateRacingCount } from '../models/validateRacingCount.js';
 import { handleGameResult } from './handleGameResult.js';
 
 export const handleRacingCountInput = (cars) => {

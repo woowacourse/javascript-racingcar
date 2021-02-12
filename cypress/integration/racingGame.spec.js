@@ -1,5 +1,5 @@
-import { getWinners } from '../../src/js/util-model/getWinners.js';
-import { Car } from '../../src/js/class/Car.js';
+import { getWinners } from '../../src/js/models/getWinners.js';
+import { Car } from '../../src/js/models/Car.js';
 import { GAME_OVER_NOTICE } from '../../src/js/constants/gameOverNotice.js';
 import { RACING_RULE } from '../../src/js/constants/racingRule.js';
 
