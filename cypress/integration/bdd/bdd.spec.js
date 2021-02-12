@@ -137,8 +137,7 @@ context("bdd", () => {
 
 			const maxScore = Math.max(...carObjects.map((car) => car.score));
 			const winners = carObjects.reduce(
-				(winnerCars, currentCar) =>
-					currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars,
+				(winnerCars, currentCar) => (currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars),
 				[]
 			);
 			const winnerResult = winners.join(", ");
@@ -371,9 +370,20 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith(
-					"원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다."
-				);
+				expect(stub.getCall(0)).to.be.calledWith("원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.");
+			});
+	});
+
+	it("너무 많은 이름(최대 9개로 설정)을 등록하려 할 경우 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("a,b,c,d,e,f,g,h,i,j", { force: true });
+		cy.get("#name-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다.");
 			});
 	});
 });
