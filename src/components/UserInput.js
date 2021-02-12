@@ -47,13 +47,15 @@ export default class UserInput extends Component {
     const $sectionRaceTimes = document.querySelector('#section-race-times');
     const $inputCarName = document.querySelector('#input-car-name');
     const carNames = $inputCarName.value.split(',').map(name => name.trim());
-    try {
-      this.#verifyCarNamesLength(carNames);
-      this._verifyPropsExist("cars");
-    } catch (err) {
-      alert(err);
+    if (!this.#verifyCarNamesLength(carNames)) {
+      alert(ERROR_MESSAGE.RANGE_CAR_NAME_LENGTH);
       return;
     }
+    if (!this._verifyPropsExist("cars")) {
+      alert(ERROR_MESSAGE.NOT_EXIST_PROPS);
+      return;
+    }
+
     this.props.cars.value = carNames.map(carName => new Car(carName));
     showElement($sectionRaceTimes);
     disableElement($buttonCarName);
@@ -62,16 +64,15 @@ export default class UserInput extends Component {
 
   #verifyCarNamesLength(carNames) {
     if (carNames.some(name => name.length < RESTRICT.MIN_CAR_NAME_LENGTH || name.length > RESTRICT.MAX_CAR_NAME_LENGTH)) {
-      throw new Error(ERROR_MESSAGE.RANGE_CAR_NAME_LENGTH);
+      return false;
     }
+    return true;
   }
 
   #handleSubmitRaceTimes($buttonRaceTime) {
     const $inputRaceTimes = document.querySelector('#input-race-times');
-    try {
-      this.#verifyMinRacingTimes($inputRaceTimes.value);
-    } catch (err) {
-      alert(err);
+    if (!this.#verifyMinRacingTimes($inputRaceTimes.value)) {
+      alert(ERROR_MESSAGE.MIN_RACING_TIME);
       return;
     }
 
@@ -84,7 +85,8 @@ export default class UserInput extends Component {
 
   #verifyMinRacingTimes(value) {
     if (value < RESTRICT.MIN_RACING_TIME) {
-      throw new Error(ERROR_MESSAGE.MIN_RACING_TIME);
+      return false;
     }
+    return true;
   }
 }
