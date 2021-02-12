@@ -27,7 +27,7 @@ class Controller {
 		Model.initCars(nameInput.value);
 		View.clearInputValue(nameInput);
 		!Model.isAlreadyCountClicked($settingContainer) && View.countSectionRender($settingContainer);
-		this.addCountButtonEvent(this.onCountSubmit);
+		this.addCountButtonEvent(this.onCountSubmit.bind(this));
 	}
 
 	addCountButtonEvent(callback) {
@@ -39,12 +39,21 @@ class Controller {
 		const nameButton = ElementManager.getNameButton();
 		const nameInput = ElementManager.getNameInput();
 		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
-		nameInput.addEventListener("input", (event) => {
-			const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
-			if (RegExp.test(event.target.value) === true) {
-				event.target.value = event.target.value.substring(0, event.target.value.length - 1);
-			}
-		});
+		nameInput.addEventListener("input", this.filterCarNameType);
+	}
+
+	filterCarNameType(event) {
+		const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+		if (RegExp.test(event.target.value) === true) {
+			event.target.value = event.target.value.substring(0, event.target.value.length - 1);
+		}
+	}
+
+	onResetButtonClick() {
+		Model.clearStates();
+		const $app = ElementManager.getAppDIV();
+		View.initialRender($app);
+		this.initializeEvents();
 	}
 }
 
