@@ -12,14 +12,14 @@ export default class App extends Page {
 
   constructor($target, props) {
     super($target, props);
-    this.initialize();
+    this.#initialize();
   }
 
-  initialize = () => {
+  #initialize() {
     this.winners = [];
-    this.#initStates();
-    this.render();
-  };
+    this.cars = new State([]);
+    this.raceTimes = new State(null);
+  }
 
   mountTemplate() {
     this.$target.innerHTML = `
@@ -42,20 +42,7 @@ export default class App extends Page {
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
       race: this.race,
-    });
-  }
-
-  mountGameProcess = () => {
-    this.#childComponents.gameProcess = new GameProcess(document.querySelector('#game-process-component'), {
-      cars: this.cars,
-    });
-  }
-
-  mountGameResult = () => {
-    this.#childComponents.gameResult = new GameResult(document.querySelector('#game-result-component'), {
-      winners: this.winners,
-      reset: this.initialize,
-    });
+    }).render();
   }
 
   race = () => {
@@ -79,8 +66,21 @@ export default class App extends Page {
     });
   }
 
-  #initStates() {
-    this.cars = new State([]);
-    this.raceTimes = new State(null);
+  mountGameProcess = () => {
+    this.#childComponents.gameProcess = new GameProcess(document.querySelector('#game-process-component'), {
+      cars: this.cars,
+    }).render();
   }
+
+  mountGameResult = () => {
+    this.#childComponents.gameResult = new GameResult(document.querySelector('#game-result-component'), {
+      winners: this.winners,
+      reset: this.reset,
+    }).render();
+  }
+
+  reset = () => {
+    this.#initialize();
+    this.render();
+  };
 }

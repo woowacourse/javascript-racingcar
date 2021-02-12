@@ -6,7 +6,6 @@ import { disableElement, showElement } from '../library/utils/dom.js';
 export default class UserInput extends Component {
   constructor($target, props) {
     super($target, props);
-    this.render();
   }
 
   initEvent() {

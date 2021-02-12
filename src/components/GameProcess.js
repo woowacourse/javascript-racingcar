@@ -4,7 +4,6 @@ import { ERROR_MESSAGE } from '../library/utils/constant.js';
 export default class GameProcess extends Component {
   constructor($target, props) {
     super($target, props);
-    this.render();
   }
 
   render() {
