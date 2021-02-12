@@ -1,9 +1,9 @@
 export default class CarRacingView {
-  addHidden(element) {
+  hide(element) {
     element.classList.add('hidden');
   }
 
-  removeHidden(element) {
+  show(element) {
     element.classList.remove('hidden');
   }
 

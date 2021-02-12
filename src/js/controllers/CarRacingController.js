@@ -35,7 +35,7 @@ export default class CarRacingController {
 
     carNames.forEach((carName) => this.model.addCars(carName));
 
-    this.view.removeHidden(this.$racingCountContainer);
+    this.view.show(this.$racingCountContainer);
     this.view.addDisabled(this.$carNamesSubmit);
   }
 
@@ -48,7 +48,7 @@ export default class CarRacingController {
 
     this.model.racingCount = racingCount;
 
-    this.view.removeHidden(this.$racingContainer);
+    this.view.show(this.$racingContainer);
     this.view.renderRacingCars(this.model.cars);
 
     this.view.addDisabled(this.$racingCountSubmit);
@@ -57,9 +57,9 @@ export default class CarRacingController {
 
   onClickRestartButton() {
     this.model.init();
-    this.view.addHidden(this.$racingCountContainer);
-    this.view.addHidden(this.$racingContainer);
-    this.view.addHidden(this.$resultContainer);
+    this.view.hide(this.$racingCountContainer);
+    this.view.hide(this.$racingContainer);
+    this.view.hide(this.$resultContainer);
     this.view.removeDisabled(this.$carNamesSubmit);
     this.view.removeDisabled(this.$racingCountSubmit);
 
@@ -96,7 +96,7 @@ export default class CarRacingController {
       this.view.renderRacingRoundResult(movedCars);
     }
 
-    this.view.removeHidden(this.$resultContainer);
+    this.view.show(this.$resultContainer);
 
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
