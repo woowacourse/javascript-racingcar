@@ -4,13 +4,13 @@
 }
 
 .spinner::after {
-  content: "";
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
   box-sizing: border-box;
   width: 30px;
   height: 30px;
-  left: 0;
-  top: 0;
-  position: absolute;
   border-radius: 50%;
 }
 
@@ -23,6 +23,9 @@
 }
 
 @keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
   to {
     transform: rotate(360deg);
   }

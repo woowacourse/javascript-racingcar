@@ -14,4 +14,5 @@ export const GAME = {
   MIN_SCORE: 0,
   MAX_SCORE: 9,
   THRESHOLD_SCORE: 4,
+  TURN_DURATION: 1000,
 };
