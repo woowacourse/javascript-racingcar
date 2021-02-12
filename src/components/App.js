@@ -21,7 +21,7 @@ export default class App extends Page {
     this.raceTimes = new State(null);
   }
 
-  mountTemplate() {
+  _mountTemplate() {
     this.$target.innerHTML = `
       <h1 class="text-center">🏎️ 자동차 경주 게임</h1>
       <div class="d-flex justify-center mt-5">
@@ -32,7 +32,7 @@ export default class App extends Page {
     `;
   }
 
-  mountChildComponents = () => {
+  _mountChildComponents() {
     this.mountUserInput();
   };
 

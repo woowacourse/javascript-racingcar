@@ -7,10 +7,10 @@ export default class Page extends Component {
   }
 
   render() {
-    this.mountTemplate();
-    this.mountChildComponents();
+    this._mountTemplate();
+    this._mountChildComponents();
   }
 
-  mountTemplate() { }
-  mountChildComponents() { }
+  _mountTemplate() { }
+  _mountChildComponents() { }
 }
