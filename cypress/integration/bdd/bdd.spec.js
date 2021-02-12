@@ -294,4 +294,55 @@ context("bdd", () => {
 				expect(stub.getCall(0)).to.be.calledWith("이미 횟수를 설정하였습니다.");
 			});
 	});
+
+	it("횟수를 설정하려 할 때 횟수가 자연수가 아닐 경우 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").type("-8");
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+			});
+		cy.reload();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").type("e");
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+			});
+		cy.reload();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").type("4.4");
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+			});
+		cy.reload();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+			});
+		cy.reload();
+	});
 });
