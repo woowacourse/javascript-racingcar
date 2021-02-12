@@ -85,7 +85,7 @@ export default class RacingGameController {
     this.racingGame.runRound();
     this.view.renderProgress(this.racingGame.getCars());
     if (count > 1) {
-      setTimeout(this.runRace.bind(this), 2000, count - 1);
+      setTimeout(this.runRace.bind(this), 1000, count - 1);
       return;
     }
 
@@ -98,7 +98,7 @@ export default class RacingGameController {
       this.view.renderProgress(this.racingGame.getCars());
       this.view.renderResult(this.racingGame.getWinners());
       this.alertWinners();
-    }, 2000);
+    }, 1000);
   }
 
   alertWinners() {
