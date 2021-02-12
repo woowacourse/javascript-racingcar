@@ -46,7 +46,7 @@ class Controller {
 	filterCarNameType(event) {
 		const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
 		if (RegExp.test(event.target.value) === true) {
-			event.target.value = event.target.value.substring(0, event.target.value.length - 1);
+			event.target.value = event.target.value.replace(RegExp, "");
 		}
 	}
 
