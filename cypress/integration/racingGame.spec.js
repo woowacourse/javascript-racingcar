@@ -118,14 +118,15 @@ describe('racing-game', () => {
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
     const car = new Car();
+
     expect(car.isMovingForward(3)).to.equal(false);
     expect(car.isMovingForward(4)).to.equal(true);
   });
 
   it('우승자를 결정하는 함수는 forwardCount가 가장 큰 Car들의 이름을 ","로 이어 반환한다.', () => {
     const cars = defaultCarNames.map((carName) => new Car(carName));
-    cars.forEach((car, i) => (car.forwardCount = (i + 2) % 3)); // [2, 0, 1, 2]
 
+    cars.forEach((car, i) => (car.forwardCount = (i + 2) % 3)); // [2, 0, 1, 2]
     expect(getWinners(cars)).to.equal('EAST, NORTH');
   });
 
@@ -135,6 +136,22 @@ describe('racing-game', () => {
     cy.get('.car-player').each(($div, index) => {
       cy.get($div).should('have.text', defaultCarNames[index]);
     });
+  });
+
+  it('게임 한 판 시작 시 로더를 화면에 표시했다가 1초 후 로더 표시를 없앤다.', () => {
+    const carNames = '피카츄, 라이츄, 파이리';
+    const racingCount = 3;
+    const turnDuration = 1000;
+
+    cy.clock();
+    submitCarnames(carNames);
+    submitRacingCount(racingCount);
+    for (let i = 0; i < racingCount; i++) {
+      cy.tick(turnDuration / 2);
+      cy.get('.spinner-container').should('be.visible');
+      cy.tick(turnDuration / 2);
+      cy.get('spinner-container').should('not.be.visible');
+    }
   });
 
   it('다시시작 버튼을 누르면 시도횟수 입력창, 게임진행 화면, 게임 결과 화면이 모두 사용자에게 보이지 않는 상태가 된다.', () => {
