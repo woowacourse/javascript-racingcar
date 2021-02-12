@@ -2,7 +2,6 @@ import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
 import { ALERT_MESSAGE, ELEMENT_CLASS_NAME } from './constants.js';
 import { 
-  isCarNameOverFive, 
   checkCarNameValidity,
   checkTryCountValidity,
 } from './validation.js';
@@ -22,18 +21,14 @@ export default class Racing {
 
   handleCarNameInput() {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
+    const carNamesArr = carNameInput.split(',').map(name => name.trim());
     // check validity of car name input
-    const isCarNameInputValid = checkCarNameValidity(carNameInput);
+    const isCarNameInputValid = checkCarNameValidity(carNameInput, carNamesArr);
     if (!isCarNameInputValid) return;
 
-    for (let name of carNameInput.split(',')) {
-      if (isCarNameOverFive(name.trim().length)) {
-        alert(ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
-        this.cars = [];
-        return;
-      }
-      // create car objects
-      const car = new Car(name.trim());
+    // create car objects
+    for (let carName of carNamesArr) {
+      const car = new Car(carName.trim());
       this.cars.push(car);
     }
     // show try count input & button

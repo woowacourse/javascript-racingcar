@@ -1,8 +1,8 @@
 import { ALERT_MESSAGE, CONSTANT_NUMBER } from './constants.js';
 
-export const checkTryCountValidity = input => {
-  const tryCountNumber = Number(input);
-  if (isInputValueEmpty(input)) {
+export const checkTryCountValidity = tryCountInput => {
+  const tryCountNumber = Number(tryCountInput);
+  if (isInputValueEmpty(tryCountInput)) {
     return alert(ALERT_MESSAGE.TRY_COUNT_EMPTY);
   } else if (isTryCountNegative(tryCountNumber)) {
     return alert(ALERT_MESSAGE.TRY_COUNT_NEGATIVE);
@@ -12,21 +12,24 @@ export const checkTryCountValidity = input => {
   return true;
 }
 
-export const checkCarNameValidity = input => {
-  const carNameArr = input.split(',').map(name => name.trim());
-  if (isInputValueEmpty(input)) {
+export const checkCarNameValidity = (carNamesInput, carNamesArr) => {
+  if (isInputValueEmpty(carNamesInput)) {
     return alert(ALERT_MESSAGE.CAR_NAME_EMPTY);
-  } else if (isCarNamesDuplicate(carNameArr)) {
+  } else if (isCarNamesDuplicate(carNamesArr)) {
     return alert(ALERT_MESSAGE.CAR_NAMES_DUPLICATE);
-  } else if (isCarNamesIncludeEmpty(carNameArr)) {
+  } else if (isCarNamesIncludeEmpty(carNamesArr)) {
     return alert(ALERT_MESSAGE.CAR_NAMES_INCLUDE_EMPTY);
+  } else if (isCarNameOverFive(carNamesArr)) {
+    return alert(ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
   }
   return true;
 }
 
-export const isCarNameOverFive = nameLength => {
-  if (nameLength > CONSTANT_NUMBER.MAX_NAME_LENGTH) {
-    return true;
+const isCarNameOverFive = carNames => {
+  for (let carName of carNames) {
+    if(carName.length > CONSTANT_NUMBER.MAX_NAME_LENGTH) {
+      return true;
+    }
   }
   return false;
 }
