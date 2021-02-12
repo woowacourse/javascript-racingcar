@@ -89,6 +89,8 @@ class Model {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
 		} else if (names.some((name) => name.length > 5)) {
 			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
+		} else if ([...new Set(names)].length !== names.length) {
+			return { validity: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
 		} else return { validity: true, alertMessage: null };
 	}
 
