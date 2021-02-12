@@ -24,7 +24,6 @@ export default class Racing {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
     // check validity of car name input
     const isCarNameInputValid = checkCarNameValidity(carNameInput);
-
     if (!isCarNameInputValid) return;
 
     for (let name of carNameInput.split(',')) {
@@ -46,7 +45,6 @@ export default class Racing {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
     // check validity of try count input
     const isTryCountInputValid = checkTryCountValidity(tryCountInput);
-
     if(!isTryCountInputValid) return;
 
     this.tryCount = Number(tryCountInput);
@@ -55,8 +53,6 @@ export default class Racing {
     // show race progress & result
     this.UIController.showProgress(this.cars);
     this.UIController.showWinners(this.getWinners());
-    // add event listener to the restart button
-    document.querySelector(ELEMENT_CLASS_NAME.RESTART_BTN).addEventListener('click', this.restartGame.bind(this));
   }
 
   moveCars() {
@@ -97,6 +93,11 @@ export default class Racing {
     document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).addEventListener('keydown', e => {
       if (e.key === 'Enter') {
         this.handleTryCountInput.bind(this)();
+      }
+    });
+    document.body.addEventListener('click', e => {
+      if(e.target.closest(ELEMENT_CLASS_NAME.RESTART_BTN)) {
+        this.restartGame.bind(this)();
       }
     });
   }
