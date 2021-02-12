@@ -36,16 +36,14 @@ export default class RacingUI {
   showProgress(cars) {
     this.showElement(CLASS_NAMES.PROGRESS_CONTAINER);
 
-    document.querySelector(CLASS_NAMES.PROGRESS_CARS).innerHTML = cars
-      .map(
-        car => `
-        <div>
-          <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.position)}
-        </div>
-      `,
-      )
-      .join('');
+    document.querySelector(CLASS_NAMES.PROGRESS_CARS).innerHTML 
+      = cars.map(car => `
+          <div>
+            <div class="car-player mr-2">${car.getName()}</div>
+            ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.getPosition())}
+          </div>
+        `,
+      ).join('');
   }
 
   showWinners(winners) {

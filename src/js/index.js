@@ -67,29 +67,26 @@ export default class Racing {
 
   moveCars = () => {
     for (let i = 0; i < this.tryCount; i++) {
-      for (let car of this.cars) {
-        car.move();
-      }
+      this.cars.forEach(car => car.move());
     }
     this.UIController.showProgress(this.cars);
   };
 
   getWinners = () => {
-    let maxPosition = 0;
-    const winners = this.cars.reduce((winners, car) => {
-      if (car.position === maxPosition) {
-        winners.push(car.name);
-      } else if (car.position > maxPosition) {
-        winners = [car.name];
-        maxPosition = car.position;
-      }
-      return winners;
-    }, []);
+    const sortedCars = this.cars.sort((a, b) => {
+      return b.getPosition() - a.getPosition();
+    })
 
+    let maxPosition = sortedCars[0].getPosition();
+    for (let car of this.cars) {
+      if (car.getPosition() === maxPosition) {
+        car.wins();
+      }
+    }
+
+    const winners = this.cars.filter(car => car.getIsWinner()).map(car => car.getName());
     this.UIController.showWinners(winners);
-    document
-      .querySelector(CLASS_NAMES.RESTART_BTN)
-      .addEventListener('click', this.restartGame);
+    document.querySelector(CLASS_NAMES.RESTART_BTN).addEventListener('click', this.restartGame);
   };
 
   restartGame = () => {
@@ -99,12 +96,8 @@ export default class Racing {
   };
 
   addListeners = () => {
-    document
-      .querySelector(CLASS_NAMES.CAR_NAME_BTN)
-      .addEventListener('click', this.createCars);
-    document
-      .querySelector(CLASS_NAMES.TRY_COUNT_BTN)
-      .addEventListener('click', this.mountTryCount);
+    document.querySelector(CLASS_NAMES.CAR_NAME_BTN).addEventListener('click', this.createCars);
+    document.querySelector(CLASS_NAMES.TRY_COUNT_BTN).addEventListener('click', this.mountTryCount);
   };
 }
 

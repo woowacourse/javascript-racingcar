@@ -2,6 +2,19 @@ export default class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
+    this.isWinner = false;
+  }
+
+  getName() {
+    return this.name;
+  }
+
+  getPosition() {
+    return this.position;
+  }
+
+  getIsWinner() {
+    return this.isWinner;
   }
 
   move() {
@@ -9,5 +22,9 @@ export default class Car {
     if (randNumber >= 4) {
       this.position++;
     }
+  }
+
+  wins() {
+    this.isWinner = true;
   }
 }
