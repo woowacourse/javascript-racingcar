@@ -2,7 +2,7 @@ import {
   countSectionTemplate,
   processSectionTemplate,
   resultSectionTemplate,
-} from "../constants/template.js";
+} from "../layouts/template.js";
 
 class RacingCarView {
   renderCount() {
