@@ -115,10 +115,10 @@ describe('racing-game', () => {
   it('난수를 생성하는 함수가 0 ~ 9 사이의 정수를 반환한다.', () => {
     const car = new Car();
     const { MIN_SCORE, MAX_SCORE } = RACING_RULE;
-    const possibleScores = Array.from({ length: 10 }).map((v, i) => i);
+    const expectedScores = Array.from({ length: 10 }).map((v, i) => i);
 
-    for (let i = 0; i < 10; i++) {
-      expect(possibleScores).to.include(
+    for (let i = 0; i < 1000; i++) {
+      expect(expectedScores).to.include(
         car.getRandomNumber(MIN_SCORE, MAX_SCORE),
       );
     }
@@ -128,7 +128,7 @@ describe('racing-game', () => {
     const car = new Car();
     const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
 
-    for (let i = MIN_SCORE; i < MAX_SCORE; i++) {
+    for (let i = MIN_SCORE; i <= MAX_SCORE; i++) {
       if (i >= THRESHOLD_SCORE) {
         expect(car.isMovingForward(i)).to.equal(true);
       } else {
