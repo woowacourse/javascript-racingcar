@@ -25,6 +25,10 @@ class ElementManager {
 	getResultContainer() {
 		return document.getElementById("result-container");
 	}
+
+	getResetButton() {
+		return document.getElementById("reset-button");
+	}
 }
 
 export default new ElementManager();
