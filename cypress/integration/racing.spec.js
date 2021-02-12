@@ -50,9 +50,14 @@ describe('자동차 경주', () => {
     expectAlert(ELEMENT_CLASS_NAME.CAR_NAME_INPUT, ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
   });
 
-  it('자동차 이름에 빈 문자열이 들어가면 안 된다.', () => {
+  it('자동차 이름에 공백이 입력되면 안 된다.', () => {
     typeCarAndClick('');
     expectAlert(ELEMENT_CLASS_NAME.CAR_NAME_INPUT, ALERT_MESSAGE.CAR_NAME_EMPTY);
+  });
+
+  it('자동차 이름들 중에 빈 문자열이 포함되어 있으면 안된다.', () => {
+    typeCarAndClick('east, west, , north');
+    expectAlert(ELEMENT_CLASS_NAME.CAR_NAME_INPUT, ALERT_MESSAGE.CAR_NAMES_INCLUDE_EMPTY);
   });
 
   it('자동차 이름이 중복되면 안 된다.', () => {

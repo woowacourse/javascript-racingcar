@@ -13,10 +13,13 @@ export const checkTryCountValidity = input => {
 }
 
 export const checkCarNameValidity = input => {
+  const carNameArr = input.split(',').map(name => name.trim());
   if (isInputValueEmpty(input)) {
     return alert(ALERT_MESSAGE.CAR_NAME_EMPTY);
-  } else if (isCarNamesDuplicate(input)) {
+  } else if (isCarNamesDuplicate(carNameArr)) {
     return alert(ALERT_MESSAGE.CAR_NAMES_DUPLICATE);
+  } else if (isCarNamesIncludeEmpty(carNameArr)) {
+    return alert(ALERT_MESSAGE.CAR_NAMES_INCLUDE_EMPTY);
   }
   return true;
 }
@@ -49,9 +52,15 @@ const isTryCountNotInt = number => {
   return false;
 }
 
-const isCarNamesDuplicate = input => {
-  const carNameArr = input.split(',').map(name => name.trim());
+const isCarNamesDuplicate = carNameArr => {
   if (carNameArr.some((name, idx) => carNameArr.indexOf(name) !== idx)) {
+    return true;
+  }
+  return false;
+}
+
+const isCarNamesIncludeEmpty = carNameArr => {
+  if(carNameArr.includes('')) {
     return true;
   }
   return false;

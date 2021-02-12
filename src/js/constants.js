@@ -2,6 +2,7 @@ export const ALERT_MESSAGE = {
   CAR_NAME_EMPTY: '자동차 이름을 입력해주세요.',
   CAR_NAME_OVER_FIVE: '자동차 이름을 5자 이하로 입력해 주세요.',
   CAR_NAMES_DUPLICATE: '중복되는 자동차 이름을 입력할 수 없습니다.',
+  CAR_NAMES_INCLUDE_EMPTY: '자동차 이름 중에 빈 문자열이 포함되어 있습니다.',
   TRY_COUNT_EMPTY: '시도 횟수를 입력해주세요.',
   TRY_COUNT_NEGATIVE: '양수를 입력해주세요.',
   TRY_COUNT_NOT_INT: '정수를 입력해주세요.',
