@@ -26,12 +26,12 @@ export default class CarRacingController {
       return alert(alertConstants.DUPLICATE_CAR_NAME);
     }
 
-    for (let i = 0; i < carNames.length; i++) {
-      const carNameSize = carNames[i].length;
+    carNames.forEach((carName) => {
+      const carNameSize = carName.length;
       if (!(0 < carNameSize && carNameSize <= 5)) {
         return alert(alertConstants.INVALID_CAR_NAME);
       }
-    }
+    });
 
     carNames.forEach((carName) => this.model.addCar(carName));
 

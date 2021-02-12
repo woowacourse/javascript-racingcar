@@ -11,11 +11,11 @@ export default class CarRacingModel {
   getWinners() {
     let maxDistance = -1;
 
-    for (let i = 0; i < this.cars.length; i++) {
-      if (this.cars[i].distance > maxDistance) {
-        maxDistance = this.cars[i].distance;
+    this.cars.forEach((car) => {
+      if (car.distance > maxDistance) {
+        maxDistance = car.distance;
       }
-    }
+    });
 
     return this.cars.filter((car) => car.distance === maxDistance);
   }
