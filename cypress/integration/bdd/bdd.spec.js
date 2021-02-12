@@ -277,4 +277,21 @@ context("bdd", () => {
 				expect(stub.getCall(0)).to.be.calledWith("이미 이름이 등록되었습니다.");
 			});
 	});
+
+	it("횟수를 설정한 뒤에 다시 횟수를 설정하려 할 경우 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee");
+		cy.get("#name-submit-button").click();
+		cy.get("#count-input").type("3");
+		cy.get("#count-submit-button").click();
+		cy.get("#count-input").type("909");
+		cy.get("#count-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("이미 횟수를 설정하였습니다.");
+			});
+	});
 });
