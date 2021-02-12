@@ -36,7 +36,7 @@ export default class CarRacingController {
     carNames.forEach((carName) => this.model.addCar(carName));
 
     this.view.show(this.$racingCountContainer);
-    this.view.addDisabled(this.$carNamesSubmit);
+    this.view.disableElement(this.$carNamesSubmit);
   }
 
   onClickRacingCountSubmit() {
@@ -51,7 +51,7 @@ export default class CarRacingController {
     this.view.show(this.$racingContainer);
     this.view.renderRacingCars(this.model.cars);
 
-    this.view.addDisabled(this.$racingCountSubmit);
+    this.view.disableElement(this.$racingCountSubmit);
     this.startRacing();
   }
 
@@ -60,8 +60,8 @@ export default class CarRacingController {
     this.view.hide(this.$racingCountContainer);
     this.view.hide(this.$racingContainer);
     this.view.hide(this.$resultContainer);
-    this.view.removeDisabled(this.$carNamesSubmit);
-    this.view.removeDisabled(this.$racingCountSubmit);
+    this.view.enableElement(this.$carNamesSubmit);
+    this.view.enableElement(this.$racingCountSubmit);
 
     this.$carNamesInput.value = '';
     this.$racingCountInput.value = '';

@@ -7,11 +7,11 @@ export default class CarRacingView {
     element.classList.remove('hidden');
   }
 
-  addDisabled(element) {
+  disableElement(element) {
     element.disabled = true;
   }
 
-  removeDisabled(element) {
+  enableElement(element) {
     element.disabled = false;
   }
 
