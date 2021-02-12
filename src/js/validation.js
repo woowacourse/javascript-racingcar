@@ -1,17 +1,5 @@
 import { ALERT_MESSAGE, CONSTANT_NUMBER } from './constants.js';
 
-export const checkTryCountValidity = tryCountInput => {
-  const tryCountNumber = Number(tryCountInput);
-  if (isInputValueEmpty(tryCountInput)) {
-    return alert(ALERT_MESSAGE.TRY_COUNT_EMPTY);
-  } else if (isTryCountNegative(tryCountNumber)) {
-    return alert(ALERT_MESSAGE.TRY_COUNT_NEGATIVE);
-  } else if (isTryCountNotInt(tryCountNumber)) {
-    return alert(ALERT_MESSAGE.TRY_COUNT_NOT_INT);
-  }
-  return true;
-}
-
 export const checkCarNameValidity = (carNamesInput, carNamesArr) => {
   if (isInputValueEmpty(carNamesInput)) {
     return alert(ALERT_MESSAGE.CAR_NAME_EMPTY);
@@ -21,6 +9,18 @@ export const checkCarNameValidity = (carNamesInput, carNamesArr) => {
     return alert(ALERT_MESSAGE.CAR_NAMES_INCLUDE_EMPTY);
   } else if (isCarNameOverFive(carNamesArr)) {
     return alert(ALERT_MESSAGE.CAR_NAME_OVER_FIVE);
+  }
+  return true;
+}
+
+export const checkTryCountValidity = tryCountInput => {
+  const tryCountNumber = Number(tryCountInput);
+  if (isInputValueEmpty(tryCountInput)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_EMPTY);
+  } else if (isTryCountNegative(tryCountNumber)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_NEGATIVE);
+  } else if (isTryCountNotInt(tryCountNumber)) {
+    return alert(ALERT_MESSAGE.TRY_COUNT_NOT_INT);
   }
   return true;
 }

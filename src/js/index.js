@@ -26,11 +26,8 @@ export default class Racing {
     const isCarNameInputValid = checkCarNameValidity(carNameInput, carNamesArr);
     if (!isCarNameInputValid) return;
 
-    // create car objects
-    for (let carName of carNamesArr) {
-      const car = new Car(carName.trim());
-      this.cars.push(car);
-    }
+    this.createCars(carNamesArr);
+    
     // show try count input & button
     this.UIController.showElement(ELEMENT_CLASS_NAME.TRY_COUNT_FORM);
     this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
@@ -43,11 +40,18 @@ export default class Racing {
     if(!isTryCountInputValid) return;
 
     this.tryCount = Number(tryCountInput);
-    // move cars(start race)
     this.moveCars();
+    
     // show race progress & result
     this.UIController.showProgress(this.cars);
     this.UIController.showWinners(this.getWinners());
+  }
+
+  createCars(carNamesArr) {
+    for (let carName of carNamesArr) {
+      const car = new Car(carName.trim());
+      this.cars.push(car);
+    }
   }
 
   moveCars() {
