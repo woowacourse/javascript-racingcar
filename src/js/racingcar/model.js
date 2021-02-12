@@ -2,24 +2,26 @@ import { INIT } from "../constants/constant.js";
 
 class RacingCarModel {
   constructor() {
-    this.cars = INIT.CARS;
-    this.count = INIT.COUNT;
+    this._cars = INIT.CARS;
+    this._count = INIT.COUNT;
   }
 
-  getCars() {
-    return this.cars;
+  get cars() {
+    return this._cars;
   }
 
-  setCars(cars) {
-    this.cars = cars;
+  set cars(newCars) {
+    if (newCars) {
+      this._cars = newCars;
+    }
   }
 
-  getCount() {
-    return this.count;
+  get count() {
+    return this._count;
   }
 
-  setCount(count) {
-    this.count = count;
+  set count(newCount) {
+    this._count = newCount;
   }
 }
 

@@ -13,21 +13,21 @@ class RacingCarController {
     this.handleCars();
   }
 
-  getCarsInput() {
+  get carsInput() {
     const $carInput = document.querySelector("#car-input").value;
     const carNames = $carInput.split(",").map(car => car.trim());
 
     return carNames;
   }
 
-  getCountInput() {
+  get countInput() {
     const $countInput = document.querySelector("#count-input").value;
 
     return $countInput;
   }
 
-  getWinners() {
-    const cars = this.model.getCars();
+  get winners() {
+    const cars = this.model.cars;
     const maxForward = Math.max(...cars.map(car => car.forward));
     const winner = [];
     cars.forEach(car => {
@@ -59,44 +59,44 @@ class RacingCarController {
   }
 
   startGame() {
-    let cars = this.model.getCars();
-    for (let i = 0; i < this.model.getCount(); i++) {
+    let cars = this.model.cars;
+    for (let i = 0; i < this.model.count; i++) {
       cars = this.play(cars);
     }
-    this.model.setCars(cars);
+    this.model.cars = cars;
   }
 
   manageCars() {
-    const carNames = this.getCarsInput();
+    const carNames = this.carsInput;
     if (this.validator.isCarValid(carNames)) {
       const cars = carNames.map(carName => {
         return { name: carName, forward: INIT.FORWARD };
       });
-      this.model.setCars(cars);
+      this.model.cars = cars;
       this.view.renderCount();
       this.handleCount();
     }
   }
 
   manageCount() {
-    const count = this.getCountInput();
+    const count = this.countInput;
     if (this.validator.isCountValid(count)) {
-      this.model.setCount(parseInt(count, 10));
+      this.model.count = parseInt(count, 10);
       this.startGame();
-      this.view.renderProcess(this.model.getCars());
+      this.view.renderProcess(this.model.cars);
       this.showResult();
     }
   }
 
   showResult() {
-    const winners = this.getWinners();
+    const winners = this.winners;
     this.view.renderResult(winners);
     this.handleReset();
   }
 
   reset() {
-    this.model.setCars(INIT.CARS);
-    this.model.setCount(INIT.COUNT);
+    this.model.cars = INIT.CARS;
+    this.model.count = INIT.COUNT;
     this.view.reset();
   }
 
