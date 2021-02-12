@@ -1,36 +1,35 @@
 import { $, $$ } from '../util-view/querySelector.js';
 import { setVisibility } from '../util-view/setVisibility.js';
 import { wait } from '../util-view/wait.js';
-import { setToInitialView } from '../util-view/setToInitialView.js';
 import { getWinners } from '../util-model/getWinners.js';
-import { GAME } from '../util-model/constant.js';
+import { alertGameOverAfterDelay } from '../util-view/alertGameOver.js';
+import { showGameResult } from '../util-view/showGameResult.js';
+import { RACING_RULE } from '../constants/racingRule.js';
 
 export const handleGameResult = async (cars, racingCount) => {
-  const { TURN_DURATION, GAME_OVER_NOTICE_DELAY } = GAME;
-  let winnersStr;
+  const { TURN_DURATION } = RACING_RULE;
+  let winners;
 
   clearResidueArrow();
+
   $$('.spinner-container').forEach((spinner) => setVisibility(spinner, true));
   for (let i = 0; i < racingCount; i++) {
     await wait(TURN_DURATION);
-    cars.forEach((car, index) => {
-      if (car.isMovingForward()) {
-        car.forwardCount += 1;
-        insertArrowHTML(index);
-      }
-    });
+    playOneGame(cars);
   }
   $$('.spinner-container').forEach((spinner) => setVisibility(spinner, false));
-  winnersStr = getWinners(cars);
-  insertGameResultHTML(winnersStr);
-  setVisibility($('#game-result-section'), true);
-  await wait(GAME_OVER_NOTICE_DELAY);
-  alertGameOver(winnersStr);
+  winners = getWinners(cars);
+  showGameResult(winners);
+  alertGameOverAfterDelay(winners);
 };
 
-const alertGameOver = (winners) => {
-  const { GAME_OVER_NOTICE_SUFFIX } = GAME;
-  alert(`${winners} ${GAME_OVER_NOTICE_SUFFIX}`);
+const playOneGame = (cars) => {
+  cars.forEach((car, index) => {
+    if (car.isMovingForward()) {
+      car.forwardCount += 1;
+      insertArrowHTML(index);
+    }
+  });
 };
 
 const clearResidueArrow = () => {
@@ -43,9 +42,4 @@ const insertArrowHTML = (index) => {
 
 const arrowTemplate = () => {
   return `<div class="forward-icon mt-2">⬇️️</div>`;
-};
-
-const insertGameResultHTML = (winners) => {
-  $('#game-result-text').innerHTML = `🏆 최종 우승자: ${winners} 🏆`;
-  $('#game-restart-button').addEventListener('click', setToInitialView);
 };

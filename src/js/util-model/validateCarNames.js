@@ -1,4 +1,4 @@
-import { ERR_MESSAGE, CAR } from './constant.js';
+import { CAR_NAME, ERR_MESSAGE } from '../constants/inputRestriction.js';
 
 export const validateCarNames = (cars) => {
   if (!cars.every((car) => isValidLength(car.name))) {
@@ -10,9 +10,9 @@ export const validateCarNames = (cars) => {
 };
 
 const isValidLength = (carName) => {
-  return carName.length <= CAR.MAX_NAME_LENGTH;
+  return carName.length <= CAR_NAME.MAX_LENGTH;
 };
 
 const isBlank = (carName) => {
-  return carName.length < CAR.MIN_NAME_LENGTH;
+  return carName.length < CAR_NAME.MIN_LENGTH;
 };

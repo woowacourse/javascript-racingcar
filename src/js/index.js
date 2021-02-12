@@ -12,6 +12,7 @@ export default class RacingGame {
     $('#car-name-submit').addEventListener('click', () =>
       handleCarNameInput(this.cars),
     );
+    $('#game-restart-button').addEventListener('click', setToInitialView);
   }
 }
 

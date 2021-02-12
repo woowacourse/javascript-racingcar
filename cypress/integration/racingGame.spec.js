@@ -1,7 +1,7 @@
-import { getRandomNumber } from '../../src/js/util-model/getRandomNumber.js';
 import { getWinners } from '../../src/js/util-model/getWinners.js';
 import { Car } from '../../src/js/class/Car.js';
-import { GAME } from '../../src/js/util-model/constant.js';
+import { GAME_OVER_NOTICE } from '../../src/js/constants/gameOverNotice.js';
+import { RACING_RULE } from '../../src/js/constants/racingRule.js';
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -110,15 +110,20 @@ describe('racing-game', () => {
   });
 
   it('난수를 생성하는 함수가 0 ~ 9 사이의 정수를 반환한다.', () => {
+    const car = new Car();
+    const { MIN_SCORE, MAX_SCORE } = RACING_RULE;
     const possibleScores = Array.from({ length: 10 }).map((v, i) => i);
 
     for (let i = 0; i < 10; i++) {
-      expect(possibleScores).to.include(getRandomNumber());
+      expect(possibleScores).to.include(
+        car.getRandomNumber(MIN_SCORE, MAX_SCORE),
+      );
     }
   });
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
     const car = new Car();
+    const { THRESHOLD_SCORE } = RACING_RULE;
 
     expect(car.isMovingForward(3)).to.equal(false);
     expect(car.isMovingForward(4)).to.equal(true);
@@ -142,7 +147,7 @@ describe('racing-game', () => {
   it('게임 진행 중에는 로더를 화면에 표시고 게임이 완료되면 표시를 없앤다.', () => {
     const carNames = ['피카츄', '라이츄', '파이리'];
     const racingCount = 3;
-    const { TURN_DURATION } = GAME;
+    const { TURN_DURATION } = RACING_RULE;
     const totalDuration = TURN_DURATION * racingCount;
 
     submitCarnames(carNames);
@@ -155,21 +160,16 @@ describe('racing-game', () => {
   it('게임완료 2초 후 축하 alert 메세지를 표시한다.', () => {
     const carName = ['피카츄'];
     const racingCount = 3;
-    const {
-      TURN_DURATION,
-      GAME_OVER_NOTICE_DELAY,
-      GAME_OVER_NOTICE_SUFFIX,
-    } = GAME;
-    const totalDelay = TURN_DURATION * racingCount + GAME_OVER_NOTICE_DELAY;
+    const { TURN_DURATION } = RACING_RULE;
+    const { DELAY, MSG_SUFFIX } = GAME_OVER_NOTICE;
+    const totalDelay = TURN_DURATION * racingCount + DELAY;
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
     submitCarnames(carName);
     submitRacingCount(racingCount);
     cy.wait(totalDelay).then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(
-        `${carName} ${GAME_OVER_NOTICE_SUFFIX}`,
-      );
+      expect(alertStub.getCall(0)).to.be.calledWith(`${carName}${MSG_SUFFIX}`);
     });
   });
 
