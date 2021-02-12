@@ -63,7 +63,7 @@ export default class UserInput extends Component {
   }
 
   #verifyCarNamesLength(carNames) {
-    if (carNames.some(name => name.length < RESTRICT.MIN_CAR_NAME_LENGTH || name.length > RESTRICT.MAX_CAR_NAME_LENGTH)) {
+    if (!carNames.every(name => name.length >= RESTRICT.MIN_CAR_NAME_LENGTH && name.length <= RESTRICT.MAX_CAR_NAME_LENGTH)) {
       return false;
     }
     return true;
