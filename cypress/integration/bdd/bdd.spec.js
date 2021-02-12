@@ -345,4 +345,16 @@ context("bdd", () => {
 			});
 		cy.reload();
 	});
+	it("중복된 이름을 포함할 경우 alert 메시지를 표시한다.", () => {
+		const stub = cy.stub();
+
+		cy.on("window:alert", stub);
+
+		cy.get("#name-input").type("sehee,sehee");
+		cy.get("#name-submit-button")
+			.click()
+			.then(() => {
+				expect(stub.getCall(0)).to.be.calledWith("중복된 이름은 등록할 수 없습니다.");
+			});
+	});
 });
