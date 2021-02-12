@@ -3,11 +3,14 @@ export const getWinners = (cars) => {
   let maxForwardCount = -1;
 
   cars.forEach((car) => {
-    if (car.forwardCount > maxForwardCount) {
-      winners = [car.name];
-      maxForwardCount = car.forwardCount;
-    } else if (car.forwardCount === maxForwardCount) {
-      winners.push(car.name);
+    const carName = car.getName();
+    const forwardCount = car.getForwardCount();
+
+    if (forwardCount > maxForwardCount) {
+      winners = [carName];
+      maxForwardCount = forwardCount;
+    } else if (forwardCount === maxForwardCount) {
+      winners.push(carName);
     }
   });
   return winners.join(', ');

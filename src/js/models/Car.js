@@ -6,6 +6,22 @@ export class Car {
     this.forwardCount = 0;
   }
 
+  getName() {
+    return this.name;
+  }
+
+  getForwardCount() {
+    return this.forwardCount;
+  }
+
+  resetForwardCount() {
+    this.forwardCount = 0;
+  }
+
+  addForwardCount() {
+    this.forwardCount += 1;
+  }
+
   isMovingForward(score) {
     const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
 
@@ -17,9 +33,5 @@ export class Car {
 
   getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  resetForwardCount() {
-    this.forwardCount = 0;
   }
 }

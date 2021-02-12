@@ -125,8 +125,8 @@ describe('racing-game', () => {
     const car = new Car();
     const { THRESHOLD_SCORE } = RACING_RULE;
 
-    expect(car.isMovingForward(3)).to.equal(false);
-    expect(car.isMovingForward(4)).to.equal(true);
+    expect(car.isEarningPoint(3)).to.equal(false);
+    expect(car.isEarningPoint(4)).to.equal(true);
   });
 
   it('우승자를 결정하는 함수는 forwardCount가 가장 큰 Car들의 이름을 ","로 이어 반환한다.', () => {
