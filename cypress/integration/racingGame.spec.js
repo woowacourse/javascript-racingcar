@@ -139,7 +139,7 @@ describe('racing-game', () => {
   });
 
   it('게임 한 판 시작 시 로더를 화면에 표시했다가 1초 후 로더 표시를 없앤다.', () => {
-    const carNames = '피카츄, 라이츄, 파이리';
+    const carNames = ['피카츄', '라이츄', '파이리'];
     const racingCount = 3;
     const turnDuration = 1000;
 
@@ -152,6 +152,25 @@ describe('racing-game', () => {
       cy.tick(turnDuration / 2);
       cy.get('spinner-container').should('not.be.visible');
     }
+  });
+
+  it('게임완료 2초 후 축하 alert 메세지를 표시한다.', () => {
+    const carName = ['피카츄'];
+    const racingCount = 3;
+    const turnDuration = 1000;
+    const gameOverNoticeDelay = 2000;
+    const totalDelay = turnDuration * racingCount + gameOverNoticeDelay;
+    const alertStub = cy.stub();
+
+    cy.clock();
+    cy.on('window:alert', alertStub);
+    submitCarnames(carName);
+    submitRacingCount(racingCount);
+    cy.tick(totalDelay).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(
+        `${carName} 님의 우승을 축하드립니다! (୨୧ ❛ᴗ❛)✧🎉'`,
+      );
+    });
   });
 
   it('다시시작 버튼을 누르면 시도횟수 입력창, 게임진행 화면, 게임 결과 화면이 모두 사용자에게 보이지 않는 상태가 된다.', () => {
