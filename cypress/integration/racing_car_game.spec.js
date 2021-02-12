@@ -21,23 +21,18 @@ describe('Racing Car 게임', () => {
   });
 
   it('우승자가 제대로 출력됐는지 확인', () => {
-    const scores = [];
-    const winners = [];
-
     cy.document().then((document) => {
-      const carPlayers = document.querySelectorAll('.car-player');
-      const carPlayerContainers = document.querySelectorAll('.car-player-container');
+      const carPlayerContainers = Array.from(document.querySelectorAll('.car-player-container'));
 
-      carPlayerContainers.forEach(($carPlayerContainer) => {
-        scores.push($carPlayerContainer.querySelectorAll('.forward-icon').length);
-      });
+      const maxScore = carPlayerContainers.reduce((accumulatedMaxScore, $carPlayerContainer) => {
+        const currentPlayerScore = $carPlayerContainer.querySelectorAll('.forward-icon').length;
 
-      const maxScore = Math.max(...scores);
-      carPlayers.forEach(($carPlayer, index) => {
-        if (scores[index] === maxScore) {
-          winners.push($carPlayer.innerText);
-        }
-      });
+        return accumulatedMaxScore > currentPlayerScore ? accumulatedMaxScore : currentPlayerScore;
+      }, 0);
+
+      const winners = carPlayerContainers
+        .filter(($carPlayerContainer) => $carPlayerContainer.querySelectorAll('.forward-icon').length === maxScore)
+        .map(($carPlayerContainer) => $carPlayerContainer.querySelector('.car-player').innerText);
 
       cy.get('.racing-winner-container')
         .find('h2')
