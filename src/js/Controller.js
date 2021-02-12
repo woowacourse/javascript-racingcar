@@ -14,6 +14,7 @@ class Controller {
 			View.progressContainerRender(raceProgressContainerTemplate);
 			Model.runArrowRenderByCount();
 			View.winnerRender();
+			this.addResetButtonEvent();
 		}
 
 		countInput.value = "";
