@@ -36,4 +36,15 @@ context("tdd", () => {
 
 		expect(Model.getWinners()).to.deep.equal(["가"]);
 	});
+
+	it("우승자가 2명 이상일 경우 ‘,’로 구분하여 출력한다.", () => {
+		Model.initCars("가,나,다");
+		Model.move(Model.cars[0]);
+		Model.move(Model.cars[0]);
+		Model.move(Model.cars[1]);
+		Model.move(Model.cars[1]);
+		Model.move(Model.cars[2]);
+
+		expect(Model.getResultText()).to.deep.equal(`🏆 최종 우승자: 가, 나 🏆`);
+	});
 });
