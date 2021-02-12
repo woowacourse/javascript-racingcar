@@ -9,15 +9,14 @@ import { getRandomNumber } from '../util/general.js';
 export default class App {
   constructor() {
     this.$app = document.querySelector('#app');
-    this.carNames = [];
-    this.tryCount = 0;
     this.cars = [];
 
     this.carNameInput = new CarNameInput({
-      setCarNames: this.setCarNames.bind(this),
+      createCars: this.createCars.bind(this),
+      play: this.play.bind(this),
     });
     this.tryCountInput = new TryCountInput({
-      setTryCount: this.setTryCount.bind(this),
+      play: this.play.bind(this),
     });
     this.racingResult = new RacingResult({
       $parent: this.$app,
@@ -25,25 +24,31 @@ export default class App {
     });
     this.racingWinner = new RacingWinner({
       $parent: this.$app,
-      resetRacingGame: this.resetRacingGame.bind(this),
+      resetCarGame: this.resetCarGame.bind(this),
     });
   }
 
-  setCarNames(nextCarNames) {
-    this.setState({ nextCarNames });
+  createCars(carNames) {
+    this.setState(carNames.map((carName) => new Car(carName)));
   }
 
-  setTryCount(nextTryCount) {
-    this.setState({ nextTryCount });
-  }
-
-  createCars() {
-    return this.carNames.map((carName) => new Car(carName));
+  isCompletedInputs() {
+    return this.carNameInput.carNames.length && this.tryCountInput.tryCount;
   }
 
   play() {
+    if (!this.isCompletedInputs()) {
+      return;
+    }
+
+    this.moveCars(this.tryCountInput.tryCount);
+    this.racingResult.showResult(this.cars);
+    this.racingWinner.showWinners(this.cars);
+  }
+
+  moveCars(tryCount) {
     this.cars.forEach((car) => {
-      for (let i = 0; i < this.tryCount; i++) {
+      for (let i = 0; i < tryCount; i++) {
         if (getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER) {
           car.move();
         }
@@ -51,38 +56,15 @@ export default class App {
     });
   }
 
-  getWinners() {
-    const scores = this.cars.map((car) => car.score);
-    const maxScore = Math.max(...scores);
-
-    return this.cars.filter((car) => car.score === maxScore).map((car) => car.name);
+  resetCarGame() {
+    this.setState([]);
+    this.carNameInput.reset();
+    this.tryCountInput.reset();
+    this.racingResult.reset();
+    this.racingWinner.reset();
   }
 
-  resetRacingGame() {
-    this.setState({ nextCarNames: [], nextTryCount: 0, nextCars: [] });
-    this.carNameInput.resetElements();
-    this.tryCountInput.resetElements();
-  }
-
-  setState({ nextCarNames, nextTryCount, nextCars }) {
-    if (nextCarNames) {
-      this.carNames = nextCarNames;
-    }
-
-    if (typeof nextTryCount === 'number') {
-      this.tryCount = nextTryCount;
-    }
-
-    if (nextCars) {
-      this.cars = nextCars;
-      this.racingResult.setState({ nextCars });
-    }
-
-    if (this.carNames.length && this.tryCount > 0) {
-      this.cars = this.createCars();
-      this.play();
-      this.racingResult.setState({ nextCars: this.cars });
-      this.racingWinner.setState({ nextWinners: this.getWinners() });
-    }
+  setState(nextCars) {
+    this.cars = nextCars;
   }
 }

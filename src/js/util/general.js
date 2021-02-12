@@ -3,3 +3,5 @@ export const getRandomNumber = ({ min, max }) => {
 };
 
 export const isEmptyString = (input) => typeof input === 'string' && !input.trim();
+
+export const isNaturalNumber = (input) => Number.isInteger(input) && input > 0;

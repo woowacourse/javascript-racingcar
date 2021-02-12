@@ -4,11 +4,13 @@ import { CAR_NAME_MAX_LENGTH, CAR_NAME_SEPARATOR } from '../util/constant.js';
 import { isEmptyString } from '../util/general.js';
 
 export default class CarNameInput {
-  constructor({ setCarNames }) {
+  constructor({ createCars, play }) {
     this.$target = document.querySelector('.car-name-input-containter');
     this.$carNameInput = this.$target.querySelector('input[type=text]');
     this.$carNameSummitBtn = this.$target.querySelector('button');
-    this.setCarNames = setCarNames;
+    this.carNames = [];
+    this.createCars = createCars;
+    this.play = play;
 
     this.bindEvents();
   }
@@ -37,10 +39,12 @@ export default class CarNameInput {
     }
 
     disableElements(this.$carNameInput, this.$carNameSummitBtn);
-    this.setCarNames(carNames);
+    this.setState(carNames);
+    this.createCars(this.carNames);
+    this.play();
   }
 
-  resetElements() {
+  reset() {
     activateElements(this.$carNameInput, this.$carNameSummitBtn);
     resetInput(this.$carNameInput);
   }
@@ -79,5 +83,9 @@ export default class CarNameInput {
 
   isOverMaxLengthCarName(carNames) {
     return carNames.some((carName) => carName.length > CAR_NAME_MAX_LENGTH);
+  }
+
+  setState(nextCarNames) {
+    this.carNames = nextCarNames;
   }
 }

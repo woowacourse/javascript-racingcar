@@ -15,27 +15,36 @@ export default class RacingResult {
     this.$parent.appendChild(this.$container);
   }
 
-  setState({ nextCars }) {
+  showResult(cars) {
+    this.setState(cars);
+  }
+
+  reset() {
+    this.setState([]);
+  }
+
+  setState(nextCars) {
     this.cars = nextCars;
     this.render();
   }
 
   createCarHTML(car) {
     return `
-    <div class="car-player-container">
-      <div class="car-player mr-2">${car.name}</div>
-      ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.score)}
-    </div>
+      <div class="car-player-container">
+        <div class="car-player mr-2">${car.name}</div>
+        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.score)}
+      </div>
     `;
   }
 
   createRacingResultHTML() {
     return `        
-    <section class="mt-4">
-      <div class="d-flex">
-        ${this.cars.map(this.createCarHTML).join('')}
-      </div>
-    </section>`;
+      <section class="mt-4">
+        <div class="d-flex">
+          ${this.cars.map(this.createCarHTML).join('')}
+        </div>
+      </section>
+    `;
   }
 
   render() {

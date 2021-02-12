@@ -1,10 +1,10 @@
 import { WINNER_SEPARATOR } from '../util/constant.js';
 
 export default class RacingWinner {
-  constructor({ $parent, resetRacingGame }) {
+  constructor({ $parent, resetCarGame }) {
     this.$parent = $parent;
     this.winners = [];
-    this.resetRacingGame = resetRacingGame;
+    this.resetCarGame = resetCarGame;
 
     this.init();
     this.bindEvents();
@@ -19,6 +19,19 @@ export default class RacingWinner {
     this.$parent.appendChild(this.$container);
   }
 
+  showWinners(cars) {
+    this.setState(this.getWinners(cars));
+  }
+
+  getWinners(cars) {
+    const maxScore = cars.reduce(
+      (accumulatedMaxScore, car) => (accumulatedMaxScore > car.score ? accumulatedMaxScore : car.score),
+      0
+    );
+
+    return cars.filter((car) => car.score === maxScore).map((car) => car.name);
+  }
+
   bindEvents() {
     this.$container.addEventListener('click', this.handleClickRestart.bind(this));
   }
@@ -28,8 +41,11 @@ export default class RacingWinner {
       return;
     }
 
-    this.resetRacingGame();
-    this.setState({ nextWinners: [] });
+    this.resetCarGame();
+  }
+
+  reset() {
+    this.setState([]);
   }
 
   createWinnerHTML() {
@@ -42,9 +58,8 @@ export default class RacingWinner {
     </section>`;
   }
 
-  setState({ nextWinners }) {
+  setState(nextWinners) {
     this.winners = nextWinners;
-
     this.render();
   }
 
