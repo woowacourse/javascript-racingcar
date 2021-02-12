@@ -87,6 +87,8 @@ class Model {
 			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
 		} else if (names.includes("")) {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+		} else if (names.length > 9) {
+			return { validity: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
 		} else if (names.some((name) => name.length > 5)) {
 			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
 		} else if ([...new Set(names)].length !== names.length) {
