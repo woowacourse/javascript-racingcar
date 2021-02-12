@@ -74,6 +74,11 @@ class Model {
 	getCarObjectsWithMaxScore(maxScore) {
 		return this.cars.filter((car) => car.score === maxScore);
 	}
+
+	clearStates() {
+		this.cars = [];
+		this.count = 0;
+	}
 }
 
 export default new Model();
