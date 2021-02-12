@@ -10,16 +10,16 @@ class Model {
 		this.cars = this.generateCars(carNames);
 	}
 
-	setCount(value) {
-		this.count = value;
-	}
-
 	generateCars(nameInputValue) {
 		return nameInputValue.split(",").map((carName) => ({ name: carName, score: 0 }));
 	}
 
-	getRandomNumber({ startNumber, endNumber }) {
-		return startNumber + Math.floor(Math.random() * (endNumber - startNumber + 1));
+	isAlreadyCountClicked($settingContainer) {
+		return $settingContainer.childElementCount !== 2;
+	}
+
+	setCount(value) {
+		this.count = value;
 	}
 
 	runArrowRenderByCount() {
@@ -29,8 +29,11 @@ class Model {
 		}
 	}
 
-	isInMovableRange(number, min, max) {
-		return number >= min && number <= max;
+	getBoolsAboutMovement() {
+		const previousScores = [...this.cars].map((car) => car.score);
+		this.iterateByCarsToMove();
+		const boolsAboutMovement = this.cars.map((car, i) => car.score !== previousScores[i]);
+		return boolsAboutMovement;
 	}
 
 	iterateByCarsToMove() {
@@ -41,11 +44,12 @@ class Model {
 		this.cars.forEach(moveOrNot);
 	}
 
-	getBoolsAboutMovement() {
-		const previousScores = [...this.cars].map((car) => car.score);
-		this.iterateByCarsToMove();
-		const boolsAboutMovement = this.cars.map((car, i) => car.score !== previousScores[i]);
-		return boolsAboutMovement;
+	getRandomNumber({ startNumber, endNumber }) {
+		return startNumber + Math.floor(Math.random() * (endNumber - startNumber + 1));
+	}
+
+	isInMovableRange(number, min, max) {
+		return number >= min && number <= max;
 	}
 
 	move(car) {
