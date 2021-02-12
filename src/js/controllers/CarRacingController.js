@@ -27,7 +27,8 @@ export default class CarRacingController {
     }
 
     for (let i = 0; i < carNames.length; i++) {
-      if (carNames[i].length > 5 || carNames[i].length <= 0) {
+      const carNameSize = carNames[i].length;
+      if (!(0 < carNameSize && carNameSize <= 5)) {
         return alert(alertConstants.INVALID_CAR_NAME);
       }
     }
@@ -41,7 +42,7 @@ export default class CarRacingController {
   onClickRacingCountSubmit() {
     const racingCount = this.$racingCountInput.value;
 
-    if (racingCount <= 0 || racingCount > racingConstants.MAX_RACING_COUNT) {
+    if (!(0 < racingCount && racingCount <= racingConstants.MAX_RACING_COUNT)) {
       return alert(alertConstants.INVALID_RACING_COUNT);
     }
 
