@@ -15,6 +15,7 @@ import {
   deleteLoading,
   setCarNamesInResultView,
   setIconsInResultView,
+  getWinnerText,
 } from "./display-utils.js";
 
 const GO_NUMBER = 3;
@@ -63,9 +64,12 @@ const playGameForSecond = (second) => {
     prevTotalStep = currentTotalStep;
 
     if (second++ === Number(tryNumInput.value)) {
-      deleteLoading(resultDivs);
-      setWinnerView(getWinner());
+      const winnerArray = getWinner();
+      const winnerText = getWinnerText(winnerArray);
 
+      deleteLoading(resultDivs);
+      setWinnerView(winnerArray);
+      setTimeout(() => alert(`축하합니다. ${winnerText} 우승했습니다.`), 2000);
       clearInterval(goStep);
     }
   }, 1000);
