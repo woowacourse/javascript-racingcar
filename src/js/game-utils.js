@@ -78,6 +78,7 @@ export const playGame = () => {
   });
 
   resultSection.querySelector("div").innerHTML = "";
+  winnerSection.innerHTML = "";
 
   playGameForSecond(second);
 };
