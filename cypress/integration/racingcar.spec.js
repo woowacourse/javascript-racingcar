@@ -36,21 +36,29 @@ class CypressWrapper {
 
 const cw = new CypressWrapper();
 
+function testCar(value) {
+  cw.type("#car-input", value)
+    .click("#car-btn")
+    .should("#count", "have.css", "display", "block");
+}
+
+function testCount(value) {
+  cw.type("#count-input", value)
+    .click("#count-btn")
+    .should("#process", "have.css", "display", "block");
+}
+
 describe("ui-play", () => {
   before(() => {
     cy.visit("http://localhost:5500/");
   });
 
   it("자동차 섹션을 입력하고 버튼을 클릭하면 횟수 영역이 보여진다", () => {
-    cw.type("#car-input", "a,b,c,d")
-      .click("#car-btn")
-      .should("#count", "have.css", "display", "block");
+    testCar("a,b,c,d");
   });
 
   it("시도 횟수를 입력하고 버튼을 클릭하면 진행 영역이 보여진다", () => {
-    cw.type("#count-input", 5)
-      .click("#count-btn")
-      .should("#process", "have.css", "display", "block");
+    testCount(5);
   });
 
   it("자동차 이름을 입력한 순서대로 자동차들을 생성한다", () => {
@@ -106,70 +114,59 @@ describe("ui-input-vaild-check", () => {
   });
 
   it("자동차 이름이 5글자 초과하면 alert 출력", () => {
-    cw.type("#car-input", "overFive,a,b,c,d")
-      .click("#car-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "자동차 이름의 길이는 최대 5글자 입니다."
-      );
+    testCar("overFive,a,b,c,d");
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "자동차 이름의 길이는 최대 5글자 입니다."
+    );
   });
 
   it("자동차 이름에 공백 있으면 alert 출력", () => {
-    cw.type("#car-input", "a,b,,c,d")
-      .click("#car-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "자동차 이름은 공백이 될 수 없습니다."
-      );
+    testCar("a,b,,c,d");
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "자동차 이름은 공백이 될 수 없습니다."
+    );
   });
 
   it("자동차 이름에 중복 있으면 alert 출력", () => {
-    cw.type("#car-input", "a,b,a,c,d")
-      .click("#car-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "자동차 이름은 중복이 될 수 없습니다."
-      );
+    testCar("a,b,a,c,d");
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "자동차 이름은 중복이 될 수 없습니다."
+    );
   });
 
   it("입력한 시도 횟수가 공백이면 alert 출력", () => {
-    cw.type("#car-input", "a,b,c,d")
-      .click("#car-btn")
-      .should("#count", "have.css", "display", "block")
-      .click("#count-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "시도 횟수는 공백 혹은 문자가 될 수 없습니다."
-      );
+    testCar("a,b,c,d");
+    testCount("   ");
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "시도 횟수는 공백 혹은 문자가 될 수 없습니다."
+    );
   });
 
   it("입력한 시도 횟수가 0 이하면 alert 출력", () => {
-    cw.type("#car-input", "a,b,c,d")
-      .click("#car-btn")
-      .should("#count", "have.css", "display", "block")
-      .type("#count-input", -1)
-      .click("#count-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "시도 횟수는 0보다 작거나 같을 수 없습니다."
-      );
+    testCar("a,b,c,d");
+    testCount(-1);
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "시도 횟수는 0보다 작거나 같을 수 없습니다."
+    );
   });
 
   it("입력한 시도 횟수가 소수면 alert 출력", () => {
-    cw.type("#car-input", "a,b,c,d")
-      .click("#car-btn")
-      .should("#count", "have.css", "display", "block")
-      .type("#count-input", 4.21)
-      .click("#count-btn")
-      .should(
-        "@alertStub",
-        "be.calledWith",
-        "시도 횟수는 소수가 될 수 없습니다."
-      );
+    testCar("a,b,c,d");
+    testCount(4.21);
+    cw.should(
+      "@alertStub",
+      "be.calledWith",
+      "시도 횟수는 소수가 될 수 없습니다."
+    );
   });
 });
