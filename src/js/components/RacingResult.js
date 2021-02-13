@@ -8,8 +8,7 @@ export default class RacingResult {
 
   init() {
     const $container = document.createElement('div');
-    const containerClassList = ['d-flex', 'justify-center', 'mt-5', 'racing-result-container'];
-    containerClassList.forEach((className) => $container.classList.add(className));
+    $container.classList.add('d-flex', 'justify-center', 'mt-5', 'racing-result-container');
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
