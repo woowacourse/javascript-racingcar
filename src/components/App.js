@@ -3,6 +3,7 @@ import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import State from '../library/core/State.js';
 import Page from '../library/core/Page.js';
+import { GAME_SETTING } from '../library/utils/constant.js';
 
 export default class App extends Page {
   cars;
@@ -46,15 +47,15 @@ export default class App extends Page {
   }
 
   race = () => {
-    for (let i = 0; i < this.raceTimes.value; i++) {
-      this.#processRaceOnce();
+    for (let i = 1; i < this.raceTimes.value; i++) {
+      setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * i);
     }
-    this.#determineWinners();
-    this.mountGameResult();
+    setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * this.raceTimes.value, true);
   };
 
-  #processRaceOnce() {
+  processRaceOnce = (isFinished) => {
     this.cars.value.forEach(car => car.process());
+    this.mountGameProcess(isFinished);
   }
 
   #determineWinners() {
@@ -66,9 +67,11 @@ export default class App extends Page {
     });
   }
 
-  mountGameProcess = () => {
+  mountGameProcess = (isFinished) => {
+    if (!isFinished) isFinished = false;
     this.#childComponents.gameProcess = new GameProcess(document.querySelector('#game-process-component'), {
       cars: this.cars,
+      isFinished: isFinished,
     }).render();
   }
 

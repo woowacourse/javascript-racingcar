@@ -71,9 +71,9 @@ export default class UserInput extends Component {
       return;
     }
 
-    this.props.raceTimes.value = $inputRaceTimes.value;
-    this.props.race();
+    this.props.raceTimes.value = Math.floor($inputRaceTimes.value);
     this.props.mountGameProcess();
+    this.props.race();
     disableElement($buttonRaceTime);
     disableElement($inputRaceTimes);
   }

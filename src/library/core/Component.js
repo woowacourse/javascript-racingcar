@@ -23,7 +23,7 @@ export default class Component {
 
   #verifyAllPropsExist() {
     const values = Object.values(this.props);
-    if (!values.every(value => value)) {
+    if (!values.every(value => value !== null)) {
       return false;
     }
     return true;

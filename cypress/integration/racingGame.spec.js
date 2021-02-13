@@ -36,7 +36,7 @@ describe('레이싱 게임', () => {
   });
 
   it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
-    const racingTimes = 5;
+    const racingTimes = 7;
     cy.get('#input-car-name').type('aaa');
     cy.get('#submit-car-name').click();
     cy.get('#input-race-times').type(`${racingTimes}`);
@@ -44,6 +44,7 @@ describe('레이싱 게임', () => {
 
     testProgressiveTerm({
       term: 1000,
+      //1000ms의 허용오차는 100ms 정도면 충분할 것으로 생각
       tolerance: 100,
       racingTimes: racingTimes,
     });

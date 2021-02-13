@@ -27,7 +27,21 @@ export default class GameProcess extends Component {
       <div class="car">
         <div class="car-player mr-2">${car.name}</div>
         ${'<div class="forward-icon mt-2">⬇️</div>'.repeat(car.position)}
+        ${this.#createProcessSpinner()}
       </div>
+    `;
+  }
+
+  #createProcessSpinner() {
+    if (this.props.isFinished) {
+      return "";
+    }
+    return `
+    <div class="d-flex justify-center mt-4">
+      <div class="relative spinner-container">
+        <span class="material spinner"></span>
+      </div>
+    </div>
     `;
   }
 }

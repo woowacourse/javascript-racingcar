@@ -10,3 +10,11 @@ export const ERROR_MESSAGE = {
   NOT_EXIST_PROPS: `null 값의 prop이 존재합니다.`,
 }
 
+export const USER_MESSAGE = {
+  NOTIFY_WINNER: "레이싱 게임의 우승자! 축하드립니다 🎊",
+}
+
+export const GAME_SETTING = {
+  PROCESS_TERM: 1000,
+  RENDER_RESULT_TERM: 2000,
+}
