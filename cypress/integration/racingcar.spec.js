@@ -68,6 +68,16 @@ describe("ui-play", () => {
     });
   });
 
+  it("입력한 시도 횟수 만큼 1초 주기로 각 자동차에 스피너 div가 존재", () => {
+    for (let i = 0; i < 5; i++) {
+      cy.get(".process-car").each(v => {
+        cy.get(v).find(".spinner-container").should("exist");
+      });
+      cy.clock();
+      clock.tick(1000);
+    }
+  });
+
   it("시도 횟수보다 화살표의 개수가 적거나 같아야한다", () => {
     cy.get(".process-car").each(v => {
       if (v.find(".forward-icon").length > 0) {
