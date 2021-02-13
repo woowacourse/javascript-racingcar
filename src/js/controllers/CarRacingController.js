@@ -1,4 +1,4 @@
-import { $ } from '../utils/index.js';
+import { $, sleep } from '../utils/index.js';
 import alertConstants from '../constants/alertConstants.js';
 import racingConstants from '../constants/racingConstants.js';
 
@@ -77,15 +77,19 @@ export default class CarRacingController {
     });
   }
 
-  startRacing() {
+  async startRacing() {
+    this.view.renderProgressSpinner();
+
     for (let i = 0; i < this.model.racingCount; i++) {
+      await sleep(1000);
       const movedCars = this.getMovedCars();
       this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
     }
 
-    this.view.show($('.result-container'));
+    this.view.removeProgressSpinner();
 
+    this.view.show($('.result-container'));
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
   }

@@ -24,9 +24,28 @@ export default class CarRacingView {
       const carName = carPlayer.innerText;
 
       if (movedCars.map((car) => car.name).includes(carName)) {
-        carPlayer.parentNode.insertAdjacentHTML('beforeend', `<div class="forward-icon mt-2">⬇️️</div>`);
+        carPlayer.insertAdjacentHTML('afterend', `<div class="forward-icon mt-2">⬇️️</div>`);
       }
     });
+  }
+
+  renderProgressSpinner() {
+    $all('.car-player').forEach((carPlayer) => {
+      carPlayer.insertAdjacentHTML(
+        'afterend',
+        `
+          <div class="d-flex justify-center mt-4 spinner-container">
+            <div class="relative">
+              <span class="material spinner"></span>
+            </div>
+          </div>
+        `
+      );
+    });
+  }
+
+  removeProgressSpinner() {
+    $all('.spinner-container').forEach((spinner) => spinner.remove());
   }
 
   renderRacingResult(winners) {
