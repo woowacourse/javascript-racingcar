@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 import { getRandomNumber } from '../../src/library/utils/random.js';
+import Car from '../../src/library/models/Car';
 /* 랜덤으로 0~9 사이의 값만 출력되는지는
  100번 정도의 테스트면 충분할 것으로 생각 */
 const RANDOM_TEST_TRY = 100;
@@ -30,6 +31,13 @@ function testProgressiveTerm({ term, tolerance, racingTimes }) {
   });
 }
 
+function processRacingGame(carNameInput, racingTimes) {
+  cy.get('#input-car-name').type(carNameInput);
+  cy.get('#submit-car-name').click();
+  cy.get('#input-race-times').type(`${racingTimes}`);
+  cy.get('#submit-race-times').click();
+}
+
 describe('레이싱 게임', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
@@ -37,17 +45,17 @@ describe('레이싱 게임', () => {
 
   it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
     const racingTimes = 7;
-    cy.get('#input-car-name').type('aaa');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type(`${racingTimes}`);
-    cy.get('#submit-race-times').click();
-
+    processRacingGame("aaa,bbb", racingTimes);
     testProgressiveTerm({
       term: 1000,
       //1000ms의 허용오차는 100ms 정도면 충분할 것으로 생각
       tolerance: 100,
       racingTimes: racingTimes,
     });
+  });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
+    processRacingGame("aaa", 5);
   });
 
   it('자동차 이름을 부여하면 시도할 횟수 입력창이 노출된다.', () => {
@@ -69,18 +77,12 @@ describe('레이싱 게임', () => {
   });
 
   it('사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.', () => {
-    cy.get('#input-car-name').type('aaa,bbb,ccc');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('2');
-    cy.get('#submit-race-times').click();
+    processRacingGame('aaa,bbb,ccc', 2);
     cy.get('#game-process-component > section').should('exist');
   });
 
   it('사용자가 입력한 레이싱 횟수는 1 이상이어야 한다.', () => {
-    cy.get('#input-car-name').type('aaa,bbb,ccc');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('0');
-    cy.get('#submit-race-times').click();
+    processRacingGame('aaa,bbb,ccc', 0);
     cy.get('#game-process-component > section').should('not.exist');
   });
 
@@ -94,7 +96,6 @@ describe('레이싱 게임', () => {
   });
 
   it('자동차는 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.', () => {
-    const Car = require('../../src/library/models/Car');
     const testCar = new Car('test');
     testCar.go(4);
     expect(testCar.position).to.equal(1);
@@ -110,18 +111,12 @@ describe('레이싱 게임', () => {
   });
 
   it('주어진 횟수 동안 진행한 n대의 자동차의 레이싱 상태를 표시한다.', () => {
-    cy.get('#input-car-name').type('aaa');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('100');
-    cy.get('#submit-race-times').click();
+    processRacingGame('aaa,bbb,ccc,ddd,eee,fff,ggg,hhh,iii,jjj,kkk', 5);
     cy.get('.forward-icon').should('exist');
   });
 
   it('자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.', () => {
-    cy.get('#input-car-name').type('aaa,bbb');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('10');
-    cy.get('#submit-race-times').click();
+    processRacingGame('aaa,bbb', 5);
 
     cy.get('.car').then($cars => {
       const $carAaa = $cars[0];
@@ -141,10 +136,7 @@ describe('레이싱 게임', () => {
 
   it('우승자가 여러 명일 경우 `,`를 이용하여 구분한다.', () => {
     for (let i = 0; i < 10; i++) {
-      cy.get('#input-car-name').type('aaa,bbb');
-      cy.get('#submit-car-name').click();
-      cy.get('#input-race-times').type('1');
-      cy.get('#submit-race-times').click();
+      processRacingGame('aaa,bbb', 1);
 
       cy.get('.car').then($cars => {
         const $carAaa = $cars[0];
@@ -164,10 +156,7 @@ describe('레이싱 게임', () => {
   });
 
   it('사용자는 자동차 경주 게임을 다시 시작할 수 있다.', () => {
-    cy.get('#input-car-name').type('aaa');
-    cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('1');
-    cy.get('#submit-race-times').click();
+    processRacingGame('aaa', 1);
     cy.get('#retry').click();
     cy.get('#game-result-component > section').should('not.exist');
   });
