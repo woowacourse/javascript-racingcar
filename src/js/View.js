@@ -20,7 +20,7 @@ class View {
 	}
 
 	progressContainerRender(template) {
-		const $app = ElementManager.getAppDIV();
+		const $app = document.getElementById("app");
 		$app.insertAdjacentHTML("beforeend", template);
 		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
 	}
@@ -28,14 +28,11 @@ class View {
 	arrowRender(boolsAboutMovement) {
 		const renderedCars = document.getElementById("race-progress-screen").children;
 		const arrowTemplate = Templates.arrowTemplate;
-		boolsAboutMovement.forEach(
-			(isNeedToBeAdded, i) =>
-				isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate)
-		);
+		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
 	}
 
 	winnerRender() {
-		const $resultH2 = ElementManager.getResultContainer().querySelector("h2");
+		const $resultH2 = document.getElementById("result-container").querySelector("h2");
 		$resultH2.innerText = Model.getResultText();
 	}
 }

@@ -6,7 +6,7 @@ import Utils from "./Utils.js";
 // 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
 	onCountSubmit() {
-		const countInput = ElementManager.getCountInput();
+		const countInput = document.getElementById("count-input");
 
 		const { validity, alertMessage } = Model.validateCount(Number(countInput.value));
 		if (validity === false) {
@@ -26,8 +26,8 @@ class Controller {
 	onNameSubmit() {
 		// $settingContainer.childElementCount === 2가 아니면
 		// 모든 기능이 작동하지 않고, alert 띄우도록
-		const nameInput = ElementManager.getNameInput();
-		const $settingContainer = ElementManager.getSettingContainer();
+		const nameInput = document.getElementById("name-input");
+		const $settingContainer = document.getElementById("setting-container");
 		const { validity, alertMessage } = Model.validateName(nameInput.value);
 		if (validity === false) {
 			alert(alertMessage);
@@ -41,13 +41,13 @@ class Controller {
 	}
 
 	addCountButtonEvent(callback) {
-		const countButton = ElementManager.getCountButton();
+		const countButton = document.getElementById("count-submit-button");
 		countButton.addEventListener("click", callback);
 	}
 
 	initializeEvents() {
-		const nameButton = ElementManager.getNameButton();
-		const nameInput = ElementManager.getNameInput();
+		const nameButton = document.getElementById("name-submit-button");
+		const nameInput = document.getElementById("name-input");
 		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
 		nameInput.addEventListener("input", this.filterCarNameType);
 	}
@@ -60,13 +60,13 @@ class Controller {
 	}
 
 	addResetButtonEvent() {
-		const resetButton = ElementManager.getResetButton();
+		const resetButton = document.getElementById("reset-button");
 		resetButton.addEventListener("click", this.onResetButtonClick.bind(this));
 	}
 
 	onResetButtonClick() {
 		Model.clearStates();
-		const $app = ElementManager.getAppDIV();
+		const $app = document.getElementById("app");
 		View.initialRender($app);
 		this.initializeEvents();
 	}
