@@ -38,7 +38,7 @@ export default class CarGameManager {
 
   bindResetEvent() {
     this.$element.querySelector('#display-game-result > div > button').addEventListener('click', () => {
-      this.resetHandler();
+      this.initGame();
     });
   }
 
@@ -67,10 +67,6 @@ export default class CarGameManager {
     this.carGameView.displayWinners(racingCarGame.getWinners());
     this.carGameView.showView(this.$element.querySelector('#display-game-progress'));
     this.carGameView.showView(this.$element.querySelector('#display-game-result'));
-  }
-
-  resetHandler() {
-    this.initGame();
   }
 
   createCar() {
