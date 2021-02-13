@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import { getRandomNumber } from '../../src/library/utils/random.js';
 import Car from '../../src/library/models/Car';
-import { GAME_SETTING } from '../../src/library/utils/constant.js'
+import { GAME_SETTING, USER_MESSAGE } from '../../src/library/utils/constant.js'
 /* 랜덤으로 0~9 사이의 값만 출력되는지는
  100번 정도의 테스트면 충분할 것으로 생각 */
 const RANDOM_TEST_TRY = 100;
@@ -60,7 +60,16 @@ describe('레이싱 게임', () => {
   });
 
   it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
-    inputRacingGameInfo("aaa", 5);
+    const alertStub = cy.stub();
+    const racingTimes = 5;
+
+    inputRacingGameInfo("aaa", racingTimes);
+    waitForResult(racingTimes);
+    cy.get("#winners").should("be.visible");
+    cy.on("window:alert", alertStub);
+    cy.wait(GAME_SETTING.RENDER_RESULT_TERM).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(USER_MESSAGE.NOTIFY_WINNER);
+    });
   });
 
   it('자동차 이름을 부여하면 시도할 횟수 입력창이 노출된다.', () => {
