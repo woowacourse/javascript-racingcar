@@ -54,6 +54,7 @@ export default class CarRacingController {
     this.view.hide($('.racing-count-container'));
     this.view.hide($('.racing-container'));
     this.view.hide($('.result-container'));
+    this.view.hide($('.restart-button-container'));
     this.view.enableButton($('#car-names-submit'));
     this.view.enableButton($('#racing-count-submit'));
 
@@ -88,10 +89,13 @@ export default class CarRacingController {
     }
 
     this.view.removeProgressSpinner();
-
     this.view.show($('.result-container'));
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
+
+    await sleep(2000);
+    alert(`${winners.map((winner) => winner.name).join(', ')} 축하합니다!`);
+    this.view.show($('.restart-button-container'));
   }
 
   setEventListener() {
