@@ -19,7 +19,8 @@
 
 ### :point_right: commit principle
 
-- :hammer_and_wrench: `:hammer_and_wrench:`when refactoring the code
+- :art: `:art:` when styling the code
+- :hammer_and_wrench: `:hammer_and_wrench:` when refactoring the code
 - :racehorse: `:racehorse:` when adding the function or something
 - :memo: `:memo:` when writing docs
 - :bug: `:bug:` when fixing a bug
@@ -79,6 +80,12 @@
 - [x] 전진하는 조건은 0에서 9 사이에서 random 값을 구한 후 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.
 - [x] 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
 - [x] 우승자가 여러명일 경우 ,를 이용하여 구분한다.
+
+### after step1 clear
+
+- [ ] ElementManager를 제거하고 그 클래스를 불러와 사용하는 부분의 코드를 ElementManager 내부에 구현되어 있던 코드로 대체한다.
+- [ ] 원시값을 리턴하거나 비교할 때 사용하는 등의 경우 그 원시값을 상수로 선언하여 사용하도록 바꾼다.
+- [ ] 테스트 코드에서 중복되는 것들을 리팩터링한다.
 
 ### 🎯🎯 step2
 
