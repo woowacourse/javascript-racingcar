@@ -5,7 +5,7 @@ describe('Racing Car 게임', () => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('이름/횟수를 입력한 이후 게임결과 창에 올바르게 표시되는지 확인', () => {
+  it('이름/횟수를 입력한 이후 게임결과 창에 자동차 이름이 올바르게 표시되는지 확인', () => {
     const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
     cy.get('[data-test=car-name-input]').type(carNames.join(','));
@@ -20,7 +20,7 @@ describe('Racing Car 게임', () => {
     cy.get('.car-player').each(($el, index) => cy.wrap($el).should('have.text', carNames[index]));
   });
 
-  it('우승자가 제대로 출력됐는지 확인', () => {
+  it('표시된 화살표가 가장 많은 자동차(여러 대 가능)가 우승자로 출력되었는지 확인', () => {
     cy.document().then((document) => {
       const carPlayerContainers = Array.from(document.querySelectorAll('.car-player-container'));
 
@@ -40,7 +40,7 @@ describe('Racing Car 게임', () => {
     });
   });
 
-  it('재시작 버튼 동작 확인', () => {
+  it('재시작 버튼을 누르면 게임결과와 input의 값이 사라지고, input창이 활성화되는지 확인', () => {
     cy.get('[data-test=restart-button]').click();
 
     cy.get('[data-test=car-name-input]').should('not.be.disabled');
