@@ -4,12 +4,12 @@ import { ERROR_MESSAGE } from '../util/errorMessage.js';
 export default class TryCountInput {
   constructor(props) {
     this.props = props;
-    this.mountDOM();
+    this.selectDOM();
 
     this.bindEvents();
   }
 
-  mountDOM() {
+  selectDOM() {
     this.$target = $('.try-count-input-containter');
     this.$tryCountInput = $('.try-count-input-containter input[type=number]');
     this.$tryCountSummitBtn = $('.try-count-input-containter button');

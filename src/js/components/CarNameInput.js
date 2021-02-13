@@ -5,12 +5,12 @@ import { CAR_NAME_MAX_LENGTH } from '../util/constant.js';
 export default class CarNameInput {
   constructor(props) {
     this.props = props;
-    this.mountDOM();
+    this.selectDOM();
 
     this.bindEvents();
   }
 
-  mountDOM() {
+  selectDOM() {
     this.$target = $('.car-name-input-containter');
     this.$carNameInput = $('.car-name-input-containter input[type=text]');
     this.$carNameSummitBtn = $('.car-name-input-containter button');

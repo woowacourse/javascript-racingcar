@@ -13,12 +13,12 @@ import { $ } from '../util/dom.js';
 
 export default class App {
   constructor() {
-    this.mountDOM();
+    this.selectDOM();
     this.initState();
     this.mountComponent();
   }
 
-  mountDOM() {
+  selectDOM() {
     this.$target = $('#app');
   }
 
