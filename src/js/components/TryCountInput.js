@@ -1,5 +1,5 @@
-import { $, clearInput, deActivate, activate } from "../util/domUtil.js";
-import { ERROR_MESSAGE } from "../util/errorMessage.js";
+import { $, clearInput, deActivate, activate } from '../util/domUtil.js';
+import { ERROR_MESSAGE } from '../util/errorMessage.js';
 
 export default class TryCountInput {
   constructor(props) {
@@ -10,14 +10,14 @@ export default class TryCountInput {
   }
 
   mountDOM() {
-    this.$target = $(".try-count-input-containter");
-    this.$tryCountInput = $(".try-count-input-containter input[type=number]");
-    this.$tryCountSummitBtn = $(".try-count-input-containter button");
+    this.$target = $('.try-count-input-containter');
+    this.$tryCountInput = $('.try-count-input-containter input[type=number]');
+    this.$tryCountSummitBtn = $('.try-count-input-containter button');
   }
 
   bindEvents() {
     this.$tryCountSummitBtn.addEventListener(
-      "click",
+      'click',
       this.handleSubmitTryCount.bind(this),
     );
   }
@@ -42,7 +42,7 @@ export default class TryCountInput {
       return ERROR_MESSAGE.NOT_NATURAL_NUMBER;
     }
 
-    return "";
+    return '';
   }
 
   resetElements() {

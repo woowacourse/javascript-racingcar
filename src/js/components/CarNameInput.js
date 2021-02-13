@@ -1,6 +1,6 @@
-import { $, clearInput, deActivate, activate } from "../util/domUtil.js";
-import { ERROR_MESSAGE } from "../util/errorMessage.js";
-import { CAR_NAME_MAX_LENGTH } from "../util/constant.js";
+import { $, clearInput, deActivate, activate } from '../util/domUtil.js';
+import { ERROR_MESSAGE } from '../util/errorMessage.js';
+import { CAR_NAME_MAX_LENGTH } from '../util/constant.js';
 
 export default class CarNameInput {
   constructor(props) {
@@ -11,14 +11,14 @@ export default class CarNameInput {
   }
 
   mountDOM() {
-    this.$target = $(".car-name-input-containter");
-    this.$carNameInput = $(".car-name-input-containter input[type=text]");
-    this.$carNameSummitBtn = $(".car-name-input-containter button");
+    this.$target = $('.car-name-input-containter');
+    this.$carNameInput = $('.car-name-input-containter input[type=text]');
+    this.$carNameSummitBtn = $('.car-name-input-containter button');
   }
 
   bindEvents() {
     this.$carNameSummitBtn.addEventListener(
-      "click",
+      'click',
       this.handleSubmitCarName.bind(this),
     );
   }
@@ -26,7 +26,7 @@ export default class CarNameInput {
   handleSubmitCarName() {
     const { setCarNames } = this.props;
     const inputCarName = this.$carNameInput.value;
-    const carNames = inputCarName.split(",").map((name) => name.trim());
+    const carNames = inputCarName.split(',').map(name => name.trim());
     const errorMessage = this.getErrorMessage({ inputCarName, carNames });
 
     if (errorMessage) {
@@ -65,11 +65,11 @@ export default class CarNameInput {
       return ERROR_MESSAGE.OVER_MAX_LENGTH_CAR_NAME_INPUT;
     }
 
-    return "";
+    return '';
   }
 
   isEmptyCarName(inputCarName) {
-    return inputCarName === "";
+    return inputCarName === '';
   }
 
   isOneCarName(carNames) {
@@ -77,7 +77,7 @@ export default class CarNameInput {
   }
 
   isContainEmptyString(carNames) {
-    return carNames.some((carName) => this.isEmptyCarName(carName));
+    return carNames.some(carName => this.isEmptyCarName(carName));
   }
 
   isDuplicatedCarName(carNames) {
@@ -85,6 +85,6 @@ export default class CarNameInput {
   }
 
   isOverMaxLengthCarName(carNames) {
-    return carNames.some((carName) => carName.length > CAR_NAME_MAX_LENGTH);
+    return carNames.some(carName => carName.length > CAR_NAME_MAX_LENGTH);
   }
 }

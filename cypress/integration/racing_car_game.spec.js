@@ -15,19 +15,25 @@ describe('Racing Car 게임', () => {
     cy.get('[data-test=try-count-input]').should('be.disabled');
     cy.get('[data-test=try-count-button]').should('be.disabled');
     cy.get('.racing-result-container').should('be.visible');
-    cy.get('.car-player').each(($el, index) => cy.wrap($el).should('have.text', carNames[index]));
+    cy.get('.car-player').each(($el, index) =>
+      cy.wrap($el).should('have.text', carNames[index]),
+    );
   });
 
   it('우승자가 제대로 출력됐는지 확인', () => {
     const scores = [];
     const winners = [];
 
-    cy.document().then((document) => {
+    cy.document().then(document => {
       const carPlayers = document.querySelectorAll('.car-player');
-      const carPlayerContainers = document.querySelectorAll('.car-player-container');
+      const carPlayerContainers = document.querySelectorAll(
+        '.car-player-container',
+      );
 
-      carPlayerContainers.forEach(($carPlayerContainer) => {
-        scores.push($carPlayerContainer.querySelectorAll('.forward-icon').length);
+      carPlayerContainers.forEach($carPlayerContainer => {
+        scores.push(
+          $carPlayerContainer.querySelectorAll('.forward-icon').length,
+        );
       });
 
       const maxScore = Math.max(...scores);

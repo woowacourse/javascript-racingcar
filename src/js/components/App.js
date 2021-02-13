@@ -1,15 +1,15 @@
-import CarNameInput from "./CarNameInput.js";
-import TryCountInput from "./TryCountInput.js";
-import RacingResult from "./RacingResult.js";
-import RacingWinner from "./RacingWinner.js";
-import Car from "../model/Car.js";
+import CarNameInput from './CarNameInput.js';
+import TryCountInput from './TryCountInput.js';
+import RacingResult from './RacingResult.js';
+import RacingWinner from './RacingWinner.js';
+import Car from '../model/Car.js';
 import {
   MIN_NUMBER,
   MAX_NUMBER,
   MOVE_BOUNDED_NUMBER,
-} from "../util/constant.js";
-import { getRandomNumber, getWinners } from "../util/gameUtil.js";
-import { $ } from "../util/domUtil.js";
+} from '../util/constant.js';
+import { getRandomNumber, getWinners } from '../util/gameUtil.js';
+import { $ } from '../util/domUtil.js';
 
 export default class App {
   constructor() {
@@ -19,7 +19,7 @@ export default class App {
   }
 
   mountDOM() {
-    this.$target = $("#app");
+    this.$target = $('#app');
   }
 
   initState() {
@@ -54,20 +54,22 @@ export default class App {
   }
 
   createCars() {
-    return this.carNames.map((carName) => new Car(carName));
+    return this.carNames.map(carName => new Car(carName));
   }
 
   play() {
-    this.cars.forEach((car) => {
-      for (let i = 0; i < this.tryCount; i++) {
-        if (
-          getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >=
-          MOVE_BOUNDED_NUMBER
-        ) {
-          car.move();
-        }
-      }
-    });
+    for (let i = 0; i < this.tryCount; i++) {
+      setTimeout(() => {
+        this.cars.forEach(car => {
+          if (
+            getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >=
+            MOVE_BOUNDED_NUMBER
+          ) {
+            car.move();
+          }
+        });
+      }, 1000);
+    }
   }
 
   resetRacingGame() {
@@ -81,7 +83,7 @@ export default class App {
       this.carNames = nextCarNames;
     }
 
-    if (typeof nextTryCount === "number") {
+    if (typeof nextTryCount === 'number') {
       this.tryCount = nextTryCount;
     }
 

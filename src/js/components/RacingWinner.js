@@ -10,9 +10,9 @@ export default class RacingWinner {
   mountDOM() {
     this.$parent = this.props.$parent;
 
-    const $container = document.createElement("div");
-    ["d-flex", "justify-center", "mt-5", "racing-winner-container"].forEach(
-      (className) => {
+    const $container = document.createElement('div');
+    ['d-flex', 'justify-center', 'mt-5', 'racing-winner-container'].forEach(
+      className => {
         $container.classList.add(className);
       },
     );
@@ -23,14 +23,14 @@ export default class RacingWinner {
 
   bindEvents() {
     this.$container.addEventListener(
-      "click",
+      'click',
       this.handleClickRestart.bind(this),
     );
   }
 
   handleClickRestart({ target }) {
     const { resetRacingGame } = this.props;
-    if (!target.classList.contains("btn-restart")) {
+    if (!target.classList.contains('btn-restart')) {
       return;
     }
 
@@ -41,7 +41,7 @@ export default class RacingWinner {
   createWinnerHTML() {
     return `
     <section>
-      <h2>🏆 최종 우승자: ${this.winners.join(", ")} 🏆</h2>
+      <h2>🏆 최종 우승자: ${this.winners.join(', ')} 🏆</h2>
       <div class="d-flex justify-center">
         <button type="button" data-test="restart-button" class="btn btn-cyan btn-restart">다시 시작하기</button>
       </div>
@@ -57,6 +57,6 @@ export default class RacingWinner {
   render() {
     this.$container.innerHTML = this.winners.length
       ? this.createWinnerHTML()
-      : "";
+      : '';
   }
 }

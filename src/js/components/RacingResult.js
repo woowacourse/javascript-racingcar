@@ -8,13 +8,13 @@ export default class RacingResult {
 
   mountDOM() {
     this.$parent = this.props.$parent;
-    const $container = document.createElement("div");
+    const $container = document.createElement('div');
     [
-      "d-flex",
-      "justify-center",
-      "mt-5",
-      "racing-result-container",
-    ].forEach((className) => $container.classList.add(className));
+      'd-flex',
+      'justify-center',
+      'mt-5',
+      'racing-result-container',
+    ].forEach(className => $container.classList.add(className));
 
     this.$container = $container;
     this.$parent.appendChild(this.$container);
@@ -38,7 +38,7 @@ export default class RacingResult {
     return `        
     <section class="mt-4">
       <div class="d-flex">
-        ${this.cars.map(this.createCarHTML).join("")}
+        ${this.cars.map(this.createCarHTML).join('')}
       </div>
     </section>`;
   }
@@ -46,6 +46,6 @@ export default class RacingResult {
   render() {
     this.$container.innerHTML = this.cars.length
       ? this.createRacingResultHTML()
-      : "";
+      : '';
   }
 }
