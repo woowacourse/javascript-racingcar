@@ -1,4 +1,4 @@
-/// <reference types="cypress" ,{force:true}/>
+/// <reference types="cypress" />
 
 context("bdd", () => {
 	beforeEach(() => {
@@ -117,9 +117,15 @@ context("bdd", () => {
 		cy.get("#count-input").type("3", { force: true });
 		cy.get("#count-submit-button").click();
 
-		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "EAST");
-		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "WEST");
-		cy.get("#race-progress-screen>div>.car-player").eq(2).should("have.text", "SOUTH");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(0)
+			.should("have.text", "EAST");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(1)
+			.should("have.text", "WEST");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(2)
+			.should("have.text", "SOUTH");
 	});
 
 	it("가장 많이 전진한 자동차가 우승인지 판별한다.", () => {
@@ -137,11 +143,17 @@ context("bdd", () => {
 
 			const maxScore = Math.max(...carObjects.map((car) => car.score));
 			const winners = carObjects.reduce(
-				(winnerCars, currentCar) => (currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars),
+				(winnerCars, currentCar) =>
+					currentCar.score === maxScore
+						? winnerCars.concat(currentCar.name)
+						: winnerCars,
 				[]
 			);
 			const winnerResult = winners.join(", ");
-			cy.get("#result-container").find("section").find("h2").contains(winnerResult);
+			cy.get("#result-container")
+				.find("section")
+				.find("h2")
+				.contains(winnerResult);
 		});
 	});
 
@@ -187,9 +199,15 @@ context("bdd", () => {
 		cy.get("#count-input").type("3", { force: true });
 		cy.get("#count-submit-button").click();
 
-		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "EAST");
-		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "WEST");
-		cy.get("#race-progress-screen>div>.car-player").eq(2).should("have.text", "SOUTH");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(0)
+			.should("have.text", "EAST");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(1)
+			.should("have.text", "WEST");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(2)
+			.should("have.text", "SOUTH");
 
 		cy.get("#reset-button").click();
 		cy.get("#name-input").should("exist");
@@ -204,15 +222,25 @@ context("bdd", () => {
 		cy.get("#count-input").type("3", { force: true });
 		cy.get("#count-submit-button").click();
 
-		cy.get("#race-progress-screen>div>.car-player").eq(0).should("have.text", "안");
-		cy.get("#race-progress-screen>div>.car-player").eq(1).should("have.text", "녕");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(0)
+			.should("have.text", "안");
+		cy.get("#race-progress-screen>div>.car-player")
+			.eq(1)
+			.should("have.text", "녕");
 	});
 
 	it("이름 입력 칸에 어떤 문자열을 붙여넣어도 알파벳, 한글, ','만 붙여넣어진다.", () => {
-		cy.get("#name-input").clear().invoke("val", "a!b@c#,$d%e^f,g&*()").trigger("input");
+		cy.get("#name-input")
+			.clear()
+			.invoke("val", "a!b@c#,$d%e^f,g&*()")
+			.trigger("input");
 		cy.get("#name-input").should("have.value", "abc,def,g");
 
-		cy.get("#name-input").clear().invoke("val", "123가,456나,     789다").trigger("input");
+		cy.get("#name-input")
+			.clear()
+			.invoke("val", "123가,456나,     789다")
+			.trigger("input");
 		cy.get("#name-input").should("have.value", "가,나,다");
 	});
 
@@ -224,7 +252,9 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"빈 문자인 이름은 등록할 수 없습니다."
+				);
 			});
 		cy.reload();
 
@@ -233,7 +263,9 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"빈 문자인 이름은 등록할 수 없습니다."
+				);
 			});
 	});
 
@@ -246,7 +278,9 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("5자를 넘는 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"5자를 넘는 이름은 등록할 수 없습니다."
+				);
 			});
 	});
 
@@ -307,7 +341,9 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"자연수만 설정할 수 있습니다."
+				);
 			});
 		cy.reload();
 
@@ -319,7 +355,9 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"자연수만 설정할 수 있습니다."
+				);
 			});
 		cy.reload();
 
@@ -331,7 +369,9 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"자연수만 설정할 수 있습니다."
+				);
 			});
 		cy.reload();
 
@@ -342,7 +382,9 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"자연수만 설정할 수 있습니다."
+				);
 			});
 		cy.reload();
 	});
@@ -355,7 +397,9 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("중복된 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"중복된 이름은 등록할 수 없습니다."
+				);
 			});
 	});
 
@@ -370,7 +414,9 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다."
+				);
 			});
 	});
 
@@ -383,7 +429,9 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(
+					"가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다."
+				);
 			});
 	});
 });

@@ -1,5 +1,5 @@
 import Model from "./Model.js";
-import { TEMPLATES } from "./constants.js";
+import { IDS, TEMPLATES } from "./constants.js";
 import Utils from "./Utils.js";
 
 class View {
@@ -12,17 +12,19 @@ class View {
 	}
 
 	progressContainerRender() {
-		const $app = document.getElementById("app");
+		const $app = document.getElementById(IDS.APP);
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.PROGRESS_CONTAINER);
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.RESULT_CONTAINER);
 	}
 
 	progressCarsRender() {
-		const $raceProgressScreen = document.getElementById("race-progress-screen");
+		const $raceProgressScreen = document.getElementById(
+			IDS.RACE_PROGRESS_SCREEN
+		);
 		Model.cars.forEach((car) => {
-			const $div = document.createElement("div");
+			const $container = document.createElement("div");
 			const $carPlayer = Utils.getCarNameDiv(car.name);
-			Utils.appendRecursiveChild($raceProgressScreen, [$div, $carPlayer]);
+			Utils.appendRecursiveChild($raceProgressScreen, [$container, $carPlayer]);
 		});
 	}
 
@@ -35,9 +37,7 @@ class View {
 	}
 
 	winnerRender() {
-		const $resultH2 = document
-			.getElementById("result-container")
-			.querySelector("h2");
+		const $resultH2 = document.getElementById(IDS.WINNER_TEXT);
 		$resultH2.innerText = Model.getResultText();
 	}
 }

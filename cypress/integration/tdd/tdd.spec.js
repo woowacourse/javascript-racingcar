@@ -14,9 +14,7 @@ context("tdd", () => {
 
 	it("랜덤 숫자는 0에서 9 사이의 정수여야 한다.", () => {
 		for (let i = 0; i < 909; i++) {
-			expect(
-				/[0-9]/.test(Model.getRandomNumber({ startNumber: 0, endNumber: 9 }))
-			).to.equal(true);
+			expect(/[0-9]/.test(Model.getRandomNumber(0, 9))).to.equal(true);
 		}
 	});
 

@@ -44,6 +44,10 @@ class Utils {
 	clearInputValue(inputElement) {
 		inputElement.value = "";
 	}
+
+	isNaturalNumber(number) {
+		return number !== NaN && number > 0 && Number.isInteger(number);
+	}
 }
 
 export default new Utils();
