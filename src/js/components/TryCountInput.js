@@ -25,7 +25,7 @@ export default class TryCountInput {
   handleSubmitTryCount() {
     const { setTryCount } = this.props;
     const inputTryCount = Number(this.$tryCountInput.value);
-    const errorMessage = this.getErrorMessage({ inputTryCount });
+    const errorMessage = validateInputValue(inputTryCount);
 
     if (errorMessage) {
       alert(errorMessage);
@@ -37,20 +37,18 @@ export default class TryCountInput {
     setTryCount(inputTryCount);
   }
 
-  getErrorMessage({ inputTryCount }) {
-    if (!this.isNaturalTryCount(inputTryCount)) {
-      return ERROR_MESSAGE.NOT_NATURAL_NUMBER;
-    }
-
-    return '';
-  }
-
   resetElements() {
     enableElements(this.$tryCountInput, this.$tryCountSummitBtn);
     clearInput(this.$tryCountInput);
   }
-
-  isNaturalTryCount(number) {
-    return number > 0 && Number.isInteger(number);
-  }
 }
+
+const validateInputValue = inputTryCount => {
+  if (!isNaturalTryCount(inputTryCount)) {
+    return ERROR_MESSAGE.NOT_NATURAL_NUMBER;
+  }
+
+  return '';
+};
+
+const isNaturalTryCount = number => number > 0 && Number.isInteger(number);
