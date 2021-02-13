@@ -72,50 +72,53 @@ const setStepInResultView = (resultDiv) => {
   resultDiv.appendChild(step);
 };
 
+const setIconsInResultView = (
+  second,
+  resultDivs,
+  prevTotalStep,
+  currentTotalStep
+) => {
+  console.log(second, "초 때 state.cars.totalSteps", currentTotalStep);
+  resultDivs.forEach((resultDiv, i) => {
+    if (prevTotalStep[i] !== currentTotalStep[i]) {
+      setStepInResultView(resultDiv); // 1초 전과 totalStep이 다르면 화살표 추가
+    }
+    setLoadingInResultView(resultDiv); // loading icon은 전체 div에 추가
+  });
+};
+
 const playGameForSecond = (second) => {
   const tryNumInput = tryNumSection.querySelector("input");
   let prevTotalStep = getTotalStep();
-  console.log("시도 횟수", tryNumInput.value, prevTotalStep);
 
   const goStep = setInterval(() => {
     const resultDivs = resultSection
       .querySelector("div")
       .querySelectorAll(".one-car-result");
 
-    if (second === 1) {
-      setCarNamesInResultView(); // 처음에만 car name 보여주기
+    if (second === 0) {
+      setCarNamesInResultView(); // 0초에는 car name 보여주고 game 진행 X
+    } else {
+      setTotalStep(); // 1초부터 게임 진행
+      deleteLoading(resultDivs);
     }
 
-    setTotalStep();
-    console.log("1초 흐름");
-    console.log("prev", prevTotalStep);
-    deleteLoading(resultDivs);
-
     const currentTotalStep = getTotalStep();
-    resultDivs.forEach((resultDiv, i) => {
-      // 게임 진행 (가거나 or 멈추거나)
-      console.log(second, "prev", prevTotalStep, "cur", currentTotalStep);
-      if (prevTotalStep[i] !== currentTotalStep[i]) {
-        setStepInResultView(resultDiv);
-      }
-      setLoadingInResultView(resultDiv);
-    });
+    setIconsInResultView(second, resultDivs, prevTotalStep, currentTotalStep);
 
     prevTotalStep = currentTotalStep;
 
-    // 게임 종료 조건
-    if (second === Number(tryNumInput.value)) {
+    if (second++ === Number(tryNumInput.value)) {
       deleteLoading(resultDivs);
       setWinnerView(getWinner());
+
       clearInterval(goStep);
     }
-
-    second++;
   }, 1000);
 };
 
 export const playGame = () => {
-  let second = 1;
+  let second = 0;
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
@@ -131,9 +134,6 @@ export const getWinner = () => {
   });
 
   const maxTotalStep = state.cars[0].totalStep;
-  console.log("getWinner() 안");
-  console.log(state.cars);
-  console.log(maxTotalStep);
   const winners = state.cars.filter((car) => {
     if (car.totalStep === maxTotalStep) {
       return car;
