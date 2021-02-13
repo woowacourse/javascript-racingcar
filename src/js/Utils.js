@@ -11,31 +11,38 @@ class Utils {
 		}
 	}
 
-	createElement(tagType, attributes, innerText) {
+	createElement(tagType, attributes, text) {
 		const result = document.createElement(tagType);
-		if (innerText) {
-			const innerText = document.createTextNode(innerText);
+		if (text) {
+			const innerText = document.createTextNode(text);
 			this.appendChildren(result, innerText);
 		}
-		if (attributes) this.setAttributes(result, attributes);
+		if (attributes) {
+			this.setAttributes(result, attributes);
+		}
 		return result;
 	}
 
-	createRaceProgressContainerTemplate(cars) {
-		return `
-		<div id="race-progress-container" class="d-flex justify-center mt-5">
-		<section class="mt-4">
-			<div id="race-progress-screen" class="d-flex">
-				${cars
-					.map((car) => {
-						return `<div>
-							<div class="car-player mr-2">${car.name}</div>
-						</div>`;
-					})
-					.join("")}
-			</div>
-		</section>
-	</div>`;
+	appendRecursiveChild(parent, ...children) {
+		for (let i = 0; i < children.length; i++) {
+			if (Array.isArray(children[i])) {
+				children[i] = this.appendRecursiveChild(...children[i]);
+			}
+		}
+		this.appendChildren(parent, ...children);
+		return parent;
+	}
+
+	getArrowElement() {
+		return this.createElement("div", { class: "forward-icon mt-2" }, "⬇️");
+	}
+
+	getCarNameDiv(name) {
+		return this.createElement("div", { class: "car-player mr-2" }, name);
+	}
+
+	clearInputValue(inputElement) {
+		inputElement.value = "";
 	}
 }
 

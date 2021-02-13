@@ -6,12 +6,8 @@ class Model {
 		this.count = 0;
 	}
 
-	initCars(carNames) {
-		this.cars = this.generateCars(carNames);
-	}
-
-	generateCars(nameInputValue) {
-		return nameInputValue.split(",").map((carName) => ({ name: carName, score: 0 }));
+	initializeCars(inputValue) {
+		this.cars = inputValue.split(",").map((name) => ({ name, score: 0 }));
 	}
 
 	isAlreadyCountClicked($settingContainer) {
@@ -32,20 +28,27 @@ class Model {
 	getBoolsAboutMovement() {
 		const previousScores = [...this.cars].map((car) => car.score);
 		this.iterateByCarsToMove();
-		const boolsAboutMovement = this.cars.map((car, i) => car.score !== previousScores[i]);
+		const boolsAboutMovement = this.cars.map(
+			(car, i) => car.score !== previousScores[i]
+		);
 		return boolsAboutMovement;
 	}
 
 	iterateByCarsToMove() {
 		const moveOrNot = (car) => {
-			const randomNumber = this.getRandomNumber({ startNumber: 0, endNumber: 9 });
+			const randomNumber = this.getRandomNumber({
+				startNumber: 0,
+				endNumber: 9,
+			});
 			this.isInMovableRange(randomNumber, 4, 9) && this.move(car);
 		};
 		this.cars.forEach(moveOrNot);
 	}
 
 	getRandomNumber({ startNumber, endNumber }) {
-		return startNumber + Math.floor(Math.random() * (endNumber - startNumber + 1));
+		return (
+			startNumber + Math.floor(Math.random() * (endNumber - startNumber + 1))
+		);
 	}
 
 	isInMovableRange(number, min, max) {
@@ -68,7 +71,10 @@ class Model {
 	}
 
 	getMaxScore() {
-		return this.cars.reduce((maxScore, car) => (car.score > maxScore ? car.score : maxScore), 0);
+		return this.cars.reduce(
+			(maxScore, car) => (car.score > maxScore ? car.score : maxScore),
+			0
+		);
 	}
 
 	getCarObjectsWithMaxScore(maxScore) {
@@ -86,25 +92,43 @@ class Model {
 		if (this.cars.length !== 0) {
 			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
 		} else if (names.includes("")) {
-			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+			return {
+				validity: false,
+				alertMessage: "빈 문자인 이름은 등록할 수 없습니다.",
+			};
 		} else if (names.length > 9) {
-			return { validity: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
+			return {
+				validity: false,
+				alertMessage:
+					"가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다.",
+			};
 		} else if (names.some((name) => name.length > 5)) {
-			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
+			return {
+				validity: false,
+				alertMessage: "5자를 넘는 이름은 등록할 수 없습니다.",
+			};
 		} else if ([...new Set(names)].length !== names.length) {
-			return { validity: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
+			return {
+				validity: false,
+				alertMessage: "중복된 이름은 등록할 수 없습니다.",
+			};
 		} else return { validity: true, alertMessage: null };
 	}
 
 	validateCount(submittedCount) {
 		if (this.count !== 0) {
 			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
-		} else if (submittedCount === NaN || submittedCount <= 0 || Number.isInteger(submittedCount) === false) {
+		} else if (
+			submittedCount === NaN ||
+			submittedCount <= 0 ||
+			Number.isInteger(submittedCount) === false
+		) {
 			return { validity: false, alertMessage: "자연수만 설정할 수 있습니다." };
 		} else if (submittedCount > 20000) {
 			return {
 				validity: false,
-				alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.",
+				alertMessage:
+					"원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.",
 			};
 		} else return { validity: true, alertMessage: null };
 	}

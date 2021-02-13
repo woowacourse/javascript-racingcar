@@ -1,34 +1,43 @@
 import Model from "./Model.js";
 import { TEMPLATES } from "./constants.js";
+import Utils from "./Utils.js";
 
 class View {
-	initialRender($parentElement) {
-		$parentElement.innerHTML =
-			TEMPLATES.OPENING_SETTING_CONTAINER + TEMPLATES.TITLE_SECTION + TEMPLATES.CAR_NAME_SECTION + TEMPLATES.CLOSING_SETTING_CONTAINER;
-	}
-
-	clearInputValue(inputElement) {
-		inputElement.value = "";
+	initialzeRender($parentElement) {
+		$parentElement.innerHTML = TEMPLATES.SETTING_CONTAINER;
 	}
 
 	countSectionRender($settingContainer) {
 		$settingContainer.insertAdjacentHTML("beforeend", TEMPLATES.COUNT_SECTION);
 	}
 
-	progressContainerRender(template) {
+	progressContainerRender() {
 		const $app = document.getElementById("app");
-		$app.insertAdjacentHTML("beforeend", template);
+		$app.insertAdjacentHTML("beforeend", TEMPLATES.PROGRESS_CONTAINER);
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.RESULT_CONTAINER);
 	}
 
+	progressCarsRender() {
+		const $raceProgressScreen = document.getElementById("race-progress-screen");
+		Model.cars.forEach((car) => {
+			const $div = document.createElement("div");
+			const $carPlayer = Utils.getCarNameDiv(car.name);
+			Utils.appendRecursiveChild($raceProgressScreen, [$div, $carPlayer]);
+		});
+	}
+
 	arrowRender(boolsAboutMovement) {
-		const renderedCars = document.getElementById("race-progress-screen").children;
-		const arrowTemplate = TEMPLATES.ARROW;
-		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
+		const $cars = document.getElementById("race-progress-screen").children;
+		boolsAboutMovement.forEach((moved, i) => {
+			const $arrow = Utils.getArrowElement();
+			moved && $cars[i].appendChild($arrow);
+		});
 	}
 
 	winnerRender() {
-		const $resultH2 = document.getElementById("result-container").querySelector("h2");
+		const $resultH2 = document
+			.getElementById("result-container")
+			.querySelector("h2");
 		$resultH2.innerText = Model.getResultText();
 	}
 }

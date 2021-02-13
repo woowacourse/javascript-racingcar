@@ -4,39 +4,30 @@ import Utils from "./Utils.js";
 
 // 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
-	onCountSubmit() {
+	countClickHandler() {
 		const countInput = document.getElementById("count-input");
-
-		const { validity, alertMessage } = Model.validateCount(Number(countInput.value));
-		if (validity === false) {
-			alert(alertMessage);
-			View.clearInputValue(countInput);
-			return;
-		}
-		Model.setCount(Number(countInput.value));
-		const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
-		View.progressContainerRender(raceProgressContainerTemplate);
+		const submittedCount = Number(countInput.value);
+		Utils.clearInputValue(countInput);
+		const { validity, alertMessage } = Model.validateCount(submittedCount);
+		if (validity === false) return alert(alertMessage);
+		Model.setCount(submittedCount);
+		View.progressContainerRender();
+		View.progressCarsRender();
 		Model.runArrowRenderByCount();
 		View.winnerRender();
 		this.addResetButtonEvent();
-		View.clearInputValue(countInput);
 	}
 
-	onNameSubmit() {
-		// $settingContainer.childElementCount === 2가 아니면
-		// 모든 기능이 작동하지 않고, alert 띄우도록
+	nameClickHandler() {
 		const nameInput = document.getElementById("name-input");
 		const $settingContainer = document.getElementById("setting-container");
-		const { validity, alertMessage } = Model.validateName(nameInput.value);
-		if (validity === false) {
-			alert(alertMessage);
-			View.clearInputValue(nameInput);
-			return;
-		}
-		Model.initCars(nameInput.value);
+		const nameInputValue = nameInput.value;
+		Utils.clearInputValue(nameInput);
+		const { validity, alertMessage } = Model.validateName(nameInputValue);
+		if (validity === false) return alert(alertMessage);
+		Model.initializeCars(nameInputValue);
 		View.countSectionRender($settingContainer);
-		this.addCountButtonEvent(this.onCountSubmit.bind(this));
-		View.clearInputValue(nameInput);
+		this.addCountButtonEvent(this.countClickHandler.bind(this));
 	}
 
 	addCountButtonEvent(callback) {
@@ -47,15 +38,14 @@ class Controller {
 	initializeEvents() {
 		const nameButton = document.getElementById("name-submit-button");
 		const nameInput = document.getElementById("name-input");
-		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
+		nameButton.addEventListener("click", this.nameClickHandler.bind(this));
 		nameInput.addEventListener("input", this.filterCarNameType);
 	}
 
 	filterCarNameType(event) {
 		const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
-		if (RegExp.test(event.target.value) === true) {
+		if (RegExp.test(event.target.value) === true)
 			event.target.value = event.target.value.replace(RegExp, "");
-		}
 	}
 
 	addResetButtonEvent() {
@@ -65,8 +55,12 @@ class Controller {
 
 	onResetButtonClick() {
 		Model.clearStates();
+		this.initializeGame();
+	}
+
+	initializeGame() {
 		const $app = document.getElementById("app");
-		View.initialRender($app);
+		View.initialzeRender($app);
 		this.initializeEvents();
 	}
 }
