@@ -1,4 +1,4 @@
-import { $, clearInput, deActivate, activate } from '../util/dom.js';
+import { $, clearInput, disableElements, enableElements } from '../util/dom.js';
 import { ERROR_MESSAGE } from '../util/errorMessage.js';
 
 export default class TryCountInput {
@@ -33,7 +33,7 @@ export default class TryCountInput {
       return;
     }
 
-    deActivate(this.$tryCountInput, this.$tryCountSummitBtn);
+    disableElements(this.$tryCountInput, this.$tryCountSummitBtn);
     setTryCount(inputTryCount);
   }
 
@@ -46,7 +46,7 @@ export default class TryCountInput {
   }
 
   resetElements() {
-    activate(this.$tryCountInput, this.$tryCountSummitBtn);
+    enableElements(this.$tryCountInput, this.$tryCountSummitBtn);
     clearInput(this.$tryCountInput);
   }
 
