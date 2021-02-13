@@ -89,6 +89,10 @@ export default class CarRacingController {
     }
 
     this.view.removeProgressSpinner();
+    this.showRacingResult();
+  }
+
+  async showRacingResult() {
     this.view.show($('.result-container'));
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
