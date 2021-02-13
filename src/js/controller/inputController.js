@@ -2,16 +2,14 @@ import { app } from "../index.js";
 import { displayCountView } from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
-import { isNotDuplicatedArray, isAlphanumeric } from "./utils.js";
+import { isNotDuplicatedNames, isAlphanumeric } from "./utils.js";
 
-const isValidCarNames = function (carNamesInput) {
-  return (
-    isNotDuplicatedArray(carNamesInput) &&
-    carNamesInput.every(
-      (carName) =>
-        1 <= carName.length && carName.length <= 5 && isAlphanumeric(carName)
-    )
-  );
+const isValidCarName = function (carName) {
+  return isAlphanumeric(carName) && isValidLength(carName);
+};
+
+const isValidLength = function (carName) {
+  return 1 <= carName.length && carName.length <= 5;
 };
 
 const isValidCount = function (value) {
@@ -23,10 +21,17 @@ export const handleCarNamesSubmit = function () {
     .querySelector("#car-names-input")
     .value.split(",");
 
-  if (!isValidCarNames(carNamesInput)) {
-    alert("유효한 자동차이름이 아닙니다.");
+  if (!isNotDuplicatedNames(carNamesInput)) {
+    alert("자동차 이름이 중복됩니다.");
     return;
   }
+
+  carNamesInput.forEach((carName) => {
+    if (!isValidCarName(carName)) {
+      alert("유효한 자동차이름이 아닙니다.");
+      return;
+    }
+  });
 
   displayCountView();
 };
