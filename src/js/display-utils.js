@@ -38,15 +38,17 @@ const showOneStep = () => {
 };
 
 const showLoading = () => {
-  return parseHTML(`<div class="relative spinner-container">
-  <span class="material spinner"></span>
-  </div>`);
+  return parseHTML(` <div class="d-flex justify-center mt-4 spinner-box">
+                        <div class="relative spinner-container">
+                          <span class="material spinner"></span>
+                        </div>
+                    </div>`);
 };
 
 export const deleteLoading = (resultDivs) => {
   resultDivs.forEach((resultDiv) => {
-    if (resultDiv.querySelector(".spinner-container") !== null) {
-      resultDiv.querySelector(".spinner-container").remove();
+    if (resultDiv.querySelector(".spinner-box") !== null) {
+      resultDiv.querySelector(".spinner-box").remove();
     }
   });
 };
