@@ -6,7 +6,7 @@ import {
   resetCarNamesInput,
   resetTryNumInput,
 } from "./display-utils.js";
-import { playGame, getWinner } from "./game-utils.js";
+import { playGame } from "./game-utils.js";
 import {
   isInputEmpty,
   isCarNameLengthValid,
@@ -71,7 +71,7 @@ const onClickedTryNumBtn = () => {
       return;
     }
     playGame();
-    // setWinnerView(getWinner());
+
     showElement(resultSection);
     showElement(winnerSection);
     tryNumBtn.disabled = true;
