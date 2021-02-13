@@ -3,7 +3,6 @@ import View from "./View.js";
 import Utils from "./Utils.js";
 import { IDS } from "./constants.js";
 
-// 구현하지 못한 기능: 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
 	countClickHandler() {
 		const $countInput = document.getElementById(IDS.COUNT_INPUT);
@@ -44,7 +43,7 @@ class Controller {
 	}
 
 	filterCarNameType(event) {
-		const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+		const RegExp = /[^a-z가-힣A-Z,]/gi;
 		if (RegExp.test(event.target.value))
 			event.target.value = event.target.value.replace(RegExp, "");
 	}
