@@ -104,6 +104,30 @@ describe("ui-play", () => {
       });
   });
 
+  it("결과 인터페이스 출력후 2초후 우승 자동차 이름이 들어간 축하 alert 출력", () => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
+
+    let largestCount = 0;
+    cy.get(".process-car")
+      .each(v => {
+        if (v.find(".forward-icon").length > largestCount) {
+          largestCount = v.find(".forward-icon").length;
+        }
+      })
+      .then(() => {
+        cy.clock();
+        cy.tick(2000);
+        cy.get(".process-car").each(v => {
+          if (v.find(".forward-icon").length === largestCount) {
+            cy.expect(alertStub.getCall(0)).to.be.calledWith(
+              v.find(".car-player")[0].outerText
+            );
+          }
+        });
+      });
+  });
+
   it("다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다", () => {
     cw.click("#reset-btn")
       .should("#count", "have.css", "display", "none")
