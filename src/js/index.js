@@ -2,7 +2,6 @@ import Car from "./Car.js";
 import {
   showElement,
   resetView,
-  setResultView,
   setWinnerView,
   resetCarNamesInput,
   resetTryNumInput,
@@ -72,9 +71,7 @@ const onClickedTryNumBtn = () => {
       return;
     }
     playGame();
-    // game이 잘 진행되었다면 game결과를 보여준다.
-    setResultView();
-    setWinnerView(getWinner());
+    // setWinnerView(getWinner());
     showElement(resultSection);
     showElement(winnerSection);
     tryNumBtn.disabled = true;

@@ -88,22 +88,6 @@ export const setIconsInResultView = (
   });
 };
 
-export const setResultView = () => {
-  resultSection.querySelector("div").innerHTML = "";
-
-  state.cars.forEach((car) => {
-    const resultDivString = `<div></div>`;
-    const resultDiv = parseHTML(resultDivString);
-
-    resultDiv.appendChild(showCarName(car.name));
-    for (let idx = 0; idx < car.totalStep; idx++) {
-      const step = showTotalStep();
-      resultDiv.appendChild(step);
-    }
-    resultSection.querySelector("div").append(resultDiv);
-  });
-};
-
 export const getWinnerText = (winners) => {
   let winnerText = "";
   if (winners.length === 1) {
