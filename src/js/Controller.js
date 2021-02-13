@@ -1,5 +1,4 @@
 import Model from "./Model.js";
-import ElementManager from "./ElementManager.js";
 import View from "./View.js";
 import Utils from "./Utils.js";
 
