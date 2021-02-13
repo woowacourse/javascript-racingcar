@@ -11,8 +11,11 @@ import {
   resultSection,
   winnerSection,
 } from "./elements.js";
-import { showCarName, showOneStep } from "./display-utils.js";
-import { isCarNameLengthValid } from "./validate-input.js";
+import {
+  deleteLoading,
+  setCarNamesInResultView,
+  setIconsInResultView,
+} from "./display-utils.js";
 
 const GO_NUMBER = 3;
 
@@ -35,55 +38,6 @@ const setTotalStep = () => {
     if (randomNum > GO_NUMBER) {
       car.go();
     }
-  });
-};
-
-const deleteLoading = (resultDivs) => {
-  resultDivs.forEach((resultDiv) => {
-    if (resultDiv.querySelector(".spinner-container") !== null) {
-      resultDiv.querySelector(".spinner-container").remove();
-    }
-  });
-};
-
-const setCarNamesInResultView = () => {
-  state.cars.forEach((car) => {
-    const resultDivString = `<div></div>`;
-    const resultDiv = parseHTML(resultDivString);
-    resultDiv.setAttribute("class", "one-car-result");
-    resultDiv.appendChild(showCarName(car.name));
-    resultSection.querySelector("div").append(resultDiv);
-  });
-};
-
-const showLoading = () => {
-  return parseHTML(`<div class="relative spinner-container">
-  <span class="material spinner"></span>
-  </div>`);
-};
-
-const setLoadingInResultView = (resultDiv) => {
-  const loading = showLoading();
-  resultDiv.appendChild(loading);
-};
-
-const setStepInResultView = (resultDiv) => {
-  const step = showOneStep();
-  resultDiv.appendChild(step);
-};
-
-const setIconsInResultView = (
-  second,
-  resultDivs,
-  prevTotalStep,
-  currentTotalStep
-) => {
-  console.log(second, "초 때 state.cars.totalSteps", currentTotalStep);
-  resultDivs.forEach((resultDiv, i) => {
-    if (prevTotalStep[i] !== currentTotalStep[i]) {
-      setStepInResultView(resultDiv); // 1초 전과 totalStep이 다르면 화살표 추가
-    }
-    setLoadingInResultView(resultDiv); // loading icon은 전체 div에 추가
   });
 };
 

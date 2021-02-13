@@ -33,8 +33,57 @@ const showCarName = (carName) => {
   return parseHTML(`<div class="car-player mr-2">${carName}</div>`);
 };
 
-const showTotalStep = () => {
+const showOneStep = () => {
   return parseHTML(`<div class="forward-icon mt-2">⬇️️</div>`);
+};
+
+const showLoading = () => {
+  return parseHTML(`<div class="relative spinner-container">
+  <span class="material spinner"></span>
+  </div>`);
+};
+
+export const deleteLoading = (resultDivs) => {
+  resultDivs.forEach((resultDiv) => {
+    if (resultDiv.querySelector(".spinner-container") !== null) {
+      resultDiv.querySelector(".spinner-container").remove();
+    }
+  });
+};
+
+export const setCarNamesInResultView = () => {
+  state.cars.forEach((car) => {
+    const resultDivString = `<div></div>`;
+    const resultDiv = parseHTML(resultDivString);
+    resultDiv.setAttribute("class", "one-car-result");
+    resultDiv.appendChild(showCarName(car.name));
+    resultSection.querySelector("div").append(resultDiv);
+  });
+};
+
+const setLoadingInResultView = (resultDiv) => {
+  const loading = showLoading();
+  resultDiv.appendChild(loading);
+};
+
+export const setStepInResultView = (resultDiv) => {
+  const step = showOneStep();
+  resultDiv.appendChild(step);
+};
+
+export const setIconsInResultView = (
+  second,
+  resultDivs,
+  prevTotalStep,
+  currentTotalStep
+) => {
+  console.log(second, "초 때 state.cars.totalSteps", currentTotalStep);
+  resultDivs.forEach((resultDiv, i) => {
+    if (prevTotalStep[i] !== currentTotalStep[i]) {
+      setStepInResultView(resultDiv); // 1초 전과 totalStep이 다르면 화살표 추가
+    }
+    setLoadingInResultView(resultDiv); // loading icon은 전체 div에 추가
+  });
 };
 
 export const setResultView = () => {
