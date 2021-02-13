@@ -3,7 +3,7 @@ import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import State from '../library/core/State.js';
 import Page from '../library/core/Page.js';
-import { GAME_SETTING } from '../library/utils/constant.js';
+import { GAME_SETTING, USER_MESSAGE } from '../library/utils/constant.js';
 
 export default class App extends Page {
   cars;
@@ -56,6 +56,11 @@ export default class App extends Page {
   processRaceOnce = (isFinished) => {
     this.cars.value.forEach(car => car.process());
     this.mountGameProcess(isFinished);
+    if (isFinished) {
+      this.#determineWinners();
+      this.mountGameResult();
+      setTimeout(alert, GAME_SETTING.RENDER_RESULT_TERM, USER_MESSAGE.NOTIFY_WINNER);
+    }
   }
 
   #determineWinners() {
