@@ -8,15 +8,10 @@ export default class RacingResult {
 
   mountDOM() {
     this.$parent = this.props.$parent;
-    const $container = document.createElement('div');
-    [
-      'd-flex',
-      'justify-center',
-      'mt-5',
-      'racing-result-container',
-    ].forEach(className => $container.classList.add(className));
+    this.$container = document.createElement('div');
+    this.$container.className =
+      'd-flex justify-center mt-5 racing-result-container';
 
-    this.$container = $container;
     this.$parent.appendChild(this.$container);
   }
 
