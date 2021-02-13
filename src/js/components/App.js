@@ -8,7 +8,7 @@ import {
   MAX_NUMBER,
   MOVE_BOUNDED_NUMBER,
 } from '../util/constant.js';
-import { getRandomNumber, getWinners } from '../util/game.js';
+import { getRandomNumber } from '../util/game.js';
 import { $ } from '../util/dom.js';
 
 export default class App {
@@ -57,6 +57,13 @@ export default class App {
     return this.carNames.map(carName => new Car(carName));
   }
 
+  getWinners(cars) {
+    const scores = cars.map(car => car.score);
+    const maxScore = Math.max(...scores);
+
+    return cars.filter(car => car.score === maxScore).map(car => car.name);
+  }
+
   play() {
     for (let i = 0; i < this.tryCount; i++) {
       setTimeout(() => {
@@ -96,7 +103,7 @@ export default class App {
       this.cars = this.createCars();
       this.play();
       this.racingResult.setState({ nextCars: this.cars });
-      this.racingWinner.setState({ nextWinners: getWinners(this.cars) });
+      this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
     }
   }
 }
