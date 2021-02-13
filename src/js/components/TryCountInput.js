@@ -1,4 +1,4 @@
-import { $, clearInput, deActivate, activate } from '../util/domUtil.js';
+import { $, clearInput, deActivate, activate } from '../util/dom.js';
 import { ERROR_MESSAGE } from '../util/errorMessage.js';
 
 export default class TryCountInput {

@@ -8,8 +8,8 @@ import {
   MAX_NUMBER,
   MOVE_BOUNDED_NUMBER,
 } from '../util/constant.js';
-import { getRandomNumber, getWinners } from '../util/gameUtil.js';
-import { $ } from '../util/domUtil.js';
+import { getRandomNumber, getWinners } from '../util/game.js';
+import { $ } from '../util/dom.js';
 
 export default class App {
   constructor() {
