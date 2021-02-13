@@ -88,6 +88,23 @@ describe('자동차 경주', () => {
     exceptionAlert('.try-count', '정수를 입력해주세요.');
   });
 
+  it('자동차 이름과 시도 횟수 입력 후 확인 버튼을 누르면 1초마다 spinner와 결과가 출력된다', () => {
+    clickAfterTypeCar();
+    clickAfterTypeTryCount();
+    
+    const carsNum = 4;
+    const tryCount = 5;
+
+    for (let i = 0; i < tryCount; i++) {
+      cy.get('.spinner-container').should('have.length', carsNum);
+      cy.wait(1000);
+      cy.get('.spinner-container').should('not.be.visible');
+      cy.get('.forward-icon').should('be.visible');
+      cy.wait(1000);
+    }
+  })
+
+  // TODO: latency 후 출력되도록 테스트 코드 수정
   it('레이싱 진행 상황과 함께 우승자가 출력된다', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();

@@ -15,6 +15,9 @@ export default class RacingUI {
   }
 
   hideElement(className) {
+    if (!document.querySelector(className)) {
+      return;
+    }
     document.querySelector(className).style.display = 'none';
   }
 
@@ -33,17 +36,45 @@ export default class RacingUI {
     document.querySelector(className).style.display = '';
   }
 
-  showProgress(cars) {
+  toggleElementDisplay(className, show) {
+    if (!document.querySelector(className)) {
+      return;
+    }
+
+    const allElements = document.querySelectorAll(className)
+    for (let i = 0; i < allElements.length; i++) {
+      allElements[i].style.display = show ? '' : 'none';
+    }
+  }
+
+  showResult(cars) {
     this.showElement(CLASS_NAMES.PROGRESS_CONTAINER);
 
     document.querySelector(CLASS_NAMES.PROGRESS_CARS).innerHTML 
       = cars.map(car => `
-          <div>
-            <div class="car-player mr-2">${car.getName()}</div>
-            ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.getPosition())}
+          <div class="car-player-container">
+            <div id="${car.getName()}" class="car-player mr-2">${car.getName()}</div>
+            <div class="spinner-container">
+              <div class="material spinner"></div>
+            </div>
           </div>
         `,
       ).join('');
+  }
+
+  printProgress(car, isCarMoved) {
+    this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, true);
+    
+    const carElement = document.querySelector(`#${car.getName()}`);
+
+    setTimeout(() => {
+      this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, false);
+      if (isCarMoved) {
+        carElement.insertAdjacentHTML('afterend', `
+          <div class="forward-icon mt-2">⬇️️</div>
+        `)
+      }
+    }, 1000)
   }
 
   showWinners(winners) {

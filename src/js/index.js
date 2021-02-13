@@ -61,15 +61,23 @@ export default class Racing {
   };
 
   startRace = () => {
+    this.UIController.showResult(this.cars);
     this.moveCars();
-    this.getWinners();
   };
 
   moveCars = () => {
-    for (let i = 0; i < this.tryCount; i++) {
-      this.cars.forEach(car => car.move());
-    }
-    this.UIController.showProgress(this.cars);
+    const moveInterval = setInterval((function moveEverySecond() {
+      this.tryCount--;
+      if (this.tryCount === 0) {
+        clearInterval(moveInterval);
+        this.getWinners();
+      }
+      this.cars.forEach(car => {
+        const isCarMoved = car.move();
+        this.UIController.printProgress(car, isCarMoved);
+      });
+      return moveEverySecond.bind(this);
+    }).bind(this)(), 2000)
   };
 
   getWinners = () => {

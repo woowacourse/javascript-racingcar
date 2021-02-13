@@ -16,4 +16,6 @@ export const CLASS_NAMES = {
   PROGRESS_CARS: '.progress-cars',
   RESULT_CONTAINER: '.result-container',
   RESTART_BTN: '.restart-btn',
+  SPINNER_CONTAINER: '.spinner-container',
+  FORWARD_ICON: '.forward-icon'
 };

@@ -21,7 +21,9 @@ export default class Car {
     const randNumber = Math.random() * 10;
     if (randNumber >= 4) {
       this.position++;
+      return true;
     }
+    return false;
   }
 
   wins() {
