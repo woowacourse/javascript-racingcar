@@ -1,4 +1,4 @@
-import { GAME_SETTING, MESSAGES } from "./constants.js";
+import { GAME_SETTINGS, MESSAGES } from "./constants.js";
 import Utils from "./Utils.js";
 import View from "./View.js";
 
@@ -39,13 +39,13 @@ class Model {
 	iterateByCarsToMove() {
 		const moveOrNot = (car) => {
 			const randomNumber = this.getRandomNumber(
-				GAME_SETTING.RANDOM_NUMBER.MIN,
-				GAME_SETTING.RANDOM_NUMBER.MAX
+				GAME_SETTINGS.RANDOM_NUMBER.MIN,
+				GAME_SETTINGS.RANDOM_NUMBER.MAX
 			);
 			this.isInMovableRange(
 				randomNumber,
-				GAME_SETTING.RANDOM_NUMBER.MIN_MOVABLE,
-				GAME_SETTING.RANDOM_NUMBER.MAX
+				GAME_SETTINGS.RANDOM_NUMBER.MIN_MOVABLE,
+				GAME_SETTINGS.RANDOM_NUMBER.MAX
 			) && this.move(car);
 		};
 		this.cars.forEach(moveOrNot);
@@ -94,9 +94,9 @@ class Model {
 			return { validity: false, message: MESSAGES.NAME_ALREADY_REGISTERED };
 		} else if (names.includes("")) {
 			return { validity: false, message: MESSAGES.EMPTY_NAME };
-		} else if (names.length > GAME_SETTING.MAX_TOTAL_NUMBER_OF_NAMES) {
+		} else if (names.length > GAME_SETTINGS.MAX_TOTAL_NUMBER_OF_NAMES) {
 			return { validity: false, message: MESSAGES.TOO_MANY_NAMES };
-		} else if (this.isNameBiggerThan(GAME_SETTING.MAX_NAME_LENGTH, names)) {
+		} else if (this.isNameBiggerThan(GAME_SETTINGS.MAX_NAME_LENGTH, names)) {
 			return { validity: false, message: MESSAGES.TOO_LONG_NAME };
 		} else if ([...new Set(names)].length !== names.length) {
 			return { validity: false, message: MESSAGES.OVERWRITED };
@@ -112,7 +112,7 @@ class Model {
 			return { validity: false, message: MESSAGES.COUNT_ALREADY_REGISTERED };
 		} else if (!Utils.isNaturalNumber(submittedCount)) {
 			return { validity: false, message: MESSAGES.NOT_NATURAL_NUMBER };
-		} else if (submittedCount > GAME_SETTING.MAX_COUNT) {
+		} else if (submittedCount > GAME_SETTINGS.MAX_COUNT) {
 			return { validity: false, message: MESSAGES.TOO_BIG_COUNT };
 		} else return { validity: true, message: null };
 	}

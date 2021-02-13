@@ -55,7 +55,7 @@ export const IDS = {
 	RESET_BUTTON: "reset-button",
 };
 
-export const GAME_SETTING = {
+export const GAME_SETTINGS = {
 	RANDOM_NUMBER: {
 		MIN: 0,
 		MAX: 9,
@@ -69,10 +69,10 @@ export const GAME_SETTING = {
 export const MESSAGES = {
 	NAME_ALREADY_REGISTERED: "이미 이름이 등록되었습니다.",
 	EMPTY_NAME: "빈 문자인 이름은 등록할 수 없습니다.",
-	TOO_MANY_NAMES: `가로 스크롤 생성을 방지하기 위해 이름 등록은 ${GAME_SETTING.MAX_TOTAL_NUMBER_OF_NAMES}개 이하로 제한하고 있습니다.`,
-	TOO_LONG_NAME: `${GAME_SETTING.MAX_NAME_LENGTH}자를 넘는 이름은 등록할 수 없습니다.`,
+	TOO_MANY_NAMES: `가로 스크롤 생성을 방지하기 위해 이름 등록은 ${GAME_SETTINGS.MAX_TOTAL_NUMBER_OF_NAMES}개 이하로 제한하고 있습니다.`,
+	TOO_LONG_NAME: `${GAME_SETTINGS.MAX_NAME_LENGTH}자를 넘는 이름은 등록할 수 없습니다.`,
 	OVERWRITED: "중복된 이름은 등록할 수 없습니다.",
 	COUNT_ALREADY_REGISTERED: "이미 횟수를 설정하였습니다.",
 	NOT_NATURAL_NUMBER: "자연수만 설정할 수 있습니다.",
-	TOO_BIG_COUNT: `원활한 게임을 위해 횟수는 ${GAME_SETTING.MAX_COUNT} 이하로 제한하고 있습니다.`,
+	TOO_BIG_COUNT: `원활한 게임을 위해 횟수는 ${GAME_SETTINGS.MAX_COUNT} 이하로 제한하고 있습니다.`,
 };
