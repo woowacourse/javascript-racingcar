@@ -104,11 +104,12 @@ describe('자동차 경주', () => {
     }
   })
 
-  // TODO: latency 후 출력되도록 테스트 코드 수정
-  it('레이싱 진행 상황과 함께 우승자가 출력된다', () => {
+  it('진행 상황이 모두 출력된 후 우승자를 출력한다.', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
 
+    const tryCount = 5;
+    cy.wait(tryCount * 2000);
     cy.get('.result-container').should('be.visible');
 
     cy.document().then(doc => {
@@ -131,9 +132,27 @@ describe('자동차 경주', () => {
     });
   });
 
-  it('다시 시작하기 버튼 클릭 시 게임이 리셋된다', () => {
+  it('우승자 출력 후 2초 후에 축하의 alert 메시지를 띄운다.', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
+
+    const tryCount = 5;
+    cy.wait(tryCount * 2000);
+    
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);  
+    cy.wait(2000).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith('축하합니다 🎉');
+    });
+  })
+
+  it('다시 시작하기 버튼 클릭 시 게임이 리셋된다.', () => {
+    clickAfterTypeCar();
+    clickAfterTypeTryCount();
+
+    const tryCount = 5;
+    cy.wait(tryCount * 2000);
+
     cy.get('.restart-btn').click();
 
     resetUI();

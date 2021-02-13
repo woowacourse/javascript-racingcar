@@ -88,5 +88,9 @@ export default class RacingUI {
         </div>
       </section>
     `;
+
+    setTimeout(() => {
+      alert('축하합니다 🎉')
+    }, 2000);
   }
 }

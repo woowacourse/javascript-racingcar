@@ -67,11 +67,12 @@ export default class Racing {
 
   moveCars = () => {
     const moveInterval = setInterval((function moveEverySecond() {
-      this.tryCount--;
       if (this.tryCount === 0) {
         clearInterval(moveInterval);
         this.getWinners();
+        return;
       }
+      this.tryCount--;
       this.cars.forEach(car => {
         const isCarMoved = car.move();
         this.UIController.printProgress(car, isCarMoved);
