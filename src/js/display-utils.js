@@ -104,7 +104,7 @@ export const setResultView = () => {
   });
 };
 
-const getWinnerText = (winners) => {
+export const getWinnerText = (winners) => {
   let winnerText = "";
   if (winners.length === 1) {
     winnerText = winners[0];
