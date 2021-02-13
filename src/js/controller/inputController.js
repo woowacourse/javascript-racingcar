@@ -8,6 +8,7 @@ const isValidLength = (carName) => {
   return 1 <= carName.length && carName.length <= 5;
 };
 
+// 화살표 함수로 통일하기
 const isAlphanumeric = function (input) {
   return /^[a-zA-Z0-9]+$/.test(input);
 };
@@ -22,6 +23,7 @@ const isValidCarNames = (carNames) => {
   return carNames.every(isValidCarName) && !isDuplicated(carNames);
 };
 
+// 화살표 함수로 통일하기
 const isValidCount = function (value) {
   return Number(value) >= 1;
 };
@@ -40,14 +42,15 @@ export const handleCarNamesSubmit = function () {
 
 export const handleCountSubmit = function () {
   // const carNames = $("#car-names-input").value.split(",");
-  const countInput = $("#count-input").value;
+  const count = $("#count-input").value;
 
-  if (!isValidCount(countInput)) {
+  if (!isValidCount(count)) {
     alert("시도할 횟수는 1이상이어야 합니다.");
     return;
   }
 
   // app.generateCars(carNames);
+  app.generateCount(count);
   displayRacingCars(app.cars);
-  startRacingGame(countInput);
+  startRacingGame();
 };

@@ -13,7 +13,7 @@ export const chooseWinners = function () {
 };
 
 export const handleRestartButton = function () {
-  app.initializeCars();
+  app.initializeCarsCount();
   resetAllViews();
 };
 

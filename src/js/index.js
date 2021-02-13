@@ -11,7 +11,7 @@ import Car from "./model/Car.js";
 
 class App {
   constructor() {
-    this.cars = [];
+    this.initializeCarsCount();
     resetAllViews();
 
     $("#car-names-submit").addEventListener("click", handleCarNamesSubmit);
@@ -19,14 +19,19 @@ class App {
     $("#restart-button").addEventListener("click", handleRestartButton);
   }
 
-  initializeCars() {
+  initializeCarsCount() {
     this.cars = [];
+    this.count = 0;
   }
 
   generateCars(carNames) {
     carNames.forEach((carName) => {
       this.cars.push(new Car(carName));
     });
+  }
+
+  generateCount(count) {
+    this.count = count;
   }
 }
 
