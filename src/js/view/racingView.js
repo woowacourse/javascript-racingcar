@@ -1,3 +1,5 @@
+import { $ } from "../controller/utils.js";
+
 export const displayRacingCars = function (cars) {
   let carPlayersElement = "";
 
@@ -7,11 +9,9 @@ export const displayRacingCars = function (cars) {
     </div>`;
   });
 
-  document.querySelector(
-    "#racing-container > section > div"
-  ).innerHTML = carPlayersElement;
+  $("#racing-container > section > div").innerHTML = carPlayersElement;
 
-  document.querySelector("#racing-container").style.display = "flex";
+  $("#racing-container").style.display = "flex";
 };
 
 export const displayArrow = function (element) {
@@ -19,6 +19,6 @@ export const displayArrow = function (element) {
 };
 
 export const initializeRacingView = function () {
-  document.querySelector("#racing-container").style.display = "none";
-  document.querySelector("#racing-container > section > div").innerHTML = "";
+  $("#racing-container").style.display = "none";
+  $("#racing-container > section > div").innerHTML = "";
 };

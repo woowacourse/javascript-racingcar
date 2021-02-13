@@ -2,6 +2,7 @@ import {
   handleCarNamesSubmit,
   handleCountSubmit,
 } from "./controller/inputController.js";
+import { $ } from "./controller/utils.js";
 import {
   handleRestartButton,
   resetAllViews,
@@ -13,15 +14,9 @@ class App {
     this.cars = [];
     resetAllViews();
 
-    document
-      .querySelector("#car-names-submit")
-      .addEventListener("click", handleCarNamesSubmit);
-    document
-      .querySelector("#count-submit")
-      .addEventListener("click", handleCountSubmit);
-    document
-      .querySelector("#restart-button")
-      .addEventListener("click", handleRestartButton);
+    $("#car-names-submit").addEventListener("click", handleCarNamesSubmit);
+    $("#count-submit").addEventListener("click", handleCountSubmit);
+    $("#restart-button").addEventListener("click", handleRestartButton);
   }
 
   initializeCars() {

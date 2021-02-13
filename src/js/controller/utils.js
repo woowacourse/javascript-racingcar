@@ -9,3 +9,5 @@ export const isAlphanumeric = function (input) {
 export const isNotDuplicatedNames = function (carNamesInput) {
   return new Set(carNamesInput).size === carNamesInput.length;
 };
+
+export const $ = (selector) => document.querySelector(selector);

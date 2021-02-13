@@ -1,9 +1,11 @@
+import { $ } from "../controller/utils.js";
+
 export const initializeInputView = function () {
-  document.querySelector("#car-names-input").value = "";
-  document.querySelector("#count-input").value = "";
-  document.querySelector("#count-container").style.display = "none";
+  $("#car-names-input").value = "";
+  $("#count-input").value = "";
+  $("#count-container").style.display = "none";
 };
 
 export const displayCountView = function () {
-  document.querySelector("#count-container").style.display = "block";
+  $("#count-container").style.display = "block";
 };
