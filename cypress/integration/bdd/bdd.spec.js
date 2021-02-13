@@ -134,11 +134,9 @@ context("bdd", () => {
 				name: car.innerText,
 				score: car.parentNode.children.length - 1,
 			}));
-
 			const maxScore = Math.max(...carObjects.map((car) => car.score));
 			const winners = carObjects.reduce(
-				(winnerCars, currentCar) =>
-					currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars,
+				(winnerCars, currentCar) => (currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars),
 				[]
 			);
 			const winnerResult = winners.join(", ");
@@ -371,9 +369,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith(
-					"원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다."
-				);
+				expect(stub.getCall(0)).to.be.calledWith("원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.");
 			});
 	});
 });
