@@ -1,4 +1,4 @@
-/// <reference types="cypress" ,{force:true}/>
+/// <reference types="cypress" />
 
 context("bdd", () => {
 	beforeEach(() => {
@@ -228,7 +228,6 @@ context("bdd", () => {
 		cy.reload();
 
 		cy.get("#name-input").type("EAST,,SOUTH", { force: true });
-
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
@@ -345,6 +344,7 @@ context("bdd", () => {
 			});
 		cy.reload();
 	});
+
 	it("중복된 이름을 포함할 경우 alert 메시지를 표시한다.", () => {
 		const stub = cy.stub();
 

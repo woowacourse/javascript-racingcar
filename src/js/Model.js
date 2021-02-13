@@ -58,12 +58,14 @@ class Model {
 
 	getResultText() {
 		const winners = this.getWinners();
+
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
 	}
 
 	getWinners() {
 		const maxScore = this.getMaxScore();
 		const carObjectsWithMaxScore = this.getCarObjectsWithMaxScore(maxScore);
+
 		return carObjectsWithMaxScore.map((car) => car.name);
 	}
 
@@ -82,6 +84,7 @@ class Model {
 
 	validateName(inputValue) {
 		const names = inputValue.split(",");
+
 		if (this.cars.length !== 0) {
 			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
 		} else if (names.includes("")) {

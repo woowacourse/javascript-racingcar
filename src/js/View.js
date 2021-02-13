@@ -28,10 +28,7 @@ class View {
 	arrowRender(boolsAboutMovement) {
 		const renderedCars = document.getElementById("race-progress-screen").children;
 		const arrowTemplate = Templates.arrowTemplate;
-		boolsAboutMovement.forEach(
-			(isNeedToBeAdded, i) =>
-				isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate)
-		);
+		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
 	}
 
 	winnerRender() {
