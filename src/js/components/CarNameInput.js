@@ -49,7 +49,7 @@ export default class CarNameInput {
       return ERROR_MESSAGE.EMPTY_CAR_NAME_INPUT;
     }
 
-    if (this.isOneCarName(carNames)) {
+    if (this.isOnlyOneCarName(carNames)) {
       return ERROR_MESSAGE.ONE_CAR_NAME_INPUT;
     }
 
@@ -72,7 +72,7 @@ export default class CarNameInput {
     return inputCarName === '';
   }
 
-  isOneCarName(carNames) {
+  isOnlyOneCarName(carNames) {
     return carNames.length < 2;
   }
 
