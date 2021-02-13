@@ -77,14 +77,20 @@ context('carRacing', () => {
   it('다시 시작하기를 눌렀을 때도 정상적으로 게임이 플레이 되는지 확인한다.', () => {
     inputCarNames('car1, car2, car3');
     inputRacingCount(5);
+    cy.wait(5 * 1000);
+    cy.wait(2000);
     clickRestartButton();
 
     checkRacingRound('car1, car2, car3');
   });
 
   it('최종 우승자가 정상적으로 출력되는지 확인한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
     inputCarNames('car1, car2, car3');
     inputRacingCount(5);
+    cy.wait(5 * 1000);
 
     const winners = [];
     let maxCount = -1;
@@ -108,6 +114,10 @@ context('carRacing', () => {
       });
 
       cy.get('.winners-list').should('have.text', winners.join(', '));
+
+      cy.wait(2000).then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(alertConstants.CONGRATULATION_MESSAGE(winners.join(', ')));
+      });
     });
   });
 });

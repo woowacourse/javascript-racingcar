@@ -94,7 +94,8 @@ export default class CarRacingController {
     this.view.renderRacingResult(winners);
 
     await sleep(2000);
-    alert(`${winners.map((winner) => winner.name).join(', ')} 축하합니다!`);
+    const winnerNames = winners.map((winner) => winner.name).join(', ');
+    alert(alertConstants.CONGRATULATION_MESSAGE(winnerNames));
     this.view.show($('.restart-button-container'));
   }
 
