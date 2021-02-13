@@ -5,10 +5,48 @@ import { getRandomNumber } from '../../src/library/utils/random.js';
  100번 정도의 테스트면 충분할 것으로 생각 */
 const RANDOM_TEST_TRY = 100;
 
+function testProgressiveTerm({ term, tolerance, racingTimes }) {
+  let times = 0;
+  cy.get('#game-process-component').then((element) => {
+    const target = element[0];
+    let startTime = new Date().getTime();
+    const observer = new MutationObserver((mutations) => {
+      const currentTime = new Date().getTime();
+      const takenTime = currentTime - startTime;
+      expect(takenTime > term - tolerance && takenTime < term + tolerance).to.equal(true);
+      startTime = currentTime;
+      times++;
+      if (times === racingTimes) {
+        observer.disconnect();
+      }
+    });
+    const option = {
+      childList: true,
+    };
+    observer.observe(target, option);
+  });
+  cy.wait((term + tolerance) * racingTimes).then(() => {
+    expect(times === racingTimes).to.equal(true);
+  });
+}
 
 describe('레이싱 게임', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
+  });
+
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
+    const racingTimes = 5;
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type(`${racingTimes}`);
+    cy.get('#submit-race-times').click();
+
+    testProgressiveTerm({
+      term: 1000,
+      tolerance: 100,
+      racingTimes: racingTimes,
+    });
   });
 
   it('자동차 이름을 부여하면 시도할 횟수 입력창이 노출된다.', () => {
