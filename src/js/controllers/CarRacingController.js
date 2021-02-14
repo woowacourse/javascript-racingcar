@@ -107,7 +107,7 @@ export default class CarRacingController {
     this.view.renderRacingResult(winners);
 
     await sleep(2000);
-    alert(`🎉축하해요~ 우승자는 ${winners.map((winner) => winner.name).join(', ')}입니다!🎉`);
+    alert(alertConstants.WINNER_CONGRATULATION_MESSAGE(winners));
   }
 
   setEventListener() {
