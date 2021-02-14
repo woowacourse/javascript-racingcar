@@ -10,15 +10,15 @@ body {
   height: 100%;
 }
 
-#input-try-count {
+#try-count-container {
   display: none;
 }
 
-#display-game-progress {
+#game-progress-container {
   display: none;
 }
 
-#display-game-result {
+#game-result-container {
   display: none;
 }
 

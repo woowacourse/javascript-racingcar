@@ -1,9 +1,11 @@
 export default class CarGameView {
   constructor($element) {
-    this.inputCarNamesView = $element.querySelector('#input-car-names');
-    this.inputTryCountView = $element.querySelector('#input-try-count');
-    this.gameProgressView = $element.querySelector('#display-game-progress');
-    this.gameResultView = $element.querySelector('#display-game-result');
+    this.inputCarNamesView = $element.querySelector('#car-names-container');
+    this.inputCarNames = $element.querySelector('#car-names-input');
+    this.inputTryCountView = $element.querySelector('#try-count-container');
+    this.inputTryCount = $element.querySelector('#try-count-input');
+    this.gameProgressView = $element.querySelector('#game-progress-container');
+    this.gameResultView = $element.querySelector('#game-result-container');
   }
 
   showView($element) {
@@ -15,14 +17,14 @@ export default class CarGameView {
   }
 
   resetInput($element) {
-    $element.querySelector('input').value = '';
+    $element.value = '';
   }
 
   init() {
     this.showView(this.inputCarNamesView);
-    this.resetInput(this.inputCarNamesView);
+    this.resetInput(this.inputCarNames);
     this.hideView(this.inputTryCountView);
-    this.resetInput(this.inputTryCountView);
+    this.resetInput(this.inputTryCount);
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }

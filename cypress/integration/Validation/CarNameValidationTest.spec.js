@@ -5,16 +5,16 @@ describe('자동차 이름 유효성 테스트', () => {
   });
 
   const initGame = () => {
-    cy.get('#input-car-names').should('be.visible');
-    cy.get('#input-try-count').should('not.be.visible');
-    cy.get('#display-game-progress').should('not.be.visible');
-    cy.get('#display-game-result').should('not.be.visible');
+    cy.get('#car-names-container').should('be.visible');
+    cy.get('#try-count-container').should('not.be.visible');
+    cy.get('#game-progress-container').should('not.be.visible');
+    cy.get('#game-result-container').should('not.be.visible');
   };
 
   const alertCarNameError = (carNames, errorMessage) => {
     initGame();
-    cy.get('#input-car-names > div > input').type(carNames);
-    cy.get('#input-car-names > div > button').click();
+    cy.get('#car-names-input').type(carNames);
+    cy.get('#car-names-check-button').click();
 
     cy.get('@windowAlert')
       .should('have.callCount', 1) //  몇번째 호출되었는지 반드시 확인!
@@ -23,9 +23,9 @@ describe('자동차 이름 유효성 테스트', () => {
         'be.calledWith',
         errorMessage,
       )
-    cy.get('#input-try-count').should('not.be.visible');
-    cy.get('#display-game-progress').should('not.be.visible');
-    cy.get('#display-game-result').should('not.be.visible');
+    cy.get('#try-count-container').should('not.be.visible');
+    cy.get('#game-progress-container').should('not.be.visible');
+    cy.get('#game-result-container').should('not.be.visible');
   };
 
   it('자동차 이름이 5자 초과인 경우 경고창을 띄운다.', () => {

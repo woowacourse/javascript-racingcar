@@ -6,7 +6,9 @@ export default class CarNameValidator {
   }
 
   isNotValidLength() {
-    return this.carNames.some((carName) => (carName.length > NUMBERS.MAX_NAME_LENGTH || carName.length < NUMBERS.MIN_NAME_LENGTH));
+    return this.carNames
+      .some((carName) => (carName.length > NUMBERS.MAX_NAME_LENGTH
+        || carName.length < NUMBERS.MIN_NAME_LENGTH));
   }
 
   isIncludingBlank() {

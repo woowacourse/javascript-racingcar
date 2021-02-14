@@ -6,25 +6,25 @@ describe('자동차 경주 게임 View 테스트', () => {
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
 
   const initGame = () => {
-    cy.get('#input-car-names').should('be.visible');
-    cy.get('#input-try-count').should('not.be.visible');
-    cy.get('#display-game-progress').should('not.be.visible');
-    cy.get('#display-game-result').should('not.be.visible');
+    cy.get('#car-names-container').should('be.visible');
+    cy.get('#try-count-container').should('not.be.visible');
+    cy.get('#game-progress-container').should('not.be.visible');
+    cy.get('#game-result-container').should('not.be.visible');
   };
 
   const inputCarNames = (carNames = defaultCarNames) => {
-    cy.get('#input-car-names > div > input').type(carNames);
-    cy.get('#input-car-names > div > button').click();
-    cy.get('#input-try-count').should('be.visible');
-    cy.get('#display-game-progress').should('not.be.visible');
-    cy.get('#display-game-result').should('not.be.visible');
+    cy.get('#car-names-input').type(carNames);
+    cy.get('#car-names-check-button').click();
+    cy.get('#try-count-container').should('be.visible');
+    cy.get('#game-progress-container').should('not.be.visible');
+    cy.get('#game-result-container').should('not.be.visible');
   };
 
   const inputTryCount = (count) => {
-    cy.get('#input-try-count > div > input').type(count);
-    cy.get('#input-try-count > div > button').click();
-    cy.get('#display-game-progress').should('be.visible');
-    cy.get('#display-game-result').should('be.visible');
+    cy.get('#try-count-input').type(count);
+    cy.get('#try-count-check-button').click();
+    cy.get('#game-progress-container').should('be.visible');
+    cy.get('#game-result-container').should('be.visible');
   };
 
   it('사용자는 페이지에 들어오면 자동차 이름을 입력하는 폼을 본다', () => {
@@ -49,7 +49,7 @@ describe('자동차 경주 게임 View 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount('10');
-    cy.get('#display-game-result > div > button').click();
+    cy.get('#reset-button').click();
     initGame();
   });
 
@@ -57,7 +57,7 @@ describe('자동차 경주 게임 View 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount('10');
-    cy.get('#display-game-result > div > button').click();
+    cy.get('#reset-button').click();
     initGame();
     inputCarNames();
     inputTryCount('10');
@@ -87,7 +87,7 @@ describe('자동차 경주 게임 View 테스트', () => {
       const winners = [];
       cy.get(`[data-position=${maxPosition}]`)
         .each((winner) => winners.push(winner[0].innerText))
-        .then(() => cy.get('#display-game-result > h2').should('have.text', `🏆 최종 우승자: ${winners.join(", ")} 🏆`));
+        .then(() => cy.get('#game-result-container > h2').should('have.text', `🏆 최종 우승자: ${winners.join(", ")} 🏆`));
     });
   });
 });
