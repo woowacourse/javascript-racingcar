@@ -42,7 +42,9 @@ export class Controller {
 
     this.startRacing(this.getLapCount());
 
-    this.viewController.renderGameResult(this.getWinners());
+    const winnersName = this.getWinners().map(({ name }) => name);
+
+    this.viewController.renderGameResult(winnersName);
   }
 
   handleRestartButtonClick() {
@@ -131,9 +133,7 @@ export class Controller {
       ...this.carModels.map(({ moveCount }) => moveCount)
     );
 
-    return this.carModels
-      .filter(({ moveCount }) => moveCount === maxMoveCount)
-      .map(({ name }) => name);
+    return this.carModels.filter(({ moveCount }) => moveCount === maxMoveCount);
   }
 
   startRacing(lapCount) {
