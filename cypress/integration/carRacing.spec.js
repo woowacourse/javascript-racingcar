@@ -106,6 +106,11 @@ context('carRacing', () => {
       });
 
       cy.get('.winners-list').should('have.text', winners.join(', '));
+      cy.wait(2000).then(() => {
+        cy.on('window:alert', (message) => {
+          expect(message).to.equal(alertConstants.WINNER_CONGRATULATION_MESSAGE(winners));
+        });
+      });
     });
   });
 });
