@@ -1,5 +1,5 @@
 import Template from "../layouts/template.js";
-import { $ } from "../utils/util.js";
+import { $, $$ } from "../utils/util.js";
 
 class RacingCarView {
   constructor() {
@@ -18,9 +18,9 @@ class RacingCarView {
   }
 
   renderGameLoading() {
-    const $processCarSections = document.querySelectorAll(".process-car");
-    $processCarSections.forEach(carSection => {
-      carSection.innerHTML += this.template.processCarLoadingTemplate();
+    const $$processCarSections = $$(".process-car");
+    $$processCarSections.forEach($carSection => {
+      $carSection.innerHTML += this.template.processCarLoadingTemplate();
     });
   }
 
@@ -44,7 +44,6 @@ class RacingCarView {
   resetProcess() {
     const $processSection = $("#process");
     $processSection.style.display = "none";
-
     $processSection.innerHTML = ``;
   }
 
