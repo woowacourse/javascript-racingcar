@@ -1,7 +1,7 @@
   
 import Car from '../../src/js/model/Car.js';
 import { getRandomNumber } from '../../src/js/utils.js';
-import { bounds, selectors } from '../../src/js/keys.js';
+import { BOUND, SELECTOR } from '../../src/js/keys.js';
 import { appendArrowElement } from '../../src/js/view/racingView.js';
 
 describe('자동차 레이싱 테스트', () => {
@@ -12,11 +12,11 @@ describe('자동차 레이싱 테스트', () => {
 		const checkCarGenerator = (carNames) => {
 			cy.visit('http://localhost:5501/index.html');
 			const carNamesList = carNames.split(',');
-			cy.get(selectors.carNamesInput).type(carNamesList.join(','));
-			cy.get(selectors.carNamesSubmit).click();
-			cy.get(selectors.countInput).type(5);
-			cy.get(selectors.countSubmit).click();
-			cy.get(selectors.carPlayer).each((element, index) => {
+			cy.get(SELECTOR.CAR_NAMES_INPUT).type(carNamesList.join(','));
+			cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
+			cy.get(SELECTOR.COUNT_INPUT).type(5);
+			cy.get(SELECTOR.COUNT_SUBMIT).click();
+			cy.get(SELECTOR.CAR_PLAYER).each((element, index) => {
 				const carNameElement = element[0];
 				expect(carNameElement.innerText).to.equal(carNamesList[index]);
 			});
@@ -35,7 +35,7 @@ describe('자동차 레이싱 테스트', () => {
 	it('자동차는 random 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈추는지 확인한다.', () => {
 		const moveOrNotTest = (number, isMoved) => {
 			const newCar = new Car('test');
-			if (bounds.goOrStopBound <= number) newCar.moveForward();
+			if (BOUND.THRESH_GOING <= number) newCar.moveForward();
 			expect(newCar.position).to.equal(Number(isMoved));
 		};
 
@@ -51,7 +51,7 @@ describe('자동차 레이싱 테스트', () => {
 		newElement.innerHTML = '<div class="car-player"></div>';
 
 		const arrowAppearTest = (moveCnt, shouldVisible) => {
-			if (bounds.goOrStopBound <= moveCnt) {
+			if (BOUND.THRESH_GOING <= moveCnt) {
 				newCar.moveForward();
 				appendArrowElement(newElement);
 			}
@@ -67,15 +67,15 @@ describe('자동차 레이싱 테스트', () => {
 		cy.visit('http://localhost:5501/index.html');
 		const carNamesList = ['a', 'b', 'c', 'd', 'e'];
 		let count = 5;
-		cy.get(selectors.carNamesInput).type(carNamesList.join(','));
-		cy.get(selectors.carNamesSubmit).click();
-		cy.get(selectors.countInput).type(count);
-		cy.get(selectors.countSubmit).click();
+		cy.get(SELECTOR.CAR_NAMES_INPUT).type(carNamesList.join(','));
+		cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
+		cy.get(SELECTOR.COUNT_INPUT).type(count);
+		cy.get(SELECTOR.COUNT_SUBMIT).click();
 		
 		while(count-- > 2){ // cypress에서 2초빠르게 시작해서 맞춰주기 위함
-			cy.get(selectors.spinnerContainer).should('to.be.visible');
+			cy.get(SELECTOR.SPINNER_CONTAINER).should('to.be.visible');
 			cy.wait(500); // cypress 실행이 약 2배 빨라서 맞춰주기 위함
 		}
-		cy.get(selectors.spinnerContainer).should('not.exist');
+		cy.get(SELECTOR.SPINNER_CONTAINER).should('not.exist');
 	});
 });

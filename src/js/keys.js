@@ -1,56 +1,54 @@
-export const selectors = {
-	carNamesContainer: '#car-names-container',
-	carNamesInput: '#car-names-input',
-	carNamesSubmit: '#car-names-submit',
-	countContainer: '#count-container',
-	countInput: '#count-input',
-	countSubmit: '#count-submit',
-	carPlayer: '.car-player',
-	racingContainer: '#racing-container',
-	racingCarsArea: `#racing-container > section > div`,
-	winnerContainer: '#winner-container',
-	winnerTextArea: `#winner-container > section > h2`,
-	restartButton: '#restart-button',
-	spinnerContainer: '.spinner-container',
+export const SELECTOR = {
+	CAR_NAMES_CONTAINER: '#car-names-container',
+	CAR_NAMES_INPUT: '#car-names-input',
+	CAR_NAMES_SUBMIT: '#car-names-submit',
+	COUNT_CONTAINER: '#count-container',
+	COUNT_INPUT: '#count-input',
+	COUNT_SUBMIT: '#count-submit',
+	CAR_PLAYER: '.car-player',
+	RACING_CONTAINER: '#racing-container',
+	RACING_CARS_AREA: `#racing-container > section > div`,
+	WINNER_CONTAINER: '#winner-container',
+	WINNER_TEXT_AREA: `#winner-container > section > h2`,
+	RESTART_BUTTON: '#restart-button',
+	SPINNER_CONTAINER: '.spinner-container',
 };
 
-export const bounds = {
-	lengthLowerBound: 1,
-	lengthUpperBound: 5,
-	countLowerBound: 1,
-	countUpperBound: 100,
-
-	carNamesUpperBound: 10,
-	goOrStopBound: 4,
+export const BOUND = {
+	CAR_NAMES_LENGTH_LOWER_BOUND: 1,
+	CAR_NAMES_LENGTH_UPPER_BOUND: 5,
+	COUNT_LOWER_BOUND: 1,
+	COUNT_UPPER_BOUND: 100,
+	CARS_UPPER_BOUND: 10,
+	THRESH_GOING: 4,
 };
 
-export const globalAttr = {
-	displayNoneClass: 'strong-display-none',
-	carPlayerClass: 'car-player',
-	forwardIconClass: 'forward-icon',
-	marginTop: (num) => `mt-${num}`,
-	disabledAttr: 'disabled',
+export const GLOBAL_ATTR = {
+	CLASS_DISPLAY_NONE: 'strong-display-none',
+	CLASS_CAR_PLAYER: 'car-player',
+	CLASS_FORWARD_ICON: 'forward-icon',
+	GET_CLASS_MARGIN_TOP: (num) => `mt-${num}`,
+	CLASS_DISABLED_ATTR: 'disabled',
 };
 
-export const globalHtmlTemplate = {
-	spinnerTemplate: `<div class="d-flex justify-center mt-4">
+export const GLOBAL_HTML_TEMPLATE = {
+	SPINNER: `<div class="d-flex justify-center mt-4">
 	<div class="relative spinner-container">
 	  <span class="material spinner"></span>
 	</div>
   </div>`,
-	carPlayerTemplate: (classes, car) => `<div>
+	GET_CAR_PLAYER: (classes, car) => `<div>
 	<div class=${classes.join(' ')}>${car.name}</div>
   </div>`,
 };
 
-export const globalTexts = {
-	winnerText: '🏆 최종 우승자 🏆',
-	makeWinnerText: (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`,
+export const GLOBAL_TEXT = {
+	WINNER_TEXT: '🏆 최종 우승자 🏆',
+	MAKE_WINNER_TEXT: (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`,
 };
 
-export const alertMsg = {
-	isNotValidCarNames: '❌ 유효한 자동차이름이 아닙니다.',
-	isNotValidCarNamesLength: '❌ 자동차는 10대를 넘을 수 없습니다.',
-	isNotValidCount: '❌ 시도할 횟수는 1이상 100이하여야 합니다.',
-	printWinners : (nameList) => `👑 최종 우승자는 ${nameList.join(', ')} 입니다!`
+export const ALERT_MESSAGE = {
+	NOT_VALID_CARNAMES: '❌ 유효한 자동차이름이 아닙니다.',
+	NOT_VALID_CARNAMES_LENGTH: '❌ 자동차는 10대를 넘을 수 없습니다.',
+	NOT_VALID_COUNT: '❌ 시도할 횟수는 1이상 100이하여야 합니다.',
 };

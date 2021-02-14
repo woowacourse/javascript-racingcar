@@ -1,4 +1,4 @@
-import { selectors, globalTexts, alertMsg } from '../../src/js/keys.js';
+import { SELECTOR, GLOBAL_TEXT } from '../../src/js/keys.js';
 
 describe('레이싱 우승자 테스트', () => {
 	before(() => {
@@ -9,14 +9,14 @@ describe('레이싱 우승자 테스트', () => {
 		let winners = [];
 		let maxPosition = 0;
 
-		cy.get(selectors.carNamesInput).type('a,b,c,d,e');
-		cy.get(selectors.carNamesSubmit).click();
-		cy.get(selectors.countInput).type(5);
-		cy.get(selectors.countSubmit).click();
+		cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c,d,e');
+		cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
+		cy.get(SELECTOR.COUNT_INPUT).type(5);
+		cy.get(SELECTOR.COUNT_SUBMIT).click();
 
 		cy.wait(5000);
 
-		cy.get(`${selectors.racingCarsArea} > div`)
+		cy.get(`${SELECTOR.RACING_CARS_AREA} > div`)
 			.each((element) => {
 				const carElement = element[0];
 				const length = carElement.innerText.split('\n').length;
@@ -30,15 +30,15 @@ describe('레이싱 우승자 테스트', () => {
 			})
 			.then(() => {
 				testFunction(winners);
-				cy.get(selectors.restartButton).click();
+				cy.get(SELECTOR.RESTART_BUTTON).click();
 			});
 	};
 
 	it('자동차 경주 게임을 완료한 후, 누가 우승했는지 확인한다.', () => {
 		checkWinnerTest((winners) => {
-			cy.get(selectors.winnerTextArea).should(
+			cy.get(SELECTOR.WINNER_TEXT_AREA).should(
 				'have.text',
-				globalTexts.makeWinnerText(winners),
+				GLOBAL_TEXT.MAKE_WINNER_TEXT(winners),
 			);
 		});
 	});
@@ -47,7 +47,7 @@ describe('레이싱 우승자 테스트', () => {
     checkWinnerTest((winners) => {
 			cy.wait(2000);
 		cy.on('window:alert', (str) => {
-			expect(str).to.equal(alertMsg.printWinners(winners));
+			expect(str).to.equal(GLOBAL_TEXT.MAKE_WINNER_TEXT(winners));
 		});
 		});
 		

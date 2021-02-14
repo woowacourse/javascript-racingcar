@@ -1,14 +1,14 @@
 import { app } from '../index.js';
-import { selectors, bounds } from '../keys.js';
+import { SELECTOR, BOUND } from '../keys.js';
 import { addSpinners, appendArrowElement, removeSpinners } from '../view/racingView.js';
 import { getRandomNumber, $, sleep } from '../utils.js';
 import { chooseWinners } from './winnerController.js';
 
 const startRound = function () {
 	app.cars.forEach((car, index) => {
-		if (bounds.goOrStopBound <= getRandomNumber()) {
+		if (BOUND.THRESH_GOING <= getRandomNumber()) {
 			car.moveForward();
-			appendArrowElement($(selectors.racingCarsArea).childNodes[index]);
+			appendArrowElement($(SELECTOR.RACING_CARS_AREA).childNodes[index]);
 		}
 	});
 };

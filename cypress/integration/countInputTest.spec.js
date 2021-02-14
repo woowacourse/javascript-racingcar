@@ -1,20 +1,20 @@
-import { selectors } from "../../src/js/keys.js";
+import { SELECTOR } from "../../src/js/keys.js";
 
 describe("시도 횟수 입력 테스트", () => {
     const countInputTest = function (count, shouldBeVisible) {
         cy.visit("http://localhost:5501/index.html");
-        cy.get(selectors.carNamesInput).type("a,b,c,d,e");
-        cy.get(selectors.carNamesSubmit).click();
-        cy.get(selectors.countInput).type(count);
-        cy.get(selectors.countSubmit).click();
+        cy.get(SELECTOR.CAR_NAMES_INPUT).type("a,b,c,d,e");
+        cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
+        cy.get(SELECTOR.COUNT_INPUT).type(count);
+        cy.get(SELECTOR.COUNT_SUBMIT).click();
 
         if(shouldBeVisible){
-            cy.get(selectors.racingContainer).should("to.be.visible");    
-            cy.get(selectors.countInput).should('have.attr', 'disabled');
-            cy.get(selectors.countSubmit).should('have.attr', 'disabled');
+            cy.get(SELECTOR.RACING_CONTAINER).should("to.be.visible");    
+            cy.get(SELECTOR.COUNT_INPUT).should('have.attr', 'disabled');
+            cy.get(SELECTOR.COUNT_SUBMIT).should('have.attr', 'disabled');
 
         }else{
-            cy.get(selectors.racingContainer).should("not.to.be.visible");    
+            cy.get(SELECTOR.RACING_CONTAINER).should("not.to.be.visible");    
         }
     };
 

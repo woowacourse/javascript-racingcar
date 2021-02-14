@@ -1,40 +1,40 @@
 
-import { globalAttr, selectors, globalHtmlTemplate } from '../keys.js';
+import { GLOBAL_ATTR, SELECTOR, GLOBAL_HTML_TEMPLATE } from '../keys.js';
 import { $ } from '../utils.js';
 
 const toggleDisplayCountView = function () {
-	$(selectors.racingContainer).classList.toggle(globalAttr.displayNoneClass);
+	$(SELECTOR.RACING_CONTAINER).classList.toggle(GLOBAL_ATTR.CLASS_DISPLAY_NONE);
 };
 
 export const addSpinners = function () {
-	const $racingCarsAreaElement = $(selectors.racingCarsArea);
+	const $racingCarsAreaElement = $(SELECTOR.RACING_CARS_AREA);
 	$racingCarsAreaElement.childNodes.forEach((carElement) => {
-		const spinnerElement = carElement.querySelector(selectors.spinnerContainer);
+		const spinnerElement = carElement.querySelector(SELECTOR.SPINNER_CONTAINER);
 		if (spinnerElement) return;
-		carElement.innerHTML += globalHtmlTemplate.spinnerTemplate;
+		carElement.innerHTML += GLOBAL_HTML_TEMPLATE.SPINNER;
 	});
 };
 
 export const removeSpinners = function () {
-	const $racingCarsAreaElement = $(selectors.racingCarsArea);
+	const $racingCarsAreaElement = $(SELECTOR.RACING_CARS_AREA);
 	$racingCarsAreaElement.childNodes.forEach((carElement) => {
-		const spinnerElement = carElement.querySelector(selectors.spinnerContainer);
+		const spinnerElement = carElement.querySelector(SELECTOR.SPINNER_CONTAINER);
 		if (spinnerElement) carElement.removeChild(spinnerElement.parentNode);
 	});
 };
 
 export const displayRacingCars = function (cars) {
-	const classes = [globalAttr.carPlayerClass, globalAttr.marginTop(2)];
+	const classes = [GLOBAL_ATTR.CLASS_CAR_PLAYER, GLOBAL_ATTR.GET_CLASS_MARGIN_TOP(2)];
 	cars.forEach((car) => {
-		$(selectors.racingCarsArea).innerHTML += globalHtmlTemplate.carPlayerTemplate(classes, car);
+		$(SELECTOR.RACING_CARS_AREA).innerHTML += GLOBAL_HTML_TEMPLATE.GET_CAR_PLAYER(classes, car);
 	});
 	toggleDisplayCountView();
 };
 
 export const appendArrowElement = function (carElement) {
 	const arrowElement = document.createElement('div');
-	const carNameElement = carElement.querySelector(selectors.carPlayer);
-	const classes = [globalAttr.forwardIconClass, globalAttr.marginTop(2)];
+	const carNameElement = carElement.querySelector(SELECTOR.CAR_PLAYER);
+	const classes = [GLOBAL_ATTR.CLASS_FORWARD_ICON, GLOBAL_ATTR.GET_CLASS_MARGIN_TOP(2)];
 	arrowElement.classList.add(...classes);
 	arrowElement.innerText = '⬇️';
 	carNameElement.after(arrowElement);
@@ -42,5 +42,5 @@ export const appendArrowElement = function (carElement) {
 
 export const initializeRacingView = function () {
 	toggleDisplayCountView();
-	$(selectors.racingCarsArea).innerHTML = '';
+	$(SELECTOR.RACING_CARS_AREA).innerHTML = '';
 };

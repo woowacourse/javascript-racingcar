@@ -1,22 +1,22 @@
-import { selectors, globalAttr } from '../keys.js';
+import { SELECTOR, GLOBAL_ATTR } from '../keys.js';
 import { $ } from '../utils.js';
 
 export const initializeInputView = function () {
-	$(selectors.carNamesInput).value = '';
-	$(selectors.countInput).value = '';
+	$(SELECTOR.CAR_NAMES_INPUT).value = '';
+	$(SELECTOR.COUNT_INPUT).value = '';
 	toggleDisplayCountView();
 };
 
 export const toggleDisplayCountView = function () {
-	$(selectors.countContainer).classList.toggle(globalAttr.displayNoneClass);
+	$(SELECTOR.COUNT_CONTAINER).classList.toggle(GLOBAL_ATTR.CLASS_DISPLAY_NONE);
 };
 
 export const toggleCarNameInputDisable = function () {
-	$(selectors.carNamesInput).toggleAttribute(globalAttr.disabledAttr);
-	$(selectors.carNamesSubmit).toggleAttribute(globalAttr.disabledAttr);
+	$(SELECTOR.CAR_NAMES_INPUT).toggleAttribute(GLOBAL_ATTR.CLASS_DISABLED_ATTR);
+	$(SELECTOR.CAR_NAMES_SUBMIT).toggleAttribute(GLOBAL_ATTR.CLASS_DISABLED_ATTR);
 };
 
 export const toggleCountInputDisable = function () {
-	$(selectors.countInput).toggleAttribute(globalAttr.disabledAttr);
-	$(selectors.countSubmit).toggleAttribute(globalAttr.disabledAttr);
+	$(SELECTOR.COUNT_INPUT).toggleAttribute(GLOBAL_ATTR.CLASS_DISABLED_ATTR);
+	$(SELECTOR.COUNT_SUBMIT).toggleAttribute(GLOBAL_ATTR.CLASS_DISABLED_ATTR);
 };

@@ -1,19 +1,19 @@
-import { selectors, globalTexts, globalAttr, alertMsg } from '../keys.js';
+import { SELECTOR, GLOBAL_TEXT, GLOBAL_ATTR } from '../keys.js';
 import { $ } from '../utils.js';
 
 const toggleDisplayCountView = function () {
-	$(selectors.winnerContainer).classList.toggle(globalAttr.displayNoneClass);
+	$(SELECTOR.WINNER_CONTAINER).classList.toggle(GLOBAL_ATTR.CLASS_DISPLAY_NONE);
 };
 
 export const displayWinnerView = function (winners) {
-	const $winnerElement = $(selectors.winnerTextArea);
-	$winnerElement.innerText = globalTexts.makeWinnerText(winners);
+	const $winnerElement = $(SELECTOR.WINNER_TEXT_AREA);
+	$winnerElement.innerText = GLOBAL_TEXT.MAKE_WINNER_TEXT(winners);
 	toggleDisplayCountView();
-	setTimeout(()=>alert(alertMsg.printWinners(winners)), 2000);
+	setTimeout(()=>alert(GLOBAL_TEXT.MAKE_WINNER_TEXT(winners)), 2000);
 };
 
 export const initializeWinnerView = function () {
-	const $winnerElement = $(selectors.winnerTextArea);
-	$winnerElement.innerText = globalTexts.winnerText;
+	const $winnerElement = $(SELECTOR.WINNER_TEXT_AREA);
+	$winnerElement.innerText = GLOBAL_TEXT.WINNER_TEXT;
 	toggleDisplayCountView();
 };

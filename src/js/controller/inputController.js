@@ -4,7 +4,7 @@ import {
 	toggleDisplayCountView,
 } from '../view/inputView.js';
 import { app } from '../index.js';
-import { alertMsg, bounds, selectors } from '../keys.js';
+import { ALERT_MESSAGE, BOUND, SELECTOR } from '../keys.js';
 import { displayRacingCars } from '../view/racingView.js';
 import { startRacingGame } from './racingController.js';
 import { isNotDuplicatedArray, isAlphanumeric, $ } from '../utils.js';
@@ -14,34 +14,34 @@ const isValidCarNames = function (carNamesInput) {
 		isNotDuplicatedArray(carNamesInput) &&
 		carNamesInput.every(
 			(carName) =>
-				bounds.lengthLowerBound <= carName.length &&
-				carName.length <= bounds.lengthUpperBound &&
+				BOUND.CAR_NAMES_LENGTH_LOWER_BOUND <= carName.length &&
+				carName.length <= BOUND.CAR_NAMES_LENGTH_UPPER_BOUND &&
 				isAlphanumeric(carName),
 		)
 	);
 };
 
 const getCarNamesInput = function () {
-	return $(selectors.carNamesInput)
+	return $(SELECTOR.CAR_NAMES_INPUT)
 		.value.split(',')
 		.map((e) => e.trim());
 };
 
 const isValidCount = function (count) {
 	return (
-		bounds.countLowerBound <= Number(count) &&
-		Number(count) <= bounds.countUpperBound
+		BOUND.COUNT_LOWER_BOUND <= Number(count) &&
+		Number(count) <= BOUND.COUNT_UPPER_BOUND
 	);
 };
 
 export const handleCarNamesSubmit = function () {
 	const carNamesInput = getCarNamesInput();
 	if (!isValidCarNames(carNamesInput)) {
-		alert(alertMsg.isNotValidCarNames);
+		alert(ALERT_MESSAGE.NOT_VALID_CARNAMES);
 		return;
 	}
-	if (bounds.carNamesUpperBound < carNamesInput.length) {
-		alert(alertMsg.isNotValidCarNamesLength);
+	if (BOUND.CARS_UPPER_BOUND < carNamesInput.length) {
+		alert(ALERT_MESSAGE.NOT_VALID_CARNAMES_LENGTH);
 		return;
 	}
 	toggleCarNameInputDisable();
@@ -50,10 +50,10 @@ export const handleCarNamesSubmit = function () {
 
 export const handleCountSubmit = function () {
 	const carNamesInput = getCarNamesInput();
-	const countInput = $(selectors.countInput).value;
+	const countInput = $(SELECTOR.COUNT_INPUT).value;
 
 	if (!isValidCount(countInput)) {
-		alert(alertMsg.isNotValidCount);
+		alert(ALERT_MESSAGE.NOT_VALID_COUNT.isNotValidCount);
 		return;
 	}
 	app.addCars(carNamesInput);
