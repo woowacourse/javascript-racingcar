@@ -19,6 +19,7 @@ export const SELECTOR = {
     CONTAINER: ".game-progress-container",
     CAR_NAME: ".car-player",
     FORWARD_ICON: ".forward-icon",
+    SPINNER: ".spinner-container",
   },
 
   GAME_RESULT: {

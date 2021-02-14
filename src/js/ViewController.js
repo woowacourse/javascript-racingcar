@@ -29,6 +29,12 @@ export default class ViewController {
     });
   }
 
+  renderSpinner() {
+    setTimeout(() => {
+      this.show(SELECTOR.GAME_PROGRESS.SPINNER);
+    }, 200);
+  }
+
   renderGameResult(winners) {
     this.gameResultWinners.innerText = `
     🏆 최종 우승자: ${winners.join(", ")} 🏆
@@ -37,11 +43,11 @@ export default class ViewController {
   }
 
   show(selector) {
-    document.querySelector(selector).hidden = false;
+    document.querySelectorAll(selector).forEach((el) => (el.hidden = false));
   }
 
   hide(selector) {
-    document.querySelector(selector).hidden = true;
+    document.querySelectorAll(selector).forEach((el) => (el.hidden = true));
   }
 
   disable(selector) {

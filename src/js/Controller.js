@@ -40,6 +40,8 @@ export class Controller {
       return;
     }
 
+    this.viewController.renderSpinner();
+
     this.startRacing(this.getLapCount());
 
     this.viewController.renderGameResult(this.getWinners());

@@ -9,11 +9,23 @@ export default class CarView {
     this.carView.innerHTML = `<div class="car-player mr-2">${name}</div>`;
 
     this.gameProgressContainer.append(this.carView);
+    this.addSpinner();
+  }
+
+  addSpinner() {
+    this.carView.insertAdjacentHTML(
+      "beforeend",
+      `<div class="d-flex justify-center mt-4">
+        <div class="relative spinner-container" hidden>
+          <span class="material spinner"></span>
+        </div>
+      </div>`
+    );
   }
 
   addForwardIcon() {
-    this.carView.insertAdjacentHTML(
-      "beforeend",
+    this.carView.lastElementChild.insertAdjacentHTML(
+      "beforebegin",
       '<div class="forward-icon mt-2">⬇️️</div>'
     );
   }
