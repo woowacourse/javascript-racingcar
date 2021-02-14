@@ -48,11 +48,11 @@ export default class CarGameView {
     return cars.map((car) => `
         <div>
           <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
-          ${this.displayForwardIcons(car.getPosition())}
+          ${this.getForwardIconsTemplate(car.getPosition())}
         </div>`).join('');
   }
 
-  displayForwardIcons(count) {
+  getForwardIconsTemplate(count) {
     return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
   }
 
