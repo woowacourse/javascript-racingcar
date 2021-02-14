@@ -20,3 +20,8 @@ export const VALID = {
   CARNAME_MIN_LENGTH: 1,
   COUNT_MIN_NUM: 1,
 };
+
+export const WAIT = {
+  MOVE: 1000,
+  WINNER_ALERT: 2000,
+};

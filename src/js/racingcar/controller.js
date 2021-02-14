@@ -2,7 +2,7 @@ import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
 import Validator from "../validator/validator.js";
 import { generateRandomNumber, $ } from "../utils/util.js";
-import { RANDOM, GAME } from "../constants/constant.js";
+import { RANDOM, GAME, WAIT } from "../constants/constant.js";
 import Message from "../layouts/message.js";
 
 class RacingCarController {
@@ -73,7 +73,7 @@ class RacingCarController {
       } else {
         this.view.renderGameLoading();
       }
-    }, 1000);
+    }, WAIT.MOVE);
   }
 
   manageCars() {
@@ -99,7 +99,7 @@ class RacingCarController {
     this.handleReset();
     setTimeout(() => {
       alert(this.message.winnerMessage(winners));
-    }, 2000);
+    }, WAIT.WINNER_ALERT);
   }
 
   reset() {
