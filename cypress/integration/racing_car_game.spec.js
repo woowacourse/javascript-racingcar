@@ -1,14 +1,14 @@
-describe('Racing Car 게임', () => {
+describe('Racing Car 게임 : 게임 진행 테스트', () => {
   before(() => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('이름/횟수를 입력한 이후 게임결과 창에 올바르게 표시되는지 확인', () => {
+  it('car-name-input과 try-count-button에 정상적인 이름/횟수를 입력한 후, 모든 확인 버튼 클릭한 경우 게임 결과 창에 자동차 이름 목록을 정상적으로 출력한다.', () => {
     const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
     cy.get('[data-test=car-name-input]').type(carNames.join(','));
     cy.get('[data-test=car-name-button]').click();
-    cy.get('[data-test=try-count-input]').type('10');
+    cy.get('[data-test=try-count-input]').type('7');
     cy.get('[data-test=car-name-input]').should('be.disabled');
     cy.get('[data-test=car-name-button]').should('be.disabled');
     cy.get('[data-test=try-count-button]').click();
@@ -20,7 +20,7 @@ describe('Racing Car 게임', () => {
     );
   });
 
-  it('우승자가 제대로 출력됐는지 확인', () => {
+  it('이름이 정상적으로 출력된 이후 게임 진행 결과 화면을 바탕으로, 우승자가 제대로 출력됐는지 확인한다.', () => {
     const scores = [];
     const winners = [];
 
@@ -49,7 +49,7 @@ describe('Racing Car 게임', () => {
     });
   });
 
-  it('재시작 버튼 동작 확인', () => {
+  it('게임이 완료된 후 다시 시작하기 버튼을 클릭한 경우, car-name-input과 try-count-button의 값은 비워지고 활성화 된다. 또한 게임 결과와 우승자 결과 화면은 사라진다', () => {
     cy.get('[data-test=restart-button]').click();
 
     cy.get('[data-test=car-name-input]').should('not.be.disabled');
