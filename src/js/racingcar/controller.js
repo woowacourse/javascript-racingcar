@@ -54,12 +54,24 @@ class RacingCarController {
       return this.goStop();
     });
     this.model.moveCar(moves);
+    this.view.renderProcess(this.model.cars);
   }
 
   startGame() {
-    for (let i = 0; i < this.model.count; i++) {
+    let playCount = 1;
+    const count = this.model.count;
+    this.view.renderProcess(this.model.cars);
+    this.view.renderGameLoading();
+
+    const playGame = setInterval(() => {
       this.play();
-    }
+      if (playCount++ >= count) {
+        clearInterval(playGame);
+        this.showResult();
+      } else {
+        this.view.renderGameLoading();
+      }
+    }, 1000);
   }
 
   manageCars() {
@@ -76,8 +88,6 @@ class RacingCarController {
     if (this.validator.isCountValid(count)) {
       this.model.count = parseInt(count, 10);
       this.startGame();
-      this.view.renderProcess(this.model.cars);
-      this.showResult();
     }
   }
 

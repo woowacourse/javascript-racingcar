@@ -17,6 +17,13 @@ class RacingCarView {
     $processSection.innerHTML = this.template.processSectionTemplate(cars);
   }
 
+  renderGameLoading() {
+    const $processCarSections = document.querySelectorAll(".process-car");
+    $processCarSections.forEach(carSection => {
+      carSection.innerHTML += this.template.processCarLoadingTemplate();
+    });
+  }
+
   renderResult(winners) {
     const $resultSection = $("#result");
     $resultSection.style.display = "block";

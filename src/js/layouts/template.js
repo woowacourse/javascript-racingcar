@@ -33,6 +33,16 @@ class Template {
     `;
   }
 
+  processCarLoadingTemplate() {
+    return `
+      <div class="spinner d-flex justify-center mt-4">
+        <div class="relative spinner-container">
+          <span class="material spinner"></span>
+        </div>
+      </div>
+    `;
+  }
+
   resultSectionTemplate(winners) {
     return `
       <h2 id="result-winner">🏆 최종 우승자: ${winners.join(", ")} 🏆</h2>
