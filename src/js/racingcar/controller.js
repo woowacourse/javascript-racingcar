@@ -75,7 +75,7 @@ class RacingCarController {
     const count = this.getCountInput();
     if (isCountValid(count)) {
       this.count = count;
-      this.manageGame();
+      this.proceedGame();
     }
   }
 
