@@ -70,7 +70,8 @@ class Model {
 	}
 
 	getMaxScore() {
-		return this.cars.reduce((maxScore, car) => (car.score > maxScore ? car.score : maxScore), 0);
+		const scores = this.cars.map((car) => car.score);
+		return Math.max(...scores);
 	}
 
 	getCarObjectsWithMaxScore(maxScore) {
