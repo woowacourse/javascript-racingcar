@@ -13,11 +13,13 @@ class Utils {
 
 	createElement(tagType, attributes, innerText) {
 		const result = document.createElement(tagType);
+
 		if (innerText) {
 			const innerText = document.createTextNode(innerText);
 			this.appendChildren(result, innerText);
 		}
 		if (attributes) this.setAttributes(result, attributes);
+
 		return result;
 	}
 

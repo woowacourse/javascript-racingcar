@@ -1,4 +1,4 @@
-import Utils from "./Utils.js";
+import Utils from "./DomManager.js";
 class ElementManager {
 	getAppDIV() {
 		return Utils.get("app");
