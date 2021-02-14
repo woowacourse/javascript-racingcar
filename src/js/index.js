@@ -1,5 +1,5 @@
-import View from "./View.js";
-import Controller from "./Controller.js";
+import View from "./View/View.js";
+import Controller from "./Controller/Controller.js";
 
 const $app = document.getElementById("app");
 

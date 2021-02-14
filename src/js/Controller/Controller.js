@@ -1,9 +1,8 @@
-import Model from "./Model.js";
-import ElementManager from "./ElementManager.js";
-import View from "./View.js";
-import Utils from "./Utils.js";
+import Model from "../Model/Model.js";
+import ElementManager from "../Utils/ElementManager.js";
+import View from "../View/View.js";
+import Utils from "../Utils/Utils.js";
 
-// 구현하지 못한 기능 : 이름 입력창에 이모지 입력을 제한하는 기능
 class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
@@ -55,7 +54,7 @@ class Controller {
 	}
 
 	filterCarNameType(event) {
-		const RegExp = /[ 0-9\{\}\[\]\/?.;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+		const RegExp = /[^가-힣a-zA-Z,]/gi;
 
 		if (RegExp.test(event.target.value) === true) {
 			event.target.value = event.target.value.replace(RegExp, "");

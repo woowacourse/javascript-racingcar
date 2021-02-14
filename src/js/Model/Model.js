@@ -1,6 +1,7 @@
-import View from "./View.js";
+import View from "../View/View.js";
 import Validator from "./Validator.js";
 import { COUNT_CLICKED_ELEMENT_LENGTH } from "./constatns.js";
+
 class Model {
 	constructor() {
 		this.cars = [];

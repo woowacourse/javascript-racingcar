@@ -1,4 +1,4 @@
-import Model from "../../../src/js/Model.js";
+import Model from "../../../src/js/Model/Model.js";
 
 /// <reference types="cypress" />
 

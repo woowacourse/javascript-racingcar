@@ -1,7 +1,7 @@
-import ElementManager from "./ElementManager.js";
-import Model from "./Model.js";
+import ElementManager from "../Utils/ElementManager.js";
+import Model from "../Model/Model.js";
 import Templates from "./Templates.js";
-import Utils from "./Utils.js";
+
 class View {
 	initialRender($parentElement) {
 		$parentElement.innerHTML =
