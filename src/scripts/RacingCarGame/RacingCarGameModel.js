@@ -1,6 +1,6 @@
 import {
-  CAR_MOVE_DECIDE_NUMBER_RANGE,
-  CAR_MOVE_STANDARD_NUMBER,
+  CAR_MOVE_THRESHOLD_RANGE_NUMBER,
+  CAR_MOVE_THRESHOLD_NUMBER,
 } from '../constants.js';
 
 export default class RacingCarGameModel {
@@ -17,7 +17,7 @@ export default class RacingCarGameModel {
   }
 
   moveCarForward(car, randomNumber) {
-    if (randomNumber >= CAR_MOVE_STANDARD_NUMBER) {
+    if (randomNumber >= CAR_MOVE_THRESHOLD_NUMBER) {
       car.record += 1;
     }
   }
@@ -28,7 +28,9 @@ export default class RacingCarGameModel {
 
   moveCarsByRandom() {
     this.carList.forEach((car) => {
-      const randomNumber = this.getRandomNumber(CAR_MOVE_DECIDE_NUMBER_RANGE)
+      const randomNumber = this.getRandomNumber(
+        CAR_MOVE_THRESHOLD_RANGE_NUMBER
+      );
       this.moveCarForward(car, randomNumber);
     });
   }

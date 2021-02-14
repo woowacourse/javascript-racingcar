@@ -1,4 +1,4 @@
-import RacingCarGameValidation from './RacingCarGameValidation.js';
+import RacingCarGameValidator from './RacingCarGameValidator.js';
 import RacingCarGameView from './RacingCarGameView.js';
 import { racingCarGameModel } from '../store.js';
 import { CAR_NAME_SEPERATOR } from '../constants.js';
@@ -11,7 +11,7 @@ export default class RacingCarGameController {
   static registerCarNames(carNames) {
     const carNameList = RacingCarGameController.getCarNameList(carNames);
     const isCarNameListValid = carNameList.every((carName) =>
-      RacingCarGameValidation.isCarNameValid(carName)
+      RacingCarGameValidator.checkCarNameWithAlert(carName)
     );
     if (isCarNameListValid) {
       racingCarGameModel.registerCars(carNameList);
@@ -31,11 +31,11 @@ export default class RacingCarGameController {
 
   static playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
-    if (!RacingCarGameValidation.isTryCountValid(tryCount)) {
+    if (!RacingCarGameValidator.isTryCountValid(tryCount)) {
       RacingCarGameView.clearTryCountInput();
       return;
     }
-    if (!RacingCarGameValidation.isCarListEmpty()) {
+    if (!RacingCarGameValidator.isCarListEmpty()) {
       for (let i = 0; i < tryCount; i += 1) {
         racingCarGameModel.moveCarsByRandom();
       }
