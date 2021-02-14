@@ -58,6 +58,11 @@
   - 우승자가 여러명일 경우 콤마를 이용하여 구분
 - 다시시작 버튼 입력 시 게임을 reset한다.
 
+### step2
+
+- 게임 결과가 모두 나타나고 2초 후 `alert`으로 축하 메세지를 띄운다.
+- 1초의 텀을 두고 각 턴의 결과가 화면에 출력된다.
+
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-racingcar/blob/main/LICENSE) licensed.
