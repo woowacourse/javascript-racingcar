@@ -9,16 +9,13 @@ import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
 import { getWinners } from '../models/getWinners.js';
 
 export async function handleGameResult(cars, racingCount) {
-  const { DELAY } = GAME_OVER_NOTICE;
-  let winners;
-
   clearResidueForwardIcon();
   showLoader();
   await playRacingGame(cars, racingCount);
   hideLoader();
-  winners = getWinners(cars);
+  const winners = getWinners(cars);
   showGameResult(winners);
-  await wait(DELAY);
+  await wait(GAME_OVER_NOTICE.DELAY);
   alertGameOverAfterDelay(winners);
 }
 
