@@ -1,3 +1,4 @@
+import { GAME_OVER_NOTICE } from '../constants/gameOverNotice.js';
 import { RACING_RULE } from '../constants/racingRule.js';
 import { insertForwardIcon } from '../views/insertForwardIcon.js';
 import { clearResidueForwardIcon } from '../views/clearResidueForwardIcon.js';
@@ -8,6 +9,7 @@ import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
 import { getWinners } from '../models/getWinners.js';
 
 export async function handleGameResult(cars, racingCount) {
+  const { DELAY } = GAME_OVER_NOTICE;
   let winners;
 
   clearResidueForwardIcon();
@@ -16,6 +18,7 @@ export async function handleGameResult(cars, racingCount) {
   hideLoader();
   winners = getWinners(cars);
   showGameResult(winners);
+  await wait(DELAY);
   alertGameOverAfterDelay(winners);
 }
 
