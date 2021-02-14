@@ -34,6 +34,7 @@ export default class TryCountInput {
   reset() {
     activateElements(this.$tryCountInput, this.$tryCountSummitBtn);
     clearInput(this.$tryCountInput);
+    this.setState(0);
   }
 
   setState(nextTryCount) {

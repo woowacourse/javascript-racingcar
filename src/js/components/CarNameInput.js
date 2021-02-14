@@ -47,6 +47,7 @@ export default class CarNameInput {
   reset() {
     activateElements(this.$carNameInput, this.$carNameSummitBtn);
     clearInput(this.$carNameInput);
+    this.setState([]);
   }
 
   checkValidInput(carNames) {
