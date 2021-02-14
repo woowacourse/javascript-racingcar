@@ -13,7 +13,6 @@ class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
     this.view = new RacingCarView();
-    this.handleCars();
   }
 
   getCarsInput() {
@@ -100,6 +99,11 @@ class RacingCarController {
     const winners = this.getWinners();
     this.view.renderResult(winners);
     this.handleReset();
+  }
+
+  start() {
+    this.reset();
+    this.handleCars();
   }
 
   reset() {

@@ -1,7 +1,8 @@
-import RacingCar from "./racingcar.js";
+import RacingCarController from '../js/racingcar/controller.js';
 
 const init = () => {
-  new RacingCar();
+  const racingCarGame = new RacingCarController();
+  racingCarGame.start();
 };
 
 init();
