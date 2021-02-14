@@ -12,6 +12,7 @@ import {getQuerySelector} from '../utils/util.js';
 class RacingCarController {
   constructor() {
     this.cars = [];
+    this.count = 0;
     this.model = null;
     this.view = new RacingCarView();
   }
@@ -24,6 +25,7 @@ class RacingCarController {
   reset() {
     this.model = null;
     this.cars = [];
+    this.count = 0;
     this.view.reset();
   }
 
@@ -66,17 +68,22 @@ class RacingCarController {
   }
 
   manageCount() {
-    if (isCountExist(this.model && this.model.getCount())) {
+    if (isCountExist(this.count)) {
       return;
     }
 
     const count = this.getCountInput();
     if (isCountValid(count)) {
-      this.model = new RacingCarModel(this.cars, count);
-      this.playRacingCarGame();
-      this.view.renderProcess(this.model.getCars());
-      this.showResult();
+      this.count = count;
+      this.manageGame();
     }
+  }
+
+  proceedGame() {
+    this.model = new RacingCarModel(this.cars, this.count);
+    this.playRacingCarGame();
+    this.view.renderProcess(this.model.getCars());
+    this.showResult();
   }
 
   showResult() {
