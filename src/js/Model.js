@@ -1,5 +1,6 @@
 import View from "./View.js";
-
+import Validator from "./Validator.js";
+import { COUNT_CLICKED_ELEMENT_LENGTH } from "./constatns.js";
 class Model {
 	constructor() {
 		this.cars = [];
@@ -15,7 +16,7 @@ class Model {
 	}
 
 	isAlreadyCountClicked($settingContainer) {
-		return $settingContainer.childElementCount !== 2;
+		return $settingContainer.childElementCount !== COUNT_CLICKED_ELEMENT_LENGTH;
 	}
 
 	setCount(value) {
@@ -86,19 +87,19 @@ class Model {
 	validateName(inputValue) {
 		const names = inputValue.split(",");
 
-		if (this.cars.length !== 0) {
+		if (!Validator.isFirstSubmittedName(this.cars.length)) {
 			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
 		}
-		if (names.includes("")) {
+		if (Validator.isIncludeBlank(names)) {
 			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
 		}
-		if (names.length > 9) {
+		if (Validator.isOverScrollPreventLength(names.length)) {
 			return { validity: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
 		}
-		if (names.some((name) => name.length > 5)) {
+		if (Validator.isOverFiveCharacter(names)) {
 			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
 		}
-		if ([...new Set(names)].length !== names.length) {
+		if (Validator.isDuplicatedName(names)) {
 			return { validity: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
 		}
 
@@ -106,13 +107,13 @@ class Model {
 	}
 
 	validateCount(submittedCount) {
-		if (this.count !== 0) {
+		if (!Validator.isFirstSubmittedCount(this.count)) {
 			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
 		}
-		if (submittedCount === NaN || submittedCount <= 0 || Number.isInteger(submittedCount) === false) {
+		if (!Validator.isValidInteger(submittedCount)) {
 			return { validity: false, alertMessage: "자연수만 설정할 수 있습니다." };
 		}
-		if (submittedCount > 20000) {
+		if (!Validator.isUnderMaxCount(submittedCount)) {
 			return { validity: false, alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다." };
 		}
 
