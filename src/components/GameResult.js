@@ -14,7 +14,7 @@ export default class GameResult extends Component {
       </section>
     `;
   }
-
+  
   initEvent() {
     this.$target.addEventListener('click', ({ target }) => {
       if (target.id === 'retry') {

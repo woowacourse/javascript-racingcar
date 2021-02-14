@@ -107,6 +107,7 @@ describe('레이싱 게임', () => {
       cy.get('#submit-race-times').click();
       cy.wait(1000);
 
+
       cy.get('.car').then($cars => {
         const $carAaa = $cars[0];
         const $carBbb = $cars[1];
@@ -160,4 +161,5 @@ describe('레이싱 게임', () => {
     cy.wait(2000);
     cy.get('@alert').should('be.calledWith', WINNING_MESSAGE);
   });
+
 });

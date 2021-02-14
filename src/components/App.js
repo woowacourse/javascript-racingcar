@@ -53,6 +53,7 @@ export default class App extends Component {
     this.render();
   };
 
+
   async race() {
     await this.#processRacing();
     this.winners = this.#getWinners();
