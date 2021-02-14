@@ -13,5 +13,5 @@
     "sourceType": "module"
   },
   "rules": {},
-  "plugins": ["prettier", "cypress"]
+  "plugins": ["cypress", "prettier"]
 }
