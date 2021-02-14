@@ -25,11 +25,11 @@ class RacingCarModel {
 
   playRacingCarGame() {
     for (let i = 0; i < this.count; i++) {
-      this.playOnce();
+      this.playRacingCarGameOnce();
     }
   }
 
-  playOnce() {
+  playRacingCarGameOnce() {
     this.cars.forEach((car) => {
       generateRandomNumber(0, 9) >= GAME.FORWARD_STANDARD_NUM &&
         car.moveForward();
