@@ -1,5 +1,6 @@
 import alertConstants from '../constants/alertConstants.js';
 import racingConstants from '../constants/racingConstants.js';
+import { sleep } from '../utils/utils.js';
 
 export default class CarRacingController {
   constructor(model, view) {
@@ -90,8 +91,9 @@ export default class CarRacingController {
     return movedCars;
   }
 
-  startRacing() {
+  async startRacing() {
     for (let i = 0; i < this.model.racingCount; i++) {
+      await sleep(1000);
       const movedCars = this.getMovedCars();
       this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
