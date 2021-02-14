@@ -1,4 +1,4 @@
-import { clearInput, disableElements, activateElements } from '../util/domUtil.js';
+import { clearInput, disableElements, activateElements } from '../util/dom.js';
 import { isNaturalNumber } from '../util/general.js';
 import { ERROR_MESSAGE } from '../util/errorMessage.js';
 

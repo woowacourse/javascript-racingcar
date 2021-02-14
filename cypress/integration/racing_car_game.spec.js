@@ -1,4 +1,4 @@
-import { WINNER_SEPARATOR } from '../../src/js/util/constant.js';
+import { WINNER_SEPARATOR } from '../../src/js/util/constants.js';
 
 describe('Racing Car 게임', () => {
   before(() => {

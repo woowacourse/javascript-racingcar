@@ -1,4 +1,4 @@
-import { WINNER_SEPARATOR } from '../util/constant.js';
+import { WINNER_SEPARATOR } from '../util/constants.js';
 
 export default class RacingWinner {
   constructor({ $parent, resetCarGame }) {
@@ -18,6 +18,18 @@ export default class RacingWinner {
     this.$parent.appendChild(this.$container);
   }
 
+  attachEvents() {
+    this.$container.addEventListener('click', this.handleClickRestart.bind(this));
+  }
+
+  handleClickRestart({ target }) {
+    if (!target.classList.contains('btn-restart')) {
+      return;
+    }
+
+    this.resetCarGame();
+  }
+
   showWinners(cars) {
     this.setState(this.getWinners(cars));
   }
@@ -29,18 +41,6 @@ export default class RacingWinner {
     );
 
     return cars.filter((car) => car.score === maxScore).map((car) => car.name);
-  }
-
-  attachEvents() {
-    this.$container.addEventListener('click', this.handleClickRestart.bind(this));
-  }
-
-  handleClickRestart({ target }) {
-    if (!target.classList.contains('btn-restart')) {
-      return;
-    }
-
-    this.resetCarGame();
   }
 
   reset() {

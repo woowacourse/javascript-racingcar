@@ -3,7 +3,7 @@ import TryCountInput from './TryCountInput.js';
 import RacingResult from './RacingResult.js';
 import RacingWinner from './RacingWinner.js';
 import Car from '../model/Car.js';
-import { MIN_NUMBER, MAX_NUMBER, MOVE_BOUNDED_NUMBER } from '../util/constant.js';
+import { MIN_NUMBER, MAX_NUMBER, MOVE_BOUNDED_NUMBER } from '../util/constants.js';
 import { getRandomNumber } from '../util/general.js';
 
 export default class App {
