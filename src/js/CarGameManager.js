@@ -25,36 +25,39 @@ export default class CarGameManager {
   }
 
   bindInputCarNamesEvent() {
-    this.$element.querySelector('#car-names-check-button').addEventListener('click',
-      this.carNamesInputHandler.bind(this));
+    this.$element.querySelector('#car-names-check-button')
+      .addEventListener('click', this.carNamesInputHandler.bind(this));
   }
 
   bindInputTryCountEvent() {
-    this.$element.querySelector('#try-count-check-button').addEventListener('click',
-      this.tryCountInputHandler.bind(this));
+    this.$element.querySelector('#try-count-check-button')
+      .addEventListener('click', this.tryCountInputHandler.bind(this));
   }
 
   bindResetEvent() {
-    this.$element.querySelector('#reset-button').addEventListener('click', () => {
-      this.initGame();
-    });
+    this.$element.querySelector('#reset-button')
+      .addEventListener('click', () => this.initGame());
   }
 
   carNamesInputHandler() {
     this.carNames = this.carGameView.getCarNames();
+
     if (!this.validator.validateCarNames(this.carNames)) {
       this.initGame();
       return;
     }
+
     this.carGameView.displayTryCountView();
   }
 
   tryCountInputHandler() {
     const tryCount = this.carGameView.getTryCount();
+
     if (!this.validator.validateTryCount(tryCount)) {
       this.carGameView.resetTryCountView();
       return;
     }
+
     this.createCar();
 
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
