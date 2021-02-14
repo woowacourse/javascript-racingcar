@@ -46,7 +46,7 @@ class RacingCarController {
       .map((car) => car.name);
   }
 
-  startGame() {
+  playRacingCarGame() {
     for (let i = 0; i < this.model.getCount(); i++) {
       this.model.playOnce();
     }
@@ -73,7 +73,7 @@ class RacingCarController {
     const count = this.getCountInput();
     if (isCountValid(count)) {
       this.model = new RacingCarModel(this.cars, count);
-      this.startGame();
+      this.playRacingCarGame();
       this.view.renderProcess(this.model.getCars());
       this.showResult();
     }
