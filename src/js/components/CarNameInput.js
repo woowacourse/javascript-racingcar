@@ -53,7 +53,7 @@ const validateInputValue = inputCarName => {
     return ERROR_MESSAGE.EMPTY_CAR_NAME_INPUT;
   }
 
-  if (isOnlyOneCarName(carNames)) {
+  if (!isMoreThanOne(carNames)) {
     return ERROR_MESSAGE.ONE_CAR_NAME_INPUT;
   }
 
@@ -74,12 +74,11 @@ const validateInputValue = inputCarName => {
 
 const isEmptyValue = value => value === '';
 
-const isOnlyOneCarName = carNames => carNames.length < 2;
+const isMoreThanOne = names => names.length > 1;
 
-const isContainEmptyString = carNames => carNames.some(isEmptyValue);
+const isContainEmptyString = names => names.some(isEmptyValue);
 
-const isDuplicatedCarName = carNames =>
-  carNames.length !== new Set(carNames).size;
+const isDuplicatedCarName = names => names.length !== new Set(names).size;
 
-const isOverMaxLengthCarName = carNames =>
-  carNames.some(carName => carName.length > CAR_NAME_MAX_LENGTH);
+const isOverMaxLengthCarName = names =>
+  names.some(name => name.length > CAR_NAME_MAX_LENGTH);
