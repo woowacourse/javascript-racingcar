@@ -1,7 +1,7 @@
 {
 	"name": "javascript-racingcar",
 	"version": "1.0.0",
-	"description": "<p align=\"middle\" >\r   <img width=\"200px;\" src=\"https://user-images.githubusercontent.com/50367798/106415730-2645a280-6493-11eb-876c-ef7172652261.png\"/>\r </p>\r <h2 align=\"middle\">level1 - 자동차 경주 게임</h2>\r <p align=\"middle\">자바스크립트로 구현 하는 자동차 경주 게임</p>\r <p align=\"middle\">\r <img src=\"https://img.shields.io/badge/version-1.0.0-blue?style=flat-square\" alt=\"template version\"/>\r <img src=\"https://img.shields.io/badge/language-html-blue.svg?style=flat-square\"/>\r <a href=\"https://github.com/daybrush/moveable/blob/master/LICENSE\" target=\"_blank\">\r   <img src=\"https://img.shields.io/github/license/daybrush/moveable.svg?style=flat-square&label=license&color=08CE5D\"/>\r   </a>\r </p>",
+	"description": "woowacourse level1 - racingcar game",
 	"main": "index.js",
 	"scripts": {
 		"test": "npx cypress open"
