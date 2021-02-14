@@ -89,10 +89,10 @@ export default class RacingGameController {
 
   runGame($input) {
     this.game.runRace(Number($input.value));
-    this.renderResult(this.game.cars, this.game.getWinners());
+    this.handleResult(this.game.cars, this.game.getWinners());
   }
 
-  renderResult(cars, winners) {
+  handleResult(cars, winners) {
     const setEventParams = ['click', '.reset-btn', this.initGame.bind(this)];
 
     this.view.renderProgress(cars);
