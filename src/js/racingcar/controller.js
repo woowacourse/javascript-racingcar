@@ -7,7 +7,7 @@ import {
   isCarValid,
   isCountValid,
 } from '../utils/vaild.js';
-import {getQuerySelector} from '../utils/util.js';
+import {getQuerySelector} from '../utils/dom.js';
 
 class RacingCarController {
   constructor() {

@@ -1,4 +1,4 @@
-import {getQuerySelector, setElementDisplay} from '../utils/util.js';
+import {getQuerySelector, setElementDisplay} from '../utils/dom.js';
 import {
   countSectionTemplate,
   processSectionTemplate,
