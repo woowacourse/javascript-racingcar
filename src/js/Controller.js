@@ -149,13 +149,14 @@ export class Controller {
   }
 
   endLap() {
-      const lapResult = this.getLapResult();
+    const lapResult = this.getLapResult();
 
-      this.carModels
-        .filter((_, i) => lapResult[i])
-        .forEach((carModel) => carModel.move());
-      this.viewController.renderGameProgress(lapResult);
-    }
+    this.carModels
+      .filter((_, i) => lapResult[i])
+      .forEach((carModel) => carModel.move());
+    this.viewController.renderGameProgress(lapResult);
+    this.viewController.renderSpinner();
+  }
 
   endRace() {
     const winners = this.getWinners();

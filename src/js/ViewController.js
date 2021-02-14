@@ -21,6 +21,7 @@ export default class ViewController {
 
   renderGameProgress(lapResult) {
     this.disable(SELECTOR.LAP_COUNT.BUTTON);
+    this.hide(SELECTOR.GAME_PROGRESS.SPINNER);
 
     lapResult.forEach((canMove, index) => {
       if (!canMove) return;
