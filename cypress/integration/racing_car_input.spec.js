@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 import { ERROR_MESSAGE } from '../../src/js/util/errorMessage.js';
 
 describe('Racing Car 게임 : INPUT 검증 테스트', () => {

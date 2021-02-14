@@ -1,11 +1,13 @@
+/// <reference types="Cypress" />
+
 describe('Racing Car 게임 : 게임 진행 테스트', () => {
   before(() => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('car-name-input과 try-count-button에 정상적인 이름/횟수를 입력한 후, 모든 확인 버튼 클릭한 경우 게임 결과 창에 자동차 이름 목록을 정상적으로 출력한다.', () => {
-    const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
+  const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
 
+  it('정상적인 이름/횟수를 입력한 후, 모든 확인 버튼 클릭한 경우 게임 결과 창에 자동차 이름 목록을 출력한다.', () => {
     cy.get('[data-test=car-name-input]').type(carNames.join(','));
     cy.get('[data-test=car-name-button]').click();
     cy.get('[data-test=try-count-input]').type('7');
@@ -21,25 +23,17 @@ describe('Racing Car 게임 : 게임 진행 테스트', () => {
   });
 
   it('이름이 정상적으로 출력된 이후 게임 진행 결과 화면을 바탕으로, 우승자가 제대로 출력됐는지 확인한다.', () => {
-    const scores = [];
-    const winners = [];
-
-    cy.document().then(document => {
-      const carPlayers = document.querySelectorAll('.car-player');
-      const carPlayerContainers = document.querySelectorAll(
-        '.car-player-container',
+    cy.get('.car-player-container').then($carPlayerContainers => {
+      const scores = [...$carPlayerContainers].map(
+        $container => $container.querySelectorAll('.forward-icon').length,
       );
 
-      carPlayerContainers.forEach($carPlayerContainer => {
-        scores.push(
-          $carPlayerContainer.querySelectorAll('.forward-icon').length,
-        );
-      });
-
       const maxScore = Math.max(...scores);
-      carPlayers.forEach(($carPlayer, index) => {
-        if (scores[index] === maxScore) {
-          winners.push($carPlayer.innerText);
+      const winners = [];
+
+      scores.forEach((score, index) => {
+        if (score === maxScore) {
+          winners.push(carNames[index]);
         }
       });
 
