@@ -7,7 +7,7 @@ import {
   isCountValid,
 } from '../utils/vaild.js';
 import {generateRandomNumber, getQuerySelector} from '../utils/util.js';
-import {RANDOM, INIT, GAME} from '../constants/constant.js';
+import {INIT, GAME} from '../constants/constant.js';
 
 class RacingCarController {
   constructor() {
@@ -40,7 +40,7 @@ class RacingCarController {
 
   // T면 1(전진), F면 0(스톱) 반환
   goStop() {
-    const randomNumber = generateRandomNumber(RANDOM.MIN_NUM, RANDOM.MAX_NUM);
+    const randomNumber = generateRandomNumber(0, 9);
 
     return randomNumber >= GAME.FORWARD_STANDARD_NUM
       ? GAME.GO_NUM
