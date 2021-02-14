@@ -77,4 +77,17 @@ describe("자동차 경주 게임 테스트", () => {
       expect(txt).to.contains("올바른 시도 횟수를 입력하세요.");
     });
   });
+
+  // 미션 2단계 테스트
+  it("loading icon이 1초마다 잘 나오는지 테스트합니다.", () => {
+    cy.get("input[type='number']").type(3).should("have.value", 3);
+    cy.get("button").eq(1).click();
+    cy.get("section.mt-4").should("exist");
+    cy.wait(1000);
+    cy.get(".spinner-box").should("exist");
+    cy.wait(1000);
+    cy.get(".spinner-box").should("exist");
+    cy.wait(1000);
+    cy.get("#winners").should("exist");
+  });
 });
