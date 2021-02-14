@@ -40,13 +40,19 @@ describe("자동차 경주 게임 테스트", () => {
     });
   });
 
+  it("게임이 성공적으로 끝나면 alert가 잘 보이는지 테스트합니다.", () => {
+    cy.wait(8000);
+    cy.on("window:alert", (txt) => {
+      expect(txt).to.contains("축하합니다.");
+    });
+  });
+
   it("다시 시작하기 버튼이 잘 눌리는지 테스트합니다.", () => {
-    cy.wait(6000);
+    cy.on("window:confirm", () => true); // alert 끄기
     cy.get("#winners").find("button").click();
+
     cy.get("#title").should("exist");
     cy.get("#car-names").should("exist");
-    cy.wait(2000);
-    cy.on("window:confirm", () => true); // alert 끄기
   });
 
   it("빈 자동차 이름이 입력되었을 때를 테스트합니다.", () => {
