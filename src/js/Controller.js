@@ -42,9 +42,19 @@ export class Controller {
 
     this.viewController.renderSpinner();
 
-    this.startRacing(this.getLapCount());
+    let i = 0;
 
-    this.viewController.renderGameResult(this.getWinners());
+    const race = setInterval(
+      (lapCount) => {
+        if (++i === lapCount) {
+          this.endRace();
+          clearInterval(race);
+        }
+        this.endLap();
+      },
+      1000,
+      this.getLapCount()
+    );
   }
 
   handleRestartButtonClick() {
@@ -138,8 +148,7 @@ export class Controller {
       .map(({ name }) => name);
   }
 
-  startRacing(lapCount) {
-    for (let i = 0; i < lapCount; i++) {
+  endLap() {
       const lapResult = this.getLapResult();
 
       this.carModels
@@ -147,5 +156,14 @@ export class Controller {
         .forEach((carModel) => carModel.move());
       this.viewController.renderGameProgress(lapResult);
     }
+
+  endRace() {
+    const winners = this.getWinners();
+
+    this.viewController.renderGameResult(winners);
+
+    setTimeout(() => {
+      alert(winners.join(", ") + MESSAGE.GAME_RESULT.CELEBRATION);
+    }, 2000);
   }
 }

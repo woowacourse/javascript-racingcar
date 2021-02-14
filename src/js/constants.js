@@ -39,6 +39,9 @@ export const MESSAGE = {
     NOT_A_NUMBER: "숫자를 입력해주세요",
     OUT_OF_RANGE: "1 이상 20 이하의 정수를 입력해주세요",
   },
+  GAME_RESULT: {
+    CELEBRATION: " 님 우승을 축하합니다.",
+  },
   COMMON: {
     INVALID_ACCESS: "잘못된 접근입니다",
   },
