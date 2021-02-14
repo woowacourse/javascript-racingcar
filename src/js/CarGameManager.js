@@ -43,30 +43,25 @@ export default class CarGameManager {
   }
 
   carNamesInputHandler() {
-    this.carNames = this.$element.querySelector('#car-names-input').value
-      .split(',')
-      .map((name) => name.trim());
+    this.carNames = this.carGameView.getCarNames();
 
     if (!this.validator.validateCarNames(this.carNames)) {
-      return this.initGame();
+      this.initGame();
+      return;
     }
-    this.carGameView.showView(this.$element.querySelector('#try-count-container'));
+    this.carGameView.displayTryCountView();
   }
 
   tryCountInputHandler() {
-    const tryCount = Number(this.$element.querySelector('#try-count-input').value);
+    const tryCount = this.carGameView.getTryCount();
     if (!this.validator.validateTryCount(tryCount)) {
-      this.carGameView.resetInput(this.$element.querySelector('#try-count-input'));
-      this.carGameView.hideView(this.$element.querySelector('#game-progress-container'));
-      this.carGameView.hideView(this.$element.querySelector('#game-result-container'));
+      this.carGameView.resetTryCountView();
       return;
     }
     this.createCar();
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
     this.carGameView.displayProgress(racingCarGame.getCars());
     this.carGameView.displayWinners(racingCarGame.getWinners());
-    this.carGameView.showView(this.$element.querySelector('#game-progress-container'));
-    this.carGameView.showView(this.$element.querySelector('#game-result-container'));
   }
 
   createCar() {

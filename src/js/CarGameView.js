@@ -1,9 +1,9 @@
 export default class CarGameView {
   constructor($element) {
-    this.inputCarNamesView = $element.querySelector('#car-names-container');
-    this.inputCarNames = $element.querySelector('#car-names-input');
-    this.inputTryCountView = $element.querySelector('#try-count-container');
-    this.inputTryCount = $element.querySelector('#try-count-input');
+    this.carNamesView = $element.querySelector('#car-names-container');
+    this.carNamesInput = $element.querySelector('#car-names-input');
+    this.tryCountView = $element.querySelector('#try-count-container');
+    this.tryCountInput = $element.querySelector('#try-count-input');
     this.gameProgressView = $element.querySelector('#game-progress-container');
     this.gameResultView = $element.querySelector('#game-result-container');
   }
@@ -21,19 +21,30 @@ export default class CarGameView {
   }
 
   init() {
-    this.showView(this.inputCarNamesView);
-    this.resetInput(this.inputCarNames);
-    this.hideView(this.inputTryCountView);
-    this.resetInput(this.inputTryCount);
+    this.showView(this.carNamesView);
+    this.resetInput(this.carNamesInput);
+    this.hideView(this.tryCountView);
+    this.resetInput(this.tryCountInput);
+    this.hideView(this.gameProgressView);
+    this.hideView(this.gameResultView);
+  }
+
+  displayTryCountView() {
+    this.showView(this.tryCountView);
+  }
+
+  resetTryCountView() {
+    this.resetInput(this.tryCountInput);
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }
 
   displayProgress(cars) {
-    this.gameProgressView.querySelector('.d-flex').innerHTML = this.displayProgressContainer(cars);
+    this.gameProgressView.querySelector('.d-flex').innerHTML = this.getProgressTemplate(cars);
+    this.showView(this.gameProgressView);
   }
 
-  displayProgressContainer(cars) {
+  getProgressTemplate(cars) {
     return cars.map((car) => `
         <div>
           <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
@@ -47,5 +58,14 @@ export default class CarGameView {
 
   displayWinners(winner) {
     this.gameResultView.querySelector('h2').innerText = `🏆 최종 우승자: ${winner} 🏆`;
+    this.showView(this.gameResultView);
+  }
+
+  getCarNames() {
+    return this.carNamesInput.value.split(',').map((name) => name.trim());
+  }
+
+  getTryCount() {
+    return Number(this.tryCountInput.value);
   }
 }
