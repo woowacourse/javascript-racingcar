@@ -5,7 +5,6 @@ import { GAME_OVER_NOTICE } from '../../src/js/constants/gameOverNotice.js';
 import { RACING_RULE } from '../../src/js/constants/racingRule.js';
 
 const car = new Car();
-const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
 
 describe('racing-game', () => {
   beforeEach(() => {
@@ -123,6 +122,8 @@ describe('racing-game', () => {
   });
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
+    const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
+
     for (let i = MIN_SCORE; i <= MAX_SCORE; i++) {
       if (i >= THRESHOLD_SCORE) {
         expect(car.isMovingForward(i)).to.equal(true);
