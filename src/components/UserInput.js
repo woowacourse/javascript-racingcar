@@ -86,7 +86,7 @@ export default class UserInput extends Component {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
     }
-    this.props.raceTimes.set(Number($inputRaceTimes.value));
+    this.props.raceTimes.set(parseInt($inputRaceTimes.value, 10));
     disableDOMElements($buttonRaceTimes, $inputRaceTimes);
     this.props.mountGameProcess();
     this.props.race();
