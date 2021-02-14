@@ -1,25 +1,25 @@
-import { INIT } from "../constants/constant.js";
+import {GAME} from '../constants/constant.js';
+import {generateRandomNumber} from '../utils/util.js';
 
 class RacingCarModel {
-  constructor() {
-    this.cars = INIT.CARS;
-    this.count = INIT.COUNT;
+  constructor(cars, count) {
+    this.cars = cars;
+    this.count = count;
   }
 
   getCars() {
     return this.cars;
   }
 
-  setCars(cars) {
-    this.cars = cars;
-  }
-
   getCount() {
     return this.count;
   }
 
-  setCount(count) {
-    this.count = count;
+  playOnce() {
+    this.cars.forEach((car) => {
+      generateRandomNumber(0, 9) >= GAME.FORWARD_STANDARD_NUM &&
+        car.moveForward();
+    });
   }
 }
 
