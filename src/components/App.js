@@ -5,6 +5,7 @@ import GameResult from './GameResult.js';
 import { $ } from '../library/utils/dom.js';
 import State from '../library/core/State.js';
 import { WINNING_MESSAGE } from '../library/constants/alertMessage.js';
+import wait from '../library/utils/wait.js';
 
 export default class App extends Component {
   gameProcess;
@@ -70,21 +71,17 @@ export default class App extends Component {
     setTimeout(() => alert(WINNING_MESSAGE), 2000);
   };
 
-  #processRacing() {
-    const intervalId = setInterval(() => {
-      if (this.raceTimes.get() <= 0) return;
-
+  async #processRacing() {
+    while (this.raceTimes.get() > 0) {
       this.raceTimes.set(this.raceTimes.get() - 1);
-      this.cars.get().forEach(car => car.process());
+      await wait(1000);
+      this.#process1Turn();
       this.gameProcess.render();
-    }, 1000);
+    }
+  }
 
-    return new Promise(resolve => {
-      setTimeout(() => {
-        clearInterval(intervalId);
-        resolve();
-      }, (this.raceTimes.get() + 1) * 1000);
-    });
+  #process1Turn() {
+    this.cars.get().forEach(car => car.process());
   }
 
   #getWinners() {
