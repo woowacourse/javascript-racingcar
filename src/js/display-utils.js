@@ -1,65 +1,56 @@
-import { parseHTML, sections, state } from "./index.js";
+import {
+  parseHTML,
+  carNameSection,
+  countSection,
+  carPlayerSection,
+  resultSection,
+  state,
+} from "./index.js";
 import { resetGame } from "./game-utils.js";
 
-const hideElement = (element) => {
-  return (element.style.display = "none");
-};
-
-export const showElement = (element) => {
-  return (element.style.display = "block");
-};
-
 export const resetCarNamesInput = () => {
-  sections[1].querySelector("input").value = "";
+  carNameSection.element.querySelector("input").value = "";
 };
 
 export const resetTryNumInput = () => {
-  sections[2].querySelector("input").value = "";
+  countSection.element.querySelector("input").value = "";
 };
 
-export const resetView = (elementIdArray) => {
-  for (let elementId of elementIdArray) {
-    hideElement(sections[elementId]);
+export const resetView = (elements) => {
+  for (let element of elements) {
+    element.hide();
   }
 };
 
-const showCarName = (carName) => {
+const racingCarComponent = (carName) => {
   return parseHTML(`<div class="car-player mr-2">${carName}</div>`);
 };
 
-const showTotalStep = () => {
+const totalStepComponent = () => {
   return parseHTML(`<div class="forward-icon mt-2">⬇️️</div>`);
 };
 
 export const setResultView = () => {
-  sections[3].querySelector("div").innerHTML = "";
+  carPlayerSection.element.querySelector("div").innerHTML = "";
 
   state.cars.forEach((car) => {
     const resultDivString = `<div></div>`;
     const resultDiv = parseHTML(resultDivString);
 
-    resultDiv.appendChild(showCarName(car.name));
+    resultDiv.appendChild(racingCarComponent(car.name));
     for (let idx = 0; idx < car.totalStep; idx++) {
-      const step = showTotalStep();
+      const step = totalStepComponent();
       resultDiv.appendChild(step);
     }
-    sections[3].querySelector("div").append(resultDiv);
+    carPlayerSection.element.querySelector("div").append(resultDiv);
   });
 };
 
-const getWinnerText = (winners) => {
-  let winnerText = "";
-  if (winners.length === 1) {
-    winnerText = winners[0];
-  } else {
-    winnerText = winners.join(", ");
-  }
-
-  return winnerText;
-};
+const getWinnerText = (winners) =>
+  winners.length === 1 ? winners[0] : winners.join(", ");
 
 export const setWinnerView = (winners) => {
-  sections[4].innerHTML = "";
+  resultSection.element.innerHTML = "";
   const winnerText = getWinnerText(winners);
 
   const winnerTemplateString = `<h2>🏆 최종 우승자: ${winnerText} 🏆</h2>`;
@@ -69,8 +60,8 @@ export const setWinnerView = (winners) => {
                           </div>`;
   const resetBtn = parseHTML(resetBtnString);
 
-  sections[4].append(winnerTemplate);
-  sections[4].append(resetBtn);
+  resultSection.element.append(winnerTemplate);
+  resultSection.element.append(resetBtn);
 
   resetGame();
 };

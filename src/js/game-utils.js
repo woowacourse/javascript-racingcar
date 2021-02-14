@@ -1,4 +1,9 @@
-import { state } from "./index.js";
+import {
+  state,
+  countSection,
+  carPlayerSection,
+  resultSection,
+} from "./index.js";
 import {
   resetView,
   resetCarNamesInput,
@@ -24,7 +29,7 @@ const setTotalStep = () => {
 };
 
 export const playGame = () => {
-  const tryNumInput = document.getElementsByTagName("input")[1];
+  const tryNumInput = countSection.element.getElementsByTagName("input")[0];
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
@@ -40,24 +45,18 @@ export const getWinner = () => {
   });
 
   const maxTotalStep = state.cars[0].totalStep;
-  const winners = state.cars.filter((car) => {
-    if (car.totalStep === maxTotalStep) {
-      return car;
-    }
-  });
+  const winners = state.cars.filter((car) => car.totalStep === maxTotalStep);
 
-  return winners.map((winner) => {
-    return winner.name;
-  });
+  return winners.map((car) => car.name);
 };
 
 export const resetGame = () => {
-  const carNamesBtn = document.getElementsByTagName("button")[0];
-  const tryNumBtn = document.getElementsByTagName("button")[1];
-  const resetBtn = document.getElementsByTagName("button")[2];
+  const [carNamesBtn, tryNumBtn, resetBtn] = document.getElementsByTagName(
+    "button"
+  );
 
   resetBtn.addEventListener("click", () => {
-    resetView([2, 3, 4]);
+    resetView([countSection, carPlayerSection, resultSection]);
     state.cars = [];
 
     resetCarNamesInput();
