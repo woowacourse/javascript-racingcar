@@ -1,17 +1,9 @@
 import { RACING_RULE } from '../constants/racingRule.js';
-
+import { generateRandomDigit } from './generateRandomDigit.js';
 export class Car {
   constructor(name) {
     this.name = name;
     this.forwardCount = 0;
-  }
-
-  getName() {
-    return this.name;
-  }
-
-  getForwardCount() {
-    return this.forwardCount;
   }
 
   resetForwardCount() {
@@ -23,15 +15,9 @@ export class Car {
   }
 
   isMovingForward(score) {
-    const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
-
     if (!score) {
-      score = this.getRandomNumber(MIN_SCORE, MAX_SCORE);
+      score = generateRandomDigit();
     }
-    return score >= THRESHOLD_SCORE;
-  }
-
-  getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return score >= RACING_RULE.THRESHOLD_SCORE;
   }
 }

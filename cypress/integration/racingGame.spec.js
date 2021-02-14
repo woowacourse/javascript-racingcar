@@ -1,4 +1,5 @@
 import { getWinners } from '../../src/js/models/getWinners.js';
+import { generateRandomDigit } from '../../src/js/models/generateRandomDigit.js';
 import { Car } from '../../src/js/models/Car.js';
 import { GAME_OVER_NOTICE } from '../../src/js/constants/gameOverNotice.js';
 import { RACING_RULE } from '../../src/js/constants/racingRule.js';
@@ -113,21 +114,15 @@ describe('racing-game', () => {
   });
 
   it('난수를 생성하는 함수가 0 ~ 9 사이의 정수를 반환한다.', () => {
-    const car = new Car();
-    const { MIN_SCORE, MAX_SCORE } = RACING_RULE;
     const expectedScores = Array.from({ length: 10 }).map((v, i) => i);
 
     for (let i = 0; i < 1000; i++) {
-      expect(expectedScores).to.include(
-        car.getRandomNumber(MIN_SCORE, MAX_SCORE),
-      );
+      const n = generateRandomDigit();
+      expect(expectedScores).to.include(n);
     }
   });
 
   it('전진여부를 결정하는 함수가 3 이하를 입력받았을 때 거짓을 4 이상을 입력 받았을 때 참을 반환한다.', () => {
-    const car = new Car();
-    const { MIN_SCORE, MAX_SCORE, THRESHOLD_SCORE } = RACING_RULE;
-
     for (let i = MIN_SCORE; i <= MAX_SCORE; i++) {
       if (i >= THRESHOLD_SCORE) {
         expect(car.isMovingForward(i)).to.equal(true);
