@@ -1,6 +1,5 @@
-class Template {
-  countSectionTemplate() {
-    return `
+export const countSectionTemplate = () => {
+  return `
         <p>시도할 횟수를 입력해주세요.</p>
         <div class="d-flex">
           <input
@@ -14,13 +13,13 @@ class Template {
           </button>
         </div>
       `;
-  }
+};
 
-  processSectionTemplate(cars) {
-    return `
+export const processSectionTemplate = (cars) => {
+  return `
       <div class="d-flex">
       ${cars
-        .map(car => {
+        .map((car) => {
           return `
           <div class="process-car">
             <div class="car-player mr-2">${car.name}</div>
@@ -28,23 +27,16 @@ class Template {
           </div>
         `;
         })
-        .join("")}
+        .join('')}
       </div>
     `;
-  }
+};
 
-  resultSectionTemplate(winners) {
-    return `
-      <h2 id="result-winner">🏆 최종 우승자: ${winners.join(", ")} 🏆</h2>
+export const resultSectionTemplate = (winners) => {
+  return `
+      <h2 id="result-winner">🏆 최종 우승자: ${winners.join(', ')} 🏆</h2>
       <div class="d-flex justify-center">
         <button type="button" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
       </div>
     `;
-  }
-}
-
-export const {
-  countSectionTemplate,
-  processSectionTemplate,
-  resultSectionTemplate,
-} = new Template();
+};
