@@ -1,5 +1,8 @@
 export const CAR_NAME_SEPARATOR = ',';
 export const WINNER_SEPARATOR = ', ';
+export const WINNER_MESSAGE = (winners) =>
+  `이번 게임의 우승자는 ${winners.join(WINNER_SEPARATOR)}!!!\n축하합니다🎉🎉🎉`;
+export const WINNER_MESSAGE_DELAY = 2000;
 export const CAR_NAME_MAX_LENGTH = 5;
 export const MIN_NUMBER = 0;
 export const MAX_NUMBER = 9;

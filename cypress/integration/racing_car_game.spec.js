@@ -1,4 +1,4 @@
-import { WINNER_SEPARATOR } from '../../src/js/util/constants.js';
+import { WINNER_SEPARATOR, WINNER_MESSAGE } from '../../src/js/util/constants.js';
 
 describe('Racing Car 게임', () => {
   before(() => {
@@ -20,7 +20,7 @@ describe('Racing Car 게임', () => {
     cy.get('.car-player').each(($el, index) => cy.wrap($el).should('have.text', carNames[index]));
   });
 
-  it('표시된 화살표가 가장 많은 자동차(여러 대 가능)가 우승자로 출력되었는지 확인', () => {
+  it('표시된 화살표가 가장 많은 자동차(여러 대 가능)가 우승자로 출력되고, 2초 후 축하 alert이 나타나는지 확인', () => {
     cy.document().then((document) => {
       const carPlayerContainers = Array.from(document.querySelectorAll('.car-player-container'));
 
@@ -37,6 +37,13 @@ describe('Racing Car 게임', () => {
       cy.get('.racing-winner-container')
         .find('h2')
         .should('have.text', `🏆 최종 우승자: ${winners.join(WINNER_SEPARATOR)} 🏆`);
+
+      const alertStub = cy.stub();
+
+      cy.on('window:alert', alertStub);
+      cy.wait(2000).then(() => {
+        expect(alertStub.getCall(0)).to.be.calledWith(WINNER_MESSAGE(winners));
+      });
     });
   });
 
