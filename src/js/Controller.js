@@ -15,6 +15,10 @@ export class Controller {
     this.carNameInput = document.querySelector(SELECTOR.CAR_NAME.INPUT);
     this.lapCountInput = document.querySelector(SELECTOR.LAP_COUNT.INPUT);
 
+    this.setEventListener();
+  }
+
+  setEventListener() {
     const carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
     carNameButton.addEventListener("click", () =>
       this.handleCarNameButtonClick()
