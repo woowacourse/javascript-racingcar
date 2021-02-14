@@ -36,22 +36,20 @@ export default class App {
     return this.carNameInput.carNames.length && this.tryCountInput.tryCount;
   }
 
-  play() {
+  async play() {
     if (!this.isCompletedInputs()) {
       return;
     }
 
     this.moveCars(this.tryCountInput.tryCount);
-    this.racingResult.showResult(this.cars);
-    this.racingWinner.showWinners(this.cars);
+    await this.racingResult.showResult(this.cars);
+    await this.racingWinner.showWinners(this.cars);
   }
 
   moveCars(tryCount) {
     this.cars.forEach((car) => {
       for (let i = 0; i < tryCount; i++) {
-        if (getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER) {
-          car.move();
-        }
+        car.recodeMove(getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER);
       }
     });
   }

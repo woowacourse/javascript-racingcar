@@ -32,22 +32,27 @@ export default class RacingWinner {
 
   getWinners(cars) {
     const maxScore = cars.reduce(
-      (accumulatedMaxScore, car) => (accumulatedMaxScore > car.score ? accumulatedMaxScore : car.score),
+      (accumulatedMaxScore, car) => (accumulatedMaxScore > car.getScore() ? accumulatedMaxScore : car.getScore()),
       0
     );
 
-    return cars.filter((car) => car.score === maxScore).map((car) => car.name);
+    return cars.filter((car) => car.getScore() === maxScore).map((car) => car.name);
   }
 
-  showWinnerAlert(winners) {
-    setTimeout(() => alert(WINNER_MESSAGE(winners)), WINNER_MESSAGE_DELAY);
+  showWinnerAlertWithDelay(winners) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        alert(WINNER_MESSAGE(winners));
+        resolve();
+      }, WINNER_MESSAGE_DELAY);
+    });
   }
 
-  showWinners(cars) {
+  async showWinners(cars) {
     const winners = this.getWinners(cars);
 
     this.setState(winners);
-    this.showWinnerAlert(winners);
+    await this.showWinnerAlertWithDelay(winners);
   }
 
   reset() {

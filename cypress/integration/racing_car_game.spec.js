@@ -10,14 +10,22 @@ describe('Racing Car 게임', () => {
 
     cy.get('[data-test=car-name-input]').type(carNames.join(','));
     cy.get('[data-test=car-name-button]').click();
-    cy.get('[data-test=try-count-input]').type('10');
+    cy.get('[data-test=try-count-input]').type('5');
     cy.get('[data-test=car-name-input]').should('be.disabled');
     cy.get('[data-test=car-name-button]').should('be.disabled');
     cy.get('[data-test=try-count-button]').click();
     cy.get('[data-test=try-count-input]').should('be.disabled');
     cy.get('[data-test=try-count-button]').should('be.disabled');
-    cy.get('.racing-result-container').should('be.visible');
+    cy.get('.racing-result-container').should('exist');
     cy.get('.car-player').each(($el, index) => cy.wrap($el).should('have.text', carNames[index]));
+  });
+
+  it('각 턴마다 1초 간격으로 게임결과 화살표가 나타나는지 확인', () => {
+    cy.get('.spinner').should('exist');
+    cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
+    cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
+    cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
+    cy.wait(1000).then(() => cy.get('.racing-winner-container').should('exist'));
   });
 
   it('표시된 화살표가 가장 많은 자동차(여러 대 가능)가 우승자로 출력되고, 2초 후 축하 alert이 나타나는지 확인', () => {
