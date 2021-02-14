@@ -1,5 +1,5 @@
 import CarView from "./CarView.js";
-import { SELECTOR } from "./constants.js";
+import { CLASSNAME, SELECTOR } from "./constants.js";
 
 export default class ViewController {
   constructor() {
@@ -37,11 +37,13 @@ export default class ViewController {
   }
 
   show(selector) {
-    document.querySelector(selector).hidden = false;
+    document
+      .querySelector(selector)
+      .classList.remove(CLASSNAME.MODIFIER.HIDDEN);
   }
 
   hide(selector) {
-    document.querySelector(selector).hidden = true;
+    document.querySelector(selector).classList.add(CLASSNAME.MODIFIER.HIDDEN);
   }
 
   disable(selector) {

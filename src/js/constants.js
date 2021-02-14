@@ -2,25 +2,21 @@ export const SELECTOR = {
   TITLE: {
     CONTAINER: ".title-container",
   },
-
   CAR_NAME: {
     CONTAINER: ".car-name-input-container",
     INPUT: ".car-name-input-container__input",
     BUTTON: ".car-name-input-container__button",
   },
-
   LAP_COUNT: {
     CONTAINER: ".lap-count-input-container",
     INPUT: ".lap-count-input-container__input",
     BUTTON: ".lap-count-input-container__button",
   },
-
   GAME_PROGRESS: {
     CONTAINER: ".game-progress-container",
     CAR_NAME: ".car-player",
     FORWARD_ICON: ".forward-icon",
   },
-
   GAME_RESULT: {
     CONTAINER: ".game-result-container",
     WINNERS: ".game-result-container > h2",
@@ -56,5 +52,11 @@ export const CONSTANT = {
   LAP_COUNT: {
     MIN: 1,
     MAX: 20,
+  },
+};
+
+export const CLASSNAME = {
+  MODIFIER: {
+    HIDDEN: "--hidden",
   },
 };
