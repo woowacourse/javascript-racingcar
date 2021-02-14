@@ -14,10 +14,6 @@ export const displayRacingCars = function (cars) {
   $("#racing-container").style.display = "flex";
 };
 
-export const displayArrow = function (element) {
-  element.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
-};
-
 export const initializeRacingView = function () {
   $("#racing-container").style.display = "none";
   $("#racing-container > section > div").innerHTML = "";

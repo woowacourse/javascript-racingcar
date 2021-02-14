@@ -1,5 +1,4 @@
 import { app } from "../index.js";
-import { displayArrow } from "../view/racingView.js";
 import { getRandomNumber, $ } from "./utils.js";
 import { chooseWinners } from "./winnerController.js";
 
@@ -10,10 +9,14 @@ export const startRacingGame = function () {
     app.cars.forEach((car, index) => {
       const randomNumber = getRandomNumber();
       if (car.moveForward(randomNumber)) {
-        displayArrow(racingCarElements.childNodes[index]);
+        addArrow(racingCarElements.childNodes[index]);
       }
     });
   }
 
   chooseWinners();
+};
+
+const addArrow = function (element) {
+  element.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
 };
