@@ -11,9 +11,9 @@
   </a>
 </p>
 
-## 기능요구사항 정리
+## 기능 구현 목록
 
-[README.md](/docs/README.md)
+[docs/README.md](/docs/README.md)
 
 ## 🔥 Projects!
 

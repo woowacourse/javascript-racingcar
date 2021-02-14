@@ -1,6 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 
+import { WINNING_MESSAGE } from '../../src/library/constants/alertMessage';
 import Car from '../../src/library/models/Car';
 import { getRandomNumber } from '../../src/library/utils/random.js';
 
@@ -78,8 +79,9 @@ describe('레이싱 게임', () => {
   it('자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.', () => {
     cy.get('#input-car-name').type('aaa,bbb');
     cy.get('#submit-car-name').click();
-    cy.get('#input-race-times').type('10');
+    cy.get('#input-race-times').type('1');
     cy.get('#submit-race-times').click();
+    cy.wait(1000);
 
     cy.get('.car').then($cars => {
       const $carAaa = $cars[0];
@@ -103,6 +105,7 @@ describe('레이싱 게임', () => {
       cy.get('#submit-car-name').click();
       cy.get('#input-race-times').type('1');
       cy.get('#submit-race-times').click();
+      cy.wait(1000);
 
       cy.get('.car').then($cars => {
         const $carAaa = $cars[0];
@@ -133,5 +136,28 @@ describe('레이싱 게임', () => {
     cy.get('#submit-race-times').click();
     cy.get('#retry').click();
     cy.get('#game-result-component > section').should('not.exist');
+  });
+
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('2');
+    cy.get('#submit-race-times').click();
+    cy.get('.forward-icon').should('not.exist');
+    cy.wait(1000);
+    cy.get('.forward-icon').should('exist');
+  });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
+    cy.window().then(window => cy.stub(window, 'alert').as('alert'));
+
+    cy.get('#input-car-name').type('aaa');
+    cy.get('#submit-car-name').click();
+    cy.get('#input-race-times').type('1');
+    cy.get('#submit-race-times').click();
+    cy.wait(2000);
+    cy.get('@alert').should('not.be.called');
+    cy.wait(2000);
+    cy.get('@alert').should('be.calledWith', WINNING_MESSAGE);
   });
 });

@@ -7,7 +7,7 @@
 
 # cypress
 
-cypress/fixture
+cypress/fixtures
 cypress/plugins
 cypress/screenshots
 cypress/support

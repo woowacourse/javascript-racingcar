@@ -1,7 +1,7 @@
 import {
   INVALID_CAR_NAME_LENGTH_MESSAGE,
   TOO_FEW_RACE_TIMES_MESSAGE,
-} from '../library/constants/errorMessage.js';
+} from '../library/constants/alertMessage.js';
 import { CAR_NAME, MIN_RACE_TIMES } from '../library/constants/validation.js';
 import Component from '../library/core/Component.js';
 import Car from '../library/models/Car.js';
@@ -43,7 +43,7 @@ export default class UserInput extends Component {
       alert(INVALID_CAR_NAME_LENGTH_MESSAGE);
       return;
     }
-    this.props.setCars(carNames.map(carName => new Car(carName)));
+    this.props.cars.set(carNames.map(carName => new Car(carName)));
     disableDOMElements($buttonCarName, $inputCarName);
     this.showRaceTimesInput();
   }
@@ -67,10 +67,10 @@ export default class UserInput extends Component {
       alert(TOO_FEW_RACE_TIMES_MESSAGE);
       return;
     }
-    this.props.setRaceTimes($inputRaceTimes.value);
+    this.props.raceTimes.set(Number($inputRaceTimes.value));
     disableDOMElements($buttonRaceTimes, $inputRaceTimes);
-    this.props.race();
     this.props.mountGameProcess();
+    this.props.race();
   }
 
   #isValidRaceTimes(raceTimes) {
