@@ -1,5 +1,5 @@
-import RacingCar from './racingCar.js';
-import RacingCarModel from './model.js';
+import RacingCar from './model/racingCar.js';
+import RacingCarModel from './model/racingCarModel.js';
 import RacingCarView from './view.js';
 import {isCarExist} from '../validations/carValid.js';
 import {

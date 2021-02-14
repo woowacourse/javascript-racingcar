@@ -1,5 +1,5 @@
-import {GAME} from '../constants/constant.js';
-import {generateRandomNumber} from '../utils/random.js';
+import {GAME} from '../../constants/constant.js';
+import {generateRandomNumber} from '../../utils/random.js';
 
 class RacingCarModel {
   constructor(cars, count) {
