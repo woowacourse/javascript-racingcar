@@ -1,4 +1,4 @@
-import { state, parseHTML } from "./index.js";
+import { state } from "./index.js";
 import {
   resetView,
   resetCarNamesInput,
@@ -94,9 +94,7 @@ export const getWinner = () => {
 
   const maxTotalStep = state.cars[0].totalStep;
   const winners = state.cars.filter((car) => {
-    if (car.totalStep === maxTotalStep) {
-      return car;
-    }
+    return car.totalStep === maxTotalStep;
   });
   const winnerNames = winners.map((winner) => {
     return winner.name;
