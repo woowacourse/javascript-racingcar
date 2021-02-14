@@ -1,13 +1,14 @@
 import RacingCar from './racingCar.js';
 import RacingCarModel from './model.js';
 import RacingCarView from './view.js';
+import {isCarExist} from '../validations/carValid.js';
 import {
-  isCarExist,
-  isCountExist,
-  isCarValid,
-  isCountValid,
-} from '../utils/vaild.js';
+  getCarNameErrorMessage,
+  getCountErrorMessage,
+} from '../validations/racingCarValid.js';
+import {isCountExist} from '../validations/countValid.js';
 import {getQuerySelector} from '../utils/dom.js';
+import {ERROR_MESSAGE} from '../constants/message.js';
 
 class RacingCarController {
   constructor() {
@@ -15,6 +16,7 @@ class RacingCarController {
     this.count = 0;
     this.model = null;
     this.view = new RacingCarView();
+    this.errorMessage = null;
   }
 
   start() {
@@ -41,27 +43,31 @@ class RacingCarController {
 
   manageCars() {
     if (isCarExist(this.cars)) {
-      return;
+      return alert(ERROR_MESSAGE.CAR_EXIST);
     }
 
     const carNames = this.getCarsInput();
-    if (isCarValid(carNames)) {
-      this.cars = carNames.map((carName) => new RacingCar(carName));
-      this.view.renderCount();
-      this.handleCount();
+    if ((this.errorMessage = getCarNameErrorMessage(carNames))) {
+      return alert(this.errorMessage);
     }
+
+    this.cars = carNames.map((carName) => new RacingCar(carName));
+    this.view.renderCount();
+    this.handleCount();
   }
 
   manageCount() {
     if (isCountExist(this.count)) {
-      return;
+      return alert(ERROR_MESSAGE.COUNT_EXIST);
     }
 
     const count = this.getCountInput();
-    if (isCountValid(count)) {
-      this.count = count;
-      this.proceedGame();
+    if ((this.errorMessage = getCountErrorMessage(count))) {
+      return alert(this.errorMessage);
     }
+
+    this.count = count;
+    this.proceedGame();
   }
 
   proceedGame() {
