@@ -97,6 +97,7 @@ export default class CarRacingController {
       this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
     }
+    this.view.removeSpinner();
     this.showRacingResult();
   }
 
