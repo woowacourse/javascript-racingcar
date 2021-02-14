@@ -8,17 +8,6 @@ import { WINNING_MESSAGE } from '../library/constants/alertMessage.js';
 import wait from '../library/utils/wait.js';
 
 export default class App extends Component {
-  gameProcess;
-  cars;
-  raceTimes;
-  winners;
-
-  constructor($target, props) {
-    super($target, props);
-    this.initStates();
-    this.render();
-  }
-
   initStates() {
     this.cars = new State([]);
     this.raceTimes = new State(0);
@@ -36,40 +25,40 @@ export default class App extends Component {
     `;
   }
 
-  mountChildComponents = () => {
+  mountChildComponents() {
     new UserInput($('#user-input-component'), {
       cars: this.cars,
       raceTimes: this.raceTimes,
-      mountGameProcess: this.mountGameProcess,
-      race: this.race,
+      mountGameProcess: this.mountGameProcess.bind(this),
+      race: this.race.bind(this),
     });
-  };
+  }
 
-  mountGameProcess = () => {
+  mountGameProcess() {
     this.gameProcess = new GameProcess($('#game-process-component'), {
       raceTimes: this.raceTimes,
       cars: this.cars,
     });
-  };
+  }
 
-  mountGameResult = () => {
+  mountGameResult() {
     new GameResult($('#game-result-component'), {
       winners: this.winners,
       reset: this.reset,
     });
-  };
+  }
 
   reset = () => {
     this.initStates();
     this.render();
   };
 
-  race = async () => {
+  async race() {
     await this.#processRacing();
     this.winners = this.#getWinners();
     this.mountGameResult();
     setTimeout(() => alert(WINNING_MESSAGE), 2000);
-  };
+  }
 
   async #processRacing() {
     while (this.raceTimes.get() > 0) {

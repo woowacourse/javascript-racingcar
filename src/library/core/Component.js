@@ -5,16 +5,21 @@ export default class Component {
   constructor($target, props) {
     this.$target = $target;
     this.props = props;
+    this.initStates();
+    this.render();
     this.initEvent();
   }
-
-  initEvent() {}
 
   render() {
     this.mountTemplate();
     this.mountChildComponents();
   }
 
+  initStates() {}
+
+  initEvent() {}
+
   mountTemplate() {}
+
   mountChildComponents() {}
 }

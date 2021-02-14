@@ -1,20 +1,7 @@
 import Component from '../library/core/Component.js';
 
 export default class GameResult extends Component {
-  constructor($target, props) {
-    super($target, props);
-    this.render();
-  }
-
-  initEvent() {
-    this.$target.addEventListener('click', ({ target }) => {
-      if (target.id === 'retry') {
-        this.props.reset();
-      }
-    });
-  }
-
-  render() {
+  mountTemplate() {
     this.$target.innerHTML = `
       <section>
         <h2>
@@ -26,5 +13,13 @@ export default class GameResult extends Component {
         </div>
       </section>
     `;
+  }
+
+  initEvent() {
+    this.$target.addEventListener('click', ({ target }) => {
+      if (target.id === 'retry') {
+        this.props.reset();
+      }
+    });
   }
 }
