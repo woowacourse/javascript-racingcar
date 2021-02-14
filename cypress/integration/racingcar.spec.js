@@ -73,8 +73,7 @@ describe("ui-play", () => {
       cy.get(".process-car").each(v => {
         cy.get(v).find(".spinner-container").should("exist");
       });
-      cy.clock();
-      clock.tick(1000);
+      cy.wait(1000);
     }
   });
 
@@ -116,8 +115,7 @@ describe("ui-play", () => {
         }
       })
       .then(() => {
-        cy.clock();
-        cy.tick(2000);
+        cy.wait(2000);
         cy.get(".process-car").each(v => {
           if (v.find(".forward-icon").length === largestCount) {
             cy.expect(alertStub.getCall(0)).to.be.calledWith(
