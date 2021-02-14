@@ -1,5 +1,5 @@
 import { $, clearInput, disableElements, enableElements } from '../util/dom.js';
-import { ERROR_MESSAGE } from '../util/errorMessage.js';
+import { ERROR_MESSAGE } from '../util/message.js';
 
 export default class TryCountInput {
   constructor(props) {

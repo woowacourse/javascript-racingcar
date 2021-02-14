@@ -1,7 +1,7 @@
 import { $, clearInput, disableElements, enableElements } from '../util/dom.js';
 import { CAR_NAME_MAX_LENGTH } from '../util/constant.js';
 import { modifyCarNameInputValue } from '../util/game.js';
-import { ERROR_MESSAGE } from '../util/errorMessage.js';
+import { ERROR_MESSAGE } from '../util/message.js';
 
 export default class CarNameInput {
   constructor(props) {
