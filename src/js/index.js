@@ -40,7 +40,7 @@ const getCarInstance = (carNames) => {
   });
 };
 
-const onClickedCarNamesButton = () => {
+const addEventOnCarNamesButton = () => {
   const carNamesButton = carNameSection.element.getElementsByTagName(
     "button"
   )[0];
@@ -65,7 +65,7 @@ const onClickedCarNamesButton = () => {
   });
 };
 
-const onClickedTryNumButton = () => {
+const addEventOnTryNumButton = () => {
   const tryNumBtn = document.getElementsByTagName("button")[1];
 
   tryNumBtn.addEventListener("click", () => {
@@ -87,8 +87,8 @@ const onClickedTryNumButton = () => {
 
 const initRacingCarGame = () => {
   resetView([countSection, carPlayerSection, resultSection]);
-  onClickedCarNamesButton();
-  onClickedTryNumButton();
+  addEventOnCarNamesButton();
+  addEventOnTryNumButton();
 };
 
 initRacingCarGame();
