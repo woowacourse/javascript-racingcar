@@ -1,8 +1,8 @@
-import { SELECTOR, GLOBAL_TEXT } from '../../src/js/keys.js';
+import { SELECTOR, GLOBAL_TEXT, ENV } from '../../src/js/keys.js';
 
 describe('레이싱 우승자 테스트', () => {
 	before(() => {
-		cy.visit('http://localhost:5501/index.html');
+		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
 	});
 
 	const checkWinnerTest = (testFunction) => {
@@ -44,12 +44,11 @@ describe('레이싱 우승자 테스트', () => {
 	});
 
 	it('자동차 경주 게임이 끝난 뒤 2초뒤에 우승자 얼럿이 노출되는지 확인한다.', () => {
-    checkWinnerTest((winners) => {
+		checkWinnerTest((winners) => {
 			cy.wait(2000);
-		cy.on('window:alert', (str) => {
-			expect(str).to.equal(GLOBAL_TEXT.MAKE_WINNER_TEXT(winners));
+			cy.on('window:alert', (str) => {
+				expect(str).to.equal(GLOBAL_TEXT.MAKE_WINNER_TEXT(winners));
+			});
 		});
-		});
-		
 	});
 });

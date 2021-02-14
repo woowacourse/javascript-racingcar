@@ -1,6 +1,10 @@
 import { app } from '../index.js';
 import { SELECTOR, BOUND } from '../keys.js';
-import { addSpinners, appendArrowElement, removeSpinners } from '../view/racingView.js';
+import {
+	addSpinners,
+	appendArrowElement,
+	removeSpinners,
+} from '../view/racingView.js';
 import { getRandomNumber, $, sleep } from '../utils.js';
 import { chooseWinners } from './winnerController.js';
 
@@ -14,24 +18,23 @@ const startRound = function () {
 };
 
 const finishRacingGame = function () {
-  removeSpinners();
-  chooseWinners();
-}
+	removeSpinners();
+	chooseWinners();
+};
 
 export const startRacingGame = function (rounds) {
 	const gameRafCallback = function () {
-    if(rounds-- <= 0){
-      requestAnimationFrame(addSpinners);
-      sleep(1);
-      requestAnimationFrame(finishRacingGame);
-      return;
-    }
-    addSpinners();
-	  sleep(1);
+		if (rounds-- <= 0) {
+			requestAnimationFrame(addSpinners);
+			sleep(1);
+			requestAnimationFrame(finishRacingGame);
+			return;
+		}
+		addSpinners();
+		sleep(1);
 		requestAnimationFrame(startRound);
-    
-    requestAnimationFrame(gameRafCallback);
-	};
-  requestAnimationFrame(gameRafCallback);
 
+		requestAnimationFrame(gameRafCallback);
+	};
+	requestAnimationFrame(gameRafCallback);
 };
