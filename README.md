@@ -58,6 +58,13 @@
   - 우승자가 여러명일 경우 콤마를 이용하여 구분
 - 다시시작 버튼 입력 시 게임을 reset한다.
 
+### step2
+
+- 정상적인 자동차 이름과 / 시도 횟수를 입력받는다.
+- 게임을 진행하면서 1초마다 spinner를 표시한다.
+  - 현재 로딩중인 상태라는 것을 어떻게 인식할 수 있을지 생각하기
+- 게임이 정상적으로 종료되면 2초 후 alert을 통해 우승자 이름을 출력한다.
+
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-racingcar/blob/main/LICENSE) licensed.
