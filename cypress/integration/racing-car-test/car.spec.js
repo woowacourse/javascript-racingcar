@@ -2,10 +2,7 @@ describe("자동차 경주 게임 테스트", () => {
   before(() => {
     cy.visit("http://127.0.0.1:5500/javascript-racingcar/");
   });
-  // const carNamesSection = cy.get("#car-names");
-  // const tryNumSection = cy.get("#try-num");
-  // const resultSection = cy.get("#result");
-  // const winnerSection = cy.get("#winners");
+
   const carNames = "엘라, 그루밍 , 준,포코";
 
   it("자동차 이름이 잘 입력되었는지 테스트합니다.", () => {
@@ -96,6 +93,7 @@ describe("자동차 경주 게임 테스트", () => {
   it("loading icon이 1초마다 잘 나오는지 테스트합니다.", () => {
     cy.get("#try-num").find("input").type(3).should("have.value", 3);
     cy.get("#try-num").find("button").click();
+
     cy.get("#result").should("exist");
     cy.wait(1000);
     cy.get(".spinner-box").should("exist");

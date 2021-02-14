@@ -74,12 +74,10 @@ export const setStepInResultView = (resultDiv) => {
 };
 
 export const setIconsInResultView = (
-  second,
   resultDivs,
   prevTotalStep,
   currentTotalStep
 ) => {
-  console.log(second, "초 때 state.cars.totalSteps", currentTotalStep);
   resultDivs.forEach((resultDiv, i) => {
     if (prevTotalStep[i] !== currentTotalStep[i]) {
       setStepInResultView(resultDiv); // 1초 전과 totalStep이 다르면 화살표 추가

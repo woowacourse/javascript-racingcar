@@ -59,7 +59,7 @@ const playGameForSecond = (second) => {
     }
 
     const currentTotalStep = getTotalStep();
-    setIconsInResultView(second, resultDivs, prevTotalStep, currentTotalStep);
+    setIconsInResultView(resultDivs, prevTotalStep, currentTotalStep);
 
     prevTotalStep = currentTotalStep;
 
