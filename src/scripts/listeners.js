@@ -16,5 +16,8 @@ export const addRacingCarGameListener = () => {
   $playGameButton.addEventListener("click", () =>
     controller.onClickPlayGameButton($tryCountInput.value)
   );
-  $restartButton.addEventListener("click", controller.onRestartButtonClick);
+  $restartButton.addEventListener(
+    "click",
+    controller.onClickRestartButton.bind(controller)
+  );
 };

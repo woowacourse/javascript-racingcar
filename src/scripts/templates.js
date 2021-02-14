@@ -12,6 +12,9 @@ export const getResultAreaTemplate = (carList) => {
       <div>
         <div class="car-player mr-2">${car.carName}</div>
         ${getRacingRecordTemplate(car.record)}
+        <div class="spinner-container mt-2">
+          <div class="spinner"></div>
+        </div>
       </div>
     `
   );

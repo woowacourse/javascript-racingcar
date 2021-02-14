@@ -5,13 +5,3 @@ export const $tryCountInput = document.querySelector("#try-count-input");
 export const $resultArea = document.querySelector("#result-area");
 export const $winners = document.querySelector("#winners");
 export const $restartButton = document.querySelector("#restart-button");
-
-export default {
-  $carNameSubmit,
-  $playGameButton,
-  $carNameInput,
-  $tryCountInput,
-  $resultArea,
-  $winners,
-  $restartButton,
-};

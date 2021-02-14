@@ -1,3 +1,4 @@
+import { getResultAreaTemplate, getWinnersTemplate } from "../templates.js";
 import {
   $carNameInput,
   $tryCountInput,
@@ -7,7 +8,6 @@ import {
   $winners,
   $restartButton,
 } from "../elements.js";
-import { getResultAreaTemplate, getWinnersTemplate } from "../templates.js";
 
 export default class RacingCarGameView {
   static updateResultArea(carList) {

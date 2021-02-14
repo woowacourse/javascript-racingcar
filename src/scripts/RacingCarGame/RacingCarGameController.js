@@ -3,6 +3,7 @@ import View from "./RacingCarGameView.js";
 import Model from "./RacingCarGameModel.js";
 import { CAR_NAME_SEPERATOR } from "../constants/racing_game_constants.js";
 import { $carNameSubmit } from "../elements.js";
+import { setTimeoutWithSpinner } from "../utils/timeUtils.js";
 
 export default class RacingCarGameController {
   constructor() {
@@ -23,8 +24,8 @@ export default class RacingCarGameController {
       return;
     }
 
-    this.racingCarGameModel.registerCars(carNameList);
-    View.updateResultArea(this.racingCarGameModel.carList);
+    this.model.registerCars(carNameList);
+    View.updateResultArea(this.model.carList);
     View.changeInnerText($carNameSubmit, "수정");
   }
 
@@ -39,16 +40,26 @@ export default class RacingCarGameController {
   }
 
   finishGame() {
-    const winners = this.getWinners(this.racingCarGameModel.carList);
+    const winners = this.getWinners(this.model.carList);
 
-    View.deactivateCarNameSubmitButton();
-    View.deactivatePlayGameButton();
     View.showWinners(winners);
     View.showRestartButton();
-    this.racingCarGameModel.clearCarsRecord();
+    this.model.clearCarsRecord();
   }
 
-  playRacingCarGame(tryCountInput) {
+  async runProgressiveRace(tryCount, delay) {
+    for (let i = 0; i < tryCount; i++) {
+      this.model.moveCarsByRandom();
+      await setTimeoutWithSpinner(
+        document.querySelectorAll(".spinner"),
+        View.updateResultArea,
+        delay,
+        this.model.carList
+      );
+    }
+  }
+
+  async playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
 
     if (!Validator.isTryCountValid(tryCount)) {
@@ -59,15 +70,14 @@ export default class RacingCarGameController {
       return;
     }
 
-    for (let i = 0; i < tryCount; i += 1) {
-      this.racingCarGameModel.moveCarsByRandom();
-    }
-    View.updateResultArea(this.racingCarGameModel.carList);
+    View.deactivateCarNameSubmitButton();
+    View.deactivatePlayGameButton();
+    await this.runProgressiveRace(tryCount, 2000);
     this.finishGame();
   }
 
   restartRacingCarGame() {
-    this.racingCarGameModel.clearCarList();
+    this.model.clearCarList();
     View.resetGameView();
   }
 
