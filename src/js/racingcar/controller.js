@@ -2,13 +2,15 @@ import RacingCarModel from "./model.js";
 import RacingCarView from "./view.js";
 import Validator from "../validator/validator.js";
 import { generateRandomNumber, $ } from "../utils/util.js";
-import { RANDOM, INIT, GAME } from "../constants/constant.js";
+import { RANDOM, GAME } from "../constants/constant.js";
+import Message from "../layouts/message.js";
 
 class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
     this.view = new RacingCarView();
     this.validator = new Validator();
+    this.message = new Message();
   }
 
   init() {
@@ -58,11 +60,11 @@ class RacingCarController {
   }
 
   startGame() {
-    let playCount = 1;
     const count = this.model.count;
     this.view.renderProcess(this.model.cars);
     this.view.renderGameLoading();
 
+    let playCount = 1;
     const playGame = setInterval(() => {
       this.play();
       if (playCount++ >= count) {
@@ -95,6 +97,9 @@ class RacingCarController {
     const winners = this.winners;
     this.view.renderResult(winners);
     this.handleReset();
+    setTimeout(() => {
+      alert(this.message.winnerMessage(winners));
+    }, 2000);
   }
 
   reset() {
