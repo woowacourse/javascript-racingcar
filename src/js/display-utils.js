@@ -88,11 +88,11 @@ export const setIconsInResultView = (
 
 export const getWinnerText = (winners) => {
   let winnerText = "";
-  if (winners.length === 1) {
-    winnerText = winners[0];
-  } else {
-    winnerText = winners.join(", ");
-  }
+
+  winnerText =
+    winners.length === 1
+      ? (winnerText = winners[0])
+      : (winnerText = winners.join(", "));
 
   return winnerText;
 };
