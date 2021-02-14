@@ -25,15 +25,13 @@ export default class CarGameManager {
   }
 
   bindInputCarNamesEvent() {
-    this.$element.querySelector('#car-names-check-button').addEventListener('click', () => {
-      this.carNamesInputHandler();
-    });
+    this.$element.querySelector('#car-names-check-button').addEventListener('click',
+      this.carNamesInputHandler.bind(this));
   }
 
   bindInputTryCountEvent() {
-    this.$element.querySelector('#try-count-check-button').addEventListener('click', () => {
-      this.tryCountInputHandler();
-    });
+    this.$element.querySelector('#try-count-check-button').addEventListener('click',
+      this.tryCountInputHandler.bind(this));
   }
 
   bindResetEvent() {
@@ -44,7 +42,6 @@ export default class CarGameManager {
 
   carNamesInputHandler() {
     this.carNames = this.carGameView.getCarNames();
-
     if (!this.validator.validateCarNames(this.carNames)) {
       this.initGame();
       return;
@@ -59,7 +56,9 @@ export default class CarGameManager {
       return;
     }
     this.createCar();
+
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
+
     this.carGameView.displayProgress(racingCarGame.getCars());
     this.carGameView.displayWinners(racingCarGame.getWinners());
   }
