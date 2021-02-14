@@ -1,7 +1,7 @@
 import ElementManager from "./ElementManager.js";
 import Model from "./Model.js";
 import Templates from "./Templates.js";
-
+import Utils from "./Utils.js";
 class View {
 	initialRender($parentElement) {
 		$parentElement.innerHTML =
@@ -26,7 +26,7 @@ class View {
 	}
 
 	arrowRender(boolsAboutMovement) {
-		const renderedCars = document.getElementById("race-progress-screen").children;
+		const renderedCars = ElementManager.getRaceProgressScreen().children;
 		const arrowTemplate = Templates.arrowTemplate;
 		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
 	}

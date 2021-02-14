@@ -37,6 +37,10 @@ class Utils {
 		</section>
 	</div>`;
 	}
+
+	get(id) {
+		return document.getElementById(id);
+	}
 }
 
 export default new Utils();

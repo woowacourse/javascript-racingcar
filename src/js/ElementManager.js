@@ -1,33 +1,39 @@
+import Utils from "./Utils.js";
 class ElementManager {
 	getAppDIV() {
-		return document.getElementById("app");
+		return Utils.get("app");
 	}
 
 	getSettingContainer() {
-		return document.getElementById("setting-container");
+		return Utils.get("setting-container");
 	}
+
 	getNameInput() {
-		return document.getElementById("name-input");
+		return Utils.get("name-input");
 	}
 
 	getNameButton() {
-		return document.getElementById("name-submit-button");
+		return Utils.get("name-submit-button");
 	}
 
 	getCountInput() {
-		return document.getElementById("count-input");
+		return Utils.get("count-input");
 	}
 
 	getCountButton() {
-		return document.getElementById("count-submit-button");
+		return Utils.get("count-submit-button");
 	}
 
 	getResultContainer() {
-		return document.getElementById("result-container");
+		return Utils.get("result-container");
 	}
 
 	getResetButton() {
-		return document.getElementById("reset-button");
+		return Utils.get("reset-button");
+	}
+
+	getRaceProgressScreen() {
+		return Utils.get("race-progress-screen");
 	}
 }
 
