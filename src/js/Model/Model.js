@@ -27,7 +27,7 @@ class Model {
 	runArrowRenderByCount() {
 		for (let i = 0; i < this.count; i++) {
 			const boolsAboutMovement = this.getBoolsAboutMovement();
-			View.arrowRender(boolsAboutMovement);
+			View.renderArrow(boolsAboutMovement);
 		}
 	}
 
@@ -35,6 +35,7 @@ class Model {
 		const previousScores = [...this.cars].map((car) => car.score);
 		this.iterateByCarsToMove();
 		const boolsAboutMovement = this.cars.map((car, i) => car.score !== previousScores[i]);
+
 		return boolsAboutMovement;
 	}
 
@@ -89,36 +90,36 @@ class Model {
 		const names = inputValue.split(",");
 
 		if (!Validator.isFirstSubmittedName(this.cars.length)) {
-			return { validity: false, alertMessage: "이미 이름이 등록되었습니다." };
+			return { isValid: false, alertMessage: "이미 이름이 등록되었습니다." };
 		}
 		if (Validator.isIncludeBlank(names)) {
-			return { validity: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+			return { isValid: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
 		}
 		if (Validator.isOverScrollPreventLength(names.length)) {
-			return { validity: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
+			return { isValid: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
 		}
 		if (Validator.isOverFiveCharacter(names)) {
-			return { validity: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
+			return { isValid: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
 		}
 		if (Validator.isDuplicatedName(names)) {
-			return { validity: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
+			return { isValid: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
 		}
 
-		return { validity: true, alertMessage: null };
+		return { isValid: true, alertMessage: null };
 	}
 
 	validateCount(submittedCount) {
 		if (!Validator.isFirstSubmittedCount(this.count)) {
-			return { validity: false, alertMessage: "이미 횟수를 설정하였습니다." };
+			return { isValid: false, alertMessage: "이미 횟수를 설정하였습니다." };
 		}
 		if (!Validator.isValidInteger(submittedCount)) {
-			return { validity: false, alertMessage: "자연수만 설정할 수 있습니다." };
+			return { isValid: false, alertMessage: "자연수만 설정할 수 있습니다." };
 		}
 		if (!Validator.isUnderMaxCount(submittedCount)) {
-			return { validity: false, alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다." };
+			return { isValid: false, alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다." };
 		}
 
-		return { validity: true, alertMessage: null };
+		return { isValid: true, alertMessage: null };
 	}
 }
 

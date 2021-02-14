@@ -1,24 +1,25 @@
 import Model from "../Model/Model.js";
-import ElementManager from "../Utils/ElementManager.js";
+import ElementManager from "../Manager/ElementManager.js";
 import View from "../View/View.js";
-import Utils from "../Utils/Utils.js";
+import Utils from "../Manager/DomManager.js";
 
 class Controller {
 	onCountSubmit() {
 		const countInput = ElementManager.getCountInput();
-		const { validity, alertMessage } = Model.validateCount(Number(countInput.value));
+		const { isValid, alertMessage } = Model.validateCount(Number(countInput.value));
 		const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
 
-		if (validity === false) {
+		if (isValid === false) {
 			alert(alertMessage);
 			View.clearInputValue(countInput);
+
 			return;
 		}
 
 		Model.setCount(Number(countInput.value));
-		View.progressContainerRender(raceProgressContainerTemplate);
+		View.renderProgressContainer(raceProgressContainerTemplate);
 		Model.runArrowRenderByCount();
-		View.winnerRender();
+		View.renderWinner();
 		this.addResetButtonEvent();
 		View.clearInputValue(countInput);
 	}
@@ -26,16 +27,17 @@ class Controller {
 	onNameSubmit() {
 		const nameInput = ElementManager.getNameInput();
 		const $settingContainer = ElementManager.getSettingContainer();
-		const { validity, alertMessage } = Model.validateName(nameInput.value);
+		const { isValid, alertMessage } = Model.validateName(nameInput.value);
 
-		if (validity === false) {
+		if (isValid === false) {
 			alert(alertMessage);
 			View.clearInputValue(nameInput);
+
 			return;
 		}
 
 		Model.initCars(nameInput.value);
-		View.countSectionRender($settingContainer);
+		View.renderCountSection($settingContainer);
 		this.addCountButtonEvent(this.onCountSubmit.bind(this));
 		View.clearInputValue(nameInput);
 	}
@@ -71,7 +73,7 @@ class Controller {
 		const $app = ElementManager.getAppDIV();
 
 		Model.clearStates();
-		View.initialRender($app);
+		View.renderInitialElements($app);
 		this.initializeEvents();
 	}
 }

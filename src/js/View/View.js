@@ -1,9 +1,9 @@
-import ElementManager from "../Utils/ElementManager.js";
+import ElementManager from "../Manager/ElementManager.js";
 import Model from "../Model/Model.js";
 import Templates from "./Templates.js";
 
 class View {
-	initialRender($parentElement) {
+	renderInitialElements($parentElement) {
 		$parentElement.innerHTML =
 			Templates.openingSettingContainerTemplate +
 			Templates.titleSectionTemplate +
@@ -15,23 +15,23 @@ class View {
 		inputElement.value = "";
 	}
 
-	countSectionRender($settingContainer) {
+	renderCountSection($settingContainer) {
 		$settingContainer.insertAdjacentHTML("beforeend", Templates.countSectionTemplate);
 	}
 
-	progressContainerRender(template) {
+	renderProgressContainer(template) {
 		const $app = ElementManager.getAppDIV();
 		$app.insertAdjacentHTML("beforeend", template);
 		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
 	}
 
-	arrowRender(boolsAboutMovement) {
+	renderArrow(boolsAboutMovement) {
 		const renderedCars = ElementManager.getRaceProgressScreen().children;
 		const arrowTemplate = Templates.arrowTemplate;
 		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
 	}
 
-	winnerRender() {
+	renderWinner() {
 		const $resultH2 = ElementManager.getResultContainer().querySelector("h2");
 		$resultH2.innerText = Model.getResultText();
 	}

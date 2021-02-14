@@ -3,5 +3,5 @@ import Controller from "./Controller/Controller.js";
 
 const $app = document.getElementById("app");
 
-View.initialRender($app);
+View.renderInitialElements($app);
 Controller.initializeEvents();
