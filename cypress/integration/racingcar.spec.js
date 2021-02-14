@@ -118,7 +118,7 @@ describe("ui-play", () => {
         cy.wait(2000);
         cy.get(".process-car").each(v => {
           if (v.find(".forward-icon").length === largestCount) {
-            cy.expect(alertStub.getCall(0)).to.be.calledWith(
+            cy.expect(alertStub.getCall(0)).to.be.calledWithMatch(
               v.find(".car-player")[0].outerText
             );
           }
