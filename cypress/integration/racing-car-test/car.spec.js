@@ -33,9 +33,12 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("다시 시작하기 버튼이 잘 눌리는지 테스트합니다.", () => {
-    cy.get("button").eq(2).click();
+    cy.wait(6000);
+    cy.get("#winners").find("button").click();
     cy.get("section").eq(0).should("exist");
     cy.get("section").eq(1).should("exist");
+    cy.wait(2000);
+    cy.on("window:confirm", () => true); // alert 끄기
   });
 
   it("빈 자동차 이름이 입력되었을 때를 테스트합니다.", () => {
