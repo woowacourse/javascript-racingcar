@@ -7,32 +7,32 @@ import {
 } from '../elements.js';
 import { getResultAreaTemplate, getWinnersTemplate } from '../templates.js';
 
-export default class RacingCarGameView {
-  static updateResultArea(carList) {
+export default {
+  updateResultArea(carList) {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
-  }
+  },
 
-  static clearCarNamesInput() {
+  clearCarNamesInput() {
     $carNameInput.value = '';
-  }
+  },
 
-  static clearTryCountInput() {
+  clearTryCountInput() {
     $tryCountInput.value = '';
-  }
+  },
 
-  static showWinners(winners) {
+  showWinners(winners) {
     $winners.innerText = getWinnersTemplate(winners);
-  }
+  },
 
-  static showRestartButton() {
+  showRestartButton() {
     $restartButton.style.display = '';
-  }
+  },
 
-  static hideRestartButton() {
+  hideRestartButton() {
     $restartButton.style.display = 'none';
-  }
+  },
 
-  static hideWinners() {
+  hideWinners() {
     $winners.innerText = '';
-  }
-}
+  },
+};

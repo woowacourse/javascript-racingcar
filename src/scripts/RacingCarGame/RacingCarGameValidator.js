@@ -7,53 +7,73 @@ import {
   MAX_CAR_NAME_LENGTH_NUMBER,
 } from '../constants.js';
 
-import { racingCarGameModel } from '../store.js';
+const isCarNameTooLong = (carName) => {
+  return carName.length > MAX_CAR_NAME_LENGTH_NUMBER;
+};
 
-export default class RacingCarGameValidator {
-  static isCarNameTooLong(carName) {
-    return carName.length > MAX_CAR_NAME_LENGTH_NUMBER;
+const isCarNameEmpty = (carName) => {
+  return carName.length === 0;
+};
+
+const isInteger = (number) => {
+  return number === parseInt(number);
+};
+
+const isNagativeOrZero = (number) => {
+  return number <= 0;
+};
+
+const isCarNameVaild = (carName) => {
+  if (isCarNameTooLong(carName) || isCarNameEmpty(carName)) {
+    return false;
   }
 
-  static isCarNameEmpty(carName) {
-    return carName.length === 0;
+  return true;
+};
+
+const alertCarNameNotVaild = (carName) => {
+  if (isCarNameTooLong(carName)) {
+    alert(MAX_CAR_NAME_EXCEEDED_MESSAGE);
+  } else if (isCarNameEmpty(carName)) {
+    alert(CAR_NAME_EMPTY_MESSAGE);
   }
+};
 
-  static checkCarNameWithAlert(carName) {
-    if (RacingCarGameValidator.isCarNameTooLong(carName)) {
-      alert(MAX_CAR_NAME_EXCEEDED_MESSAGE);
-      return false;
-    } else if (RacingCarGameValidator.isCarNameEmpty(carName)) {
-      alert(CAR_NAME_EMPTY_MESSAGE);
-      return false;
-    }
-
-    return true;
-  }
-
-  static isInteger(number) {
-    return number === parseInt(number);
-  }
-
-  static isTryCountValid(tryCount) {
-    let isValid = true;
-    if (!RacingCarGameValidator.isInteger(tryCount)) {
-      alert(SHOULD_NOT_DECIMAL_MESSAGE);
-      isValid = false;
-    }
-    if (tryCount <= 0) {
-      alert(SHOULD_GREATER_THAN_ZERO_MESSAGE);
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
-  static isCarListEmpty() {
-    if (racingCarGameModel.carList.length === 0) {
-      alert(SHOULD_REGISTER_CAR_FIRST_MESSAGE);
+export default {
+  isCarListEmpty(carList) {
+    if (carList.length === 0) {
       return true;
     }
 
     return false;
-  }
-}
+  },
+
+  alertCarListEmpty() {
+    alert(SHOULD_REGISTER_CAR_FIRST_MESSAGE);
+  },
+
+  isCarNameListValid(carNameList) {
+    return carNameList.every((carName) => isCarNameVaild(carName));
+  },
+
+  alertCarNameListNotVaild(carNameList) {
+    carNameList.forEach((carName) => alertCarNameNotVaild(carName));
+  },
+
+  isTryCountValid(tryCount) {
+    if (!isInteger(tryCount) || isNagativeOrZero(tryCount)) {
+      return false;
+    }
+
+    return true;
+  },
+
+  alertTryCountNotValid(tryCount) {
+    if (!isInteger(tryCount)) {
+      alert(SHOULD_NOT_DECIMAL_MESSAGE);
+    }
+    if (isNagativeOrZero(tryCount)) {
+      alert(SHOULD_GREATER_THAN_ZERO_MESSAGE);
+    }
+  },
+};
