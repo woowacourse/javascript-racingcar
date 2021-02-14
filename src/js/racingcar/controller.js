@@ -23,9 +23,9 @@ class RacingCarController {
   }
 
   reset() {
-    this.model = null;
     this.cars = [];
     this.count = 0;
+    this.model = null;
     this.view.reset();
   }
 
@@ -37,21 +37,6 @@ class RacingCarController {
 
   getCountInput() {
     return getQuerySelector('#count-input').value;
-  }
-
-  getWinners() {
-    const cars = this.model.getCars();
-    const maxForward = Math.max(...cars.map((car) => car.forward));
-
-    return cars
-      .filter((car) => car.forward === maxForward)
-      .map((car) => car.name);
-  }
-
-  playRacingCarGame() {
-    for (let i = 0; i < this.model.getCount(); i++) {
-      this.model.playOnce();
-    }
   }
 
   manageCars() {
@@ -81,13 +66,13 @@ class RacingCarController {
 
   proceedGame() {
     this.model = new RacingCarModel(this.cars, this.count);
-    this.playRacingCarGame();
+    this.model.playRacingCarGame();
     this.view.renderProcess(this.model.getCars());
     this.showResult();
   }
 
   showResult() {
-    const winners = this.getWinners();
+    const winners = this.model.getWinners();
     this.view.renderResult(winners);
     this.handleReset();
   }
