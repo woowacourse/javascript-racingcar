@@ -1,7 +1,7 @@
 import CarGameView from './CarGameView.js';
 import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
-import Validator from './Validatiors/Validator.js';
+import Validator from './Validators/Validator.js';
 
 export default class CarGameManager {
   constructor($element) {
