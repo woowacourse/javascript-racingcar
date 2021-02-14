@@ -7,7 +7,7 @@ import { showGameResult } from '../views/showGameResult.js';
 import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
 import { getWinners } from '../models/getWinners.js';
 
-export const handleGameResult = async (cars, racingCount) => {
+export async function handleGameResult(cars, racingCount) {
   let winners;
 
   clearResidueForwardIcon();
@@ -17,7 +17,7 @@ export const handleGameResult = async (cars, racingCount) => {
   winners = getWinners(cars);
   showGameResult(winners);
   alertGameOverAfterDelay(winners);
-};
+}
 
 const playRacingGame = async (cars, racingCount) => {
   const { TURN_DURATION } = RACING_RULE;

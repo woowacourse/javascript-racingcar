@@ -6,19 +6,16 @@ import { generateCarInstances } from '../models/generateCarInstances.js';
 import { validateCarNames } from '../models/validateCarNames.js';
 import { handleRacingCountInput } from './handleRacingCountInput.js';
 
-export const handleCarNameInput = () => {
+export function handleCarNameInput() {
   const $carNameInput = $('#car-name-input');
-  const cars = generateCarInstances($carNameInput.value);
-  const errorMessage = validateCarNames(cars);
+  this.cars = generateCarInstances($carNameInput.value);
+  const errorMessage = validateCarNames(this.cars);
 
   if (errorMessage) {
     alert(errorMessage);
     clearInput($carNameInput);
     return;
   }
-  showCarPlayers(cars);
-  $('#racing-count-submit').addEventListener('click', () =>
-    handleRacingCountInput(cars),
-  );
+  showCarPlayers(this.cars);
   showElement($('#racing-count-section'));
-};
+}
