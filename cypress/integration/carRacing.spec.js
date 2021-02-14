@@ -68,16 +68,21 @@ context('carRacing', () => {
   });
 
   it('다시 시작하기를 눌렀을 때도 정상적으로 게임이 플레이 되는지 확인한다.', () => {
+    const racingCount = 3;
     inputCarNames('car1, car2, car3');
-    inputRacingCount(5);
+    inputRacingCount(racingCount);
+    cy.wait(racingCount * 1000);
     clickRestartButton();
 
     checkRacingRound('car1, car2, car3');
   });
 
   it('최종 우승자가 정상적으로 출력되는지 확인한다.', () => {
+    const racingCount = 3;
     inputCarNames('car1, car2, car3');
-    inputRacingCount(5);
+    inputRacingCount(racingCount);
+
+    cy.wait(racingCount * 1000);
 
     const winners = [];
     let maxCount = -1;
