@@ -2,7 +2,6 @@ export default class Car {
   constructor(name) {
     this.name = name;
     this.movesPerTurn = [];
-    this.score = 0;
   }
 
   recodeMove(isMove) {
@@ -10,10 +9,6 @@ export default class Car {
   }
 
   getScore() {
-    if (this.score) {
-      return this.score;
-    }
-
     return this.movesPerTurn.reduce(
       (accumulatedScore, isMove) => (isMove ? accumulatedScore + 1 : accumulatedScore),
       0
