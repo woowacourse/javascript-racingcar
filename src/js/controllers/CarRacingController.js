@@ -100,10 +100,13 @@ export default class CarRacingController {
     this.showRacingResult();
   }
 
-  showRacingResult() {
+  async showRacingResult() {
     this.view.show(this.$resultContainer);
     const winners = this.model.getWinners();
     this.view.renderRacingResult(winners);
+
+    await sleep(2000);
+    alert(`🎉축하해요~ 우승자는 ${winners.map((winner) => winner.name).join(', ')}입니다!🎉`);
   }
 
   setEventListener() {
