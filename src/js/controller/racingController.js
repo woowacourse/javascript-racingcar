@@ -23,18 +23,22 @@ const finishRacingGame = function () {
 };
 
 export const startRacingGame = function (rounds) {
-	const gameRafCallback = function () {
-		if (rounds-- <= 0) {
-			requestAnimationFrame(addSpinners);
-			sleep(1);
-			requestAnimationFrame(finishRacingGame);
-			return;
+	const gameRafCallback = async function () {
+		try {
+			if (rounds-- <= 0) {
+				requestAnimationFrame(addSpinners);
+				await sleep(1);
+				requestAnimationFrame(finishRacingGame);
+				return;
+			}
+			addSpinners();
+			await sleep(0);
+			requestAnimationFrame(startRound);
+			requestAnimationFrame(gameRafCallback);
+		} catch (error) {
+			alert(error.message);
 		}
-		addSpinners();
-		sleep(1);
-		requestAnimationFrame(startRound);
-
-		requestAnimationFrame(gameRafCallback);
 	};
+
 	requestAnimationFrame(gameRafCallback);
 };

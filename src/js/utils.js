@@ -10,12 +10,18 @@ export const isNotDuplicatedArray = function (array) {
 	return Array.from(new Set(array)).length === array.length;
 };
 
-export const $ = (selector) => document.querySelector(selector);
+export const $ = function (selector) {
+	return document.querySelector(selector);
+};
 
-export const sleep = (seconds) => {
-	let now = new Date().getSeconds();
-	let last = now;
-	while (Math.abs(now - last) < seconds) {
-		now = new Date().getSeconds();
-	}
+export const sleep = function (seconds) {
+	return new Promise(function (resolve, reject) {
+		if (seconds <= 0)
+			reject(
+				new Error(
+					'Internal Error : sleep() parameter must be positive.',
+				),
+			);
+		setTimeout(resolve, seconds * 1000);
+	});
 };
