@@ -34,7 +34,7 @@ export const parseHTML = (html) => {
   return parser.parseFromString(html, "text/html").body.firstElementChild;
 };
 
-const getCarInstance = (carNames) => {
+const initCars = (carNames) => {
   state.cars = carNames.map((carName) => {
     return new Car(carName);
   });
@@ -59,7 +59,7 @@ const addEventOnCarNamesButton = () => {
       return;
     }
 
-    getCarInstance(carNames);
+    initCars(carNames);
     countSection.show();
     carNamesButton.disabled = true;
   });
