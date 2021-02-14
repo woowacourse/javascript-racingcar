@@ -25,7 +25,7 @@ export default class CarNameInput {
   }
 
   handleSubmitCarName() {
-    const { setCarNames } = this.props;
+    const { setCars, playGame } = this.props;
     const inputCarName = this.$carNameInput.value;
     const errorMessage = validateInputValue(inputCarName);
 
@@ -36,7 +36,8 @@ export default class CarNameInput {
     }
 
     disableElements(this.$carNameInput, this.$carNameSummitBtn);
-    setCarNames(modifyCarNameInputValue(inputCarName));
+    setCars(modifyCarNameInputValue(inputCarName));
+    playGame();
   }
 
   resetElements() {

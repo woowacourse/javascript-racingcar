@@ -23,7 +23,7 @@ export default class TryCountInput {
   }
 
   handleSubmitTryCount() {
-    const { setTryCount } = this.props;
+    const { setTryCount, playGame } = this.props;
     const inputTryCount = Number(this.$tryCountInput.value);
     const errorMessage = validateInputValue(inputTryCount);
 
@@ -35,6 +35,7 @@ export default class TryCountInput {
 
     disableElements(this.$tryCountInput, this.$tryCountSummitBtn);
     setTryCount(inputTryCount);
+    playGame();
   }
 
   resetElements() {

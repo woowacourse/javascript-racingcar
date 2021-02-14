@@ -23,17 +23,18 @@ export default class App {
   }
 
   initState() {
-    this.carNames = [];
-    this.tryCount = 0;
     this.cars = [];
+    this.tryCount = 0;
   }
 
   mountComponent() {
     this.carNameInput = new CarNameInput({
-      setCarNames: this.setCarNames.bind(this),
+      setCars: this.setCars.bind(this),
+      playGame: this.playGame.bind(this),
     });
     this.tryCountInput = new TryCountInput({
       setTryCount: this.setTryCount.bind(this),
+      playGame: this.playGame.bind(this),
     });
     this.racingResult = new RacingResult({
       $parent: this.$target,
@@ -45,51 +46,54 @@ export default class App {
     });
   }
 
-  setCarNames(nextCarNames) {
-    this.setState({ nextCarNames });
+  setCars(carNames) {
+    this.setState({ nextCars: carNames.map(name => new Car(name)) });
   }
 
   setTryCount(nextTryCount) {
     this.setState({ nextTryCount });
   }
 
-  createCars() {
-    return this.carNames.map(carName => new Car(carName));
+  moveCars(cars) {
+    const nextCars = cars.map(car => {
+      getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >=
+        MOVE_BOUNDED_NUMBER && car.move();
+
+      return car;
+    });
+
+    this.setState({ nextCars });
+  }
+
+  playGame() {
+    if (!this.isGameReady()) {
+      return;
+    }
+
+    for (let i = 0; i < this.tryCount; i++) {
+      this.moveCars(this.cars);
+    }
+
+    this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
+  }
+
+  isGameReady() {
+    return this.cars.length > 1 && this.tryCount > 0;
   }
 
   getWinners(cars) {
-    const scores = cars.map(car => car.score);
-    const maxScore = Math.max(...scores);
+    const maxScore = Math.max(...cars.map(car => car.score));
 
     return cars.filter(car => car.score === maxScore).map(car => car.name);
   }
 
-  play() {
-    for (let i = 0; i < this.tryCount; i++) {
-      setTimeout(() => {
-        this.cars.forEach(car => {
-          if (
-            getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >=
-            MOVE_BOUNDED_NUMBER
-          ) {
-            car.move();
-          }
-        });
-      }, 1000);
-    }
-  }
-
   resetRacingGame() {
-    this.setState({ nextCarNames: [], nextTryCount: 0, nextCars: [] });
+    this.setState({ nextTryCount: 0, nextCars: [] });
     this.carNameInput.resetElements();
     this.tryCountInput.resetElements();
   }
 
-  setState({ nextCarNames, nextTryCount, nextCars }) {
-    if (nextCarNames) {
-      this.carNames = nextCarNames;
-    }
-
+  setState({ nextTryCount, nextCars }) {
     if (typeof nextTryCount === 'number') {
       this.tryCount = nextTryCount;
     }
@@ -97,13 +101,6 @@ export default class App {
     if (nextCars) {
       this.cars = nextCars;
       this.racingResult.setState({ nextCars });
-    }
-
-    if (this.carNames.length && this.tryCount > 0) {
-      this.cars = this.createCars();
-      this.play();
-      this.racingResult.setState({ nextCars: this.cars });
-      this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
     }
   }
 }

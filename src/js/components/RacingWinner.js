@@ -9,7 +9,6 @@ export default class RacingWinner {
 
   mountDOM() {
     this.$parent = this.props.$parent;
-
     this.$container = document.createElement('div');
     this.$container.className =
       'd-flex justify-center mt-5 racing-winner-container';
