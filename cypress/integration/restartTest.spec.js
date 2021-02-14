@@ -1,8 +1,8 @@
-import { ENV, SELECTOR } from '../../src/js/keys.js';
+import { SELECTOR } from '../../src/js/keys.js';
 
 describe('다시 시작 버튼 테스트', () => {
 	before(() => {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 	});
 
 	it('다시 시작 버튼을 누르면 게임이 초기화 되는 것을 확인한다..', () => {

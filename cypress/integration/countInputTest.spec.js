@@ -1,8 +1,8 @@
-import { ENV, SELECTOR } from '../../src/js/keys.js';
+import { SELECTOR } from '../../src/js/keys.js';
 
 describe('시도 횟수 입력 테스트', () => {
 	const countInputTest = function (count, shouldBeVisible) {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 		cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c,d,e');
 		cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
 		cy.get(SELECTOR.COUNT_INPUT).type(count);

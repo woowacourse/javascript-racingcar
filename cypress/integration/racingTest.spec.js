@@ -1,15 +1,15 @@
 import Car from '../../src/js/model/Car.js';
 import { getRandomNumber } from '../../src/js/utils.js';
-import { BOUND, ENV, SELECTOR } from '../../src/js/keys.js';
+import { BOUND, SELECTOR } from '../../src/js/keys.js';
 import { appendArrowElement } from '../../src/js/view/racingView.js';
 
 describe('자동차 레이싱 테스트', () => {
 	before(() => {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 	});
 	it('자동차 객체가 올바르게 생성되었는지 확인한다.', () => {
 		const checkCarGenerator = (carNames) => {
-			cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+			cy.visit('/');
 			const carNamesList = carNames.split(',');
 			cy.get(SELECTOR.CAR_NAMES_INPUT).type(carNamesList.join(','));
 			cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
@@ -63,7 +63,7 @@ describe('자동차 레이싱 테스트', () => {
 	});
 
 	it('레이싱이 끝나기 전까지 spinner가 존재하는 지 확인한다.', () => {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 		const carNamesList = ['a', 'b', 'c', 'd', 'e'];
 		let count = 5;
 		cy.get(SELECTOR.CAR_NAMES_INPUT).type(carNamesList.join(','));
@@ -71,10 +71,9 @@ describe('자동차 레이싱 테스트', () => {
 		cy.get(SELECTOR.COUNT_INPUT).type(count);
 		cy.get(SELECTOR.COUNT_SUBMIT).click();
 
-		while (count-- > 2) {
-			// cypress에서 2초빠르게 시작해서 맞춰주기 위함
+		while (count--) {
 			cy.get(SELECTOR.SPINNER_CONTAINER).should('to.be.visible');
-			cy.wait(500); // cypress 실행이 약 2배 빨라서 맞춰주기 위함
+			cy.wait(1000);
 		}
 		cy.get(SELECTOR.SPINNER_CONTAINER).should('not.exist');
 	});

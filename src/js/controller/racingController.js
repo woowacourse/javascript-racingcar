@@ -32,7 +32,7 @@ export const startRacingGame = function (rounds) {
 				return;
 			}
 			addSpinners();
-			await sleep(0);
+			await sleep(1);
 			requestAnimationFrame(startRound);
 			requestAnimationFrame(gameRafCallback);
 		} catch (error) {

@@ -1,8 +1,8 @@
-import { ENV, SELECTOR } from '../../src/js/keys.js';
+import { SELECTOR } from '../../src/js/keys.js';
 
 describe('자동차 이름 검증 테스트', () => {
 	const inputTest = function (value, shouldBeVisible) {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 		cy.get(SELECTOR.CAR_NAMES_INPUT).clear();
 
 		cy.get(SELECTOR.CAR_NAMES_INPUT).type(value);

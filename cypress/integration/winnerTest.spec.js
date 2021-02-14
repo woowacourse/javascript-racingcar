@@ -1,8 +1,8 @@
-import { SELECTOR, GLOBAL_TEXT, ENV } from '../../src/js/keys.js';
+import { SELECTOR, GLOBAL_TEXT } from '../../src/js/keys.js';
 
 describe('레이싱 우승자 테스트', () => {
 	before(() => {
-		cy.visit(`http://localhost:${ENV.PORT}/index.html`);
+		cy.visit('/');
 	});
 
 	const checkWinnerTest = (testFunction) => {
