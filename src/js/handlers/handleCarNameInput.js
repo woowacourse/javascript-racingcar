@@ -1,10 +1,9 @@
 import { $ } from '../views/utils/querySelector.js';
-import { showCarPlayers } from '../views/showCarPlayers.js';
+import { createCarElements } from '../views/showCarPlayers.js';
 import { showElement } from '../views/utils/showElement.js';
 import { clearInput } from '../views/utils/clearInput.js';
 import { generateCarInstances } from '../models/generateCarInstances.js';
 import { validateCarNames } from '../models/validateCarNames.js';
-import { handleRacingCountInput } from './handleRacingCountInput.js';
 
 export function handleCarNameInput() {
   const $carNameInput = $('#car-name-input');
@@ -16,6 +15,6 @@ export function handleCarNameInput() {
     clearInput($carNameInput);
     return;
   }
-  showCarPlayers(this.cars);
+  createCarElements(this.cars);
   showElement($('#racing-count-section'));
 }

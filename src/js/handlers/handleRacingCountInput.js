@@ -14,7 +14,7 @@ export function handleRacingCountInput() {
     clearInput($racingCountInput);
     return;
   }
-  showElement($('#game-process-section'));
   this.cars.forEach((car) => car.resetForwardCount());
+  showElement($('#game-process-section'));
   handleGameResult(this.cars, racingCount);
 }

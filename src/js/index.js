@@ -3,7 +3,6 @@ import { setToInitialView } from './views/setToInitialView.js';
 import { handleCarNameInput } from './handlers/handleCarNameInput.js';
 import { handleRacingCountInput } from './handlers/handleRacingCountInput.js';
 
-// 갓 파노 피춋다
 export default class RacingGame {
   constructor() {
     this.cars = [];
@@ -11,6 +10,10 @@ export default class RacingGame {
 
   init() {
     setToInitialView();
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
     $('#car-name-submit').addEventListener(
       'click',
       handleCarNameInput.bind(this),
@@ -24,5 +27,7 @@ export default class RacingGame {
 }
 
 window.onload = () => {
-  new RacingGame().init();
+  const racingGame = new RacingGame();
+
+  racingGame.init();
 };

@@ -1,6 +1,6 @@
 import { $ } from './utils/querySelector.js';
 
-export const showCarPlayers = (cars) => {
+export const createCarElements = (cars) => {
   $('#game-process-screen').innerHTML = cars
     .map((car) => carTemplate(car.name))
     .join('');

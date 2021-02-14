@@ -5,7 +5,7 @@ import { clearResidueForwardIcon } from '../views/clearResidueForwardIcon.js';
 import { hideLoader, showLoader } from '../views/setLoaderVisibility.js';
 import { wait } from '../views/utils/wait.js';
 import { showGameResult } from '../views/showGameResult.js';
-import { alertGameOverAfterDelay } from '../views/alertGameOver.js';
+import { alertGameOver } from '../views/alertGameOver.js';
 import { getWinners } from '../models/getWinners.js';
 
 export async function handleGameResult(cars, racingCount) {
@@ -16,7 +16,7 @@ export async function handleGameResult(cars, racingCount) {
   const winners = getWinners(cars);
   showGameResult(winners);
   await wait(GAME_OVER_NOTICE.DELAY);
-  alertGameOverAfterDelay(winners);
+  alertGameOver(winners);
 }
 
 const playRacingGame = async (cars, racingCount) => {
