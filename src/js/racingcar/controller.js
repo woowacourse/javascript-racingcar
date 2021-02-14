@@ -29,12 +29,9 @@ class RacingCarController {
     const cars = this.model.getCars();
     const maxForward = Math.max(...cars.map((car) => car.forward));
 
-    const winner = [];
-    cars.forEach((car) => {
-      car.forward === maxForward && winner.push(car.name);
-    });
-
-    return winner;
+    return cars
+      .filter((car) => car.forward === maxForward)
+      .map((car) => car.name);
   }
 
   // T면 1(전진), F면 0(스톱) 반환
