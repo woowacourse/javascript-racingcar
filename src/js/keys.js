@@ -43,7 +43,7 @@ export const GLOBAL_HTML_TEMPLATE = {
 };
 
 export const GLOBAL_TEXT = {
-	WINNER_TEXT: '🏆 최종 우승자 🏆',
+	WINNER_TEXT: '🏆 최종 우승자: 🏆',
 	MAKE_WINNER_TEXT: (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`,
 };
 

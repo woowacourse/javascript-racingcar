@@ -7,21 +7,22 @@ import {
 	resetAllViews,
 } from './controller/winnerController.js';
 import { SELECTOR } from './keys.js';
+import { $ } from './utils.js';
 import Car from './model/Car.js';
 
 class App {
 	constructor() {
 		this.cars = [];
 		resetAllViews();
-		document
-			.querySelector(SELECTOR.CAR_NAMES_SUBMIT)
-			.addEventListener('click', handleCarNamesSubmit);
-		document
-			.querySelector(SELECTOR.COUNT_SUBMIT)
-			.addEventListener('click', handleCountSubmit);
-		document
-			.querySelector(SELECTOR.RESTART_BUTTON)
-			.addEventListener('click', handleRestartButton);
+		$(SELECTOR.CAR_NAMES_SUBMIT).addEventListener(
+			'click',
+			handleCarNamesSubmit,
+		);
+		$(SELECTOR.COUNT_SUBMIT).addEventListener('click', handleCountSubmit);
+		$(SELECTOR.RESTART_BUTTON).addEventListener(
+			'click',
+			handleRestartButton,
+		);
 	}
 
 	initializeCars() {

@@ -16,12 +16,13 @@ export const $ = function (selector) {
 
 export const sleep = function (seconds) {
 	return new Promise(function (resolve, reject) {
-		if (seconds <= 0)
+		if (seconds <= 0 || typeof seconds !== 'number') {
 			reject(
 				new Error(
-					'Internal Error : sleep() parameter must be positive.',
+					'Internal Error : sleep() parameter must be positive integer.',
 				),
 			);
+		}
 		setTimeout(resolve, seconds * 1000);
 	});
 };

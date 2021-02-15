@@ -14,7 +14,7 @@ describe('레이싱 우승자 테스트', () => {
 		cy.get(SELECTOR.COUNT_INPUT).type(5);
 		cy.get(SELECTOR.COUNT_SUBMIT).click();
 
-		cy.wait(5000);
+		cy.wait(6000);
 
 		cy.get(`${SELECTOR.RACING_CARS_AREA} > div`)
 			.each((element) => {
