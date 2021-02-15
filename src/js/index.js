@@ -48,7 +48,7 @@ export default class Racing {
     this.moveCars();
     
     this.UIController.showProgress(this.cars);
-    this.UIController.showWinners(this.getWinners(), this.cars.length);
+    this.UIController.showWinners(this.createWinnerNames(), this.cars.length);
   }
 
   createCars(carNamesArr) { 
@@ -64,7 +64,7 @@ export default class Racing {
     }
   }
 
-  getWinners() {
+  createWinnerNames() {
     return this.cars.reduce((winners, car) => {
       if (winners.length === 0 || car.carPos > winners[0].carPos) {
         return [car];
@@ -75,7 +75,7 @@ export default class Racing {
       } 
 
       return winners;
-    }, []).map(winner => winner.name);
+    }, []).map(winner => winner.carName);
   }
 
   restartGame() {

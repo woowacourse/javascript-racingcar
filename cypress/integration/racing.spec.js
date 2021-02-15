@@ -23,7 +23,7 @@ function expectAlert(className, alertMessage) {
   });
 }
 
-function getWinnerResult(cars) {
+function createWinnerResult(cars) {
   const progresses = [...cars].map(car => car.parentNode.childNodes.length);
   const maxPosition = Math.max(...progresses);
   const winnerResult = [...cars]
@@ -119,7 +119,7 @@ describe('자동차 경주', () => {
         cy.get(ELEMENT_CLASS_NAME.FORWARD_ICON).should('be.visible');
 
         const newCars = doc.querySelectorAll('.car-player');
-        const winnerResult = getWinnerResult(newCars);
+        const winnerResult = createWinnerResult(newCars);
 
         expect(alertStub.getCall(0)).to.be.calledWith(`우승자는 ${winnerResult} 입니다! 축하합니다!`);
 
@@ -140,7 +140,7 @@ describe('자동차 경주', () => {
 
       cy.wait(1000 * (cars.length + 2)).then(() => {
         const newCars = doc.querySelectorAll('.car-player');
-        const winnerResult = getWinnerResult(newCars);
+        const winnerResult = createWinnerResult(newCars);
 
         expect(alertStub.getCall(0)).to.be.calledWith(`우승자는 ${winnerResult} 입니다! 축하합니다!`);
         cy.get(ELEMENT_CLASS_NAME.RESTART_BTN).click();
