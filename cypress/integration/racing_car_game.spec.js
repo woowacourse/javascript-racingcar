@@ -1,4 +1,5 @@
 import RacingCarGameModel from "../../src/scripts/RacingCarGame/RacingCarGameModel.js";
+
 import { CAR_MOVE_STANDARD_NUMBER } from "../../src/scripts/constants/racing_game_constants.js";
 import {
   CAR_NAME_LENGTH_EXCEEDED,
