@@ -1,2 +1,4 @@
-cypress/*
-!cypress/integration/*
+cypress/fixtures/*
+cypress/plugins/*
+cypress/support/*
+!cypress/integration/*.js
