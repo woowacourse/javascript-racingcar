@@ -51,11 +51,11 @@ export default class Racing {
     this.UIController.showWinners(this.getWinners(), this.cars.length);
   }
 
-  createCars(carNamesArr) { // forEach로 수정하기
-    for (let carName of carNamesArr) {
+  createCars(carNamesArr) { 
+    carNamesArr.forEach(carName => {
       const car = new Car(carName.trim());
       this.cars.push(car);
-    }
+    });
   }
 
   moveCars() {
