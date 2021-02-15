@@ -96,9 +96,9 @@ export class Controller {
   }
 
   moveCarAlongWith(lapResult) {
-    this.carModels
-      .filter((_, i) => lapResult[i])
-      .forEach((carModel) => carModel.move());
+    lapResult.forEach(
+      (isMoving, index) => isMoving && this.carModels[index].move()
+    );
   }
 
   getWinners() {
