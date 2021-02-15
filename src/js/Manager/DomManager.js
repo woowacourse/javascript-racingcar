@@ -41,6 +41,8 @@ function createRaceProgressContainerTemplate(cars) {
 	</div>`;
 }
 
-const $ = (id) => document.getElementById(id);
+function $(id) {
+	return document.getElementById(id);
+}
 
 export { setAttributes, appendChildren, createElement, createRaceProgressContainerTemplate, $ };
