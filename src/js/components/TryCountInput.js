@@ -6,7 +6,7 @@ export default class TryCountInput {
   constructor({ play }) {
     this.$target = document.querySelector('.try-count-input-containter');
     this.$tryCountInput = this.$target.querySelector('input[type=number]');
-    this.$tryCountSubmmitBtn = this.$target.querySelector('button');
+    this.$tryCountSubmitBtn = this.$target.querySelector('button');
     this.tryCount = 0;
     this.play = play;
 
@@ -14,7 +14,7 @@ export default class TryCountInput {
   }
 
   attachEvents() {
-    this.$tryCountSubmmitBtn.addEventListener('click', this.handleSubmitTryCount.bind(this));
+    this.$tryCountSubmitBtn.addEventListener('click', this.handleSubmitTryCount.bind(this));
   }
 
   handleSubmitTryCount() {
@@ -26,13 +26,13 @@ export default class TryCountInput {
       return;
     }
 
-    disableElements(this.$tryCountInput, this.$tryCountSubmmitBtn);
+    disableElements(this.$tryCountInput, this.$tryCountSubmitBtn);
     this.setState(tryCountInput);
     this.play();
   }
 
   reset() {
-    activateElements(this.$tryCountInput, this.$tryCountSubmmitBtn);
+    activateElements(this.$tryCountInput, this.$tryCountSubmitBtn);
     clearInput(this.$tryCountInput);
     this.setState(0);
   }
