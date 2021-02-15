@@ -12,7 +12,9 @@ describe('Racing car game test', () => {
 
   it('Can render animation', () => {
     cy.get('.spinner-container').should('exist');
-    cy.tick(2000);
+    cy.tick(1000);
+    cy.get('.spinner-container').should('exist');
+    cy.tick(1000);
     cy.get('.spinner-container').should('not.exist');
   });
 
@@ -35,12 +37,15 @@ describe('Racing car game test', () => {
   it('Can render result.', () => {
     cy.get('.progress-container').children().should('exist');
     cy.get('.result-container').children().should('not.exist');
-    cy.tick(2000);
+    cy.tick(1000);
+    cy.tick(1000);
     cy.get('.result-container').children().should('exist');
   });
 
   it('Can render alerting winners', () => {
-    cy.tick(4000);
+    cy.tick(1000);
+    cy.tick(1000);
+    cy.tick(2000);
     cy.on('window:alert', message => {
       expect(message).to.satisfy(message => {
         for (const carName of carNames.split(',')) {
@@ -56,7 +61,8 @@ describe('Racing car game test', () => {
 
   it('Can reset game when clicking reset button.', () => {
     cy.get('.reset-btn').should('not.exist');
-    cy.tick(2000);
+    cy.tick(1000);
+    cy.tick(1000);
     cy.get('.reset-btn').click();
     cy.get('.count-container').children().should('not.exist');
     cy.get('.progress-container').children().should('not.exist');
