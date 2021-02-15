@@ -96,7 +96,7 @@ export class Controller {
   }
 
   getLapResult(carModelsNumber) {
-    return Array.from(Array(carModelsNumber), () => canMoveForward);
+    return Array.from(Array(carModelsNumber), () => canMoveForward());
   }
 
   moveCarAlongWith(lapResult) {

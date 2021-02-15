@@ -1,3 +1,5 @@
+import { RANDOM_NUMBER } from "./constants.js";
+
 // minInteger와 maxInteger를 사용하지 않고 매개변수인 min, max 를 그대로 사용하여 반환값을 계산하는 경우에는
 // min 이하 또는 max 이상의 정수가 반환될 가능성이 있다.
 // 잘못된 예시) min = 2.5   max = 6.3  => 반환값의 범위: [2, 7]
