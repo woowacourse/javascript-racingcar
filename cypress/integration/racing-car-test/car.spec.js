@@ -1,7 +1,9 @@
 const validCarNames = "엘라, 그루밍 , 준,포코";
 const emptyCarNames = "포코, ,, 엘라, 그루밍";
 const longCarNames = "포코포포코코,,엘라, 그루밍";
-const notNumberInput = "숫자";
+const validCarNumber = 5;
+const minusNumberInput = -5;
+const notNumberInput = "ㅁ";
 
 describe("자동차 경주 게임 테스트", () => {
   before(() => {
@@ -20,7 +22,7 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("시도할 횟수가 잘 입력되었는지 테스트합니다.", () => {
-    cy.get("input[type='number']").type(5).should("have.value", 5);
+    cy.get("input[type='number']").type(5).should("have.value", validCarNumber);
   });
 
   it("두번째 확인 버튼을 눌렀을 때, 결과 section이 보여지는지 테스트합니다.", () => {
@@ -36,6 +38,14 @@ describe("자동차 경주 게임 테스트", () => {
 
     cy.get(".car-player").each((car, idx) => {
       expect(car).to.contain(validCarNamesArray[idx]);
+    });
+  });
+
+  it("게임 진행이 정상적으로 동작된 후, 2초 후에 축하의 alert가 나오는지 확인합니다.", () => {
+    cy.clock();
+    cy.tick(2000);
+    cy.on("window:alert", (txt) => {
+      expect(txt).to.contains("축하합니다! 게임이 모두 끝났습니다!");
     });
   });
 
@@ -67,18 +77,24 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("음수인 시도 횟수가 입력되었을 때를 테스트합니다.", () => {
-    cy.get("input[type='number']").type(-5);
+    cy.get("input[type='number']").type(minusNumberInput);
     cy.get("button").eq(1).click();
     cy.on("window:alert", (txt) => {
       expect(txt).to.contains("올바른 시도 횟수를 입력하세요.");
     });
   });
 
-  it("숫자가 아닌 시도 횟수가 입력되었을 때를 테스트합니다.", () => {
-    cy.get("input[type='number']").type(notNumberInput);
+  it("다시 시도할 횟수가 잘 입력되었는지 테스트합니다.", () => {
+    cy.get("input[type='number']").type(validCarNumber);
     cy.get("button").eq(1).click();
+  });
+
+  it("두번째 확인 버튼을 눌렀을 때, 결과 section이 보여지는지 테스트합니다.", () => {
+    cy.get("section.mt-4").should("exist");
+    cy.clock();
+    cy.tick(2000);
     cy.on("window:alert", (txt) => {
-      expect(txt).to.contains("올바른 시도 횟수를 입력하세요.");
+      expect(txt).to.contains("축하합니다! 게임이 모두 끝났습니다!");
     });
   });
 });
