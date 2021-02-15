@@ -43,8 +43,33 @@ const setTotalStep = () => {
   });
 };
 
-const playGameForSecond = (second) => {
+const startGame = () => {
+  setCarNamesInResultView(); // 0초에는 car name 보여주고 game 진행 X
+};
+
+const finishGame = (resultDivs, goStep) => {
+  const winnerArray = getWinner();
+  const winnerText = getWinnerText(winnerArray);
+
+  deleteLoading(resultDivs);
+  setWinnerView(winnerArray);
+  setTimeout(() => alert(`축하합니다. ${winnerText} 우승했습니다.`), 2000);
+  clearInterval(goStep);
+};
+
+const playGame = (resultDivs, prevTotalStep) => {
+  setTotalStep();
+  deleteLoading(resultDivs);
+
+  const currentTotalStep = getTotalStep();
+  setIconsInResultView(resultDivs, prevTotalStep, currentTotalStep);
+
+  return currentTotalStep;
+};
+
+const playGameForSecond = () => {
   const tryNumInput = tryNumSection.querySelector("input");
+  let second = 0;
   let prevTotalStep = getTotalStep();
 
   const goStep = setInterval(() => {
@@ -53,37 +78,24 @@ const playGameForSecond = (second) => {
       .querySelectorAll(".one-car-result");
 
     if (second === 0) {
-      setCarNamesInResultView(); // 0초에는 car name 보여주고 game 진행 X
+      startGame();
+    } else if (second === Number(tryNumInput.value) + 1) {
+      finishGame(resultDivs, goStep);
     } else {
-      setTotalStep(); // 1초부터 게임 진행
-      deleteLoading(resultDivs);
+      prevTotalStep = playGame(resultDivs, prevTotalStep);
     }
 
-    const currentTotalStep = getTotalStep();
-    setIconsInResultView(resultDivs, prevTotalStep, currentTotalStep);
-
-    prevTotalStep = currentTotalStep;
-
-    if (second++ === Number(tryNumInput.value)) {
-      const winnerArray = getWinner();
-      const winnerText = getWinnerText(winnerArray);
-
-      deleteLoading(resultDivs);
-      setWinnerView(winnerArray);
-      setTimeout(() => alert(`축하합니다. ${winnerText} 우승했습니다.`), 2000);
-      clearInterval(goStep);
-    }
+    second++;
   }, 1000);
 };
 
-export const playGame = () => {
-  let second = 0;
+export const playRacingGame = () => {
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
   resetGameResultSections(); // reset result, winner section
 
-  playGameForSecond(second);
+  playGameForSecond();
 };
 // 우승자 이름을 배열로 리턴한다.
 export const getWinner = () => {

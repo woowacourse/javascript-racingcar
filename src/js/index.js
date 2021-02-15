@@ -2,11 +2,10 @@ import Car from "./Car.js";
 import {
   showElement,
   resetView,
-  setWinnerView,
   resetCarNamesInput,
   resetTryNumInput,
 } from "./display-utils.js";
-import { playGame } from "./game-utils.js";
+import { playRacingGame } from "./game-utils.js";
 import {
   isInputEmpty,
   isCarNameLengthValid,
@@ -61,6 +60,7 @@ const onClickedCarNamesBtn = () => {
 
 const onClickedTryNumBtn = () => {
   const tryNumBtn = tryNumSection.querySelector("button");
+
   tryNumBtn.addEventListener("click", () => {
     const tryNum = tryNumSection.querySelector("input").value;
 
@@ -70,7 +70,7 @@ const onClickedTryNumBtn = () => {
 
       return;
     }
-    playGame();
+    playRacingGame();
 
     showElement(resultSection);
     showElement(winnerSection);
