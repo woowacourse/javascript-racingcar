@@ -83,13 +83,15 @@ class RacingCarController {
       this.model.playRacingCarGameOnce();
       this.view.renderProcess(this.model.getCars());
     }
+    this.view.hideSpinnerAll();
     this.showResult();
   }
 
-  showResult() {
+  async showResult() {
     const winners = this.model.getWinners();
-    this.view.hideSpinnerAll();
     this.view.renderResult(winners);
+    await wait(2000);
+    alert(`🎉축하합니다. ${winners.join(', ')}가(이) 승리했습니다.🎉`);
     this.handleReset();
   }
 
