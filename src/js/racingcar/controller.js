@@ -9,6 +9,7 @@ import {
 import {isCountExist} from '../validations/countValid.js';
 import {getQuerySelector} from '../utils/dom.js';
 import {ERROR_MESSAGE} from '../constants/message.js';
+import {wait} from '../utils/async.js';
 
 class RacingCarController {
   constructor() {
@@ -76,8 +77,9 @@ class RacingCarController {
     this.proceedGame();
   }
 
-  proceedGame() {
+  async proceedGame() {
     for (let i = 0; i < this.count; i++) {
+      await wait(1000);
       this.model.playRacingCarGameOnce();
       this.view.renderProcess(this.model.getCars());
     }
