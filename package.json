@@ -1,0 +1,17 @@
+{
+  "name": "javascript-racingcar",
+  "version": "0.0.1",
+  "description": "자바스크립트로 구현하는 자동차 경주 게임",
+  "main": "index.js",
+  "repository": "https://github.com/bigsaigon333/javascript-racingcar.git",
+  "author": "dongdong",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "cypress": "^6.4.0",
+    "eslint": "^7.19.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "prettier": "2.2.1"
+  }
+}
