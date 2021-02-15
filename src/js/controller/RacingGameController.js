@@ -1,6 +1,6 @@
 import { RacingGameView } from '../view/index.js';
 import { RacingGame } from '../model/index.js';
-import { InputValidator } from '../utils/index.js';
+import { InputValidator, wait } from '../utils/index.js';
 import {
   ALERT_RESTART,
   PREFIX_RESULT,
@@ -69,7 +69,7 @@ export default class RacingGameController {
       return;
     }
     if (this.checkCount($input)) {
-      this.runGame($input);
+      this.runGame(Number($input.value));
     }
   }
 
@@ -87,25 +87,21 @@ export default class RacingGameController {
     }
   }
 
-  runGame($input) {
-    this.game.runRace(Number($input.value));
+  runGame(count) {
+    this.game.runRace(count);
     this.handleResult(this.game.cars, this.game.getWinners());
   }
 
-  handleResult(cars, winners) {
-    const setEventParams = ['click', '.reset-btn', this.initGame.bind(this)];
-
+  async handleResult(cars, winners) {
     this.view.renderProgress(cars);
-    this.setTimer(this.view.renderResult, cars.length, winners);
-    this.setTimer(this.setEvent, cars.length, ...setEventParams);
-    this.setTimer(this.sendResultMessage, cars.length + MSG_INTERVAL, winners);
+    await wait(cars.length);
+    this.view.renderResult(winners);
+    this.setEvent('click', '.reset-btn', this.initGame.bind(this));
+    await wait(MSG_INTERVAL);
+    this.showResultMessage(winners);
   }
 
-  setTimer(task, second, ...parameters) {
-    setTimeout(task, second * 1000, ...parameters);
-  }
-
-  sendResultMessage(winners) {
+  showResultMessage(winners) {
     alert(`${PREFIX_RESULT}${winners.join(', ')}${SUFFIX_RESULT}`);
   }
 }
