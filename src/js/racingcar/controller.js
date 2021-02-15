@@ -88,6 +88,7 @@ class RacingCarController {
 
   showResult() {
     const winners = this.model.getWinners();
+    this.view.hideSpinnerAll();
     this.view.renderResult(winners);
     this.handleReset();
   }

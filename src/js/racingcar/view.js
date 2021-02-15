@@ -24,6 +24,13 @@ class RacingCarView {
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
+  hideSpinnerAll() {
+    const $spinners = document.querySelectorAll('.spinner-container');
+    $spinners.forEach(($spinner) => {
+      setElementDisplay($spinner, 'none');
+    });
+  }
+
   resetCar() {
     getQuerySelector('#car-input').value = '';
   }
