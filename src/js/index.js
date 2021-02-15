@@ -2,8 +2,8 @@ import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
 import { ELEMENT_CLASS_NAME } from './constants.js';
 import { 
-  checkCarNameValidity,
-  checkTryCountValidity,
+  createCarNameAlertMessage,
+  createTryCountAlertMessage,
 } from './validation.js';
 export default class Racing {
   constructor() {
@@ -23,7 +23,7 @@ export default class Racing {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
     const carNamesArr = carNameInput.split(',').map(name => name.trim());
 
-    const alertMessage = checkCarNameValidity(carNameInput, carNamesArr);
+    const alertMessage = createCarNameAlertMessage(carNameInput, carNamesArr);
     if (alertMessage) {
       alert(alertMessage);
       return;
@@ -38,7 +38,7 @@ export default class Racing {
   handleTryCountInput() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
 
-    const alertMessage = checkTryCountValidity(tryCountInput);
+    const alertMessage = createTryCountAlertMessage(tryCountInput);
     if(alertMessage) {
       alert(alertMessage);
       return;

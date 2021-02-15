@@ -1,6 +1,6 @@
 import { ALERT_MESSAGE, GAME_LIMIT_VALUE } from './constants.js';
 
-export const checkCarNameValidity = (carNamesInput, carNamesArr) => {
+export const createCarNameAlertMessage = (carNamesInput, carNamesArr) => {
   if (isInputValueEmpty(carNamesInput)) {
     return ALERT_MESSAGE.CAR_NAME_EMPTY;
   } else if (isCarNamesDuplicate(carNamesArr)) {
@@ -13,7 +13,7 @@ export const checkCarNameValidity = (carNamesInput, carNamesArr) => {
   return '';
 }
 
-export const checkTryCountValidity = tryCountInput => {
+export const createTryCountAlertMessage = tryCountInput => {
   const tryCountNumber = Number(tryCountInput);
   if (isInputValueEmpty(tryCountInput)) {
     return ALERT_MESSAGE.TRY_COUNT_EMPTY;
