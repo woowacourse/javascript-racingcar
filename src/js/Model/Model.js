@@ -1,7 +1,25 @@
 import View from "../View/View.js";
-import Validator from "./Validator.js";
-import { COUNT_CLICKED_ELEMENT_LENGTH } from "./constatns.js";
-
+import {
+	COUNT_CLICKED_ELEMENT_LENGTH,
+	ALREADY_NAME_SUBMITTED_ALERT,
+	INCLUDE_BLANK_NAME_ALERT,
+	OVER_SCROLL_PREVENT_ALERT,
+	HAVE_NAME_OVER_MAX_LENGTH_ALERT,
+	DUPLIACTED_NAME_ALERT,
+	ALREADY_COUNT_SUBMITTED_ALERT,
+	INVALID_INTEGER_ALERT,
+	OVER_MAX_COUNT_ALERT,
+} from "./constatns.js";
+import {
+	isFirstSubmittedName,
+	isIncludeBlank,
+	isOverScrollPreventLength,
+	isHaveNameOverMaxLength,
+	isDuplicatedName,
+	isFirstSubmittedCount,
+	isValidInteger,
+	isUnderMaxCount,
+} from "./validator.js";
 class Model {
 	constructor() {
 		this.cars = [];
@@ -87,36 +105,36 @@ class Model {
 	}
 
 	validateName(inputValue) {
-		const names = inputValue.split(",");
+		const carNameArray = inputValue.split(",");
 
-		if (!Validator.isFirstSubmittedName(this.cars.length)) {
-			return { isValid: false, alertMessage: "이미 이름이 등록되었습니다." };
+		if (!isFirstSubmittedName(this.cars.length)) {
+			return { isValid: false, alertMessage: ALREADY_NAME_SUBMITTED_ALERT };
 		}
-		if (Validator.isIncludeBlank(names)) {
-			return { isValid: false, alertMessage: "빈 문자인 이름은 등록할 수 없습니다." };
+		if (isIncludeBlank(carNameArray)) {
+			return { isValid: false, alertMessage: INCLUDE_BLANK_NAME_ALERT };
 		}
-		if (Validator.isOverScrollPreventLength(names.length)) {
-			return { isValid: false, alertMessage: "가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다." };
+		if (isOverScrollPreventLength(carNameArray.length)) {
+			return { isValid: false, alertMessage: OVER_SCROLL_PREVENT_ALERT };
 		}
-		if (Validator.isOverFiveCharacter(names)) {
-			return { isValid: false, alertMessage: "5자를 넘는 이름은 등록할 수 없습니다." };
+		if (isHaveNameOverMaxLength(carNameArray)) {
+			return { isValid: false, alertMessage: HAVE_NAME_OVER_MAX_LENGTH_ALERT };
 		}
-		if (Validator.isDuplicatedName(names)) {
-			return { isValid: false, alertMessage: "중복된 이름은 등록할 수 없습니다." };
+		if (isDuplicatedName(carNameArray)) {
+			return { isValid: false, alertMessage: DUPLIACTED_NAME_ALERT };
 		}
 
 		return { isValid: true, alertMessage: null };
 	}
 
 	validateCount(submittedCount) {
-		if (!Validator.isFirstSubmittedCount(this.count)) {
-			return { isValid: false, alertMessage: "이미 횟수를 설정하였습니다." };
+		if (!isFirstSubmittedCount(this.count)) {
+			return { isValid: false, alertMessage: ALREADY_COUNT_SUBMITTED_ALERT };
 		}
-		if (!Validator.isValidInteger(submittedCount)) {
-			return { isValid: false, alertMessage: "자연수만 설정할 수 있습니다." };
+		if (!isValidInteger(submittedCount)) {
+			return { isValid: false, alertMessage: INVALID_INTEGER_ALERT };
 		}
-		if (!Validator.isUnderMaxCount(submittedCount)) {
-			return { isValid: false, alertMessage: "원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다." };
+		if (!isUnderMaxCount(submittedCount)) {
+			return { isValid: false, alertMessage: OVER_MAX_COUNT_ALERT };
 		}
 
 		return { isValid: true, alertMessage: null };

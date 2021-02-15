@@ -1,3 +1,14 @@
+import {
+	ALREADY_NAME_SUBMITTED_ALERT,
+	INCLUDE_BLANK_NAME_ALERT,
+	OVER_SCROLL_PREVENT_ALERT,
+	HAVE_NAME_OVER_MAX_LENGTH_ALERT,
+	DUPLIACTED_NAME_ALERT,
+	ALREADY_COUNT_SUBMITTED_ALERT,
+	INVALID_INTEGER_ALERT,
+	OVER_MAX_COUNT_ALERT,
+} from "../../../src/js/Model/constatns.js";
+
 /// <reference types="cypress" />
 
 context("bdd", () => {
@@ -223,7 +234,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INCLUDE_BLANK_NAME_ALERT);
 			});
 		cy.reload();
 
@@ -231,7 +242,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("빈 문자인 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INCLUDE_BLANK_NAME_ALERT);
 			});
 	});
 
@@ -244,7 +255,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("5자를 넘는 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(HAVE_NAME_OVER_MAX_LENGTH_ALERT);
 			});
 	});
 
@@ -259,7 +270,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("이미 이름이 등록되었습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(ALREADY_NAME_SUBMITTED_ALERT);
 			});
 		cy.reload();
 
@@ -273,7 +284,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("이미 이름이 등록되었습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(ALREADY_NAME_SUBMITTED_ALERT);
 			});
 	});
 
@@ -290,7 +301,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("이미 횟수를 설정하였습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(ALREADY_COUNT_SUBMITTED_ALERT);
 			});
 	});
 
@@ -305,7 +316,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INVALID_INTEGER_ALERT);
 			});
 		cy.reload();
 
@@ -317,7 +328,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INVALID_INTEGER_ALERT);
 			});
 		cy.reload();
 
@@ -329,7 +340,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INVALID_INTEGER_ALERT);
 			});
 		cy.reload();
 
@@ -340,7 +351,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("자연수만 설정할 수 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(INVALID_INTEGER_ALERT);
 			});
 		cy.reload();
 	});
@@ -354,7 +365,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("중복된 이름은 등록할 수 없습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(DUPLIACTED_NAME_ALERT);
 			});
 	});
 
@@ -369,7 +380,7 @@ context("bdd", () => {
 		cy.get("#count-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("원활한 게임을 위해 횟수는 20000 이하로 제한하고 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(OVER_MAX_COUNT_ALERT);
 			});
 	});
 
@@ -380,7 +391,7 @@ context("bdd", () => {
 		cy.get("#name-submit-button")
 			.click()
 			.then(() => {
-				expect(stub.getCall(0)).to.be.calledWith("가로 스크롤 생성을 방지하기 위해 이름 등록은 9개 이하로 제한하고 있습니다.");
+				expect(stub.getCall(0)).to.be.calledWith(OVER_SCROLL_PREVENT_ALERT);
 			});
 	});
 });
