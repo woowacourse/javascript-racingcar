@@ -31,14 +31,14 @@ const updateRacingCount = (cars) => {
 export const startGame = (racingCount) => {
   const cars = document.querySelectorAll('.car-player');
   const $gameResultSection = document.querySelector('#game-result-section');
-  const totalRacingDurationTime = racingCount * GAME.RACING_TIME;
+  const totalRacingDurationTime = racingCount * GAME.RACE_TIME;
 
   const gameProcess = setInterval(() => {
     if (racingCount-- === 1) {
       clearInterval(gameProcess);
     }
     updateRacingCount(cars);
-  }, GAME.RACING_TIME);
+  }, GAME.RACE_TIME);
 
   setTimeout(() => {
     showElement($gameResultSection);
