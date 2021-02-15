@@ -45,6 +45,9 @@ export default class RacingCarGameController {
     View.showWinners(winners);
     View.showRestartButton();
     this.model.clearCarsRecord();
+    setTimeout(() => {
+      alert(`${winners.join(", ")}! 우승을 축하합니다.`);
+    }, 2000);
   }
 
   async runProgressiveRace(tryCount, delay) {
@@ -72,7 +75,7 @@ export default class RacingCarGameController {
 
     View.deactivateCarNameSubmitButton();
     View.deactivatePlayGameButton();
-    await this.runProgressiveRace(tryCount, 2000);
+    await this.runProgressiveRace(tryCount, 1000);
     this.finishGame();
   }
 

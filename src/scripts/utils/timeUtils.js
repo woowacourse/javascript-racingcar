@@ -17,7 +17,7 @@ export async function setTimeoutWithSpinner(
       callback(...args);
       setTimeout(() => {
         resolve();
-      }, 500);
+      }, 300);
     }, delay);
   });
 }
