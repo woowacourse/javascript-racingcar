@@ -22,7 +22,14 @@ const canMoveForward = () => {
 export const getLapResult = (numberCars) =>
   Array.from(Array(numberCars), canMoveForward);
 
+//공백문자가 포함된 이름의 경우 아래와 같이 처리한다.
+// 1. 문자열 처음과 끝에 공백문자가 포함된 경우: 무시한다
+// 2. 문자열 내에 공백문자를 포함한 경우:
+//  input: "EAST, WEST, SO  UTH, Da L  "
+//  expect: ["EAST", "WEST", "SO  UTH", "Da L"]
+// => 자동차 이름이 1글자 또는 2글자인 경우, 이는 공백문자와 쉼표(,)가 아니다
+// => 자동차 이름이 3글자 이상인 경우, 처음과 끝만 공백문자와 쉼표(,)가 아니다
 export const splitCarName = (str) =>
-  str.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*$)/g) || [];
+  str.match(/(?<=\s*)([^\s,]|[^\s,]{2}|[^\s,][^,]+[^\s,])(?=,\s*|\s*$)/g) || [];
 
 export const $ = (selector) => document.querySelector(selector);
