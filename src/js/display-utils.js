@@ -11,8 +11,30 @@ const hideElement = (element) => {
   return (element.style.display = "none");
 };
 
-export const showElement = (element) => {
-  return (element.style.display = "block");
+export const showElement = (element, type) => {
+  return (element.style.display = type);
+};
+
+export const hideSpinner = (resultDivs) => {
+  resultDivs.forEach((resultDiv) => {
+    if (resultDiv.querySelector(".spinner-box") !== null) {
+      const spinnerBox = resultDiv.querySelector(".spinner-box");
+      hideElement(spinnerBox);
+    }
+  });
+};
+
+export const showSpinner = (resultDivs) => {
+  resultDivs.forEach((resultDiv) => {
+    const spinnerBox = resultDiv.querySelector(".spinner-box");
+    showElement(spinnerBox, "flex");
+  });
+};
+
+export const showStep = (resultDivs, movingCarIndexs) => {
+  movingCarIndexs.forEach((idx) => {
+    setStepInResultView(resultDivs[idx]);
+  });
 };
 
 export const resetCarNamesInput = () => {
@@ -21,6 +43,11 @@ export const resetCarNamesInput = () => {
 
 export const resetTryNumInput = () => {
   tryNumSection.querySelector("input").value = "";
+};
+
+export const resetGameResultSections = () => {
+  resultSection.querySelector("div").innerHTML = "";
+  winnerSection.innerHTML = "";
 };
 
 export const resetView = () => {
@@ -33,35 +60,49 @@ const showCarName = (carName) => {
   return parseHTML(`<div class="car-player mr-2">${carName}</div>`);
 };
 
-const showTotalStep = () => {
+const showOneStep = () => {
   return parseHTML(`<div class="forward-icon mt-2">⬇️️</div>`);
 };
 
-export const setResultView = () => {
-  resultSection.querySelector("div").innerHTML = "";
+const showLoading = () => {
+  return parseHTML(`<div class="d-flex justify-center mt-4 spinner-box">
+                        <div class="relative spinner-container">
+                          <span class="material spinner"></span>
+                        </div>
+                    </div>`);
+};
 
+export const initResultView = () => {
   state.cars.forEach((car) => {
-    const resultDivString = `<div></div>`;
+    const resultDivString = `<div class="one-car-result"></div>`;
     const resultDiv = parseHTML(resultDivString);
 
+    const forwardDivString = `<div id="forward-icon-box"></div>`;
+    const forwardDiv = parseHTML(forwardDivString);
+
+    const loading = showLoading();
+
     resultDiv.appendChild(showCarName(car.name));
-    for (let idx = 0; idx < car.totalStep; idx++) {
-      const step = showTotalStep();
-      resultDiv.appendChild(step);
-    }
+    resultDiv.appendChild(forwardDiv);
+    resultDiv.appendChild(loading);
+    hideElement(loading);
+
     resultSection.querySelector("div").append(resultDiv);
   });
 };
 
-const getWinnerText = (winners) => {
-  let winnerText = "";
-  if (winners.length === 1) {
-    winnerText = winners[0];
-  } else {
-    winnerText = winners.join(", ");
-  }
+export const setLoadingInResultView = (resultDiv) => {
+  const loading = showLoading();
+  resultDiv.appendChild(loading);
+};
 
-  return winnerText;
+export const setStepInResultView = (resultDiv) => {
+  const step = showOneStep();
+  resultDiv.querySelector("#forward-icon-box").appendChild(step);
+};
+
+export const getWinnerText = (winners) => {
+  return winners.join(", ");
 };
 
 export const setWinnerView = (winners) => {

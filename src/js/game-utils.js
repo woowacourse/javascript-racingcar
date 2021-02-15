@@ -3,8 +3,20 @@ import {
   resetView,
   resetCarNamesInput,
   resetTryNumInput,
+  resetGameResultSections,
+  setWinnerView,
+  getWinnerText,
+  initResultView,
+  hideSpinner,
+  showSpinner,
+  showStep,
 } from "./display-utils.js";
-import { carNamesSection, tryNumSection, winnerSection } from "./elements.js";
+import {
+  carNamesSection,
+  tryNumSection,
+  resultSection,
+  winnerSection,
+} from "./elements.js";
 
 const GO_NUMBER = 3;
 
@@ -15,24 +27,70 @@ const getRandomNum = () => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-const setTotalStep = () => {
-  state.cars.forEach((car) => {
-    const randomNum = getRandomNum();
-    if (randomNum > GO_NUMBER) {
+const setStep = () => {
+  // 앞으로 전진하는 car객체의 index 반환
+  const movingCarIndexs = state.cars
+    .filter((_) => {
+      return getRandomNum() > GO_NUMBER;
+    })
+    .map((car) => {
       car.go();
-    }
-  });
+
+      return state.cars.indexOf(car);
+    });
+
+  return movingCarIndexs;
 };
 
-export const playGame = () => {
+const startGame = () => {
+  initResultView();
+};
+
+const finishGame = (resultDivs, goStep) => {
+  const winnerArray = getWinner();
+  const winnerText = getWinnerText(winnerArray);
+
+  hideSpinner(resultDivs);
+
+  setWinnerView(winnerArray);
+  setTimeout(() => alert(`축하합니다. ${winnerText} 우승했습니다.`), 2000);
+  clearInterval(goStep);
+};
+
+const playGame = (resultDivs) => {
+  const movingCarIndexs = setStep();
+
+  hideSpinner(resultDivs);
+  showStep(resultDivs, movingCarIndexs);
+  showSpinner(resultDivs);
+};
+
+const playGameForSecond = () => {
   const tryNumInput = tryNumSection.querySelector("input");
+  let second = 0;
+
+  const goStep = setInterval(() => {
+    const resultDivs = document.querySelectorAll(".one-car-result");
+
+    if (second === 0) {
+      startGame(resultDivs);
+    } else if (second === Number(tryNumInput.value) + 1) {
+      finishGame(resultDivs, goStep);
+    } else {
+      playGame(resultDivs);
+    }
+
+    second++;
+  }, 1000);
+};
+
+export const initGame = () => {
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
+  resetGameResultSections(); // reset result, winners section
 
-  for (let i = 0; i < tryNumInput.value; i++) {
-    setTotalStep();
-  }
+  playGameForSecond();
 };
 // 우승자 이름을 배열로 리턴한다.
 export const getWinner = () => {
@@ -42,9 +100,7 @@ export const getWinner = () => {
 
   const maxTotalStep = state.cars[0].totalStep;
   const winners = state.cars.filter((car) => {
-    if (car.totalStep === maxTotalStep) {
-      return car;
-    }
+    return car.totalStep === maxTotalStep;
   });
   const winnerNames = winners.map((winner) => {
     return winner.name;

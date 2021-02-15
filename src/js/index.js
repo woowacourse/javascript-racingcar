@@ -2,12 +2,10 @@ import Car from "./Car.js";
 import {
   showElement,
   resetView,
-  setResultView,
-  setWinnerView,
   resetCarNamesInput,
   resetTryNumInput,
 } from "./display-utils.js";
-import { playGame, getWinner } from "./game-utils.js";
+import { initGame } from "./game-utils.js";
 import {
   isInputEmpty,
   isCarNameLengthValid,
@@ -55,13 +53,14 @@ const onClickedCarNamesBtn = () => {
     }
 
     createCarInstance(carNames);
-    showElement(tryNumSection);
+    showElement(tryNumSection, "block");
     carNamesBtn.disabled = true;
   });
 };
 
 const onClickedTryNumBtn = () => {
   const tryNumBtn = tryNumSection.querySelector("button");
+
   tryNumBtn.addEventListener("click", () => {
     const tryNum = tryNumSection.querySelector("input").value;
 
@@ -71,12 +70,10 @@ const onClickedTryNumBtn = () => {
 
       return;
     }
-    playGame();
-    // game이 잘 진행되었다면 game결과를 보여준다.
-    setResultView();
-    setWinnerView(getWinner());
-    showElement(resultSection);
-    showElement(winnerSection);
+    initGame();
+
+    showElement(resultSection, "block");
+    showElement(winnerSection, "block");
     tryNumBtn.disabled = true;
   });
 };
