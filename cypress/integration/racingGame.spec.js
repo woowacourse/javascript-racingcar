@@ -3,12 +3,8 @@ import { isEffectiveScore } from '../../src/js/game/isEffectiveScore.js';
 import { GAME } from '../../src/js/utils/constant.js';
 
 describe('racing-game', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:5500/');
-  });
-
   const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
-  const TEST_RACE_TIME = GAME.RACE_TIME;
+  const TEST_RACE_TIME = GAME.RACE_TIME * 5;
 
   const typeCarNameAndClickToSubmitButton = (
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
@@ -21,6 +17,27 @@ describe('racing-game', () => {
     cy.get('#racing-count-input').type(racingCount);
     return cy.get('#racing-count-submit').click();
   };
+
+  const waitRaceTime = (raceTime = TEST_RACE_TIME) => {
+    cy.clock();
+    cy.wait(raceTime);
+  };
+
+  const waitTimeAndcheckElementShow = (time, element) => {
+    cy.clock();
+    cy.wait(time);
+    cy.get(element).should('be.visible');
+  };
+
+  const waitTimeAndcheckElementHide = (time, element) => {
+    cy.clock();
+    cy.wait(time);
+    cy.get(element).should('not.be.visible');
+  };
+
+  beforeEach(() => {
+    cy.visit('http://localhost:5500/');
+  });
 
   it('자동차 이름 입력 시, 화면에 시도 횟수 입력창이 표시되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
@@ -108,50 +125,27 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주 진행 중 턴마다 1초의 지연시간이 생기는지 테스트 한다.', () => {
-    cy.clock();
-
-    // 첫번째 경기 진행시간 1000ms
     typeCarNameAndClickToSubmitButton();
-    typeRacingCountAndClickToSubmitButton(1);
+    typeRacingCountAndClickToSubmitButton(5);
 
-    cy.tick(500);
-    cy.get('#game-result-section').should('not.be.visible');
-    cy.tick(500);
-    cy.get('#game-result-section').should('be.visible');
-
-    // 두번째 경기 진행시간 3000ms
-    cy.get('#game-restart-button').click();
-    typeCarNameAndClickToSubmitButton();
-    typeRacingCountAndClickToSubmitButton(3);
-
-    cy.tick(1500);
-    cy.get('#game-result-section').should('not.be.visible');
-    cy.tick(1500);
-    cy.get('#game-result-section').should('be.visible');
+    waitTimeAndcheckElementHide(2500, '#game-result-section');
+    waitTimeAndcheckElementShow(2500, '#game-result-section');
   });
 
   it('자동차 경주 진행 중 지연시간마다 Anmiation이 출력되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
 
-    cy.clock();
-
-    // 경주 진행시간 5000ms
-    cy.get('.spinner-container').should('be.visible');
-    cy.wait(2000);
-    cy.get('.spinner-container').should('be.visible');
-    cy.wait(2000);
-    cy.get('.spinner-container').should('be.visible');
-    cy.wait(1000);
-    cy.get('.spinner-container').should('not.be.visible');
+    waitTimeAndcheckElementShow(2000, '.spinner-container');
+    waitTimeAndcheckElementShow(2000, '.spinner-container');
+    waitTimeAndcheckElementHide(1000, '.spinner-container');
   });
 
   it('자동차 경주가 정상적으로 진행되는지 테스트 한다.', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
 
-    cy.clock();
-    cy.wait(5000);
+    waitRaceTime();
 
     cy.get('.car-player').each(($div, index) => {
       cy.get($div)
@@ -169,8 +163,7 @@ describe('racing-game', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
 
-    cy.clock();
-    cy.wait(TEST_RACE_TIME);
+    waitRaceTime();
 
     cy.get('.car').then(($cars) => {
       const counts = [...$cars].map(($car) => {
@@ -193,13 +186,11 @@ describe('racing-game', () => {
   });
 
   it('자동차 경주가 모두 끝났을 때, 2초 후 축하의 alert메세지가 출력되는지 테스트 한다.', () => {
-    cy.clock();
-
     typeCarNameAndClickToSubmitButton(['yujo']);
     typeRacingCountAndClickToSubmitButton();
 
     // 자동차 경주 진행시간 5000ms + alert 출력 대기시간 2000ms
-    cy.tick(TEST_RACE_TIME + GAME.RESULT_ALERT_DELAY);
+    waitRaceTime(TEST_RACE_TIME + GAME.RESULT_ALERT_DELAY);
     cy.on('window:alert', (txt) => {
       expect(txt).to.equal('🎉 축하드립니다! 우승자는 yujo입니다! 🎉');
     });
@@ -209,8 +200,7 @@ describe('racing-game', () => {
     typeCarNameAndClickToSubmitButton();
     typeRacingCountAndClickToSubmitButton();
 
-    cy.clock();
-    cy.wait(TEST_RACE_TIME);
+    waitRaceTime();
 
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
