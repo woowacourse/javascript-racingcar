@@ -56,6 +56,23 @@ describe("자동차 이름 입력하기", () => {
     testInitialState();
   });
 
+  it("자동차 이름은 처음과 끝을 제외하고 공백문자를 포함할 수 있다", () => {
+    const userInput = "EAST, WEST, SO U, Da L  ";
+    const expectedNames = ["EAST", "WEST", "SO U", "Da L"];
+
+    cy.get(SELECTOR.CAR_NAME.INPUT).type(userInput);
+    cy.get(SELECTOR.CAR_NAME.BUTTON).click();
+
+    cy.get(SELECTOR.LAP_COUNT.CONTAINER).should("be.visible");
+    cy.get(SELECTOR.GAME_PROGRESS.CONTAINER).should("be.visible");
+    cy.get(`${SELECTOR.GAME_PROGRESS.CONTAINER} .car-player`).each(
+      (car, index) => {
+        cy.wrap(car).should("have.text", expectedNames[index]);
+      }
+    );
+    cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("not.be.visible");
+  });
+
   it("올바른 이름이 되었을 때", () => {
     const userInput = "EAST, WEST, SOUTH, NORTH";
     const expectedNames = ["EAST", "WEST", "SOUTH", "NORTH"];
