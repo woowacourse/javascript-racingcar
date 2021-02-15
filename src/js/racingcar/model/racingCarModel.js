@@ -2,17 +2,12 @@ import {GAME} from '../../constants/constant.js';
 import {generateRandomNumber} from '../../utils/random.js';
 
 class RacingCarModel {
-  constructor(cars, count) {
+  constructor(cars) {
     this.cars = cars;
-    this.count = count;
   }
 
   getCars() {
     return this.cars;
-  }
-
-  getCount() {
-    return this.count;
   }
 
   getWinners() {

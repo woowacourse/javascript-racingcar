@@ -71,7 +71,7 @@ class RacingCarController {
   }
 
   proceedGame() {
-    this.model = new RacingCarModel(this.cars, this.count);
+    this.model = new RacingCarModel(this.cars);
     this.model.playRacingCarGame();
     this.view.renderProcess(this.model.getCars());
     this.showResult();
