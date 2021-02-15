@@ -67,13 +67,20 @@ class RacingCarController {
     }
 
     this.count = count;
+    this.setBeforeStartingGame();
+  }
+
+  setBeforeProceedingGame() {
+    this.model = new RacingCarModel(this.cars);
+    this.view.renderProcess(this.model.getCars());
     this.proceedGame();
   }
 
   proceedGame() {
-    this.model = new RacingCarModel(this.cars);
-    this.model.playRacingCarGame();
-    this.view.renderProcess(this.model.getCars());
+    for (let i = 0; i < this.count; i++) {
+      this.model.playRacingCarGameOnce();
+      this.view.renderProcess(this.model.getCars());
+    }
     this.showResult();
   }
 

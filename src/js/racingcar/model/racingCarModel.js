@@ -18,12 +18,6 @@ class RacingCarModel {
       .map((car) => car.name);
   }
 
-  playRacingCarGame() {
-    for (let i = 0; i < this.count; i++) {
-      this.playRacingCarGameOnce();
-    }
-  }
-
   playRacingCarGameOnce() {
     this.cars.forEach((car) => {
       generateRandomNumber(0, 9) >= GAME.FORWARD_STANDARD_NUM &&
