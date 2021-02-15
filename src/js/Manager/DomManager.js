@@ -1,30 +1,31 @@
-class Utils {
-	setAttributes(element, attributes) {
-		for (let i in attributes) {
-			element.setAttribute(i, attributes[i]);
-		}
+function setAttributes(element, attributes) {
+	for (let i in attributes) {
+		element.setAttribute(i, attributes[i]);
+	}
+}
+
+function appendChildren(parentElement, ...ChildElements) {
+	for (let i = 0; i < ChildElements.length; i++) {
+		parentElement.appendChild(ChildElements[i]);
+	}
+}
+
+function createElement(tagType, attributes, innerText) {
+	const result = document.createElement(tagType);
+
+	if (innerText) {
+		const innerText = document.createTextNode(innerText);
+		appendChildren(result, innerText);
+	}
+	if (attributes) {
+		setAttributes(result, attributes);
 	}
 
-	appendChildren(parentElement, ...ChildElements) {
-		for (let i = 0; i < ChildElements.length; i++) {
-			parentElement.appendChild(ChildElements[i]);
-		}
-	}
+	return result;
+}
 
-	createElement(tagType, attributes, innerText) {
-		const result = document.createElement(tagType);
-
-		if (innerText) {
-			const innerText = document.createTextNode(innerText);
-			this.appendChildren(result, innerText);
-		}
-		if (attributes) this.setAttributes(result, attributes);
-
-		return result;
-	}
-
-	createRaceProgressContainerTemplate(cars) {
-		return `
+function createRaceProgressContainerTemplate(cars) {
+	return `
 		<div id="race-progress-container" class="d-flex justify-center mt-5">
 		<section class="mt-4">
 			<div id="race-progress-screen" class="d-flex">
@@ -38,11 +39,8 @@ class Utils {
 			</div>
 		</section>
 	</div>`;
-	}
-
-	get(id) {
-		return document.getElementById(id);
-	}
 }
 
-export default new Utils();
+const $ = (id) => document.getElementById(id);
+
+export { setAttributes, appendChildren, createElement, createRaceProgressContainerTemplate, $ };

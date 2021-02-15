@@ -1,13 +1,12 @@
 import Model from "../Model/Model.js";
-import ElementManager from "../Manager/ElementManager.js";
 import View from "../View/View.js";
-import Utils from "../Manager/DomManager.js";
+import { createRaceProgressContainerTemplate, $ } from "../Manager/domManager.js";
 
 class Controller {
 	onCountSubmit() {
-		const countInput = ElementManager.getCountInput();
+		const countInput = $("count-input");
 		const { isValid, alertMessage } = Model.validateCount(Number(countInput.value));
-		const raceProgressContainerTemplate = Utils.createRaceProgressContainerTemplate(Model.cars);
+		const raceProgressContainerTemplate = createRaceProgressContainerTemplate(Model.cars);
 
 		if (isValid === false) {
 			alert(alertMessage);
@@ -25,8 +24,8 @@ class Controller {
 	}
 
 	onNameSubmit() {
-		const nameInput = ElementManager.getNameInput();
-		const $settingContainer = ElementManager.getSettingContainer();
+		const nameInput = $("name-input");
+		const $settingContainer = $("setting-container");
 		const { isValid, alertMessage } = Model.validateName(nameInput.value);
 
 		if (isValid === false) {
@@ -43,13 +42,13 @@ class Controller {
 	}
 
 	addCountButtonEvent(callback) {
-		const countButton = ElementManager.getCountButton();
+		const countButton = $("count-submit-button");
 		countButton.addEventListener("click", callback);
 	}
 
 	initializeEvents() {
-		const nameButton = ElementManager.getNameButton();
-		const nameInput = ElementManager.getNameInput();
+		const nameButton = $("name-submit-button");
+		const nameInput = $("name-input");
 
 		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
 		nameInput.addEventListener("input", this.filterCarNameType);
@@ -64,13 +63,13 @@ class Controller {
 	}
 
 	addResetButtonEvent() {
-		const resetButton = ElementManager.getResetButton();
+		const resetButton = $("reset-button");
 
 		resetButton.addEventListener("click", this.onResetButtonClick.bind(this));
 	}
 
 	onResetButtonClick() {
-		const $app = ElementManager.getAppDIV();
+		const $app = $("app");
 
 		Model.clearStates();
 		View.renderInitialElements($app);
