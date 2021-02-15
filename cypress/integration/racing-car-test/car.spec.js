@@ -61,7 +61,6 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("5글자 초과인 이름이 입력되었을 때를 테스트합니다.", () => {
-
     cy.get("#car-names").find("input").type("포코포포코코,,엘라, 그루밍");
     cy.get("#car-names").find("button").click();
 
@@ -71,7 +70,6 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("다시 올바른 이름이 입력되는지 테스트합니다.", () => {
-
     cy.get("#car-names").find("input").type("포코코,코코,엘라, 그루밍");
     cy.get("#car-names").find("button").click();
   });
@@ -85,7 +83,6 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("숫자가 아닌 시도 횟수가 입력되었을 때를 테스트합니다.", () => {
-
     cy.get("#try-num").find("input").type("ㅇㅇㅇ");
     cy.get("#try-num").find("button").click();
     cy.on("window:alert", (txt) => {
