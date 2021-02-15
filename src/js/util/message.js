@@ -11,3 +11,7 @@ export const ERROR_MESSAGE = {
   NOT_NATURAL_NUMBER:
     '입력한 값은 자연수가 아닙니다. 시도횟수를 자연수로 입력해주세요.',
 };
+
+export const GAME_MESSAGE = {
+  CONGRATULATION: '🎉우승을 축하합니다!🎉',
+};

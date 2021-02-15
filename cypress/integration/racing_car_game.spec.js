@@ -1,16 +1,19 @@
 /// <reference types="Cypress" />
 
+import { GAME_MESSAGE } from '../../src/js/util/message.js';
+
 describe('Racing Car 게임 : 게임 진행 테스트', () => {
   before(() => {
     cy.visit('http://localhost:5500/');
   });
 
   const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
+  const tryCount = 3;
 
   it('정상적인 이름/횟수를 입력한 후, 모든 확인 버튼 클릭한 경우 게임 결과 창에 자동차 이름 목록을 출력한다.', () => {
     cy.get('[data-test=car-name-input]').type(carNames.join(','));
     cy.get('[data-test=car-name-button]').click();
-    cy.get('[data-test=try-count-input]').type('7');
+    cy.get('[data-test=try-count-input]').type(tryCount);
     cy.get('[data-test=car-name-input]').should('be.disabled');
     cy.get('[data-test=car-name-button]').should('be.disabled');
     cy.get('[data-test=try-count-button]').click();
@@ -55,5 +58,25 @@ describe('Racing Car 게임 : 게임 진행 테스트', () => {
     cy.get('[data-test=try-count-button]').should('not.be.disabled');
 
     cy.get('.racing-result-container').should('not.be.visible');
+  });
+
+  it('정상적인 자동차 이름과/시도횟수를 입력하여 게임이 진행되는 경우, 로딩 창이 보였다가 사라져야 한다. 또한 게임이 종료 후 2초 후에 우승자 alert 메시지를 띄운다.', () => {
+    cy.get('[data-test=car-name-input]').type(carNames.join(','));
+    cy.get('[data-test=car-name-button]').click();
+    cy.get('[data-test=try-count-input]').type(tryCount);
+    cy.get('[data-test=try-count-button]').click();
+
+    cy.get('.spinner-container').should('be.visible');
+    cy.wait(tryCount * 1000);
+    cy.get('.spinner-container').should('not.be.visible');
+
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.wait(2000).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(
+        GAME_MESSAGE.CONGRATULATION,
+      );
+    });
   });
 });
