@@ -8,6 +8,7 @@ describe('racing-game', () => {
   });
 
   const carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'];
+  const TEST_RACE_TIME = GAME.RACE_TIME;
 
   const typeCarNameAndClickToSubmitButton = (
     carNames = ['EAST', 'WEST', 'SOUTH', 'NORTH'],
@@ -169,7 +170,7 @@ describe('racing-game', () => {
     typeRacingCountAndClickToSubmitButton();
 
     cy.clock();
-    cy.wait(5000);
+    cy.wait(TEST_RACE_TIME);
 
     cy.get('.car').then(($cars) => {
       const counts = [...$cars].map(($car) => {
@@ -198,8 +199,7 @@ describe('racing-game', () => {
     typeRacingCountAndClickToSubmitButton();
 
     // 자동차 경주 진행시간 5000ms + alert 출력 대기시간 2000ms
-    cy.tick(7000);
-
+    cy.tick(TEST_RACE_TIME + GAME.RESULT_ALERT_DELAY);
     cy.on('window:alert', (txt) => {
       expect(txt).to.equal('🎉 축하드립니다! 우승자는 yujo입니다! 🎉');
     });
@@ -210,7 +210,7 @@ describe('racing-game', () => {
     typeRacingCountAndClickToSubmitButton();
 
     cy.clock();
-    cy.wait(5000);
+    cy.wait(TEST_RACE_TIME);
 
     cy.get('#game-restart-button').click();
     cy.get('#racing-count-section').should('not.be.visible');
