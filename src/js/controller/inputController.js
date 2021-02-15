@@ -4,7 +4,7 @@ import {
 	toggleDisplayCountView,
 } from '../view/inputView.js';
 import { app } from '../index.js';
-import { ALERT_MESSAGE, BOUND, SELECTOR } from '../keys.js';
+import { ERROR_MESSAGE, BOUND, SELECTOR } from '../keys.js';
 import { displayRacingCars } from '../view/racingView.js';
 import { startRacingGame } from './racingController.js';
 import { isNotDuplicatedArray, isAlphanumeric, $ } from '../utils.js';
@@ -37,11 +37,11 @@ const isValidCount = function (count) {
 export const handleCarNamesSubmit = function () {
 	const carNamesInput = getCarNamesInput();
 	if (!isValidCarNames(carNamesInput)) {
-		alert(ALERT_MESSAGE.NOT_VALID_CARNAMES);
+		alert(ERROR_MESSAGE.NOT_VALID_CARNAMES);
 		return;
 	}
 	if (BOUND.CARS_UPPER_BOUND < carNamesInput.length) {
-		alert(ALERT_MESSAGE.NOT_VALID_CARNAMES_LENGTH);
+		alert(ERROR_MESSAGE.NOT_VALID_CARNAMES_LENGTH);
 		return;
 	}
 	toggleCarNameInputDisable();
@@ -53,7 +53,7 @@ export const handleCountSubmit = function () {
 	const countInput = $(SELECTOR.COUNT_INPUT).value;
 
 	if (!isValidCount(countInput)) {
-		alert(ALERT_MESSAGE.NOT_VALID_COUNT.isNotValidCount);
+		alert(ERROR_MESSAGE.NOT_VALID_COUNT.isNotValidCount);
 		return;
 	}
 	app.addCars(carNamesInput);

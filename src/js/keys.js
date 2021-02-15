@@ -44,7 +44,7 @@ export const GLOBAL_TEXT = {
 	MAKE_WINNER_TEXT: (nameList) => `🏆 최종 우승자: ${nameList.join(', ')} 🏆`,
 };
 
-export const ALERT_MESSAGE = {
+export const ERROR_MESSAGE = {
 	NOT_VALID_CARNAMES: '❌ 유효한 자동차이름이 아닙니다.',
 	NOT_VALID_CARNAMES_LENGTH: '❌ 자동차는 10대를 넘을 수 없습니다.',
 	NOT_VALID_COUNT: '❌ 시도할 횟수는 1이상 100이하여야 합니다.',
