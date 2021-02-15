@@ -65,6 +65,10 @@ const addEventOnCarNamesButton = () => {
   });
 };
 
+const alertCelebration = () => {
+  alert("축하합니다! 게임이 모두 끝났습니다!");
+};
+
 const addEventOnTryNumButton = () => {
   const tryNumBtn = document.getElementsByTagName("button")[1];
 
@@ -82,6 +86,7 @@ const addEventOnTryNumButton = () => {
     carPlayerSection.show();
     resultSection.show();
     tryNumBtn.disabled = true;
+    setTimeout(alertCelebration, 2000);
   });
 };
 
