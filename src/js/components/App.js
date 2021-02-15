@@ -7,8 +7,9 @@ import {
   MIN_NUMBER,
   MAX_NUMBER,
   MOVE_BOUNDED_NUMBER,
+  GAME_PROCESS_DELAY,
 } from '../util/constant.js';
-import { getRandomNumber } from '../util/game.js';
+import { delay, getRandomNumber } from '../util/game.js';
 import { $ } from '../util/dom.js';
 
 export default class App {
@@ -25,6 +26,7 @@ export default class App {
   initState() {
     this.cars = [];
     this.tryCount = 0;
+    this.isGameFinished = false;
   }
 
   mountComponent() {
@@ -39,6 +41,7 @@ export default class App {
     this.racingResult = new RacingResult({
       $parent: this.$target,
       cars: this.cars,
+      isGameFinished: this.isGameFinished,
     });
     this.racingWinner = new RacingWinner({
       $parent: this.$target,
@@ -65,15 +68,17 @@ export default class App {
     this.setState({ nextCars });
   }
 
-  playGame() {
+  async playGame() {
     if (!this.isGameReady()) {
       return;
     }
 
     for (let i = 0; i < this.tryCount; i++) {
+      await delay(GAME_PROCESS_DELAY);
       this.moveCars(this.cars);
     }
 
+    this.setState({ nextIsGameFinished: true });
     this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
   }
 
@@ -88,12 +93,12 @@ export default class App {
   }
 
   resetRacingGame() {
-    this.setState({ nextTryCount: 0, nextCars: [] });
+    this.setState({ nextTryCount: 0, nextCars: [], nextIsGameFinished: false });
     this.carNameInput.resetElements();
     this.tryCountInput.resetElements();
   }
 
-  setState({ nextTryCount, nextCars }) {
+  setState({ nextTryCount, nextCars, nextIsGameFinished }) {
     if (typeof nextTryCount === 'number') {
       this.tryCount = nextTryCount;
     }
@@ -101,6 +106,11 @@ export default class App {
     if (nextCars) {
       this.cars = nextCars;
       this.racingResult.setState({ nextCars });
+    }
+
+    if (typeof nextIsGameFinished === 'boolean') {
+      this.isGameFinished = nextIsGameFinished;
+      this.racingResult.setState({ nextIsGameFinished });
     }
   }
 }

@@ -2,6 +2,7 @@ export default class RacingResult {
   constructor(props) {
     this.props = props;
     this.cars = this.props.cars;
+    this.isGameFinished = this.props.isGameFinished;
 
     this.mountDOM();
   }
@@ -15,8 +16,13 @@ export default class RacingResult {
     this.$parent.appendChild(this.$container);
   }
 
-  setState({ nextCars }) {
-    this.cars = nextCars;
+  setState({ nextCars, nextIsGameFinished }) {
+    this.isGameFinished = nextIsGameFinished ?? false;
+
+    if (nextCars) {
+      this.cars = nextCars;
+    }
+
     this.render();
   }
 
@@ -25,6 +31,7 @@ export default class RacingResult {
     <div class="car-player-container">
       <div class="car-player mr-2">${car.name}</div>
       ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.score)}
+      ${this.isGameFinished ? '' : loadingHTML}
     </div>
     `;
   }
@@ -33,7 +40,7 @@ export default class RacingResult {
     return `        
     <section class="mt-4">
       <div class="d-flex">
-        ${this.cars.map(this.createCarHTML).join('')}
+        ${this.cars.map(this.createCarHTML.bind(this)).join('')}
       </div>
     </section>`;
   }
@@ -44,3 +51,10 @@ export default class RacingResult {
       : '';
   }
 }
+
+const loadingHTML = `
+<div class="d-flex justify-center mt-4">
+  <div class="relative spinner-container">
+    <span class="material spinner"></span>
+  </div>
+</div>`;
