@@ -14,14 +14,18 @@ export default class RacingUI {
     document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value = '';
   }
 
-  disableButtons() {
+  disableInputs() {
     document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_BTN).disabled = true;
     document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_BTN).disabled = true;
+    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).disabled = true;
+    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).disabled = true;
   }
 
-  enableButtons() {
+  enableInputs() {
     document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_BTN).disabled = false;
     document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_BTN).disabled = false;
+    document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).disabled = false;
+    document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).disabled = false;
   }
 
   focusElement(className) {
@@ -66,7 +70,7 @@ export default class RacingUI {
   }
 
   showWinners(winners, numberOfCars) {
-    this.disableButtons();
+    this.disableInputs();
 
     setTimeout(() => {
       alert(`우승자는 ${winners.join(', ')} 입니다! 축하합니다!`);
