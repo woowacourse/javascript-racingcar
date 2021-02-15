@@ -102,14 +102,7 @@ export const setStepInResultView = (resultDiv) => {
 };
 
 export const getWinnerText = (winners) => {
-  let winnerText = "";
-
-  winnerText =
-    winners.length === 1
-      ? (winnerText = winners[0])
-      : (winnerText = winners.join(", "));
-
-  return winnerText;
+  return winners.join(", ");
 };
 
 export const setWinnerView = (winners) => {
