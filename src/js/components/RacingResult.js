@@ -17,11 +17,8 @@ export default class RacingResult {
   }
 
   setState({ nextCars, nextIsGameFinished }) {
-    this.isGameFinished = nextIsGameFinished ?? false;
-
-    if (nextCars) {
-      this.cars = nextCars;
-    }
+    this.cars = nextCars;
+    this.isGameFinished = nextIsGameFinished;
 
     this.render();
   }

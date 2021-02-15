@@ -105,18 +105,13 @@ export default class App {
   }
 
   setState({ nextTryCount, nextCars, nextIsGameFinished }) {
-    if (typeof nextTryCount === 'number') {
-      this.tryCount = nextTryCount;
-    }
+    this.tryCount = nextTryCount ?? this.tryCount;
+    this.cars = nextCars ?? this.cars;
+    this.isGameFinished = nextIsGameFinished ?? this.isGameFinished;
 
-    if (nextCars) {
-      this.cars = nextCars;
-      this.racingResult.setState({ nextCars });
-    }
-
-    if (typeof nextIsGameFinished === 'boolean') {
-      this.isGameFinished = nextIsGameFinished;
-      this.racingResult.setState({ nextIsGameFinished });
-    }
+    this.racingResult.setState({
+      nextCars: this.cars,
+      nextIsGameFinished: this.isGameFinished,
+    });
   }
 }
