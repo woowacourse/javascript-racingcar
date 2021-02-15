@@ -2,12 +2,12 @@ import {
   handleCarNamesSubmit,
   handleCountSubmit,
 } from "./controller/inputController.js";
-import { $ } from "./controller/utils.js";
 import {
   handleRestartButton,
   resetAllViews,
 } from "./controller/winnerController.js";
 import Car from "./model/Car.js";
+import { $ } from "./utils/querySelector.js";
 
 class App {
   constructor() {

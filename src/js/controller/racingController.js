@@ -1,5 +1,6 @@
 import { app } from "../index.js";
-import { getRandomNumber, $ } from "./utils.js";
+import { getRandomNumber } from "../utils/getRandomNumber.js";
+import { $ } from "../utils/querySelector.js";
 import { chooseWinners } from "./winnerController.js";
 
 export const startRacingGame = function () {

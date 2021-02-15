@@ -1,8 +1,8 @@
 import { app } from "../index.js";
+import { $ } from "../utils/querySelector.js";
 import { displayCountView } from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
-import { $ } from "./utils.js";
 
 const isValidLength = (carName) => {
   return 1 <= carName.length && carName.length <= 5;

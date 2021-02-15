@@ -1,4 +1,4 @@
-import { $ } from "../controller/utils.js";
+import { $ } from "../utils/querySelector.js";
 
 export const displayRacingCars = function (cars) {
   let carPlayersElement = "";
@@ -10,7 +10,6 @@ export const displayRacingCars = function (cars) {
   });
 
   $("#racing-container > section > div").innerHTML = carPlayersElement;
-
   $("#racing-container").style.display = "flex";
 };
 

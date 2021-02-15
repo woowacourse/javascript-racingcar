@@ -1,6 +1,5 @@
 import { getRandomNumber } from "../../src/js/controller/utils.js";
 import Car from "../../src/js/model/Car.js";
-import { displayArrow } from "../../src/js/view/racingView.js";
 
 describe("자동차 레이싱 테스트", () => {
   before(() => {
@@ -38,13 +37,17 @@ describe("자동차 레이싱 테스트", () => {
     const newElement = document.createElement("div");
     const newCar = new Car("test");
     if (newCar.moveForward(1)) {
-      displayArrow(newElement);
+      newElement.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
     }
     expect(newElement).to.not.contain("⬇️");
 
     if (newCar.moveForward(6)) {
-      displayArrow(newElement);
+      newElement.innerHTML += `<div class="forward-icon mt-2">⬇️️</div>`;
     }
     expect(newElement).to.contain("⬇️");
   });
+
+  // it("자동차 경주 게임의 턴이 1초의 텀을 두고 진행되는지 확인한다.", () => {
+
+  // });
 });

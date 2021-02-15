@@ -1,4 +1,4 @@
-import { $ } from "../controller/utils.js";
+import { $ } from "../utils/querySelector.js";
 
 export const initializeInputView = function () {
   $("#car-names-input").value = "";

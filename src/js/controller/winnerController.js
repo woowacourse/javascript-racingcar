@@ -1,8 +1,8 @@
 import { app } from "../index.js";
+import { $ } from "../utils/querySelector.js";
 import { initializeInputView } from "../view/inputView.js";
 import { initializeRacingView } from "../view/racingView.js";
 import { displayWinnerView, initializeWinnerView } from "../view/winnerView.js";
-import { $ } from "./utils.js";
 
 export const chooseWinners = function () {
   const maxPosition = Math.max(...app.cars.map((car) => car.position));

@@ -1,5 +1,5 @@
-import { $ } from "../controller/utils.js";
 import { addWinnerElement } from "../controller/winnerController.js";
+import { $ } from "../utils/querySelector.js";
 
 export const displayWinnerView = function (winners) {
   addWinnerElement(winners);
