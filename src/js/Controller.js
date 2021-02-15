@@ -1,7 +1,7 @@
 import { MESSAGE, RANDOM_NUMBER, SELECTOR, CONSTANT } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { getRandomIntInclusive, splitCarName } from "./utils.js";
+import { canMoveForward, splitCarName } from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -96,15 +96,7 @@ export class Controller {
   }
 
   getLapResult(carModelsNumber) {
-    const {
-      RANGE: { MIN, MAX },
-      MOVING_POINT,
-    } = RANDOM_NUMBER;
-
-    return Array.from(
-      Array(carModelsNumber),
-      () => getRandomIntInclusive(MIN, MAX) >= MOVING_POINT
-    );
+    return Array.from(Array(carModelsNumber), () => canMoveForward);
   }
 
   moveCarAlongWith(lapResult) {
