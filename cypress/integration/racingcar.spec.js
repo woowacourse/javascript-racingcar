@@ -24,13 +24,13 @@ describe('ui-input-click-show', () => {
 
   it('1초 간격으로 게임이 진행되며, 게임이 종료되기 전까지 로딩바가 존재한다.', () => {
     // 5초 후에 게임이 종료된다고 가정
-    cy.get('#result').should('have.css', 'display', 'none');
+    cy.get('#result').should('not.be.visible');
     cy.wait(2000);
-    cy.get('.spinner-container').should('have.css', 'display', 'block');
-    cy.get('#result').should('have.css', 'display', 'none');
+    cy.get('.spinner-container').should('be.visible');
+    cy.get('#result').should('not.be.visible');
     cy.wait(3000);
-    cy.get('.spinner-container').should('have.css', 'display', 'none');
-    cy.get('#result').should('have.css', 'display', 'block');
+    cy.get('.spinner-container').should('not.be.visible');
+    cy.get('#result').should('be.visible');
   });
 
   it('시도 횟수보다 화살표의 개수가 적거나 같아야한다', () => {
