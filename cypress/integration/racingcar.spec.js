@@ -60,8 +60,6 @@ describe('ui-input-click-show', () => {
       });
   });
 
-  it('결과 화면이 출력된 후 2초 후에 축하 메시지가 띄워진다.', () => {});
-
   it('다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다', () => {
     cy.get('#reset-btn').click();
     cy.get('#count').should('have.css', 'display', 'none');
@@ -72,7 +70,7 @@ describe('ui-input-click-show', () => {
   });
 });
 
-describe('ui-input-vaild-check', () => {
+describe('alert-check', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
     cy.window()
@@ -162,6 +160,20 @@ describe('ui-input-vaild-check', () => {
     cy.get('@alertStub').should(
       'be.calledWith',
       '이미 시도 횟수가 존재합니다. 다시 시작하려면 다시 시작하기 버튼을 클릭해주세요.',
+    );
+  });
+
+  it('결과 화면이 출력된 후 2초 후에 축하 메시지 alert 출력.', () => {
+    cy.get('#car-input').type('a');
+    cy.get('#car-btn').click();
+    cy.get('#count').should('have.css', 'display', 'block');
+    cy.get('#count-input').type(3);
+    cy.clock();
+    cy.get('#count-btn').click();
+    cy.tick(5000);
+    cy.get('@alertStub').should(
+      'be.calledWith',
+      '축하합니다. a가 승리했습니다.',
     );
   });
 });
