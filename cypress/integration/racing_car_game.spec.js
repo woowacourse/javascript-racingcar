@@ -102,11 +102,13 @@ describe('step1', () => {
   });
 
   it('우승자를 제대로 가려냈는지 확인한다.', () => {
+    const tryCount = 5;
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
-    cy.get('#try-count-input').type('10');
-    for (let i = 0; i < 100; i++) {
+    cy.get('#try-count-input').type(String(tryCount));
+    for (let i = 0; i < 10; i++) {
       cy.get('#play-game-button').click();
+      cy.wait((CONGRATULATION_DURATION_SECOND + tryCount + 2) * 1000);
       cy.get('#result-area div').then((results) => {
         const record = [];
         Array.from(results).forEach((element) => {
@@ -133,41 +135,47 @@ describe('step1', () => {
 });
 
 describe('step2', () => {
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:5500/');
+  });
+
   it(`자동차 경주 게임의 턴이 진행 될 때마다 ${ANIMATION_DURATION_SECOND}초의 텀을 두고 진행한다`, () => {
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
-    cy.get('#try-count-input').type('100');
+    cy.get('#try-count-input').type('10');
     cy.get('#play-game-button').click();
     let maxTrackArrowCount = 0;
     cy.get('.track').then((tracks) => {
       Array.from(tracks).forEach((track) => {
         const trackArrowCount = track.querySelectorAll('.forward-icon').length;
-        if (trackArrowCount > trackArrowCount) {
+        if (trackArrowCount > maxTrackArrowCount) {
           maxTrackArrowCount = trackArrowCount;
         }
       });
+      let prevVisibleArrowCount = 0;
+      for (let i = 0; i < maxTrackArrowCount; i += 1) {
+        const currentVisibleArrowCount = cy
+          .get('#result-area')
+          .find('.forward-icon[style*="display: flex"]')
+          .its('length')
+          .then((currentVisibleArrowCount) => {
+            expect(currentVisibleArrowCount).to.not.equal(
+              prevVisibleArrowCount
+            );
+            prevVisibleArrowCount = currentVisibleArrowCount;
+            cy.wait(ANIMATION_DURATION_SECOND * 1000);
+          });
+      }
     });
-    let prevVisibleArrowCount = cy
-      .get('#result-area')
-      .find('.forward-icon[style*="display:flex"]')
-      .its('length');
-    for (let i = 0; i < maxTrackArrowCount; i += 1) {
-      cy.wait(ANIMATION_DURATION_SECOND * 1000);
-      const currentVisibleArrowCount = cy
-        .get('#result-area')
-        .find('.forward-icon')
-        .its('length');
-      currentVisibleArrowCount.should('not.eq', prevVisibleArrowCount);
-      prevVisibleArrowCount = currentVisibleArrowCount;
-    }
   });
+
   it(`정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, ${CONGRATULATION_DURATION_SECOND}초 후에 축하의 alert 메세지를 띄운다`, () => {
     const tryCount = 10;
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
     cy.get('#try-count-input').type(String(tryCount));
     cy.get('#play-game-button').click();
-    cy.wait((CONGRATULATION_DURATION_SECOND + tryCount + 2) * 1000);
+    cy.wait((CONGRATULATION_DURATION_SECOND + tryCount) * 1000);
     cy.on('window:alert', (txt) => {
       expect(txt).to.contains(getCongratulationsMessage([]));
     });
