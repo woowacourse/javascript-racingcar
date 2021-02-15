@@ -99,24 +99,38 @@ describe("step1", () => {
   });
 
   it("우승자를 제대로 가려냈는지 확인한다.", () => {
+    const alertCalled = cy.stub();
+    cy.on("window:alert", alertCalled);
+
     cy.get("#car-name-input").type("chris, beuc");
     cy.get("#car-name-submit").click();
     cy.get("#try-count-input").type("10");
     cy.get("#play-game-button").click();
-    cy.get("#result-area > div").then((results) => {
-      const chrisResult = Array.from(results)[0].children.length;
-      const beucResult = Array.from(results)[1].children.length;
 
-      if (chrisResult === beucResult) {
-        cy.get("#winners").should(
-          "have.text",
-          "🏆 최종 우승자: chris, beuc 🏆"
+    let winner = "";
+    cy.wait(10 * 1000 + 300 * 9);
+    cy.get("#result-area > div")
+      .then((results) => {
+        const chrisResult = Array.from(results)[0].children.length;
+        const beucResult = Array.from(results)[1].children.length;
+
+        if (chrisResult === beucResult) {
+          winner = "chris, beuc";
+        } else if (chrisResult > beucResult) {
+          winner = "chris";
+        } else {
+          winner = "beuc";
+        }
+        cy.get("#winners").should("have.text", `🏆 최종 우승자: ${winner} 🏆`);
+      })
+      .then(() => {
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(2000);
+      })
+      .then(() => {
+        expect(alertCalled.getCall(0)).to.be.calledWith(
+          `${winner}! 우승을 축하합니다.`
         );
-      } else if (chrisResult > beucResult) {
-        cy.get("#winners").should("have.text", "🏆 최종 우승자: chris 🏆");
-      } else {
-        cy.get("#winners").should("have.text", "🏆 최종 우승자: beuc 🏆");
-      }
-    });
+      });
   });
 });
