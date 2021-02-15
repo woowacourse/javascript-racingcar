@@ -10,7 +10,7 @@ export const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (maxInteger - minInteger + 1) + minInteger);
 };
 
-export const canMoveForward = () => {
+const canMoveForward = () => {
   const {
     RANGE: { MIN, MAX },
     MOVING_POINT,
@@ -18,6 +18,9 @@ export const canMoveForward = () => {
 
   return getRandomIntInclusive(MIN, MAX) >= MOVING_POINT;
 };
+
+export const getLapResult = (numberCars) =>
+  Array.from(Array(numberCars), canMoveForward);
 
 export const splitCarName = (str) =>
   str.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*$)/g) || [];

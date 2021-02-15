@@ -1,7 +1,7 @@
 import { MESSAGE, SELECTOR, CONSTANT } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { $, canMoveForward, splitCarName } from "./utils.js";
+import { $, getLapResult, splitCarName } from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -74,7 +74,7 @@ export class Controller {
         throw Error(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
 
       for (let i = 0; i < lapCount; i++) {
-        const lapResult = this.getLapResult(this.carModels.length);
+        const lapResult = getLapResult(this.carModels.length);
         this.moveCarAlongWith(lapResult);
         this.viewController.renderGameProgress(lapResult);
       }
@@ -93,10 +93,6 @@ export class Controller {
     this.$lapCountInput.value = "";
 
     this.viewController.clear();
-  }
-
-  getLapResult(carModelsNumber) {
-    return Array.from(Array(carModelsNumber), () => canMoveForward());
   }
 
   moveCarAlongWith(lapResult) {
