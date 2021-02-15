@@ -29,15 +29,15 @@ const getRandomNum = () => {
 
 const setStep = () => {
   // 앞으로 전진하는 car객체의 index 반환
-  let movingCarIndexs = [];
-
-  state.cars.forEach((car, idx) => {
-    const randomNum = getRandomNum();
-    if (randomNum > GO_NUMBER) {
+  const movingCarIndexs = state.cars
+    .filter((_) => {
+      return getRandomNum() > GO_NUMBER;
+    })
+    .map((car) => {
       car.go();
-      movingCarIndexs.push(idx);
-    }
-  });
+
+      return state.cars.indexOf(car);
+    });
 
   return movingCarIndexs;
 };
