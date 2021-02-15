@@ -48,7 +48,7 @@ export default class Racing {
     this.moveCars();
     
     this.UIController.showProgress(this.cars);
-    this.UIController.showWinners(this.getWinners());
+    this.UIController.showWinners(this.getWinners(), this.cars.length);
   }
 
   createCars(carNamesArr) { // forEach로 수정하기

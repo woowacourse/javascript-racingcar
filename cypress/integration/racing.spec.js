@@ -108,8 +108,6 @@ describe('자동차 경주', () => {
     typeCarAndClick();
     typeTryCountAndClick();
 
-    cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).should('be.visible');
-
     cy.document().then(doc => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
@@ -120,7 +118,7 @@ describe('자동차 경주', () => {
       cy.wait(1000 * (cars.length + 2)).then(() => {
         cy.get(ELEMENT_CLASS_NAME.FORWARD_ICON).should('be.visible');
 
-        const newCars = docs.querySelectorAll('.car-player');
+        const newCars = doc.querySelectorAll('.car-player');
         const winnerResult = getWinnerResult(newCars);
 
         expect(alertStub.getCall(0)).to.be.calledWith(`우승자는 ${winnerResult} 입니다! 축하합니다!`);
@@ -128,24 +126,27 @@ describe('자동차 경주', () => {
         cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).should('be.visible');
         cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).find('section').find('h2').contains(winnerResult);
       });
-
-      const progresses = [...cars].map(car => car.parentNode.childNodes.length);
-      const maxPosition = Math.max(...progresses);
-      
-      const winnerResult = [...cars]
-        .filter(car => car.parentNode.childNodes.length === maxPosition)
-        .map(car => car.innerHTML)
-        .join(', ');
-
-      cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).find('section').find('h2').contains(winnerResult);
     });
   });
 
   it('다시 시작하기 버튼 클릭 시 게임이 리셋된다', () => {
     typeCarAndClick();
     typeTryCountAndClick();
-    cy.get(ELEMENT_CLASS_NAME.RESTART_BTN).click();
 
-    testUIRemoval();
+    cy.document().then(doc => {
+      const alertStub = cy.stub();
+      cy.on('window:alert', alertStub);
+      const cars = doc.querySelectorAll('.car-player');
+
+      cy.wait(1000 * (cars.length + 2)).then(() => {
+        const newCars = doc.querySelectorAll('.car-player');
+        const winnerResult = getWinnerResult(newCars);
+
+        expect(alertStub.getCall(0)).to.be.calledWith(`우승자는 ${winnerResult} 입니다! 축하합니다!`);
+        cy.get(ELEMENT_CLASS_NAME.RESTART_BTN).click();
+
+        testUIRemoval();
+      });
+    });
   });
 });

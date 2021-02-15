@@ -65,18 +65,21 @@ export default class RacingUI {
     });
   }
 
-  showWinners(winners) {
-    this.showElement(ELEMENT_CLASS_NAME.RESULT_CONTAINER);
-
-    document.querySelector(ELEMENT_CLASS_NAME.RESULT_CONTAINER).innerHTML = `
-      <section>
-        <h2>🏆 ${TEXT_CONTENT.FINAL_WINNER}: ${winners.join(', ')} 🏆</h2>
-        <div class="d-flex justify-center">
-        <button type="button" class="btn btn-cyan restart-btn">${TEXT_CONTENT.RESTART}</button>
-        </div>
-      </section>
-    `;
-
+  showWinners(winners, numberOfCars) {
     this.disableButtons();
+
+    setTimeout(() => {
+      alert(`우승자는 ${winners.join(', ')} 입니다! 축하합니다!`);
+
+      this.showElement(ELEMENT_CLASS_NAME.RESULT_CONTAINER);
+      document.querySelector(ELEMENT_CLASS_NAME.RESULT_CONTAINER).innerHTML = `
+        <section>
+          <h2>🏆 ${TEXT_CONTENT.FINAL_WINNER}: ${winners.join(', ')} 🏆</h2>
+          <div class="d-flex justify-center">
+            <button type="button" class="btn btn-cyan restart-btn">${TEXT_CONTENT.RESTART}</button>
+          </div>
+        </section>
+      `;
+    }, 1000 * (numberOfCars + 2));
   }
 }
