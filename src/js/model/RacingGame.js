@@ -1,4 +1,5 @@
 import { getRandomNumber } from '../utils/index.js';
+const MOVE_TRIGGER = 4;
 
 export default class RacingGame {
   constructor() {
@@ -43,7 +44,6 @@ export default class RacingGame {
   }
 
   isMoving() {
-    const MOVE_TRIGGER = 4;
     return getRandomNumber() >= MOVE_TRIGGER;
   }
 
