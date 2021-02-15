@@ -52,7 +52,6 @@ export default {
   alertRaceIsOnGoing() {
     alert(RACE_IS_ON_GOING_MESSAGE);
   },
-
   alertCarListEmpty() {
     alert(SHOULD_REGISTER_CAR_FIRST_MESSAGE);
   },

@@ -39,4 +39,7 @@ body {
 
 #restart-button {
   opacity: 0;
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
 }
