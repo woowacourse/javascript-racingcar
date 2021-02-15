@@ -1,14 +1,18 @@
-import ElementManager from "../Manager/ElementManager.js";
 import Model from "../Model/Model.js";
-import Templates from "./Templates.js";
+import {
+	openingSettingContainerTemplate,
+	titleSectionTemplate,
+	carNameSectionTemplate,
+	countSectionTemplate,
+	closingSettingContainerTemplate,
+	resultContainerTemplate,
+	arrowTemplate,
+} from "./templates.js";
+import { $ } from "../Manager/domManager.js";
 
 class View {
 	renderInitialElements($parentElement) {
-		$parentElement.innerHTML =
-			Templates.openingSettingContainerTemplate +
-			Templates.titleSectionTemplate +
-			Templates.carNameSectionTemplate +
-			Templates.closingSettingContainerTemplate;
+		$parentElement.innerHTML = openingSettingContainerTemplate + titleSectionTemplate + carNameSectionTemplate + closingSettingContainerTemplate;
 	}
 
 	clearInputValue(inputElement) {
@@ -16,23 +20,22 @@ class View {
 	}
 
 	renderCountSection($settingContainer) {
-		$settingContainer.insertAdjacentHTML("beforeend", Templates.countSectionTemplate);
+		$settingContainer.insertAdjacentHTML("beforeend", countSectionTemplate);
 	}
 
 	renderProgressContainer(template) {
-		const $app = ElementManager.getAppDIV();
+		const $app = $("app");
 		$app.insertAdjacentHTML("beforeend", template);
-		$app.insertAdjacentHTML("beforeend", Templates.resultContainerTemplate);
+		$app.insertAdjacentHTML("beforeend", resultContainerTemplate);
 	}
 
 	renderArrow(boolsAboutMovement) {
-		const renderedCars = ElementManager.getRaceProgressScreen().children;
-		const arrowTemplate = Templates.arrowTemplate;
+		const renderedCars = $("race-progress-screen").children;
 		boolsAboutMovement.forEach((isNeedToBeAdded, i) => isNeedToBeAdded && renderedCars[i].insertAdjacentHTML("beforeend", arrowTemplate));
 	}
 
 	renderWinner() {
-		const $resultH2 = ElementManager.getResultContainer().querySelector("h2");
+		const $resultH2 = $("result-container").querySelector("h2");
 		$resultH2.innerText = Model.getResultText();
 	}
 }
