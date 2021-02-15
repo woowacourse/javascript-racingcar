@@ -19,3 +19,5 @@ export const canMoveForward = () => {
 
 export const splitCarName = (str) =>
   str.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*$)/g) || [];
+
+export const $ = (selector) => document.querySelector(selector);

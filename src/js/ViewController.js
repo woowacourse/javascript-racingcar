@@ -1,15 +1,12 @@
 import CarView from "./CarView.js";
 import { CLASSNAME, SELECTOR } from "./constants.js";
+import { $ } from "./utils.js";
 
 export default class ViewController {
   constructor() {
     this.carViews = [];
-    this.gameResultWinners = document.querySelector(
-      SELECTOR.GAME_RESULT.WINNERS
-    );
-    this.gameProgressContainer = document.querySelector(
-      SELECTOR.GAME_PROGRESS.CONTAINER
-    );
+    this.$gameResultWinners = $(SELECTOR.GAME_RESULT.WINNERS);
+    this.$gameProgressContainer = $(SELECTOR.GAME_PROGRESS.CONTAINER);
   }
 
   renderCarNameTag(carNames) {
@@ -30,34 +27,32 @@ export default class ViewController {
   }
 
   renderGameResult(winners) {
-    this.gameResultWinners.innerText = `🏆 최종 우승자: ${winners.join(
+    this.$gameResultWinners.innerText = `🏆 최종 우승자: ${winners.join(
       ", "
     )} 🏆`;
     this.show(SELECTOR.GAME_RESULT.CONTAINER);
   }
 
   show(selector) {
-    document
-      .querySelector(selector)
-      .classList.remove(CLASSNAME.MODIFIER.HIDDEN);
+    $(selector).classList.remove(CLASSNAME.MODIFIER.HIDDEN);
   }
 
   hide(selector) {
-    document.querySelector(selector).classList.add(CLASSNAME.MODIFIER.HIDDEN);
+    $(selector).classList.add(CLASSNAME.MODIFIER.HIDDEN);
   }
 
   disable(selector) {
-    document.querySelector(selector).disabled = true;
+    $(selector).disabled = true;
   }
 
   enable(selector) {
-    document.querySelector(selector).disabled = false;
+    $(selector).disabled = false;
   }
 
   clear() {
     this.carViews = [];
-    this.gameResultWinners.innerText = "";
-    this.gameProgressContainer.innerHTML = "";
+    this.$gameResultWinners.innerText = "";
+    this.$gameProgressContainer.innerHTML = "";
 
     this.enable(SELECTOR.CAR_NAME.BUTTON);
     this.enable(SELECTOR.LAP_COUNT.BUTTON);

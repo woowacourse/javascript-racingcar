@@ -1,7 +1,7 @@
-import { MESSAGE, RANDOM_NUMBER, SELECTOR, CONSTANT } from "./constants.js";
+import { MESSAGE, SELECTOR, CONSTANT } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { canMoveForward, splitCarName } from "./utils.js";
+import { $, canMoveForward, splitCarName } from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -13,31 +13,31 @@ export class Controller {
   }
 
   getHTMLElements() {
-    this.carNameInput = document.querySelector(SELECTOR.CAR_NAME.INPUT);
-    this.lapCountInput = document.querySelector(SELECTOR.LAP_COUNT.INPUT);
+    this.$carNameInput = $(SELECTOR.CAR_NAME.INPUT);
+    this.$lapCountInput = $(SELECTOR.LAP_COUNT.INPUT);
 
-    this.carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
-    this.lapCountButton = document.querySelector(SELECTOR.LAP_COUNT.BUTTON);
-    this.restartButton = document.querySelector(SELECTOR.GAME_RESULT.BUTTON);
+    this.$carNameButton = $(SELECTOR.CAR_NAME.BUTTON);
+    this.$lapCountButton = $(SELECTOR.LAP_COUNT.BUTTON);
+    this.$restartButton = $(SELECTOR.GAME_RESULT.BUTTON);
   }
 
   addEventListeners() {
-    this.carNameButton.addEventListener("click", () =>
+    this.$carNameButton.addEventListener("click", () =>
       this.handleCarNameButtonClick()
     );
 
-    this.lapCountButton.addEventListener("click", () =>
+    this.$lapCountButton.addEventListener("click", () =>
       this.handleLapCountButtonClick()
     );
 
-    this.restartButton.addEventListener("click", () =>
+    this.$restartButton.addEventListener("click", () =>
       this.handleRestartButtonClick()
     );
   }
 
   handleCarNameButtonClick() {
     try {
-      const carNames = splitCarName(this.carNameInput.value);
+      const carNames = splitCarName(this.$carNameInput.value);
       const {
         CAR_NAME: { MIN_NUMBER, MAX_LENGTH },
       } = CONSTANT;
@@ -63,10 +63,10 @@ export class Controller {
       if (this.carModels.length === 0)
         throw Error(MESSAGE.COMMON.INVALID_ACCESS);
 
-      if (this.lapCountInput.value === "")
+      if (this.$lapCountInput.value === "")
         throw Error(MESSAGE.LAP_COUNT.NOT_A_NUMBER);
 
-      const lapCount = Number(this.lapCountInput.value);
+      const lapCount = Number(this.$lapCountInput.value);
       const {
         LAP_COUNT: { MIN, MAX },
       } = CONSTANT;
@@ -83,14 +83,14 @@ export class Controller {
       this.viewController.renderGameResult(winners);
     } catch (error) {
       alert(error.message);
-      this.lapCountInput.value = "";
+      this.$lapCountInput.value = "";
     }
   }
 
   handleRestartButtonClick() {
     this.carModels = [];
-    this.carNameInput.value = "";
-    this.lapCountInput.value = "";
+    this.$carNameInput.value = "";
+    this.$lapCountInput.value = "";
 
     this.viewController.clear();
   }
