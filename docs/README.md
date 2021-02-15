@@ -3,14 +3,20 @@
 ## 1. 환경 설정
 
 1. yarn을 이용하여 package 초기화: `yarn init`
-2. eslint 설치: `yarn add eslint --dev`
-3. prettier 설치: `yarn add prettier --dev`
-4. eslint-config-prettier, eslint-plugin-prettier 설치: `yarn add eslint-config-prettier eslint-plugin-prettier --dev`
-5. eslint 설정: `npx eslint --init`
-   - prettier, cypress plugin 및 extends 추가 . eslint:recommended 컨벤션을 적용.
-6. .vscode/settings.json: 모든 파일에 대하여 저장시 eslint 및 prettier 적용됨
-   - prettier 설정은 기본 설정 그대로(별도로 설정하지 않음)
-7. cypress 설치: `yarn add cypress --dev`
+2. cypress 설치: `yarn add cypress --dev`
+3. eslint 설치: `yarn add eslint --dev`
+4. prettier 설치: `yarn add prettier --dev --exact`
+   - .prettier.json 설정: `echo {}> .prettierrc.json` // 별도로 옵션을 설정하지 않고 기본 설정 그대로 사용한다
+   - .prettierignore 설정: cypress/integration 외 cypress내 디렉토리는 모두 무시하도록 설정
+5. eslint-config-prettier 설치: `yarn add eslint-config-prettier --dev`
+6. eslint 설정: `yarn eslint --init`
+   - prettier, cypress plugins 및 extends 추가
+   - eslint:recommended 컨벤션 적용
+7. .vscode/settings.json 설정
+   - 모든 파일에 대하여 저장시 eslint 및 prettier 적용
+   - editor 탭사이즈는 2, 탭 대신 스페이스 사용
+   - 패키지매니져로 yarn을 사용함을 명시
+   - 항상 마지막 줄에 빈 라인을 추가
 
 ## 2. 구조 설계
 
