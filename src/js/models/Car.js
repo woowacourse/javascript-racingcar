@@ -6,6 +6,14 @@ export default class Car {
     this.position = 0;
   }
 
+  get carName() {
+    return this.name;
+  }
+
+  get carPos() {
+    return this.position;
+  }
+
   move() {
     const randNumber = Math.random() * GAME_LIMIT_VALUE.RANDOM_RANGE;
     if (randNumber >= GAME_LIMIT_VALUE.FORWARDING_THRESHOLD) {

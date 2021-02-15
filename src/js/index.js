@@ -66,11 +66,11 @@ export default class Racing {
 
   getWinners() {
     return this.cars.reduce((winners, car) => {
-      if (winners.length === 0 || car.position > winners[0].position) {
+      if (winners.length === 0 || car.carPos > winners[0].carPos) {
         return [car];
       }
 
-      if (car.position === winners[0].position) {
+      if (car.carPos === winners[0].carPos) {
         winners.push(car);
       } 
 

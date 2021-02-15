@@ -29,11 +29,15 @@ export default class RacingUI {
   }
 
   focusElement(className) {
-    document.querySelector(className).focus();
+    if (className) {
+      document.querySelector(className).focus();
+    }
   }
 
   showElement(className) {
-    document.querySelector(className).classList.remove(ELEMENT_CLASS_NAME.HIDE);
+    if (className) {
+      document.querySelector(className).classList.remove(ELEMENT_CLASS_NAME.HIDE);
+    }
   }
 
   showProgress(cars) {
@@ -46,8 +50,8 @@ export default class RacingUI {
   showProgressBars(cars) {
     document.querySelector(ELEMENT_CLASS_NAME.PROGRESS_CARS).innerHTML = cars
       .map(car => `
-        <div class="${car.name}">
-          <div class="car-player mr-2">${car.name}</div>
+        <div class="${car.carName}">
+          <div class="car-player mr-2">${car.carName}</div>
           <div class="d-flex justify-center mt-4">
             <div class="relative spinner-container">
               <span class="material spinner"></span>
@@ -61,9 +65,9 @@ export default class RacingUI {
   showRacingResult(cars) {
     cars.forEach((car, idx) => {
       setTimeout(() => {
-        document.querySelector(`.${car.name}`).innerHTML = `
-          <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.position)}
+        document.querySelector(`.${car.carName}`).innerHTML = `
+          <div class="car-player mr-2">${car.carName}</div>
+          ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.carPos)}
         `;
       }, 1000 * (idx + 1));
     });
