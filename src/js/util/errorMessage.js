@@ -6,5 +6,5 @@ export const ERROR_MESSAGE = {
   EMPTY_STRING_CAR_NAME_INPUT: '자동차 이름은 빈 문자열이 될 수 없습니다.',
   DUPLICATED_CAR_NAME_INPUT: '중복된 자동차 이름은 사용할 수 없습니다.',
   OVER_MAX_LENGTH_CAR_NAME_INPUT: `자동차 이름은 ${CAR_NAME_MAX_LENGTH}자 이하만 가능합니다.`,
-  NOT_NATURAL_NUMBER: '자연수를 입력해주세요.',
+  NOT_NATURAL_NUMBER: '입력된 값이 자연수가 아닙니다. 자연수를 입력해주세요.',
 };
