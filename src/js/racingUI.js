@@ -36,6 +36,7 @@ export default class RacingUI {
     this.showElement(ELEMENT_CLASS_NAME.PROGRESS_CONTAINER);
 
     this.showProgressBars(cars);
+    this.showRacingResult(cars);
   }
 
   showProgressBars(cars) {
@@ -51,6 +52,17 @@ export default class RacingUI {
         </div>
       `,)
       .join('');
+  }
+
+  showRacingResult(cars) {
+    cars.forEach((car, idx) => {
+      setTimeout(() => {
+        document.querySelector(`.${car.name}`).innerHTML = `
+          <div class="car-player mr-2">${car.name}</div>
+          ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.position)}
+        `;
+      }, 1000 * (idx + 1));
+    });
   }
 
   showWinners(winners) {
