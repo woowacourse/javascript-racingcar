@@ -35,6 +35,16 @@ const getCarNameList = (carNames) => {
   return carNames.split(CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 };
 
+const showCongratulationMessage = (winners) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      alert(getCongratulationsMessage(winners));
+      racingCarGameModel.setRaceIsNotOnGoing();
+      resolve();
+    }, 2000);
+  });
+};
+
 export default {
   registerCarNames(carNames) {
     const carNameList = getCarNameList(carNames);
@@ -66,6 +76,7 @@ export default {
     const winners = getWinners(racingCarGameModel.carList);
     showWinners(winners);
     await racingCarGameView.startRacingGameAnimation();
+    await showCongratulationMessage(winners);
     racingCarGameModel.clearCarsRecord();
   },
 
