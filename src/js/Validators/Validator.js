@@ -7,35 +7,29 @@ export default class Validator {
     const carNameValidator = new CarNameValidator(carNames);
 
     if (carNameValidator.isNotValidLength()) {
-      alert(CAR_NAME_ERROR_MESSAGE.INVALID_LENGTH);
-      return false;
+      return CAR_NAME_ERROR_MESSAGE.INVALID_LENGTH;
     }
     if (carNameValidator.isIncludingBlank()) {
-      alert(CAR_NAME_ERROR_MESSAGE.INCLUDE_BLANK);
-      return false;
+      return CAR_NAME_ERROR_MESSAGE.INCLUDE_BLANK;
     }
     if (carNameValidator.isDuplicated()) {
-      alert(CAR_NAME_ERROR_MESSAGE.DUPLICATED);
-      return false;
+      return CAR_NAME_ERROR_MESSAGE.DUPLICATED;
     }
     if (carNameValidator.isInCompleteWord()) {
-      alert(CAR_NAME_ERROR_MESSAGE.INCOMPLETE_WORD);
-      return false;
+      return CAR_NAME_ERROR_MESSAGE.INCOMPLETE_WORD;
     }
-    return true;
+    return '';
   }
 
   validateTryCount(tryCount) {
     const tryCountValidator = new TryCountValidator(tryCount);
 
     if (tryCountValidator.isNotInteger()) {
-      alert(TRY_COUNT_ERROR_MESSAGE.NOT_INTEGER);
-      return false;
+      return TRY_COUNT_ERROR_MESSAGE.NOT_INTEGER;
     }
     if (tryCountValidator.isNotPositiveNumber()) {
-      alert(TRY_COUNT_ERROR_MESSAGE.NOT_POSITIVE);
-      return false;
+      return TRY_COUNT_ERROR_MESSAGE.NOT_POSITIVE;
     }
-    return true;
+    return '';
   }
 }

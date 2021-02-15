@@ -68,4 +68,8 @@ export default class CarGameView {
   getTryCount() {
     return Number(this.tryCountInput.value);
   }
+
+  alertError(ErrorMessage) {
+    alert(ErrorMessage);
+  }
 }
