@@ -93,8 +93,7 @@ export default class RacingGameController {
   }
 
   async handleResult(cars, winners) {
-    this.view.renderProgress(cars);
-    await wait(cars.length);
+    await this.view.renderProgress(cars);
     this.view.renderResult(winners);
     this.setEvent('click', '.reset-btn', this.initGame.bind(this));
     await wait(MSG_INTERVAL);

@@ -1,5 +1,7 @@
 /* eslint-disable max-lines-per-function */
 
+import { wait } from '../utils/index.js';
+
 export default class RacingGameView {
   constructor() {}
 
@@ -52,7 +54,7 @@ export default class RacingGameView {
     `;
   }
 
-  renderProgress(cars) {
+  async renderProgress(cars) {
     const $progressContainer = document.querySelector('.progress-container');
 
     $progressContainer.innerHTML = `
@@ -62,7 +64,7 @@ export default class RacingGameView {
       </div>
     </section>
   `;
-    this.animateProgress(cars);
+    await this.animateProgress(cars);
 
     function progressTemplate(cars) {
       return cars.reduce((innerHTML, car, idx) => {
@@ -80,22 +82,15 @@ export default class RacingGameView {
     }
   }
 
-  animateProgress(cars) {
-    const intervalId = setInterval(animate, 1000, cars);
-    let idx = 0;
-
-    function animate(cars) {
+  async animateProgress(cars) {
+    for (const [idx, car] of cars.entries()) {
       const progress = document.querySelector(`.progress-${idx}`);
-      const car = cars[idx];
 
-      if (idx === cars.length - 1) {
-        clearInterval(intervalId);
-      }
+      await wait(1);
       progress.innerHTML = `
         <div class="car-player mr-2">${car.name}</div>
         ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.position)}
       `;
-      idx++;
     }
   }
 
