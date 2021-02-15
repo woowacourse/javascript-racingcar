@@ -26,6 +26,7 @@ describe('Racing Car 게임 : 게임 진행 테스트', () => {
   });
 
   it('이름이 정상적으로 출력된 이후 게임 진행 결과 화면을 바탕으로, 우승자가 제대로 출력됐는지 확인한다.', () => {
+    cy.wait(tryCount * 1000);
     cy.get('.car-player-container').then($carPlayerContainers => {
       const scores = [...$carPlayerContainers].map(
         $container => $container.querySelectorAll('.forward-icon').length,
@@ -66,9 +67,9 @@ describe('Racing Car 게임 : 게임 진행 테스트', () => {
     cy.get('[data-test=try-count-input]').type(tryCount);
     cy.get('[data-test=try-count-button]').click();
 
-    cy.get('.spinner-container').should('be.visible');
+    cy.get('.spinner-container').should('exist');
     cy.wait(tryCount * 1000);
-    cy.get('.spinner-container').should('not.be.visible');
+    cy.get('.spinner-container').should('not.exist');
 
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
