@@ -5,7 +5,7 @@ import {
   resetCarNamesInput,
   resetTryNumInput,
 } from "./display-utils.js";
-import { playRacingGame } from "./game-utils.js";
+import { initGame } from "./game-utils.js";
 import {
   isInputEmpty,
   isCarNameLengthValid,
@@ -53,7 +53,7 @@ const onClickedCarNamesBtn = () => {
     }
 
     createCarInstance(carNames);
-    showElement(tryNumSection);
+    showElement(tryNumSection, "block");
     carNamesBtn.disabled = true;
   });
 };
@@ -70,10 +70,10 @@ const onClickedTryNumBtn = () => {
 
       return;
     }
-    playRacingGame();
+    initGame();
 
-    showElement(resultSection);
-    showElement(winnerSection);
+    showElement(resultSection, "block");
+    showElement(winnerSection, "block");
     tryNumBtn.disabled = true;
   });
 };
