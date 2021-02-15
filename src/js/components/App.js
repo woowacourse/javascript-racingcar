@@ -8,12 +8,10 @@ import {
   MAX_NUMBER,
   MOVE_BOUNDED_NUMBER,
   GAME_PROCESS_DELAY,
+  WINNER_CONGURATULATION_DELAY,
 } from '../util/constant.js';
-import {
-  alertConguratulationMessage,
-  delay,
-  getRandomNumber,
-} from '../util/game.js';
+import { delay, getRandomNumber } from '../util/game.js';
+import { GAME_MESSAGE } from '../util/message.js';
 import { $ } from '../util/dom.js';
 
 export default class App {
@@ -85,7 +83,7 @@ export default class App {
     this.setState({ nextIsGameFinished: true });
     this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
 
-    alertConguratulationMessage();
+    await this.alertConguratulationMessage();
   }
 
   isGameReady() {
@@ -96,6 +94,11 @@ export default class App {
     const maxScore = Math.max(...cars.map(car => car.score));
 
     return cars.filter(car => car.score === maxScore).map(car => car.name);
+  }
+
+  async alertConguratulationMessage() {
+    await delay(WINNER_CONGURATULATION_DELAY);
+    alert(GAME_MESSAGE.CONGRATULATION);
   }
 
   resetRacingGame() {
