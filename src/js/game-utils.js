@@ -70,9 +70,7 @@ const playGameForSecond = () => {
   let second = 0;
 
   const goStep = setInterval(() => {
-    const resultDivs = resultSection
-      .querySelector("div")
-      .querySelectorAll(".one-car-result");
+    const resultDivs = document.querySelectorAll(".one-car-result");
 
     if (second === 0) {
       startGame(resultDivs);
