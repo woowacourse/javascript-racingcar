@@ -2,13 +2,13 @@ import { isEffectiveScore } from './isEffectiveScore.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { printGameResult } from './printGameResult.js';
 import { GAME } from '../utils/constant.js';
-import { setVisibility } from '../utils/setAttribute.js';
+import { hideElement, showElement } from '../utils/setAttribute.js';
 
 const setHiddenWaitRacingAnimation = () => {
   const $spinnerContainers = document.querySelectorAll('.spinner-container');
 
   $spinnerContainers.forEach(($spinnerContainer) =>
-    setVisibility($spinnerContainer, false),
+    hideElement($spinnerContainer),
   );
 };
 
@@ -41,7 +41,7 @@ export const startGame = (racingCount) => {
   }, GAME.RACING_TIME);
 
   setTimeout(() => {
-    setVisibility($gameResultSection, true);
+    showElement($gameResultSection);
     setHiddenWaitRacingAnimation();
     printGameResult();
   }, totalRacingDurationTime);

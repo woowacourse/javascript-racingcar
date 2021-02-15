@@ -1,4 +1,4 @@
-import { setDisabled, setVisibility } from '../utils/setAttribute.js';
+import { enabledElement, hideElement } from '../utils/setAttribute.js';
 
 const resetGame = () => {
   const $carNameInput = document.querySelector('#car-name-input');
@@ -17,11 +17,11 @@ export const restartGame = () => {
   const $gameProcessSection = document.querySelector('#game-process-section');
   const $gameResultSection = document.querySelector('#game-result-section');
 
-  setVisibility($racingCountSection, false);
-  setVisibility($gameProcessSection, false);
-  setVisibility($gameResultSection, false);
-  setDisabled($carNameSubmit, false);
-  setDisabled($racingCountSubmit, false);
+  hideElement($racingCountSection);
+  hideElement($gameProcessSection);
+  hideElement($gameResultSection);
+  enabledElement($carNameSubmit);
+  enabledElement($racingCountSubmit);
 
   resetGame();
 };

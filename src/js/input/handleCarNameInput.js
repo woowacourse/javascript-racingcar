@@ -1,5 +1,5 @@
 import { GAME, ERR_MESSAGE } from '../utils/constant.js';
-import { setDisabled, setVisibility } from '../utils/setAttribute.js';
+import { disabledElement, showElement } from '../utils/setAttribute.js';
 
 const carTemplate = (carName) => {
   return `<div class="car" data-name=${carName}>
@@ -51,7 +51,7 @@ export const handleCarNameInput = () => {
     return;
   }
 
-  setVisibility($racingCountSection, true);
-  setDisabled($carNameSubmit, true);
+  showElement($racingCountSection);
+  disabledElement($carNameSubmit);
   createCars(carNames);
 };

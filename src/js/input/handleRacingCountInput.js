@@ -1,6 +1,6 @@
 import { GAME, ERR_MESSAGE } from '../utils/constant.js';
 import { startGame } from '../game/startGame.js';
-import { setDisabled, setVisibility } from '../utils/setAttribute.js';
+import { disabledElement, showElement } from '../utils/setAttribute.js';
 
 const isValidRacingCount = (racingCount) => {
   if (racingCount < GAME.MIN_INPUT_COUNT) {
@@ -21,7 +21,7 @@ export const handleRacingCountInput = () => {
     return;
   }
 
-  setVisibility($gameProcessSection, true);
-  setDisabled($racingCountSubmit, true);
+  showElement($gameProcessSection);
+  disabledElement($racingCountSubmit);
   startGame(racingCount);
 };
