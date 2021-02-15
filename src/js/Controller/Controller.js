@@ -42,16 +42,12 @@ class Controller {
 	}
 
 	addCountButtonEvent(callback) {
-		const countButton = $("count-submit-button");
-		countButton.addEventListener("click", callback);
+		$("count-submit-button").addEventListener("click", callback);
 	}
 
 	initializeEvents() {
-		const nameButton = $("name-submit-button");
-		const nameInput = $("name-input");
-
-		nameButton.addEventListener("click", this.onNameSubmit.bind(this));
-		nameInput.addEventListener("input", this.filterCarNameType);
+		$("name-submit-button").addEventListener("click", this.onNameSubmit.bind(this));
+		$("name-input").addEventListener("input", this.filterCarNameType);
 	}
 
 	filterCarNameType(event) {
@@ -63,16 +59,12 @@ class Controller {
 	}
 
 	addResetButtonEvent() {
-		const resetButton = $("reset-button");
-
-		resetButton.addEventListener("click", this.onResetButtonClick.bind(this));
+		$("reset-button").addEventListener("click", this.onResetButtonClick.bind(this));
 	}
 
 	onResetButtonClick() {
-		const $app = $("app");
-
 		Model.clearStates();
-		View.renderInitialElements($app);
+		View.renderInitialElements($("app"));
 		this.initializeEvents();
 	}
 }
