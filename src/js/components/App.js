@@ -9,7 +9,11 @@ import {
   MOVE_BOUNDED_NUMBER,
   GAME_PROCESS_DELAY,
 } from '../util/constant.js';
-import { delay, getRandomNumber } from '../util/game.js';
+import {
+  alertConguratulationMessage,
+  delay,
+  getRandomNumber,
+} from '../util/game.js';
 import { $ } from '../util/dom.js';
 
 export default class App {
@@ -80,6 +84,8 @@ export default class App {
 
     this.setState({ nextIsGameFinished: true });
     this.racingWinner.setState({ nextWinners: this.getWinners(this.cars) });
+
+    alertConguratulationMessage();
   }
 
   isGameReady() {
