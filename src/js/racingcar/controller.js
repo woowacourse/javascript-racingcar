@@ -67,7 +67,7 @@ class RacingCarController {
     }
 
     this.count = count;
-    this.setBeforeStartingGame();
+    this.setBeforeProceedingGame();
   }
 
   setBeforeProceedingGame() {
