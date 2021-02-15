@@ -7,7 +7,7 @@ export default class CarNameInput {
   constructor({ createCars, play }) {
     this.$target = document.querySelector('.car-name-input-containter');
     this.$carNameInput = this.$target.querySelector('input[type=text]');
-    this.$carNameSummitBtn = this.$target.querySelector('button');
+    this.$carNameSubmitBtn = this.$target.querySelector('button');
     this.carNames = [];
     this.createCars = createCars;
     this.play = play;
@@ -16,7 +16,7 @@ export default class CarNameInput {
   }
 
   attachEvents() {
-    this.$carNameSummitBtn.addEventListener('click', this.handleSubmitCarName.bind(this));
+    this.$carNameSubmitBtn.addEventListener('click', this.handleSubmitCarName.bind(this));
   }
 
   handleSubmitCarName() {
@@ -38,14 +38,14 @@ export default class CarNameInput {
       return;
     }
 
-    disableElements(this.$carNameInput, this.$carNameSummitBtn);
+    disableElements(this.$carNameInput, this.$carNameSubmitBtn);
     this.setState(carNames);
     this.createCars(this.carNames);
     this.play();
   }
 
   reset() {
-    activateElements(this.$carNameInput, this.$carNameSummitBtn);
+    activateElements(this.$carNameInput, this.$carNameSubmitBtn);
     clearInput(this.$carNameInput);
     this.setState([]);
   }
