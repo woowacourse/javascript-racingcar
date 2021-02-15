@@ -1,0 +1,24 @@
+{
+	"name": "javascript-racingcar",
+	"version": "1.0.0",
+	"description": "woowacourse level1 - racingcar game",
+	"main": "index.js",
+	"scripts": {
+		"test": "npx cypress open"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Da-Wit/javascript-racingcar.git"
+	},
+	"author": "dawit jeong, shinsehantan",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Da-Wit/javascript-racingcar/issues"
+	},
+	"homepage": "https://github.com/Da-Wit/javascript-racingcar#readme",
+	"dependencies": {
+		"cypress": "^6.4.0",
+		"eslint": "^7.19.0",
+		"prettier": "^2.2.1"
+	}
+}
