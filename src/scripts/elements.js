@@ -6,6 +6,11 @@ const $resultArea = document.querySelector('#result-area');
 const $winners = document.querySelector('#winners');
 const $restartButton = document.querySelector('#restart-button');
 
+const getSpinnerElements = () =>
+  Array.from(document.querySelectorAll('.spinner-container'));
+
+const getTrackElements = () => Array.from(document.querySelectorAll('.track'));
+
 export {
   $carNameSubmit,
   $playGameButton,
@@ -14,4 +19,6 @@ export {
   $resultArea,
   $winners,
   $restartButton,
+  getSpinnerElements,
+  getTrackElements,
 };

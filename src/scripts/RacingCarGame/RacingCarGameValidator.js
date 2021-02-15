@@ -4,6 +4,7 @@ import {
   SHOULD_NOT_DECIMAL_MESSAGE,
   SHOULD_GREATER_THAN_ZERO_MESSAGE,
   SHOULD_REGISTER_CAR_FIRST_MESSAGE,
+  RACE_IS_ON_GOING_MESSAGE,
   MAX_CAR_NAME_LENGTH_NUMBER,
 } from '../constants.js';
 
@@ -46,6 +47,10 @@ export default {
     }
 
     return false;
+  },
+
+  alertRaceIsOnGoing() {
+    alert(RACE_IS_ON_GOING_MESSAGE);
   },
 
   alertCarListEmpty() {

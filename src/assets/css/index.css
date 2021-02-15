@@ -1,8 +1,8 @@
-@import "./shared/button.css";
-@import "./shared/layout.css";
-@import "./shared/sizing.css";
-@import "./shared/typhography.css";
-@import "./ui/spinner.css";
+@import './shared/button.css';
+@import './shared/layout.css';
+@import './shared/sizing.css';
+@import './shared/typhography.css';
+@import './ui/spinner.css';
 
 html,
 body {
@@ -26,7 +26,17 @@ body {
 }
 
 .forward-icon {
+  /* display: none -> flex */
+  display: none;
   font-size: 32px;
-  display: flex;
   justify-content: center;
+  opacity: 0;
+}
+
+#winners {
+  opacity: 0;
+}
+
+#restart-button {
+  opacity: 0;
 }

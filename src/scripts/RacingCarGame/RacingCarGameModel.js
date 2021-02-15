@@ -6,6 +6,7 @@ import {
 export default class RacingCarGameModel {
   constructor() {
     this.carList = [];
+    this.isRaceOnGoing = false;
   }
 
   registerCars(carNameList) {
@@ -14,6 +15,14 @@ export default class RacingCarGameModel {
 
   clearCarList() {
     this.carList = [];
+  }
+
+  setRaceIsOnGoing() {
+    this.isRaceOnGoing = true;
+  }
+
+  setRaceIsNotOnGoing() {
+    this.isRaceOnGoing = false;
   }
 
   moveCarForward(car, randomNumber) {

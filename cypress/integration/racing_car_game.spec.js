@@ -132,13 +132,12 @@ describe('step1', () => {
   });
 });
 
-describe('step1', () => {
+describe('step2', () => {
   it(`자동차 경주 게임의 턴이 진행 될 때마다 ${ANIMATION_DURATION_SECOND}초의 텀을 두고 진행한다`, () => {
     cy.get('#car-name-input').type('chris, beuc');
     cy.get('#car-name-submit').click();
     cy.get('#try-count-input').type('100');
     cy.get('#play-game-button').click();
-    // 가장 긴 track을 찾고
     let maxTrackArrowCount = 0;
     cy.get('.track').then((tracks) => {
       Array.from(tracks).forEach((track) => {
@@ -148,7 +147,6 @@ describe('step1', () => {
         }
       });
     });
-    // display 값이 바뀐 개수가 있는지 확인해봐야겠네
     let prevVisibleArrowCount = cy
       .get('#result-area')
       .find('.forward-icon[style*="display:flex"]')
