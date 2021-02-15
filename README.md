@@ -17,7 +17,14 @@
   <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/7c76e809d82a4a3aa0fd78a86be25427">
 </p>
 
-### ✅ Todos
+### ✅ 2단계 Todos
+- [ ] try-count-btn을 클릭하면 각 자동차 이름 하단에 spinner를 띄운다.
+- [ ] 1초가 지날 때마다 spinner가 경주 진행 상황(화살표)로 덮어씌워진다.
+- [ ] 모든 자동차의 spinner가 경주 진행 상황(화살표)로 대체되면 최종 결과를 보여준다.
+  - [ ] 먼저 alert로 축하 메세지를 띄운다.
+  - [ ] alert를 없애면 최종 우승자와 함께 다시 시작하기 버튼을 화면에 띄운다.
+
+### ✅ 1단계 Todos
 - [x] eslint, prettier 세팅 
 - [x] cypress 세팅
 - [x] 자동차 이름 입력 받아서 배열에 저장한다. 
