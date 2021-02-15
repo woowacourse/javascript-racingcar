@@ -1,0 +1,17 @@
+{
+    "plugins": ["prettier"],
+    "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:cypress/recommended"],
+    "rules": {
+        "prettier/prettier": ["error", {
+            "endOfLine": "auto"
+        }]
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 12
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    }
+}
