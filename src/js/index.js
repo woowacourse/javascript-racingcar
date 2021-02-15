@@ -1,6 +1,6 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { ALERT_MESSAGE, ELEMENT_CLASS_NAME } from './constants.js';
+import { ELEMENT_CLASS_NAME } from './constants.js';
 import { 
   checkCarNameValidity,
   checkTryCountValidity,
@@ -22,27 +22,31 @@ export default class Racing {
   handleCarNameInput() {
     const carNameInput = document.querySelector(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).value;
     const carNamesArr = carNameInput.split(',').map(name => name.trim());
-    // check validity of car name input
-    const isCarNameInputValid = checkCarNameValidity(carNameInput, carNamesArr);
-    if (!isCarNameInputValid) return;
+
+    const alertMessage = checkCarNameValidity(carNameInput, carNamesArr);
+    if (alertMessage) {
+      alert(alertMessage);
+      return;
+    }
 
     this.createCars(carNamesArr);
     
-    // show try count input & button
     this.UIController.showElement(ELEMENT_CLASS_NAME.TRY_COUNT_FORM);
     this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
   }
 
   handleTryCountInput() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
-    // check validity of try count input
-    const isTryCountInputValid = checkTryCountValidity(tryCountInput);
-    if(!isTryCountInputValid) return;
+
+    const alertMessage = checkTryCountValidity(tryCountInput);
+    if(alertMessage) {
+      alert(alertMessage);
+      return;
+    }
 
     this.tryCount = Number(tryCountInput);
     this.moveCars();
     
-    // show race progress & result
     this.UIController.showProgress(this.cars);
     this.UIController.showWinners(this.getWinners());
   }
@@ -61,16 +65,16 @@ export default class Racing {
   }
 
   getWinners() {
-    return this.cars.reduce((winners, car, idx) => {
-      if (idx === 0) return [this.cars[0]];
-      
-      if (car.position === winners[0].position) {
-        return winners.concat(car);
-      } else if (car.position > winners[0].position) {
+    return this.cars.reduce((winners, car) => {
+      if (winners.length === 0 || car.position > winners[0].position) {
         return [car];
-      } else {
-        return winners;
       }
+
+      if (car.position === winners[0].position) {
+        winners.push(car);
+      } 
+
+      return winners;
     }, []).map(winner => winner.name);
   }
 

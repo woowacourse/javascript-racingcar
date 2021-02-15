@@ -22,7 +22,7 @@ export const ELEMENT_CLASS_NAME = {
   HIDE: 'hide',
 };
 
-export const CONSTANT_NUMBER = {
+export const GAME_LIMIT_VALUE = {
   MAX_NAME_LENGTH: 5,
   FORWARDING_THRESHOLD: 4,
   RANDOM_RANGE: 10,

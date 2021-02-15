@@ -1,4 +1,4 @@
-import { CONSTANT_NUMBER } from '../constants.js';
+import { GAME_LIMIT_VALUE } from '../constants.js';
 
 export default class Car {
   constructor(name) {
@@ -7,8 +7,8 @@ export default class Car {
   }
 
   move() {
-    const randNumber = Math.random() * CONSTANT_NUMBER.RANDOM_RANGE;
-    if (randNumber >= CONSTANT_NUMBER.FORWARDING_THRESHOLD) {
+    const randNumber = Math.random() * GAME_LIMIT_VALUE.RANDOM_RANGE;
+    if (randNumber >= GAME_LIMIT_VALUE.FORWARDING_THRESHOLD) {
       this.position++;
     }
   }
