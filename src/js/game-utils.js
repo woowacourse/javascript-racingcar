@@ -16,6 +16,7 @@ import {
   setCarNamesInResultView,
   setIconsInResultView,
   getWinnerText,
+  resetGameResultSections,
 } from "./display-utils.js";
 
 const GO_NUMBER = 3;
@@ -80,9 +81,7 @@ export const playGame = () => {
   state.cars.forEach((car) => {
     car.totalStep = 0;
   });
-
-  resultSection.querySelector("div").innerHTML = "";
-  winnerSection.innerHTML = "";
+  resetGameResultSections(); // reset result, winner section
 
   playGameForSecond(second);
 };

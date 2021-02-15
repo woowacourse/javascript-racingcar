@@ -23,6 +23,11 @@ export const resetTryNumInput = () => {
   tryNumSection.querySelector("input").value = "";
 };
 
+export const resetGameResultSections = () => {
+  resultSection.querySelector("div").innerHTML = "";
+  winnerSection.innerHTML = "";
+};
+
 export const resetView = () => {
   hideElement(tryNumSection);
   hideElement(resultSection);
