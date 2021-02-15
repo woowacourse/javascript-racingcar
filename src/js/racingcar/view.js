@@ -1,4 +1,4 @@
-import {getQuerySelector, setElementDisplay} from '../utils/dom.js';
+import {$, $$, setElementDisplay} from '../utils/dom.js';
 import {
   countSectionTemplate,
   processSectionTemplate,
@@ -7,48 +7,47 @@ import {
 
 class RacingCarView {
   renderCount() {
-    const $countSection = getQuerySelector('#count');
+    const $countSection = $('#count');
     setElementDisplay($countSection, 'block');
     $countSection.innerHTML = countSectionTemplate();
   }
 
   renderProcess(cars) {
-    const $processSection = getQuerySelector('#process');
+    const $processSection = $('#process');
     setElementDisplay($processSection, 'block');
     $processSection.innerHTML = processSectionTemplate(cars);
   }
 
   renderResult(winners) {
-    const $resultSection = getQuerySelector('#result');
+    const $resultSection = $('#result');
     setElementDisplay($resultSection, 'block');
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
   hideSpinnerAll() {
-    const $spinners = document.querySelectorAll('.spinner-container');
-    $spinners.forEach(($spinner) => {
+    $$('.spinner-container').forEach(($spinner) => {
       setElementDisplay($spinner, 'none');
     });
   }
 
   resetCar() {
-    getQuerySelector('#car-input').value = '';
+    $('#car-input').value = '';
   }
 
   resetCount() {
-    const $countSection = getQuerySelector('#count');
+    const $countSection = $('#count');
     setElementDisplay($countSection, 'none');
     $countSection.innerHTML = ``;
   }
 
   resetProcess() {
-    const $processSection = getQuerySelector('#process');
+    const $processSection = $('#process');
     setElementDisplay($processSection, 'none');
     $processSection.innerHTML = ``;
   }
 
   resetResult() {
-    const $resultSection = getQuerySelector('#result');
+    const $resultSection = $('#result');
     setElementDisplay($resultSection, 'none');
     $resultSection.innerHTML = ``;
   }

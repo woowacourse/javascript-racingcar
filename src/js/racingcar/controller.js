@@ -7,7 +7,7 @@ import {
   getCountErrorMessage,
 } from '../validations/racingCarValid.js';
 import {isCountExist} from '../validations/countValid.js';
-import {getQuerySelector} from '../utils/dom.js';
+import {$} from '../utils/dom.js';
 import {ERROR_MESSAGE} from '../constants/message.js';
 import {wait} from '../utils/async.js';
 
@@ -33,13 +33,13 @@ class RacingCarController {
   }
 
   getCarsInput() {
-    const $carInput = getQuerySelector('#car-input');
+    const $carInput = $('#car-input');
 
     return $carInput.value.split(',').map((car) => car.trim());
   }
 
   getCountInput() {
-    return getQuerySelector('#count-input').value;
+    return $('#count-input').value;
   }
 
   manageCars() {
@@ -94,19 +94,19 @@ class RacingCarController {
   }
 
   handleCars() {
-    getQuerySelector('#car-btn').addEventListener('click', () => {
+    $('#car-btn').addEventListener('click', () => {
       this.manageCars();
     });
   }
 
   handleCount() {
-    getQuerySelector('#count-btn').addEventListener('click', () => {
+    $('#count-btn').addEventListener('click', () => {
       this.manageCount();
     });
   }
 
   handleReset() {
-    getQuerySelector('#reset-btn').addEventListener('click', () => {
+    $('#reset-btn').addEventListener('click', () => {
       this.reset();
     });
   }
