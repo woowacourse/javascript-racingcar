@@ -19,6 +19,8 @@ export const ELEMENT_CLASS_NAME = {
   PROGRESS_CARS: '.progress-cars',
   RESULT_CONTAINER: '.result-container',
   RESTART_BTN: '.restart-btn',
+  SPINNER: '.spinner',
+  FORWARD_ICON: '.forward-icon',
   HIDE: 'hide',
 };
 

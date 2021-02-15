@@ -35,11 +35,19 @@ export default class RacingUI {
   showProgress(cars) {
     this.showElement(ELEMENT_CLASS_NAME.PROGRESS_CONTAINER);
 
+    this.showProgressBars(cars);
+  }
+
+  showProgressBars(cars) {
     document.querySelector(ELEMENT_CLASS_NAME.PROGRESS_CARS).innerHTML = cars
       .map(car => `
-        <div>
+        <div class="${car.name}">
           <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.position)}
+          <div class="d-flex justify-center mt-4">
+            <div class="relative spinner-container">
+              <span class="material spinner"></span>
+            </div>
+          </div>
         </div>
       `,)
       .join('');

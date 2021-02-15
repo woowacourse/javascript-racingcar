@@ -23,6 +23,17 @@ function expectAlert(className, alertMessage) {
   });
 }
 
+function getWinnerResult(cars) {
+  const progresses = [...cars].map(car => car.parentNode.childNodes.length);
+  const maxPosition = Math.max(...progresses);
+  const winnerResult = [...cars]
+  .filter(car => car.parentNode.childNodes.length === maxPosition)
+  .map(car => car.innerHTML)
+  .join(', ');
+
+  return winnerResult;
+}
+
 function testUIRemoval() {
   cy.get(ELEMENT_CLASS_NAME.CAR_NAME_INPUT).should('have.value', '');
   cy.get(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).should('have.value', '');
@@ -93,14 +104,31 @@ describe('자동차 경주', () => {
     expectAlert(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT, ALERT_MESSAGE.TRY_COUNT_NOT_INT);
   });
 
-  it('레이싱 진행 상황과 함께 우승자가 출력된다', () => {
+  it('레이싱 진행 상황을 보여주고, alert 메시지와 함께 우승자가 출력된다', () => {
     typeCarAndClick();
     typeTryCountAndClick();
 
     cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).should('be.visible');
 
     cy.document().then(doc => {
+      const alertStub = cy.stub();
+      cy.on('window:alert', alertStub);
       const cars = doc.querySelectorAll('.car-player');
+
+      cy.get(ELEMENT_CLASS_NAME.SPINNER).should('have.length', doc.querySelectorAll('.car-player').length);
+
+      cy.wait(1000 * (cars.length + 2)).then(() => {
+        cy.get(ELEMENT_CLASS_NAME.FORWARD_ICON).should('be.visible');
+
+        const newCars = docs.querySelectorAll('.car-player');
+        const winnerResult = getWinnerResult(newCars);
+
+        expect(alertStub.getCall(0)).to.be.calledWith(`우승자는 ${winnerResult} 입니다! 축하합니다!`);
+
+        cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).should('be.visible');
+        cy.get(ELEMENT_CLASS_NAME.RESULT_CONTAINER).find('section').find('h2').contains(winnerResult);
+      });
+
       const progresses = [...cars].map(car => car.parentNode.childNodes.length);
       const maxPosition = Math.max(...progresses);
       
