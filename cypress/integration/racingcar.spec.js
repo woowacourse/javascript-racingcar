@@ -23,15 +23,14 @@ describe('ui-input-click-show', () => {
   });
 
   it('1초 간격으로 게임이 진행되며, 게임이 종료되기 전까지 로딩바가 존재한다.', () => {
-    cy.clock();
     // 5초 후에 게임이 종료된다고 가정
-    cy.get('#result').should('not.be.visible');
-    cy.tick(2500);
-    cy.get('#result').should('not.be.visible');
-    cy.get('.spinner-container').should('be.visible');
-    cy.tick(5000);
-    cy.get('#result').should('be.visible');
-    cy.get('.spinner-container').should('not.be.visible');
+    cy.get('#result').should('have.css', 'display', 'none');
+    cy.wait(2000);
+    cy.get('.spinner-container').should('have.css', 'display', 'block');
+    cy.get('#result').should('have.css', 'display', 'none');
+    cy.wait(3000);
+    cy.get('.spinner-container').should('have.css', 'display', 'none');
+    cy.get('#result').should('have.css', 'display', 'block');
   });
 
   it('시도 횟수보다 화살표의 개수가 적거나 같아야한다', () => {
@@ -61,6 +60,8 @@ describe('ui-input-click-show', () => {
   });
 
   it('다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다', () => {
+    // 축하 alert이 뜨는 2초 후에 다시 시작하기 버튼을 클릭할 수 있음
+    cy.wait(2000);
     cy.get('#reset-btn').click();
     cy.get('#count').should('have.css', 'display', 'none');
     cy.get('#process').should('have.css', 'display', 'none');
@@ -168,12 +169,11 @@ describe('alert-check', () => {
     cy.get('#car-btn').click();
     cy.get('#count').should('have.css', 'display', 'block');
     cy.get('#count-input').type(3);
-    cy.clock();
     cy.get('#count-btn').click();
-    cy.tick(5000);
+    cy.wait(5000);
     cy.get('@alertStub').should(
       'be.calledWith',
-      '축하합니다. a가 승리했습니다.',
+      '🎉축하합니다. a가(이) 승리했습니다.🎉',
     );
   });
 });
