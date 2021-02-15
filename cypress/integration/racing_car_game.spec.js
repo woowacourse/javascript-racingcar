@@ -154,8 +154,7 @@ describe('step2', () => {
       });
       let prevVisibleArrowCount = 0;
       for (let i = 0; i < maxTrackArrowCount; i += 1) {
-        const currentVisibleArrowCount = cy
-          .get('#result-area')
+        cy.get('#result-area')
           .find('.forward-icon[style*="display: flex"]')
           .its('length')
           .then((currentVisibleArrowCount) => {
