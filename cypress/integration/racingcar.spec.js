@@ -22,6 +22,18 @@ describe('ui-input-click-show', () => {
     });
   });
 
+  it('1초 간격으로 게임이 진행되며, 게임이 종료되기 전까지 로딩바가 존재한다.', () => {
+    cy.clock();
+    // 5초 후에 게임이 종료된다고 가정
+    cy.get('#result').should('not.be.visible');
+    cy.tick(2500);
+    cy.get('#result').should('not.be.visible');
+    cy.get('.spinner-container').should('be.visible');
+    cy.tick(5000);
+    cy.get('#result').should('be.visible');
+    cy.get('.spinner-container').should('not.be.visible');
+  });
+
   it('시도 횟수보다 화살표의 개수가 적거나 같아야한다', () => {
     cy.get('.process-car').each((v) => {
       if (v.find('.forward-icon').length > 0) {
@@ -47,6 +59,8 @@ describe('ui-input-click-show', () => {
         });
       });
   });
+
+  it('결과 화면이 출력된 후 2초 후에 축하 메시지가 띄워진다.', () => {});
 
   it('다시 시작하기 버튼을 클릭하면 자동차 섹션만 보이고, 입력 값이 초기화된다', () => {
     cy.get('#reset-btn').click();
