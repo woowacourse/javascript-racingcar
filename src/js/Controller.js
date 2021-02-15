@@ -1,7 +1,11 @@
 import { LIMIT, MESSAGE, RANDOM_NUMBER, SELECTOR } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { getRandomIntInclusive } from "./utils.js";
+import {
+  getRandomIntInclusive,
+  isValidCarNames,
+  isValidLapCount,
+} from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -11,6 +15,10 @@ export class Controller {
     this.carNameInput = document.querySelector(SELECTOR.CAR_NAME.INPUT);
     this.lapCountInput = document.querySelector(SELECTOR.LAP_COUNT.INPUT);
 
+    this.setEventListener();
+  }
+
+  setEventListener() {
     const carNameButton = document.querySelector(SELECTOR.CAR_NAME.BUTTON);
     carNameButton.addEventListener("click", () =>
       this.handleCarNameButtonClick()
@@ -29,32 +37,34 @@ export class Controller {
 
   handleCarNameButtonClick() {
     const carNames = this.getCarName();
+
+    if (!carNames) return;
+
     this.carModels = carNames.map((carName) => new CarModel(carName));
 
     this.viewController.renderCarNameTag(carNames);
   }
 
   handleLapCountButtonClick() {
-    if (this.carModels.length === 0) {
+    if (this.isInValidAccess()) {
       alert(MESSAGE.COMMON.INVALID_ACCESS);
       return;
     }
+    const lapCount = this.getLapCount();
+
+    if (!lapCount) return;
 
     this.viewController.renderSpinner();
 
     let i = 0;
 
-    const race = setInterval(
-      (lapCount) => {
-        if (++i === lapCount) {
-          this.endRace();
-          clearInterval(race);
-        }
-        this.endLap();
-      },
-      1000,
-      this.getLapCount()
-    );
+    const race = setInterval(() => {
+      if (++i === lapCount) {
+        this.endRace();
+        clearInterval(race);
+      }
+      this.endLap();
+    }, 1000);
   }
 
   handleRestartButtonClick() {
@@ -65,28 +75,17 @@ export class Controller {
     this.viewController.clear();
   }
 
+  isInValidAccess() {
+    return this.carModels.length === 0;
+  }
+
   getCarName() {
     const carNames = this.carNameInput.value
       .split(",")
       .map((carName) => carName.trim())
       .filter((carName) => carName !== "");
 
-    if (carNames.length < LIMIT.CAR_NAME.MIN_NUMBER) {
-      alert(MESSAGE.CAR_NAME.MIN_NUMBER);
-      return;
-    }
-
-    if (
-      carNames.some((carName) => carName.length > LIMIT.CAR_NAME.MAX_LENGTH)
-    ) {
-      alert(MESSAGE.CAR_NAME.MAX_LENGTH);
-      return;
-    }
-
-    if (carNames.some((carName, i) => i !== carNames.lastIndexOf(carName))) {
-      alert(MESSAGE.CAR_NAME.DUPLICATION);
-      return;
-    }
+    if (!isValidCarNames(carNames)) return;
 
     return carNames;
   }
@@ -94,33 +93,12 @@ export class Controller {
   getLapCount() {
     const userInput = this.lapCountInput.value;
 
-    if (userInput === "") {
-      alert(MESSAGE.LAP_COUNT.NOT_A_NUMBER);
+    if (!isValidLapCount(userInput)) {
       this.lapCountInput.value = "";
       return;
     }
 
-    const lapCount = Number(userInput);
-
-    if (lapCount < LIMIT.LAP_COUNT.MIN_NUMBER) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    if (lapCount > LIMIT.LAP_COUNT.MAX_NUMBER) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    if (!Number.isInteger(lapCount)) {
-      alert(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
-      this.lapCountInput.value = "";
-      return;
-    }
-
-    return lapCount;
+    return Number(userInput);
   }
 
   getLapResult() {
@@ -143,9 +121,7 @@ export class Controller {
       ...this.carModels.map(({ moveCount }) => moveCount)
     );
 
-    return this.carModels
-      .filter(({ moveCount }) => moveCount === maxMoveCount)
-      .map(({ name }) => name);
+    return this.carModels.filter(({ moveCount }) => moveCount === maxMoveCount);
   }
 
   endLap() {
@@ -159,12 +135,12 @@ export class Controller {
   }
 
   endRace() {
-    const winners = this.getWinners();
+    const winnersNames = this.getWinners().map(({ name }) => name);
 
-    this.viewController.renderGameResult(winners);
+    this.viewController.renderGameResult(winnersNames);
 
     setTimeout(() => {
-      alert(winners.join(", ") + MESSAGE.GAME_RESULT.CELEBRATION);
+      alert(winnersNames.join(", ") + MESSAGE.GAME_RESULT.CELEBRATION);
     }, 2000);
   }
 }
