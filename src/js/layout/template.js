@@ -24,12 +24,23 @@ export const processSectionTemplate = (cars) => {
           <div class="process-car">
             <div class="car-player mr-2">${car.name}</div>
             ${`<div class="forward-icon mt-2">⬇️️</div>`.repeat(car.forward)}
+            ${processSectionSpinnerTemplate()}
           </div>
         `;
         })
         .join('')}
       </div>
     `;
+};
+
+const processSectionSpinnerTemplate = () => {
+  return `
+      <div class="mt-4 d-flex justify-center">
+        <div class="spinner-container relative">
+          <span class="spinner material"></span>
+        </div>
+      </div>
+  `;
 };
 
 export const resultSectionTemplate = (winners) => {
