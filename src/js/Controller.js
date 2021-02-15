@@ -54,17 +54,7 @@ export class Controller {
 
     if (!lapCount) return;
 
-    this.viewController.renderSpinner();
-
-    let i = 0;
-
-    const race = setInterval(() => {
-      if (++i === lapCount) {
-        this.endRace();
-        clearInterval(race);
-      }
-      this.endLap();
-    }, 1000);
+    this.startRace(lapCount);
   }
 
   handleRestartButtonClick() {
@@ -124,6 +114,28 @@ export class Controller {
     return this.carModels.filter(({ moveCount }) => moveCount === maxMoveCount);
   }
 
+  startRace(lapCount) {
+    let delayTime = 0;
+
+    for (let i = 0; i < lapCount; i++) {
+      setTimeout(() => {
+        this.viewController.renderSpinner();
+      }, delayTime);
+
+      delayTime += 800;
+
+      setTimeout(() => {
+        this.endLap();
+      }, delayTime);
+
+      delayTime += 200;
+    }
+
+    setTimeout(() => {
+      this.endRace();
+    }, delayTime);
+  }
+
   endLap() {
     const lapResult = this.getLapResult();
 
@@ -131,7 +143,6 @@ export class Controller {
       .filter((_, i) => lapResult[i])
       .forEach((carModel) => carModel.move());
     this.viewController.renderGameProgress(lapResult);
-    this.viewController.renderSpinner();
   }
 
   endRace() {

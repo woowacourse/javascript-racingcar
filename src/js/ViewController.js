@@ -20,7 +20,6 @@ export default class ViewController {
   }
 
   renderGameProgress(lapResult) {
-    this.disable(SELECTOR.LAP_COUNT.BUTTON);
     this.hide(SELECTOR.GAME_PROGRESS.SPINNER);
 
     lapResult.forEach((canMove, index) => {
@@ -31,15 +30,16 @@ export default class ViewController {
   }
 
   renderSpinner() {
-    setTimeout(() => {
-      this.show(SELECTOR.GAME_PROGRESS.SPINNER);
-    }, 200);
+    this.disable(SELECTOR.LAP_COUNT.BUTTON);
+    this.show(SELECTOR.GAME_PROGRESS.SPINNER);
   }
 
   renderGameResult(winners) {
     this.gameResultWinners.innerText = `
     🏆 최종 우승자: ${winners.join(", ")} 🏆
     `;
+
+    this.hide(SELECTOR.GAME_PROGRESS.SPINNER);
     this.show(SELECTOR.GAME_RESULT.CONTAINER);
   }
 
