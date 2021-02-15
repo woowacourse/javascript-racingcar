@@ -8,11 +8,10 @@ export const getRandomNumber = ({ max, min }) => {
 export const modifyCarNameInputValue = value =>
   value.split(',').map(name => name.trim());
 
-export const delay = ms => {
-  return new Promise(res => {
-    setTimeout(res, ms);
+export const delay = ms =>
+  new Promise(resolve => {
+    setTimeout(resolve, ms);
   });
-};
 
 export const alertConguratulationMessage = async () => {
   await delay(WINNER_CONGURATULATION_DELAY);
