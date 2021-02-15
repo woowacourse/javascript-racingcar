@@ -25,9 +25,6 @@ export const BOUND = {
 
 export const GLOBAL_ATTR = {
 	CLASS_DISPLAY_NONE: 'strong-display-none',
-	CLASS_CAR_PLAYER: 'car-player',
-	CLASS_FORWARD_ICON: 'forward-icon',
-	GET_CLASS_MARGIN_TOP: (num) => `mt-${num}`,
 	CLASS_DISABLED_ATTR: 'disabled',
 };
 
@@ -37,8 +34,8 @@ export const GLOBAL_HTML_TEMPLATE = {
 	  <span class="material spinner"></span>
 	</div>
   </div>`,
-	GET_CAR_PLAYER: (classes, car) => `<div>
-	<div class=${classes.join(' ')}>${car.name}</div>
+	GET_CAR_PLAYER: (car) => `<div>
+	<div class="car-player mt-2">${car.name}</div>
   </div>`,
 };
 

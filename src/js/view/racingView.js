@@ -29,14 +29,10 @@ export const removeSpinners = function () {
 };
 
 export const displayRacingCars = function (cars) {
-	const classes = [
-		GLOBAL_ATTR.CLASS_CAR_PLAYER,
-		GLOBAL_ATTR.GET_CLASS_MARGIN_TOP(2),
-	];
 	cars.forEach((car) => {
 		$(
 			SELECTOR.RACING_CARS_AREA,
-		).innerHTML += GLOBAL_HTML_TEMPLATE.GET_CAR_PLAYER(classes, car);
+		).innerHTML += GLOBAL_HTML_TEMPLATE.GET_CAR_PLAYER(car);
 	});
 	toggleDisplayCountView();
 };
@@ -44,11 +40,8 @@ export const displayRacingCars = function (cars) {
 export const appendArrowElement = function (carElement) {
 	const arrowElement = document.createElement('div');
 	const carNameElement = carElement.querySelector(SELECTOR.CAR_PLAYER);
-	const classes = [
-		GLOBAL_ATTR.CLASS_FORWARD_ICON,
-		GLOBAL_ATTR.GET_CLASS_MARGIN_TOP(2),
-	];
-	arrowElement.classList.add(...classes);
+	arrowElement.classList.add('forward-icon');
+	arrowElement.classList.add('mt-2');
 	arrowElement.innerText = '⬇️';
 	carNameElement.after(arrowElement);
 };
