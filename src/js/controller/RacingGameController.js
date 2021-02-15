@@ -1,6 +1,11 @@
 import { RacingGame, Car } from '../model/index.js';
 import { RacingGameView } from '../view/index.js';
-import { $, isValidNameInput, isValidCountInput } from '../utils/index.js';
+import {
+  $,
+  delay,
+  isValidNameInput,
+  isValidCountInput,
+} from '../utils/index.js';
 import { ALERT_RESTART } from '../constants/index.js';
 
 export default class RacingGameController {
@@ -52,7 +57,7 @@ export default class RacingGameController {
     this.view.renderCountInput();
   }
 
-  handleClickCountBtn({ target: { classList } }) {
+  async handleClickCountBtn({ target: { classList } }) {
     if (!classList.contains('count-btn')) {
       return;
     }
@@ -63,7 +68,9 @@ export default class RacingGameController {
     }
 
     this.getCountInput();
-    this.racingGame.count > 0 && this.runGame();
+    if (this.racingGame.count > 0) {
+      await this.runGame();
+    }
   }
 
   getCountInput() {
@@ -76,35 +83,31 @@ export default class RacingGameController {
     this.racingGame.setCount(Number($input.value));
   }
 
-  runGame() {
-    this.racingGame.setIsEnd(true);
-    this.runRace(this.racingGame.getCount());
+  async runGame() {
+    this.racingGame.end();
+    await this.runRace(this.racingGame.getCount());
   }
 
-  runRace(count) {
-    this.racingGame.runRound();
-    this.view.renderProgress(this.racingGame.getCars());
-    if (count > 1) {
-      setTimeout(this.runRace.bind(this), 1000, count - 1);
-      return;
+  async runRace(count) {
+    for (let i = 0; i < count; i++) {
+      this.racingGame.runRound();
+      this.view.renderProgress(this.racingGame.getCars());
+      await delay(1000);
     }
 
-    this.finishProgress();
+    await this.finishProgress();
   }
 
-  finishProgress() {
-    setTimeout(() => {
-      this.racingGame.finishProgress();
-      this.view.renderProgress(this.racingGame.getCars());
-      this.view.renderResult(this.racingGame.getWinners());
-      this.alertWinners();
-    }, 1000);
+  async finishProgress() {
+    this.racingGame.finishProgress();
+    this.view.renderProgress(this.racingGame.getCars());
+    this.view.renderResult(this.racingGame.getWinners());
+    await delay(2000);
+    this.alertWinners();
   }
 
   alertWinners() {
-    setTimeout(() => {
-      alert(`우승자 ${this.racingGame.getWinners().join(', ')} 축하합니다!`);
-    }, 2000);
+    alert(`우승자 ${this.racingGame.getWinners().join(', ')} 축하합니다!`);
   }
 
   handleClickResetBtn({ target: { classList } }) {

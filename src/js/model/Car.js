@@ -7,10 +7,10 @@ export default class Car {
 
   moveForward() {
     this.position++;
-    this.loading();
+    this.startLoading();
   }
 
-  loading() {
+  startLoading() {
     this.isLoading = true;
   }
 

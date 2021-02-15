@@ -27,13 +27,13 @@ export default class RacingGame {
     return this.count;
   }
 
-  setIsEnd(isEnd) {
-    this.isEnd = isEnd;
+  end() {
+    this.isEnd = true;
   }
 
   runRound() {
     this.cars.forEach(car => {
-      if (this.followRule()) {
+      if (this.isMoving()) {
         car.moveForward();
         return;
       }
@@ -42,7 +42,7 @@ export default class RacingGame {
     });
   }
 
-  followRule() {
+  isMoving() {
     const MOVE_TRIGGER = 4;
     return getRandomNumber() >= MOVE_TRIGGER;
   }
