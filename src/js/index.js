@@ -1,29 +1,12 @@
 import Car from "./Car.js";
 import Section from "./Section.js";
-import {
-  resetView,
-  setResultView,
-  setWinnerView,
-  resetCarNamesInput,
-  resetTryNumInput,
-} from "./display-utils.js";
+import { hideView, setWinnerView, resetCarNamesInput, resetTryNumInput } from "./display-utils.js";
 import { playGame, getWinner } from "./game-utils.js";
-import {
-  isCarNameEmpty,
-  isInvalidCarNameLength,
-  isTryNumInvalid,
-  isTryNumNotNumber,
-} from "./validate-input.js";
+import { isCarNameEmpty, isInvalidCarNameLength, isTryNumInvalid, isTryNumNotNumber } from "./validate-input.js";
 
-export const [
-  gameTitleSection,
-  carNameSection,
-  countSection,
-  carPlayerSection,
-  resultSection,
-] = Array.from(document.getElementsByTagName("section")).map(
-  (it) => new Section(it)
-);
+export const [gameTitleSection, carNameSection, countSection, carPlayerSection, resultSection] = Array.from(
+  document.getElementsByTagName("section")
+).map((it) => new Section(it));
 
 export const state = {
   cars: [],
@@ -41,14 +24,10 @@ const initCars = (carNames) => {
 };
 
 const addEventOnCarNamesButton = () => {
-  const carNamesButton = carNameSection.element.getElementsByTagName(
-    "button"
-  )[0];
+  const carNamesButton = document.querySelector("#car-name-input > div > button");
 
   carNamesButton.addEventListener("click", () => {
-    const carNamesInput = carNameSection.element.getElementsByTagName(
-      "input"
-    )[0];
+    const carNamesInput = document.querySelector("#car-name-input > div > input");
     const carNames = carNamesInput.value.split(",").map((carName) => {
       return carName.trim();
     });
@@ -70,28 +49,36 @@ const alertCelebration = () => {
 };
 
 const addEventOnTryNumButton = () => {
-  const tryNumBtn = document.getElementsByTagName("button")[1];
+  const tryNumBtn = document.querySelector("#try-input > div > button");
 
   tryNumBtn.addEventListener("click", () => {
-    const tryNum = document.getElementsByTagName("input")[1].value;
-    if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
-      alert("올바른 시도 횟수를 입력하세요.");
-      resetTryNumInput();
-      return;
-    }
-    playGame();
+    startGame();
+  });
+};
 
-    setResultView();
+const startGame = () => {
+  carPlayerSection.show();
+  resultSection.show();
+
+  const tryNum = document.querySelector("#try-input > div > input").value;
+  const tryNumBtn = document.querySelector("#try-input > div > button");
+
+  if (isTryNumInvalid(tryNum) || isTryNumNotNumber(tryNum)) {
+    alert("올바른 시도 횟수를 입력하세요.");
+    resetTryNumInput();
+    return;
+  }
+  tryNumBtn.disabled = true;
+  playGame(tryNum).then(function () {
+    const spinnerList = document.getElementsByClassName("loading");
+    Array.from(spinnerList).forEach((spinner) => spinner.remove());
     setWinnerView(getWinner());
-    carPlayerSection.show();
-    resultSection.show();
-    tryNumBtn.disabled = true;
     setTimeout(alertCelebration, 2000);
   });
 };
 
 const initRacingCarGame = () => {
-  resetView([countSection, carPlayerSection, resultSection]);
+  hideView([countSection, carPlayerSection, resultSection]);
   addEventOnCarNamesButton();
   addEventOnTryNumButton();
 };
