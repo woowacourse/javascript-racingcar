@@ -74,7 +74,8 @@ export default class Racing {
       }
       this.tryCount--;
       this.cars.forEach(car => {
-        const isCarMoved = car.move();
+        car.move();
+        const isCarMoved = car.isMoved;
         this.UIController.printProgress(car, isCarMoved);
       });
       return moveEverySecond.bind(this);
@@ -83,17 +84,17 @@ export default class Racing {
 
   getWinners = () => {
     const sortedCars = this.cars.sort((a, b) => {
-      return b.getPosition() - a.getPosition();
+      return b.position - a.position;
     })
 
-    let maxPosition = sortedCars[0].getPosition();
+    let maxPosition = sortedCars[0].position;
     for (let car of this.cars) {
-      if (car.getPosition() === maxPosition) {
+      if (car.position === maxPosition) {
         car.wins();
       }
     }
 
-    const winners = this.cars.filter(car => car.getIsWinner()).map(car => car.getName());
+    const winners = this.cars.filter(car => car.isWinner).map(car => car.name);
     this.UIController.showWinners(winners);
     document.querySelector(CLASS_NAMES.RESTART_BTN).addEventListener('click', this.restartGame);
   };

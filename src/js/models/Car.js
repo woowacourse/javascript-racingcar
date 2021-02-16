@@ -1,32 +1,38 @@
 export default class Car {
   constructor(name) {
-    this.name = name;
-    this.position = 0;
-    this.isWinner = false;
+    this._name = name;
+    this._position = 0;
+    this._isWinner = false;
+    this._isMoving = false;
   }
 
-  getName() {
-    return this.name;
+  get name() {
+    return this._name;
+  }
+  
+  get position() {
+    return this._position;
   }
 
-  getPosition() {
-    return this.position;
-  }
-
-  getIsWinner() {
-    return this.isWinner;
+  get isWinner() {
+    return this._isWinner;
   }
 
   move() {
     const randNumber = Math.random() * 10;
     if (randNumber >= 4) {
-      this.position++;
-      return true;
+      this._position++;
+      this._isMoving = true;
+    } else {
+      this._isMoving = false;
     }
-    return false;
+  }
+
+  get isMoved() {
+    return this._isMoving;
   }
 
   wins() {
-    this.isWinner = true;
+    this._isWinner = true;
   }
 }

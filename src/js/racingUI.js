@@ -53,7 +53,7 @@ export default class RacingUI {
     document.querySelector(CLASS_NAMES.PROGRESS_CARS).innerHTML 
       = cars.map(car => `
           <div class="car-player-container">
-            <div id="${car.getName()}" class="car-player mr-2">${car.getName()}</div>
+            <div id="${car.name}" class="car-player mr-2">${car.name}</div>
             <div class="spinner-container">
               <div class="material spinner"></div>
             </div>
@@ -65,7 +65,7 @@ export default class RacingUI {
   printProgress(car, isCarMoved) {
     this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, true);
     
-    const carElement = document.querySelector(`#${car.getName()}`);
+    const carElement = document.querySelector(`#${car.name}`);
 
     setTimeout(() => {
       this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, false);
