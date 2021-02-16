@@ -14,11 +14,24 @@ export default class RacingUI {
     this.clearInput(CLASS_NAMES.TRY_COUNT);
   }
 
+  showElement(className) {
+    if (!document.querySelector(className)) {
+      return;
+    }
+    const allElements = document.querySelectorAll(className)
+    for (let i = 0; i < allElements.length; i++) {
+      allElements[i].style.display = '';
+    }
+  }
+
   hideElement(className) {
     if (!document.querySelector(className)) {
       return;
     }
-    document.querySelector(className).style.display = 'none';
+    const allElements = document.querySelectorAll(className)
+    for (let i = 0; i < allElements.length; i++) {
+      allElements[i].style.display = 'none';
+    }
   }
 
   clearText(className) {
@@ -27,24 +40,6 @@ export default class RacingUI {
 
   clearInput(className) {
     document.querySelector(className).value = '';
-  }
-
-  showElement(className) {
-    if (!document.querySelector(className)) {
-      return;
-    }
-    document.querySelector(className).style.display = '';
-  }
-
-  toggleElementDisplay(className, show) {
-    if (!document.querySelector(className)) {
-      return;
-    }
-
-    const allElements = document.querySelectorAll(className)
-    for (let i = 0; i < allElements.length; i++) {
-      allElements[i].style.display = show ? '' : 'none';
-    }
   }
 
   showResult(cars) {
@@ -63,12 +58,12 @@ export default class RacingUI {
   }
 
   printProgress(car, isCarMoved) {
-    this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, true);
+    this.showElement(CLASS_NAMES.SPINNER_CONTAINER, true);
     
     const carElement = document.querySelector(`#${car.name}`);
 
     setTimeout(() => {
-      this.toggleElementDisplay(CLASS_NAMES.SPINNER_CONTAINER, false);
+      this.hideElement(CLASS_NAMES.SPINNER_CONTAINER, false);
       if (isCarMoved) {
         carElement.insertAdjacentHTML('afterend', `
           <div class="forward-icon mt-2">⬇️️</div>
