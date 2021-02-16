@@ -25,6 +25,7 @@ describe('Racing Car 게임', () => {
     cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
     cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
     cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
+    cy.wait(1000).then(() => cy.get('.spinner').should('exist'));
     cy.wait(1000).then(() => cy.get('.racing-winner-container').should('exist'));
   });
 

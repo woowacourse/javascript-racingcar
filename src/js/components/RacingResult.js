@@ -49,8 +49,9 @@ export default class RacingResult {
 
     if (!isNaN(turn)) {
       this.turn = turn;
-      this.render();
     }
+
+    this.render();
   }
 
   createCarHTML(car) {
