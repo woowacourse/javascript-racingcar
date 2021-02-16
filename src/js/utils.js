@@ -1,4 +1,4 @@
-import { RANDOM_NUMBER } from "./constants.js";
+import { CLASSNAME, RANDOM_NUMBER } from "./constants.js";
 
 // minInteger와 maxInteger를 사용하지 않고 매개변수인 min, max 를 그대로 사용하여 반환값을 계산하는 경우에는
 // min 이하 또는 max 이상의 정수가 반환될 가능성이 있다.
@@ -33,3 +33,19 @@ export const splitCarName = (str) =>
   str.match(/(?<=\s*)([^\s,]|[^\s,]{2}|[^\s,][^,]+[^\s,])(?=,\s*|\s*$)/g) || [];
 
 export const $ = (selector) => document.querySelector(selector);
+
+export const show = (selector) => showElement($(selector));
+
+export const hide = (selector) => hideElement($(selector));
+
+export const showElement = ($element) =>
+  $element.classList.remove(CLASSNAME.MODIFIER.HIDDEN);
+
+export const hideElement = ($element) =>
+  $element.classList.add(CLASSNAME.MODIFIER.HIDDEN);
+
+export const disable = (selector) => ($(selector).disabled = true);
+
+export const enable = (selector) => ($(selector).disabled = false);
+
+export const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));

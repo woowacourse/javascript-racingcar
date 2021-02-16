@@ -1,7 +1,7 @@
 import { MESSAGE, SELECTOR, CONSTANT } from "./constants.js";
 import CarModel from "./CarModel.js";
 import ViewController from "./ViewController.js";
-import { $, getLapResult, splitCarName } from "./utils.js";
+import { $, getLapResult, splitCarName, sleep } from "./utils.js";
 
 export class Controller {
   constructor() {
@@ -58,7 +58,7 @@ export class Controller {
     }
   }
 
-  handleLapCountButtonClick() {
+  async handleLapCountButtonClick() {
     try {
       if (this.carModels.length === 0)
         throw Error(MESSAGE.COMMON.INVALID_ACCESS);
@@ -73,11 +73,15 @@ export class Controller {
       if (lapCount < MIN || lapCount > MAX || !Number.isInteger(lapCount))
         throw Error(MESSAGE.LAP_COUNT.OUT_OF_RANGE);
 
+      this.viewController.readyGameProgress();
       for (let i = 0; i < lapCount; i++) {
+        await sleep(CONSTANT.DELAY.ONE_THOUSAND_MS);
+
         const lapResult = getLapResult(this.carModels.length);
         this.moveCarAlongWith(lapResult);
         this.viewController.renderGameProgress(lapResult);
       }
+      this.viewController.stopGameProgress();
 
       const winners = this.getWinners();
       this.viewController.renderGameResult(winners);

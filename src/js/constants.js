@@ -1,3 +1,12 @@
+export const CLASSNAME = {
+  MODIFIER: {
+    HIDDEN: "--hidden",
+  },
+  GAME_PROGRESS: {
+    SPINNER_ICON: "spinner-icon",
+  },
+};
+
 export const SELECTOR = {
   TITLE: {
     CONTAINER: ".title-container",
@@ -16,6 +25,7 @@ export const SELECTOR = {
     CONTAINER: ".game-progress-container",
     CAR_NAME: ".car-player",
     FORWARD_ICON: ".forward-icon",
+    SPINNER_ICON: `.${CLASSNAME.GAME_PROGRESS.SPINNER_ICON}`,
   },
   GAME_RESULT: {
     CONTAINER: ".game-result-container",
@@ -53,10 +63,8 @@ export const CONSTANT = {
     MIN: 1,
     MAX: 20,
   },
-};
-
-export const CLASSNAME = {
-  MODIFIER: {
-    HIDDEN: "--hidden",
+  DELAY: {
+    ONE_THOUSAND_MS: 1000,
+    TWO_THOUSAND_MS: 2000,
   },
 };

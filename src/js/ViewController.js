@@ -1,6 +1,6 @@
 import CarView from "./CarView.js";
-import { CLASSNAME, SELECTOR } from "./constants.js";
-import { $ } from "./utils.js";
+import { CONSTANT, SELECTOR } from "./constants.js";
+import { $, disable, enable, hide, show } from "./utils.js";
 
 export default class ViewController {
   constructor() {
@@ -10,14 +10,18 @@ export default class ViewController {
   }
 
   renderCarNameTag(carNames) {
-    this.disable(SELECTOR.CAR_NAME.BUTTON);
+    disable(SELECTOR.CAR_NAME.BUTTON);
 
     this.carViews = carNames.map((carName) => new CarView(carName));
-    this.show(SELECTOR.LAP_COUNT.CONTAINER);
+    show(SELECTOR.LAP_COUNT.CONTAINER);
+  }
+
+  readyGameProgress() {
+    this.carViews.forEach((carView) => carView.showSpinnerIcon());
   }
 
   renderGameProgress(lapResult) {
-    this.disable(SELECTOR.LAP_COUNT.BUTTON);
+    disable(SELECTOR.LAP_COUNT.BUTTON);
 
     lapResult.forEach((canMove, index) => {
       if (!canMove) return;
@@ -26,27 +30,14 @@ export default class ViewController {
     });
   }
 
+  stopGameProgress() {
+    this.carViews.forEach((carView) => carView.hideSpinnerIcon());
+  }
+
   renderGameResult(winners) {
-    this.$gameResultWinners.innerText = `🏆 최종 우승자: ${winners.join(
-      ", "
-    )} 🏆`;
-    this.show(SELECTOR.GAME_RESULT.CONTAINER);
-  }
-
-  show(selector) {
-    $(selector).classList.remove(CLASSNAME.MODIFIER.HIDDEN);
-  }
-
-  hide(selector) {
-    $(selector).classList.add(CLASSNAME.MODIFIER.HIDDEN);
-  }
-
-  disable(selector) {
-    $(selector).disabled = true;
-  }
-
-  enable(selector) {
-    $(selector).disabled = false;
+    const winnersName = winners.join(", ");
+    this.$gameResultWinners.innerText = `🏆 최종 우승자: ${winnersName} 🏆`;
+    show(SELECTOR.GAME_RESULT.CONTAINER);
   }
 
   clear() {
@@ -54,9 +45,9 @@ export default class ViewController {
     this.$gameResultWinners.innerText = "";
     this.$gameProgressContainer.innerHTML = "";
 
-    this.enable(SELECTOR.CAR_NAME.BUTTON);
-    this.enable(SELECTOR.LAP_COUNT.BUTTON);
-    this.hide(SELECTOR.LAP_COUNT.CONTAINER);
-    this.hide(SELECTOR.GAME_RESULT.CONTAINER);
+    enable(SELECTOR.CAR_NAME.BUTTON);
+    enable(SELECTOR.LAP_COUNT.BUTTON);
+    hide(SELECTOR.LAP_COUNT.CONTAINER);
+    hide(SELECTOR.GAME_RESULT.CONTAINER);
   }
 }
