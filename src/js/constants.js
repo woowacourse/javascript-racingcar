@@ -19,3 +19,12 @@ export const CLASS_NAMES = {
   SPINNER_CONTAINER: '.spinner-container',
   FORWARD_ICON: '.forward-icon'
 };
+
+export const DELAY = {
+  SPINNER_SEC: 1000,
+  ARROW_DISPLAYING_SEC: 1000,
+  get TURN_TIME() {
+    return this.SPINNER_SEC + this.ARROW_DISPLAYING_SEC;
+  },
+  WAIT_ALERT_SEC: 2000,
+}

@@ -1,6 +1,6 @@
 import Car from './models/Car.js';
 import RacingUI from './racingUI.js';
-import { ALERT_MESSAGES, CLASS_NAMES } from './constants.js';
+import { ALERT_MESSAGES, CLASS_NAMES, DELAY } from './constants.js';
 import {
   isCarNameFilled,
   isCarNameUnderFive,
@@ -78,7 +78,7 @@ export default class Racing {
         this.UIController.printProgress(car, isCarMoved);
       });
       return moveEverySecond.bind(this);
-    }).bind(this)(), 2000)
+    }).bind(this)(), DELAY.TURN_TIME)
   };
 
   getWinners = () => {

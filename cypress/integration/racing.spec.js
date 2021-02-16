@@ -1,4 +1,10 @@
+import { DELAY } from '../../src/js/constants.js';
+
 describe('자동차 경주', () => {
+  const DEFAULT_TRY_COUNT = 5
+  const DEFAULT_CAR_UNITS = 4
+  const DEFAULT_TRY_COUNT_TIME = DEFAULT_TRY_COUNT * DELAY.TURN_TIME;
+
   beforeEach(() => {
     cy.visit('http://localhost:5501');
   });
@@ -10,7 +16,7 @@ describe('자동차 경주', () => {
     cy.get('.car-name-btn').click();
   }
 
-  function clickAfterTypeTryCount(tryCount = 5) {
+  function clickAfterTypeTryCount(tryCount = DEFAULT_TRY_COUNT) {
     if (tryCount) {
       cy.get('.try-count').type(tryCount);
     }
@@ -92,15 +98,12 @@ describe('자동차 경주', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
     
-    const carsNum = 4;
-    const tryCount = 5;
-
-    for (let i = 0; i < tryCount; i++) {
-      cy.get('.spinner-container').should('have.length', carsNum);
-      cy.wait(1000);
+    for (let i = 0; i < DEFAULT_TRY_COUNT; i++) {
+      cy.get('.spinner-container').should('have.length', DEFAULT_CAR_UNITS);
+      cy.wait(DELAY.SPINNER_SEC);
       cy.get('.spinner-container').should('not.be.visible');
       cy.get('.forward-icon').should('be.visible');
-      cy.wait(1000);
+      cy.wait(DELAY.ARROW_DISPLAYING_SEC);
     }
   })
 
@@ -108,8 +111,7 @@ describe('자동차 경주', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
 
-    const tryCount = 5;
-    cy.wait(tryCount * 2000);
+    cy.wait(DEFAULT_TRY_COUNT_TIME);
     cy.get('.result-container').should('be.visible');
 
     cy.document().then(doc => {
@@ -136,12 +138,11 @@ describe('자동차 경주', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
 
-    const tryCount = 5;
-    cy.wait(tryCount * 2000);
+    cy.wait(DEFAULT_TRY_COUNT_TIME);
     
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);  
-    cy.wait(2000).then(() => {
+    cy.wait(DELAY.WAIT_ALERT_SEC).then(() => {
       expect(alertStub.getCall(0)).to.be.calledWith('축하합니다 🎉');
     });
   })
@@ -150,11 +151,9 @@ describe('자동차 경주', () => {
     clickAfterTypeCar();
     clickAfterTypeTryCount();
 
-    const tryCount = 5;
-    cy.wait(tryCount * 2000);
+    cy.wait(DEFAULT_TRY_COUNT_TIME);
 
     cy.get('.restart-btn').click();
-
     resetUI();
   });
 });
