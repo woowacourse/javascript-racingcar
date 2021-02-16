@@ -78,22 +78,25 @@ export default class CarRacingController {
     const movedCars = [];
     const { START_THRESHOLD_NUMBER } = racingConstants;
 
-    this.model.cars.forEach((car) => {
-      const { name } = car;
-      const randomNumber = Math.floor(Math.random() * 10);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        this.model.cars.forEach((car) => {
+          const { name } = car;
+          const randomNumber = Math.floor(Math.random() * 10);
 
-      if (randomNumber >= START_THRESHOLD_NUMBER) {
-        movedCars.push(name);
-      }
+          if (randomNumber >= START_THRESHOLD_NUMBER) {
+            movedCars.push(name);
+          }
+        });
+
+        resolve(movedCars);
+      }, 1000);
     });
-
-    return movedCars;
   }
 
   async startRacing() {
     for (let i = 0; i < this.model.racingCount; i++) {
-      await sleep(1000);
-      const movedCars = this.getMovedCars();
+      const movedCars = await this.getMovedCars();
       this.moveCars(movedCars);
       this.view.renderRacingRoundResult(movedCars);
     }
