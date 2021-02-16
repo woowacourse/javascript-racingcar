@@ -22,7 +22,7 @@ export default class RacingResult {
 
     return new Promise((resolve) => {
       const timeoutId = setInterval(() => {
-        this.setState({ nextTurn: this.turn + 1 });
+        this.setState({ turn: this.turn + 1 });
 
         if (tryCount === this.turn) {
           clearInterval(timeoutId);
@@ -32,23 +32,23 @@ export default class RacingResult {
     });
   }
 
-  async showResult(nextCars) {
-    this.setState({ nextCars });
+  async showResult(cars) {
+    this.setState({ cars });
 
     await this.showResultWithDelay();
   }
 
   reset() {
-    this.setState({ nextCars: [], nextTurn: 0 });
+    this.setState({ cars: [], turn: 0 });
   }
 
-  setState({ nextCars, nextTurn }) {
-    if (nextCars) {
-      this.cars = nextCars;
+  setState({ cars, turn }) {
+    if (cars) {
+      this.cars = cars;
     }
 
-    if (!isNaN(nextTurn)) {
-      this.turn = nextTurn;
+    if (!isNaN(turn)) {
+      this.turn = turn;
       this.render();
     }
   }

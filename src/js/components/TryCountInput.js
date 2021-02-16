@@ -27,17 +27,17 @@ export default class TryCountInput {
     }
 
     disableElements(this.$tryCountInput, this.$tryCountSubmitBtn);
-    this.setState(tryCountInput);
+    this.setState({ tryCount: tryCountInput });
     this.play();
   }
 
   reset() {
     activateElements(this.$tryCountInput, this.$tryCountSubmitBtn);
     clearInput(this.$tryCountInput);
-    this.setState(0);
+    this.setState({ tryCount: 0 });
   }
 
-  setState(nextTryCount) {
-    this.tryCount = nextTryCount;
+  setState({ tryCount }) {
+    this.tryCount = tryCount;
   }
 }

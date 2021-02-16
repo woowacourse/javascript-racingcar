@@ -51,12 +51,12 @@ export default class RacingWinner {
   async showWinners(cars) {
     const winners = this.getWinners(cars);
 
-    this.setState(winners);
+    this.setState({ winners });
     await this.showWinnerAlertWithDelay(winners);
   }
 
   reset() {
-    this.setState([]);
+    this.setState({ winners: [] });
   }
 
   createWinnerHTML() {
@@ -69,8 +69,8 @@ export default class RacingWinner {
     </section>`;
   }
 
-  setState(nextWinners) {
-    this.winners = nextWinners;
+  setState({ winners }) {
+    this.winners = winners;
     this.render();
   }
 

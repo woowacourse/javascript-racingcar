@@ -29,7 +29,7 @@ export default class App {
   }
 
   createCars(carNames) {
-    this.setState(carNames.map((carName) => new Car(carName)));
+    this.setState({ cars: carNames.map((carName) => new Car(carName)) });
   }
 
   isCompletedInputs() {
@@ -55,14 +55,14 @@ export default class App {
   }
 
   resetCarGame() {
-    this.setState([]);
+    this.setState({ cars: [] });
     this.carNameInput.reset();
     this.tryCountInput.reset();
     this.racingResult.reset();
     this.racingWinner.reset();
   }
 
-  setState(nextCars) {
-    this.cars = nextCars;
+  setState({ cars }) {
+    this.cars = cars;
   }
 }

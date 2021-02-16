@@ -39,7 +39,7 @@ export default class CarNameInput {
     }
 
     disableElements(this.$carNameInput, this.$carNameSubmitBtn);
-    this.setState(carNames);
+    this.setState({ carNames });
     this.createCars(this.carNames);
     this.play();
   }
@@ -47,7 +47,7 @@ export default class CarNameInput {
   reset() {
     activateElements(this.$carNameInput, this.$carNameSubmitBtn);
     clearInput(this.$carNameInput);
-    this.setState([]);
+    this.setState({ carNames: [] });
   }
 
   checkValidInput(carNames) {
@@ -86,7 +86,7 @@ export default class CarNameInput {
     return carNames.some((carName) => carName.length > CAR_NAME_MAX_LENGTH);
   }
 
-  setState(nextCarNames) {
-    this.carNames = nextCarNames;
+  setState({ carNames }) {
+    this.carNames = carNames;
   }
 }
