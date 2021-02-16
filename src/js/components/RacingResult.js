@@ -58,7 +58,7 @@ export default class RacingResult {
     return `
       <div class="car-player-container">
         <div class="car-player mr-2">${car.name}</div>
-        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.getScoreWithTurn(this.turn))}
+        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(car.getScoreBy(this.turn))}
         ${car.movesPerTurn.length !== this.turn ? SPINNER_TEMPLATE : ''}
       </div>
     `;

@@ -15,21 +15,10 @@ export default class Car {
   }
 
   getScore() {
-    return this.movesPerTurn.reduce(
-      (accumulatedScore, isMove) => (isMove ? accumulatedScore + 1 : accumulatedScore),
-      0
-    );
+    return this.movesPerTurn.filter((isMove) => isMove).length;
   }
 
-  getScoreWithTurn(turn) {
-    let score = 0;
-
-    for (let i = 0; i < turn; i++) {
-      if (this.movesPerTurn[i]) {
-        score = score + 1;
-      }
-    }
-
-    return score;
+  getScoreBy(turn) {
+    return this.movesPerTurn.filter((isMove, index) => index < turn && isMove).length;
   }
 }
