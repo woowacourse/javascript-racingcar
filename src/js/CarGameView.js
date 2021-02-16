@@ -1,9 +1,9 @@
 export default class CarGameView {
-  constructor($element) {
-    this.inputCarNamesView = $element.querySelector('#input-car-names');
-    this.inputTryCountView = $element.querySelector('#input-try-count');
-    this.gameProgressView = $element.querySelector('#display-game-progress');
-    this.gameResultView = $element.querySelector('#display-game-result');
+  constructor() {
+    this.inputCarNamesView = document.querySelector('#input-car-names');
+    this.inputTryCountView = document.querySelector('#input-try-count');
+    this.gameProgressView = document.querySelector('#display-game-progress');
+    this.gameResultView = document.querySelector('#display-game-result');
   }
 
   showView($element) {
@@ -32,11 +32,15 @@ export default class CarGameView {
   }
 
   getGameProgressTemplate(cars) {
-    return cars.map((car) => `
+    return cars
+      .map(
+        (car) => `
         <div>
           <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
           ${this.getForwardIconsTemplate(car.getPosition())}
-        </div>`).join('');
+        </div>`
+      )
+      .join('');
   }
 
   getForwardIconsTemplate(count) {

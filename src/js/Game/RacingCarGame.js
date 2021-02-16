@@ -4,7 +4,6 @@ export default class RacingCarGame {
   constructor(cars, tryCount) {
     this.cars = cars;
     this.tryCount = tryCount;
-    this.playGame();
   }
 
   getRandomInt() {

@@ -4,15 +4,11 @@ import RacingCarGame from './Game/RacingCarGame.js';
 import Validator from './Validators/Validator.js';
 
 export default class CarGameManager {
-  constructor($element) {
-    this.$element = $element;
-    this.carGameView = new CarGameView($element);
-    this.validator = new Validator();
-    this.initGame();
-    this.bindEvents();
-  }
-
   initGame() {
+    this.carGameView = new CarGameView();
+    this.validator = new Validator();
+    this.bindEvents();
+
     this.carGameView.init();
     this.cars = [];
     this.carNames = [];
@@ -25,51 +21,53 @@ export default class CarGameManager {
   }
 
   bindInputCarNamesEvent() {
-    this.$element.querySelector('#input-car-names > div > button').addEventListener('click', () => {
+    document.querySelector('#input-car-names > div > button').addEventListener('click', () => {
       this.carNamesInputHandler();
     });
   }
 
   bindInputTryCountEvent() {
-    this.$element.querySelector('#input-try-count > div > button').addEventListener('click', () => {
+    document.querySelector('#input-try-count > div > button').addEventListener('click', () => {
       this.tryCountInputHandler();
     });
   }
 
   bindResetEvent() {
-    this.$element.querySelector('#display-game-result > div > button').addEventListener('click', () => {
+    document.querySelector('#display-game-result > div > button').addEventListener('click', () => {
       this.resetHandler();
     });
   }
 
   carNamesInputHandler() {
-    this.carNames = this.$element.querySelector('#input-car-names > div > input').value
-      .split(',')
+    this.carNames = document
+      .querySelector('#input-car-names > div > input')
+      .value.split(',')
       .map((name) => name.trim());
 
     if (!this.validator.validateCarNames(this.carNames)) {
       return this.initGame();
     }
 
-    this.carGameView.showView(this.$element.querySelector('#input-try-count'));
+    this.carGameView.showView(document.querySelector('#input-try-count'));
   }
 
   tryCountInputHandler() {
-    const tryCount = Number(this.$element.querySelector('#input-try-count > div > input').value);
+    const tryCount = Number(document.querySelector('#input-try-count > div > input').value);
 
     if (!this.validator.validateTryCount(tryCount)) {
-      this.carGameView.resetInput(this.$element.querySelector('#input-try-count > div'));
-      this.carGameView.hideView(this.$element.querySelector('#display-game-progress'));
-      this.carGameView.hideView(this.$element.querySelector('#display-game-result'));
+      this.carGameView.resetInput(document.querySelector('#input-try-count > div'));
+      this.carGameView.hideView(document.querySelector('#display-game-progress'));
+      this.carGameView.hideView(document.querySelector('#display-game-result'));
       return;
     }
 
     this.createCar();
     const racingCarGame = new RacingCarGame(this.cars, tryCount);
+    racingCarGame.playGame();
     this.carGameView.renderGameProgress(racingCarGame.getCars());
     this.carGameView.renderWinners(racingCarGame.getWinners());
-    this.carGameView.showView(this.$element.querySelector('#display-game-progress'));
-    this.carGameView.showView(this.$element.querySelector('#display-game-result'));
+    this.carGameView.showView(document.querySelector('#display-game-progress'));
+    this.carGameView.showView(document.querySelector('#display-game-result'));
   }
 
   resetHandler() {

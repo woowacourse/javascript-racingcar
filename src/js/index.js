@@ -1,3 +1,4 @@
 import CarGameManager from './CarGameManager.js';
 
-new CarGameManager(document.querySelector('#app'));
+const carGameManager = new CarGameManager();
+carGameManager.initGame();
