@@ -7,33 +7,9 @@ import { GAME_SETTING, USER_MESSAGE } from '../../src/library/utils/constant.js'
  100번 정도의 테스트면 충분할 것으로 생각 */
 const RANDOM_TEST_TRY = 100;
 
-describe('레이싱 게임', () => {
+describe('레이싱 게임 입력 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500');
-  });
-
-  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
-    const racingTimes = 3;
-    submitRacingGameInfo("aaa,bbb", racingTimes);
-    testProgressiveTerm({
-      term: 1000,
-      //1000ms의 허용오차는 100ms 정도면 충분할 것으로 생각
-      tolerance: 100,
-      racingTimes: racingTimes,
-    });
-  });
-
-  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
-    const alertStub = cy.stub();
-    const racingTimes = 5;
-
-    submitRacingGameInfo("aaa", racingTimes);
-    waitForResult(racingTimes);
-    cy.get("#winners").should("be.visible");
-    cy.on("window:alert", alertStub);
-    cy.wait(GAME_SETTING.RENDER_RESULT_TERM).then(() => {
-      expect(alertStub.getCall(0)).to.be.calledWith(USER_MESSAGE.NOTIFY_WINNER);
-    });
   });
 
   it('자동차 이름을 부여하면 시도할 횟수 입력창이 노출된다.', () => {
@@ -66,6 +42,13 @@ describe('레이싱 게임', () => {
     cy.get('#submit-car-name').should('have.attr', 'disabled');
     submitRacingTimes(10);
     cy.get('#submit-race-times').should('have.attr', 'disabled');
+  });
+
+});
+
+describe('레이싱 게임 기능 테스트', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:5500');
   });
 
   it('자동차는 값이 4 이상일 경우 전진하고, 3 이하의 값이면 멈춘다.', () => {
@@ -137,6 +120,34 @@ describe('레이싱 게임', () => {
     cy.get('#retry').click();
     cy.get('#game-result-component > section').should('not.exist');
   });
+
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
+    const racingTimes = 3;
+    submitRacingGameInfo("aaa,bbb", racingTimes);
+    testProgressiveTerm({
+      term: 1000,
+      //1000ms의 허용오차는 100ms 정도면 충분할 것으로 생각
+      tolerance: 100,
+      racingTimes: racingTimes,
+    });
+  });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
+    const alertStub = cy.stub();
+    const carNameInput = 'aaa';
+    const racingTimes = 5;
+
+    submitRacingGameInfo(carNameInput, racingTimes);
+    waitForResult(racingTimes);
+    cy.get("#winners").should("be.visible");
+    cy.on("window:alert", alertStub);
+    cy.wait(GAME_SETTING.RENDER_RESULT_TERM).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(
+        `레이싱 게임의 우승자 ${carNameInput}님! 축하드립니다 🎊`
+      );
+    });
+  });
+
 });
 
 function testProgressiveTerm({ term, tolerance, racingTimes }) {
