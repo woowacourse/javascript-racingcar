@@ -1,13 +1,17 @@
-import { SELECTOR } from "../../src/js/constants.js";
+import { CONSTANT, SELECTOR } from "../../src/js/constants.js";
 
 describe("다시 시작 버튼 클릭하기", () => {
+  const lapCount = 12;
   beforeEach(() => {
+    cy.clock();
     cy.visit("http://127.0.0.1:5500/");
     cy.window().then((win) => cy.stub(win, "alert").as("windowAlert"));
     cy.get(SELECTOR.CAR_NAME.INPUT).type("EAST, WEST, SOUTH, NORTH");
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
-    cy.get(SELECTOR.LAP_COUNT.INPUT).type(12);
+    cy.get(SELECTOR.LAP_COUNT.INPUT).type(lapCount);
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
+
+    Array.from(Array(lapCount), () => cy.tick(CONSTANT.DELAY.ONE_THOUSAND_MS));
   });
 
   const testBackToIntialState = () => {
@@ -43,10 +47,16 @@ describe("다시 시작 버튼 클릭하기", () => {
       }
     );
 
-    cy.get(SELECTOR.LAP_COUNT.INPUT).type(12);
-    cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
+    const lapCount = 12;
+    cy.get(SELECTOR.LAP_COUNT.INPUT).type(lapCount);
+    cy.get(SELECTOR.GAME_PROGRESS.SPINNER_ICON).should("not.be.visible");
 
+    cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
     cy.get("@windowAlert").should("not.be.called");
+
+    Array.from(Array(lapCount), () => cy.tick(CONSTANT.DELAY.ONE_THOUSAND_MS));
+
+    cy.get(SELECTOR.GAME_PROGRESS.SPINNER_ICON).should("not.be.visible");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
 
     let max = -Infinity;

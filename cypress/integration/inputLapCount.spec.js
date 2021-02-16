@@ -1,7 +1,8 @@
-import { SELECTOR, MESSAGE } from "../../src/js/constants.js";
+import { SELECTOR, MESSAGE, CONSTANT } from "../../src/js/constants.js";
 
 describe("시도할 횟수 입력하기", () => {
   beforeEach(() => {
+    cy.clock();
     cy.visit("http://127.0.0.1:5500/");
     cy.window().then((win) => cy.stub(win, "alert").as("windowAlert"));
     cy.get(SELECTOR.CAR_NAME.INPUT).type("EAST, WEST, SOUTH, NORTH");
@@ -64,10 +65,16 @@ describe("시도할 횟수 입력하기", () => {
   });
 
   it("올바른 시도할 횟수가 입력됐을 때", () => {
-    cy.get(SELECTOR.LAP_COUNT.INPUT).type(12);
-    cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
+    const lapCount = 12;
+    cy.get(SELECTOR.LAP_COUNT.INPUT).type(lapCount);
+    cy.get(SELECTOR.GAME_PROGRESS.SPINNER_ICON).should("not.be.visible");
 
+    cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
     cy.get("@windowAlert").should("not.be.called");
+
+    Array.from(Array(lapCount), () => cy.tick(CONSTANT.DELAY.ONE_THOUSAND_MS));
+
+    cy.get(SELECTOR.GAME_PROGRESS.SPINNER_ICON).should("not.be.visible");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
 
     let max = -Infinity;
