@@ -3,7 +3,7 @@ import GameProcess from './GameProcess.js';
 import GameResult from './GameResult.js';
 import State from '../library/core/State.js';
 import Page from '../library/core/Page.js';
-import { GAME_SETTING, USER_MESSAGE } from '../library/utils/constant.js';
+import { GAME_SETTING } from '../library/utils/constant.js';
 
 export default class App extends Page {
   cars;
@@ -60,7 +60,8 @@ export default class App extends Page {
     if (isFinished) {
       this.#determineWinners();
       this.mountGameResult();
-      setTimeout(alert, GAME_SETTING.RENDER_RESULT_TERM, USER_MESSAGE.NOTIFY_WINNER);
+      setTimeout(alert, GAME_SETTING.RENDER_RESULT_TERM,
+        this.#makeWinnerAlertMessage());
     }
   }
 
@@ -71,6 +72,10 @@ export default class App extends Page {
         this.winners.push(car.name);
       }
     });
+  }
+
+  #makeWinnerAlertMessage() {
+    return `레이싱 게임의 우승자 ${this.winners.join(",")}님! 축하드립니다 🎊`;
   }
 
   mountGameProcess = (isFinished) => {
