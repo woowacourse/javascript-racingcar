@@ -47,10 +47,10 @@ export default class App extends Page {
   }
 
   race = () => {
-    for (let i = 1; i < this.raceTimes.value; i++) {
-      setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * i);
+    for (let i = 1; i <= this.raceTimes.value; i++) {
+      const isFinished = i === this.raceTimes.value;
+      setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * i, isFinished);
     }
-    setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * this.raceTimes.value, true);
   };
 
   processRaceOnce = (isFinished) => {
