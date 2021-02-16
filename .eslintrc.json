@@ -8,7 +8,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "rules": {},
+  "rules": { "max-depth": ["error", 2] },
   "plugins": ["cypress"],
   "ignorePatterns": [
     "cypress/fixtures/*",
