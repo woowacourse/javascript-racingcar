@@ -4,7 +4,6 @@ export default class RacingCarGame {
   constructor(cars, tryCount) {
     this.cars = cars;
     this.tryCount = tryCount;
-    this.playGame();
   }
 
   getRandomInt() {
@@ -12,6 +11,7 @@ export default class RacingCarGame {
   }
 
   playOneRound() {
+    console.log("RACING!")
     this.cars.forEach((car) => {
       if (this.getRandomInt() >= NUMBERS.RUN_POINT) {
         car.run();
@@ -19,21 +19,19 @@ export default class RacingCarGame {
     });
   }
 
-  playGame() {
-    for (let i = 0; i < this.tryCount; i++) {
-      this.playOneRound();
-    }
-  }
+  // playGame() {
+
+  // }
 
   getCars() {
     return this.cars;
   }
 
   // return (String)
-  getWinners() {
-    const maxPosition = this.cars
+  getWinners(cars) {
+    const maxPosition = cars
       .reduce((max, car) => Math.max(max, car.getPosition()), 0);
-    return this.cars.filter((car) => car.getPosition() === maxPosition)
+    return cars.filter((car) => car.getPosition() === maxPosition)
       .map((car) => car.getName())
       .join(', ');
   }
