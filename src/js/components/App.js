@@ -3,8 +3,6 @@ import TryCountInput from './TryCountInput.js';
 import RacingResult from './RacingResult.js';
 import RacingWinner from './RacingWinner.js';
 import Car from '../model/Car.js';
-import { MIN_NUMBER, MAX_NUMBER, MOVE_BOUNDED_NUMBER } from '../util/constants.js';
-import { getRandomNumber } from '../util/general.js';
 
 export default class App {
   constructor() {
@@ -41,17 +39,9 @@ export default class App {
       return;
     }
 
-    this.moveCars(this.tryCountInput.tryCount);
+    this.cars.forEach((car) => car.recodeMoves(this.tryCountInput.tryCount));
     await this.racingResult.showResult(this.cars);
     await this.racingWinner.showWinners(this.cars);
-  }
-
-  moveCars(tryCount) {
-    this.cars.forEach((car) => {
-      for (let i = 0; i < tryCount; i++) {
-        car.recodeMove(getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER);
-      }
-    });
   }
 
   resetCarGame() {
