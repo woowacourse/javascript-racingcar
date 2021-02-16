@@ -38,8 +38,12 @@ export default class RacingCarGameView {
     $playGameButton.disabled = false;
   }
 
-  static showRestartButton() {
-    $restartButton.style.display = "";
+  static deactivateRestartButton() {
+    $restartButton.disabled = "disabled";
+  }
+
+  static activateRestartButton() {
+    $restartButton.disabled = false;
   }
 
   static clearCarNamesInput() {
@@ -52,6 +56,10 @@ export default class RacingCarGameView {
 
   static clearResultArea() {
     $resultArea.innerHTML = "";
+  }
+
+  static showRestartButton() {
+    $restartButton.style.display = "";
   }
 
   static hideRestartButton() {

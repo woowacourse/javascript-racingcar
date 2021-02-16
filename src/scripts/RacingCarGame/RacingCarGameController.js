@@ -44,9 +44,11 @@ export default class RacingCarGameController {
 
     View.showWinners(winners);
     View.showRestartButton();
+    View.deactivateRestartButton();
     this.model.clearCarsRecord();
     setTimeout(() => {
       alert(`${winners.join(", ")}! 우승을 축하합니다.`);
+      View.activateRestartButton();
     }, 2000);
   }
 
