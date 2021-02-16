@@ -38,6 +38,11 @@ export default class ViewController {
     const winnersName = winners.join(", ");
     this.$gameResultWinners.innerText = `🏆 최종 우승자: ${winnersName} 🏆`;
     show(SELECTOR.GAME_RESULT.CONTAINER);
+
+    setTimeout(
+      () => alert(`축하합니다! ${winnersName}`),
+      CONSTANT.DELAY.TWO_THOUSAND_MS
+    );
   }
 
   clear() {
