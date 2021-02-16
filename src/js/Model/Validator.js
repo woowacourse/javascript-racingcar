@@ -1,4 +1,4 @@
-import { MAX_SUBMITABLE_COUNT, SCROLL_PREVENT_LENGTH, MAX_NAME_LENGTH } from "./constatns.js";
+import { MAX_SUBMITABLE_COUNT, SCROLL_PREVENT_LENGTH, MAX_NAME_LENGTH } from "./constants.js";
 
 function isFirstSubmittedName(nameLength) {
 	return nameLength === 0;

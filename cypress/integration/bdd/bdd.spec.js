@@ -7,7 +7,7 @@ import {
 	ALREADY_COUNT_SUBMITTED_ALERT,
 	INVALID_INTEGER_ALERT,
 	OVER_MAX_COUNT_ALERT,
-} from "../../../src/js/Model/constatns.js";
+} from "../../../src/js/Model/constants.js";
 
 /// <reference types="cypress" />
 
@@ -151,6 +151,7 @@ context("bdd", () => {
 				[]
 			);
 			const winnerResult = winners.join(", ");
+			console.log(cy.get("#result-container").find("section").find("h2"));
 			cy.get("#result-container").find("section").find("h2").contains(winnerResult);
 		});
 	});
