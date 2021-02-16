@@ -31,10 +31,7 @@ export default class RacingWinner {
   }
 
   getWinners(cars) {
-    const maxScore = cars.reduce((accumulatedMaxScore, car) => {
-      const score = car.getScore();
-      return accumulatedMaxScore > score ? accumulatedMaxScore : score;
-    }, 0);
+    const maxScore = Math.max(...cars.map((car) => car.getScore()));
 
     return cars.filter((car) => car.getScore() === maxScore).map((car) => car.name);
   }
