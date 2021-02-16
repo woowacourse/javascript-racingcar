@@ -1,9 +1,9 @@
-import { getRandomNumber } from "../../src/js/controller/utils.js";
 import Car from "../../src/js/model/Car.js";
+import { getRandomNumber } from "../../src/js/utils/getRandomNumber.js";
 
 describe("자동차 레이싱 테스트", () => {
   before(() => {
-    cy.visit("http://localhost:5500/index.html");
+    cy.visit("http://localhost:5500");
   });
 
   it("자동차 객체가 올바르게 생성되었는지 확인한다.", () => {
@@ -47,7 +47,35 @@ describe("자동차 레이싱 테스트", () => {
     expect(newElement).to.contain("⬇️");
   });
 
-  // it("자동차 경주 게임의 턴이 1초의 텀을 두고 진행되는지 확인한다.", () => {
+  it("자동차 경주 게임의 턴이 1초의 텀을 두고 진행되는지 확인한다.", () => {
+    const carNames = ["a", "b", "c", "d", "e"];
+    const element = cy.get("#winner-container > section > h2");
+    let maxPosition = 0;
+    let winners = [];
 
-  // });
+    cy.get("#restart-button").click();
+    cy.get("#car-names-input").type(carNames.join(","));
+    cy.get("#car-names-submit").click();
+    cy.get("#count-input").type(1);
+    cy.get("#count-submit").click();
+    cy.wait(1000);
+
+    cy.get("#racing-container > section > div > div")
+      .each((element, index) => {
+        const carElement = element[0];
+        const length = carElement.innerText.split("\n").length;
+        if (maxPosition < length) {
+          maxPosition = length;
+          winners = [carElement.innerText.split("\n")[0]];
+        } else if (maxPosition === length) {
+          winners.push(carElement.innerText.split("\n")[0]);
+        }
+      })
+      .then(() => {
+        cy.get("#winner-container > section > h2").should(
+          "have.text",
+          `🏆 최종 우승자: ${winners.join(", ")} 🏆`
+        );
+      });
+  });
 });

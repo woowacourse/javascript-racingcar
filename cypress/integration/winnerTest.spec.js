@@ -11,6 +11,7 @@ describe("레이싱 우승자 테스트", () => {
     cy.get("#car-names-submit").click();
     cy.get("#count-input").type(5);
     cy.get("#count-submit").click();
+    cy.wait(5000);
 
     cy.get("#racing-container > section > div > div")
       .each((element, index) => {
