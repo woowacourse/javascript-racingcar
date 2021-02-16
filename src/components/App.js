@@ -43,7 +43,8 @@ export default class App extends Page {
       raceTimes: this.raceTimes,
       mountGameProcess: this.mountGameProcess,
       race: this.race,
-    }).render();
+    });
+    this.#childComponents.userInput.render();
   }
 
   race = () => {
@@ -76,15 +77,17 @@ export default class App extends Page {
     if (!isFinished) isFinished = false;
     this.#childComponents.gameProcess = new GameProcess(document.querySelector('#game-process-component'), {
       cars: this.cars,
-      isFinished: isFinished,
-    }).render();
+      isFinished,
+    });
+    this.#childComponents.gameProcess.render();
   }
 
   mountGameResult = () => {
     this.#childComponents.gameResult = new GameResult(document.querySelector('#game-result-component'), {
       winners: this.winners,
       reset: this.reset,
-    }).render();
+    });
+    this.#childComponents.gameResult.render();
   }
 
   reset = () => {
