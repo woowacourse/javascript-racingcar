@@ -1,4 +1,5 @@
 import Component from '../library/core/Component.js';
+import State from '../library/core/State.js';
 import Car from '../library/models/Car.js';
 import { ERROR_MESSAGE, RESTRICT } from '../library/utils/constant.js';
 import { disableElement, showElement } from '../library/utils/dom.js';
@@ -51,7 +52,11 @@ export default class UserInput extends Component {
       return;
     }
 
-    this.props.cars.value = carNames.map(carName => new Car(carName));
+    // this.props.cars는 원 배열의 주소값을 저장하고 있으므로 push로만 구현이 가능
+    carNames.map(carName => new Car(carName)).
+      forEach((car) => {
+        this.props.cars.push(new State(car));
+      });
     showElement($sectionRaceTimes);
     disableElement($buttonCarName);
     disableElement($inputCarName);

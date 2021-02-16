@@ -16,17 +16,17 @@ export default class GameProcess extends Component {
   }
 
   #createCarElements() {
-    return this.props.cars.value.reduce(
+    return this.props.cars.reduce(
       (acc, car) => acc + this.#createCarProcessTemplate(car),
       ''
     )
   }
 
-  #createCarProcessTemplate(car) {
+  #createCarProcessTemplate({ value }) {
     return `
       <div class="car">
-        <div class="car-player mr-2">${car.name}</div>
-        ${'<div class="forward-icon mt-2">⬇️</div>'.repeat(car.position)}
+        <div class="car-player mr-2">${value.name}</div>
+        ${'<div class="forward-icon mt-2">⬇️</div>'.repeat(value.position)}
         ${this.#createProcessSpinner()}
       </div>
     `;

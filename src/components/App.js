@@ -18,7 +18,7 @@ export default class App extends Page {
 
   #initialize() {
     this.winners = [];
-    this.cars = new State([]);
+    this.cars = [];
     this.raceTimes = new State(null);
   }
 
@@ -48,6 +48,7 @@ export default class App extends Page {
   }
 
   race = () => {
+    console.log(this.cars);
     for (let i = 1; i <= this.raceTimes.value; i++) {
       const isFinished = i === this.raceTimes.value;
       setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * i, isFinished);
@@ -55,7 +56,7 @@ export default class App extends Page {
   };
 
   processRaceOnce = (isFinished) => {
-    this.cars.value.forEach(car => car.process());
+    this.cars.forEach(car => car.value.process());
     this.mountGameProcess(isFinished);
     if (isFinished) {
       this.#determineWinners();
@@ -66,10 +67,10 @@ export default class App extends Page {
   }
 
   #determineWinners() {
-    let maxPosition = Math.max(...this.cars.value.map(car => car.position));
-    this.cars.value.forEach(car => {
-      if (car.position === maxPosition) {
-        this.winners.push(car.name);
+    let maxPosition = Math.max(...this.cars.map(car => car.value.position));
+    this.cars.forEach(car => {
+      if (car.value.position === maxPosition) {
+        this.winners.push(car.value.name);
       }
     });
   }
