@@ -97,12 +97,19 @@ describe("시도할 횟수 입력하기", () => {
         });
     });
 
-    cy.get(`${SELECTOR.GAME_RESULT.CONTAINER} > h2`)
+    cy.get(SELECTOR.GAME_RESULT.WINNERS)
       .invoke("text")
       .should((text) => {
         const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
 
         expect(winners.sort()).to.deep.equal(matched.sort());
+      })
+      .then(() => {
+        cy.tick(CONSTANT.DELAY.TWO_THOUSAND_MS);
+        cy.get("@windowAlert")
+          .should("have.callCount", 1)
+          .its("lastCall")
+          .should("be.calledWith", `축하합니다! ${winners.join(", ")}`);
       });
   });
 });
