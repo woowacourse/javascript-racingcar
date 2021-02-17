@@ -3,7 +3,7 @@ export default class Spinner {
     this.$spinnerElement = $spinnerElement;
     this.degSpeed = degSpeed;
     this.deg = 0;
-    this.rafId = null;
+    this.stop = false;
   }
 
   spin() {
@@ -11,16 +11,18 @@ export default class Spinner {
     this.$spinnerElement.style.transform = `rotate(${
       (this.deg % (360 / this.degSpeed)) * this.degSpeed
     }deg)`;
-    requestAnimationFrame(this.spin.bind(this));
+
+    const rafId = requestAnimationFrame(this.spin.bind(this));
+    this.stop && cancelAnimationFrame(rafId);
   }
 
   render() {
     this.$spinnerElement.classList.add("material");
-    this.rafId = requestAnimationFrame(this.spin.bind(this));
+    this.spin();
   }
 
   clear() {
-    cancelAnimationFrame(this.rafId);
+    this.stop = true;
     this.$spinnerElement.classList.remove("material");
   }
 }
