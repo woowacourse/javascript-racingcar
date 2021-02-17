@@ -1,4 +1,4 @@
-import {$, $$, setElementDisplay} from '../utils/dom.js';
+import {$} from '../utils/dom.js';
 import {
   countSectionTemplate,
   processSectionTemplate,
@@ -8,26 +8,24 @@ import {
 class RacingCarView {
   renderCount() {
     const $countSection = $('#count');
-    setElementDisplay($countSection, 'block');
+    $countSection.show();
     $countSection.innerHTML = countSectionTemplate();
   }
 
   renderProcess(cars) {
     const $processSection = $('#process');
-    setElementDisplay($processSection, 'block');
+    $processSection.show();
     $processSection.innerHTML = processSectionTemplate(cars);
   }
 
   renderResult(winners) {
     const $resultSection = $('#result');
-    setElementDisplay($resultSection, 'block');
+    $resultSection.show();
     $resultSection.innerHTML = resultSectionTemplate(winners);
   }
 
   hideSpinnerAll() {
-    $$('.spinner-container').forEach(($spinner) => {
-      setElementDisplay($spinner, 'none');
-    });
+    $('.spinner-container', true).hide();
   }
 
   showMessage(message) {
@@ -40,19 +38,19 @@ class RacingCarView {
 
   resetCount() {
     const $countSection = $('#count');
-    setElementDisplay($countSection, 'none');
+    $countSection.hide();
     $countSection.innerHTML = ``;
   }
 
   resetProcess() {
     const $processSection = $('#process');
-    setElementDisplay($processSection, 'none');
+    $processSection.hide();
     $processSection.innerHTML = ``;
   }
 
   resetResult() {
     const $resultSection = $('#result');
-    setElementDisplay($resultSection, 'none');
+    $resultSection.hide();
     $resultSection.innerHTML = ``;
   }
 

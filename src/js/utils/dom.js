@@ -1,11 +1,19 @@
-export const $ = (selector) => {
-  return document.querySelector(selector);
-};
+export const $ = (selector, all = false) => {
+  const $element = all
+    ? document.querySelectorAll(selector)
+    : document.querySelector(selector);
 
-export const $$ = (selector) => {
-  return document.querySelectorAll(selector);
-};
+  $element.show = () => {
+    all
+      ? $element.forEach(($elem) => ($elem.style.display = 'block'))
+      : ($element.style.display = 'block');
+  };
 
-export const setElementDisplay = ($element, displayValue) => {
-  $element.style.display = displayValue;
+  $element.hide = () => {
+    all
+      ? $element.forEach(($elem) => ($elem.style.display = 'none'))
+      : ($element.style.display = 'none');
+  };
+
+  return $element;
 };
