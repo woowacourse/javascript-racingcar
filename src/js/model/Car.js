@@ -7,7 +7,7 @@ export default class Car {
     this.movesPerTurn = [];
   }
 
-  recodeMoves(tryCount) {
+  recordMoves(tryCount) {
     for (let i = 0; i < tryCount; i++) {
       const isMove = getRandomNumber({ min: MIN_NUMBER, max: MAX_NUMBER }) >= MOVE_BOUNDED_NUMBER;
       this.movesPerTurn = [...this.movesPerTurn, isMove];

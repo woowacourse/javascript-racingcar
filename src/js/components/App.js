@@ -39,7 +39,7 @@ export default class App {
       return;
     }
 
-    this.cars.forEach((car) => car.recodeMoves(this.tryCountInput.tryCount));
+    this.cars.forEach((car) => car.recordMoves(this.tryCountInput.tryCount));
     await this.racingResult.showResult(this.cars);
     await this.racingWinner.showWinners(this.cars);
   }
