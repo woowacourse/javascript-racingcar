@@ -7,7 +7,7 @@ import {
   SHOULD_REGISTER_CAR_FIRST,
 } from "../constants/error_messages.js";
 
-export default class RacingCarGameValidation {
+export default class RacingCarGameValidator {
   static isCarNameValid(carName) {
     if (carName.length > MAX_CAR_NAME_LENGTH) {
       alert(CAR_NAME_LENGTH_EXCEEDED);
@@ -25,7 +25,7 @@ export default class RacingCarGameValidation {
   }
 
   static isTryCountValid(tryCount) {
-    if (!RacingCarGameValidation.isInteger(tryCount)) {
+    if (!this.isInteger(tryCount)) {
       alert(SHOULD_BE_INTEGER);
       return false;
     }
