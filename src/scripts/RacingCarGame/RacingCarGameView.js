@@ -10,67 +10,67 @@ import {
 } from "../elements.js";
 
 export default class RacingCarGameView {
-  static updateResultArea(carList) {
+  updateResultArea(carList) {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
   }
 
-  static changeInnerText($target, text) {
+  changeInnerText($target, text) {
     $target.innerText = text;
   }
 
-  static showWinners(winners) {
+  showWinners(winners) {
     $winners.innerText = getWinnersTemplate(winners);
   }
 
-  static deactivateCarNameSubmitButton() {
+  deactivateCarNameSubmitButton() {
     $carNameSubmit.disabled = "disabled";
   }
 
-  static activateCarNameSubmitButton() {
+  activateCarNameSubmitButton() {
     $carNameSubmit.disabled = false;
   }
 
-  static deactivatePlayGameButton() {
+  deactivatePlayGameButton() {
     $playGameButton.disabled = "disabled";
   }
 
-  static activatePlayGameButton() {
+  activatePlayGameButton() {
     $playGameButton.disabled = false;
   }
 
-  static deactivateRestartButton() {
+  deactivateRestartButton() {
     $restartButton.disabled = "disabled";
   }
 
-  static activateRestartButton() {
+  activateRestartButton() {
     $restartButton.disabled = false;
   }
 
-  static clearCarNamesInput() {
+  clearCarNamesInput() {
     $carNameInput.value = "";
   }
 
-  static clearTryCountInput() {
+  clearTryCountInput() {
     $tryCountInput.value = "";
   }
 
-  static clearResultArea() {
+  clearResultArea() {
     $resultArea.innerHTML = "";
   }
 
-  static showRestartButton() {
+  showRestartButton() {
     $restartButton.style.display = "";
   }
 
-  static hideRestartButton() {
+  hideRestartButton() {
     $restartButton.style.display = "none";
   }
 
-  static hideWinners() {
+  hideWinners() {
     $winners.innerText = "";
   }
 
-  static resetGameView() {
+  resetGameView() {
     this.clearCarNamesInput();
     this.clearTryCountInput();
     this.changeInnerText($carNameSubmit, "등록");
