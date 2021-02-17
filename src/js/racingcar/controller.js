@@ -67,7 +67,7 @@ class RacingCarController {
       return alert(this.errorMessage);
     }
 
-    this.count = count;
+    this.count = Number(count);
     this.setBeforeProceedingGame();
   }
 
@@ -77,14 +77,18 @@ class RacingCarController {
     this.proceedGame();
   }
 
-  async proceedGame() {
-    for (let i = 0; i < this.count; i++) {
-      await wait(1000);
+  proceedGame() {
+    let count = 0;
+    const interval = setInterval(() => {
+      count++;
       this.model.playRacingCarGameOnce();
       this.view.renderProcess(this.model.getCars());
-    }
-    this.view.hideSpinnerAll();
-    this.showResult();
+      if (this.count === count) {
+        clearInterval(interval);
+        this.view.hideSpinnerAll();
+        this.showResult();
+      }
+    }, 1000);
   }
 
   async showResult() {
