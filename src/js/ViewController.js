@@ -19,7 +19,7 @@ export default class ViewController {
     this.show(SELECTOR.LAP_COUNT.CONTAINER);
   }
 
-  renderGameProgress(lapResult) {
+  renderGameProgress(lapResult, isLastLap) {
     this.hide(SELECTOR.GAME_PROGRESS.SPINNER);
 
     lapResult.forEach((canMove, index) => {
@@ -27,11 +27,20 @@ export default class ViewController {
 
       this.carViews[index].addForwardIcon();
     });
+
+    if (isLastLap) return;
+
+    setTimeout(() => {
+      this.show(SELECTOR.GAME_PROGRESS.SPINNER);
+    }, 200);
   }
 
-  renderSpinner() {
+  renderGameStart() {
     this.disable(SELECTOR.LAP_COUNT.BUTTON);
-    this.show(SELECTOR.GAME_PROGRESS.SPINNER);
+
+    setTimeout(() => {
+      this.show(SELECTOR.GAME_PROGRESS.SPINNER);
+    }, 200);
   }
 
   renderGameResult(winners) {

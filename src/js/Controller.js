@@ -115,41 +115,34 @@ export class Controller {
   }
 
   startRace(lapCount) {
-    let delayTime = 0;
+    let lap = 0;
 
-    for (let i = 0; i < lapCount; i++) {
-      setTimeout(() => {
-        this.viewController.renderSpinner();
-      }, delayTime);
+    this.viewController.renderGameStart();
 
-      delayTime += 800;
+    const race = setInterval(() => {
+      if (lap++ === lapCount) {
+        this.endRace();
+        clearInterval(race);
+        return;
+      }
 
-      setTimeout(() => {
-        this.endLap();
-      }, delayTime);
-
-      delayTime += 200;
-    }
-
-    setTimeout(() => {
-      this.endRace();
-    }, delayTime);
+      this.endLap(lap === lapCount);
+    }, 1000);
   }
 
-  endLap() {
+  endLap(isLastLap) {
     const lapResult = this.getLapResult();
 
     this.carModels
       .filter((_, i) => lapResult[i])
       .forEach((carModel) => carModel.move());
-    this.viewController.renderGameProgress(lapResult);
+    this.viewController.renderGameProgress(lapResult, isLastLap);
   }
 
   endRace() {
     const winnersNames = this.getWinners().map(({ name }) => name);
 
     this.viewController.renderGameResult(winnersNames);
-
     setTimeout(() => {
       alert(winnersNames.join(", ") + MESSAGE.GAME_RESULT.CELEBRATION);
     }, 2000);
