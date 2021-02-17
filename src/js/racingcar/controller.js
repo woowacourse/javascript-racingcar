@@ -44,12 +44,12 @@ class RacingCarController {
 
   manageCars() {
     if (isCarExist(this.cars)) {
-      return alert(ERROR_MESSAGE.CAR_EXIST);
+      return this.view.showMessage(ERROR_MESSAGE.CAR_EXIST);
     }
 
     const carNames = this.getCarsInput();
     if ((this.errorMessage = getCarNameErrorMessage(carNames))) {
-      return alert(this.errorMessage);
+      return this.view.showMessage(this.errorMessage);
     }
 
     this.cars = carNames.map((carName) => new RacingCar(carName));
@@ -59,12 +59,12 @@ class RacingCarController {
 
   manageCount() {
     if (isCountExist(this.count)) {
-      return alert(ERROR_MESSAGE.COUNT_EXIST);
+      return this.view.showMessage(ERROR_MESSAGE.COUNT_EXIST);
     }
 
     const count = this.getCountInput();
     if ((this.errorMessage = getCountErrorMessage(count))) {
-      return alert(this.errorMessage);
+      return this.view.showMessage(this.errorMessage);
     }
 
     this.count = Number(count);
@@ -95,7 +95,9 @@ class RacingCarController {
     const winners = this.model.getWinners();
     this.view.renderResult(winners);
     await wait(2000);
-    alert(`🎉축하합니다. ${winners.join(', ')}가(이) 승리했습니다.🎉`);
+    this.view.showMessage(
+      `🎉축하합니다. ${winners.join(', ')}가(이) 승리했습니다.🎉`,
+    );
     this.handleReset();
   }
 

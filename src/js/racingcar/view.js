@@ -30,6 +30,10 @@ class RacingCarView {
     });
   }
 
+  showMessage(message) {
+    alert(message);
+  }
+
   resetCar() {
     $('#car-input').value = '';
   }
