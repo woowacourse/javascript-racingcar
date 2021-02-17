@@ -1,9 +1,9 @@
 import Validator from "./RacingCarGameValidator.js";
 import RacingCarGameView from "./RacingCarGameView.js";
 import RacingCarGameModel from "./RacingCarGameModel.js";
+import Spinner from "../animations/Spinner.js";
 import { CAR_NAME_SEPERATOR } from "../constants/racing_game_constants.js";
 import { $carNameSubmit } from "../elements.js";
-import { setTimeoutWithSpinner } from "../utils/timeUtils.js";
 
 export default class RacingCarGameController {
   constructor() {
@@ -53,19 +53,37 @@ export default class RacingCarGameController {
     }, 2000);
   }
 
-  async runProgressiveRace(tryCount, delay) {
-    for (let i = 0; i < tryCount; i++) {
-      this.racingCarGameModel.moveCarsByRandom();
-      await setTimeoutWithSpinner(
-        document.querySelectorAll(".spinner"),
-        this.racingCarGameView.updateResultArea,
-        delay,
-        this.racingCarGameModel.carList
-      );
-    }
+  getSpinners(spinnerElements) {
+    return Array.from(spinnerElements).map(
+      ($spinner) => new Spinner($spinner, 6)
+    );
   }
 
-  async playRacingCarGame(tryCountInput) {
+  runProgressiveRace(tryCount, delay) {
+    return [...Array(tryCount)].reduce((promiseChain) => {
+      return promiseChain.then(() => {
+        return new Promise((resolve) => {
+          const spinners = this.getSpinners(
+            document.querySelectorAll(".spinner")
+          );
+
+          this.racingCarGameModel.moveCarsByRandom();
+          spinners.forEach((spinner) => spinner.render());
+          setTimeout(() => {
+            spinners.forEach((spinner) => spinner.clear());
+            this.racingCarGameView.updateResultArea(
+              this.racingCarGameModel.carList
+            );
+            setTimeout(() => {
+              resolve();
+            }, 300);
+          }, delay);
+        });
+      });
+    }, Promise.resolve());
+  }
+
+  playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
 
     if (!Validator.isTryCountValid(tryCount)) {
@@ -78,8 +96,7 @@ export default class RacingCarGameController {
 
     this.racingCarGameView.deactivateCarNameSubmitButton();
     this.racingCarGameView.deactivatePlayGameButton();
-    await this.runProgressiveRace(tryCount, 1000);
-    this.finishGame();
+    this.runProgressiveRace(tryCount, 1000).then(() => this.finishGame());
   }
 
   restartRacingCarGame() {
