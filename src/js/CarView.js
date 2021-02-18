@@ -7,7 +7,7 @@ const {
 } = CLASSNAME;
 
 const TEMPLATE = {
-  GET_CAR_NAME: (name) => `<div class="car-player mr-2">${name}</div>`,
+  CAR_NAME: (name) => `<div class="car-player mr-2">${name}</div>`,
   FORWARD_ICON: `<div class="forward-icon mt-2">⬇️️</div>`,
   SPINNER_ICON: `<div class="d-flex justify-center mt-4 ${SPINNER_ICON} ${HIDDEN}">
     <div class="relative spinner-container">
@@ -21,7 +21,7 @@ export default class CarView {
     this.$gameProgressContainer = $(SELECTOR.GAME_PROGRESS.CONTAINER);
     this.$carView = document.createElement("div");
     this.$carView.innerHTML = `
-      ${TEMPLATE.GET_CAR_NAME(name)}
+      ${TEMPLATE.CAR_NAME(name)}
       ${TEMPLATE.SPINNER_ICON}
     `;
 

@@ -41,7 +41,7 @@ export default class ViewController {
 
     setTimeout(
       () => alert(`축하합니다! ${winnersName}`),
-      CONSTANT.DELAY.TWO_THOUSAND_MS
+      CONSTANT.DELAY.CONGRATS_ALERT_CALL
     );
   }
 

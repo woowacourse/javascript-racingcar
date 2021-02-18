@@ -25,7 +25,7 @@ export const SELECTOR = {
     CONTAINER: ".game-progress-container",
     CAR_NAME: ".car-player",
     FORWARD_ICON: ".forward-icon",
-    SPINNER_ICON: `.${CLASSNAME.GAME_PROGRESS.SPINNER_ICON}`,
+    SPINNER_ICON: ".spinner-icon",
   },
   GAME_RESULT: {
     CONTAINER: ".game-result-container",
@@ -64,7 +64,7 @@ export const CONSTANT = {
     MAX: 20,
   },
   DELAY: {
-    ONE_THOUSAND_MS: 1000,
-    TWO_THOUSAND_MS: 2000,
+    ONE_LAP_PROGRESS: 1000,
+    CONGRATS_ALERT_CALL: 2000,
   },
 };

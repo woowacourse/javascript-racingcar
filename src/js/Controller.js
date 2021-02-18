@@ -75,7 +75,7 @@ export class Controller {
 
       this.viewController.readyGameProgress();
       for (let i = 0; i < lapCount; i++) {
-        await sleep(CONSTANT.DELAY.ONE_THOUSAND_MS);
+        await sleep(CONSTANT.DELAY.ONE_LAP_PROGRESS);
 
         const lapResult = getLapResult(this.carModels.length);
         this.moveCarAlongWith(lapResult);
