@@ -9,9 +9,9 @@ describe("레이싱 우승자 테스트", () => {
 
     cy.get("#car-names-input").type("a,b,c,d,e");
     cy.get("#car-names-submit").click();
-    cy.get("#count-input").type(5);
+    cy.get("#count-input").type(3);
     cy.get("#count-submit").click();
-    cy.wait(5000);
+    cy.wait(3000);
 
     cy.get("#racing-container > section > div > div")
       .each((element, index) => {
@@ -30,5 +30,20 @@ describe("레이싱 우승자 테스트", () => {
           `🏆 최종 우승자: ${winners.join(", ")} 🏆`
         );
       });
+    cy.wait(2000); // alert 기다리기 용도
+  });
+
+  it("자동차 경주 게임이 완료된 후, 2초 뒤에 alert 창이 나타나는 것을 확인한다.", () => {
+    cy.get("#restart-button").click();
+    cy.get("#car-names-input").type("a,b,c,d,e");
+    cy.get("#car-names-submit").click();
+    cy.get("#count-input").type(3);
+    cy.get("#count-submit").click();
+    cy.wait(3000);
+    cy.wait(2000); // alert 기다리기 용도
+
+    cy.on('docuemnt:alert', (str) => {
+      expect(str).to.equal("🎉 축하합니다 🎉");
+    })
   });
 });

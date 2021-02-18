@@ -1,3 +1,4 @@
 export const RACING_RULE = {
- ROUND_TIME: 1000,
+  ROUND_TIME: 1000,
+  RESULT_TIME: 2000,
 }

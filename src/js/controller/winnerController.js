@@ -11,6 +11,7 @@ export const chooseWinners = function () {
     .map((car) => car.name);
 
   displayWinnerView(winners);
+  setTimeout(() => alert("🎉 축하합니다 🎉"), 2000);
 };
 
 export const handleRestartButton = function () {
