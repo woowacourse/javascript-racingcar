@@ -13,17 +13,17 @@ describe('레이싱 게임 입력 테스트', () => {
   });
 
   it('자동차 이름을 부여하면 시도할 횟수 입력창이 노출된다.', () => {
-    submitCarNames('aaa,bbb,ccc');
+    submitGameSetting('car-name', 'aaa,bbb,ccc');
     cy.get('#section-race-times').should('be.visible');
   });
 
   it('이름은 1자이상, 5자 이하만 가능합니다.', () => {
-    submitCarNames(',bbbbbb,aaa');
+    submitGameSetting('car-name', ',bbbbbb,aaa');
     cy.get('#section-race-times').should('not.to.be.visible');
   });
 
   it('이름은 공백일 수 없다', () => {
-    submitCarNames('             ');
+    submitGameSetting('car-name', '             ');
     cy.get('#section-race-times').should('not.to.be.visible');
   });
 
@@ -38,9 +38,9 @@ describe('레이싱 게임 입력 테스트', () => {
   });
 
   it('입력이 완료된 정보는 다시 입력할 수 없다.', () => {
-    submitCarNames('aaa,bbb,ccc');
+    submitGameSetting('car-name', 'aaa,bbb,ccc');
     cy.get('#submit-car-name').should('have.attr', 'disabled');
-    submitRacingTimes(10);
+    submitGameSetting('race-times', 10);
     cy.get('#submit-race-times').should('have.attr', 'disabled');
   });
 
@@ -159,18 +159,19 @@ function testProgressiveTerm({ term, racingTimes }) {
 }
 
 function submitRacingGameInfo(carNameInput, racingTimes) {
-  submitCarNames(carNameInput);
-  submitRacingTimes(racingTimes);
+  submitGameSetting('car-name', carNameInput);
+  submitGameSetting('race-times', racingTimes);
 }
 
-function submitCarNames(carNameInput) {
-  cy.get('#input-car-name').type(carNameInput);
-  cy.get('#submit-car-name').click();
-}
+function submitGameSetting(selectorBaseName, stringToType) {
+  if (selectorBaseName.split('-').length !== 2) {
+    return;
+  }
+  const inputSelector = `#input-${selectorBaseName}`;
+  const buttonSelector = `#submit-${selectorBaseName}`;
 
-function submitRacingTimes(racingTimes) {
-  cy.get('#input-race-times').type(`${racingTimes}`);
-  cy.get('#submit-race-times').click();
+  cy.get(inputSelector).type(stringToType);
+  cy.get(buttonSelector).click();
 }
 
 function waitForResult(racingTimes) {
