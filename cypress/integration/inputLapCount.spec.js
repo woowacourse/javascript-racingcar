@@ -72,7 +72,9 @@ describe("시도할 횟수 입력하기", () => {
     cy.get(SELECTOR.LAP_COUNT.BUTTON).click();
     cy.get("@windowAlert").should("not.be.called");
 
-    Array.from(Array(lapCount), () => cy.tick(CONSTANT.DELAY.ONE_THOUSAND_MS));
+    Array.from({ length: lapCount }, () =>
+      cy.tick(CONSTANT.DELAY.ONE_LAP_PROGRESS)
+    );
 
     cy.get(SELECTOR.GAME_PROGRESS.SPINNER_ICON).should("not.be.visible");
     cy.get(SELECTOR.GAME_RESULT.CONTAINER).should("be.visible");
@@ -102,10 +104,10 @@ describe("시도할 횟수 입력하기", () => {
       .should((text) => {
         const matched = text.match(/(?<=\s*)([^\s,]+?)(?=,\s*|\s*🏆$)/g);
 
-        expect(winners.sort()).to.deep.equal(matched.sort());
+        expect(winners).to.deep.equal(matched);
       })
       .then(() => {
-        cy.tick(CONSTANT.DELAY.TWO_THOUSAND_MS);
+        cy.tick(CONSTANT.DELAY.CONGRATS_ALERT_CALL);
         cy.get("@windowAlert")
           .should("have.callCount", 1)
           .its("lastCall")
