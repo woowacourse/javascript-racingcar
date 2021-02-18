@@ -30,42 +30,94 @@
 
 ### 🎯🎯 step2
 
-- [ ] 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
-  - [ ] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
-- [ ] 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
-- [ ] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
+- [x] 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
+  - [x] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
+- [x] 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
+- [x] 위 기능들이 정상적으로 동작하는지 Cypress를 이용해 테스트한다.
 
 <br>
 
-## ⚙️ Before Started
+## ⛰️ 환경 설정
 
-#### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 static resources 변경 및 확인하는 방법
+1. yarn을 이용하여 package 초기화: `yarn init`
+2. cypress 설치: `yarn add cypress --dev`
+3. eslint 설치: `yarn add eslint --dev`
+4. prettier 설치: `yarn add prettier --dev --exact`
+   - .prettier.json 설정: `echo {}> .prettierrc.json` // 별도로 옵션을 설정하지 않고 기본 설정 그대로 사용한다
+   - .prettierignore 설정: cypress/integration 외 cypress내 디렉토리는 모두 무시하도록 설정
+5. eslint-config-prettier 설치: `yarn add eslint-config-prettier --dev`
+6. eslint-config-cypress 설치: `yarn add eslint-config-cypress --dev`
+7. eslint 설정: `yarn eslint --init`
+   - prettier, cypress plugins 및 extends 추가
+   - eslint:recommended 컨벤션 적용
+8. .vscode/settings.json 설정
+   - 모든 파일에 대하여 저장시 eslint 및 prettier 적용
+   - editor 탭사이즈는 2, 탭 대신 스페이스 사용
+   - 패키지매니져로 yarn을 사용함을 명시
+   - 항상 마지막 줄에 빈 라인을 추가
 
-로컬에서 웹서버를 띄워 html, css, js 등을 실시간으로 손쉽게 테스트해 볼 수 있습니다. 이를 위해서는 우선 npm이 설치되어 있어야 합니다. 구글에 `npm install` 이란 키워드로 각자의 운영체제에 맞게끔 npm을 설치해주세요. 이후 아래의 명령어를 통해 실시간으로 웹페이지를 테스트해볼 수 있습니다.
+## 🌋 구조 설계
 
-```
-npm install -g live-server
-```
+1. Model: CarModel
+   - 필드 : name, moveCount
+   - 메서드 : move
+2. View: ViewController, CarView
+   1. `lap-input-container`을 렌더한다.
+   2. `car-player`을 렌더한다.
+   3. `forward-icon`을 렌더한다.
+   4. `game-result-container`을 렌더한다.
+3. Controller
+   1. 이름 입력 받기
+   2. 횟수 입력 받기
+   3. 횟수만큼 반복하는 기능
+   4. 갈지 안갈지 결정하는 기능
+   5. 다시 시작하면 초기화하는 기능
 
-실행은 아래의 커맨드로 할 수 있습니다.
+## 🏝️ 기능 구현
 
-```
-live-server 폴더명
-```
+### 🏰 자동차 이름 입력하기
 
-<br>
+1. Given(주어진 환경)
+   - 유저에게 자동차 경주 화면이 렌더링 된다.
+2. When(행위)
+   - 유저가 자동차 이름 입력 란에 자동차 이름을 입력한다.
+   - 자동차 이름은 5자 이하이다.
+   - 자동차 이름은 두 개 이상이다.
+   - 자동차 이름은 빈 값이 아니다.
+   - 자동차 이름은 쉼표(,)를 기준으로 구분된다.
+3. Then(기대 결과)
+   - 시도할 횟수를 입력 받는 화면이 렌더링 된다.
+   - 입력된 각 자동차 이름(.car-player)이 렌더링 된다.
 
-## 👏 Contributing
+### 🏰🏰 시도할 횟수 입력하기
 
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요.
+1. Given(주어진 환경)
+   - 유저에게 자동차 경주 화면이 렌더링된 후,
+   - 유저가 자동차 이름 입력 란에 자동차 이름("EAST, WEST, SOUTH, NORTH")을 입력한다.
+   - 자동차 이름이 쉼표(,)를 기준으로 구분되어, .car-player(EAST, WEST, SOUTH, NORTH)가 렌더링되어 있다.
+2. When(행위)
+   - 유저가 시도할 횟수 란에 시도할 횟수값을 입력후 확인 버튼을 클릭한다.
+   - 시도할 횟수는 1보다 크고 20보다 작은 정수이다.
+3. Then(기대 결과)
+   - 게임 진행상황이 렌더링된다.
+     - 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
+   - 주어진 횟수 동안 4대의 자동차가 전진한만큼 화살표가 표시된다.
+   - 게임 결과가 렌더링된다.
+     - 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
+   - 우승자가 여러명일 경우 ,를 이용하여 구분한다.
 
-<br>
+### 🏰🏰🏰 다시 시작 버튼 클릭하기
 
-## 🐞 Bug Report
-
-버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-racingcar/issues) 에 등록 후 @eastjun에게 dm을 보내주세요.
-
-<br>
+1. Given(주어진 환경)
+   - 유저에게 자동차 경주 화면이 렌더링된 후,
+   - 유저가 자동차 이름 입력 란에 자동차 이름("EAST, WEST, SOUTH, NORTH")을 입력한다.
+   - 자동차 이름이 쉼표(,)를 기준으로 구분되어, .car-player(EAST, WEST, SOUTH, NORTH)가 렌더링되어 있다.
+   - 유저가 시도할 횟수 입력 란에 12를 입력한다.
+   - 게임 진행 상황과 게임 결과가 렌더링되어 있다.
+2. When(행위)
+   - 유저가 다시 시작 버튼을 클릭한다.
+3. Then(기대 결과)
+   - 유저에게 자동차 경주 게임 타이틀과 자동차 이름 입력란만 보인다.
 
 ## 📝 License
 
