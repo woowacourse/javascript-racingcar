@@ -6,9 +6,9 @@ context("tdd", () => {
 	it("이름 입력 칸에 ','로 구분해서 이름을 입력할 수 있다.", () => {
 		Model.initCars("a,b,c");
 		expect(Model.cars).to.deep.equal([
-			{ name: "a", score: 0 },
-			{ name: "b", score: 0 },
-			{ name: "c", score: 0 },
+			{ name: "a", score: 0, randomNumbers: [] },
+			{ name: "b", score: 0, randomNumbers: [] },
+			{ name: "c", score: 0, randomNumbers: [] },
 		]);
 	});
 

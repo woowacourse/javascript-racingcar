@@ -134,12 +134,13 @@ context("bdd", () => {
 	});
 
 	it("가장 많이 전진한 자동차가 우승인지 판별한다.", () => {
+		cy.clock();
 		cy.get("#name-input").type("EAST,WEST,SOUTH", { force: true });
 		cy.get("#name-submit-button").click();
 
-		cy.get("#count-input").type("100", { force: true });
+		cy.get("#count-input").type("3", { force: true });
 		cy.get("#count-submit-button").click();
-
+		cy.tick(4000);
 		cy.get(".car-player").then((cars) => {
 			const carObjects = [...cars].map((car) => ({
 				name: car.innerText,
@@ -150,8 +151,8 @@ context("bdd", () => {
 				(winnerCars, currentCar) => (currentCar.score === maxScore ? winnerCars.concat(currentCar.name) : winnerCars),
 				[]
 			);
+			cy.tick(3000);
 			const winnerResult = winners.join(", ");
-			console.log(cy.get("#result-container").find("section").find("h2"));
 			cy.get("#result-container").find("section").find("h2").contains(winnerResult);
 		});
 	});
