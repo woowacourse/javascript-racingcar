@@ -49,6 +49,8 @@ describe('step1', () => {
   });
 
   it('수행 횟수는 소수점을 포함할 수 없다.', () => {
+    cy.get('#car-name-input').type('chris, beuc');
+    cy.get('#car-name-submit').click();
     cy.get('#try-count-input').type('1.5');
     cy.get('#play-game-button').click();
     cy.on('window:alert', (txt) => {

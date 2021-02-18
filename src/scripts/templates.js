@@ -1,11 +1,7 @@
 import { WINNER_TEXT_SEPERATOR } from './constants.js';
 
 const getCarRecordTemplate = (record) => {
-  if (record === 1) {
-    return '<div class="forward-icon mt-2">⬇️️</div>';
-  }
-
-  return Array(record).join('<div class="forward-icon mt-2">⬇️️</div>');
+  return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(record);
 };
 
 const getResultAreaTemplate = (carList) => {

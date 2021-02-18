@@ -1,7 +1,14 @@
 import racingCarGameValidator from './racingCarGameValidator.js';
 import racingCarGameView from './racingCarGameView.js';
 import { racingCarGameModel } from '../store.js';
-import { CAR_NAME_SEPERATOR, getCongratulationsMessage } from '../constants.js';
+import util from '../utils.js';
+import {
+  CAR_NAME_SEPERATOR,
+  getCongratulationsMessage,
+  CONGRATULATION_DURATION_SECOND,
+  SHOULD_REGISTER_CAR_FIRST_MESSAGE,
+  RACE_IS_ON_GOING_MESSAGE,
+} from '../constants.js';
 
 const getWinners = (carList) => {
   const sortedCarList = [...carList].sort((a, b) => b.record - a.record);
@@ -11,6 +18,14 @@ const getWinners = (carList) => {
     .map((car) => car.carName);
 
   return winners;
+};
+
+const showWinners = (winners) => {
+  racingCarGameView.showWinners(winners);
+};
+
+const getCarNameList = (carNames) => {
+  return carNames.split(CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 };
 
 const initializeRacingGame = () => {
@@ -24,26 +39,19 @@ const startRacingGame = (tryCount) => {
     racingCarGameModel.moveCarsByRandom();
   }
   racingCarGameView.updateResultArea(racingCarGameModel.carList);
-  racingCarGameView.attachRestartButton();
+  racingCarGameView.showRestartButton();
 };
 
-const showWinners = (winners) => {
-  racingCarGameView.attachWinners(winners);
-};
+const processRacingGame = (tryCount) => {
+  initializeRacingGame();
+  startRacingGame(tryCount);
+}
 
-const getCarNameList = (carNames) => {
-  return carNames.split(CAR_NAME_SEPERATOR).map((carName) => carName.trim());
-};
-
-const showCongratulationMessage = (winners) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      alert(getCongratulationsMessage(winners));
-      racingCarGameModel.setRaceIsNotOnGoing();
-      resolve();
-    }, 2000);
-  });
-};
+const finishRacingGame = (winners) => {
+  alert(getCongratulationsMessage(winners));
+  racingCarGameModel.setRaceIsNotOnGoing();
+  racingCarGameModel.clearCarsRecord();
+}
 
 export default {
   registerCarNames(carNames) {
@@ -59,30 +67,29 @@ export default {
   async playRacingCarGame(tryCountInput) {
     const tryCount = Number(tryCountInput);
     if (racingCarGameModel.isRaceOnGoing) {
-      racingCarGameValidator.alertRaceIsOnGoing();
-      return;
-    }
-    if (!racingCarGameValidator.isTryCountValid(tryCount)) {
-      racingCarGameView.clearTryCountInput();
-      racingCarGameValidator.alertTryCountNotValid(tryCount);
+      alert(RACE_IS_ON_GOING_MESSAGE);
       return;
     }
     if (racingCarGameValidator.isCarListEmpty(racingCarGameModel.carList)) {
-      racingCarGameValidator.alertCarListEmpty();
+      alert(SHOULD_REGISTER_CAR_FIRST_MESSAGE);
       return;
     }
-    initializeRacingGame();
-    startRacingGame(tryCount);
+    if (!racingCarGameValidator.isTryCountValid(tryCount)) {
+      racingCarGameValidator.alertTryCountNotValid(tryCount);
+      racingCarGameView.clearTryCountInput();
+      return;
+    }
+    processRacingGame(tryCount)
     const winners = getWinners(racingCarGameModel.carList);
-    showWinners(winners);
+    showWinners(winners);  
     await racingCarGameView.startRacingGameAnimation();
-    await showCongratulationMessage(winners);
-    racingCarGameModel.clearCarsRecord();
+    await util.waitSeconds(CONGRATULATION_DURATION_SECOND);
+    finishRacingGame(winners);
   },
 
   restartRacingCarGame() {
     if (racingCarGameModel.isRaceOnGoing) {
-      racingCarGameValidator.alertRaceIsOnGoing();
+      alert(RACE_IS_ON_GOING_MESSAGE);
       return;
     }
     racingCarGameModel.clearCarList();

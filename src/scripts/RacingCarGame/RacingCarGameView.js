@@ -10,23 +10,14 @@ import {
 import { ANIMATION_DURATION_SECOND } from '../constants.js';
 import { getResultAreaTemplate, getWinnersTemplate } from '../templates.js';
 import { requestFadeInAnimation } from '../animations.js';
+import util from '../utils.js';
 
-const startArrowAnimation = (arrows, arrowIndex) => {
-  requestFadeInAnimation(arrows[arrowIndex]);
-};
-
-const processCarMoveAnimation = (arrows) => {
-  return new Promise((resolve, reject) => {
-    let arrowIndex = 0;
-    const showArrowRepeat = setInterval(async () => {
-      await startArrowAnimation(arrows, arrowIndex);
-      if (arrowIndex === arrows.length - 1) {
-        clearInterval(showArrowRepeat);
-        resolve(true);
-      }
-      arrowIndex += 1;
-    }, ANIMATION_DURATION_SECOND * 1000);
-  });
+const processCarMoveAnimation = async (arrows, turnDuration) => {
+  let arrowIndex = 0;
+  await util.repeat(arrows.length, turnDuration, () => {
+    requestFadeInAnimation(arrows[arrowIndex]);
+    arrowIndex += 1;
+  })
 };
 
 const takeOffSpinner = ($track) => {
@@ -34,31 +25,15 @@ const takeOffSpinner = ($track) => {
   $spinner.style.display = 'none';
 };
 
-const startCarMoveAnimation = ($track, callback) => {
-  return new Promise(async (resolve, reject) => {
-    const arrows = Array.from($track.querySelectorAll('.forward-icon'));
-    await processCarMoveAnimation(arrows);
-    takeOffSpinner($track);
-    callback();
-    resolve();
-  });
+const startCarMoveAnimation = async ($track) => {
+  const arrows = Array.from($track.querySelectorAll('.forward-icon'));
+  if (arrows.length !== 0) {
+    await processCarMoveAnimation(arrows, ANIMATION_DURATION_SECOND);
+  }
+  takeOffSpinner($track);
 };
 
-const startShowWinnerAnimation = () => {
-  return new Promise(async (resolve, reject) => {
-    await requestFadeInAnimation($winners);
-    resolve();
-  });
-};
-
-const startShowRestartButtonAnimation = () => {
-  return new Promise(async (resolve, reject) => {
-    await requestFadeInAnimation($restartButton);
-    resolve();
-  });
-};
-
-const attachSpinners = () => {
+const showSpinners = () => {
   const spinners = getSpinnerElements();
   Array.from(spinners).forEach(
     ($spinner) => ($spinner.style.display = 'block')
@@ -66,33 +41,30 @@ const attachSpinners = () => {
 };
 
 const showRacingProgress = (tracks) => {
-  return new Promise(async (resolve, reject) => {
-    let trackFinishCount = 0;
-    for (let i = 0; i < tracks.length; i += 1) {
-      startCarMoveAnimation(tracks[i], () => {
-        if (trackFinishCount >= tracks.length - 1) {
+  return new Promise((resolve, reject) => {
+    let trackCount = 0;
+    for (let track of tracks) {
+      startCarMoveAnimation(track).then(() => {
+        if (trackCount === tracks.length - 1) {
           resolve();
         }
-        trackFinishCount += 1;
+        trackCount += 1;
       });
-    }
-  });
+    }  
+  })
 };
 
 export default {
   updateResultArea(carList) {
     $resultArea.innerHTML = getResultAreaTemplate(carList);
-    attachSpinners();
+    showSpinners();
   },
 
   async startRacingGameAnimation() {
-    return new Promise(async (resolve, reject) => {
-      const tracks = getTrackElements();
-      await showRacingProgress(tracks);
-      await startShowWinnerAnimation();
-      await startShowRestartButtonAnimation();
-      resolve();
-    });
+    const tracks = getTrackElements();
+    await showRacingProgress(tracks);
+    await requestFadeInAnimation($winners);
+    await requestFadeInAnimation($restartButton);
   },
 
   clearCarNamesInput() {
@@ -103,11 +75,11 @@ export default {
     $tryCountInput.value = '';
   },
 
-  attachWinners(winners) {
+  showWinners(winners) {
     $winners.innerText = getWinnersTemplate(winners);
   },
 
-  attachRestartButton() {
+  showRestartButton() {
     $restartButton.style.display = '';
   },
 
