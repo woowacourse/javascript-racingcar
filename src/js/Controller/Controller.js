@@ -18,7 +18,6 @@ class Controller {
 		Model.setCount(Number(countInput.value));
 		View.renderProgressContainer(raceProgressContainerTemplate);
 		Model.runArrowRenderByCount();
-		View.renderWinner();
 		this.addResetButtonEvent();
 		View.clearInputValue(countInput);
 	}

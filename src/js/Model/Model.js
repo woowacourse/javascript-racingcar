@@ -9,7 +9,7 @@ import {
 	ALREADY_COUNT_SUBMITTED_ALERT,
 	INVALID_INTEGER_ALERT,
 	OVER_MAX_COUNT_ALERT,
-} from "./constatns.js";
+} from "./constants.js";
 import {
 	isFirstSubmittedName,
 	isIncludeBlank,
@@ -24,6 +24,7 @@ class Model {
 	constructor() {
 		this.cars = [];
 		this.count = 0;
+		this.turn = 0;
 	}
 
 	initCars(carNames) {
@@ -31,7 +32,7 @@ class Model {
 	}
 
 	generateCars(nameInputValue) {
-		return nameInputValue.split(",").map((carName) => ({ name: carName, score: 0 }));
+		return nameInputValue.split(",").map((carName) => ({ name: carName, score: 0, randomNumbers: [] }));
 	}
 
 	isAlreadyCountClicked($settingContainer) {
@@ -41,13 +42,16 @@ class Model {
 	setCount(value) {
 		this.count = value;
 	}
-
+	//뷰 렌더애로우랑 겟 불스 무브먼트 주석 처리하고, 그 아래 뷰 템퍼렌더애로우로 변경
 	runArrowRenderByCount() {
 		for (let i = 0; i < this.count; i++) {
 			const boolsAboutMovement = this.getBoolsAboutMovement();
-			View.renderArrow(boolsAboutMovement);
+			// 	View.renderArrow(boolsAboutMovement);
 		}
+		// this.getBoolsAboutMovement();
+		View.setRace(this.cars);
 	}
+	//
 
 	getBoolsAboutMovement() {
 		const previousScores = [...this.cars].map((car) => car.score);
@@ -60,6 +64,7 @@ class Model {
 	iterateByCarsToMove() {
 		const moveOrNot = (car) => {
 			const randomNumber = this.getRandomNumber({ startNumber: 0, endNumber: 9 });
+			car.randomNumbers.push(randomNumber);
 			this.isInMovableRange(randomNumber, 4, 9) && this.move(car);
 		};
 		this.cars.forEach(moveOrNot);
@@ -79,7 +84,6 @@ class Model {
 
 	getResultText() {
 		const winners = this.getWinners();
-
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
 	}
 

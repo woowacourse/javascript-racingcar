@@ -38,6 +38,14 @@ const resultContainerTemplate = `<div id="result-container" class="d-flex justif
 
 const arrowTemplate = `<div class="forward-icon mt-2">⬇️</div>`;
 
+const spinnerTemplate = (index) => {
+	return `<div id="spinner${index}" class="d-flex justify-center mt-4">
+            <div class="relative spinner-container">
+            <span class="material spinner"></span>
+            </div>
+            </div>`;
+};
+
 export {
 	openingSettingContainerTemplate,
 	titleSectionTemplate,
@@ -46,4 +54,5 @@ export {
 	closingSettingContainerTemplate,
 	resultContainerTemplate,
 	arrowTemplate,
+	spinnerTemplate,
 };
