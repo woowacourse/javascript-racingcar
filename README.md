@@ -90,6 +90,16 @@
 - [x] class 내의 메서드들의 순서를 조정한다.
 - [x] 변수명을 점검하고, 필요 시 변경한다.
 
+### step1 review
+
+- [ ] 테스트 context를 세분화하여 분리하기
+- [ ] typeName함수에서 input clear하지 않기
+- [ ] cypress 코드 리팩터링하기
+- [ ] handler라는 이름의 함수들 이름 바꾸기
+- [ ] 바인드 이슈 arrow function으로 해결하기
+- [ ] MVC 구조 수정하기
+- [ ] 코드 리팩터링하기
+
 ### 🎯🎯 step2
 
 - [ ] 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
