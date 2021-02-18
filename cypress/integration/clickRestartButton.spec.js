@@ -4,7 +4,7 @@ describe("다시 시작 버튼 클릭하기", () => {
   const lapCount = 12;
   beforeEach(() => {
     cy.clock();
-    cy.visit("http://127.0.0.1:5500/");
+    cy.visit("/");
     cy.window().then((win) => cy.stub(win, "alert").as("windowAlert"));
     cy.get(SELECTOR.CAR_NAME.INPUT).type("EAST, WEST, SOUTH, NORTH");
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();

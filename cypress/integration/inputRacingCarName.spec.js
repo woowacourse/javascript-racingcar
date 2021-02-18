@@ -2,7 +2,7 @@ import { SELECTOR, MESSAGE } from "../../src/js/constants.js";
 
 describe("자동차 이름 입력하기", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5500/");
+    cy.visit("/");
     cy.window().then((win) => cy.stub(win, "alert").as("windowAlert"));
   });
 

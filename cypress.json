@@ -1,1 +1,8 @@
-{}
+{
+  "baseUrl": "http://localhost:5500/",
+  "testFiles": [
+    "inputRacingCarName.spec.js",
+    "inputLapCount.spec.js",
+    "clickRestartButton.spec.js"
+  ]
+}

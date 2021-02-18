@@ -3,7 +3,7 @@ import { SELECTOR, MESSAGE, CONSTANT } from "../../src/js/constants.js";
 describe("시도할 횟수 입력하기", () => {
   beforeEach(() => {
     cy.clock();
-    cy.visit("http://127.0.0.1:5500/");
+    cy.visit("/");
     cy.window().then((win) => cy.stub(win, "alert").as("windowAlert"));
     cy.get(SELECTOR.CAR_NAME.INPUT).type("EAST, WEST, SOUTH, NORTH");
     cy.get(SELECTOR.CAR_NAME.BUTTON).click();
