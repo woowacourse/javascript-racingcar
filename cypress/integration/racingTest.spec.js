@@ -78,4 +78,22 @@ describe("자동차 레이싱 테스트", () => {
         );
       });
   });
+
+  it("처음에 경기를 시작하자마자 spin 애니메이션이 나타나고(child node가 0이 아니고), 게임이 종료된 후는 spin 애니메이션이 없는 것을 확인한다.", () => {
+    const carNames = ["a", "b", "c", "d", "e"];
+    const element = cy.get("#winner-container > section > h2");
+    let maxPosition = 0;
+    let winners = [];
+
+    cy.get("#car-names-input").type(carNames.join(","));
+    cy.get("#car-names-submit").click();
+    cy.get("#count-input").type(3);
+    cy.get("#count-submit").click();
+
+    cy.get("#racing-container > section > div").children().should(($children) => {
+      expect($children.length).not.to.eq(0)
+    })
+    cy.wait(3000);
+    cy.get(".spinner-container").should("not.exist");
+  });
 });
