@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 import { getRandomNumber } from '../../src/library/utils/random.js';
 import Car from '../../src/library/models/Car';
-import { GAME_SETTING, USER_MESSAGE } from '../../src/library/utils/constant.js'
+import { GAME_SETTING } from '../../src/library/utils/constant.js'
 /* 랜덤으로 0~9 사이의 값만 출력되는지는
  100번 정도의 테스트면 충분할 것으로 생각 */
 const RANDOM_TEST_TRY = 100;
@@ -71,6 +71,15 @@ describe('레이싱 게임 기능 테스트', () => {
     cy.get('.forward-icon').should('exist');
   });
 
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
+    const racingTimes = 3;
+    submitRacingGameInfo("aaa,bbb", racingTimes);
+    testProgressiveTerm({
+      term: 1000,
+      racingTimes: racingTimes,
+    });
+  });
+
   it('자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.', () => {
     const racingTimes = 5;
     submitRacingGameInfo('aaa,bbb', racingTimes);
@@ -121,17 +130,6 @@ describe('레이싱 게임 기능 테스트', () => {
     cy.get('#game-result-component > section').should('not.exist');
   });
 
-  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
-    const racingTimes = 3;
-    submitRacingGameInfo("aaa,bbb", racingTimes);
-    testProgressiveTerm({
-      term: 1000,
-      //1000ms의 허용오차는 100ms 정도면 충분할 것으로 생각
-      tolerance: 100,
-      racingTimes: racingTimes,
-    });
-  });
-
   it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.', () => {
     const alertStub = cy.stub();
     const carNameInput = 'aaa';
@@ -150,29 +148,14 @@ describe('레이싱 게임 기능 테스트', () => {
 
 });
 
-function testProgressiveTerm({ term, tolerance, racingTimes }) {
-  let times = 0;
-  cy.get('#game-process-component').then((element) => {
-    const target = element[0];
-    let startTime = new Date().getTime();
-    const observer = new MutationObserver((mutations) => {
-      const currentTime = new Date().getTime();
-      const takenTime = currentTime - startTime;
-      expect(takenTime > term - tolerance && takenTime < term + tolerance).to.equal(true);
-      startTime = currentTime;
-      times++;
-      if (times === racingTimes) {
-        observer.disconnect();
-      }
-    });
-    const option = {
-      childList: true,
-    };
-    observer.observe(target, option);
-  });
-  cy.wait((term + tolerance) * racingTimes).then(() => {
-    expect(times === racingTimes).to.equal(true);
-  });
+function testProgressiveTerm({ term, racingTimes }) {
+
+  const halfRacingTime = Math.floor(racingTimes * term / 2);
+  cy.clock();
+  cy.tick(halfRacingTime);
+  cy.get('.spinner-container').should("be.visible");
+  cy.tick(halfRacingTime);
+  cy.get('.spinner-container').should("not.to.exist");
 }
 
 function submitRacingGameInfo(carNameInput, racingTimes) {
