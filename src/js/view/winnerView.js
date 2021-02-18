@@ -1,12 +1,13 @@
 import { addWinnerElement } from "../controller/winnerController.js";
+import { Element } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 
 export const displayWinnerView = function (winners) {
   addWinnerElement(winners);
-  $("#winner-container").style.display = "flex";
+  $(Element.WINNER_CONTAINER_CLASS).style.display = "flex";
 };
 
 export const initializeWinnerView = function () {
   addWinnerElement();
-  $("#winner-container").style.display = "none";
+  $(Element.WINNER_CONTAINER_CLASS).style.display = "none";
 };

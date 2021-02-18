@@ -7,6 +7,7 @@ import {
   resetAllViews,
 } from "./controller/winnerController.js";
 import Car from "./model/Car.js";
+import { Element } from "./utils/constants.js";
 import { $ } from "./utils/querySelector.js";
 
 class App {
@@ -14,9 +15,9 @@ class App {
     this.initializeCarsCount();
     resetAllViews();
 
-    $("#car-names-submit").addEventListener("click", handleCarNamesSubmit);
-    $("#count-submit").addEventListener("click", handleCountSubmit);
-    $("#restart-button").addEventListener("click", handleRestartButton);
+    $(Element.CAR_NAMES_SUBMIT_CLASS).addEventListener("click", handleCarNamesSubmit);
+    $(Element.COUNT_SUBMIT_CLASS).addEventListener("click", handleCountSubmit);
+    $(Element.RESTART_BUTTON_CLASS).addEventListener("click", handleRestartButton);
   }
 
   initializeCarsCount() {

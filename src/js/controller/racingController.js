@@ -1,7 +1,7 @@
 import { app } from "../index.js";
-import { RACING_RULE } from "../utils/constants.js";
+import { Element, Racing_rule } from "../utils/constants.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
-import { $ } from "../utils/querySelector.js";
+import { $, $$ } from "../utils/querySelector.js";
 import { sleep } from "../utils/sleep.js";
 import { chooseWinners } from "./winnerController.js";
 
@@ -10,7 +10,7 @@ export const startRacingGame = async function () {
 
   addSpinner(racingCarElements);
   for (let round = 0; round < Number(app.count); round++) {
-    await sleep(RACING_RULE.ROUND_TIME);
+    await sleep(Racing_rule.ROUND_TIME);
     playRound(racingCarElements);
   }
   removeSpinner();
@@ -30,7 +30,7 @@ const playRound = (element) => {
 const addArrow = function (element) {
   const arrowElementHTML = `<div class="forward-icon mt-2">⬇️️</div>`;
 
-  element.querySelector(".car-player").insertAdjacentHTML("afterend", arrowElementHTML);
+  element.querySelector(Element.CAR_PLAYER_ID).insertAdjacentHTML("afterend", arrowElementHTML);
 };
 
 const addSpinner = (element) => {
@@ -45,9 +45,8 @@ const addSpinner = (element) => {
 }
 
 const removeSpinner = () => {
-  const spinerElementsHTML = document.querySelectorAll(".spinner-container");
+  const spinerElementsHTML = $$(Element.SPINNER_CONTAINER_ID);
 
-  console.log(spinerElementsHTML);
   spinerElementsHTML.forEach((element) => {
     element.parentNode.remove();
   });

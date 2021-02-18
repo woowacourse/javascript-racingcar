@@ -1,4 +1,5 @@
 import { app } from "../index.js";
+import { AlertMsg } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 import { initializeInputView } from "../view/inputView.js";
 import { initializeRacingView } from "../view/racingView.js";
@@ -11,7 +12,7 @@ export const chooseWinners = function () {
     .map((car) => car.name);
 
   displayWinnerView(winners);
-  setTimeout(() => alert("🎉 축하합니다 🎉"), 2000);
+  setTimeout(() => alert(AlertMsg.CONGRATULATION), 2000);
 };
 
 export const handleRestartButton = function () {

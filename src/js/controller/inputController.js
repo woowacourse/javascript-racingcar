@@ -1,4 +1,5 @@
 import { app } from "../index.js";
+import { AlertMsg, Element } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 import { displayCountView } from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
@@ -29,10 +30,10 @@ const isValidCount = function (value) {
 };
 
 export const handleCarNamesSubmit = function () {
-  const carNames = $("#car-names-input").value.split(",");
+  const carNames = $(Element.CAR_NAMES_INPUT_CLASS).value.split(",");
 
   if (!isValidCarNames(carNames)) {
-    alert("유효한 자동차 이름이 아닙니다.");
+    alert(AlertMsg.INVALID_CARNAME);
     return;
   }
 
@@ -41,15 +42,13 @@ export const handleCarNamesSubmit = function () {
 };
 
 export const handleCountSubmit = function () {
-  // const carNames = $("#car-names-input").value.split(",");
-  const count = $("#count-input").value;
+  const count = $(Element.COUNT_INPUT_CLASS).value;
 
   if (!isValidCount(count)) {
-    alert("시도할 횟수는 1이상이어야 합니다.");
+    alert(AlertMsg.INVALID_COUNT);
     return;
   }
 
-  // app.generateCars(carNames);
   app.generateCount(count);
   displayRacingCars(app.cars);
   startRacingGame();

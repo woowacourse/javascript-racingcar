@@ -1,11 +1,12 @@
+import { Element } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 
 export const initializeInputView = function () {
-  $("#car-names-input").value = "";
-  $("#count-input").value = "";
-  $("#count-container").style.display = "none";
+  $(Element.CAR_NAMES_INPUT_CLASS).value = "";
+  $(Element.COUNT_INPUT_CLASS).value = "";
+  $(Element.COUNT_CONTAINER_CLASS).style.display = "none";
 };
 
 export const displayCountView = function () {
-  $("#count-container").style.display = "block";
+  $(Element.COUNT_CONTAINER_CLASS).style.display = "block";
 };

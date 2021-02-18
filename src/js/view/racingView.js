@@ -1,3 +1,4 @@
+import { Element } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 
 export const displayRacingCars = function (cars) {
@@ -10,10 +11,10 @@ export const displayRacingCars = function (cars) {
   });
 
   $("#racing-container > section > div").innerHTML = carPlayersElement;
-  $("#racing-container").style.display = "flex";
+  $(Element.RACING_CONTAINER_CLASS).style.display = "flex";
 };
 
 export const initializeRacingView = function () {
-  $("#racing-container").style.display = "none";
+  $(Element.RACING_CONTAINER_CLASS).style.display = "none";
   $("#racing-container > section > div").innerHTML = "";
 };
