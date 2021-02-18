@@ -5,7 +5,7 @@ import { initializeInputView } from "../view/inputView.js";
 import { initializeRacingView } from "../view/racingView.js";
 import { displayWinnerView, initializeWinnerView } from "../view/winnerView.js";
 
-export const chooseWinners = function () {
+export const chooseWinners = () => {
   const maxPosition = Math.max(...app.cars.map((car) => car.position));
   const winners = app.cars
     .filter((car) => car.position === maxPosition)
@@ -15,18 +15,18 @@ export const chooseWinners = function () {
   setTimeout(() => alert(AlertMsg.CONGRATULATION), 2000);
 };
 
-export const handleRestartButton = function () {
+export const handleRestartButton = () => {
   app.initializeCarsCount();
   resetAllViews();
 };
 
-export const resetAllViews = function () {
+export const resetAllViews = () => {
   initializeInputView();
   initializeRacingView();
   initializeWinnerView();
 };
 
-export const addWinnerElement = function (winners = []) {
+export const addWinnerElement = (winners = []) => {
   const winnerElement = $("#winner-container > section > h2");
 
   winnerElement.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`;

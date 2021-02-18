@@ -1,7 +1,7 @@
 import { Element } from "../utils/constants.js";
 import { $ } from "../utils/querySelector.js";
 
-export const displayRacingCars = function (cars) {
+export const displayRacingCars = (cars) => {
   let carPlayersElement = "";
 
   cars.forEach((car) => {
@@ -14,7 +14,7 @@ export const displayRacingCars = function (cars) {
   $(Element.RACING_CONTAINER_CLASS).style.display = "flex";
 };
 
-export const initializeRacingView = function () {
+export const initializeRacingView = () => {
   $(Element.RACING_CONTAINER_CLASS).style.display = "none";
   $("#racing-container > section > div").innerHTML = "";
 };

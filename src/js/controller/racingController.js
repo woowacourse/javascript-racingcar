@@ -5,7 +5,7 @@ import { $, $$ } from "../utils/querySelector.js";
 import { sleep } from "../utils/sleep.js";
 import { chooseWinners } from "./winnerController.js";
 
-export const startRacingGame = async function () {
+export const startRacingGame = async () => {
   const racingCarElements = $("#racing-container > section > div");
 
   addSpinner(racingCarElements);
@@ -27,7 +27,7 @@ const playRound = (element) => {
   });
 }
 
-const addArrow = function (element) {
+const addArrow = (element) => {
   const arrowElementHTML = `<div class="forward-icon mt-2">⬇️️</div>`;
 
   element.querySelector(Element.CAR_PLAYER_ID).insertAdjacentHTML("afterend", arrowElementHTML);

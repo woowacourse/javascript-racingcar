@@ -9,8 +9,7 @@ const isValidLength = (carName) => {
   return 1 <= carName.length && carName.length <= 5;
 };
 
-// 화살표 함수로 통일하기
-const isAlphanumeric = function (input) {
+const isAlphanumeric = (input) => {
   return /^[a-zA-Z0-9]+$/.test(input);
 };
 
@@ -24,12 +23,11 @@ const isValidCarNames = (carNames) => {
   return carNames.every(isValidCarName) && !isDuplicated(carNames);
 };
 
-// 화살표 함수로 통일하기
-const isValidCount = function (value) {
+const isValidCount = (value) => {
   return Number(value) >= 1;
 };
 
-export const handleCarNamesSubmit = function () {
+export const handleCarNamesSubmit = () => {
   const carNames = $(Element.CAR_NAMES_INPUT_CLASS).value.split(",");
 
   if (!isValidCarNames(carNames)) {
@@ -41,7 +39,7 @@ export const handleCarNamesSubmit = function () {
   displayCountView();
 };
 
-export const handleCountSubmit = function () {
+export const handleCountSubmit = () => {
   const count = $(Element.COUNT_INPUT_CLASS).value;
 
   if (!isValidCount(count)) {
