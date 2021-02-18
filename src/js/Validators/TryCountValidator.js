@@ -3,11 +3,11 @@ export default class TryCountValidator {
     this.tryCount = tryCount;
   }
 
-  isNotInteger() {
-    return !Number.isInteger(this.tryCount);
+  isInteger() {
+    return Number.isInteger(this.tryCount);
   }
 
-  isNotPositiveNumber() {
-    return this.tryCount < 1;
+  isPositiveNumber() {
+    return this.tryCount > 0;
   }
 }

@@ -1,17 +1,20 @@
 import CarGameView from './CarGameView.js';
 import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
-import Validator from './Validators/Validator.js';
+import RacingCarValidator from './Validators/RacingCarValidator.js';
 
 export default class CarGameManager {
-  initGame() {
+  constructor() {
     this.carGameView = new CarGameView();
-    this.validator = new Validator();
+    this.racingCarValidator = new RacingCarValidator();
     this.bindEvents();
+  }
 
+  initGame() {
     this.carGameView.init();
     this.cars = [];
     this.carNames = [];
+    this.errorMessage = '';
   }
 
   bindEvents() {
@@ -44,8 +47,11 @@ export default class CarGameManager {
       .value.split(',')
       .map((name) => name.trim());
 
-    if (!this.validator.validateCarNames(this.carNames)) {
-      return this.initGame();
+    this.errorMessage = this.racingCarValidator.checkCarNamesValidation(this.carNames);
+    if (this.errorMessage) {
+      alert(this.errorMessage);
+      this.initGame();
+      return;
     }
 
     this.carGameView.showView(document.querySelector('#input-try-count'));
@@ -54,10 +60,13 @@ export default class CarGameManager {
   tryCountInputHandler() {
     const tryCount = Number(document.querySelector('#input-try-count > div > input').value);
 
-    if (!this.validator.validateTryCount(tryCount)) {
+    this.errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
+    if (this.errorMessage) {
+      alert(this.errorMessage);
       this.carGameView.resetInput(document.querySelector('#input-try-count > div'));
       this.carGameView.hideView(document.querySelector('#display-game-progress'));
       this.carGameView.hideView(document.querySelector('#display-game-result'));
+
       return;
     }
 
