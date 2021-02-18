@@ -48,7 +48,6 @@ export default class App extends Page {
   }
 
   race = () => {
-    console.log(this.cars);
     for (let i = 1; i <= this.raceTimes.value; i++) {
       const isFinished = i === this.raceTimes.value;
       setTimeout(this.processRaceOnce, GAME_SETTING.PROCESS_TERM * i, isFinished);
