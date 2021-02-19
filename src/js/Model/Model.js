@@ -10,6 +10,7 @@ import {
 	INVALID_INTEGER_ALERT,
 	OVER_MAX_COUNT_ALERT,
 } from "./constants.js";
+
 import {
 	isFirstSubmittedName,
 	isIncludeBlank,
@@ -32,6 +33,7 @@ class Model {
 	}
 
 	generateCars(nameInputValue) {
+
 		return nameInputValue.split(",").map((carName) => ({ name: carName, score: 0, randomNumbers: [] }));
 	}
 
@@ -42,7 +44,7 @@ class Model {
 	setCount(value) {
 		this.count = value;
 	}
-	//뷰 렌더애로우랑 겟 불스 무브먼트 주석 처리하고, 그 아래 뷰 템퍼렌더애로우로 변경
+
 	runArrowRenderByCount() {
 		for (let i = 0; i < this.count; i++) {
 			const boolsAboutMovement = this.getBoolsAboutMovement();
@@ -51,7 +53,6 @@ class Model {
 		// this.getBoolsAboutMovement();
 		View.setRace(this.cars);
 	}
-	//
 
 	getBoolsAboutMovement() {
 		const previousScores = [...this.cars].map((car) => car.score);
