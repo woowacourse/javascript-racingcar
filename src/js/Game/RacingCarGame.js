@@ -10,18 +10,14 @@ export default class RacingCarGame {
     return Math.floor(Math.random() * (NUMBERS.RANDOM_RANGE + 1));
   }
 
-  playOneRound() {
-    console.log("RACING!")
+  // 자동차 게임 한 턴을 진행한다.
+  playGame() {
     this.cars.forEach((car) => {
       if (this.getRandomInt() >= NUMBERS.RUN_POINT) {
         car.run();
       }
     });
   }
-
-  // playGame() {
-
-  // }
 
   getCars() {
     return this.cars;

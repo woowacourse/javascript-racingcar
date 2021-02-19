@@ -41,7 +41,6 @@ export default class CarGameView {
   }
 
   displayProgress(cars) {
-    console.log("DRAW");
     this.gameProgressView.querySelector('.d-flex').innerHTML = this.getProgressTemplate(cars);
     this.showView(this.gameProgressView);
   }
