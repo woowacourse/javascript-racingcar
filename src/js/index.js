@@ -35,11 +35,11 @@ export default class Racing {
     this.UIController.focusElement(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT);
   }
 
-  handleTryCountInput() {
+  async handleTryCountInput() {
     const tryCountInput = document.querySelector(ELEMENT_CLASS_NAME.TRY_COUNT_INPUT).value;
 
     const alertMessage = createTryCountAlertMessage(tryCountInput);
-    if(alertMessage) {
+    if (alertMessage) {
       alert(alertMessage);
       return;
     }
@@ -47,15 +47,15 @@ export default class Racing {
     this.tryCount = Number(tryCountInput);
     this.moveCars();
     
-    this.UIController.showProgress(this.cars);
-    this.UIController.showWinners(this.createWinnerNames(), this.cars.length);
+    this.UIController.disableInputs();
+    this.UIController.showProgressBars(this.cars);
+    await this.UIController.showRacingResult(this.cars);
+    this.UIController.showWinners(this.createWinnerNames());
   }
 
   createCars(carNamesArr) { 
-    carNamesArr.forEach(carName => {
-      const car = new Car(carName.trim());
-      this.cars.push(car);
-    });
+    const carNames = carNamesArr.map(carName => new Car(carName.trim()));
+    this.cars.push(...carNames);
   }
 
   moveCars() {
@@ -66,16 +66,16 @@ export default class Racing {
 
   createWinnerNames() {
     return this.cars.reduce((winners, car) => {
-      if (winners.length === 0 || car.carPos > winners[0].carPos) {
+      if (winners.length === 0 || car.position > winners[0].position) {
         return [car];
       }
 
-      if (car.carPos === winners[0].carPos) {
+      if (car.position === winners[0].position) {
         winners.push(car);
       } 
 
       return winners;
-    }, []).map(winner => winner.carName);
+    }, []).map(winner => winner.name);
   }
 
   restartGame() {
