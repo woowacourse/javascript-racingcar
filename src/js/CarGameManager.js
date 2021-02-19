@@ -12,7 +12,7 @@ export default class CarGameManager {
     this.initGame();
     this.bindEvents();
 
-    this.winners = "";
+    this.winners = '';
   }
 
   initGame() {
@@ -55,13 +55,13 @@ export default class CarGameManager {
     this.carGameView.displayTryCountView();
   }
 
-  displayNextProgress(racingCarGame) {
-    racingCarGame.playOneRound();
-    this.carGameView.displayProgress(racingCarGame.getCars());
+  displayNextProgress() {
+    this.racingCarGame.playOneRound();
+    this.carGameView.displayProgress(this.racingCarGame.getCars());
   }
 
-  displayResult(racingCarGame) {
-    this.winners = racingCarGame.getWinners();
+  displayResult() {
+    this.winners = this.racingCarGame.getWinners();
     this.carGameView.displayWinners(this.winners);
     setTimeout(alert, 2 * NUMBERS.SECOND, `🎉🎉🎉${this.winners}의 승리입니다. 축하합니다!🎉🎉🎉`);
   }
@@ -70,13 +70,13 @@ export default class CarGameManager {
     this.$element.querySelectorAll('.spinner-container').forEach((spinner) => this.carGameView.hideView(spinner));
   }
 
-  displayGameProgress(racingCarGame) {
-    this.displayNextProgress(racingCarGame);
-    const playByInterval = setInterval(this.displayNextProgress.bind(this), 1000, racingCarGame);
-    setTimeout(clearInterval, racingCarGame.tryCount * NUMBERS.SECOND, playByInterval);
-    setTimeout(this.hideSpinner.bind(this), racingCarGame.tryCount * NUMBERS.SECOND);
+  displayGameProgress() {
+    this.displayNextProgress(this.racingCarGame);
+    const playByInterval = setInterval(this.displayNextProgress.bind(this), 1000);
+    setTimeout(clearInterval, this.racingCarGame.tryCount * NUMBERS.SECOND, playByInterval);
+    setTimeout(this.hideSpinner.bind(this), this.racingCarGame.tryCount * NUMBERS.SECOND);
     setTimeout(this.displayResult.bind(this),
-      racingCarGame.tryCount * NUMBERS.SECOND + 1 * NUMBERS.SECOND, racingCarGame);
+      this.racingCarGame.tryCount * NUMBERS.SECOND + 1 * NUMBERS.SECOND);
   }
 
   tryCountInputHandler() {
@@ -91,9 +91,9 @@ export default class CarGameManager {
 
     this.createCar();
 
-    const racingCarGame = new RacingCarGame(this.cars, tryCount);
+    this.racingCarGame = new RacingCarGame(this.cars, tryCount);
     this.carGameView.displayProgress(this.cars);
-    setTimeout(this.displayGameProgress.bind(this), 1 * NUMBERS.SECOND, racingCarGame);
+    setTimeout(this.displayGameProgress.bind(this), 1 * NUMBERS.SECOND);
   }
 
   setWinners(cars) {
