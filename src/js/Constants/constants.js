@@ -15,4 +15,5 @@ export const NUMBERS = {
   RUN_POINT: 4,
   MIN_NAME_LENGTH: 1,
   MAX_NAME_LENGTH: 5,
+  SECOND: 1000,
 };

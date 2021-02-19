@@ -57,10 +57,6 @@ export default class CarGameView {
         </div>`).join('');
   }
 
-  hideSpinner() {
-    Array.from(this.$element.querySelectorAll('.spinner-container')).forEach(spinner => this.hideView(spinner));
-  }
-
   getForwardIconsTemplate(count) {
     return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
   }

@@ -22,6 +22,12 @@ body {
   display: none;
 }
 
+.car-player-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .car-player {
   height: 36px;
   min-width: 64px;
