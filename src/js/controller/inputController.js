@@ -5,13 +5,9 @@ import { displayCountView } from "../view/inputView.js";
 import { displayRacingCars } from "../view/racingView.js";
 import { startRacingGame } from "./racingController.js";
 
-const isValidLength = (carName) => {
-  return 1 <= carName.length && carName.length <= 5;
-};
+const isValidLength = (carName) => 1 <= carName.length && carName.length <= 5;
 
-const isAlphanumeric = (input) => {
-  return /^[a-zA-Z0-9]+$/.test(input);
-};
+const isAlphanumeric = (input) => /^[a-zA-Z0-9]+$/.test(input);
 
 const isValidCarName = (carName) => {
   return isValidLength(carName) && isAlphanumeric(carName);
@@ -23,9 +19,7 @@ const isValidCarNames = (carNames) => {
   return carNames.every(isValidCarName) && !isDuplicated(carNames);
 };
 
-const isValidCount = (value) => {
-  return Number(value) >= 1;
-};
+const isValidCount = (value) => Number(value) >= 1;
 
 export const handleCarNamesSubmit = () => {
   const carNames = $(Element.CAR_NAMES_INPUT_CLASS).value.split(",");
