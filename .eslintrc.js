@@ -12,5 +12,6 @@ module.exports = {
     'no-console': 'off',
     'class-methods-use-this': 'off',
     'max-depth': ['error', 2],
+    'min-len': 100,
   },
 };
