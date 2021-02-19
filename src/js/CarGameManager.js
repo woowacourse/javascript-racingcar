@@ -56,6 +56,7 @@ export default class CarGameManager {
     }
 
     this.carGameView.displayTryCountView();
+    this.$element.querySelector('#try-count-input').focus();
   }
 
   handleCountInput() {
