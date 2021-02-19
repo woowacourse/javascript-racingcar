@@ -58,42 +58,18 @@ export default class CarGameManager {
     this.carGameView.displayTryCountView();
   }
 
-  displayResult() {
-    const winners = this.racingCarGame.getWinners();
-    this.carGameView.displayWinners(winners);
-    this.alertGameResultTimeout = setTimeout(alert, 2 * NUMBERS.SECOND, `🎉🎉🎉${winners}의 승리입니다. 축하합니다!🎉🎉🎉`);
-  }
-
-  hideSpinner() {
-    this.$element.querySelectorAll('.spinner-container').forEach((spinner) => this.carGameView.hideView(spinner));
-  }
-
-  displayNextProgress() {
-    if (this.racingCarGame.tryCount === 0) {
-      clearInterval(this.gamePlayInterval);
-      this.hideSpinner();
-      this.displayResult();
-      return;
-    }
-    this.racingCarGame.playGame();
-    this.carGameView.displayProgress(this.racingCarGame.getCars());
-    this.racingCarGame.tryCount -= 1;
-  }
-
-  displayGameProgress() {
-    this.displayNextProgress();
-    this.gamePlayInterval = setInterval(this.displayNextProgress.bind(this), 1000);
-  }
-
   handleCountInput() {
     const tryCount = this.carGameView.getTryCount();
     const errorMessage = this.validator.validateTryCount(tryCount);
+
+    this.carGameView.hideView(this.carGameView.gameProgressView);
+    this.carGameView.hideView(this.carGameView.gameResultView);
 
     clearTimeout(this.gameProgressTimeout);
     clearInterval(this.gamePlayInterval);
 
     if (errorMessage) {
-      this.carGameView.alertError(errorMessage);
+      alert(errorMessage);
       this.carGameView.resetTryCountView();
       return;
     }
@@ -103,6 +79,35 @@ export default class CarGameManager {
     this.racingCarGame = new RacingCarGame(this.cars, tryCount);
     this.carGameView.displayProgress(this.cars);
     this.gamePlayTimeout = setTimeout(this.displayGameProgress.bind(this), 1 * NUMBERS.SECOND);
+  }
+
+  displayGameProgress() {
+    this.displayNextProgress();
+    this.gamePlayInterval = setInterval(this.displayNextProgress.bind(this), 1000);
+  }
+
+  displayNextProgress() {
+    if (this.racingCarGame.getTryCount() === 0) {
+      clearInterval(this.gamePlayInterval);
+      this.hideSpinner();
+      this.displayResult();
+      return;
+    }
+    this.racingCarGame.playGame();
+    this.carGameView.displayProgress(this.racingCarGame.getCars());
+    this.racingCarGame.setTryCount(this.racingCarGame.getTryCount() - 1);
+  }
+
+  hideSpinner() {
+    this.$element.querySelectorAll('.spinner-container')
+      .forEach((spinner) => this.carGameView.hideView(spinner));
+  }
+
+  displayResult() {
+    const winners = this.racingCarGame.getWinners();
+    this.carGameView.displayWinners(winners);
+    this.alertGameResultTimeout = setTimeout(alert,
+      2 * NUMBERS.SECOND, `🎉🎉🎉${winners}의 승리입니다. 축하합니다!🎉🎉🎉`);
   }
 
   createCar() {

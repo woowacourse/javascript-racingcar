@@ -19,6 +19,14 @@ export default class RacingCarGame {
     });
   }
 
+  setTryCount(tryCount) {
+    this.tryCount = tryCount;
+  }
+
+  getTryCount() {
+    return this.tryCount;
+  }
+
   getCars() {
     return this.cars;
   }
