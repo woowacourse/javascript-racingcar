@@ -6,7 +6,7 @@
   "author": "<fullstackmachinelearning@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cypress": "^6.2.1"
+    "cypress": "^6.5.0"
   },
   "devDependencies": {
     "eslint": "^7.19.0",
