@@ -6,23 +6,23 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
 
   const initGame = () => {
-    cy.get('#input-car-names').should('be.visible');
-    cy.get('#input-try-count').should('not.be.visible');
+    cy.get('#input-names-wrapper').should('be.visible');
+    cy.get('#input-count-wrapper').should('not.be.visible');
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
   };
 
   const inputCarNames = (carNames = defaultCarNames) => {
-    cy.get('#input-car-names > div > input').type(carNames);
-    cy.get('#input-car-names > div > button').click();
-    cy.get('#input-try-count').should('be.visible');
+    cy.get('#input-car-names').type(carNames);
+    cy.get('#input-names-btn').click();
+    cy.get('#input-count-wrapper').should('be.visible');
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
   };
 
   const inputTryCount = (count) => {
-    cy.get('#input-try-count > div > input').type(count);
-    cy.get('#input-try-count > div > button').click();
+    cy.get('#input-try-count').type(count);
+    cy.get('#input-count-btn').click();
     cy.get('#display-game-progress').should('be.visible');
     cy.get('#display-game-result').should('be.visible');
   };
@@ -41,7 +41,8 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
     inputCarNames();
     inputTryCount('10');
 
-    defaultCarNames.split(',')
+    defaultCarNames
+      .split(',')
       .map((name, index) => cy.get('.car-player').eq(index).should('have.text', name.trim()));
   });
 
@@ -70,7 +71,10 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
 
     cy.get('.car-player').each((car, idx) => {
       const currentPosition = car[0].dataset.position;
-      cy.get('.car-player').eq(idx).siblings('.forward-icon').should('have.length', currentPosition);
+      cy.get('.car-player')
+        .eq(idx)
+        .siblings('.forward-icon')
+        .should('have.length', currentPosition);
     });
   });
 
@@ -81,13 +85,19 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
 
     const positions = [];
     const winners = [];
-    cy.get('.car-player').each((car) => {
-      positions.push(Number(car[0].dataset.position));
-    }).then(() => {
-      const maxPosition = Math.max(...positions);
-      cy.get(`[data-position=${maxPosition}]`)
-        .each((winner) => winners.push(winner[0].innerText))
-        .then(() => cy.get('#display-game-result > h2').should('have.text', `🏆 최종 우승자: ${winners.join(', ')} 🏆`));
-    });
+    cy.get('.car-player')
+      .each((car) => {
+        positions.push(Number(car[0].dataset.position));
+      })
+      .then(() => {
+        const maxPosition = Math.max(...positions);
+        cy.get(`[data-position=${maxPosition}]`)
+          .each((winner) => winners.push(winner[0].innerText))
+          .then(() =>
+            cy
+              .get('#display-game-result > h2')
+              .should('have.text', `🏆 최종 우승자: ${winners.join(', ')} 🏆`)
+          );
+      });
   });
 });

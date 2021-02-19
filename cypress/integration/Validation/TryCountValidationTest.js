@@ -7,16 +7,16 @@ describe('시도 횟수 유효성 테스트', () => {
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
 
   const initGame = () => {
-    cy.get('#input-car-names').should('be.visible');
-    cy.get('#input-try-count').should('not.be.visible');
+    cy.get('#input-names-wrapper').should('be.visible');
+    cy.get('#input-count-wrapper').should('not.be.visible');
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
   };
 
   const inputCarNames = (carNames = defaultCarNames) => {
-    cy.get('#input-car-names > div > input').type(carNames);
-    cy.get('#input-car-names > div > button').click();
-    cy.get('#input-try-count').should('be.visible');
+    cy.get('#input-car-names').type(carNames);
+    cy.get('#input-names-btn').click();
+    cy.get('#input-count-wrapper').should('be.visible');
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
   };
@@ -24,15 +24,12 @@ describe('시도 횟수 유효성 테스트', () => {
   const alertTryCountError = (tryCount, errorMessage) => {
     initGame();
     inputCarNames();
-    cy.get('#input-try-count > div > input').type(tryCount);
-    cy.get('#input-try-count > div > button').click()
+    cy.get('#input-try-count').type(tryCount);
+    cy.get('#input-count-btn').click();
     cy.get('@windowAlert')
       .should('have.callCount', 1) //  몇번째 호출되었는지 반드시 확인!
       .its('lastCall')
-      .should(
-        'be.calledWith',
-        errorMessage,
-      )
+      .should('be.calledWith', errorMessage);
     cy.get('#display-game-progress').should('not.be.visible');
     cy.get('#display-game-result').should('not.be.visible');
   };

@@ -1,9 +1,11 @@
+import { $ } from './Utils/dom.js';
+
 export default class CarGameView {
   constructor() {
-    this.inputCarNamesView = document.querySelector('#input-car-names');
-    this.inputTryCountView = document.querySelector('#input-try-count');
-    this.gameProgressView = document.querySelector('#display-game-progress');
-    this.gameResultView = document.querySelector('#display-game-result');
+    this.inputCarNamesView = $('#input-names-wrapper');
+    this.inputTryCountView = $('#input-count-wrapper');
+    this.gameProgressView = $('#display-game-progress');
+    this.gameResultView = $('#display-game-result');
   }
 
   showView($element) {
@@ -28,7 +30,7 @@ export default class CarGameView {
   }
 
   renderGameProgress(cars) {
-    this.gameProgressView.querySelector('.d-flex').innerHTML = this.getGameProgressTemplate(cars);
+    $('#racing-progress').innerHTML = this.getGameProgressTemplate(cars);
   }
 
   getGameProgressTemplate(cars) {
@@ -48,6 +50,6 @@ export default class CarGameView {
   }
 
   renderWinners(winner) {
-    this.gameResultView.querySelector('h2').innerText = `🏆 최종 우승자: ${winner} 🏆`;
+    $('#winners').innerText = `🏆 최종 우승자: ${winner} 🏆`;
   }
 }

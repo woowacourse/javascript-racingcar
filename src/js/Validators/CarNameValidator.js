@@ -8,7 +8,7 @@ export default class CarNameValidator {
   isValidLength() {
     return this.carNames.every(
       (carName) =>
-        carName.length < NUMBERS.MAX_NAME_LENGTH + 1 && carName.length > NUMBERS.MIN_NAME_LENGTH - 1
+        carName.length <= NUMBERS.MAX_NAME_LENGTH && carName.length >= NUMBERS.MIN_NAME_LENGTH
     );
   }
 

@@ -1,6 +1,7 @@
 import CarGameView from './CarGameView.js';
 import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
+import { $ } from './Utils/dom.js';
 import RacingCarValidator from './Validators/RacingCarValidator.js';
 
 export default class CarGameManager {
@@ -24,26 +25,25 @@ export default class CarGameManager {
   }
 
   bindInputCarNamesEvent() {
-    document.querySelector('#input-car-names > div > button').addEventListener('click', () => {
+    $('#input-names-btn').addEventListener('click', () => {
       this.carNamesInputHandler();
     });
   }
 
   bindInputTryCountEvent() {
-    document.querySelector('#input-try-count > div > button').addEventListener('click', () => {
+    $('#input-count-btn').addEventListener('click', () => {
       this.tryCountInputHandler();
     });
   }
 
   bindResetEvent() {
-    document.querySelector('#display-game-result > div > button').addEventListener('click', () => {
+    $('#reset-btn').addEventListener('click', () => {
       this.resetHandler();
     });
   }
 
   carNamesInputHandler() {
-    this.carNames = document
-      .querySelector('#input-car-names > div > input')
+    this.carNames = $('#input-car-names')
       .value.split(',')
       .map((name) => name.trim());
 
@@ -54,18 +54,18 @@ export default class CarGameManager {
       return;
     }
 
-    this.carGameView.showView(document.querySelector('#input-try-count'));
+    this.carGameView.showView($('#input-count-wrapper'));
   }
 
   tryCountInputHandler() {
-    const tryCount = Number(document.querySelector('#input-try-count > div > input').value);
+    const tryCount = Number($('#input-try-count').value);
 
     this.errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
     if (this.errorMessage) {
       alert(this.errorMessage);
-      this.carGameView.resetInput(document.querySelector('#input-try-count > div'));
-      this.carGameView.hideView(document.querySelector('#display-game-progress'));
-      this.carGameView.hideView(document.querySelector('#display-game-result'));
+      this.carGameView.resetInput($('#input-count-wrapper > div'));
+      this.carGameView.hideView($('#display-game-progress'));
+      this.carGameView.hideView($('#display-game-result'));
 
       return;
     }
@@ -75,8 +75,8 @@ export default class CarGameManager {
     racingCarGame.playGame();
     this.carGameView.renderGameProgress(racingCarGame.getCars());
     this.carGameView.renderWinners(racingCarGame.getWinners());
-    this.carGameView.showView(document.querySelector('#display-game-progress'));
-    this.carGameView.showView(document.querySelector('#display-game-result'));
+    this.carGameView.showView($('#display-game-progress'));
+    this.carGameView.showView($('#display-game-result'));
   }
 
   resetHandler() {
