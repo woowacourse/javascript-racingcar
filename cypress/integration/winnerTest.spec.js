@@ -45,5 +45,6 @@ describe("레이싱 우승자 테스트", () => {
     cy.on('docuemnt:alert', (str) => {
       expect(str).to.equal("🎉 축하합니다 🎉");
     })
+
   });
 });

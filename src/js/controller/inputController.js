@@ -40,7 +40,6 @@ export const handleCountSubmit = () => {
     alert(AlertMsg.INVALID_COUNT);
     return;
   }
-
   app.generateCount(count);
   displayRacingCars(app.cars);
   startRacingGame();
