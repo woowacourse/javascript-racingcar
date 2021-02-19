@@ -58,7 +58,7 @@ export default class RacingUI {
       .join('');
   }
 
-  async showRacingResult(cars, winners) {
+  async showRacingResult(cars) {
     for await (let car of cars) {
       await delay(() => {
         document.querySelector(`.${car.name}`).innerHTML = `
