@@ -17,6 +17,33 @@
   <img width="400" src="https://techcourse-storage.s3.ap-northeast-2.amazonaws.com/7c76e809d82a4a3aa0fd78a86be25427">
 </p>
 
+### 📝 앱 구조도
+
+<p align="middle">
+  <img width="600" src="./src/images/app_structure.png">
+</p>
+
+### 📝 컴포넌트 구조
+
+<p align="middle">
+  <img width="600" src="./src/images/app_component_structure.png">
+</p>
+
+### 📂 디렉토리 구조
+
+```
+src/js
+  ├── Constants/
+  │   └── constants.js
+  ├── Game/
+  │   ├── Car.js
+  │   └── RacingCarGame.js
+  ├── CarGameManager.js
+  ├── CarGameView.js
+  ├── index.js
+  └── utils.js
+```
+
 ## 과제 요구사항
 
 ### 🎯 step1
