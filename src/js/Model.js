@@ -66,22 +66,9 @@ class Model {
 	}
 
 	getResultText() {
-		const winners = this.getWinners();
+		const winners = Utils.getWinners(this.cars);
+		this.getWinners();
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
-	}
-
-	getWinners() {
-		const maxScore = this.getMaxScore();
-		const carObjectsWithMaxScore = this.getCarObjectsWithMaxScore(maxScore);
-		return carObjectsWithMaxScore.map((car) => car.name);
-	}
-
-	getMaxScore() {
-		return Math.max(...this.cars.map((car) => car.score));
-	}
-
-	getCarObjectsWithMaxScore(maxScore) {
-		return this.cars.filter((car) => car.score === maxScore);
 	}
 
 	clearStates() {
@@ -89,32 +76,52 @@ class Model {
 		this.count = 0;
 	}
 
+	isNameBiggerThan(maxNameLength, names) {
+		return names.some((name) => name.length > maxNameLength);
+	}
+
 	validateName(names) {
 		if (this.cars.length !== 0) {
 			return { validity: false, message: MESSAGES.NAME_ALREADY_REGISTERED };
-		} else if (names.includes("")) {
-			return { validity: false, message: MESSAGES.EMPTY_NAME };
-		} else if (names.length > GAME_SETTINGS.MAX_TOTAL_NUMBER_OF_NAMES) {
-			return { validity: false, message: MESSAGES.TOO_MANY_NAMES };
-		} else if (this.isNameBiggerThan(GAME_SETTINGS.MAX_NAME_LENGTH, names)) {
-			return { validity: false, message: MESSAGES.TOO_LONG_NAME };
-		} else if ([...new Set(names)].length !== names.length) {
-			return { validity: false, message: MESSAGES.OVERWRITED };
-		} else return { validity: true, message: null };
-	}
+		}
 
-	isNameBiggerThan(maxNameLength, names) {
-		return names.some((name) => name.length > maxNameLength);
+		if (names.includes("")) {
+			return { validity: false, message: MESSAGES.EMPTY_NAME };
+		}
+
+		if (names.length > GAME_SETTINGS.MAX_TOTAL_NUMBER_OF_NAMES) {
+			return { validity: false, message: MESSAGES.TOO_MANY_NAMES };
+		}
+
+		if (this.isNameBiggerThan(GAME_SETTINGS.MAX_NAME_LENGTH, names)) {
+			return { validity: false, message: MESSAGES.TOO_LONG_NAME };
+		}
+
+		if ([...new Set(names)].length !== names.length) {
+			return { validity: false, message: MESSAGES.OVERWRITTEN };
+		}
+
+		return { validity: true, message: null };
 	}
 
 	validateCount(submittedCount) {
 		if (this.count !== 0) {
 			return { validity: false, message: MESSAGES.COUNT_ALREADY_REGISTERED };
-		} else if (!Utils.isNaturalNumber(submittedCount)) {
+		}
+
+		if (isNaN(submittedCount)) {
+			return { validity: false, message: MESSAGES.NAN };
+		}
+
+		if (isNotNaturalNumber(submittedCount)) {
 			return { validity: false, message: MESSAGES.NOT_NATURAL_NUMBER };
-		} else if (submittedCount > GAME_SETTINGS.MAX_COUNT) {
+		}
+
+		if (submittedCount > GAME_SETTINGS.MAX_COUNT) {
 			return { validity: false, message: MESSAGES.TOO_BIG_COUNT };
-		} else return { validity: true, message: null };
+		}
+
+		return { validity: true, message: null };
 	}
 }
 

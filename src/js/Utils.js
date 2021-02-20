@@ -48,6 +48,12 @@ class Utils {
 	static isNaturalNumber(number) {
 		return number > 0 && Number.isInteger(number);
 	}
+
+	static getWinners(cars) {
+		const maxScore = Math.max(...cars.map((car) => car.score));
+		const maxScoreCars = cars.filter((car) => car.score === maxScore);
+		return maxScoreCars.map((car) => car.name);
+	}
 }
 
 export default Utils;
