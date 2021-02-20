@@ -1,9 +1,15 @@
 import { NUMBERS } from '../Constants/constants.js';
+import Car from './Car.js';
 
 export default class RacingCarGame {
-  constructor(cars, tryCount) {
-    this.cars = cars;
+  constructor(carNames, tryCount) {
+    this.carNames = carNames;
     this.tryCount = tryCount;
+    this.cars = this.createCars();
+  }
+
+  createCars() {
+    return this.carNames.map((carName) => new Car(carName));
   }
 
   getRandomInt() {

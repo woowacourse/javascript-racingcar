@@ -16,7 +16,6 @@ export default class CarGameManager {
 
   initGame() {
     this.carGameView.init();
-    this.cars = [];
     this.carNames = [];
     setTimeout(() => this.$element.querySelector('#car-names-input').focus(), 0);
   }
@@ -86,10 +85,8 @@ export default class CarGameManager {
     disableElement(this.$element.querySelector('#try-count-input'));
     disableElement(this.$element.querySelector('#try-count-check-button'));
 
-    this.createCar();
-
-    this.racingCarGame = new RacingCarGame(this.cars, tryCount);
-    this.carGameView.displayProgress(this.cars);
+    this.racingCarGame = new RacingCarGame(this.carNames, tryCount);
+    this.carGameView.displayProgress(this.racingCarGame.getCars());
     this.gamePlayTimeout = setTimeout(this.displayGameProgress.bind(this), 1 * NUMBERS.SECOND);
   }
 
@@ -120,9 +117,5 @@ export default class CarGameManager {
     this.carGameView.displayWinners(winners);
     this.alertGameResultTimeout = setTimeout(alert,
       2 * NUMBERS.SECOND, `🎉🎉🎉${winners}의 승리입니다. 축하합니다!🎉🎉🎉`);
-  }
-
-  createCar() {
-    this.cars = this.carNames.map((carName) => new Car(carName));
   }
 }
