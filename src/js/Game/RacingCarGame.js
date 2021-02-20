@@ -1,25 +1,21 @@
 import { NUMBERS } from '../Constants/constants.js';
 import Car from './Car.js';
+import { getRandomInt } from '../utils.js';
 
 export default class RacingCarGame {
   constructor(carNames, tryCount) {
-    this.carNames = carNames;
     this.tryCount = tryCount;
-    this.cars = this.createCars();
+    this.cars = this.createCars(carNames);
   }
 
-  createCars() {
-    return this.carNames.map((carName) => new Car(carName));
-  }
-
-  getRandomInt() {
-    return Math.floor(Math.random() * (NUMBERS.RANDOM_RANGE + 1));
+  createCars(carNames) {
+    return carNames.map((carName) => new Car(carName));
   }
 
   // 자동차 게임 한 턴을 진행한다.
   playGame() {
     this.cars.forEach((car) => {
-      if (this.getRandomInt() >= NUMBERS.RUN_POINT) {
+      if (getRandomInt(NUMBERS.RANDOM_RANGE) >= NUMBERS.RUN_POINT) {
         car.run();
       }
     });
