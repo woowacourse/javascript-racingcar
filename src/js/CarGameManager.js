@@ -72,11 +72,6 @@ export default class CarGameManager {
     this.carGameView.hideView(this.carGameView.gameProgressView);
     this.carGameView.hideView(this.carGameView.gameResultView);
 
-    disableElement(this.$element.querySelector('#car-names-input'));
-    disableElement(this.$element.querySelector('#car-names-check-button'));
-    disableElement(this.$element.querySelector('#try-count-input'));
-    disableElement(this.$element.querySelector('#try-count-check-button'));
-
     clearTimeout(this.gameProgressTimeout);
     clearInterval(this.gamePlayInterval);
 
@@ -85,6 +80,11 @@ export default class CarGameManager {
       this.carGameView.resetTryCountView();
       return;
     }
+
+    disableElement(this.$element.querySelector('#car-names-input'));
+    disableElement(this.$element.querySelector('#car-names-check-button'));
+    disableElement(this.$element.querySelector('#try-count-input'));
+    disableElement(this.$element.querySelector('#try-count-check-button'));
 
     this.createCar();
 
