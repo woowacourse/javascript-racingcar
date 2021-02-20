@@ -67,7 +67,7 @@ class Model {
 
 	getResultText() {
 		const winners = Utils.getWinners(this.cars);
-		this.getWinners();
+
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`;
 	}
 
