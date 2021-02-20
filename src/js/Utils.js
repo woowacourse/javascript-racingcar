@@ -1,53 +1,53 @@
 class Utils {
-	setAttributes(element, attributes) {
+	static setAttributes(element, attributes) {
 		for (let i in attributes) {
 			element.setAttribute(i, attributes[i]);
 		}
 	}
 
-	appendChildren(parentElement, ...ChildElements) {
+	static appendChildren(parentElement, ...ChildElements) {
 		for (let i = 0; i < ChildElements.length; i++) {
 			parentElement.appendChild(ChildElements[i]);
 		}
 	}
 
-	createElement(tagType, attributes, text) {
+	static createElement(tagType, attributes, text) {
 		const result = document.createElement(tagType);
 		if (text) {
 			const innerText = document.createTextNode(text);
-			this.appendChildren(result, innerText);
+			appendChildren(result, innerText);
 		}
 		if (attributes) {
-			this.setAttributes(result, attributes);
+			setAttributes(result, attributes);
 		}
 		return result;
 	}
 
-	appendRecursiveChild(parent, ...children) {
+	static appendRecursiveChild(parent, ...children) {
 		for (let i = 0; i < children.length; i++) {
 			if (Array.isArray(children[i])) {
-				children[i] = this.appendRecursiveChild(...children[i]);
+				children[i] = appendRecursiveChild(...children[i]);
 			}
 		}
-		this.appendChildren(parent, ...children);
+		appendChildren(parent, ...children);
 		return parent;
 	}
 
-	getArrowElement() {
-		return this.createElement("div", { class: "forward-icon mt-2" }, "⬇️");
+	static getArrowElement() {
+		return createElement("div", { class: "forward-icon mt-2" }, "⬇️");
 	}
 
-	getCarNameDiv(name) {
-		return this.createElement("div", { class: "car-player mr-2" }, name);
+	static getCarNameDiv(name) {
+		return createElement("div", { class: "car-player mr-2" }, name);
 	}
 
-	clearInputValue(inputElement) {
+	static clearInputValue(inputElement) {
 		inputElement.value = "";
 	}
 
-	isNaturalNumber(number) {
-		return number !== NaN && number > 0 && Number.isInteger(number);
+	static isNaturalNumber(number) {
+		return number > 0 && Number.isInteger(number);
 	}
 }
 
-export default new Utils();
+export default Utils;
