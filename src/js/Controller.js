@@ -4,6 +4,10 @@ import Utils from "./Utils.js";
 import { IDS } from "./constants.js";
 
 class Controller {
+	constructor() {
+		this.view = new View();
+		this.model = new Model();
+	}
 	countClickHandler() {
 		const $countInput = document.getElementById(IDS.COUNT_INPUT);
 		const submittedCount = Number($countInput.value);
@@ -11,10 +15,10 @@ class Controller {
 		const { validity, message } = Model.validateCount(submittedCount);
 		if (validity === false) return alert(message);
 		Model.setCount(submittedCount);
-		View.progressContainerRender();
-		View.progressCarsRender();
+		this.view.progressContainerRender();
+		this.view.progressCarsRender();
 		Model.runArrowRenderByCount();
-		View.winnerRender();
+		this.view.winnerRender();
 		this.addResetButtonEvent();
 	}
 
@@ -26,7 +30,7 @@ class Controller {
 		const { validity, message } = Model.validateName(nameInputValue.split(","));
 		if (validity === false) return alert(message);
 		Model.initializeCars(nameInputValue);
-		View.countSectionRender($settingContainer);
+		this.view.countSectionRender($settingContainer);
 		this.addCountButtonClickEvent();
 	}
 
@@ -60,15 +64,15 @@ class Controller {
 	}
 
 	onResetButtonClick() {
-		Model.clearStates();
+		this.model.clearStates();
 		this.initializeGame();
 	}
 
 	initializeGame() {
 		const $app = document.getElementById(IDS.APP);
-		View.initialzeRender($app);
+		this.view.initialzeRender($app);
 		this.initializeEvents();
 	}
 }
 
-export default new Controller();
+export default Controller;

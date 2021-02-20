@@ -1,3 +1,5 @@
-import Controller from "./Controller.js";
+import RacingCarController from "./Controller.js";
 
-Controller.initializeGame();
+const racingCarController = new RacingCarController();
+
+racingCarController.initializeGame();

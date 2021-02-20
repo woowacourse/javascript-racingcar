@@ -1,6 +1,5 @@
 import { GAME_SETTINGS, MESSAGES } from "./constants.js";
 import Utils from "./Utils.js";
-import View from "./View.js";
 
 class Model {
 	constructor() {
@@ -125,4 +124,4 @@ class Model {
 	}
 }
 
-export default new Model();
+export default Model;
