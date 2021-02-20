@@ -113,7 +113,7 @@ class Model {
 			return { validity: false, message: MESSAGES.NAN };
 		}
 
-		if (isNotNaturalNumber(submittedCount)) {
+		if (Utils.isNotNaturalNumber(submittedCount)) {
 			return { validity: false, message: MESSAGES.NOT_NATURAL_NUMBER };
 		}
 

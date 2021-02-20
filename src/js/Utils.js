@@ -15,10 +15,10 @@ class Utils {
 		const result = document.createElement(tagType);
 		if (text) {
 			const innerText = document.createTextNode(text);
-			appendChildren(result, innerText);
+			Utils.appendChildren(result, innerText);
 		}
 		if (attributes) {
-			setAttributes(result, attributes);
+			Utils.setAttributes(result, attributes);
 		}
 		return result;
 	}
@@ -26,27 +26,27 @@ class Utils {
 	static appendRecursiveChild(parent, ...children) {
 		for (let i = 0; i < children.length; i++) {
 			if (Array.isArray(children[i])) {
-				children[i] = appendRecursiveChild(...children[i]);
+				children[i] = Utils.appendRecursiveChild(...children[i]);
 			}
 		}
-		appendChildren(parent, ...children);
+		Utils.appendChildren(parent, ...children);
 		return parent;
 	}
 
 	static getArrowElement() {
-		return createElement("div", { class: "forward-icon mt-2" }, "⬇️");
+		return Utils.createElement("div", { class: "forward-icon mt-2" }, "⬇️");
 	}
 
 	static getCarNameDiv(name) {
-		return createElement("div", { class: "car-player mr-2" }, name);
+		return Utils.createElement("div", { class: "car-player mr-2" }, name);
 	}
 
 	static clearInputValue(inputElement) {
 		inputElement.value = "";
 	}
 
-	static isNaturalNumber(number) {
-		return number > 0 && Number.isInteger(number);
+	static isNotNaturalNumber(number) {
+		return number < 1 || !Number.isInteger(number);
 	}
 
 	static getWinners(cars) {
