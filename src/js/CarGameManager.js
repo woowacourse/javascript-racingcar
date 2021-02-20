@@ -18,6 +18,7 @@ export default class CarGameManager {
     this.carGameView.init();
     this.cars = [];
     this.carNames = [];
+    setTimeout(() => this.$element.querySelector('#car-names-input').focus(), 0);
   }
 
   resetGame() {

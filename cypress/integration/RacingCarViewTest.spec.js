@@ -163,6 +163,7 @@ describe('자동차 경주 게임 View 테스트', () => {
     cy.tick(2 * NUMBERS.SECOND); // alert 메시지 
 
     cy.get('#reset-button').click();
+    cy.tick(0);
     initGame();
   });
 
