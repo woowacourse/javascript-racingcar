@@ -3,6 +3,7 @@ import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
 import Validator from './Validators/Validator.js';
 import { NUMBERS } from './Constants/constants.js';
+import { disableElement, enableElement } from './utils.js';
 
 export default class CarGameManager {
   constructor($element) {
@@ -21,6 +22,10 @@ export default class CarGameManager {
 
   resetGame() {
     this.initGame();
+    enableElement(this.$element.querySelector('#car-names-input'));
+    enableElement(this.$element.querySelector('#car-names-check-button'));
+    enableElement(this.$element.querySelector('#try-count-input'));
+    enableElement(this.$element.querySelector('#try-count-check-button'));
     clearTimeout(this.alertGameResultTimeout);
   }
 
@@ -65,6 +70,11 @@ export default class CarGameManager {
 
     this.carGameView.hideView(this.carGameView.gameProgressView);
     this.carGameView.hideView(this.carGameView.gameResultView);
+
+    disableElement(this.$element.querySelector('#car-names-input'));
+    disableElement(this.$element.querySelector('#car-names-check-button'));
+    disableElement(this.$element.querySelector('#try-count-input'));
+    disableElement(this.$element.querySelector('#try-count-check-button'));
 
     clearTimeout(this.gameProgressTimeout);
     clearInterval(this.gamePlayInterval);
