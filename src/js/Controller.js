@@ -27,18 +27,22 @@ class Controller {
 		if (validity === false) return alert(message);
 		Model.initializeCars(nameInputValue);
 		View.countSectionRender($settingContainer);
-		this.addCountButtonEvent(this.countClickHandler.bind(this));
+		this.addCountButtonClickEvent();
 	}
 
-	addCountButtonEvent(callback) {
+	addCountButtonClickEvent() {
 		const $countButton = document.getElementById(IDS.COUNT_SUBMIT_BUTTON);
-		$countButton.addEventListener("click", callback);
+		$countButton.addEventListener("click", () => {
+			this.countClickHandler();
+		});
 	}
 
 	initializeEvents() {
 		const $nameButton = document.getElementById(IDS.NAME_SUBMIT_BUTTON);
 		const $nameInput = document.getElementById(IDS.NAME_INPUT);
-		$nameButton.addEventListener("click", this.nameClickHandler.bind(this));
+		$nameButton.addEventListener("click", () => {
+			this.nameClickHandler();
+		});
 		$nameInput.addEventListener("input", this.filterCarNameType);
 	}
 
@@ -50,7 +54,9 @@ class Controller {
 
 	addResetButtonEvent() {
 		const $resetButton = document.getElementById(IDS.RESET_BUTTON);
-		$resetButton.addEventListener("click", this.onResetButtonClick.bind(this));
+		$resetButton.addEventListener("click", () => {
+			this.onResetButtonClick();
+		});
 	}
 
 	onResetButtonClick() {
