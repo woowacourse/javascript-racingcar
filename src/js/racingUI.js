@@ -60,28 +60,26 @@ export default class RacingUI {
 
   async showRacingResult(cars) {
     for await (let car of cars) {
-      await delay(() => {
-        document.querySelector(`.${car.name}`).innerHTML = `
-          <div class="car-player mr-2">${car.name}</div>
-          ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.position)}
-        `;
-      }, 1);
+      await delay(1);
+
+      document.querySelector(`.${car.name}`).innerHTML = `
+        <div class="car-player mr-2">${car.name}</div>
+        ${`<div class="forward-icon mt-2">${TEXT_CONTENT.ARROW}</div>`.repeat(car.position)}
+      `;
     }
   }
 
   showWinners(winners) {
-    return delay(() => {
-      alert(`우승자는 ${winners.join(', ')} 입니다! 축하합니다!`);
-      this.showElement(ELEMENT_CLASS_NAME.RESULT_CONTAINER);
+    alert(`우승자는 ${winners.join(', ')} 입니다! 축하합니다!`);
+    this.showElement(ELEMENT_CLASS_NAME.RESULT_CONTAINER);
 
-      document.querySelector(ELEMENT_CLASS_NAME.RESULT_CONTAINER).innerHTML = `
-        <section>
-          <h2>🏆 ${TEXT_CONTENT.FINAL_WINNER}: ${winners.join(', ')} 🏆</h2>
-          <div class="d-flex justify-center">
-            <button type="button" class="btn btn-cyan restart-btn">${TEXT_CONTENT.RESTART}</button>
-          </div>
-        </section>
-      `;
-    }, 2);
+    document.querySelector(ELEMENT_CLASS_NAME.RESULT_CONTAINER).innerHTML = `
+      <section>
+        <h2>🏆 ${TEXT_CONTENT.FINAL_WINNER}: ${winners.join(', ')} 🏆</h2>
+        <div class="d-flex justify-center">
+          <button type="button" class="btn btn-cyan restart-btn">${TEXT_CONTENT.RESTART}</button>
+        </div>
+      </section>
+    `;
   }
 }

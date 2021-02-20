@@ -1,7 +1,6 @@
-export const delay = (callback, time) => {
+export const delay = time => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            callback();
             resolve();
         }, time * 1000);
     });

@@ -5,6 +5,7 @@ import {
   createCarNameAlertMessage,
   createTryCountAlertMessage,
 } from './validation.js';
+import { delay } from './util.js';
 export default class Racing {
   constructor() {
     this.UIController = new RacingUI();
@@ -50,6 +51,7 @@ export default class Racing {
     this.UIController.disableInputs();
     this.UIController.showProgressBars(this.cars);
     await this.UIController.showRacingResult(this.cars);
+    await delay(2);
     this.UIController.showWinners(this.createWinnerNames());
   }
 
