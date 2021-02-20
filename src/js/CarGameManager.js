@@ -54,7 +54,7 @@ export default class CarGameManager {
     const errorMessage = this.validator.validateCarNames(this.carNames);
 
     if (errorMessage) {
-      this.carGameView.alertError(errorMessage);
+      alert(errorMessage);
       this.initGame();
       return;
     }
