@@ -2,7 +2,7 @@ import CarGameView from './CarGameView.js';
 import RacingCarGame from './Game/RacingCarGame.js';
 import Validator from './Validators/Validator.js';
 import { NUMBERS } from './Constants/constants.js';
-import { disableElement, enableElement } from './utils.js';
+import { disableElement, enableElement, hide } from './utils.js';
 
 export default class CarGameManager {
   constructor($element) {
@@ -41,7 +41,7 @@ export default class CarGameManager {
 
   bindInputTryCountEvent() {
     this.$element.querySelector('#try-count-check-button')
-      .addEventListener('click', this.handleCountInput.bind(this));
+      .addEventListener('click', this.handleTryCountInput.bind(this));
   }
 
   bindResetEvent() {
@@ -63,12 +63,12 @@ export default class CarGameManager {
     this.$element.querySelector('#try-count-input').focus();
   }
 
-  handleCountInput() {
+  handleTryCountInput() {
     const tryCount = this.carGameView.getTryCount();
     const errorMessage = this.validator.validateTryCount(tryCount);
 
-    this.carGameView.hideView(this.carGameView.gameProgressView);
-    this.carGameView.hideView(this.carGameView.gameResultView);
+    hide(this.carGameView.gameProgressView);
+    hide(this.carGameView.gameResultView);
 
     clearTimeout(this.gameProgressTimeout);
     clearInterval(this.gamePlayInterval);
@@ -108,7 +108,7 @@ export default class CarGameManager {
 
   hideSpinner() {
     this.$element.querySelectorAll('.spinner-container')
-      .forEach((spinner) => this.carGameView.hideView(spinner));
+      .forEach((spinner) => hide(spinner));
   }
 
   displayResult() {

@@ -1,6 +1,7 @@
+import { show, hide, initInputValue } from './utils.js';
+
 export default class CarGameView {
   constructor($element) {
-    this.$element = $element;
     this.carNamesView = $element.querySelector('#car-names-container');
     this.carNamesInput = $element.querySelector('#car-names-input');
     this.tryCountView = $element.querySelector('#try-count-container');
@@ -9,40 +10,28 @@ export default class CarGameView {
     this.gameResultView = $element.querySelector('#game-result-container');
   }
 
-  showView($element) {
-    $element.style.display = 'block';
-  }
-
-  hideView($element) {
-    $element.style.display = 'none';
-  }
-
-  resetInput($element) {
-    $element.value = '';
-  }
-
   init() {
-    this.showView(this.carNamesView);
-    this.resetInput(this.carNamesInput);
-    this.hideView(this.tryCountView);
-    this.resetInput(this.tryCountInput);
-    this.hideView(this.gameProgressView);
-    this.hideView(this.gameResultView);
+    show(this.carNamesView);
+    initInputValue(this.carNamesInput);
+    hide(this.tryCountView);
+    initInputValue(this.tryCountInput);
+    hide(this.gameProgressView);
+    hide(this.gameResultView);
   }
 
   displayTryCountView() {
-    this.showView(this.tryCountView);
+    show(this.tryCountView);
   }
 
   resetTryCountView() {
-    this.resetInput(this.tryCountInput);
-    this.hideView(this.gameProgressView);
-    this.hideView(this.gameResultView);
+    initInputValue(this.tryCountInput);
+    hide(this.gameProgressView);
+    hide(this.gameResultView);
   }
 
   displayProgress(cars) {
     this.gameProgressView.querySelector('.d-flex').innerHTML = this.getProgressTemplate(cars);
-    this.showView(this.gameProgressView);
+    show(this.gameProgressView);
   }
 
   getProgressTemplate(cars) {
@@ -62,7 +51,7 @@ export default class CarGameView {
 
   displayWinners(winner) {
     this.gameResultView.querySelector('h2').innerText = `🏆 최종 우승자: ${winner} 🏆`;
-    this.showView(this.gameResultView);
+    show(this.gameResultView);
   }
 
   getCarNames() {
