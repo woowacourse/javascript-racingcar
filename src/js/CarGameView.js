@@ -54,11 +54,11 @@ export default class CarGameView {
     show(this.gameResultView);
   }
 
-  getCarNames() {
+  getCarNamesInputValue() {
     return this.carNamesInput.value.split(',').map((name) => name.trim());
   }
 
-  getTryCount() {
+  getTryCountInputValue() {
     return Number(this.tryCountInput.value);
   }
 }

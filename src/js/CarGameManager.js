@@ -50,7 +50,7 @@ export default class CarGameManager {
   }
 
   handleCarNamesInput() {
-    this.carNames = this.carGameView.getCarNames();
+    this.carNames = this.carGameView.getCarNamesInputValue();
     const errorMessage = this.validator.validateCarNames(this.carNames);
 
     if (errorMessage) {
@@ -64,7 +64,7 @@ export default class CarGameManager {
   }
 
   handleTryCountInput() {
-    const tryCount = this.carGameView.getTryCount();
+    const tryCount = this.carGameView.getTryCountInputValue();
     const errorMessage = this.validator.validateTryCount(tryCount);
 
     hide(this.carGameView.gameProgressView);
