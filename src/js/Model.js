@@ -1,6 +1,3 @@
-import { GAME_SETTINGS, MESSAGES } from "./constants.js"
-import Utils from "./utils.js"
-
 class Model {
 	constructor() {
 		this._cars = []

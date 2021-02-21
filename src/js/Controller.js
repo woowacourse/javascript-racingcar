@@ -1,7 +1,7 @@
 import Model from "./model.js"
 import View from "./view.js"
 import Utils from "./utils.js"
-import { GAME_SETTINGS, IDS, MESSAGES } from "./constants.js"
+import { GAME_SETTINGS, ID, MESSAGES } from "./constants.js"
 import CountValidator from "./count-validator.js"
 import NameValidator from "./name-validator.js"
 
@@ -78,8 +78,8 @@ class Controller {
 		return boolsAboutMovement
 	}
 
-	countClickHandler() {
-		const $countInput = document.getElementById(IDS.COUNT_INPUT)
+	onCountButtonClick() {
+		const $countInput = document.getElementById(ID.COUNT_INPUT)
 		const receivedCount = Number($countInput.value)
 		Utils.clearInputValue($countInput)
 		const previousCount = this.model.count
@@ -109,9 +109,9 @@ class Controller {
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
 
-	nameClickHandler() {
-		const $nameInput = document.getElementById(IDS.NAME_INPUT)
-		const $settingContainer = document.getElementById(IDS.SETTING_CONTAINER)
+	onNameButtonClick() {
+		const $nameInput = document.getElementById(ID.NAME_INPUT)
+		const $settingContainer = document.getElementById(ID.SETTING_CONTAINER)
 		const nameInputValue = $nameInput.value
 		Utils.clearInputValue($nameInput)
 		const { validity, message } = this.getNameErrorMessage(
@@ -125,14 +125,14 @@ class Controller {
 	}
 
 	addCountButtonClickEvent() {
-		const $countButton = document.getElementById(IDS.COUNT_SUBMIT_BUTTON)
-		$countButton.addEventListener("click", () => this.countClickHandler())
+		const $countButton = document.getElementById(ID.COUNT_SUBMIT_BUTTON)
+		$countButton.addEventListener("click", () => this.onCountButtonClick())
 	}
 
 	initializeEvents() {
-		const $nameButton = document.getElementById(IDS.NAME_SUBMIT_BUTTON)
-		const $nameInput = document.getElementById(IDS.NAME_INPUT)
-		$nameButton.addEventListener("click", () => this.nameClickHandler())
+		const $nameButton = document.getElementById(ID.NAME_SUBMIT_BUTTON)
+		const $nameInput = document.getElementById(ID.NAME_INPUT)
+		$nameButton.addEventListener("click", () => this.onNameButtonClick())
 		$nameInput.addEventListener("input", this.filterCarNameType)
 	}
 
@@ -143,10 +143,8 @@ class Controller {
 	}
 
 	addResetButtonEvent() {
-		const $resetButton = document.getElementById(IDS.RESET_BUTTON)
-		$resetButton.addEventListener("click", () => {
-			this.onResetButtonClick()
-		})
+		const $resetButton = document.getElementById(ID.RESET_BUTTON)
+		$resetButton.addEventListener("click", () => this.onResetButtonClick())
 	}
 
 	onResetButtonClick() {
@@ -155,7 +153,7 @@ class Controller {
 	}
 
 	initializeGame() {
-		const $app = document.getElementById(IDS.APP)
+		const $app = document.getElementById(ID.APP)
 		this.view.initialzeRender($app)
 		this.initializeEvents()
 	}

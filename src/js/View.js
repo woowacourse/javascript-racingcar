@@ -1,4 +1,4 @@
-import { IDS, TEMPLATES } from "./constants.js"
+import { ID, TEMPLATES } from "./constants.js"
 import Utils from "./utils.js"
 
 class View {
@@ -11,15 +11,13 @@ class View {
 	}
 
 	progressContainerRender() {
-		const $app = document.getElementById(IDS.APP)
+		const $app = document.getElementById(ID.APP)
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.PROGRESS_CONTAINER)
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.RESULT_CONTAINER)
 	}
 
 	progressCarsRender(cars) {
-		const $raceProgressScreen = document.getElementById(
-			IDS.RACE_PROGRESS_SCREEN
-		)
+		const $raceProgressScreen = document.getElementById(ID.RACE_PROGRESS_SCREEN)
 		cars.forEach((car) => {
 			const $container = document.createElement("div")
 			const $carPlayer = Utils.getCarNameDiv(car.name)
@@ -36,7 +34,7 @@ class View {
 	}
 
 	winnerRender(resultText) {
-		const $resultH2 = document.getElementById(IDS.WINNER_TEXT)
+		const $resultH2 = document.getElementById(ID.WINNER_TEXT)
 		$resultH2.innerText = resultText
 	}
 }

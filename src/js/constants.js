@@ -43,7 +43,7 @@ export const TEMPLATES = {
         </div>`,
 }
 
-export const IDS = {
+export const ID = {
 	APP: "app",
 	RACE_PROGRESS_SCREEN: "race-progress-screen",
 	WINNER_TEXT: "winner-text",
