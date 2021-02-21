@@ -98,13 +98,13 @@ class Controller {
 			const boolsAboutMovement = this.getBoolsAboutMovement()
 			this.view.arrowRender(boolsAboutMovement)
 		}
-		const resultText = this.getResultText()
+		const resultText = this.getResultText(this.model.cars)
 		this.view.winnerRender(resultText)
 		this.addResetButtonEvent()
 	}
 
-	getResultText() {
-		const winners = Utils.getWinners(this.model.cars)
+	getResultText(cars) {
+		const winners = Utils.getWinners(cars)
 
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
