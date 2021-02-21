@@ -41,7 +41,7 @@ export const TEMPLATES = {
                 </div>
             </section>
         </div>`,
-};
+}
 
 export const IDS = {
 	APP: "app",
@@ -53,7 +53,7 @@ export const IDS = {
 	COUNT_SUBMIT_BUTTON: "count-submit-button",
 	NAME_SUBMIT_BUTTON: "name-submit-button",
 	RESET_BUTTON: "reset-button",
-};
+}
 
 export const GAME_SETTINGS = {
 	RANDOM_NUMBER: {
@@ -64,7 +64,7 @@ export const GAME_SETTINGS = {
 	MAX_TOTAL_NUMBER_OF_NAMES: 9,
 	MAX_NAME_LENGTH: 5,
 	MAX_COUNT: 20000,
-};
+}
 
 export const MESSAGES = {
 	NAME_ALREADY_REGISTERED: "이미 이름이 등록되었습니다.",
@@ -76,4 +76,4 @@ export const MESSAGES = {
 	NAN: "유효한 숫자가 아닙니다.",
 	NOT_NATURAL_NUMBER: "자연수만 설정할 수 있습니다.",
 	TOO_BIG_COUNT: `원활한 게임을 위해 횟수는 ${GAME_SETTINGS.MAX_COUNT} 이하로 제한하고 있습니다.`,
-};
+}
