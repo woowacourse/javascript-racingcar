@@ -1,8 +1,6 @@
-import Model from "../../src/js/Model.js"
-import { getWinners, getRandomNumber } from "../../src/js/Utils.js"
-import Controller from "../../src/js/Controller.js"
-
-/// <reference types="cypress" />
+import Model from "../../src/js/model.js"
+import { getRandomNumber, getWinners } from "../../src/js/utils.js"
+import Controller from "../../src/js/controller.js"
 
 context("module test", () => {
 	it("이름 입력 칸에 ','로 구분해서 이름을 입력할 수 있다.", () => {

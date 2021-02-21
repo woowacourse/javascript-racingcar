@@ -1,6 +1,6 @@
 import Model from "./model.js"
 import View from "./view.js"
-import Utils from "./utils.js"
+import { clearInputValue, getRandomNumber, getWinners } from "./utils.js"
 import { GAME_SETTINGS, ID, MESSAGES } from "./constants.js"
 import CountValidator from "./count-validator.js"
 import NameValidator from "./name-validator.js"
@@ -60,7 +60,7 @@ class Controller {
 	}
 
 	moveOrNot(car, index) {
-		const randomNumber = Utils.getRandomNumber(
+		const randomNumber = getRandomNumber(
 			GAME_SETTINGS.RANDOM_NUMBER.MIN,
 			GAME_SETTINGS.RANDOM_NUMBER.MAX
 		)
@@ -81,7 +81,7 @@ class Controller {
 	onCountButtonClick() {
 		const $countInput = document.getElementById(ID.COUNT_INPUT)
 		const receivedCount = Number($countInput.value)
-		Utils.clearInputValue($countInput)
+		clearInputValue($countInput)
 		const previousCount = this.model.count
 		const { validity, message } = this.getCountErrorMessage(
 			receivedCount,
@@ -104,7 +104,7 @@ class Controller {
 	}
 
 	getResultText(cars) {
-		const winners = Utils.getWinners(cars)
+		const winners = getWinners(cars)
 
 		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
@@ -113,7 +113,7 @@ class Controller {
 		const $nameInput = document.getElementById(ID.NAME_INPUT)
 		const $settingContainer = document.getElementById(ID.SETTING_CONTAINER)
 		const nameInputValue = $nameInput.value
-		Utils.clearInputValue($nameInput)
+		clearInputValue($nameInput)
 		const { validity, message } = this.getNameErrorMessage(
 			nameInputValue.split(","),
 			this.model.cars
