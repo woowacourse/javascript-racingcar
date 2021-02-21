@@ -1,6 +1,5 @@
-import Model from "./Model.js";
 import { IDS, TEMPLATES } from "./constants.js";
-import Utils from "./Utils.js";
+import Utils from "./utils.js";
 
 class View {
 	initialzeRender($parentElement) {
@@ -17,11 +16,11 @@ class View {
 		$app.insertAdjacentHTML("beforeend", TEMPLATES.RESULT_CONTAINER);
 	}
 
-	progressCarsRender() {
+	progressCarsRender(cars) {
 		const $raceProgressScreen = document.getElementById(
 			IDS.RACE_PROGRESS_SCREEN
 		);
-		Model.cars.forEach((car) => {
+		cars.forEach((car) => {
 			const $container = document.createElement("div");
 			const $carPlayer = Utils.getCarNameDiv(car.name);
 			Utils.appendRecursiveChild($raceProgressScreen, [$container, $carPlayer]);
@@ -36,9 +35,9 @@ class View {
 		});
 	}
 
-	winnerRender() {
+	winnerRender(resultText) {
 		const $resultH2 = document.getElementById(IDS.WINNER_TEXT);
-		$resultH2.innerText = Model.getResultText();
+		$resultH2.innerText = resultText;
 	}
 }
 

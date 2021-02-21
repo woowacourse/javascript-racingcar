@@ -54,6 +54,12 @@ class Utils {
 		const maxScoreCars = cars.filter((car) => car.score === maxScore);
 		return maxScoreCars.map((car) => car.name);
 	}
+
+	static getRandomNumber(startNumber, endNumber) {
+		return Math.floor(
+			startNumber + Math.random() * (endNumber - startNumber + 1)
+		);
+	}
 }
 
 export default Utils;
