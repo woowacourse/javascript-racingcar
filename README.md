@@ -95,7 +95,7 @@
 - [x] 테스트 context를 세분화하여 분리하기
 - [x] typeName함수에서 input clear하지 않기
 - [x] cypress 코드 리팩터링하기
-- [ ] handler라는 이름의 함수들 이름 바꾸기
+- [x] handler라는 이름의 함수들 이름 바꾸기
 - [x] 바인드 이슈 arrow function으로 해결하기
 - [x] MVC 구조 수정하기
 - [x] 코드 리팩터링하기
