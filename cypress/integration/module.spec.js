@@ -4,7 +4,7 @@ import Controller from "../../src/js/Controller.js"
 
 /// <reference types="cypress" />
 
-context("tdd", () => {
+context("module test", () => {
 	it("이름 입력 칸에 ','로 구분해서 이름을 입력할 수 있다.", () => {
 		const model = new Model()
 		model.initializeCars("a,b,c")
