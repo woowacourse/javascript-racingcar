@@ -76,7 +76,7 @@ class Controller {
 		this.view.progressCarsRender(this.model.cars)
 
 		for (let i = 0; i < this.model.count; i++) {
-			const { movedCars } = this.model.moveCars
+			const { movedCars } = this.model.moveCars()
 			this.view.arrowRender(movedCars)
 		}
 		const resultText = this.getResultText(this.model.cars)

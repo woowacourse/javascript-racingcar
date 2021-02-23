@@ -36,7 +36,7 @@ class Model {
 		this._count = 0
 	}
 
-	moveOrNot(carIndex) {
+	move(carIndex) {
 		const randomNumber = getRandomNumber(
 			SETTING.RANDOM_NUMBER.MIN,
 			SETTING.RANDOM_NUMBER.MAX
@@ -44,9 +44,9 @@ class Model {
 		randomNumber >= SETTING.RANDOM_NUMBER.MIN_MOVABLE && this.move(carIndex)
 	}
 
-	get moveCars() {
+	moveCars() {
 		const previousScores = this.cars.map((car) => car.score)
-		this.cars.forEach((_, index) => this.moveOrNot(index))
+		this.cars.forEach((_, index) => this.move(index))
 		const movedCars = this.cars.map((car, i) => car.score !== previousScores[i])
 
 		return { movedCars: movedCars }
