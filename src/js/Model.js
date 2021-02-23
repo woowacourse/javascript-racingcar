@@ -1,4 +1,4 @@
-import { GAME_SETTINGS } from "./constants.js"
+import { SETTING } from "./constants.js"
 import { getRandomNumber } from "./utils.js"
 
 class Model {
@@ -38,11 +38,10 @@ class Model {
 
 	moveOrNot(carIndex) {
 		const randomNumber = getRandomNumber(
-			GAME_SETTINGS.RANDOM_NUMBER.MIN,
-			GAME_SETTINGS.RANDOM_NUMBER.MAX
+			SETTING.RANDOM_NUMBER.MIN,
+			SETTING.RANDOM_NUMBER.MAX
 		)
-		randomNumber >= GAME_SETTINGS.RANDOM_NUMBER.MIN_MOVABLE &&
-			this.move(carIndex)
+		randomNumber >= SETTING.RANDOM_NUMBER.MIN_MOVABLE && this.move(carIndex)
 	}
 
 	get moveCars() {

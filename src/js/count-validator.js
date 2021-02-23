@@ -1,4 +1,4 @@
-import { GAME_SETTINGS } from "./constants.js"
+import { SETTING } from "./constants.js"
 
 class CountValidator {
 	static isAlreadyRegistered(count) {
@@ -10,7 +10,7 @@ class CountValidator {
 	}
 
 	static isTooBigCount(count) {
-		return count > GAME_SETTINGS.MAX_COUNT
+		return count > SETTING.MAX_COUNT
 	}
 }
 

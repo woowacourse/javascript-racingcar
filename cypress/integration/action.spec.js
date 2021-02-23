@@ -1,4 +1,4 @@
-import { MESSAGES } from "../../src/js/constants.js"
+import { MESSAGE } from "../../src/js/constants.js"
 import { getWinners } from "../../src/js/utils.js"
 
 class CypressManager {
@@ -232,49 +232,49 @@ describe("exception test", () => {
 		cypressManager
 			.submitName()
 			.submitName()
-			.should("@alertStub", "be.calledWith", MESSAGES.NAME_ALREADY_REGISTERED)
+			.should("@alertStub", "be.calledWith", MESSAGE.NAME_ALREADY_REGISTERED)
 	})
 
 	it("빈 문자인 이름을 등록하면 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.submitName("a,b,,c")
-			.should("@alertStub", "be.calledWith", MESSAGES.EMPTY_NAME)
+			.should("@alertStub", "be.calledWith", MESSAGE.EMPTY_NAME)
 	})
 
 	it("5자 초과인 이름을 등록하면 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.submitName("bob dylan")
-			.should("@alertStub", "be.calledWith", MESSAGES.TOO_LONG_NAME)
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_LONG_NAME)
 	})
 
 	it("횟수를 설정한 뒤에 다시 횟수를 설정하려 할 경우 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.testCar("dawit,sehee", "3")
 			.submitCount("909")
-			.should("@alertStub", "be.calledWith", MESSAGES.COUNT_ALREADY_REGISTERED)
+			.should("@alertStub", "be.calledWith", MESSAGE.COUNT_ALREADY_REGISTERED)
 	})
 
 	it("횟수를 설정하려 할 때 횟수가 자연수가 아닐 경우 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.testCar("dawit", "-3")
-			.should("@alertStub", "be.calledWith", MESSAGES.NOT_NATURAL_NUMBER)
+			.should("@alertStub", "be.calledWith", MESSAGE.NOT_NATURAL_NUMBER)
 	})
 
 	it("중복된 이름을 포함할 경우 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.submitName("sehee,sehee")
-			.should("@alertStub", "be.calledWith", MESSAGES.OVERWRITTEN)
+			.should("@alertStub", "be.calledWith", MESSAGE.OVERWRITTEN)
 	})
 
 	it("횟수를 너무 큰 숫자(최대 20000으로 설정)로 설정하려 할 경우 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.testCar("some,name", "2000000000000")
-			.should("@alertStub", "be.calledWith", MESSAGES.TOO_BIG_COUNT)
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_BIG_COUNT)
 	})
 
 	it("너무 많은 이름(최대 9개로 설정)을 등록하려 할 경우 alert 메시지를 표시한다.", () => {
 		cypressManager
 			.submitName("a,b,c,d,e,f,g,h,i,j")
-			.should("@alertStub", "be.calledWith", MESSAGES.TOO_MANY_NAMES)
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_MANY_NAMES)
 	})
 })

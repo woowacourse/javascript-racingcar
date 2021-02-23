@@ -1,4 +1,4 @@
-import { GAME_SETTINGS } from "./constants.js"
+import { SETTING } from "./constants.js"
 
 class NameValidator {
 	static isAlreadyRegistered(previousCars) {
@@ -10,11 +10,11 @@ class NameValidator {
 	}
 
 	static isNamesTooMany(names) {
-		return names.length > GAME_SETTINGS.MAX_TOTAL_NUMBER_OF_NAMES
+		return names.length > SETTING.MAX_TOTAL_NUMBER_OF_NAMES
 	}
 
 	static isNameTooLong(names) {
-		return names.some((name) => name.length > GAME_SETTINGS.MAX_NAME_LENGTH)
+		return names.some((name) => name.length > SETTING.MAX_NAME_LENGTH)
 	}
 
 	static isNameOverwritten(names) {

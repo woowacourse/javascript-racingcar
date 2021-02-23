@@ -1,7 +1,7 @@
 import Model from "./model.js"
 import View from "./view.js"
 import { clearInputValue, getWinners } from "./utils.js"
-import { ID, MESSAGES } from "./constants.js"
+import { ID, MESSAGE } from "./constants.js"
 import CountValidator from "./count-validator.js"
 import NameValidator from "./name-validator.js"
 
@@ -17,23 +17,23 @@ class Controller {
 
 	getNameErrorMessage(names, previousCars) {
 		if (NameValidator.isAlreadyRegistered(previousCars)) {
-			return { validity: false, message: MESSAGES.NAME_ALREADY_REGISTERED }
+			return { validity: false, message: MESSAGE.NAME_ALREADY_REGISTERED }
 		}
 
 		if (NameValidator.isEmptyName(names)) {
-			return { validity: false, message: MESSAGES.EMPTY_NAME }
+			return { validity: false, message: MESSAGE.EMPTY_NAME }
 		}
 
 		if (NameValidator.isNamesTooMany(names)) {
-			return { validity: false, message: MESSAGES.TOO_MANY_NAMES }
+			return { validity: false, message: MESSAGE.TOO_MANY_NAMES }
 		}
 
 		if (NameValidator.isNameTooLong(names)) {
-			return { validity: false, message: MESSAGES.TOO_LONG_NAME }
+			return { validity: false, message: MESSAGE.TOO_LONG_NAME }
 		}
 
 		if (NameValidator.isNameOverwritten(names)) {
-			return { validity: false, message: MESSAGES.OVERWRITTEN }
+			return { validity: false, message: MESSAGE.OVERWRITTEN }
 		}
 
 		return { validity: true, message: null }
@@ -41,19 +41,19 @@ class Controller {
 
 	getCountErrorMessage(count, previousCount) {
 		if (CountValidator.isAlreadyRegistered(previousCount)) {
-			return { validity: false, message: MESSAGES.COUNT_ALREADY_REGISTERED }
+			return { validity: false, message: MESSAGE.COUNT_ALREADY_REGISTERED }
 		}
 
 		if (isNaN(count)) {
-			return { validity: false, message: MESSAGES.NAN }
+			return { validity: false, message: MESSAGE.NAN }
 		}
 
 		if (CountValidator.isNotNaturalNumber(count)) {
-			return { validity: false, message: MESSAGES.NOT_NATURAL_NUMBER }
+			return { validity: false, message: MESSAGE.NOT_NATURAL_NUMBER }
 		}
 
 		if (CountValidator.isTooBigCount(count)) {
-			return { validity: false, message: MESSAGES.TOO_BIG_COUNT }
+			return { validity: false, message: MESSAGE.TOO_BIG_COUNT }
 		}
 
 		return { validity: true, message: null }
