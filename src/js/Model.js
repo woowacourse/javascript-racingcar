@@ -1,3 +1,6 @@
+import { GAME_SETTINGS } from "./constants.js"
+import { getRandomNumber } from "./utils.js"
+
 class Model {
 	constructor() {
 		this._cars = []
@@ -31,6 +34,23 @@ class Model {
 	clearStates() {
 		this._cars = []
 		this._count = 0
+	}
+
+	moveOrNot(carIndex) {
+		const randomNumber = getRandomNumber(
+			GAME_SETTINGS.RANDOM_NUMBER.MIN,
+			GAME_SETTINGS.RANDOM_NUMBER.MAX
+		)
+		randomNumber >= GAME_SETTINGS.RANDOM_NUMBER.MIN_MOVABLE &&
+			this.move(carIndex)
+	}
+
+	get moveCars() {
+		const previousScores = this.cars.map((car) => car.score)
+		this.cars.forEach((_, index) => this.moveOrNot(index))
+		const movedCars = this.cars.map((car, i) => car.score !== previousScores[i])
+
+		return { movedCars: movedCars }
 	}
 }
 

@@ -1,7 +1,7 @@
 import Model from "./model.js"
 import View from "./view.js"
-import { clearInputValue, getRandomNumber, getWinners } from "./utils.js"
-import { GAME_SETTINGS, ID, MESSAGES } from "./constants.js"
+import { clearInputValue, getWinners } from "./utils.js"
+import { ID, MESSAGES } from "./constants.js"
 import CountValidator from "./count-validator.js"
 import NameValidator from "./name-validator.js"
 
@@ -59,25 +59,6 @@ class Controller {
 		return { validity: true, message: null }
 	}
 
-	moveOrNot(car, index) {
-		const randomNumber = getRandomNumber(
-			GAME_SETTINGS.RANDOM_NUMBER.MIN,
-			GAME_SETTINGS.RANDOM_NUMBER.MAX
-		)
-		randomNumber >= GAME_SETTINGS.RANDOM_NUMBER.MIN_MOVABLE &&
-			this.model.move(index)
-	}
-
-	getBoolsAboutMovement() {
-		const previousScores = this.model.cars.map((car) => car.score)
-		this.model.cars.forEach((car, index) => this.moveOrNot(car, index))
-		const boolsAboutMovement = this.model.cars.map(
-			(car, i) => car.score !== previousScores[i]
-		)
-
-		return boolsAboutMovement
-	}
-
 	onCountButtonClick() {
 		const $countInput = document.getElementById(ID.COUNT_INPUT)
 		const receivedCount = Number($countInput.value)
@@ -95,8 +76,8 @@ class Controller {
 		this.view.progressCarsRender(this.model.cars)
 
 		for (let i = 0; i < this.model.count; i++) {
-			const boolsAboutMovement = this.getBoolsAboutMovement()
-			this.view.arrowRender(boolsAboutMovement)
+			const { movedCars } = this.model.moveCars
+			this.view.arrowRender(movedCars)
 		}
 		const resultText = this.getResultText(this.model.cars)
 		this.view.winnerRender(resultText)
