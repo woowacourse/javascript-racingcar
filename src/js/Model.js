@@ -28,7 +28,7 @@ class Model {
 	}
 
 	move(index) {
-		this.cars[index].score++
+		this.cars[index] !== undefined && this.cars[index].score++
 	}
 
 	clearStates() {
