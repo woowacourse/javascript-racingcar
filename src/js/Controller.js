@@ -72,15 +72,15 @@ class Controller {
 			return alert(message)
 		}
 		this.model.count = receivedCount
-		this.view.progressContainerRender()
-		this.view.progressCarsRender(this.model.cars)
+		this.view.renderProgressContainer()
+		this.view.renderProgressCars(this.model.cars)
 
 		for (let i = 0; i < this.model.count; i++) {
 			const { movedCars } = this.model.moveCars()
-			this.view.arrowRender(movedCars)
+			this.view.renderArrow(movedCars)
 		}
 		const winners = this.model.winners
-		this.view.winnerRender(winners)
+		this.view.renderWinner(winners)
 		this.addResetButtonEvent()
 	}
 
@@ -95,7 +95,7 @@ class Controller {
 		)
 		if (validity === false) return alert(message)
 		this.model.initializeCars(nameInputValue)
-		this.view.countSectionRender($settingContainer)
+		this.view.renderCountSection($settingContainer)
 		this.addCountButtonClickEvent()
 	}
 
@@ -129,7 +129,7 @@ class Controller {
 
 	initializeGame() {
 		const $app = document.getElementById(ID.APP)
-		this.view.initialzeRender($app)
+		this.view.initialRender($app)
 		this.initializeEvents()
 	}
 }

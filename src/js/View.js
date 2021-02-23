@@ -6,7 +6,7 @@ import {
 } from "./utils.js"
 
 class View {
-	initialzeRender($parentElement) {
+	initialRender($parentElement) {
 		$parentElement.innerHTML = `
         <div class="d-flex justify-center mt-5">
             <div id="setting-container">
@@ -27,7 +27,7 @@ class View {
         </div>`
 	}
 
-	countSectionRender($settingContainer) {
+	renderCountSection($settingContainer) {
 		$settingContainer.insertAdjacentHTML(
 			"beforeend",
 			`
@@ -41,7 +41,7 @@ class View {
 		)
 	}
 
-	progressContainerRender() {
+	renderProgressContainer() {
 		const $app = document.getElementById(ID.APP)
 		$app.insertAdjacentHTML(
 			"beforeend",
@@ -67,7 +67,7 @@ class View {
 		)
 	}
 
-	progressCarsRender(cars) {
+	renderProgressCars(cars) {
 		const $raceProgressScreen = document.getElementById(ID.RACE_PROGRESS_SCREEN)
 		cars.forEach((car) => {
 			const $container = document.createElement("div")
@@ -76,7 +76,7 @@ class View {
 		})
 	}
 
-	arrowRender(boolsAboutMovement) {
+	renderArrow(boolsAboutMovement) {
 		const $cars = document.getElementById("race-progress-screen").children
 		boolsAboutMovement.forEach((moved, i) => {
 			const $arrow = getArrowElement()
@@ -84,7 +84,7 @@ class View {
 		})
 	}
 
-	winnerRender(winners) {
+	renderWinner(winners) {
 		const $resultH2 = document.getElementById(ID.WINNER_TEXT)
 		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
