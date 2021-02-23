@@ -84,9 +84,9 @@ class View {
 		})
 	}
 
-	winnerRender(resultText) {
+	winnerRender(winners) {
 		const $resultH2 = document.getElementById(ID.WINNER_TEXT)
-		$resultH2.innerText = resultText
+		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
 }
 

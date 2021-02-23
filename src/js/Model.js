@@ -51,6 +51,12 @@ class Model {
 
 		return { movedCars: movedCars }
 	}
+
+	get winners() {
+		const maxScore = Math.max(...this.cars.map((car) => car.score))
+		const maxScoreCars = this.cars.filter((car) => car.score === maxScore)
+		return maxScoreCars.map((car) => car.name)
+	}
 }
 
 export default Model

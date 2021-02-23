@@ -1,6 +1,6 @@
 import Model from "./model.js"
 import View from "./view.js"
-import { clearInputValue, getWinners } from "./utils.js"
+import { clearInputValue } from "./utils.js"
 import { ID, MESSAGE } from "./constants.js"
 import CountValidator from "./count-validator.js"
 import NameValidator from "./name-validator.js"
@@ -79,15 +79,9 @@ class Controller {
 			const { movedCars } = this.model.moveCars()
 			this.view.arrowRender(movedCars)
 		}
-		const resultText = this.getResultText(this.model.cars)
-		this.view.winnerRender(resultText)
+		const winners = this.model.winners
+		this.view.winnerRender(winners)
 		this.addResetButtonEvent()
-	}
-
-	getResultText(cars) {
-		const winners = getWinners(cars)
-
-		return `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
 
 	onNameButtonClick() {

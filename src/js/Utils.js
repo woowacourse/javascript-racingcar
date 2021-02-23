@@ -48,12 +48,6 @@ export const isNotNaturalNumber = (number) => {
 	return number < 1 || !Number.isInteger(number)
 }
 
-export const getWinners = (cars) => {
-	const maxScore = Math.max(...cars.map((car) => car.score))
-	const maxScoreCars = cars.filter((car) => car.score === maxScore)
-	return maxScoreCars.map((car) => car.name)
-}
-
 export const getRandomNumber = (startNumber, endNumber) => {
 	return Math.floor(startNumber + Math.random() * (endNumber - startNumber + 1))
 }
