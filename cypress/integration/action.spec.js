@@ -1,4 +1,5 @@
 import { MESSAGE } from "../../src/js/constants.js"
+import Model from "../../src/js/model.js"
 import { getWinners } from "../../src/js/utils.js"
 
 class CypressManager {
@@ -159,9 +160,12 @@ describe("behavior test", () => {
 				name: car.innerText,
 				score: car.parentNode.children.length - 1,
 			}))
-			const winnerString = getWinners(carObjects).join(", ")
+			const maxScore = Math.max(...carObjects.map((car) => car.score))
+			const winners = carObjects
+				.filter((car) => car.score === maxScore)
+				.map((car) => car.name)
 
-			cy.get("#winner-text").contains(winnerString)
+			cy.get("#winner-text").contains(winners.join(", "))
 		})
 	})
 
