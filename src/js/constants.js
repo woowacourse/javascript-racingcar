@@ -32,3 +32,7 @@ export const MESSAGES = {
 	NOT_NATURAL_NUMBER: "자연수만 설정할 수 있습니다.",
 	TOO_BIG_COUNT: `원활한 게임을 위해 횟수는 ${GAME_SETTINGS.MAX_COUNT} 이하로 제한하고 있습니다.`,
 }
+
+Object.freeze(ID)
+Object.freeze(GAME_SETTINGS)
+Object.freeze(MESSAGES)
