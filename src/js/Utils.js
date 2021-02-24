@@ -32,16 +32,12 @@ export const appendRecursiveChild = (parent, ...children) => {
 	return parent
 }
 
-export const getArrowElement = () => {
-	return createElement("div", { class: "forward-icon mt-2" }, "⬇️")
-}
-
-export const getCarNameDiv = (name) => {
-	return createElement("div", { class: "car-player mr-2" }, name)
-}
-
 export const clearInputValue = (inputElement) => {
 	inputElement.value = ""
+}
+
+export const includesEmptyString = (array) => {
+	return array.includes("")
 }
 
 export const isNotNaturalNumber = (number) => {
@@ -50,4 +46,10 @@ export const isNotNaturalNumber = (number) => {
 
 export const getRandomNumber = (startNumber, endNumber) => {
 	return Math.floor(startNumber + Math.random() * (endNumber - startNumber + 1))
+}
+
+export const $ = (selector) => {
+	return document.querySelectorAll(selector).length === 1
+		? document.querySelector(selector)
+		: document.querySelectorAll(selector)
 }

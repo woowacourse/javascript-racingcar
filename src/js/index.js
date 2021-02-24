@@ -1,4 +1,4 @@
-import RacingCarController from "./controller.js"
+import RacingCarController from "./controllers/controller.js"
 
 const racingCarController = new RacingCarController()
 

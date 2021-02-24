@@ -1,12 +1,8 @@
-import { SETTING } from "./constants.js"
+import { SETTING } from "../constants.js"
 
 class NameValidator {
 	static isAlreadyRegistered(previousCars) {
 		return previousCars.length !== 0
-	}
-
-	static isEmptyName(names) {
-		return names.includes("")
 	}
 
 	static isNamesTooMany(names) {
@@ -17,7 +13,7 @@ class NameValidator {
 		return names.some((name) => name.length > SETTING.MAX_NAME_LENGTH)
 	}
 
-	static isNameOverwritten(names) {
+	static isDuplicated(names) {
 		return [...new Set(names)].length !== names.length
 	}
 }

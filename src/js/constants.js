@@ -1,13 +1,14 @@
-export const ID = {
-	APP: "app",
-	RACE_PROGRESS_SCREEN: "race-progress-screen",
-	WINNER_TEXT: "winner-text",
-	NAME_INPUT: "name-input",
-	COUNT_INPUT: "count-input",
-	SETTING_CONTAINER: "setting-container",
-	COUNT_SUBMIT_BUTTON: "count-submit-button",
-	NAME_SUBMIT_BUTTON: "name-submit-button",
-	RESET_BUTTON: "reset-button",
+export const SELECTOR = {
+	APP: "#app",
+	RACE_PROGRESS_SCREEN: "#race-progress-screen",
+	WINNER_TEXT: "#winner-text",
+	NAME_INPUT: "#name-input",
+	COUNT_INPUT: "#count-input",
+	SETTING_CONTAINER: "#setting-container",
+	COUNT_SUBMIT_BUTTON: "#count-submit-button",
+	NAME_SUBMIT_BUTTON: "#name-submit-button",
+	RESET_BUTTON: "#reset-button",
+	RACE_PROGRESS_SCREEN: "#race-progress-screen",
 }
 
 export const SETTING = {
@@ -33,6 +34,6 @@ export const MESSAGE = {
 	TOO_BIG_COUNT: `원활한 게임을 위해 횟수는 ${SETTING.MAX_COUNT} 이하로 제한하고 있습니다.`,
 }
 
-Object.freeze(ID)
+Object.freeze(SELECTOR)
 Object.freeze(SETTING)
 Object.freeze(MESSAGE)

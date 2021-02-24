@@ -1,6 +1,4 @@
 import { MESSAGE } from "../../src/js/constants.js"
-import Model from "../../src/js/model.js"
-import { getWinners } from "../../src/js/utils.js"
 
 class CypressManager {
 	_getCy(selector) {

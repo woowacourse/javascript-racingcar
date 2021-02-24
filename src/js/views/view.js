@@ -1,9 +1,5 @@
-import { ID } from "./constants.js"
-import {
-	getCarNameDiv,
-	appendRecursiveChild,
-	getArrowElement,
-} from "./utils.js"
+import { SELECTOR } from "../constants.js"
+import { $ } from "../utils.js"
 
 class View {
 	initialRender($parentElement) {
@@ -41,51 +37,47 @@ class View {
 		)
 	}
 
-	renderProgressContainer() {
-		const $app = document.getElementById(ID.APP)
+	renderProgressContainer(cars) {
+		const $app = $(SELECTOR.APP)
 		$app.insertAdjacentHTML(
 			"beforeend",
 			`
         <div id="race-progress-container" class="d-flex justify-center mt-5">
             <section class="mt-4">
                 <div id="race-progress-screen" class="d-flex">
+				${cars
+					.map(
+						(car) => `<div><div class="car-player mr-2">${car.name}</div></div>`
+					)
+					.join("")}
                 </div>
             </section>
-        </div>`
-		)
-		$app.insertAdjacentHTML(
-			"beforeend",
-			`
-        <div id="result-container" class="d-flex justify-center mt-5">
+        </div>
+		<div id="result-container" class="d-flex justify-center mt-5">
             <section>
                 <h2 id="winner-text"></h2>
                 <div class="d-flex justify-center">
                     <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
                 </div>
             </section>
-        </div>`
+        </div>
+		`
 		)
 	}
 
-	renderProgressCars(cars) {
-		const $raceProgressScreen = document.getElementById(ID.RACE_PROGRESS_SCREEN)
-		cars.forEach((car) => {
-			const $container = document.createElement("div")
-			const $carPlayer = getCarNameDiv(car.name)
-			appendRecursiveChild($raceProgressScreen, [$container, $carPlayer])
-		})
-	}
-
-	renderArrow(boolsAboutMovement) {
-		const $cars = document.getElementById("race-progress-screen").children
-		boolsAboutMovement.forEach((moved, i) => {
-			const $arrow = getArrowElement()
-			moved && $cars[i].appendChild($arrow)
+	renderArrow(movedCars) {
+		const $cars = $(SELECTOR.RACE_PROGRESS_SCREEN).children
+		movedCars.forEach((moved, i) => {
+			moved &&
+				$cars[i].insertAdjacentHTML(
+					"beforeend",
+					`<div class="forward-icon mt-2">⬇️</div>`
+				)
 		})
 	}
 
 	renderWinner(winners) {
-		const $resultH2 = document.getElementById(ID.WINNER_TEXT)
+		const $resultH2 = $(SELECTOR.WINNER_TEXT)
 		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
 	}
 }

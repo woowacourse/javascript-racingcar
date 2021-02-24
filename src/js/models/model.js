@@ -1,5 +1,5 @@
-import { SETTING } from "./constants.js"
-import { getRandomNumber } from "./utils.js"
+import { SETTING } from "../constants.js"
+import { getRandomNumber } from "../utils.js"
 
 class Model {
 	constructor() {
@@ -27,21 +27,21 @@ class Model {
 		this.cars = inputValue
 	}
 
-	move(index) {
-		this.cars[index] !== undefined && this.cars[index].score++
-	}
-
 	clearStates() {
 		this._cars = []
 		this._count = 0
 	}
 
+	forward(carIndex) {
+		this.cars[carIndex].score++
+	}
 	move(carIndex) {
+		if (this.cars[carIndex] === undefined) return
 		const randomNumber = getRandomNumber(
 			SETTING.RANDOM_NUMBER.MIN,
 			SETTING.RANDOM_NUMBER.MAX
 		)
-		randomNumber >= SETTING.RANDOM_NUMBER.MIN_MOVABLE && this.move(carIndex)
+		randomNumber >= SETTING.RANDOM_NUMBER.MIN_MOVABLE && this.forward(carIndex)
 	}
 
 	moveCars() {

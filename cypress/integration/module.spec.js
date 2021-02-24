@@ -1,6 +1,5 @@
-import Model from "../../src/js/model.js"
-import { getRandomNumber, getWinners } from "../../src/js/utils.js"
-import Controller from "../../src/js/controller.js"
+import Model from "../../src/js/models/model.js"
+import { getRandomNumber } from "../../src/js/utils.js"
 
 context("module test", () => {
 	it("이름 입력 칸에 ','로 구분해서 이름을 입력할 수 있다.", () => {
@@ -22,11 +21,11 @@ context("module test", () => {
 	it("각 자동차는 입력한 횟수만큼 반복하여 랜덤 숫자를 배정받고, 랜덤 숫자가 4-9일 때 전진 횟수가 1 증가한다.", () => {
 		const model = new Model()
 		model.initializeCars("가,나,다")
-		model.move(0)
+		model.forward(0)
 		expect(model.cars[0].score).to.equal(1)
-		model.move(0)
+		model.forward(0)
 		expect(model.cars[0].score).to.equal(2)
-		model.move(0)
+		model.forward(0)
 		expect(model.cars[0].score).to.equal(3)
 	})
 
@@ -37,21 +36,6 @@ context("module test", () => {
 		model.move(0)
 		model.move(1)
 
-		expect(getWinners(model.cars)).to.deep.equal(["가"])
-	})
-
-	it("우승자가 2명 이상일 경우 ‘,’로 구분하여 출력한다.", () => {
-		const model = new Model()
-		const controller = new Controller()
-		model.initializeCars("가,나,다")
-		model.move(0)
-		model.move(0)
-		model.move(1)
-		model.move(1)
-		model.move(2)
-
-		expect(controller.getResultText(model.cars)).to.deep.equal(
-			`🏆 최종 우승자: 가, 나 🏆`
-		)
+		expect(model.winners).to.deep.equal(["가"])
 	})
 })
