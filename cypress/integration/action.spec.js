@@ -241,7 +241,7 @@ describe("behavior test", () => {
 			)
 			expect(bool).to.be.equal(false)
 			previousElements = nextElements.slice()
-			cy.wait(1000)
+			cy.tick(1000)
 		}
 	})
 
