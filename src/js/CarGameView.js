@@ -1,11 +1,13 @@
-import { show, hide, initInputValue } from './utils.js';
+import { show, hide, initInputValue, disableElement, enableElement } from './utils.js';
 
 export default class CarGameView {
   constructor($element) {
     this.carNamesView = $element.querySelector('#car-names-container');
     this.carNamesInput = $element.querySelector('#car-names-input');
+    this.carNamesCheckButton = $element.querySelector('#car-names-check-button');
     this.tryCountView = $element.querySelector('#try-count-container');
     this.tryCountInput = $element.querySelector('#try-count-input');
+    this.tryCountCheckButton = $element.querySelector('#try-count-check-button');
     this.gameProgressView = $element.querySelector('#game-progress-container');
     this.gameResultView = $element.querySelector('#game-result-container');
   }
@@ -60,5 +62,27 @@ export default class CarGameView {
 
   getTryCountInputValue() {
     return Number(this.tryCountInput.value);
+  }
+
+  hideGameProgress() {
+    hide(this.gameProgressView);
+  }
+
+  hideGameResult() {
+    hide(this.gameResultView);
+  }
+
+  disableAllInputAndCheckButton() {
+    disableElement(this.carNamesInput);
+    disableElement(this.carNamesCheckButton);
+    disableElement(this.tryCountInput);
+    disableElement(this.tryCountCheckButton);
+  }
+
+  enableAllInputAndCheckButton() {
+    enableElement(this.carNamesInput);
+    enableElement(this.carNamesCheckButton);
+    enableElement(this.tryCountInput);
+    enableElement(this.tryCountCheckButton);
   }
 }

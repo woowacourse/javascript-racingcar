@@ -1,5 +1,6 @@
 import CarGameManager from './CarGameManager.js';
 
 window.onload = () => {
-  new CarGameManager(document.querySelector('#app')).initGame();
+  const carGameManger = new CarGameManager(document.querySelector('#app'));
+  carGameManger.initGame();
 };

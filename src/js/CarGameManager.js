@@ -16,16 +16,13 @@ export default class CarGameManager {
   initGame() {
     this.carGameView.init();
     this.carNames = [];
-    setTimeout(() => this.$element.querySelector('#car-names-input').focus(), 0);
   }
 
   resetGame() {
     this.initGame();
-    enableElement(this.$element.querySelector('#car-names-input'));
-    enableElement(this.$element.querySelector('#car-names-check-button'));
-    enableElement(this.$element.querySelector('#try-count-input'));
-    enableElement(this.$element.querySelector('#try-count-check-button'));
+    this.carGameView.enableAllInputAndCheckButton();
     clearTimeout(this.alertGameResultTimeout);
+    this.$element.querySelector('#car-names-input').focus();
   }
 
   bindEvents() {
@@ -67,8 +64,8 @@ export default class CarGameManager {
     const tryCount = this.carGameView.getTryCountInputValue();
     const errorMessage = this.validator.validateTryCount(tryCount);
 
-    hide(this.carGameView.gameProgressView);
-    hide(this.carGameView.gameResultView);
+    this.carGameView.hideGameProgress();
+    this.carGameView.hideGameResult();
 
     clearTimeout(this.gameProgressTimeout);
     clearInterval(this.gamePlayInterval);
@@ -79,10 +76,7 @@ export default class CarGameManager {
       return;
     }
 
-    disableElement(this.$element.querySelector('#car-names-input'));
-    disableElement(this.$element.querySelector('#car-names-check-button'));
-    disableElement(this.$element.querySelector('#try-count-input'));
-    disableElement(this.$element.querySelector('#try-count-check-button'));
+    this.carGameView.disableAllInputAndCheckButton();
 
     this.racingCarGame = new RacingCarGame(this.carNames, tryCount);
     this.carGameView.displayProgress(this.racingCarGame.getCars());
