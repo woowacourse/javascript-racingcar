@@ -10,6 +10,8 @@ describe('자동차 경주 게임 View 테스트', () => {
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
 
   const initGame = () => {
+    // Note: Cypress 체크 시 autofocus가 잡히지 않는 문제가 있어 수동으로 focus를 잡아둠
+    cy.get('#car-names-input').should('have.attr', 'autofocus', 'autofocus').focus();
     cy.get('#car-names-container').should('be.visible');
     cy.get('#try-count-container').should('not.be.visible');
     cy.get('#game-progress-container').should('not.be.visible');
@@ -166,5 +168,4 @@ describe('자동차 경주 게임 View 테스트', () => {
     cy.tick(0);
     initGame();
   });
-
 });
