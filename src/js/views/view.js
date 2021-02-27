@@ -1,5 +1,5 @@
 import { SELECTOR } from "../constants.js"
-import { $ } from "../utils.js"
+import { $, isNodeList } from "../utils.js"
 
 class View {
 	initialRender($parentElement) {
@@ -69,20 +69,26 @@ class View {
 	}
 
 	renderArrow(movedCars) {
-		const $carNames = $(".car-player")
+		const $carNames = $(SELECTOR.CAR_PLAYER)
+
 		movedCars.forEach((moved, i) => {
-			moved &&
-				$carNames[i].insertAdjacentHTML(
-					"afterend",
-					`<div class="forward-icon mt-2">⬇️</div>`
-				)
+			if (!moved) return
+			isNodeList($carNames)
+				? $carNames[i].insertAdjacentHTML(
+						"afterend",
+						`<div class="forward-icon mt-2">⬇️</div>`
+				  )
+				: $carNames.insertAdjacentHTML(
+						"afterend",
+						`<div class="forward-icon mt-2">⬇️</div>`
+				  )
 		})
 	}
 
 	renderWinner(winners) {
 		const $resultH2 = $(SELECTOR.WINNER_TEXT)
 		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
-		const $resultContainer = $("#result-container .justify-center")
+		const $resultContainer = $(`${SELECTOR.RESULT_CONTAINER} .justify-center`)
 		$resultContainer.insertAdjacentHTML(
 			"beforeend",
 			`<button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>`
@@ -90,7 +96,15 @@ class View {
 	}
 
 	addSpinner() {
-		const $spinnerContainerContainers = $(".spinner-container-container")
+		const $spinnerContainerContainers = $(SELECTOR.SPINNER_CONTAINER_CONTAINER)
+		if (isNodeList($spinnerContainerContainers)) {
+			$spinnerContainerContainers.innerHTML = `
+		    <div class="relative spinner-container">
+		        <span class="material spinner"></span>
+		    </div>
+		        `
+			return
+		}
 		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
 			$spinnerContainerContainer.innerHTML = `
 		    <div class="relative spinner-container">
@@ -101,7 +115,10 @@ class View {
 	}
 
 	removeSpinner() {
-		const $spinnerContainerContainers = $(".spinner-container-container")
+		const $spinnerContainerContainers = $(SELECTOR.SPINNER_CONTAINER_CONTAINER)
+		if (isNodeList(spinnerContainerContainers)) {
+			return $spinnerContainerContainers.remove()
+		}
 		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
 			$spinnerContainerContainer.remove()
 		})

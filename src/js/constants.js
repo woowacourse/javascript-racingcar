@@ -9,6 +9,9 @@ export const SELECTOR = {
 	NAME_SUBMIT_BUTTON: "#name-submit-button",
 	RESET_BUTTON: "#reset-button",
 	RACE_PROGRESS_SCREEN: "#race-progress-screen",
+	CAR_PLAYER: ".car-player",
+	SPINNER_CONTAINER_CONTAINER: ".spinner-container-container",
+	RESULT_CONTAINER: "#result-container",
 }
 
 export const SETTING = {

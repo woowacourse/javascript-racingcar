@@ -154,12 +154,12 @@ describe("behavior test", () => {
 	})
 
 	// 이상하게 통과가 안됨.
-	// wait 다음에 race-progress-screen의 children의 children들에 여전히 각 자동차 이름, spinner가 들어있음.
+	// tick 다음에 race-progress-screen의 children의 children들에 여전히 각 자동차 이름, spinner가 들어있음.
 	// 할 만큼 했다고 생각하여 건너뜀
 	it("가장 많이 전진한 자동차가 우승인지 판별한다.", () => {
 		cypressManager.testCar("EAST, WEST, SOUTH", "5")
 
-		cy.wait(7000)
+		cy.tick(7000)
 		const winners = []
 		let maxCount = -1
 
@@ -210,7 +210,7 @@ describe("behavior test", () => {
 	it("리셋 버튼을 누르면 초기 상태로 돌아간다.", () => {
 		cypressManager.testCar()
 
-		cy.wait(5000)
+		cy.tick(5000)
 			.then(() => {
 				cypressManager.click("#reset-button")
 			})
@@ -267,7 +267,7 @@ describe("behavior test", () => {
 
 	it("게임이 끝난 뒤 우승자를 알려주는 alert가 뜬다.", () => {
 		cypressManager.testCar("aa", "2")
-		cy.wait(4000)
+		cy.tick(4000)
 		cypressManager.should("@alertStub", "be.calledWith", "Congratulations! aa")
 	})
 })

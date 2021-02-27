@@ -1,8 +1,14 @@
 import Model from "../models/model.js"
 import View from "../views/view.js"
-import { $, clearInputValue, delay } from "../utils.js"
+import { $ } from "../utils.js"
 import { SELECTOR } from "../constants.js"
 import { checkCountError, checkNameError } from "../validators/index.js"
+import {
+	clearCountInput,
+	filterCarName,
+	getCount,
+	progressRacing,
+} from "../methods.js"
 
 class Controller {
 	constructor() {
@@ -17,66 +23,25 @@ class Controller {
 		this.addNameButtonHandler()
 	}
 
-	isAlreadyCountClicked($settingContainer) {
-		return $settingContainer.childElementCount !== 2
-	}
-
-	filterCarName(target) {
-		const RegExp = /[^a-z가-힣A-Z,]/gi
-		if (RegExp.test(target.value)) {
-			target.value = target.value.replace(RegExp, "")
-		}
-	}
-
-	getCount() {
-		const $countInput = $(SELECTOR.COUNT_INPUT)
-		return Number($countInput.value)
-	}
-
-	clearCountInput() {
-		clearInputValue($(SELECTOR.COUNT_INPUT))
-	}
-
-	alertWinner(winners) {
-		alert(`Congratulations! ${winners.join(", ")}`)
-	}
-
-	async progressRacing() {
-		const { count } = this.model
-		this.view.addSpinner()
-		for (let i = 0; i < count; i++) {
-			await delay(1000)
-			const { movedCars } = this.model.moveCars()
-			this.view.renderArrow(movedCars)
-		}
-		this.view.removeSpinner()
-
-		await delay(2000)
-
-		const { winners } = this.model
-		this.alertWinner(winners)
-		this.view.renderWinner(winners)
-		this.addResetButtonHandler()
-	}
-
-	onNameButtonClick() {
+	displayCountSection() {
 		const $nameInput = $(SELECTOR.NAME_INPUT)
 		const $settingContainer = $(SELECTOR.SETTING_CONTAINER)
 		const nameInputValue = $nameInput.value
-		clearInputValue($nameInput)
+		$nameInput.value = ""
 		const { error, message } = checkNameError(
 			nameInputValue.split(","),
 			this.model.cars
 		)
-		if (error === false) return alert(message)
+		if (error === false) {
+			return alert(message)
+		}
 		this.model.initializeCars(nameInputValue)
 		this.view.renderCountSection($settingContainer)
-		this.addCountButtonHandler()
 	}
 
 	onCountButtonClick() {
-		const receivedCount = this.getCount()
-		this.clearCountInput()
+		const receivedCount = getCount()
+		clearCountInput()
 		const previousCount = this.model.count
 		const { error, message } = checkCountError(receivedCount, previousCount)
 		if (error === false) {
@@ -85,7 +50,12 @@ class Controller {
 		const { cars } = this.model
 		this.model.count = receivedCount
 		this.view.renderProgressContainer(cars)
-		this.progressRacing()
+		progressRacing({
+			model: this.model,
+			view: this.view,
+			addResetButtonHandler: this.addResetButtonHandler,
+			_this: this,
+		})
 	}
 
 	onResetButtonClick() {
@@ -103,14 +73,15 @@ class Controller {
 	addNameButtonHandler() {
 		const $nameButton = $(SELECTOR.NAME_SUBMIT_BUTTON)
 		$nameButton.addEventListener("click", () => {
-			this.onNameButtonClick()
+			this.displayCountSection()
+			this.addCountButtonHandler()
 		})
 	}
 
 	addNameInputHandler() {
 		const $nameInput = $(SELECTOR.NAME_INPUT)
 		$nameInput.addEventListener("input", ({ target }) => {
-			this.filterCarName(target)
+			filterCarName(target)
 		})
 	}
 

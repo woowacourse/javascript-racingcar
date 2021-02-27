@@ -55,3 +55,6 @@ export const $ = (selector) => {
 }
 
 export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+export const isNodeList = (element) =>
+	Object.prototype.toString.call(element) === "[object NodeList]"
