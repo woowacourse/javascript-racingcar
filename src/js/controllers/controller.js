@@ -37,6 +37,10 @@ class Controller {
 		clearInputValue($(SELECTOR.COUNT_INPUT))
 	}
 
+	alertWinner(winners) {
+		alert(`Congratulations! ${winners.join(", ")}`)
+	}
+
 	async progressRacing() {
 		const { count } = this.model
 		this.view.addSpinner()
@@ -46,7 +50,11 @@ class Controller {
 			this.view.renderArrow(movedCars)
 		}
 		this.view.removeSpinner()
+
+		await delay(2000)
+
 		const { winners } = this.model
+		this.alertWinner(winners)
 		this.view.renderWinner(winners)
 		this.addResetButtonHandler()
 	}
