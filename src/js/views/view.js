@@ -63,7 +63,6 @@ class View {
             <section>
                 <h2 id="winner-text"></h2>
                 <div class="d-flex justify-center">
-                    <button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>
                 </div>
             </section>
         </div>
@@ -85,6 +84,11 @@ class View {
 	renderWinner(winners) {
 		const $resultH2 = $(SELECTOR.WINNER_TEXT)
 		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
+		const $resultContainer = $("#result-container .justify-center")
+		$resultContainer.insertAdjacentHTML(
+			"beforeend",
+			`<button id="reset-button" type="button" class="btn btn-cyan">다시 시작하기</button>`
+		)
 	}
 
 	addSpinner() {
