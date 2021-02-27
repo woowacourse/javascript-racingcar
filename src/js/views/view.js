@@ -98,25 +98,26 @@ class View {
 	addSpinner() {
 		const $spinnerContainerContainers = $(SELECTOR.SPINNER_CONTAINER_CONTAINER)
 		if (isNodeList($spinnerContainerContainers)) {
-			$spinnerContainerContainers.innerHTML = `
-		    <div class="relative spinner-container">
-		        <span class="material spinner"></span>
-		    </div>
-		        `
+			$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
+				$spinnerContainerContainer.innerHTML = `
+				<div class="relative spinner-container">
+					<span class="material spinner"></span>
+				</div>
+					`
+			})
 			return
 		}
-		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
-			$spinnerContainerContainer.innerHTML = `
+
+		$spinnerContainerContainers.innerHTML = `
 		    <div class="relative spinner-container">
 		        <span class="material spinner"></span>
 		    </div>
 		        `
-		})
 	}
 
 	removeSpinner() {
 		const $spinnerContainerContainers = $(SELECTOR.SPINNER_CONTAINER_CONTAINER)
-		if (isNodeList(spinnerContainerContainers)) {
+		if (isNodeList($spinnerContainerContainers)) {
 			return $spinnerContainerContainers.remove()
 		}
 		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
