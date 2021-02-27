@@ -118,11 +118,13 @@ class View {
 	removeSpinner() {
 		const $spinnerContainerContainers = $(SELECTOR.SPINNER_CONTAINER_CONTAINER)
 		if (isNodeList($spinnerContainerContainers)) {
-			return $spinnerContainerContainers.remove()
+			return $spinnerContainerContainers.forEach(
+				($spinnerContainerContainer) => {
+					$spinnerContainerContainer.remove()
+				}
+			)
 		}
-		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
-			$spinnerContainerContainer.remove()
-		})
+		$spinnerContainerContainers.remove()
 	}
 }
 
