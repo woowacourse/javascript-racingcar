@@ -53,3 +53,5 @@ export const $ = (selector) => {
 		? document.querySelector(selector)
 		: document.querySelectorAll(selector)
 }
+
+export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))

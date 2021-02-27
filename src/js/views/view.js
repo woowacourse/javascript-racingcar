@@ -47,7 +47,13 @@ class View {
                 <div id="race-progress-screen" class="d-flex">
 				${cars
 					.map(
-						(car) => `<div><div class="car-player mr-2">${car.name}</div></div>`
+						(car) => `                        
+                        <div>
+                            <div class="car-player mr-2">
+                                ${car.name}
+                            </div>
+                            <div class="spinner-container-container"></div>
+                        </div>`
 					)
 					.join("")}
                 </div>
@@ -66,11 +72,11 @@ class View {
 	}
 
 	renderArrow(movedCars) {
-		const $cars = $(SELECTOR.RACE_PROGRESS_SCREEN).children
+		const $carNames = $(".car-player")
 		movedCars.forEach((moved, i) => {
 			moved &&
-				$cars[i].insertAdjacentHTML(
-					"beforeend",
+				$carNames[i].insertAdjacentHTML(
+					"afterend",
 					`<div class="forward-icon mt-2">⬇️</div>`
 				)
 		})
@@ -79,6 +85,24 @@ class View {
 	renderWinner(winners) {
 		const $resultH2 = $(SELECTOR.WINNER_TEXT)
 		$resultH2.innerText = `🏆 최종 우승자: ${winners.join(", ")} 🏆`
+	}
+
+	addSpinner() {
+		const $spinnerContainerContainers = $(".spinner-container-container")
+		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
+			$spinnerContainerContainer.innerHTML = `
+		    <div class="relative spinner-container">
+		        <span class="material spinner"></span>
+		    </div>
+		        `
+		})
+	}
+
+	removeSpinner() {
+		const $spinnerContainerContainers = $(".spinner-container-container")
+		$spinnerContainerContainers.forEach(($spinnerContainerContainer) => {
+			$spinnerContainerContainer.remove()
+		})
 	}
 }
 

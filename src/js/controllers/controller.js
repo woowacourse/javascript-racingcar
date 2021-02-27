@@ -1,6 +1,6 @@
 import Model from "../models/model.js"
 import View from "../views/view.js"
-import { $, clearInputValue } from "../utils.js"
+import { $, clearInputValue, delay } from "../utils.js"
 import { SELECTOR } from "../constants.js"
 import { checkCountError, checkNameError } from "../validators/index.js"
 
@@ -37,12 +37,18 @@ class Controller {
 		clearInputValue($(SELECTOR.COUNT_INPUT))
 	}
 
-	progressGame() {
+	async progressRacing() {
 		const { count } = this.model
+		this.view.addSpinner()
 		for (let i = 0; i < count; i++) {
+			await delay(1000)
 			const { movedCars } = this.model.moveCars()
 			this.view.renderArrow(movedCars)
 		}
+		this.view.removeSpinner()
+		const { winners } = this.model
+		this.view.renderWinner(winners)
+		this.addResetButtonHandler()
 	}
 
 	onNameButtonClick() {
@@ -71,10 +77,7 @@ class Controller {
 		const { cars } = this.model
 		this.model.count = receivedCount
 		this.view.renderProgressContainer(cars)
-		this.progressGame()
-		const { winners } = this.model
-		this.view.renderWinner(winners)
-		this.addResetButtonHandler()
+		this.progressRacing()
 	}
 
 	onResetButtonClick() {
