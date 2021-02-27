@@ -49,9 +49,7 @@ class View {
 					.map(
 						(car) => `                        
                         <div>
-                            <div class="car-player mr-2">
-                                ${car.name}
-                            </div>
+                            <div class="car-player mr-2">${car.name}</div>
                             <div class="spinner-container-container d-flex justify-center mt-4 "></div>
                         </div>`
 					)
