@@ -1,3 +1,5 @@
+import { CELEBRATE_MESSAGE } from '../../src/js/Utils/constants.js';
+
 describe('자동차 경주 게임 화면 렌더링 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
@@ -99,5 +101,18 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
               .should('have.text', `🏆 최종 우승자: ${winners.join(', ')} 🏆`)
           );
       });
+  });
+
+  it('사용자는 결과를 보여준 2초 후에 축하의 alert 메세지를 본다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    initGame();
+    inputCarNames();
+    inputTryCount('10');
+
+    cy.wait(2000).then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(CELEBRATE_MESSAGE);
+    });
   });
 });

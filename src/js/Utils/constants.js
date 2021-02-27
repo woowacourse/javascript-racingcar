@@ -10,6 +10,8 @@ export const TRY_COUNT_ERROR_MESSAGE = {
   NOT_POSITIVE: '시도 횟수는 1이상의 정수로 입력해주세요.',
 };
 
+export const CELEBRATE_MESSAGE = '🎉🎉 축하합니다 🎉🎉';
+
 export const NUMBERS = {
   // 게임의 전진하는 조건은 0에서 9 사이에서 random 값을 구한다.
   RANDOM_RANGE: 9,
