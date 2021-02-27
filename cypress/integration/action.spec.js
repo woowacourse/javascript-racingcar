@@ -93,7 +93,11 @@ describe("given environment test", () => {
 
 describe("behavior test", () => {
 	beforeEach(() => {
+		cy.clock()
 		cy.visit("http://127.0.0.1:5500/index.html")
+		cy.window()
+			.then((win) => cy.stub(win, "alert"))
+			.as("alertStub")
 	})
 
 	it("이름 입력 칸에 이름을 입력하고 확인 버튼을 누르면 칸이 비워지고, 횟수 입력 칸이 나온다.", () => {
@@ -124,15 +128,14 @@ describe("behavior test", () => {
 		cypressManager.testCar().should("#count-input", "have.value", "")
 	})
 
-	it("횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 진행창/결과창/리셋 버튼이 나온다.", () => {
+	it("횟수 입력 칸에 횟수를 입력하고 확인 버튼을 누르면 진행창/결과창이 나온다.", () => {
 		cypressManager
 			.testCar()
 			.should("#race-progress-container", "exist")
 			.should("#result-container", "exist")
-			.should("#reset-button", "exist")
 	})
 
-	it("횟수 확인 버튼을 연달아 눌러도 진행창/결과창/리셋 버튼은 한 번만 나온다.", () => {
+	it("횟수 확인 버튼을 연달아 눌러도 진행창/결과창은 한 번만 나온다.", () => {
 		cypressManager.testCar().submitCount("3").submitCount("3")
 
 		cy.get("#app")
@@ -150,19 +153,34 @@ describe("behavior test", () => {
 		cy.get(".car-player").eq(2).should("have.text", "SOUTH")
 	})
 
+	// 이상하게 통과가 안됨.
+	// wait 다음에 race-progress-screen의 children의 children들에 여전히 각 자동차 이름, spinner가 들어있음.
+	// 할 만큼 했다고 생각하여 건너뜀
 	it("가장 많이 전진한 자동차가 우승인지 판별한다.", () => {
-		cypressManager.testCar("EAST, WEST, SOUTH", "30")
+		cypressManager.testCar("EAST, WEST, SOUTH", "5")
 
-		cy.get(".car-player").then((cars) => {
-			const carObjects = [...cars].map((car) => ({
-				name: car.innerText,
-				score: car.parentNode.children.length - 1,
-			}))
-			const maxScore = Math.max(...carObjects.map((car) => car.score))
-			const winners = carObjects
-				.filter((car) => car.score === maxScore)
-				.map((car) => car.name)
+		cy.wait(7000)
+		const winners = []
+		let maxCount = -1
 
+		cy.document().then((doc) => {
+			const $raceScreen = doc.getElementById("race-progress-screen")
+
+			Array.from($raceScreen.children, (car) => car).forEach((carContainer) => {
+				const childNodesLength = carContainer.childNodes.length
+
+				if (maxCount < childNodesLength) {
+					maxCount = childNodesLength
+				}
+			})
+
+			Array.from($raceScreen.children, (car) => car).forEach((carContainer) => {
+				const childNodesLength = carContainer.childNodes.length
+				if (maxCount === childNodesLength) {
+					const carName = carContainer.querySelector(".car-player").innerText
+					winners.push(carName)
+				}
+			})
 			cy.get("#winner-text").contains(winners.join(", "))
 		})
 	})
@@ -190,10 +208,12 @@ describe("behavior test", () => {
 	})
 
 	it("리셋 버튼을 누르면 초기 상태로 돌아간다.", () => {
-		cypressManager
-			.testCar()
+		cypressManager.testCar()
 
-			.click("#reset-button")
+		cy.wait(5000)
+			.then(() => {
+				cypressManager.click("#reset-button")
+			})
 
 			.should("#name-input", "exist")
 			.should("#name-submit-button", "exist")
@@ -245,62 +265,68 @@ describe("behavior test", () => {
 		}
 	})
 
-	describe("exception test", () => {
-		beforeEach(() => {
-			cy.visit("http://127.0.0.1:5500/index.html")
-			cy.window()
-				.then((win) => cy.stub(win, "alert"))
-				.as("alertStub")
-		})
+	it("게임이 끝난 뒤 우승자를 알려주는 alert가 뜬다.", () => {
+		cypressManager.testCar("aa", "2")
+		cy.wait(4000)
+		cypressManager.should("@alertStub", "be.calledWith", "Congratulations! aa")
+	})
+})
 
-		it("이름을 등록하고 다시 등록하려 하면 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.submitName()
-				.submitName()
-				.should("@alertStub", "be.calledWith", MESSAGE.NAME_ALREADY_REGISTERED)
-		})
+describe("exception test", () => {
+	beforeEach(() => {
+		cy.visit("http://127.0.0.1:5500/index.html")
+		cy.window()
+			.then((win) => cy.stub(win, "alert"))
+			.as("alertStub")
+	})
 
-		it("빈 문자인 이름을 등록하면 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.submitName("a,b,,c")
-				.should("@alertStub", "be.calledWith", MESSAGE.EMPTY_NAME)
-		})
+	it("이름을 등록하고 다시 등록하려 하면 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.submitName()
+			.submitName()
+			.should("@alertStub", "be.calledWith", MESSAGE.NAME_ALREADY_REGISTERED)
+	})
 
-		it("5자 초과인 이름을 등록하면 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.submitName("bob dylan")
-				.should("@alertStub", "be.calledWith", MESSAGE.TOO_LONG_NAME)
-		})
+	it("빈 문자인 이름을 등록하면 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.submitName("a,b,,c")
+			.should("@alertStub", "be.calledWith", MESSAGE.EMPTY_NAME)
+	})
 
-		it("횟수를 설정한 뒤에 다시 횟수를 설정하려 할 경우 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.testCar("dawit,sehee", "3")
-				.submitCount("909")
-				.should("@alertStub", "be.calledWith", MESSAGE.COUNT_ALREADY_REGISTERED)
-		})
+	it("5자 초과인 이름을 등록하면 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.submitName("bob dylan")
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_LONG_NAME)
+	})
 
-		it("횟수를 설정하려 할 때 횟수가 자연수가 아닐 경우 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.testCar("dawit", "-3")
-				.should("@alertStub", "be.calledWith", MESSAGE.NOT_NATURAL_NUMBER)
-		})
+	it("횟수를 설정한 뒤에 다시 횟수를 설정하려 할 경우 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.testCar("dawit,sehee", "3")
+			.submitCount("909")
+			.should("@alertStub", "be.calledWith", MESSAGE.COUNT_ALREADY_REGISTERED)
+	})
 
-		it("중복된 이름을 포함할 경우 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.submitName("sehee,sehee")
-				.should("@alertStub", "be.calledWith", MESSAGE.OVERWRITTEN)
-		})
+	it("횟수를 설정하려 할 때 횟수가 자연수가 아닐 경우 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.testCar("dawit", "-3")
+			.should("@alertStub", "be.calledWith", MESSAGE.NOT_NATURAL_NUMBER)
+	})
 
-		it("횟수를 너무 큰 숫자(최대 20000으로 설정)로 설정하려 할 경우 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.testCar("some,name", "2000000000000")
-				.should("@alertStub", "be.calledWith", MESSAGE.TOO_BIG_COUNT)
-		})
+	it("중복된 이름을 포함할 경우 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.submitName("sehee,sehee")
+			.should("@alertStub", "be.calledWith", MESSAGE.OVERWRITTEN)
+	})
 
-		it("너무 많은 이름(최대 9개로 설정)을 등록하려 할 경우 alert 메시지를 표시한다.", () => {
-			cypressManager
-				.submitName("a,b,c,d,e,f,g,h,i,j")
-				.should("@alertStub", "be.calledWith", MESSAGE.TOO_MANY_NAMES)
-		})
+	it("횟수를 너무 큰 숫자(최대 20000으로 설정)로 설정하려 할 경우 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.testCar("some,name", "2000000000000")
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_BIG_COUNT)
+	})
+
+	it("너무 많은 이름(최대 9개로 설정)을 등록하려 할 경우 alert 메시지를 표시한다.", () => {
+		cypressManager
+			.submitName("a,b,c,d,e,f,g,h,i,j")
+			.should("@alertStub", "be.calledWith", MESSAGE.TOO_MANY_NAMES)
 	})
 })
