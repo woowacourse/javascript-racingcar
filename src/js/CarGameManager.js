@@ -1,6 +1,7 @@
 import CarGameView from './CarGameView.js';
 import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
+import { CELEBRATE_MESSAGE } from './Utils/constants.js';
 import { $ } from './Utils/dom.js';
 import RacingCarValidator from './Validators/RacingCarValidator.js';
 
@@ -77,6 +78,8 @@ export default class CarGameManager {
     this.carGameView.renderWinners(racingCarGame.getWinners());
     this.carGameView.showView($('#display-game-progress'));
     this.carGameView.showView($('#display-game-result'));
+
+    setTimeout(() => this.alertResultMessage(), 2000);
   }
 
   resetHandler() {
@@ -85,5 +88,9 @@ export default class CarGameManager {
 
   createCar() {
     this.cars = this.carNames.map((carName) => new Car(carName));
+  }
+
+  alertResultMessage() {
+    alert(CELEBRATE_MESSAGE);
   }
 }
