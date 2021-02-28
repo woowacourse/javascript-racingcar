@@ -1,31 +1,32 @@
 import { NUMBERS } from '../Utils/constants.js';
+import { getRandomInt } from '../Utils/utils.js';
+import Car from './Car.js';
 
 export default class RacingCarGame {
-  constructor(cars, tryCount) {
-    this.cars = cars;
+  constructor(carNames, tryCount) {
+    this.cars = carNames.map((carName) => new Car(carName));
     this.tryCount = tryCount;
-  }
-
-  getRandomInt() {
-    return Math.floor(Math.random() * (NUMBERS.RANDOM_RANGE + 1));
   }
 
   playOneRound() {
     this.cars.forEach((car) => {
-      if (this.getRandomInt() >= NUMBERS.RUN_POINT) {
+      if (getRandomInt(NUMBERS.RANDOM_RANGE) >= NUMBERS.RUN_POINT) {
         car.run();
       }
     });
   }
 
-  playGame() {
-    for (let i = 0; i < this.tryCount; i++) {
-      this.playOneRound();
-    }
+  runGame() {
+    this.playOneRound();
+    this.tryCount--;
   }
 
   getCars() {
     return this.cars;
+  }
+
+  getTryCount() {
+    return this.tryCount;
   }
 
   getMaxDistance() {

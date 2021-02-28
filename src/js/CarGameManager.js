@@ -1,8 +1,7 @@
 import CarGameView from './CarGameView.js';
-import Car from './Game/Car.js';
 import RacingCarGame from './Game/RacingCarGame.js';
 import { CELEBRATE_MESSAGE } from './Utils/constants.js';
-import { $ } from './Utils/dom.js';
+import { $, $$ } from './Utils/dom.js';
 import RacingCarValidator from './Validators/RacingCarValidator.js';
 
 export default class CarGameManager {
@@ -17,6 +16,33 @@ export default class CarGameManager {
     this.cars = [];
     this.carNames = [];
     this.errorMessage = '';
+  }
+
+  alertMessage(message) {
+    alert(message);
+  }
+
+  renderInitGameProgress() {
+    this.carGameView.showView($('#display-game-progress'));
+    this.carGameView.renderGameProgress(this.racingCarGame.getCars());
+  }
+
+  renderResult() {
+    this.carGameView.renderWinners(this.racingCarGame.getWinners());
+    this.carGameView.showView($('#display-game-result'));
+
+    setTimeout(() => this.alertMessage(CELEBRATE_MESSAGE), 2000);
+  }
+
+  playGame(resolve) {
+    this.racingCarGame.runGame();
+    this.carGameView.renderGameProgress(this.racingCarGame.getCars());
+
+    if (this.racingCarGame.getTryCount() === 0) {
+      clearInterval(this.racingProgress);
+      $$('.spinner-container').forEach((spinner) => (spinner.style.display = 'none'));
+      resolve();
+    }
   }
 
   bindEvents() {
@@ -48,9 +74,9 @@ export default class CarGameManager {
       .value.split(',')
       .map((name) => name.trim());
 
-    this.errorMessage = this.racingCarValidator.checkCarNamesValidation(this.carNames);
-    if (this.errorMessage) {
-      alert(this.errorMessage);
+    const errorMessage = this.racingCarValidator.checkCarNamesValidation(this.carNames);
+    if (errorMessage) {
+      this.alertMessage(errorMessage);
       this.initGame();
       return;
     }
@@ -60,37 +86,22 @@ export default class CarGameManager {
 
   tryCountInputHandler() {
     const tryCount = Number($('#input-try-count').value);
+    const errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
 
-    this.errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
-    if (this.errorMessage) {
-      alert(this.errorMessage);
+    if (errorMessage) {
+      this.alertMessage(errorMessage);
       this.carGameView.resetInput($('#input-count-wrapper > div'));
-      this.carGameView.hideView($('#display-game-progress'));
-      this.carGameView.hideView($('#display-game-result'));
-
       return;
     }
 
-    this.createCar();
-    const racingCarGame = new RacingCarGame(this.cars, tryCount);
-    racingCarGame.playGame();
-    this.carGameView.renderGameProgress(racingCarGame.getCars());
-    this.carGameView.renderWinners(racingCarGame.getWinners());
-    this.carGameView.showView($('#display-game-progress'));
-    this.carGameView.showView($('#display-game-result'));
-
-    setTimeout(() => this.alertResultMessage(), 2000);
+    this.racingCarGame = new RacingCarGame(this.carNames, tryCount);
+    new Promise((resolve) => {
+      this.renderInitGameProgress();
+      this.racingProgress = setInterval(() => this.playGame(resolve), 1000);
+    }).then(() => this.renderResult());
   }
 
   resetHandler() {
     this.initGame();
-  }
-
-  createCar() {
-    this.cars = this.carNames.map((carName) => new Car(carName));
-  }
-
-  alertResultMessage() {
-    alert(CELEBRATE_MESSAGE);
   }
 }

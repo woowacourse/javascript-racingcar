@@ -40,6 +40,9 @@ export default class CarGameView {
         <div>
           <div class="car-player mr-2" data-position=${car.getPosition()}>${car.getName()}</div>
           ${this.getForwardIconsTemplate(car.getPosition())}
+          <div class="relative spinner-container mt-2">
+            <span class="material spinner"></span>
+          </div>
         </div>`
       )
       .join('');
