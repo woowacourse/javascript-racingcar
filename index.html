@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div id="app">
+  <main id="app">
     <div class="d-flex justify-center mt-5">
       <div>
         <section>
@@ -19,15 +19,15 @@
           </p>
         </section>
 
-        <section id="input-names-wrapper">
+        <section id="input-names-wrapper" aria-labelledby="input-car-names">
           <div class="d-flex">
-            <input type="text" id="input-car-names" class="w-100 mr-2" placeholder="자동차 이름" />
+            <input type="text" id="input-car-names" class="w-100 mr-2" placeholder="자동차 이름"/>
             <button type="button" id="input-names-btn" class="btn btn-cyan">확인</button>
           </div>
         </section>
         
-        <section id="input-count-wrapper" class="mt-5">
-          <p>시도할 횟수를 입력해주세요.</p>
+        <section id="input-count-wrapper" class="mt-5" aria-labelledby="input-try-count">
+          <label for="input-try-count">시도할 횟수를 입력해주세요.</label>
           <div class="d-flex">
             <input type="number" id="input-try-count" class="w-100 mr-2" placeholder="시도 횟수" />
             <button type="button" id="input-count-btn" class="btn btn-cyan">확인</button>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="d-flex justify-center mt-5">
-      <section id="display-game-progress" class="mt-4">
+      <section id="display-game-progress" class="mt-4" aria-labelledby="racing-progress">
         <div id="racing-progress" class="d-flex">
         </div>
       </section>
@@ -51,7 +51,7 @@
         </div>
       </section>
     </div>
-  </div>
+  </main>
   <script src="src/js/index.js" type="module"></script>
 </body>
 
