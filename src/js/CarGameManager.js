@@ -2,9 +2,10 @@ import CarGameView from './CarGameView.js';
 
 import RacingCarGame from './Game/RacingCarGame.js';
 
+import elements from './Utils/elements.js';
 import { CELEBRATE_MESSAGE } from './Utils/constants.js';
-import { $, $$ } from './Utils/dom.js';
 import { alertMessage } from './Utils/utils.js';
+import { $$ } from './Utils/dom.js';
 
 import RacingCarValidator from './Validators/RacingCarValidator.js';
 
@@ -29,15 +30,13 @@ export default class CarGameManager {
   }
 
   bindInputCarNamesEvent() {
-    $('#input-names-btn').addEventListener('click', () => {
+    elements.$inputNameBtn.addEventListener('click', () => {
       this.carNamesInputHandler();
     });
   }
 
   carNamesInputHandler() {
-    this.carNames = $('#input-car-names')
-      .value.split(',')
-      .map((name) => name.trim());
+    this.carNames = elements.$inputCarNames.value.split(',').map((name) => name.trim());
 
     const errorMessage = this.racingCarValidator.checkCarNamesValidation(this.carNames);
     if (errorMessage) {
@@ -46,22 +45,22 @@ export default class CarGameManager {
       return;
     }
 
-    this.carGameView.showView($('#input-count-wrapper'));
+    this.carGameView.showView(elements.$inputCountWrapper);
   }
 
   bindInputTryCountEvent() {
-    $('#input-count-btn').addEventListener('click', () => {
+    elements.$inputTryCountBtn.addEventListener('click', () => {
       this.tryCountInputHandler();
     });
   }
 
   tryCountInputHandler() {
-    const tryCount = Number($('#input-try-count').value);
+    const tryCount = Number(elements.$inputTryCount.value);
     const errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
 
     if (errorMessage) {
       alertMessage(errorMessage);
-      this.carGameView.resetInput($('#input-try-count'));
+      this.carGameView.resetInput(elements.$inputTryCount);
       return;
     }
 
@@ -73,7 +72,7 @@ export default class CarGameManager {
   }
 
   renderInitGameProgress() {
-    this.carGameView.showView($('#display-game-progress'));
+    this.carGameView.showView(elements.$gameProgressSection);
     this.carGameView.renderGameProgress(this.racingCarGame.getCars());
   }
 
@@ -90,13 +89,13 @@ export default class CarGameManager {
 
   renderResult() {
     this.carGameView.renderWinners(this.racingCarGame.getWinners());
-    this.carGameView.showView($('#display-game-result'));
+    this.carGameView.showView(elements.$gameResultSection);
 
     setTimeout(() => alertMessage(CELEBRATE_MESSAGE), 2000);
   }
 
   bindResetEvent() {
-    $('#reset-btn').addEventListener('click', () => {
+    elements.$resetBtn.addEventListener('click', () => {
       this.initGame();
     });
   }

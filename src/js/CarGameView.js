@@ -1,11 +1,11 @@
-import { $ } from './Utils/dom.js';
+import elements from './Utils/elements.js';
 
 export default class CarGameView {
   constructor() {
-    this.inputCarNamesView = $('#input-names-wrapper');
-    this.inputTryCountView = $('#input-count-wrapper');
-    this.gameProgressView = $('#display-game-progress');
-    this.gameResultView = $('#display-game-result');
+    this.inputCarNamesView = elements.$inputNameWrapper;
+    this.inputTryCountView = elements.$inputCountWrapper;
+    this.gameProgressView = elements.$gameProgressSection;
+    this.gameResultView = elements.$gameResultSection;
   }
 
   showView($element) {
@@ -17,20 +17,21 @@ export default class CarGameView {
   }
 
   resetInput($element) {
-    $element.querySelector('input').value = '';
+    $element.value = '';
   }
 
   init() {
+    this.resetInput(elements.$inputCarNames);
+    this.resetInput(elements.$inputTryCount);
+
     this.showView(this.inputCarNamesView);
-    this.resetInput(this.inputCarNamesView);
     this.hideView(this.inputTryCountView);
-    this.resetInput(this.inputTryCountView);
     this.hideView(this.gameProgressView);
     this.hideView(this.gameResultView);
   }
 
   renderGameProgress(cars) {
-    $('#racing-progress').innerHTML = this.getGameProgressTemplate(cars);
+    elements.$racingProcessDiv.innerHTML = this.getGameProgressTemplate(cars);
   }
 
   getGameProgressTemplate(cars) {
@@ -53,6 +54,6 @@ export default class CarGameView {
   }
 
   renderWinners(winner) {
-    $('#winners').innerText = `🏆 최종 우승자: ${winner} 🏆`;
+    elements.$winners.innerText = `🏆 최종 우승자: ${winner} 🏆`;
   }
 }
