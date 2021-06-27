@@ -1,9 +1,9 @@
-import { CELEBRATE_MESSAGE } from '../../src/js/Utils/constants.js';
+import { CELEBRATE_MESSAGE } from '../../src/js/constants.js';
 
 describe('자동차 경주 게임 화면 렌더링 테스트', () => {
   beforeEach(() => {
     cy.clock();
-    cy.visit('http://localhost:5500/');
+    cy.visit('http://localhost:8080/');
   });
 
   const defaultCarNames = 'EAST, WEST, SOUTH, NORTH';
@@ -58,6 +58,7 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount();
+    cy.tick(2000);
     cy.get('#display-game-result > div > button').click();
     initGame();
   });
@@ -66,6 +67,7 @@ describe('자동차 경주 게임 화면 렌더링 테스트', () => {
     initGame();
     inputCarNames();
     inputTryCount();
+    cy.tick(2000);
     cy.get('#display-game-result > div > button').click();
     initGame();
     inputCarNames();
