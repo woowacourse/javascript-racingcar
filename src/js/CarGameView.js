@@ -1,13 +1,6 @@
 import elements from './Utils/elements.js';
 
 export default class CarGameView {
-  constructor() {
-    this.inputCarNamesView = elements.$inputNameWrapper;
-    this.inputTryCountView = elements.$inputCountWrapper;
-    this.gameProgressView = elements.$gameProgressSection;
-    this.gameResultView = elements.$gameResultSection;
-  }
-
   showView($element) {
     $element.style.display = 'block';
   }
@@ -21,13 +14,18 @@ export default class CarGameView {
   }
 
   init() {
-    this.resetInput(elements.$inputCarNames);
-    this.resetInput(elements.$inputTryCount);
+    elements.$inputNameForm.reset();
+    elements.$inputTryCountForm.reset();
 
-    this.showView(this.inputCarNamesView);
-    this.hideView(this.inputTryCountView);
-    this.hideView(this.gameProgressView);
-    this.hideView(this.gameResultView);
+    this.showView(elements.$inputNameSection);
+    this.hideView(elements.$inputCountSection);
+    this.hideView(elements.$gameProgressSection);
+    this.hideView(elements.$gameResultSection);
+  }
+
+  renderInitGameProgress(cars) {
+    this.showView(elements.$gameProgressSection);
+    this.renderGameProgress(cars);
   }
 
   renderGameProgress(cars) {
@@ -53,7 +51,9 @@ export default class CarGameView {
     return '<div class="forward-icon mt-2">⬇️️</div>'.repeat(count);
   }
 
-  renderWinners(winner) {
-    elements.$winners.innerText = `🏆 최종 우승자: ${winner} 🏆`;
+  renderResult(winners) {
+    this.showView(elements.$gameResultSection);
+
+    elements.$winners.innerText = `🏆 최종 우승자: ${winners} 🏆`;
   }
 }

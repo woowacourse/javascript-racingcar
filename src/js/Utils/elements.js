@@ -1,12 +1,12 @@
 import { $ } from './dom.js';
 
 const elements = {
-  $inputNameWrapper: $('#input-names-wrapper'),
+  $inputNameSection: $('#input-names-wrapper'),
+  $inputNameForm: $('#input-names-form'),
   $inputCarNames: $('#input-car-names'),
-  $inputNameBtn: $('#input-names-btn'),
-  $inputCountWrapper: $('#input-count-wrapper'),
+  $inputCountSection: $('#input-count-wrapper'),
   $inputTryCount: $('#input-try-count'),
-  $inputTryCountBtn: $('#input-count-btn'),
+  $inputTryCountForm: $('#input-try-count-form'),
   $gameProgressSection: $('#display-game-progress'),
   $racingProcessDiv: $('#racing-progress'),
   $gameResultSection: $('#display-game-result'),
