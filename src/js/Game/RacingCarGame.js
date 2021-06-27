@@ -1,4 +1,4 @@
-import { NUMBERS } from '../Utils/constants.js';
+import { NUMBERS } from '../constants.js';
 import { getRandomInt } from '../Utils/utils.js';
 import Car from './Car.js';
 

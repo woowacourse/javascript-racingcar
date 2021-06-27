@@ -2,17 +2,17 @@ import CarGameView from './CarGameView.js';
 
 import RacingCarGame from './Game/RacingCarGame.js';
 
+import { carNameValidator, tryCountValidator } from './Validators/racingCarValidator.js';
+
 import elements from './Utils/elements.js';
-import { CELEBRATE_MESSAGE } from './Utils/constants.js';
 import { alertMessage } from './Utils/utils.js';
 import { $$ } from './Utils/dom.js';
 
-import RacingCarValidator from './Validators/RacingCarValidator.js';
+import { CELEBRATE_MESSAGE } from './constants.js';
 
 export default class CarGameManager {
   constructor() {
     this.carGameView = new CarGameView();
-    this.racingCarValidator = new RacingCarValidator();
     this.bindEvents();
   }
 
@@ -38,7 +38,7 @@ export default class CarGameManager {
   carNamesInputHandler() {
     this.carNames = elements.$inputCarNames.value.split(',').map((name) => name.trim());
 
-    const errorMessage = this.racingCarValidator.checkCarNamesValidation(this.carNames);
+    const errorMessage = carNameValidator(this.carNames);
     if (errorMessage) {
       alertMessage(errorMessage);
       this.initGame();
@@ -56,7 +56,7 @@ export default class CarGameManager {
 
   tryCountInputHandler() {
     const tryCount = Number(elements.$inputTryCount.value);
-    const errorMessage = this.racingCarValidator.checkTryCountValidation(tryCount);
+    const errorMessage = tryCountValidator(tryCount);
 
     if (errorMessage) {
       alertMessage(errorMessage);

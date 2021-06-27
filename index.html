@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임</title>
+    <link rel="stylesheet" href="./src/css/index.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-  <link rel="stylesheet" href="./src/css/index.css" />
-</head>
+  <body>
+    <main id="app">
+      <div class="d-flex justify-center mt-5">
+        <div>
+          <section>
+            <h1 class="text-center">🏎️ 자동차 경주 게임</h1>
+            <p>
+              5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요. <br />
+              예시) EAST, WEST, SOUTH, NORTH
+            </p>
+          </section>
 
-<body>
-  <main id="app">
-    <div class="d-flex justify-center mt-5">
-      <div>
-        <section>
-          <h1 class="text-center">🏎️ 자동차 경주 게임</h1>
-          <p>
-            5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요. <br />
-            예시) EAST, WEST, SOUTH, NORTH
-          </p>
+          <section id="input-names-wrapper" aria-labelledby="input-car-names">
+            <div class="d-flex">
+              <input
+                type="text"
+                id="input-car-names"
+                class="w-100 mr-2"
+                placeholder="자동차 이름"
+                required
+              />
+              <button type="button" id="input-names-btn" class="btn btn-cyan">확인</button>
+            </div>
+          </section>
+
+          <section id="input-count-wrapper" class="mt-5" aria-labelledby="input-try-count">
+            <label for="input-try-count">시도할 횟수를 입력해주세요.</label>
+            <div class="d-flex">
+              <input
+                type="number"
+                id="input-try-count"
+                class="w-100 mr-2"
+                placeholder="시도 횟수"
+                min="1"
+                required
+              />
+              <button type="button" id="input-count-btn" class="btn btn-cyan">확인</button>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="d-flex justify-center mt-5">
+        <section id="display-game-progress" class="mt-4" aria-labelledby="racing-progress">
+          <div id="racing-progress" class="d-flex"></div>
         </section>
+      </div>
 
-        <section id="input-names-wrapper" aria-labelledby="input-car-names">
-          <div class="d-flex">
-            <input type="text" id="input-car-names" class="w-100 mr-2" placeholder="자동차 이름"/>
-            <button type="button" id="input-names-btn" class="btn btn-cyan">확인</button>
-          </div>
-        </section>
-        
-        <section id="input-count-wrapper" class="mt-5" aria-labelledby="input-try-count">
-          <label for="input-try-count">시도할 횟수를 입력해주세요.</label>
-          <div class="d-flex">
-            <input type="number" id="input-try-count" class="w-100 mr-2" placeholder="시도 횟수" />
-            <button type="button" id="input-count-btn" class="btn btn-cyan">확인</button>
+      <div class="d-flex justify-center mt-5">
+        <section id="display-game-result">
+          <h2 id="winners">🏆 최종 우승자: EAST, WEST 🏆</h2>
+          <div class="d-flex justify-center">
+            <button type="button" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
           </div>
         </section>
       </div>
-    </div>
-
-    <div class="d-flex justify-center mt-5">
-      <section id="display-game-progress" class="mt-4" aria-labelledby="racing-progress">
-        <div id="racing-progress" class="d-flex">
-        </div>
-      </section>
-    </div>
-
-    <div class="d-flex justify-center mt-5">
-      <section id="display-game-result">
-        <h2 id="winners">🏆 최종 우승자: EAST, WEST 🏆</h2>
-        <div class="d-flex justify-center">
-          <button type="button" id="reset-btn" class="btn btn-cyan">다시 시작하기</button>
-        </div>
-      </section>
-    </div>
-  </main>
-  <script src="src/js/index.js" type="module"></script>
-</body>
-
+    </main>
+    <script src="src/js/index.js" type="module"></script>
+  </body>
 </html>
