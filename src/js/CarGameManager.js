@@ -17,9 +17,10 @@ export default class CarGameManager {
   }
 
   initGame() {
+    elements.$inputNameButton.disabled = false;
+    elements.$inputTryCountButton.disabled = false;
+
     this.carGameView.init();
-    this.cars = [];
-    this.carNames = [];
     this.errorMessage = '';
   }
 
@@ -33,61 +34,74 @@ export default class CarGameManager {
     elements.$inputNameForm.addEventListener('submit', this.carNamesInputHandler.bind(this));
   }
 
-  carNamesInputHandler(e) {
-    e.preventDefault();
-
-    this.carNames = e.target.elements.names.value.split(',').map((name) => name.trim());
-
-    const errorMessage = carNameValidator(this.carNames);
-    if (errorMessage) {
-      alertMessage(errorMessage);
-      this.initGame();
-      return;
-    }
-
-    this.carGameView.showView(elements.$inputCountSection);
-  }
-
   bindInputTryCountEvent() {
     elements.$inputTryCountForm.addEventListener('submit', this.tryCountInputHandler.bind(this));
-  }
-
-  tryCountInputHandler(e) {
-    e.preventDefault();
-
-    const tryCount = Number(e.target.elements.counts.value);
-    const errorMessage = tryCountValidator(tryCount);
-    if (errorMessage) {
-      alertMessage(errorMessage);
-      this.carGameView.resetInput(elements.$inputTryCount);
-      return;
-    }
-
-    this.racingCarGame = new RacingCarGame(this.carNames, tryCount);
-    new Promise((resolve) => {
-      this.carGameView.renderInitGameProgress(this.racingCarGame.getCars());
-      this.racingProgress = setInterval(() => this.playGame(resolve), 1000);
-    }).then(() => {
-      this.carGameView.renderResult(this.racingCarGame.getWinners());
-
-      setTimeout(() => alertMessage(CELEBRATE_MESSAGE), 2000);
-    });
-  }
-
-  playGame(resolve) {
-    this.racingCarGame.runGame();
-    this.carGameView.renderGameProgress(this.racingCarGame.getCars());
-
-    if (this.racingCarGame.getTryCount() === 0) {
-      clearInterval(this.racingProgress);
-      $$('.spinner-container').forEach((spinner) => (spinner.style.display = 'none'));
-      resolve();
-    }
   }
 
   bindResetEvent() {
     elements.$resetBtn.addEventListener('click', () => {
       this.initGame();
     });
+  }
+
+  carNamesInputHandler(e) {
+    e.preventDefault();
+
+    const [input, button] = e.target;
+    this.carNames = input.value.split(',').map((name) => name.trim());
+
+    if (carNameValidator(this.carNames)) {
+      alertMessage(errorMessage);
+      this.initGame();
+      return;
+    }
+
+    button.disabled = true;
+    this.carGameView.showView(elements.$inputCountSection);
+  }
+
+  async tryCountInputHandler(e) {
+    e.preventDefault();
+
+    const [input, button] = e.target;
+    const tryCount = Number(input.value);
+
+    if (tryCountValidator(tryCount)) {
+      alertMessage(errorMessage);
+      this.carGameView.resetInput(elements.$inputTryCount);
+      return;
+    }
+
+    button.disabled = true;
+    await this.playGame(tryCount);
+    this.showResult();
+  }
+
+  playGame(tryCount) {
+    this.racingCarGame = new RacingCarGame(this.carNames, tryCount);
+    this.carGameView.renderInitGameProgress(this.racingCarGame.getCars());
+
+    return new Promise((resolve) => {
+      this.racingProgress = setInterval(() => {
+        this.racingCarGame.runGame();
+        this.carGameView.renderGameProgress(this.racingCarGame.getCars());
+
+        if (this.racingCarGame.getTryCount() === 0) {
+          clearInterval(this.racingProgress);
+          $$('.spinner-container').forEach((spinner) => (spinner.style.display = 'none'));
+          resolve();
+        }
+      }, 1000);
+    });
+  }
+
+  showResult() {
+    this.carGameView.renderResult(this.racingCarGame.getWinners());
+    elements.$resetBtn.disabled = true;
+
+    setTimeout(() => {
+      alertMessage(CELEBRATE_MESSAGE);
+      elements.$resetBtn.disabled = false;
+    }, 2000);
   }
 }
