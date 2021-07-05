@@ -1,0 +1,14 @@
+{
+  "name": "javascript-calculator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sunhpark42/javascript-calculator.git",
+  "author": "Tyche <kgshdgeh@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "cypress": "^6.4.0"
+  }
+}

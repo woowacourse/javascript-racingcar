@@ -11,6 +11,7 @@ body {
 }
 
 .car-player {
+  border: 1px solid blue;
   height: 36px;
   min-width: 64px;
   padding: 0 16px;
@@ -29,9 +30,4 @@ body {
   font-size: 32px;
   display: flex;
   justify-content: center;
-}
-
-fieldset {
-  border: none;
-  padding: 0;
 }
