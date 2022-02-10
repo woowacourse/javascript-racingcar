@@ -29,9 +29,9 @@ class RacingCarGame {
     return this.$carNameInput.value.split(',');
   }
 
-  initializeInput(inputElement) {
-    inputElement.value = '';
-    inputElement.focus();
+  initializeInput(clearElement, focusElement = clearElement) {
+    clearElement.value = '';
+    focusElement.focus();
   }
 
   main() {
@@ -74,6 +74,11 @@ class RacingCarGame {
 
         return;
       }
+
+      if (!this.carList.length) {
+        alert('자동차 이름을 먼저 입력해주세요.');
+        this.initializeInput(this.$racingCountInput, this.$carNameInput);
+      }
     });
   }
 }
@@ -95,7 +100,7 @@ racingCarGame.main();
 // - 0에서 9 사이에서 무작위 값을 생성한다.
 // - 무작위 값이 4 이상일 경우 자동차를 전진시킨다.
 // - 마지막 레이스의 결과로 최종 우승자를 구한다.
-// - #### 결과 렌더링하기
 
+// - #### 결과 렌더링하기
 // - 우승자가 여러 명일 수 있다.
 // - 우승자가 여러 명일 경우 쉼표를 이용하여 구분한다.
