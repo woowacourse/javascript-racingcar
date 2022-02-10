@@ -1,7 +1,10 @@
 const CAR_NAME_MAX_LENGTH = 5;
 
 const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
-const haveBlank = someCarNames((carName) => carName.match(/\s+/));
+
+const haveMiddleBlank = someCarNames((carName) => carName.match(/\s+/));
 const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
 
-export { haveBlank, exceedMaxLength };
+const isPositive = (number) => number > 0;
+
+export { haveMiddleBlank, exceedMaxLength, isPositive };
