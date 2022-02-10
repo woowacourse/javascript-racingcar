@@ -13,4 +13,9 @@ export default class RacingCarView {
   renderGameSetting() {
     this.$app.innerHTML += gameSettingTemplate();
   }
+
+  selectGameSettingDOM() {
+    this.$carNamesInput = $('#car-names-input');
+    this.$carNamesSubmit = $('#car-names-submit');
+  }
 }

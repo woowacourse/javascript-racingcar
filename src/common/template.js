@@ -10,15 +10,15 @@ export function gameSettingTemplate() {
   return `
     <div>
       <p>${DIRECTIVE.CAR_NAME}</p>
-      <form>
-        <input id="car-name-input"></input>
-        <button id="car-name-submit">${BUTTON.SUBMIT}</button>
-      </form>
+      <div>
+        <input id="car-names-input"></input>
+        <button id="car-names-submit">${BUTTON.SUBMIT}</button>
+      </div>
       <p>${DIRECTIVE.RACING_COUNT}</p>
-      <form>
+      <div>
         <input id="racing-count-input"></input>
         <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
-      </form>
+      </div>
     </div>
   `;
 }
