@@ -10,6 +10,15 @@
 // - #### 자동차 생성하기
 // - 입력받은 자동차 이름들로 자동차를 생성한다.
 
+// - #### 레이싱 횟수 입력 받기
+// - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
+
+// - #### 레이싱 횟수 유효성 검증하기
+// - 양의 정수인지 검증한다.
+
+// - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 10으로 정함.)
+//   레이싱 횟수 범위가 요구사항에 명시되어 있지 않았기 때문에 *레이싱 횟수 최댓값*을 100으로 정했습니다.
+
 import Car from './Car.js';
 
 class RacingCarGame {
@@ -32,6 +41,22 @@ class RacingCarGame {
   initializeInput(clearElement, focusElement = clearElement) {
     clearElement.value = '';
     focusElement.focus();
+  }
+
+  render() {
+    document.querySelector('#racing-result').innerHTML = `
+      <ul id="result-list">
+        ${this.carList
+          .map(
+            (car) => `
+          <li class="racing-car">
+            <p class="car-name">${car.name}</p>
+          </li>
+        `
+          )
+          .join('')}
+      </ul>
+    `;
   }
 
   main() {
@@ -57,6 +82,8 @@ class RacingCarGame {
       this.carList = carNameList.map((name) => new Car(name));
 
       console.log(this.carList);
+      document.querySelector('#result-list');
+      this.render();
     });
 
     this.$racingCountButton.addEventListener('click', (e) => {
@@ -78,6 +105,8 @@ class RacingCarGame {
       if (!this.carList.length) {
         alert('자동차 이름을 먼저 입력해주세요.');
         this.initializeInput(this.$racingCountInput, this.$carNameInput);
+
+        return;
       }
     });
   }
@@ -85,15 +114,6 @@ class RacingCarGame {
 
 const racingCarGame = new RacingCarGame();
 racingCarGame.main();
-
-// - #### 레이싱 횟수 입력 받기
-// - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
-
-// - #### 레이싱 횟수 유효성 검증하기
-// - 양의 정수인지 검증한다.
-
-// - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 10으로 정함.)
-//   레이싱 횟수 범위가 요구사항에 명시되어 있지 않았기 때문에 *레이싱 횟수 최댓값*을 100으로 정했습니다.
 
 // - #### 레이스 진행하기
 // - 입력받은 횟수만큼 레이스를 진행한다.
