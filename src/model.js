@@ -1,5 +1,5 @@
 export default class Model {
-  carList;
+  carList = [];
 
   saveCarList(carList) {
     this.carList = carList;
@@ -10,5 +10,9 @@ export default class Model {
     for (let i = 0; i < count; i++) {
       this.carList.forEach((car) => car.randomMove());
     }
+  }
+
+  resetCarList() {
+    this.carList = [];
   }
 }

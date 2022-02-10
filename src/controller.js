@@ -12,6 +12,7 @@ export default class Controller {
   triggerEvent() {
     this.view.setOnSubmitName(this.onSubmitName.bind(this));
     this.view.setOnSubmitCount(this.onSubmitCount.bind(this));
+    this.view.setOnClickReset(this.onClickReset.bind(this));
   }
 
   onSubmitName(carNames) {
@@ -31,6 +32,11 @@ export default class Controller {
     this.view.resultUpdate(this.model.carList);
     // 우승자 보여주기
     this.view.winnerUpdate(this.makeWinner(this.model.carList));
+  }
+
+  onClickReset() {
+    this.model.resetCarList();
+    this.view.hideResult();
   }
 
   makeWinner(carList) {

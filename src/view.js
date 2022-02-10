@@ -19,11 +19,13 @@ export default class View {
   hideResult() {
     this.$winner.style.display = 'none';
     this.$resetButton.style.display = 'none';
+    this.$resultSections.style.display = 'none';
   }
 
   showResult() {
     this.$winner.style.display = 'block';
     this.$resetButton.style.display = 'block';
+    this.$resultSections.style.display = 'flex';
   }
 
   setOnSubmitName(fn) {
@@ -39,6 +41,12 @@ export default class View {
       event.preventDefault();
       const count = this.$countInput.value;
       fn(count);
+    });
+  }
+
+  setOnClickReset(fn) {
+    this.$resetButton.addEventListener('click', () => {
+      fn();
     });
   }
 
