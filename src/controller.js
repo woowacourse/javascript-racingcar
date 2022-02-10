@@ -1,7 +1,7 @@
 import View from './view.js';
 import Model from './model.js';
 import Car from './car.js';
-import { validateNameInput } from './utils/validator.js';
+import { validateNameInput, validateCountInput } from './utils/validator.js';
 
 export default class Controller {
   constructor() {
@@ -32,9 +32,14 @@ export default class Controller {
   }
 
   onSubmitCount(count) {
-    this.model.startRace(count);
-    this.view.resultUpdate(this.model.carList);
-    this.view.winnerUpdate(this.makeWinner(this.model.carList));
+    try {
+      validateCountInput(Number(count));
+      this.model.startRace(count);
+      this.view.resultUpdate(this.model.carList);
+      this.view.winnerUpdate(this.makeWinner(this.model.carList));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   onClickReset() {

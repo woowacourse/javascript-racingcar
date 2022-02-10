@@ -13,3 +13,12 @@ export const validateNameInput = (nameList) => {
     }
   });
 };
+
+export const validateCountInput = (count) => {
+  if (count < 1) {
+    throw new Error(ERROR.UNDER_MIN_NUMBER);
+  }
+  if (count !== Math.floor(count)) {
+    throw new Error(ERROR.DECIMAL);
+  }
+};
