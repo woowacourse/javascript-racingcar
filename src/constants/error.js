@@ -1,0 +1,1 @@
+export const EMPYT_INPUT_ERROR = '빈값을 입력하셨습니다 다시 입력해주세요';
