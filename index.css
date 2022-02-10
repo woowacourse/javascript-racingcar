@@ -1,0 +1,143 @@
+body {
+    background: #e5e5e5;
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+}
+
+p {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 544px;
+    border-radius: 4px;
+    padding: 36px 16px 32px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.app .try,
+.app .last-area {
+    /* display: none; */
+}
+
+.app.show1 .try,
+.app.show2 .last-area {
+    display: block;
+}
+
+.game-title {
+    font-size: 34px;
+    text-align: center;
+    color: #000000;
+}
+
+.game-form {
+    width: 89%;
+}
+
+.game-form.name {
+    margin-bottom: 13px;
+}
+
+.input-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+}
+
+.form-title {
+    margin-bottom: 4px;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.form-input {
+    width: 80%;
+    height: 100%;
+    padding-left: 8px;
+    border: 1px solid #b4b4b4;
+    border-radius: 4px;
+}
+
+.form-button {
+    width: 65.68px;
+    height: 100%;
+}
+
+.result-area {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.car-track {
+    width: 96px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 8px;
+}
+
+.car-track:last-child {
+    margin: 0;
+}
+
+.car-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #000000;
+}
+
+.car-steps {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 32px;
+    line-height: 38px;
+}
+
+.car-step {
+    margin-top: 8px;
+}
+
+.last-area {
+    margin-top: 24px;
+}
+
+.stage {
+    font-size: 20px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.blue-button {
+    background: #00bcd4;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.restart-button {
+    width: 152px;
+    height: 36px;
+}

@@ -4,10 +4,87 @@
 <head>
   <meta charset="UTF-8" />
   <title>🏎️ 자동차 경주 게임</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-  <div id="app">
+  <div class="app" id="app">
+    <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
+
+    <form class="game-form name">
+      <p class="form-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+
+      <div class="input-wrap">
+        <input class="form-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
+        <button class="form-button blue-button" type="button" id="car-name-submit-button">확인</button>
+      </div>
+    </form>
+
+    <form class="game-form try">
+      <p class="form-title">시도할 횟수를 입력해주세요.</p>
+
+      <div class="input-wrap">
+        <input class="form-input" type="text" placeholder="10" id="try-count-input">
+        <button class="form-button blue-button" type="button" id="try-count-submit-button">확인</button>
+      </div>
+    </form>
+
+    <div class="result-area" id="result-area">
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+      <div class="car-track">
+        <div class="car-name">east</div>
+        <div class="car-steps">
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+          <span class="car-step">⬇️️</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="last-area">
+      <h3 class="stage">🏆 최종 우승자: <span id="winners"></span> 🏆</h1>
+      <button class="restart-button blue-button" type="button" id="restart-button">다시 시작하기</button>
+    </div>
+
   </div>
 </body>
 
