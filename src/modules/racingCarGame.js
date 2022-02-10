@@ -11,8 +11,8 @@ export default function racingCarGame() {
 
     this.init = () => {
         onCarNameButtonClick();
- 
     };
+
     const onCarNameButtonClick = () => {
         $('#car-name-button').addEventListener('click', (e) => {
             e.preventDefault();    
