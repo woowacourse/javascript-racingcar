@@ -22,6 +22,10 @@ export default class Cars {
     this.cars = cars;
   }
 
+  sortCars() {
+    this.cars.sort((a, b) => b.location - a.location);
+  }
+
   isValidCarsName(carNamesInput) {
     const carNameArr = carNamesInput.split(",");
     if (carNameArr.length <= 1) {
