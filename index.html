@@ -4,11 +4,36 @@
 <head>
   <meta charset="UTF-8" />
   <title>🏎️ 자동차 경주 게임</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <div id="app">
+    <h1>🏎️ 자동차경주 게임🏁</h1>
+    <section class="input-forms">
+        <form>
+          <label for="car-names-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+          <input type="text" name="name" id="car-names-input" placeholder="east, west, south, north, all">
+          <button class="car-names-submit">확인</button>
+        </form>     
+        <form>
+          <label for="racing-count-input">시도할 횟수를 입력해주세요.</label>
+          <input type="number" name="name" id="racing-count-input" placeholder="10">
+          <button class="racing-count-submit">확인</button>
+        </form>
+    </section>
+    <section id="racing-status" class="racing-status">
+      <!--
+      <div id="user-status" class="user-status">
+        <div id="user-name" class="user-name">June</div>
+        <div id="move" class="move">⬇️</div>
+        <div id="move" class="move">⬇️</div>
+      </div>
+      --> 
+    </section>
+    <section id="racing-result" class="racing-result">
+      <h3 id="winner"></h3>
+      <button>다시 시작하기</button>
+    </section>
   </div>
 </body>
-
 </html>

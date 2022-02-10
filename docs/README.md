@@ -4,7 +4,7 @@
 - ESLint, prettier 설정
 - cypress 설정
 
-## [ ] UI 마크업
+## [✅] UI 마크업
 - figma 시안을 기준으로 구현한다.
 
 ## [ ] 테스트 케이스 생성
