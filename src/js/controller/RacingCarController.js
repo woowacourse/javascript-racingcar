@@ -1,8 +1,10 @@
 import RacingCarModel from "../models/RacingCarModel.js";
+import ResultView from "../view/ResultView.js";
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
+    this.view = new ResultView();
   }
 
   init = () => {
@@ -40,6 +42,8 @@ export default class RacingCarController {
   playGame = () => {
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const raceResult = this.model.playTurn();
+      this.view.setResult(raceResult);
+      this.view.renderResult();
     }
   };
 }
