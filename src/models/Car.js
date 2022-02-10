@@ -20,6 +20,8 @@ export class Car {
   moveFoward() {
     if (isNumberOverStandard(makeRandomNumber())) {
       this.location += 1;
+      return true;
     }
+    return false;
   }
 }

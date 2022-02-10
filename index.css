@@ -2,6 +2,11 @@
   display: flex;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 #app {
   display: flex;
   justify-content: center;
@@ -126,11 +131,8 @@
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 36px;
   text-align: center;
-  vertical-align: middle;
-
-  display: table-cell;
   color: #000000;
 
   border: solid 3px #ffffff;

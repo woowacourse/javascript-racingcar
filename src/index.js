@@ -1,6 +1,6 @@
 import { setCarNamesClick, setRoundClick } from './controllers/userController.js';
 
-const state = {
+export const state = {
   cars: [],
   racingNumber: 0,
 };

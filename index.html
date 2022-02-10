@@ -11,23 +11,47 @@
       <form class="input-container">
         <label class="input-label">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
         <div class="flex">
-          <input id="car-name-input" placeholder="east, west, south, north, all" />
+          <input id="car-name-input" />
           <button id="car-name-input-button">확인</button>
         </div>
       </form>
       <form class="input-container">
         <label class="input-label"> 시도할 횟수를 입력해주세요.</label>
         <div class="flex">
-          <input id="racing-number-input" placeholder="10" type="number" />
+          <input id="racing-number-input" />
           <button id="racing-number-input-button">확인</button>
         </div>
       </form>
-      <div>
-        <div id="racing-cars"></div>
+
+      <div id="racing-cars" class="flex">
+        <!-- 
+        <div id="racing-progress" class="flex-column">
+          <div class="car-name-box">east</div>
+        </div>
+
+        <div class="flex-column">
+          <div class="car-name-box">east</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+        </div>
+
+        <div class="flex-column">
+          <div class="car-name-box">east</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+        </div>
+
+        <div class="flex-column">
+          <div class="car-name-box">east</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+          <div class="racing-progress-arrow">⬇️️</div>
+        </div> -->
       </div>
-      <h2 id="racing-winner">🏆 최종우승자: 🏆</h2>
+
+      <h2 id="racing-winner">🏆 최종우승자: ㅋ🏆</h2>
       <button id="restart-button">다시 시작하기</button>
     </div>
-    <script type="module" src="src/index.js"></script>
+    <script type="module" src="./src/index.js"></script>
   </body>
 </html>

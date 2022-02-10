@@ -1,15 +1,15 @@
 import { Car } from '../models/Car.js';
+import { renderCarNames, renderProgressArrow } from '../views/view.js';
 
 export function race(state) {
   state.cars = state.cars.map((item) => {
     return new Car(item);
   });
 
+  renderCarNames();
   for (let i = 0; i < state.racingNumber; i++) {
     goForward(state);
   }
-  console.log(state);
-  console.log(pickWinner(state));
   const winners = pickWinner(state);
   let winnerString = '';
   winners.forEach((item, index) => {
@@ -18,14 +18,15 @@ export function race(state) {
     }
     winnerString += item;
   });
-  console.log(winnerString);
 
   clearState(state);
 }
 
 function goForward(state) {
   for (let i = 0; i < state.cars.length; i++) {
-    state.cars[i].moveFoward();
+    if (state.cars[i].moveFoward()) {
+      renderProgressArrow(i);
+    }
   }
 }
 
