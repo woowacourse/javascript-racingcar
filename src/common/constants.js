@@ -4,11 +4,11 @@ export const BUTTON = {
 
 export const CAR_NAME = {
   MAX_LENGTH: 5,
-}
+};
 
 export const COUNT = {
   DEFAULT: 0,
-}
+};
 
 export const DIRECTIVE = {
   CAR_NAME: '5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.',

@@ -21,7 +21,7 @@ export function racingCountTemplate() {
   return `
     <p>${DIRECTIVE.RACING_COUNT}</p>
     <div>
-      <input id="racing-count-input"></input>
+      <input type="number" id="racing-count-input"></input>
       <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
     </div>
   `;

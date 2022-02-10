@@ -25,5 +25,16 @@ export default class RacingCarView {
     this.$carNamesSubmit = $('#car-names-submit');
   }
 
-  selectRacingCountDOM() {}
+  selectRacingCountDOM() {
+    this.$racingCountInput = $('#racing-count-input');
+    this.$racingCountSubmit = $('#racing-count-submit');
+  }
+
+  resetCarNamesInput() {
+    this.$carNamesInput.value = '';
+  }
+
+  resetRacingCountInput() {
+    this.$racingCountInput.value = '';
+  }
 }
