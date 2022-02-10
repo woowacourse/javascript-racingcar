@@ -1,0 +1,30 @@
+
+{
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  
+  // 코드를 해석하는 parser에 대한 설정
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+  },
+  
+  // linter가 파일을 분석할 때, 미리 정의된 전역변수에 무엇이 있는지 명시하는 속성
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    "node_modules/"
+  ],
+  
+  // ESLint 룰을 설정
+  "rules": {
+    "prettier/prettier": "error"
+  }
+}
