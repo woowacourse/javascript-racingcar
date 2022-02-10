@@ -39,6 +39,14 @@ describe('자동차 경주 게임', () => {
       cy.get(`[data-name=${name}]`).should('be.visible');
     });
   });
+
+  it('다시 시작하기 버튼을 클릭한다.', () => {
+    cy.get('#restart-button').click();
+    cy.get('#car-names-input').should('have.value', '');
+    cy.get('#racing-count-input').should('have.value', '');
+    cy.get('#racing-status').should('be.empty');
+    cy.get('#racing-winners').should('be.empty');
+  });
 });
 
 describe('에러 처리를 한다', () => {

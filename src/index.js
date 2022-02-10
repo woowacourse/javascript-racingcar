@@ -20,7 +20,9 @@ class CarRacing {
             document.querySelector('#racing-count-input').value,
           );
         },
-        'restart-button': () => {},
+        'restart-button': () => {
+          this.onClickRestart();
+        },
       };
       if (!buttonIds[targetId]) return;
       buttonIds[targetId]();
@@ -48,6 +50,14 @@ class CarRacing {
     document.querySelector('#racing-winners').innerHTML = this.printWinner(
       this.getWinner(),
     );
+  }
+
+  onClickRestart() {
+    document.querySelector('#car-names-input').value = '';
+    document.querySelector('#racing-count-input').value = '';
+    document.querySelector('#racing-winners').innerHTML = '';
+    document.querySelector('#racing-status').innerHTML = '';
+    this.participants = [];
   }
 
   printResult() {
