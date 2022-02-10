@@ -46,10 +46,16 @@ class RacingCarGame {
         this.setCount(count);
         this.simulateGame();
         this.view.render(this.cars, this.getWinners());
+        RacingCarGame.afterRenderComplete();
       } catch (error) {
         alert(error);
       }
     }
+  }
+
+  static afterRenderComplete() {
+    const restartButton = document.querySelector('#restart-btn');
+    restartButton.addEventListener('click', () => window.location.reload());
   }
 
   setCount(count) {
