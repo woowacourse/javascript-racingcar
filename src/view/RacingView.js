@@ -3,29 +3,49 @@ export default class RacingView {
     this.$app = document.getElementById('app');
   }
 
-  // [['east',4]]
-  // ['east','west'], [ 2 , 4 ]
-  // [{name:'east', postion:4}]
-  // [Car('east',4), Car('west',5)]
+  renderProgress(cars) {
+    this.$app.appendChild(RacingView.createRacingProgressElement(cars));
+  }
 
-  //     this.view.renderWinner(this.model.winner);
+  removeProgress() {
+    const $racingProgressNode = document.getElementById(
+      'racing-progress-container'
+    );
+    this.$app.removeChlid($racingProgressNode);
+  }
 
-  //   static createEachTurnResultDom(obj) {
-  //     const resultContainer = document.createElement('div');
-  //     resultContainer.id = 'resultContainer';
+  renderResult(winnerList) {
+    this.$app.appendChild(RacingView.createWinnerElement(winnerList));
+  }
 
-  //     for (const car in obj) {
-  //       if (Object.hasOwnProperty.call(obj, car)) {
-  //         const resultSpan = document.createElement('span');
-  //         resultSpan.innerText = `${car}: ${'-'.repeat(obj[car])}`;
-  //         resultContainer.appendChild(resultSpan);
-  //         resultContainer.appendChild(document.createElement('br'));
-  //       }
-  //     }
-  //     resultContainer.appendChild(document.createElement('br'));
+  removeResult() {
+    const $racingResultNode = document.getElementById(
+      'racing-result-container'
+    );
+    this.$app.removeChlid($racingResultNode);
+  }
 
-  //     return resultContainer;
-  //   }
+  reset() {
+    this.removeProgress();
+    this.removeResult();
+  }
+
+  static createWinnerElement(winnerList) {
+    const $winnerContainer = document.createElement('section');
+    $winnerContainer.id = 'racing-result-container';
+
+    const $winnerSpan = document.createElement('h2');
+    $winnerSpan.innerText = `🏆 최종 우승자: ${winnerList.join(', ')}🏆`;
+
+    const $restartButton = document.createElement('button');
+    $restartButton.id = 'restart-button';
+    $restartButton.innerText = '다시 시작하기';
+
+    $winnerContainer.appendChild($winnerSpan);
+    $winnerContainer.appendChild($restartButton);
+
+    return $winnerContainer;
+  }
 
   static createRacingProgressElement(cars) {
     const $racingProgressNode = document.createElement('section');
@@ -70,49 +90,5 @@ export default class RacingView {
       $carProgressStatusList.push($carProgressStatus);
     }
     return $carProgressStatusList;
-  }
-
-  renderProgress(cars) {
-    this.$app.appendChild(RacingView.createRacingProgressElement(cars));
-  }
-
-  removeProgress() {
-    const $racingProgressNode = document.getElementById(
-      'racing-progress-container'
-    );
-    this.$app.removeChlid($racingProgressNode);
-  }
-
-  renderResult(winnerList) {
-    this.$app.appendChild(RacingView.createWinnerElement(winnerList));
-  }
-
-  removeResult() {
-    const $racingResultNode = document.getElementById(
-      'racing-result-container'
-    );
-    this.$app.removeChlid($racingResultNode);
-  }
-
-  reset() {
-    this.removeProgress();
-    this.removeResult();
-  }
-
-  static createWinnerElement(winnerList) {
-    const $winnerContainer = document.createElement('section');
-    $winnerContainer.id = 'racing-result-container';
-
-    const $winnerSpan = document.createElement('h2');
-    $winnerSpan.innerText = `🏆 최종 우승자: ${winnerList.join(', ')}🏆`;
-
-    const $restartButton = document.createElement('button');
-    $restartButton.id = 'restart-button';
-    $restartButton.innerText = '다시 시작하기';
-
-    $winnerContainer.appendChild($winnerSpan);
-    $winnerContainer.appendChild($restartButton);
-
-    return $winnerContainer;
   }
 }
