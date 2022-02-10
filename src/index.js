@@ -14,6 +14,7 @@ class RacingCar {
     this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
     this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
     this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
+    this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
   }
 
   initEventListener() {
@@ -26,7 +27,27 @@ class RacingCar {
 
   handleRacingCountFormSubmitEvent(e) {
     e.preventDefault();
-    alert('test');
+    const racingCount = this.$racingCountInput.value;
+
+    // 시도할 횟수가 공백인 경우
+    if (racingCount === '') {
+      alert(ERROR_MESSAGES.BLANK_RACING_COUNT);
+      return;
+    }
+
+    const racingCountNumber = this.convertToNumber(racingCount);
+
+    // number 타입이 아닌 경우
+    if (typeof racingCountNumber !== 'number') {
+      alert(ERROR_MESSAGES.NOT_NUMBER_TYPE);
+      return;
+    }
+
+    // 1보다 작은 경우 + 실수이 경우
+    if (racingCountNumber < 1 || Math.floor(racingCountNumber) !== racingCountNumber) {
+      alert(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
+      return;
+    }
   }
 
   handleCarNameFormSubmitEvent(e) {
@@ -52,6 +73,10 @@ class RacingCar {
     }
 
     this.$racingCountForm.style.display = 'block';
+  }
+
+  convertToNumber(value) {
+    return parseInt(value, 10);
   }
 }
 

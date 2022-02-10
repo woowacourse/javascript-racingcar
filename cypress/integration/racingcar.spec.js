@@ -103,7 +103,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       .eq(1)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith('test');
+        expect(stub.getCall(0)).to.be.calledWith('시도할 횟수는 공백이면 안된다.');
       });
   });
 
@@ -111,12 +111,13 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.get('#racing_count_input').type(-1);
     const stub = cy.stub();
 
+    // 실패 이유: 공백이면 안된다.
     cy.on('window:alert', stub);
     cy.get('.input_btn')
       .eq(1)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith('test');
+        expect(stub.getCall(0)).to.be.calledWith('시도할 횟수는 자연수를 입력해야 한다.');
       });
   });
 });
