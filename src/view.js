@@ -46,8 +46,14 @@ export default class View {
 
   setOnClickReset(fn) {
     this.$resetButton.addEventListener('click', () => {
+      this.clearInput();
       fn();
     });
+  }
+
+  clearInput() {
+    this.$nameInput.value = '';
+    this.$countInput.value = '';
   }
 
   resultUpdate(carList) {
