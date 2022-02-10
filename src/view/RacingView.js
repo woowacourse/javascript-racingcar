@@ -9,8 +9,71 @@ export default class RacingView {
   // [Car('east',4), Car('west',5)]
 
   //     this.view.renderWinner(this.model.winner);
-  renderProgress(eachTurnResult) {
-    this.$app.insertAdjacentElement('beforeend', eachTurnResult);
+
+  //   static createEachTurnResultDom(obj) {
+  //     const resultContainer = document.createElement('div');
+  //     resultContainer.id = 'resultContainer';
+
+  //     for (const car in obj) {
+  //       if (Object.hasOwnProperty.call(obj, car)) {
+  //         const resultSpan = document.createElement('span');
+  //         resultSpan.innerText = `${car}: ${'-'.repeat(obj[car])}`;
+  //         resultContainer.appendChild(resultSpan);
+  //         resultContainer.appendChild(document.createElement('br'));
+  //       }
+  //     }
+  //     resultContainer.appendChild(document.createElement('br'));
+
+  //     return resultContainer;
+  //   }
+
+  static createRacingProgressElement(cars) {
+    const $racingProgressNode = document.createElement('section');
+    $racingProgressNode.id = 'racing-progress-container';
+
+    cars.forEach((car) => {
+      $racingProgressNode.appendChild(this.createCarProgressElement(car));
+    });
+
+    return $racingProgressNode;
+  }
+
+  static createCarProgressElement(car) {
+    const $carProgressNode = document.createElement('div');
+    $carProgressNode.className = 'car-progress-container';
+
+    const $carProgressName = RacingView.createCarProgressNameElement(car.name);
+    $carProgressNode.appendChild($carProgressName);
+
+    const $carProgressStatus = RacingView.createCarProgressStatusElement(
+      car.position
+    );
+    $carProgressNode.appendChild($carProgressStatus);
+
+    return $carProgressNode;
+  }
+
+  static createCarProgressNameElement(name) {
+    const $carProgressName = document.createElement('div');
+    $carProgressName.className = 'car-progress-container--name';
+    $carProgressName.innerText = name;
+
+    return $carProgressName;
+  }
+
+  static createCarProgressStatusElement(postion) {
+    const $carProgressStatusList = [];
+    for (let i = 0; i < postion; i += 1) {
+      const $carProgressStatus = document.createElement('div');
+      $carProgressStatus.className = 'car-progress-container--status';
+      $carProgressStatus.innerText = '⬇';
+      $carProgressStatusList.push($carProgressStatus);
+    }
+    return $carProgressStatusList;
+  }
+
+  renderProgress(cars) {
+    this.$app.appendChild(RacingView.createRacingProgressElement(cars));
   }
 
   removeProgress() {
