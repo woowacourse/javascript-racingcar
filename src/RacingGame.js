@@ -1,4 +1,4 @@
-import haveBlank from './validation.js';
+import { haveBlank, exceedMaxLength } from './validation.js';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -11,6 +11,7 @@ export default class RacingGame {
         $('#car-name-submit-button').addEventListener('click', () => {
             const carNames = $('#car-name-input').value.split(',');
             if (haveBlank(carNames)) alert('자동차 이름에 공백이 들어갈 수 없습니다.');
+            if (exceedMaxLength(carNames)) alert('자동차 이름은 5자 이하입니다.');
         });
     }
 }

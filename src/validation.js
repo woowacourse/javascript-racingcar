@@ -1,3 +1,7 @@
-const haveBlank = (carNames) => carNames.some((carName) => carName.match(/\s+/));
+const CAR_NAME_MAX_LENGTH = 5;
 
-export default haveBlank;
+const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
+const haveBlank = someCarNames((carName) => carName.match(/\s+/));
+const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
+
+export { haveBlank, exceedMaxLength };
