@@ -26,8 +26,11 @@ class RacingCarGame {
     }
   }
   makeCars(names) {
-    this.cars = names.map((name) => new Car(name));
-    console.log(this.cars);
+    try {
+      this.cars = names.map((name) => new Car(name));
+    } catch (error) {
+      alert(error);
+    }
   }
 }
 export default RacingCarGame;
