@@ -14,4 +14,20 @@ export default class View {
     this.$winner = $('#winner');
     this.$resetButton = $('#reset-button');
   }
+
+  setOnSubmitName(fn) {
+    this.$nameButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const carNames = this.$nameInput.value;
+      fn(carNames);
+    });
+  }
+
+  setOnSubmitCount(fn) {
+    this.$countButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      const count = this.$countInput.value;
+      fn(count);
+    });
+  }
 }
