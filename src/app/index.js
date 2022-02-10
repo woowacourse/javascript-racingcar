@@ -36,9 +36,21 @@ class RacingCarGame {
     e.preventDefault();
     if (e.target.id === "count-btn") {
       const count = e.currentTarget.querySelector("#count-input").value;
-      this.count = count;
+      try {
+        this.setCount(count);
+      } catch (error) {
+        alert(error);
+      }
     }
-    // start game
+  }
+  setCount(count) {
+    if (this.checkCountInput(count)) {
+      throw Error("횟수는 1이상을 입력해주셔야합니다.");
+    }
+    this.count = count;
+  }
+  checkCountInput(number) {
+    return number <= 0;
   }
   makeCars(names) {
     try {
