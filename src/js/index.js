@@ -29,6 +29,11 @@ class RacingCarGame {
     return this.$carNameInput.value.split(',');
   }
 
+  initializeInput(inputElement) {
+    inputElement.value = '';
+    inputElement.focus();
+  }
+
   main() {
     this.$carNameButton.addEventListener('click', (e) => {
       e.preventDefault();
@@ -37,10 +42,16 @@ class RacingCarGame {
 
       if (!carNameList.every((name) => name.length >= 1 && name.length <= 5)) {
         alert('자동차 이름은 1자 이상 5자 이하여야 합니다.');
+        this.initializeInput(this.$carNameInput);
+
+        return;
       }
 
       if (carNameList.length !== new Set(carNameList).size) {
         alert('중복되는 자동차 이름은 입력할 수 없습니다.');
+        this.initializeInput(this.$carNameInput);
+
+        return;
       }
 
       this.carList = carNameList.map((name) => new Car(name));
@@ -59,6 +70,9 @@ class RacingCarGame {
         racingCount > 10
       ) {
         alert('1에서 10사이의 숫자를 입력해주세요.');
+        this.initializeInput(this.$racingCountInput);
+
+        return;
       }
     });
   }
