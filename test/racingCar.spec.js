@@ -36,4 +36,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         '전진 시도 횟수 입력이 음수인 경우, alert가 호출되어야 한다.',
         formAlertTest('try-count', -12),
     );
+
+    it(
+        '전진 시도 횟수 입력이 빈칸인 경우, alert가 호출되어야 한다.',
+        formAlertTest('try-count', ''),
+    );
 });
