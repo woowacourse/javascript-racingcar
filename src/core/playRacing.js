@@ -1,6 +1,6 @@
 import Car from './car.js';
 import { RAMDOM_MIN, RAMDOM_MAX } from '../constants/constant.js';
-import { renderResult } from '../view/renderResult.js';
+import { renderResult, renderWinners } from '../view/renderResult.js';
 
 export const makeCar = (carNames, tryCount) => {
   const cars = carNames.map(carName => new Car(carName));
@@ -8,6 +8,7 @@ export const makeCar = (carNames, tryCount) => {
     playOneTurn(cars);
     renderResult(cars);
   }
+  renderWinners(cars);
 };
 
 const playOneTurn = cars => {
