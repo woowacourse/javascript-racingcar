@@ -1,4 +1,5 @@
 import { ERROR_MESSAGES, ID, RULES } from './constants/index.js';
+import { convertToNumber, isNotNaturalNumber } from './util/index.js';
 
 class RacingCar {
   constructor() {
@@ -23,31 +24,6 @@ class RacingCar {
       'submit',
       this.handleRacingCountFormSubmitEvent.bind(this)
     );
-  }
-
-  handleRacingCountFormSubmitEvent(e) {
-    e.preventDefault();
-    const racingCount = this.$racingCountInput.value;
-
-    // 시도할 횟수가 공백인 경우
-    if (racingCount === '') {
-      alert(ERROR_MESSAGES.BLANK_RACING_COUNT);
-      return;
-    }
-
-    const racingCountNumber = this.convertToNumber(racingCount);
-
-    // number 타입이 아닌 경우
-    if (typeof racingCountNumber !== 'number') {
-      alert(ERROR_MESSAGES.NOT_NUMBER_TYPE);
-      return;
-    }
-
-    // 1보다 작은 경우 + 실수이 경우
-    if (racingCountNumber < 1 || Math.floor(racingCountNumber) !== racingCountNumber) {
-      alert(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
-      return;
-    }
   }
 
   handleCarNameFormSubmitEvent(e) {
@@ -75,8 +51,26 @@ class RacingCar {
     this.$racingCountForm.style.display = 'block';
   }
 
-  convertToNumber(value) {
-    return parseInt(value, 10);
+  handleRacingCountFormSubmitEvent(e) {
+    e.preventDefault();
+    const racingCount = this.$racingCountInput.value;
+
+    if (racingCount === '') {
+      alert(ERROR_MESSAGES.BLANK_RACING_COUNT);
+      return;
+    }
+
+    const racingCountNumber = convertToNumber(racingCount);
+
+    if (typeof racingCountNumber !== 'number') {
+      alert(ERROR_MESSAGES.NOT_NUMBER_TYPE);
+      return;
+    }
+
+    if (isNotNaturalNumber(racingCountNumber)) {
+      alert(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
+      return;
+    }
   }
 }
 
