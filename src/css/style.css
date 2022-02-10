@@ -226,3 +226,23 @@
   top: 170px;
   border: 1px solid black;
 }
+
+.racing-cars {
+  display: flex;
+}
+
+.car-name-box {
+  width: 96px;
+  height: 36px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  margin-right: 8px;
+
+  font-size: 16px;
+}
+
+.car-name-box-text {
+  width: fit-content;
+  padding-top: 10px;
+  margin: auto;
+}
