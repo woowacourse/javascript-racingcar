@@ -12,6 +12,5 @@ export default class Model {
 
   getRacingCount(racingCount) {
     this.racingCount = racingCount;
-    console.log(this.racingCount, this.carNames, this.carPosition);
   }
 }
