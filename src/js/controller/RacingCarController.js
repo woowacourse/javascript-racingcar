@@ -36,4 +36,10 @@ export default class RacingCarController {
     this.model.setRacingCount(racingCount);
     this.playGame();
   };
+
+  playGame = () => {
+    for (let i = 0; i < this.model.getRacingCount(); i += 1) {
+      const raceResult = this.model.playTurn();
+    }
+  };
 }

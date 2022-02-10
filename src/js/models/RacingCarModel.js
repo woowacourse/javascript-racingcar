@@ -1,3 +1,4 @@
+import { generateRandomNumber } from "../utils/random.js";
 import Car from "./Car.js";
 
 export default class RacingCarModel {
@@ -8,7 +9,6 @@ export default class RacingCarModel {
 
   setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
-    this.cars = splitedCarNames.map((name) => new Car(name));
     if (this.hasSpaceInName(splitedCarNames)) {
       throw new Error("공백");
     }
@@ -18,11 +18,29 @@ export default class RacingCarModel {
     if (this.isEmptyName(splitedCarNames)) {
       throw new Error("이름은 공백이 될수없습니다");
     }
-    console.log(splitedCarNames);
+    this.cars = splitedCarNames.map((name) => new Car(name));
+    console.log(this.cars);
   };
 
   setRacingCount = (count) => {
     this.racingCount = count;
+  };
+
+  getRacingCount = () => {
+    return this.racingCount;
+  };
+
+  playTurn = () => {
+    this.cars.forEach((car) => {
+      this.race(car);
+    });
+    return this.cars;
+  };
+
+  race = (car) => {
+    if (generateRandomNumber() >= 4) {
+      car.move();
+    }
   };
 
   splitCarNames = (carNames) => carNames.split(",");
