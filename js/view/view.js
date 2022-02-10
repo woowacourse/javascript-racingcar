@@ -11,4 +11,9 @@ export default class View {
       .join('');
     $('#car-names').insertAdjacentHTML('afterbegin', template);
   }
+
+  renderWinner(winners) {
+    const WINNER = `🏆 최종 우승자: ${winners} 🏆`;
+    $('#car-racing-winner').innerHTML = WINNER;
+  }
 }

@@ -47,7 +47,7 @@ export default class Controller {
     }
     console.log(this.model.carNames, this.model.carPosition);
     // 최종 우승자 출력 (우승자를 구하는 메서드)
-    this.getWinner();
+    this.displayWinner();
     // 다시하기 버튼 렌더링
   }
 
@@ -57,6 +57,10 @@ export default class Controller {
     const arr = this.model.carNames.filter((car, idx) => {
       return this.model.carPosition[idx] === MAX;
     });
-    console.log(arr.join(', '));
+    return arr.join(', ');
+  }
+
+  displayWinner() {
+    this.view.renderWinner(this.getWinner());
   }
 }
