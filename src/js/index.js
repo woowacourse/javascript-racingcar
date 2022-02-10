@@ -28,6 +28,7 @@ class RacingCarGame {
     this.$racingCountInput = document.querySelector('#racing-count-input');
     this.$racingCountButton = document.querySelector('#racing-count-button');
     this.carList = [];
+    // this.racingResult = [];
   }
 
   trimStringArray(array) {
@@ -51,6 +52,9 @@ class RacingCarGame {
             (car) => `
           <li class="racing-car">
             <p class="car-name">${car.name}</p>
+            <ul class="progress-list">
+              ${'<li class="progress">⬇️️</li>'.repeat(car.distance)}
+            </ul>
           </li>
         `
           )
@@ -107,6 +111,11 @@ class RacingCarGame {
         this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
         return;
+      }
+
+      for (let i = 0; i < racingCount; i++) {
+        this.carList.forEach((car) => car.race());
+        this.render();
       }
     });
   }

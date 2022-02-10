@@ -18,8 +18,6 @@ export default class Car {
     if (randomNumber >= 4) {
       this.move();
     }
-
-    return { name: this.name, distance: this.distance };
   }
 
   initDistance() {
