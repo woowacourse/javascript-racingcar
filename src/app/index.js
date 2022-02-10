@@ -1,10 +1,12 @@
 import { isNumberBelowZero, splitString } from '../lib/utils.js';
 import Car from './car.js';
+import RacingCarGameView from './view.js';
 
 class RacingCarGame {
   constructor() {
     this.cars = null;
     this.count = null;
+    this.view = new RacingCarGameView();
     this.initDOM();
     this.initHandler();
   }
@@ -43,6 +45,7 @@ class RacingCarGame {
       try {
         this.setCount(count);
         this.simulateGame();
+        this.view.render(this.cars, this.getWinners());
       } catch (error) {
         alert(error);
       }
@@ -77,6 +80,21 @@ class RacingCarGame {
         car.goForward();
       }
     });
+  }
+
+  getWinners() {
+    let max = 0;
+    this.cars.forEach(({ progress }) => {
+      max = Math.max(progress, max);
+    });
+    const winners = this.cars.reduce((arr, { name, progress }) => {
+      if (progress === max) {
+        arr.push(name);
+      }
+      return arr;
+    }, []);
+    // winners -> ['asd','asfsf']
+    return winners;
   }
 }
 export default RacingCarGame;
