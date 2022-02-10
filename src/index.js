@@ -27,6 +27,7 @@ class CarRacing {
     const carNames = names.split(',');
     if (!this.validateCarName(carNames))
       return alert('올바르지 않은 이름입니다.');
+    this.participants = carNames.map(name => new Car(name));
   }
 
   validateCarName(names) {
