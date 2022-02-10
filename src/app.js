@@ -2,7 +2,7 @@ import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
 import { makeCar } from './core/playRacing.js';
-
+import { removeBeforeResult } from './view/renderResult.js';
 class app {
   constructor() {
     this.carNames = [];
@@ -17,6 +17,7 @@ class app {
     $('#try-count-form').addEventListener('submit', e => {
       this.setTryCount(getTryCount(e));
     });
+    $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
   setCarNames(newCarNames) {

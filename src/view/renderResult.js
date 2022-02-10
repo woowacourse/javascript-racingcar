@@ -1,7 +1,7 @@
 import { $ } from '../util/dom.js';
 
 export const renderResult = cars => {
-  $('#game-result').innerHTML += `${cars
+  $('#turn-result').innerHTML += `${cars
     .map(car => {
       return `<div>name:${car.name} score:${'⬇️'.repeat(car.score)}</div>`;
     })
@@ -20,6 +20,12 @@ export const renderWinners = cars => {
 
   $('#winners-result').innerHTML = `
     <p>최종 우승자 ${winners.join(',')}</p>
-    <button>다시 시작하기</button>
+    <button id="reset-btn">다시 시작하기</button>
   `;
+};
+
+export const removeBeforeResult = e => {
+  if (e.target.id === 'reset-btn') {
+    $('#game-result').innerHTML = '';
+  }
 };
