@@ -4,24 +4,32 @@
 <head>
   <meta charset="UTF-8" />
   <title>🏎️ 자동차 경주 게임</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
-
 <body>
   <div id="app">
     <h1 id="title" >🏎️ 자동차 경주 게임🏁</h1>
     <div class="input-section">
-      <p class="input-section__name-description">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
-      <form class="input-section__name-form">
-        <input type="text" placeholder="east, west, south, north, all"  class="input-section__name-input">
-        <button class="input-section__name-button">확인</button>
+      <p class="input-section__description">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+      <form class="input-section__form">
+        <input type="text" placeholder="east, west, south, north, all"  class="input-section__input input1">
+        <button class="input-section__button">확인</button>
       </form>
-      <p class="input-section__count-description">시도할 횟수를 입력해주세요.</p>
-      <form class="input-section__count-form">
-        <input type="text" placeholder="10"  class="input-section__count-input">
-        <button class="input-section__count-button">확인</button>
+      <p class="input-section__description">시도할 횟수를 입력해주세요.</p>
+      <form class="input-section__form">
+        <input type="text" placeholder="10"  class="input-section__input">
+        <button class="input-section__button">확인</button>
       </form>
     </div>
     <div class="result-sections">
+      <div class="result-section">
+        <span class="result-section__name">east</span>
+        <ul class="result-section__arrows">
+          <li class="result-section__arrow">⬇️️</li>
+          <li class="result-section__arrow">⬇️️</li>
+          <li class="result-section__arrow">⬇️️</li>
+        </ul>
+      </div>
       <div class="result-section">
         <span class="result-section__name">east</span>
         <ul class="result-section__arrows">
