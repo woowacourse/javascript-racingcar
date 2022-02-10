@@ -1,5 +1,5 @@
-import { splitString } from "../lib/utils.js";
-import Car from "./car.js";
+import { isNumberBelowZero, splitString } from '../lib/utils.js';
+import Car from './car.js';
 
 class RacingCarGame {
   constructor() {
@@ -8,34 +8,38 @@ class RacingCarGame {
     this.initDOM();
     this.initHandler();
   }
+
   initDOM() {
-    this.carNameInputField = document.querySelector("#car-name-input-field");
-    this.countInputField = document.querySelector("#count-input-field");
+    this.carNameInputField = document.querySelector('#car-name-input-field');
+    this.countInputField = document.querySelector('#count-input-field');
   }
+
   initHandler() {
     this.carNameInputField.addEventListener(
-      "click",
+      'click',
       this.onCarNameInputFieldClick.bind(this)
     );
     this.countInputField.addEventListener(
-      "click",
+      'click',
       this.onCountInputFieldClick.bind(this)
     );
   }
+
   onCarNameInputFieldClick(e) {
     e.preventDefault();
-    if (e.target.id === "car-name-btn") {
+    if (e.target.id === 'car-name-btn') {
       const names = splitString(
-        e.currentTarget.querySelector("#car-name-input").value,
-        ","
+        e.currentTarget.querySelector('#car-name-input').value,
+        ','
       );
       this.makeCars(names);
     }
   }
+
   onCountInputFieldClick(e) {
     e.preventDefault();
-    if (e.target.id === "count-btn") {
-      const count = e.currentTarget.querySelector("#count-input").value;
+    if (e.target.id === 'count-btn') {
+      const count = e.currentTarget.querySelector('#count-input').value;
       try {
         this.setCount(count);
       } catch (error) {
@@ -43,15 +47,14 @@ class RacingCarGame {
       }
     }
   }
+
   setCount(count) {
-    if (this.checkCountInput(count)) {
-      throw Error("횟수는 1이상을 입력해주셔야합니다.");
+    if (isNumberBelowZero(count)) {
+      throw Error('횟수는 1이상을 입력해주셔야합니다.');
     }
     this.count = count;
   }
-  checkCountInput(number) {
-    return number <= 0;
-  }
+
   makeCars(names) {
     try {
       this.cars = names.map((name) => new Car(name));
