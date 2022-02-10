@@ -91,7 +91,6 @@ describe('예외 상황', () => {
     const alertStub = cy.stub();
 
     cy.on('window:alert', alertStub);
-    cy.on('window:alert', alertStub);
   });
 
   it('자동차 이름이 5자보다 크면 alert를 보여준다.', () => {
@@ -106,6 +105,9 @@ describe('예외 상황', () => {
           '자동차 이름은 5자 이하여야 합니다.'
         );
       });
+
+    cy.get('#car-name-input').should('have.value', '');
+    cy.get('#car-name-input').should('have.focus');
   });
 
   it('자동차 이름이 공백으로 이루어지면 alert를 보여준다.', () => {
@@ -120,6 +122,8 @@ describe('예외 상황', () => {
           '자동차 이름은 5자 이하여야 합니다.'
         );
       });
+    cy.get('#car-name-input').should('have.value', '');
+    cy.get('#car-name-input').should('have.focus');
   });
 
   it('양의 정수가 아닌 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
@@ -134,6 +138,8 @@ describe('예외 상황', () => {
           '레이싱 횟수는 1 이상 100 이하여야 합니다.'
         );
       });
+    cy.get('#racing-count-input').should('have.value', '');
+    cy.get('#racing-count-input').should('have.focus');
   });
 
   it('100보다 큰 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
@@ -148,6 +154,8 @@ describe('예외 상황', () => {
           '레이싱 횟수는 1 이상 100 이하여야 합니다.'
         );
       });
+    cy.get('#racing-count-input').should('have.value', '');
+    cy.get('#racing-count-input').should('have.focus');
   });
 
   it('입력받은 자동차 이름에 중복이 있으면 alert를 보여준다.', () => {
@@ -162,5 +170,23 @@ describe('예외 상황', () => {
           '중복되는 자동차 이름은 입력할 수 없습니다.'
         );
       });
+    cy.get('#car-name-input').should('have.value', '');
+    cy.get('#car-name-input').should('have.focus');
+  });
+
+  it('자동차 이름을 입력하지 않고 레이싱 횟수 버튼을 누르면 alert를 보여준다.', () => {
+    const inputString = '5';
+
+    cy.get('#racing-count-input').type(inputString);
+
+    cy.get('#racing-count--button')
+      .click()
+      .then(() => {
+        expect(alertStub.getCall(0)).to.be.called.with(
+          '자동차 이름을 먼저 입력해주세요.'
+        );
+      });
+    cy.get('#racing-count-input').should('have.value', '');
+    cy.get('#car-name-input').should('have.focus');
   });
 });
