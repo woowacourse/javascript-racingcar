@@ -16,6 +16,8 @@ class RacingCarGame {
   constructor() {
     this.$carNameInput = document.querySelector('#car-name-input');
     this.$carNameButton = document.querySelector('#car-name-button');
+    this.$racingCountInput = document.querySelector('#racing-count-input');
+    this.$racingCountButton = document.querySelector('#racing-count-button');
     this.carList = [];
   }
 
@@ -44,6 +46,12 @@ class RacingCarGame {
       this.carList = carNameList.map((name) => new Car(name));
 
       console.log(this.carList);
+    });
+
+    this.$racingCountButton.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      const racingCount = this.$racingCountInput.valueAsNumber;
     });
   }
 }
