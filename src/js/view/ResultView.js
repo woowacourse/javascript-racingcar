@@ -10,10 +10,6 @@ export default class ResultView {
   renderResult = () => {
     const $result = document.querySelector("#result");
     $result.innerHTML = this.makeResultTemplate();
-    // $result.insertAdjacentElement(
-    //   "beforeend",
-    //   this.makeResultTemplate(this.result)
-    // );
   };
 
   makeResultTemplate = () => {
@@ -32,15 +28,4 @@ export default class ResultView {
       `;
     return template;
   };
-}
-
-{
-  /* <div class="cars-name">${names
-          .map((name) => `<span class="car-name">${name}</span>`)
-          .join("")}</div>
-        <div class="">
-          ${forwardCounts
-            .map((count) => `<div>${"⬇️️".repeat(count)}</div>`)
-            .join("")}
-        </div> */
 }
