@@ -5,11 +5,22 @@ export function race(state) {
     return new Car(item);
   });
 
-  //carclass arr 순환하면서 moveforward
   for (let i = 0; i < state.racingNumber; i++) {
     goForward(state);
   }
-  console.log(state.cars);
+  console.log(state);
+  console.log(pickWinner(state));
+  const winners = pickWinner(state);
+  let winnerString = '';
+  winners.forEach((item, index) => {
+    if (index !== 0) {
+      winnerString += ', ';
+    }
+    winnerString += item;
+  });
+  console.log(winnerString);
+
+  clearState(state);
 }
 
 function goForward(state) {
@@ -18,6 +29,24 @@ function goForward(state) {
   }
 }
 
-// 플레이별로 난수 생성하는거 util -> pass
-// 난수 4이상 판별 util
-// Car 연결해서 set location controller
+function pickWinner(state) {
+  let max = 0;
+  let winnerArr = [];
+  for (let i = 0; i < state.cars.length; i++) {
+    if (state.cars[i].location >= max) {
+      max = state.cars[i].location;
+    }
+  }
+
+  for (let i = 0; i < state.cars.length; i++) {
+    if (state.cars[i].location === max) {
+      winnerArr.push(state.cars[i].name);
+    }
+  }
+  return winnerArr;
+}
+
+function clearState(state) {
+  state.cars = [];
+  state.racingNumber = 0;
+}

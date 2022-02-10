@@ -23,6 +23,3 @@ export class Car {
     }
   }
 }
-
-// 플레이별로 난수 생성하는거 util -> pass
-// 난수 4이상 판별 util
