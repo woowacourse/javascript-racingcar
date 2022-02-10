@@ -1,3 +1,5 @@
+import { validateCarNames, validateCount } from '../utils/validation.js';
+
 export default class RacingController {
   constructor(model, view) {
     this.model = model;
@@ -24,11 +26,19 @@ export default class RacingController {
       document.getElementById('racing-count-input').value,
       10
     );
+
+    const error = validateCount(racingCount);
+    if (error) {
+      return alert(error);
+    }
+
     this.model.round = racingCount;
 
     this.startRacingGame();
 
     this.activateRestartButton();
+
+    return true;
   }
 
   activateRestartButton() {
@@ -46,7 +56,12 @@ export default class RacingController {
     let nameList = document.getElementById('car-names-input').value.split(',');
     nameList = nameList.map((name) => name.trim());
 
+    const error = validateCarNames(nameList);
+    if (error) {
+      return alert(error);
+    }
     this.model.players = nameList;
+    return true;
   }
 
   startRacingGame() {
