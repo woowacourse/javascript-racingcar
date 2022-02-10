@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-</body>
-
+  <body>
+    <div id="app">
+      <h2>🏎️자동차 경주 게임</h2>
+      <form>
+        <label>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+        <input
+          id="car-names-input"
+          type="text"
+          placeholder="east,west,south,north,all"
+        />
+        <button>확인</button>
+      </form>
+      <form>
+        <label>시도할 횟수를 입력해주세요.</label>
+        <input id="racing-count-input" type="number" placeholder="10" />
+        <button>확인</button>
+      </form>
+    </div>
+  </body>
 </html>
