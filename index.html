@@ -6,6 +6,29 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h1 id="racing-game-title">🏎 자동차 경주 게임🏁</h1>
+      </header>
+      <section>
+        <p id="car-name-description">
+          5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.
+        </p>
+        <form>
+          <input type="text" id="car-name-input" />
+          <button id="car-name-button">확인</button>
+        </form>
+        <p id="racing-count-description">시도할 횟수를 입력해주세요.</p>
+        <form>
+          <input type="number" id="racing-count-input" />
+          <button id="racing-count-button">확인</button>
+        </form>
+      </section>
+      <section>
+        <ul id="result-list"></ul>
+        <p>🏆 최종 우승자: <span id="winners"></span> 🏆</p>
+        <button id="restart-button">다시 시작하기</button>
+      </section>
+    </div>
   </body>
 </html>
