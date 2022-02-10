@@ -28,7 +28,7 @@ export default class RacingCar {
             this.updateCarSuccessCount();
         }
         this.renderRacingContent();
-        console.log(this.carArray);
+        this.renderGameWinners();
     }
 
     updateCarSuccessCount() {
@@ -57,5 +57,20 @@ export default class RacingCar {
             arrowResult +='<p>⬇️</p>';
         }
         return arrowResult;
+    }
+    
+    renderGameWinners(){
+        const maxCount = this.carArray
+            .map(car => car.successCount)
+            .sort((a, b) => b - a)[0];
+        const winners = this.carArray
+            .filter((item) => item.successCount === maxCount)
+            .map(item => item.name)
+            .join(',');
+        
+        $('.racing-result').innerHTML = `
+            <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
+            <button class="restart-button">다시 시작하기</button>
+        `;
     }
 }
