@@ -11,6 +11,8 @@
     "rules": { "import/extensions": ["off"],"no-undef":"off" , 
         "no-unused-vars":"off",
     "class-methods-use-this":"off",
-    "consistent-return":"off"
+    "consistent-return":"off",
+    "array-callback-return":"off",
+    
 }
 }
