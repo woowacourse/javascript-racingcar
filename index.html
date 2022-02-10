@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>🏎️ 자동차 경주 게임</title>
+  <link rel="stylesheet" href="css/racing-car.css">
 </head>
 
 <body>
@@ -12,41 +13,78 @@
       <h1 class="title">
         🏎️ 자동차 경주 게임🏁
       </h1>
-      <div class="input">
-        <div class="car-name-input">
+      <div class="user-input-container">
+        <div class="car-name-input-container">
           <label for="car-name">
             5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.
           </label>
-          <input name="car-name" type="text" placeholder="east, west, south, north, all" 
-          alt="자동차 이름을 입력하는 곳">
-          </input>
-          <button type="button" alt="자동차 이름을 제출하는 버튼">확인</button>
+          <div class="input-container">
+            <input id="car-name-input" name="car-name" type="text" placeholder="east, west, south, north, all" 
+            alt="자동차 이름을 입력하는 곳">
+              <button class="input-button" id="car-name-button" type="button" alt="자동차 이름을 제출하는 버튼">확인</button>
+            </input>
+          </div>
+          
         </div>
-        <div class="race-count-input">
+        <div class="race-count-input-container">
           <label for="race-count">
             시도할 횟수를 입력해주세요.
           </label>
-          <input name="race-count" type="text" placeholder="10" 
-          alt="시도할 횟수를 입력 하는 곳">
-          </input>
-          <button type="button" alt="시도할 횟수를 제출하는 버튼">확인</button>
+          
+          <div class="input-container">
+            <input id="race-count-input" name="race-count" type="text" placeholder="10" 
+            alt="시도할 횟수를 입력 하는 곳">
+            </input>
+            <button  class="input-button" id="race-count-button" type="button" alt="시도할 횟수를 제출하는 버튼">확인</button>
+          </div>
+          
         </div>
       </div>
-      <div class="racing-result">
+      <div class="racing-content">
         <div class="car">
           <label>east</label>
-          <p>⬇️</p>
+          <div>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+          </div>
         </div>
         <div class="car">
           <label>west</label>
-          <p>⬇️</p>
+          <div>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+          </div>
         </div>
         <div class="car">
           <label>south</label>
-          <p>⬇️</p>
+          <div>
+            <p>⬇️</p>
+          </div>
+        </div>
+        <div class="car">
+          <label>east</label>
+          <div>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+          </div>
+        </div>
+        <div class="car">
+          <label>east</label>
+          <div>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+            <p>⬇️</p>
+          </div>
         </div>
       </div>
-      <div class="result">
+      <div class="racing-result">
         <h2 class="result-text">🏆 최종 우승자: east, west 🏆</h2>
         <button class="restart-button">다시 시작하기</button>
       </div>
