@@ -26,6 +26,7 @@ export default class Controller {
       // 밸리데이션  return;
       this.model.getRacingCount(racingCount);
       this.gameStart();
+      this.model.carPosition = new Array(this.model.carNames.length).fill(0);
     });
   }
 
