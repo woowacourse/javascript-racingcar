@@ -1,3 +1,8 @@
-import handleUserCarNameInput from "./modules/handleUserCarNameInput.js";
+// import { $ } from "./dom/dom.js";
+import racingCarGame from "./modules/racingCarGame.js";
 
-handleUserCarNameInput();
+
+
+
+const game = new racingCarGame();
+game.init();
