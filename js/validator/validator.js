@@ -28,18 +28,24 @@ export default class Validator {
   // Number.isInteger()
 
   static isFloat(number) {
-    alert('시도 횟수를 자연수로 입력해주세요.');
-    return !Number.isInteger(number);
+    if (!Number.isInteger(Number(number))) {
+      alert('시도 횟수를 자연수로 입력해주세요.');
+      return true;
+    }
   }
 
   static isNotNaturalNumber(number) {
-    alert('시도 횟수를 자연수로 입력해주세요.');
-    return number <= 0;
+    if (number <= 0) {
+      alert('시도 횟수를 자연수로 입력해주세요.');
+      return true;
+    }
   }
 
   static isString(number) {
-    alert('시도 횟수를 자연수로 입력해주세요.');
-    return typeof number === 'string';
+    if (typeof Number(number) !== 'number') {
+      alert('시도 횟수를 자연수로 입력해주세요.');
+      return true;
+    }
   }
 
   static isInValidRacingCountInput(number) {
