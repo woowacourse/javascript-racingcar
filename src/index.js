@@ -1,8 +1,9 @@
-import { setCarNamesClick } from './controllers/userControllers.js';
+import { setCarNamesClick, setRoundClick } from './controllers/userControllers.js';
 
 const state = {
   cars: '',
-  location: 0,
+  racingNumber: 0,
 };
 
 setCarNamesClick(state);
+setRoundClick(state);

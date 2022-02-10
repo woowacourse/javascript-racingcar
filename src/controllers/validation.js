@@ -2,15 +2,15 @@ import { showAlertMsg } from './utils.js';
 
 export function isNameValid(names) {
   if (hasDuplicatedName(names)) {
-    showAlertMsg('중복된 이름 있음');
+    showAlertMsg('이름입력 에러 : 중복된 이름 있음');
     return false;
   }
   if (hasEmptyName(names)) {
-    showAlertMsg('공백 이름 있음');
+    showAlertMsg('이름입력 에러 : 공백 이름 있음');
     return false;
   }
   if (hasLongName(names)) {
-    showAlertMsg('6글자 이상의 이름 있음');
+    showAlertMsg('이름입력 에러 : 6글자 이상의 이름 있음');
     return false;
   }
 }
@@ -51,6 +51,32 @@ function hasLongName(names) {
     if (isNameTooLong(names[i])) {
       return true;
     }
+  }
+  return false;
+}
+
+export function isRacingNumberValid(racingNumber) {
+  if (!isNumberInteger(racingNumber)) {
+    showAlertMsg('숫자입력 에러 :정수가 아닌 횟수');
+    return false;
+  }
+  if (isNumberUnderZero(racingNumber)) {
+    showAlertMsg('숫자입력 에러 : 0이하의 횟수');
+    return false;
+  }
+  return true;
+}
+
+function isNumberInteger(number) {
+  if (Number.isInteger(Number(number))) {
+    return true;
+  }
+  return false;
+}
+
+function isNumberUnderZero(number) {
+  if (number <= 0) {
+    return true;
   }
   return false;
 }
