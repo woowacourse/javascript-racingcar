@@ -1,9 +1,12 @@
 import { $ } from '../util/dom.js';
 
 export const renderResult = cars => {
-  $('#turn-result').innerHTML += `${cars
+  $('#turn-result').innerHTML = `${cars
     .map(car => {
-      return `<div>name:${car.name} score:${'⬇️'.repeat(car.score)}</div>`;
+      return `<div id="car-result">
+        <div>${car.name}</div>
+        ${'<p>⬇️</p>'.repeat(car.score)}
+      </div>`;
     })
     .join('')}`;
 };
@@ -19,13 +22,14 @@ export const renderWinners = cars => {
     .map(car => car.name);
 
   $('#winners-result').innerHTML = `
-    <p>최종 우승자 ${winners.join(',')}</p>
+    <p>🏆 최종 우승자 ${winners.join(',')} 🏆 </p>
     <button id="reset-btn">다시 시작하기</button>
   `;
 };
 
 export const removeBeforeResult = e => {
   if (e.target.id === 'reset-btn') {
-    $('#game-result').innerHTML = '';
+    $('#turn-result').innerHTML = '';
+    $('#winners-result').innerHTML = '';
   }
 };

@@ -1,4 +1,4 @@
-import { CAN_ADVANCE } from '../js/constants/constant.js';
+import { CAN_ADVANCE } from '../constants/constant.js';
 
 export default class Car {
   constructor(name) {
