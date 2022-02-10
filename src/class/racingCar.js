@@ -10,7 +10,6 @@ export default class RacingCar {
     gameStart(){
         this.generateCars();
         this.playGame();
-        
     }
 
     generateRandomNumber() {
@@ -29,6 +28,7 @@ export default class RacingCar {
         }
         this.renderRacingContent();
         this.renderGameWinners();
+        this.onRestartButtonClick();
     }
 
     updateCarSuccessCount() {
@@ -72,5 +72,11 @@ export default class RacingCar {
             <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
             <button class="restart-button">다시 시작하기</button>
         `;
+    }
+
+    onRestartButtonClick(){
+        $('.restart-button').addEventListener('click', () =>{
+            location.reload();
+        })
     }
 }
