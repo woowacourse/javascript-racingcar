@@ -10,7 +10,7 @@ export default class RacingCarModel {
   setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
     if (this.hasSpaceInName(splitedCarNames)) {
-      throw new Error("공백");
+      throw new Error("이름에 공백이 포함되어있습니다");
     }
     if (this.isDuplicatedCarName(splitedCarNames)) {
       throw new Error("이름이 중복되었습니다");
@@ -22,6 +22,9 @@ export default class RacingCarModel {
   };
 
   setRacingCount = (count) => {
+    if (this.isEmptyRacingCount(count)) {
+      throw new Error("양의 정수를 입력해주세요");
+    }
     this.racingCount = count;
   };
 
@@ -66,4 +69,6 @@ export default class RacingCarModel {
   isDuplicatedCarName = (names) => names.length !== new Set(names).size;
 
   isEmptyName = (names) => names.some((name) => name.length === 0);
+
+  isEmptyRacingCount = (count) => !count;
 }

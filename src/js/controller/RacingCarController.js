@@ -39,10 +39,14 @@ export default class RacingCarController {
   submitRacingCountHandler = (e) => {
     e.preventDefault();
     const racingCount = document.querySelector("#racing-count-input").value;
-    this.model.setRacingCount(racingCount);
-    this.playGame();
-    this.view.disableCarName();
-    this.view.disableRacingCount();
+    try {
+      this.model.setRacingCount(racingCount);
+      this.playGame();
+      this.view.disableCarName();
+      this.view.disableRacingCount();
+    } catch (err) {
+      alert(err);
+    }
   };
 
   clickReplayButtonHandler = (e) => {
