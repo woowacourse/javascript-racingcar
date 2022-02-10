@@ -9,4 +9,9 @@ export default class Model {
     this.carNames = [...carNames];
     this.carPosition = new Array(carNames.length).fill(0);
   }
+
+  getRacingCount(racingCount) {
+    this.racingCount = racingCount;
+    console.log(this.racingCount, this.carNames, this.carPosition);
+  }
 }
