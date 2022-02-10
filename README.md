@@ -11,35 +11,71 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
-## ⚙️ Before Started
+## 🎯 구현할 기능 목록
 
-#### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 static resources 변경 및 확인하는 방법
+### Step1
 
-로컬에서 웹서버를 띄워 html, css, js 등을 실시간으로 손쉽게 테스트해 볼 수 있습니다. 이를 위해서는 우선 npm이 설치되어 있어야 합니다. 구글에 `npm install` 이란 키워드로 각자의 운영체제에 맞게끔 npm을 설치해주세요. 이후 아래의 명령어를 통해 실시간으로 웹페이지를 테스트해볼 수 있습니다.
+- #### 자동차 이름 입력 받기
+  - 자동차 이름을 쉼표를 기준으로 구분한다.
+  - 자동차 이름 양 끝단의 공백을 제거한다.
+  - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
+- #### 자동차 이름 유효성 검증하기
 
-```
-npm install -g live-server
-```
+  - 자동차 이름 길이가 1 이상 5 이하인지 검증한다.
 
-실행은 아래의 커맨드로 할 수 있습니다.
+      <details>
+      <summary>예</summary>
+      입력받은 문자열: "김, 이,박 , , 최 정 "
+      >> 자동차 이름 배열: ["김", "이", "박", <span style="background:skyblue">""</span>, "최 정"]
+      파싱한 문자열: " 가운데 공백 "<br>
+      양 공백 제거 후: "가운데 공백"<br>
+      >> 이름 길이: <span style="background:skyblue">6</span>
+      </details>
 
-```
-live-server 폴더명
-```
+  - 자동차 이름에 중복이 있는지 검증한다.
 
-<br>
+      <details>
+      <summary>예</summary>
+      입력받은 문자열: "김, 김, 이"<br>
+      자동차 이름 배열: [<span style="background:skyblue">"김"</span>, <span style="background:skyblue">"김"</span>, "이"]<br>
+      </details>
 
-## 👏 Contributing
+- #### 자동차 생성하기
+  - 입력받은 자동차 이름들로 자동차를 생성한다.
+- #### 레이싱 횟수 입력 받기
+  - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
+- #### 레이싱 횟수 유효성 검증하기
 
-만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요. 
+  - 양의 정수인지 검증한다.
 
-<br>
+      <details>
+      <summary>예</summary>
+      입력받은 문자열: "10.2" <br>
+      >> 양의 정수 아님 <br>
+      입력받은 문자열: "0" <br>
+      >> 양의 정수 아님 <br>
+      입력받은 문자열: "-1" <br>
+      >> 양의 정수 아님 <br>
+      </details>
 
-## 🐞 Bug Report
+  - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 100으로 정함.)
+    레이싱 횟수 범위가 요구사항에 명시되어 있지 않았기 때문에 *레이싱 횟수 최댓값*을 100으로 정했습니다.
 
-버그를 발견한다면, [Issues](https://github.com/woowacourse/javascript-racingcar/issues) 에 등록 후 @eastjun에게 dm을 보내주세요.
+      <details>
+      <summary>예</summary>
+      입력받은 문자열: "999"<br>
+      >> 100보다 큼<br>
+      </details>
 
-<br>
+- #### 레이스 진행하기
+  - 입력받은 횟수만큼 레이스를 진행한다.
+  - 0에서 9 사이에서 무작위 값을 생성한다.
+  - 무작위 값이 4 이상일 경우 자동차를 전진시킨다.
+  - 마지막 레이스의 결과로 최종 우승자를 구한다.
+- #### 결과 렌더링하기
+
+  - 우승자가 여러 명일 수 있다.
+  - 우승자가 여러 명일 경우 쉼표를 이용하여 구분한다.
 
 ## 📝 License
 
