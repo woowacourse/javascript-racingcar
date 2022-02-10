@@ -3,16 +3,23 @@ import Car from "./car.js";
 
 class RacingCarGame {
   constructor() {
+    this.cars = null;
+    this.count = null;
     this.initDOM();
     this.initHandler();
   }
   initDOM() {
     this.carNameInputField = document.querySelector("#car-name-input-field");
+    this.countInputField = document.querySelector("#count-input-field");
   }
   initHandler() {
     this.carNameInputField.addEventListener(
       "click",
       this.onCarNameInputFieldClick.bind(this)
+    );
+    this.countInputField.addEventListener(
+      "click",
+      this.onCountInputFieldClick.bind(this)
     );
   }
   onCarNameInputFieldClick(e) {
@@ -24,6 +31,14 @@ class RacingCarGame {
       );
       this.makeCars(names);
     }
+  }
+  onCountInputFieldClick(e) {
+    e.preventDefault();
+    if (e.target.id === "count-btn") {
+      const count = e.currentTarget.querySelector("#count-input").value;
+      this.count = count;
+    }
+    // start game
   }
   makeCars(names) {
     try {
