@@ -8,8 +8,6 @@
 }
 
 .container {
-    /* display: flex;
-    flex-direction: column; */
     width: 544px;
     height: fit-content;
 
@@ -41,7 +39,8 @@
 }
 
 .race-count-input-container{
-    display: flex;
+    display: none;
+    /* 활성화 되었을 때에 display가 flex 된다 display: flex; */
     flex-direction: column;
     margin-bottom: 12px;
 }
