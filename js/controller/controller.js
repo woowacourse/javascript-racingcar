@@ -1,6 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
+import { getRandomNumber } from '../utils/getRandomNumber.js';
 
 export default class Controller {
   constructor() {
@@ -32,12 +33,30 @@ export default class Controller {
     // 자동차 이름이 먼저 렌더링
     const carNames = this.model.carNames;
     this.view.renderCarNames(carNames);
-    // 뷰에서 자동차 이름 순서대로 렌더링
 
     // 결과에 따라서 한줄씩 화살표 반복 출력
-
+    // 랜덤 0 ~ 9까지 숫자를 구하는 메서드 필요 ok
+    // 총 시도횟수 만큼 반복
+    for (let i = 0; i < this.model.racingCount; i++) {
+      this.model.carNames.map((carNames, idx) => {
+        if (getRandomNumber() >= 4) {
+          // 랜덤 값이 4 이상인 경우 모델에서 position++ (조건 체크)
+          this.model.carPosition[idx]++;
+        }
+      });
+    }
+    console.log(this.model.carNames, this.model.carPosition);
     // 최종 우승자 출력 (우승자를 구하는 메서드)
-
+    this.getWinner();
     // 다시하기 버튼 렌더링
+  }
+
+  getWinner() {
+    const carPosition = this.model.carPosition;
+    const MAX = Math.max.apply(null, [...carPosition]);
+    const arr = this.model.carNames.filter((car, idx) => {
+      return this.model.carPosition[idx] === MAX;
+    });
+    console.log(arr.join(', '));
   }
 }
