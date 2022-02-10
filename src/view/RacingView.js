@@ -41,6 +41,7 @@ export default class RacingView {
     $winnerContainer.id = 'racing-result-container';
 
     const $winnerSpan = document.createElement('h2');
+    $winnerSpan.id = 'racing-result';
     $winnerSpan.innerText = `🏆 최종 우승자: ${winnerList.join(', ')}🏆`;
 
     const $restartButton = document.createElement('button');
