@@ -1,6 +1,7 @@
 export default class ResultView {
   constructor() {
     this.result = [];
+    this.$result = document.querySelector("#result");
   }
 
   setResult = (result) => {
@@ -8,8 +9,7 @@ export default class ResultView {
   };
 
   renderResult = () => {
-    const $result = document.querySelector("#result");
-    $result.innerHTML = this.makeResultTemplate();
+    this.$result.innerHTML = this.makeResultTemplate();
   };
 
   makeResultTemplate = () => {
@@ -26,6 +26,22 @@ export default class ResultView {
           .join("")}
       </div>
       `;
+    return template;
+  };
+
+  renderWinners = (winners) => {
+    this.$result.insertAdjacentHTML(
+      "beforeend",
+      this.makeWinnersTemplate(winners)
+    );
+  };
+
+  makeWinnersTemplate = (winners) => {
+    const template = ` 
+      <div>
+        <h3>🏆 최종 우승자: ${winners} 🏆</h3>
+      </div>
+    `;
     return template;
   };
 }

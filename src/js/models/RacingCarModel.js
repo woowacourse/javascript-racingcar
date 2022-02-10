@@ -19,7 +19,6 @@ export default class RacingCarModel {
       throw new Error("이름은 공백이 될수없습니다");
     }
     this.cars = splitedCarNames.map((name) => new Car(name));
-    console.log(this.cars);
   };
 
   setRacingCount = (count) => {
@@ -41,6 +40,15 @@ export default class RacingCarModel {
     if (generateRandomNumber() >= 4) {
       car.move();
     }
+  };
+
+  pickWinners = () => {
+    const results = this.cars.map((car) => car.forward);
+    const maxCount = Math.max(...results);
+    return this.cars
+      .filter((car) => car.forward === maxCount)
+      .map((car) => car.name)
+      .join(", ");
   };
 
   splitCarNames = (carNames) => carNames.split(",");

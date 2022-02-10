@@ -45,5 +45,11 @@ export default class RacingCarController {
       this.view.setResult(raceResult);
       this.view.renderResult();
     }
+    this.endGame();
+  };
+
+  endGame = () => {
+    const winners = this.model.pickWinners();
+    this.view.renderWinners(winners);
   };
 }
