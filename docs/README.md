@@ -16,6 +16,9 @@
 - 자동차의 이름을 입력하는 input 태그는 `car-names-input` id값을 가진다｀
 - 자동차의 이름을 제출하는 button 태그는 `car-names-submit` id값을 가진다.
 
+## [ ] 자동차 객체 생성
+- 입력받은 자동차 이름으로 자동차 객체를 생성한다.
+
 ## [ ] 레이싱 횟수 입력 받기
 - 레이싱 횟수를 입력하는 input 태그는 `racing-count-input` id값을 가진다.
 - 레이싱 횟수을 제출하는 button 태그는 `racing-count-submit` id값을 가진다.
