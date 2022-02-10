@@ -2,6 +2,7 @@ import generateCars from '../model/generateCars.js';
 import showResult from '../view/showResult.js';
 import getWinners from '../model/getWinners.js';
 import showWinners from '../view/showWinners.js';
+import showRestart from '../view/showRestart.js';
 
 function sortCars(cars) {
   return cars.sort((a, b) => b.position - a.position);
@@ -15,4 +16,5 @@ export default function playRace(count) {
 
   showResult(sortCars(cars));
   showWinners(getWinners(cars));
+  showRestart();
 }

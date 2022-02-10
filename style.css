@@ -9,6 +9,12 @@ main {
   min-width: 460px;
 }
 
+.form-container {
+  display: flex; 
+  flex-direction: column;
+  
+}
+
 .count-form {
   display: none;
 }
@@ -29,7 +35,8 @@ main {
 
 
 .count-button,
-.name-button {
+.name-button,
+.restart {
   border: none;
   border-radius: 3px;
   letter-spacing: 1.5px;
@@ -42,7 +49,16 @@ main {
   margin-top: 2px;
 }
 
-.game-result-container {
+.restart-container {
+  display: none;
+  justify-content: center;
+}
+
+.restart {
+  width: 140px;
+}
+
+.race-result-container {
   display: flex;
   justify-content: space-between; 
 }
