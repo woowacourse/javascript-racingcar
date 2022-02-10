@@ -1,8 +1,8 @@
-import { CAR_NAME } from './constants.js';
+import { CAR } from './constants.js';
 
 export function isValidCarNames(carNames) {
   return carNames.every((name) => {
-    return name.length <= CAR_NAME.MAX_LENGTH;
+    return name.length <= CAR.MAX_NAME_LENGTH;
   });
 }
 

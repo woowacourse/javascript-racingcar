@@ -48,9 +48,16 @@ export default class RacingCarController {
 
     if (isValidRacingCount(racingCount)) {
       this.model.setRacingCount(racingCount);
+      this.race(racingCount);
     } else {
       alert('양의 정수가 아닙니다');
       this.view.resetRacingCountInput();
+    }
+  }
+
+  race(racingCount) {
+    for (let i = 0; i < racingCount; i += 1) {
+      this.model.cars.forEach((car) => car.moveForward());
     }
   }
 }

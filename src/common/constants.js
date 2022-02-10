@@ -2,8 +2,9 @@ export const BUTTON = {
   SUBMIT: '확인',
 };
 
-export const CAR_NAME = {
-  MAX_LENGTH: 5,
+export const CAR = {
+  MAX_NAME_LENGTH: 5,
+  MIN_MOVE_FORWARD_CONDITION: 4,
 };
 
 export const COUNT = {
@@ -17,4 +18,9 @@ export const DIRECTIVE = {
 
 export const HEADER = {
   MAIN: '🏎️ 자동차 경주 게임🏁',
+};
+
+export const RANDOM = {
+  MIN_DIGIT: 0,
+  MAX_DIGIT: 9,
 };
