@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="kr">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임🏁</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="title">🏎️ 자동차 경주 게임🏁</div>
+      <div class="input-container">
+        <div class="input-label">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</div>
+        <div class="flex">
+          <input id="car-name-input" />
+          <button id="car-name-input-button">확인</button>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="input-label">
+          시도할 횟수를 입력해주세요.
+          <div class="flex">
+            <input id="racing-number-input" />
+            <button id="racing-number-input-button">확인</button>
+          </div>
+        </div>
+      </div>
+      <div id="racing-progress"></div>
+      <div id="racing-winner">🏆최종우승자:🏆</div>
+      <button id="restart-button">다시 시작하기</button>
+    </div>
+  </body>
 </html>
