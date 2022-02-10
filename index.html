@@ -4,8 +4,64 @@
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임</title>
   </head>
-
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h2>🏎️자동차 경주 게임🏁</h2>
+      </header>
+      <main>
+        <section id="user_input_section">
+          <form id="car_names_form">
+            <label for="car_names_input"
+              >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
+            >
+            <input type="text" id="car_names_input" placeholder="east, west, south, north, all" />
+            <button class="click_btn">확인</button>
+          </form>
+          <form id="racing_count_form">
+            <label for="racing_count_input">시도할 횟수를 입력해주세요.</label>
+            <input type="number" id="racing_count_input" placeholder="10" />
+            <button class="click_btn">확인</button>
+          </form>
+        </section>
+        <section id="racing_car_display_section">
+          <div id="racing_car_list">
+            <div class="racing_car_item">
+              <div class="racing_car_name">east</div>
+              <ul class="racing_car_progress">
+                <li>⬇</li>
+                <li>⬇</li>
+                <li>⬇</li>
+              </ul>
+            </div>
+            <div class="racing_car_item">
+              <div class="racing_car_name">west</div>
+              <ul class="racing_car_progress">
+                <li>⬇</li>
+                <li>⬇</li>
+              </ul>
+            </div>
+            <div class="racing_car_item">
+              <div class="racing_car_name">all</div>
+              <ul class="racing_car_progress">
+                <li>⬇</li>
+              </ul>
+            </div>
+            <div class="racing_car_item">
+              <div class="racing_car_name">south</div>
+              <ul class="racing_car_progress"></ul>
+            </div>
+            <div class="racing_car_item">
+              <div class="racing_car_name">north</div>
+              <ul class="racing_car_progress"></ul>
+            </div>
+          </div>
+          <div id="final_winner">🏆최종 우승자 : east, west🏆</div>
+        </section>
+        <section id="restart_section">
+          <button class="click_btn">다시 시작하기</button>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
