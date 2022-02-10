@@ -1,5 +1,5 @@
 import { $ } from './util/dom.js';
-import { checkCarNames } from './checkCarNames.js';
+import { getCarNames } from './checkCarNames.js';
 
 class app {
   constructor() {
@@ -7,7 +7,7 @@ class app {
   }
 
   mounted() {
-    $('#car-names-form').addEventListener('submit', checkCarNames.bind());
+    $('#car-names-form').addEventListener('submit', getCarNames.bind());
   }
 }
 
