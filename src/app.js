@@ -1,6 +1,7 @@
 import { $ } from './util/dom.js';
-import { getCarNames } from './checkCarNames.js';
-import { getTryCount } from './checkTryCount.js';
+import { getCarNames } from './core/checkCarNames.js';
+import { getTryCount } from './core/checkTryCount.js';
+import { makeCar } from './core/playRacing.js';
 
 class app {
   constructor() {
@@ -28,7 +29,7 @@ class app {
   setTryCount(newTryCount) {
     if (newTryCount) {
       this.tryCount = newTryCount;
-      console.log(this.tryCount);
+      makeCar(this.carNames, this.tryCount);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { $ } from './util/dom.js';
+import { $ } from '../util/dom.js';
 
 export const getCarNames = e => {
   e.preventDefault();
