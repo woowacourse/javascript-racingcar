@@ -7,7 +7,7 @@ import { logo, restartButton } from "./util/elements.js";
 class RacingCar {
   constructor() {
     this.cars = new Cars();
-    this.racingCount = new RacingCount();
+    this.racingCount = new RacingCount(this.cars);
     makeInitialView();
     this.addLogoClickEvent();
     this.addRestartEvent();
