@@ -19,6 +19,10 @@ export default class RacingCarController {
   submitCarNamesHandler = (e) => {
     e.preventDefault();
     const carNames = document.querySelector("#car-names-input").value;
-    this.model.setCars(carNames);
+    try {
+      this.model.setCars(carNames);
+    } catch (err) {
+      alert(err);
+    }
   };
 }
