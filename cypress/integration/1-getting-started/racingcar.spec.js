@@ -23,13 +23,21 @@ const inputRacingCount = count => {
   cy.get('#racing-count-submit').click();
 };
 
+const names = ['june', 'poco'];
+
 describe('자동차 경주 게임', () => {
   it('자동차 이름을 입력받는다', () => {
-    inputCarNames('june, poco');
+    inputCarNames(names.join(','));
   });
 
   it('레이싱 횟수를 입력받는다', () => {
     inputRacingCount(2);
+  });
+
+  it('자동차 경주 결과를 출력한다', () => {
+    names.every(name => {
+      cy.get(`[data-name=${name}]`).should('be.visible');
+    });
   });
 });
 

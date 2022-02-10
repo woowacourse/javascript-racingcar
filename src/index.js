@@ -44,7 +44,45 @@ class CarRacing {
         car.move();
       }
     });
-    console.log(this.participants);
+    document.querySelector('#racing-status').innerHTML = this.printResult();
+    document.querySelector('#racing-winners').innerHTML = this.printWinner(
+      this.getWinner(),
+    );
+  }
+
+  printResult() {
+    return this.participants
+      .map(
+        participant =>
+          `<div id="user-status" class="user-status" data-name=${
+            participant.name
+          }>
+        <div id="user-name" class="user-name">${participant.name}</div>
+        ${Array.from({ length: participant.racingCount }, () => 0)
+          .map(count => `<div id="move" class="move">⬇️</div>`)
+          .join('')}
+      </div>`,
+      )
+      .join('');
+  }
+
+  printWinner(winners) {
+    return `<h3>🏆최종 우승자: ${winners
+      .map(({ name }) => name)
+      .join(',')}🏆</h3>`;
+  }
+
+  getWinner() {
+    let maxCount = 0;
+    for (let i = 0; i < this.participants.length; i++) {
+      if (this.participants[i].racingCount >= maxCount) {
+        maxCount = this.participants[i].racingCount;
+      }
+    }
+
+    return this.participants.filter(
+      participant => participant.racingCount === maxCount,
+    );
   }
 
   validateCarName(names) {
