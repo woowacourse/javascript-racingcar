@@ -27,6 +27,11 @@ export default class RacingGame {
     return this.findWinners();
   }
 
+  reset() {
+    this.cars = [];
+    this.round = 0;
+  }
+
   findMaxRecord() {
     let maxRecord = 0;
 

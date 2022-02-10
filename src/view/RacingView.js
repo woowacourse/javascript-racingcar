@@ -7,27 +7,33 @@ export default class RacingView {
     this.$app.appendChild(RacingView.createRacingProgressElement(cars));
   }
 
+  renderResult(winnerList) {
+    this.$app.appendChild(RacingView.createWinnerElement(winnerList));
+  }
+
+  reset() {
+    this.removeProgress();
+    this.removeResult();
+    RacingView.clearInput();
+  }
+
   removeProgress() {
     const $racingProgressNode = document.getElementById(
       'racing-progress-container'
     );
-    this.$app.removeChlid($racingProgressNode);
-  }
-
-  renderResult(winnerList) {
-    this.$app.appendChild(RacingView.createWinnerElement(winnerList));
+    this.$app.removeChild($racingProgressNode);
   }
 
   removeResult() {
     const $racingResultNode = document.getElementById(
       'racing-result-container'
     );
-    this.$app.removeChlid($racingResultNode);
+    this.$app.removeChild($racingResultNode);
   }
 
-  reset() {
-    this.removeProgress();
-    this.removeResult();
+  static clearInput() {
+    document.getElementById('car-names-input').value = '';
+    document.getElementById('racing-count-input').value = '';
   }
 
   static createWinnerElement(winnerList) {

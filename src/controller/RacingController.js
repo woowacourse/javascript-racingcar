@@ -31,6 +31,17 @@ export default class RacingController {
     this.activateRestartButton();
   }
 
+  activateRestartButton() {
+    document
+      .getElementById('restart-button')
+      .addEventListener('click', this.restartGame.bind(this));
+  }
+
+  restartGame() {
+    this.view.reset();
+    this.model.reset();
+  }
+
   getCarNamesInArrayType() {
     let nameList = document.getElementById('car-names-input').value.split(',');
     nameList = nameList.map((name) => name.trim());
