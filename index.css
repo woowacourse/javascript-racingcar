@@ -97,3 +97,41 @@
   margin-top: 24px;
   cursor: pointer;
 }
+
+.racing-progress-arrow {
+  width: 96px;
+  height: 50px;
+
+  font-family: Apple SD Gothic Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+
+  border: solid 3px #ffffff;
+}
+
+.car-name-box {
+  width: 96px;
+  height: 36px;
+
+  background: #f5f5f5;
+  border-radius: 4px;
+
+  font-family: Apple SD Gothic Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  vertical-align: middle;
+
+  display: table-cell;
+  color: #000000;
+
+  border: solid 3px #ffffff;
+}
