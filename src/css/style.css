@@ -80,3 +80,8 @@ button {
 .arrow {
   font-size: 32px;
 }
+
+.winners {
+  text-align: center;
+  margin-top: 25px;
+}

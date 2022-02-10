@@ -39,7 +39,7 @@ export default class ResultView {
   makeWinnersTemplate = (winners) => {
     const template = ` 
       <div>
-        <h3>🏆 최종 우승자: ${winners} 🏆</h3>
+        <h3 class="winners">🏆 최종 우승자: ${winners} 🏆</h3>
       </div>
     `;
     return template;
