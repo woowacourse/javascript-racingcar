@@ -15,6 +15,7 @@ class RacingcarGame {
     });
     this.raceCountForm.addEventListener("submit", (event) => {
       event.preventDefault();
+      this.checkRaceNumber();
     });
   }
 
@@ -26,6 +27,14 @@ class RacingcarGame {
         return;
       }
     });
+  }
+
+  checkRaceNumber() {
+    const raceNumber = this.raceCountInput.value;
+    if (raceNumber === "") {
+      alert("몇 번의 이동을 할 것인지를 입력해주세요.");
+      return;
+    }
   }
 }
 
