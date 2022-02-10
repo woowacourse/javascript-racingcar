@@ -28,6 +28,14 @@ class RacingCarGame {
 
       const carNameList = this.trimStringArray(this.splitCarNames());
 
+      if (!carNameList.every((name) => name.length >= 1 && name.length <= 5)) {
+        alert('자동차 이름은 1자 이상 5자 이하여야 합니다.');
+      }
+
+      if (carNameList.length !== new Set(carNameList).size) {
+        alert('중복되는 자동차 이름은 입력할 수 없습니다.');
+      }
+
       this.carList = carNameList;
     });
   }
