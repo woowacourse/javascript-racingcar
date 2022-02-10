@@ -6,7 +6,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     CAR_NAMES_SUBMIT_BUTTON: '#car-names-submit',
     RACING_COUNT_INPUT: '#racing-count-input',
     RACING_COUNT_SUBMIT_BUTTON: '#racing-count-submit',
-    WINNERS: '#racing-winners'
+    WINNERS: '#racing-result'
   };
 
   before(() => {
@@ -36,7 +36,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   it('게임을 완료하고 우승자를 확인할 수 있어야 한다.', () => {
     // given
     const carNames = 'poco,park';
-    const winner = 'poco';
+    const winner = '🏆 최종 우승자: poco🏆';
     const racingCount = 1;
 
     // when
