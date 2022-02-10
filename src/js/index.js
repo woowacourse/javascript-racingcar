@@ -52,6 +52,14 @@ class RacingCarGame {
       e.preventDefault();
 
       const racingCount = this.$racingCountInput.valueAsNumber;
+
+      if (
+        !Number.isInteger(racingCount) ||
+        racingCount <= 0 ||
+        racingCount > 10
+      ) {
+        alert('1에서 10사이의 숫자를 입력해주세요.');
+      }
     });
   }
 }
@@ -65,7 +73,7 @@ racingCarGame.main();
 // - #### 레이싱 횟수 유효성 검증하기
 // - 양의 정수인지 검증한다.
 
-// - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 100으로 정함.)
+// - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 10으로 정함.)
 //   레이싱 횟수 범위가 요구사항에 명시되어 있지 않았기 때문에 *레이싱 횟수 최댓값*을 100으로 정했습니다.
 
 // - #### 레이스 진행하기
