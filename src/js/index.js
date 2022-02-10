@@ -7,6 +7,11 @@
 // - 자동차 이름 길이가 1 이상 5 이하인지 검증한다.
 // - 자동차 이름에 중복이 있는지 검증한다.
 
+// - #### 자동차 생성하기
+// - 입력받은 자동차 이름들로 자동차를 생성한다.
+
+import Car from './Car.js';
+
 class RacingCarGame {
   constructor() {
     this.$carNameInput = document.querySelector('#car-name-input');
@@ -36,16 +41,15 @@ class RacingCarGame {
         alert('중복되는 자동차 이름은 입력할 수 없습니다.');
       }
 
-      this.carList = carNameList;
+      this.carList = carNameList.map((name) => new Car(name));
+
+      console.log(this.carList);
     });
   }
 }
 
 const racingCarGame = new RacingCarGame();
 racingCarGame.main();
-
-// - #### 자동차 생성하기
-// - 입력받은 자동차 이름들로 자동차를 생성한다.
 
 // - #### 레이싱 횟수 입력 받기
 // - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
