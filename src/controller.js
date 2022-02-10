@@ -1,6 +1,7 @@
 import View from './view.js';
 import Model from './model.js';
 import Car from './car.js';
+import { validateNameInput } from './utils/validator.js';
 
 export default class Controller {
   constructor() {
@@ -16,8 +17,13 @@ export default class Controller {
   }
 
   onSubmitName(carNames) {
-    const carNamesArray = carNames.split(',');
-    this.model.saveCarList(this.makeCars(carNamesArray));
+    try {
+      const carNamesArray = carNames.split(',');
+      validateNameInput(carNamesArray);
+      this.model.saveCarList(this.makeCars(carNamesArray));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   makeCars(carNamesArray) {
@@ -26,11 +32,8 @@ export default class Controller {
   }
 
   onSubmitCount(count) {
-    // 시도할 횟수를 받아서, 랜덤 전진 시키기
     this.model.startRace(count);
-    // 전진 된 만큼 뷰 업데이트
     this.view.resultUpdate(this.model.carList);
-    // 우승자 보여주기
     this.view.winnerUpdate(this.makeWinner(this.model.carList));
   }
 
