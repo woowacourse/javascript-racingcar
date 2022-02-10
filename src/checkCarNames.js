@@ -12,13 +12,11 @@ export const getCarNames = e => {
 };
 
 export const checkCarNames = carNamesInput => {
-  if (
+  return (
     isCorrectCarNamesInputLength(carNamesInput) ||
     isMaxCarNameLength(carNamesInput) ||
     isSameCarName(carNamesInput)
-  ) {
-    return true;
-  }
+  );
 };
 
 const isMaxCarNameLength = carNamesInput => {
