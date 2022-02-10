@@ -38,3 +38,28 @@ main {
   margin-top: 2px;
 }
 
+.game-result-container {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.result-car-wrapper {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-car-name {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 36px; 
+  background: #F5F5F5;
+  border-radius: 4px;
+}
+
+.result-arrow {
+  margin-top: 10px;
+  font-size: 32px;
+}

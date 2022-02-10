@@ -31,7 +31,7 @@ function generateCars(names) {
   const cars = [];
 
   names.forEach(name => {
-    cars.push(new Car(name.trim()));
+    cars.push(new Car(name));
   });
 
   return cars;
@@ -43,7 +43,11 @@ export default function eventHandler() {
 
   document.querySelector('.name-form').addEventListener('submit', event => {
     event.preventDefault();
-    const names = document.querySelector('.name-input').value.split(',');
+    const names = document
+      .querySelector('.name-input')
+      .value.split(',')
+      .map(name => name.trim());
+
     if (isValidNames(names)) {
       cars = generateCars(names);
     }
