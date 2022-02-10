@@ -9,3 +9,7 @@ export const LIMIT = {
   MAX_LENGTH: 5,
   MIN_LENGTH: 1,
 };
+
+export const NUMBER = {
+  CAN_GO: 4,
+};
