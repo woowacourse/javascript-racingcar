@@ -7,7 +7,7 @@ function isCorrectCarNameArrayLength(carNameArray){
     return carNameArray.length <= 5;
 }
 function isCorrectCarNameLength(carNameArray){
-    return !carNameArray.filter(carName => carName.length > 5);
+    return !carNameArray.filter(carName => carName.length > 5).length;
 }
 
 export default function checkUserCarNameInput(carNameInput) {
@@ -17,13 +17,15 @@ export default function checkUserCarNameInput(carNameInput) {
     }
 
     const carNameArray = carNameInput.split(',').map(carName => carName.trim());
-    if(!isCorrectCarNameArrayLength(carNameArray)){
-        showAlert(OVER_CAR_COUNT_ERROR);
+
+    if(!isCorrectCarNameLength(carNameArray)){
+        showAlert(OVER_CARNAME_LENGTH_ERROR);
         initInputText($('#car-name-input'));
         return;
     }
-    if(!isCorrectCarNameLength(carNameArray)){
-        showAlert(OVER_CARNAME_LENGTH_ERROR);
+
+    if(!isCorrectCarNameArrayLength(carNameArray)){
+        showAlert(OVER_CAR_COUNT_ERROR);
         initInputText($('#car-name-input'));
         return;
     }

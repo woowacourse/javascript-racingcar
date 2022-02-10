@@ -1,3 +1,4 @@
+/* 차 이름 */
 it("5글자 초과 자동차 이름을 입력한 경우 alert이 호출되어야 한다.", () => {
     cy.visit('index.html');
     
@@ -32,9 +33,12 @@ it("5개 초과하여 자동차를 입력한 경우 alert이 호출되어야 한
   });
 });
 
+/* 시도 횟수 */
 it("1이상 20이하의 자연수가 아닌 경우 alert이 호출되어야 한다.", () => {
   cy.visit('index.html');
   
+  cy.get("#car-name-input").type('1,2,3,4,5');
+  cy.get('#car-name-button').click();
   const alertStub = cy.stub();
   const invalidInput = "-2";
 
@@ -51,7 +55,8 @@ it("1이상 20이하의 자연수가 아닌 경우 alert이 호출되어야 한�
 
 it("숫자가 아닌 경우 alert이 호출되어야 한다.", () => {
   cy.visit('index.html');
-  
+  cy.get("#car-name-input").type('1,2,3,4,5');
+  cy.get('#car-name-button').click();
   const alertStub = cy.stub();
   const invalidInput = "aae";
 
