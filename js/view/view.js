@@ -8,7 +8,7 @@ export default class View {
   renderCarNames(carNames) {
     const template = carNames
       .map((carName) => {
-        return `<span>${carName}</span>`;
+        return `<span id="result-car-name">${carName}</span>`;
       })
       .join('');
     $('#car-names').innerHTML = template;
@@ -22,7 +22,7 @@ export default class View {
   renderProgress(carPosition) {
     const template = carPosition
       .map((position) => {
-        return `<div>${position}</div>`;
+        return `<div id="car-progress-result">${'⬇️️'.repeat(position)}</div>`;
       })
       .join('');
     $('#car-progress').innerHTML = template;
