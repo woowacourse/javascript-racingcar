@@ -14,8 +14,8 @@ const submitCarNames = carNames => {
   
   cy.get(CAR_NAMES_INPUT).type(carNames);
   cy.get(CAR_NAMES_SUBMIT).click();
-  cy.get(CAR_NAMES_INPUT).should('have.attr', 'readonly', 'true');
-  cy.get(CAR_NAMES_SUBMIT).should('have.attr', 'disabled', 'true');
+  cy.get(CAR_NAMES_INPUT).should('have.attr', 'readonly', 'readonly');
+  cy.get(CAR_NAMES_SUBMIT).should('have.attr', 'disabled', 'disabled');
 };
 
 const submitRacingCount = racingCnt => {
@@ -23,14 +23,14 @@ const submitRacingCount = racingCnt => {
 
   cy.get(RACING_COUNT_INPUT).type(racingCnt);
   cy.get(RACING_COUNT_SUBMIT).click();
-  cy.get(RACING_COUNT_INPUT).should('have.attr', 'readonly', 'true');
-  cy.get(RACING_COUNT_SUBMIT).should('have.attr', 'disabled', 'true');
+  cy.get(RACING_COUNT_INPUT).should('have.attr', 'readonly', 'readonly');
+  cy.get(RACING_COUNT_SUBMIT).should('have.attr', 'disabled', 'disabled');
 };
 
 describe('정상 시나리오에 대해 만족해야 한다.', () => {
   before(() => {
     Cypress.Commands.add("stubRandomReturns", (returnValues = []) => {
-      const randomStub = sy.stub();
+      const randomStub = cy.stub();
 
       returnValues.forEach((value, index) => {
         randomStub.onCall(index).returns(value);
@@ -48,6 +48,10 @@ describe('정상 시나리오에 대해 만족해야 한다.', () => {
     });
   });
 
+  beforeEach(() => {
+    cy.stubRandomReturns([7, 7]);
+  });
+
   it('자동차 이름 입력이 제대로 되었을 경우, 입력창과 버튼이 모두 비활성화가 되어야 한다.', () => {
     submitCarNames('movie, halee');
   });
@@ -58,7 +62,6 @@ describe('정상 시나리오에 대해 만족해야 한다.', () => {
   });
 
   it('게임을 종료하고 우승자를 확인할 수 있어야 한다.', () => {
-    cy.stubRandomReturns([7, 7]);
     submitCarNames('movie, halee');
     submitRacingCount(10);
     cy.get(SELECTOR.RACING_WINNER).should('have.text', 'movie, halee');
@@ -76,11 +79,7 @@ describe('정상 시나리오에 대해 만족해야 한다.', () => {
     } = SELECTOR;
     cy.get(RESTART_BUTTON).click();
     cy.get(CAR_NAMES_INPUT).should('have.value', '');
-    cy.get(CAR_NAMES_INPUT).should('have.attr', 'readonly', 'false');
-    cy.get(CAR_NAMES_SUBMIT).should('have.attr', 'disabled', 'false');
     cy.get(RACING_COUNT_INPUT).should('have.value', '');
-    cy.get(RACING_COUNT_INPUT).should('have.attr', 'readonly', 'false');
-    cy.get(RACING_COUNT_SUBMIT).should('have.attr', 'disabled', 'false');
     cy.get(RACING_RESULT).should('have.value', '');
     cy.get(RACING_WINNER).should('have.value', '');
   });
@@ -89,7 +88,7 @@ describe('정상 시나리오에 대해 만족해야 한다.', () => {
 describe('비정상 시나리오에 대해 사용자에게 alert를 띄운다.', () => {
   before(() => {
     Cypress.Commands.add("stubRandomReturns", (returnValues = []) => {
-      const randomStub = sy.stub();
+      const randomStub = cy.stub();
 
       returnValues.forEach((value, index) => {
         randomStub.onCall(index).returns(value);
