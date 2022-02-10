@@ -1,6 +1,7 @@
 import generateCars from '../model/generateCars.js';
 import showResult from '../view/showResult.js';
 import getWinners from '../model/getWinners.js';
+import showWinners from '../view/showWinners.js';
 
 function sortCars(cars) {
   return cars.sort((a, b) => b.position - a.position);

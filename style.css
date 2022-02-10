@@ -67,3 +67,11 @@ main {
   margin-top: 10px;
   font-size: 32px;
 }
+
+.winners-name {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 20px 0px;
+}
