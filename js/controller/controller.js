@@ -2,6 +2,7 @@ import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
+import Validator from '../validator/validator.js';
 
 export default class Controller {
   constructor() {
@@ -14,7 +15,14 @@ export default class Controller {
   getCarNames() {
     //  확인 버튼 이벤트 리스터
     $('#car-names-button').addEventListener('click', (e) => {
-      const carNames = $('#car-names-input').value.split(',');
+      const carNames = $('#car-names-input')
+        .value.split(',')
+        .map((carName) => carName.trim());
+
+      // carNames validation
+      if (Validator.isInValidCarNamesInput(carNames)) {
+        return;
+      }
       //model에 데이터로 넣어주는 로직
       this.model.getCars(carNames);
     });
