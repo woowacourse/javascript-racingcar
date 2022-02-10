@@ -3,6 +3,7 @@ import Car from "./Car.js";
 export default class RacingCarModel {
   constructor() {
     this.cars = [];
+    this.racingCount = 0;
   }
 
   setCars = (carNames) => {
@@ -18,6 +19,10 @@ export default class RacingCarModel {
       throw new Error("이름은 공백이 될수없습니다");
     }
     console.log(splitedCarNames);
+  };
+
+  setRacingCount = (count) => {
+    this.racingCount = count;
   };
 
   splitCarNames = (carNames) => carNames.split(",");

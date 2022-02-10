@@ -14,6 +14,10 @@ export default class RacingCarController {
       .querySelector("#car-names-input")
       .closest("form")
       .addEventListener("submit", this.submitCarNamesHandler);
+    document
+      .querySelector("#racing-count-input")
+      .closest("form")
+      .addEventListener("submit", this.submitRacingCountHandler);
   };
 
   submitCarNamesHandler = (e) => {
@@ -24,5 +28,12 @@ export default class RacingCarController {
     } catch (err) {
       alert(err);
     }
+  };
+
+  submitRacingCountHandler = (e) => {
+    e.preventDefault();
+    const racingCount = document.querySelector("#racing-count-input").value;
+    this.model.setRacingCount(racingCount);
+    this.playGame();
   };
 }
