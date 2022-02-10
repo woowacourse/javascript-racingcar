@@ -1,3 +1,5 @@
+import { ERROR_MESSAGES, ID, RULES } from './constants/index.js';
+
 class RacingCar {
   constructor() {
     this.init();
@@ -9,33 +11,35 @@ class RacingCar {
   }
 
   initDOM() {
-    this.$carNamesForm = document.getElementById('car_names_form');
-    this.$carNamesInput = document.getElementById('car_names_input');
+    this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
+    this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
   }
 
   initEventListener() {
-    this.$carNamesForm.addEventListener('submit', (e) => {
-      e.preventDefault();
+    this.$carNamesForm.addEventListener('submit', this.handleCarNameFormSubmitEvent.bind(this));
+  }
 
-      const carNames = this.$carNamesInput.value;
+  handleCarNameFormSubmitEvent(e) {
+    e.preventDefault();
 
-      if (carNames === '') {
-        alert('자동차 이름은 최소 1개 이상 입력해야 한다.');
-        return;
-      }
+    const carNames = this.$carNamesInput.value;
 
-      const carNamesArray = carNames.split(',').map((carName) => carName.trim());
+    if (carNames === '') {
+      alert(ERROR_MESSAGES.EMPTY_CAR_NAME);
+      return;
+    }
 
-      if (carNamesArray.some((carName) => carName.length > 5)) {
-        alert('자동차 이름의 길이는 5 이하로만 입력해야 한다.');
-        return;
-      }
+    const carNamesArray = carNames.split(RULES.SEPERATOR).map((carName) => carName.trim());
 
-      if (carNamesArray.some((carName) => carName.length === 0)) {
-        alert('자동차 이름은 공백이면 안된다.');
-        return;
-      }
-    });
+    if (carNamesArray.some((carName) => carName.length > RULES.MAX_CAR_NAME_LENGTH)) {
+      alert(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
+      return;
+    }
+
+    if (carNamesArray.some((carName) => carName.length === RULES.ZERO_CAR_NAME_LENGTH)) {
+      alert(ERROR_MESSAGES.BLANK_CAR_NAME);
+      return;
+    }
   }
 }
 
