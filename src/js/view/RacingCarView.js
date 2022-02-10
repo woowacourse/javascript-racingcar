@@ -70,18 +70,22 @@ export default class RacingCarView {
   };
 
   disableCarName = () => {
+    this.$carNameInput.disabled = true;
     this.$carNameButton.disabled = true;
   };
 
   disableRacingCount = () => {
+    this.$racingCountInput.disabled = true;
     this.$racingCountButton.disabled = true;
   };
 
   enableCarName = () => {
+    this.$carNameInput.disabled = false;
     this.$carNameButton.disabled = false;
   };
 
   enableRacingCount = () => {
+    this.$racingCountInput.disabled = false;
     this.$racingCountButton.disabled = false;
   };
 }

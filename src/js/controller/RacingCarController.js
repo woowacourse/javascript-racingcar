@@ -30,6 +30,7 @@ export default class RacingCarController {
     const carNames = document.querySelector("#car-names-input").value;
     try {
       this.model.setCars(carNames);
+      this.view.disableCarName();
       this.view.enableRacingCount();
     } catch (err) {
       alert(err);

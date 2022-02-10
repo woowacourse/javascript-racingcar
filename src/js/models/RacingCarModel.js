@@ -23,7 +23,7 @@ export default class RacingCarModel {
 
   setRacingCount = (count) => {
     if (this.isEmptyRacingCount(count)) {
-      throw new Error("양의 정수를 입력해주세요");
+      throw new Error("숫자를 입력해주세요");
     }
     this.racingCount = count;
   };

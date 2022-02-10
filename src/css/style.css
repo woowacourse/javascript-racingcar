@@ -48,6 +48,18 @@ button {
   font-size: 8px;
   padding: 6px 13px;
   border-radius: 4px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #80deea;
+  color: white;
+}
+
+button:disabled {
+  cursor: unset;
+  background-color: #8b8b8b;
+  color: lightgray;
+  opacity: 0.8;
 }
 
 #result {
