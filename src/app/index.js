@@ -42,6 +42,7 @@ class RacingCarGame {
       const count = e.currentTarget.querySelector('#count-input').value;
       try {
         this.setCount(count);
+        this.simulateGame();
       } catch (error) {
         alert(error);
       }
@@ -61,6 +62,21 @@ class RacingCarGame {
     } catch (error) {
       alert(error);
     }
+  }
+
+  simulateGame() {
+    for (let i = 0; i < this.count; i += 1) {
+      this.simulateRound();
+    }
+  }
+
+  simulateRound() {
+    this.cars.forEach((car) => {
+      const random = MissionUtils.Random.pickNumberInRange(0, 9); //eslint-disable-line
+      if (random >= 4) {
+        car.goForward();
+      }
+    });
   }
 }
 export default RacingCarGame;
