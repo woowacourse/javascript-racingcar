@@ -30,5 +30,13 @@ export default class Controller {
     // 전진 된 만큼 뷰 업데이트
     this.view.resultUpdate(this.model.carList);
     // 우승자 보여주기
+    this.view.winnerUpdate(this.makeWinner(this.model.carList));
+  }
+
+  makeWinner(carList) {
+    const steps = carList.map((car) => car.step);
+    const maxStep = Math.max(...steps);
+    const winnerCarList = carList.filter((car) => car.step === maxStep);
+    return winnerCarList.map((car) => car.name);
   }
 }

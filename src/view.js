@@ -3,6 +3,7 @@ import { $ } from './utils/common.js';
 export default class View {
   constructor() {
     this.configureDOM();
+    this.hideResult();
   }
 
   configureDOM() {
@@ -13,6 +14,16 @@ export default class View {
     this.$resultSections = $('.result-sections');
     this.$winner = $('#winner');
     this.$resetButton = $('#reset-button');
+  }
+
+  hideResult() {
+    this.$winner.style.display = 'none';
+    this.$resetButton.style.display = 'none';
+  }
+
+  showResult() {
+    this.$winner.style.display = 'block';
+    this.$resetButton.style.display = 'block';
   }
 
   setOnSubmitName(fn) {
@@ -45,5 +56,10 @@ export default class View {
       template += eachResult;
     });
     this.$resultSections.innerHTML = template;
+  }
+
+  winnerUpdate(winnerList) {
+    this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
+    this.showResult();
   }
 }
