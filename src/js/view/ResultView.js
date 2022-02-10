@@ -17,18 +17,30 @@ export default class ResultView {
   };
 
   makeResultTemplate = () => {
-    const names = this.result.map((car) => car.name);
-    const forwardCounts = this.result.map((car) => car.forward);
     const template = `
-        <div class="cars-name">${names
+      <div class="racing-results">
+        ${this.result
+          .map(
+            (result) =>
+              `<div class="racing-result">
+                <div class="car-name">${result.name}</div> 
+                ${"<div class=arrow>⬇️️</div>".repeat(result.forward)}
+              </div>`
+          )
+          .join("")}
+      </div>
+      `;
+    return template;
+  };
+}
+
+{
+  /* <div class="cars-name">${names
           .map((name) => `<span class="car-name">${name}</span>`)
           .join("")}</div>
         <div class="">
           ${forwardCounts
-            .map((count) => `<span>${"⬇️️".repeat(count)}</span>`)
+            .map((count) => `<div>${"⬇️️".repeat(count)}</div>`)
             .join("")}
-        </div>
-        `;
-    return template;
-  };
+        </div> */
 }
