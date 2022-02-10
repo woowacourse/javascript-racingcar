@@ -65,10 +65,12 @@ export default class RacingView {
     const $carProgressName = RacingView.createCarProgressNameElement(car.name);
     $carProgressNode.appendChild($carProgressName);
 
-    const $carProgressStatus = RacingView.createCarProgressStatusElement(
+    const $carProgressStatusList = RacingView.createCarProgressStatusElement(
       car.position
     );
-    $carProgressNode.appendChild($carProgressStatus);
+    $carProgressStatusList.forEach(($carProgressStatus) => {
+      $carProgressNode.appendChild($carProgressStatus);
+    });
 
     return $carProgressNode;
   }

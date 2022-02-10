@@ -1,12 +1,20 @@
+import Car from './Car.js';
+
 export default class RacingGame {
-  constructor(cars, round) {
-    this.cars = cars;
-    this.round = round;
+  constructor() {
+    this.cars = [];
+    this.round = 0;
   }
 
   moveCars() {
     this.cars.forEach((car) => {
       car.move();
+    });
+  }
+
+  set players(names) {
+    names.forEach((name) => {
+      this.cars.push(new Car(name));
     });
   }
 
@@ -19,13 +27,12 @@ export default class RacingGame {
     return this.findWinners();
   }
 
-  // cars = [Car('east',4), Car('west',5), Car('north',2)]
   findMaxRecord() {
     let maxRecord = 0;
 
     this.cars.forEach((car) => {
       if (car.position > maxRecord) {
-        maxRecord = car.postion;
+        maxRecord = car.position;
       }
     });
 
@@ -34,15 +41,14 @@ export default class RacingGame {
 
   findWinners() {
     const winnerList = [];
-    const maxRecord = this.findMaxRecord(this.cars);
+    const maxRecord = this.findMaxRecord();
 
     this.cars.forEach((car) => {
       if (car.position === maxRecord) {
-        winnerList.push(car);
+        winnerList.push(car.name);
       }
     });
 
-    // this.model.setWinners(winnerList);
     return winnerList;
   }
 }
