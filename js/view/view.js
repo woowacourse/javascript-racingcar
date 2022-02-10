@@ -11,7 +11,7 @@ export default class View {
         return `<span>${carName}</span>`;
       })
       .join('');
-    $('#car-names').insertAdjacentHTML('afterbegin', template);
+    $('#car-names').innerHTML = template;
   }
 
   renderWinner(winners) {
