@@ -7,7 +7,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         const alertStub = cy.stub();
         cy.on('window:alert', alertStub);
 
-        cy.get(`#${selector}-input`).type(value);
+        value && cy.get(`#${selector}-input`).type(value);
         cy.get(`#${selector}-submit-button`)
             .click()
             .then(() => {
