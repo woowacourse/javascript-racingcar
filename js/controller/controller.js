@@ -45,10 +45,21 @@ export default class Controller {
         }
       });
     }
+
+    // progress 출력 로직 작성
+    this.displayProgress();
+
     console.log(this.model.carNames, this.model.carPosition);
     // 최종 우승자 출력 (우승자를 구하는 메서드)
     this.displayWinner();
     // 다시하기 버튼 렌더링
+    this.view.renderRestartButton();
+    this.gameRestart();
+  }
+
+  // progress 출력 로직 작성
+  displayProgress() {
+    this.view.renderProgress(this.model.carPosition);
   }
 
   getWinner() {
@@ -62,5 +73,13 @@ export default class Controller {
 
   displayWinner() {
     this.view.renderWinner(this.getWinner());
+  }
+
+  // 다시하기 버튼을 눌렀을 때
+  gameRestart() {
+    $('#game-restart').addEventListener('click', (e) => {
+      this.view.renderInitial();
+      this.model = new Model();
+    });
   }
 }
