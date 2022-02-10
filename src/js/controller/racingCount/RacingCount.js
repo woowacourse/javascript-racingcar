@@ -5,9 +5,6 @@ import {
 } from "../../util/elements.js";
 import { isInteger } from "./checkFunctions.js";
 import Game from "../game/game.js";
-import { setResultArea } from "../../view/resultView.js";
-import { showWinnerAndRestartButton } from "../../view/util/viewControl.js";
-import { setWinnerText } from "../../view/winnerView.js";
 
 export default class RacingCount {
   constructor(cars) {
@@ -42,11 +39,8 @@ export default class RacingCount {
       racingCountInput.readOnly = true;
       racingCountSubmitButton.disabled = true;
 
-      Game.startGame(this.cars, this.racingCount);
-      this.cars.sortCars();
-      setResultArea(this.cars);
-      showWinnerAndRestartButton();
-      setWinnerText(Game.getWinners(this.cars));
+      Game.getResult(this.cars, this.racingCount);
+      Game.setResult(this.cars);
     });
   }
 }

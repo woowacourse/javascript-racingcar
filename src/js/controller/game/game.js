@@ -1,6 +1,8 @@
-export default class Game {
-  constructor() {}
+import { setResultArea } from "../../view/resultView.js";
+import { showWinnerAndRestartButton } from "../../view/util/viewControl.js";
+import { setWinnerText } from "../../view/winnerView.js";
 
+export default class Game {
   static startGame(cars, racingCount) {
     for (let index = 0; index < racingCount; index++) {
       cars.cars.forEach(car => {
@@ -20,5 +22,16 @@ export default class Game {
     });
 
     return winners;
+  }
+
+  static getResult(cars, racingCount) {
+    Game.startGame(cars, racingCount);
+    cars.sortCars();
+  }
+
+  static setResult(cars) {
+    setResultArea(cars);
+    showWinnerAndRestartButton();
+    setWinnerText(Game.getWinners(cars));
   }
 }
