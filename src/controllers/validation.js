@@ -80,3 +80,11 @@ function isNumberUnderZero(number) {
   }
   return false;
 }
+
+export function isCarNameExist(state) {
+  if (state.cars.length === 0) {
+    showAlertMsg('이름입력 에러 : 자동차 이름을 먼저 입력해주세요.');
+    return false;
+  }
+  return true;
+}

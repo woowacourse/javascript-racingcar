@@ -24,3 +24,14 @@ function findAlertInputId(message) {
     return 'racing-number-input';
   }
 }
+
+export function makeRandomNumber() {
+  return Math.floor(Math.random() * 10);
+}
+
+export function isNumberOverStandard(number) {
+  if (number > 4) {
+    return true;
+  }
+  return false;
+}

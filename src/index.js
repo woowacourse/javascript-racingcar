@@ -1,7 +1,7 @@
-import { setCarNamesClick, setRoundClick } from './controllers/userControllers.js';
+import { setCarNamesClick, setRoundClick } from './controllers/userController.js';
 
 const state = {
-  cars: '',
+  cars: [],
   racingNumber: 0,
 };
 
