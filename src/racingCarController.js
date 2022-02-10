@@ -12,8 +12,8 @@ export default class RacingCarController {
 
   init() {
     this.view.renderHeader();
-    this.view.renderGameSetting();
-    this.view.selectGameSettingDOM();
+    this.view.renderCarNames();
+    this.view.selectCarNamesDOM();
     this.attachGameSettingEvents();
   }
 
@@ -28,9 +28,9 @@ export default class RacingCarController {
 
     if (isValidCarNames(carNames)) {
       this.model.setCars(carNames);
-      console.log('들어오나');
+      this.view.renderRacingCount();
     } else {
-      alert('ddd');
+      alert('임시적인 오류 메시지입니다');
     }
   }
 }

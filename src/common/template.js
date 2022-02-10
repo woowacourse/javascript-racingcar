@@ -6,19 +6,23 @@ export function headerTemplate() {
   `;
 }
 
-export function gameSettingTemplate() {
+export function carNamesTemplate() {
   return `
+    <p>${DIRECTIVE.CAR_NAME}</p>
     <div>
-      <p>${DIRECTIVE.CAR_NAME}</p>
-      <div>
-        <input id="car-names-input"></input>
-        <button id="car-names-submit">${BUTTON.SUBMIT}</button>
-      </div>
-      <p>${DIRECTIVE.RACING_COUNT}</p>
-      <div>
-        <input id="racing-count-input"></input>
-        <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
-      </div>
+      <input id="car-names-input"></input>
+      <button id="car-names-submit">${BUTTON.SUBMIT}</button>
+    </div>
+    <div id="racing-count"></div>
+  `;
+}
+
+export function racingCountTemplate() {
+  return `
+    <p>${DIRECTIVE.RACING_COUNT}</p>
+    <div>
+      <input id="racing-count-input"></input>
+      <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
     </div>
   `;
 }

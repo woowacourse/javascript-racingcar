@@ -1,5 +1,5 @@
 import { $ } from './common/DOMHelper.js';
-import { headerTemplate, gameSettingTemplate } from './common/template.js';
+import { headerTemplate, carNamesTemplate, racingCountTemplate } from './common/template.js';
 
 export default class RacingCarView {
   constructor() {
@@ -10,12 +10,20 @@ export default class RacingCarView {
     this.$app.innerHTML = headerTemplate();
   }
 
-  renderGameSetting() {
-    this.$app.innerHTML += gameSettingTemplate();
+  renderCarNames() {
+    this.$app.innerHTML += carNamesTemplate();
   }
 
-  selectGameSettingDOM() {
+  renderRacingCount() {
+    const $racingCount = $('#racing-count');
+
+    $racingCount.innerHTML = racingCountTemplate();
+  }
+
+  selectCarNamesDOM() {
     this.$carNamesInput = $('#car-names-input');
     this.$carNamesSubmit = $('#car-names-submit');
   }
+
+  selectRacingCountDOM() {}
 }
