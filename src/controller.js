@@ -24,5 +24,11 @@ export default class Controller {
     return carList;
   }
 
-  onSubmitCount(count) {}
+  onSubmitCount(count) {
+    // 시도할 횟수를 받아서, 랜덤 전진 시키기
+    this.model.startRace(count);
+    // 전진 된 만큼 뷰 업데이트
+    this.view.resultUpdate(this.model.carList);
+    // 우승자 보여주기
+  }
 }
