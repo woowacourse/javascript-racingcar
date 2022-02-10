@@ -30,8 +30,19 @@ class CarRacing {
     this.participants = carNames.map(name => new Car(name));
   }
 
+  onSubmitRacingCount(count) {
+    if (!this.participants.length)
+      return alert('자동차 이름이 입력되지 않았습니다.');
+    if (!this.validateRacingCount(count))
+      return alert('올바르지 않은 레이싱 횟수입니다');
+  }
+
   validateCarName(names) {
     return names.every(name => name.length <= 5 && name.length > 0);
+  }
+
+  validateRacingCount(count) {
+    return count > 0;
   }
 }
 
