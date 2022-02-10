@@ -9,6 +9,10 @@ main {
   min-width: 460px;
 }
 
+.count-form {
+  display: none;
+}
+
 .name-form,
 .count-form {
   margin-bottom: 20px;
