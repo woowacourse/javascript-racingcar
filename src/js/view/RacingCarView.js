@@ -1,7 +1,9 @@
-export default class ResultView {
+export default class RacingCarView {
   constructor() {
     this.result = [];
     this.$result = document.querySelector("#result");
+    this.$carNameInput = document.querySelector("#car-names-input");
+    this.$racingCountInput = document.querySelector("#racing-count-input");
   }
 
   setResult = (result) => {
@@ -43,5 +45,25 @@ export default class ResultView {
       </div>
     `;
     return template;
+  };
+
+  renderReplayButton = () => {
+    this.$result.insertAdjacentHTML(
+      "beforeend",
+      this.makeReplayButtonTemplate()
+    );
+  };
+
+  makeReplayButtonTemplate = () => {
+    const template = `
+      <button id="replay-button">다시 시작하기</button>
+    `;
+    return template;
+  };
+
+  resetGame = () => {
+    this.$result.innerHTML = "";
+    this.$carNameInput.value = "";
+    this.$racingCountInput.value = "";
   };
 }

@@ -1,10 +1,10 @@
 import RacingCarModel from "../models/RacingCarModel.js";
-import ResultView from "../view/ResultView.js";
+import RacingCarView from "../view/RacingCarView.js";
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
-    this.view = new ResultView();
+    this.view = new RacingCarView();
   }
 
   init = () => {
@@ -20,6 +20,9 @@ export default class RacingCarController {
       .querySelector("#racing-count-input")
       .closest("form")
       .addEventListener("submit", this.submitRacingCountHandler);
+    document
+      .querySelector("#result")
+      .addEventListener("click", this.clickReplayButtonHandler);
   };
 
   submitCarNamesHandler = (e) => {
@@ -39,6 +42,14 @@ export default class RacingCarController {
     this.playGame();
   };
 
+  clickReplayButtonHandler = (e) => {
+    if (e.target.id !== "replay-button") {
+      return;
+    }
+    this.model.resetGameStatus();
+    this.view.resetGame();
+  };
+
   playGame = () => {
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const raceResult = this.model.playTurn();
@@ -51,5 +62,6 @@ export default class RacingCarController {
   endGame = () => {
     const winners = this.model.pickWinners();
     this.view.renderWinners(winners);
+    this.view.renderReplayButton();
   };
 }

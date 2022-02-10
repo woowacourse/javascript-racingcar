@@ -46,12 +46,13 @@ button {
   background-color: #00bcd4;
   color: white;
   font-size: 8px;
-  padding: 0 13px;
+  padding: 6px 13px;
   border-radius: 4px;
 }
 
 #result {
   margin: 15px auto;
+  text-align: center;
 }
 
 .racing-results {
@@ -66,7 +67,6 @@ button {
   gap: 10px;
   flex-direction: column;
   align-items: center;
-  text-align: center;
 }
 
 .car-name {
@@ -82,6 +82,10 @@ button {
 }
 
 .winners {
-  text-align: center;
   margin-top: 25px;
+}
+
+#replay-button {
+  padding: 8px 20px;
+  font-size: 13px;
 }

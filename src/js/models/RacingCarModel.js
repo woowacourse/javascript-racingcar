@@ -51,6 +51,11 @@ export default class RacingCarModel {
       .join(", ");
   };
 
+  resetGameStatus = () => {
+    this.cars = [];
+    this.racingCount = 0;
+  };
+
   splitCarNames = (carNames) => carNames.split(",");
 
   isInValidNameLength = (names) => names.some((name) => name.length >= 5);
