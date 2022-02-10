@@ -4,6 +4,8 @@ export default class RacingCarView {
     this.$result = document.querySelector("#result");
     this.$carNameInput = document.querySelector("#car-names-input");
     this.$racingCountInput = document.querySelector("#racing-count-input");
+    this.$carNameButton = document.querySelector("#car-names-button");
+    this.$racingCountButton = document.querySelector("#racing-count-button");
   }
 
   setResult = (result) => {
@@ -65,5 +67,21 @@ export default class RacingCarView {
     this.$result.innerHTML = "";
     this.$carNameInput.value = "";
     this.$racingCountInput.value = "";
+  };
+
+  disableCarName = () => {
+    this.$carNameButton.disabled = true;
+  };
+
+  disableRacingCount = () => {
+    this.$racingCountButton.disabled = true;
+  };
+
+  enableCarName = () => {
+    this.$carNameButton.disabled = false;
+  };
+
+  enableRacingCount = () => {
+    this.$racingCountButton.disabled = false;
   };
 }

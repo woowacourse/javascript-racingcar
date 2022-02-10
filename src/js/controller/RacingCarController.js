@@ -30,6 +30,7 @@ export default class RacingCarController {
     const carNames = document.querySelector("#car-names-input").value;
     try {
       this.model.setCars(carNames);
+      this.view.enableRacingCount();
     } catch (err) {
       alert(err);
     }
@@ -40,6 +41,8 @@ export default class RacingCarController {
     const racingCount = document.querySelector("#racing-count-input").value;
     this.model.setRacingCount(racingCount);
     this.playGame();
+    this.view.disableCarName();
+    this.view.disableRacingCount();
   };
 
   clickReplayButtonHandler = (e) => {
@@ -48,6 +51,7 @@ export default class RacingCarController {
     }
     this.model.resetGameStatus();
     this.view.resetGame();
+    this.view.enableCarName();
   };
 
   playGame = () => {
