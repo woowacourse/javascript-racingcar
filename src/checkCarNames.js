@@ -6,8 +6,8 @@ export const getCarNames = e => {
     .value.split(',')
     .filter(carName => carName.length > 0);
 
-  if (checkCarNames(carNamesInput)) {
-    return;
+  if (!checkCarNames(carNamesInput)) {
+    return carNamesInput;
   }
 };
 
