@@ -13,8 +13,9 @@ export default class Controller {
     //  확인 버튼 이벤트 리스터
     $('#car-names-button').addEventListener('click', (e) => {
       const carNames = $('#car-names-input').value.split(',');
-      console.log(carNames);
+      console.log(carNames); //west,east,north
       //model에 데이터로 넣어주는 로직
+      this.model.getCars(carNames);
     });
   }
 }
