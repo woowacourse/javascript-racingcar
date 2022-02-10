@@ -10,12 +10,12 @@
 
 ### 0. HTML, CSS 레이아웃 구현
 
-- [ ] HTML, CSS 레이아웃 구현
-- [ ] 기능 별로 section을 네개로 나눈다.
-    - [ ] 헤더 : `<header></header>`
-    - [ ] 인풋창 모음 섹션 태그 id: `racing-form-container`
-    - [ ] 경기진행과정 섹션 태그 id: `racing-progress-container`
-    - [ ] 경기결과 섹션 태그 id: `racing-result-container`
+- [x] HTML, CSS 레이아웃 구현
+- [x] 기능 별로 section을 네개로 나눈다.
+    - [x] 헤더 : `<header></header>`
+    - [x] 인풋창 모음 섹션 태그 id: `racing-form-container`
+    - [x] 경기진행과정 섹션 태그 id: `racing-progress-container`
+    - [x] 경기결과 섹션 태그 id: `racing-result-container`
 
 ### 1. 자동차 이름 입력 기능
 

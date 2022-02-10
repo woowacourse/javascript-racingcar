@@ -8,7 +8,6 @@ export default class Car {
   }
 
   move() {
-    // eslint-disable-next-line no-undef
     const randomNumber = pickRandomNumber();
     if (randomNumber >= CAR.MOVE_NUMBER) {
       this.position += 1;
