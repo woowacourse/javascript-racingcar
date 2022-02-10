@@ -22,7 +22,7 @@ export const makeInitialView = () => {
   racingResultArea.hidden = true;
   racingWinnerArea.hidden = true;
   racingWinnerText.innerHTML = "";
-  restartButton.hidden = false;
+  restartButton.hidden = true;
 };
 
 export const showRacingCountArea = () => {
