@@ -19,7 +19,7 @@ html{
     height: 150px;
 }
 
-form{
+.input-form{
     width: 400px;
     margin: 0 auto;
 }
@@ -43,6 +43,7 @@ button {
     padding: 10px 1em;
 }
 
+
 .racing-status {
     display: flex;
     flex-direction: row;
@@ -53,7 +54,6 @@ button {
 
 .user-status {
     margin: 0 4px;
-
 }
 
 .user-name{
