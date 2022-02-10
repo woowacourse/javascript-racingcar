@@ -2,6 +2,10 @@ export const BUTTON = {
   SUBMIT: '확인',
 };
 
+export const CAR_NAME = {
+  MAX_LENGTH: 5,
+}
+
 export const COUNT = {
   DEFAULT: 0,
 }

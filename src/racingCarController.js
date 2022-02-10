@@ -1,5 +1,6 @@
 import RacingCarView from './racingCarView.js';
 import RacingCarModel from './racingCarModel.js';
+import { isValidCarNames } from './common/validator.js';
 
 export default class RacingCarController {
   constructor() {
@@ -24,6 +25,12 @@ export default class RacingCarController {
     event.preventDefault;
 
     const carNames = this.view.$carNamesInput.value.split(',');
-    this.model.setCars(carNames);
+
+    if (isValidCarNames(carNames)) {
+      this.model.setCars(carNames);
+      console.log('들어오나');
+    } else {
+      alert('ddd');
+    }
   }
 }
