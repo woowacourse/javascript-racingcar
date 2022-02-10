@@ -24,4 +24,34 @@ export default class Validator {
     }
     return false;
   }
+
+  // Number.isInteger()
+
+  static isFloat(number) {
+    alert('시도 횟수를 자연수로 입력해주세요.');
+    return !Number.isInteger(number);
+  }
+
+  static isNotNaturalNumber(number) {
+    alert('시도 횟수를 자연수로 입력해주세요.');
+    return number <= 0;
+  }
+
+  static isString(number) {
+    alert('시도 횟수를 자연수로 입력해주세요.');
+    return typeof number === 'string';
+  }
+
+  static isInValidRacingCountInput(number) {
+    if (this.isFloat(number)) {
+      return true;
+    }
+    if (this.isNotNaturalNumber(number)) {
+      return true;
+    }
+    if (this.isString(number)) {
+      return true;
+    }
+    return false;
+  }
 }

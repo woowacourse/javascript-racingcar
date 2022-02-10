@@ -31,7 +31,9 @@ export default class Controller {
   getRacingCount() {
     $('#car-racing-count-button').addEventListener('click', (e) => {
       const racingCount = $('#car-racing-count-input').value;
-      // 밸리데이션  return;
+      if (Validator.isInValidRacingCountInput(racingCount)) {
+        return;
+      }
       this.model.getRacingCount(racingCount);
       this.gameStart();
       this.model.carPosition = new Array(this.model.carNames.length).fill(0);
