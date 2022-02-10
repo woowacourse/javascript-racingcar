@@ -25,6 +25,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         formAlertTest('car-name', 'abcdfesf'),
     );
 
+    it('자동차 이름에 공백인 경우, alert가 호출되어야 한다.', formAlertTest('car-name', ''));
+
     it(
         '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, alert가 호출되어야 한다.',
         formAlertTest('try-count', 123.456),
