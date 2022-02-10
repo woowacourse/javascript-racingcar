@@ -1,6 +1,7 @@
 export const ID = Object.freeze({
   CAR_NAMES_FORM: 'car_names_form',
   CAR_NAMES_INPUT: 'car_names_input',
+  RACING_COUNT_FORM: 'racing_count_form',
 });
 
 export const ERROR_MESSAGES = Object.freeze({

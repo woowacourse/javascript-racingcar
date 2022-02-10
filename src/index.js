@@ -13,10 +13,20 @@ class RacingCar {
   initDOM() {
     this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
     this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
+    this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
   }
 
   initEventListener() {
     this.$carNamesForm.addEventListener('submit', this.handleCarNameFormSubmitEvent.bind(this));
+    this.$racingCountForm.addEventListener(
+      'submit',
+      this.handleRacingCountFormSubmitEvent.bind(this)
+    );
+  }
+
+  handleRacingCountFormSubmitEvent(e) {
+    e.preventDefault();
+    alert('test');
   }
 
   handleCarNameFormSubmitEvent(e) {
@@ -40,6 +50,8 @@ class RacingCar {
       alert(ERROR_MESSAGES.BLANK_CAR_NAME);
       return;
     }
+
+    this.$racingCountForm.style.display = 'block';
   }
 }
 
