@@ -12,12 +12,12 @@ export const resetInputElementValue = (inputElement) => {
   inputElement.value = '';
 };
 
-export const modifyElementDisplayStyle = (element, value) => {
-  element.style.display = value;
-};
-
 export const resetElementInnerText = (element) => {
   element.innerText = '';
+};
+
+export const modifyElementDisplayStyle = (element, value) => {
+  element.style.display = value;
 };
 
 export const handleError = (message, element) => {

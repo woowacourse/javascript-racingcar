@@ -31,7 +31,6 @@ main {
   margin: 32px 0px;
 }
 
-/* 화면에 안 보이게 스타일 적용*/
 #racing_count_form {
   display: none;
 }
@@ -113,14 +112,12 @@ form > label {
   font-size: 32px;
 }
 
-/* 화면에 안 보이게 스타일 적용*/
 #final_winner {
   font-size: 20px;
   font-weight: 600;
   display: none;
 }
 
-/* 화면에 안 보이게 스타일 적용*/
 #restart_section {
   padding-bottom: 42px;
   display: none;
