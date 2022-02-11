@@ -55,12 +55,17 @@ describe('에러 처리를 한다', () => {
   });
   it('입력한 이름이 5글자 초과일 경우 alert가 뜬다.', () => {
     inputCarNames('jun,dddddd');
-    checkAlertMessage('올바르지 않은 이름입니다.');
+    checkAlertMessage('1~5자의 자동차 이름을 입력해 주세요.');
+  });
+
+  it('입력한 이름이 중복될 경우 alert가 뜬다.', () => {
+    inputCarNames('jun,jun');
+    checkAlertMessage('중복된 자동차 이름은 입력이 불가능합니다.');
   });
 
   it('입력한 이름이 1글자 미만이면 alert가 뜬다', () => {
     inputCarNames('jun,,');
-    checkAlertMessage('올바르지 않은 이름입니다.');
+    checkAlertMessage('1~5자의 이내의 자동차 이름을 입력해 주세요.');
   });
 
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {
