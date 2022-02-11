@@ -1,5 +1,6 @@
 import { $ } from "../dom/dom.js";
 import Car from "./car.js";
+
 export default class RacingCar {
     constructor(carNameArray, raceCount) {
         this.carNameArray = carNameArray;
