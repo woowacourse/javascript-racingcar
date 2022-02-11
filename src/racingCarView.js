@@ -8,10 +8,17 @@ import {
   winnersTemplate,
 } from './common/template.js';
 import { CAR } from './common/constants.js';
+import { style } from './common/style.js';
 
 export default class RacingCarView {
   constructor() {
     this.$app = $('#app');
+
+    this.init();
+  }
+
+  init() {
+    document.head.innerHTML += style;
   }
 
   renderHeader() {
@@ -60,7 +67,9 @@ export default class RacingCarView {
     const { name, moveCount } = car;
     const carNode = this.findCarNode(name)[0];
 
-    carNode.innerText = CAR.MOVE_FORWARD_ARROW.repeat(moveCount);
+    for (let i = 0; i < moveCount; i += 1) {
+      carNode.innerHTML += `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
+    }
   }
 
   findCarNode(name) {
