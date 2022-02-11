@@ -35,6 +35,7 @@ class RacingCarGame {
         ','
       );
       this.makeCars(names);
+      this.view.renderCountInputForm();
     }
   }
 
@@ -45,7 +46,7 @@ class RacingCarGame {
       try {
         this.setCount(count);
         this.simulateGame();
-        this.view.render(this.cars, this.getWinners());
+        this.view.renderResults(this.cars, this.getWinners());
         RacingCarGame.afterRenderComplete();
       } catch (error) {
         alert(error);

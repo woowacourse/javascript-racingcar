@@ -73,3 +73,7 @@ form > div > input {
   align-items: center;
   margin-top: 10px;
 }
+
+#count-input-form {
+  display: none;
+}
