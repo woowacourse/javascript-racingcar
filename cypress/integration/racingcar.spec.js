@@ -17,6 +17,36 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.RACE_COUNT_INPUT).type(racingCount);
       cy.get(SELECTOR.RACE_COUNT_BUTTON).click();
     });
+
+    Cypress.Commands.add('showCarNameAlert', (invalidInput) => {
+      const alertStub = cy.stub();
+      cy.on("window:alert", alertStub);
+    
+      cy.get(SELECTOR.CAR_NAME_INPUT).type(invalidInput);
+    
+      cy.get(SELECTOR.CAR_NAME_BUTTON)
+        .click()
+        .then(() => {
+          expect(alertStub).to.be.called;
+      });
+    });
+
+    Cypress.Commands.add('showRaceCountAlert', (carNameInput, invalidInput) => {
+      const alertStub = cy.stub();
+      cy.get(SELECTOR.CAR_NAME_INPUT).type(carNameInput);
+      cy.get(SELECTOR.CAR_NAME_BUTTON).click();
+
+      cy.on("window:alert", alertStub);
+
+      cy.get(SELECTOR.RACE_COUNT_INPUT).type(invalidInput);
+
+      cy.get(SELECTOR.RACE_COUNT_BUTTON)
+        .click()
+        .then(() => {
+          expect(alertStub).to.be.called;
+      });
+    });
+
   });
 
   beforeEach(() => {
@@ -35,70 +65,20 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   /* 차 이름 */
   it("5글자 초과 자동차 이름을 입력한 경우 alert이 호출되어야 한다.", () => {
-    const alertStub = cy.stub();
-    const invalidInput = "abcdef";
-    
-    cy.on("window:alert", alertStub);
-    
-    cy.get("#car-name-input").type(invalidInput);
-    
-    cy.get("#car-name-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-    });
+    cy.showCarNameAlert("abcdef");
   });
 
   it("5개 초과하여 자동차를 입력한 경우 alert이 호출되어야 한다.", () => {
-    const alertStub = cy.stub();
-    const invalidInput = "a,  b, c,d,e,f";
-    
-    cy.on("window:alert", alertStub);
-
-    cy.get("#car-name-input").type(invalidInput);
-
-    cy.get("#car-name-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-    });
+    cy.showCarNameAlert("a,  b, c,d,e,f");
   });
 
   /* 시도 횟수 */
   it("1이상 20이하의 자연수가 아닌 경우 alert이 호출되어야 한다.", () => {
-    const alertStub = cy.stub();
-    const invalidInput = "-2";
-    
-    cy.get("#car-name-input").type('1,2,3,4,5');
-    cy.get('#car-name-button').click();
-
-    cy.on("window:alert", alertStub);
-
-    cy.get("#race-count-input").type(invalidInput);
-
-    cy.get("#race-count-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-    });
+    cy.showRaceCountAlert('1,2,3,4,5', "-2");
   });
 
   it("숫자가 아닌 경우 alert이 호출되어야 한다.", () => {
-    const alertStub = cy.stub();
-    const invalidInput = "aae";
-   
-    cy.get("#car-name-input").type('1,2,3,4,5');
-    cy.get('#car-name-button').click();
-
-    cy.on("window:alert", alertStub);
-
-    cy.get("#race-count-input").type(invalidInput);
-
-    cy.get("#race-count-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-    });
+    cy.showRaceCountAlert('1,2,3,4,5','aae');
   });
 
   /* 다시 시작 */
