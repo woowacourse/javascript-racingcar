@@ -9,11 +9,11 @@ class RacingCar {
     this.cars = new Cars();
     this.racingCount = new RacingCount(this.cars);
     makeInitialView();
-    this.addLogoClickEvent();
+    RacingCar.addLogoClickEvent();
     this.addRestartEvent();
   }
 
-  addLogoClickEvent() {
+  static addLogoClickEvent() {
     logo.addEventListener(EVENT.CLICK, () => {
       makeInitialView();
     });
