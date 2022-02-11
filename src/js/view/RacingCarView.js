@@ -58,7 +58,7 @@ export default class RacingCarView {
 
   makeReplayButtonTemplate = () => {
     const template = `
-      <button id="replay-button">다시 시작하기</button>
+      <button class="btn replay-btn" id="replay-button">다시 시작하기</button>
     `;
     return template;
   };
