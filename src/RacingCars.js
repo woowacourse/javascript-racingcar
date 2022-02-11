@@ -21,7 +21,7 @@ export default class RacingCars {
         }
     }
 
-    getCarStatus() {
+    getStatus() {
         return this.cars.map((car) => ({ name: car.name, step: car.step }));
     }
 
@@ -35,7 +35,7 @@ export default class RacingCars {
         return this.cars.filter((car) => car.step === maxStep).map((winner) => winner.name);
     }
 
-    resetCarStep() {
+    resetSteps() {
         this.cars.forEach((car) => {
             car.resetStep();
         });

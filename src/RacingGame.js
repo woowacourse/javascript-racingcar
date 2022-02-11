@@ -32,7 +32,7 @@ export default class RacingGame {
             if (!isPositive(tryCnt)) return alert('양수를 입력해주세요.');
 
             this.runGame(tryCnt);
-            this.racingCars.resetCarStep();
+            this.racingCars.resetSteps();
         });
     }
 
@@ -46,6 +46,6 @@ export default class RacingGame {
 
     runGame(tryCnt) {
         this.racingCars.run(tryCnt);
-        Render.showResult(this.racingCars.getCarStatus(), this.racingCars.getWinners());
+        Render.showResult(this.racingCars.getStatus(), this.racingCars.getWinners());
     }
 }
