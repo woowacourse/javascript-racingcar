@@ -30,8 +30,7 @@ export default class RacingCarEventHandler {
             const carNameArray = checkUserCarNameInput($('#car-name-input').value);
             const raceCount = checkUserRacingCountInput($('#race-count-input').value);
             if (!!carNameArray && !!raceCount) {
-                const racingCar = new RacingCar(carNameArray, raceCount);
-                racingCar.gameStart();
+                (new RacingCar(carNameArray, raceCount)).gameStart();
             }
         });
     }
