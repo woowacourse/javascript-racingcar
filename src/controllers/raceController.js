@@ -1,5 +1,5 @@
 import { Car } from '../models/Car.js';
-import { renderCarNames, renderProgressArrow } from '../views/view.js';
+import { renderCarNames, renderProgressArrow, renderWinners } from '../views/view.js';
 
 export function race(state) {
   state.cars = state.cars.map((item) => {
@@ -18,7 +18,7 @@ export function race(state) {
     }
     winnerString += item;
   });
-
+  renderWinners(winnerString);
   clearState(state);
 }
 

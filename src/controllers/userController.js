@@ -37,3 +37,12 @@ function setRound(event, state) {
     state.racingNumber = racingNumber;
   }
 }
+
+export function restartBtnClick(state) {
+  const restartBtn = document.getElementById('restart-button');
+  restartBtn.addEventListener('click', doRestart);
+}
+
+function doRestart() {
+  location.reload(true);
+}

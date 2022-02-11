@@ -23,3 +23,8 @@ export function renderProgressArrow(index) {
   racingArrow.innerHTML = '⬇️️';
   racingProgress[index].appendChild(racingArrow);
 }
+
+export function renderWinners(names) {
+  const racingWinner = document.getElementById('racing-winner');
+  racingWinner.innerHTML = `🏆 최종우승자: ${names} 🏆`;
+}

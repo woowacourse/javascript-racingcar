@@ -1,4 +1,4 @@
-import { setCarNamesClick, setRoundClick } from './controllers/userController.js';
+import { setCarNamesClick, setRoundClick, restartBtnClick } from './controllers/userController.js';
 
 export const state = {
   cars: [],
@@ -7,3 +7,4 @@ export const state = {
 
 setCarNamesClick(state);
 setRoundClick(state);
+restartBtnClick(state);
