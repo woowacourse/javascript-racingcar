@@ -46,7 +46,7 @@
     height: 64px;
 }
 
-#form-button{
+#car-names-button, #try-count-button{
 /* primary */
 
 background: #00BCD4;
@@ -71,28 +71,6 @@ text-transform: uppercase;
 color: #FFFFFF;
 width: 65px;
 height: 36px;
-
-
-
 }
 
 
-
-
-
-/* #car-name-container{
-
-position: absolute;
-width: 441.68px;
-height: 64px;
-left: 50px;
-top: 180px;
-}
-
-#try-count-container{
-    position: absolute;
-width: 441.68px;
-height: 64px;
-left: 50px;
-top: 104px;
-} */

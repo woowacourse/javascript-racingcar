@@ -12,13 +12,13 @@
     <div id="container">
       <h1>🏎️자동차 경주 게임🏁</h1>
       <div id="input-container">
-        <div id="car-name-container">
+        <div id="car-names-container">
           <form id="car-names-form">
             <div>
               <label id="car-names-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
-              <input id="car-names-input" placeholder="east,west,south,north,all" ></input>
+              <input id="car-names-input" placeholder="east,west,south,north,all" required></input>
             </div>
-            <button id="form-button" type="submit">확인</button>
+            <button id="car-names-button" type="submit">확인</button>
           </form>
         </div>
 
@@ -26,9 +26,9 @@
           <form id="try-count-form">
             <div>
               <label id="try-count-title">시도할 횟수를 입력해주세요.</label>
-              <input id="try-count-input" placeholder="10" type="number"></input>
+              <input id="try-count-input" placeholder="10" type="number" required></input>
             </div>
-            <button id="form-button" type="submit">확인</button>
+            <button id="try-count-button" type="submit">확인</button>
           </form>
         </div>
       </div>
