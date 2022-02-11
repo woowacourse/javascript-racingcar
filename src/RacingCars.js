@@ -34,4 +34,10 @@ export default class RacingCars {
 
         return this.cars.filter((car) => car.step === maxStep).map((winner) => winner.name);
     }
+
+    resetCarStep() {
+        this.cars.forEach((car) => {
+            car.resetStep();
+        });
+    }
 }
