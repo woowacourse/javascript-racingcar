@@ -8,8 +8,8 @@
 
   <body>
     <div id="app">
-      <h2>🏎️자동차 경주 게임🏁</h2>
-      <form>
+      <h2 id="game-header">🏎️자동차 경주 게임🏁</h2>
+      <form class="racing-input-form">
         <label>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
         <div class="input-container">
           <input
@@ -17,10 +17,10 @@
             type="text"
             placeholder="east,west,south,north,all"
           />
-          <button id="car-names-button">확인</button>
+          <button class="input-btn btn" id="car-names-button">확인</button>
         </div>
       </form>
-      <form>
+      <form class="racing-input-form">
         <label>시도할 횟수를 입력해주세요.</label>
         <div class="input-container">
           <input
@@ -30,7 +30,9 @@
             placeholder="10"
             disabled
           />
-          <button id="racing-count-button" disabled>확인</button>
+          <button class="input-btn btn" id="racing-count-button" disabled>
+            확인
+          </button>
         </div>
       </form>
       <div id="result"></div>
