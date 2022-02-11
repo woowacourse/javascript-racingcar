@@ -5,6 +5,10 @@ export default class RacingCars {
         this.cars = [];
     }
 
+    reset() {
+        this.cars.length = 0;
+    }
+
     update(carNames) {
         carNames.forEach((carName) => {
             this.cars.push(new Car(carName));

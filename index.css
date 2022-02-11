@@ -22,12 +22,12 @@ p {
 }
 
 .app .try,
-.app .last-area {
+.app .result-area {
     /* display: none; */
 }
 
-.app.show1 .try,
-.app.show2 .last-area {
+.app.try .try,
+.app.result .result-area {
     display: block;
 }
 
@@ -74,10 +74,14 @@ p {
 }
 
 .result-area {
+    width: 100%;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.track-area {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    margin-top: 32px;
 }
 
 .car-track {

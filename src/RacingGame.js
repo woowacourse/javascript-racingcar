@@ -9,6 +9,7 @@ export default class RacingGame {
         this.racingCars = new RacingCars();
         this.setEvent();
         this.initTryCntEvent();
+        this.setRestartEvent();
     }
 
     setEvent() {
@@ -29,6 +30,14 @@ export default class RacingGame {
             if (!isPositive(tryCnt)) return alert('양수를 입력해주세요.');
 
             this.runGame(tryCnt);
+        });
+    }
+
+    setRestartEvent() {
+        $('#restart-button').addEventListener('click', () => {
+            this.racingCars.reset();
+            $('#car-name-input').value = '';
+            $('#try-count-input').value = '';
         });
     }
 
