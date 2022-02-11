@@ -7,3 +7,7 @@ export const isNotNaturalNumber = (number) => {
 export const generateRandomNumber = () => Math.floor(Math.random() * 10);
 
 export const waitGame = (miliSecond) => new Promise((resolve) => setTimeout(resolve, miliSecond));
+
+export const resetInputElementValue = (inputElement) => {
+  inputElement.value = '';
+};

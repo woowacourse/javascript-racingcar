@@ -4,6 +4,7 @@ import {
   generateRandomNumber,
   isNotNaturalNumber,
   waitGame,
+  resetInputElementValue,
 } from './util/index.js';
 import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template/index.js';
 import Car from './model/Car.js';
@@ -36,10 +37,6 @@ class RacingCar {
     );
   }
 
-  resetInputElementValue(inputElement) {
-    inputElement.value = '';
-  }
-
   handleCarNameFormSubmitEvent(e) {
     e.preventDefault();
 
@@ -47,7 +44,7 @@ class RacingCar {
 
     if (carNames === '') {
       alert(ERROR_MESSAGES.EMPTY_CAR_NAME);
-      this.resetInputElementValue(this.$carNamesInput);
+      resetInputElementValue(this.$carNamesInput);
       return;
     }
 
@@ -55,13 +52,13 @@ class RacingCar {
 
     if (carNamesArray.some((carName) => carName.length > RULES.MAX_CAR_NAME_LENGTH)) {
       alert(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
-      this.resetInputElementValue(this.$carNamesInput);
+      resetInputElementValue(this.$carNamesInput);
       return;
     }
 
     if (carNamesArray.some((carName) => carName.length === RULES.ZERO_CAR_NAME_LENGTH)) {
       alert(ERROR_MESSAGES.BLANK_CAR_NAME);
-      this.resetInputElementValue(this.$carNamesInput);
+      resetInputElementValue(this.$carNamesInput);
       return;
     }
 
@@ -76,7 +73,7 @@ class RacingCar {
 
     if (racingCount === '') {
       alert(ERROR_MESSAGES.BLANK_RACING_COUNT);
-      this.resetInputElementValue(this.$racingCountInput);
+      resetInputElementValue(this.$racingCountInput);
       return;
     }
 
@@ -84,22 +81,24 @@ class RacingCar {
 
     if (typeof racingCountNumber !== 'number') {
       alert(ERROR_MESSAGES.NOT_NUMBER_TYPE);
-      this.resetInputElementValue(this.$racingCountInput);
+      resetInputElementValue(this.$racingCountInput);
       return;
     }
 
     if (isNotNaturalNumber(racingCountNumber)) {
       alert(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
-      this.resetInputElementValue(this.$racingCountInput);
+      resetInputElementValue(this.$racingCountInput);
       return;
     }
 
     this.racingCount = racingCountNumber;
 
+    this.play();
+  }
+
+  play() {
     this.renderRacingCarList();
-
     this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
-
     this.racingGameStart();
   }
 
@@ -116,7 +115,7 @@ class RacingCar {
   async racingGameStart() {
     for (let i = 0; i < this.racingCount; i++) {
       this.runOneCycleGame();
-      await waitGame(1000);
+      await waitGame(RULES.WAITING_TIME);
     }
   }
 
@@ -124,7 +123,7 @@ class RacingCar {
     this.racingCarList.forEach((car, index) => {
       const randomNumber = generateRandomNumber();
 
-      if (randomNumber >= 4) {
+      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
         car.moveForward();
         this.renderRacingCarProgress(index);
       }
