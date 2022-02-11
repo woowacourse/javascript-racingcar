@@ -14,18 +14,18 @@
 
     <div class="input-container">
       <p>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
-      <form>
-        <input type="text" id="car-name" placeholder="east, west, south, north, all"/>
+      <form id="car-name-form">
+        <input type="text" id="car-name-input" placeholder="east, west, south, north, all"/>
         <button id="car-name-button">확인</button>
       </form>
       <p>시도할 횟수를 입력해주세요.</p>
-      <form>
-        <input type="text" id="race-time" placeholder="10"/>
+      <form id="race-time-form">
+        <input type="text" id="race-time-input" placeholder="10"/>
         <button id="race-time-button">확인</button>
       </form>
     </div>
 
-    <div class="racing-car-container">
+    <div class="racing-car-container" data-state="off">
       <div class="racing-car">
         <div class="car-name-box">east</div>
         <div class="car-advance">⬇️️</div>
@@ -53,12 +53,12 @@
       </div>
     </div>
 
-    <!-- visibility default hidden -->
-    <div id="result">
+    <div id="result" data-state="off">
       <p id="winner">🏆 최종 우승자: east, west 🏆</p>
       <button id="retry">다시 시작하기</button>
     </div>
   </div>
+  <script type="module" src="./src/js/index.js"></script>
 </body>
 
 </html>
