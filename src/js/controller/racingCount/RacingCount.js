@@ -1,5 +1,5 @@
 import { isInteger } from "./checkFunctions.js";
-import Game from "../game/game.js";
+import Game from "../game/Game.js";
 import { EVENT, EXCEPTIONS, RACING_COUNT } from "../../util/constants.js";
 import {
   racingCountInput,
