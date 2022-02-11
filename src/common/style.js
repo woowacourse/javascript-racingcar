@@ -71,7 +71,7 @@ export const input = `
 
   font-size: 15px;
   line-height: 24px;
-  color: ${color.color8B8B8B}
+  color: ${color.color8B8B8B};
 
   outline: none;
 `;
