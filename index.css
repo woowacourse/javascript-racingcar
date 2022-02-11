@@ -73,6 +73,10 @@ body {
   align-items: flex-start;
 }
 
+#count-submit-container {
+  display: none;
+}
+
 .result-sections {
   display: flex;
   flex-wrap: wrap;
@@ -111,6 +115,7 @@ body {
 }
 
 #reset-button {
+  display: none;
   width: 152px;
   height: 36px;
   line-height: 36px;
