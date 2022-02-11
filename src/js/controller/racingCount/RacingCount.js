@@ -1,6 +1,11 @@
 import { isInteger } from "./checkFunctions.js";
 import Game from "../game/Game.js";
-import { EVENT, EXCEPTIONS, RACING_COUNT } from "../../util/constants.js";
+import {
+  EVENT,
+  EXCEPTIONS,
+  RACING_COUNT,
+  KEYBOARD,
+} from "../../util/constants.js";
 import {
   racingCountInput,
   racingCountSubmitButton,
@@ -51,7 +56,7 @@ export default class RacingCount {
 
   addRacingCountInputEnterEvent() {
     racingCountInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === 13 && this.makeRacingCount()) {
+      if (e.keyCode === KEYBOARD.ENTER && this.makeRacingCount()) {
         this.goNextStep();
       }
     });

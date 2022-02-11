@@ -9,19 +9,20 @@ import {
   racingWinnerText,
   restartButton,
 } from "../util/elements.js";
+import { BLANK } from "../util/constants.js";
 
 export const makeInitialView = () => {
-  carNamesInput.value = "";
+  carNamesInput.value = BLANK;
   carNamesInput.readOnly = false;
   carNamesSubmitButton.disabled = false;
   racingCountArea.hidden = true;
-  racingCountInput.value = "";
+  racingCountInput.value = BLANK;
   racingCountInput.readOnly = false;
   racingCountSubmitButton.disabled = false;
-  racingResultArea.innerHTML = "";
+  racingResultArea.innerHTML = BLANK;
   racingResultArea.hidden = true;
   racingWinnerArea.hidden = true;
-  racingWinnerText.innerHTML = "";
+  racingWinnerText.innerHTML = BLANK;
   restartButton.hidden = true;
 };
 

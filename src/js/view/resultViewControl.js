@@ -1,5 +1,6 @@
 import { racingResultArea } from "../util/elements.js";
 import { showRacingResultArea } from "./viewControl.js";
+import { ATTRIBUTE, ELEMENT, ARROW } from "../util/constants.js";
 
 export const setResultArea = cars => {
   showRacingResultArea();
@@ -13,13 +14,13 @@ const createResultLog = cars => {
 };
 
 const createResultForCar = car => {
-  const container = document.createElement("div");
-  const nameTag = document.createElement("div");
+  const container = document.createElement(ELEMENT.DIV);
+  const nameTag = document.createElement(ELEMENT.DIV);
 
-  nameTag.setAttribute("class", "car-name-tag");
+  nameTag.setAttribute(ATTRIBUTE.CLASS, "car-name-tag");
   nameTag.innerHTML = car.name;
 
-  container.setAttribute("id", `${car.name}-container`);
+  container.setAttribute(ATTRIBUTE.ID, `${car.name}-container`);
   container.append(nameTag);
   for (let index = 0; index < car.location; index++) {
     container.append(createPositionArrow());
@@ -29,10 +30,10 @@ const createResultForCar = car => {
 };
 
 const createPositionArrow = () => {
-  const position = document.createElement("div");
+  const position = document.createElement(ELEMENT.DIV);
 
-  position.setAttribute("class", "position-arrow");
-  position.innerHTML = "⬇️️";
+  position.setAttribute(ATTRIBUTE.CLASS, "position-arrow");
+  position.innerHTML = ARROW;
 
   return position;
 };

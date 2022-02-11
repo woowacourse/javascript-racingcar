@@ -1,3 +1,5 @@
+import { RANDOM_RANGE, RACE_STANDARD } from "../util/constants.js";
+
 export default class Car {
   constructor(name) {
     this.name = name;
@@ -5,7 +7,9 @@ export default class Car {
   }
 
   goForward() {
-    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+    const { MIN, MAX } = RANDOM_RANGE;
+
+    if (MissionUtils.Random.pickNumberInRange(MIN, MAX) >= RACE_STANDARD) {
       this.location += 1;
     }
   }

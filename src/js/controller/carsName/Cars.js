@@ -1,7 +1,12 @@
 import Car from "../../model/Car.js";
 import { isDuplicateName, isValidLength } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
-import { EVENT, EXCEPTIONS } from "../../util/constants.js";
+import {
+  SEPARATOR,
+  EVENT,
+  EXCEPTIONS,
+  KEYBOARD,
+} from "../../util/constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
 
 export default class Cars {
@@ -24,7 +29,7 @@ export default class Cars {
   }
 
   sortCars() {
-    this.cars.sort((a, b) => b.location - a.location);
+    this.cars.sort((left, right) => right.location - left.location);
   }
 
   isValidCarsName(carNameArr) {
@@ -40,7 +45,7 @@ export default class Cars {
   }
 
   makeCars() {
-    const carNameArr = carNamesInput.value?.split(",");
+    const carNameArr = carNamesInput.value?.split(SEPARATOR);
 
     if (!carNamesInput.value || !this.isValidCarsName(carNameArr)) {
       return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
@@ -61,7 +66,7 @@ export default class Cars {
 
   addCarNameInputEnterEvent() {
     carNamesInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === 13 && this.makeCars()) {
+      if (e.keyCode === KEYBOARD.ENTER && this.makeCars()) {
         this.goNextStep();
       }
     });
