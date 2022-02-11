@@ -1,5 +1,6 @@
 export const BUTTON = {
   SUBMIT: '확인',
+  RESTART: '다시 시작하기',
 };
 
 export const CAR = {
@@ -24,4 +25,9 @@ export const HEADER = {
 export const RANDOM = {
   MIN_DIGIT: 0,
   MAX_DIGIT: 9,
+};
+
+export const WINNER = {
+  ICON: '🏆',
+  TITLE: '최종 우승자:',
 };

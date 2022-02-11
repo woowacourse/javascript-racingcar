@@ -52,6 +52,7 @@ export default class RacingCarController {
       this.model.setRacingCount(racingCount);
       this.race(racingCount);
       this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
+      this.view.renderWinners(this.model.getWinnners());
     } else {
       alert('양의 정수가 아닙니다');
       this.view.resetRacingCountInput();

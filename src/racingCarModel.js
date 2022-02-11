@@ -14,4 +14,14 @@ export default class RacingCarModel {
   setRacingCount(racingCount) {
     this.racingCount = racingCount;
   }
+
+  getWinnners() {
+    return this.cars
+      .filter((car) => car.moveCount === this.getMaxMoveCount())
+      .map((car) => car.name);
+  }
+
+  getMaxMoveCount() {
+    return Math.max(...this.cars.map((car) => car.moveCount));
+  }
 }

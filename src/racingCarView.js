@@ -4,6 +4,7 @@ import {
   carNamesTemplate,
   headerTemplate,
   racingCountTemplate,
+  winnersTemplate,
 } from './common/template.js';
 import { CAR } from './common/constants.js';
 
@@ -61,5 +62,11 @@ export default class RacingCarView {
     const $$moveForwardArrow = $$('.move-forward-arrow');
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
+  }
+
+  renderWinners(winners) {
+    const $gameResult = $('#game-result');
+
+    $gameResult.innerHTML += winnersTemplate(winners);
   }
 }

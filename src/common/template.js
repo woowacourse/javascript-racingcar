@@ -1,4 +1,4 @@
-import { BUTTON, DIRECTIVE, HEADER } from './constants.js';
+import { BUTTON, DIRECTIVE, HEADER, WINNER } from './constants.js';
 
 export function headerTemplate() {
   return `
@@ -40,5 +40,21 @@ export function carsTemplate(cars) {
     <div>
       ${cars.map((car) => carTemplate(car)).join('')}
     </div>
+  `;
+}
+
+export function winnersTemplate(winners) {
+  return `
+    <div>
+      ${WINNER.ICON} ${WINNER.TITLE}
+      <span id="winners">${winners.join(', ')}</span>
+      ${WINNER.ICON}
+    </div>
+  `;
+}
+
+export function restartTemplate() {
+  return `
+    <button id="restart">${BUTTON.RESTART}</button>
   `;
 }
