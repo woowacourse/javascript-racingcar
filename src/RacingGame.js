@@ -18,6 +18,7 @@ export default class RacingGame {
             if (haveMiddleBlank(carNames)) return alert('자동차 이름에 공백이 들어갈 수 없습니다.');
             if (exceedMaxLength(carNames)) return alert('자동차 이름은 5자 이하입니다.');
 
+            this.racingCars.reset();
             this.racingCars.update(carNames);
             Render.showTryForm();
         });
