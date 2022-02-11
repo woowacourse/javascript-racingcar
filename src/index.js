@@ -27,6 +27,8 @@ class RacingCar {
     this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
     this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
     this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
+    this.$finalWinnerResult = document.getElementById(ID.FINAL_WINNER_RESULT);
+    this.$finalWinner = document.getElementById(ID.FINAL_WINNER);
   }
 
   initEventListener() {
@@ -117,6 +119,8 @@ class RacingCar {
       this.runOneCycleGame();
       await waitGame(RULES.WAITING_TIME);
     }
+
+    this.handleGameResult();
   }
 
   runOneCycleGame() {
@@ -132,6 +136,29 @@ class RacingCar {
 
   renderRacingCarProgress(index) {
     this.$racingCarProgress[index].insertAdjacentHTML('beforeend', PROGRESS_TEMPLATE);
+  }
+
+  handleGameResult() {
+    const finalWinner = this.getFinalWinner();
+    this.renderFinalWinner(finalWinner);
+  }
+
+  getFinalWinner() {
+    const maxDistance = this.racingCarList.reduce(
+      (maxNumber, car) => (maxNumber < car.getDistance() ? car.getDistance() : maxNumber),
+      0
+    );
+
+    const winnerList = this.racingCarList
+      .filter((car) => car.getDistance() === maxDistance)
+      .map((car) => car.getName());
+
+    return winnerList.join(', ');
+  }
+
+  renderFinalWinner(finalWinner) {
+    this.$finalWinnerResult.innerText = finalWinner;
+    this.$finalWinner.style.display = 'block';
   }
 }
 

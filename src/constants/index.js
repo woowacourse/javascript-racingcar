@@ -4,6 +4,8 @@ export const ID = Object.freeze({
   RACING_COUNT_FORM: 'racing_count_form',
   RACING_COUNT_INPUT: 'racing_count_input',
   RACING_CAR_LIST: 'racing_car_list',
+  FINAL_WINNER_RESULT: 'final_winner_result',
+  FINAL_WINNER: 'final_winner',
 });
 
 export const CLASS = Object.freeze({
