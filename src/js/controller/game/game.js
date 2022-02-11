@@ -13,7 +13,7 @@ export default class Game {
 
   static getWinners(cars) {
     const max = cars.cars[0].location;
-    let winners = [];
+    const winners = [];
 
     cars.cars.forEach(car => {
       if (car.location === max) {
