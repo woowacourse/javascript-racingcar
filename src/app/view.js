@@ -15,9 +15,10 @@ class RacingCarGameView {
   }
 
   renderResults(cars, winners) {
-    const progressTemplate = cars
-      .map((car) => RacingCarGameView.generateProgressTemplate(car))
-      .join('');
+    const progressTemplate = cars.reduce(
+      (acc, car) => `${acc}${RacingCarGameView.generateProgressTemplate(car)}`,
+      ''
+    );
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
     });
