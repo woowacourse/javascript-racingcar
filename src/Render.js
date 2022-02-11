@@ -27,4 +27,8 @@ export default class Render {
     static renderResult(cars) {
         $('#result-area').innerHTML = this.parsingTrack(cars);
     }
+
+    static renderWinners(winners) {
+        $('#winners').innerText = winners.join(',');
+    }
 }

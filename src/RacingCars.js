@@ -20,4 +20,14 @@ export default class RacingCars {
     getCarStatus() {
         return this.cars.map((car) => ({ name: car.name, step: car.step }));
     }
+
+    getMaxStep() {
+        return this.cars.reduce((acc, car) => Math.max(acc, car.step), 0);
+    }
+
+    getWinners() {
+        const maxStep = this.getMaxStep();
+
+        return this.cars.filter((car) => car.step === maxStep).map((winner) => winner.name);
+    }
 }
