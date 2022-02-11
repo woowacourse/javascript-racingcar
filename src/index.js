@@ -73,11 +73,14 @@ class RacingcarGame {
   }
 
   countCarsMove() {
-    for (let i = 0; i < this.raceCount; i += 1) {
-      this.carList.forEach((eachCar) => {
-        eachCar.move();
+    this.carList
+      .map((car) => {
+        let game = 0;
+        while (game !== Number(this.raceCount)) {
+          car.move();
+          game++;
+        }
       });
-    }
   }
 
   showCarsMove() {
