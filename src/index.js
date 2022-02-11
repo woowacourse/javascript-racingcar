@@ -100,18 +100,10 @@ class RacingcarGame {
   }
 
   findWinner() {
-    let winner = [];
-    let winnerCount = 0;
-    this.carList.forEach((car) => {
-      if (winnerCount < car.count) {
-        winnerCount = car.count;
-        winner = [];
-      }
-      if (winnerCount === car.count) {
-        winner.push(car.carName);
-      }
-    });
-    return winner.join(", ");
+    return this.carList
+      .filter((car) => car.count === Math.max(...this.carList.map((car) => car.count)))
+      .map((car) => car.carName)
+      .join(", ");
   }
 
   showWinner(winner) {
