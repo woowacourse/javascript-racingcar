@@ -23,7 +23,7 @@ p {
 
 .app .try,
 .app .result-area {
-    /* display: none; */
+    display: none;
 }
 
 .app.try .try,

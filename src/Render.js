@@ -1,4 +1,5 @@
 import { $ } from './util.js';
+import SCREEN_CMD from './constant.js';
 
 export default class Render {
     static parsingStep(step) {
@@ -30,5 +31,23 @@ export default class Render {
 
     static renderWinners(winners) {
         $('#winners').innerText = winners.join(',');
+    }
+
+    static showTryForm() {
+        $('#app').classList.add(SCREEN_CMD.show_try);
+    }
+
+    static showResultArea() {
+        $('#app').classList.add(SCREEN_CMD.show_result);
+    }
+
+    static showResult(cars, winners) {
+        this.renderResult(cars);
+        this.renderWinners(winners);
+        this.showResultArea();
+    }
+
+    static reset() {
+        $('#app').classList.remove(SCREEN_CMD.show_try, SCREEN_CMD.show_result);
     }
 }

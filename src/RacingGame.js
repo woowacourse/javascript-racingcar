@@ -1,8 +1,7 @@
 import RacingCars from './RacingCars.js';
 import Render from './Render.js';
 import { haveMiddleBlank, exceedMaxLength, isPositive, haveEmpty } from './validation.js';
-
-const $ = (selector) => document.querySelector(selector);
+import { $ } from './util.js';
 
 export default class RacingGame {
     constructor() {
@@ -20,6 +19,7 @@ export default class RacingGame {
             if (exceedMaxLength(carNames)) return alert('자동차 이름은 5자 이하입니다.');
 
             this.racingCars.update(carNames);
+            Render.showTryForm();
         });
     }
 
@@ -36,6 +36,7 @@ export default class RacingGame {
     setRestartEvent() {
         $('#restart-button').addEventListener('click', () => {
             this.racingCars.reset();
+            Render.reset();
             $('#car-name-input').value = '';
             $('#try-count-input').value = '';
         });
@@ -43,7 +44,6 @@ export default class RacingGame {
 
     runGame(tryCnt) {
         this.racingCars.run(tryCnt);
-        Render.renderResult(this.racingCars.getCarStatus());
-        Render.renderWinners(this.racingCars.getWinners());
+        Render.showResult(this.racingCars.getCarStatus(), this.racingCars.getWinners());
     }
 }
