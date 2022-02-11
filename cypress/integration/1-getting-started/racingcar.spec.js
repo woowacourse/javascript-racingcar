@@ -65,7 +65,13 @@ describe('에러 처리를 한다', () => {
 
   it('입력한 이름이 1글자 미만이면 alert가 뜬다', () => {
     inputCarNames('jun,,');
-    checkAlertMessage('1~5자의 이내의 자동차 이름을 입력해 주세요.');
+    checkAlertMessage('1~5자의 자동차 이름을 입력해 주세요.');
+  });
+
+  it('이름 입력 후 재입력은 불가능하다.', () => {
+    inputCarNames('jun,poco');
+    inputCarNames('june,poco');
+    checkAlertMessage('이름 재입력이 불가능합니다');
   });
 
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {

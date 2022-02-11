@@ -30,11 +30,16 @@ class CarRacing {
   }
 
   onSubmitCarName(names) {
+    if (this.participants.length) {
+      return alert('이름 재입력이 불가능합니다');
+    }
     const carNames = this.parseCarName(names);
-    if (!this.validateCarNameLength(carNames))
+    if (!this.validateCarNameLength(carNames)) {
       return alert('1~5자의 자동차 이름을 입력해 주세요.');
-    if (!this.validateDuplicateCarName(carNames))
+    }
+    if (!this.validateDuplicateCarName(carNames)) {
       return alert('중복된 자동차 이름은 입력이 불가능합니다.');
+    }
     this.participants = carNames.map(name => new Car(name));
   }
 
