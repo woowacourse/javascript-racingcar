@@ -9,7 +9,9 @@ export default class Car {
   goForward() {
     const { MIN, MAX } = RANDOM_RANGE;
 
-    if (MissionUtils.Random.pickNumberInRange(MIN, MAX) >= RACE_STANDARD) {
+    if (
+      window.MissionUtils.Random.pickNumberInRange(MIN, MAX) >= RACE_STANDARD
+    ) {
       this.location += 1;
     }
   }
