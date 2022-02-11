@@ -1,4 +1,4 @@
-import { DOM, ERROR_MESSAGE } from '../../src/js/constans.js';
+import { SELECTOR, ERROR_MESSAGE } from '../../src/js/constants.js';
 
 function createAlertStub() {
   const alertStub = cy.stub();
@@ -16,11 +16,11 @@ describe('기능 요구사항', () => {
   });
 
   it('자동차 이름을 입력하고 확인 버튼을 누르면 레이스를 출력할 때 쉼표로 구분된 자동차 이름들을 같이 출력한다.', () => {
-    cy.get(DOM.$CAR_NAME_INPUT).type(testCarNames.join(',')); // '우디,꼬재'
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(',')); // '우디,꼬재'
 
-    cy.get(DOM.$CAR_NAME_BUTTON).click();
-    cy.get(DOM.$CAR_NAME).should('have.length', testCarNames.length);
-    cy.get(DOM.$CAR_NAME).each((name, index) => {
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+    cy.get(SELECTOR.$CAR_NAME).should('have.length', testCarNames.length);
+    cy.get(SELECTOR.$CAR_NAME).each((name, index) => {
       cy.wrap(name).should('have.text', testCarNames[index]);
     });
   });
@@ -35,15 +35,15 @@ describe('예외 상황', () => {
     const inputString = '여섯글자이름';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
-    cy.get(DOM.$CAR_NAME_BUTTON)
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
           ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE
         );
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -51,15 +51,15 @@ describe('예외 상황', () => {
     const inputString = ' ';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
-    cy.get(DOM.$CAR_NAME_BUTTON)
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
           ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE
         );
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -67,15 +67,15 @@ describe('예외 상황', () => {
     const racingCount = '-1';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$RACING_COUNT_INPUT).type(racingCount);
-    cy.get(DOM.$RACING_COUNT_BUTTON)
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
           ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE
         );
-        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
-        cy.get(DOM.$RACING_COUNT_INPUT).should('have.focus');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.focus');
       });
   });
 
@@ -83,15 +83,15 @@ describe('예외 상황', () => {
     const racingCount = '101';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$RACING_COUNT_INPUT).type(racingCount);
-    cy.get(DOM.$RACING_COUNT_BUTTON)
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
           ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE
         );
-        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
-        cy.get(DOM.$RACING_COUNT_INPUT).should('have.focus');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.focus');
       });
   });
 
@@ -99,13 +99,13 @@ describe('예외 상황', () => {
     const inputString = '우디,우디,꼬재';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
-    cy.get(DOM.$CAR_NAME_BUTTON)
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -113,15 +113,15 @@ describe('예외 상황', () => {
     const inputString = '5';
     const alertStub = createAlertStub();
 
-    cy.get(DOM.$RACING_COUNT_INPUT).type(inputString);
-    cy.get(DOM.$RACING_COUNT_BUTTON)
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(inputString);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
           ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST
         );
-        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
-        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 });
