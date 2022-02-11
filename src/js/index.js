@@ -7,14 +7,7 @@ import {
   DELIMETER,
 } from './constants.js';
 import TEMPLATE from './templates.js';
-
-function $(selector) {
-  return document.querySelector(selector);
-}
-
-function $all(selector) {
-  return document.querySelectorAll(selector);
-}
+import { $, $all, splitString, trimStringArray } from './utils.js';
 
 class RacingCarGame {
   constructor() {
@@ -27,40 +20,34 @@ class RacingCarGame {
     this.winners = [];
   }
 
-  splitCarNames() {
-    return this.$carNameInput.value.split(DELIMETER);
-  }
-
-  trimStringArray(array) {
-    return array.map((string) => string.trim());
-  }
-
-  initializeInput(clearElement, focusElement = clearElement) {
-    clearElement.value = '';
-    focusElement.focus();
-  }
-
-  renderRacingResult() {
-    $(SELECTOR.$RACING_RESULT).innerHTML = TEMPLATE.RENDER_RACING_RESULT(
-      this.carList
+  submitCarNames() {
+    const carNameList = trimStringArray(
+      splitString(this.$carNameInput.value, DELIMETER)
     );
+
+    if (
+      this.validateCarNameList(carNameList) ||
+      this.validateUniqueCarName(carNameList)
+    ) {
+      return;
+    }
+
+    this.carList = carNameList.map((name) => new Car(name));
+    this.renderRacingResult();
   }
 
-  renderResult() {
-    $(SELECTOR.$RESULT).innerHTML = TEMPLATE.RENDER_RESULT(this.winners);
+  startRace(racingCount) {
+    for (let i = 0; i < racingCount; i += 1) {
+      this.carList.forEach((car) => car.race());
+      this.renderRacingResult();
+    }
   }
 
-  bindEventListener(type, selector, callback) {
-    const children = [...$all(selector)];
-    const isTarget = (target) =>
-      children.includes(target) || target.closest(selector);
-
-    this.$app.addEventListener(type, (e) => {
-      if (!isTarget(e.target)) return;
-
-      e.preventDefault();
-      callback(e);
-    });
+  getWinners() {
+    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
+    this.winners = this.carList
+      .filter((car) => car.distance === maxDistance)
+      .map((winner) => winner.name);
   }
 
   restart() {
@@ -121,20 +108,6 @@ class RacingCarGame {
     return false;
   }
 
-  submitCarNames() {
-    const carNameList = this.trimStringArray(this.splitCarNames());
-
-    if (
-      this.validateCarNameList(carNameList) ||
-      this.validateUniqueCarName(carNameList)
-    ) {
-      return;
-    }
-
-    this.carList = carNameList.map((name) => new Car(name));
-    this.renderRacingResult();
-  }
-
   validateRacingCount(racingCount) {
     if (this.isNotValidRacingCount(racingCount)) {
       alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
@@ -157,18 +130,32 @@ class RacingCarGame {
     return false;
   }
 
-  startRace(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.carList.forEach((car) => car.race());
-      this.renderRacingResult();
-    }
+  initializeInput(clearElement, focusElement = clearElement) {
+    clearElement.value = '';
+    focusElement.focus();
   }
 
-  getWinners() {
-    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
-    this.winners = this.carList
-      .filter((car) => car.distance === maxDistance)
-      .map((winner) => winner.name);
+  renderRacingResult() {
+    $(SELECTOR.$RACING_RESULT).innerHTML = TEMPLATE.RENDER_RACING_RESULT(
+      this.carList
+    );
+  }
+
+  renderResult() {
+    $(SELECTOR.$RESULT).innerHTML = TEMPLATE.RENDER_RESULT(this.winners);
+  }
+
+  bindEventListener(type, selector, callback) {
+    const children = [...$all(selector)];
+    const isTarget = (target) =>
+      children.includes(target) || target.closest(selector);
+
+    this.$app.addEventListener(type, (e) => {
+      if (!isTarget(e.target)) return;
+
+      e.preventDefault();
+      callback(e);
+    });
   }
 
   submitRacingCount() {
