@@ -5,12 +5,15 @@ export default class Model {
     this.racingCount;
   }
 
-  getCars(carNames) {
+  saveCars(carNames) {
     this.carNames = [...carNames];
-    this.carPosition = new Array(carNames.length).fill(0);
   }
 
-  getRacingCount(racingCount) {
+  initCarPosition() {
+    this.carPosition = new Array(this.carNames.length).fill(0);
+  }
+
+  saveRacingCount(racingCount) {
     this.racingCount = racingCount;
   }
 }

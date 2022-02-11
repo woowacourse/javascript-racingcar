@@ -25,8 +25,6 @@ export default class Validator {
     return false;
   }
 
-  // Number.isInteger()
-
   static isFloat(number) {
     if (!Number.isInteger(Number(number))) {
       alert('시도 횟수를 자연수로 입력해주세요.');
