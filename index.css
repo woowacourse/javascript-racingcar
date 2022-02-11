@@ -20,6 +20,10 @@ body {
   align-items: center;
 }
 
+button {
+  cursor: pointer;
+}
+
 #app {
   width: 544px;
   display: flex;
