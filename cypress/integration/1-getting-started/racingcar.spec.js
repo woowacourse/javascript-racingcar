@@ -1,16 +1,7 @@
-before(() => {
-  cy.visit('/index.html');
-});
-
 const checkAlertMessage = message => {
   cy.on('window:alert', str => {
     expect(str).to.equal(message);
   });
-};
-
-const clearInput = () => {
-  cy.get('#car-names-input').clear();
-  cy.get('#racing-count-input').clear();
 };
 
 const inputCarNames = names => {
@@ -26,6 +17,9 @@ const inputRacingCount = count => {
 const names = ['june', 'poco'];
 
 describe('자동차 경주 게임', () => {
+  before(() => {
+    cy.visit('/index.html');
+  });
   it('자동차 이름을 입력받는다', () => {
     inputCarNames(names.join(','));
   });
@@ -51,8 +45,9 @@ describe('자동차 경주 게임', () => {
 
 describe('에러 처리를 한다', () => {
   beforeEach(() => {
-    clearInput();
+    cy.visit('/index.html');
   });
+
   it('입력한 이름이 5글자 초과일 경우 alert가 뜬다.', () => {
     inputCarNames('jun,dddddd');
     checkAlertMessage('1~5자의 자동차 이름을 입력해 주세요.');
@@ -72,6 +67,13 @@ describe('에러 처리를 한다', () => {
     inputCarNames('jun,poco');
     inputCarNames('june,poco');
     checkAlertMessage('이름 재입력이 불가능합니다');
+  });
+
+  it('레이싱 횟수 입력 후 재입력은 불가능하다.', () => {
+    inputCarNames('jun,poco');
+    inputRacingCount(1);
+    inputRacingCount(1);
+    checkAlertMessage('레이싱 횟수 재입력이 불가능합니다.');
   });
 
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {

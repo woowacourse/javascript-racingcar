@@ -3,6 +3,7 @@ import Car from './Car.js';
 class CarRacing {
   constructor() {
     this.participants = [];
+    this.winners = [];
     this.bindEvents();
   }
 
@@ -44,6 +45,7 @@ class CarRacing {
   }
 
   onSubmitRacingCount(count) {
+    if (this.winners.length) return alert('레이싱 횟수 재입력이 불가능합니다.');
     if (!this.participants.length)
       return alert('자동차 이름이 입력되지 않았습니다.');
     if (!this.validateRacingCount(count))
@@ -65,6 +67,7 @@ class CarRacing {
     document.querySelector('#racing-winners').innerHTML = '';
     document.querySelector('#racing-status').innerHTML = '';
     this.participants = [];
+    this.winners = [];
   }
 
   printResult() {
@@ -96,10 +99,9 @@ class CarRacing {
         maxCount = this.participants[i].racingCount;
       }
     }
-
-    return this.participants.filter(
+    return (this.winners = this.participants.filter(
       participant => participant.racingCount === maxCount,
-    );
+    ));
   }
 
   parseCarName(names) {
