@@ -19,12 +19,23 @@ export const SELECTOR = {
     RACING_COUNT_INPUT: 'racing-count-input',
     RACING_COUNT_SUBMIT: 'racing-count-submit',
     RESULT: 'result',
-    RACING_WINNERS: 'racing-winners'
+    RACING_WINNERS: 'racing-winners',
+    RACING_PROGRESS_CONTAINER: 'racing-progress-container',
+    RACING_RESULT_CONTAINER: 'racing-result-container',
+    WINNER_SPAN: 'racing-result',
+    RESTART_BUTTON: 'restart-button'
+  },
+  CLASS: {
+    CAR_PROGRESS_CONTAINER: 'car-progress-container',
+    CAR_PROGRESS_NAME: 'car-progress-container--name',
+    CAR_PROGRESS_STATUS: 'car-progress-container--status'
   }
 };
 
 export const CAR = {
   RANDOM_MINIMUM_NUMBER: 0,
   RANDOM_MAXIMUM_NUMBER: 9,
-  MOVE_NUMBER: 4
+  MOVE_NUMBER: 4,
+  ZERO_NUMBER: 0,
+  ONE_NUMBER: 1
 };

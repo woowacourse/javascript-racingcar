@@ -1,10 +1,11 @@
 import DomUtils from '../utils/dom-utils.js';
+import { SELECTOR } from '../constants/constants.js';
 
 export default class RacingView {
   constructor() {
-    this.$app = document.getElementById('app');
-    this.$namesForm = document.getElementById('car-names-form');
-    this.$countForm = document.getElementById('racing-count-form');
+    this.$app = document.getElementById(SELECTOR.ID.APP);
+    this.$namesForm = document.getElementById(SELECTOR.ID.CAR_NAMES_FORM);
+    this.$countForm = document.getElementById(SELECTOR.ID.RACING_COUNT_FORM);
   }
 
   renderProgress(cars) {
@@ -25,21 +26,21 @@ export default class RacingView {
 
   removeProgress() {
     const $racingProgressNode = document.getElementById(
-      'racing-progress-container'
+      SELECTOR.ID.RACING_PROGRESS_CONTAINER
     );
     this.$app.removeChild($racingProgressNode);
   }
 
   removeResult() {
     const $racingResultNode = document.getElementById(
-      'racing-result-container'
+      SELECTOR.ID.RACING_RESULT_CONTAINER
     );
     this.$app.removeChild($racingResultNode);
   }
 
   static clearInput() {
-    document.getElementById('car-names-input').value = '';
-    document.getElementById('racing-count-input').value = '';
+    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
+    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
   }
 
   activateCountForm() {

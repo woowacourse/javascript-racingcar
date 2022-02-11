@@ -1,9 +1,10 @@
+import { CAR } from '../constants/constants.js';
 import Car from './Car.js';
 
 export default class RacingGame {
   constructor() {
     this.cars = [];
-    this.round = 0;
+    this.round = CAR.ZERO_NUMBER;
   }
 
   moveCars() {
@@ -18,7 +19,7 @@ export default class RacingGame {
 
   goToNextTurn() {
     this.moveCars();
-    this.round -= 1;
+    this.round -= CAR.ONE_NUMBER;
   }
 
   get winners() {
@@ -27,11 +28,11 @@ export default class RacingGame {
 
   reset() {
     this.cars = [];
-    this.round = 0;
+    this.round = CAR.ZERO_NUMBER;
   }
 
   findMaxRecord() {
-    let maxRecord = 0;
+    let maxRecord = CAR.ZERO_NUMBER;
 
     this.cars.forEach((car) => {
       if (car.position > maxRecord) {

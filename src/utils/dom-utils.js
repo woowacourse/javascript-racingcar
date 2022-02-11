@@ -1,14 +1,16 @@
+import { SELECTOR } from '../constants/constants.js';
+
 export default class DomUtils {
   static createWinnerElement(winnerList) {
     const $winnerContainer = document.createElement('section');
-    $winnerContainer.id = 'racing-result-container';
+    $winnerContainer.id = SELECTOR.ID.RACING_RESULT_CONTAINER;
 
     const $winnerSpan = document.createElement('h2');
-    $winnerSpan.id = 'racing-result';
+    $winnerSpan.id = SELECTOR.ID.WINNER_SPAN;
     $winnerSpan.innerText = `🏆 최종 우승자: ${winnerList.join(', ')}🏆`;
 
     const $restartButton = document.createElement('button');
-    $restartButton.id = 'restart-button';
+    $restartButton.id = SELECTOR.ID.RESTART_BUTTON;
     $restartButton.innerText = '다시 시작하기';
 
     $winnerContainer.appendChild($winnerSpan);
@@ -19,7 +21,7 @@ export default class DomUtils {
 
   static createRacingProgressElement(cars) {
     const $racingProgressNode = document.createElement('section');
-    $racingProgressNode.id = 'racing-progress-container';
+    $racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
 
     cars.forEach((car) => {
       $racingProgressNode.appendChild(this.createCarProgressElement(car));
@@ -30,7 +32,7 @@ export default class DomUtils {
 
   static createCarProgressElement(car) {
     const $carProgressNode = document.createElement('div');
-    $carProgressNode.className = 'car-progress-container';
+    $carProgressNode.className = SELECTOR.CLASS.CAR_PROGRESS_CONTAINER;
 
     const $carProgressName = DomUtils.createCarProgressNameElement(car.name);
     $carProgressNode.appendChild($carProgressName);
@@ -47,7 +49,7 @@ export default class DomUtils {
 
   static createCarProgressNameElement(name) {
     const $carProgressName = document.createElement('div');
-    $carProgressName.className = 'car-progress-container--name';
+    $carProgressName.className = SELECTOR.CLASS.CAR_PROGRESS_NAME;
     $carProgressName.innerText = name;
 
     return $carProgressName;
@@ -57,7 +59,7 @@ export default class DomUtils {
     const $carProgressStatusList = [];
     for (let i = 0; i < postion; i += 1) {
       const $carProgressStatus = document.createElement('div');
-      $carProgressStatus.className = 'car-progress-container--status';
+      $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
       $carProgressStatus.innerText = '⬇';
       $carProgressStatusList.push($carProgressStatus);
     }

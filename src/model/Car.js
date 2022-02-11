@@ -4,13 +4,13 @@ import { pickRandomNumber } from '../utils/index.js';
 export default class Car {
   constructor(name) {
     this.name = name;
-    this.position = 0;
+    this.position = CAR.ZERO_NUMBER;
   }
 
   move() {
     const randomNumber = pickRandomNumber();
     if (randomNumber >= CAR.MOVE_NUMBER) {
-      this.position += 1;
+      this.position += CAR.ONE_NUMBER;
     }
   }
 }
