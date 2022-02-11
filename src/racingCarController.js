@@ -33,7 +33,8 @@ export default class RacingCarController {
   handleCarNames(event) {
     event.preventDefault();
 
-    const carNames = this.view.$carNamesInput.value.split(',');
+    const carNamesInput = this.view.$carNamesInput.value.split(',');
+    const carNames = carNamesInput.map((name) => name.trim());
 
     if (isValidCarNames(carNames)) {
       this.model.setCars(carNames);
