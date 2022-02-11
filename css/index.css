@@ -83,8 +83,12 @@ form > label {
 #racing_car_list {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding-bottom: 24px;
+}
+
+.racing_car_item {
+  padding-right: 6px;
 }
 
 .racing_car_name {
