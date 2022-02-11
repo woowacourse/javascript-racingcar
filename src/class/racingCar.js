@@ -18,9 +18,7 @@ export default class RacingCar {
     }
 
     generateCars() {
-        this.carNameArray.forEach(car => {
-            this.carArray.push(new Car(car));
-        });
+        this.carNameArray.forEach(car => this.carArray.push(new Car(car)));
     }
     
     playGame(){
@@ -33,11 +31,9 @@ export default class RacingCar {
     }
 
     updateCarSuccessCount() {
-        this.carArray.forEach((item) => {
-            if(this.generateRandomNumber() >= 4){
-                item.successCount++;
-            }
-        })
+        this.carArray.forEach(car => {
+            this.generateRandomNumber() >= 4 && car.successCount++;
+        });
     }
 
     renderRacingContent() {
@@ -65,8 +61,8 @@ export default class RacingCar {
             .map(car => car.successCount)
             .sort((a, b) => b - a)[0];
         const winners = this.carArray
-            .filter((item) => item.successCount === maxCount)
-            .map(item => item.name)
+            .filter(car => car.successCount === maxCount)
+            .map(car => car.name)
             .join(',');
         
         $('.racing-result').innerHTML = `
@@ -76,7 +72,7 @@ export default class RacingCar {
     }
 
     onRestartButtonClick(){
-        $('.restart-button').addEventListener('click', () =>{
+        $('.restart-button').addEventListener('click', () => {
             location.reload();
         });
     }
