@@ -81,7 +81,7 @@ button {
   display: none;
 }
 
-.result-sections {
+.step-sections {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
@@ -91,7 +91,7 @@ button {
   width: 100%;
 }
 
-.result-section {
+.step-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,7 +99,7 @@ button {
   margin: 0 4px;
 }
 
-.result-section__name {
+.step-section__name {
   display: inline-block;
   width: 96px;
   height: 36px;
@@ -109,7 +109,7 @@ button {
   border-radius: 4px;
 }
 
-.result-section__arrow {
+.step-section__arrow {
   font-size: 32px;
   line-height: 38px;
   margin-top: 8px;

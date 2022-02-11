@@ -68,18 +68,10 @@ context('화면표시 테스트', () => {
     cy.get('.input-section__count-input').type('2{enter}');
   });
   it('자동차 이름과 횟수를 입력하면, 자동차 이름이 순서에 맞게 결과로 표시된다.', () => {
-    cy.get('.result-sections > .result-section').eq(0).children().eq(0).should('have.text', 'east');
-    cy.get('.result-sections > .result-section').eq(1).children().eq(0).should('have.text', 'west');
-    cy.get('.result-sections > .result-section')
-      .eq(2)
-      .children()
-      .eq(0)
-      .should('have.text', 'south');
-    cy.get('.result-sections > .result-section')
-      .eq(3)
-      .children()
-      .eq(0)
-      .should('have.text', 'north');
+    cy.get('.step-sections > .step-section').eq(0).children().eq(0).should('have.text', 'east');
+    cy.get('.step-sections > .step-section').eq(1).children().eq(0).should('have.text', 'west');
+    cy.get('.step-sections > .step-section').eq(2).children().eq(0).should('have.text', 'south');
+    cy.get('.step-sections > .step-section').eq(3).children().eq(0).should('have.text', 'north');
   });
 
   it('자동차 이름과 횟수를 입력하면, 레이싱 경기 우승자가 표시된다.', () => {
@@ -96,7 +88,7 @@ context('화면표시 테스트', () => {
     cy.get('#reset-button')
       .click()
       .then(() => {
-        cy.get('.result-sections').should('not.be.visible');
+        cy.get('.step-sections').should('not.be.visible');
         cy.get('#winner').should('not.be.visible');
         cy.get('#reset-button').should('not.be.visible');
       });

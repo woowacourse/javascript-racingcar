@@ -3,7 +3,7 @@ import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
 export default class View {
   constructor() {
     this.configureDOM();
-    this.makeAllDOMHidden();
+    this.makeResultHidden();
     this.makeCountFormHidden();
   }
 
@@ -13,24 +13,24 @@ export default class View {
     this.$nameButton = $('.input-section__name-button');
     this.$countButton = $('.input-section__count-button');
     this.$countSubmitContainer = $('#count-submit-container');
-    this.$resultSections = $('.result-sections');
+    this.$stepSections = $('.step-sections');
     this.$winner = $('#winner');
     this.$resetButton = $('#reset-button');
   }
 
   makeDOMReset() {
-    this.makeAllDOMHidden();
+    this.makeResultHidden();
     this.makeCountFormHidden();
     this.clearInput();
   }
 
-  makeAllDOMVisible() {
+  makeResultVisible() {
     makeDOMVisible([this.$winner, this.$resetButton], 'block');
-    makeDOMVisible([this.$resultSections], 'flex');
+    makeDOMVisible([this.$stepSections], 'flex');
   }
 
-  makeAllDOMHidden() {
-    makeDOMHidden([this.$winner, this.$resetButton, this.$resultSections]);
+  makeResultHidden() {
+    makeDOMHidden([this.$winner, this.$resetButton, this.$stepSections]);
   }
 
   makeCountFormHidden() {
@@ -67,20 +67,20 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  resultUpdate(carList) {
+  stepUpdate(carList) {
     let template = '';
     carList.forEach((car) => {
-      template += this.generateResultSectionDOM(car);
+      template += this.generateStepSectionDOM(car);
     });
-    this.$resultSections.innerHTML = template;
+    this.$stepSections.innerHTML = template;
   }
 
-  generateResultSectionDOM(car) {
+  generateStepSectionDOM(car) {
     return `
-    <div class="result-section">
-      <span class="result-section__name">${car.name}</span>
-      <ul class="result-section__arrows">
-        ${'<li class="result-section__arrow">⬇️️</li>'.repeat(car.step)}
+    <div class="step-section">
+      <span class="step-section__name">${car.name}</span>
+      <ul class="step-section__arrows">
+        ${'<li class="step-section__arrow">⬇️️</li>'.repeat(car.step)}
       </ul>
     </div>
   `;
@@ -90,9 +90,9 @@ export default class View {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
   }
 
-  showAllResult(carList, winnerList) {
-    this.resultUpdate(carList);
+  showResult(carList, winnerList) {
+    this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
-    this.makeAllDOMVisible();
+    this.makeResultVisible();
   }
 }
