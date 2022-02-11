@@ -1,11 +1,6 @@
-import { isInteger } from "./checkFunctions.js";
+import { isValidRacingCount } from "./checkFunctions.js";
 import Game from "../game/Game.js";
-import {
-  EVENT,
-  EXCEPTIONS,
-  RACING_COUNT,
-  KEYBOARD,
-} from "../../util/constants.js";
+import { EVENT, EXCEPTIONS, KEYBOARD } from "../../util/constants.js";
 import {
   racingCountInput,
   racingCountSubmitButton,
@@ -23,26 +18,12 @@ export default class RacingCount {
     this.racingCount = 0;
   }
 
-  isValidRacingCount(racingCountInput) {
-    if (
-      !isInteger(racingCountInput) ||
-      parseInt(racingCountInput) < RACING_COUNT.MIN
-    ) {
-      return false;
-    }
-
-    return true;
-  }
-
-  makeRacingCount() {
-    if (
-      !racingCountInput.value ||
-      !this.isValidRacingCount(racingCountInput.value)
-    ) {
+  makeRacingCount(racingCountInputValue) {
+    if (!racingCountInputValue || !isValidRacingCount(racingCountInputValue)) {
       return alert(EXCEPTIONS.INCORRECT_RACING_COUNT);
     }
 
-    this.racingCount = parseInt(racingCountInput.value);
+    this.racingCount = parseInt(racingCountInputValue, 10);
 
     return true;
   }
@@ -56,7 +37,10 @@ export default class RacingCount {
 
   addRacingCountInputEnterEvent() {
     racingCountInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === KEYBOARD.ENTER && this.makeRacingCount()) {
+      if (
+        e.keyCode === KEYBOARD.ENTER &&
+        this.makeRacingCount(racingCountInput.value)
+      ) {
         this.goNextStep();
       }
     });
@@ -64,7 +48,7 @@ export default class RacingCount {
 
   addRacingCountSubmitButtonClickEvent() {
     racingCountSubmitButton.addEventListener(EVENT.CLICK, () => {
-      if (this.makeRacingCount()) {
+      if (this.makeRacingCount(racingCountInput.value)) {
         this.goNextStep();
       }
     });
