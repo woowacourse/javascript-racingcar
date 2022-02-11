@@ -31,11 +31,9 @@ export default class RacingController {
     if (error) {
       return alert(error);
     }
-
+    this.view.deactivateNamesForm();
     this.model.round = racingCount;
-
     this.startRacingGame();
-
     this.activateRestartButton();
 
     return true;
@@ -60,6 +58,7 @@ export default class RacingController {
     if (error) {
       return alert(error);
     }
+    this.view.activateCountForm();
     this.model.players = nameList;
     return true;
   }
@@ -68,6 +67,7 @@ export default class RacingController {
     while (this.model.round) {
       this.model.goToNextTurn();
     }
+    this.view.deactivateCountForm();
     this.view.renderProgress(this.model.cars);
     this.view.renderResult(this.model.winners);
   }

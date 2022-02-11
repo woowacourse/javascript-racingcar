@@ -13,9 +13,7 @@ export default class RacingGame {
   }
 
   set players(names) {
-    names.forEach((name) => {
-      this.cars.push(new Car(name));
-    });
+    this.cars = names.map((name) => new Car(name));
   }
 
   goToNextTurn() {
