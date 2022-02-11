@@ -1,4 +1,4 @@
-import RacingCarGame from "./class/racingCarGame.js";
+import RacingCarEventHandler from "./class/racingCarGame.js";
 
-const game = new RacingCarGame();
+const game = new RacingCarEventHandler();
 game.init();

@@ -3,7 +3,7 @@ import { $ } from "../dom/dom.js";
 import checkUserCarNameInput from "../modules/checkUserCarNameInput.js";
 import checkUserRacingCountInput from "../modules/checkUserRacingCountInput.js";
 
-export default class RacingCarGame {
+export default class RacingCarEventHandler {
 
     init() {
         this.onCarNameButtonClick();
