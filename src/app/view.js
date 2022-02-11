@@ -1,15 +1,17 @@
+import { DOM } from '../lib/constants.js';
+
 class RacingCarGameView {
   constructor() {
     this.initDOM();
   }
 
   initDOM() {
-    this.countInputForm = document.querySelector('#count-input-form');
-    this.resultField = document.querySelector('#result-field');
-    this.gameProgress = document.querySelector('#game-progress');
-    this.winners = document.querySelector('#winners');
-    this.carNameBtn = document.querySelector('#car-name-btn');
-    this.countBtn = document.querySelector('#count-btn');
+    this.countInputForm = document.querySelector(`#${DOM.COUNT_INPUT_FORM_ID}`);
+    this.resultField = document.querySelector(`#${DOM.RESULT_FIELD_ID}`);
+    this.gameProgress = document.querySelector(`#${DOM.GAME_PROGRESS_ID}`);
+    this.winners = document.querySelector(`#${DOM.WINNERS_ID}`);
+    this.carNameBtn = document.querySelector(`#${DOM.CAR_NAME_BTN_ID}`);
+    this.countBtn = document.querySelector(`#${DOM.COUNT_BTN_ID}`);
   }
 
   renderResults(cars, winners) {
@@ -35,20 +37,18 @@ class RacingCarGameView {
 
   static generateProgressTemplate({ name, progress }) {
     return `
-    <div class="car-progress">
-      <div class="car-name">${name}</div>
-      ${'<div class="step">⬇️️</div>'.repeat(progress)}
+    <div class="${DOM.CAR_PROGRESS_CLASS}">
+      <div class="${DOM.CAR_NAME_CLASS}">${name}</div>
+      ${`<div class="${DOM.STEP_CLASS}">⬇️️</div>`.repeat(progress)}
     </div>
   `;
   }
 
   static generateWinnersTemplate({ winners }) {
-    return `<h2 id="winner-container">🏆최종 승리자:<span id="winner-name">${winners.join(
-      ','
-    )}</span>🏆</h2>
-      <button id="restart-btn">다시 시작하기</button> `;
+    return `<h2 id="${DOM.WINNER_CONTAINER_ID}">🏆최종 승리자:<span id="${
+      DOM.WINNER_NAME_ID
+    }">${winners.join(',')}</span>🏆</h2>
+      <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> `;
   }
 }
 export default RacingCarGameView;
-
-// [...new Array(progress)].map(()=>`<div class="step">⬇️️</div>`).join('')
