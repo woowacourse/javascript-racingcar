@@ -3,6 +3,7 @@ import Model from './model.js';
 import Car from './car.js';
 import { validateNameInput, validateCountInput } from './utils/validator.js';
 import { trimInArray } from './utils/common.js';
+import { CAR_NAME_SEPARATOR } from './utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -19,7 +20,7 @@ export default class Controller {
 
   onSubmitName(carNames) {
     try {
-      const carNamesArray = trimInArray(carNames.split(','));
+      const carNamesArray = trimInArray(carNames.split(CAR_NAME_SEPARATOR));
       validateNameInput(carNamesArray);
       this.view.makeCountFormVisible();
       this.model.saveCarList(this.makeCars(carNamesArray));

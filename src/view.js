@@ -1,4 +1,5 @@
 import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
+import { WINNER_SEPARATOR } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -87,7 +88,7 @@ export default class View {
   }
 
   winnerUpdate(winnerList) {
-    this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
+    this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
   }
 
   showResult(carList, winnerList) {
