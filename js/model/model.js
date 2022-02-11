@@ -1,3 +1,5 @@
+import { NUMBER } from '../utils/constants.js';
+
 export default class Model {
   constructor() {
     this.carNames;
@@ -10,7 +12,7 @@ export default class Model {
   }
 
   initCarPosition() {
-    this.carPosition = new Array(this.carNames.length).fill(0);
+    this.carPosition = new Array(this.carNames.length).fill(NUMBER.ZERO);
   }
 
   saveRacingCount(racingCount) {

@@ -1,16 +1,18 @@
+import { NUMBER, ERROR_MSG } from '../utils/constants.js';
+
 export default class Validator {
   static isCarNameBlank(carNames) {
     const filtered = carNames.filter((name) => name === '');
-    if (filtered.length > 0) {
-      alert('자동차 이름이 빈 칸입니다.');
+    if (filtered.length > NUMBER.ZERO) {
+      alert(ERROR_MSG.BLANK_NAME);
       return true;
     }
   }
 
   static isInvalidCarNameLength(carNames) {
-    const filtered = carNames.filter((name) => name.length >= 6);
-    if (filtered.length > 0) {
-      alert('자동차 이름을 5자 이하로 해주세요.');
+    const filtered = carNames.filter((name) => name.length > NUMBER.MAX_LENGTH);
+    if (filtered.length > NUMBER.ZERO) {
+      alert(ERROR_MSG.INVALID_NAME_LENGTH);
       return true;
     }
   }
@@ -27,21 +29,21 @@ export default class Validator {
 
   static isFloat(number) {
     if (!Number.isInteger(Number(number))) {
-      alert('시도 횟수를 자연수로 입력해주세요.');
+      alert(ERROR_MSG.INVALID_RACING_COUNT);
       return true;
     }
   }
 
   static isNotNaturalNumber(number) {
-    if (number <= 0) {
-      alert('시도 횟수를 자연수로 입력해주세요.');
+    if (number <= NUMBER.ZERO) {
+      alert(ERROR_MSG.INVALID_RACING_COUNT);
       return true;
     }
   }
 
   static isString(number) {
     if (typeof Number(number) !== 'number') {
-      alert('시도 횟수를 자연수로 입력해주세요.');
+      alert(ERROR_MSG.INVALID_RACING_COUNT);
       return true;
     }
   }

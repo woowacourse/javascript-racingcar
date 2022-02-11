@@ -3,6 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import Validator from '../validator/validator.js';
+import { NUMBER } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -50,7 +51,7 @@ export default class Controller {
   }
 
   isMoveCondition() {
-    return getRandomNumber() >= 4;
+    return getRandomNumber() >= NUMBER.MOVE_CONDITION;
   }
 
   goForward(idx) {
