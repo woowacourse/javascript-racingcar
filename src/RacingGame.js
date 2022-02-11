@@ -1,9 +1,9 @@
 import RacingCars from './RacingCars.js';
 import Render from './Render.js';
 import UserInput from './UserInput.js';
-import { haveMiddleBlank, exceedMaxLength, isPositive, haveEmpty } from './validation.js';
+import { isValidCarNames, isValidTryCnt } from './validation.js';
 import { $ } from './util.js';
-import { MSG, SELECTOR } from './constant.js';
+import { SELECTOR } from './constant.js';
 
 export default class RacingGame {
     constructor() {
@@ -19,9 +19,7 @@ export default class RacingGame {
     initCarNameFormEvent() {
         $(SELECTOR.car_name_submit_button).addEventListener('click', () => {
             const carNames = UserInput.getCarNames();
-            if (haveEmpty(carNames)) return alert(MSG.empty_car_name);
-            if (haveMiddleBlank(carNames)) return alert(MSG.blank_car_name);
-            if (exceedMaxLength(carNames)) return alert(MSG.exceed_car_name);
+            if (!isValidCarNames(carNames)) return;
 
             this.racingCars.reset();
             this.racingCars.update(carNames);
@@ -32,8 +30,7 @@ export default class RacingGame {
     initTryCntFormEvent() {
         $(SELECTOR.try_count_submit_button).addEventListener('click', () => {
             const tryCnt = UserInput.getTryCnt();
-            if (!Number.isInteger(tryCnt)) return alert(MSG.natural_number);
-            if (!isPositive(tryCnt)) return alert(MSG.positive_number);
+            if (!isValidTryCnt(tryCnt)) return;
 
             this.runGame(tryCnt);
             this.racingCars.resetSteps();
