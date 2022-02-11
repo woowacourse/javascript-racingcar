@@ -19,4 +19,5 @@ export const EXCEPTIONS = {
 
 export const EVENT = {
   CLICK: "click",
+  KEYUP: "keyup",
 };

@@ -1,5 +1,5 @@
 import Car from "../../model/Car.js";
-import { isDuplicateName, isLengthOK } from "./checkFunctions.js";
+import { isDuplicateName, isValidLength } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/util/viewControl.js";
 import { EVENT, EXCEPTIONS } from "../../util/constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
@@ -7,6 +7,7 @@ import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
 export default class Cars {
   constructor() {
     this.init();
+    this.addCarNameInputEnterEvent();
     this.addCarNameSubmitButtonClickEvent();
   }
 
@@ -26,35 +27,53 @@ export default class Cars {
     this.cars.sort((a, b) => b.location - a.location);
   }
 
-  isValidCarsName(carNamesInput) {
-    const carNameArr = carNamesInput.split(",");
-    if (carNameArr.length <= 1) {
+  isValidCarsName(carNameArr) {
+    if (
+      carNameArr.length <= 1 ||
+      isDuplicateName(carNameArr) ||
+      !isValidLength(carNameArr)
+    ) {
       return false;
     }
-    for (let i = 0; i < carNameArr.length; i++) {
-      carNameArr[i] = carNameArr[i].trim();
-      if (!carNameArr[i] || !isLengthOK(carNameArr[i])) {
-        return false;
-      }
-    }
-    if (isDuplicateName(carNameArr)) {
-      return false;
-    }
+
     return true;
+  }
+
+  makeCars() {
+    const carNameArr = carNamesInput.value?.split(",");
+
+    if (!carNamesInput.value || !this.isValidCarsName(carNameArr)) {
+      return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
+    }
+
+    for (let i = 0; i < carNameArr.length; i++) {
+      this.cars.push(new Car(carNameArr[i].trim()));
+    }
+
+    return true;
+  }
+
+  goNextStep() {
+    carNamesInput.readOnly = true;
+    carNamesSubmitButton.disabled = true;
+    showRacingCountArea();
+  }
+
+  addCarNameInputEnterEvent() {
+    carNamesInput.addEventListener(EVENT.KEYUP, e => {
+      if (e.keyCode === 13) {
+        if (this.makeCars()) {
+          this.goNextStep();
+        }
+      }
+    });
   }
 
   addCarNameSubmitButtonClickEvent() {
     carNamesSubmitButton.addEventListener(EVENT.CLICK, () => {
-      if (!carNamesInput.value || !this.isValidCarsName(carNamesInput.value)) {
-        return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
+      if (this.makeCars()) {
+        this.goNextStep();
       }
-      const carNameArr = carNamesInput.value.split(",");
-      for (let i = 0; i < carNameArr.length; i++) {
-        this.cars.push(new Car(carNameArr[i].trim()));
-      }
-      carNamesInput.readOnly = true;
-      carNamesSubmitButton.disabled = true;
-      showRacingCountArea();
     });
   }
 }
