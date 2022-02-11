@@ -1,3 +1,5 @@
+import { generateRandomInRange } from './util.js';
+
 export default class Car {
     constructor(name) {
         this.name = name;
@@ -8,7 +10,7 @@ export default class Car {
     }
 
     pressAccel() {
-        return Math.floor(Math.random() * (this.MAX_ACCEL + 1 - this.MIN_ACCEL)) + this.MIN_ACCEL;
+        return generateRandomInRange(this.MIN_ACCEL, this.MAX_ACCEL);
     }
 
     isCanForward() {
