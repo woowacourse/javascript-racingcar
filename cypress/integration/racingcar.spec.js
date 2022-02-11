@@ -27,29 +27,65 @@ const submitRacingCount = racingCnt => {
   cy.get(RACING_COUNT_SUBMIT).should("have.attr", "disabled", "disabled");
 };
 
-describe("정상 시나리오에 대해 만족해야 한다.", () => {
-  before(() => {
-    Cypress.Commands.add("stubRandomReturns", (returnValues = []) => {
-      const randomStub = cy.stub();
+const submitCarNamesAlert = () => {
+  const alertStub = cy.stub();
 
-      returnValues.forEach((value, index) => {
-        randomStub.onCall(index).returns(value);
-      });
-
-      cy.visit(baseUrl, {
-        onBeforeLoad: window => {
-          window.MissionUtils = {
-            Random: {
-              pickNumberInRange: randomStub,
-            },
-          };
-        },
-      });
+  cy.on("window:alert", alertStub);
+  cy.get(SELECTOR.CAR_NAMES_SUBMIT)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.called;
     });
+};
+
+const submitRacingCountAlert = () => {
+  const alertStub = cy.stub();
+
+  cy.on("window:alert", alertStub);
+  cy.get(SELECTOR.RACING_COUNT_SUBMIT)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.called;
+    });
+};
+
+const countLocation = () => {
+  let movieCount, haleeCount;
+
+  cy.get("#movie-container")
+    .find(".position-arrow")
+    .then(position => {
+      movieCount = Cypress.$(position).length;
+    })
+    .then(() => {
+      cy.get("#halee-container")
+        .find(".position-arrow")
+        .then(position => {
+          haleeCount = Cypress.$(position).length;
+          getWinner(movieCount, haleeCount);
+        });
+    });
+};
+
+const getWinner = (movieCount, haleeCount) => {
+  const { RACING_WINNER } = SELECTOR;
+
+  if (movieCount > haleeCount) {
+    cy.get(RACING_WINNER).should("have.text", "movie");
+  } else if (movieCount < haleeCount) {
+    cy.get(RACING_WINNER).should("have.text", "halee");
+  } else if (movieCount === haleeCount) {
+    cy.get(RACING_WINNER).should("have.text", "movie, halee");
+  }
+};
+
+describe("정상 시나리오에 대해 만족해야 한다.", () => {
+  beforeEach(() => {
+    cy.visit(baseUrl);
   });
 
-  beforeEach(() => {
-    cy.stubRandomReturns([7, 7]);
+  afterEach(() => {
+    cy.reload();
   });
 
   it("자동차 이름 입력이 제대로 되었을 경우, 입력창과 버튼이 모두 비활성화가 되어야 한다.", () => {
@@ -64,19 +100,19 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
   it("게임을 종료하고 우승자를 확인할 수 있어야 한다.", () => {
     submitCarNames("movie, halee");
     submitRacingCount(10);
-    cy.get(SELECTOR.RACING_WINNER).should("have.text", "movie, halee");
+    countLocation();
   });
 
   it("다시 시작 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
     const {
       CAR_NAMES_INPUT,
-      CAR_NAMES_SUBMIT,
       RACING_COUNT_INPUT,
-      RACING_COUNT_SUBMIT,
       RACING_RESULT,
       RACING_WINNER,
       RESTART_BUTTON,
     } = SELECTOR;
+    submitCarNames("movie, halee");
+    submitRacingCount(10);
     cy.get(RESTART_BUTTON).click();
     cy.get(CAR_NAMES_INPUT).should("have.value", "");
     cy.get(RACING_COUNT_INPUT).should("have.value", "");
@@ -86,26 +122,6 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
 });
 
 describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.", () => {
-  before(() => {
-    Cypress.Commands.add("stubRandomReturns", (returnValues = []) => {
-      const randomStub = cy.stub();
-
-      returnValues.forEach((value, index) => {
-        randomStub.onCall(index).returns(value);
-      });
-
-      cy.visit(baseUrl, {
-        onBeforeLoad: window => {
-          window.MissionUtils = {
-            Random: {
-              pickNumberInRange: randomStub,
-            },
-          };
-        },
-      });
-    });
-  });
-
   beforeEach(() => {
     cy.visit(baseUrl);
   });
@@ -115,73 +131,36 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
   });
 
   it("자동차 이름이 아무것도 입력되지 않았을 경우 사용자에게 alert를 띄운다.", () => {
-    const alertStub = cy.stub();
-
-    cy.on("window:alert", alertStub);
-    cy.get("#car-names-submit")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    submitCarNamesAlert();
   });
 
   it("이름의 길이가 5자를 초과했을 경우 alert를 띄운다.", () => {
-    const alertStub = cy.stub();
     const invalidInput = "loveracingcar";
 
-    cy.on("window:alert", alertStub);
-
-    cy.get("#car-names-input").type(invalidInput);
-    cy.get("#car-names-submit")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+    submitCarNamesAlert();
   });
 
   it("중복된 이름의 자동차가 입력될 경우 alert를 띄운다.", () => {
-    const alertStub = cy.stub();
     const invalidInput = "woowa,course,woowa";
 
-    cy.on("window:alert", alertStub);
-
-    cy.get("#car-names-input").type(invalidInput);
-    cy.get("#car-names-submit")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+    submitCarNamesAlert();
   });
 
   it("레이싱 횟수가 정수가 아닌 경우 alert를 띄운다.", () => {
-    const alertStub = cy.stub();
     const invalidInput = 12.5;
 
-    cy.on("window:alert", alertStub);
-
-    cy.get("#car-names-input").type("movie, halee");
-    cy.get("#car-names-submit").click();
-    cy.get("#racing-count-input").type(invalidInput);
-    cy.get("#racing-count-submit")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    submitCarNames("movie, halee");
+    cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidInput);
+    submitRacingCountAlert();
   });
 
   it("1이상의 수가 아닌 경우 alert를 띄운다.", () => {
-    const alertStub = cy.stub();
     const invalidInput = 0;
 
-    cy.on("window:alert", alertStub);
-
-    cy.get("#car-names-input").type("movie, halee");
-    cy.get("#car-names-submit").click();
+    submitCarNames("movie, halee");
     cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidInput);
-    cy.get(SELECTOR.RACING_COUNT_SUBMIT)
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    submitRacingCountAlert();
   });
 });

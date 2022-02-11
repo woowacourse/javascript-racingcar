@@ -1,12 +1,9 @@
 import { racingResultArea } from "../util/elements.js";
+import { showRacingResultArea } from "./util/viewControl.js";
 
 export const setResultArea = cars => {
   showRacingResultArea();
   createResultLog(cars);
-};
-
-const showRacingResultArea = () => {
-  racingResultArea.hidden = false;
 };
 
 const createResultLog = cars => {
@@ -22,6 +19,7 @@ const createResultForCar = car => {
   nameTag.setAttribute("class", "car-name-tag");
   nameTag.innerHTML = car.name;
 
+  container.setAttribute("id", `${car.name}-container`);
   container.append(nameTag);
   for (let index = 0; index < car.location; index++) {
     container.append(createPositionArrow());
