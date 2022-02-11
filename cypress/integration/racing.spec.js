@@ -67,10 +67,19 @@ context('화면표시 테스트', () => {
     cy.get('.input-section__name-input').type('east,west,south,north{enter}');
     cy.get('.input-section__count-input').type('2{enter}');
   });
-  it('자동차 이름과 횟수를 입력하면, 결과의 자동차 개수가 입력된 자동차 개수와 같다.', () => {
-    cy.get('.result-sections > .result-section').should(($section) => {
-      expect($section).to.have.length(4);
-    });
+  it('자동차 이름과 횟수를 입력하면, 자동차 이름이 순서에 맞게 결과로 표시된다.', () => {
+    cy.get('.result-sections > .result-section').eq(0).children().eq(0).should('have.text', 'east');
+    cy.get('.result-sections > .result-section').eq(1).children().eq(0).should('have.text', 'west');
+    cy.get('.result-sections > .result-section')
+      .eq(2)
+      .children()
+      .eq(0)
+      .should('have.text', 'south');
+    cy.get('.result-sections > .result-section')
+      .eq(3)
+      .children()
+      .eq(0)
+      .should('have.text', 'north');
   });
 
   it('자동차 이름과 횟수를 입력하면, 레이싱 경기 우승자가 표시된다.', () => {
