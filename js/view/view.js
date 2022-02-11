@@ -1,5 +1,5 @@
 import { $ } from '../utils/dom.js';
-
+import { SELECTOR } from '../utils/constants.js';
 export default class View {
   constructor() {
     this.renderInitial();
@@ -10,7 +10,7 @@ export default class View {
   }
 
   renderCarNames(carNames) {
-    $('#car-names').innerHTML = this.carNamesTemplate(carNames);
+    $(SELECTOR.CAR_NAMES).innerHTML = this.carNamesTemplate(carNames);
   }
 
   winnerTemplate(winners) {
@@ -18,7 +18,7 @@ export default class View {
   }
 
   renderWinner(winners) {
-    $('#car-racing-winner').innerHTML = this.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).innerHTML = this.winnerTemplate(winners);
   }
 
   carProgressTemplate(carPosition) {
@@ -28,24 +28,24 @@ export default class View {
   }
 
   renderProgress(carPosition) {
-    $('#car-progress').innerHTML = this.carProgressTemplate(carPosition);
+    $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
   }
 
   renderInitial() {
-    $('#game-restart').style.display = 'none';
-    $('#car-names').innerHTML = '';
-    $('#car-racing-winner').innerHTML = '';
-    $('#car-progress').innerHTML = '';
-    $('#car-names-input').value = '';
-    $('#car-racing-count-input').value = '';
-    $('.car-racing-count-wrapper').style.display = 'none';
+    $(SELECTOR.GAME_RESTART).style.display = 'none';
+    $(SELECTOR.CAR_NAMES).innerHTML = '';
+    $(SELECTOR.CAR_RACING_WINNER).innerHTML = '';
+    $(SELECTOR.CAR_PROGRESS).innerHTML = '';
+    $(SELECTOR.CAR_NAMES_INPUT).value = '';
+    $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
   }
 
   renderRestartButton() {
-    $('#game-restart').style.display = 'block';
+    $(SELECTOR.GAME_RESTART).style.display = 'block';
   }
 
   renderCarRacingInputBox() {
-    $('.car-racing-count-wrapper').style.display = 'block';
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
   }
 }

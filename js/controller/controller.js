@@ -3,7 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getRandomNumber.js';
 import Validator from '../validator/validator.js';
-import { NUMBER } from '../utils/constants.js';
+import { NUMBER, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -14,13 +14,13 @@ export default class Controller {
   }
 
   splitCarNamesInput() {
-    return $('#car-names-input')
+    return $(SELECTOR.CAR_NAMES_INPUT)
       .value.split(',')
       .map((carName) => carName.trim());
   }
 
   bindCarNamesEvent() {
-    $('#car-names-button').addEventListener('click', (e) => {
+    $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', (e) => {
       if (Validator.isInValidCarNamesInput(this.splitCarNamesInput())) {
         return;
       }
@@ -31,11 +31,11 @@ export default class Controller {
   }
 
   getRacingCountInput() {
-    return $('#car-racing-count-input').value;
+    return $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
   }
 
   bindRacingCountEvent() {
-    $('#car-racing-count-button').addEventListener('click', (e) => {
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).addEventListener('click', (e) => {
       if (Validator.isInValidRacingCountInput(this.getRacingCountInput())) {
         return;
       }
@@ -101,7 +101,7 @@ export default class Controller {
   }
 
   bindGameRestartEvent() {
-    $('#game-restart').addEventListener('click', (e) => {
+    $(SELECTOR.GAME_RESTART).addEventListener('click', (e) => {
       this.view.renderInitial();
       this.model = new Model();
     });
