@@ -83,6 +83,7 @@ button {
 
 .result-sections {
   display: flex;
+  justify-content: center;
   flex-wrap: nowrap;
   margin: 0 12px 24px;
   white-space: nowrap;
