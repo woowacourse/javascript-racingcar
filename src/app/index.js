@@ -1,4 +1,4 @@
-import { isNumberBelowZero, splitString } from '../lib/utils.js';
+import { isNumberBelowZero, pickNumberInRange, splitString } from '../lib/utils.js';
 import Car from './car.js';
 import RacingCarGameView from './view.js';
 
@@ -17,23 +17,14 @@ class RacingCarGame {
   }
 
   initHandler() {
-    this.carNameInputField.addEventListener(
-      'click',
-      this.onCarNameInputFieldClick.bind(this)
-    );
-    this.countInputField.addEventListener(
-      'click',
-      this.onCountInputFieldClick.bind(this)
-    );
+    this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick.bind(this));
+    this.countInputField.addEventListener('click', this.onCountInputFieldClick.bind(this));
   }
 
   onCarNameInputFieldClick(e) {
     e.preventDefault();
     if (e.target.id === 'car-name-btn') {
-      const names = splitString(
-        e.currentTarget.querySelector('#car-name-input').value,
-        ','
-      );
+      const names = splitString(e.currentTarget.querySelector('#car-name-input').value, ',');
       this.makeCars(names);
       this.view.renderCountInputForm();
     }
@@ -82,7 +73,7 @@ class RacingCarGame {
 
   simulateRound() {
     this.cars.forEach((car) => {
-      const random = MissionUtils.Random.pickNumberInRange(0, 9); //eslint-disable-line
+      const random = pickNumberInRange(0, 9);
       if (random >= 4) {
         car.goForward();
       }
