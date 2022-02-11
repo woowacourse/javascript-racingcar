@@ -8,6 +8,8 @@ class RacingCarGameView {
     this.resultField = document.querySelector('#result-field');
     this.gameProgress = document.querySelector('#game-progress');
     this.winners = document.querySelector('#winners');
+    this.carNameBtn = document.querySelector('#car-name-btn');
+    this.countBtn = document.querySelector('#count-btn');
   }
 
   renderResults(cars, winners) {
@@ -24,6 +26,11 @@ class RacingCarGameView {
 
   renderCountInputForm() {
     this.countInputForm.style.display = 'block';
+  }
+
+  disableInputButtons() {
+    this.carNameBtn.disabled = true;
+    this.countBtn.disabled = true;
   }
 
   static generateProgressTemplate({ name, progress }) {
