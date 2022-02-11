@@ -10,5 +10,15 @@ const MSG = {
     natural_number: '자연수를 입력해주세요.',
     positive_number: '양수를 입력해주세요.',
 };
+const SELECTOR = {
+    car_name_submit_button: '#car-name-submit-button',
+    try_count_submit_button: '#try-count-submit-button',
+    restart_button: '#restart-button',
+    car_name_input: '#car-name-input',
+    try_count_input: '#try-count-input',
+    app: '#app',
+    track_area: '#track-area',
+    winners: '#winners',
+};
 
-export { SCREEN_CMD, MSG };
+export { SCREEN_CMD, MSG, SELECTOR };
