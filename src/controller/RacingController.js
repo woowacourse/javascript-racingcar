@@ -27,16 +27,15 @@ export default class RacingController {
       SELECTOR.ID.RACING_COUNT_INPUT
     ).value;
 
-    const error = validateCount(racingCount);
-    if (error) {
-      return alert(error);
+    try {
+      validateCount(racingCount);
+      this.view.deactivateNamesForm();
+      this.model.round = Number(racingCount);
+      this.startRacingGame();
+      this.activateRestartButton();
+    } catch (error) {
+      alert(error.message);
     }
-    this.view.deactivateNamesForm();
-    this.model.round = Number(racingCount);
-    this.startRacingGame();
-    this.activateRestartButton();
-
-    return true;
   }
 
   activateRestartButton() {
@@ -56,13 +55,13 @@ export default class RacingController {
       .value.split(',');
     nameList = nameList.map((name) => name.trim());
 
-    const error = validateCarNames(nameList);
-    if (error) {
-      return alert(error);
+    try {
+      validateCarNames(nameList);
+      this.view.activateCountForm();
+      this.model.players = nameList;
+    } catch (error) {
+      alert(error.message);
     }
-    this.view.activateCountForm();
-    this.model.players = nameList;
-    return true;
   }
 
   startRacingGame() {

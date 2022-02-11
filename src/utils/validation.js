@@ -31,29 +31,27 @@ const isBlank = (number) => {
 
 export const validateCarNames = (names) => {
   if (isContainedNull(names)) {
-    return INPUT_ERROR.NULL;
+    throw new Error(INPUT_ERROR.NULL);
   }
   if (!isValidLength(names)) {
-    return INPUT_ERROR.INVALID_LENGTH;
+    throw new Error(INPUT_ERROR.INVALID_LENGTH);
   }
   if (isDuplicated(names)) {
-    return INPUT_ERROR.DUPLICATED;
+    throw new Error(INPUT_ERROR.DUPLICATED);
   }
   if (isContainedBlank(names)) {
-    return INPUT_ERROR.CONTAINED_BLANK;
+    throw new Error(INPUT_ERROR.CONTAINED_BLANK);
   }
-  return undefined;
 };
 
 export const validateCount = (count) => {
   if (isBlank(count)) {
-    return INPUT_ERROR.COUNT_BLANK;
+    throw new Error(INPUT_ERROR.COUNT_BLANK);
   }
   if (!isNotNegative(count)) {
-    return INPUT_ERROR.COUNT_NEGATIVE;
+    throw new Error(INPUT_ERROR.COUNT_NEGATIVE);
   }
   if (!isInteger(count)) {
-    return INPUT_ERROR.COUNT_NOT_NATURAL;
+    throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
   }
-  return undefined;
 };

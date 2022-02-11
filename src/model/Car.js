@@ -1,5 +1,5 @@
 import { CAR } from '../constants/constants.js';
-import { pickRandomNumber } from '../utils/index.js';
+import RandomUtils from '../utils/random.js';
 
 export default class Car {
   constructor(name) {
@@ -8,7 +8,7 @@ export default class Car {
   }
 
   move() {
-    const randomNumber = pickRandomNumber();
+    const randomNumber = RandomUtils.pickRandomNumber();
     if (randomNumber >= CAR.MOVE_NUMBER) {
       this.position += CAR.ONE_NUMBER;
     }
