@@ -52,7 +52,7 @@ export const header = `
 `;
 
 export const directive = `
-  margin: 5px 0px;
+  margin: 7.5px 0px 0px 0px;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -71,7 +71,7 @@ export const input = `
 
   font-size: 15px;
   line-height: 24px;
-  color: ${color.color8B8B8B}
+  color: ${color.color8B8B8B};
 
   outline: none;
 `;
