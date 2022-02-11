@@ -17,20 +17,20 @@ class RacingCarGame {
   }
 
   initHandler() {
-    this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick.bind(this));
-    this.countInputField.addEventListener('click', this.onCountInputFieldClick.bind(this));
+    this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
+    this.countInputField.addEventListener('click', this.onCountInputFieldClick);
   }
 
-  onCarNameInputFieldClick(e) {
+  onCarNameInputFieldClick = (e) => {
     e.preventDefault();
     if (e.target.id === 'car-name-btn') {
       const names = splitString(e.currentTarget.querySelector('#car-name-input').value, ',');
       this.makeCars(names);
       this.view.renderCountInputForm();
     }
-  }
+  };
 
-  onCountInputFieldClick(e) {
+  onCountInputFieldClick = (e) => {
     e.preventDefault();
     if (e.target.id === 'count-btn') {
       const count = e.currentTarget.querySelector('#count-input').value;
@@ -38,16 +38,19 @@ class RacingCarGame {
         this.setCount(count);
         this.simulateGame();
         this.view.renderResults(this.cars, this.getWinners());
-        RacingCarGame.afterRenderComplete();
+        this.view.disableInputButtons();
+        this.afterRenderComplete();
       } catch (error) {
         alert(error);
       }
     }
-  }
+  };
 
-  static afterRenderComplete() {
+  afterRenderComplete() {
     const restartButton = document.querySelector('#restart-btn');
     restartButton.addEventListener('click', () => window.location.reload());
+    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
+    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
   }
 
   setCount(count) {
