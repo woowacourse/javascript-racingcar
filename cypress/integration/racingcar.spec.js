@@ -1,3 +1,5 @@
+import { DOM, ERROR_MESSAGE } from '../../src/js/constans.js';
+
 function createAlertStub() {
   const alertStub = cy.stub();
   cy.on('window:alert', alertStub);
@@ -14,11 +16,11 @@ describe('기능 요구사항', () => {
   });
 
   it('자동차 이름을 입력하고 확인 버튼을 누르면 레이스를 출력할 때 쉼표로 구분된 자동차 이름들을 같이 출력한다.', () => {
-    cy.get('#car-name-input').type(testCarNames.join(',')); // '우디,꼬재'
+    cy.get(DOM.$CAR_NAME_INPUT).type(testCarNames.join(',')); // '우디,꼬재'
 
-    cy.get('#car-name-button').click();
-    cy.get('.car-name').should('have.length', testCarNames.length);
-    cy.get('.car-name').each((name, index) => {
+    cy.get(DOM.$CAR_NAME_BUTTON).click();
+    cy.get(DOM.$CAR_NAME).should('have.length', testCarNames.length);
+    cy.get(DOM.$CAR_NAME).each((name, index) => {
       cy.wrap(name).should('have.text', testCarNames[index]);
     });
   });
@@ -33,15 +35,15 @@ describe('예외 상황', () => {
     const inputString = '여섯글자이름';
     const alertStub = createAlertStub();
 
-    cy.get('#car-name-input').type(inputString);
-    cy.get('#car-name-button')
+    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
+    cy.get(DOM.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
-          '자동차 이름은 1자 이상 5자 이하여야 합니다.'
+          ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE
         );
-        cy.get('#car-name-input').should('have.value', '');
-        cy.get('#car-name-input').should('have.focus');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -49,15 +51,15 @@ describe('예외 상황', () => {
     const inputString = ' ';
     const alertStub = createAlertStub();
 
-    cy.get('#car-name-input').type(inputString);
-    cy.get('#car-name-button')
+    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
+    cy.get(DOM.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
-          '자동차 이름은 1자 이상 5자 이하여야 합니다.'
+          ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE
         );
-        cy.get('#car-name-input').should('have.value', '');
-        cy.get('#car-name-input').should('have.focus');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -65,15 +67,15 @@ describe('예외 상황', () => {
     const racingCount = '-1';
     const alertStub = createAlertStub();
 
-    cy.get('#racing-count-input').type(racingCount);
-    cy.get('#racing-count-button')
+    cy.get(DOM.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(DOM.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
-          '1에서 10사이의 숫자를 입력해주세요.'
+          ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE
         );
-        cy.get('#racing-count-input').should('have.value', '');
-        cy.get('#racing-count-input').should('have.focus');
+        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(DOM.$RACING_COUNT_INPUT).should('have.focus');
       });
   });
 
@@ -81,15 +83,15 @@ describe('예외 상황', () => {
     const racingCount = '101';
     const alertStub = createAlertStub();
 
-    cy.get('#racing-count-input').type(racingCount);
-    cy.get('#racing-count-button')
+    cy.get(DOM.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(DOM.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
         expect(alertStub).to.be.calledWith(
-          '1에서 10사이의 숫자를 입력해주세요.'
+          ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE
         );
-        cy.get('#racing-count-input').should('have.value', '');
-        cy.get('#racing-count-input').should('have.focus');
+        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(DOM.$RACING_COUNT_INPUT).should('have.focus');
       });
   });
 
@@ -97,15 +99,13 @@ describe('예외 상황', () => {
     const inputString = '우디,우디,꼬재';
     const alertStub = createAlertStub();
 
-    cy.get('#car-name-input').type(inputString);
-    cy.get('#car-name-button')
+    cy.get(DOM.$CAR_NAME_INPUT).type(inputString);
+    cy.get(DOM.$CAR_NAME_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(
-          '중복되는 자동차 이름은 입력할 수 없습니다.'
-        );
-        cy.get('#car-name-input').should('have.value', '');
-        cy.get('#car-name-input').should('have.focus');
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 
@@ -113,13 +113,15 @@ describe('예외 상황', () => {
     const inputString = '5';
     const alertStub = createAlertStub();
 
-    cy.get('#racing-count-input').type(inputString);
-    cy.get('#racing-count-button')
+    cy.get(DOM.$RACING_COUNT_INPUT).type(inputString);
+    cy.get(DOM.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith('자동차 이름을 먼저 입력해주세요.');
-        cy.get('#racing-count-input').should('have.value', '');
-        cy.get('#car-name-input').should('have.focus');
+        expect(alertStub).to.be.calledWith(
+          ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST
+        );
+        cy.get(DOM.$RACING_COUNT_INPUT).should('have.value', '');
+        cy.get(DOM.$CAR_NAME_INPUT).should('have.focus');
       });
   });
 });

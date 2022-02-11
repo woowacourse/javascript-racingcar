@@ -1,11 +1,13 @@
+import { CAR } from './constants.js';
+
 export default class Car {
   constructor(name) {
     this.name = name;
-    this.distance = 0;
+    this.distance = CAR.INIT_DISTANCE;
   }
 
   move() {
-    this.distance += 1;
+    this.distance += CAR.STEP;
   }
 
   getRandomNumber(min, max) {
@@ -13,14 +15,17 @@ export default class Car {
   }
 
   race() {
-    const randomNumber = this.getRandomNumber(1, 9);
+    const randomNumber = this.getRandomNumber(
+      CAR.RANDOM_NUMBER_RANGE.MIN,
+      CAR.RANDOM_NUMBER_RANGE.MAX
+    );
 
-    if (randomNumber >= 4) {
+    if (randomNumber >= CAR.MOVE_FORWARD_THRESHOLD) {
       this.move();
     }
   }
 
   initDistance() {
-    this.distance = 0;
+    this.distance = CAR.INIT_DISTANCE;
   }
 }

@@ -1,43 +1,28 @@
-// - #### 자동차 이름 입력 받기
-// - 자동차 이름을 쉼표를 기준으로 구분한다.
-// - 자동차 이름 양 끝단의 공백을 제거한다.
-// - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
-
-// - #### 자동차 이름 유효성 검증하기
-// - 자동차 이름 길이가 1 이상 5 이하인지 검증한다.
-// - 자동차 이름에 중복이 있는지 검증한다.
-
-// - #### 자동차 생성하기
-// - 입력받은 자동차 이름들로 자동차를 생성한다.
-
-// - #### 레이싱 횟수 입력 받기
-// - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
-
-// - #### 레이싱 횟수 유효성 검증하기
-// - 양의 정수인지 검증한다.
-
-// - *레이싱 횟수 최대값*보다 작은지 검증한다. (임의로 10으로 정함.)
-//   레이싱 횟수 범위가 요구사항에 명시되어 있지 않았기 때문에 *레이싱 횟수 최댓값*을 100으로 정했습니다.
-
-// - #### 레이스 진행하기
-// - 입력받은 횟수만큼 레이스를 진행한다.
-// - 0에서 9 사이에서 무작위 값을 생성한다.
-// - 무작위 값이 4 이상일 경우 자동차를 전진시킨다.
-// - 마지막 레이스의 결과로 최종 우승자를 구한다.
-
-// - #### 결과 렌더링하기
-// - 우승자가 여러 명일 수 있다.
-// - 우승자가 여러 명일 경우 쉼표를 이용하여 구분한다.
-
 import Car from './Car.js';
+import {
+  ERROR_MESSAGE,
+  SELECTOR,
+  RACING_COUNT_RANGE,
+  CAR_NAME_LENGTH_RANGE,
+  DELIMETER,
+} from './constants.js';
+import TEMPLATE from './templates.js';
+
+function $(selector) {
+  return document.querySelector(selector);
+}
+
+function $all(selector) {
+  return document.querySelectorAll(selector);
+}
 
 class RacingCarGame {
   constructor() {
-    this.$app = document.querySelector('#app');
-    this.$carNameInput = document.querySelector('#car-name-input');
-    this.$carNameButton = document.querySelector('#car-name-button');
-    this.$racingCountInput = document.querySelector('#racing-count-input');
-    this.$racingCountButton = document.querySelector('#racing-count-button');
+    this.$app = $(SELECTOR.$APP);
+    this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
+    this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
+    this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
+    this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
     this.carList = [];
     this.winners = [];
   }
@@ -47,7 +32,7 @@ class RacingCarGame {
   }
 
   splitCarNames() {
-    return this.$carNameInput.value.split(',');
+    return this.$carNameInput.value.split(DELIMETER);
   }
 
   initializeInput(clearElement, focusElement = clearElement) {
@@ -56,38 +41,17 @@ class RacingCarGame {
   }
 
   renderRacingResult() {
-    document.querySelector('#racing-result').innerHTML = `
-      <ul id="result-list">
-        ${this.carList
-          .map(
-            (car) => `
-          <li class="racing-car">
-            <p class="car-name">${car.name}</p>
-            <ul class="progress-list">
-              ${'<li class="progress">⬇️️</li>'.repeat(car.distance)}
-            </ul>
-          </li>
-        `
-          )
-          .join('')}
-      </ul>
-    `;
+    $(SELECTOR.$RACING_RESULT).innerHTML = TEMPLATE.RENDER_RACING_RESULT(
+      this.carList
+    );
   }
 
   renderResult() {
-    document.querySelector('#result').innerHTML =
-      this.winners.length > 0
-        ? `
-    <h6 id="result-message">🏆 최종 우승자: <span id="winners">${this.winners.join(
-      ', '
-    )}</span> 🏆</h6>
-    <button id="restart-button">다시 시작하기</button>
-    `
-        : '';
+    $(SELECTOR.$RESULT).innerHTML = TEMPLATE.RENDER_RESULT(this.winners);
   }
 
   bindEventListener(type, selector, callback) {
-    const children = [...document.querySelectorAll(selector)];
+    const children = [...$all(selector)];
     const isTarget = (target) =>
       children.includes(target) || target.closest(selector);
 
@@ -100,28 +64,28 @@ class RacingCarGame {
   }
 
   main() {
-    this.bindEventListener('click', '#racing-count-button', () => {
+    this.bindEventListener('click', SELECTOR.$RACING_COUNT_BUTTON, () => {
       const racingCount = this.$racingCountInput.valueAsNumber;
 
       if (
         !Number.isInteger(racingCount) ||
-        racingCount <= 0 ||
-        racingCount > 10
+        racingCount <= RACING_COUNT_RANGE.MIN ||
+        racingCount > RACING_COUNT_RANGE.MAX
       ) {
-        alert('1에서 10사이의 숫자를 입력해주세요.');
+        alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
         this.initializeInput(this.$racingCountInput);
 
         return;
       }
 
       if (!this.carList.length) {
-        alert('자동차 이름을 먼저 입력해주세요.');
+        alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
         this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
         return;
       }
 
-      for (let i = 0; i < racingCount; i++) {
+      for (let i = 0; i < racingCount; i += 1) {
         this.carList.forEach((car) => car.race());
         this.renderRacingResult();
       }
@@ -134,18 +98,24 @@ class RacingCarGame {
       this.renderResult();
     });
 
-    this.bindEventListener('click', '#car-name-button', () => {
+    this.bindEventListener('click', SELECTOR.$CAR_NAME_BUTTON, () => {
       const carNameList = this.trimStringArray(this.splitCarNames());
 
-      if (!carNameList.every((name) => name.length >= 1 && name.length <= 5)) {
-        alert('자동차 이름은 1자 이상 5자 이하여야 합니다.');
+      if (
+        !carNameList.every(
+          (name) =>
+            name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
+            name.length <= CAR_NAME_LENGTH_RANGE.MAX
+        )
+      ) {
+        alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
         this.initializeInput(this.$carNameInput);
 
         return;
       }
 
       if (carNameList.length !== new Set(carNameList).size) {
-        alert('중복되는 자동차 이름은 입력할 수 없습니다.');
+        alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
         this.initializeInput(this.$carNameInput);
 
         return;
@@ -153,12 +123,10 @@ class RacingCarGame {
 
       this.carList = carNameList.map((name) => new Car(name));
 
-      console.log(this.carList);
-      document.querySelector('#result-list');
       this.renderRacingResult();
     });
 
-    this.bindEventListener('click', '#restart-button', () => {
+    this.bindEventListener('click', SELECTOR.$RESTART_BUTTON, () => {
       this.$carNameInput.value = '';
       this.$racingCountInput.value = '';
       this.$carNameInput.focus();
