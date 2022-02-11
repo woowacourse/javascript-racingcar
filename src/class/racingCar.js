@@ -1,3 +1,4 @@
+import { MAX_RANDOM_NUMBER } from '../constants/gameCondition.js';
 import { $ } from "../dom/dom.js";
 import Car from "./car.js";
 
@@ -14,7 +15,7 @@ export default class RacingCar {
     }
 
     generateRandomNumber() {
-        return Math.floor(10 * Math.random());
+        return Math.floor((MAX_RANDOM_NUMBER + 1) * Math.random());
     }
 
     generateCars() {
