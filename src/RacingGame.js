@@ -3,6 +3,7 @@ import Render from './Render.js';
 import UserInput from './UserInput.js';
 import { haveMiddleBlank, exceedMaxLength, isPositive, haveEmpty } from './validation.js';
 import { $ } from './util.js';
+import { MSG } from './constant.js';
 
 export default class RacingGame {
     constructor() {
@@ -15,9 +16,9 @@ export default class RacingGame {
     setEvent() {
         $('#car-name-submit-button').addEventListener('click', () => {
             const carNames = UserInput.getCarNames();
-            if (haveEmpty(carNames)) return alert('자동차 이름을 입력해주세요.');
-            if (haveMiddleBlank(carNames)) return alert('자동차 이름에 공백이 들어갈 수 없습니다.');
-            if (exceedMaxLength(carNames)) return alert('자동차 이름은 5자 이하입니다.');
+            if (haveEmpty(carNames)) return alert(MSG.empty_car_name);
+            if (haveMiddleBlank(carNames)) return alert(MSG.blank_car_name);
+            if (exceedMaxLength(carNames)) return alert(MSG.exceed_car_name);
 
             this.racingCars.reset();
             this.racingCars.update(carNames);
@@ -28,8 +29,8 @@ export default class RacingGame {
     initTryCntEvent() {
         $('#try-count-submit-button').addEventListener('click', () => {
             const tryCnt = UserInput.getTryCnt();
-            if (!Number.isInteger(tryCnt)) return alert('자연수를 입력해주세요.');
-            if (!isPositive(tryCnt)) return alert('양수를 입력해주세요.');
+            if (!Number.isInteger(tryCnt)) return alert(MSG.natural_number);
+            if (!isPositive(tryCnt)) return alert(MSG.positive_number);
 
             this.runGame(tryCnt);
             this.racingCars.resetSteps();

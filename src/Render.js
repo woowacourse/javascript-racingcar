@@ -1,5 +1,5 @@
 import { $ } from './util.js';
-import SCREEN_CMD from './constant.js';
+import { SCREEN_CMD } from './constant.js';
 
 export default class Render {
     static parsingStep(step) {
