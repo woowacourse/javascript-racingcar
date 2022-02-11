@@ -30,8 +30,8 @@ export function racingCountTemplate() {
 
 export function carTemplate(car) {
   return `
-      <div>${car.name}</div>
-      <div id="progress"></div> 
+    <div>${car.name}</div>
+    <div class="move-forward-arrow" data-car-name="${car.name}"></div>
   `;
 }
 

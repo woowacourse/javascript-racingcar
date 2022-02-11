@@ -1,10 +1,11 @@
-import { $ } from './common/DOMHelper.js';
+import { $, $$ } from './common/DOMHelper.js';
 import {
   carsTemplate,
   carNamesTemplate,
   headerTemplate,
   racingCountTemplate,
 } from './common/template.js';
+import { CAR } from './common/constants.js';
 
 export default class RacingCarView {
   constructor() {
@@ -47,5 +48,18 @@ export default class RacingCarView {
 
   resetRacingCountInput() {
     this.$racingCountInput.value = '';
+  }
+
+  renderMoveForwardArrow(car) {
+    const { name, moveCount } = car;
+    const carNode = this.findCarNode(name)[0];
+
+    carNode.innerText = CAR.MOVE_FORWARD_ARROW.repeat(moveCount);
+  }
+
+  findCarNode(name) {
+    const $$moveForwardArrow = $$('.move-forward-arrow');
+
+    return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
   }
 }

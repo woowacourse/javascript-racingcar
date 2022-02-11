@@ -5,6 +5,7 @@ export const BUTTON = {
 export const CAR = {
   MAX_NAME_LENGTH: 5,
   MIN_MOVE_FORWARD_CONDITION: 4,
+  MOVE_FORWARD_ARROW: '⬇️️',
 };
 
 export const COUNT = {
