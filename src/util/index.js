@@ -11,3 +11,16 @@ export const waitGame = (miliSecond) => new Promise((resolve) => setTimeout(reso
 export const resetInputElementValue = (inputElement) => {
   inputElement.value = '';
 };
+
+export const modifyElementDisplayStyle = (element, value) => {
+  element.style.display = value;
+};
+
+export const resetElementInnerText = (element) => {
+  element.innerText = '';
+};
+
+export const handleError = (message, element) => {
+  alert(message);
+  resetInputElementValue(element);
+};
