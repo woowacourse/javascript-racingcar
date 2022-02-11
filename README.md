@@ -11,6 +11,11 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+## 📖 실행 방법
+
+- dependecies 설치: `npm install`
+- Cypress 테스트: `npm test`
+
 ## 🎯 구현할 기능 목록
 
 ### Step1
