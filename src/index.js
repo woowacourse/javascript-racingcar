@@ -115,19 +115,15 @@ class RacingcarGame {
   }
 
   showWinner(winner) {
-    this.racingResult = document.querySelector(".racing-result");
-    this.racingResult.innerHTML = `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`;
-    this.racingResult.innerHTML +=
-      "<div class='restart-button'>다시 시작하기</div>";
-    this.makeDisableInput();
+    this.racingResultElement = document.querySelector(".racing-result");
+    this.racingResultElement.innerHTML = this.template.racingResult(winner);
+    this.makeDisableForm();
   }
 
-  makeDisableInput() {
-    this.carNameInput.disabled = true;
-    this.raceCountInput.disabled = true;
+  makeDisableForm() {
     this.carNameInputButton = document.querySelector(".car-name-button");
-    this.carNameInputButton.disabled = true;
     this.raceCountInputButton = document.querySelector(".race-count-button");
+    this.carNameInputButton.disabled = true;
     this.raceCountInputButton.disabled = true;
   }
 
@@ -143,11 +139,9 @@ class RacingcarGame {
     this.isCorrectRaceCount = false;
     this.racingCarsElement.innerHTML = "";
     this.racingArrowElement.innerHTML = "";
-    this.racingResult.innerHTML = "";
+    this.racingResultElement.innerHTML = "";
     this.carNameInput.value = "";
     this.raceCountInput.value = "";
-    this.carNameInput.disabled = false;
-    this.raceCountInput.disabled = false;
     this.carNameInputButton.disabled = false;
     this.raceCountInputButton.disabled = false;
     this.raceCountDisplay.style.visibility = "hidden";
@@ -157,6 +151,14 @@ class RacingcarGame {
 class Template {
   carArrow(eachcount) {
     return `<div class="racing-arrow-wrap">⬇️️</div>`.repeat(eachcount);
+  }
+
+  racingResult(winner) {
+    return `
+      <p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>
+      <br/>
+      <div class='restart-button'>다시 시작하기</div>
+    `;
   }
 }
 
