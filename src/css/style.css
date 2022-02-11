@@ -246,3 +246,19 @@
   padding-top: 10px;
   margin: auto;
 }
+
+.racing-arrow {
+  display: flex;
+}
+
+.racing-arrow-box {
+  width: 104px;
+  height: 100px;
+}
+
+.racing-arrow-wrap {
+  width: 96px;
+  height: 36px;
+  padding: 10px 40px 10px 40px;
+  margin-right: 8px;
+}

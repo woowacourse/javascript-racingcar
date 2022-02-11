@@ -5,6 +5,8 @@ class RacingcarGame {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
 
+    this.template = new Template();
+
     this.carNameForm = document.querySelector(".car-name-form");
     this.raceCountForm = document.querySelector(".race-count-form");
     this.carNameInput = document.querySelector(".car-name-input");
@@ -56,16 +58,43 @@ class RacingcarGame {
   }
 
   startGame() {
-    this.car = this.carName.map((name) => new Car(name));
+    this.carList = this.carName.map((name) => new Car(name));
     this.showCarBoxes();
+    this.countCarsMove();
+    this.showCarsMove();
+  }
+
+  countCarsMove() {
+    for (let i = 0; i < this.raceCount; i += 1) {
+      this.carList.forEach((eachCar) => {
+        eachCar.move();
+      });
+    }
+  }
+
+  showCarsMove() {
+    const racingArrowElement = document.querySelector(".racing-arrow");
+    this.carList
+      .map((car) => this.template.carArrow(car.count))
+      .map((arrowTemplate) => {
+        const wrap = document.createElement("div");
+        wrap.classList.add("racing-arrow-box");
+        wrap.innerHTML = arrowTemplate;
+        racingArrowElement.append(wrap);
+      });
   }
 
   showCarBoxes() {
     const racingCarsElement = document.querySelector(".racing-cars");
-    const carBoxesTemplate = this.car
+    racingCarsElement.innerHTML = this.carList
       .map((car) => car.carNameTemplate)
       .join("");
-    racingCarsElement.innerHTML = carBoxesTemplate;
+  }
+}
+
+class Template {
+  carArrow(eachcount) {
+    return `<div class="racing-arrow-wrap">⬇️️</div>`.repeat(eachcount);
   }
 }
 

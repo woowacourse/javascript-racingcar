@@ -6,7 +6,18 @@ class Car {
     this.carNameTemplate = this.template.carNameBox(this.carName);
   }
 
-  move() {}
+  move() {
+    if (this.canMove()) {
+      this.count += 1;
+    }
+  }
+
+  canMove() {
+    if (parseInt(Math.random() * 10) < 4) {
+      return false;
+    }
+    return true;
+  }
 }
 
 class Template {
