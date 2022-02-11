@@ -1,10 +1,10 @@
-import { $, hideDOM, showDOM } from './utils/common.js';
+import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
 
 export default class View {
   constructor() {
     this.configureDOM();
-    this.hideResult();
-    this.hideCountForm();
+    this.makeAllDOMHidden();
+    this.makeCountFormHidden();
   }
 
   configureDOM() {
@@ -18,21 +18,27 @@ export default class View {
     this.$resetButton = $('#reset-button');
   }
 
-  hideResult() {
-    hideDOM([this.$winner, this.$resetButton, this.$resultSections]);
+  makeDOMReset() {
+    this.makeAllDOMHidden();
+    this.makeCountFormHidden();
+    this.clearInput();
   }
 
-  showResult() {
-    showDOM([this.$winner, this.$resetButton], 'block');
-    showDOM([this.$resultSections], 'flex');
+  makeAllDOMVisible() {
+    makeDOMVisible([this.$winner, this.$resetButton], 'block');
+    makeDOMVisible([this.$resultSections], 'flex');
   }
 
-  hideCountForm() {
-    hideDOM([this.$countSubmitContainer]);
+  makeAllDOMHidden() {
+    makeDOMHidden([this.$winner, this.$resetButton, this.$resultSections]);
   }
 
-  showCountForm() {
-    showDOM([this.$countSubmitContainer], 'block');
+  makeCountFormHidden() {
+    makeDOMHidden([this.$countSubmitContainer]);
+  }
+
+  makeCountFormVisible() {
+    makeDOMVisible([this.$countSubmitContainer], 'block');
   }
 
   setOnSubmitName(fn) {
@@ -51,7 +57,7 @@ export default class View {
 
   setOnClickReset(fn) {
     this.$resetButton.addEventListener('click', () => {
-      this.clearInput();
+      this.makeDOMReset();
       fn();
     });
   }
@@ -82,6 +88,11 @@ export default class View {
 
   winnerUpdate(winnerList) {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
-    this.showResult();
+  }
+
+  showAllResult(carList, winnerList) {
+    this.resultUpdate(carList);
+    this.winnerUpdate(winnerList);
+    this.makeAllDOMVisible();
   }
 }

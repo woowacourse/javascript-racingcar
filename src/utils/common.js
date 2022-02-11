@@ -4,10 +4,10 @@ export const trimInArray = (array) => {
   return array.map((element) => element.trim());
 };
 
-export const hideDOM = (array) => {
+export const makeDOMHidden = (array) => {
   array.forEach((element) => (element.style.display = 'none'));
 };
 
-export const showDOM = (array, type) => {
+export const makeDOMVisible = (array, type) => {
   array.forEach((element) => (element.style.display = type));
 };

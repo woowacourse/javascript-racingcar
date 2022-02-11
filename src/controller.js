@@ -21,7 +21,7 @@ export default class Controller {
     try {
       const carNamesArray = trimInArray(carNames.split(','));
       validateNameInput(carNamesArray);
-      this.view.showCountForm();
+      this.view.makeCountFormVisible();
       this.model.saveCarList(this.makeCars(carNamesArray));
     } catch (error) {
       alert(error.message);
@@ -37,8 +37,7 @@ export default class Controller {
       const { carList } = this.model;
       validateCountInput(count);
       this.model.startRace(count);
-      this.view.resultUpdate(carList);
-      this.view.winnerUpdate(this.makeWinner(carList));
+      this.view.showAllResult(carList, this.makeWinner(carList));
     } catch (error) {
       alert(error.message);
     }
@@ -46,8 +45,6 @@ export default class Controller {
 
   onClickReset() {
     this.model.resetCarList();
-    this.view.hideResult();
-    this.view.hideCountForm();
   }
 
   makeWinner(carList) {
