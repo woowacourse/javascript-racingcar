@@ -47,7 +47,7 @@ export default class RacingCar {
                 <div>${this.renderOneCarContent(car.successCount)}</div>
                 </div>
             `;
-        })
+        });
         $('.racing-content').innerHTML = racingResult;
     }
 
@@ -77,6 +77,6 @@ export default class RacingCar {
     onRestartButtonClick(){
         $('.restart-button').addEventListener('click', () =>{
             location.reload();
-        })
+        });
     }
 }

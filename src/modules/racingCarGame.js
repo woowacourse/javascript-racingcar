@@ -19,7 +19,7 @@ export default function racingCarGame() {
             if(!!checkUserCarNameInput($('#car-name-input').value)){
                 renderRaceGameCountElement();
             }
-        })
+        });
     };
     
     const renderRaceGameCountElement = () => {
@@ -37,6 +37,6 @@ export default function racingCarGame() {
                 const racingCar = new RacingCar(carNameArray, raceCount);
                 racingCar.gameStart();
             }
-        })
+        });
     };
 }
