@@ -1,4 +1,4 @@
-import racingCarGame from "./modules/racingCarGame.js";
+import RacingCarGame from "./modules/racingCarGame.js";
 
-const game = new racingCarGame();
+const game = new RacingCarGame();
 game.init();
