@@ -1,3 +1,5 @@
+import { MESSAGE, ID } from '../../../src/constants';
+
 const checkAlertMessage = message => {
   cy.on('window:alert', str => {
     expect(str).to.equal(message);
@@ -5,13 +7,13 @@ const checkAlertMessage = message => {
 };
 
 const inputCarNames = names => {
-  cy.get('#car-names-input').type(names);
-  cy.get('#car-names-submit').click();
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(names);
+  cy.get(`#${ID.CAR_NAMES_SUBMIT}`).click();
 };
 
 const inputRacingCount = count => {
-  cy.get('#racing-count-input').type(count);
-  cy.get('#racing-count-submit').click();
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(count);
+  cy.get(`#${ID.RACING_COUNT_SUBMIT}`).click();
 };
 
 const names = ['june', 'poco'];
@@ -35,11 +37,11 @@ describe('자동차 경주 게임', () => {
   });
 
   it('다시 시작하기 버튼을 클릭한다.', () => {
-    cy.get('#restart-button').click();
-    cy.get('#car-names-input').should('have.value', '');
-    cy.get('#racing-count-input').should('have.value', '');
-    cy.get('#racing-status').should('be.empty');
-    cy.get('#racing-winners').should('be.empty');
+    cy.get(`#${ID.RESTART_BUTTON}`).click();
+    cy.get(`#${ID.CAR_COUNTS_INPUT}`).should('have.value', '');
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).should('have.value', '');
+    cy.get(`#${ID.RACING_STATUS}`).should('be.empty');
+    cy.get(`#${ID.RACING_WINNERS}`).should('be.empty');
   });
 });
 
@@ -50,40 +52,40 @@ describe('에러 처리를 한다', () => {
 
   it('입력한 이름이 5글자 초과일 경우 alert가 뜬다.', () => {
     inputCarNames('jun,dddddd');
-    checkAlertMessage('1~5자의 자동차 이름을 입력해 주세요.');
+    checkAlertMessage(MESSAGE.WRONG_NAME_LENGTH);
   });
 
   it('입력한 이름이 중복될 경우 alert가 뜬다.', () => {
     inputCarNames('jun,jun');
-    checkAlertMessage('중복된 자동차 이름은 입력이 불가능합니다.');
+    checkAlertMessage(MESSAGE.DUPLICATE_NAME);
   });
 
   it('입력한 이름이 1글자 미만이면 alert가 뜬다', () => {
     inputCarNames('jun,,');
-    checkAlertMessage('1~5자의 자동차 이름을 입력해 주세요.');
+    checkAlertMessage(MESSAGE.WRONG_NAME_LENGTH);
   });
 
   it('이름 입력 후 재입력은 불가능하다.', () => {
     inputCarNames('jun,poco');
     inputCarNames('june,poco');
-    checkAlertMessage('이름 재입력이 불가능합니다');
+    checkAlertMessage(MESSAGE.REINPUT_NAME);
   });
 
   it('레이싱 횟수 입력 후 재입력은 불가능하다.', () => {
     inputCarNames('jun,poco');
     inputRacingCount(1);
     inputRacingCount(1);
-    checkAlertMessage('레이싱 횟수 재입력이 불가능합니다.');
+    checkAlertMessage(MESSAGE.REINPUT_COUNT);
   });
 
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {
     inputRacingCount(1);
-    checkAlertMessage('자동차 이름이 입력되지 않았습니다.');
+    checkAlertMessage(MESSAGE.NO_CAR);
   });
 
   it('입력한 레이싱 횟수가 1 미만이면 alert가 뜬다', () => {
     inputCarNames('june, poco');
     inputRacingCount(0);
-    checkAlertMessage('올바르지 않은 레이싱 횟수입니다');
+    checkAlertMessage(MESSAGE.WRONG_COUNT);
   });
 });

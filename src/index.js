@@ -1,4 +1,6 @@
 import Car from './Car.js';
+import { ID, MESSAGE } from './constants.js';
+import { getElement } from './utils/dom.js';
 
 class CarRacing {
   constructor() {
@@ -8,31 +10,25 @@ class CarRacing {
   }
 
   bindEvents() {
-    document.querySelector('#input-forms').addEventListener('keyup', event => {
+    getElement(ID.INPUT_FORMS).addEventListener('keyup', event => {
       if (event.key !== 'Enter') return;
-      if (document.activeElement.id === 'car-names-input') {
-        this.onSubmitCarName(document.querySelector('#car-names-input').value);
+      if (document.activeElement.id === ID.CAR_COUNTS_INPUT) {
+        this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
         return;
       }
-      this.onSubmitRacingCount(
-        document.querySelector('#racing-count-input').value,
-      );
+      this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
     });
 
-    document.querySelector('#app').addEventListener('click', ({ target }) => {
+    getElement(ID.APP).addEventListener('click', ({ target }) => {
       const targetId = target.id;
       const buttonIds = {
-        'car-names-submit': () => {
-          this.onSubmitCarName(
-            document.querySelector('#car-names-input').value,
-          );
+        [ID.CAR_NAMES_SUBMIT]: () => {
+          this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
         },
-        'racing-count-submit': () => {
-          this.onSubmitRacingCount(
-            document.querySelector('#racing-count-input').value,
-          );
+        [ID.RACING_COUNT_SUBMIT]: () => {
+          this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
         },
-        'restart-button': () => {
+        [ID.RESTART_BUTTON]: () => {
           this.onClickRestart();
         },
       };
@@ -43,40 +39,38 @@ class CarRacing {
 
   onSubmitCarName(names) {
     if (this.participants.length) {
-      return alert('이름 재입력이 불가능합니다');
+      return alert(MESSAGE.REINPUT_NAME);
     }
     const carNames = this.parseCarName(names);
     if (!this.validateCarNameLength(carNames)) {
-      return alert('1~5자의 자동차 이름을 입력해 주세요.');
+      return alert(MESSAGE.WRONG_NAME_LENGTH);
     }
     if (!this.validateDuplicateCarName(carNames)) {
-      return alert('중복된 자동차 이름은 입력이 불가능합니다.');
+      return alert(MESSAGE.DUPLICATE_NAME);
     }
     this.participants = carNames.map(name => new Car(name));
   }
 
   onSubmitRacingCount(count) {
-    if (this.winners.length) return alert('레이싱 횟수 재입력이 불가능합니다.');
-    if (!this.participants.length)
-      return alert('자동차 이름이 입력되지 않았습니다.');
-    if (!this.validateRacingCount(count))
-      return alert('올바르지 않은 레이싱 횟수입니다');
+    if (this.winners.length) return alert(MESSAGE.REINPUT_COUNT);
+    if (!this.participants.length) return alert(MESSAGE.NO_CAR);
+    if (!this.validateRacingCount(count)) return alert(MESSAGE.WRONG_COUNT);
     this.participants.map(car => {
       for (let i = 0; i < count; i++) {
         car.move();
       }
     });
-    document.querySelector('#racing-status').innerHTML = this.printResult();
-    document.querySelector('#racing-winners').innerHTML = this.printWinner(
+    getElement(ID.RACING_STATUS).innerHTML = this.printResult();
+    getElement(ID.RACING_WINNERS).innerHTML = this.printWinner(
       this.getWinner(),
     );
   }
 
   onClickRestart() {
-    document.querySelector('#car-names-input').value = '';
-    document.querySelector('#racing-count-input').value = '';
-    document.querySelector('#racing-winners').innerHTML = '';
-    document.querySelector('#racing-status').innerHTML = '';
+    getElement(ID.CAR_NAMES_INPUT).value = '';
+    getElement(ID.RACING_COUNT_INPUT).value = '';
+    getElement(ID.RACING_WINNERS).innerHTML = '';
+    getElement(ID.RACING_STATUS).innerHTML = '';
     this.participants = [];
     this.winners = [];
   }
