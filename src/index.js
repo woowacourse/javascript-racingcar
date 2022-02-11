@@ -1,9 +1,12 @@
 import { ERROR_MESSAGES, ID, RULES } from './constants/index.js';
 import { convertToNumber, isNotNaturalNumber } from './util/index.js';
+import Car from './model/Car.js';
 
 class RacingCar {
   constructor() {
     this.init();
+    this.racingCarList = [];
+    this.racingCount = 0;
   }
 
   init() {
@@ -55,6 +58,8 @@ class RacingCar {
       return;
     }
 
+    this.racingCarList = carNamesArray.map((carName) => new Car(carName));
+
     this.$racingCountForm.style.display = 'block';
   }
 
@@ -81,6 +86,8 @@ class RacingCar {
       this.resetInputElementValue(this.$racingCountInput);
       return;
     }
+
+    this.racingCount = racingCountNumber;
   }
 }
 
