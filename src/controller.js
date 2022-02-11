@@ -29,14 +29,13 @@ export default class Controller {
   }
 
   makeCars(carNamesArray) {
-    const carList = carNamesArray.map((carName) => new Car(carName));
-    return carList;
+    return carNamesArray.map((carName) => new Car(carName));
   }
 
   onSubmitCount(count) {
     try {
       const { carList } = this.model;
-      validateCountInput(Number(count));
+      validateCountInput(count);
       this.model.startRace(count);
       this.view.resultUpdate(carList);
       this.view.winnerUpdate(this.makeWinner(carList));

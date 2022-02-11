@@ -1,4 +1,4 @@
-import { $ } from './utils/common.js';
+import { $, hideDOM, showDOM } from './utils/common.js';
 
 export default class View {
   constructor() {
@@ -18,44 +18,34 @@ export default class View {
     this.$resetButton = $('#reset-button');
   }
 
-  hideDOM(array) {
-    array.forEach((element) => (element.style.display = 'none'));
-  }
-
-  showDOM(array, type) {
-    array.forEach((element) => (element.style.display = type));
-  }
-
   hideResult() {
-    this.hideDOM([this.$winner, this.$resetButton, this.$resultSections]);
+    hideDOM([this.$winner, this.$resetButton, this.$resultSections]);
   }
 
   showResult() {
-    this.showDOM([this.$winner, this.$resetButton], 'block');
-    this.showDOM([this.$resultSections], 'flex');
+    showDOM([this.$winner, this.$resetButton], 'block');
+    showDOM([this.$resultSections], 'flex');
   }
 
   hideCountForm() {
-    this.hideDOM([this.$countSubmitContainer]);
+    hideDOM([this.$countSubmitContainer]);
   }
 
   showCountForm() {
-    this.showDOM([this.$countSubmitContainer], 'block');
+    showDOM([this.$countSubmitContainer], 'block');
   }
 
   setOnSubmitName(fn) {
     this.$nameButton.addEventListener('click', (event) => {
       event.preventDefault();
-      const carNames = this.$nameInput.value;
-      fn(carNames);
+      fn(this.$nameInput.value);
     });
   }
 
   setOnSubmitCount(fn) {
     this.$countButton.addEventListener('click', (event) => {
       event.preventDefault();
-      const count = this.$countInput.value;
-      fn(count);
+      fn(Number(this.$countInput.value));
     });
   }
 
@@ -74,17 +64,20 @@ export default class View {
   resultUpdate(carList) {
     let template = '';
     carList.forEach((car) => {
-      const eachResult = `
-        <div class="result-section">
-          <span class="result-section__name">${car.name}</span>
-          <ul class="result-section__arrows">
-            ${'<li class="result-section__arrow">⬇️️</li>'.repeat(car.step)}
-          </ul>
-        </div>
-      `;
-      template += eachResult;
+      template += this.generateResultSectionDOM(car);
     });
     this.$resultSections.innerHTML = template;
+  }
+
+  generateResultSectionDOM(car) {
+    return `
+    <div class="result-section">
+      <span class="result-section__name">${car.name}</span>
+      <ul class="result-section__arrows">
+        ${'<li class="result-section__arrow">⬇️️</li>'.repeat(car.step)}
+      </ul>
+    </div>
+  `;
   }
 
   winnerUpdate(winnerList) {
