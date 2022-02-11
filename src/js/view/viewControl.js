@@ -8,7 +8,7 @@ import {
   racingWinnerArea,
   racingWinnerText,
   restartButton,
-} from "../../util/elements.js";
+} from "../util/elements.js";
 
 export const makeInitialView = () => {
   carNamesInput.value = "";

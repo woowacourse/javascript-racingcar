@@ -1,6 +1,6 @@
 import Car from "../../model/Car.js";
 import { isDuplicateName, isValidLength } from "./checkFunctions.js";
-import { showRacingCountArea } from "../../view/util/viewControl.js";
+import { showRacingCountArea } from "../../view/viewControl.js";
 import { EVENT, EXCEPTIONS } from "../../util/constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
 

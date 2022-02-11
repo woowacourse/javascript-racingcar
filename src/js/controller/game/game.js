@@ -1,6 +1,6 @@
-import { setResultArea } from "../../view/resultView.js";
-import { showWinnerAndRestartButton } from "../../view/util/viewControl.js";
-import { setWinnerText } from "../../view/winnerView.js";
+import { setResultArea } from "../../view/resultViewControl.js";
+import { showWinnerAndRestartButton } from "../../view/viewControl.js";
+import { setWinnerText } from "../../view/winnerViewControl.js";
 
 export default class Game {
   static startGame(cars, racingCount) {

@@ -1,5 +1,5 @@
 import { racingResultArea } from "../util/elements.js";
-import { showRacingResultArea } from "./util/viewControl.js";
+import { showRacingResultArea } from "./viewControl.js";
 
 export const setResultArea = cars => {
   showRacingResultArea();
