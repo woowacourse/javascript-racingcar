@@ -1,6 +1,6 @@
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:49191/');
+    cy.visit('http://localhost:63022/');
   });
 
   it('자동차 이름을 올바르게 입력한다.', () => {
@@ -77,7 +77,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   };
 
   beforeEach(() => {
-    cy.visit('http://localhost:49191/');
+    cy.visit('http://localhost:63022/');
     triggerCarNameSubmitEvent();
   });
 
@@ -119,5 +119,31 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith('시도할 횟수는 자연수를 입력해야 한다.');
       });
+  });
+});
+
+describe('자동차 경주 진행 상황 기능 테스트', () => {
+  const triggerCarNameSubmitEvent = () => {
+    cy.get('#car_names_input').type('east, west, south, north, all');
+    cy.get('.input_btn').eq(0).click();
+  };
+
+  const triggerRacingCountSubmitEvent = () => {
+    cy.get('#racing_count_input').type(5);
+    cy.get('.input_btn').eq(1).click();
+  };
+
+  beforeEach(() => {
+    cy.visit('http://localhost:63022/');
+    triggerCarNameSubmitEvent();
+    triggerRacingCountSubmitEvent();
+  });
+
+  it('자동차 이름이 올바르게 렌더링되는지 확인한다.', () => {
+    cy.get('.racing_car_name').eq(0).should('have.text', 'east');
+    cy.get('.racing_car_name').eq(1).should('have.text', 'west');
+    cy.get('.racing_car_name').eq(2).should('have.text', 'south');
+    cy.get('.racing_car_name').eq(3).should('have.text', 'north');
+    cy.get('.racing_car_name').eq(4).should('have.text', 'all');
   });
 });
