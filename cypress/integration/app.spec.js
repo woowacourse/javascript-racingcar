@@ -1,14 +1,14 @@
+import { ID, CLASS, winnerMesssage } from "../../src/js/utils/constants.js";
+
 const invalidInputNames = "east,west,south,north,jasmin";
 const inputNames = "east,west,south,north";
-
-const alertStub = cy.stub();
-cy.on("window:alert", alertStub);
+const racingCount = 5;
 
 const inputCarName = (name) => {
-  cy.get("#car-names-input").type(name);
+  cy.get(`#${ID.CAR_NAME_INPUT}`).type(name);
 };
 const clickCarName = () => {
-  cy.get("#car-names-button").click();
+  cy.get(`#${ID.CAR_NAME_BUTTON}`).click();
 };
 const submitCarName = (name) => {
   inputCarName(name);
@@ -16,11 +16,11 @@ const submitCarName = (name) => {
 };
 
 const inputRacingCount = (count) => {
-  cy.get("#racing-count-input").type(count);
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(count);
 };
 
 const clickRacingCount = () => {
-  cy.get("#racing-count-button").click();
+  cy.get(`#${ID.RACING_COUNT_BUTTON}`).click();
 };
 
 const submitRacingCount = (count) => {
@@ -34,8 +34,10 @@ describe("자동차 이름", () => {
   });
 
   it("자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.", () => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
     inputCarName(invalidInputNames);
-    cy.get("#car-names-button")
+    cy.get(`#${ID.CAR_NAME_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -45,8 +47,8 @@ describe("자동차 이름", () => {
   it("자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.", () => {
     const splitedNames = inputNames.split(",");
     submitCarName(inputNames);
-    submitRacingCount(3);
-    cy.get(".car-name").each((racingResult, idx) => {
+    submitRacingCount(racingCount);
+    cy.get(`.${CLASS.CAR_NAME}`).each((racingResult, idx) => {
       expect(racingResult.text()).to.equal(splitedNames[idx]);
     });
   });
@@ -59,13 +61,15 @@ describe("시도 횟수", () => {
 
   it("사용자는 몇번의 이동을 할것인지 입력할수 있어야 한다", () => {
     submitCarName(inputNames);
-    submitRacingCount(3);
-    cy.get(".racing-result").should("exist");
+    submitRacingCount(racingCount);
+    cy.get(`.${CLASS.RACING_RESULT}`).should("exist");
   });
 
   it("자동차 경주 횟수를 아무것도 입력하지 않은 경우 경고창을 띄운다.", () => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
     submitCarName(inputNames);
-    cy.get("#racing-count-button")
+    cy.get(`#${ID.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -80,24 +84,24 @@ describe("우승자 출력 테스트", () => {
 
   it("자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다, 우승자가 2명이상인 경우 , 로 구분한다", () => {
     submitCarName(inputNames);
-    submitRacingCount(5);
+    submitRacingCount(racingCount);
 
     let max = -1;
-    cy.get(".racing-result").each((racingResult) => {
+    cy.get(`.${CLASS.RACING_RESULT}`).each((racingResult) => {
       max = Math.max(max, racingResult.children().length);
     });
 
     const winners = [];
-    cy.get(".racing-result")
+    cy.get(`.${CLASS.RACING_RESULT}`)
       .each((racingResult) => {
         if (max === racingResult.children().length) {
           winners.push(racingResult.find(".car-name").text());
         }
       })
       .then(() => {
-        cy.get(".winners").should(
+        cy.get(`.${CLASS.WINNERS}`).should(
           "have.text",
-          `🏆 최종 우승자: ${winners.join(", ")} 🏆`
+          `${winnerMesssage(winners.join(", "))}`
         );
       });
   });

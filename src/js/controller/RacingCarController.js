@@ -1,6 +1,9 @@
 import RacingCarModel from "../models/RacingCarModel.js";
 import RacingCarView from "../view/RacingCarView.js";
 
+import { $ } from "../utils/selector.js";
+import { ID } from "../utils/constants.js";
+
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
@@ -12,22 +15,18 @@ export default class RacingCarController {
   };
 
   bindEvent = () => {
-    document
-      .querySelector("#car-names-input")
+    $(ID.CAR_NAME_INPUT)
       .closest("form")
       .addEventListener("submit", this.submitCarNamesHandler);
-    document
-      .querySelector("#racing-count-input")
+    $(ID.RACING_COUNT_INPUT)
       .closest("form")
       .addEventListener("submit", this.submitRacingCountHandler);
-    document
-      .querySelector("#result")
-      .addEventListener("click", this.clickReplayButtonHandler);
+    $(ID.RESULT).addEventListener("click", this.clickReplayButtonHandler);
   };
 
   submitCarNamesHandler = (e) => {
     e.preventDefault();
-    const carNames = document.querySelector("#car-names-input").value;
+    const carNames = $(ID.CAR_NAME_INPUT).value;
     try {
       this.model.setCars(carNames);
       this.view.disableCarName();
@@ -39,7 +38,7 @@ export default class RacingCarController {
 
   submitRacingCountHandler = (e) => {
     e.preventDefault();
-    const racingCount = document.querySelector("#racing-count-input").value;
+    const racingCount = $(ID.RACING_COUNT_INPUT).value;
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
@@ -51,7 +50,7 @@ export default class RacingCarController {
   };
 
   clickReplayButtonHandler = (e) => {
-    if (e.target.id !== "replay-button") {
+    if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
     this.model.resetGameStatus();

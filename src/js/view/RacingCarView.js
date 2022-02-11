@@ -1,11 +1,14 @@
+import { $ } from "../utils/selector.js";
+import { ID, CLASS, winnerMesssage } from "../utils/constants.js";
+
 export default class RacingCarView {
   constructor() {
     this.result = [];
-    this.$result = document.querySelector("#result");
-    this.$carNameInput = document.querySelector("#car-names-input");
-    this.$racingCountInput = document.querySelector("#racing-count-input");
-    this.$carNameButton = document.querySelector("#car-names-button");
-    this.$racingCountButton = document.querySelector("#racing-count-button");
+    this.$result = $(ID.RESULT);
+    this.$carNameInput = $(ID.CAR_NAME_INPUT);
+    this.$racingCountInput = $(ID.RACING_COUNT_INPUT);
+    this.$carNameButton = $(ID.CAR_NAME_BUTTON);
+    this.$racingCountButton = $(ID.RACING_COUNT_BUTTON);
   }
 
   setResult = (result) => {
@@ -18,13 +21,15 @@ export default class RacingCarView {
 
   makeResultTemplate = () => {
     const template = `
-      <div class="racing-results">
+      <div class="${CLASS.RACING_RESULTS}">
         ${this.result
           .map(
             (result) =>
-              `<div class="racing-result">
-                <div class="car-name">${result.name}</div> 
-                ${"<div class=arrow>⬇️️</div>".repeat(result.forward)}
+              `<div class="${CLASS.RACING_RESULT}">
+                <div class="${CLASS.CAR_NAME}">${result.name}</div> 
+                ${`<div class="${CLASS.ARROW}">⬇️️</div>`.repeat(
+                  result.forward
+                )}
               </div>`
           )
           .join("")}
@@ -43,7 +48,7 @@ export default class RacingCarView {
   makeWinnersTemplate = (winners) => {
     const template = ` 
       <div>
-        <h3 class="winners">🏆 최종 우승자: ${winners} 🏆</h3>
+        <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
       </div>
     `;
     return template;
@@ -58,7 +63,7 @@ export default class RacingCarView {
 
   makeReplayButtonTemplate = () => {
     const template = `
-      <button class="btn replay-btn" id="replay-button">다시 시작하기</button>
+      <button class="${CLASS.BTN} ${CLASS.REPLAY_BTN}" id="${ID.REPLAY_BUTTON}">다시 시작하기</button>
     `;
     return template;
   };

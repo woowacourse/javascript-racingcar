@@ -1,32 +1,39 @@
+import {
+  EMPTY_NUMBER,
+  VALID_MAX_NUMBER,
+  INIT_RACING_COUNT,
+  FORWARD_STANDARD_NUMBER,
+  ALERT_MESSAGE,
+} from "../utils/constants.js";
 import { generateRandomNumber } from "../utils/random.js";
 import Car from "./Car.js";
 
 export default class RacingCarModel {
   constructor() {
     this.cars = [];
-    this.racingCount = 0;
+    this.racingCount = INIT_RACING_COUNT;
   }
 
   setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
     if (this.hasSpaceInName(splitedCarNames)) {
-      throw new Error("이름에 공백이 포함되어있습니다");
+      throw new Error(ALERT_MESSAGE.HAS_EMPTY_NAME_ERROR);
     }
     if (this.isDuplicatedCarName(splitedCarNames)) {
-      throw new Error("이름이 중복되었습니다");
+      throw new Error(ALERT_MESSAGE.DUPLICATED_NAME_ERROR);
     }
     if (this.isEmptyName(splitedCarNames)) {
-      throw new Error("이름은 공백이 될수없습니다");
+      throw new Error(ALERT_MESSAGE.EMPTY_NAME_ERROR);
     }
     if (this.hasInValidNameLength(splitedCarNames)) {
-      throw new Error("이름은 5자가 넘어갈 수 없습니다.");
+      throw new Error(ALERT_MESSAGE.HAS_INVALID_NAME_LENGTH_ERROR);
     }
     this.cars = splitedCarNames.map((name) => new Car(name));
   };
 
   setRacingCount = (count) => {
     if (this.isEmptyRacingCount(count)) {
-      throw new Error("숫자를 입력해주세요");
+      throw new Error(ALERT_MESSAGE.EMPTY_COUNT_ERROR);
     }
     this.racingCount = count;
   };
@@ -43,7 +50,7 @@ export default class RacingCarModel {
   };
 
   race = (car) => {
-    if (generateRandomNumber() >= 4) {
+    if (generateRandomNumber() >= FORWARD_STANDARD_NUMBER) {
       car.move();
     }
   };
@@ -59,19 +66,20 @@ export default class RacingCarModel {
 
   resetGameStatus = () => {
     this.cars = [];
-    this.racingCount = 0;
+    this.racingCount = INIT_RACING_COUNT;
   };
 
   splitCarNames = (carNames) => carNames.split(",");
 
-  hasInValidNameLength = (names) => names.some((name) => name.length > 5);
+  hasInValidNameLength = (names) =>
+    names.some((name) => name.length > VALID_MAX_NUMBER);
 
   hasSpaceInName = (names) =>
     names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
 
   isDuplicatedCarName = (names) => names.length !== new Set(names).size;
 
-  isEmptyName = (names) => names.some((name) => name.length === 0);
+  isEmptyName = (names) => names.some((name) => name.length === EMPTY_NUMBER);
 
   isEmptyRacingCount = (count) => !count;
 }
