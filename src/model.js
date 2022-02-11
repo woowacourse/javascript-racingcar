@@ -1,3 +1,5 @@
+import { NUMBER } from "./utils/constants.js"
+
 export default class Model {
   carList = [];
 
@@ -13,7 +15,7 @@ export default class Model {
   }
 
   resetAllCarStep() {
-    this.carList.forEach((car) => (car.step = 0));
+    this.carList.forEach((car) => (car.step = NUMBER.INITIAL_STEP));
   }
 
   resetCarList() {

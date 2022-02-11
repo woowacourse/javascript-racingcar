@@ -1,11 +1,11 @@
-import { ERROR, MAX_LENGTH } from './constants.js';
+import { ERROR, NUMBER } from './constants.js';
 
 export const validateNameInput = (nameList) => {
   if (!nameList) {
     throw new Error(ERROR.EMPTY_INPUT);
   }
   nameList.forEach((name) => {
-    if (name.length > MAX_LENGTH) {
+    if (name.length > NUMBER.MAX_LENGTH) {
       throw new Error(ERROR.LONG_LENGTH);
     }
     if (!name.trim()) {
@@ -18,7 +18,7 @@ export const validateNameInput = (nameList) => {
 };
 
 export const validateCountInput = (count) => {
-  if (count < 1) {
+  if (count < NUMBER.MIN_NUMBER) {
     throw new Error(ERROR.UNDER_MIN_NUMBER);
   }
   if (count !== Math.floor(count)) {
