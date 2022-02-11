@@ -7,6 +7,11 @@ export default class RacingCarModel {
     this.racingCount = COUNT.DEFAULT;
   }
 
+  init() {
+    this.cars = [];
+    this.racingCount = COUNT.DEFAULT;
+  }
+
   setCars(carNames) {
     this.cars = carNames.map((name) => new Car(name));
   }

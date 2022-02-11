@@ -26,6 +26,10 @@ export default class RacingCarController {
     this.view.$racingCountSubmit.addEventListener('click', this.handleRacingCount.bind(this));
   }
 
+  attachRestartEvents() {
+    this.view.$restart.addEventListener('click', this.handleRestart.bind(this));
+  }
+
   handleCarNames(event) {
     event.preventDefault();
 
@@ -53,6 +57,9 @@ export default class RacingCarController {
       this.race(racingCount);
       this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
       this.view.renderWinners(this.model.getWinnners());
+      this.view.renderRestart();
+      this.view.selectRestartDOM();
+      this.attachRestartEvents();
     } else {
       alert('양의 정수가 아닙니다');
       this.view.resetRacingCountInput();
@@ -63,5 +70,10 @@ export default class RacingCarController {
     for (let i = 0; i < racingCount; i += 1) {
       this.model.cars.forEach((car) => car.moveForward());
     }
+  }
+
+  handleRestart() {
+    this.view.renderInit();
+    this.model.init();
   }
 }

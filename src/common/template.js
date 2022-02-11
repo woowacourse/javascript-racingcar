@@ -14,6 +14,7 @@ export function carNamesTemplate() {
       <button id="car-names-submit">${BUTTON.SUBMIT}</button>
     </div>
     <div id="racing-count"></div>
+    <div id="game-result"></div>
   `;
 }
 
@@ -24,7 +25,6 @@ export function racingCountTemplate() {
       <input type="number" id="racing-count-input"></input>
       <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
     </div>
-    <div id="game-result"></div>
   `;
 }
 

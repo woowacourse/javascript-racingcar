@@ -4,6 +4,7 @@ import {
   carNamesTemplate,
   headerTemplate,
   racingCountTemplate,
+  restartTemplate,
   winnersTemplate,
 } from './common/template.js';
 import { CAR } from './common/constants.js';
@@ -43,6 +44,10 @@ export default class RacingCarView {
     this.$racingCountSubmit = $('#racing-count-submit');
   }
 
+  selectRestartDOM() {
+    this.$restart = $('#restart');
+  }
+
   resetCarNamesInput() {
     this.$carNamesInput.value = '';
   }
@@ -68,5 +73,20 @@ export default class RacingCarView {
     const $gameResult = $('#game-result');
 
     $gameResult.innerHTML += winnersTemplate(winners);
+  }
+
+  renderRestart() {
+    const $gameResult = $('#game-result');
+
+    $gameResult.innerHTML += restartTemplate();
+  }
+
+  renderInit() {
+    this.resetCarNamesInput();
+
+    const $racingCount = $('#racing-count');
+    const $gameResult = $('#game-result');
+    $racingCount.innerHTML = '';
+    $gameResult.innerHTML = '';
   }
 }
