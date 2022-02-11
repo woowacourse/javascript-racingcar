@@ -21,11 +21,11 @@
         </section>
         <section class="mb-5">
           <div class="d-flex">
-            <input type="text" class="w-100 mr-2" placeholder="ex) east, west, south, north, all" />
-            <button type="button" class="btn btn-cyan">확인</button>
+            <input id="car-names-input" type="text" class="w-100 mr-2" placeholder="ex) east, west, south, north, all" />
+            <button id="car-names-button" type="button" class="btn btn-cyan">확인</button>
           </div>
         </section>
-        <section>
+        <section id="racing-count-form" hidden>
           <p>시도할 횟수를 입력해주세요.</p>
           <div class="d-flex">
             <input type="number" class="w-100 mr-2" placeholder="시도 횟수" />
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center mt-5">
-      <section class="mt-4">
+      <section class="mt-4" hidden>
         <div class="d-flex">
           <div class="mr-2">
             <div class="car-player">east</div>
@@ -49,7 +49,7 @@
       </section>
     </div>
     <div class="d-flex justify-content-center mt-5">
-      <section>
+      <section hidden>
         <h2>🏆 최종 우승자: east, west 🏆</h2>
         <div class="d-flex justify-content-center">
           <button id="reset-btn" type="button" class="btn btn-cyan">다시 시작하기</button>
@@ -57,6 +57,7 @@
       </section>
     </div>
   </div>
+  <script type="module" src="./src/js/index.js"></script>
 </body>
 
 </html>
