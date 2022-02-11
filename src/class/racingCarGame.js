@@ -1,7 +1,7 @@
-import RacingCar from "../class/racingCar.js";
+import RacingCar from "./racingCar.js";
 import { $ } from "../dom/dom.js";
-import checkUserCarNameInput from "./checkUserCarNameInput.js";
-import checkUserRacingCountInput from "./checkUserRacingCountInput.js";
+import checkUserCarNameInput from "../modules/checkUserCarNameInput.js";
+import checkUserRacingCountInput from "../modules/checkUserRacingCountInput.js";
 
 export default class RacingCarGame {
 
