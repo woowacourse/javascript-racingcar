@@ -12,6 +12,9 @@ export const validateNameInput = (nameList) => {
       throw new Error(ERROR.EMPTY_INPUT);
     }
   });
+  if (nameList.length !== new Set(nameList).size) {
+    throw new Error(ERROR.DUPLICATE_NAME);
+  }
 };
 
 export const validateCountInput = (count) => {
