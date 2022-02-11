@@ -84,13 +84,13 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
+  text-align: center;
 }
 
 #restart-button {
   padding: 8px 32px 8px 32px;
   margin-left: 12px;
   background: #00bcd4;
-
   border-radius: 4px;
   border-color: #00bcd4;
   font-style: normal;
@@ -136,4 +136,15 @@
   color: #000000;
 
   border: solid 3px #ffffff;
+}
+
+#racing-input-form {
+  display: none;
+}
+
+#racing-container {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

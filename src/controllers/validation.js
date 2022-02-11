@@ -13,6 +13,7 @@ export function isNameValid(names) {
     showAlertMsg('이름입력 에러 : 6글자 이상의 이름 있음');
     return false;
   }
+  return true;
 }
 
 function hasDuplicatedName(names) {

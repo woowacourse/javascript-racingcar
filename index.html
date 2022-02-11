@@ -15,16 +15,19 @@
           <button id="car-name-input-button">확인</button>
         </div>
       </form>
-      <form class="input-container">
+      <form id="racing-input-form" class="input-container">
         <label class="input-label"> 시도할 횟수를 입력해주세요.</label>
         <div class="flex">
-          <input id="racing-number-input" />
+          <input id="racing-number-input" type="number" />
           <button id="racing-number-input-button">확인</button>
         </div>
       </form>
-      <div id="racing-cars" class="flex"></div>
-      <h2 id="racing-winner">🏆 최종우승자: 🏆</h2>
-      <button id="restart-button">다시 시작하기</button>
+
+      <div id="racing-container">
+        <div id="racing-cars" class="flex"></div>
+        <h2 id="racing-winner">🏆 최종우승자: 🏆</h2>
+        <button id="restart-button">다시 시작하기</button>
+      </div>
     </div>
     <script type="module" src="./src/index.js"></script>
   </body>
