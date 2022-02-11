@@ -3,40 +3,36 @@ import { $ } from "../dom/dom.js";
 import checkUserCarNameInput from "./checkUserCarNameInput.js";
 import checkUserRacingCountInput from "./checkUserRacingCountInput.js";
 
-export default function racingCarGame() {
-    this.racingInfoObject = {
-        carNames: '',
-        gameCount: 0,
-      };
+export default class racingCarGame {
+    
+    init() {
+        this.onCarNameButtonClick();
+    }
 
-    this.init = () => {
-        onCarNameButtonClick();
-    };
-
-    const onCarNameButtonClick = () => {
+    onCarNameButtonClick() {
         $('#car-name-button').addEventListener('click', (e) => {
-            e.preventDefault();    
-            if(!!checkUserCarNameInput($('#car-name-input').value)){
-                renderRaceGameCountElement();
+            e.preventDefault();
+            if (!!checkUserCarNameInput($('#car-name-input').value)) {
+                this.renderRaceGameCountElement();
             }
         });
-    };
-    
-    const renderRaceGameCountElement = () => {
-        $('.race-count-input-container').style.display = 'flex';
-        onRaceCountButtonClick();
-    };
+    }
 
-    const onRaceCountButtonClick = () => {
+    renderRaceGameCountElement() {
+        $('.race-count-input-container').style.display = 'flex';
+        this.onRaceCountButtonClick();
+    }
+
+    onRaceCountButtonClick() {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
 
             const carNameArray = checkUserCarNameInput($('#car-name-input').value);
             const raceCount = checkUserRacingCountInput($('#race-count-input').value);
-            if(!!carNameArray && !!raceCount) {
+            if (!!carNameArray && !!raceCount) {
                 const racingCar = new RacingCar(carNameArray, raceCount);
                 racingCar.gameStart();
             }
         });
-    };
+    }
 }
