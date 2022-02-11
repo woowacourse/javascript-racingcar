@@ -47,6 +47,7 @@ export default class Controller {
   onClickReset() {
     this.model.resetCarList();
     this.view.hideResult();
+    this.view.hideCountForm();
   }
 
   makeWinner(carList) {
