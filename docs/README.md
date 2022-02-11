@@ -25,5 +25,4 @@
 
 ### 리팩터링 (todo)
 - [x] cypress
-- [ ] css 
-- [ ] dom 요소 선택자 
+- [x] css 
