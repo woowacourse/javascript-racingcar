@@ -10,7 +10,7 @@ export default class Car {
 
   randomMove() {
     const number = this.generateRandomNumber();
-    if (number >= 4) {
+    if (number >= MOVE_CRITERIA) {
       this.step += 1;
     }
   }

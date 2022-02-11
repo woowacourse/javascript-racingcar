@@ -8,3 +8,5 @@ export const ERROR = {
   DECIMAL: '자연수를 입력해주세요.',
   DUPLICATE_NAME: '이름을 중복되지 않게 입력해주세요.',
 };
+
+export const MOVE_CRITERIA = 4;
