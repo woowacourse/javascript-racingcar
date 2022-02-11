@@ -22,9 +22,3 @@ export const validateCountInput = (count) => {
     throw new Error(ERROR.DECIMAL);
   }
 };
-
-export const isEmptyCarList = (carList) => {
-  if (carList.length === 0) {
-    throw new Error(ERROR.EMPTY_CARLIST);
-  }
-};

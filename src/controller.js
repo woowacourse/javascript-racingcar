@@ -1,7 +1,7 @@
 import View from './view.js';
 import Model from './model.js';
 import Car from './car.js';
-import { validateNameInput, validateCountInput, isEmptyCarList } from './utils/validator.js';
+import { validateNameInput, validateCountInput } from './utils/validator.js';
 
 export default class Controller {
   constructor() {
@@ -34,7 +34,6 @@ export default class Controller {
   onSubmitCount(count) {
     try {
       const { carList } = this.model;
-      isEmptyCarList(carList);
       validateCountInput(Number(count));
       this.model.startRace(count);
       this.view.resultUpdate(carList);
