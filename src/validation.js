@@ -1,6 +1,4 @@
-import { MSG } from './constant.js';
-
-const CAR_NAME_MAX_LENGTH = 5;
+import { CAR_NAME_MAX_LENGTH, MSG } from './constant.js';
 
 const isEmpty = (value) => value === '';
 

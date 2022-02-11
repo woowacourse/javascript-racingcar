@@ -1,3 +1,5 @@
+const CAR_NAME_MAX_LENGTH = 5;
+
 const SCREEN_CMD = {
     show_try: 'try',
     show_result: 'result',
@@ -10,6 +12,7 @@ const MSG = {
     natural_number: '자연수를 입력해주세요.',
     positive_number: '양수를 입력해주세요.',
 };
+
 const SELECTOR = {
     car_name_submit_button: '#car-name-submit-button',
     try_count_submit_button: '#try-count-submit-button',
@@ -21,4 +24,4 @@ const SELECTOR = {
     winners: '#winners',
 };
 
-export { SCREEN_CMD, MSG, SELECTOR };
+export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, MSG, SELECTOR };
