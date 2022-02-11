@@ -37,6 +37,7 @@ export const style = `
 
     .form {
       display: flex;
+      align-items: end;
     }
   </style>
 `;
@@ -65,12 +66,12 @@ export const input = `
   box-sizing: border-box;
   border-radius: 4px;
   outline: none;
-  padding: 8px 8px 0px 8px;
+  padding-left: 8px;
   margin-top: 4px;
 
   font-size: 15px;
   line-height: 24px;
-  font-color: ${color.color8B8B8B}
+  color: ${color.color8B8B8B}
 
   outline: none;
 `;
