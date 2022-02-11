@@ -26,7 +26,7 @@ const isNotNegative = (number) => {
 };
 
 const isBlank = (number) => {
-  return number === '';
+  return number.trim() === '';
 };
 
 export const validateCarNames = (names) => {

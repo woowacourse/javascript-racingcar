@@ -22,17 +22,14 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = parseInt(
-      document.getElementById('racing-count-input').value,
-      10
-    );
+    const racingCount = document.getElementById('racing-count-input').value;
 
     const error = validateCount(racingCount);
     if (error) {
       return alert(error);
     }
     this.view.deactivateNamesForm();
-    this.model.round = racingCount;
+    this.model.round = Number(racingCount);
     this.startRacingGame();
     this.activateRestartButton();
 
