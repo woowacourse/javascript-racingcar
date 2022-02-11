@@ -75,23 +75,41 @@ class RacingCarGame {
     this.renderResult();
   }
 
+  isNotValidCarNamesLength(carNameList) {
+    return !carNameList.every(
+      (name) =>
+        name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
+        name.length <= CAR_NAME_LENGTH_RANGE.MAX
+    );
+  }
+
+  isDuplicatedCarName(carNameList) {
+    return carNameList.length !== new Set(carNameList).size;
+  }
+
+  isNotValidRacingCount(racingCount) {
+    return (
+      !Number.isInteger(racingCount) ||
+      racingCount <= RACING_COUNT_RANGE.MIN ||
+      racingCount > RACING_COUNT_RANGE.MAX
+    );
+  }
+
+  isCarListNotFound() {
+    return !this.carList.length;
+  }
+
   submitCarNames() {
     const carNameList = this.trimStringArray(this.splitCarNames());
 
-    if (
-      !carNameList.every(
-        (name) =>
-          name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
-          name.length <= CAR_NAME_LENGTH_RANGE.MAX
-      )
-    ) {
+    if (this.isNotValidCarNamesLength(carNameList)) {
       alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.initializeInput(this.$carNameInput);
 
       return;
     }
 
-    if (carNameList.length !== new Set(carNameList).size) {
+    if (this.isDuplicatedCarName(carNameList)) {
       alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.initializeInput(this.$carNameInput);
 
@@ -106,18 +124,14 @@ class RacingCarGame {
   submitRacingCount() {
     const racingCount = this.$racingCountInput.valueAsNumber;
 
-    if (
-      !Number.isInteger(racingCount) ||
-      racingCount <= RACING_COUNT_RANGE.MIN ||
-      racingCount > RACING_COUNT_RANGE.MAX
-    ) {
+    if (this.isNotValidRacingCount(racingCount)) {
       alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
       this.initializeInput(this.$racingCountInput);
 
       return;
     }
 
-    if (!this.carList.length) {
+    if (this.isCarListNotFound()) {
       alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
       this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
