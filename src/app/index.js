@@ -31,12 +31,10 @@ class RacingCarGame {
 
   onCarNameInputFieldClick = (e) => {
     e.preventDefault();
-    // refactor
-    if (e.target.id === DOM.CAR_NAME_BTN_ID) {
-      const names = splitString(
-        e.currentTarget.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value,
-        CAR_NAME_SEPARATOR
-      );
+    const { target: carNameBtn, currentTarget: carNameInputField } = e;
+    if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
+      const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value;
+      const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
       this.makeCars(names);
       this.view.renderCountInputForm();
     }
@@ -44,13 +42,13 @@ class RacingCarGame {
 
   onCountInputFieldClick = (e) => {
     e.preventDefault();
-    if (e.target.id === DOM.COUNT_BTN_ID) {
-      const count = e.currentTarget.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
+    const { target: countBtn, currentTarget: countInputField } = e;
+    if (countBtn.id === DOM.COUNT_BTN_ID) {
+      const count = countInputField.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
       try {
         this.setCount(count);
         this.simulateGame();
         this.view.renderResults(this.cars, this.getWinners());
-        this.view.disableInputButtons();
         this.afterRenderComplete();
       } catch (error) {
         alert(error);
@@ -59,6 +57,8 @@ class RacingCarGame {
   };
 
   afterRenderComplete() {
+    this.view.disableInputButtons();
+
     const restartButton = document.querySelector(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
@@ -100,12 +100,10 @@ class RacingCarGame {
     this.cars.forEach(({ progress }) => {
       max = Math.max(progress, max);
     });
-    const winners = this.cars.reduce((arr, { name, progress }) => {
-      if (progress === max) {
-        arr.push(name);
-      }
-      return arr;
-    }, []);
+    const winners = this.cars.reduce(
+      (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
+      []
+    );
     return winners;
   }
 }
