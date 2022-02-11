@@ -61,10 +61,8 @@ export default class Cars {
 
   addCarNameInputEnterEvent() {
     carNamesInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === 13) {
-        if (this.makeCars()) {
-          this.goNextStep();
-        }
+      if (e.keyCode === 13 && this.makeCars()) {
+        this.goNextStep();
       }
     });
   }

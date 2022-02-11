@@ -25,6 +25,7 @@ export default class RacingCount {
     ) {
       return false;
     }
+
     return true;
   }
 
@@ -50,10 +51,8 @@ export default class RacingCount {
 
   addRacingCountInputEnterEvent() {
     racingCountInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === 13) {
-        if (this.makeRacingCount()) {
-          this.goNextStep();
-        }
+      if (e.keyCode === 13 && this.makeRacingCount()) {
+        this.goNextStep();
       }
     });
   }
