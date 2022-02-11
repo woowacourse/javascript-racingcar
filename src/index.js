@@ -12,6 +12,9 @@ class RacingcarGame {
     this.carNameInput = document.querySelector(".car-name-input");
     this.raceCountInput = document.querySelector(".race-count-input");
 
+    this.raceCountDisplay = document.querySelector(".race-count-wrap");
+    this.raceCountDisplay.style.visibility = "hidden";
+
     this.bindEvent();
   }
 
@@ -34,10 +37,12 @@ class RacingcarGame {
       if (name.length > 5) {
         alert("차 이름은 5자 이하만 가능합니다.");
         this.isCorrectCarName = false;
+        this.raceCountDisplay.style.visibility = "hidden";
         return;
       }
     });
     this.isCorrectCarName = true;
+    this.raceCountDisplay.style.visibility = "visible";
   }
 
   checkRaceNumber() {
@@ -64,6 +69,7 @@ class RacingcarGame {
     this.showCarsMove();
     const winner = this.findWinner();
     this.showWinner(winner);
+    this.bindRestartEvent();
   }
 
   countCarsMove() {
@@ -75,20 +81,20 @@ class RacingcarGame {
   }
 
   showCarsMove() {
-    const racingArrowElement = document.querySelector(".racing-arrow");
+    this.racingArrowElement = document.querySelector(".racing-arrow");
     this.carList
       .map((car) => this.template.carArrow(car.count))
       .map((arrowTemplate) => {
         const wrap = document.createElement("div");
         wrap.classList.add("racing-arrow-box");
         wrap.innerHTML = arrowTemplate;
-        racingArrowElement.append(wrap);
+        this.racingArrowElement.append(wrap);
       });
   }
 
   showCarBoxes() {
-    const racingCarsElement = document.querySelector(".racing-cars");
-    racingCarsElement.innerHTML = this.carList
+    this.racingCarsElement = document.querySelector(".racing-cars");
+    this.racingCarsElement.innerHTML = this.carList
       .map((car) => car.carNameTemplate)
       .join("");
   }
@@ -109,8 +115,42 @@ class RacingcarGame {
   }
 
   showWinner(winner) {
-    const racingResult = document.querySelector(".racing-result");
-    racingResult.innerHTML = `<p>🏆 최종 우승자: ${winner} 🏆</p>`;
+    this.racingResult = document.querySelector(".racing-result");
+    this.racingResult.innerHTML = `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`;
+    this.racingResult.innerHTML +=
+      "<div class='restart-button'>다시 시작하기</div>";
+    this.makeDisableInput();
+  }
+
+  makeDisableInput() {
+    this.carNameInput.disabled = true;
+    this.raceCountInput.disabled = true;
+    this.carNameInputButton = document.querySelector(".car-name-button");
+    this.carNameInputButton.disabled = true;
+    this.raceCountInputButton = document.querySelector(".race-count-button");
+    this.raceCountInputButton.disabled = true;
+  }
+
+  bindRestartEvent() {
+    const restartButton = document.querySelector(".restart-button");
+    restartButton.addEventListener("click", () => {
+      this.restartRace();
+    });
+  }
+
+  restartRace() {
+    this.isCorrectCarName = false;
+    this.isCorrectRaceCount = false;
+    this.racingCarsElement.innerHTML = "";
+    this.racingArrowElement.innerHTML = "";
+    this.racingResult.innerHTML = "";
+    this.carNameInput.value = "";
+    this.raceCountInput.value = "";
+    this.carNameInput.disabled = false;
+    this.raceCountInput.disabled = false;
+    this.carNameInputButton.disabled = false;
+    this.raceCountInputButton.disabled = false;
+    this.raceCountDisplay.style.visibility = "hidden";
   }
 }
 
