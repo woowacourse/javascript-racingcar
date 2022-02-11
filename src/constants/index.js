@@ -6,6 +6,8 @@ export const ID = Object.freeze({
   RACING_CAR_LIST: 'racing_car_list',
   FINAL_WINNER_RESULT: 'final_winner_result',
   FINAL_WINNER: 'final_winner',
+  RESTART_SECTION: 'restart_section',
+  RESTART_BTN: 'restart_btn',
 });
 
 export const CLASS = Object.freeze({

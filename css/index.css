@@ -122,7 +122,7 @@ form > label {
   display: none;
 }
 
-.restart_btn {
+#restart_btn {
   width: 152px;
   height: 36px;
   font-size: 14px;

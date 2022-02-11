@@ -29,6 +29,8 @@ class RacingCar {
     this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
     this.$finalWinnerResult = document.getElementById(ID.FINAL_WINNER_RESULT);
     this.$finalWinner = document.getElementById(ID.FINAL_WINNER);
+    this.$restartSection = document.getElementById(ID.RESTART_SECTION);
+    this.$restartBtn = document.getElementById(ID.RESTART_BTN);
   }
 
   initEventListener() {
@@ -37,6 +39,7 @@ class RacingCar {
       'submit',
       this.handleRacingCountFormSubmitEvent.bind(this)
     );
+    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent.bind(this));
   }
 
   handleCarNameFormSubmitEvent(e) {
@@ -98,6 +101,21 @@ class RacingCar {
     this.play();
   }
 
+  handleRestartBtnClickEvent(e) {
+    this.racingCarList = [];
+    this.racingCount = 0;
+
+    resetInputElementValue(this.$carNamesInput);
+    resetInputElementValue(this.$racingCountInput);
+
+    this.$racingCarList.innerText = '';
+    this.$finalWinnerResult.innerText = '';
+
+    this.$racingCountForm.style.display = 'none';
+    this.$finalWinner.style.display = 'none';
+    this.$restartSection.style.display = 'none';
+  }
+
   play() {
     this.renderRacingCarList();
     this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
@@ -121,6 +139,11 @@ class RacingCar {
     }
 
     this.handleGameResult();
+    this.showRestartSection();
+  }
+
+  showRestartSection() {
+    this.$restartSection.style.display = 'block';
   }
 
   runOneCycleGame() {
@@ -160,6 +183,9 @@ class RacingCar {
     this.$finalWinnerResult.innerText = finalWinner;
     this.$finalWinner.style.display = 'block';
   }
+
+  //css 보이게
+  // eventhandler 추가
 }
 
 new RacingCar();
