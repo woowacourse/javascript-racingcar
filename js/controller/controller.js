@@ -26,6 +26,7 @@ export default class Controller {
       }
       this.model.saveCars(this.splitCarNamesInput());
       this.model.initCarPosition();
+      this.view.renderCarRacingInputBox();
     });
   }
 

@@ -38,9 +38,14 @@ export default class View {
     $('#car-progress').innerHTML = '';
     $('#car-names-input').value = '';
     $('#car-racing-count-input').value = '';
+    $('.car-racing-count-wrapper').style.display = 'none';
   }
 
   renderRestartButton() {
     $('#game-restart').style.display = 'block';
+  }
+
+  renderCarRacingInputBox() {
+    $('.car-racing-count-wrapper').style.display = 'block';
   }
 }
