@@ -15,10 +15,13 @@ export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max -
  * return : 아이디 문자열
  */
 export const generateId = (idObj) => {
-  while (true) {
-    const idStr = pickNumberInRange(0, 999999).toString().padStart(6, 0);
+  let isUnique = false;
+  let idStr;
+  while (!isUnique) {
+    idStr = pickNumberInRange(0, 999999).toString().padStart(6, 0);
     if (!idObj[idStr]) {
-      return idStr;
+      isUnique = true;
     }
   }
+  return idStr;
 };
