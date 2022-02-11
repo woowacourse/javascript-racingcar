@@ -1,3 +1,11 @@
+import {
+  CAR_NAME_SEPARATOR,
+  DOM,
+  ERROR_MESSAGE,
+  MOVE_CONDITION,
+  RANGE_MAX,
+  RANGE_MIN,
+} from '../lib/constants.js';
 import { isNumberBelowZero, pickNumberInRange, splitString } from '../lib/utils.js';
 import Car from './car.js';
 import RacingCarGameView from './view.js';
@@ -12,8 +20,8 @@ class RacingCarGame {
   }
 
   initDOM() {
-    this.carNameInputField = document.querySelector('#car-name-input-field');
-    this.countInputField = document.querySelector('#count-input-field');
+    this.carNameInputField = document.querySelector(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
+    this.countInputField = document.querySelector(`#${DOM.COUNT_INPUT_FIELD_ID}`);
   }
 
   initHandler() {
@@ -23,8 +31,12 @@ class RacingCarGame {
 
   onCarNameInputFieldClick = (e) => {
     e.preventDefault();
-    if (e.target.id === 'car-name-btn') {
-      const names = splitString(e.currentTarget.querySelector('#car-name-input').value, ',');
+    // refactor
+    if (e.target.id === DOM.CAR_NAME_BTN_ID) {
+      const names = splitString(
+        e.currentTarget.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value,
+        CAR_NAME_SEPARATOR
+      );
       this.makeCars(names);
       this.view.renderCountInputForm();
     }
@@ -32,8 +44,8 @@ class RacingCarGame {
 
   onCountInputFieldClick = (e) => {
     e.preventDefault();
-    if (e.target.id === 'count-btn') {
-      const count = e.currentTarget.querySelector('#count-input').value;
+    if (e.target.id === DOM.COUNT_BTN_ID) {
+      const count = e.currentTarget.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
       try {
         this.setCount(count);
         this.simulateGame();
@@ -47,7 +59,7 @@ class RacingCarGame {
   };
 
   afterRenderComplete() {
-    const restartButton = document.querySelector('#restart-btn');
+    const restartButton = document.querySelector(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
@@ -55,7 +67,7 @@ class RacingCarGame {
 
   setCount(count) {
     if (isNumberBelowZero(count)) {
-      throw Error('횟수는 1이상을 입력해주셔야합니다.');
+      throw Error(ERROR_MESSAGE.INVALID_COUNT);
     }
     this.count = count;
   }
@@ -76,8 +88,8 @@ class RacingCarGame {
 
   simulateRound() {
     this.cars.forEach((car) => {
-      const random = pickNumberInRange(0, 9);
-      if (random >= 4) {
+      const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
+      if (random >= MOVE_CONDITION) {
         car.goForward();
       }
     });
@@ -94,7 +106,6 @@ class RacingCarGame {
       }
       return arr;
     }, []);
-    // winners -> ['asd','asfsf']
     return winners;
   }
 }

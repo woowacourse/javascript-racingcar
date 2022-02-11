@@ -1,3 +1,5 @@
+import { DOM } from '../../src/lib/constants.js';
+
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../../index.html';
 
@@ -11,13 +13,13 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const countInput = 1;
 
     //when
-    cy.get('#car-name-input').type(nameInput);
-    cy.get('#car-name-btn').click();
-    cy.get('#count-input').type(countInput);
-    cy.get('#count-btn').click();
+    cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).type(nameInput);
+    cy.get(`#${DOM.CAR_NAME_BTN_ID}`).click();
+    cy.get(`#${DOM.COUNT_INPUT_ID}`).type(countInput);
+    cy.get(`#${DOM.COUNT_BTN_ID}`).click();
 
     //then
-    cy.get('#winner-name').should('be.visible');
+    cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 
   it('잘못된 자동차 이름을 입력하면 alert가 호출되어야 한다.', () => {
@@ -28,10 +30,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.on('window:alert', alertStub);
 
     //when
-    cy.get('#car-name-input').type(invalidInput);
+    cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).type(invalidInput);
 
     //then
-    cy.get('#car-name-btn')
+    cy.get(`#${DOM.CAR_NAME_BTN_ID}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -45,14 +47,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const nameInput = 'bling,juunz';
 
     //when
-    cy.get('#car-name-input').type(nameInput);
-    cy.get('#car-name-btn').click();
-    cy.get('#count-input').type(invalidInput);
+    cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).type(nameInput);
+    cy.get(`#${DOM.CAR_NAME_BTN_ID}`).click();
+    cy.get(`#${DOM.COUNT_INPUT_ID}`).type(invalidInput);
 
     cy.on('window:alert', alertStub);
 
     //then
-    cy.get('#count-btn')
+    cy.get(`#${DOM.COUNT_BTN_ID}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -65,15 +67,16 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const countInput = 2;
 
     //when
-    cy.get('#car-name-input').type(nameInput);
-    cy.get('#car-name-btn').click();
-    cy.get('#count-input').type(countInput);
-    cy.get('#count-btn').click();
-    cy.get('#restart-btn').click();
+
+    cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).type(nameInput);
+    cy.get(`#${DOM.CAR_NAME_BTN_ID}`).click();
+    cy.get(`#${DOM.COUNT_INPUT_ID}`).type(countInput);
+    cy.get(`#${DOM.COUNT_BTN_ID}`).click();
+    cy.get(`#${DOM.RESTART_BTN_ID}`).click();
 
     //then
-    cy.get('.car-progress').should('not.exist');
-    cy.get('.winner-container').should('not.exist');
-    cy.get('#count-input').should('not.be.visible');
+    cy.get(`.${DOM.CAR_PROGRESS_CLASS}`).should('not.exist');
+    cy.get(`.${DOM.WINNER_CONTAINER_ID}`).should('not.exist');
+    cy.get(`#${DOM.COUNT_INPUT_ID}`).should('not.be.visible');
   });
 });
