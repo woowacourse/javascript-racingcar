@@ -62,6 +62,8 @@ class RacingcarGame {
     this.showCarBoxes();
     this.countCarsMove();
     this.showCarsMove();
+    const winner = this.findWinner();
+    this.showWinner(winner);
   }
 
   countCarsMove() {
@@ -89,6 +91,26 @@ class RacingcarGame {
     racingCarsElement.innerHTML = this.carList
       .map((car) => car.carNameTemplate)
       .join("");
+  }
+
+  findWinner() {
+    let winner = [];
+    let winnerCount = 0;
+    this.carList.forEach((car) => {
+      if (winnerCount < car.count) {
+        winnerCount = car.count;
+        winner = [];
+      }
+      if (winnerCount === car.count) {
+        winner.push(car.carName);
+      }
+    });
+    return winner.join(", ");
+  }
+
+  showWinner(winner) {
+    const racingResult = document.querySelector(".racing-result");
+    racingResult.innerHTML = `<p>🏆 최종 우승자: ${winner} 🏆</p>`;
   }
 }
 

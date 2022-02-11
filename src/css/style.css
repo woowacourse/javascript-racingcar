@@ -209,7 +209,7 @@
   font-size: 14px;
 }
 
-.racing-result {
+.racing-result-wrap {
   position: relative;
   width: 512px;
   height: 174px;
@@ -218,7 +218,7 @@
   border: 1px solid black;
 }
 
-.result {
+.racing-result {
   position: relative;
   width: 512px;
   height: 84px;
