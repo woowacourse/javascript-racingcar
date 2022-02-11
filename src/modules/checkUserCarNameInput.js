@@ -13,7 +13,9 @@ export default function checkUserCarNameInput(carNameInput) {
         return;
     }
 
-    const carNameArray = carNameInput.split(',').map(carName => carName.trim());
+    const carNameArray = carNameInput
+        .split(',')
+        .filter(carName => !!carName.trim().length);
 
     if(!isCorrectCarNameLength(carNameArray)){
         showAlert(OVER_CARNAME_LENGTH_ERROR);
