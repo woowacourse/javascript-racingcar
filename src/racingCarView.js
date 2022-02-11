@@ -1,5 +1,10 @@
 import { $ } from './common/DOMHelper.js';
-import { headerTemplate, carNamesTemplate, racingCountTemplate } from './common/template.js';
+import {
+  carsTemplate,
+  carNamesTemplate,
+  headerTemplate,
+  racingCountTemplate,
+} from './common/template.js';
 
 export default class RacingCarView {
   constructor() {
@@ -18,6 +23,12 @@ export default class RacingCarView {
     const $racingCount = $('#racing-count');
 
     $racingCount.innerHTML = racingCountTemplate();
+  }
+
+  renderCars(cars) {
+    const $gameResult = $('#game-result');
+
+    $gameResult.innerHTML = carsTemplate(cars);
   }
 
   selectCarNamesDOM() {

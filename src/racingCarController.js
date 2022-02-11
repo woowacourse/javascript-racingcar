@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import RacingCarView from './racingCarView.js';
 import RacingCarModel from './racingCarModel.js';
 import { isValidCarNames, isValidRacingCount } from './common/validator.js';
@@ -35,6 +36,7 @@ export default class RacingCarController {
       this.view.renderRacingCount();
       this.view.selectRacingCountDOM();
       this.attachRacingCountEvents();
+      this.view.renderCars(this.model.cars);
     } else {
       alert('임시적인 오류 메시지입니다');
       this.view.resetCarNamesInput();

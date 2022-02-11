@@ -24,5 +24,21 @@ export function racingCountTemplate() {
       <input type="number" id="racing-count-input"></input>
       <button id="racing-count-submit">${BUTTON.SUBMIT}</button>
     </div>
+    <div id="game-result"></div>
+  `;
+}
+
+export function carTemplate(car) {
+  return `
+      <div>${car.name}</div>
+      <div id="progress"></div> 
+  `;
+}
+
+export function carsTemplate(cars) {
+  return `
+    <div>
+      ${cars.map((car) => carTemplate(car)).join('')}
+    </div>
   `;
 }
