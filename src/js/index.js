@@ -99,59 +99,91 @@ class RacingCarGame {
     return !this.carList.length;
   }
 
-  submitCarNames() {
-    const carNameList = this.trimStringArray(this.splitCarNames());
-
+  validateCarNameList(carNameList) {
     if (this.isNotValidCarNamesLength(carNameList)) {
       alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.initializeInput(this.$carNameInput);
 
-      return;
+      return true;
     }
 
+    return false;
+  }
+
+  validateUniqueCarName(carNameList) {
     if (this.isDuplicatedCarName(carNameList)) {
       alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.initializeInput(this.$carNameInput);
 
+      return true;
+    }
+
+    return false;
+  }
+
+  submitCarNames() {
+    const carNameList = this.trimStringArray(this.splitCarNames());
+
+    if (
+      this.validateCarNameList(carNameList) ||
+      this.validateUniqueCarName(carNameList)
+    ) {
       return;
     }
 
     this.carList = carNameList.map((name) => new Car(name));
-
     this.renderRacingResult();
+  }
+
+  validateRacingCount(racingCount) {
+    if (this.isNotValidRacingCount(racingCount)) {
+      alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
+      this.initializeInput(this.$racingCountInput);
+
+      return true;
+    }
+
+    return false;
+  }
+
+  validateCarListFound() {
+    if (this.isCarListNotFound()) {
+      alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
+      this.initializeInput(this.$racingCountInput, this.$carNameInput);
+
+      return true;
+    }
+
+    return false;
+  }
+
+  startRace(racingCount) {
+    for (let i = 0; i < racingCount; i += 1) {
+      this.carList.forEach((car) => car.race());
+      this.renderRacingResult();
+    }
+  }
+
+  getWinners() {
+    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
+    this.winners = this.carList
+      .filter((car) => car.distance === maxDistance)
+      .map((winner) => winner.name);
   }
 
   submitRacingCount() {
     const racingCount = this.$racingCountInput.valueAsNumber;
 
-    if (this.isNotValidRacingCount(racingCount)) {
-      alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
-      this.initializeInput(this.$racingCountInput);
-
+    if (this.validateRacingCount(racingCount) || this.validateCarListFound()) {
       return;
     }
 
-    if (this.isCarListNotFound()) {
-      alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
-      this.initializeInput(this.$racingCountInput, this.$carNameInput);
-
-      return;
-    }
-
-    for (let i = 0; i < racingCount; i += 1) {
-      this.carList.forEach((car) => car.race());
-      this.renderRacingResult();
-    }
-
-    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
-    this.winners = this.carList
-      .filter((car) => car.distance === maxDistance)
-      .map((winner) => winner.name);
-
+    this.startRace(racingCount);
+    this.getWinners();
     this.renderResult();
   }
 
-  main() {
+  bindEventListners() {
     this.bindEventListener(
       'click',
       SELECTOR.$CAR_NAME_BUTTON,
@@ -170,7 +202,11 @@ class RacingCarGame {
       this.restart.bind(this)
     );
   }
+
+  init() {
+    this.bindEventListners();
+  }
 }
 
 const racingCarGame = new RacingCarGame();
-racingCarGame.main();
+racingCarGame.init();
