@@ -1,6 +1,6 @@
 import { SELECTORS, GAME, ERR_MESSAGE } from '../constants/constants.js';
 import $ from '../utils/dom.js';
-import { showCountInput } from '../setScreen.js';
+import showCountInput from '../setScreen.js';
 import { makeObjectCars } from '../init/cars.js';
 
 const { MAX_CAR_NAME_LENGTH, MIN_CAR_NAME_LENGTH } = GAME;

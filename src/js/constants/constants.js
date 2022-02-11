@@ -4,6 +4,8 @@ export const SELECTORS = {
   RACING_COUNT_FORM: '#racing-count-form',
   RACING_COUNT_INPUT: '#racing-count-input',
   RACING_COUNT_BUTTON: '#racing-count-button',
+  RESULT_SCREEN: '.result-screen',
+  CAR_RACING_STATUS: '.car-racing-status',
 };
 
 export const GAME = {
