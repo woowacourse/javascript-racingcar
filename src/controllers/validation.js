@@ -8,6 +8,7 @@ import {
   ERR_CAR_NAME_NOT_EXIST,
 } from '../constants/errors.js';
 import { NAME_LENGTH_MAX } from '../constants/conditions.js';
+import { state } from '../models/state.js';
 
 export function isNameValid(names) {
   if (hasDuplicatedName(names)) {
@@ -91,7 +92,7 @@ function isNumberUnderZero(number) {
   return false;
 }
 
-export function isCarNameExist(state) {
+export function isCarNameExist() {
   if (state.cars.length === 0) {
     showAlertMsg(ERR_CAR_NAME_NOT_EXIST);
     return false;

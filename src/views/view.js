@@ -1,4 +1,4 @@
-import { state } from '../index.js';
+import { state } from '../models/state.js';
 
 export function renderCarNames() {
   const racingCars = document.getElementById('racing-cars');

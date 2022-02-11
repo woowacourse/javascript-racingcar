@@ -2,15 +2,22 @@ import { isNameValid, isRacingNumberValid, isCarNameExist } from './validation.j
 import { doTrim } from './utils.js';
 import { race } from './raceController.js';
 import { renderRacingInputForm, renderRacingContainer, disableUserInput } from '../views/view.js';
+import { state } from '../models/state.js';
 
-export function setCarNamesClick(state) {
+export function registerClickEventListners() {
+  setCarNamesClick();
+  setRoundClick();
+  restartBtnClick();
+}
+
+function setCarNamesClick() {
   const carNamesInputBtn = document.getElementById('car-name-input-button');
   carNamesInputBtn.addEventListener('click', () => {
-    setCarNames(event, state);
+    setCarNames(event);
   });
 }
 
-function setCarNames(event, state) {
+function setCarNames(event) {
   event.preventDefault();
   const carNamesInput = document.getElementById('car-name-input');
   const carNames = doTrim(carNamesInput.value.split(','));
@@ -20,18 +27,18 @@ function setCarNames(event, state) {
   }
 }
 
-export function setRoundClick(state) {
+function setRoundClick() {
   const racingNumberInputButton = document.getElementById('racing-number-input-button');
   racingNumberInputButton.addEventListener('click', (event) => {
-    setRound(event, state);
-    if (isUserInputExist(state)) {
+    setRound(event);
+    if (isUserInputExist()) {
       disableUserInput();
-      race(state);
+      race();
     }
   });
 }
 
-function setRound(event, state) {
+function setRound(event) {
   event.preventDefault();
   const racingNumberInput = document.getElementById('racing-number-input');
   const racingNumber = racingNumberInput.value;
@@ -42,24 +49,24 @@ function setRound(event, state) {
   }
 }
 
-function isRacingNumberExist(state) {
+function isRacingNumberExist() {
   if (state.racingNumber !== 0) {
     return true;
   }
   return false;
 }
 
-function isUserInputExist(state) {
-  if (!isCarNameExist(state)) {
+function isUserInputExist() {
+  if (!isCarNameExist()) {
     return false;
   }
-  if (!isRacingNumberExist(state)) {
+  if (!isRacingNumberExist()) {
     return false;
   }
   return true;
 }
 
-export function restartBtnClick(state) {
+function restartBtnClick() {
   const restartBtn = document.getElementById('restart-button');
   restartBtn.addEventListener('click', doRestart);
 }
