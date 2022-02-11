@@ -1,0 +1,24 @@
+.btn {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 7px;
+  border-radius: 4px;
+  outline: 0;
+  border-style: none;
+  cursor: pointer;
+  word-break: keep-all;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  color: var(--white);
+}
+
+.btn-cyan {
+  background-color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.btn.btn-cyan:hover {
+  background-color: var(--cyan-light);
+}
