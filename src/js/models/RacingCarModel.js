@@ -18,6 +18,9 @@ export default class RacingCarModel {
     if (this.isEmptyName(splitedCarNames)) {
       throw new Error("이름은 공백이 될수없습니다");
     }
+    if (this.hasInValidNameLength(splitedCarNames)) {
+      throw new Error("이름은 5자가 넘어갈 수 없습니다.");
+    }
     this.cars = splitedCarNames.map((name) => new Car(name));
   };
 
@@ -61,7 +64,7 @@ export default class RacingCarModel {
 
   splitCarNames = (carNames) => carNames.split(",");
 
-  isInValidNameLength = (names) => names.some((name) => name.length >= 5);
+  hasInValidNameLength = (names) => names.some((name) => name.length > 5);
 
   hasSpaceInName = (names) =>
     names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
