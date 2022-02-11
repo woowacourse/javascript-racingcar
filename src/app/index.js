@@ -34,9 +34,13 @@ class RacingCarGame {
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
       const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value;
-      const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-      this.makeCars(names);
-      this.view.renderCountInputForm();
+      try {
+        const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
+        this.cars = RacingCarGame.makeCars(names);
+        this.view.renderCountInputForm();
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
@@ -72,14 +76,6 @@ class RacingCarGame {
     this.count = count;
   }
 
-  makeCars(names) {
-    try {
-      this.cars = names.map((name) => new Car(name));
-    } catch (error) {
-      alert(error);
-    }
-  }
-
   simulateGame() {
     for (let i = 0; i < this.count; i += 1) {
       this.simulateRound();
@@ -105,6 +101,10 @@ class RacingCarGame {
       []
     );
     return winners;
+  }
+
+  static makeCars(names) {
+    return names.map((name) => new Car(name));
   }
 }
 export default RacingCarGame;
