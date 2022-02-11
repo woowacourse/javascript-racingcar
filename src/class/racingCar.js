@@ -13,7 +13,7 @@ export default class RacingCar {
     }
 
     generateRandomNumber() {
-        return MissionUtils.Random.pickNumberInRange(0, 9);
+        return Math.floor(10 * Math.random());
     }
 
     generateCars() {
