@@ -3,6 +3,11 @@ export const ID = Object.freeze({
   CAR_NAMES_INPUT: 'car_names_input',
   RACING_COUNT_FORM: 'racing_count_form',
   RACING_COUNT_INPUT: 'racing_count_input',
+  RACING_CAR_LIST: 'racing_car_list',
+});
+
+export const CLASS = Object.freeze({
+  RACING_CAR_PROGRESS: 'racing_car_progress',
 });
 
 export const ERROR_MESSAGES = Object.freeze({

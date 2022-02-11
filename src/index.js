@@ -1,5 +1,11 @@
-import { ERROR_MESSAGES, ID, RULES } from './constants/index.js';
-import { convertToNumber, isNotNaturalNumber } from './util/index.js';
+import { CLASS, ERROR_MESSAGES, ID, RULES } from './constants/index.js';
+import {
+  convertToNumber,
+  generateRandomNumber,
+  isNotNaturalNumber,
+  waitGame,
+} from './util/index.js';
+import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template/index.js';
 import Car from './model/Car.js';
 
 class RacingCar {
@@ -19,6 +25,7 @@ class RacingCar {
     this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
     this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
     this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
+    this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
   }
 
   initEventListener() {
@@ -88,6 +95,44 @@ class RacingCar {
     }
 
     this.racingCount = racingCountNumber;
+
+    this.renderRacingCarList();
+
+    this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
+
+    this.racingGameStart();
+  }
+
+  renderRacingCarList() {
+    let racingCarItemsTemplate = '';
+
+    this.racingCarList.map((car) => {
+      racingCarItemsTemplate = racingCarItemsTemplate + getRacingCarItemTemplate(car.getName());
+    });
+
+    this.$racingCarList.innerHTML = racingCarItemsTemplate;
+  }
+
+  async racingGameStart() {
+    for (let i = 0; i < this.racingCount; i++) {
+      this.runOneCycleGame();
+      await waitGame(1000);
+    }
+  }
+
+  runOneCycleGame() {
+    this.racingCarList.forEach((car, index) => {
+      const randomNumber = generateRandomNumber();
+
+      if (randomNumber >= 4) {
+        car.moveForward();
+        this.renderRacingCarProgress(index);
+      }
+    });
+  }
+
+  renderRacingCarProgress(index) {
+    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', PROGRESS_TEMPLATE);
   }
 }
 
