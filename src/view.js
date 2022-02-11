@@ -4,6 +4,7 @@ export default class View {
   constructor() {
     this.configureDOM();
     this.hideResult();
+    this.hideCountForm();
   }
 
   configureDOM() {
@@ -11,21 +12,35 @@ export default class View {
     this.$countInput = $('.input-section__count-input');
     this.$nameButton = $('.input-section__name-button');
     this.$countButton = $('.input-section__count-button');
+    this.$countSubmitContainer = $('#count-submit-container');
     this.$resultSections = $('.result-sections');
     this.$winner = $('#winner');
     this.$resetButton = $('#reset-button');
   }
 
+  hideDOM(array) {
+    array.forEach((element) => (element.style.display = 'none'));
+  }
+
+  showDOM(array, type) {
+    array.forEach((element) => (element.style.display = type));
+  }
+
   hideResult() {
-    this.$winner.style.display = 'none';
-    this.$resetButton.style.display = 'none';
-    this.$resultSections.style.display = 'none';
+    this.hideDOM([this.$winner, this.$resetButton, this.$resultSections]);
   }
 
   showResult() {
-    this.$winner.style.display = 'block';
-    this.$resetButton.style.display = 'block';
-    this.$resultSections.style.display = 'flex';
+    this.showDOM([this.$winner, this.$resetButton], 'block');
+    this.showDOM([this.$resultSections], 'flex');
+  }
+
+  hideCountForm() {
+    this.hideDOM([this.$countSubmitContainer]);
+  }
+
+  showCountForm() {
+    this.showDOM([this.$countSubmitContainer], 'block');
   }
 
   setOnSubmitName(fn) {

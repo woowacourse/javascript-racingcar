@@ -20,6 +20,7 @@ export default class Controller {
     try {
       const carNamesArray = carNames.split(',');
       validateNameInput(carNamesArray);
+      this.view.showCountForm();
       this.model.saveCarList(this.makeCars(carNamesArray));
     } catch (error) {
       alert(error.message);
