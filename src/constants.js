@@ -20,4 +20,8 @@ const MESSAGE = {
   WRONG_COUNT: '올바르지 않은 레이싱 횟수입니다',
 };
 
-export { ID, MESSAGE };
+const KEY = {
+  ENTER: 'Enter',
+};
+
+export { ID, MESSAGE, KEY };

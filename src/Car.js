@@ -1,3 +1,5 @@
+import { generateRandomNumber } from './utils/index.js';
+
 export default class Car {
   constructor(name) {
     this.name = name;
@@ -5,13 +7,9 @@ export default class Car {
   }
 
   move() {
-    if (this.random() < 4) {
+    if (generateRandomNumber() < 4) {
       return;
     }
     this.racingCount += 1;
-  }
-
-  random() {
-    return Math.floor(Math.random() * 9);
   }
 }
