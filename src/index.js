@@ -8,6 +8,17 @@ class CarRacing {
   }
 
   bindEvents() {
+    document.querySelector('#input-forms').addEventListener('keyup', event => {
+      if (event.key !== 'Enter') return;
+      if (document.activeElement.id === 'car-names-input') {
+        this.onSubmitCarName(document.querySelector('#car-names-input').value);
+        return;
+      }
+      this.onSubmitRacingCount(
+        document.querySelector('#racing-count-input').value,
+      );
+    });
+
     document.querySelector('#app').addEventListener('click', ({ target }) => {
       const targetId = target.id;
       const buttonIds = {
