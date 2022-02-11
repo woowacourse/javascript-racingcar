@@ -2,29 +2,38 @@ body {
   display: flex;
   justify-content: center;
 }
+
 #app {
   width: 544px;
   border: 1px solid lightgray;
 }
 
-h2 {
+#game-header {
   font-size: 34px;
   line-height: 36px;
   text-align: center;
   font-weight: 600;
 }
 
-label {
-  font-size: 12px;
-  align-self: flex-start;
-}
-
-form {
+.racing-input-form {
   width: 320px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+}
+
+.racing-input-form input {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 82%;
+  padding: 6px 0 6px 6px;
+  font-size: 12px;
+}
+
+.racing-input-form label {
+  font-size: 12px;
+  align-self: flex-start;
 }
 
 .input-container {
@@ -33,29 +42,25 @@ form {
   margin-top: 5px;
 }
 
-input {
-  border: 1px solid lightgray;
-  border-radius: 4px;
-  width: 82%;
-  padding: 6px 0 6px 6px;
-  font-size: 12px;
-}
-
-button {
+.btn {
   border: none;
   background-color: #00bcd4;
   color: white;
   font-size: 8px;
-  padding: 6px 13px;
   border-radius: 4px;
   cursor: pointer;
 }
-button:hover {
+
+.input-btn {
+  padding: 6px 13px;
+}
+
+.btn:hover {
   background-color: #80deea;
   color: white;
 }
 
-button:disabled {
+.btn:disabled {
   cursor: unset;
   background-color: #8b8b8b;
   color: lightgray;
@@ -97,7 +102,7 @@ button:disabled {
   margin-top: 25px;
 }
 
-#replay-button {
+.replay-btn {
   padding: 8px 20px;
   font-size: 13px;
 }
