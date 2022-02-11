@@ -8,6 +8,9 @@ import { MSG, SELECTOR } from './constant.js';
 export default class RacingGame {
     constructor() {
         this.racingCars = new RacingCars();
+    }
+
+    initialize() {
         this.initCarNameFormEvent();
         this.initTryCntFormEvent();
         this.initRestartEvent();
