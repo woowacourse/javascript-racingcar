@@ -1,16 +1,25 @@
 import { showAlertMsg } from './utils.js';
+import {
+  ERR_HAS_DUPLICATE_NAME,
+  ERR_HAS_EMPTY_NAME,
+  ERR_HAS_LONG_NAME,
+  ERR_NUMBER_NOT_INTEGER,
+  ERR_NUMBER_UNDER_ZERO,
+  ERR_CAR_NAME_NOT_EXIST,
+} from '../constants/errors.js';
+import { NAME_LENGTH_MAX } from '../constants/conditions.js';
 
 export function isNameValid(names) {
   if (hasDuplicatedName(names)) {
-    showAlertMsg('이름입력 에러 : 중복된 이름 있음');
+    showAlertMsg(ERR_HAS_DUPLICATE_NAME);
     return false;
   }
   if (hasEmptyName(names)) {
-    showAlertMsg('이름입력 에러 : 공백 이름 있음');
+    showAlertMsg(ERR_HAS_EMPTY_NAME);
     return false;
   }
   if (hasLongName(names)) {
-    showAlertMsg('이름입력 에러 : 6글자 이상의 이름 있음');
+    showAlertMsg(ERR_HAS_LONG_NAME);
     return false;
   }
   return true;
@@ -41,7 +50,7 @@ function hasEmptyName(names) {
 }
 
 function isNameTooLong(name) {
-  if (name.length > 5) {
+  if (name.length > NAME_LENGTH_MAX) {
     return true;
   }
   return false;
@@ -58,11 +67,11 @@ function hasLongName(names) {
 
 export function isRacingNumberValid(racingNumber) {
   if (!isNumberInteger(racingNumber)) {
-    showAlertMsg('숫자입력 에러 :정수가 아닌 횟수');
+    showAlertMsg(ERR_NUMBER_NOT_INTEGER);
     return false;
   }
   if (isNumberUnderZero(racingNumber)) {
-    showAlertMsg('숫자입력 에러 : 0이하의 횟수');
+    showAlertMsg(ERR_NUMBER_UNDER_ZERO);
     return false;
   }
   return true;
@@ -84,7 +93,7 @@ function isNumberUnderZero(number) {
 
 export function isCarNameExist(state) {
   if (state.cars.length === 0) {
-    showAlertMsg('이름입력 에러 : 자동차 이름을 먼저 입력해주세요.');
+    showAlertMsg(ERR_CAR_NAME_NOT_EXIST);
     return false;
   }
   return true;

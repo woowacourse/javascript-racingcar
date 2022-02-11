@@ -1,3 +1,6 @@
+import { ERR_KEY_NAME, ERR_KEY_NUMBER } from '../constants/errors.js';
+import { GO_FORWARD_CONDITION, RANDOM_NUM_MAX } from '../constants/conditions.js';
+
 export function doTrim(names) {
   const newNames = names.map((item) => {
     return item.trim();
@@ -17,20 +20,21 @@ export function showAlertMsg(message) {
 }
 
 function findAlertInputId(message) {
-  if (message[0] === '이') {
+  const errKey = message[0];
+  if (errKey === ERR_KEY_NAME) {
     return 'car-name-input';
   }
-  if (message[0] === '숫') {
+  if (errKey === ERR_KEY_NUMBER) {
     return 'racing-number-input';
   }
 }
 
 export function makeRandomNumber() {
-  return Math.floor(Math.random() * 10);
+  return Math.floor(Math.random() * (RANDOM_NUM_MAX + 1));
 }
 
 export function isNumberOverStandard(number) {
-  if (number > 4) {
+  if (number > GO_FORWARD_CONDITION) {
     return true;
   }
   return false;

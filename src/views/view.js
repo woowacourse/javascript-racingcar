@@ -17,7 +17,6 @@ export function renderCarNames() {
 
 export function renderProgressArrow(index) {
   const racingProgress = document.getElementsByClassName('racing-progress');
-  console.log(racingProgress);
   const racingArrow = document.createElement('div');
   racingArrow.className = 'racing-progress-arrow';
   racingArrow.innerHTML = '⬇️️';
