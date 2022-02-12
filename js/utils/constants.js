@@ -17,14 +17,14 @@ export const SELECTOR = {
   CAR_NAMES_TEXT: '.car-names-text',
   CAR_NAMES_BOX: '.car-names-box',
   CAR_NAMES_INPUT: '#car-names-input',
-  CAR_NAMES_BUTTON: '#car-names-button',
+  CAR_NAMES_SUBMIT_BUTTON: '#car-names-button',
 
   CAR_RACING_COUNT_WRAPPER: '.car-racing-count-wrapper',
   CAR_RACING_COUNT_FORM: '#car-racing-count-form',
   CAR_RACING_COUNT_TEXT: '.car-racing-count-text',
   CAR_RACING_COUNT_BOX: '.car-racing-count-box',
   CAR_RACING_COUNT_INPUT: '#car-racing-count-input',
-  CAR_RACING_COUNT_BUTTON: '#car-racing-count-button',
+  CAR_RACING_COUNT_SUBMIT_BUTTON: '#car-racing-count-button',
 
   CAR_NAMES: '#car-names',
   CAR_PROGRESS: '#car-progress',
