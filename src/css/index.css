@@ -1,9 +1,8 @@
-@import './normalize.css';
-@import './layout.css';
-@import './typhography.css';
-@import './sizing.css';
-@import './btn.css';
-@import './spinner.css';
+@import './shared/layout.css';
+@import './shared/typhography.css';
+@import './shared/sizing.css';
+@import './shared/btn.css';
+@import './ui/spinner.css';
 
 :root {
   --cyan: #00bcd4;
@@ -15,6 +14,12 @@
 
 * {
   font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
 }
 
 .input {
