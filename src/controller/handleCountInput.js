@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES, MIN_COUNT } from '../util/constants.js';
 import playRace from './playRace.js';
 
-function isValidCount(count) { 
+function isValidCount(count) {
   if (+count < MIN_COUNT) {
     alert(ERROR_MESSAGES.MIN_COUNT);
     return false;

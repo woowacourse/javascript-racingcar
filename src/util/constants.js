@@ -9,5 +9,3 @@ export const NAME_MIN_LENGTH = 1;
 
 export const CAN_GO_COUNT = 4;
 export const MIN_COUNT = 1;
-
-
