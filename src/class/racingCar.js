@@ -1,5 +1,6 @@
 import { $ } from "../dom/dom.js";
 import Car from "./car.js";
+import generateRandomNumber from "../modules/generateRandomNumber.js";
 export default class RacingCar {
     constructor(carNameArray, raceCount) {
         this.carNameArray = carNameArray;
@@ -12,9 +13,6 @@ export default class RacingCar {
         this.playGame();
     }
 
-    generateRandomNumber() {
-        return Math.floor(10 * Math.random());
-    }
 
     generateCars() {
         this.carNameArray.forEach(car => {
@@ -33,7 +31,7 @@ export default class RacingCar {
 
     updateCarSuccessCount() {
         this.carArray.forEach((item) => {
-            if(this.generateRandomNumber() >= 4){
+            if(generateRandomNumber() >= 4){
                 item.successCount++;
             }
         })
