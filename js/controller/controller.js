@@ -20,7 +20,8 @@ export default class Controller {
   }
 
   bindCarNamesEvent() {
-    $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', (e) => {
+    $(SELECTOR.CAR_NAMES_FORM).addEventListener('submit', (e) => {
+      e.preventDefault();
       if (Validator.isInValidCarNamesInput(this.splitCarNamesInput())) {
         return;
       }
@@ -35,7 +36,8 @@ export default class Controller {
   }
 
   bindRacingCountEvent() {
-    $(SELECTOR.CAR_RACING_COUNT_BUTTON).addEventListener('click', (e) => {
+    $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener('submit', (e) => {
+      e.preventDefault();
       if (Validator.isInValidRacingCountInput(this.getRacingCountInput())) {
         return;
       }
