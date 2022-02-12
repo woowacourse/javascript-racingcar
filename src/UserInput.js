@@ -8,7 +8,7 @@ export default class UserInput {
             .map((name) => name.trim());
     }
 
-    static getTryCnt() {
+    static getTryCount() {
         return Number($(SELECTOR.try_count_input).value);
     }
 

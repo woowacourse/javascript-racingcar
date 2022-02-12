@@ -1,7 +1,7 @@
 import RacingCars from './RacingCars.js';
 import Render from './Render.js';
 import UserInput from './UserInput.js';
-import { isValidCarNames, isValidTryCnt, getCarNamesErrorMessage, getTryCntErrorMessage } from './validation.js';
+import { isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage } from './validation.js';
 import { $ } from './util.js';
 import { SELECTOR } from './constant.js';
 
@@ -12,7 +12,7 @@ export default class RacingGame {
 
     initialize() {
         this.initCarNameFormEvent();
-        this.initTryCntFormEvent();
+        this.initTryCountFormEvent();
         this.initRestartEvent();
     }
 
@@ -32,17 +32,17 @@ export default class RacingGame {
         });
     }
 
-    initTryCntFormEvent() {
+    initTryCountFormEvent() {
         $(SELECTOR.try_count_submit_button).addEventListener('click', () => {
-            const tryCnt = UserInput.getTryCnt();
+            const tryCount = UserInput.getTryCount();
             try {
-                if (!isValidTryCnt(tryCnt)) throw new Error(getTryCntErrorMessage(tryCnt));
+                if (!isValidTryCount(tryCount)) throw new Error(getTryCountErrorMessage(tryCount));
             } catch (e) {
                 alert(e.message);
                 return;
             }
 
-            this.runGame(tryCnt);
+            this.runGame(tryCount);
             this.racingCars.resetSteps();
         });
     }
@@ -55,8 +55,8 @@ export default class RacingGame {
         });
     }
 
-    runGame(tryCnt) {
-        this.racingCars.run(tryCnt);
+    runGame(tryCount) {
+        this.racingCars.run(tryCount);
         Render.showResult(this.racingCars.getStatus(), this.racingCars.getWinners());
     }
 }
