@@ -11,8 +11,8 @@ export default class RacingCar {
     }
 
     generateCars() {
-        this.carNameArray.forEach(car => {
-            this.carArray.push(new Car(car));
+        this.carNameArray.forEach(carName => {
+            this.carArray.push(new Car(carName));
         });
     }
     
@@ -43,11 +43,7 @@ export default class RacingCar {
     }
 
     renderCarArrowResult(carCount) {
-        let arrowResult = '';
-        for(let i = 0; i < carCount; i++) {
-            arrowResult +='<p>⬇️</p>';
-        }
-        return arrowResult;
+        return '<p>⬇️</p>'.repeat(carCount);
     }
     
     renderGameWinners(){
