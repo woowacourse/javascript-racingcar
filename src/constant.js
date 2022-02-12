@@ -11,6 +11,7 @@ const MSG = {
     exceed_car_name: '자동차 이름은 5자 이하입니다.',
     natural_number: '자연수를 입력해주세요.',
     positive_number: '양수를 입력해주세요.',
+    no_error: 'No Error Message',
 };
 
 const SELECTOR = {
@@ -24,4 +25,6 @@ const SELECTOR = {
     winners: '#winners',
 };
 
-export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, MSG, SELECTOR };
+export {
+    CAR_NAME_MAX_LENGTH, SCREEN_CMD, MSG, SELECTOR,
+};
