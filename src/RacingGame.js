@@ -1,7 +1,9 @@
 import RacingCars from './RacingCars.js';
 import Render from './Render.js';
 import UserInput from './UserInput.js';
-import { isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage } from './validation.js';
+import {
+    isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
+} from './validation.js';
 import { $ } from './util.js';
 import { SELECTOR } from './constant.js';
 

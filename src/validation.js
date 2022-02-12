@@ -10,13 +10,13 @@ const haveEmpty = someCarNames(isEmpty);
 const haveBlank = someCarNames((carName) => carName.match(/\s+/));
 const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
 
-const isValidCarNames = (carNames) => {
-    return !haveEmpty(carNames) && !haveBlank(carNames) && !exceedMaxLength(carNames);
-};
+const isValidCarNames = (carNames) => (
+    !haveEmpty(carNames)
+    && !haveBlank(carNames)
+    && !exceedMaxLength(carNames)
+);
 
-const isValidTryCount = (tryCount) => {
-    return Number.isInteger(tryCount) && isPositiveNumber(tryCount);
-};
+const isValidTryCount = (tryCount) => Number.isInteger(tryCount) && isPositiveNumber(tryCount);
 
 const getCarNamesErrorMessage = (carNames) => {
     if (haveEmpty(carNames)) return MSG.empty_car_name;
@@ -31,4 +31,6 @@ const getTryCountErrorMessage = (tryCount) => {
     return MSG.no_error;
 };
 
-export { isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage };
+export {
+    isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
+};

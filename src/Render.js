@@ -14,15 +14,14 @@ export default class Render {
 
     static parsingTrack(cars) {
         return cars
-            .map(
-                ({ name, step }) => `<div class="car-track">
-                        <div class="car-name">${name}</div>
-                        <div class="car-steps">
-                            ${this.parsingStep(step)}
-                        </div>
-                    </div>`,
-            )
-            .join('');
+            .map(({ name, step }) => (
+                `<div class="car-track">
+                    <div class="car-name">${name}</div>
+                    <div class="car-steps">
+                        ${this.parsingStep(step)}
+                    </div>
+                </div>`
+            )).join('');
     }
 
     static renderResult(cars) {
