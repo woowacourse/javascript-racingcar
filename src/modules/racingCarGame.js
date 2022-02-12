@@ -35,7 +35,6 @@ export default function racingCarGame() {
             const raceCount = checkUserRacingCountInput($('#race-count-input').value);
             if(!!carNameArray && !!raceCount) {
                 const racingCar = new RacingCar(carNameArray, raceCount);
-                racingCar.gameStart();
             }
         });
     };

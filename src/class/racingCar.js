@@ -6,13 +6,9 @@ export default class RacingCar {
         this.carNameArray = carNameArray;
         this.raceCount = raceCount;
         this.carArray = [];
-    }
-
-    gameStart(){
         this.generateCars();
         this.playGame();
     }
-
 
     generateCars() {
         this.carNameArray.forEach(car => {
