@@ -24,20 +24,6 @@ describe('자동차 경주 게임', () => {
       });
   });
 
-  it('시도할 횟수가 소수이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c');
-    cy.get(SELECTOR.CAR_NAMES_BUTTON).click();
-    cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(1.3);
-    cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
-  });
-
   it('시도할 횟수가 음수이면 alert을 띄운다.', () => {
     const alertStub = cy.stub();
     cy.on(SELECTOR.WINDOW_ALERT, alertStub);
