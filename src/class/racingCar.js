@@ -34,18 +34,15 @@ export default class RacingCar {
     }
 
     renderRacingContent() {
-        let racingResult = '';
-        this.carArray.forEach(car => {
-            racingResult += `<div class="car">
+        $('.racing-content').innerHTML = this.carArray.map(car => {
+            return `<div class="car">
                 <label>${car.name}</label>
-                <div>${this.renderOneCarContent(car.successCount)}</div>
-                </div>
-            `;
-        });
-        $('.racing-content').innerHTML = racingResult;
+                <div>${this.renderCarArrowResult(car.successCount)}</div>
+                </div>`
+        }).join('');
     }
 
-    renderOneCarContent(carCount) {
+    renderCarArrowResult(carCount) {
         let arrowResult = '';
         for(let i = 0; i < carCount; i++) {
             arrowResult +='<p>⬇️</p>';
