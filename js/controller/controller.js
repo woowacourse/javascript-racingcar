@@ -13,35 +13,33 @@ export default class Controller {
     this.bindRacingCountEvent();
   }
 
-  splitCarNamesInput() {
-    return $(SELECTOR.CAR_NAMES_INPUT)
-      .value.split(',')
-      .map((carName) => carName.trim());
-  }
-
   bindCarNamesEvent() {
     $(SELECTOR.CAR_NAMES_FORM).addEventListener('submit', (e) => {
       e.preventDefault();
-      if (Validator.isInValidCarNamesInput(this.splitCarNamesInput())) {
+      const carNamesInput = $(SELECTOR.CAR_NAMES_INPUT)
+        .value.split(',')
+        .map((carName) => carName.trim());
+
+      if (Validator.isInValidCarNamesInput(carNamesInput)) {
         return;
       }
-      this.model.saveCars(this.splitCarNamesInput());
+
+      this.model.saveCars(carNamesInput);
       this.model.initCarPosition();
       this.view.renderCarRacingInputBox();
     });
   }
 
-  getRacingCountInput() {
-    return $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
-  }
-
   bindRacingCountEvent() {
     $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener('submit', (e) => {
       e.preventDefault();
-      if (Validator.isInValidRacingCountInput(this.getRacingCountInput())) {
+      const carRacingCountInput = $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
+
+      if (Validator.isInValidRacingCountInput(carRacingCountInput)) {
         return;
       }
-      this.model.saveRacingCount(this.getRacingCountInput());
+
+      this.model.saveRacingCount(carRacingCountInput);
       this.gameStart();
       this.model.initCarPosition();
     });
