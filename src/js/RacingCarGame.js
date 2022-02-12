@@ -62,8 +62,8 @@ export default class RacingCarGame {
     this.renderResult();
   }
 
-  isNotValidCarNamesLength(carNameList) {
-    return !carNameList.every(
+  isValidCarNamesLength(carNameList) {
+    return carNameList.every(
       (name) =>
         name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
         name.length <= CAR_NAME_LENGTH_RANGE.MAX
@@ -74,11 +74,11 @@ export default class RacingCarGame {
     return carNameList.length !== new Set(carNameList).size;
   }
 
-  isNotValidRacingCount(racingCount) {
+  isValidRacingCount(racingCount) {
     return (
-      !Number.isInteger(racingCount) ||
-      racingCount <= RACING_COUNT_RANGE.MIN ||
-      racingCount > RACING_COUNT_RANGE.MAX
+      Number.isInteger(racingCount) &&
+      racingCount >= RACING_COUNT_RANGE.MIN &&
+      racingCount < RACING_COUNT_RANGE.MAX
     );
   }
 
@@ -86,9 +86,13 @@ export default class RacingCarGame {
     return !this.carList.length;
   }
 
+  alertErrorMessage(message) {
+    alert(message);
+  }
+  
   validateCarNameList(carNameList) {
-    if (this.isNotValidCarNamesLength(carNameList)) {
-      alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
+    if (!this.isValidCarNamesLength(carNameList)) {
+      this.alertErrorMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.initializeInput(this.$carNameInput);
 
       return true;
@@ -99,7 +103,7 @@ export default class RacingCarGame {
 
   validateUniqueCarName(carNameList) {
     if (this.isDuplicatedCarName(carNameList)) {
-      alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
+      this.alertErrorMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.initializeInput(this.$carNameInput);
 
       return true;
@@ -109,8 +113,8 @@ export default class RacingCarGame {
   }
 
   validateRacingCount(racingCount) {
-    if (this.isNotValidRacingCount(racingCount)) {
-      alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
+    if (!this.isValidRacingCount(racingCount)) {
+      this.alertErrorMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
       this.initializeInput(this.$racingCountInput);
 
       return true;
@@ -121,7 +125,7 @@ export default class RacingCarGame {
 
   validateCarListFound() {
     if (this.isCarListNotFound()) {
-      alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
+      this.alertErrorMessage(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
       this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
       return true;
