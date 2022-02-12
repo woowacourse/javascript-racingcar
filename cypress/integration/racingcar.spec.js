@@ -35,35 +35,46 @@ describe('racingcar Test', () => {
     cy.get('.restart-container').should('not.be.visible');
   });
 
-  it('자동차 이름이 5자 초과면 에러 메세지가 뜬다.', () => {
-    const invalid = 'aaabbb,ff,gg,hh';
+  it('자동차 이름이 5자 초과면 에러 메세지가 표시된다.', () => {
+    const invalidInput = 'aaabbb,ff,gg,hh';
 
-    cy.get('.name-input').type(invalid);
+    cy.get('.name-input').type(invalidInput);
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.LONGER_THAN_FIVE);
+      expect(text).to.equal(ERROR_MESSAGES.NAME_LENGTH);
     });
   });
 
-  it('자동차 이름이 공백으로만 이루어지면 에러메세지가 뜬다.', () => {
-    const invalid = '   ,ff,gg,hh';
+  it('자동차 이름이 공백으로만 이루어지면 에러메세지가 표시된다.', () => {
+    const invalidInput = '   ,ff,gg,hh';
 
-    cy.get('.name-input').type(invalid);
+    cy.get('.name-input').type(invalidInput);
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.IS_BLANK);
+      expect(text).to.equal(ERROR_MESSAGES.NAME_LENGTH);
     });
   });
 
-  it('반복할 횟수가 1미만이면 에러메세지가 뜬다.', () => {
+  it('중복된 자동차 이름이 있으면 에러메세지가 표시된다.', () => {
+    const invalidInput = 'a,a,b,c';
+
+    cy.get('.name-input').type(invalidInput);
+    cy.get('.name-button').click();
+
+    cy.on('window:alert', text => {
+      expect(text).to.equal(ERROR_MESSAGES.DUPLICATED_NAME);
+    });
+  });
+
+  it('반복할 횟수가 1미만이면 에러메세지가 표시된다.', () => {
     const carNames = 'east, west, south, north, all';
-    const invalid = '-3';
+    const invalidInput = '-3';
 
     cy.get('.name-input').type(carNames);
     cy.get('.name-button').click();
-    cy.get('.count-input').type(invalid);
+    cy.get('.count-input').type(invalidInput);
     cy.get('.count-button').click();
 
     cy.on('window:alert', text => {
