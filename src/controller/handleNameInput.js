@@ -9,6 +9,7 @@ function isValidNames(names) {
     alert(ERROR_MESSAGES.IS_BLANK);
     return false;
   }
+  
   return true;
 }
 
