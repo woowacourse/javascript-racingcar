@@ -84,16 +84,11 @@ export default class Controller {
     this.view.renderRestartButton();
   }
 
-  getWinner(maxDistance) {
-    return this.model.carNames.filter((car, idx) => this.model.carPosition[idx] === maxDistance);
-  }
-
-  getMaxDistance() {
-    return Math.max.apply(null, [...this.model.carPosition]);
-  }
-
   getWinnerList() {
-    return this.getWinner(this.getMaxDistance()).join(', ');
+    const maxDistance = Math.max(...this.model.carPosition);
+    return this.model.carNames
+      .filter((car, idx) => this.model.carPosition[idx] === maxDistance)
+      .join(', ');
   }
 
   displayWinner() {
