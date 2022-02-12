@@ -22,7 +22,7 @@ export default class RacingCar {
         }
         this.renderRacingContent();
         this.renderGameWinners();
-        this.onRestartButtonClick();
+        this.handleRestartButtonClickEvent();
     }
 
     updateCarSuccessCount() {
@@ -68,7 +68,7 @@ export default class RacingCar {
         `;
     }
 
-    onRestartButtonClick(){
+    handleRestartButtonClickEvent(){
         $('.restart-button').addEventListener('click', () =>{
             location.reload();
         });
