@@ -1,9 +1,9 @@
-import { ERROR, LIMIT } from '../util/constants.js';
+import { ERROR_MESSAGES, MIN_COUNT } from '../util/constants.js';
 import playRace from './playRace.js';
 
 function isValidCount(count) { 
-  if (+count < LIMIT.MIN_LENGTH) {
-    alert(ERROR.MIN_COUNT);
+  if (+count < MIN_COUNT) {
+    alert(ERROR_MESSAGES.MIN_COUNT);
     return false;
   }
 

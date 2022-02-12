@@ -1,4 +1,4 @@
-import { NUMBER } from '../util/constants.js';
+import { CAN_GO_COUNT } from '../util/constants.js';
 
 export default class Car {
   constructor(name) {
@@ -7,7 +7,7 @@ export default class Car {
   }
 
   go() {
-    if (Math.floor(Math.random() * 10) >= NUMBER.CAN_GO) {
+    if (Math.floor(Math.random() * 10) >= CAN_GO_COUNT) {
       this.position += 1;
     }
   }

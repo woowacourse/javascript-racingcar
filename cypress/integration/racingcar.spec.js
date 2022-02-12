@@ -1,4 +1,4 @@
-import { ERROR } from '../../src/util/constants.js';
+import { ERROR_MESSAGES } from '../../src/util/constants.js';
 
 describe('racingcar Test', () => {
   beforeEach(() => {
@@ -42,7 +42,7 @@ describe('racingcar Test', () => {
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.LONGER_THAN_FIVE);
+      expect(text).to.equal(ERROR_MESSAGES.LONGER_THAN_FIVE);
     });
   });
 
@@ -53,7 +53,7 @@ describe('racingcar Test', () => {
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.IS_BLANK);
+      expect(text).to.equal(ERROR_MESSAGES.IS_BLANK);
     });
   });
 
@@ -67,7 +67,7 @@ describe('racingcar Test', () => {
     cy.get('.count-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.MIN_COUNT);
+      expect(text).to.equal(ERROR_MESSAGES.MIN_COUNT);
     });
   });
 });

@@ -1,12 +1,12 @@
-import { ERROR, LIMIT } from '../util/constants.js';
+import { ERROR_MESSAGES, NAME_MAX_LENGTH, NAME_MIN_LENGTH } from '../util/constants.js';
 
 function isValidNames(names) {
-  if (names.some(name => name.length > LIMIT.MAX_LENGTH)) {
-    alert(ERROR.LONGER_THAN_FIVE);
+  if (names.some(name => name.length > NAME_MAX_LENGTH)) {
+    alert(ERROR_MESSAGES.LONGER_THAN_FIVE);
     return false;
   }
-  if (names.some(name => name.length < LIMIT.MIN_LENGTH)) {
-    alert(ERROR.IS_BLANK);
+  if (names.some(name => name.length < NAME_MIN_LENGTH)) {
+    alert(ERROR_MESSAGES.IS_BLANK);
     return false;
   }
   return true;
