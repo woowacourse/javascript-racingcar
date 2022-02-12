@@ -1,39 +1,37 @@
 <!DOCTYPE html>
 <html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-  <link rel="stylesheet" href="./style.css" />
-</head>
-
-<body>
-  <div id="app">
-    <header>
-      <h1>🏎 자동차 경주 게임 🏁</h1>
-    </header>
-    <main>
-      <form class="name-form">
-        <label for="name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
-        <div class="input-container">
-          <input id="name-input" class="name-input" type="text" />
-          <button class="name-button">확인</button>
+  <body>
+    <div id="app">
+      <header>
+        <h1>🏎 자동차 경주 게임 🏁</h1>
+      </header>
+      <main>
+        <form class="name-form">
+          <label for="name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+          <div class="input-container">
+            <input id="name-input" class="name-input" type="text" />
+            <button class="name-button">확인</button>
+          </div>
+        </form>
+        <form class="count-form">
+          <label for="count-input">시도할 횟수를 입력해주세요.</label>
+          <div class="input-container">
+            <input id="count-input" class="count-input" type="number" />
+            <button class="count-button">확인</button>
+          </div>
+        </form>
+        <div class="game-result-container"></div>
+        <div class="restart-container">
+          <button class="restart">다시 시작하기</button>
         </div>
-      </form> 
-      <form class="count-form">
-        <label for="count-input">시도할 횟수를 입력해주세요.</label>
-        <div class="input-container">
-          <input id="count-input" class="count-input" type="number" />
-          <button class="count-button">확인</button>
-        </div>
-      </form>
-      <div class="game-result-container"></div>
-      <div class="restart-container">
-        <button class="restart">다시 시작하기</button>
-      </div>
-    </main>
-    <script type="module" src="./src/index.js"></script>
-  </div>
-</body>
-
+      </main>
+      <script type="module" src="./src/index.js"></script>
+    </div>
+  </body>
 </html>
