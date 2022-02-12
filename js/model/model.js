@@ -1,4 +1,5 @@
 import { NUMBER } from '../utils/constants.js';
+import { getRandomNumber } from '../utils/getRandomNumber.js';
 
 export default class Model {
   constructor() {
@@ -17,5 +18,11 @@ export default class Model {
 
   saveRacingCount(racingCount) {
     this.racingCount = racingCount;
+  }
+
+  goForward(idx) {
+    if (getRandomNumber() >= NUMBER.MOVE_CONDITION) {
+      this.carPosition[idx]++;
+    }
   }
 }

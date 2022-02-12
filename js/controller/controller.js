@@ -1,7 +1,6 @@
 import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
-import { getRandomNumber } from '../utils/getRandomNumber.js';
 import Validator from '../validator/validator.js';
 import { NUMBER, SELECTOR } from '../utils/constants.js';
 
@@ -51,19 +50,9 @@ export default class Controller {
     }
   }
 
-  isMoveCondition() {
-    return getRandomNumber() >= NUMBER.MOVE_CONDITION;
-  }
-
-  goForward(idx) {
-    if (this.isMoveCondition()) {
-      this.model.carPosition[idx]++;
-    }
-  }
-
   setMoveState() {
     this.model.carNames.forEach((carNames, idx) => {
-      this.goForward(idx);
+      this.model.goForward(idx);
     });
   }
 
