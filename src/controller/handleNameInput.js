@@ -4,6 +4,10 @@ function isValidNameLength(names) {
   return names.every(name => name.length <= NAME_MAX_LENGTH && name.length >= NAME_MIN_LENGTH);
 }
 
+function isDuplicatedName(names) {
+  return new Set([...names]).size === names.length;
+}
+
 export default function handleNameInput() {
   const names = document
     .querySelector('.name-input')
@@ -12,6 +16,10 @@ export default function handleNameInput() {
 
   if (!isValidNameLength(names)) {
     alert(ERROR_MESSAGES.NAME_LENGTH);
+    return;
+  }
+  if (!isDuplicatedName(names)) {
+    alert(ERROR_MESSAGES.DUPLICATED_NAME);
     return;
   }
 
