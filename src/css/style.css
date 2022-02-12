@@ -1,0 +1,108 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+#app {
+  width: 544px;
+  border: 1px solid lightgray;
+}
+
+#game-header {
+  font-size: 34px;
+  line-height: 36px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.racing-input-form {
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.racing-input-form input {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  width: 82%;
+  padding: 6px 0 6px 6px;
+  font-size: 12px;
+}
+
+.racing-input-form label {
+  font-size: 12px;
+  align-self: flex-start;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.btn {
+  border: none;
+  background-color: #00bcd4;
+  color: white;
+  font-size: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-btn {
+  padding: 6px 13px;
+}
+
+.btn:hover {
+  background-color: #80deea;
+  color: white;
+}
+
+.btn:disabled {
+  cursor: unset;
+  background-color: #8b8b8b;
+  color: lightgray;
+  opacity: 0.8;
+}
+
+#result {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.racing-results {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.racing-result {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.car-name {
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  width: 90%;
+  height: 36px;
+  line-height: 36px;
+}
+
+.arrow {
+  font-size: 32px;
+}
+
+.winners {
+  margin-top: 25px;
+}
+
+.replay-btn {
+  padding: 8px 20px;
+  font-size: 13px;
+}
