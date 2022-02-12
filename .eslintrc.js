@@ -13,6 +13,7 @@ module.exports = {
     'import/extensions': ['error', 'always'],
     'max-depth': ['error', 2],
     'prettier/prettier': 'error',
+    'import/prefer-default-export': 'off',
   },
   plugins: ['prettier'],
 };

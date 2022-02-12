@@ -1,16 +1,11 @@
 .btn {
-  padding-top: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 7px;
+  height: 36px;
+  min-width: 64px;
+  padding: 0 18px;
   border-radius: 4px;
   outline: 0;
   border-style: none;
   cursor: pointer;
-  word-break: keep-all;
-  font-size: 14px;
-  line-height: 16px;
-  letter-spacing: 1.25px;
   color: var(--white);
 }
 

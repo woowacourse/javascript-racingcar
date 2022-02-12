@@ -44,7 +44,6 @@ function App() {
     if (!isValidRacingCount(this.count)) {
       return;
     }
-    console.log(this.count);
     // startRacingGame(this.count);
   };
 
