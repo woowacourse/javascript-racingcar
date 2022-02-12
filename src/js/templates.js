@@ -24,9 +24,9 @@ const TEMPLATE = {
   RENDER_RESULT(winners) {
     return winners.length > 0
       ? `
-    <h6 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${
+    <h2 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${
           DOM_STRING.WINNERS
-        }">${winners.join(`${DELIMETER} `)}</span> 🏆</h6>
+        }">${winners.join(`${DELIMETER} `)}</span> 🏆</h2>
     <button id="${DOM_STRING.RESTART_BUTTON}">다시 시작하기</button>
     `
       : '';

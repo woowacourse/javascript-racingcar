@@ -7,13 +7,13 @@ body {
   letter-spacing: 0.5px;
 }
 
-h4 {
+h1 {
   font-weight: 600;
   font-size: 34px;
   line-height: 36px;
 }
 
-h6 {
+h2 {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
@@ -102,9 +102,7 @@ form {
 }
 
 #racing-result {
-  margin-top: 32px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 32px 16px 0 16px;
 }
 
 #result-list {
@@ -153,10 +151,7 @@ form {
   flex-direction: column;
   align-items: center;
 
-  margin-top: 24px;
-  margin-bottom: 32px;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin: 24px 16px 32px 16px;
 }
 
 #result-message {
