@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
-import Validator from '../validator/validator.js';
+import { Validator } from '../validator/validator.js';
 import { NUMBER, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
