@@ -1,6 +1,6 @@
 import { isValidRacingCount } from "./checkFunctions.js";
-import Game from "../game/Game.js";
-import { EVENT, EXCEPTIONS, KEYBOARD } from "../../util/constants.js";
+import { game } from "../game/game.js";
+import { EXCEPTIONS, KEYBOARD } from "../../util/constants.js";
 import {
   racingCountInput,
   racingCountSubmitButton,
@@ -31,12 +31,12 @@ export default class RacingCount {
   goNextStep() {
     racingCountInput.readOnly = true;
     racingCountSubmitButton.disabled = true;
-    Game.getResult(this.cars, this.racingCount);
-    Game.setResult(this.cars);
+    game.getResult(this.cars, this.racingCount);
+    game.setResult(this.cars);
   }
 
   addRacingCountInputEnterEvent() {
-    racingCountInput.addEventListener(EVENT.KEYUP, e => {
+    racingCountInput.addEventListener("keyup", e => {
       if (
         e.keyCode === KEYBOARD.ENTER &&
         this.makeRacingCount(racingCountInput.value)
@@ -47,7 +47,7 @@ export default class RacingCount {
   }
 
   addRacingCountSubmitButtonClickEvent() {
-    racingCountSubmitButton.addEventListener(EVENT.CLICK, () => {
+    racingCountSubmitButton.addEventListener("click", () => {
       if (this.makeRacingCount(racingCountInput.value)) {
         this.goNextStep();
       }

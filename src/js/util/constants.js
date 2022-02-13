@@ -12,25 +12,11 @@ export const RANDOM_RANGE = {
   MAX: 9,
 };
 
-export const RACE_STANDARD = 4;
+export const MINIMUM_ADVANCE_VALUE = 4;
 
 export const EXCEPTIONS = {
   INCORRECT_CAR_NAME: "조건에 맞게 중복 없이 2대 이상을 입력해주세요.",
   INCORRECT_RACING_COUNT: `${RACING_COUNT.MIN} 이상의 정수로 입력해주세요.`,
-};
-
-export const EVENT = {
-  CLICK: "click",
-  KEYUP: "keyup",
-};
-
-export const ATTRIBUTE = {
-  CLASS: "class",
-  ID: "id",
-};
-
-export const ELEMENT = {
-  DIV: "div",
 };
 
 export const KEYBOARD = {
@@ -38,7 +24,3 @@ export const KEYBOARD = {
 };
 
 export const SEPARATOR = ",";
-
-export const ARROW = "⬇️️";
-
-export const BLANK = "";
