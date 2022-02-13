@@ -5,7 +5,7 @@ const validateCarNameLength = names =>
 
 const validateDuplicateCarName = names => new Set(names).size === names.length;
 
-const validateRacingCount = count => count > 0;
+const validateRacingCount = count => count >= 1 && count <= 1000;
 
 const generateRandomNumber = () => Math.floor(Math.random() * 9);
 
