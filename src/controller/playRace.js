@@ -5,7 +5,8 @@ import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
 
 function sortCars(cars) {
-  return cars.sort((a, b) => b.position - a.position);
+  const sortedCars = [...cars];
+  return sortedCars.sort((a, b) => b.position - a.position);
 }
 
 export default function playRace(count) {

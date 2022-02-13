@@ -30,3 +30,5 @@
 - [ ] 함수(function vs const 블라블라)
 - [ ] 브랜치? 
 - [ ] NO_PROPER_ERORR
+- [ ] css (block, none)
+- [ ] 구조 피드백 
