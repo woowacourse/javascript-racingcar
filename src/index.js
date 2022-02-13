@@ -145,11 +145,10 @@ class RacingCar {
   }
 
   renderRacingCarList() {
-    let racingCarItemsTemplate = '';
-
-    this.racingCarList.map((car) => {
-      racingCarItemsTemplate = racingCarItemsTemplate + getRacingCarItemTemplate(car.getName());
-    });
+    const racingCarItemsTemplate = this.racingCarList.reduce(
+      (previousTemplate, car) => previousTemplate + getRacingCarItemTemplate(car.getName()),
+      ''
+    );
 
     this.$racingCarList.innerHTML = racingCarItemsTemplate;
   }
