@@ -50,14 +50,14 @@ describe('최종 우승자를 검증합니다.', () => {
 });
 
 describe('사용자의 입력을 검증합니다.', () => {
+  let alertStub;
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
+    alertStub = cy.stub();
+    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
   });
 
   it('자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
     cy.get(SELECTOR.CAR_NAMES_INPUT).type('easteee,west');
     cy.get(SELECTOR.CAR_NAMES_BUTTON).click();
     cy.get(SELECTOR.CAR_NAMES_BUTTON)
@@ -68,9 +68,6 @@ describe('사용자의 입력을 검증합니다.', () => {
   });
 
   it('자동차 이름이 빈칸이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(',b,c');
     cy.get(SELECTOR.CAR_NAMES_BUTTON)
       .click()
@@ -80,9 +77,6 @@ describe('사용자의 입력을 검증합니다.', () => {
   });
 
   it('시도할 횟수가 소수이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
     cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c');
     cy.get(SELECTOR.CAR_NAMES_BUTTON).click();
     cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(-3);
@@ -94,9 +88,6 @@ describe('사용자의 입력을 검증합니다.', () => {
   });
 
   it('시도할 횟수가 음수이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
     cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c');
     cy.get(SELECTOR.CAR_NAMES_BUTTON).click();
     cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(-3);
@@ -108,9 +99,6 @@ describe('사용자의 입력을 검증합니다.', () => {
   });
 
   it('시도할 횟수가 문자열이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
     cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c');
     cy.get(SELECTOR.CAR_NAMES_BUTTON).click();
     cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type('a');
