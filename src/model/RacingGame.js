@@ -32,26 +32,25 @@ export default class RacingGame {
   }
 
   findMaxRecord() {
-    let maxRecord = CAR.INITIAL_VALUE;
-
-    this.cars.forEach((car) => {
-      if (car.position > maxRecord) {
-        maxRecord = car.position;
+    const maxRecord = this.cars.reduce((accumulator, current) => {
+      if (current.position > accumulator) {
+        accumulator = current.position;
       }
-    });
+      return accumulator;
+    }, CAR.INITIAL_VALUE);
 
     return maxRecord;
   }
 
   findWinners() {
-    const winnerList = [];
     const maxRecord = this.findMaxRecord();
 
-    this.cars.forEach((car) => {
-      if (car.position === maxRecord) {
-        winnerList.push(car.name);
+    const winnerList = this.cars.reduce((accumulator, current) => {
+      if (current.position === maxRecord) {
+        accumulator.push(current.name);
       }
-    });
+      return accumulator;
+    }, []);
 
     return winnerList;
   }
