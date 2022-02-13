@@ -16,4 +16,3 @@
     "cypress:run": "cypress run --browser chrome"
   }
 }
-

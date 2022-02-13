@@ -36,9 +36,9 @@ describe('racingcar Test', () => {
   });
 
   it('자동차 이름이 5자 초과면 에러 메세지가 뜬다.', () => {
-    const invalid = 'aaabbb,ff,gg,hh';
+    const invalidInput = 'abcdef,g,h';
 
-    cy.get('.name-input').type(invalid);
+    cy.get('.name-input').type(invalidInput);
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
@@ -47,9 +47,9 @@ describe('racingcar Test', () => {
   });
 
   it('자동차 이름이 공백으로만 이루어지면 에러메세지가 뜬다.', () => {
-    const invalid = '   ,ff,gg,hh';
+    const invalidInput = 'a, ,b,c';
 
-    cy.get('.name-input').type(invalid);
+    cy.get('.name-input').type(invalidInput);
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
@@ -59,11 +59,11 @@ describe('racingcar Test', () => {
 
   it('반복할 횟수가 1미만이면 에러메세지가 뜬다.', () => {
     const carNames = 'east, west, south, north, all';
-    const invalid = '-3';
+    const invalidInput = '-3';
 
     cy.get('.name-input').type(carNames);
     cy.get('.name-button').click();
-    cy.get('.count-input').type(invalid);
+    cy.get('.count-input').type(invalidInput);
     cy.get('.count-button').click();
 
     cy.on('window:alert', text => {
