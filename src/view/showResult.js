@@ -1,10 +1,5 @@
 function getPositionArrow(car) {
-  let template = '';
-
-  for (let i = 0; i < car.position; i += 1) {
-    template += `<div class="result-arrow">⬇️️</div>`;
-  }
-  return template;
+  return `<div class="result-arrow">⬇️️</div>`.repeat(car.position);
 }
 
 function getTemplateRaceResult(cars) {
