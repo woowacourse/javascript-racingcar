@@ -2,36 +2,39 @@ import { setResultArea } from "../../view/resultViewControl.js";
 import { showWinnerAndRestartButton } from "../../view/viewControl.js";
 import { setWinnerText } from "../../view/winnerViewControl.js";
 
-export default class Game {
-  static startGame(cars, racingCount) {
-    for (let index = 0; index < racingCount; index++) {
-      cars.cars.forEach(car => {
+export const game = {
+  startGame: (cars, racingCount) => {
+    const carList = cars.getCars();
+    for (let i = 0; i < racingCount; i++) {
+      carList.forEach(car => {
         car.goForward();
       });
     }
-  }
+    cars.setCars(carList);
+  },
 
-  static getWinners(cars) {
-    const max = cars.cars[0].location;
+  getWinners: cars => {
+    const carList = cars.getCars();
     const winners = [];
+    const maxLocation = Math.max(...carList.map(car => car.location));
 
-    cars.cars.forEach(car => {
-      if (car.location === max) {
-        winners.push(car.name);
+    carList.forEach(car => {
+      const { name, location } = car;
+      if (location === maxLocation) {
+        winners.push(name);
       }
     });
 
     return winners;
-  }
+  },
 
-  static getResult(cars, racingCount) {
-    Game.startGame(cars, racingCount);
-    cars.sortCars();
-  }
+  getResult: (cars, racingCount) => {
+    game.startGame(cars, racingCount);
+  },
 
-  static setResult(cars) {
+  setResult: cars => {
     setResultArea(cars);
     showWinnerAndRestartButton();
-    setWinnerText(Game.getWinners(cars));
-  }
-}
+    setWinnerText(game.getWinners(cars));
+  },
+};
