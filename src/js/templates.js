@@ -1,7 +1,7 @@
 import { DOM_STRING, DELIMETER } from './constants.js';
 
-const TEMPLATE = {
-  RENDER_RACING_RESULT(carList) {
+const template = {
+  renderRacingResult(carList) {
     return `
       <ul id="${DOM_STRING.RESULT_LIST}">
         ${carList
@@ -21,7 +21,7 @@ const TEMPLATE = {
     </ul>
   `;
   },
-  RENDER_RESULT(winners) {
+  renderResult(winners) {
     return winners.length > 0
       ? `
     <h2 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${
@@ -33,4 +33,4 @@ const TEMPLATE = {
   },
 };
 
-export default TEMPLATE;
+export default template;

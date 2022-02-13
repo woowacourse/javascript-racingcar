@@ -6,7 +6,7 @@ import {
   CAR_NAME_LENGTH_RANGE,
   DELIMETER,
 } from './constants.js';
-import TEMPLATE from './templates.js';
+import template from './templates.js';
 import { $, $all, splitString, trimStringArray } from './utils.js';
 
 export default class RacingCarGame {
@@ -89,7 +89,7 @@ export default class RacingCarGame {
   alertErrorMessage(message) {
     alert(message);
   }
-  
+
   validateCarNameList(carNameList) {
     if (!this.isValidCarNamesLength(carNameList)) {
       this.alertErrorMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
@@ -140,13 +140,13 @@ export default class RacingCarGame {
   }
 
   renderRacingResult() {
-    $(SELECTOR.$RACING_RESULT).innerHTML = TEMPLATE.RENDER_RACING_RESULT(
+    $(SELECTOR.$RACING_RESULT).innerHTML = template.renderRacingResult(
       this.carList
     );
   }
 
   renderResult() {
-    $(SELECTOR.$RESULT).innerHTML = TEMPLATE.RENDER_RESULT(this.winners);
+    $(SELECTOR.$RESULT).innerHTML = template.renderResult(this.winners);
   }
 
   bindEventListener(type, selector, callback) {
