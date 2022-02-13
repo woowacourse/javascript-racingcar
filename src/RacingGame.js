@@ -13,48 +13,44 @@ export default class RacingGame {
     }
 
     initialize() {
-        this.initCarNameFormEvent();
-        this.initTryCountFormEvent();
-        this.initRestartEvent();
+        this.setEvent();
     }
 
-    initCarNameFormEvent() {
-        $(SELECTOR.car_name_submit_button).addEventListener('click', () => {
-            const carNames = userInputValue.carNames();
-            try {
-                if (!isValidCarNames(carNames)) throw new Error(getCarNamesErrorMessage(carNames));
-            } catch (e) {
-                alert(e.message);
-                return;
-            }
-
-            this.racingCars.reset();
-            this.racingCars.update(carNames);
-            this.view.showTryForm();
-        });
+    setEvent() {
+        $(SELECTOR.car_name_submit_button).addEventListener('click', () => { this.onSubmitCarName(); });
+        $(SELECTOR.try_count_submit_button).addEventListener('click', () => { this.onSubmitTryCount(); });
+        $(SELECTOR.restart_button).addEventListener('click', () => { this.onClickRestartButton(); });
     }
 
-    initTryCountFormEvent() {
-        $(SELECTOR.try_count_submit_button).addEventListener('click', () => {
-            const tryCount = userInputValue.tryCount();
-            try {
-                if (!isValidTryCount(tryCount)) throw new Error(getTryCountErrorMessage(tryCount));
-            } catch (e) {
-                alert(e.message);
-                return;
-            }
-
-            this.runGame(tryCount);
-            this.racingCars.resetSteps();
-        });
+    onSubmitCarName() {
+        const carNames = userInputValue.carNames();
+        try {
+            if (!isValidCarNames(carNames)) throw new Error(getCarNamesErrorMessage(carNames));
+        } catch (e) {
+            alert(e.message);
+            return;
+        }
+        this.racingCars.reset();
+        this.racingCars.update(carNames);
+        this.view.showTryForm();
     }
 
-    initRestartEvent() {
-        $(SELECTOR.restart_button).addEventListener('click', () => {
-            this.racingCars.reset();
-            this.view.reset();
-            userInputValue.reset();
-        });
+    onSubmitTryCount() {
+        const tryCount = userInputValue.tryCount();
+        try {
+            if (!isValidTryCount(tryCount)) throw new Error(getTryCountErrorMessage(tryCount));
+        } catch (e) {
+            alert(e.message);
+            return;
+        }
+        this.runGame(tryCount);
+        this.racingCars.resetSteps();
+    }
+
+    onClickRestartButton() {
+        this.racingCars.reset();
+        this.view.reset();
+        userInputValue.reset();
     }
 
     runGame(tryCount) {
