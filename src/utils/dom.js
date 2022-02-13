@@ -1,3 +1,5 @@
 const getElement = (id, target = document) => target.getElementById(id);
 
-export { getElement };
+const getInputValue = target => target.querySelector('input').value;
+
+export { getElement, getInputValue };

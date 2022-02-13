@@ -1,6 +1,6 @@
 import Car from './Car.js';
-import { ID, MESSAGE, KEY } from './constants.js';
-import { getElement } from './utils/dom.js';
+import { ID, MESSAGE } from './constants.js';
+import { getElement, getInputValue } from './utils/dom.js';
 import { userStatusView, winnersView } from './view.js';
 import {
   parseCarName,
@@ -19,30 +19,18 @@ class CarRacing {
   }
 
   bindEvents() {
-    getElement(ID.INPUT_FORMS).addEventListener('keyup', event => {
-      if (event.key !== KEY.ENTER) {
-        return;
-      }
-      if (document.activeElement.id === ID.CAR_COUNTS_INPUT) {
-        this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
-        return;
-      }
-      this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
+    getElement(ID.CAR_NAMES_FORM).addEventListener('submit', event => {
+      event.preventDefault();
+      this.onSubmitCarName(getInputValue(event.target));
     });
 
-    getElement(ID.APP).addEventListener('click', ({ target }) => {
-      const buttonIds = {
-        [ID.CAR_NAMES_SUBMIT]: () => {
-          this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
-        },
-        [ID.RACING_COUNT_SUBMIT]: () => {
-          this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
-        },
-        [ID.RESTART_BUTTON]: () => {
-          this.onClickRestart();
-        },
-      };
-      buttonIds[target.id] && buttonIds[target.id]();
+    getElement(ID.RACING_COUNT_FORM).addEventListener('submit', event => {
+      event.preventDefault();
+      this.onSubmitRacingCount(getInputValue(event.target));
+    });
+
+    getElement(ID.RESTART_BUTTON).addEventListener('click', () => {
+      this.onClickRestart();
     });
   }
 
