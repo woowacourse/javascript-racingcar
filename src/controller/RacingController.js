@@ -18,7 +18,15 @@ export default class RacingController {
 
   submitNameHandler(e) {
     e.preventDefault();
-    this.getCarNamesInArrayType();
+    const nameList = this.getCarNameList();
+
+    try {
+      validateCarNames(nameList);
+      this.model.players = nameList;
+      this.view.activateCountForm();
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   submitCountHandler(e) {
@@ -49,19 +57,11 @@ export default class RacingController {
     this.model.reset();
   }
 
-  getCarNamesInArrayType() {
-    let nameList = document
+  getCarNameList() {
+    const nameList = document
       .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
       .value.split(',');
-    nameList = nameList.map((name) => name.trim());
-
-    try {
-      validateCarNames(nameList);
-      this.view.activateCountForm();
-      this.model.players = nameList;
-    } catch (error) {
-      alert(error.message);
-    }
+    return nameList.map((name) => name.trim());
   }
 
   startRacingGame() {
