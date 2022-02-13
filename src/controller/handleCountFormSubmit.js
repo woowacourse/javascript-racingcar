@@ -1,11 +1,11 @@
-import { LIMIT } from '../util/constants.js';
+import { MIN_COUNT } from '../util/constants.js';
 import { getCountErrorMessage } from '../model/getErrorMessage.js';
 import $ from '../util/dom.js';
 import alertError from '../view/alertError.js';
 import playRace from './playRace.js';
 
 function isValidCount(inputCount) {
-  if (+inputCount < LIMIT.MIN_LENGTH) {
+  if (+inputCount < MIN_COUNT) {
     return false;
   }
   return true;

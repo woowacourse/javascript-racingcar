@@ -1,18 +1,18 @@
-import { ERROR, LIMIT } from '../util/constants.js';
+import { ERROR_MESSAGE, MIN_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../util/constants.js';
 
 export function getCountErrorMessage(inputCount) {
-  if (+inputCount < LIMIT.MIN_LENGTH) {
-    return ERROR.MIN_COUNT;
+  if (+inputCount < MIN_COUNT) {
+    return ERROR_MESSAGE.MIN_COUNT;
   }
-  return ERROR.NO_PROPER_ERROR;
+  return ERROR_MESSAGE.NO_PROPER;
 }
 
 export function getNameErrorMessage(inputNames) {
-  if (inputNames.some(name => name.length > LIMIT.MAX_LENGTH)) {
-    return ERROR.LONGER_THAN_FIVE;
+  if (inputNames.some(name => name.length > MAX_NAME_LENGTH)) {
+    return ERROR_MESSAGE.LONGER_THAN_FIVE;
   }
-  if (inputNames.some(name => name.length < LIMIT.MIN_LENGTH)) {
-    return ERROR.IS_BLANK;
+  if (inputNames.some(name => name.length < MIN_NAME_LENGTH)) {
+    return ERROR_MESSAGE.IS_BLANK;
   }
-  return ERROR.NO_PROPER_ERROR;
+  return ERROR_MESSAGE.NO_PROPER;
 }
