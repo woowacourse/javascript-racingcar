@@ -190,10 +190,10 @@ class RacingCar {
   }
 
   getMaxDistance(racingCarList) {
-    return racingCarList.reduce(
-      (maxNumber, car) => (maxNumber < car.getDistance() ? car.getDistance() : maxNumber),
-      0
-    );
+    const distance = racingCarList.map((car) => car.getDistance());
+    const maxDistance = Math.max(...distance);
+
+    return maxDistance;
   }
 
   getWinnerList(racingCarList, maxDistance) {
