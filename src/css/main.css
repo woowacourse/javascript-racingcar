@@ -98,13 +98,13 @@ body {
   grid-column: 1 span;
 }
 
-.racing-car-container {
+#racing-car-container {
   display: none;
   grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 0.58rem;
 }
 
-.racing-car-container[data-state='on'] {
+#racing-car-container[data-state='on'] {
   display: grid;
 }
 
@@ -125,16 +125,16 @@ body {
   margin: 0.25rem 0;
 }
 
-#result {
+#result-container {
   display: none;
   margin: 1.1rem;
 }
 
-#result[data-state='on'] {
+#result-container[data-state='on'] {
   display: block;
 }
 
-#winner {
+#winners {
   text-align: center;
   font-weight: bold;
   font-size: 1.42rem;
