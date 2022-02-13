@@ -1,9 +1,11 @@
+import $ from '../util/dom.js';
+
 export default function resetView() {
-  const nameInput = document.querySelector('.name-input');
-  const countInput = document.querySelector('.count-input');
-  const countForm = document.querySelector('.count-form');
-  const resultContainer = document.querySelector('.game-result-container');
-  const restart = document.querySelector('.restart-container');
+  const nameInput = $('.name-input');
+  const countInput = $('.count-input');
+  const countForm = $('.count-form');
+  const resultContainer = $('.game-result-container');
+  const restart = $('.restart-container');
 
   nameInput.value = '';
   countInput.value = '';

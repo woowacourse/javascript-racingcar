@@ -1,4 +1,5 @@
 import { ERROR, LIMIT } from '../util/constants.js';
+import $ from '../util/dom.js';
 import alertError from '../view/alertError.js';
 import playRace from './playRace.js';
 
@@ -11,7 +12,7 @@ function isValidCount(inputCount) {
 }
 
 export default function handleCountFormSubmit() {
-  const inputCount = document.querySelector('.count-input').value;
+  const inputCount = $('.count-input').value;
 
   if (isValidCount(inputCount)) {
     playRace(inputCount);

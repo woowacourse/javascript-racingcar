@@ -1,3 +1,5 @@
+import $ from '../util/dom.js';
+
 export default function showRestart() {
-  document.querySelector('.restart-container').style.display = 'flex';
+  $('.restart-container').style.display = 'flex';
 }

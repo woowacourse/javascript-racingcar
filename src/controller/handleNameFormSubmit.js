@@ -1,4 +1,5 @@
 import { ERROR, LIMIT } from '../util/constants.js';
+import $ from '../util/dom.js';
 import alertError from '../view/alertError.js';
 
 function isValidNames(names) {
@@ -14,13 +15,12 @@ function isValidNames(names) {
 }
 
 export default function handleNameFormSubmit() {
-  const names = document
-    .querySelector('.name-input')
+  const names = $('.name-input')
     .value.split(',')
     .map(name => name.trim());
 
-  const countInput = document.querySelector('.count-input');
-  const countForm = document.querySelector('.count-form');
+  const countInput = $('.count-input');
+  const countForm = $('.count-form');
 
   if (isValidNames(names)) {
     countForm.style.display = 'block';
