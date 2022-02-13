@@ -1,19 +1,20 @@
 import handleNameInput from './controller/handleNameInput.js';
 import handleCountInput from './controller/handleCountInput.js';
 import resetView from './view/resetView.js';
+import $ from './utils/selector.js';
 
 function initEvent() {
-  document.querySelector('.name-form').addEventListener('submit', event => {
+  $('.name-form').addEventListener('submit', event => {
     event.preventDefault();
     handleNameInput();
   });
 
-  document.querySelector('.count-form').addEventListener('submit', event => {
+  $('.count-form').addEventListener('submit', event => {
     event.preventDefault();
     handleCountInput();
   });
 
-  document.querySelector('.restart').addEventListener('click', () => {
+  $('.restart').addEventListener('click', () => {
     resetView();
   });
 }

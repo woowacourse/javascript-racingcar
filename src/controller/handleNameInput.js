@@ -1,5 +1,6 @@
 import { ERROR_MESSAGES } from '../utils/constants.js';
 import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
+import $ from '../utils/selector.js';
 
 export default function handleNameInput() {
   const names = document
@@ -16,6 +17,6 @@ export default function handleNameInput() {
     return;
   }
 
-  document.querySelector('.count-form').classList.remove('hidden');
-  document.querySelector('.count-input').focus();
+  $('.count-form').classList.remove('hidden');
+  $('.count-input').focus();
 }

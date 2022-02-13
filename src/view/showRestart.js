@@ -1,3 +1,5 @@
+import $ from '../utils/selector.js';
+
 export default function showRestart() {
-  document.querySelector('.restart').classList.remove('hidden');
+  $('.restart').classList.remove('hidden');
 }

@@ -1,3 +1,5 @@
+import $ from '../utils/selector.js';
+
 function getPositionArrow(car) {
   let template = '';
 
@@ -23,10 +25,8 @@ function getTemplateRaceResult(cars) {
 }
 
 export default function showResult(cars) {
-  const resultContainer = document.querySelector('.game-result-container');
   const div = document.createElement('div');
-
   div.className = 'race-result-container';
   div.innerHTML = getTemplateRaceResult(cars);
-  resultContainer.append(div);
+  $('.game-result-container').append(div);
 }
