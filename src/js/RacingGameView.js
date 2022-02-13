@@ -8,13 +8,7 @@ export default class RacingGameView {
     });
   }
 
-  renderResult() {
-    $$('#racing-car-container, #result-container').forEach(($element) => {
-      $element.setAttribute('data-state', 'on');
-    });
-  }
-
-  renderCarContainer(carList) {
+  _renderCarContainer(carList) {
     const insertHTML = carList
       .map(
         (instance, index) =>
@@ -26,7 +20,7 @@ export default class RacingGameView {
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = insertHTML;
   }
 
-  renderCarAdvance(carList) {
+  _renderCarAdvance(carList) {
     carList.forEach((instance, index) => {
       const { distance } = instance;
       const insertHTML = Array.from(
@@ -38,9 +32,19 @@ export default class RacingGameView {
     });
   }
 
-  renderWinners(winners) {
+  _renderWinners(winners) {
     $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join('')} 🏆`;
+  }
+
+  renderResult(carList, winners) {
+    this._renderCarContainer(carList);
+    this._renderCarAdvance(carList);
+    this._renderWinners(winners);
+
+    $$('#racing-car-container, #result-container').forEach(($element) => {
+      $element.dataset.state = 'on';
+    });
   }
 }
