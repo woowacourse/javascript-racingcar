@@ -36,15 +36,8 @@ export default class RacingGame {
   }
 
   findWinners() {
-    const winnerList = [];
-    const maxRecord = this.findMaxRecord();
-
-    this.cars.forEach((car) => {
-      if (car.position === maxRecord) {
-        winnerList.push(car.name);
-      }
-    });
-
-    return winnerList;
+    return this.cars
+      .filter((car) => car.position === this.findMaxRecord())
+      .map((car) => car.name);
   }
 }
