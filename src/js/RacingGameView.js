@@ -9,7 +9,7 @@ export default class RacingGameView {
   }
 
   renderResult() {
-    $$('.racing-car-container, #result').forEach(($element) => {
+    $$('#racing-car-container, #result-container').forEach(($element) => {
       $element.setAttribute('data-state', 'on');
     });
   }
@@ -36,5 +36,11 @@ export default class RacingGameView {
 
       $(`.racing-car[data-key="${index}"]`).innerHTML += insertHTML;
     });
+  }
+
+  renderWinners(winners) {
+    $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
+      .map((carInstance) => carInstance.name)
+      .join('')} 🏆`;
   }
 }

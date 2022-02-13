@@ -69,9 +69,11 @@ export default class RacingGameController {
     const { round: gameRound } = this._racingGameModel;
     Array.from({ length: gameRound }, () => this._racingGameModel.play());
 
-    const { carList } = this._racingGameModel;
+    const { carList, winners } = this._racingGameModel;
+
     this._racingGameView.renderCarContainer(carList);
     this._racingGameView.renderCarAdvance(carList);
+    this._racingGameView.renderWinners(winners);
 
     return false;
   }
