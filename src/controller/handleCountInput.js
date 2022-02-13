@@ -7,7 +7,7 @@ export default function handleCountInput() {
   const { value } = $('.count-input');
 
   if (!isValidCount(value)) {
-    alert(ERROR_MESSAGES.MIN_COUNT);
+    alert(ERROR_MESSAGES.INVALID_COUNT);
     return;
   }
 

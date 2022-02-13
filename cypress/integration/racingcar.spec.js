@@ -48,14 +48,14 @@ describe('racingcar Test', () => {
     const invalidInput = 'aaabbb,ff,gg,hh';
 
     inputCarNames(invalidInput);
-    verifyAlertMessage(ERROR_MESSAGES.NAME_LENGTH);
+    verifyAlertMessage(ERROR_MESSAGES.INVALID_NAME_LENGTH);
   });
 
   it('자동차 이름이 공백으로만 이루어지면 에러메세지가 표시된다.', () => {
     const invalidInput = '   ,ff,gg,hh';
 
     inputCarNames(invalidInput);
-    verifyAlertMessage(ERROR_MESSAGES.NAME_LENGTH);
+    verifyAlertMessage(ERROR_MESSAGES.INVALID_NAME_LENGTH);
   });
 
   it('중복된 자동차 이름이 있으면 에러메세지가 표시된다.', () => {
@@ -71,6 +71,6 @@ describe('racingcar Test', () => {
 
     inputCarNames(carNames);
     inputCount(invalidInput);
-    verifyAlertMessage(ERROR_MESSAGES.MIN_COUNT);
+    verifyAlertMessage(ERROR_MESSAGES.INVALID_COUNT);
   });
 });

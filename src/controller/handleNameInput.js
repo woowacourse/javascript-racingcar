@@ -8,7 +8,7 @@ export default function handleNameInput() {
     .map(name => name.trim());
 
   if (!isValidNameLength(names)) {
-    alert(ERROR_MESSAGES.NAME_LENGTH);
+    alert(ERROR_MESSAGES.INVALID_NAME_LENGTH);
     return;
   }
   if (!isDuplicatedName(names)) {
