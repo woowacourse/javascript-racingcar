@@ -1,11 +1,19 @@
 import { ERROR, LIMIT } from '../util/constants.js';
 
-function isValidNames(names) {
-  if (names.some(name => name.length > LIMIT.MAX_LENGTH)) {
+function isLongerThanFive(names) {
+  return names.some(name => name.length > LIMIT.MAX_LENGTH);
+}
+
+function isBlankName(names) {
+  return names.some(name => name.length < LIMIT.MIN_LENGTH);
+}
+
+function handleException(names) {
+  if (isLongerThanFive(names)) {
     alert(ERROR.LONGER_THAN_FIVE);
     return false;
   }
-  if (names.some(name => name.length < LIMIT.MIN_LENGTH)) {
+  if (isBlankName(names)) {
     alert(ERROR.IS_BLANK);
     return false;
   }
@@ -17,11 +25,10 @@ export default function handleNameInput() {
     .querySelector('.name-input')
     .value.split(',')
     .map(name => name.trim());
-
   const countInput = document.querySelector('.count-input');
   const countForm = document.querySelector('.count-form');
 
-  if (isValidNames(names)) {
+  if (handleException(names)) {
     countForm.style.display = 'block';
     countInput.focus();
   }
