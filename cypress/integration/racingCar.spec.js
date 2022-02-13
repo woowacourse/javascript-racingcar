@@ -10,26 +10,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     WINNERS: '#racing-result'
   };
 
-  before(() => {
-    Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
-      const randomStub = cy.stub();
-
-      returnValues.forEach((value, index) => {
-        randomStub.onCall(index).returns(value);
-      });
-
-      cy.visit(baseUrl, {
-        onBeforeLoad: (window) => {
-          window.MissionUtils = {
-            Random: {
-              pickNumberInRange: randomStub
-            }
-          };
-        }
-      });
-    });
-  });
-
   beforeEach(() => {
     cy.stubRandomReturns([5, 1]);
   });

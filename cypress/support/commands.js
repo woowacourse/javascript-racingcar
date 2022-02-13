@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const baseUrl = '../index.html';
+
+Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
+  const randomStub = cy.stub();
+
+  returnValues.forEach((value, index) => {
+    randomStub.onCall(index).returns(value);
+  });
+
+  cy.visit(baseUrl, {
+    onBeforeLoad: (window) => {
+      window.MissionUtils = {
+        Random: {
+          pickNumberInRange: randomStub
+        }
+      };
+    }
+  });
+});
