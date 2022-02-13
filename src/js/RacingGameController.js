@@ -44,7 +44,7 @@ export default class RacingGameController {
     this._racingGameView.setDisableForm($(SELECTOR.CAR_NAME_FORM));
     this._racingGameModel.carList = nameStringToArray(carNameValue);
 
-    return true;
+    return false;
   }
 
   handleRaceTimeInput(event) {
@@ -66,24 +66,14 @@ export default class RacingGameController {
     event.preventDefault();
     this.handleWinnerDisplay();
 
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
+    const { round: gameRound } = this._racingGameModel;
+    Array.from({ length: gameRound }, () => this._racingGameModel.play());
 
-    this._racingGameModel.carList.forEach((instance) => {
-      const { name } = instance._state;
-      this._racingGameView.renderAdvanceDiv(name);
-    });
+    const { carList } = this._racingGameModel;
+    this._racingGameView.renderCarContainer(carList);
+    this._racingGameView.renderCarAdvance(carList);
 
-    for (let i = 1; i < this._racingGameModel.round; i += 1) {
-      try {
-        this._racingGameModel.play();
-        //잠쉬
-      } catch (err) {
-        alert(err);
-        break;
-      }
-    }
-
-    console.log(this._racingGameModel.winner);
+    return false;
   }
 
   handleWinnerDisplay() {

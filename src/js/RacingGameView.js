@@ -2,19 +2,6 @@ import { $, $$ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
 
 export default class RacingGameView {
-  constructor() {
-    this.$carNameForm = $('#car-name-form');
-    this.$carNameInput = $('#car-name-input');
-    this.$carNameButton = $('#car-name-button');
-
-    this.$raceTimeForm = $('#race-time-form');
-    this.$raceTimeInput = $('#race-time-input');
-    this.$raceTimeButton = $('#race-time-button');
-
-    this.$racingCarContainer = $('#racing-car-container');
-    this.$result = $('#result');
-  }
-
   setDisableForm($formElement) {
     $formElement.querySelectorAll('input, button').forEach(($element) => {
       $element.setAttribute('disabled', '');
@@ -27,19 +14,27 @@ export default class RacingGameView {
     });
   }
 
-  renderAdvanceDiv(carName) {
-    // 상수 예정 carName이 오브젝트로 넘어와요!!
-    // 이제 잘 넘어와요
-    const str = `<div id="car-instance${carName}" class="car-name-box">${carName}</div>`;
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += str;
+  renderCarContainer(carList) {
+    const insertHTML = carList
+      .map(
+        (instance, index) =>
+          `<div class="racing-car" data-key="${index}">
+            <div class="car-name-box">${instance.name}</div>
+          </div>`
+      )
+      .join('');
+    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = insertHTML;
   }
 
-  renderAdvance(target) {
-    // 상수 예정
-    const str = `<div class="car-advance">⬇️️</div>`;
-    const targetID = '#' + target;
-    console.log(targetID);
-    const $target = document.querySelector(targetID);
-    $target.innerHTML += str;
+  renderCarAdvance(carList) {
+    carList.forEach((instance, index) => {
+      const { distance } = instance;
+      const insertHTML = Array.from(
+        { length: distance },
+        () => `<div class="car-advance">⬇️️</div>`
+      ).join('');
+
+      $(`.racing-car[data-key="${index}"]`).innerHTML += insertHTML;
+    });
   }
 }

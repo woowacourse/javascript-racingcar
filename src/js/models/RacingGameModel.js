@@ -54,7 +54,7 @@ export default class RacingGameModel {
     return true;
   }
 
-  get winner() {
+  get winners() {
     const { winners, carList } = this._state;
 
     carList.forEach((carInstance) => {
