@@ -50,10 +50,10 @@ export default class RacingController {
   }
 
   getCarNamesInArrayType() {
-    let nameList = document
+    const nameList = document
       .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
-      .value.split(',');
-    nameList = nameList.map((name) => name.trim());
+      .value.split(',')
+      .map((name) => name.trim());
 
     try {
       validateCarNames(nameList);
