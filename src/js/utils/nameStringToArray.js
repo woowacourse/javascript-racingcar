@@ -7,10 +7,8 @@ function trimNameList(nameList) {
 }
 
 const nameStringToArray = (userInput) => {
-  let output = splitCarNameList(userInput);
-  output = trimNameList(output);
-
-  return output;
+  const output = splitCarNameList(userInput);
+  return trimNameList(output);
 };
 
 export default nameStringToArray;
