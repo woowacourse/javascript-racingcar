@@ -4,7 +4,7 @@ export const GAME = {
   MIN_INPUT_COUNT: 1,
   MIN_SCORE: 0,
   MAX_SCORE: 9,
-  STANDARD_SCORE: 4,
+  EFFECTIVE_SCORE: 4,
 };
 
 export const ERR_MESSAGE = {
