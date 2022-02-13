@@ -12,6 +12,8 @@ export default class RacingGame {
       round: 0,
       winners: [],
     };
+
+    this._maxDistance = Number.MIN_SAFE_INTEGER;
   }
 
   get carList() {
@@ -36,18 +38,28 @@ export default class RacingGame {
     return this._state.round;
   }
 
+  _isWinner(carInstance) {
+    const { distance } = carInstance;
+    const { winners } = this._state;
+
+    if (distance < this._maxDistance) {
+      return false;
+    }
+
+    if (distance > this._maxDistance) {
+      this._maxDistance = distance;
+      winners.length = 0;
+    }
+
+    return true;
+  }
+
   get winner() {
     const { winners, carList } = this._state;
-    let maxDistance = Number.MIN_SAFE_INTEGER;
 
     carList.forEach((carInstance) => {
-      if (carInstance.distance < maxDistance) {
+      if (this._isWinner(carInstance) === false) {
         return false;
-      }
-
-      if (carInstance.distance > maxDistance) {
-        maxDistance = carInstance.distance;
-        winners.length = 0;
       }
 
       winners.push(carInstance);
