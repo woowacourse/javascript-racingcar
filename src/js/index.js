@@ -3,6 +3,7 @@ import { ERROR_MESSAGE, GAME } from './utils/constants.js';
 import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
 import { randomNumber, maxNumber } from './utils/getNumber.js';
+import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
 
 function App() {
   this.cars = [];
@@ -10,28 +11,6 @@ function App() {
   const selectWinner = () => {
     const maxDistance = maxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
-  };
-
-  const renderFinalWinner = () => {
-    const finalWinner = selectWinner()
-      .map((winner) => winner.name)
-      .join(', ');
-    $('#winner-name').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
-  };
-
-  const carPlayerTemplate = (name, distance) => {
-    return `
-      <div class="car-name mr-2">
-        <div class="car-player">${name}</div>
-        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(distance)}
-      </div>
-    `;
-  };
-
-  const renderRacingResult = () => {
-    this.cars.forEach(({ name, distance }) => {
-      $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
-    });
   };
 
   const increaseCarDistance = (index, inputNumber) => {
@@ -87,8 +66,12 @@ function App() {
     for (let i = 0; i < this.cars.length; i += 1) {
       increaseCarDistance(i, inputNumber);
     }
-    renderRacingResult();
-    renderFinalWinner();
+
+    const finalWinner = selectWinner()
+      .map((winner) => winner.name)
+      .join(', ');
+    renderRacingResult(this.cars);
+    renderFinalWinner(finalWinner);
     showRacingResult();
   };
 
