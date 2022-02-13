@@ -6,7 +6,7 @@ import {
   RANGE_MAX,
   RANGE_MIN,
 } from '../lib/constants.js';
-import { isNumberBelowZero, pickNumberInRange, splitString } from '../lib/utils.js';
+import { isNumberBelowZero, pickNumberInRange, selectDOM, splitString } from '../lib/utils.js';
 import Car from './car.js';
 import RacingCarGameView from './view.js';
 
@@ -20,8 +20,8 @@ class RacingCarGame {
   }
 
   initDOM() {
-    this.carNameInputField = document.querySelector(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
-    this.countInputField = document.querySelector(`#${DOM.COUNT_INPUT_FIELD_ID}`);
+    this.carNameInputField = selectDOM(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
+    this.countInputField = selectDOM(`#${DOM.COUNT_INPUT_FIELD_ID}`);
   }
 
   initHandler() {
@@ -33,7 +33,7 @@ class RacingCarGame {
     e.preventDefault();
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
-      const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value;
+      const carNameValue = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField).value;
       try {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
         this.cars = RacingCarGame.makeCars(names);
@@ -48,7 +48,7 @@ class RacingCarGame {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN_ID) {
-      const count = countInputField.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
+      const count = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField).value;
       try {
         this.setCount(count);
         this.simulateGame();
@@ -63,7 +63,7 @@ class RacingCarGame {
   afterRenderComplete() {
     this.view.disableInputButtons();
 
-    const restartButton = document.querySelector(`#${DOM.RESTART_BTN_ID}`);
+    const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);

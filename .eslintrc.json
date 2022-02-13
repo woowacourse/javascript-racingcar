@@ -31,6 +31,7 @@
         "import/extensions": "off",
         "no-alert": "off",
         "operator-linebreak": "off",
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "object-curly-newline": ["error", {"ImportDeclaration": {"minProperties": 5}}]
     }
 }

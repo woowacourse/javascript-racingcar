@@ -1,4 +1,5 @@
 import { DOM } from '../lib/constants.js';
+import { selectDOM } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -6,12 +7,12 @@ class RacingCarGameView {
   }
 
   initDOM() {
-    this.countInputForm = document.querySelector(`#${DOM.COUNT_INPUT_FORM_ID}`);
-    this.resultField = document.querySelector(`#${DOM.RESULT_FIELD_ID}`);
-    this.gameProgress = document.querySelector(`#${DOM.GAME_PROGRESS_ID}`);
-    this.winners = document.querySelector(`#${DOM.WINNERS_ID}`);
-    this.carNameBtn = document.querySelector(`#${DOM.CAR_NAME_BTN_ID}`);
-    this.countBtn = document.querySelector(`#${DOM.COUNT_BTN_ID}`);
+    this.countInputForm = selectDOM(`#${DOM.COUNT_INPUT_FORM_ID}`);
+    this.resultField = selectDOM(`#${DOM.RESULT_FIELD_ID}`);
+    this.gameProgress = selectDOM(`#${DOM.GAME_PROGRESS_ID}`);
+    this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
+    this.carNameBtn = selectDOM(`#${DOM.CAR_NAME_BTN_ID}`);
+    this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
   }
 
   renderResults(cars, winners) {

@@ -1,3 +1,5 @@
+export const selectDOM = (selector, parent = document) => parent.querySelector(selector);
+
 export const splitString = (str, separator) => str.split(separator);
 
 export const isNumberBelowZero = (number) => number <= 0;
