@@ -1,4 +1,4 @@
-import { NUMBER } from "./utils/constants.js"
+import { NUMBER } from './utils/constants.js';
 
 export default class Model {
   carList = [];
@@ -9,9 +9,11 @@ export default class Model {
 
   startRace(count) {
     this.resetAllCarStep();
-    for (let i = 0; i < count; i++) {
-      this.carList.forEach((car) => car.randomMove());
-    }
+    Array(count)
+      .fill()
+      .forEach((_) => {
+        this.carList.forEach((car) => car.randomMove());
+      });
   }
 
   resetAllCarStep() {
