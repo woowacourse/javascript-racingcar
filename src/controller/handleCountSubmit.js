@@ -11,7 +11,7 @@ function isValidCount(inputCount) {
   return true;
 }
 
-export default function handleCountFormSubmit() {
+export default function handleCountSubmit() {
   const inputCount = $('.count-input').value;
 
   if (isValidCount(inputCount)) {

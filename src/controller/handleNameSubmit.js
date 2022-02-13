@@ -13,7 +13,7 @@ function isValidNames(inputNames) {
   return true;
 }
 
-export default function handleNameFormSubmit() {
+export default function handleNameSubmit() {
   const inputNames = $('.name-input')
     .value.split(',')
     .map(name => name.trim());

@@ -26,7 +26,7 @@
 ### 리팩터링 (todo)
 - [x] cypress
 - [x] css 
-- [ ] eventHandler 이름 (handleNameFormSubmit VS handleNameInputSubmit)
+- [x] eventHandler 이름
 - [ ] 함수(function vs const 블라블라)
 - [ ] 브랜치? 
 - [ ] NO_PROPER_ERORR
