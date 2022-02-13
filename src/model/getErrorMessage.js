@@ -2,7 +2,7 @@ import { ERROR_MESSAGE, MIN_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../u
 
 export function getCountErrorMessage(inputCount) {
   if (+inputCount < MIN_COUNT) {
-    return ERROR_MESSAGE.MIN_COUNT;
+    return ERROR_MESSAGE.UNDER_MIN_COUNT;
   }
   return ERROR_MESSAGE.NO_PROPER;
 }
