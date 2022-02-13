@@ -31,14 +31,12 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = document.getElementById(
-      SELECTOR.ID.RACING_COUNT_INPUT
-    ).value;
+    const racingCount = this.getRacingCount();
 
     try {
       validateCount(racingCount);
-      this.view.deactivateNamesForm();
       this.model.round = Number(racingCount);
+      this.view.deactivateNamesForm();
       this.startRacingGame();
       this.activateRestartButton();
     } catch (error) {
@@ -62,6 +60,10 @@ export default class RacingController {
       .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
       .value.split(',');
     return nameList.map((name) => name.trim());
+  }
+
+  getRacingCount() {
+    return document.getElementById(SELECTOR.ID.RACING_COUNT_INPUT).value;
   }
 
   startRacingGame() {
