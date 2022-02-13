@@ -1,8 +1,8 @@
+import $ from '../utils/selector.js';
 import Car from './Car.js';
 
 export default function generateCars() {
-  const names = document
-    .querySelector('.name-input')
+  const names = $('.name-input')
     .value.split(',')
     .map(name => name.trim());
 

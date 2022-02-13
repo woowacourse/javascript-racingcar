@@ -3,8 +3,7 @@ import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
 import $ from '../utils/selector.js';
 
 export default function handleNameInput() {
-  const names = document
-    .querySelector('.name-input')
+  const names = $('.name-input')
     .value.split(',')
     .map(name => name.trim());
 
