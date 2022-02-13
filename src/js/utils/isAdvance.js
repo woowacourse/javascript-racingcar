@@ -1,6 +1,9 @@
+function getRandomNumber(minNumber, maxNumber) {
+  return Math.floor(Math.random() * maxNumber) + minNumber;
+}
+
 const isAdvance = () => {
-  const randomNumber = Math.random * 9;
-  return randomNumber >= 4;
+  return getRandomNumber(0, 9) >= 4;
 };
 
 export default isAdvance;
