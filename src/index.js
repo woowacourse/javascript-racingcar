@@ -1,6 +1,12 @@
 import Car from './Car.js';
 import { ID, MESSAGE } from './constants.js';
-import { getElement, getInputValue } from './utils/dom.js';
+import {
+  getElement,
+  getInputValue,
+  resetInputValue,
+  clearHTML,
+  setHTML,
+} from './utils/dom.js';
 import { userStatusView, winnersView } from './view.js';
 import {
   parseCarName,
@@ -57,10 +63,11 @@ class CarRacing {
   }
 
   onClickRestart() {
-    getElement(ID.CAR_NAMES_INPUT).value = '';
-    getElement(ID.RACING_COUNT_INPUT).value = '';
-    getElement(ID.RACING_WINNERS).innerHTML = '';
-    getElement(ID.RACING_STATUS).innerHTML = '';
+    resetInputValue(getElement(ID.CAR_NAMES_INPUT));
+    resetInputValue(getElement(ID.RACING_COUNT_INPUT));
+
+    clearHTML(getElement(ID.RACING_WINNERS));
+    clearHTML(getElement(ID.RACING_STATUS));
     this.cars = [];
     this.winners = [];
   }
@@ -75,10 +82,11 @@ class CarRacing {
   startGame(count) {
     resetCars(this.cars);
     moveCars(this.cars, count);
-    getElement(ID.RACING_STATUS).innerHTML = this.cars
-      .map(car => userStatusView(car))
-      .join('');
-    getElement(ID.RACING_WINNERS).innerHTML = winnersView(this.getWinner());
+    setHTML(
+      getElement(ID.RACING_STATUS),
+      this.cars.map(car => userStatusView(car)).join(''),
+    );
+    setHTML(getElement(ID.RACING_WINNERS), winnersView(this.getWinner()));
   }
 }
 

@@ -2,7 +2,6 @@ const ID = {
   APP: 'app',
   CAR_NAMES_FORM: 'car-names-form',
   CAR_NAMES_INPUT: 'car-names-input',
-  CAR_COUNTS_INPUT: 'racing-count-input',
   RACING_COUNT_FORM: 'racing-count-form',
   RACING_COUNT_INPUT: 'racing-count-input',
   RESTART_BUTTON: 'restart-button',
