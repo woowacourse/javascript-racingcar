@@ -1,4 +1,4 @@
-import { SELECTOR } from '../../js/utils/constants.js';
+import { ERROR_MSG, SELECTOR } from '../../js/utils/constants.js';
 
 describe('자동차 경주 게임', () => {
   beforeEach(() => {
@@ -34,7 +34,7 @@ describe('자동차 경주 게임', () => {
     cy.get(SELECTOR.CAR_NAMES_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_CAR_NAME);
       });
   });
 
@@ -48,7 +48,7 @@ describe('자동차 경주 게임', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
       });
   });
 
@@ -62,7 +62,7 @@ describe('자동차 경주 게임', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
       });
   });
 
@@ -76,7 +76,7 @@ describe('자동차 경주 게임', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
       });
   });
 
