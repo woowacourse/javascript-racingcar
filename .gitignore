@@ -298,3 +298,6 @@ dist
 
 # cypress directory & files
 cypress/videos
+
+# Vscode editor workspace setting directory
+.vscode
