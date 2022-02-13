@@ -3,7 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getValues.js';
 import Validator from '../validator/validator.js';
-import { NUMBER, SELECTOR } from '../utils/constants.js';
+import { ERROR_MSG, NUMBER, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -22,6 +22,7 @@ export default class Controller {
   bindCarNamesEvent() {
     $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', (e) => {
       if (Validator.isInValidCarNamesInput(this.splitCarNamesInput())) {
+        alert(ERROR_MSG.INVALID_CAR_NAME);
         return;
       }
       this.model.saveCars(this.splitCarNamesInput());
@@ -37,6 +38,7 @@ export default class Controller {
   bindRacingCountEvent() {
     $(SELECTOR.CAR_RACING_COUNT_BUTTON).addEventListener('click', (e) => {
       if (Validator.isInValidRacingCountInput(this.getRacingCountInput())) {
+        alert(ERROR_MSG.INVALID_RACING_COUNT);
         return;
       }
       this.model.saveRacingCount(this.getRacingCountInput());
