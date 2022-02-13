@@ -9,6 +9,10 @@ const validateRacingCount = count => count > 0;
 
 const generateRandomNumber = () => Math.floor(Math.random() * 9);
 
+const resetCars = cars => {
+  cars.map(car => car.resetRacingCount());
+};
+
 const moveCars = (cars, count) => {
   cars.map(car => {
     for (let i = 0; i < count; i++) {
@@ -34,5 +38,6 @@ export {
   validateRacingCount,
   generateRandomNumber,
   moveCars,
+  resetCars,
   getMaxCount,
 };

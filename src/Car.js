@@ -6,6 +6,10 @@ export default class Car {
     this.racingCount = 0;
   }
 
+  resetRacingCount() {
+    this.racingCount = 0;
+  }
+
   move() {
     if (generateRandomNumber() < 4) {
       return;

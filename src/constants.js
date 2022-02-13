@@ -11,7 +11,6 @@ const ID = {
 };
 
 const MESSAGE = {
-  REINPUT_NAME: '이름 재입력이 불가능합니다',
   WRONG_NAME_LENGTH: '1~5자의 자동차 이름을 입력해 주세요.',
   DUPLICATE_NAME: '중복된 자동차 이름은 입력이 불가능합니다.',
   REINPUT_COUNT: '레이싱 횟수 재입력이 불가능합니다.',

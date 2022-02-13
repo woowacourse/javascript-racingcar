@@ -9,6 +9,7 @@ import {
   validateRacingCount,
   moveCars,
   getMaxCount,
+  resetCars,
 } from './utils/index.js';
 
 class CarRacing {
@@ -35,9 +36,6 @@ class CarRacing {
   }
 
   onSubmitCarName(names) {
-    if (this.cars.length) {
-      return alert(MESSAGE.REINPUT_NAME);
-    }
     const carNames = parseCarName(names);
     if (!validateCarNameLength(carNames)) {
       return alert(MESSAGE.WRONG_NAME_LENGTH);
@@ -49,18 +47,13 @@ class CarRacing {
   }
 
   onSubmitRacingCount(count) {
-    if (this.winners.length) {
-      return alert(MESSAGE.REINPUT_COUNT);
-    }
     if (!this.cars.length) {
       return alert(MESSAGE.NO_CAR);
     }
     if (!validateRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
-    moveCars(this.cars, count);
-    getElement(ID.RACING_STATUS).innerHTML = this.printResult();
-    getElement(ID.RACING_WINNERS).innerHTML = winnersView(this.getWinner());
+    this.startGame(count);
   }
 
   onClickRestart() {
@@ -72,15 +65,20 @@ class CarRacing {
     this.winners = [];
   }
 
-  printResult() {
-    return this.cars.map(car => userStatusView(car)).join('');
-  }
-
   getWinner() {
     const maxCount = getMaxCount(this.cars);
     return (this.winners = this.cars.filter(
       car => car.racingCount === maxCount,
     ));
+  }
+
+  startGame(count) {
+    resetCars(this.cars);
+    moveCars(this.cars, count);
+    getElement(ID.RACING_STATUS).innerHTML = this.cars
+      .map(car => userStatusView(car))
+      .join('');
+    getElement(ID.RACING_WINNERS).innerHTML = winnersView(this.getWinner());
   }
 }
 
