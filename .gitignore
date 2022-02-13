@@ -299,3 +299,5 @@ dist
 /cypress/plugins
 /cypress/support
 /cypress/videos
+/cypress/fixtures
+/cypress/screenshots
