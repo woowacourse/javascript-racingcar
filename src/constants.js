@@ -8,6 +8,7 @@ const ID = {
   RACING_WINNERS: 'racing-winners',
   RACING_STATUS: 'racing-status',
   USER_STATUS: 'user-status',
+  WINNERS: 'winners',
 };
 
 const MESSAGE = {
