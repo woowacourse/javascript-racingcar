@@ -1,2 +1,3 @@
 .vscode
 cypress
+node_modules

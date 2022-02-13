@@ -14,5 +14,7 @@
       "import/extensions": "off",
       "no-alert": "off",
       "class-methods-use-this": "off",
+      "no-underscore-dangle": "off",
+      "comma-dangle": "off",
   }
 }
