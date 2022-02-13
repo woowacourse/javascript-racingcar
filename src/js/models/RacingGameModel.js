@@ -72,8 +72,8 @@ export default class RacingGameModel {
     const { carList } = this._state;
 
     carList.forEach((carInstance) => {
-      if (isAdvance() === true) {
-        return true;
+      if (isAdvance() === false) {
+        return;
       }
 
       carInstance.go();
