@@ -1,5 +1,21 @@
 import { ERROR_MESSAGES } from '../../src/utils/constants.js';
 
+const inputCarNames = input => {
+  cy.get('.name-input').type(input);
+  cy.get('.name-button').click();
+};
+
+const inputCount = input => {
+  cy.get('.count-input').type(input);
+  cy.get('.count-button').click();
+};
+
+const verifyAlertMessage = message => {
+  cy.on('window:alert', text => {
+    expect(text).to.equal(message);
+  });
+};
+
 describe('racingcar Test', () => {
   beforeEach(() => {
     cy.visit('index.html');
@@ -9,11 +25,8 @@ describe('racingcar Test', () => {
     const carNames = 'east, west, south, north, all';
     const count = 5;
 
-    cy.get('.name-input').type(carNames);
-    cy.get('.name-button').click();
-
-    cy.get('.count-input').type(count);
-    cy.get('.count-button').click();
+    inputCarNames(carNames);
+    inputCount(count);
 
     cy.get('.winners-name').should('be.visible');
   });
@@ -22,14 +35,10 @@ describe('racingcar Test', () => {
     const carNames = 'east, west, south, north, all';
     const count = 5;
 
-    cy.get('.name-input').type(carNames);
-    cy.get('.name-button').click();
-
-    cy.get('.count-input').type(count);
-    cy.get('.count-button').click();
+    inputCarNames(carNames);
+    inputCount(count);
 
     cy.get('.restart').click();
-
     cy.get('.count-form').should('not.be.visible');
     cy.get('.game-result-container').should('not.be.visible');
     cy.get('.restart-container').should('not.be.visible');
@@ -38,47 +47,30 @@ describe('racingcar Test', () => {
   it('자동차 이름이 5자 초과면 에러 메세지가 표시된다.', () => {
     const invalidInput = 'aaabbb,ff,gg,hh';
 
-    cy.get('.name-input').type(invalidInput);
-    cy.get('.name-button').click();
-
-    cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.NAME_LENGTH);
-    });
+    inputCarNames(invalidInput);
+    verifyAlertMessage(ERROR_MESSAGES.NAME_LENGTH);
   });
 
   it('자동차 이름이 공백으로만 이루어지면 에러메세지가 표시된다.', () => {
     const invalidInput = '   ,ff,gg,hh';
 
-    cy.get('.name-input').type(invalidInput);
-    cy.get('.name-button').click();
-
-    cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.NAME_LENGTH);
-    });
+    inputCarNames(invalidInput);
+    verifyAlertMessage(ERROR_MESSAGES.NAME_LENGTH);
   });
 
   it('중복된 자동차 이름이 있으면 에러메세지가 표시된다.', () => {
     const invalidInput = 'a,a,b,c';
 
-    cy.get('.name-input').type(invalidInput);
-    cy.get('.name-button').click();
-
-    cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.DUPLICATED_NAME);
-    });
+    inputCarNames(invalidInput);
+    verifyAlertMessage(ERROR_MESSAGES.DUPLICATED_NAME);
   });
 
   it('시도할 횟수가 1미만이면 에러메세지가 표시된다.', () => {
     const carNames = 'east, west, south, north, all';
     const invalidInput = '-3';
 
-    cy.get('.name-input').type(carNames);
-    cy.get('.name-button').click();
-    cy.get('.count-input').type(invalidInput);
-    cy.get('.count-button').click();
-
-    cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGES.MIN_COUNT);
-    });
+    inputCarNames(carNames);
+    inputCount(invalidInput);
+    verifyAlertMessage(ERROR_MESSAGES.MIN_COUNT);
   });
 });
