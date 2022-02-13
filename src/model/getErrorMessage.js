@@ -1,11 +1,11 @@
 import { ERROR_MESSAGE, MIN_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../util/constants.js';
 
 export function getCountErrorMessage(inputCount) {
-  if (+inputCount < MIN_COUNT) {
-    return ERROR_MESSAGE.UNDER_MIN_COUNT;
-  }
   if (inputCount.length === 0) {
     return ERROR_MESSAGE.COUNT_IS_BLANK;
+  }
+  if (+inputCount < MIN_COUNT) {
+    return ERROR_MESSAGE.UNDER_MIN_COUNT;
   }
   return ERROR_MESSAGE.NO_PROPER;
 }

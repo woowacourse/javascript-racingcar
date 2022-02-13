@@ -23,15 +23,18 @@
 - [x] 다시 시작하기 버튼을 클릭한다. 
   - [x] 결과를 리셋한다. 
 
-### 리팩터링 (todo)
+### 🔄 리팩터링 (todo)
 - [x] cypress
 - [x] css 
 - [x] eventHandler 이름
 - [x] NO_PROPER_ERORR
 - [x] css (block, none)
+- [x] input 예외상황 더 추가하기(count가 blank 일때)
 - [ ] cypress count가 공백일 경우 테스트 케이스 추가하기 
-- [ ] 네이밍 _ vs -
+
+### 🤔 질문 
+- [ ] class(id) 네이밍 _ vs -
 - [ ] 함수(function vs const 블라블라)
-- [ ] 구조 피드백 (판단하는 로직 어디로...?, 전체적인 구조)
-- [ ] input 예외상황 더 추가하기(count가 blank 일때)
-- [ ] 구조도 그리기 
+- [ ] class vs 생성자 함수 
+- [ ] 구조 (데이터 판단하는 로직 어디로...?, 전체적인 구조)
+
