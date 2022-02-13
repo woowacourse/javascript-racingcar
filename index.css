@@ -86,7 +86,7 @@ button {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  margin: 0 12px 24px;
+  margin: 0 0 24px;
   white-space: nowrap;
   overflow-x: scroll;
   width: 100%;
