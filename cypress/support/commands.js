@@ -35,3 +35,15 @@ Cypress.Commands.add('inputCount', (countInput) => {
   cy.get(`#${DOM.COUNT_INPUT_ID}`).type(countInput);
   cy.get(`#${DOM.COUNT_BTN_ID}`).click();
 });
+
+Cypress.Commands.add('inputShowsAlert', ({ inputSelector, inputValue, btnSelector, alertStub }) => {
+  // when
+  cy.get(inputSelector).type(inputValue);
+
+  // then
+  cy.get(btnSelector)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.called;
+    });
+});

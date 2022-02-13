@@ -14,17 +14,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   };
 
   // then function
-  const doesShowAlert = ({ inputSelector, inputValue, btnSelector, alertStub }) => {
-    // when
-    cy.get(inputSelector).type(inputValue);
-
-    // then
-    cy.get(btnSelector)
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
-  };
 
   const isInitialStatus = () => {
     cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).should('not.have.text');
@@ -52,7 +41,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const invalidInput = 'juunzzi';
 
     // when - then
-    doesShowAlert({
+    cy.inputShowsAlert({
       inputSelector: `#${DOM.CAR_NAME_INPUT_ID}`,
       inputValue: invalidInput,
       btnSelector: `#${DOM.CAR_NAME_BTN_ID}`,
@@ -68,7 +57,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.inputNames(nameInput);
 
     // when - then
-    doesShowAlert({
+    cy.inputShowsAlert({
       inputSelector: `#${DOM.COUNT_INPUT_ID}`,
       inputValue: invalidInput,
       btnSelector: `#${DOM.COUNT_BTN_ID}`,
