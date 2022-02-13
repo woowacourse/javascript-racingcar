@@ -22,7 +22,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
         expect(spy).to.not.be.called;
       });
 
-    cy.get(`#${ID.RACING_COUNT_FORM}`).should('have.css', 'display', 'block');
+    cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.visible');
   });
 
   it('자동차 이름은 최소 1개 이상 입력해야 한다.', () => {
