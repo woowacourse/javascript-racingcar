@@ -9,10 +9,6 @@ main{
   min-width: 544px;
 }
 
-.count-form {
-  display: none;
-}
-
 .name-form,
 .count-form {
   margin: 20px;
@@ -52,7 +48,7 @@ main{
 }
 
 .restart-container {
-  display: none;
+  display: flex;
   justify-content: center;
 }
 
@@ -93,4 +89,8 @@ main{
   font-weight: 600;
   font-size: 20px;
   margin: 20px 0px;
+}
+
+.display-none {
+  display: none;
 }

@@ -27,10 +27,11 @@
 - [x] cypress
 - [x] css 
 - [x] eventHandler 이름
+- [x] NO_PROPER_ERORR
+- [x] css (block, none)
+- [ ] 네이밍 _ vs -
 - [ ] 함수(function vs const 블라블라)
 - [ ] 브랜치? 
-- [ ] NO_PROPER_ERORR
-- [ ] css (block, none)
 - [ ] 구조 피드백 (판단하는 로직 어디로...?, 전체적인 구조)
 - [ ] input 예외상황 더 추가하기(count가 blank 일때)
 - [ ] 구조도 그리기 

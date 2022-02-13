@@ -22,7 +22,7 @@ export default function handleNameSubmit() {
   const countForm = $('.count-form');
 
   if (isValidNames(inputNames)) {
-    countForm.style.display = 'block';
+    countForm.classList.remove('display-none');
     countInput.focus();
     return;
   }
