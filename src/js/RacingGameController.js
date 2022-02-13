@@ -49,6 +49,7 @@ export default class RacingGameController {
     this._racingGameView.setDisableForm(event.target);
     this._racingGameModel.carList = nameStringToArray(carNameValue);
 
+    this.handleGameTry();
     return false;
   }
 
@@ -62,9 +63,18 @@ export default class RacingGameController {
 
     this._racingGameView.setDisableForm(event.target);
     this._racingGameModel.round = raceTimeValue;
-    this.handleGamePlay();
 
+    this.handleGameTry();
     return false;
+  }
+
+  handleGameTry() {
+    const { round, carList } = this._racingGameModel;
+    if (!round || carList.length === 0) {
+      return false;
+    }
+
+    this.handleGamePlay();
   }
 
   handleGamePlay() {
