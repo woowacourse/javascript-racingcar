@@ -2,10 +2,10 @@ export const INPUT_ERROR = {
   INVALID_LENGTH: '자동차 이름은 5자 이하만 가능합니다.',
   DUPLICATED: '자동차 이름이 중복되어서는 안됩니다.',
   CONTAINED_BLANK: '자동차 이름에 공백이 포함되어서는 안됩니다.',
-  NULL: '자동차 이름이 빈 문자열이 되어서는 안됩니다.',
+  NAME_EMPTY: '자동차 이름이 빈 문자열이 되어서는 안됩니다.',
   COUNT_NEGATIVE: '횟수는 음수가 되어서는 안됩니다.',
   COUNT_NOT_NATURAL: '횟수는 자연수가 되어야 합니다.',
-  COUNT_BLANK: '횟수를 입력해주세요!'
+  COUNT_EMPTY: '횟수를 입력해주세요!'
 };
 
 export const SELECTOR = {

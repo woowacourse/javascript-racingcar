@@ -118,7 +118,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
         .click()
         .then(() => {
-          expect(alertStub.getCall(0)).to.be.calledWith(INPUT_ERROR.NULL);
+          expect(alertStub.getCall(0)).to.be.calledWith(INPUT_ERROR.NAME_EMPTY);
         });
     });
   });
@@ -146,7 +146,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.RACING_COUNT_SUBMIT_BUTTON)
         .click()
         .then(() => {
-          expect(alertStub).to.be.calledWith(INPUT_ERROR.COUNT_BLANK);
+          expect(alertStub).to.be.calledWith(INPUT_ERROR.COUNT_EMPTY);
         });
     });
 

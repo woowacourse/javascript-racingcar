@@ -13,7 +13,7 @@ const isContainedBlank = (names) => {
   return names.some((name) => name.includes(' '));
 };
 
-const isContainedNull = (names) => {
+const isNameEmpty = (names) => {
   return names.some((name) => name === '');
 };
 
@@ -25,13 +25,13 @@ const isNotNegative = (number) => {
   return number >= 0;
 };
 
-const isBlank = (number) => {
+const isCountEmpty = (number) => {
   return number.trim() === '';
 };
 
 export const validateCarNames = (names) => {
-  if (isContainedNull(names)) {
-    throw new Error(INPUT_ERROR.NULL);
+  if (isNameEmpty(names)) {
+    throw new Error(INPUT_ERROR.NAME_EMPTY);
   }
   if (!isValidLength(names)) {
     throw new Error(INPUT_ERROR.INVALID_LENGTH);
@@ -45,8 +45,8 @@ export const validateCarNames = (names) => {
 };
 
 export const validateCount = (count) => {
-  if (isBlank(count)) {
-    throw new Error(INPUT_ERROR.COUNT_BLANK);
+  if (isCountEmpty(count)) {
+    throw new Error(INPUT_ERROR.COUNT_EMPTY);
   }
   if (!isNotNegative(count)) {
     throw new Error(INPUT_ERROR.COUNT_NEGATIVE);
