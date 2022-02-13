@@ -15,3 +15,15 @@ export const ERROR = {
   DECIMAL: '자연수를 입력해주세요.',
   DUPLICATE_NAME: '이름을 중복되지 않게 입력해주세요.',
 };
+
+export const SELECTOR = {
+  NAME_INPUT: '.input-section__name-input',
+  NAME_BUTTON: '.input-section__name-button',
+  COUNT_INPUT: '.input-section__count-input',
+  COUNT_BUTTON: '.input-section__count-button',
+  COUNT_SUBMIT_CONTAINER: '#count-submit-container',
+  STEP_SECTION: '.step-section',
+  STEP_SECTIONS: '.step-sections',
+  WINNER: '#winner',
+  RESET_BUTTON: '#reset-button',
+};
