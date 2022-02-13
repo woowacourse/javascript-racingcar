@@ -15,6 +15,7 @@ export default class View {
 
     showTryForm() {
         this.app.classList.add(SCREEN_COMMAND.show_try);
+        $(SELECTOR.try_count_input).focus();
     }
 
     showResultArea() {

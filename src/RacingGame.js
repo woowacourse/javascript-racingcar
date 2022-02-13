@@ -4,7 +4,7 @@ import {
     isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
 } from './validation.js';
 import { $, userInputValue } from './util.js';
-import { SELECTOR } from './constant.js';
+import { SELECTOR, KEYCODE_ENTER } from './constant.js';
 
 export default class RacingGame {
     constructor() {
@@ -13,13 +13,29 @@ export default class RacingGame {
     }
 
     initialize() {
-        this.setEvent();
+        this.setClickEvent();
+        this.setKeyDownEnterEvent();
     }
 
-    setEvent() {
+    setClickEvent() {
         $(SELECTOR.car_name_submit_button).addEventListener('click', () => { this.onSubmitCarName(); });
         $(SELECTOR.try_count_submit_button).addEventListener('click', () => { this.onSubmitTryCount(); });
         $(SELECTOR.restart_button).addEventListener('click', () => { this.onClickRestartButton(); });
+    }
+
+    setKeyDownEnterEvent() {
+        $(SELECTOR.car_name_input).addEventListener('keydown', (event) => {
+            if (event.keyCode === KEYCODE_ENTER) {
+                event.preventDefault();
+                this.onSubmitCarName();
+            }
+        });
+        $(SELECTOR.try_count_input).addEventListener('keydown', (event) => {
+            if (event.keyCode === KEYCODE_ENTER) {
+                event.preventDefault();
+                this.onSubmitTryCount();
+            }
+        });
     }
 
     onSubmitCarName() {
