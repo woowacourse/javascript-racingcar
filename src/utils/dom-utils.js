@@ -55,14 +55,15 @@ export default class DomUtils {
     return $carProgressName;
   }
 
-  static createCarProgressStatusElement(postion) {
-    const $carProgressStatusList = [];
-    for (let i = 0; i < postion; i += 1) {
-      const $carProgressStatus = document.createElement('div');
-      $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
-      $carProgressStatus.innerText = '⬇';
-      $carProgressStatusList.push($carProgressStatus);
-    }
-    return $carProgressStatusList;
+  static createCarProgressStatusElement(position) {
+    return Array(position)
+      .fill()
+      .map(() => {
+        const $carProgressStatus = document.createElement('div');
+        $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
+        $carProgressStatus.innerText = '⬇';
+
+        return $carProgressStatus;
+      });
   }
 }
