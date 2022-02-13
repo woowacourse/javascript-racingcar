@@ -1,21 +1,14 @@
-import $ from './utils/dom.js';
+import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, GAME } from './utils/constants.js';
-import { isValidLength, isBlank } from './utils/validation.js';
+import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
-import { getRandomNumber } from './utils/randomNumber.js';
-import { isEffectiveScore } from './utils/isEffectiveScore.js';
+import { randomNumber, maxNumber } from './utils/getNumber.js';
 
 function App() {
   this.cars = [];
 
-  const getMaxDistance = () => {
-    return this.cars.reduce((acc, { distance }) => {
-      return acc > distance ? acc : distance;
-    }, 0);
-  };
-
   const selectWinner = () => {
-    const maxDistance = getMaxDistance();
+    const maxDistance = maxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
   };
 
@@ -43,8 +36,8 @@ function App() {
 
   const increaseCarDistance = (index, inputNumber) => {
     for (let i = 0; i < inputNumber; i += 1) {
-      const randomNumber = getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
-      if (isEffectiveScore(randomNumber)) {
+      const number = randomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
+      if (isEffectiveScore(number)) {
         this.cars[index].distance += 1;
       }
     }

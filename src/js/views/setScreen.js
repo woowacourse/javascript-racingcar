@@ -1,4 +1,4 @@
-import $ from '../utils/dom.js';
+import { $ } from '../utils/dom.js';
 
 const hideElement = (element) => {
   return element.setAttribute('hidden', true);
