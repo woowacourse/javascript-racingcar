@@ -139,6 +139,10 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
     submitCarNamesAlert();
     cy.reload();
+
+    invalidInput = "movie,loveracingcar,halee";
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+    submitCarNamesAlert();
   });
 
   it("중복된 이름의 자동차가 입력될 경우 alert를 띄운다.", () => {
