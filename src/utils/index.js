@@ -1,11 +1,16 @@
+import { RACING_COUNT, NAME_LENGTH } from '../constants.js';
+
 const parseCarName = names => names.split(',').map(name => name.trim());
 
 const validateCarNameLength = names =>
-  names.every(name => name.length <= 5 && name.length > 0);
+  names.every(
+    name => name.length >= NAME_LENGTH.MIN && name.length <= NAME_LENGTH.MAX,
+  );
 
 const validateDuplicateCarName = names => new Set(names).size === names.length;
 
-const validateRacingCount = count => count >= 1 && count <= 1000;
+const validateRacingCount = count =>
+  count >= RACING_COUNT.MIN && count <= RACING_COUNT.MAX;
 
 const generateRandomNumber = () => Math.floor(Math.random() * 9);
 

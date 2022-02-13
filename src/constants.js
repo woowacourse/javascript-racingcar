@@ -19,4 +19,14 @@ const MESSAGE = {
     '올바르지 않은 레이싱 횟수입니다. 레이싱횟수는 최소 1회, 최대 1000회까지 가능합니다.',
 };
 
-export { ID, MESSAGE };
+const RACING_COUNT = {
+  MAX: 1000,
+  MIN: 1,
+};
+
+const NAME_LENGTH = {
+  MAX: 5,
+  MIN: 1,
+};
+
+export { ID, MESSAGE, RACING_COUNT, NAME_LENGTH };
