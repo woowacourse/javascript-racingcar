@@ -10,6 +10,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     WINNERS: '#racing-result'
   };
 
+
   beforeEach(() => {
     cy.stubRandomReturns([5, 1]);
   });
@@ -80,9 +81,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   describe('3. 잘못된 시도 횟수를 입력한 경우 alert가 호출되어야 한다.', () => {
     beforeEach(() => {
       cy.visit(baseUrl);
-
       const name = 'mak,make';
-
       cy.submitCarNames(name);
     });
 
@@ -105,7 +104,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidCountInput);
 
       // then
-      cy.checkCountError(INPUT_ERROR.COUNT_NEGATIVE);
+      cy.checkCountError(INPUT_ERROR.COUNT_NOT_IN_RANGE);
     });
 
     it('3-3. 시도 횟수를 정수가 아닌 수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
@@ -117,6 +116,17 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
       // then
       cy.checkCountError(INPUT_ERROR.COUNT_NOT_NATURAL);
+    });
+
+    it('3-4. 시도 횟수를 20이 넘어가는 수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
+      // given
+      const invalidCountInput = 23;
+
+      // when
+      cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidCountInput);
+
+      // then
+      cy.checkCountError(INPUT_ERROR.COUNT_NOT_IN_RANGE);
     });
   });
 });

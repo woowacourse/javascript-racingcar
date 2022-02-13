@@ -38,7 +38,7 @@ export default class RacingView {
 
   static clearInput() {
     DomUtils.$(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
-    DomUtils.$(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
+    DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value = '';
   }
 
   activateCountForm() {

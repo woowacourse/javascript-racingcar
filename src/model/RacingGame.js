@@ -1,10 +1,10 @@
-import { CAR } from '../constants/constants.js';
+import { RACINGGAME } from '../constants/constants.js';
 import Car from './Car.js';
 
 export default class RacingGame {
   constructor() {
     this.cars = [];
-    this.round = CAR.INIT_POSITION;
+    this.round = RACINGGAME.INIT_ROUND;
   }
 
   moveCars() {
@@ -19,7 +19,7 @@ export default class RacingGame {
 
   goToNextTurn() {
     this.moveCars();
-    this.round -= CAR.ROUND_PER_PROCESS;
+    this.round -= RACINGGAME.ROUND_PER_PROCESS;
   }
 
   get winners() {
@@ -28,7 +28,7 @@ export default class RacingGame {
 
   reset() {
     this.cars = [];
-    this.round = CAR.INIT_POSITION;
+    this.round = RACINGGAME.INIT_ROUND;
   }
 
   findMaxRecord() {

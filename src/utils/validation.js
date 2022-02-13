@@ -1,4 +1,4 @@
-import { INPUT_ERROR } from '../constants/constants.js';
+import { INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
 
 const isValidLength = (names) => {
   return names.every((name) => name.length <= 5);
@@ -21,8 +21,8 @@ const isInteger = (number) => {
   return number % 1 === 0;
 };
 
-const isNotNegative = (number) => {
-  return number >= 0;
+const isInRange = (number) => {
+  return number > 0 && number <= RACINGGAME.MAX_RACING_COUNT;
 };
 
 const isBlank = (number) => {
@@ -48,8 +48,8 @@ export const validateCount = (count) => {
   if (isBlank(count)) {
     throw new Error(INPUT_ERROR.COUNT_BLANK);
   }
-  if (!isNotNegative(count)) {
-    throw new Error(INPUT_ERROR.COUNT_NEGATIVE);
+  if (!isInRange(count)) {
+    throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);
   }
   if (!isInteger(count)) {
     throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
