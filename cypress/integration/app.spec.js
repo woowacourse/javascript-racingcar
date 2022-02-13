@@ -7,16 +7,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.visit(baseUrl);
   });
 
-  const carNameInputProcess = (nameInput) => {
-    cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).type(nameInput);
-    cy.get(`#${DOM.CAR_NAME_BTN_ID}`).click();
-  };
-
-  const countInputProcess = (countInput) => {
-    cy.get(`#${DOM.COUNT_INPUT_ID}`).type(countInput);
-    cy.get(`#${DOM.COUNT_BTN_ID}`).click();
-  };
-
   const setAlertStub = () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
@@ -49,8 +39,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const countInput = 1;
 
     //when
-    carNameInputProcess(nameInput);
-    countInputProcess(countInput);
+    cy.inputNames(nameInput);
+    cy.inputCount(countInput);
 
     //then
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
@@ -75,7 +65,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const alertStub = setAlertStub();
     const nameInput = 'bling,juunz';
     const invalidInput = -1;
-    carNameInputProcess(nameInput);
+    cy.inputNames(nameInput);
 
     // when - then
     doesShowAlert({
@@ -92,8 +82,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const countInput = 2;
 
     //when
-    carNameInputProcess(nameInput);
-    countInputProcess(countInput);
+    cy.inputNames(nameInput);
+    cy.inputCount(countInput);
     cy.get(`#${DOM.RESTART_BTN_ID}`).click();
 
     //then
