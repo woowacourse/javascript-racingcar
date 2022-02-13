@@ -1,4 +1,4 @@
-import RacingGame from './models/RacingGame.js';
+import { RacingGameModel } from './models/index.js';
 import RacingGameView from './RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
@@ -8,17 +8,17 @@ import {
   isRaceTimeCheck,
 } from './utils/racingGame-validation.js';
 
-class App {
+export default class RacingGameController {
   constructor() {
-    this.View = new RacingGameView();
-    this.RacingGame = new RacingGame();
+    this._racingGameModel = new RacingGameModel();
+    this._racingGameView = new RacingGameView();
 
     this.bindDefaultEvent();
     this.init();
   }
 
   init() {
-    this.RacingGame.init();
+    this._racingGameModel.init();
   }
 
   bindDefaultEvent() {
@@ -41,8 +41,8 @@ class App {
       return false;
     }
 
-    this.View.setDisableForm($(SELECTOR.CAR_NAME_FORM));
-    this.RacingGame.carListPush(nameStringToArray(carNameValue));
+    this._racingGameView.setDisableForm($(SELECTOR.CAR_NAME_FORM));
+    this._racingGameModel.carListPush(nameStringToArray(carNameValue));
 
     return true;
   }
@@ -55,8 +55,8 @@ class App {
       return false;
     }
 
-    this.View.setDisableForm($(SELECTOR.RACE_TIME_FORM));
-    this.RacingGame.round = raceTimeValue;
+    this._racingGameView.setDisableForm($(SELECTOR.RACE_TIME_FORM));
+    this._racingGameModel.round = raceTimeValue;
     this.handleGamePlay(event);
 
     return false;
@@ -68,31 +68,25 @@ class App {
 
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
 
-    this.RacingGame.carList.forEach((instance) => {
+    this._racingGameModel.carList.forEach((instance) => {
       const { name } = instance.state;
-      this.View.renderAdvanceDiv(name);
+      this._racingGameView.renderAdvanceDiv(name);
     });
 
-    for (let i = 1; i < this.RacingGame.round; i += 1) {
+    for (let i = 1; i < this._racingGameModel.round; i += 1) {
       try {
-        this.RacingGame.play();
+        this._racingGameModel.play();
         //잠쉬
       } catch (err) {
         alert(err);
         break;
       }
     }
-
-    // 여기서 이제 그려주면 ??
-    // 저 위에서 play 호출할때 그 안에서 View 호출해주는게 있긴한데
-    // 왜인지 안되네요...
   }
 
   handleWinnerDisplay() {
-    this.View.renderResult();
+    this._racingGameView.renderResult();
   }
 
   handleReplayGame() {}
 }
-
-document.addEventListener('DOMContentLoaded', () => new App());

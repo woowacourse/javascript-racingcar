@@ -1,7 +1,6 @@
-import RacingCar from './RacingCar.js';
+import { RacingCarInstance } from './index.js';
 import isAdvance from '../utils/isAdvance.js';
-
-class RacingGame {
+export default class RacingGame {
   constructor() {
     this.init();
   }
@@ -16,7 +15,7 @@ class RacingGame {
 
   carListPush(array) {
     array.forEach((carName) => {
-      const newCar = new RacingCar(carName);
+      const newCar = new RacingCarInstance(carName);
       this.state.carList.push(newCar);
     });
   }
@@ -70,5 +69,3 @@ class RacingGame {
     return this.state.carList;
   }
 }
-
-export default RacingGame;
