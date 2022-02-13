@@ -1,5 +1,5 @@
 import { $ } from './utils/dom.js';
-import { ERROR_MESSAGE, GAME } from './utils/constants.js';
+import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
 import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
 import { randomNumber, maxNumber } from './utils/getNumber.js';
@@ -15,7 +15,7 @@ function App() {
 
   const increaseCarDistance = (index, inputNumber) => {
     for (let i = 0; i < inputNumber; i += 1) {
-      const number = randomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
+      const number = randomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
       if (isEffectiveScore(number)) {
         this.cars[index].distance += 1;
       }
@@ -35,7 +35,7 @@ function App() {
   };
 
   const isValidRacingCount = (number) => {
-    if (number < GAME.MIN_INPUT_COUNT) {
+    if (number < STANDARD.MIN_INPUT_COUNT) {
       alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
