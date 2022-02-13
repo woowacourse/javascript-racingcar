@@ -1,25 +1,19 @@
 function getPositionArrow(car) {
-  let template = '';
-
-  for (let i = 0; i < car.position; i += 1) {
-    template += `<div class="result-arrow">⬇️️</div>`;
-  }
-  return template;
+  return new Array(car.position)
+    .fill('')
+    .map(() => '<div class="result-arrow">⬇️️</div>')
+    .join('');
 }
 
 function getTemplateRaceResult(cars) {
-  let template = '';
-
-  cars.forEach(car => {
-    template += ` 
-      <div class="result-car-wrapper">
-        <div class="result-car-name">${car.name}</div>
-        <div class="result-arrow-container">${getPositionArrow(car)}</div> 
-      </div>
-    `;
-  });
-
-  return template;
+  return cars
+    .map(car => {
+      return `<div class="result-car-wrapper">
+                  <div class="result-car-name">${car.name}</div>
+                  <div class="result-arrow-container">${getPositionArrow(car)}</div> 
+                </div>`;
+    })
+    .join('');
 }
 
 export default function showResult(cars) {
