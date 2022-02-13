@@ -1,5 +1,5 @@
 import RacingCars from './RacingCars.js';
-import Render from './Render.js';
+import View from './View.js';
 import {
     isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
 } from './validation.js';
@@ -9,6 +9,7 @@ import { SELECTOR } from './constant.js';
 export default class RacingGame {
     constructor() {
         this.racingCars = new RacingCars();
+        this.view = new View();
     }
 
     initialize() {
@@ -29,7 +30,7 @@ export default class RacingGame {
 
             this.racingCars.reset();
             this.racingCars.update(carNames);
-            Render.showTryForm();
+            this.view.showTryForm();
         });
     }
 
@@ -51,13 +52,13 @@ export default class RacingGame {
     initRestartEvent() {
         $(SELECTOR.restart_button).addEventListener('click', () => {
             this.racingCars.reset();
-            Render.reset();
+            this.view.reset();
             userInputValue.reset();
         });
     }
 
     runGame(tryCount) {
         this.racingCars.run(tryCount);
-        Render.showResult(this.racingCars.getStatus(), this.racingCars.getWinners());
+        this.view.showResult(this.racingCars.getStatus(), this.racingCars.getWinners());
     }
 }
