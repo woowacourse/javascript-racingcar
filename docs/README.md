@@ -5,7 +5,7 @@
 
 ### 🎯 &nbsp;구현 기능 목록
 - [x] HTML, CSS 마크업을 작성한다. (figma 참고) 
-- [ ] 테스트코드를 작성한다.
+- [x] 테스트코드를 작성한다.
 
 - [x] 자동차이름을 입력받는다.
   - [x] [예외] 자동차 이름은 5자 이하여야한다. 
@@ -26,3 +26,4 @@
 ### 리팩터링 (todo)
 - [x] cypress
 - [x] css 
+- [ ] eventHandler 이름 (handleNameFormSubmit VS handleNameInputSubmit)

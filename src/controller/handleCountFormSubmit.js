@@ -10,7 +10,7 @@ function isValidCount(inputCount) {
   return true;
 }
 
-export default function handleCountInput() {
+export default function handleCountFormSubmit() {
   const inputCount = document.querySelector('.count-input').value;
 
   if (isValidCount(inputCount)) {

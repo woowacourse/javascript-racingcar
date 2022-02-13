@@ -1,16 +1,16 @@
-import handleNameInput from './controller/handleNameInput.js';
-import handleCountInput from './controller/handleCountInput.js';
+import handleNameFormSubmit from './controller/handleNameFormSubmit.js';
+import handleCountFormSubmit from './controller/handleCountFormSubmit.js';
 import resetView from './view/resetView.js';
 
 function eventHandler() {
   document.querySelector('.name-form').addEventListener('submit', event => {
     event.preventDefault();
-    handleNameInput();
+    handleNameFormSubmit();
   });
 
   document.querySelector('.count-form').addEventListener('submit', event => {
     event.preventDefault();
-    handleCountInput();
+    handleCountFormSubmit();
   });
 
   document.querySelector('.restart').addEventListener('click', () => {

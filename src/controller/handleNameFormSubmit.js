@@ -12,7 +12,7 @@ function isValidNames(names) {
   return true;
 }
 
-export default function handleNameInput() {
+export default function handleNameFormSubmit() {
   const names = document
     .querySelector('.name-input')
     .value.split(',')
