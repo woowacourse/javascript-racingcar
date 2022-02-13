@@ -1,17 +1,10 @@
-export const SELECTORS = {
-  CAR_NAMES_INPUT: '#car-names-input',
-  CAR_NAMES_BUTTON: '#car-names-button',
-  RACING_COUNT_FORM: '#racing-count-form',
-  RACING_COUNT_INPUT: '#racing-count-input',
-  RACING_COUNT_BUTTON: '#racing-count-button',
-  RESULT_SCREEN: '.result-screen',
-  CAR_RACING_STATUS: '.car-racing-status',
-};
-
 export const GAME = {
   MAX_CAR_NAME_LENGTH: 5,
   MIN_CAR_NAME_LENGTH: 1,
   MIN_INPUT_COUNT: 1,
+  MIN_SCORE: 0,
+  MAX_SCORE: 9,
+  STANDARD_SCORE: 4,
 };
 
 export const ERR_MESSAGE = {
