@@ -1,35 +1,36 @@
 import { RacingCarInstance } from './index.js';
 import isAdvance from '../utils/isAdvance.js';
+
 export default class RacingGame {
   constructor() {
     this.init();
   }
 
   init() {
-    this.state = {
+    this._state = {
       carList: [],
       round: 0,
-      winner: [],
+      winners: [],
     };
   }
 
   carListPush(array) {
     array.forEach((carName) => {
       const newCar = new RacingCarInstance(carName);
-      this.state.carList.push(newCar);
+      this._state.carList.push(newCar);
     });
   }
 
   get carList() {
-    return this.state.carList;
+    return this._state.carList;
   }
 
   set round(number) {
-    this.state.round = number;
+    this._state.round = number;
   }
 
   get round() {
-    return this.state.round;
+    return this._state.round;
   }
 
   get winner() {
@@ -41,22 +42,17 @@ export default class RacingGame {
 
       if (item.distance > maxDistance) {
         maxDistance = item.distance;
-        this.state.winner.length = 0;
+        this._state.winners.length = 0;
       }
 
-      this.state.winner.push(item);
+      this._state.winner.push(item);
     });
 
-    return this.state.winner;
+    return this._state.winner;
   }
 
   play() {
-    const { carList } = this.state;
-    // 일단 클래스 자체에도 예외 검증 부분 구현 유/무 판단 필.
-    console.log(carList, carList.length);
-    if (carList.length === 0) {
-      throw new Error('참여 자동차가 0대로 설정되어있습니다.');
-    }
+    const { carList } = this._state;
 
     carList.forEach((car) => {
       if (isAdvance() === true) {
@@ -66,6 +62,6 @@ export default class RacingGame {
       car.go();
     });
 
-    return this.state.carList;
+    return this._state.carList;
   }
 }

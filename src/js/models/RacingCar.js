@@ -1,21 +1,20 @@
-class RacingCar {
-  constructor(name) {
-    this.state = {};
-    this.state.name = name;
-    this.state.distance = 0;
+export default class RacingCar {
+  constructor(inputName) {
+    this._state = {
+      name: inputName,
+      distance: 0,
+    };
   }
 
   get name() {
-    return this.state.name;
+    return this._state.name;
   }
 
   get distance() {
-    return this.state.distance;
+    return this._state.distance;
   }
 
   go() {
-    this.state.distance += 1;
+    this._state.distance += 1;
   }
 }
-
-export default RacingCar;
