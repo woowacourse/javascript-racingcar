@@ -1,4 +1,4 @@
-import { CAR_NAME_MAX_LENGTH, MSG } from './constant.js';
+import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant.js';
 
 const isEmpty = (value) => value === '';
 
@@ -19,16 +19,16 @@ const isValidCarNames = (carNames) => (
 const isValidTryCount = (tryCount) => Number.isInteger(tryCount) && isPositiveNumber(tryCount);
 
 const getCarNamesErrorMessage = (carNames) => {
-    if (haveEmpty(carNames)) return MSG.empty_car_name;
-    if (haveBlank(carNames)) return MSG.blank_car_name;
-    if (exceedMaxLength(carNames)) return MSG.exceed_car_name;
-    return MSG.no_error;
+    if (haveEmpty(carNames)) return ERROR_MESSAGE.empty_car_name;
+    if (haveBlank(carNames)) return ERROR_MESSAGE.blank_car_name;
+    if (exceedMaxLength(carNames)) return ERROR_MESSAGE.exceed_car_name;
+    return ERROR_MESSAGE.no_error;
 };
 
 const getTryCountErrorMessage = (tryCount) => {
-    if (!Number.isInteger(tryCount)) return MSG.natural_number;
-    if (!isPositiveNumber(tryCount)) return MSG.positive_number;
-    return MSG.no_error;
+    if (!Number.isInteger(tryCount)) return ERROR_MESSAGE.natural_number;
+    if (!isPositiveNumber(tryCount)) return ERROR_MESSAGE.positive_number;
+    return ERROR_MESSAGE.no_error;
 };
 
 export {

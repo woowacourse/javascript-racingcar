@@ -1,5 +1,5 @@
 import { $ } from './util.js';
-import { SCREEN_CMD, SELECTOR } from './constant.js';
+import { SCREEN_COMMAND, SELECTOR } from './constant.js';
 
 export default class Render {
     static parsingStep(step) {
@@ -33,11 +33,11 @@ export default class Render {
     }
 
     static showTryForm() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.show_try);
+        $(SELECTOR.app).classList.add(SCREEN_COMMAND.show_try);
     }
 
     static showResultArea() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.show_result);
+        $(SELECTOR.app).classList.add(SCREEN_COMMAND.show_result);
     }
 
     static showResult(cars, winners) {
@@ -47,6 +47,6 @@ export default class Render {
     }
 
     static reset() {
-        $(SELECTOR.app).classList.remove(SCREEN_CMD.show_try, SCREEN_CMD.show_result);
+        $(SELECTOR.app).classList.remove(SCREEN_COMMAND.show_try, SCREEN_COMMAND.show_result);
     }
 }

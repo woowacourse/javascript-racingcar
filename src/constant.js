@@ -1,11 +1,11 @@
 const CAR_NAME_MAX_LENGTH = 5;
 
-const SCREEN_CMD = {
+const SCREEN_COMMAND = {
     show_try: 'try',
     show_result: 'result',
 };
 
-const MSG = {
+const ERROR_MESSAGE = {
     empty_car_name: '자동차 이름을 입력해주세요.',
     blank_car_name: '자동차 이름에 공백이 들어갈 수 없습니다.',
     exceed_car_name: '자동차 이름은 5자 이하입니다.',
@@ -26,5 +26,5 @@ const SELECTOR = {
 };
 
 export {
-    CAR_NAME_MAX_LENGTH, SCREEN_CMD, MSG, SELECTOR,
+    CAR_NAME_MAX_LENGTH, SCREEN_COMMAND, ERROR_MESSAGE, SELECTOR,
 };
