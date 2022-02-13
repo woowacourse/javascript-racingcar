@@ -1,9 +1,10 @@
 import { ERROR, LIMIT } from '../util/constants.js';
+import alertError from '../view/alertError.js';
 import playRace from './playRace.js';
 
 function isValidCount(inputCount) {
   if (+inputCount < LIMIT.MIN_LENGTH) {
-    alert(ERROR.MIN_COUNT);
+    alertError(ERROR.MIN_COUNT);
     return false;
   }
   return true;
