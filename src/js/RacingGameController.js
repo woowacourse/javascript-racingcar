@@ -3,10 +3,7 @@ import RacingGameView from './RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
 import { SELECTOR } from './constants/selector.js';
-import {
-  isCarNameInputCheck,
-  isRaceTimeCheck,
-} from './utils/racingGame-validation.js';
+import { isCarNameValid, isRaceTimeValid } from './utils/validator.js';
 
 export default class RacingGameController {
   constructor() {
@@ -42,7 +39,7 @@ export default class RacingGameController {
     event.preventDefault();
 
     const carNameValue = $(SELECTOR.CAR_NAME_INPUT).value;
-    if (!isCarNameInputCheck(carNameValue)) {
+    if (!isCarNameValid(carNameValue)) {
       return false;
     }
 
@@ -57,7 +54,7 @@ export default class RacingGameController {
     event.preventDefault();
 
     const raceTimeValue = $(SELECTOR.RACE_TIME_INPUT).value;
-    if (!isRaceTimeCheck(raceTimeValue)) {
+    if (!isRaceTimeValid(raceTimeValue)) {
       return false;
     }
 
