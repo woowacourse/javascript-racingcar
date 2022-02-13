@@ -1,4 +1,4 @@
-import { ERROR } from '../../src/util/constants.js';
+import { ERROR_MESSAGE } from '../../src/util/constants.js';
 
 describe('자동차 경주 게임을 진행할 수 있다.', () => {
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe('예외 상황에서 적절한 에러메시지를 출력한다.', () =>
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.LONGER_THAN_FIVE);
+      expect(text).to.equal(ERROR_MESSAGE.LONGER_THAN_FIVE);
     });
   });
 
@@ -49,7 +49,7 @@ describe('예외 상황에서 적절한 에러메시지를 출력한다.', () =>
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.IS_BLANK);
+      expect(text).to.equal(ERROR_MESSAGE.IS_BLANK);
     });
   });
 
@@ -63,7 +63,7 @@ describe('예외 상황에서 적절한 에러메시지를 출력한다.', () =>
     cy.get('.count-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR.MIN_COUNT);
+      expect(text).to.equal(ERROR_MESSAGE.UNDER_MIN_COUNT);
     });
   });
 });
