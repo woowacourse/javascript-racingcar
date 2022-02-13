@@ -3,6 +3,7 @@ import Car from "./car.js";
 import generateRandomNumber from "../modules/generateRandomNumber.js";
 import renderRacingContent from "../views/renderRacingContent.js";
 import renderGameWinners from "../views/renderGameWinners.js";
+import { FORWARD_MARK_NUMBER } from "../constants/constants.js";
 export default class RacingCar {
     constructor(carNameArray, raceCount) {
         this.carNameArray = carNameArray;
@@ -29,7 +30,7 @@ export default class RacingCar {
 
     updateCarForwardCount() {
         this.carArray.forEach((item) => {
-            if(generateRandomNumber() >= 4){
+            if(generateRandomNumber() >= FORWARD_MARK_NUMBER){
                 item.forwardCount++;
             }
         })
