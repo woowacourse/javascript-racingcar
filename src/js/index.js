@@ -6,33 +6,31 @@ import { getRandomNumber } from './utils/randomNumber.js';
 import { isEffectiveScore } from './utils/isEffectiveScore.js';
 
 function App() {
-  this.carName = [];
-  this.distance = [];
+  this.cars = [];
 
-  const carPlayerTemplate = (name, index) => {
+  const carPlayerTemplate = (name, distance) => {
     return `
       <div class="car-name mr-2">
         <div class="car-player">${name}</div>
-        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(this.distance[index])}
+        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(distance)}
       </div>
     `;
   };
 
   const renderRacingResult = () => {
-    this.carName.forEach((name, index) => {
-      $('#racing-result').insertAdjacentHTML('beforeend', carPlayerTemplate(name, index));
+    this.cars.forEach(({ name, distance }) => {
+      $('#racing-result').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
     });
   };
 
-  const increaseCarDistance = (inputNumber) => {
-    let count = 0;
+  const increaseCarDistance = (index, inputNumber) => {
     for (let i = 0; i < inputNumber; i += 1) {
       const randomNumber = getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
       if (isEffectiveScore(randomNumber)) {
-        count += 1;
+        this.cars[index].distance += 1;
       }
+      console.log(this.cars);
     }
-    this.distance.push(count);
   };
 
   const isValidCarNames = (carName) => {
@@ -47,22 +45,27 @@ function App() {
     return true;
   };
 
-  const isValidRacingCount = (count) => {
-    if (count < GAME.MIN_INPUT_COUNT) {
+  const isValidRacingCount = (number) => {
+    if (number < GAME.MIN_INPUT_COUNT) {
       alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
     return true;
   };
 
+  const generateCars = (carNames) => {
+    carNames.forEach((name) => this.cars.push({ name, distance: 0 }));
+  };
+
   const handleCarNamesSubmit = () => {
-    this.carName = $('#car-names-input')
+    const inputCarNames = $('#car-names-input')
       .value.split(',')
       .map((car) => car.trim());
-    if (!isValidCarNames(this.carName)) {
+    if (!isValidCarNames(inputCarNames)) {
       $('#car-names-input').value = '';
       return;
     }
+    generateCars(inputCarNames);
     showCountInput();
   };
 
@@ -71,8 +74,8 @@ function App() {
     if (!isValidRacingCount(inputNumber)) {
       return;
     }
-    for (let i = 0; i < this.carName.length; i += 1) {
-      increaseCarDistance(inputNumber);
+    for (let i = 0; i < this.cars.length; i += 1) {
+      increaseCarDistance(i, inputNumber);
     }
     showRacingResult();
     renderRacingResult();
