@@ -2,7 +2,7 @@ import handleNameInput from './controller/handleNameInput.js';
 import handleCountInput from './controller/handleCountInput.js';
 import resetView from './view/resetView.js';
 
-function eventHandler() {
+function initEvent() {
   document.querySelector('.name-form').addEventListener('submit', event => {
     event.preventDefault();
     handleNameInput();
@@ -18,4 +18,4 @@ function eventHandler() {
   });
 }
 
-eventHandler();
+initEvent();
