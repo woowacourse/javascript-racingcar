@@ -1,12 +1,5 @@
-import { ERROR_MESSAGES, NAME_MAX_LENGTH, NAME_MIN_LENGTH } from '../util/constants.js';
-
-function isValidNameLength(names) {
-  return names.every(name => name.length <= NAME_MAX_LENGTH && name.length >= NAME_MIN_LENGTH);
-}
-
-function isDuplicatedName(names) {
-  return new Set([...names]).size === names.length;
-}
+import { ERROR_MESSAGES } from '../utils/constants.js';
+import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
 
 export default function handleNameInput() {
   const names = document

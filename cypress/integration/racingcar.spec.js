@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from '../../src/util/constants.js';
+import { ERROR_MESSAGES } from '../../src/utils/constants.js';
 
 describe('racingcar Test', () => {
   beforeEach(() => {
@@ -68,7 +68,7 @@ describe('racingcar Test', () => {
     });
   });
 
-  it('반복할 횟수가 1미만이면 에러메세지가 표시된다.', () => {
+  it('시도할 횟수가 1미만이면 에러메세지가 표시된다.', () => {
     const carNames = 'east, west, south, north, all';
     const invalidInput = '-3';
 

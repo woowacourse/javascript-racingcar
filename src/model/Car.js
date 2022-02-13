@@ -1,4 +1,4 @@
-import { CAN_GO_COUNT } from '../util/constants.js';
+import { CAN_GO_COUNT } from '../utils/constants.js';
 
 export default class Car {
   constructor(name) {
