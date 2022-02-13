@@ -141,7 +141,7 @@ class RacingCar {
   play() {
     this.renderRacingCarList();
     this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
-    this.racingGameStart();
+    this.startRacingGame();
   }
 
   renderRacingCarList() {
@@ -153,7 +153,7 @@ class RacingCar {
     this.$racingCarList.innerHTML = racingCarItemsTemplate;
   }
 
-  async racingGameStart() {
+  async startRacingGame() {
     for (let i = 0; i < this.racingCount; i++) {
       this.runOneCycleGame();
       await waitGame(RULES.WAITING_TIME);
