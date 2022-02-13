@@ -1,11 +1,11 @@
-import { ERROR, LIMIT } from '../util/constants.js';
+import { LIMIT } from '../util/constants.js';
+import { getCountErrorMessage } from '../model/getErrorMessage.js';
 import $ from '../util/dom.js';
 import alertError from '../view/alertError.js';
 import playRace from './playRace.js';
 
 function isValidCount(inputCount) {
   if (+inputCount < LIMIT.MIN_LENGTH) {
-    alertError(ERROR.MIN_COUNT);
     return false;
   }
   return true;
@@ -16,5 +16,7 @@ export default function handleCountFormSubmit() {
 
   if (isValidCount(inputCount)) {
     playRace(inputCount);
+    return;
   }
+  alertError(getCountErrorMessage(inputCount));
 }

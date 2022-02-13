@@ -28,3 +28,5 @@
 - [x] css 
 - [ ] eventHandler 이름 (handleNameFormSubmit VS handleNameInputSubmit)
 - [ ] 함수(function vs const 블라블라)
+- [ ] 브랜치? 
+- [ ] NO_PROPER_ERORR
