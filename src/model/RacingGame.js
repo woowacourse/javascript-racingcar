@@ -4,7 +4,7 @@ import Car from './Car.js';
 export default class RacingGame {
   constructor() {
     this.cars = [];
-    this.round = CAR.ZERO_NUMBER;
+    this.round = CAR.INITIAL_VALUE;
   }
 
   moveCars() {
@@ -19,7 +19,7 @@ export default class RacingGame {
 
   goToNextTurn() {
     this.moveCars();
-    this.round -= CAR.ONE_NUMBER;
+    this.round -= CAR.ONE_MOVE;
   }
 
   get winners() {
@@ -28,11 +28,11 @@ export default class RacingGame {
 
   reset() {
     this.cars = [];
-    this.round = CAR.ZERO_NUMBER;
+    this.round = CAR.INITIAL_VALUE;
   }
 
   findMaxRecord() {
-    let maxRecord = CAR.ZERO_NUMBER;
+    let maxRecord = CAR.INITIAL_VALUE;
 
     this.cars.forEach((car) => {
       if (car.position > maxRecord) {
