@@ -1,5 +1,3 @@
-const getElement = (id, target = document) => {
-  return target.getElementById(id);
-};
+const getElement = (id, target = document) => target.getElementById(id);
 
 export { getElement };
