@@ -1,25 +1,40 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import {SELECTOR } from "./constants.js";
+
+Cypress.Commands.add('carNamePositiveInputEvent', (carNames) => {
+    cy.get(SELECTOR.CAR_NAME_INPUT).type(carNames);
+    cy.get(SELECTOR.CAR_NAME_BUTTON).contains('확인').click();    
+});
+
+Cypress.Commands.add('raceCountPositiveInputEvent', (racingCount) => {
+    cy.get(SELECTOR.RACE_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.RACE_COUNT_BUTTON).contains('확인').click();
+})
+
+Cypress.Commands.add('showCarNameAlert', (invalidInput) => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
+  
+    cy.get(SELECTOR.CAR_NAME_INPUT).type(invalidInput);
+  
+    cy.get(SELECTOR.CAR_NAME_BUTTON).contains('확인')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.called;
+    });
+  });
+
+  Cypress.Commands.add('showRaceCountAlert', (carNameInput, invalidInput) => {
+    const alertStub = cy.stub();
+    cy.get(SELECTOR.CAR_NAME_INPUT).type(carNameInput);
+    cy.get(SELECTOR.CAR_NAME_BUTTON).click();
+
+    cy.on("window:alert", alertStub);
+
+    cy.get(SELECTOR.RACE_COUNT_INPUT).type(invalidInput);
+
+    cy.get(SELECTOR.RACE_COUNT_BUTTON).contains('확인')
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.called;
+    });
+  });
