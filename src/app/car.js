@@ -2,10 +2,10 @@ import { CAR_NAME_LENGTH_LIMIT, ERROR_MESSAGE } from '../lib/constants.js';
 import { checkStringLength, generateId } from '../lib/utils.js';
 
 class Car {
-  static carIdObj = {};
+  static carIdSet = new Set();
 
   constructor(name) {
-    this.id = generateId(Car.carIdObj);
+    this.id = generateId(Car.carIdSet);
     this.init(this.id, name);
   }
 
@@ -19,7 +19,7 @@ class Car {
     }
     this.name = name;
     this.progress = 0;
-    Car.carIdObj = { ...Car.carIdObj, [`${id}`]: true };
+    Car.carIdSet.add(id);
   }
 }
 
