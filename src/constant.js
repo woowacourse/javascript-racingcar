@@ -1,10 +1,9 @@
 const KEYCODE_ENTER = 13;
-
 const CAR_NAME_MAX_LENGTH = 5;
 
 const SCREEN_COMMAND = {
-    show_try: 'try',
-    show_result: 'result',
+    show_try: 'show-try-form',
+    show_result: 'show-result-area',
 };
 
 const ERROR_MESSAGE = {

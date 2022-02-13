@@ -26,8 +26,8 @@ p {
     display: none;
 }
 
-.app.try .try,
-.app.result .result-area {
+.app.show-try-form .try,
+.app.show-result-area .result-area {
     display: block;
 }
 
@@ -82,6 +82,7 @@ p {
 .track-area {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .car-track {
