@@ -47,9 +47,9 @@ export default class Controller {
     });
   }
 
-  setMoveStateByRacingCount() {
+  moveWhileRacingCount() {
     for (let i = 0; i < this.model.racingCount; i++) {
-      this.setMoveState();
+      this.moveCars();
     }
   }
 
@@ -63,7 +63,7 @@ export default class Controller {
     }
   }
 
-  setMoveState() {
+  moveCars() {
     this.model.carNames.forEach((carNames, idx) => {
       this.goForward(idx);
     });
@@ -71,7 +71,7 @@ export default class Controller {
 
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
-    this.setMoveStateByRacingCount();
+    this.moveWhileRacingCount();
     this.displayProgress();
     this.displayWinner();
     this.displayRestartButton();
