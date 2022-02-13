@@ -14,15 +14,18 @@ export default class RacingGame {
     };
   }
 
-  carListPush(array) {
-    array.forEach((carName) => {
-      const newCar = new RacingCarInstance(carName);
-      this._state.carList.push(newCar);
-    });
-  }
-
   get carList() {
     return this._state.carList;
+  }
+
+  set carList(array) {
+    const { carList } = this._state;
+    carList.length = 0;
+
+    array.forEach((carName) => {
+      const newCar = new RacingCarInstance(carName);
+      carList.push(newCar);
+    });
   }
 
   set round(number) {
@@ -34,34 +37,36 @@ export default class RacingGame {
   }
 
   get winner() {
+    const { winners, carList } = this._state;
     let maxDistance = Number.MIN_SAFE_INTEGER;
-    this.carList.forEach((item) => {
-      if (item.distance < maxDistance) {
+
+    carList.forEach((carInstance) => {
+      if (carInstance.distance < maxDistance) {
         return false;
       }
 
-      if (item.distance > maxDistance) {
-        maxDistance = item.distance;
-        this._state.winners.length = 0;
+      if (carInstance.distance > maxDistance) {
+        maxDistance = carInstance.distance;
+        winners.length = 0;
       }
 
-      this._state.winner.push(item);
+      winners.push(carInstance);
     });
 
-    return this._state.winner;
+    return winners;
   }
 
   play() {
     const { carList } = this._state;
 
-    carList.forEach((car) => {
+    carList.forEach((carInstance) => {
       if (isAdvance() === true) {
         return true;
       }
 
-      car.go();
+      carInstance.go();
     });
 
-    return this._state.carList;
+    return carList;
   }
 }
