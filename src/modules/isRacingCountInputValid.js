@@ -3,6 +3,7 @@ import initInputText from "../views/initInputText.js";
 import isUserInputEmpty from "./isUserInputEmpty.js";
 import showAlert from "./showAlert.js";
 import { $ } from "../dom/dom.js";
+import { MAXIMUM_RACE_COUNT, MINMUM_RACE_COUNT } from "../constants/constants.js";
 
 function isRacingCountInteger(raceCountInput){
     if(!Number.isInteger(raceCountInput)){
@@ -14,7 +15,7 @@ function isRacingCountInteger(raceCountInput){
 }
 
 function isRacingCountInRange(raceCountInput){
-    if(raceCountInput > 20 || raceCountInput < 0){
+    if(raceCountInput > MAXIMUM_RACE_COUNT || raceCountInput < MINMUM_RACE_COUNT){
         showAlert(OVER_COUNT_RANGE_ERROR);
         initInputText($('#race-count-input'));
         return false;
