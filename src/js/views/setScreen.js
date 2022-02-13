@@ -1,8 +1,8 @@
 import $ from '../utils/dom.js';
 
-// const hideElement = (element) => {
-//   return element.setAttribute('hidden', true);
-// };
+const hideElement = (element) => {
+  return element.setAttribute('hidden', true);
+};
 
 const showElement = (element) => {
   return element.removeAttribute('hidden');
@@ -13,6 +13,12 @@ export const showCountInput = () => {
 };
 
 export const showRacingResult = () => {
-  showElement($('#racing-result'));
+  showElement($('#result-screen'));
   showElement($('#final-winner'));
+};
+
+export const startUpScreen = () => {
+  hideElement($('#racing-count-form'));
+  hideElement($('#result-screen'));
+  hideElement($('#final-winner'));
 };

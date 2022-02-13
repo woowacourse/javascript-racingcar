@@ -1,7 +1,7 @@
 import $ from './utils/dom.js';
 import { ERROR_MESSAGE, GAME } from './utils/constants.js';
 import { isValidLength, isBlank } from './utils/validation.js';
-import { showCountInput, showRacingResult } from './views/setScreen.js';
+import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
 import { getRandomNumber } from './utils/randomNumber.js';
 import { isEffectiveScore } from './utils/isEffectiveScore.js';
 
@@ -37,7 +37,7 @@ function App() {
 
   const renderRacingResult = () => {
     this.cars.forEach(({ name, distance }) => {
-      $('#racing-result').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
+      $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
     });
   };
 
@@ -99,9 +99,19 @@ function App() {
     showRacingResult();
   };
 
+  const restartRacingGame = () => {
+    this.cars = [];
+    $('#car-names-input').value = '';
+    $('#racing-count-input').value = '';
+    $('#result-racing').innerHTML = '';
+    startUpScreen();
+  };
+
   $('#car-names-button').addEventListener('click', handleCarNamesSubmit);
 
   $('#racing-count-button').addEventListener('click', handleRacingCountSubmit);
+
+  $('#reset-btn').addEventListener('click', restartRacingGame);
 }
 
 // eslint-disable-next-line no-new
