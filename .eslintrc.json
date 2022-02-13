@@ -8,7 +8,6 @@
       "plugin:jsx-a11y/recommended",
       "plugin:import/errors",
       "plugin:import/warnings",
-      "plugin:prettier/recommended"
     ],
     "parserOptions": {
       "requireConfigFile": false
@@ -29,7 +28,6 @@
       "import/prefer-default-export": "off",
       "comma-dangle": ["error", "always-multiline"],
       "max-depth": ["error", 2],
-      // "max-lines-per-function": ["error", 15],
       "prettier/prettier": "error",
       "import/no-anonymous-default-export": 0,
       "no-multiple-empty-lines": ["error", { "max": 1 }],
