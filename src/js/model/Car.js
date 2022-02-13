@@ -1,4 +1,5 @@
-import { RANDOM_RANGE, RACE_STANDARD } from "../util/constants.js";
+import { RANDOM_RANGE, MINIMUM_ADVANCE_VALUE } from "../util/constants.js";
+import { pickNumberInRange } from "../util/random.js";
 
 export default class Car {
   constructor(name) {
@@ -9,9 +10,7 @@ export default class Car {
   goForward() {
     const { MIN, MAX } = RANDOM_RANGE;
 
-    if (
-      window.MissionUtils.Random.pickNumberInRange(MIN, MAX) >= RACE_STANDARD
-    ) {
+    if (pickNumberInRange(MIN, MAX) >= MINIMUM_ADVANCE_VALUE) {
       this.location += 1;
     }
   }
