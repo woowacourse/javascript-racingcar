@@ -32,15 +32,7 @@ export default class RacingGame {
   }
 
   findMaxRecord() {
-    let maxRecord = CAR.ZERO_NUMBER;
-
-    this.cars.forEach((car) => {
-      if (car.position > maxRecord) {
-        maxRecord = car.position;
-      }
-    });
-
-    return maxRecord;
+    return Math.max(...this.cars.map((car) => car.position));
   }
 
   findWinners() {
