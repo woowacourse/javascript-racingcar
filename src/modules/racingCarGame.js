@@ -1,7 +1,7 @@
 import RacingCar from "../class/racingCar.js";
 import { $ } from "../dom/dom.js";
-import checkUserCarNameInput from "./checkUserCarNameInput.js";
-import checkUserRacingCountInput from "./checkUserRacingCountInput.js";
+import isCarNameInputValid from "./isCarNameInputValid.js";
+import isRacingCountInputValid from "./isRacingCountInputValid.js";
 
 export default function racingCarGame() {
     this.racingInfoObject = {
@@ -10,31 +10,30 @@ export default function racingCarGame() {
       };
 
     this.init = () => {
-        onCarNameButtonClick();
+        handleCarNameCheckEvent();
     };
 
-    const onCarNameButtonClick = () => {
+    const handleCarNameCheckEvent = () => {
         $('#car-name-button').addEventListener('click', (e) => {
-            e.preventDefault();    
-            if(!!checkUserCarNameInput($('#car-name-input').value)){
-                renderRaceGameCountElement();
+            e.preventDefault();  
+            if(isCarNameInputValid($('#car-name-input').value)){
+                renderRaceGameCountElement();  
             }
         });
     };
     
     const renderRaceGameCountElement = () => {
         $('.race-count-input-container').style.display = 'flex';
-        onRaceCountButtonClick();
+        handleRaceCountCheckEvent();
     };
 
-    const onRaceCountButtonClick = () => {
+    const handleRaceCountCheckEvent = () => {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
-
-            const carNameArray = checkUserCarNameInput($('#car-name-input').value);
-            const raceCount = checkUserRacingCountInput($('#race-count-input').value);
-            if(!!carNameArray && !!raceCount) {
-                const racingCar = new RacingCar(carNameArray, raceCount);
+            const carNameArray = $('#car-name-input').value.split(',').map(carName => carName.trim());
+            const raceCount = $('#race-count-input').value;
+            if(isRacingCountInputValid(raceCount)){
+                new RacingCar(carNameArray, raceCount);
             }
         });
     };
