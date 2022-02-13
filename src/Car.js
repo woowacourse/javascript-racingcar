@@ -7,18 +7,9 @@ export default class Car {
         this.step = 0;
     }
 
-    pressAccel() {
-        return generateRandomInRange(MIN_OF_RANDOM_NUMBER, MAX_OF_RANDOM_NUMBER);
-    }
-
-    isCanForward() {
-        return this.pressAccel() >= FORWARD_CONDITION;
-    }
-
     tryForward() {
-        if (this.isCanForward()) {
-            this.forward();
-        }
+        const random = generateRandomInRange(MIN_OF_RANDOM_NUMBER, MAX_OF_RANDOM_NUMBER);
+        if (random >= FORWARD_CONDITION) this.forward();
     }
 
     forward() {
