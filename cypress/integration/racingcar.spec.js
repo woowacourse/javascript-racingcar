@@ -67,14 +67,14 @@ describe('자동차 이름 입력 기능 테스트', () => {
 });
 
 describe('시도할 횟수 입력 기능 테스트', () => {
-  const triggerCarNameSubmitEvent = () => {
+  const submitCarName = () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
     cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
   };
 
   beforeEach(() => {
     cy.visit(VISIT_URL);
-    triggerCarNameSubmitEvent();
+    submitCarName();
   });
 
   it('시도할 횟수를 올바르게 입력한다.', () => {
@@ -118,20 +118,20 @@ describe('시도할 횟수 입력 기능 테스트', () => {
 });
 
 describe('자동차 경주 진행 상황 기능 테스트', () => {
-  const triggerCarNameSubmitEvent = () => {
+  const submitCarName = () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
     cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
   };
 
-  const triggerRacingCountSubmitEvent = () => {
+  const submitRacingCount = () => {
     cy.get(`#${ID.RACING_COUNT_INPUT}`).type(5);
     cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
   };
 
   beforeEach(() => {
     cy.visit(VISIT_URL);
-    triggerCarNameSubmitEvent();
-    triggerRacingCountSubmitEvent();
+    submitCarName();
+    submitRacingCount();
   });
 
   it('자동차 이름이 올바르게 렌더링되는지 확인한다.', () => {
