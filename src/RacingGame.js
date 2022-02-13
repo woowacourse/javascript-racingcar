@@ -2,9 +2,10 @@ import RacingCars from './RacingCars.js';
 import View from './View.js';
 import {
     isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
-} from './validation.js';
-import { $, userInputValue } from './util.js';
-import { SELECTOR, KEYCODE_ENTER } from './constant.js';
+} from './utils/validation.js';
+import { $, userInputValue } from './utils/util.js';
+import { KEYCODE_ENTER } from './constants/constant.js';
+import SELECTOR from './constants/selectors.js';
 
 export default class RacingGame {
     constructor() {

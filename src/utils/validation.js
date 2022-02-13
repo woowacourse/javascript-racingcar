@@ -1,4 +1,4 @@
-import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant.js';
+import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from '../constants/validation.js';
 
 const isEmpty = (value) => value === '';
 

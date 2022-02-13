@@ -1,20 +1,18 @@
-import { generateRandomInRange } from './util.js';
+import { FORWARD_CONDITION, MAX_OF_RANDOM_NUMBER, MIN_OF_RANDOM_NUMBER } from './constants/constant.js';
+import { generateRandomInRange } from './utils/util.js';
 
 export default class Car {
     constructor(name) {
         this.name = name;
         this.step = 0;
-        this.MIN_ACCEL = 0;
-        this.MAX_ACCEL = 9;
-        this.FORWARD_ACCEL = 4;
     }
 
     pressAccel() {
-        return generateRandomInRange(this.MIN_ACCEL, this.MAX_ACCEL);
+        return generateRandomInRange(MIN_OF_RANDOM_NUMBER, MAX_OF_RANDOM_NUMBER);
     }
 
     isCanForward() {
-        return this.pressAccel() >= this.FORWARD_ACCEL;
+        return this.pressAccel() >= FORWARD_CONDITION;
     }
 
     tryForward() {
@@ -25,10 +23,6 @@ export default class Car {
 
     forward() {
         this.step += 1;
-    }
-
-    getSteps() {
-        return this.step;
     }
 
     resetStep() {

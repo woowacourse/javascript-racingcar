@@ -1,6 +1,7 @@
-import { $ } from './util.js';
-import { SCREEN_COMMAND, SELECTOR } from './constant.js';
-import template from './template.js';
+import { $ } from './utils/util.js';
+import { SCREEN_COMMAND } from './constants/constant.js';
+import SELECTOR from './constants/selectors.js';
+import template from './templates/template.js';
 
 export default class View {
     constructor() {

@@ -1,4 +1,4 @@
-import { SELECTOR } from './constant.js';
+import SELECTOR from '../constants/selectors.js';
 
 const $ = (selector) => document.querySelector(selector);
 
