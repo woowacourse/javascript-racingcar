@@ -10,7 +10,7 @@ html{
     align-items: center;
 }
 
-.input-forms{
+form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,7 +19,7 @@ html{
     height: 150px;
 }
 
-form{
+.input-section{
     width: 400px;
     margin: 0 auto;
 }

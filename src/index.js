@@ -6,6 +6,7 @@ import {
   resetInputValue,
   clearHTML,
   setHTML,
+  getEnterEvent,
 } from './utils/dom.js';
 import { userStatusView, winnersView } from './view.js';
 import {
@@ -26,19 +27,25 @@ class CarRacing {
   }
 
   bindEvents() {
-    getElement(ID.CAR_NAMES_FORM).addEventListener('submit', event => {
-      event.preventDefault();
-      this.onSubmitCarName(getInputValue(event.target));
-    });
-
-    getElement(ID.RACING_COUNT_FORM).addEventListener('submit', event => {
-      event.preventDefault();
-      this.onSubmitRacingCount(getInputValue(event.target));
-    });
-
-    getElement(ID.RESTART_BUTTON).addEventListener('click', () => {
-      this.onClickRestart();
-    });
+    getElement(ID.CAR_NAMES_BUTTON).addEventListener('click', ({ target }) =>
+      this.onSubmitCarName(getInputValue(target.parentElement)),
+    );
+    getElement(ID.RACING_COUNT_BUTTON).addEventListener('click', ({ target }) =>
+      this.onSubmitRacingCount(getInputValue(target.parentElement)),
+    );
+    getElement(ID.RESTART_BUTTON).addEventListener('click', () =>
+      this.onClickRestart(),
+    );
+    getElement(ID.CAR_NAMES_INPUT).addEventListener(
+      'keyup',
+      ({ key, target }) =>
+        getEnterEvent(key, () => this.onSubmitCarName(target.value)),
+    );
+    getElement(ID.RACING_COUNT_INPUT).addEventListener(
+      'keyup',
+      ({ key, target }) =>
+        getEnterEvent(key, () => this.onSubmitRacingCount(target.value)),
+    );
   }
 
   onSubmitCarName(names) {

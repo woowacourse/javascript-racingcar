@@ -11,4 +11,16 @@ const setHTML = (element, html) => {
   element.insertAdjacentHTML('afterbegin', html);
 };
 
-export { getElement, getInputValue, resetInputValue, clearHTML, setHTML };
+const getEnterEvent = (key, cb) => {
+  if (key !== 'Enter') return;
+  cb();
+};
+
+export {
+  getElement,
+  getInputValue,
+  resetInputValue,
+  clearHTML,
+  setHTML,
+  getEnterEvent,
+};
