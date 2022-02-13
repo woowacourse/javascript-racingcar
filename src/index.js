@@ -62,6 +62,7 @@ class RacingCar {
   isNotValidCarNames(carNames) {
     if (carNames === RULES.EMPTY_STRING) {
       handleError(ERROR_MESSAGES.EMPTY_CAR_NAME, this.$carNamesInput);
+      return true;
     }
 
     const carNamesArray = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
