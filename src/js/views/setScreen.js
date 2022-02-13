@@ -14,4 +14,5 @@ export const showCountInput = () => {
 
 export const showRacingResult = () => {
   showElement($('#racing-result'));
+  showElement($('#final-winner'));
 };

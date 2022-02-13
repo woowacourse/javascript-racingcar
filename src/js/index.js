@@ -8,6 +8,24 @@ import { isEffectiveScore } from './utils/isEffectiveScore.js';
 function App() {
   this.cars = [];
 
+  const getMaxDistance = () => {
+    return this.cars.reduce((acc, { distance }) => {
+      return acc > distance ? acc : distance;
+    }, 0);
+  };
+
+  const selectWinner = () => {
+    const maxDistance = getMaxDistance();
+    return this.cars.filter((car) => car.distance === maxDistance);
+  };
+
+  const renderFinalWinner = () => {
+    const finalWinner = selectWinner()
+      .map((winner) => winner.name)
+      .join(', ');
+    $('#winner-name').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
+  };
+
   const carPlayerTemplate = (name, distance) => {
     return `
       <div class="car-name mr-2">
@@ -29,7 +47,6 @@ function App() {
       if (isEffectiveScore(randomNumber)) {
         this.cars[index].distance += 1;
       }
-      console.log(this.cars);
     }
   };
 
@@ -77,8 +94,9 @@ function App() {
     for (let i = 0; i < this.cars.length; i += 1) {
       increaseCarDistance(i, inputNumber);
     }
-    showRacingResult();
     renderRacingResult();
+    renderFinalWinner();
+    showRacingResult();
   };
 
   $('#car-names-button').addEventListener('click', handleCarNamesSubmit);
