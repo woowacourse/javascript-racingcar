@@ -44,26 +44,30 @@ export default class RacingView {
   }
 
   activateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = false;
-    }
+    this.$countForm.childNodes.forEach((node) => {
+      const element = node;
+      element.disabled = false;
+    });
   }
 
   deactivateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = true;
-    }
+    this.$countForm.childNodes.forEach((node) => {
+      const element = node;
+      element.disabled = true;
+    });
   }
 
   activateNamesForm() {
-    for (let i = 0; i < this.$namesForm.childNodes.length; i += 1) {
-      this.$namesForm.childNodes[i].disabled = false;
-    }
+    this.$namesForm.childNodes.forEach((node) => {
+      const element = node;
+      element.disabled = false;
+    });
   }
 
   deactivateNamesForm() {
-    for (let i = 0; i < this.$namesForm.childNodes.length; i += 1) {
-      this.$namesForm.childNodes[i].disabled = true;
-    }
+    this.$namesForm.childNodes.forEach((node) => {
+      const element = node;
+      element.disabled = true;
+    });
   }
 }
