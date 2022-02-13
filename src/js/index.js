@@ -1,6 +1,6 @@
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
-import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
+import { isValidLength, isBlank, isEffectiveScore, handleError } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
 import { randomNumber, maxNumber } from './utils/getNumber.js';
 import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
@@ -24,11 +24,11 @@ function App() {
 
   const isValidCarNames = (carName) => {
     if (!carName.every(isValidLength)) {
-      alert(ERROR_MESSAGE.NAME_TOO_LONG);
+      handleError(ERROR_MESSAGE.NAME_TOO_LONG);
       return false;
     }
     if (!carName.every(isBlank)) {
-      alert(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
+      handleError(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
       return false;
     }
     return true;
@@ -36,7 +36,7 @@ function App() {
 
   const isValidRacingCount = (number) => {
     if (number < STANDARD.MIN_INPUT_COUNT) {
-      alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
+      handleError(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
     return true;
