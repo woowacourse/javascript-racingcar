@@ -1,10 +1,6 @@
 import { MESSAGE, ID, RACING_COUNT } from '../../src/constants.js';
-import {
-  LEGAL_CAR_NAME,
-  ILLEGAL_LENGTH_NAMES,
-  DUPLICATED_NAME,
-  SINGLE_NAME,
-} from '../utils/index.js';
+
+const availableCarName = '준,포코,공원,제이슨,포비';
 
 const checkAlertMessage = message => {
   cy.on('window:alert', str => {
@@ -24,12 +20,30 @@ const submitRacingCount = count => {
 const clearCarNames = () => cy.get(`#${ID.CAR_NAMES_INPUT}`).clear();
 const clearRacingCount = () => cy.get(`#${ID.RACING_COUNT_INPUT}`).clear();
 
+describe('최종 우승자 출력 테스트', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+  });
+
+  it('게임을 완료하고 우승자를 출력한다.', () => {
+    const carName = '공원';
+    const winners = `🏆최종 우승자: ${carName}🏆`;
+
+    submitCarNames(carName);
+    submitRacingCount(RACING_COUNT.MIN).then(() => {
+      cy.get(`#${ID.WINNERS}`).should('have.text', winners);
+    });
+  });
+});
+
 describe('자동차 이름 입력 테스트', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
   it('입력한 이름이 1글자 미만, 5글자 초과일 경우 alert가 뜬다.', () => {
-    ILLEGAL_LENGTH_NAMES.forEach(name => {
+    const wrongLengthNames = ['준,,', '포비,준포코공원제이슨'];
+
+    wrongLengthNames.forEach(name => {
       submitCarNames(name).then(() => {
         checkAlertMessage(MESSAGE.WRONG_NAME_LENGTH);
       });
@@ -38,15 +52,17 @@ describe('자동차 이름 입력 테스트', () => {
   });
 
   it('입력한 이름이 중복될 경우 alert가 뜬다.', () => {
-    submitCarNames(DUPLICATED_NAME).then(() => {
+    const duplicatedName = '공원,공원';
+
+    submitCarNames(duplicatedName).then(() => {
       checkAlertMessage(MESSAGE.DUPLICATE_NAME);
     });
   });
 
   it('자동차 이름을 입력받고, 경주 결과를 출력한다.', () => {
-    submitCarNames(LEGAL_CAR_NAME);
+    submitCarNames(availableCarName);
     submitRacingCount(RACING_COUNT.MAX).then(() => {
-      LEGAL_CAR_NAME.split(',').every(name => {
+      availableCarName.split(',').every(name => {
         cy.get(`[data-name=${name}]`).should('be.visible');
       });
     });
@@ -65,52 +81,56 @@ describe('경주 횟수 입력 테스트', () => {
   });
 
   it('입력한 레이싱 횟수가 1 미만이거나, 1000을 초과하면 alert가 뜬다', () => {
-    submitCarNames(LEGAL_CAR_NAME);
+    submitCarNames(availableCarName);
+
     submitRacingCount(RACING_COUNT.MIN - 1).then(() => {
       checkAlertMessage(MESSAGE.WRONG_COUNT);
     });
     clearRacingCount();
+
     submitRacingCount(RACING_COUNT.MAX + 1).then(() => {
       checkAlertMessage(MESSAGE.WRONG_COUNT);
     });
   });
 
-  it('최대 1000번 까지 레이싱 횟수를 입력 하여 결과를 받을 수 있다. ', () => {
-    submitCarNames(LEGAL_CAR_NAME);
-    submitRacingCount(RACING_COUNT.MAX).then(() => {
-      cy.get('#racing-winners')
-        .get('h3')
-        .contains('최종 우승자')
-        .should('be.visible');
+  it('최대 1000번 까지 레이싱 횟수를 입력 후, 게임을 정상적으로 종료 할 수 있다', () => {
+    submitCarNames(availableCarName);
+    submitRacingCount(RACING_COUNT.MAX);
+    cy.get(`#${ID.WINNERS}`).then(element => {
+      expect(element.text()).to.contain('최종 우승자');
     });
-  });
-});
-
-describe('최종 우승자 출력 테스트', () => {
-  beforeEach(() => {
-    cy.visit('/index.html');
-    submitCarNames(SINGLE_NAME);
-    submitRacingCount(RACING_COUNT.MIN);
-  });
-  it('우승자를 출력한다.', () => {
-    cy.get('#racing-winners')
-      .get('h3')
-      .contains(SINGLE_NAME)
-      .should('be.visible');
   });
 });
 
 describe('다시 시작하기 버튼 테스트', () => {
   before(() => {
     cy.visit('/index.html');
-    submitCarNames(LEGAL_CAR_NAME);
-    submitRacingCount(RACING_COUNT.MIN);
   });
+
   it('다시 시작하기 버튼을 클릭한다.', () => {
-    cy.get(`#${ID.RESTART_BUTTON}`).click();
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).should('have.value', '');
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).should('have.value', '');
-    cy.get(`#${ID.RACING_STATUS}`).should('be.empty');
-    cy.get(`#${ID.RACING_WINNERS}`).should('be.empty');
+    submitCarNames(availableCarName);
+    submitRacingCount(RACING_COUNT.MIN);
+    cy.get(`#${ID.RESTART_BUTTON}`)
+      .click()
+      .then(() => {
+        cy.get(`#${ID.CAR_NAMES_INPUT}`).should('have.value', '');
+        cy.get(`#${ID.RACING_COUNT_INPUT}`).should('have.value', '');
+        cy.get(`#${ID.RACING_STATUS}`).should('be.empty');
+        cy.get(`#${ID.RACING_WINNERS}`).should('be.empty');
+      });
+  });
+});
+
+describe('Enter를 통해 이름과 레이싱 횟수를 입력 받을 수 있다.', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+  });
+
+  it('게임 결과를 정상적으로 출력한다.', () => {
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(availableCarName).type('{enter}');
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(RACING_COUNT.MAX).type('{enter}');
+    cy.get(`#${ID.WINNERS}`).then(element => {
+      expect(element.text()).to.contain('최종 우승자');
+    });
   });
 });
