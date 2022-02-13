@@ -1,25 +1,51 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { SELECTOR } from '../../src/constants/constants.js';
+
+Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
+  const randomStub = cy.stub();
+  const baseUrl = '../index.html';
+  returnValues.forEach((value, index) => {
+    randomStub.onCall(index).returns(value);
+  });
+
+  cy.visit(baseUrl, {
+    onBeforeLoad: (window) => {
+      window.MissionUtils = {
+        Random: {
+          pickNumberInRange: randomStub
+        }
+      };
+    }
+  });
+});
+
+Cypress.Commands.add('submitCarNames', (names) => {
+  cy.get(`#${SELECTOR.ID.CAR_NAMES_INPUT}`).type(names);
+  cy.get(`#${SELECTOR.ID.CAR_NAMES_BUTTON}`).click();
+});
+
+Cypress.Commands.add('submitRacingCount', (count) => {
+    cy.get(`#${SELECTOR.ID.RACING_COUNT_INPUT}`).type(count);
+    cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`).click();
+});
+  
+Cypress.Commands.add('checkNamesError',(error)=>{
+    const alertStub = cy.stub();
+    cy.on('window:alert',alertStub);
+
+    cy.get(`#${SELECTOR.ID.CAR_NAMES_BUTTON}`)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.calledWith(error);
+    });
+})
+
+Cypress.Commands.add('checkCountError',(error)=>{
+    const alertStub = cy.stub();
+    cy.on('window:alert',alertStub);
+    
+    cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`)
+        .click()
+        .then(() => {
+          expect(alertStub).to.be.calledWith(error);
+        });
+})
