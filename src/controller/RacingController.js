@@ -23,6 +23,7 @@ export default class RacingController {
     try {
       validateCarNames(nameList);
       this.model.players = nameList;
+      this.view.deactivateNamesForm();
       this.view.activateCountForm();
     } catch (error) {
       alert(error.message);
