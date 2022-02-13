@@ -2,7 +2,7 @@ import RacingGameModel from './models/RacingGameModel.js';
 import RacingGameView from './RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
-import SELECTOR from './constants/selector.js';
+import { SELECTOR } from './constants/selector.js';
 import {
   isCarNameInputCheck,
   isRaceTimeCheck,

@@ -1,5 +1,5 @@
 import { $, $$ } from './utils/element-tools.js';
-import SELECTOR from './constants/selector.js';
+import { SELECTOR, DOM_ID } from './constants/selector.js';
 
 export default class RacingGameView {
   init() {
@@ -26,21 +26,23 @@ export default class RacingGameView {
   }
 
   setVisibleResult(isVisible) {
-    $$('#racing-car-container, #result-container').forEach(($element) => {
-      $element.dataset.state = isVisible ? 'on' : 'off';
-    });
+    $$(`${SELECTOR.RACE_CONTAINER}, ${SELECTOR.RESULT_CONTAINER}`).forEach(
+      ($element) => {
+        $element.dataset.state = isVisible ? 'on' : 'off';
+      }
+    );
   }
 
   _renderCarContainer(carList) {
     const insertHTML = carList
       .map(
         (instance, index) =>
-          `<div class="racing-car" data-key="${index}">
-            <div class="car-name-box">${instance.name}</div>
+          `<div class="${DOM_ID.RACE_CAR_STATE}" data-key="${index}">
+            <div class="${DOM_ID.RACE_CAR_NAME_BOX}">${instance.name}</div>
           </div>`
       )
       .join('');
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = insertHTML;
+    $(SELECTOR.RACE_CONTAINER).innerHTML = insertHTML;
   }
 
   _renderCarAdvance(carList) {
@@ -48,10 +50,11 @@ export default class RacingGameView {
       const { distance } = instance;
       const insertHTML = Array.from(
         { length: distance },
-        () => `<div class="car-advance">⬇️️</div>`
+        () => `<div class="${DOM_ID.RACE_ADVANCE}">⬇️️</div>`
       ).join('');
 
-      $(`.racing-car[data-key="${index}"]`).innerHTML += insertHTML;
+      $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`).innerHTML +=
+        insertHTML;
     });
   }
 
