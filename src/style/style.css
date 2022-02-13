@@ -40,6 +40,11 @@ button {
     cursor: pointer;
 }
 
+button:disabled{
+    cursor:default;
+    background-color:#D1D1D1;
+}
+
 form > button {
     width: 64px;
     height: 36px;
