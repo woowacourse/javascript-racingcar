@@ -16,6 +16,6 @@ export default function handleNameInput() {
     return;
   }
 
-  document.querySelector('.count-form').style.display = 'block';
+  document.querySelector('.count-form').classList.remove('hidden');
   document.querySelector('.count-input').focus();
 }

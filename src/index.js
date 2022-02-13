@@ -18,4 +18,5 @@ function initEvent() {
   });
 }
 
+resetView();
 initEvent();

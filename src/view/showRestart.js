@@ -1,3 +1,3 @@
 export default function showRestart() {
-  document.querySelector('.restart-container').style.display = 'flex';
+  document.querySelector('.restart').classList.remove('hidden');
 }
