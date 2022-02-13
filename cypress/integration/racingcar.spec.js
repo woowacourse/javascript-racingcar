@@ -49,34 +49,33 @@ const submitRacingCountAlert = () => {
     });
 };
 
-const countLocation = () => {
-  let movieCount, haleeCount;
+const findLocation = (carNames) => {
+  const carsInfo = [];
 
-  cy.get("#movie-container")
-    .find(".position-arrow")
-    .then(position => {
-      movieCount = Cypress.$(position).length;
-    })
-    .then(() => {
-      cy.get("#halee-container")
-        .find(".position-arrow")
-        .then(position => {
-          haleeCount = Cypress.$(position).length;
-          getWinner(movieCount, haleeCount);
+  carNames.forEach(carName => {
+    cy.get(`#${carName}-container`)
+      .find(".position-arrow")
+      .then(position => {
+        carsInfo.push({
+          name: carName,
+          location: Cypress.$(position).length,
         });
-    });
+      });
+  }, () => getWinner(carsInfo));
 };
 
-const getWinner = (movieCount, haleeCount) => {
+const getWinner = (carsInfo) => {
   const { RACING_WINNER } = SELECTOR;
+  let maxLocation = 0;
+  let winner = "";
 
-  if (movieCount > haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "movie");
-  } else if (movieCount < haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "halee");
-  } else if (movieCount === haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "movie, halee");
-  }
+  carsInfo.forEach(carInfo => {
+    const { name, location } = carInfo;
+    if (carInfo.location > maxLocation) {
+      maxLocation = location;
+      winner = name;
+    }
+  }, () => cy.get(RACING_WINNER).should("have.text", winner));
 };
 
 describe("정상 시나리오에 대해 만족해야 한다.", () => {
@@ -98,9 +97,10 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
   });
 
   it("게임을 종료하고 우승자를 확인할 수 있어야 한다.", () => {
-    submitCarNames("movie, halee");
+    const carNames = ["movie", "halee", "east", "west", "south", "north"];
+    submitCarNames(carNames.join(","));
     submitRacingCount(10);
-    countLocation();
+    findLocation(carNames);
   });
 
   it("다시 시작 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
@@ -135,10 +135,10 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
   });
 
   it("이름의 길이가 5자를 초과했을 경우 alert를 띄운다.", () => {
-    const invalidInput = "loveracingcar";
-
+    let invalidInput = "racingcar";
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
     submitCarNamesAlert();
+    cy.reload();
   });
 
   it("중복된 이름의 자동차가 입력될 경우 alert를 띄운다.", () => {
