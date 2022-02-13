@@ -2,9 +2,11 @@
 /* eslint-disable no-unused-expressions */
 import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index';
 
+const VISIT_URL = 'http://localhost:5500/';
+
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(VISIT_URL);
   });
 
   it('자동차 이름을 올바르게 입력한다.', () => {
@@ -71,7 +73,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   };
 
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(VISIT_URL);
     triggerCarNameSubmitEvent();
   });
 
@@ -127,7 +129,7 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
   };
 
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(VISIT_URL);
     triggerCarNameSubmitEvent();
     triggerRacingCountSubmitEvent();
   });
