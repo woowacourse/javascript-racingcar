@@ -89,6 +89,12 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       .then(() => {
         expect(spy).to.not.be.called;
       });
+
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(0).should('have.text', 'east');
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(1).should('have.text', 'west');
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(2).should('have.text', 'south');
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(3).should('have.text', 'north');
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(4).should('have.text', 'all');
   });
 
   it('시도할 횟수는 공백을 입력할 수 없다.', () => {
@@ -114,31 +120,5 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
       });
-  });
-});
-
-describe('자동차 경주 진행 상황 기능 테스트', () => {
-  const submitCarName = () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
-  };
-
-  const submitRacingCount = () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(5);
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
-  };
-
-  beforeEach(() => {
-    cy.visit(VISIT_URL);
-    submitCarName();
-    submitRacingCount();
-  });
-
-  it('자동차 이름이 올바르게 렌더링되는지 확인한다.', () => {
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(0).should('have.text', 'east');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(1).should('have.text', 'west');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(2).should('have.text', 'south');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(3).should('have.text', 'north');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(4).should('have.text', 'all');
   });
 });
