@@ -1,4 +1,6 @@
-import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index.js';
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-expressions */
+import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index';
 
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
