@@ -31,6 +31,11 @@ export default class RacingGameController {
       'click',
       this.handleRaceTimeInput.bind(this)
     );
+
+    $(SELECTOR.RETRY_BUTTON).addEventListener(
+      'click',
+      this.handleGameRetry.bind(this)
+    );
   }
 
   handleCarNameInput(event) {
@@ -41,7 +46,7 @@ export default class RacingGameController {
       return false;
     }
 
-    this._racingGameView.setDisableForm($(SELECTOR.CAR_NAME_FORM));
+    this._racingGameView.setDisableForm(event.target);
     this._racingGameModel.carList = nameStringToArray(carNameValue);
 
     return false;
@@ -55,7 +60,7 @@ export default class RacingGameController {
       return false;
     }
 
-    this._racingGameView.setDisableForm($(SELECTOR.RACE_TIME_FORM));
+    this._racingGameView.setDisableForm(event.target);
     this._racingGameModel.round = raceTimeValue;
     this.handleGamePlay();
 
@@ -68,5 +73,14 @@ export default class RacingGameController {
 
     const { carList, winners } = this._racingGameModel;
     this._racingGameView.renderResult(carList, winners);
+    this._racingGameView.setVisibleResult(true);
+  }
+
+  handleGameRetry(event) {
+    event.preventDefault();
+
+    this._racingGameModel.init();
+    this._racingGameView.init();
+    return false;
   }
 }

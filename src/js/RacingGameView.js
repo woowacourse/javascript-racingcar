@@ -2,9 +2,32 @@ import { $, $$ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
 
 export default class RacingGameView {
-  setDisableForm($formElement) {
-    $formElement.querySelectorAll('input, button').forEach(($element) => {
-      $element.setAttribute('disabled', '');
+  init() {
+    this.setVisibleResult(false);
+
+    this.setDisableForm($(SELECTOR.CAR_NAME_BUTTON), false);
+    this.setDisableForm($(SELECTOR.RACE_TIME_BUTTON), false);
+
+    $(SELECTOR.CAR_NAME_INPUT).value = '';
+    $(SELECTOR.RACE_TIME_INPUT).value = '';
+  }
+
+  setDisableForm($target, isDisable = true) {
+    $target.parentElement
+      .querySelectorAll('input, button')
+      .forEach(($element) => {
+        if (isDisable === false) {
+          $element.removeAttribute('disabled');
+          return;
+        }
+
+        $element.setAttribute('disabled', '');
+      });
+  }
+
+  setVisibleResult(isVisible) {
+    $$('#racing-car-container, #result-container').forEach(($element) => {
+      $element.dataset.state = isVisible ? 'on' : 'off';
     });
   }
 
@@ -42,9 +65,5 @@ export default class RacingGameView {
     this._renderCarContainer(carList);
     this._renderCarAdvance(carList);
     this._renderWinners(winners);
-
-    $$('#racing-car-container, #result-container').forEach(($element) => {
-      $element.dataset.state = 'on';
-    });
   }
 }
