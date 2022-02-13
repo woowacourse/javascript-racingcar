@@ -1,7 +1,7 @@
-import { RacingCarInstance } from './index.js';
+import RacingCarInstance from './RacingCarInstance.js';
 import isAdvance from '../utils/isAdvance.js';
 
-export default class RacingGame {
+export default class RacingGameModel {
   constructor() {
     this.init();
   }

@@ -1,4 +1,4 @@
-export default class RacingCar {
+export default class RacingCarInstance {
   constructor(inputName) {
     this._state = {
       name: inputName,

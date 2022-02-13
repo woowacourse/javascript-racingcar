@@ -1,4 +1,4 @@
-import { RacingGameModel } from './models/index.js';
+import RacingGameModel from './models/RacingGameModel.js';
 import RacingGameView from './RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
@@ -42,7 +42,7 @@ export default class RacingGameController {
     }
 
     this._racingGameView.setDisableForm($(SELECTOR.CAR_NAME_FORM));
-    this._racingGameModel.carListPush(nameStringToArray(carNameValue));
+    this._racingGameModel.carList = nameStringToArray(carNameValue);
 
     return true;
   }
@@ -69,7 +69,7 @@ export default class RacingGameController {
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
 
     this._racingGameModel.carList.forEach((instance) => {
-      const { name } = instance.state;
+      const { name } = instance._state;
       this._racingGameView.renderAdvanceDiv(name);
     });
 
@@ -82,6 +82,8 @@ export default class RacingGameController {
         break;
       }
     }
+
+    console.log(this._racingGameModel.winner);
   }
 
   handleWinnerDisplay() {
