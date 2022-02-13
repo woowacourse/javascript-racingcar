@@ -1,5 +1,6 @@
 import { validateCarNames, validateCount } from '../utils/validation.js';
 import { SELECTOR } from '../constants/constants.js';
+import DomUtils from '../utils/dom-utils.js';
 
 export default class RacingController {
   constructor(model, view) {
@@ -8,12 +9,14 @@ export default class RacingController {
   }
 
   app() {
-    document
-      .getElementById(SELECTOR.ID.CAR_NAMES_BUTTON)
-      .addEventListener('click', this.submitNameHandler.bind(this));
-    document
-      .getElementById(SELECTOR.ID.RACING_COUNT_SUBMIT)
-      .addEventListener('click', this.submitCountHandler.bind(this));
+    DomUtils.$(SELECTOR.ID.CAR_NAMES_BUTTON).addEventListener(
+      'click',
+      this.submitNameHandler.bind(this)
+    );
+    DomUtils.$(SELECTOR.ID.RACING_COUNT_SUBMIT).addEventListener(
+      'click',
+      this.submitCountHandler.bind(this)
+    );
   }
 
   submitNameHandler(e) {
@@ -23,9 +26,7 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = document.getElementById(
-      SELECTOR.ID.RACING_COUNT_INPUT
-    ).value;
+    const racingCount = DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value;
 
     try {
       validateCount(racingCount);
@@ -39,9 +40,10 @@ export default class RacingController {
   }
 
   activateRestartButton() {
-    document
-      .getElementById(SELECTOR.ID.RESTART_BUTTON)
-      .addEventListener('click', this.restartGame.bind(this));
+    DomUtils.$(SELECTOR.ID.RESTART_BUTTON).addEventListener(
+      'click',
+      this.restartGame.bind(this)
+    );
   }
 
   restartGame() {
@@ -50,8 +52,7 @@ export default class RacingController {
   }
 
   getCarNamesInArrayType() {
-    const nameList = document
-      .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
+    const nameList = DomUtils.$(SELECTOR.ID.CAR_NAMES_INPUT)
       .value.split(',')
       .map((name) => name.trim());
 

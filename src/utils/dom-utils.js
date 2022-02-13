@@ -1,6 +1,10 @@
 import { SELECTOR } from '../constants/constants.js';
 
 export default class DomUtils {
+  static $(id) {
+    return document.getElementById(id);
+  }
+
   static createWinnerElement(winnerList) {
     const $winnerContainer = document.createElement('section');
     $winnerContainer.id = SELECTOR.ID.RACING_RESULT_CONTAINER;
