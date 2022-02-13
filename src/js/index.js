@@ -1,40 +1,47 @@
 import $ from './utils/dom.js';
-import { ERR_MESSAGE, GAME } from './utils/constants.js';
+import { ERROR_MESSAGE, GAME } from './utils/constants.js';
 import { isValidLength, isBlank } from './utils/validation.js';
-import { showCountInput } from './views/setScreen.js';
+import { showCountInput, showRacingResult } from './views/setScreen.js';
 import { getRandomNumber } from './utils/randomNumber.js';
+import { isEffectiveScore } from './utils/isEffectiveScore.js';
 
 function App() {
   this.carName = [];
-  this.count = 0;
+  this.distance = [];
 
-  // const printRacingResult = () => {
-  //   this.carName.forEach((name) => {
-  //     $('#racing-result').insertAdjacentHTML('beforeend', `${name}: ${'-'.repeat(name)}<br>`);
-  //   });
-  //   $('#racing-result').insertAdjacentHTML('beforeend', '<br>');
-  // };
-
-  const playCarRacing = (name) => {
-    for (let i = 0; i < this.count; i += 1) {
-      const randomNumber = getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
-      console.log(randomNumber);
-    }
+  const carPlayerTemplate = (name, index) => {
+    return `
+      <div class="car-name mr-2">
+        <div class="car-player">${name}</div>
+        ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(this.distance[index])}
+      </div>
+    `;
   };
 
-  const startRacingGame = () => {
-    for (let i = 0; i < this.carName.length; i += 1) {
-      playCarRacing(this.carName[i]);
+  const renderRacingResult = () => {
+    this.carName.forEach((name, index) => {
+      $('#racing-result').insertAdjacentHTML('beforeend', carPlayerTemplate(name, index));
+    });
+  };
+
+  const increaseCarDistance = (inputNumber) => {
+    let count = 0;
+    for (let i = 0; i < inputNumber; i += 1) {
+      const randomNumber = getRandomNumber(GAME.MIN_SCORE, GAME.MAX_SCORE);
+      if (isEffectiveScore(randomNumber)) {
+        count += 1;
+      }
     }
+    this.distance.push(count);
   };
 
   const isValidCarNames = (carName) => {
     if (!carName.every(isValidLength)) {
-      alert(ERR_MESSAGE.NAME_TOO_LONG);
+      alert(ERROR_MESSAGE.NAME_TOO_LONG);
       return false;
     }
     if (!carName.every(isBlank)) {
-      alert(ERR_MESSAGE.NAME_CANNOT_BE_BLANK);
+      alert(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
       return false;
     }
     return true;
@@ -42,7 +49,7 @@ function App() {
 
   const isValidRacingCount = (count) => {
     if (count < GAME.MIN_INPUT_COUNT) {
-      alert(ERR_MESSAGE.COUNT_TOO_SMALL);
+      alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
     return true;
@@ -60,11 +67,15 @@ function App() {
   };
 
   const handleRacingCountSubmit = () => {
-    this.count = $('#racing-count-input').value;
-    if (!isValidRacingCount(this.count)) {
+    const inputNumber = $('#racing-count-input').value;
+    if (!isValidRacingCount(inputNumber)) {
       return;
     }
-    startRacingGame();
+    for (let i = 0; i < this.carName.length; i += 1) {
+      increaseCarDistance(inputNumber);
+    }
+    showRacingResult();
+    renderRacingResult();
   };
 
   $('#car-names-button').addEventListener('click', handleCarNamesSubmit);
