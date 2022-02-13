@@ -49,11 +49,11 @@ describe('예외 상황에서 적절한 에러메시지를 출력한다.', () =>
     cy.get('.name-button').click();
 
     cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGE.IS_BLANK);
+      expect(text).to.equal(ERROR_MESSAGE.NAME_IS_BLANK);
     });
   });
 
-  it('반복할 횟수가 1미만이면 에러메세지가 뜬다.', () => {
+  it('시도 횟수가 1미만이면 에러메세지가 뜬다.', () => {
     const carNames = 'east, west, south, north, all';
     const invalidInput = '-3';
 
