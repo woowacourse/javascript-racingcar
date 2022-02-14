@@ -1,4 +1,4 @@
-import Car from './car.js';
+import Car from './Car.js';
 import { RAMDOM_MIN, RAMDOM_MAX } from '../constants/constant.js';
 import { renderWinners } from '../view/renderResult.js';
 
@@ -27,6 +27,6 @@ const getRandomInt = () => {
 
 export const playOneTurn = cars => {
   for (const car of cars) {
-    car.isAdvance(getRandomInt());
+    car.moveForward(getRandomInt());
   }
 };

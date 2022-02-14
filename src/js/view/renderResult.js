@@ -1,13 +1,13 @@
 import { $ } from '../util/dom.js';
 
-const renderCarScore = (name, score) => {
+const templateCarScore = (name, score) => {
   return `<div>${name}</div>${'<p>⬇️</p>'.repeat(score)}`;
 };
 
 export const renderResult = cars => {
   $('#turn-result').innerHTML = `${cars
     .map(car => {
-      return `<div id="car-result">${renderCarScore(
+      return `<div id="car-result">${templateCarScore(
         car.name,
         car.score,
       )}</div>`;

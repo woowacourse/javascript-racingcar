@@ -1,4 +1,4 @@
-import { CAN_ADVANCE } from '../constants/constant.js';
+import { MOVE_FORWARD_WHEN_THE_NUMBER_IS_ABOVE } from '../constants/constant.js';
 
 export default class Car {
   constructor(name) {
@@ -6,8 +6,8 @@ export default class Car {
     this.score = 0;
   }
 
-  isAdvance(randomInt) {
-    if (randomInt >= CAN_ADVANCE) {
+  moveForward(randomInt) {
+    if (randomInt >= MOVE_FORWARD_WHEN_THE_NUMBER_IS_ABOVE) {
       this.score += 1;
     }
   }
