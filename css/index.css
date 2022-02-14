@@ -1,0 +1,136 @@
+body {
+  display: flex;
+  justify-content: center;
+  margin: 56px 0;
+  background: #e5e5e5;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 544px;
+  height: auto;
+  padding: 36px 16px 0px;
+  background: white;
+}
+
+header {
+  font-size: 34px;
+  line-height: 36px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user_input_section {
+  width: 425px;
+  margin: 32px 0px;
+}
+
+#racing_count_form {
+  display: none;
+}
+
+form {
+  margin-bottom: 12px;
+}
+
+form > label {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.input_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.user_input {
+  color: #888888;
+  border: 1px solid #888888;
+  border-radius: 4px;
+  width: 330px;
+  padding: 4px;
+}
+
+.input_btn {
+  width: 65.68px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#racing_car_display_section {
+  width: 100%;
+  margin: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#racing_car_list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.racing_car_item {
+  padding-right: 6px;
+}
+
+.racing_car_name {
+  width: 96px;
+  height: 36px;
+  font-size: 16px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.racing_car_progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.racing_car_progress > li {
+  padding: 7px 0 8px;
+  font-size: 32px;
+}
+
+#final_winner {
+  font-size: 20px;
+  font-weight: 600;
+  display: none;
+}
+
+#restart_section {
+  padding-bottom: 42px;
+  display: none;
+}
+
+#restart_btn {
+  width: 152px;
+  height: 36px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #00bcd4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
