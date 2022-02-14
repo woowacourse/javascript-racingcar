@@ -23,7 +23,7 @@
             <button class="input-section__button input-section__name-button">확인</button>
           </form>
         </section>
-        <section id="count-submit-container">
+        <section class="count-section count-section-display-none">
           <p class="input-section__description">시도할 횟수를 입력해주세요.</p>
           <form class="input-section__form">
             <input
@@ -35,9 +35,11 @@
           </form>
         </section>
       </section>
-      <section class="step-sections"></section>
-      <p id="winner"></p>
-      <button id="reset-button">다시 시작하기</button>
+      <section class="result-section result-section-display-none">
+        <section class="step-sections"></section>
+        <p id="winner"></p>
+        <button id="reset-button">다시 시작하기</button>
+      </section>
     </div>
     <script src="./src/index.js" type="module"></script>
   </body>

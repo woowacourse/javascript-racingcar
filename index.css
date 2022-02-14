@@ -77,7 +77,21 @@ button {
   align-items: flex-start;
 }
 
-#count-submit-container {
+.count-section {
+  display: block;
+}
+
+.count-section-display-none {
+  display: none;
+}
+
+.result-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-section-display-none {
   display: none;
 }
 
@@ -123,7 +137,6 @@ button {
 }
 
 #reset-button {
-  display: none;
   width: 152px;
   height: 36px;
   line-height: 36px;

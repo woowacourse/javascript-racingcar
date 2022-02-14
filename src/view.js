@@ -1,4 +1,4 @@
-import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
+import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
 import { SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
 
 export default class View {
@@ -13,7 +13,8 @@ export default class View {
     this.$countInput = $(SELECTOR.INPUT_SECTION_COUNT_INPUT);
     this.$nameButton = $(SELECTOR.INPUT_SECTION_NAME_BUTTON);
     this.$countButton = $(SELECTOR.INPUT_SECTION_COUNT_BUTTON);
-    this.$countSubmitContainer = $(SELECTOR.COUNT_SUBMIT_CONTAINER);
+    this.$countSection = $(SELECTOR.COUNT_SECTION);
+    this.$resultSection = $(SELECTOR.RESULT_SECTION);
     this.$stepSections = $(SELECTOR.STEP_SECTIONS);
     this.$winner = $(SELECTOR.WINNER);
     this.$resetButton = $(SELECTOR.RESET_BUTTON);
@@ -26,20 +27,19 @@ export default class View {
   }
 
   makeResultVisible() {
-    makeDOMVisible([this.$winner, this.$resetButton], 'block');
-    makeDOMVisible([this.$stepSections], 'flex');
+    makeDOMDisplayNotNone(this.$resultSection, 'result-section-display-none');
   }
 
   makeResultHidden() {
-    makeDOMHidden([this.$winner, this.$resetButton, this.$stepSections]);
+    makeDOMDisplayNone(this.$resultSection, 'result-section-display-none');
   }
 
   makeCountFormHidden() {
-    makeDOMHidden([this.$countSubmitContainer]);
+    makeDOMDisplayNone(this.$countSection, 'count-section-display-none');
   }
 
   makeCountFormVisible() {
-    makeDOMVisible([this.$countSubmitContainer], 'block');
+    makeDOMDisplayNotNone(this.$countSection, 'count-section-display-none');
   }
 
   setOnSubmitName(fn) {
