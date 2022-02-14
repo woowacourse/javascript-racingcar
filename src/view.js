@@ -1,5 +1,5 @@
 import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
-import { WINNER_SEPARATOR } from './utils/constants.js';
+import { SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -9,14 +9,14 @@ export default class View {
   }
 
   configureDOM() {
-    this.$nameInput = $('.input-section__name-input');
-    this.$countInput = $('.input-section__count-input');
-    this.$nameButton = $('.input-section__name-button');
-    this.$countButton = $('.input-section__count-button');
-    this.$countSubmitContainer = $('#count-submit-container');
-    this.$stepSections = $('.step-sections');
-    this.$winner = $('#winner');
-    this.$resetButton = $('#reset-button');
+    this.$nameInput = $(SELECTOR.INPUT_SECTION_NAME_INPUT);
+    this.$countInput = $(SELECTOR.INPUT_SECTION_COUNT_INPUT);
+    this.$nameButton = $(SELECTOR.INPUT_SECTION_NAME_BUTTON);
+    this.$countButton = $(SELECTOR.INPUT_SECTION_COUNT_BUTTON);
+    this.$countSubmitContainer = $(SELECTOR.COUNT_SUBMIT_CONTAINER);
+    this.$stepSections = $(SELECTOR.STEP_SECTIONS);
+    this.$winner = $(SELECTOR.WINNER);
+    this.$resetButton = $(SELECTOR.RESET_BUTTON);
   }
 
   makeDOMReset() {
