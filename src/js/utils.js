@@ -13,3 +13,7 @@ export function splitString(string, delimeter) {
 export function trimStringArray(array) {
   return array.map((string) => string.trim());
 }
+
+export function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

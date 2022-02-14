@@ -1,4 +1,5 @@
 import { CAR } from './constants.js';
+import { getRandomNumber } from './utils.js';
 
 export default class Car {
   constructor(name) {
@@ -10,12 +11,8 @@ export default class Car {
     this.distance += CAR.STEP;
   }
 
-  getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
   race() {
-    const randomNumber = this.getRandomNumber(
+    const randomNumber = getRandomNumber(
       CAR.RANDOM_NUMBER_RANGE.MIN,
       CAR.RANDOM_NUMBER_RANGE.MAX
     );
