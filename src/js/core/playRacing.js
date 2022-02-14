@@ -17,7 +17,7 @@ export const getWinners = cars => {
 
 export const playOneTurn = cars => {
   for (let car of cars) {
-    car.isAdvance(getRandomInt());
+    car.addScore(getRandomInt());
   }
 };
 

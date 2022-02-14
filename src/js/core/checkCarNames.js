@@ -27,12 +27,10 @@ const checkCarNames = carNames => {
 };
 
 const isOverMaxCarNameLength = carNames => {
-  let wrongCarNames = carNames.filter(
-    carName => carName.length > MAX_CAR_NAME_LENGTH,
-  );
-  const isIncorrectValue = wrongCarNames.length > 0;
-  displayAlert(isIncorrectValue, alertMessage.overMaxCarNameLength);
-  return isIncorrectValue;
+  const isCorrectCarNames = carName => carName.length <= MAX_CAR_NAME_LENGTH;
+  const iscorrectValue = carNames.every(isCorrectCarNames);
+  displayAlert(!iscorrectValue, alertMessage.overMaxCarNameLength);
+  return !iscorrectValue;
 };
 
 const isUnderMinCarNamesLength = carNames => {

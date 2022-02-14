@@ -1,18 +1,15 @@
 import { $ } from '../util/dom.js';
 
 export const renderResult = cars => {
-  $('#turn-result').innerHTML = `${cars
+  const template = cars
     .map(car => {
-      return `<div id="car-result">${renderCarScore(
-        car.name,
-        car.score,
-      )}</div>`;
+      return `
+      <div id="car-result">
+        <div>${car.name}</div>${'<p>⬇️</p>'.repeat(car.score)}
+      </div>`;
     })
-    .join('')}`;
-};
-
-const renderCarScore = (name, score) => {
-  return `<div>${name}</div>${'<p>⬇️</p>'.repeat(score)}`;
+    .join('');
+  $('#turn-result').innerHTML = template;
 };
 
 export const renderWinners = winners => {
