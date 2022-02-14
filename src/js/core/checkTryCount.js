@@ -1,4 +1,7 @@
 import { $ } from '../util/dom.js';
+import { MIN_TRY_COUNT } from '../constants/constant.js';
+import { alertMessage } from '../constants/string.js';
+import { displayAlert } from './displayAlert.js';
 
 export const getTryCount = e => {
   e.preventDefault();
@@ -9,8 +12,7 @@ export const getTryCount = e => {
 };
 
 const isTryCountPositiveNumber = tryCount => {
-  if (tryCount < 1) {
-    window.alert('1이상의 수를 입력해 주세요.');
-  }
-  return tryCount < 1;
+  const isIncorrectValue = tryCount < MIN_TRY_COUNT;
+  displayAlert(isIncorrectValue, alertMessage.TryCountPositiveNumber);
+  return isIncorrectValue;
 };
