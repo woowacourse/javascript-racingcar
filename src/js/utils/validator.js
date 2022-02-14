@@ -4,9 +4,9 @@ const isNumberInRange = (max, value) => value > 0 && value <= max;
 
 const isWithComma = (value) => value.indexOf(',') > -1;
 
-const hasValidLengthInArray = (values, min, max) => {
-  if (isEmptyArray()) return false;
-  return values.every((item) => item.length >= min && item.length <= max);
+const hasValidLengthInArray = (array, min, max) => {
+  if (isEmptyArray(array)) return false;
+  return array.every((item) => item.length >= min && item.length <= max);
 };
 
 const isEmptyArray = (array) => array.length === 0;

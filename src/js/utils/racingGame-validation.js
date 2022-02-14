@@ -17,6 +17,7 @@ const isCarNameInputValid = (value) => {
   }
 
   const names = nameStringToArray(value);
+  console.log(value);
   if (!hasValidLengthInArray(names, 1, 5)) {
     alert('자동차 이름은 1자에서 5자까지 입력할 수 있습니다.');
     return false;
