@@ -9,10 +9,10 @@ export default class Controller {
   constructor() {
     this.view = new View();
     this.model = new Model();
-    this.triggerEvent();
+    this.initEventHandlers();
   }
 
-  triggerEvent() {
+  initEventHandlers() {
     this.view.setOnSubmitName(this.onSubmitName.bind(this));
     this.view.setOnSubmitCount(this.onSubmitCount.bind(this));
     this.view.setOnClickReset(this.onClickReset.bind(this));
