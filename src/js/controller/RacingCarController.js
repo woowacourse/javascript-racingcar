@@ -59,10 +59,11 @@ export default class RacingCarController {
   };
 
   playGame = () => {
+    this.model.initPrevResult();
+    this.view.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      const raceResult = this.model.playTurn();
-      this.view.setResult(raceResult);
-      this.view.renderResult();
+      const stageInfo = this.model.playTurn();
+      this.view.renderResult(stageInfo);
     }
     this.endGame();
   };

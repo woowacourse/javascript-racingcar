@@ -19,23 +19,36 @@ export default class RacingCarView {
     this.$result.insertAdjacentHTML("beforeend", template);
   };
 
-  renderResult = () => {
-    this.$result.innerHTML = this.makeResultTemplate();
+  renderCarNames = (carNames) => {
+    this.$result.insertAdjacentHTML(
+      "beforeend",
+      this.makeCarNamesTemplate(carNames)
+    );
   };
 
-  makeResultTemplate = () => `
-      <div class="${CLASS.RACING_RESULTS}">
-        ${this.result
-          .map(
-            (result) =>
-              `<div class="${CLASS.RACING_RESULT}">
-                <div class="${CLASS.CAR_NAME}">${result.name}</div> 
-                ${`<div class="${CLASS.ARROW}">⬇️️</div>`.repeat(
-                  result.forwardCount
-                )}
-              </div>`
-          )
-          .join("")}
+  renderResult = (stageInfo) => {
+    Object.entries(stageInfo).forEach(([name, isMoved]) => {
+      if (isMoved) {
+        console.log(name, isMoved);
+        $(`#${name}-container`).insertAdjacentHTML(
+          "beforeend",
+          "<div class='arrow'>⬇️</div>"
+        );
+      }
+    });
+  };
+
+  makeCarNamesTemplate = (carNames) => `
+      <div class="racing-results">
+    ${carNames
+      .map(
+        (carName) => `
+        <div id="${carName}-container" class="racing-info">
+          <div class="${CLASS.CAR_NAME}"> ${carName} </div>
+        </div>
+      `
+      )
+      .join("")}
       </div>
       `;
 

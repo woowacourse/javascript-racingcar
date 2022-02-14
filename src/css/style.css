@@ -75,18 +75,27 @@ body {
   text-align: center;
 }
 
+/* .racing-results {
+  width: 100%;
+  display: flex;
+} */
+
 .racing-results {
   width: 100%;
-  display: flex;
   justify-content: space-between;
+  display: flex;
 }
 
-.racing-result {
+.racing-results > div {
   width: 100%;
   display: flex;
-  gap: 10px;
-  flex-direction: column;
   align-items: center;
+}
+
+.racing-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .car-name {

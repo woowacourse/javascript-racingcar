@@ -6,6 +6,7 @@ export default class RacingCarModel {
   constructor() {
     this.cars = [];
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
+    this.prevResult = {};
   }
 
   setCars = (carNames) => {
@@ -42,16 +43,36 @@ export default class RacingCarModel {
 
   getRacingCount = () => this.racingCount;
 
+  getCarsName = () => this.cars.map((car) => car.name);
+
+  initPrevResult = () => {
+    this.cars.forEach((car) => {
+      this.prevResult[car.name] = 0;
+    });
+  };
+
   playTurn = () => {
+    const prevResult = { ...this.prevResult };
+    console.log(prevResult);
     this.cars.forEach((car) => {
       this.race(car);
     });
-    return this.cars;
+    // 스테이지 정보를 받아와야함!
+    const stageInfo = this.cars.reduce((acc, car) => {
+      acc[car.name] = car.forwardCount - prevResult[car.name];
+      return acc;
+    }, {});
+    // [1,0,1]
+    console.log(stageInfo);
+    return stageInfo;
   };
+
+  getCars = () => this.cars;
 
   race = (car) => {
     if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
+      this.prevResult[car.name]++;
     }
   };
 
