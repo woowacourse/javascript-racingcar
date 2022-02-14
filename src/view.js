@@ -4,8 +4,8 @@ import { SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
 export default class View {
   constructor() {
     this.configureDOM();
-    this.makeResultHidden();
-    this.makeCountFormHidden();
+    this.makeResultDisplayNone();
+    this.makeCountFormDisplayNone();
   }
 
   configureDOM() {
@@ -21,24 +21,24 @@ export default class View {
   }
 
   makeDOMReset() {
-    this.makeResultHidden();
-    this.makeCountFormHidden();
+    this.makeResultDisplayNone();
+    this.makeCountFormDisplayNone();
     this.clearInput();
   }
 
-  makeResultVisible() {
+  makeResultDisplayNotNone() {
     makeDOMDisplayNotNone(this.$resultSection, 'result-section-display-none');
   }
 
-  makeResultHidden() {
+  makeResultDisplayNone() {
     makeDOMDisplayNone(this.$resultSection, 'result-section-display-none');
   }
 
-  makeCountFormHidden() {
+  makeCountFormDisplayNone() {
     makeDOMDisplayNone(this.$countSection, 'count-section-display-none');
   }
 
-  makeCountFormVisible() {
+  makeCountFormDisplayNotNone() {
     makeDOMDisplayNotNone(this.$countSection, 'count-section-display-none');
   }
 
@@ -94,6 +94,6 @@ export default class View {
   showResult(carList, winnerList) {
     this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
-    this.makeResultVisible();
+    this.makeResultDisplayNotNone();
   }
 }
