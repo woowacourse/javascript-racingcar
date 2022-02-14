@@ -3,7 +3,6 @@
 /cypress/videos
 /cypress/fixtures
 # /cypress/support
-/cypress/support/index.js
 /cypress/plugins
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,vscode,intellij,webstorm

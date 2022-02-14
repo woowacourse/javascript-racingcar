@@ -38,8 +38,8 @@ class RacingCarGame {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
         this.cars = RacingCarGame.makeCars(names);
         this.view.renderCountInputForm();
-      } catch (error) {
-        alert(error);
+      } catch ({ message }) {
+        alert(message);
       }
     }
   };
@@ -54,8 +54,8 @@ class RacingCarGame {
         this.simulateGame();
         this.view.renderResults(this.cars, this.getWinners());
         this.afterRenderComplete();
-      } catch (error) {
-        alert(error);
+      } catch ({ message }) {
+        alert(message);
       }
     }
   };
