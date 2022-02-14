@@ -5,12 +5,10 @@
     <title>🏎️ 자동차 경주 게임</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- font - Roboto -->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
-    <!-- Reset CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
@@ -29,8 +27,8 @@
             >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
           >
           <form>
-          <input type="text" id="car-name-input" placeholder="east, west, south, north, all" />
-          <button id="car-name-button">확인</button>
+            <input type="text" id="car-name-input" placeholder="east, west, south, north, all" />
+            <button id="car-name-button">확인</button>
           </form>
         </div>
         <div class="input-form">
@@ -38,50 +36,13 @@
             >시도할 횟수를 입력해주세요.</label
           >
           <form>
-          <input type="number" id="racing-count-input" placeholder="10" />
-          <button id="racing-count-button">확인</button>
+            <input type="number" id="racing-count-input" placeholder="10" />
+            <button id="racing-count-button">확인</button>
           </form>
         </div>
       </section>
-      <section id="racing-result">
-        <!-- <ul id="result-list">
-          <li class="racing-car">
-            <p class="car-name">east</p>
-            <ul class="progress-list">
-              <li class="progress">⬇️️</li>
-              <li class="progress">⬇️️</li>
-              <li class="progress">⬇️️</li>
-            </ul>
-          </li>
-          <li class="racing-car">
-            <p class="car-name">west</p>
-            <ul class="progress-list">
-              <li class="progress">⬇️️</li>
-              <li class="progress">⬇️️</li>
-            </ul>
-          </li>
-          <li class="racing-car">
-            <p class="car-name">all</p>
-            <ul class="progress-list">
-              <li class="progress">⬇️️</li>
-            </ul>
-          </li>
-          <li class="racing-car">
-            <p class="car-name">south</p>
-            <ul class="progress-list">
-            </ul>
-          </li>
-          <li class="racing-car">
-            <p class="car-name">north</p>
-            <ul class="progress-list">
-            </ul>
-          </li>
-        </ul> -->
-      </section>
-      <section id="result">
-        <!-- <h6 id="result-message">🏆 최종 우승자: <span id="winners">east, west</span> 🏆</h6>
-        <button id="restart-button">다시 시작하기</button> -->
-      </section>
+      <section id="racing-result"></section>
+      <section id="result"></section>
     </div>
 
     <script type="module" src="src/js/index.js"></script>
