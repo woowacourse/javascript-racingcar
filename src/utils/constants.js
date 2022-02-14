@@ -27,3 +27,5 @@ export const SELECTOR = {
   WINNER: '#winner',
   RESET_BUTTON: '#reset-button',
 };
+
+export const DISPLAY_NONE = 'display-none';
