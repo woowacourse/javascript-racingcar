@@ -16,7 +16,7 @@ const verifyAlertMessage = message => {
   });
 };
 
-describe('racingcar Test', () => {
+describe('자동차 경주 구현 기능 테스트', () => {
   beforeEach(() => {
     cy.visit('index.html');
   });
@@ -42,6 +42,12 @@ describe('racingcar Test', () => {
     cy.get('.count-form').should('not.be.visible');
     cy.get('.game-result-container').should('not.be.visible');
     cy.get('.restart-container').should('not.be.visible');
+  });
+});
+
+describe('예외 사항 테스트', () => {
+  beforeEach(() => {
+    cy.visit('index.html');
   });
 
   it('자동차 이름이 5자 초과면 에러 메세지가 표시된다.', () => {
