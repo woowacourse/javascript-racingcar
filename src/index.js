@@ -73,10 +73,10 @@ class RacingcarGame {
   countCarsMove() {
     this.carList
       .map((car) => {
-        let game = 0;
-        while (game !== Number(this.raceCount)) {
+        let raceCount = 0;
+        while (raceCount !== Number(this.raceCount)) {
           car.move();
-          game++;
+          raceCount++;
         }
       });
   }
