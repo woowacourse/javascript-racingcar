@@ -1,7 +1,7 @@
 import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import { makeCar, playOneTurn, getWinners } from './core/playRacing.js';
+import { makeCars, playOneTurn, getWinners } from './core/playRacing.js';
 import { renderResult, removeBeforeResult } from './view/renderResult.js';
 
 class App {
@@ -25,7 +25,7 @@ class App {
   }
 
   startGame() {
-    const cars = makeCar(this.carNames);
+    const cars = makeCars(this.carNames);
     for (let i = 0; i < this.tryCount; i++) {
       playOneTurn(cars);
       renderResult(cars);

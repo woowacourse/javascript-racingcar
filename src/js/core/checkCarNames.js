@@ -1,11 +1,11 @@
 import { $ } from '../util/dom.js';
+import { displayAlert } from '../component/displayAlert.js';
+import { alertMessage } from '../constants/string.js';
 import {
   MIN_CAR_NAME_LENGTH,
   MAX_CAR_NAME_LENGTH,
   MIN_CAR_NAMES_LENGTH,
 } from '../constants/constant.js';
-import { displayAlert } from './displayAlert.js';
-import { alertMessage } from '../constants/string.js';
 
 export const getCarNames = e => {
   e.preventDefault();
