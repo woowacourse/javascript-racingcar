@@ -51,4 +51,12 @@ export default class RacingGameView {
     const $target = document.querySelector(targetID);
     $target.innerHTML += str;
   }
+
+  renderInit() {
+    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
+    $(SELECTOR.CAR_NAME_INPUT).value = '';
+    $(SELECTOR.RACE_TIME_INPUT).value = '';
+    this.setAbleForm($(SELECTOR.CAR_NAME_FORM));
+    this.setDisableForm($(SELECTOR.RACE_TIME_FORM));
+  }
 }

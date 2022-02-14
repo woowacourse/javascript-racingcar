@@ -31,6 +31,11 @@ class App {
       'click',
       this.handleRaceTimeInput.bind(this)
     );
+
+    $(SELECTOR.RACE_REPLAY_BUTTON).addEventListener(
+      'click',
+      this.handleReplayGame.bind(this)
+    );
   }
 
   handleCarNameInput(event) {
@@ -87,7 +92,10 @@ class App {
     this.View.renderResult(this.RacingGame.winner());
   }
 
-  handleReplayGame() {}
+  handleReplayGame() {
+    this.View.renderInit();
+    this.RacingGame.init();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => new App());
