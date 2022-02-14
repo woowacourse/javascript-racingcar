@@ -34,7 +34,7 @@ export default class Controller {
 
   onSubmitCount(count) {
     try {
-      const { carList } = this.model;
+      const carList = this.model.getCarList();
       validateCountInput(count);
       this.model.startRace(count);
       this.view.showResult(carList, this.makeWinner(carList));

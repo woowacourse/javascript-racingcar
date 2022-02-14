@@ -1,26 +1,22 @@
-import { NUMBER } from './utils/constants.js';
-
+import CarManager from './carManager.js';
 export default class Model {
-  carList = [];
+  constructor() {
+    this.carManager = new CarManager();
+  }
+
+  getCarList() {
+    return this.carManager.carList;
+  }
 
   saveCarList(carList) {
-    this.carList = carList;
+    this.carManager.saveCarList(carList);
   }
 
   startRace(count) {
-    this.resetAllCarStep();
-    Array(count)
-      .fill()
-      .forEach((_) => {
-        this.carList.forEach((car) => car.randomMove());
-      });
-  }
-
-  resetAllCarStep() {
-    this.carList.forEach((car) => (car.step = NUMBER.INITIAL_STEP));
+    this.carManager.startRace(count);
   }
 
   resetCarList() {
-    this.carList = [];
+    this.carManager.resetCarList();
   }
 }
