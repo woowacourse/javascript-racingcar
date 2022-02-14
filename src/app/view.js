@@ -34,6 +34,7 @@ class RacingCarGameView {
     this.resultField.innerHTML = `<section id="game-progress">
     </section>
     <section id="winners">
+      <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> 
     </section>`;
   }
 
@@ -43,6 +44,7 @@ class RacingCarGameView {
     this.winners = findElement(ID_PREFIX, DOM.WINNERS_ID);
     this.carNameBtn = findElement(ID_PREFIX, DOM.CAR_NAME_BTN_ID);
     this.countBtn = findElement(ID_PREFIX, DOM.COUNT_BTN_ID);
+    this.restartBtn = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
   }
 
   renderResults(cars, winners) {
@@ -55,15 +57,16 @@ class RacingCarGameView {
     });
 
     this.gameProgress.innerHTML = progressTemplate;
-    this.winners.innerHTML = winnersTemplate;
+    this.winners.insertAdjacentHTML('beforebegin', winnersTemplate);
+    this.renderRestartButton();
   }
 
   renderCountInputForm() {
     this.countInputForm.style.display = 'block';
   }
 
-  hideCountInputForm() {
-    this.countInputForm.style.display = 'none';
+  renderRestartButton() {
+    this.restartBtn.style.display = 'block';
   }
 
   disableInputButtons() {
@@ -84,7 +87,7 @@ class RacingCarGameView {
     return `<h2 id="${DOM.WINNER_CONTAINER_ID}">🏆최종 승리자:<span id="${
       DOM.WINNER_NAME_ID
     }">${winners.join(',')}</span>🏆</h2>
-      <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> `;
+      `;
   }
 }
 export default RacingCarGameView;
