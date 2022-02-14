@@ -79,4 +79,17 @@ describe('예외 사항 테스트', () => {
     inputCount(invalidInput);
     verifyAlertMessage(ERROR_MESSAGES.INVALID_COUNT);
   });
+
+  it('시도 횟수가 정수가 아닌 경우 유효 메세지가 표시된다.', () => {
+    const carNames = 'east, west, south, north, all';
+    const invalidInput = '1.1';
+
+    inputCarNames(carNames);
+    cy.get('.count-input').type(invalidInput);
+    cy.get('.count-input').then($input => {
+      expect($input[0].validationMessage).to.eq(
+        'Please enter a valid value. The two nearest valid values are 1 and 2.',
+      );
+    });
+  });
 });
