@@ -1,3 +1,3 @@
-import RacingCarEventHandler from "./class/racingCarEventHandler.js";
+import RacingCarGame from './controller/racing-car-game.js';
 
-(new RacingCarEventHandler()).init();
+new RacingCarGame();
