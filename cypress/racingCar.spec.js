@@ -51,7 +51,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   it('게임을 완료하고 최종 우승자를 출력한다.', () => {
     const winners = `🏆 최종 우승자: ${CAR_NAMES} 🏆`;
     playGameCorrectly();
-    cy.get('#winner-name').should('have.text', winners);
+    cy.get('#winner-names').should('have.text', winners);
   });
 
   it('다시 시도하기 버튼을 클릭하면, 게임이 초기화되어야 한다.', () => {

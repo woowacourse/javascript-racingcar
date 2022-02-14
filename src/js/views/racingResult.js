@@ -10,7 +10,7 @@ const carPlayerTemplate = (name, distance) => {
 };
 
 export const renderFinalWinner = (finalWinner) => {
-  $('#winner-name').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
+  $('#winner-names').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
 };
 
 export const renderRacingResult = (cars) => {
