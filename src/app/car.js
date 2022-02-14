@@ -6,14 +6,14 @@ class Car {
 
   constructor(name) {
     this.id = generateId(Car.carIdSet);
-    this.init(this.id, name);
+    this.#init(this.id, name);
   }
 
   goForward() {
     this.progress += 1;
   }
 
-  init(id, name) {
+  #init(id, name) {
     if (!checkStringLengthOver(name, CAR_NAME_LENGTH_LIMIT)) {
       throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH_OVER);
     }
