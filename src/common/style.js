@@ -1,10 +1,10 @@
 const color = {
-  color00BCD4: '#00BCD4',
-  colorB4B4B4: '#B4B4B4',
-  color8B8B8B: '#8B8B8B',
-  colorF5F5F5: '#F5F5F5',
-  white: '#FFFFFF',
   black: '#000000',
+  car: '#F5F5F5',
+  input_border: '#B4B4B4',
+  mint: '#00BCD4',
+  placeholder: '#8B8B8B',
+  white: '#FFFFFF',
 };
 
 export const style = `
@@ -62,7 +62,7 @@ export const directive = `
 export const input = `
   width: 360px;
   height: 36px;
-  border: 1px solid ${color.colorB4B4B4};
+  border: 1px solid ${color.input_border};
   box-sizing: border-box;
   border-radius: 4px;
   outline: none;
@@ -71,7 +71,7 @@ export const input = `
 
   font-size: 15px;
   line-height: 24px;
-  color: ${color.color8B8B8B};
+  color: ${color.placeholder};
 
   outline: none;
 `;
@@ -81,7 +81,7 @@ export const button = `
   height: 36px;
   padding: 6px 6px 6px 8px;
   margin-left: 16px;
-  background: ${color.color00BCD4};
+  background: ${color.mint};
   border: none;
   border-radius: 4px;
 
@@ -104,7 +104,7 @@ export const winner = `
 export const carName = `
   width: 96px;
   height: 36px;
-  background: ${color.colorF5F5F5};
+  background: ${color.car};
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -138,7 +138,7 @@ export const restartButton = `
   height: 36px;
   border: none;
   border-radius: 4px;
-  background-color: ${color.color00BCD4};
+  background-color: ${color.mint};
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
