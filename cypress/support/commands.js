@@ -1,4 +1,4 @@
-import { MESSAGE, ID, RACING_COUNT } from '../../src/constants.js';
+import { ID } from '../../src/constants.js';
 
 // alert 메시지를 비교해주는 커맨드
 Cypress.Commands.add('checkAlertMessage', expectedMessage => {
