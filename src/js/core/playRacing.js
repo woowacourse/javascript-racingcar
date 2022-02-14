@@ -21,11 +21,11 @@ export const getWinners = cars => {
 };
 
 export const playOneTurn = cars => {
-  for (let car of cars) {
+  for (const car of cars) {
     car.isAdvance(getRandomInt());
   }
 };
 
 const getRandomInt = () => {
-  return Math.floor(Math.random() * (RAMDOM_MAX - RAMDOM_MIN)) + RAMDOM_MIN; //최댓값은 제외, 최솟값은 포함
+  return Math.floor(Math.random() * (RAMDOM_MAX - RAMDOM_MIN)) + RAMDOM_MIN; // 최댓값은 제외, 최솟값은 포함
 };

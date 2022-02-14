@@ -1,11 +1,24 @@
 module.exports = {
+
   env: {
+
     browser: true,
+
     es6: true,
+
     node: true,
+
   },
-  extends: ["airbnb", "plugin:prettier/recommended"],
+
+  extends: ['airbnb', 'plugin:prettier/recommended'],
+
   rules: {
-    "linebreak-style": ["error", "windows"],
+
+    'linebreak-style': ['error', 'windows'],
+
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+
   },
+
 };
+
