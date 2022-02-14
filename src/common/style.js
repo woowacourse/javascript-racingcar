@@ -43,16 +43,16 @@ export const style = `
 `;
 
 export const header = `
-  margin: 36px 0px 30px 0px;
+  margin: 36px 0 30px;
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   text-align: center;
 `;
 
 export const directive = `
-  margin: 7.5px 0px 0px 0px;
+  margin: 7.5px 0 0;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
@@ -93,7 +93,7 @@ export const button = `
 `;
 
 export const winner = `
-  margin: 24px 0px;
+  margin: 24px 0;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
