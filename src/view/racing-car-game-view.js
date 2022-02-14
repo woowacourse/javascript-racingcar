@@ -5,6 +5,11 @@ export default class RacingCarGameView {
         $('.race-count-input-container').style.display = 'flex';
     }
 
+    renderWholeGameResult(carArray) {
+        this.renderRacingContent(carArray);
+        this.renderGameWinners(carArray);
+    }
+
     renderRacingContent(carArray) {
         let racingResult = '';
         carArray.forEach(car => {

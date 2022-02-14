@@ -28,7 +28,10 @@ export default class RacingCarGame {
             const carNameArray = checkUserCarNameInput($('#car-name-input').value);
             const raceCount = checkUserRacingCountInput($('#race-count-input').value);
             if (!!carNameArray && !!raceCount) {
-                this.gameStart(carNameArray, raceCount);
+                this.model.generateCars(carNameArray);
+                this.updateWholeGameResult(raceCount);
+                this.view.renderWholeGameResult(this.model.carArray);
+                this.addClickEventToRestartButton();
             }
         });
     }
@@ -38,20 +41,10 @@ export default class RacingCarGame {
             location.reload();
         });
     }
-
-    gameStart(carNameArray, raceCount){
-        this.model.generateCars(carNameArray);
-        this.playGame(raceCount);
-    }
     
-    playGame(raceCount){
+    updateWholeGameResult(raceCount){
         for(let i = 0; i < raceCount; i++){
-            this.model.updateCarSuccessCount();
+            this.model.updateCarsSuccessCount();
         }
-
-        const { carArray } = this.model;
-        this.view.renderRacingContent(carArray);
-        this.view.renderGameWinners(carArray);
-        this.addClickEventToRestartButton();
     }
 }

@@ -10,7 +10,7 @@ export default class RacingCarGameModel {
         this.carArray =  carNameArray.map(carName => new Car(carName));
     }
 
-    updateCarSuccessCount() {
+    updateCarsSuccessCount() {
         this.carArray.forEach(car => {
             this.generateRandomNumber() >= CAR_MOVE_FORWARD_CRITERIA && car.increaseSuccessCount(CAR_MOVE_FORWARD_STEP);
         });
