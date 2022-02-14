@@ -21,12 +21,12 @@ p {
     background-color: white;
 }
 
-.app .try,
+.app .try-count,
 .app .result-area {
     display: none;
 }
 
-.app.show-try-form .try,
+.app.show-try-form .try-count,
 .app.show-result-area .result-area {
     display: block;
 }
