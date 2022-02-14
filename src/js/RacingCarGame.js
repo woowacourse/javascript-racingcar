@@ -20,6 +20,10 @@ export default class RacingCarGame {
     this.winners = [];
   }
 
+  racingCountInputVisibiled() {
+    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'block';
+  }
+
   submitCarNames() {
     const carNameList = trimStringArray(
       splitString(this.$carNameInput.value, DELIMETER)
@@ -33,6 +37,7 @@ export default class RacingCarGame {
     }
 
     this.carList = carNameList.map((name) => new Car(name));
+    this.racingCountInputVisibiled();
     this.renderRacingResult();
   }
 
@@ -82,10 +87,6 @@ export default class RacingCarGame {
     );
   }
 
-  isCarListNotFound() {
-    return !this.carList.length;
-  }
-
   alertErrorMessage(message) {
     alert(message);
   }
@@ -105,28 +106,6 @@ export default class RacingCarGame {
     if (this.isDuplicatedCarName(carNameList)) {
       this.alertErrorMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.initializeInput(this.$carNameInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateRacingCount(racingCount) {
-    if (!this.isValidRacingCount(racingCount)) {
-      this.alertErrorMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
-      this.initializeInput(this.$racingCountInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateCarListFound() {
-    if (this.isCarListNotFound()) {
-      this.alertErrorMessage(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
-      this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
       return true;
     }
@@ -165,7 +144,10 @@ export default class RacingCarGame {
   submitRacingCount() {
     const racingCount = this.$racingCountInput.valueAsNumber;
 
-    if (this.validateRacingCount(racingCount) || this.validateCarListFound()) {
+    if (!this.isValidRacingCount(racingCount)) {
+      this.alertErrorMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
+      this.initializeInput(this.$racingCountInput);
+
       return;
     }
 

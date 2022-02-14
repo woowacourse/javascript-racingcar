@@ -14,6 +14,7 @@ export const SELECTOR = {
   $RESULT_MESSAGE: '#result-message',
   $WINNERS: '#winners',
   $RESTART_BUTTON: '#restart-button',
+  $INPUT_FORM_LAST_CHILD: '.input-form:last-child',
 };
 
 export const DOM_STRING = {
