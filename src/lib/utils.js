@@ -25,3 +25,5 @@ export const generateId = (idObj) => {
   }
   return idStr;
 };
+
+export const findElement = (surfix, selector) => document.querySelector(`${surfix}${selector}`);

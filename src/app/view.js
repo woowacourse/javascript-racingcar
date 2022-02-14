@@ -1,4 +1,5 @@
-import { DOM } from '../lib/constants.js';
+import { DOM, ID_PREFIX } from '../lib/constants.js';
+import { findElement } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -6,12 +7,12 @@ class RacingCarGameView {
   }
 
   initDOM() {
-    this.countInputForm = document.querySelector(`#${DOM.COUNT_INPUT_FORM_ID}`);
-    this.resultField = document.querySelector(`#${DOM.RESULT_FIELD_ID}`);
-    this.gameProgress = document.querySelector(`#${DOM.GAME_PROGRESS_ID}`);
-    this.winners = document.querySelector(`#${DOM.WINNERS_ID}`);
-    this.carNameBtn = document.querySelector(`#${DOM.CAR_NAME_BTN_ID}`);
-    this.countBtn = document.querySelector(`#${DOM.COUNT_BTN_ID}`);
+    this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM_ID);
+    this.resultField = findElement(ID_PREFIX, DOM.RESULT_FIELD_ID);
+    this.gameProgress = findElement(ID_PREFIX, DOM.GAME_PROGRESS_ID);
+    this.winners = findElement(ID_PREFIX, DOM.WINNERS_ID);
+    this.carNameBtn = findElement(ID_PREFIX, DOM.CAR_NAME_BTN_ID);
+    this.countBtn = findElement(ID_PREFIX, DOM.COUNT_BTN_ID);
   }
 
   renderResults(cars, winners) {

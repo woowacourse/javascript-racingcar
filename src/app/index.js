@@ -1,5 +1,12 @@
-import { CAR_NAME_SEPARATOR, DOM, MOVE_CONDITION, RANGE_MAX, RANGE_MIN } from '../lib/constants.js';
-import { pickNumberInRange, splitString } from '../lib/utils.js';
+import {
+  CAR_NAME_SEPARATOR,
+  DOM,
+  ID_PREFIX,
+  MOVE_CONDITION,
+  RANGE_MAX,
+  RANGE_MIN,
+} from '../lib/constants.js';
+import { findElement, pickNumberInRange, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manage.js';
 import RacingCarGameView from './view.js';
 
@@ -12,8 +19,8 @@ class RacingCarGame {
   }
 
   initDOM() {
-    this.carNameInputField = document.querySelector(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
-    this.countInputField = document.querySelector(`#${DOM.COUNT_INPUT_FIELD_ID}`);
+    this.carNameInputField = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FIELD_ID);
+    this.countInputField = findElement(ID_PREFIX, DOM.COUNT_INPUT_FIELD_ID);
   }
 
   initHandler() {
@@ -56,7 +63,7 @@ class RacingCarGame {
   afterRenderComplete() {
     this.view.disableInputButtons();
 
-    const restartButton = document.querySelector(`#${DOM.RESTART_BTN_ID}`);
+    const restartButton = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
     restartButton.addEventListener('click', () => window.location.reload());
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);

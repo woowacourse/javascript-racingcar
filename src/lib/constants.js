@@ -35,3 +35,6 @@ export const ERROR_MESSAGE = Object.freeze({
 export const RANGE_MIN = 0;
 export const RANGE_MAX = 9;
 export const MOVE_CONDITION = 4;
+
+export const ID_PREFIX = '#';
+export const CLASS_PREFIX = '.';
