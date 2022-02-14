@@ -1,4 +1,4 @@
-const userStatusView = ({ name, racingCount }) => {
+const userMovementView = ({ name, racingCount }) => {
   return `<div id="user-status" class="user-status" data-name=${name}>
     <div id="user-name" class="user-name">${name}</div>
     ${Array.from({ length: racingCount }, () => 0)
@@ -13,4 +13,4 @@ const winnersView = winners => {
     .join(',')}🏆</h3>`;
 };
 
-export { userStatusView, winnersView };
+export { userMovementView, winnersView };

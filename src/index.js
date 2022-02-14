@@ -1,7 +1,7 @@
 import Car from './Car.js';
 import { ID, MESSAGE, KEY } from './constants.js';
 import { getElement } from './utils/dom.js';
-import { userStatusView, winnersView } from './view.js';
+import { userMovementView, winnersView } from './view.js';
 import {
   parseCarName,
   validateCarNameLength,
@@ -86,7 +86,7 @@ class CarRacing {
   }
 
   printResult() {
-    return this.cars.map(car => userStatusView(car)).join('');
+    return this.cars.map(car => userMovementView(car)).join('');
   }
 
   getWinner() {
