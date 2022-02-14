@@ -10,12 +10,18 @@ function isCorrectCarNameLength(carNameArray){
 
 export function checkUserCarNameInput(carNameInput) {
     if(!carNameInput){
+        resetInputText($(SELECTOR.CAR_NAME_INPUT));
         throw new Error(EMPTY_INPUT_ERROR);
     }
 
     const carNameArray = carNameInput
         .split(',')
         .filter(carName => !!carName.trim().length);
+
+    if(!carNameArray.length) {
+        resetInputText($(SELECTOR.CAR_NAME_INPUT));
+        throw new Error(EMPTY_INPUT_ERROR);
+    }
 
     if(!isCorrectCarNameLength(carNameArray)){
         resetInputText($(SELECTOR.CAR_NAME_INPUT));
@@ -31,6 +37,7 @@ function isCorrectRaceCountRange(raceCountInput) {
 
 export function checkUserRacingCountInput(raceCountInput){
     if(raceCountInput === ''){
+        resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         throw new Error(EMPTY_INPUT_ERROR);
     }
     
