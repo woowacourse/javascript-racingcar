@@ -7,7 +7,7 @@ import {
 
 import nameStringToArray from './nameStringToArray.js';
 
-const isCarNameInputCheck = (value) => {
+const isCarNameInputValid = (value) => {
   if (!isWithComma(value)) {
     alert(
       '자동차 이름을 최소 2개 이상 입력해주세요.\n(자동차 이름은 콤마로 구분합니다.)'
@@ -38,4 +38,4 @@ const isRaceTimeCheck = (value) => {
   return true;
 };
 
-export { isCarNameInputCheck, isRaceTimeCheck };
+export { isCarNameInputValid, isRaceTimeCheck };
