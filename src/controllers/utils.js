@@ -1,4 +1,3 @@
-import { ERR_KEY_NAME, ERR_KEY_NUMBER } from '../constants/errors.js';
 import { GO_FORWARD_CONDITION, RANDOM_NUM_MAX } from '../constants/conditions.js';
 
 export function doTrim(names) {
