@@ -10,7 +10,8 @@
     <div id="app">
       <main id="racing-game">
         <h1 id="racing-game-title">🏎️자동차 경주 게임🏁</h1>
-        <section id="input-field">
+        <section id="input-field" aria-labeledby="a11y-input-section">
+          <h2 hidden id="a11y-input-section">자동차 이름 및 게임 시행 횟수 입력 섹션</h2>
           <form id="car-name-input-form">
             <label for="car-name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
             <div id="car-name-input-field">
@@ -26,10 +27,13 @@
             </div>
           </form>
         </section>
-        <section id="result-field">
-          <section id="game-progress">
+        <section id="result-field" aria-labeledby="a11y-result-section">
+          <h2 hidden id="a11y-result-section">게임 진행 결과 표시 섹션</h2>
+          <section id="game-progress" aria-labeledby="a11y-game-progress-section">
+            <h3 hidden id="a11y-game-progress-section">게임 진행 표시 섹션</h3>
           </section>
-          <section id="winners">
+          <section id="winners" aria-labeledby="a11y-winner-section">
+            <h3 hidden id="a11y-winner-section">게임 결과 표시 섹션</h3>
           </section>
         </section>
       </main>
