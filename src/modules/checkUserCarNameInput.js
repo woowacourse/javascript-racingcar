@@ -5,7 +5,7 @@ import { MAX_CAR_NAME_LENGTH } from '../constants/gameCondition.js';
 import { SELECTOR } from '../constants/selector.js';
 
 function isCorrectCarNameLength(carNameArray){
-    return !carNameArray.filter(carName => carName.length > MAX_CAR_NAME_LENGTH).length;
+    return carNameArray.every(carName => carName.length <= MAX_CAR_NAME_LENGTH);
 }
 
 export default function checkUserCarNameInput(carNameInput) {
