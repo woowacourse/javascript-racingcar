@@ -112,6 +112,10 @@ form {
   gap: 8px;
 }
 
+.input-form:last-child {
+  display: none;
+}
+
 .car-name {
   width: 96px;
   height: 36px;

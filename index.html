@@ -17,7 +17,6 @@
     />
     <link rel="stylesheet" href="./src/css/index.css" />
   </head>
-
   <body>
     <div id="app">
       <header>
@@ -29,8 +28,12 @@
             >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
           >
           <form>
-          <input type="text" id="car-name-input" placeholder="east, west, south, north, all" />
-          <button id="car-name-button">확인</button>
+            <input
+              type="text"
+              id="car-name-input"
+              placeholder="east, west, south, north, all"
+            />
+            <button id="car-name-button">확인</button>
           </form>
         </div>
         <div class="input-form">
@@ -38,17 +41,14 @@
             >시도할 횟수를 입력해주세요.</label
           >
           <form>
-          <input type="number" id="racing-count-input" placeholder="10" />
-          <button id="racing-count-button">확인</button>
+            <input type="number" id="racing-count-input" placeholder="10" />
+            <button id="racing-count-button">확인</button>
           </form>
         </div>
       </section>
-      <section id="racing-result">
-      </section>
-      <section id="result">
-      </section>
+      <section id="racing-result"></section>
+      <section id="result"></section>
     </div>
-
     <script type="module" src="src/js/index.js"></script>
   </body>
 </html>
