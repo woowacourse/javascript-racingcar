@@ -1,3 +1,5 @@
-export default function $(selector) {
+const $ = selector => {
   return document.querySelector(selector);
-}
+};
+
+export default $;

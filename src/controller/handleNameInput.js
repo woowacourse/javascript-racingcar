@@ -2,7 +2,7 @@ import { ERROR_MESSAGES } from '../utils/constants.js';
 import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
 import $ from '../utils/selector.js';
 
-export default function handleNameInput() {
+const handleNameInput = () => {
   const names = $('.name-input')
     .value.split(',')
     .map(name => name.trim());
@@ -18,4 +18,6 @@ export default function handleNameInput() {
 
   $('.count-form').classList.remove('hidden');
   $('.count-input').focus();
-}
+};
+
+export default handleNameInput;

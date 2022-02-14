@@ -1,6 +1,6 @@
 import { CAN_GO_COUNT } from '../utils/constants.js';
 
-export default class Car {
+class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
@@ -12,3 +12,5 @@ export default class Car {
     }
   }
 }
+
+export default Car;

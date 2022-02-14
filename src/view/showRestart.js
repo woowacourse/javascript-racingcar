@@ -1,5 +1,7 @@
 import $ from '../utils/selector.js';
 
-export default function showRestart() {
+const showRestart = () => {
   $('.restart').classList.remove('hidden');
-}
+};
+
+export default showRestart;

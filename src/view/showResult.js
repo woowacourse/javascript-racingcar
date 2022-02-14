@@ -1,10 +1,10 @@
 import $ from '../utils/selector.js';
 
-function getPositionArrow(position) {
+const getPositionArrow = position => {
   return '<div class="result-arrow">⬇️️</div>'.repeat(position);
-}
+};
 
-function getTemplateRaceResult(cars) {
+const getTemplateRaceResult = cars => {
   return `
     ${cars
       .map(
@@ -16,11 +16,13 @@ function getTemplateRaceResult(cars) {
       )
       .join('')}
   `;
-}
+};
 
-export default function showResult(cars) {
+const showResult = cars => {
   const div = document.createElement('div');
   div.className = 'race-result-container';
   div.innerHTML = getTemplateRaceResult(cars);
   $('.game-result-container').append(div);
-}
+};
+
+export default showResult;

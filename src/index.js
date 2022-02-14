@@ -3,7 +3,7 @@ import handleCountInput from './controller/handleCountInput.js';
 import resetView from './view/resetView.js';
 import $ from './utils/selector.js';
 
-function initEvent() {
+const initEvent = () => {
   $('.name-form').addEventListener('submit', event => {
     event.preventDefault();
     handleNameInput();
@@ -17,7 +17,7 @@ function initEvent() {
   $('.restart').addEventListener('click', () => {
     resetView();
   });
-}
+};
 
 resetView();
 initEvent();

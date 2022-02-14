@@ -3,7 +3,7 @@ import $ from '../utils/selector.js';
 import { isValidCount } from '../utils/valid.js';
 import playRace from './playRace.js';
 
-export default function handleCountInput() {
+const handleCountInput = () => {
   const { value } = $('.count-input');
 
   if (!isValidCount(value)) {
@@ -12,4 +12,6 @@ export default function handleCountInput() {
   }
 
   playRace(value);
-}
+};
+
+export default handleCountInput;
