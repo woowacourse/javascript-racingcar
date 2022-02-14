@@ -4,7 +4,7 @@ import { getTryCount } from './core/checkTryCount.js';
 import { makeCar, playOneTurn, getWinners } from './core/playRacing.js';
 import { renderResult, removeBeforeResult } from './view/renderResult.js';
 
-class app {
+class App {
   constructor() {
     this.carNames = [];
     this.tryCount = 0;
@@ -54,4 +54,4 @@ class app {
   }
 }
 
-new app();
+new App();
