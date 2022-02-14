@@ -1,8 +1,9 @@
 import { $ } from '../dom/dom.js';
+import { SELECTOR } from '../constants/selector.js';
 
 export default class RacingCarGameView {
     renderRaceGameCountElement() {
-        $('.race-count-input-container').style.display = 'flex';
+        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).style.display = 'flex';
     }
 
     renderWholeGameResult(carArray) {
@@ -19,7 +20,7 @@ export default class RacingCarGameView {
                 </div>
             `;
         });
-        $('.racing-content').innerHTML = racingResult;
+        $(SELECTOR.RACING_CONTENT).innerHTML = racingResult;
     }
 
     renderOneCarContent(carCount) {
@@ -39,7 +40,7 @@ export default class RacingCarGameView {
             .map(car => car.name)
             .join(',');
         
-        $('.racing-result').innerHTML = `
+        $(SELECTOR.RACING_RESULT).innerHTML = `
             <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
             <button class="restart-button">다시 시작하기</button>
         `;

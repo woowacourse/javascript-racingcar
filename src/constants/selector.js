@@ -5,4 +5,7 @@ export const SELECTOR = {
     RACE_COUNT_BUTTON: '#race-count-button',
     RESULT_TEXT: '.result-text',
     RESTART_BUTTON: '.restart-button',
+    RACE_COUNT_INPUT_CONTAINER: '.race-count-input-container',
+    RACING_CONTENT: '.racing-content',
+    RACING_RESULT: '.racing-result',
 };

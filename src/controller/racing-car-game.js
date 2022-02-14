@@ -3,6 +3,7 @@ import RacingCarGameView from '../view/racing-car-game-view.js';
 import { $ } from '../dom/dom.js';
 import checkUserCarNameInput from '../modules/checkUserCarNameInput.js';
 import checkUserRacingCountInput from '../modules/checkUserRacingCountInput.js';
+import { SELECTOR } from '../constants/selector.js';
 
 export default class RacingCarGame {
     constructor() {
@@ -12,21 +13,21 @@ export default class RacingCarGame {
     }
 
     addClickEventToCarNameButton() {
-        $('#car-name-button').addEventListener('click', (e) => {
+        $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (e) => {
             e.preventDefault();
             this.onCarNameButtonClick();
         });
     }
 
     addClickEventToRaceCountButton() {
-        $('#race-count-button').addEventListener('click', (e) => {
+        $(SELECTOR.RACE_COUNT_BUTTON).addEventListener('click', (e) => {
             e.preventDefault();
             this.onRaceCountButtonClick();
         });
     }
 
     addClickEventToRestartButton(){
-        $('.restart-button').addEventListener('click', () => {
+        $(SELECTOR.RESTART_BUTTON).addEventListener('click', () => {
             this.onRestartButtonClick();
         });
     }
@@ -39,7 +40,7 @@ export default class RacingCarGame {
 
     onCarNameButtonClick() {
         try {
-            checkUserCarNameInput($('#car-name-input').value)
+            checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value)
             this.view.renderRaceGameCountElement();
             this.addClickEventToRaceCountButton();
         } catch(err) {
@@ -49,8 +50,8 @@ export default class RacingCarGame {
 
     onRaceCountButtonClick() {
         try {
-            this.model.generateCars(checkUserCarNameInput($('#car-name-input').value));
-            this.updateWholeGameResult(checkUserRacingCountInput($('#race-count-input').value));
+            this.model.generateCars(checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value));
+            this.updateWholeGameResult(checkUserRacingCountInput($(SELECTOR.RACE_COUNT_INPUT).value));
             this.view.renderWholeGameResult(this.model.carArray);
             this.addClickEventToRestartButton();
         } catch(err) {
