@@ -25,7 +25,7 @@ export default class RacingGameView {
     $$('.racing-car-container, #result').forEach(($element) => {
       $element.setAttribute('data-state', 'on');
     });
-    console.log(SELECTOR.RACE_WINNER_DISPLAY);
+
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
       '🏆 최종 우승자: ' + winner + ' 🏆';
   }

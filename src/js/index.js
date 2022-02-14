@@ -65,8 +65,6 @@ class App {
   handleGamePlay(event) {
     event.preventDefault();
 
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
-
     this.RacingGame.carList.forEach((instance) => {
       const { name } = instance.state;
       this.View.renderAdvanceDiv(name);
