@@ -1,0 +1,148 @@
+@charset "utf-8";
+
+:root {
+  --background: #e5e5e5;
+  --highlight-background: #f5f5f5;
+  --radius: 4px;
+  --border-color: #b4b4b4;
+  --disabled-background: #ddd;
+  --disabled-color: #ccc;
+  --holder-font-color: #8b8b8b;
+  --container-background: #fff;
+  --container-padding: 1.15rem;
+  --button-background: #00bcd4;
+  --button-color: #fff;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'NanumBarunGothic', sans-serif;
+  background-color: var(--background);
+  padding: 4rem;
+}
+
+#app {
+  margin: 0 auto;
+  width: 36.5rem;
+  border-radius: var(--radius);
+  background-color: var(--container-background);
+  padding: var(--container-padding);
+}
+
+#app > h1.title {
+  text-align: center;
+  font-size: 2.4rem;
+  margin: 1.45rem 0;
+}
+
+#app button {
+  padding: 0.71rem 0;
+  background-color: var(--button-background);
+  color: var(--button-color);
+  border-radius: var(--radius);
+  border: none;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+#app button:hover {
+  filter: brightness(0.95);
+}
+
+#app button:disabled {
+  color:#777;
+  background-color: var(--disabled-background);
+}
+
+#app button:disabled:hover {
+  filter: unset; 
+}
+
+#app input {
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem; 
+}
+
+#app input::placeholder {
+  color: var(--holder-font-color);
+}
+
+#app input:disabled {
+  border: none;
+  background-color: var(--disabled-background);
+}
+
+.input-container {
+  padding: 0.4rem 2.4rem;
+}
+
+.input-container > p {
+  font-size: 1.05rem;
+}
+
+.input-container > form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-container > form > input[type='text']:first-child {
+  grid-column: 3 span;
+}
+
+.input-container > form > button:last-child {
+  grid-column: 1 span;
+}
+
+.racing-car-container {
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  grid-column-gap: 0.58rem;
+}
+
+.racing-car-container[data-state='on'] {
+  display: grid;
+}
+
+.racing-car {
+  text-align: center;
+}
+
+.car-name-box {
+  background-color: var(--highlight-background);
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  font-size: 1.05rem;
+}
+
+.car-advance {
+  font-size: 2.2rem;
+  margin: 0.25rem 0;
+}
+
+#result {
+  display: none;
+  margin: 1.1rem;
+}
+
+#result[data-state='on'] {
+  display: block;
+}
+
+#winner {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.42rem;
+  margin-bottom: 1.5rem;
+}
+
+#retry {
+  display: block;
+  width: 10.8rem;
+  font-size: 1.1rem;
+  margin: 0 auto;
+}
