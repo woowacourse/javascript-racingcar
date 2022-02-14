@@ -297,7 +297,6 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node,vscode,intellij,webstorm
 
 /cypress/plugins
-/cypress/support
 /cypress/videos
 /cypress/fixtures
 /cypress/screenshots
