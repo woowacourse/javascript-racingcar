@@ -1,3 +1,4 @@
+import { clearInput } from '../controllers/utils.js';
 import { state } from '../models/state.js';
 
 export function renderCarNames() {
@@ -25,7 +26,7 @@ export function renderProgressArrow(index) {
 
 export function renderWinners(names) {
   const racingWinner = document.getElementById('racing-winner');
-  racingWinner.innerHTML = `🏆 최종우승자: ${names} 🏆`;
+  racingWinner.insertAdjacentHTML('afterbegin', `🏆 최종우승자: ${names} 🏆`);
 }
 
 export function renderRacingInputForm() {
@@ -48,4 +49,49 @@ export function disableUserInput() {
   carNamesInputBtn.disabled = true;
   racingNumberInput.disabled = true;
   racingNumberInputBtn.disabled = true;
+}
+
+export function removeRacingContainer() {
+  resetWinners();
+  removeRacingCars();
+  hideRacingContainer();
+  hideRacingInputForm();
+  ableUserInput();
+}
+
+function removeRacingCars() {
+  const racingCars = document.getElementById('racing-cars');
+  while (racingCars.hasChildNodes()) {
+    racingCars.removeChild(racingCars.firstChild);
+  }
+}
+
+export function resetWinners(names) {
+  const racingWinner = document.getElementById('racing-winner');
+  racingWinner.innerHTML = ``;
+}
+
+function hideRacingInputForm() {
+  const racingInputForm = document.getElementById('racing-input-form');
+  racingInputForm.style.display = 'none';
+}
+
+function hideRacingContainer() {
+  const racingContainer = document.getElementById('racing-container');
+  racingContainer.style.display = 'none';
+}
+
+function ableUserInput() {
+  const carNamesInput = document.getElementById('car-name-input');
+  const carNamesInputBtn = document.getElementById('car-name-input-button');
+  const racingNumberInput = document.getElementById('racing-number-input');
+  const racingNumberInputBtn = document.getElementById('racing-number-input-button');
+
+  carNamesInput.disabled = false;
+  carNamesInputBtn.disabled = false;
+  racingNumberInput.disabled = false;
+  racingNumberInputBtn.disabled = false;
+
+  clearInput('car-name-input');
+  clearInput('racing-number-input');
 }

@@ -14,17 +14,11 @@ export function clearInput(inputId) {
   inputLocation.focus();
 }
 
-export function showAlertMsg(message) {
-  alert(message);
-  clearInput(findAlertInputId(message));
-}
-
-function findAlertInputId(message) {
-  const errKey = message[0];
-  if (errKey === ERR_KEY_NAME) {
+export function findAlertInputId(errKey) {
+  if (errKey === 'name error') {
     return 'car-name-input';
   }
-  if (errKey === ERR_KEY_NUMBER) {
+  if (errKey === 'number error') {
     return 'racing-number-input';
   }
 }

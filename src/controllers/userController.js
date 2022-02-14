@@ -1,7 +1,12 @@
-import { isNameValid, isRacingNumberValid, isCarNameExist } from './validation.js';
+import { isNameValid, isRacingNumberValid, isUserInputExist } from './validation.js';
 import { doTrim } from './utils.js';
-import { race } from './raceController.js';
-import { renderRacingInputForm, renderRacingContainer, disableUserInput } from '../views/view.js';
+import { race, clearState } from './raceController.js';
+import {
+  renderRacingInputForm,
+  renderRacingContainer,
+  disableUserInput,
+  removeRacingContainer,
+} from '../views/view.js';
 import { state } from '../models/state.js';
 
 export function registerClickEventListners() {
@@ -49,28 +54,12 @@ function setRound(event) {
   }
 }
 
-function isRacingNumberExist() {
-  if (state.racingNumber !== 0) {
-    return true;
-  }
-  return false;
-}
-
-function isUserInputExist() {
-  if (!isCarNameExist()) {
-    return false;
-  }
-  if (!isRacingNumberExist()) {
-    return false;
-  }
-  return true;
-}
-
 function restartBtnClick() {
   const restartBtn = document.getElementById('restart-button');
   restartBtn.addEventListener('click', doRestart);
 }
 
 function doRestart() {
-  location.reload(true);
+  clearState();
+  removeRacingContainer();
 }

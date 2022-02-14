@@ -5,11 +5,8 @@ import { state } from '../models/state.js';
 export function race() {
   allocateCars();
   renderCarNames();
-
   moveCars();
-
   renderWinners(pickWinner());
-
   clearState();
 }
 
@@ -39,7 +36,7 @@ function pickWinner() {
   return makeArrToString(winnerArr);
 }
 
-function clearState() {
+export function clearState() {
   state.cars = [];
   state.racingNumber = 0;
 }
