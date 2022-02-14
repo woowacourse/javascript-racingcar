@@ -15,6 +15,10 @@
   padding: 0;
 }
 
+.display-none {
+  display: none !important;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -78,18 +82,18 @@ button {
   align-items: flex-start;
 }
 
-#count-submit-container {
-  display: none;
+.step-sections-wrap {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .step-sections {
   display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  margin: 0 0 24px;
+  justify-content: flex-start;
+  margin: 0 auto 24px;
   white-space: nowrap;
-  overflow-x: scroll;
-  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .step-section {
@@ -124,7 +128,6 @@ button {
 }
 
 #reset-button {
-  display: none;
   width: 152px;
   height: 36px;
   line-height: 36px;
