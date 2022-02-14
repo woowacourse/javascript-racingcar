@@ -65,8 +65,11 @@ describe('예외 상황', () => {
 
   it('양의 정수가 아닌 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
     const racingCount = '-1';
+    const inputString = '우디,꼬재';
     const alertStub = createAlertStub();
 
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
@@ -81,8 +84,11 @@ describe('예외 상황', () => {
 
   it('100보다 큰 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
     const racingCount = '101';
+    const inputString = '우디,꼬재';
     const alertStub = createAlertStub();
 
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
@@ -105,22 +111,6 @@ describe('예외 상황', () => {
       .then(() => {
         expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
         cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
-        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
-      });
-  });
-
-  it('자동차 이름을 입력하지 않고 레이싱 횟수 버튼을 누르면 alert를 보여준다.', () => {
-    const inputString = '5';
-    const alertStub = createAlertStub();
-
-    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(inputString);
-    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.calledWith(
-          ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST
-        );
-        cy.get(SELECTOR.$RACING_COUNT_INPUT).should('have.value', '');
         cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
   });
