@@ -111,6 +111,7 @@ export default class RacingCarGame {
     this.view.carNameInput.value = '';
     this.view.racingCountInput.value = '';
     this.view.carNameInput.focus();
+    this.view.racingCountInputInvisibiled();
 
     this.model.carList = [];
     this.model.winners = [];

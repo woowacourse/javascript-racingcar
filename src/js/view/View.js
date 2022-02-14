@@ -42,6 +42,10 @@ export default class View {
     $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'block';
   }
 
+  racingCountInputInvisibiled() {
+    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'none';
+  }
+
   render(selector, template) {
     selector.innerHTML = template;
   }
