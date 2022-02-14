@@ -81,14 +81,10 @@ body {
   display: flex;
 }
 
-.racing-results > div {
+.racing-info {
   width: 100%;
   display: flex;
   align-items: center;
-}
-
-.racing-info {
-  display: flex;
   flex-direction: column;
   gap: 15px;
 }

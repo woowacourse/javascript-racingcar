@@ -9,7 +9,7 @@ export const ID = Object.freeze({
 
 export const CLASS = Object.freeze({
   RACING_RESULTS: "racing-results",
-  RACING_RESULT: "racing-result",
+  RACING_INFO: "racing-info",
   CAR_NAME: "car-name",
   ARROW: "arrow",
   WINNERS: "winners",

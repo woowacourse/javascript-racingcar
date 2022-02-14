@@ -35,7 +35,7 @@ export default class RacingCarView {
       .map(
         (carName) => `
         <div id="${carName}-container" class=${CLASS.RACING_INFO}>
-          <div class="${CLASS.CAR_NAME}"> ${carName} </div>
+          <div class="${CLASS.CAR_NAME}">${carName}</div>
         </div>
       `
       )

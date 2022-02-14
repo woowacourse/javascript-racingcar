@@ -62,7 +62,7 @@ describe("시도 횟수", () => {
   it("사용자는 몇번의 이동을 할것인지 입력할수 있어야 한다", () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
-    cy.get(`.${CLASS.RACING_RESULT}`).should("exist");
+    cy.get(`.${CLASS.RACING_RESULTS}`).should("exist");
   });
 
   it("자동차 경주 횟수를 아무것도 입력하지 않은 경우 경고창을 띄운다.", () => {
@@ -87,15 +87,15 @@ describe("우승자 출력 테스트", () => {
     submitRacingCount(racingCount);
 
     let max = -1;
-    cy.get(`.${CLASS.RACING_RESULT}`).each((racingResult) => {
+    cy.get(`.${CLASS.RACING_INFO}`).each((racingResult) => {
       max = Math.max(max, racingResult.children().length);
     });
 
     const winners = [];
-    cy.get(`.${CLASS.RACING_RESULT}`)
+    cy.get(`.${CLASS.RACING_INFO}`)
       .each((racingResult) => {
         if (max === racingResult.children().length) {
-          winners.push(racingResult.find(".car-name").text());
+          winners.push(racingResult.find(CLASS.CAR_NAME).text());
         }
       })
       .then(() => {
