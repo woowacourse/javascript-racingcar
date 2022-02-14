@@ -6,21 +6,15 @@ export const checkStringLength = (str, standard) => str.length <= standard;
 
 export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
-// 기능 요구 사항
-// 1. 아이디는 중복될 수 없다.
-// 2. 아이디는 6개의 숫자로 구성된 문자열이다.
+// include types in JSDoc 라면 String Set은 어떻게 표현할 수 있나요 ?
 /**
- * @params {number[]} idArr 아이디 객체, 로직의 복잡도가 커짐을 고려
- * @returns 아이디 문자열
+ * @params idSet - 이미 존재하는 유저 아이디 Set
+ * @returns idStr - 유저 아이디(숫자 문자열)
  */
-export const generateId = (idObj) => {
-  let isUnique = false;
-  let idStr;
-  while (!isUnique) {
+export const generateId = (idSet) => {
+  let idStr = pickNumberInRange(0, 999999).toString().padStart(6, 0);
+  while (idSet.has(idStr)) {
     idStr = pickNumberInRange(0, 999999).toString().padStart(6, 0);
-    if (!idObj[idStr]) {
-      isUnique = true;
-    }
   }
   return idStr;
 };
