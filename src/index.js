@@ -9,6 +9,7 @@ import {
   validateRacingCount,
   moveCars,
   getMaxCount,
+  removeAllChildNodes
 } from './utils/index.js';
 
 class CarRacing {
@@ -71,15 +72,15 @@ class CarRacing {
       return alert(MESSAGE.WRONG_COUNT);
     }
     moveCars(this.cars, count);
-    getElement(ID.RACING_STATUS).innerHTML = this.printResult();
-    getElement(ID.RACING_WINNERS).innerHTML = winnersView(this.getWinner());
+    getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', this.printResult());
+    getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));
   }
 
   onClickRestart() {
     getElement(ID.CAR_NAMES_INPUT).value = '';
     getElement(ID.RACING_COUNT_INPUT).value = '';
-    getElement(ID.RACING_WINNERS).innerHTML = '';
-    getElement(ID.RACING_STATUS).innerHTML = '';
+    removeAllChildNodes(getElement(ID.RACING_WINNERS));
+    removeAllChildNodes(getElement(ID.RACING_STATUS));
     this.cars = [];
     this.winners = [];
   }

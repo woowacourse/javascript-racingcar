@@ -36,6 +36,12 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
+const removeAllChildNodes = (parent) => {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+} 
+
 export {
   parseCarName,
   validateCarNameLength,
@@ -44,4 +50,5 @@ export {
   generateRandomNumber,
   moveCars,
   getMaxCount,
+  removeAllChildNodes
 };
