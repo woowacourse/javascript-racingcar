@@ -10,7 +10,7 @@ export function renderCarNames() {
 
     const carNameBox = document.createElement("div");
     carNameBox.className = "car-name-box";
-    carNameBox.innerHTML = car.name;
+    carNameBox.insertAdjacentHTML = car.name;
     racingProgress.appendChild(carNameBox);
   });
 }
@@ -19,13 +19,13 @@ export function renderProgressArrow(index) {
   const racingProgress = document.getElementsByClassName("racing-progress");
   const racingArrow = document.createElement("div");
   racingArrow.className = "racing-progress-arrow";
-  racingArrow.innerHTML = "⬇️️";
+  racingArrow.insertAdjacentHTML = "⬇️️";
   racingProgress[index].appendChild(racingArrow);
 }
 
 export function renderWinners(names) {
   const racingWinner = document.getElementById("racing-winner");
-  racingWinner.innerHTML = `🏆 최종우승자: ${names} 🏆`;
+  racingWinner.insertAdjacentHTML = `🏆 최종우승자: ${names} 🏆`;
 }
 
 export function renderRacingInputForm() {
