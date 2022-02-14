@@ -6,9 +6,10 @@ const generateRandomInRange = (min, max) => Math.floor(Math.random() * (max + 1 
 
 const userInputValue = {
     carNames() {
-        return $(SELECTOR.car_name_input)
+        const carNames = $(SELECTOR.car_name_input)
             .value.split(',')
             .map((name) => name.trim());
+        return carNames;
     },
     tryCount() {
         return Number($(SELECTOR.try_count_input).value);

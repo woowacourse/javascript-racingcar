@@ -1,7 +1,7 @@
 import RacingCars from './RacingCars.js';
 import View from './View.js';
 import {
-    isValidCarNames, isValidTryCount, getCarNamesErrorMessage, getTryCountErrorMessage,
+    validationCarNames, validationTryCount,
 } from './utils/validation.js';
 import { $, userInputValue } from './utils/util.js';
 import { KEYCODE_ENTER } from './constants/constant.js';
@@ -42,10 +42,9 @@ export default class RacingGame {
     onSubmitCarName() {
         const carNames = userInputValue.carNames();
         try {
-            if (!isValidCarNames(carNames)) throw new Error(getCarNamesErrorMessage(carNames));
-        } catch (e) {
-            alert(e.message);
-            return;
+            validationCarNames(carNames);
+        } catch (error) {
+            alert(error.message);
         }
         this.racingCars.reset();
         this.racingCars.update(carNames);
@@ -55,10 +54,9 @@ export default class RacingGame {
     onSubmitTryCount() {
         const tryCount = userInputValue.tryCount();
         try {
-            if (!isValidTryCount(tryCount)) throw new Error(getTryCountErrorMessage(tryCount));
-        } catch (e) {
-            alert(e.message);
-            return;
+            validationTryCount(tryCount);
+        } catch (error) {
+            alert(error.message);
         }
         this.runGame(tryCount);
         this.racingCars.resetSteps();
