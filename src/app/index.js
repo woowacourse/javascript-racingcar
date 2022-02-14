@@ -81,10 +81,7 @@ class RacingCarGame {
 
   getWinners() {
     const cars = this.modelManager.getCars();
-    let max = 0;
-    cars.forEach(({ progress }) => {
-      max = Math.max(progress, max);
-    });
+    const max = Math.max(...cars.map(({ progress }) => progress));
     const winners = cars.reduce(
       (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
       []
