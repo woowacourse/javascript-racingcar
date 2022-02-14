@@ -1,18 +1,4 @@
-import { RACING_COUNT, NAME_LENGTH } from '../constants.js';
-
 const parseCarName = names => names.split(',').map(name => name.trim());
-
-const isInteger = number => Number.isInteger(number);
-
-const validateCarNameLength = names =>
-  names.every(
-    name => name.length >= NAME_LENGTH.MIN && name.length <= NAME_LENGTH.MAX,
-  );
-
-const validateDuplicateCarName = names => new Set(names).size === names.length;
-
-const validateRacingCount = count =>
-  count >= RACING_COUNT.MIN && count <= RACING_COUNT.MAX;
 
 const generateRandomNumber = () => Math.floor(Math.random() * 9);
 
@@ -38,14 +24,4 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-export {
-  parseCarName,
-  isInteger,
-  validateCarNameLength,
-  validateDuplicateCarName,
-  validateRacingCount,
-  generateRandomNumber,
-  moveCars,
-  resetCars,
-  getMaxCount,
-};
+export { parseCarName, generateRandomNumber, moveCars, resetCars, getMaxCount };

@@ -11,14 +11,16 @@ import {
 import { userStatusView, winnersView } from './view.js';
 import {
   parseCarName,
-  validateCarNameLength,
-  validateDuplicateCarName,
-  validateRacingCount,
   moveCars,
   getMaxCount,
   resetCars,
-  isInteger,
 } from './utils/index.js';
+import {
+  isAvailableCarNameLength,
+  isNotDuplicatedCarNames,
+  isAvailableRacingCount,
+  isInteger,
+} from './utils/validations.js';
 
 class CarRacing {
   constructor() {
@@ -51,10 +53,10 @@ class CarRacing {
 
   onSubmitCarName(names) {
     const carNames = parseCarName(names);
-    if (!validateCarNameLength(carNames)) {
+    if (!isAvailableCarNameLength(carNames)) {
       return alert(MESSAGE.WRONG_NAME_LENGTH);
     }
-    if (!validateDuplicateCarName(carNames)) {
+    if (!isNotDuplicatedCarNames(carNames)) {
       return alert(MESSAGE.DUPLICATE_NAME);
     }
     this.cars = carNames.map(name => new Car(name));
@@ -64,7 +66,7 @@ class CarRacing {
     if (!this.cars.length) {
       return alert(MESSAGE.NO_CAR);
     }
-    if (!validateRacingCount(count)) {
+    if (!isAvailableRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
     if (!isInteger(count)) {
