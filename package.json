@@ -1,0 +1,24 @@
+{
+  "name": "javascript-racingcar",
+  "version": "1.0.0",
+  "description": "우아한 테크코스 레벨 1 자동차 경주 게임",
+  "main": "index.js",
+  "scripts": {
+    "cypress:run": "cypress run --browser chrome",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hwangstar156/javascript-racingcar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hwangstar156/javascript-racingcar/issues"
+  },
+  "homepage": "https://github.com/hwangstar156/javascript-racingcar#readme",
+  "devDependencies": {
+    "cypress": "^9.4.1"
+  }
+}
