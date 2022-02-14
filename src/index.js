@@ -34,19 +34,19 @@ class RacingcarGame {
   checkCarName() {
     this.carNameList = this.carNameInput.value.split(",");
     const noValidateCarname = this.carNameList.filter((carName) => carName.length > 5);
-    if (noValidateCarname.length === 0) {
-      this.isCorrectCarName = true;
-      this.raceCountDisplay.style.opacity = 1;
-    } else if (noValidateCarname.length > 0) {
+    if (noValidateCarname.length > 0) {
       alert("차 이름은 5자 이하만 가능합니다.");
       this.isCorrectCarName = false;
+      return;
     }
+    this.isCorrectCarName = true;
+    this.raceCountDisplay.style.opacity = 1;
   }
 
   checkRaceNumber() {
     this.raceCount = this.raceCountInput.value;
-    if (this.raceCount === "") {
-      alert("몇 번의 이동을 할 것인지를 입력해주세요.");
+    if (this.raceCount === "" || this.raceCount <= 0) {
+      alert("옳바른 수를 입력햇주세요.");
       this.isCorrectRaceCount = false;
       return;
     }
