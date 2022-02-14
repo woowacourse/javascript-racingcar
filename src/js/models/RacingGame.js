@@ -53,10 +53,6 @@ class RacingGame {
   }
 
   play() {
-    if (this.state.carList.length === 0) {
-      throw new Error('참여 자동차가 0대로 설정되어있습니다.');
-    }
-
     this.state.carList.forEach((car) => {
       if (isAdvance()) {
         car.go();

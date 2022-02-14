@@ -2,19 +2,6 @@ import { $, $$ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
 
 export default class RacingGameView {
-  constructor() {
-    this.$carNameForm = $('#car-name-form');
-    this.$carNameInput = $('#car-name-input');
-    this.$carNameButton = $('#car-name-button');
-
-    this.$raceTimeForm = $('#race-time-form');
-    this.$raceTimeInput = $('#race-time-input');
-    this.$raceTimeButton = $('#race-time-button');
-
-    this.$racingCarContainer = $('#racing-car-container');
-    this.$result = $('#result');
-  }
-
   setAbleForm($formElement) {
     console.log($formElement);
     $formElement.querySelectorAll('input, button').forEach(($element) => {
