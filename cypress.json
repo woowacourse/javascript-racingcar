@@ -1,5 +1,5 @@
 {
-  "integrationFolder": "test",
+  "integrationFolder": "cypress",
   "testFiles": "*.spec.js",
   "screenshotOnRunFailure": false,
   "video": false,
