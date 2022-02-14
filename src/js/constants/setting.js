@@ -1,0 +1,8 @@
+const GAME_SETTING = Object.freeze({
+  ADVANCE_NUMBER: 4,
+  ADVANCE_RANGE_MIN: 0,
+  ADVANCE_RANGE_MAX: 9,
+  DISTANCE_NUMBER: 1,
+});
+
+export default GAME_SETTING;
