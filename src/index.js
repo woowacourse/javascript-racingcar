@@ -13,7 +13,7 @@ class RacingcarGame {
     this.raceCountInput = document.querySelector(".race-count-input");
 
     this.raceCountDisplay = document.querySelector(".race-count-wrap");
-    this.raceCountDisplay.style.visibility = "hidden";
+    this.raceCountDisplay.style.opacity = 0;
 
     this.bindEvent();
   }
@@ -22,27 +22,25 @@ class RacingcarGame {
     this.carNameForm.addEventListener("submit", (event) => {
       event.preventDefault();
       this.checkCarName();
-      this.checkStartGame();
+      this.isCorrectCarName && this.checkStartGame();
     });
     this.raceCountForm.addEventListener("submit", (event) => {
       event.preventDefault();
       this.checkRaceNumber();
-      this.checkStartGame();
+      this.isCorrectRaceCount && this.checkStartGame();
     });
   }
 
   checkCarName() {
-    this.carName = this.carNameInput.value.split(",");
-    this.carName.forEach((name) => {
-      if (name.length > 5) {
-        alert("차 이름은 5자 이하만 가능합니다.");
-        this.isCorrectCarName = false;
-        this.raceCountDisplay.style.visibility = "hidden";
-        return;
-      }
-    });
-    this.isCorrectCarName = true;
-    this.raceCountDisplay.style.visibility = "visible";
+    this.carNameList = this.carNameInput.value.split(",");
+    const noValidateCarname = this.carNameList.filter((carName) => carName.length > 5);
+    if (noValidateCarname.length === 0) {
+      this.isCorrectCarName = true;
+      this.raceCountDisplay.style.opacity = 1;
+    } else if (noValidateCarname.length > 0) {
+      alert("차 이름은 5자 이하만 가능합니다.");
+      this.isCorrectCarName = false;
+    }
   }
 
   checkRaceNumber() {
@@ -63,7 +61,7 @@ class RacingcarGame {
   }
 
   startGame() {
-    this.carList = this.carName.map((name) => new Car(name));
+    this.carList = this.carNameList.map((name) => new Car(name));
     this.showCarBoxes();
     this.countCarsMove();
     this.showCarsMove();
