@@ -3,13 +3,42 @@ import { findElement } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
-    this.initDOM();
+    this.#init();
   }
 
-  initDOM() {
-    this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM_ID);
+  #init() {
     this.inputField = findElement(ID_PREFIX, DOM.INPUT_FIELD);
     this.resultField = findElement(ID_PREFIX, DOM.RESULT_FIELD_ID);
+    this.#initInputField();
+    this.#initResultField();
+    this.#initDOM();
+  }
+
+  #initInputField() {
+    this.inputField.innerHTML = `<form id="car-name-input-form">
+    <label for="car-name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+    <div id="car-name-input-field">
+      <input id="car-name-input" type="text" />
+      <button id="car-name-btn">확인</button>
+    </div>
+  </form>  <form id="count-input-form">
+    <label for="count-input">시도할 횟수를 입력해주세요.</label>
+    <div id="count-input-field">
+      <input id="count-input" type="number" />
+      <button id="count-btn">확인</button>
+    </div>
+  </form>`;
+  }
+
+  #initResultField() {
+    this.resultField.innerHTML = `<section id="game-progress">
+    </section>
+    <section id="winners">
+    </section>`;
+  }
+
+  #initDOM() {
+    this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM_ID);
     this.gameProgress = findElement(ID_PREFIX, DOM.GAME_PROGRESS_ID);
     this.winners = findElement(ID_PREFIX, DOM.WINNERS_ID);
     this.carNameBtn = findElement(ID_PREFIX, DOM.CAR_NAME_BTN_ID);
@@ -56,34 +85,6 @@ class RacingCarGameView {
       DOM.WINNER_NAME_ID
     }">${winners.join(',')}</span>🏆</h2>
       <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> `;
-  }
-
-  init() {
-    this.initInputField();
-    this.initResultField();
-  }
-
-  initInputField() {
-    this.inputField.innerHTML = `<form id="car-name-input-form">
-    <label for="car-name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
-    <div id="car-name-input-field">
-      <input id="car-name-input" type="text" />
-      <button id="car-name-btn">확인</button>
-    </div>
-  </form>  <form id="count-input-form">
-    <label for="count-input">시도할 횟수를 입력해주세요.</label>
-    <div id="count-input-field">
-      <input id="count-input" type="number" />
-      <button id="count-btn">확인</button>
-    </div>
-  </form>`;
-  }
-
-  initResultField() {
-    this.resultField.innerHTML = `<section id="game-progress">
-    </section>
-    <section id="winners">
-    </section>`;
   }
 }
 export default RacingCarGameView;

@@ -12,22 +12,22 @@ import RacingCarGameView from './view.js';
 
 class RacingCarGame {
   constructor() {
-    this.init();
+    this.#init();
   }
 
-  init() {
+  #init() {
     this.view = new RacingCarGameView();
     this.modelManager = new RacingCarGameManager();
-    this.initDOM();
-    this.bindHandler();
+    this.#initDOM();
+    this.#bindHandler();
   }
 
-  initDOM() {
+  #initDOM() {
     this.carNameInputField = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FIELD_ID);
     this.countInputField = findElement(ID_PREFIX, DOM.COUNT_INPUT_FIELD_ID);
   }
 
-  bindHandler() {
+  #bindHandler() {
     this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.addEventListener('click', this.onCountInputFieldClick);
   }
@@ -74,9 +74,7 @@ class RacingCarGame {
   }
 
   onRestartButtonClick = () => {
-    this.view.init();
-    this.modelManager.init();
-    this.init();
+    this.#init();
   };
 
   simulateGame() {

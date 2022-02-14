@@ -4,7 +4,7 @@ import Car from './car.js';
 
 class RacingCarGameManager {
   constructor() {
-    this.init();
+    this.#init();
   }
 
   setCars(cars) {
@@ -30,7 +30,7 @@ class RacingCarGameManager {
     return names.map((name) => new Car(name));
   }
 
-  init() {
+  #init() {
     this.cars = null;
     this.count = null;
   }
