@@ -1,11 +1,11 @@
-import { $, makeDOMHidden, makeDOMVisible } from './utils/common.js';
+import { $, displayNoneDOM, displayDOM } from './utils/common.js';
 import { SELECTOR } from './utils/constants.js';
 
 export default class View {
   constructor() {
     this.configureDOM();
-    this.makeResultHidden();
-    this.makeCountFormHidden();
+    this.displayNoneResult();
+    this.displayNoneCountForm();
   }
 
   configureDOM() {
@@ -20,26 +20,25 @@ export default class View {
   }
 
   makeDOMReset() {
-    this.makeResultHidden();
-    this.makeCountFormHidden();
+    this.displayNoneResult();
+    this.displayNoneCountForm();
     this.clearInput();
   }
 
-  makeResultVisible() {
-    makeDOMVisible([this.$winner, this.$resetButton], 'block');
-    makeDOMVisible([this.$stepSections], 'flex');
+  displayResult() {
+    displayDOM([this.$winner, this.$resetButton, this.$stepSections]);
   }
 
-  makeResultHidden() {
-    makeDOMHidden([this.$winner, this.$resetButton, this.$stepSections]);
+  displayNoneResult() {
+    displayNoneDOM([this.$winner, this.$resetButton, this.$stepSections]);
   }
 
-  makeCountFormHidden() {
-    makeDOMHidden([this.$countSubmitContainer]);
+  displayNoneCountForm() {
+    displayNoneDOM([this.$countSubmitContainer]);
   }
 
-  makeCountFormVisible() {
-    makeDOMVisible([this.$countSubmitContainer], 'block');
+  displayCountForm() {
+    displayDOM([this.$countSubmitContainer]);
   }
 
   setOnSubmitName(fn) {
@@ -94,6 +93,6 @@ export default class View {
   showResult(carList, winnerList) {
     this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
-    this.makeResultVisible();
+    this.displayResult();
   }
 }
