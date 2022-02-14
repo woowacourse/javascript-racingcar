@@ -3,6 +3,7 @@ import {
   isLengthLimit,
   isUniqueWord,
   isOnlyNumbers,
+  isNumberInRange,
 } from './validator.js';
 
 import nameStringToArray from './nameStringToArray.js';
@@ -29,13 +30,13 @@ const isCarNameInputValid = (value) => {
   return true;
 };
 
-const isRaceTimeCheck = (value) => {
-  if (!isOnlyNumbers(value)) {
-    alert('시도 횟수는 1 이상의 숫자만 입력할 수 있습니다.');
+const isRaceTimeValid = (value) => {
+  if (!isOnlyNumbers(value) || !isNumberInRange(100, value)) {
+    alert('시도 횟수는 1 이상 100 이하의 숫자만 입력할 수 있습니다.');
     return false;
   }
 
   return true;
 };
 
-export { isCarNameInputValid, isRaceTimeCheck };
+export { isCarNameInputValid, isRaceTimeValid };
