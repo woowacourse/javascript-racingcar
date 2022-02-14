@@ -25,11 +25,13 @@ class RacingCarGame {
   #initDOM() {
     this.carNameInputField = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FIELD_ID);
     this.countInputField = findElement(ID_PREFIX, DOM.COUNT_INPUT_FIELD_ID);
+    this.restartButton = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
   }
 
   #bindHandler() {
     this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.addEventListener('click', this.onCountInputFieldClick);
+    this.restartButton.addEventListener('click', this.onRestartButtonClick);
   }
 
   onCarNameInputFieldClick = (e) => {
@@ -66,9 +68,6 @@ class RacingCarGame {
 
   afterRenderComplete() {
     this.view.disableInputButtons();
-
-    const restartButton = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
-    restartButton.addEventListener('click', this.onRestartButtonClick);
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
   }
