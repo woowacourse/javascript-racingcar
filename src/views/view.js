@@ -53,13 +53,13 @@ export function disableUserInput() {
 
 export function removeRacingContainer() {
   resetWinners();
-  removeRacingCars();
-  hideRacingContainer();
-  hideRacingInputForm();
+  derenderRacingCars();
+  derenderRacingContainer();
+  derenderRacingInputForm();
   ableUserInput();
 }
 
-function removeRacingCars() {
+function derenderRacingCars() {
   const racingCars = document.getElementById('racing-cars');
   while (racingCars.hasChildNodes()) {
     racingCars.removeChild(racingCars.firstChild);
@@ -71,12 +71,12 @@ export function resetWinners(names) {
   racingWinner.innerHTML = ``;
 }
 
-function hideRacingInputForm() {
+function derenderRacingInputForm() {
   const racingInputForm = document.getElementById('racing-input-form');
   racingInputForm.style.display = 'none';
 }
 
-function hideRacingContainer() {
+function derenderRacingContainer() {
   const racingContainer = document.getElementById('racing-container');
   racingContainer.style.display = 'none';
 }

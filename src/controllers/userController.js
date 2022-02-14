@@ -10,12 +10,12 @@ import {
 import { state } from '../models/state.js';
 
 export function registerClickEventListners() {
-  setCarNamesClick();
-  setRoundClick();
-  restartBtnClick();
+  registerCarNamesClickEvent();
+  registerRacingNumberClickEvent();
+  registerRestartBtnClickEvent();
 }
 
-function setCarNamesClick() {
+function registerCarNamesClickEvent() {
   const carNamesInputBtn = document.getElementById('car-name-input-button');
   carNamesInputBtn.addEventListener('click', () => {
     setCarNames(event);
@@ -32,10 +32,10 @@ function setCarNames(event) {
   }
 }
 
-function setRoundClick() {
+function registerRacingNumberClickEvent() {
   const racingNumberInputButton = document.getElementById('racing-number-input-button');
   racingNumberInputButton.addEventListener('click', (event) => {
-    setRound(event);
+    setRacingNumber(event);
     if (isUserInputExist()) {
       disableUserInput();
       race();
@@ -43,7 +43,7 @@ function setRoundClick() {
   });
 }
 
-function setRound(event) {
+function setRacingNumber(event) {
   event.preventDefault();
   const racingNumberInput = document.getElementById('racing-number-input');
   const racingNumber = racingNumberInput.value;
@@ -54,7 +54,7 @@ function setRound(event) {
   }
 }
 
-function restartBtnClick() {
+function registerRestartBtnClickEvent() {
   const restartBtn = document.getElementById('restart-button');
   restartBtn.addEventListener('click', doRestart);
 }

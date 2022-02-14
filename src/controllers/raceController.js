@@ -36,11 +36,6 @@ function pickWinner() {
   return makeArrToString(winnerArr);
 }
 
-export function clearState() {
-  state.cars = [];
-  state.racingNumber = 0;
-}
-
 function getMaxLocation(arr) {
   let maxLocation = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -70,4 +65,9 @@ function makeArrToString(arr) {
     string += item;
   });
   return string;
+}
+
+export function clearState() {
+  state.cars = [];
+  state.racingNumber = 0;
 }

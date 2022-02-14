@@ -4,7 +4,6 @@ import {
   ERR_HAS_LONG_NAME,
   ERR_NUMBER_NOT_INTEGER,
   ERR_NUMBER_UNDER_ZERO,
-  ERR_CAR_NAME_NOT_EXIST,
 } from '../constants/errors.js';
 import { NAME_LENGTH_MAX } from '../constants/conditions.js';
 import { state } from '../models/state.js';
