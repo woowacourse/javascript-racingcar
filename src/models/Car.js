@@ -1,4 +1,4 @@
-import { makeRandomNumber, isNumberOverStandard } from '../controllers/utils.js';
+import { makeRandomNumber, isNumberOverStandard } from "../utils/utils.js";
 
 export class Car {
   constructor(name) {
@@ -17,11 +17,11 @@ export class Car {
     return this.name;
   }
 
-  moveFoward() {
-    if (isNumberOverStandard(makeRandomNumber())) {
-      this.location += 1;
-      return true;
-    }
-    return false;
+  canMoveFoward() {
+    return isNumberOverStandard(makeRandomNumber());
+  }
+
+  moveForward() {
+    this.location += 1;
   }
 }

@@ -1,65 +1,55 @@
-import { isNameValid, isRacingNumberValid, isUserInputExist } from './validation.js';
-import { doTrim } from './utils.js';
-import { race, clearState } from './raceController.js';
 import {
-  renderRacingInputForm,
-  renderRacingContainer,
-  disableUserInput,
-  removeRacingContainer,
-} from '../views/view.js';
-import { state } from '../models/state.js';
+  isNameValid,
+  isRacingNumberValid,
+  isUserInputExist,
+} from "../validations/validation.js";
+import { doTrim, showAlertMsg } from "../utils/utils.js";
+import { startRacing } from "./raceController.js";
+import { renderRacingInputForm, disableUserInputs } from "../views/view.js";
+import { setCarNames, setRound } from "../models/Race.js";
 
-export function registerClickEventListners() {
-  setCarNamesClick();
-  setRoundClick();
-  restartBtnClick();
+export function registerClickEventListeners() {
+  const carNamesButton = document.getElementById("car-name-input-button");
+  const racingNumberButton = document.getElementById(
+    "racing-number-input-button"
+  );
+  const restartButton = document.getElementById("restart-button");
+  carNamesButton.addEventListener("click", clickCarNamesButton);
+  racingNumberButton.addEventListener("click", clickRacingNumberButton);
+  restartButton.addEventListener("click", clickRestartButton);
 }
 
-function setCarNamesClick() {
-  const carNamesInputBtn = document.getElementById('car-name-input-button');
-  carNamesInputBtn.addEventListener('click', () => {
-    setCarNames(event);
-  });
-}
-
-function setCarNames(event) {
+function clickCarNamesButton(event) {
   event.preventDefault();
-  const carNamesInput = document.getElementById('car-name-input');
-  const carNames = doTrim(carNamesInput.value.split(','));
-  if (isNameValid(carNames)) {
-    state.cars = carNames;
-    renderRacingInputForm();
+  const carNames = getCarsNamesFromInput();
+  if (!isNameValid(carNames)) {
+    return;
   }
+  setCarNames(carNames);
+  renderRacingInputForm();
 }
 
-function setRoundClick() {
-  const racingNumberInputButton = document.getElementById('racing-number-input-button');
-  racingNumberInputButton.addEventListener('click', (event) => {
-    setRound(event);
-    if (isUserInputExist()) {
-      disableUserInput();
-      race();
-    }
-  });
-}
-
-function setRound(event) {
+function clickRacingNumberButton(event) {
   event.preventDefault();
-  const racingNumberInput = document.getElementById('racing-number-input');
-  const racingNumber = racingNumberInput.value;
-  if (isRacingNumberValid(racingNumber)) {
-    state.racingNumber = racingNumber;
-    renderRacingContainer();
-    return true;
+  const racingNumber = getRacingNumberFormInput();
+  if (!isRacingNumberValid(racingNumber) && !isUserInputExist()) {
+    return;
   }
+  setRound(racingNumber);
+  disableUserInputs();
+  startRacing();
 }
 
-function restartBtnClick() {
-  const restartBtn = document.getElementById('restart-button');
-  restartBtn.addEventListener('click', doRestart);
+function clickRestartButton() {
+  location.reload(true);
 }
 
-function doRestart() {
-  clearState();
-  removeRacingContainer();
+function getCarsNamesFromInput() {
+  const carNamesInput = document.getElementById("car-name-input");
+  return doTrim(carNamesInput.value.split(","));
+}
+
+function getRacingNumberFormInput() {
+  const racingNumberInput = document.getElementById("racing-number-input");
+  return racingNumberInput.value;
 }
