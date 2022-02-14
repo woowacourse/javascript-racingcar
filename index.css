@@ -1,0 +1,150 @@
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-family: Roboto;
+}
+
+#title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 36px;
+  text-align: center;
+  margin-top: 36px;
+  margin-bottom: 32px;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+
+.input-label {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+#car-name-input {
+  width: 340px;
+}
+
+#car-name-input-button {
+  padding: 8px 16px 8px 18px;
+  margin-left: 12px;
+  background: #00bcd4;
+
+  border-radius: 4px;
+  border-color: #00bcd4;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#racing-number-input {
+  width: 340px;
+}
+
+#racing-number-input-button {
+  padding: 8px 16px 8px 18px;
+  margin-left: 12px;
+  background: #00bcd4;
+
+  border-radius: 4px;
+  border-color: #00bcd4;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#racing-winner {
+  margin-top: 25px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+}
+
+#restart-button {
+  padding: 8px 32px 8px 32px;
+  margin-left: 12px;
+  background: #00bcd4;
+  border-radius: 4px;
+  border-color: #00bcd4;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #ffffff;
+  margin-top: 24px;
+  cursor: pointer;
+}
+
+.racing-progress-arrow {
+  width: 96px;
+  height: 50px;
+
+  font-family: Apple SD Gothic Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+
+  border: solid 3px #ffffff;
+}
+
+.car-name-box {
+  width: 96px;
+  height: 36px;
+
+  background: #f5f5f5;
+  border-radius: 4px;
+
+  font-family: Apple SD Gothic Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  color: #000000;
+
+  border: solid 3px #ffffff;
+}
+
+#racing-input-form {
+  display: none;
+}
+
+#racing-container {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
