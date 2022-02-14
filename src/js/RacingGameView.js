@@ -61,7 +61,7 @@ export default class RacingGameView {
   _renderWinners(winners) {
     $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
-      .join('')} 🏆`;
+      .join(', ')} 🏆`;
   }
 
   renderResult(carList, winners) {
