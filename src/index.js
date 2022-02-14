@@ -14,7 +14,7 @@ import {
   moveCars,
   getMaxCount,
   resetCars,
-} from './utils/index.js';
+} from './utils/racingGame.js';
 import {
   isAvailableCarNameLength,
   isNotDuplicatedCarNames,
