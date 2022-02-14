@@ -6,13 +6,13 @@ export default class Model {
   }
 
   startRace(count) {
-    this.resetAllCarStep();
+    this.#resetAllCarStep();
     for (let i = 0; i < count; i++) {
       this.carList.forEach((car) => car.randomMove());
     }
   }
 
-  resetAllCarStep() {
+  #resetAllCarStep() {
     this.carList.forEach((car) => (car.step = 0));
   }
 

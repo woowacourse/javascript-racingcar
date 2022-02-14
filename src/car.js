@@ -6,7 +6,7 @@ export default class Car {
     this.step = 0;
   }
 
-  generateRandomNumber() {
+  #generateRandomNumber() {
     return MissionUtils.Random.pickNumberInRange(
       NUMBER_FOR_MOVE.MIN_NUMBER,
       NUMBER_FOR_MOVE.MAX_NUMBER,
@@ -14,7 +14,7 @@ export default class Car {
   }
 
   randomMove() {
-    const number = this.generateRandomNumber();
+    const number = this.#generateRandomNumber();
     if (number >= NUMBER_FOR_MOVE.MOVE_CRITERIA) {
       this.step += 1;
     }
