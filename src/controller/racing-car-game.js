@@ -27,7 +27,8 @@ export default class RacingCarGame {
     }
 
     addClickEventToRestartButton(){
-        $(SELECTOR.RESTART_BUTTON).addEventListener('click', () => {
+        $(SELECTOR.RESTART_BUTTON).addEventListener('click', (e) => {
+            e.preventDefault();
             this.onRestartButtonClick();
         });
     }
@@ -60,6 +61,7 @@ export default class RacingCarGame {
     }
 
     onRestartButtonClick() {
-        location.reload();
+        this.model.resetCarArray();
+        this.view.resetGameView();
     }
 }

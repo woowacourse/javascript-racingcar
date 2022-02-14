@@ -3,7 +3,7 @@ import Car from './car.js';
 
 export default class RacingCarGameModel {
     constructor() {
-        this.carArray = [];
+        this.resetCarArray();
     }
 
     generateCars(carNameArray) {
@@ -18,5 +18,9 @@ export default class RacingCarGameModel {
 
     generateRandomNumber() {
         return Math.floor((MAX_RANDOM_NUMBER + 1) * Math.random());
+    }
+
+    resetCarArray() {
+        this.carArray = [];
     }
 }
