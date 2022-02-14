@@ -14,35 +14,20 @@ export default class RacingCarGame {
     addClickEventToCarNameButton() {
         $('#car-name-button').addEventListener('click', (e) => {
             e.preventDefault();
-
-            try {
-                checkUserCarNameInput($('#car-name-input').value)
-                this.view.renderRaceGameCountElement();
-                this.addClickEventToRaceCountButton();
-            } catch(err) {
-                alert(err.message);
-            }
+            this.onCarNameButtonClick();
         });
     }
 
     addClickEventToRaceCountButton() {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
-            
-            try {
-                this.model.generateCars(checkUserCarNameInput($('#car-name-input').value));
-                this.updateWholeGameResult(checkUserRacingCountInput($('#race-count-input').value));
-                this.view.renderWholeGameResult(this.model.carArray);
-                this.addClickEventToRestartButton();
-            } catch(err) {
-                alert(err.message);
-            }
+            this.onRaceCountButtonClick();
         });
     }
 
     addClickEventToRestartButton(){
         $('.restart-button').addEventListener('click', () => {
-            location.reload();
+            this.onRestartButtonClick();
         });
     }
     
@@ -50,5 +35,30 @@ export default class RacingCarGame {
         for(let i = 0; i < raceCount; i++){
             this.model.updateCarsSuccessCount();
         }
+    }
+
+    onCarNameButtonClick() {
+        try {
+            checkUserCarNameInput($('#car-name-input').value)
+            this.view.renderRaceGameCountElement();
+            this.addClickEventToRaceCountButton();
+        } catch(err) {
+            alert(err.message);
+        }
+    }
+
+    onRaceCountButtonClick() {
+        try {
+            this.model.generateCars(checkUserCarNameInput($('#car-name-input').value));
+            this.updateWholeGameResult(checkUserRacingCountInput($('#race-count-input').value));
+            this.view.renderWholeGameResult(this.model.carArray);
+            this.addClickEventToRestartButton();
+        } catch(err) {
+            alert(err.message);
+        }
+    }
+
+    onRestartButtonClick() {
+        location.reload();
     }
 }
