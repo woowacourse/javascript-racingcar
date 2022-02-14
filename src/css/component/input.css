@@ -10,28 +10,13 @@
     justify-content: space-around;
 }
 
-#car-names-form{ 
+.input-form{
     display: flex;
     justify-content: space-between;
     align-items: end;
 }
 
-#car-names-form div{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    font-size: 13px;
-    line-height: 24px;
-    height: 64px;
-}
-
-#try-count-form{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-}
-
-#try-count-form div{
+.input-form div{
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -45,7 +30,7 @@
     height: 64px;
 }
 
-#car-names-button, #try-count-button{
+.form-button{
 /* primary */
 background: #00BCD4;
 border-radius: 4px;
