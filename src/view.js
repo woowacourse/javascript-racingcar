@@ -78,12 +78,12 @@ export default class View {
 
   generateStepSectionDOM(car) {
     return `
-    <div class="step-section">
+    <section class="step-section">
       <span class="step-section__name">${car.name}</span>
       <ul class="step-section__arrows">
         ${'<li class="step-section__arrow">⬇️️</li>'.repeat(car.step)}
       </ul>
-    </div>
+    </section>
   `;
   }
 
