@@ -1,7 +1,6 @@
 import { $ } from "../dom/dom.js";
 import { EMPTY_INPUT_ERROR, OVER_CARNAME_LENGTH_ERROR } from "../constants/error.js";
 import initInputText from "./initInputText.js";
-import showAlert from "./showAlert.js"
 import { MAX_CAR_NAME_LENGTH } from '../constants/gameCondition.js';
 
 function isCorrectCarNameLength(carNameArray){
@@ -9,9 +8,8 @@ function isCorrectCarNameLength(carNameArray){
 }
 
 export default function checkUserCarNameInput(carNameInput) {
-    if(carNameInput === ''){
-        showAlert(EMPTY_INPUT_ERROR);
-        return;
+    if(!carNameInput){
+        throw new Error(EMPTY_INPUT_ERROR);
     }
 
     const carNameArray = carNameInput
@@ -19,9 +17,8 @@ export default function checkUserCarNameInput(carNameInput) {
         .filter(carName => !!carName.trim().length);
 
     if(!isCorrectCarNameLength(carNameArray)){
-        showAlert(OVER_CARNAME_LENGTH_ERROR);
         initInputText($('#car-name-input'));
-        return;
+        throw new Error(OVER_CARNAME_LENGTH_ERROR);
     }
 
     return carNameArray;

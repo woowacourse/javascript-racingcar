@@ -14,9 +14,13 @@ export default class RacingCarGame {
     addClickEventToCarNameButton() {
         $('#car-name-button').addEventListener('click', (e) => {
             e.preventDefault();
-            if (!!checkUserCarNameInput($('#car-name-input').value)) {
+
+            try {
+                checkUserCarNameInput($('#car-name-input').value)
                 this.view.renderRaceGameCountElement();
                 this.addClickEventToRaceCountButton();
+            } catch(err) {
+                alert(err.message);
             }
         });
     }
@@ -24,14 +28,14 @@ export default class RacingCarGame {
     addClickEventToRaceCountButton() {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
-
-            const carNameArray = checkUserCarNameInput($('#car-name-input').value);
-            const raceCount = checkUserRacingCountInput($('#race-count-input').value);
-            if (!!carNameArray && !!raceCount) {
-                this.model.generateCars(carNameArray);
-                this.updateWholeGameResult(raceCount);
+            
+            try {
+                this.model.generateCars(checkUserCarNameInput($('#car-name-input').value));
+                this.updateWholeGameResult(checkUserRacingCountInput($('#race-count-input').value));
                 this.view.renderWholeGameResult(this.model.carArray);
                 this.addClickEventToRestartButton();
+            } catch(err) {
+                alert(err.message);
             }
         });
     }

@@ -1,5 +1,4 @@
 import { $ } from "../dom/dom.js";
-import showAlert from "./showAlert.js";
 import initInputText from "./initInputText.js";
 import { NOT_NUMBER_TYPE_ERROR, EMPTY_INPUT_ERROR, OVER_COUNT_RANGE_ERROR } from "../constants/error.js";
 import { MAX_RACE_COUNT, MIN_RACE_COUNT } from "../constants/gameCondition.js";
@@ -10,20 +9,17 @@ function isCorrectRaceCountRange(raceCountInput) {
 
 export default function checkUserRacingCountInput(raceCountInput){
     if(raceCountInput === ''){
-        showAlert(EMPTY_INPUT_ERROR);
-        return;
+        throw new Error(EMPTY_INPUT_ERROR);
     }
     
     if(!Number(raceCountInput)) {
-        showAlert(NOT_NUMBER_TYPE_ERROR);
         initInputText($('#race-count-input'));
-        return;
+        throw new Error(NOT_NUMBER_TYPE_ERROR);
     }
     
-    if(!isCorrectRaceCountRange(Number(raceCountInput))){
-        showAlert(OVER_COUNT_RANGE_ERROR);
+    if(!isCorrectRaceCountRange(Number(raceCountInput))){  
         initInputText($('#race-count-input'));
-        return;
+        throw new Error(OVER_COUNT_RANGE_ERROR);
     }
     return raceCountInput;
 }
