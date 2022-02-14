@@ -27,19 +27,19 @@ export default class View {
   }
 
   makeResultDisplayNotNone() {
-    makeDOMDisplayNotNone(this.$resultSection, 'result-section-display-none');
+    makeDOMDisplayNotNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
   }
 
   makeResultDisplayNone() {
-    makeDOMDisplayNone(this.$resultSection, 'result-section-display-none');
+    makeDOMDisplayNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
   }
 
   makeCountFormDisplayNone() {
-    makeDOMDisplayNone(this.$countSection, 'count-section-display-none');
+    makeDOMDisplayNone(this.$countSection, SELECTOR.COUNT_SECTION_DISPLAY_NONE);
   }
 
   makeCountFormDisplayNotNone() {
-    makeDOMDisplayNotNone(this.$countSection, 'count-section-display-none');
+    makeDOMDisplayNotNone(this.$countSection, SELECTOR.COUNT_SECTION_DISPLAY_NONE);
   }
 
   setOnSubmitName(fn) {
@@ -78,10 +78,10 @@ export default class View {
 
   generateStepSectionDOM(car) {
     return `
-    <section class="step-section">
-      <span class="step-section__name">${car.name}</span>
-      <ul class="step-section__arrows">
-        ${'<li class="step-section__arrow">⬇️️</li>'.repeat(car.step)}
+    <section class="${SELECTOR.STEP_SECTION}">
+      <span class="${SELECTOR.STEP_SECTION_NAME}">${car.name}</span>
+      <ul class="${SELECTOR.STEP_SECTION_ARROWS}">
+        ${`<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`.repeat(car.step)}
       </ul>
     </section>
   `;

@@ -129,14 +129,14 @@ button {
   margin-top: 8px;
 }
 
-#winner {
+.winner {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
   margin-bottom: 24px;
 }
 
-#reset-button {
+.reset-button {
   width: 152px;
   height: 36px;
   line-height: 36px;
