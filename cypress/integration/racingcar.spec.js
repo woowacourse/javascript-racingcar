@@ -93,6 +93,15 @@ describe('경주 횟수 입력 테스트', () => {
     });
   });
 
+  it('입력한 레이싱 횟수가 소수이면 alert가 뜬다.', () => {
+    const decimalNumber = 1.5;
+
+    submitCarNames(availableCarName);
+    submitRacingCount(decimalNumber).then(() => {
+      checkAlertMessage(MESSAGE.NOT_DECIMAL_COUNT);
+    });
+  });
+
   it('최대 1000번 까지 레이싱 횟수를 입력 후, 게임을 정상적으로 종료 할 수 있다', () => {
     submitCarNames(availableCarName);
     submitRacingCount(RACING_COUNT.MAX);

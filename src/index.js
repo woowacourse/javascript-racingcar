@@ -17,6 +17,7 @@ import {
   moveCars,
   getMaxCount,
   resetCars,
+  isInteger,
 } from './utils/index.js';
 
 class CarRacing {
@@ -31,7 +32,7 @@ class CarRacing {
       this.onSubmitCarName(getInputValue(target.parentElement)),
     );
     getElement(ID.RACING_COUNT_BUTTON).addEventListener('click', ({ target }) =>
-      this.onSubmitRacingCount(getInputValue(target.parentElement)),
+      this.onSubmitRacingCount(+getInputValue(target.parentElement)),
     );
     getElement(ID.RESTART_BUTTON).addEventListener('click', () =>
       this.onClickRestart(),
@@ -44,7 +45,7 @@ class CarRacing {
     getElement(ID.RACING_COUNT_INPUT).addEventListener(
       'keyup',
       ({ key, target }) =>
-        getEnterEvent(key, () => this.onSubmitRacingCount(target.value)),
+        getEnterEvent(key, () => this.onSubmitRacingCount(+target.value)),
     );
   }
 
@@ -65,6 +66,9 @@ class CarRacing {
     }
     if (!validateRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
+    }
+    if (!isInteger(count)) {
+      return alert(MESSAGE.NOT_DECIMAL_COUNT);
     }
     this.startGame(count);
   }

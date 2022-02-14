@@ -17,6 +17,7 @@ const MESSAGE = {
   NO_CAR: '자동차 이름이 입력되지 않았습니다.',
   WRONG_COUNT:
     '올바르지 않은 레이싱 횟수입니다. 레이싱횟수는 최소 1회, 최대 1000회까지 가능합니다.',
+  NOT_DECIMAL_COUNT: '소수는 입력할 수 없습니다.',
 };
 
 const RACING_COUNT = {

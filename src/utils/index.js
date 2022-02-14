@@ -2,6 +2,8 @@ import { RACING_COUNT, NAME_LENGTH } from '../constants.js';
 
 const parseCarName = names => names.split(',').map(name => name.trim());
 
+const isInteger = number => Number.isInteger(number);
+
 const validateCarNameLength = names =>
   names.every(
     name => name.length >= NAME_LENGTH.MIN && name.length <= NAME_LENGTH.MAX,
@@ -38,6 +40,7 @@ const getMaxCount = cars => {
 
 export {
   parseCarName,
+  isInteger,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
