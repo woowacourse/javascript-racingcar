@@ -27,16 +27,16 @@ export default class Cars {
     this.list.sort((left, right) => right.location - left.location);
   }
 
-  trimCars() {
-    for (let i = 0; i < this.list.length; i++) {
-      this.list[i] = this.list[i].trim();
+  trimCars(carNameArr) {
+    for (let i = 0; i < carNameArr.length; i++) {
+      carNameArr[i] = carNameArr[i].trim();
     }
   }
 
   makeCars(carNamesInputValue) {
     const carNameArr = carNamesInputValue?.split(SEPARATOR);
 
-    this.trimCars();
+    this.trimCars(carNameArr);
     if (!carNamesInputValue || !isValidCarsName(carNameArr)) {
       return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
     }
