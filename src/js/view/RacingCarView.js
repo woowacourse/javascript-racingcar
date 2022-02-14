@@ -4,23 +4,26 @@ import { ID, CLASS, winnerMesssage } from "../utils/constants.js";
 export default class RacingCarView {
   constructor() {
     this.result = [];
-    this.$result = $(ID.RESULT);
-    this.$carNameInput = $(ID.CAR_NAME_INPUT);
-    this.$racingCountInput = $(ID.RACING_COUNT_INPUT);
-    this.$carNameButton = $(ID.CAR_NAME_BUTTON);
-    this.$racingCountButton = $(ID.RACING_COUNT_BUTTON);
+    this.$result = $(`#${ID.RESULT}`);
+    this.$carNameInput = $(`#${ID.CAR_NAME_INPUT}`);
+    this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
+    this.$carNameButton = $(`#${ID.CAR_NAME_BUTTON}`);
+    this.$racingCountButton = $(`#${ID.RACING_COUNT_BUTTON}`);
   }
 
   setResult = (result) => {
     this.result = result;
   };
 
+  insertTemplate = (template) => {
+    this.$result.insertAdjacentHTML("beforeend", template);
+  };
+
   renderResult = () => {
     this.$result.innerHTML = this.makeResultTemplate();
   };
 
-  makeResultTemplate = () => {
-    const template = `
+  makeResultTemplate = () => `
       <div class="${CLASS.RACING_RESULTS}">
         ${this.result
           .map(
@@ -28,45 +31,31 @@ export default class RacingCarView {
               `<div class="${CLASS.RACING_RESULT}">
                 <div class="${CLASS.CAR_NAME}">${result.name}</div> 
                 ${`<div class="${CLASS.ARROW}">⬇️️</div>`.repeat(
-                  result.forward
+                  result.forwardCount
                 )}
               </div>`
           )
           .join("")}
       </div>
       `;
-    return template;
-  };
 
   renderWinners = (winners) => {
-    this.$result.insertAdjacentHTML(
-      "beforeend",
-      this.makeWinnersTemplate(winners)
-    );
+    this.insertTemplate(this.makeWinnersTemplate(winners));
   };
 
-  makeWinnersTemplate = (winners) => {
-    const template = ` 
+  makeWinnersTemplate = (winners) => `
       <div>
         <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
       </div>
     `;
-    return template;
-  };
 
   renderReplayButton = () => {
-    this.$result.insertAdjacentHTML(
-      "beforeend",
-      this.makeReplayButtonTemplate()
-    );
+    this.insertTemplate(this.makeReplayButtonTemplate());
   };
 
-  makeReplayButtonTemplate = () => {
-    const template = `
+  makeReplayButtonTemplate = () => `
       <button class="${CLASS.BTN} ${CLASS.REPLAY_BTN}" id="${ID.REPLAY_BUTTON}">다시 시작하기</button>
     `;
-    return template;
-  };
 
   resetGame = () => {
     this.$result.innerHTML = "";
@@ -74,23 +63,27 @@ export default class RacingCarView {
     this.$racingCountInput.value = "";
   };
 
+  disableElement = (...args) => {
+    args.forEach((arg) => (arg.disabled = true));
+  };
+
+  enableElement = (...args) => {
+    args.forEach((arg) => (arg.disabled = false));
+  };
+
   disableCarName = () => {
-    this.$carNameInput.disabled = true;
-    this.$carNameButton.disabled = true;
+    this.disableElement(this.$carNameInput, this.$carNameButton);
   };
 
   disableRacingCount = () => {
-    this.$racingCountInput.disabled = true;
-    this.$racingCountButton.disabled = true;
+    this.disableElement(this.$racingCountInput, this.$racingCountButton);
   };
 
   enableCarName = () => {
-    this.$carNameInput.disabled = false;
-    this.$carNameButton.disabled = false;
+    this.enableElement(this.$carNameInput, this.$carNameButton);
   };
 
   enableRacingCount = () => {
-    this.$racingCountInput.disabled = false;
-    this.$racingCountButton.disabled = false;
+    this.enableElement(this.$racingCountInput, this.$racingCountButton);
   };
 }

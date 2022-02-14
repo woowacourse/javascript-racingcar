@@ -1,1 +1,1 @@
-export const $ = (selector) => document.getElementById(selector);
+export const $ = (selector) => document.querySelector(selector);

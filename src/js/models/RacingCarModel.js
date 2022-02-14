@@ -1,21 +1,20 @@
-import {
-  EMPTY_NUMBER,
-  VALID_MAX_NUMBER,
-  INIT_RACING_COUNT,
-  FORWARD_STANDARD_NUMBER,
-  ALERT_MESSAGE,
-} from "../utils/constants.js";
+import { GAME_NUMBERS, ALERT_MESSAGE } from "../utils/constants.js";
 import { generateRandomNumber } from "../utils/random.js";
 import Car from "./Car.js";
 
 export default class RacingCarModel {
   constructor() {
     this.cars = [];
-    this.racingCount = INIT_RACING_COUNT;
+    this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
   }
 
   setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
+    this.checkValidCarNames(splitedCarNames);
+    this.cars = splitedCarNames.map((name) => new Car(name));
+  };
+
+  checkValidCarNames = (splitedCarNames) => {
     if (this.hasSpaceInName(splitedCarNames)) {
       throw new Error(ALERT_MESSAGE.HAS_EMPTY_NAME_ERROR);
     }
@@ -28,19 +27,20 @@ export default class RacingCarModel {
     if (this.hasInValidNameLength(splitedCarNames)) {
       throw new Error(ALERT_MESSAGE.HAS_INVALID_NAME_LENGTH_ERROR);
     }
-    this.cars = splitedCarNames.map((name) => new Car(name));
   };
 
   setRacingCount = (count) => {
-    if (this.isEmptyRacingCount(count)) {
-      throw new Error(ALERT_MESSAGE.EMPTY_COUNT_ERROR);
-    }
+    this.checkValidRacingCount(count);
     this.racingCount = count;
   };
 
-  getRacingCount = () => {
-    return this.racingCount;
+  checkValidRacingCount = (count) => {
+    if (this.isEmptyRacingCount(count)) {
+      throw new Error(ALERT_MESSAGE.EMPTY_COUNT_ERROR);
+    }
   };
+
+  getRacingCount = () => this.racingCount;
 
   playTurn = () => {
     this.cars.forEach((car) => {
@@ -50,36 +50,36 @@ export default class RacingCarModel {
   };
 
   race = (car) => {
-    if (generateRandomNumber() >= FORWARD_STANDARD_NUMBER) {
+    if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
     }
   };
 
   pickWinners = () => {
-    const results = this.cars.map((car) => car.forward);
-    const maxCount = Math.max(...results);
+    const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
     return this.cars
-      .filter((car) => car.forward === maxCount)
+      .filter((car) => car.forwardCount === maxCount)
       .map((car) => car.name)
       .join(", ");
   };
 
   resetGameStatus = () => {
     this.cars = [];
-    this.racingCount = INIT_RACING_COUNT;
+    this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
   };
 
   splitCarNames = (carNames) => carNames.split(",");
 
   hasInValidNameLength = (names) =>
-    names.some((name) => name.length > VALID_MAX_NUMBER);
+    names.some((name) => name.length > GAME_NUMBERS.VALID_MAX_NAME_LENGTH);
 
   hasSpaceInName = (names) =>
     names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
 
   isDuplicatedCarName = (names) => names.length !== new Set(names).size;
 
-  isEmptyName = (names) => names.some((name) => name.length === EMPTY_NUMBER);
+  isEmptyName = (names) =>
+    names.some((name) => name.length === GAME_NUMBERS.EMPTY_NUMBER);
 
   isEmptyRacingCount = (count) => !count;
 }

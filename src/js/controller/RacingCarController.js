@@ -15,18 +15,19 @@ export default class RacingCarController {
   };
 
   bindEvent = () => {
-    $(ID.CAR_NAME_INPUT)
-      .closest("form")
-      .addEventListener("submit", this.submitCarNamesHandler);
-    $(ID.RACING_COUNT_INPUT)
-      .closest("form")
-      .addEventListener("submit", this.submitRacingCountHandler);
-    $(ID.RESULT).addEventListener("click", this.clickReplayButtonHandler);
+    $(`#${ID.CAR_NAME_BUTTON}`).addEventListener(
+      "click",
+      this.submitCarNamesHandler
+    );
+    $(`#${ID.RACING_COUNT_BUTTON}`).addEventListener(
+      "click",
+      this.submitRacingCountHandler
+    );
+    $(`#${ID.RESULT}`).addEventListener("click", this.clickReplayButtonHandler);
   };
 
   submitCarNamesHandler = (e) => {
-    e.preventDefault();
-    const carNames = $(ID.CAR_NAME_INPUT).value;
+    const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
     try {
       this.model.setCars(carNames);
       this.view.disableCarName();
@@ -37,8 +38,7 @@ export default class RacingCarController {
   };
 
   submitRacingCountHandler = (e) => {
-    e.preventDefault();
-    const racingCount = $(ID.RACING_COUNT_INPUT).value;
+    const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
