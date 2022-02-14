@@ -1,26 +1,7 @@
 import { $ } from '../util/dom.js';
 
-export const getCarNames = e => {
-  e.preventDefault();
-  const carNamesInput = $('#car-names-input')
-    .value.split(',')
-    .filter(carName => carName.length > 0);
-
-  if (!checkCarNames(carNamesInput)) {
-    return carNamesInput;
-  }
-};
-
-export const checkCarNames = carNamesInput => {
-  return (
-    isCorrectCarNamesInputLength(carNamesInput) ||
-    isMaxCarNameLength(carNamesInput) ||
-    isSameCarName(carNamesInput)
-  );
-};
-
 const isMaxCarNameLength = carNamesInput => {
-  let wrongCarNames = carNamesInput.filter(carName => carName.length > 5);
+  const wrongCarNames = carNamesInput.filter(carName => carName.length > 5);
   if (wrongCarNames.length) {
     window.alert('자동차 이름은 5자를 초과할 수 없습니다.');
   }
@@ -39,4 +20,25 @@ const isSameCarName = carNamesInput => {
     window.alert('자동차 이름은 중복 될 수 없습니다.');
   }
   return carNamesInput.length !== new Set(carNamesInput).size;
+};
+
+export const checkCarNames = carNamesInput => {
+  return (
+    isCorrectCarNamesInputLength(carNamesInput) ||
+    isMaxCarNameLength(carNamesInput) ||
+    isSameCarName(carNamesInput)
+  );
+};
+
+export const getCarNames = e => {
+  e.preventDefault();
+  const carNamesInput = $('#car-names-input')
+    .value.split(',')
+    .filter(carName => carName.length > 0);
+
+  if (!checkCarNames(carNamesInput)) {
+    return carNamesInput;
+  }
+
+  return undefined;
 };

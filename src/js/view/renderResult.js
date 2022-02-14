@@ -1,5 +1,9 @@
 import { $ } from '../util/dom.js';
 
+const renderCarScore = (name, score) => {
+  return `<div>${name}</div>${'<p>⬇️</p>'.repeat(score)}`;
+};
+
 export const renderResult = cars => {
   $('#turn-result').innerHTML = `${cars
     .map(car => {
@@ -9,10 +13,6 @@ export const renderResult = cars => {
       )}</div>`;
     })
     .join('')}`;
-};
-
-const renderCarScore = (name, score) => {
-  return `<div>${name}</div>${'<p>⬇️</p>'.repeat(score)}`;
 };
 
 export const renderWinners = winners => {
