@@ -1,5 +1,8 @@
-it('자동차의 이름이 5자 초과일 때 확인버튼을 누를 시, alert 띄우기', () => {
+beforeEach(() => {
   cy.visit('index.html');
+});
+
+it('자동차의 이름이 5자 초과일 때 확인버튼을 누를 시, alert 띄우기', () => {
   const alertStub = cy.stub();
   const invalidInput = 'abcdef,ab';
   cy.on('window:alert', alertStub);
@@ -13,7 +16,6 @@ it('자동차의 이름이 5자 초과일 때 확인버튼을 누를 시, alert 
 });
 
 it('자동차 이름에 중복이 존재할 때 확인버튼을 누를 시, alert 띄우기', () => {
-  cy.visit('index.html');
   const alertStub = cy.stub();
   const invalidInput = 'ab,ab';
   cy.on('window:alert', alertStub);
@@ -27,7 +29,6 @@ it('자동차 이름에 중복이 존재할 때 확인버튼을 누를 시, aler
 });
 
 it('자동차가 1대 이하일 때 확인버튼을 누를 시, alert 띄우기', () => {
-  cy.visit('index.html');
   const alertStub = cy.stub();
   const invalidInput = 'a';
   cy.on('window:alert', alertStub);
@@ -41,7 +42,6 @@ it('자동차가 1대 이하일 때 확인버튼을 누를 시, alert 띄우기'
 });
 
 it('`,`뒤에 자동차 이름이 입력되지 않았을 때 확인버튼을 누를 시, alert 띄우기', () => {
-  cy.visit('index.html');
   const alertStub = cy.stub();
   const invalidInput = 'abcf,';
   cy.on('window:alert', alertStub);
@@ -55,7 +55,6 @@ it('`,`뒤에 자동차 이름이 입력되지 않았을 때 확인버튼을 누
 });
 
 it('시도 횟수 입력된 숫자가 1이상의 수가 아닐 시, alert 띄우기', () => {
-  cy.visit('index.html');
   const alertStub = cy.stub();
   const invalidInput = -1;
   cy.on('window:alert', alertStub);
@@ -69,7 +68,6 @@ it('시도 횟수 입력된 숫자가 1이상의 수가 아닐 시, alert 띄우
 });
 
 it('다시 게임을 시작하면 이전 결과를 지워준다.', () => {
-  cy.visit('index.html');
   const cars = 'a,b';
   const tryCount = 3;
 
