@@ -4,8 +4,8 @@ import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
 import {
-  isCarNameInputCheck,
-  isRaceTimeCheck,
+  isCarNameInputValid,
+  isRaceTimeValid,
 } from './utils/racingGame-validation.js';
 
 class App {
@@ -37,7 +37,7 @@ class App {
     event.preventDefault();
 
     const carNameValue = $(SELECTOR.CAR_NAME_INPUT).value;
-    if (!isCarNameInputCheck(carNameValue)) {
+    if (!isCarNameInputValid(carNameValue)) {
       return false;
     }
 
@@ -51,7 +51,7 @@ class App {
     event.preventDefault();
 
     const raceTimeValue = $(SELECTOR.RACE_TIME_INPUT).value;
-    if (!isRaceTimeCheck(raceTimeValue)) {
+    if (!isRaceTimeValid(raceTimeValue)) {
       return false;
     }
 
@@ -64,7 +64,6 @@ class App {
 
   handleGamePlay(event) {
     event.preventDefault();
-    this.handleWinnerDisplay();
 
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
 
@@ -73,23 +72,20 @@ class App {
       this.View.renderAdvanceDiv(name);
     });
 
-    for (let i = 1; i < this.RacingGame.round; i += 1) {
+    for (let i = 1; i <= this.RacingGame.round; i += 1) {
       try {
         this.RacingGame.play();
-        //잠쉬
       } catch (err) {
         alert(err);
         break;
       }
     }
 
-    // 여기서 이제 그려주면 ??
-    // 저 위에서 play 호출할때 그 안에서 View 호출해주는게 있긴한데
-    // 왜인지 안되네요...
+    this.handleWinnerDisplay();
   }
 
   handleWinnerDisplay() {
-    this.View.renderResult();
+    this.View.renderResult(this.RacingGame.winner());
   }
 
   handleReplayGame() {}

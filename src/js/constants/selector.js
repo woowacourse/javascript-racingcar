@@ -6,6 +6,7 @@ const SELECTOR = Object.freeze({
   RACE_TIME_INPUT: '#race-time-input',
   RACE_TIME_BUTTON: '#race-time-button',
   RACE_CONTAINER_DIV: '.racing-car-container',
+  RACE_WINNER_DISPLAY: '#winner',
 });
 
 export default SELECTOR;

@@ -21,15 +21,16 @@ export default class RacingGameView {
     });
   }
 
-  renderResult() {
+  renderResult(winner) {
     $$('.racing-car-container, #result').forEach(($element) => {
       $element.setAttribute('data-state', 'on');
     });
+    console.log(SELECTOR.RACE_WINNER_DISPLAY);
+    $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
+      '🏆 최종 우승자: ' + winner + ' 🏆';
   }
 
   renderAdvanceDiv(carName) {
-    // 상수 예정 carName이 오브젝트로 넘어와요!!
-    // 이제 잘 넘어와요
     const str = `<div id="car-instance${carName}" class="car-name-box">${carName}</div>`;
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += str;
   }
