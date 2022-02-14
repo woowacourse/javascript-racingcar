@@ -1,22 +1,21 @@
 import $ from '../utils/selector.js';
 
-function getPositionArrow(car) {
-  return '<div class="result-arrow">⬇️️</div>'.repeat(car.position);
+function getPositionArrow(position) {
+  return '<div class="result-arrow">⬇️️</div>'.repeat(position);
 }
 
 function getTemplateRaceResult(cars) {
-  let template = '';
-
-  cars.forEach(car => {
-    template += ` 
-      <div class="result-car-wrapper">
-        <div class="result-car-name">${car.name}</div>
-        <div class="result-arrow-container">${getPositionArrow(car)}</div> 
-      </div>
-    `;
-  });
-
-  return template;
+  return `
+    ${cars
+      .map(
+        ({ name, position }) =>
+          `<div class="result-car-wrapper">
+            <div class="result-car-name">${name}</div>
+            <div class="result-arrow-container">${getPositionArrow(position)}</div> 
+          </div>`,
+      )
+      .join('')}
+  `;
 }
 
 export default function showResult(cars) {
