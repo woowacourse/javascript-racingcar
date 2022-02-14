@@ -1,5 +1,5 @@
 import Car from './Car.js';
-import { ID, MESSAGE, KEY } from './constants.js';
+import { ID, MESSAGE } from './constants.js';
 import { getElement } from './utils/dom.js';
 import { userMovementView, winnersView } from './view.js';
 import {
@@ -20,31 +20,19 @@ class CarRacing {
   }
 
   bindEvents() {
-    getElement(ID.INPUT_FORMS).addEventListener('keyup', event => {
-      if (event.key !== KEY.ENTER) {
-        return;
-      }
-      if (document.activeElement.id === ID.CAR_COUNTS_INPUT) {
-        this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
-        return;
-      }
-      this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
-    });
+    getElement(ID.CAR_NAMES_FORM).addEventListener('submit', (event)=>{
+      event.preventDefault();
+      this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
+    })
 
-    getElement(ID.APP).addEventListener('click', ({ target }) => {
-      const buttonIds = {
-        [ID.CAR_NAMES_SUBMIT]: () => {
-          this.onSubmitCarName(getElement(ID.CAR_NAMES_INPUT).value);
-        },
-        [ID.RACING_COUNT_SUBMIT]: () => {
-          this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
-        },
-        [ID.RESTART_BUTTON]: () => {
-          this.onClickRestart();
-        },
-      };
-      buttonIds[target.id] && buttonIds[target.id]();
-    });
+    getElement(ID.RACING_COUNT_FORM).addEventListener('submit', (event)=>{
+      event.preventDefault();
+      this.onSubmitRacingCount(getElement(ID.RACING_COUNT_INPUT).value);
+    })
+
+    getElement(ID.RESTART_BUTTON).addEventListener('click', ()=>{
+      this.onClickRestart();
+    })
   }
 
   onSubmitCarName(names) {
@@ -58,6 +46,7 @@ class CarRacing {
     if (!validateDuplicateCarName(carNames)) {
       return alert(MESSAGE.DUPLICATE_NAME);
     }
+    getElement(ID.RACING_COUNT_INPUT).focus();
     this.cars = carNames.map(name => new Car(name));
   }
 
@@ -71,6 +60,7 @@ class CarRacing {
     if (!validateRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
+    getElement(ID.RACING_COUNT_INPUT).blur();
     moveCars(this.cars, count);
     getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', this.printResult());
     getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));

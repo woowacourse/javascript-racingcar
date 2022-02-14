@@ -1,9 +1,11 @@
 const ID = {
   APP: 'app',
   INPUT_FORMS: 'input-forms',
+  CAR_NAMES_FORM: 'car-names-form',
   CAR_NAMES_INPUT: 'car-names-input',
   CAR_NAMES_SUBMIT: 'car-names-submit',
   CAR_COUNTS_INPUT: 'racing-count-input',
+  RACING_COUNT_FORM: 'racing-count-form',
   RACING_COUNT_INPUT: 'racing-count-input',
   RACING_COUNT_SUBMIT: 'racing-count-submit',
   RESTART_BUTTON: 'restart-button',
@@ -20,8 +22,4 @@ const MESSAGE = {
   WRONG_COUNT: '올바르지 않은 레이싱 횟수입니다',
 };
 
-const KEY = {
-  ENTER: 'Enter',
-};
-
-export { ID, MESSAGE, KEY };
+export { ID, MESSAGE };
