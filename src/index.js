@@ -11,8 +11,13 @@ class RacingcarGame {
     this.raceCountForm = document.querySelector(".race-count-form");
     this.carNameInput = document.querySelector(".car-name-input");
     this.raceCountInput = document.querySelector(".race-count-input");
+    this.carNameInputButton = document.querySelector(".car-name-button");
+    this.raceCountInputButton = document.querySelector(".race-count-button");
 
+    this.racingResultElement = document.querySelector(".racing-result");
     this.raceCountDisplay = document.querySelector(".race-count-wrap");
+    this.racingArrowElement = document.querySelector(".racing-arrow");
+    this.racingCarsElement = document.querySelector(".racing-cars");
     this.raceCountDisplay.style.opacity = 0;
 
     this.bindEvent();
@@ -20,6 +25,7 @@ class RacingcarGame {
 
   bindEvent() {
     this.carNameForm.addEventListener("submit", (event) => {
+      console.log("dsds")
       event.preventDefault();
       this.checkCarName();
       this.isCorrectCarName && this.checkStartGame();
@@ -82,7 +88,6 @@ class RacingcarGame {
   }
 
   showCarsMove() {
-    this.racingArrowElement = document.querySelector(".racing-arrow");
     this.carList
       .map((car) => this.template.carArrow(car.count))
       .map((arrowTemplate) => {
@@ -94,7 +99,6 @@ class RacingcarGame {
   }
 
   showCarBoxes() {
-    this.racingCarsElement = document.querySelector(".racing-cars");
     this.racingCarsElement.innerHTML = this.carList
       .map((car) => car.carNameTemplate)
       .join("");
@@ -108,14 +112,11 @@ class RacingcarGame {
   }
 
   showWinner(winner) {
-    this.racingResultElement = document.querySelector(".racing-result");
     this.racingResultElement.innerHTML = this.template.racingResult(winner);
     this.makeDisableForm();
   }
 
   makeDisableForm() {
-    this.carNameInputButton = document.querySelector(".car-name-button");
-    this.raceCountInputButton = document.querySelector(".race-count-button");
     this.carNameInputButton.disabled = true;
     this.raceCountInputButton.disabled = true;
   }
@@ -137,7 +138,7 @@ class RacingcarGame {
     this.raceCountInput.value = "";
     this.carNameInputButton.disabled = false;
     this.raceCountInputButton.disabled = false;
-    this.raceCountDisplay.style.visibility = "hidden";
+    this.raceCountDisplay.style.opacity = 0;
   }
 }
 
