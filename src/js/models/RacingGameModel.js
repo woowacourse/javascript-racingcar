@@ -56,10 +56,9 @@ export default class RacingGameModel {
 
   get winners() {
     const { winners, carList } = this._state;
-
     carList.forEach((carInstance) => {
       if (this._isWinner(carInstance) === false) {
-        return false;
+        return;
       }
 
       winners.push(carInstance);
