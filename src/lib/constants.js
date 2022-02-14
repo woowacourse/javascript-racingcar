@@ -21,6 +21,8 @@ export const DOM = Object.freeze({
 
   WINNER_CONTAINER_ID: 'winner-container',
   WINNER_NAME_ID: 'winner-name',
+
+  INPUT_FIELD: 'input-field',
 });
 
 export const CAR_NAME_LENGTH_LIMIT = 5;
