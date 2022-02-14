@@ -1,12 +1,11 @@
 import {
-  isNameValid,
-  isRacingNumberValid,
-  isUserInputExist,
+  checkNameValid,
+  checkRacingNumberValid,
 } from "../validations/validation.js";
-import { doTrim, showAlertMsg } from "../utils/utils.js";
+import { doTrim } from "../utils/utils.js";
 import { startRacing } from "./raceController.js";
 import { renderRacingInputForm, disableUserInputs } from "../views/view.js";
-import { setCarNames, setRound } from "../models/Race.js";
+import { state, setCarNames, setRound } from "../models/Race.js";
 
 export function registerClickEventListeners() {
   const carNamesButton = document.getElementById("car-name-input-button");
@@ -22,7 +21,10 @@ export function registerClickEventListeners() {
 function clickCarNamesButton(event) {
   event.preventDefault();
   const carNames = getCarsNamesFromInput();
-  if (!isNameValid(carNames)) {
+  try {
+    checkNameValid(carNames);
+  } catch (error) {
+    alert(error);
     return;
   }
   setCarNames(carNames);
@@ -32,7 +34,10 @@ function clickCarNamesButton(event) {
 function clickRacingNumberButton(event) {
   event.preventDefault();
   const racingNumber = getRacingNumberFormInput();
-  if (!isRacingNumberValid(racingNumber) && !isUserInputExist()) {
+  try {
+    checkRacingNumberValid(racingNumber);
+  } catch (error) {
+    alert(error);
     return;
   }
   setRound(racingNumber);

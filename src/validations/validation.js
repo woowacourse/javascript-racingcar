@@ -1,37 +1,37 @@
-import { showAlertMsg } from "../utils/utils.js";
 import {
   ERR_HAS_DUPLICATE_NAME,
   ERR_HAS_EMPTY_NAME,
   ERR_HAS_LONG_NAME,
   ERR_NUMBER_NOT_INTEGER,
   ERR_NUMBER_UNDER_ZERO,
-  ERR_CAR_NAME_NOT_EXIST,
 } from "../constants/errors.js";
 import { NAME_LENGTH_MAX } from "../constants/conditions.js";
 import { state } from "../models/Race.js";
 
-export function isNameValid(names) {
+export function checkNameValid(names) {
   if (hasDuplicatedName(names)) {
-    showAlertMsg(ERR_HAS_DUPLICATE_NAME);
-    return false;
+    throw ERR_HAS_DUPLICATE_NAME;
   }
   if (hasEmptyName(names)) {
-    showAlertMsg(ERR_HAS_EMPTY_NAME);
-    return false;
+    throw ERR_HAS_EMPTY_NAME;
   }
   if (hasLongName(names)) {
-    showAlertMsg(ERR_HAS_LONG_NAME);
-    return false;
+    throw ERR_HAS_LONG_NAME;
   }
-  return true;
+}
+
+export function checkRacingNumberValid(racingNumber) {
+  if (!isNumberInteger(racingNumber)) {
+    throw ERR_NUMBER_NOT_INTEGER;
+  }
+  if (isNumberUnderZero(racingNumber)) {
+    throw ERR_NUMBER_UNDER_ZERO;
+  }
 }
 
 function hasDuplicatedName(names) {
-  const tempNames = new Set(names);
-  if (tempNames.size !== names.length) {
-    return true;
-  }
-  return false;
+  const tempNamesSet = new Set(names);
+  return tempNamesSet.size !== names.length;
 }
 
 function hasEmptyName(names) {
@@ -39,10 +39,15 @@ function hasEmptyName(names) {
 }
 
 function isNameTooLong(name) {
-  if (name.length > NAME_LENGTH_MAX) {
-    return true;
-  }
-  return false;
+  return name.length > NAME_LENGTH_MAX;
+}
+
+function isNumberInteger(number) {
+  return Number.isInteger(Number(number));
+}
+
+function isNumberUnderZero(number) {
+  return number <= 0;
 }
 
 function hasLongName(names) {
@@ -52,52 +57,4 @@ function hasLongName(names) {
     }
   }
   return false;
-}
-
-export function isRacingNumberValid(racingNumber) {
-  if (!isNumberInteger(racingNumber)) {
-    showAlertMsg(ERR_NUMBER_NOT_INTEGER);
-    return false;
-  }
-  if (isNumberUnderZero(racingNumber)) {
-    showAlertMsg(ERR_NUMBER_UNDER_ZERO);
-    return false;
-  }
-  return true;
-}
-
-function isNumberInteger(number) {
-  if (Number.isInteger(Number(number))) {
-    return true;
-  }
-  return false;
-}
-
-function isNumberUnderZero(number) {
-  if (number <= 0) {
-    return true;
-  }
-  return false;
-}
-
-export function isCarNameExist() {
-  if (state.cars.length === 0) {
-    showAlertMsg(ERR_CAR_NAME_NOT_EXIST);
-    return false;
-  }
-  return true;
-}
-
-export function isRacingNumberExist() {
-  return state.racingNumber !== 0;
-}
-
-export function isUserInputExist() {
-  if (!isCarNameExist()) {
-    return false;
-  }
-  if (!isRacingNumberExist()) {
-    return false;
-  }
-  return true;
 }

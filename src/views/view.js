@@ -2,15 +2,13 @@ import { state } from "../models/Race.js";
 
 export function renderCarNames() {
   const racingCars = document.getElementById("racing-cars");
-
   state.cars.forEach((car) => {
     const racingProgress = document.createElement("div");
     racingProgress.className = "racing-progress flex-column";
     racingCars.appendChild(racingProgress);
-
     const carNameBox = document.createElement("div");
     carNameBox.className = "car-name-box";
-    carNameBox.insertAdjacentHTML = car.name;
+    carNameBox.insertAdjacentHTML("afterbegin", car.name);
     racingProgress.appendChild(carNameBox);
   });
 }
@@ -19,13 +17,13 @@ export function renderProgressArrow(index) {
   const racingProgress = document.getElementsByClassName("racing-progress");
   const racingArrow = document.createElement("div");
   racingArrow.className = "racing-progress-arrow";
-  racingArrow.insertAdjacentHTML = "⬇️️";
+  racingArrow.insertAdjacentHTML("afterbegin", "⬇️️");
   racingProgress[index].appendChild(racingArrow);
 }
 
 export function renderWinners(names) {
   const racingWinner = document.getElementById("racing-winner");
-  racingWinner.insertAdjacentHTML = `🏆 최종우승자: ${names} 🏆`;
+  racingWinner.insertAdjacentHTML("afterbegin", `🏆 최종우승자: ${names} 🏆`);
 }
 
 export function renderRacingInputForm() {
@@ -45,7 +43,6 @@ export function disableUserInputs() {
   const racingNumberInputBtn = document.getElementById(
     "racing-number-input-button"
   );
-
   carNamesInput.disabled = true;
   carNamesInputBtn.disabled = true;
   racingNumberInput.disabled = true;
