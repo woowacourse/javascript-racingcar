@@ -6,9 +6,13 @@ export default class Car {
     this.score = 0;
   }
 
-  addScore(randomInt) {
+  canAdvance = randomInt => {
     if (randomInt >= CAN_ADVANCE) {
-      this.score += 1;
+      this.addScore();
     }
+  };
+
+  addScore() {
+    this.score += 1;
   }
 }
