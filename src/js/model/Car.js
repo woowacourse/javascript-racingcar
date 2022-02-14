@@ -1,4 +1,4 @@
-import { CAR } from './constants.js';
+import { CAR } from '../constants.js';
 
 export default class Car {
   constructor(name) {

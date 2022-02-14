@@ -2,7 +2,8 @@ import { DOM_STRING, DELIMETER } from './constants.js';
 
 const template = {
   renderRacingResult(carList) {
-    return `
+    return carList
+      ? `
       <ul id="${DOM_STRING.RESULT_LIST}">
         ${carList
           .map(
@@ -19,10 +20,11 @@ const template = {
           )
           .join('')}
     </ul>
-  `;
+  `
+      : '';
   },
   renderResult(winners) {
-    return winners.length > 0
+    return winners
       ? `
     <h2 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${
           DOM_STRING.WINNERS
