@@ -8,20 +8,20 @@ export default class RacingCarGame {
     constructor() {
         this.view = new RacingCarGameView();
         this.model = new RacingCarGameModel();
-        this.onCarNameButtonClick();
+        this.addClickEventToCarNameButton();
     }
 
-    onCarNameButtonClick() {
+    addClickEventToCarNameButton() {
         $('#car-name-button').addEventListener('click', (e) => {
             e.preventDefault();
             if (!!checkUserCarNameInput($('#car-name-input').value)) {
                 this.view.renderRaceGameCountElement();
-                this.onRaceCountButtonClick();
+                this.addClickEventToRaceCountButton();
             }
         });
     }
 
-    onRaceCountButtonClick() {
+    addClickEventToRaceCountButton() {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
 
@@ -33,7 +33,7 @@ export default class RacingCarGame {
         });
     }
 
-    onRestartButtonClick(){
+    addClickEventToRestartButton(){
         $('.restart-button').addEventListener('click', () => {
             location.reload();
         });
@@ -52,6 +52,6 @@ export default class RacingCarGame {
         const { carArray } = this.model;
         this.view.renderRacingContent(carArray);
         this.view.renderGameWinners(carArray);
-        this.onRestartButtonClick();
+        this.addClickEventToRestartButton();
     }
 }
