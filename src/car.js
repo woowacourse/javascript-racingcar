@@ -16,4 +16,8 @@ export default class Car {
       this.step += NUMBER.STEP;
     }
   }
+
+  resetStep() {
+    this.step = NUMBER.INITIAL_STEP;
+  }
 }

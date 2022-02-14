@@ -23,7 +23,7 @@ export default class CarManager {
   }
 
   #resetAllCarStep() {
-    this.carList.forEach((car) => (car.step = NUMBER.INITIAL_STEP));
+    this.carList.forEach((car) => car.resetStep());
   }
 
   resetCarList() {
