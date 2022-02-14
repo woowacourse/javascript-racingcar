@@ -37,6 +37,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
     cy.get('.restart-button').contains('다시 시작하기').click();
 
-    cy.get('.race-count-input-container').should('not.have.css', 'display', 'flex');
+    cy.get('.race-count-input-container').should('have.css', 'display', 'none');
   });
 });
