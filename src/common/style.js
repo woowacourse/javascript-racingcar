@@ -93,27 +93,27 @@ export const button = `
 `;
 
 export const winner = `
-    margin: 24px 0px;
-	font-weight: 600;
-	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
-	color: ${color.black}
+  margin: 24px 0px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: ${color.black}
 `;
 
 export const carName = `
-	width: 96px;
-	height: 36px;
-	background: ${color.colorF5F5F5};
-	border-radius: 4px;
+  width: 96px;
+  height: 36px;
+  background: ${color.colorF5F5F5};
+  border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const carContainer = `
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 `;
 
@@ -134,14 +134,14 @@ export const restartButtonContainer = `
 `;
 
 export const restartButton = `
-	width: 152px;
-	height: 36px;
+  width: 152px;
+  height: 36px;
   border: none;
-	border-radius: 4px;
-	background-color: ${color.color00BCD4};
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 16px;
-	text-align: center;
-	color: ${color.white}
+  border-radius: 4px;
+  background-color: ${color.color00BCD4};
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: ${color.white}
 `;
