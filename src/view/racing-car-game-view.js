@@ -1,6 +1,6 @@
 import { $ } from '../modules/dom-selector.js';
 import { SELECTOR } from '../constants/selector.js';
-import initInputText from '../modules/initInputText.js';
+import resetInputText from '../modules/reset-input-text.js';
 
 export default class RacingCarGameView {
     renderRaceGameCountElement() {
@@ -51,7 +51,7 @@ export default class RacingCarGameView {
         $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).style.display = 'none';
         $(SELECTOR.RACING_CONTENT).innerHTML = '';
         $(SELECTOR.RACING_RESULT).innerHTML = '';
-        initInputText($(SELECTOR.RACE_COUNT_INPUT));
-        initInputText($(SELECTOR.CAR_NAME_INPUT));
+        resetInputText($(SELECTOR.RACE_COUNT_INPUT));
+        resetInputText($(SELECTOR.CAR_NAME_INPUT));
     }
 }

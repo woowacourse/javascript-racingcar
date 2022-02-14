@@ -1,4 +1,4 @@
-import { CAR_MOVE_FORWARD_CRITERIA, CAR_MOVE_FORWARD_STEP, MAX_RANDOM_NUMBER } from '../constants/gameCondition.js';
+import { CAR_MOVE_FORWARD_CRITERIA, CAR_MOVE_FORWARD_STEP, MAX_RANDOM_NUMBER } from '../constants/game-condition.js';
 import Car from './car.js';
 
 export default class RacingCarGameModel {
