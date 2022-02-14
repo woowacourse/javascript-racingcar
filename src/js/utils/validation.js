@@ -1,9 +1,5 @@
 import { STANDARD } from './constants.js';
 
-export const handleError = (message) => {
-  alert(message);
-};
-
 export const isBlank = (name) => {
   return name.length >= STANDARD.MIN_NAME_LENGTH;
 };

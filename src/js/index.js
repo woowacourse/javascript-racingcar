@@ -1,6 +1,6 @@
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
-import { isValidLength, isBlank, isEffectiveScore, handleError } from './utils/validation.js';
+import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
 import { randomNumber, maxNumber } from './utils/getNumber.js';
 import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
@@ -20,6 +20,9 @@ function App() {
         this.cars[index].distance += 1;
       }
     }
+  };
+  const handleError = (message) => {
+    alert(message);
   };
 
   const isValidCarNames = (carName) => {
