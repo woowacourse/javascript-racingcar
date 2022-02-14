@@ -3,6 +3,8 @@ const GAME_SETTING = Object.freeze({
   ADVANCE_RANGE_MIN: 0,
   ADVANCE_RANGE_MAX: 9,
   DISTANCE_NUMBER: 1,
+  CAR_NAME_LENGTH_MIN: 1,
+  CAR_NAME_LENGTH_MAX: 5,
 });
 
 export default GAME_SETTING;
