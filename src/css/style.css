@@ -75,11 +75,6 @@ body {
   text-align: center;
 }
 
-/* .racing-results {
-  width: 100%;
-  display: flex;
-} */
-
 .racing-results {
   width: 100%;
   justify-content: space-between;

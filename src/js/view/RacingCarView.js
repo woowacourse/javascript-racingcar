@@ -3,7 +3,6 @@ import { ID, CLASS, winnerMesssage } from "../utils/constants.js";
 
 export default class RacingCarView {
   constructor() {
-    this.result = [];
     this.$result = $(`#${ID.RESULT}`);
     this.$carNameInput = $(`#${ID.CAR_NAME_INPUT}`);
     this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
@@ -11,39 +10,31 @@ export default class RacingCarView {
     this.$racingCountButton = $(`#${ID.RACING_COUNT_BUTTON}`);
   }
 
-  setResult = (result) => {
-    this.result = result;
-  };
-
   insertTemplate = (template) => {
     this.$result.insertAdjacentHTML("beforeend", template);
   };
 
   renderCarNames = (carNames) => {
-    this.$result.insertAdjacentHTML(
-      "beforeend",
-      this.makeCarNamesTemplate(carNames)
-    );
+    this.insertTemplate(this.makeCarNamesTemplate(carNames));
   };
 
   renderResult = (stageInfo) => {
     Object.entries(stageInfo).forEach(([name, isMoved]) => {
       if (isMoved) {
-        console.log(name, isMoved);
         $(`#${name}-container`).insertAdjacentHTML(
           "beforeend",
-          "<div class='arrow'>⬇️</div>"
+          `<div class=${CLASS.ARROW}>⬇️</div>`
         );
       }
     });
   };
 
   makeCarNamesTemplate = (carNames) => `
-      <div class="racing-results">
+      <div class="${CLASS.RACING_RESULTS}">
     ${carNames
       .map(
         (carName) => `
-        <div id="${carName}-container" class="racing-info">
+        <div id="${carName}-container" class=${CLASS.RACING_INFO}>
           <div class="${CLASS.CAR_NAME}"> ${carName} </div>
         </div>
       `

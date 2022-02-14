@@ -47,24 +47,21 @@ export default class RacingCarModel {
 
   initPrevResult = () => {
     this.cars.forEach((car) => {
-      this.prevResult[car.name] = 0;
+      this.prevResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
     });
   };
 
   playTurn = () => {
     const prevResult = { ...this.prevResult };
-    console.log(prevResult);
+
     this.cars.forEach((car) => {
       this.race(car);
     });
-    // 스테이지 정보를 받아와야함!
-    const stageInfo = this.cars.reduce((acc, car) => {
+
+    return this.cars.reduce((acc, car) => {
       acc[car.name] = car.forwardCount - prevResult[car.name];
       return acc;
     }, {});
-    // [1,0,1]
-    console.log(stageInfo);
-    return stageInfo;
   };
 
   getCars = () => this.cars;
