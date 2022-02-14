@@ -8,10 +8,10 @@ export default class Controller {
   constructor() {
     this.view = new View();
     this.model = new Model();
-    this.bindEventHandler();
+    this.setEventHandler();
   }
 
-  bindEventHandler() {
+  setEventHandler() {
     this.view.setOnSubmitName(this.onSubmitName.bind(this));
     this.view.setOnSubmitCount(this.onSubmitCount.bind(this));
     this.view.setOnClickReset(this.onClickReset.bind(this));
