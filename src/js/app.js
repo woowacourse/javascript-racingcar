@@ -46,9 +46,7 @@ class App {
   }
 
   setCarNames(newCarNames) {
-    if (newCarNames) {
-      this.carNames = newCarNames;
-    }
+    this.carNames = newCarNames;
   }
 
   setTryCount(newTryCount) {
