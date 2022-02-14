@@ -53,10 +53,10 @@ label {
   height: 24px;
 
   display: block;
-  margin: 4px 0px;
+  margin: 4px 0;
 }
 .user-input-container {
-  width: 441.68px;
+  width: 440px;
   height: fit-content;
   margin: 0 auto;
 }
