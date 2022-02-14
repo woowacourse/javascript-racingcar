@@ -8,23 +8,23 @@ class App {
   constructor() {
     this.carNames = [];
     this.tryCount = 0;
-    this.mounted();
+    this.handleEvent();
   }
 
-  mounted() {
+  handleEvent() {
     $('#car-names-form').addEventListener('submit', e => {
       this.setCarNames(getCarNames(e));
     });
     $('#try-count-form').addEventListener('submit', e => {
       this.setTryCount(getTryCount(e));
     });
-    $('#try-count-form').addEventListener('submit', e => {
-      this.gameStart();
+    $('#try-count-form').addEventListener('submit', () => {
+      this.startGame();
     });
     $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
-  gameStart() {
+  startGame() {
     const cars = makeCar(this.carNames);
     for (let i = 0; i < this.tryCount; i++) {
       playOneTurn(cars);

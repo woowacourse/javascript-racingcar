@@ -11,7 +11,7 @@ export const getCarNames = e => {
   }
 };
 
-export const checkCarNames = carNamesInput => {
+const checkCarNames = carNamesInput => {
   return (
     isCorrectCarNamesInputLength(carNamesInput) ||
     isMaxCarNameLength(carNamesInput) ||
