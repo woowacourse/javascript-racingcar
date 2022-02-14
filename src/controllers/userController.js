@@ -4,8 +4,18 @@ import {
 } from "../validations/validation.js";
 import { doTrim } from "../utils/utils.js";
 import { startRacing } from "./raceController.js";
-import { renderRacingInputForm, disableUserInputs } from "../views/view.js";
-import { state, setCarNames, setRound } from "../models/Race.js";
+import {
+  renderRacingInputForm,
+  changeDisableUserInputs,
+} from "../views/view.js";
+import { clearState, setCarNames, setRound } from "../models/Race.js";
+import {
+  clearInputs,
+  disapearRacingInputForm,
+  disapearRacingContainer,
+  removeCarNames,
+  removeWinners,
+} from "../views/view.js";
 
 export function registerClickEventListeners() {
   const carNamesButton = document.getElementById("car-name-input-button");
@@ -41,12 +51,18 @@ function clickRacingNumberButton(event) {
     return;
   }
   setRound(racingNumber);
-  disableUserInputs();
+  changeDisableUserInputs();
   startRacing();
 }
 
 function clickRestartButton() {
-  location.reload(true);
+  clearState();
+  clearInputs();
+  changeDisableUserInputs();
+  disapearRacingInputForm();
+  disapearRacingContainer();
+  removeCarNames();
+  removeWinners();
 }
 
 function getCarsNamesFromInput() {
