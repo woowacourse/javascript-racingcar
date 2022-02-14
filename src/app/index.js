@@ -1,20 +1,12 @@
-import {
-  CAR_NAME_SEPARATOR,
-  DOM,
-  ERROR_MESSAGE,
-  MOVE_CONDITION,
-  RANGE_MAX,
-  RANGE_MIN,
-} from '../lib/constants.js';
-import { isNumberBelowZero, pickNumberInRange, splitString } from '../lib/utils.js';
-import Car from './car.js';
+import { CAR_NAME_SEPARATOR, DOM, MOVE_CONDITION, RANGE_MAX, RANGE_MIN } from '../lib/constants.js';
+import { pickNumberInRange, splitString } from '../lib/utils.js';
+import RacingCarGameManager from './manage.js';
 import RacingCarGameView from './view.js';
 
 class RacingCarGame {
   constructor() {
-    this.cars = null;
-    this.count = null;
     this.view = new RacingCarGameView();
+    this.modelManager = new RacingCarGameManager();
     this.initDOM();
     this.initHandler();
   }
@@ -36,7 +28,8 @@ class RacingCarGame {
       const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value;
       try {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-        this.cars = RacingCarGame.makeCars(names);
+        const cars = RacingCarGameManager.makeCars(names);
+        this.modelManager.setCars(cars);
         this.view.renderCountInputForm();
       } catch (error) {
         alert(error);
@@ -50,9 +43,9 @@ class RacingCarGame {
     if (countBtn.id === DOM.COUNT_BTN_ID) {
       const count = countInputField.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
       try {
-        this.setCount(count);
+        this.modelManager.setCount(count);
         this.simulateGame();
-        this.view.renderResults(this.cars, this.getWinners());
+        this.view.renderResults(this.modelManager.getCars(), this.getWinners());
         this.afterRenderComplete();
       } catch (error) {
         alert(error);
@@ -69,21 +62,16 @@ class RacingCarGame {
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
   }
 
-  setCount(count) {
-    if (isNumberBelowZero(count)) {
-      throw Error(ERROR_MESSAGE.INVALID_COUNT);
-    }
-    this.count = count;
-  }
-
   simulateGame() {
-    for (let i = 0; i < this.count; i += 1) {
+    const count = this.modelManager.getCount();
+    for (let i = 0; i < count; i += 1) {
       this.simulateRound();
     }
   }
 
   simulateRound() {
-    this.cars.forEach((car) => {
+    const cars = this.modelManager.getCars();
+    cars.forEach((car) => {
       const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
       if (random >= MOVE_CONDITION) {
         car.goForward();
@@ -92,19 +80,16 @@ class RacingCarGame {
   }
 
   getWinners() {
+    const cars = this.modelManager.getCars();
     let max = 0;
-    this.cars.forEach(({ progress }) => {
+    cars.forEach(({ progress }) => {
       max = Math.max(progress, max);
     });
-    const winners = this.cars.reduce(
+    const winners = cars.reduce(
       (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
       []
     );
     return winners;
-  }
-
-  static makeCars(names) {
-    return names.map((name) => new Car(name));
   }
 }
 export default RacingCarGame;
