@@ -1,6 +1,7 @@
 const parseCarName = names => names.split(',').map(name => name.trim());
 
-const generateRandomNumber = () => Math.floor(Math.random() * 10);
+const generateRandomNumber = (min, max) =>
+  Math.floor(Math.random() * (max + 1 - min)) + min;
 
 const resetCars = cars => {
   cars.map(car => car.resetRacingCount());

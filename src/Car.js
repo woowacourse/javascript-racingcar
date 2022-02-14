@@ -12,7 +12,7 @@ export default class Car {
   }
 
   move() {
-    if (generateRandomNumber() < MOVE_CONDITION_NUMBER) {
+    if (generateRandomNumber(0, 9) < MOVE_CONDITION_NUMBER) {
       return;
     }
     this.racingCount += 1;
