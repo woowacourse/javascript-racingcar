@@ -1,0 +1,96 @@
+#app {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+
+main{
+  min-width: 544px;
+}
+
+.name-form,
+.count-form {
+  margin: 20px;
+}
+
+.input-container {
+  flex: 1; 
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name-input,
+.count-input {
+  flex: 1;
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+.count-button,
+.name-button {
+  margin-left: 10px;
+}
+
+.count-button,
+.name-button,
+.restart {
+  border: none;
+  border-radius: 3px;
+  letter-spacing: 1.5px;
+  background-color: rgb(0, 191, 216);
+  color: white;
+  padding: 5px;
+  width: 55px;
+  height: 40px;
+}
+
+.restart-container {
+  display: flex;
+  justify-content: center;
+}
+
+.restart {
+  width: 140px;
+}
+
+.race-result-container {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.result-car-wrapper {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-car-name {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 36px; 
+  background: #F5F5F5;
+  border-radius: 4px;
+  margin:10px;
+}
+
+.result-arrow {
+  margin-top: 10px;
+  font-size: 32px;
+}
+
+.winners-name {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 20px 0px;
+}
+
+.display-none {
+  display: none;
+}
