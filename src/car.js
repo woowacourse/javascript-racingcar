@@ -19,4 +19,8 @@ export default class Car {
       this.step += 1;
     }
   }
+
+  resetStep() {
+    this.step = 0;
+  }
 }
