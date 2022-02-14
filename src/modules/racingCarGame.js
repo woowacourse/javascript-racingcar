@@ -2,39 +2,54 @@ import RacingCar from "../class/racingCar.js";
 import { $ } from "../dom/dom.js";
 import isCarNameInputValid from "./isCarNameInputValid.js";
 import isRacingCountInputValid from "./isRacingCountInputValid.js";
+import RacingCarView from "../views/racingCarView.js";
 
 export default function racingCarGame() {
-    this.racingInfoObject = {
-        carNames: '',
-        gameCount: 0,
-      };
-
-    this.init = () => {
-        handleCarNameCheckEvent();
+    this.racingGameInfo = {
+        carNameArray : [],
+        raceCount : 0,
     };
-
-    const handleCarNameCheckEvent = () => {
+    this.racingCarView = new RacingCarView();
+    this.racingCarModel = new RacingCar();
+    
+    this.init = () => {
+        addCarNameEvent();
+    };
+    const addCarNameEvent = () => {
         $('#car-name-button').addEventListener('click', (e) => {
             e.preventDefault();  
-            if(isCarNameInputValid($('#car-name-input').value)){
-                renderRaceGameCountElement();  
-            }
+            onCarNameButtonClick();
         });
-    };
-    
-    const renderRaceGameCountElement = () => {
-        $('.race-count-input-container').style.display = 'flex';
-        handleRaceCountCheckEvent();
-    };
-
-    const handleRaceCountCheckEvent = () => {
+    }
+    const onCarNameButtonClick = () => {
+        if(isCarNameInputValid($('#car-name-input').value)){
+            this.racingGameInfo.carNameArray = $('#car-name-input').value.split(',').map(carName => carName.trim());
+            this.racingCarView.renderRaceGameCountElement();
+            addRacingCountEvent();
+        }
+    }
+    const addRacingCountEvent = () => {
         $('#race-count-button').addEventListener('click', (e) => {
             e.preventDefault();
-            const carNameArray = $('#car-name-input').value.split(',').map(carName => carName.trim());
-            const raceCount = $('#race-count-input').value;
-            if(isRacingCountInputValid(raceCount)){
-                new RacingCar(carNameArray, raceCount);
-            }
-        });
-    };
+            onRacingCountButtonClick();
+        })
+    }
+    const onRacingCountButtonClick = () => {
+        if(isRacingCountInputValid($('#race-count-input').value)){
+            this.racingGameInfo.raceCount = Number($('#race-count-input').value);
+            handleRacingCarModel();
+        }
+    }
+    const handleRacingCarModel = () => {
+        const racingCar = new RacingCar();
+        this.racingCarView.renderRacingContent(racingCar.playGame(this.racingGameInfo.carNameArray,this.racingGameInfo.raceCount));
+        this.racingCarView.renderGameWinners(racingCar.getGameWinners());
+        addRestartButtonEvent();
+    }
+    const addRestartButtonEvent = () => {
+        $('.restart-button').addEventListener('click', () => {
+            location.reload();
+        })
+    }
+    
 }

@@ -1,3 +1,0 @@
-export default function initInputText(inputElement) {
-    inputElement.value = '';
-}
