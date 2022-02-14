@@ -57,10 +57,14 @@ export default class RacingCarView {
 
   resetCarNamesInput() {
     this.$carNamesInput.value = '';
+
+    console.log(this.$carNamesInput.value);
   }
 
   resetRacingCountInput() {
     this.$racingCountInput.value = '';
+
+    console.log(this.$racingCountInput.value);
   }
 
   renderMoveForwardArrow(car) {

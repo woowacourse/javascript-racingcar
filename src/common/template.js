@@ -9,26 +9,24 @@ export function headerTemplate() {
 
 export function carNamesTemplate() {
   return `
-    <div>
+    <form>
       <p style="${style.directive}">${DIRECTIVE.CAR_NAME}</p>
-      <div class="form">
-        <input id="car-names-input" style="${style.input}"></input>
-        <button id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
+      <div class="car-names-input-container">
+        <input id="car-names-input" style="${style.input}" />
+        <input type="submit" id="car-names-submit" style="${style.button}" value="${BUTTON.SUBMIT}" />
       </div>
-    </div>
-    <div id="racing-count"></div>
+    </form>
+    <form id="racing-count"></form>
     <div id="game-result"></div>
   `;
 }
 
 export function racingCountTemplate() {
   return `
-    <div>
-      <p style="${style.directive}">${DIRECTIVE.RACING_COUNT}</p>
-      <div class="form">
-        <input type="number" id="racing-count-input" style="${style.input}"></input>
-        <button id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
-      </div>
+    <p style="${style.directive}">${DIRECTIVE.RACING_COUNT}</p>
+    <div class="racing-count-input-container">
+      <input type="number" id="racing-count-input" style="${style.input}" />
+      <input type="submit" id="racing-count-submit" style="${style.button}" value="${BUTTON.SUBMIT}" />
     </div>
   `;
 }

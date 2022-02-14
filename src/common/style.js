@@ -35,7 +35,7 @@ export const style = `
       align-items: center;
     }
 
-    .form {
+    .car-names-input-container, .racing-count-input-container {
       display: flex;
       align-items: end;
     }
