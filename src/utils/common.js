@@ -1,13 +1,15 @@
+import { DISPLAY_NONE } from './constants.js';
+
 export const $ = (selector) => document.querySelector(selector);
 
 export const trimInArray = (array) => {
   return array.map((element) => element.trim());
 };
 
-export const makeDOMHidden = (array) => {
-  array.forEach((element) => (element.style.display = 'none'));
+export const displayNoneDOM = (array) => {
+  array.forEach((element) => element.classList.add(DISPLAY_NONE));
 };
 
-export const makeDOMVisible = (array, type) => {
-  array.forEach((element) => (element.style.display = type));
+export const displayDOM = (array) => {
+  array.forEach((element) => element.classList.remove(DISPLAY_NONE));
 };
