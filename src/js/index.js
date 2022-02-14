@@ -42,6 +42,7 @@ class App {
     }
 
     this.View.setDisableForm($(SELECTOR.CAR_NAME_FORM));
+    this.View.setAbleForm($(SELECTOR.RACE_TIME_FORM));
     this.RacingGame.carListPush(nameStringToArray(carNameValue));
 
     return true;

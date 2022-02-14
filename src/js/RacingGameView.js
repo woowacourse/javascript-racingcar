@@ -15,6 +15,14 @@ export default class RacingGameView {
     this.$result = $('#result');
   }
 
+  setAbleForm($formElement) {
+    console.log($formElement);
+    $formElement.querySelectorAll('input, button').forEach(($element) => {
+      $element.removeAttribute('disabled');
+      console.log($element);
+    });
+  }
+
   setDisableForm($formElement) {
     $formElement.querySelectorAll('input, button').forEach(($element) => {
       $element.setAttribute('disabled', '');
