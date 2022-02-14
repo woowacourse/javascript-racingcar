@@ -1,4 +1,4 @@
-import { $ } from "../dom/dom.js";
+import { $ } from "./dom-selector.js";
 import { EMPTY_INPUT_ERROR, OVER_CARNAME_LENGTH_ERROR } from "../constants/error.js";
 import initInputText from "./initInputText.js";
 import { MAX_CAR_NAME_LENGTH } from '../constants/gameCondition.js';

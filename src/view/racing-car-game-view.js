@@ -1,4 +1,4 @@
-import { $ } from '../dom/dom.js';
+import { $ } from '../modules/dom-selector.js';
 import { SELECTOR } from '../constants/selector.js';
 import initInputText from '../modules/initInputText.js';
 

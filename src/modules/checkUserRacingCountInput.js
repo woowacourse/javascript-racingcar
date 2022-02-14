@@ -1,4 +1,4 @@
-import { $ } from "../dom/dom.js";
+import { $ } from "./dom-selector.js";
 import initInputText from "./initInputText.js";
 import { NOT_NUMBER_TYPE_ERROR, EMPTY_INPUT_ERROR, OVER_COUNT_RANGE_ERROR } from "../constants/error.js";
 import { MAX_RACE_COUNT, MIN_RACE_COUNT } from "../constants/gameCondition.js";

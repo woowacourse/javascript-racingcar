@@ -1,6 +1,6 @@
 import RacingCarGameModel from '../model/racing-car-game-model.js';
 import RacingCarGameView from '../view/racing-car-game-view.js';
-import { $ } from '../dom/dom.js';
+import { $ } from '../modules/dom-selector.js';
 import checkUserCarNameInput from '../modules/checkUserCarNameInput.js';
 import checkUserRacingCountInput from '../modules/checkUserRacingCountInput.js';
 import { SELECTOR } from '../constants/selector.js';
