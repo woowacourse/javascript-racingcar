@@ -1,13 +1,7 @@
+import { SELECTOR } from '../../src/constants/selector.js';
+
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = "../../index.html";
-  const SELECTOR = {
-    CAR_NAME_INPUT: "#car-name-input",
-    CAR_NAME_BUTTON: '#car-name-button',
-    RACE_COUNT_INPUT: '#race-count-input',
-    RACE_COUNT_BUTTON: '#race-count-button',
-    RESULT_TEXT: '.result-text',
-    RESTART_BUTTON: '.restart-button',
-  };
 
   before(() => {
     Cypress.Commands.add('normalWorking', (carNames, racingCount) => {
