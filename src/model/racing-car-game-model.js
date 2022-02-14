@@ -17,7 +17,7 @@ export default class RacingCarGameModel {
     }
 
     generateRandomNumber() {
-        return Math.floor((MAX_RANDOM_NUMBER + 1) * Math.random());
+        return Math.floor(Math.random() * (MAX_RANDOM_NUMBER + 1));
     }
 
     resetCarArray() {
