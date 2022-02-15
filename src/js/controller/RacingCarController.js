@@ -55,7 +55,6 @@ export default class RacingCarController {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
-
     this.model.resetGameStatus();
     this.view.resetGame();
     this.view.enableCarName();
