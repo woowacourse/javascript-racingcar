@@ -29,19 +29,19 @@ export default class RacingCarView {
   };
 
   makeCarNamesTemplate = (carNames) => `
-      <div class="${CLASS.RACING_RESULTS}">
-    ${carNames
-      .map(
-        (carName) => `
-        <div id="${carName}-container" class=${CLASS.RACING_INFO}>
-          <div class="${CLASS.CAR_NAME}">${carName}</div>
-          <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
-        </div>
-      `
-      )
-      .join("")}
-      </div>
-      `;
+    <div class="${CLASS.RACING_RESULTS}">
+      ${carNames
+        .map(
+          (carName) => `
+          <div id="${carName}-container" class=${CLASS.RACING_INFO}>
+            <div class="${CLASS.CAR_NAME}">${carName}</div>
+            <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
+          </div>
+        `
+        )
+        .join("")}
+    </div>
+    `;
 
   removeSpinners = () => {
     document.querySelectorAll(`.${CLASS.LOADING}`).forEach((loading) => {

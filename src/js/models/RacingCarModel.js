@@ -11,6 +11,7 @@ export default class RacingCarModel {
 
   setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
+
     this.checkValidCarNames(splitedCarNames);
     this.cars = splitedCarNames.map((name) => new Car(name));
   };
@@ -92,6 +93,7 @@ export default class RacingCarModel {
 
   pickWinners = () => {
     const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
+
     return this.cars
       .filter((car) => car.forwardCount === maxCount)
       .map((car) => car.name)

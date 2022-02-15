@@ -28,6 +28,7 @@ export default class RacingCarController {
 
   submitCarNamesHandler = (e) => {
     const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
+
     try {
       this.model.setCars(carNames);
       this.view.disableCarName();
@@ -39,6 +40,7 @@ export default class RacingCarController {
 
   submitRacingCountHandler = (e) => {
     const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
+
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
@@ -53,6 +55,7 @@ export default class RacingCarController {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
+
     this.model.resetGameStatus();
     this.view.resetGame();
     this.view.enableCarName();
@@ -61,18 +64,22 @@ export default class RacingCarController {
   playGame = async () => {
     this.model.initPrevResult();
     this.view.renderCarNames(this.model.getCarsName());
+
     for (let i = 0; i < this.model.getRacingCount(); i++) {
       const stageInfo = await this.model.racePerSecond();
       this.view.renderResult(stageInfo);
     }
+
     this.endGame();
   };
 
   endGame = async () => {
     const winners = this.model.pickWinners();
+
     this.view.removeSpinners();
     this.view.renderWinners(winners);
     this.view.renderReplayButton();
+
     const winnerMessage = await this.model.getCongratulationMessage(winners);
     this.view.alertCongratulationMessage(winnerMessage);
   };
