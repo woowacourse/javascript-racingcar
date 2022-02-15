@@ -8,7 +8,6 @@ const isLengthOK = carName => {
 
 export const isValidLength = carNameArr => {
   for (let i = 0; i < carNameArr.length; i++) {
-    carNameArr[i] = carNameArr[i].trim();
     if (!carNameArr[i] || !isLengthOK(carNameArr[i])) {
       return false;
     }
