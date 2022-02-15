@@ -1,4 +1,4 @@
-import { RACING_COUNT } from "../../util/constants.js";
+import { RACING_COUNT } from "../../constants.js";
 
 const isInteger = input => {
   if (Number.isNaN(input) || Number(input) % 1 !== 0) {

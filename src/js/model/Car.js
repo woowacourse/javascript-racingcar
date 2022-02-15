@@ -1,4 +1,4 @@
-import { RANDOM_RANGE, RACE_STANDARD } from "../util/constants.js";
+import { RANDOM_RANGE, RACE_STANDARD } from "../constants.js";
 
 export default class Car {
   constructor(name) {

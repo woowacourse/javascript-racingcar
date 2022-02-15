@@ -1,8 +1,8 @@
 import Cars from "./controller/carsName/Cars.js";
 import RacingCount from "./controller/racingCount/RacingCount.js";
 import { makeInitialView } from "./view/viewControl.js";
-import { EVENT } from "./util/constants.js";
-import { logo, restartButton } from "./util/elements.js";
+import { EVENT } from "./constants.js";
+import { logo, restartButton } from "./elements.js";
 
 class RacingCar {
   constructor() {

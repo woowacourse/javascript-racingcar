@@ -1,6 +1,6 @@
-import { racingResultArea } from "../util/elements.js";
+import { racingResultArea } from "../elements.js";
 import { showRacingResultArea } from "./viewControl.js";
-import { ATTRIBUTE, ELEMENT, ARROW } from "../util/constants.js";
+import { ATTRIBUTE, ELEMENT, ARROW } from "../constants.js";
 
 const createPositionArrow = () => {
   const position = document.createElement(ELEMENT.DIV);

@@ -8,8 +8,8 @@ import {
   racingWinnerArea,
   racingWinnerText,
   restartButton,
-} from "../util/elements.js";
-import { BLANK } from "../util/constants.js";
+} from "../elements.js";
+import { BLANK } from "../constants.js";
 
 export const makeInitialView = () => {
   carNamesInput.value = BLANK;
