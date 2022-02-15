@@ -1,12 +1,7 @@
-import Car from '../Car.js';
-
 export default class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-
-    this.carList = [];
-    this.winners = [];
   }
 
   init() {
@@ -20,35 +15,26 @@ export default class Controller {
   }
 
   createCarList(carNameList) {
-    this.carList = carNameList.map((name) => new Car(name));
-
-    this.view.renderRacingResult(this.carList);
-    this.view.renderRacingCountButton(this.carList);
+    this.model.createCarList(carNameList, (carList) => {
+      this.view.renderRacingResult(carList);
+      this.view.renderRacingCountButton(carList);
+    });
   }
 
   startRace(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.carList.forEach((car) => car.race());
-      this.view.renderRacingResult(this.carList);
-    }
+    this.model.startRace(racingCount, (carList) => {
+      this.view.renderRacingResult(carList);
+    });
 
-    this.getWinners();
-    this.view.renderResult(this.winners);
-  }
-
-  getWinners() {
-    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
-    this.winners = this.carList
-      .filter((car) => car.distance === maxDistance)
-      .map((winner) => winner.name);
+    this.model.getWinners((winners) => {
+      this.view.renderResult(winners);
+    });
   }
 
   restart() {
-    this.carList = [];
-    this.winners = [];
-
-    this.view.renderRacingCountButton(this.carList);
-    this.view.renderRacingResult(this.carList);
-    this.view.renderResult(this.winners);
+    this.model.restart(({ carList, winners }) => {
+      this.view.renderRacingResult(carList);
+      this.view.renderResult(winners);
+    });
   }
 }
