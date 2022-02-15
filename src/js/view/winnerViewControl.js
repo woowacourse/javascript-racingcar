@@ -1,6 +1,12 @@
-import { racingWinnerText } from "../util/elements.js";
-import { SEPARATOR } from "../util/constants.js";
+import { racingWinnerText, spinner } from "../util/elements.js";
+
+const removeSpinner = () => {
+  while (spinner.length > 0) {
+    spinner.item(0).remove();
+  }
+};
 
 export const setWinnerText = winners => {
-  racingWinnerText.innerHTML = winners.join(`${SEPARATOR} `);
+  removeSpinner();
+  racingWinnerText.innerHTML = winners.join(", ");
 };
