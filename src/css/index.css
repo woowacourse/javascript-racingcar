@@ -24,6 +24,10 @@ h2 {
   display: none;
 }
 
+.disabled {
+  background-color: #b4b4b4;
+}
+
 label {
   display: block;
   margin-bottom: 4px;

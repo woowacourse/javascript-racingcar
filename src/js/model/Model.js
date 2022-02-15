@@ -24,4 +24,9 @@ export default class Model {
   set winners(winnerNames) {
     this.winnerNames = winnerNames;
   }
+
+  init() {
+    this.carNames = [];
+    this.winnerNames = [];
+  }
 }

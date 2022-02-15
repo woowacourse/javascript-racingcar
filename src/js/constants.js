@@ -9,7 +9,7 @@ export const SELECTOR = {
   $RACING_CAR: '.racing-car',
   $CAR_NAME: '.car-name',
   $PROGRESS_LIST: '.progress-list',
-  $PROGRESS: '.progress,',
+  $PROGRESS: '.progress',
   $RACING_RESULT: '#racing-result',
   $RESULT_MESSAGE: '#result-message',
   $WINNERS: '#winners',

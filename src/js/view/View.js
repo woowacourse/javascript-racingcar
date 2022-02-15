@@ -8,12 +8,26 @@ export default class View {
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
     this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
     this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
-    this.$racingResult = $(SELECTOR.$RACING_RESULT);
     this.$racingProgress = $(SELECTOR.$RACING_PROGRESS);
+    this.$racingResult = null;
+    this.$resultList = null;
+    this.$$progressList = null;
   }
 
-  get racingResult() {
-    return this.$racingResult;
+  get carNameButton() {
+    return this.$carNameButton;
+  }
+
+  get racingCountButton() {
+    return this.$racingCountButton;
+  }
+
+  get progressList() {
+    return this.$$progressList;
+  }
+
+  get app() {
+    return this.$app;
   }
 
   get racingProgress() {
@@ -37,6 +51,11 @@ export default class View {
     focusElement.focus();
   }
 
+  toggleDisabledButton(selector) {
+    selector.disabled = !selector.disabled;
+    selector.classList.toggle('disabled');
+  }
+
   racingCountInputVisibled() {
     $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.remove('invisibled');
   }
@@ -45,8 +64,12 @@ export default class View {
     $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.add('invisibled');
   }
 
+  removeRender(parent, child) {
+    child && parent.removeChild(child);
+  }
+
   render(selector, template) {
-    selector.innerHTML = template;
+    selector.insertAdjacentHTML('beforeend', template);
   }
 
   bindEventListener(type, selector, callback) {
@@ -65,12 +88,16 @@ export default class View {
   bindClickCarNameButton(callback) {
     this.bindEventListener('click', SELECTOR.$CAR_NAME_BUTTON, () => {
       callback();
+      this.$resultList = $(SELECTOR.$RESULT_LIST);
     });
   }
 
   bindClickRacingCountButton(callback) {
     this.bindEventListener('click', SELECTOR.$RACING_COUNT_BUTTON, () => {
+      this.$$progressList = $all(SELECTOR.$PROGRESS_LIST);
+
       callback();
+      this.$racingResult = $(SELECTOR.$RACING_RESULT);
     });
   }
 
@@ -78,5 +105,18 @@ export default class View {
     this.bindEventListener('click', SELECTOR.$RESTART_BUTTON, () => {
       callback();
     });
+  }
+
+  init() {
+    this.$racingCountInput.value = '';
+    this.$carNameInput.value = '';
+    this.$carNameInput.focus();
+    this.racingCountInputInvisibled();
+
+    this.removeRender(this.$app, this.$racingResult);
+    this.removeRender(this.$racingProgress, this.$resultList);
+
+    this.toggleDisabledButton(this.$carNameButton);
+    this.toggleDisabledButton(this.$racingCountButton);
   }
 }

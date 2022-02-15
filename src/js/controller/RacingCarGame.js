@@ -58,15 +58,18 @@ export default class RacingCarGame {
       this.view.racingProgress,
       template.renderRacingProgress(this.model.carList)
     );
+    this.view.toggleDisabledButton(this.view.carNameButton);
   }
 
   startRace(racingCount) {
     for (let i = 0; i < racingCount; i += 1) {
-      this.model.carList.forEach((car) => car.race());
-      this.view.render(
-        this.view.racingProgress,
-        template.renderRacingProgress(this.model.carList)
-      );
+      this.model.carList.forEach((car, index) => {
+        car.race();
+        this.view.render(
+          this.view.progressList[index],
+          template.renderProgressList(car.distance)
+        );
+      });
     }
   }
 
@@ -82,21 +85,14 @@ export default class RacingCarGame {
 
     this.startRace(racingCount);
     this.view.render(
-      this.view.racingResult,
+      this.view.app,
       template.renderRacingResult(this.model.winners)
     );
+    this.view.toggleDisabledButton(this.view.racingCountButton);
   }
 
   init() {
-    this.view.carNameInput.value = '';
-    this.view.racingCountInput.value = '';
-    this.view.carNameInput.focus();
-    this.view.racingCountInputInvisibled();
-
-    this.model.carList = [];
-    this.model.winners = [];
-
-    this.view.render(this.view.racingProgress, '');
-    this.view.render(this.view.racingResult, '');
+    this.model.init();
+    this.view.init();
   }
 }
