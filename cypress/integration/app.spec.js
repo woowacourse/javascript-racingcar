@@ -37,6 +37,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
+    //when
     cy.carNameInput(nameInput);
 
     // when - then
@@ -51,7 +52,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     //when
     cy.carNameInput(nameInput);
     cy.countInput(countInput);
-
     cy.get(`#${DOM.RESTART_BTN_ID}`).click();
 
     //then
