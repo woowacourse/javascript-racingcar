@@ -1,7 +1,12 @@
 import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import { makeCar, playOneTurn, getWinners } from './core/playRacing.js';
+import {
+  // makeCar,
+  // playOneTurn,
+  // getWinners,
+  getGameResult,
+} from './core/playRacing.js';
 import {
   renderResult,
   removeBeforeResult,
@@ -29,12 +34,13 @@ class App {
   }
 
   gameStart() {
-    const cars = makeCar(this.carNames);
-    for (let i = 0; i < this.tryCount; i++) {
-      playOneTurn(cars);
-      renderResult(cars);
-    }
-    renderWinners(getWinners(cars));
+    const { cars, winners } = getGameResult({
+      carNames: this.carNames,
+      tryCount: this.tryCount,
+    });
+
+    renderResult(cars);
+    renderWinners(winners);
     this.resetValue();
   }
 
