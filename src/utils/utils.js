@@ -1,6 +1,6 @@
 import {
   GO_FORWARD_CONDITION,
-  RANDOM_NUM_MAX,
+  RANDOM_NUMBER_MAX,
 } from "../constants/conditions.js";
 
 export function doTrim(names) {
@@ -11,7 +11,7 @@ export function doTrim(names) {
 }
 
 export function makeRandomNumber() {
-  return Math.floor(Math.random() * (RANDOM_NUM_MAX + 1));
+  return Math.floor(Math.random() * (RANDOM_NUMBER_MAX + 1));
 }
 
 export function isNumberOverStandard(number) {

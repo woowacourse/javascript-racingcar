@@ -13,29 +13,31 @@ export function startRacing() {
   allocateCars();
   renderRacingContainer();
   renderCarNames();
-  race(raceState.racingNumber);
+  progressRacing(raceState.racingNumber);
 }
 
-function race(racingNumber) {
+function progressRacing(racingNumber) {
   renderLoadingSpinner();
   let racingNumberCount = 1;
   const intervalID = setInterval(() => {
     if (racingNumberCount > racingNumber) {
+      const winners = pickWinners();
       disapearLoadingSpinner();
-      renderWinners(pickWinner());
+      renderWinners(winners);
       renderRestartButton();
+      showCongraturationAlert(winners);
       clearState();
       clearInterval(intervalID);
       return;
     }
     disapearLoadingSpinner();
-    moveForwardCars();
+    showMoveForwardCars();
     renderLoadingSpinner();
     racingNumberCount++;
   }, 1000);
 }
 
-function moveForwardCars() {
+function showMoveForwardCars() {
   raceState.cars.forEach((car, index) => {
     if (car.canMoveFoward()) {
       car.moveForward();
@@ -44,7 +46,7 @@ function moveForwardCars() {
   });
 }
 
-function pickWinner() {
+function pickWinners() {
   const maxLocation = getMaxLocation(raceState.cars);
   const winnerArr = getWinnerArr(maxLocation);
   return winnerArr.join(", ");
@@ -62,4 +64,10 @@ function getWinnerArr(max) {
     .map((car) => {
       return car.name;
     });
+}
+
+function showCongraturationAlert(winners) {
+  setTimeout(() => {
+    alert(`우승자는 ${winners}입니다. 축하합니다 🎉`);
+  }, 2000);
 }

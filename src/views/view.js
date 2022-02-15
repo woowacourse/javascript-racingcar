@@ -82,7 +82,14 @@ export function clearInputs() {
 
 export function renderRestartButton() {
   const racingContainer = document.getElementById("restart-button");
-  racingContainer.style.display = "flex";
+  racingContainer.classList.remove("display-none");
+  racingContainer.classList.add("flex");
+}
+
+export function disapearRestartButton() {
+  const racingContainer = document.getElementById("restart-button");
+  racingContainer.classList.remove("flex");
+  racingContainer.classList.add("display-none");
 }
 
 export async function renderLoadingSpinner() {

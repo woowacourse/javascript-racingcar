@@ -13,6 +13,7 @@ import {
   clearInputs,
   disapearRacingInputForm,
   disapearRacingContainer,
+  disapearRestartButton,
   removeCarNames,
   removeWinners,
 } from "../views/view.js";
@@ -61,6 +62,7 @@ function clickRestartButton() {
   changeDisableUserInputs();
   disapearRacingInputForm();
   disapearRacingContainer();
+  disapearRestartButton();
   removeCarNames();
   removeWinners();
 }
