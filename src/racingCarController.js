@@ -42,7 +42,9 @@ export default class RacingCarController {
       this.view.renderRacingCount();
       this.view.selectRacingCountDOM();
       this.attachRacingCountEvents();
-      return this.view.renderCars(this.model.cars);
+      this.view.renderCars(this.model.cars);
+
+      return;
     }
 
     alert(ERROR_MESSAGE.CAR_NAMES);
@@ -61,7 +63,9 @@ export default class RacingCarController {
       this.view.renderWinners(this.model.getWinnners());
       this.view.renderRestart();
       this.view.selectRestartDOM();
-      return this.attachRestartEvents();
+      this.attachRestartEvents();
+
+      return;
     }
 
     alert(ERROR_MESSAGE.RACING_COUNT);
