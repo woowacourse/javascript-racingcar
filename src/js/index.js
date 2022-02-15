@@ -1,28 +1,21 @@
-import Cars from "./controller/carsName/Cars.js";
-import RacingCount from "./controller/racingCount/RacingCount.js";
+import Cars from "./controller/cars/Cars.js";
+import Game from "./controller/game/Game.js";
 import { makeInitialView } from "./view/viewControl.js";
-import { logo, restartButton } from "./util/elements.js";
+import { restartButton } from "./util/elements.js";
 
 class RacingCar {
   constructor() {
     this.cars = new Cars();
-    this.racingCount = new RacingCount(this.cars);
+    this.game = new Game(this.cars);
     makeInitialView();
-    RacingCar.addLogoClickEvent();
     this.addRestartEvent();
-  }
-
-  static addLogoClickEvent() {
-    logo.addEventListener("click", () => {
-      makeInitialView();
-    });
   }
 
   addRestartEvent() {
     restartButton.addEventListener("click", () => {
       makeInitialView();
       this.cars.init();
-      this.racingCount.init();
+      this.game.init();
     });
   }
 }
