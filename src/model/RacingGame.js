@@ -1,4 +1,5 @@
-import { RACINGGAME } from '../constants/constants.js';
+import { INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
+import { isInRange } from '../utils/validation.js';
 import Car from './Car.js';
 
 export default class RacingGame {
@@ -11,6 +12,13 @@ export default class RacingGame {
     this.cars.forEach((car) => {
       car.move();
     });
+  }
+
+  setRound(round) {
+    if (!isInRange(round)) {
+      throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);
+    }
+    this.round = round;
   }
 
   set players(names) {

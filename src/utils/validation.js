@@ -21,7 +21,7 @@ const isInteger = (number) => {
   return number % 1 === 0;
 };
 
-const isInRange = (number) => {
+export const isInRange = (number) => {
   return number > 0 && number <= RACINGGAME.MAX_RACING_COUNT;
 };
 
@@ -47,9 +47,6 @@ export const validateCarNames = (names) => {
 export const validateCount = (count) => {
   if (isBlank(count)) {
     throw new Error(INPUT_ERROR.COUNT_BLANK);
-  }
-  if (!isInRange(count)) {
-    throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);
   }
   if (!isInteger(count)) {
     throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
