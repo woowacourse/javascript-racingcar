@@ -20,6 +20,10 @@ h2 {
   letter-spacing: 0.15px;
 }
 
+.invisibled {
+  display: none;
+}
+
 label {
   display: block;
   margin-bottom: 4px;
@@ -110,10 +114,6 @@ form {
   justify-content: center;
 
   gap: 8px;
-}
-
-.input-form:last-child {
-  display: none;
 }
 
 .car-name {

@@ -65,7 +65,7 @@ export default class RacingCarGame {
     }
 
     this.model.carList = carNameList.map((name) => new Car(name));
-    this.view.racingCountInputVisibiled();
+    this.view.racingCountInputVisibled();
     this.view.render(
       this.view.racingProgress,
       template.renderRacingProgress(this.model.carList)
@@ -111,7 +111,7 @@ export default class RacingCarGame {
     this.view.carNameInput.value = '';
     this.view.racingCountInput.value = '';
     this.view.carNameInput.focus();
-    this.view.racingCountInputInvisibiled();
+    this.view.racingCountInputInvisibled();
 
     this.model.carList = [];
     this.model.winners = [];

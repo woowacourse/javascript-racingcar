@@ -37,12 +37,12 @@ export default class View {
     focusElement.focus();
   }
 
-  racingCountInputVisibiled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'block';
+  racingCountInputVisibled() {
+    $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.remove('invisibled');
   }
 
-  racingCountInputInvisibiled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'none';
+  racingCountInputInvisibled() {
+    $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.add('invisibled');
   }
 
   render(selector, template) {
