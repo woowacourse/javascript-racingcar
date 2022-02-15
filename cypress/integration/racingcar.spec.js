@@ -1,21 +1,34 @@
-import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index.js';
+import { ID, CLASS } from '../../src/constants/index.js';
+
+const URL = 'http://localhost:54683/';
+
+const triggerCarNameSubmitEvent = () => {
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
+};
+
+const triggerRacingCountSubmitEvent = () => {
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(5);
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
+};
 
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(URL);
   });
 
   it('자동차 이름을 올바르게 입력한다.', () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
 
-    const spy = cy.spy(window, 'alert');
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
 
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(0)
       .click()
-      .wait(1000)
       .then(() => {
-        expect(spy).to.not.be.called;
+        expect(stub).to.not.be.called;
       });
 
     cy.get(`#${ID.RACING_COUNT_FORM}`).should('have.css', 'display', 'block');
@@ -25,11 +38,12 @@ describe('자동차 이름 입력 기능 테스트', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
+
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(0)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.EMPTY_CAR_NAME);
+        expect(stub).to.be.called;
       });
   });
 
@@ -39,11 +53,12 @@ describe('자동차 이름 입력 기능 테스트', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
+
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(0)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
+        expect(stub).to.be.called;
       });
   });
 
@@ -53,37 +68,34 @@ describe('자동차 이름 입력 기능 테스트', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
+
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(0)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_CAR_NAME);
+        expect(stub).to.be.called;
       });
   });
 });
 
 describe('시도할 횟수 입력 기능 테스트', () => {
-  const triggerCarNameSubmitEvent = () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
-  };
-
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(URL);
     triggerCarNameSubmitEvent();
   });
 
   it('시도할 횟수를 올바르게 입력한다.', () => {
     cy.get(`#${ID.RACING_COUNT_INPUT}`).type(10);
 
-    const spy = cy.spy(window, 'alert');
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
 
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(1)
       .click()
-      .wait(1000)
       .then(() => {
-        expect(spy).to.not.be.called;
+        expect(stub).to.not.be.called;
       });
   });
 
@@ -91,11 +103,12 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
+
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(1)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_RACING_COUNT);
+        expect(stub).to.be.called;
       });
   });
 
@@ -104,28 +117,19 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
+
     cy.get(`.${CLASS.INPUT_BTN}`)
       .eq(1)
       .click()
       .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
+        expect(stub).to.be.called;
       });
   });
 });
 
 describe('자동차 경주 진행 상황 기능 테스트', () => {
-  const triggerCarNameSubmitEvent = () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
-  };
-
-  const triggerRacingCountSubmitEvent = () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(5);
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
-  };
-
   beforeEach(() => {
-    cy.visit('http://localhost:63022/');
+    cy.visit(URL);
     triggerCarNameSubmitEvent();
     triggerRacingCountSubmitEvent();
   });
