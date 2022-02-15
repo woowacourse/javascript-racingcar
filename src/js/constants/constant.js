@@ -4,6 +4,6 @@ export const CAN_ADVANCE = 4;
 
 export const MIN_CAR_NAME_LENGTH = 1;
 export const MAX_CAR_NAME_LENGTH = 5;
-export const MIN_CAR_NAMES_LENGTH = 2;
+export const MIN_CAR_COUNT = 2;
 
 export const MIN_TRY_COUNT = 1;

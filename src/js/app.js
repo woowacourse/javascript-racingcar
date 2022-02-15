@@ -1,8 +1,12 @@
 import { $ } from './util/dom.js';
-import { getCarNames } from './core/checkCarNames.js';
+import { checkCarNames, getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
 import { makeCars, playOneTurn, getWinners } from './core/playRacing.js';
-import { renderResult, removeBeforeResult } from './view/renderResult.js';
+import {
+  renderResult,
+  renderWinners,
+  removeBeforeResult,
+} from './view/renderResult.js';
 
 class App {
   constructor() {
@@ -13,7 +17,7 @@ class App {
 
   handleEvent() {
     $('#car-names-form').addEventListener('submit', e => {
-      this.setCarNames(getCarNames(e));
+      this.setCarNames(checkCarNames(getCarNames(e)));
     });
     $('#try-count-form').addEventListener('submit', e => {
       this.setTryCount(getTryCount(e));
@@ -30,7 +34,7 @@ class App {
       playOneTurn(cars);
       renderResult(cars);
     }
-    getWinners(cars);
+    renderWinners(getWinners(cars));
     this.resetValue();
   }
 

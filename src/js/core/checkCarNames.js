@@ -4,7 +4,7 @@ import { alertMessage } from '../constants/string.js';
 import {
   MIN_CAR_NAME_LENGTH,
   MAX_CAR_NAME_LENGTH,
-  MIN_CAR_NAMES_LENGTH,
+  MIN_CAR_COUNT,
 } from '../constants/constant.js';
 
 export const getCarNames = e => {
@@ -13,17 +13,17 @@ export const getCarNames = e => {
     .value.split(',')
     .filter(carName => carName.length >= MIN_CAR_NAME_LENGTH);
 
-  if (!checkCarNames(carNames)) {
-    return carNames;
-  }
+  return carNames;
 };
 
-const checkCarNames = carNames => {
-  return (
-    isUnderMinCarNamesLength(carNames) ||
-    isOverMaxCarNameLength(carNames) ||
-    isOverlapCarNames(carNames)
-  );
+export const checkCarNames = carNames => {
+  if (
+    !isUnderMinCarNamesLength(carNames) &&
+    !isOverMaxCarNameLength(carNames) &&
+    !isOverlapCarNames(carNames)
+  ) {
+    return carNames;
+  }
 };
 
 const isOverMaxCarNameLength = carNames => {
@@ -34,7 +34,7 @@ const isOverMaxCarNameLength = carNames => {
 };
 
 const isUnderMinCarNamesLength = carNames => {
-  const isIncorrectValue = carNames.length < MIN_CAR_NAMES_LENGTH;
+  const isIncorrectValue = carNames.length < MIN_CAR_COUNT;
   displayAlert(isIncorrectValue, alertMessage.UnderMinCarNamesLength);
   return isIncorrectValue;
 };
