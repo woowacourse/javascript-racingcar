@@ -47,8 +47,8 @@ class RacingcarGame {
 
   checkRaceNumber() {
     this.raceCount = $(".race-count-input").value;
-    if (this.raceCount === "") {
-      alert("몇 번의 이동을 할 것인지를 입력해주세요.");
+    if (this.raceCount === "" || this.raceCount <= 0) {
+      alert("몇 번의 이동을 할 것인지 1 이상의 수를 입력해주세요.");
       this.isCorrectRaceCount = false;
       return;
     }
