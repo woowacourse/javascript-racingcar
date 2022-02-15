@@ -69,7 +69,7 @@ export default class View {
   }
 
   stepUpdate(carList) {
-    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join();
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
   }
 
   generateStepSectionDOM(car) {
