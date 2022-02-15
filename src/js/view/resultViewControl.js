@@ -10,6 +10,13 @@ const createPositionArrow = () => {
   return position;
 };
 
+const createSpinner = () => {
+  const spinner = document.createElement("div");
+  spinner.setAttribute("class", "spinner");
+
+  return spinner;
+};
+
 const createResultForCar = car => {
   const nameTag = document.createElement("div");
   nameTag.setAttribute("class", "car-name-tag");
@@ -21,17 +28,23 @@ const createResultForCar = car => {
   for (let index = 0; index < car.location; index++) {
     container.append(createPositionArrow());
   }
+  container.append(createSpinner());
 
   return container;
 };
 
 const createResultLog = cars => {
-  cars.getCars().forEach(car => {
+  cars.forEach(car => {
     racingResultArea.append(createResultForCar(car));
   });
 };
 
+const initResultLog = () => {
+  racingResultArea.innerHTML = "";
+};
+
 export const setResultArea = cars => {
   showRacingResultArea();
+  initResultLog();
   createResultLog(cars);
 };
