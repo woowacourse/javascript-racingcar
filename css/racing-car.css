@@ -122,13 +122,29 @@ input {
     align-items: center;
 }
 
-.car div p {
+.step-container{
     width: 28px;
     font-style: normal;
     font-weight: normal;
     font-size: 32px;
     margin: 8px;
 }
+/*스피너 애니메이션 */
+@keyframes spinning{
+    from {transform:rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+.step-container.is-loading{
+    width: 32px;
+    height: 30px;
+    border: 6px solid #00BCD4 ;
+    border-right-color: #fff;
+    border-top-color: #fff;
+    border-radius: 100%;
+    animation: spinning 600ms infinite linear;
+}
+
 
 /*
     racing result
