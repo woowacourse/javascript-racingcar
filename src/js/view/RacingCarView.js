@@ -21,10 +21,9 @@ export default class RacingCarView {
   renderResult = (stageInfo) => {
     Object.entries(stageInfo).forEach(([name, isMoved]) => {
       if (isMoved) {
-        $(`#${name}-container`).insertAdjacentHTML(
-          "beforeend",
-          `<div class=${CLASS.ARROW}>⬇️</div>`
-        );
+        $(`#${name}-container`)
+          .querySelector(".car-name")
+          .insertAdjacentHTML("afterend", `<div class=${CLASS.ARROW}>⬇️</div>`);
       }
     });
   };
@@ -36,12 +35,19 @@ export default class RacingCarView {
         (carName) => `
         <div id="${carName}-container" class=${CLASS.RACING_INFO}>
           <div class="${CLASS.CAR_NAME}">${carName}</div>
+          <div class="loading"><div class="spinner"></div></div>
         </div>
       `
       )
       .join("")}
       </div>
       `;
+
+  removeSpinners = () => {
+    document.querySelectorAll(".loading").forEach((loading) => {
+      loading.remove();
+    });
+  };
 
   renderWinners = (winners) => {
     this.insertTemplate(this.makeWinnersTemplate(winners));

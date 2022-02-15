@@ -70,6 +70,7 @@ export default class RacingCarController {
 
   endGame = () => {
     const winners = this.model.pickWinners();
+    this.view.removeSpinners();
     this.view.renderWinners(winners);
     this.view.renderReplayButton();
   };
