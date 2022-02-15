@@ -31,7 +31,7 @@ class RacingCarController {
       'submit',
       this.handleRacingCountFormSubmitEvent.bind(this)
     );
-    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent);
+    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent.bind(this));
   }
 
   handleCarNameFormSubmitEvent(e) {
