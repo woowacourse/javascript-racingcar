@@ -9,7 +9,7 @@ const resetCars = cars => {
 
 const moveCars = (cars, count) => {
   cars.forEach(car => {
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < count; i += 1) {
       car.move();
     }
   });
@@ -17,7 +17,7 @@ const moveCars = (cars, count) => {
 
 const getMaxCount = cars => {
   let maxCount = 0;
-  for (let i = 0; i < cars.length; i++) {
+  for (let i = 0; i < cars.length; i += 1) {
     if (cars[i].racingCount >= maxCount) {
       maxCount = cars[i].racingCount;
     }

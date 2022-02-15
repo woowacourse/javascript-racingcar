@@ -10,8 +10,12 @@
     },
     "rules": { 
         "import/extensions": "off",
+        "no-new":"off",
         "no-undef":"off" , 
         "no-unused-vars":"off",
+        "no-return-assign":"off",
+        "no-param-reassign":"off",
+        "no-alert":"off",
         "class-methods-use-this":"off",
         "consistent-return":"off",
         "array-callback-return":"off"
