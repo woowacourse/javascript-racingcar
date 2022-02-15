@@ -38,7 +38,7 @@ class RacingCarGame {
     e.preventDefault();
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN) {
-      const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT}`).value;
+      const carNameValue = carNameInputField.querySelector(DOM.CAR_NAME_INPUT.toID()).value;
       try {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
         const cars = RacingCarGameManager.makeCars(names);
@@ -54,7 +54,7 @@ class RacingCarGame {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN) {
-      const count = countInputField.querySelector(`#${DOM.COUNT_INPUT}`).value;
+      const count = countInputField.querySelector(DOM.COUNT_INPUT.toID()).value;
       try {
         this.modelManager.setCount(count);
         this.simulateGame();

@@ -1,3 +1,11 @@
+String.prototype.toID = function () {
+  return `#${this}`;
+};
+
+String.prototype.toCLASS = function () {
+  return `.${this}`;
+};
+
 export const DOM = Object.freeze({
   CAR_NAME_INPUT_FIELD: 'car-name-input-field',
   COUNT_INPUT_FIELD: 'count-input-field',

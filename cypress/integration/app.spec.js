@@ -17,7 +17,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.countInput(countInput);
 
     //then
-    cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
+    cy.get(DOM.WINNER_NAME.toID()).should('be.visible');
   });
 
   it('잘못된 자동차 이름을 입력하면 에러 메지지를 보게된다.', () => {
@@ -52,7 +52,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     //when
     cy.carNameInput(nameInput);
     cy.countInput(countInput);
-    cy.get(`#${DOM.RESTART_BTN_ID}`).click();
+    cy.get(DOM.RESTART_BTN.toID()).click();
 
     //then
     cy.isInitialStatus();
@@ -69,6 +69,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
     //then
     const result = nameInput.split(',').reduce((prev, current) => `${prev}${current}`, '');
-    cy.get(`.${DOM.CAR_NAME_CLASS}`).should('have.text', result);
+    cy.get(DOM.CAR_NAME.toCLASS()).should('have.text', result);
   });
 });
