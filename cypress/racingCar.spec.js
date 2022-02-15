@@ -17,7 +17,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get('#reset-btn').click();
   };
 
-  it('잘못된 자동차 이름을 입력하는 경우 alert이 호출되어야 한다.', () => {
+  it("입력된 자동차 이름 길이가 5보다 크면, '이름은 5 글자 이하로 입력해 주세요.' 에러 메시지가 호출된다", () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type('ab,c,zdffddd');
@@ -26,7 +26,11 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       .then(() => {
         expect(alertStub).to.be.called;
       });
+  });
 
+  it("입력된 자동차 이름이 공백이면, '공백만으로는 이름을 구성할 수 없습니다.' 에러 메시지가 호출된다", () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type(' ');
     cy.get('#car-names-button')
       .click()
@@ -35,7 +39,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       });
   });
 
-  it('입력된 횟수가 1 보다 작을 경우 alert이 호출되어야 한다.', () => {
+  it("입력된 횟수가 1 보다 작으면, '1 이상의 숫자를 입력해주세요.' 에러 메시지가 호출된다", () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type('a,b,c');
