@@ -1,4 +1,4 @@
-import { RANDOM_RANGE, MIN_ADVANCE_VALUE } from "../constants.js";
+import { RANDOM_RANGE, MIN_ADVANCE_VALUE } from "../constants/games.js";
 
 export default class Car {
   constructor(name) {

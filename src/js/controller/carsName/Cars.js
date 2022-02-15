@@ -1,8 +1,9 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
-import { EXCEPTIONS, KEYBOARD_ENTER } from "../../constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../elements.js";
+import { EXCEPTIONS } from "../../constants/exceptions.js";
+import { KEYBOARD_ENTER } from "../../constants/events.js";
 
 export default class Cars {
   constructor() {

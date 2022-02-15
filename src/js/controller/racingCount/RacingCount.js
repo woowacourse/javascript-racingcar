@@ -1,6 +1,7 @@
 import { isValidRacingCount } from "./checkFunctions.js";
 import Game from "../game/Game.js";
-import { EXCEPTIONS, KEYBOARD_ENTER } from "../../constants.js";
+import { EXCEPTIONS } from "../../constants/exceptions.js";
+import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { racingCountInput, racingCountSubmitButton } from "../../elements.js";
 
 export default class RacingCount {

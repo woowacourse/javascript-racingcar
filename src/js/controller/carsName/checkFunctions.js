@@ -1,4 +1,4 @@
-import { CAR_NAME_LENGTH } from "../../constants.js";
+import { CAR_NAME_LENGTH } from "../../constants/games.js";
 
 const isLengthOK = carName => {
   const { MIN, MAX } = CAR_NAME_LENGTH;
