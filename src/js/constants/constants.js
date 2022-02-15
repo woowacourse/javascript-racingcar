@@ -1,11 +1,19 @@
 export const SELECTORS = {
+  RACING_GAME_PREPARE_FORM: '#racing-game-prepare-form',
+  CAR_NAMES_FIELDSET: '#car-names-fieldset',
   CAR_NAMES_INPUT: '#car-names-input',
-  CAR_NAMES_BUTTON: '#car-names-button',
-  RACING_COUNT_FORM: '#racing-count-form',
+  CAR_NAMES_SUBMIT_BUTTON: '#car-names-submit-button',
+  RACING_COUNT_FIELDSET: '#racing-count-fieldset',
   RACING_COUNT_INPUT: '#racing-count-input',
-  RACING_COUNT_BUTTON: '#racing-count-button',
-  RESULT_SCREEN: '.result-screen',
-  CAR_RACING_STATUS: '.car-racing-status',
+  RACING_COUNT_SUBMIT_BUTTON: '#racing-count-submit-button',
+  RACING_SCREEN: '#racing-screen',
+  CAR_LANE: '.car-lane',
+  CAR_NAME: '.car-name',
+  SKID_MARK: '.skid-mark',
+  FORWARD_ICON: '.forward-icon',
+  RACING_RESULT: '#racing-result',
+  WINNERS: '#winners',
+  RESTART_BUTTON: '#restart-btn',
 };
 
 export const GAME = {
