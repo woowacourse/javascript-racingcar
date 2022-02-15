@@ -1,39 +1,29 @@
-import {
-  carNamesInput,
-  carNamesSubmitButton,
-  racingCountArea,
-  racingCountInput,
-  racingCountSubmitButton,
-  racingResultArea,
-  racingWinnerArea,
-  racingWinnerText,
-  restartButton,
-} from "../elements.js";
+import { $ } from "./getElement.js";
 
 export const makeInitialView = () => {
-  carNamesInput.value = "";
-  carNamesInput.readOnly = false;
-  carNamesSubmitButton.disabled = false;
-  racingCountArea.hidden = true;
-  racingCountInput.value = "";
-  racingCountInput.readOnly = false;
-  racingCountSubmitButton.disabled = false;
-  racingResultArea.innerHTML = "";
-  racingResultArea.hidden = true;
-  racingWinnerArea.hidden = true;
-  racingWinnerText.innerHTML = "";
-  restartButton.hidden = true;
+  $("car-names-input").value = "";
+  $("car-names-input").readOnly = false;
+  $("car-names-submit").disabled = false;
+  $("racing-count-area").hidden = true;
+  $("racing-count-input").value = "";
+  $("racing-count-input").readOnly = false;
+  $("racing-count-submit").disabled = false;
+  $("racing-result").innerHTML = "";
+  $("racing-result").hidden = true;
+  $("winner-area").hidden = true;
+  $("racing-winner").innerHTML = "";
+  $("restart-button").hidden = true;
 };
 
 export const showRacingCountArea = () => {
-  racingCountArea.hidden = false;
+  $("racing-count-area").hidden = false;
 };
 
 export const showRacingResultArea = () => {
-  racingResultArea.hidden = false;
+  $("racing-result").hidden = false;
 };
 
 export const showWinnerAndRestartButton = () => {
-  racingWinnerArea.hidden = false;
-  restartButton.hidden = false;
+  $("winner-area").hidden = false;
+  $("restart-button").hidden = false;
 };

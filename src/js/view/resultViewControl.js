@@ -1,5 +1,5 @@
-import { racingResultArea } from "../elements.js";
 import { showRacingResultArea } from "./viewControl.js";
+import { $ } from "./getElement.js";
 
 const createPositionArrow = () => {
   const position = document.createElement("div");
@@ -28,7 +28,7 @@ const createResultForCar = car => {
 
 const createResultLog = cars => {
   cars.cars.forEach(car => {
-    racingResultArea.append(createResultForCar(car));
+    $("racing-result").append(createResultForCar(car));
   });
 };
 

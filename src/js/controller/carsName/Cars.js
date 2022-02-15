@@ -1,9 +1,9 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
-import { carNamesInput, carNamesSubmitButton } from "../../elements.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
+import { $ } from "../../view/getElement.js";
 
 export default class Cars {
   constructor() {
@@ -50,22 +50,25 @@ export default class Cars {
   }
 
   static goNextStep() {
-    carNamesInput.readOnly = true;
-    carNamesSubmitButton.disabled = true;
+    $("car-names-input").readOnly = true;
+    $("car-names-submit").disabled = true;
     showRacingCountArea();
   }
 
   addCarNameInputEnterEvent() {
-    carNamesInput.addEventListener("keyup", e => {
-      if (e.keyCode === KEYBOARD_ENTER && this.makeCars(carNamesInput.value)) {
+    $("car-names-input").addEventListener("keyup", e => {
+      if (
+        e.keyCode === KEYBOARD_ENTER &&
+        this.makeCars($("car-names-input").value)
+      ) {
         Cars.goNextStep();
       }
     });
   }
 
   addCarNameSubmitButtonClickEvent() {
-    carNamesSubmitButton.addEventListener("click", () => {
-      if (this.makeCars(carNamesInput.value)) {
+    $("car-names-submit").addEventListener("click", () => {
+      if (this.makeCars($("car-names-input").value)) {
         Cars.goNextStep();
       }
     });

@@ -2,7 +2,7 @@ import { isValidRacingCount } from "./checkFunctions.js";
 import Game from "../game/Game.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
-import { racingCountInput, racingCountSubmitButton } from "../../elements.js";
+import { $ } from "../../view/getElement.js";
 
 export default class RacingCount {
   constructor(cars) {
@@ -27,17 +27,17 @@ export default class RacingCount {
   }
 
   goNextStep() {
-    racingCountInput.readOnly = true;
-    racingCountSubmitButton.disabled = true;
+    $("racing-count-input").readOnly = true;
+    $("racing-count-submit").disabled = true;
     Game.getResult(this.cars, this.racingCount);
     Game.setResult(this.cars);
   }
 
   addRacingCountInputEnterEvent() {
-    racingCountInput.addEventListener("keyup", e => {
+    $("racing-count-input").addEventListener("keyup", e => {
       if (
         e.keyCode === KEYBOARD_ENTER &&
-        this.makeRacingCount(racingCountInput.value)
+        this.makeRacingCount($("racing-count-input").value)
       ) {
         this.goNextStep();
       }
@@ -45,8 +45,8 @@ export default class RacingCount {
   }
 
   addRacingCountSubmitButtonClickEvent() {
-    racingCountSubmitButton.addEventListener("click", () => {
-      if (this.makeRacingCount(racingCountInput.value)) {
+    $("racing-count-submit").addEventListener("click", () => {
+      if (this.makeRacingCount($("racing-count-input").value)) {
         this.goNextStep();
       }
     });

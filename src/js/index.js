@@ -1,7 +1,7 @@
 import Cars from "./controller/carsName/Cars.js";
 import RacingCount from "./controller/racingCount/RacingCount.js";
 import { makeInitialView } from "./view/viewControl.js";
-import { logo, restartButton } from "./elements.js";
+import { $ } from "./view/getElement.js";
 
 class RacingCar {
   constructor() {
@@ -13,13 +13,13 @@ class RacingCar {
   }
 
   static addLogoClickEvent() {
-    logo.addEventListener("click", () => {
+    $("logo").addEventListener("click", () => {
       makeInitialView();
     });
   }
 
   addRestartEvent() {
-    restartButton.addEventListener("click", () => {
+    $("restart-button").addEventListener("click", () => {
       makeInitialView();
       this.cars.init();
       this.racingCount.init();
