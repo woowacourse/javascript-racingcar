@@ -58,11 +58,11 @@ export default class RacingCarController {
     this.view.enableCarName();
   };
 
-  playGame = () => {
+  playGame = async () => {
     this.model.initPrevResult();
     this.view.renderCarNames(this.model.getCarsName());
-    for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      const stageInfo = this.model.playTurn();
+    for (let i = 0; i < this.model.getRacingCount(); i++) {
+      const stageInfo = await this.model.racePerSecond();
       this.view.renderResult(stageInfo);
     }
     this.endGame();

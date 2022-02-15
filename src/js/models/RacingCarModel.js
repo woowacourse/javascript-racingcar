@@ -73,6 +73,15 @@ export default class RacingCarModel {
     }
   };
 
+  racePerSecond = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const stageInfo = this.playTurn();
+        resolve(stageInfo);
+      }, 1000);
+    });
+  };
+
   pickWinners = () => {
     const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
     return this.cars
