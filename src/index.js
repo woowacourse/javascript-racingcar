@@ -33,14 +33,13 @@ class RacingcarGame {
 
   checkCarName() {
     this.carNames = $(".car-name-input").value.split(",");
-    this.carNames.forEach((name) => {
-      if (name.length > 5) {
-        alert("차 이름은 5자 이하만 가능합니다.");
-        this.isCorrectCarName = false;
-        $(".race-count-wrap").style.visibility = "hidden";
-        return;
-      }
-    });
+    const errorCarName = this.carNames.filter((name) => name.length > 5);
+    if (errorCarName.length > 0 || $(".car-name-input").value == "") {
+      alert("차 이름은 5자 이하만 가능합니다.");
+      this.isCorrectCarName = false;
+      $(".race-count-wrap").style.visibility = "hidden";
+      return;
+    }
     this.isCorrectCarName = true;
     $(".race-count-wrap").style.visibility = "visible";
   }
