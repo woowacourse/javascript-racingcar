@@ -45,9 +45,6 @@ describe("자동차 경주 게임 테스트", () => {
     cy.get(".race-count-input").type("10");
     cy.get(".race-count-button").click();
 
-    // cy.get(".racing-cars").children().eq(0).should("have.text", "car1");
-    // cy.get(".racing-cars").children().eq(1).should("have.text", "car2");
-    // cy.get(".racing-cars").children().eq(2).should("have.text", "car3");
     cy.get(".racing-cars").children().eq(0).contains("car1");
     cy.get(".racing-cars").children().eq(1).contains("car2");
     cy.get(".racing-cars").children().eq(2).contains("car3");
