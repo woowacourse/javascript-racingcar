@@ -1,4 +1,4 @@
-import { isValidRacingCount } from "./checkFunctions.js";
+import { isValidRacingCount } from "./validation.js";
 import Game from "../game/Game.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
