@@ -1,4 +1,3 @@
-import TEMPLATE from '../templates.js';
 import {
   ERROR_MESSAGE,
   SELECTOR,
@@ -9,7 +8,9 @@ import {
 import { $, $all, splitString, trimStringArray } from '../utils.js';
 
 export default class View {
-  constructor() {
+  constructor(template) {
+    this.template = template;
+
     this.$app = $(SELECTOR.$APP);
     this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
@@ -78,11 +79,11 @@ export default class View {
 
   renderRacingResult(carList) {
     $(SELECTOR.$RACING_RESULT).innerHTML =
-      TEMPLATE.RENDER_RACING_RESULT(carList);
+      this.template.getRacingResultHTML(carList);
   }
 
   renderResult(winners) {
-    $(SELECTOR.$RESULT).innerHTML = TEMPLATE.RENDER_RESULT(winners);
+    $(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
   }
 
   isNotValidCarNamesLength(carNameList) {

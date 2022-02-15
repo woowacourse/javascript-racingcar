@@ -1,7 +1,7 @@
-import { DOM_STRING, DELIMETER } from './constants.js';
+import { DOM_STRING, DELIMETER } from '../constants.js';
 
-const TEMPLATE = {
-  RENDER_RACING_RESULT(carList) {
+const templete = {
+  getRacingResultHTML(carList) {
     return `
       <ul id="${DOM_STRING.RESULT_LIST}">
         ${carList
@@ -21,7 +21,7 @@ const TEMPLATE = {
     </ul>
   `;
   },
-  RENDER_RESULT(winners) {
+  getResultHTML(winners) {
     return (
       (winners.length > 0 &&
         `
@@ -35,4 +35,4 @@ const TEMPLATE = {
   },
 };
 
-export default TEMPLATE;
+export default templete;
