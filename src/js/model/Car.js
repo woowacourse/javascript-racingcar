@@ -1,4 +1,5 @@
-import { RANDOM_RANGE, MIN_ADVANCE_VALUE } from "../constants/games.js";
+import { MIN_ADVANCE_VALUE } from "../constants/games.js";
+import { getRandomNumber } from "../utils/getRandomNumber.js";
 
 export default class Car {
   constructor(name) {
@@ -6,13 +7,12 @@ export default class Car {
     this.location = 0;
   }
 
-  goForward() {
-    const { MIN, MAX } = RANDOM_RANGE;
+  validateAdvance() {
+    return getRandomNumber() >= MIN_ADVANCE_VALUE;
+  }
 
-    if (
-      window.MissionUtils.Random.pickNumberInRange(MIN, MAX) >=
-      MIN_ADVANCE_VALUE
-    ) {
+  advance() {
+    if (this.validateAdvance()) {
       this.location += 1;
     }
   }
