@@ -9,61 +9,59 @@ export function headerTemplate() {
 
 export function carNamesTemplate() {
   return `
-    <div>
-      <p style="${style.directive}">${DIRECTIVE.CAR_NAME}</p>
-      <div class="form">
+    <article>
+      <label style="${style.directive}">${DIRECTIVE.CAR_NAME}</label>
+      <form>
         <input id="car-names-input" style="${style.input}"></input>
-        <button id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
-      </div>
-    </div>
-    <div id="racing-count"></div>
-    <div id="game-result"></div>
+        <button id="car-names-submit" type="button" style="${style.button}">${BUTTON.SUBMIT}</button>
+      </form>
+    </article>
+    <article id="racing-count"></article>
+    <article id="game-result"></article>
   `;
 }
 
 export function racingCountTemplate() {
   return `
-    <div>
-      <p style="${style.directive}">${DIRECTIVE.RACING_COUNT}</p>
-      <div class="form">
-        <input type="number" id="racing-count-input" style="${style.input}"></input>
-        <button id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
-      </div>
-    </div>
+    <label style="${style.directive}">${DIRECTIVE.RACING_COUNT}</label>
+    <form>
+      <input type="number" id="racing-count-input" style="${style.input}"></input>
+      <button id="racing-count-submit" type="button" style="${style.button}">${BUTTON.SUBMIT}</button>
+    </form>
   `;
 }
 
 export function carTemplate(car) {
   return `
-    <div style="${style.carContainer}">
-      <div style="${style.carName}"><span>${car.name}</span></div>
-      <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></div>
-    </div>
+    <article style="${style.carContainer}">
+      <section style="${style.carName}"><span>${car.name}</span></section>
+      <section style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></section>
+    </article>
   `;
 }
 
 export function carsTemplate(cars) {
   return `
-    <div style="${style.carsContainer}">
+    <section style="${style.carsContainer}">
       ${cars.map((car) => carTemplate(car)).join('')}
-    </div>
+    </section>
   `;
 }
 
 export function winnersTemplate(winners) {
   return `
-    <div id="winners" style="${style.winner}">
+    <section id="winners" style="${style.winner}">
       ${WINNER.ICON} ${WINNER.TITLE}
       <span>${winners.join(', ')}</span>
       ${WINNER.ICON}
-    </div>
+    </section>
   `;
 }
 
 export function restartTemplate() {
   return `
-    <div style="${style.restartButtonContainer}">
+    <section style="${style.restartButtonContainer}">
       <button id="restart" style="${style.restartButton}">${BUTTON.RESTART}</button>
-    </div>
+    </section>
   `;
 }

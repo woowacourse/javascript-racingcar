@@ -21,6 +21,11 @@ export const style = `
       display: flex;
       justify-content: center;
     }
+
+    form {
+      display: flex;
+      align-items: end;
+    }
     
     #app {
       width: 544px;
@@ -33,11 +38,6 @@ export const style = `
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .form {
-      display: flex;
-      align-items: end;
     }
   </style>
 `;
@@ -52,7 +52,8 @@ export const header = `
 `;
 
 export const directive = `
-  margin: 7px 0 0;
+  display: inline-block;
+  margin-top: 7px;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
