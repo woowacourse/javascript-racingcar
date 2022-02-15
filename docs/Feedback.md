@@ -5,7 +5,7 @@
 
 ### 1️⃣ 상수분리 관련 피드백 
 
-- [ ] **property가 하나인데 객체로 만들 필요가 있는지 의문입니다.**
+- [x] **property가 하나인데 객체로 만들 필요가 있는지 의문입니다.**
 
 ```js
 export const RACING_COUNT = {
@@ -19,7 +19,7 @@ export const RACING_COUNT = {
 <br />
 <br />
 
-- [ ] **상수화가 정말 필요한지 생각해볼 필요가 있는것 같습니다.**
+- [x] **상수화가 정말 필요한지 생각해볼 필요가 있는것 같습니다.**
 
 - 상수화의 장점에 대해 진중하게 생각해보지 못하고 눈에 보이는 상수란 상수는 모두 분리해버린 것 같습니다. 이번 피드백을 통해
 
@@ -31,7 +31,7 @@ export const RACING_COUNT = {
 <br />
 <br />
 
-- [ ] **사실상 상수처럼 사용하기에 대문자가 더 맞지 않을까요?**
+- [x] **사실상 상수처럼 사용하기에 대문자가 더 맞지 않을까요?**
 
 ```js
 export const carNamesInput = document.getElementById("car-names-input");
@@ -39,6 +39,8 @@ export const carNamesInput = document.getElementById("car-names-input");
 
 1. element를 저장하는 변수에도 `CONSTANT_CASE`를 사용하기도 하나요? 이 부분은 잘 모르겠어서 질문드립니다!
 2. 상수파일과 element를 저장하는 변수를 모아둔 파일은 범용적이라고 생각이 들어 utils폴더에 둔 것 같습니다. 위치를 적절하게 옮겨볼게요
+
++ element를 이미 변수에 저장해놓는 방식에서 필요할 때마다 가져오는 방식으로 변경하였습니다.
 
 <br />
 <br />
