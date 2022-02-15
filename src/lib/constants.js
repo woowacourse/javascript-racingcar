@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 String.prototype.toID = function () {
   return `#${this}`;
 };
