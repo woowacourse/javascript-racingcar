@@ -4,11 +4,11 @@ const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max + 1 - min)) + min;
 
 const resetCars = cars => {
-  cars.map(car => car.resetRacingCount());
+  cars.forEach(car => car.resetRacingCount());
 };
 
 const moveCars = (cars, count) => {
-  cars.map(car => {
+  cars.forEach(car => {
     for (let i = 0; i < count; i++) {
       car.move();
     }
