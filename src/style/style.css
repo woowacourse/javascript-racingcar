@@ -40,6 +40,10 @@ button {
     cursor: pointer;
 }
 
+button:hover{
+    background-color: #80DEEA;
+}
+
 button:disabled{
     cursor:default;
     background-color:#D1D1D1;

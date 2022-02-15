@@ -70,4 +70,9 @@ export default class DomUtils {
         return $carProgressStatus;
       });
   }
+
+  static controlNodeDisabled(node, isDisabled) {
+    const element = node;
+    element.disabled = isDisabled;
+  }
 }
