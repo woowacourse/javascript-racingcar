@@ -11,7 +11,7 @@ import RacingCarGameManager from './manage.js';
 import RacingCarGameView from './view.js';
 
 class RacingCarGame {
-  constructor() {
+  start() {
     this.#init();
   }
 
@@ -98,7 +98,7 @@ class RacingCarGame {
     const max = Math.max(...cars.map(({ progress }) => progress));
     const winners = cars.reduce(
       (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
-      []
+      [],
     );
     return winners;
   }
