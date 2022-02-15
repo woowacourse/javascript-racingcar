@@ -20,14 +20,8 @@ export default class RacingGameModel {
     return this._state.carList;
   }
 
-  set carList(array) {
-    const { carList } = this._state;
-    carList.length = 0;
-
-    array.forEach((carName) => {
-      const newCar = new RacingCarInstance(carName);
-      carList.push(newCar);
-    });
+  set carList(nameList) {
+    this._state.carList = nameList.map((name) => new RacingCarInstance(name));
   }
 
   set round(number) {
