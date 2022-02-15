@@ -13,40 +13,70 @@
 
 <body>
   <div id="app">
-    <div class="d-flex justify-content-center mt-5">
-      <div>
-        <section>
-          <h1 class="text-center">🏎️ 자동차 경주 게임🏁</h1>
-          <p>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
-        </section>
-        <section class="mb-5">
+    <h1 class="text-center mb-8">🏎️ 자동차 경주 게임🏁</h1>
+    <section class="mb-8">
+      <form id="racing-game-prepare-form">
+        <fieldset id="car-names-fieldset" class="mb-5">
+          <label class="form-label" for="car-names">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
           <div class="d-flex">
-            <input id="car-names-input" type="text" class="w-100 mr-2" placeholder="ex) east, west, south, north, all" />
-            <button id="car-names-button" type="button" class="btn btn-cyan">확인</button>
+            <input id="car-names-input" class="form-control mr-4" name="car-names" type="text" placeholder="ex) 람보르기니, 부가티, 마이바흐, 롤스로이스, 코닉세그" />
+            <button id="car-names-submit-button" class="btn btn-cyan" type="button">확인</button>
           </div>
-        </section>
-        <section id="racing-count-form" hidden>
-          <p>시도할 횟수를 입력해주세요.</p>
+        </fieldset>
+        <fieldset id="racing-count-fieldset">
+          <label class="form-label" for="racing-count">시도할 횟수를 입력해주세요.</label>
           <div class="d-flex">
-            <input id="racing-count-input" type="number" class="w-100 mr-2" placeholder="시도 횟수" />
-            <button id="racing-count-button" type="button" class="btn btn-cyan">확인</button>
+            <input id="racing-count-input" class="form-control mr-4" name="racing-count" type="number" placeholder="시도 횟수" />
+            <button id="racing-count-submit-button" type="button" class="btn btn-cyan">확인</button>
           </div>
-        </section>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center mt-5">
-      <section class="result-screen d-flex mt-4" hidden>
-      </section>
-    </div>
-    <div class="d-flex justify-content-center mt-5">
-      <section hidden>
-        <h2>🏆 최종 우승자: east, west 🏆</h2>
-        <div class="d-flex justify-content-center">
-          <button id="reset-btn" type="button" class="btn btn-cyan">다시 시작하기</button>
+        </fieldset>
+      </form>
+    </section>
+    <section class="racing-screen mb-4">
+      <div class="car-lane">
+        <label class="car-name">람보르기니</label>
+        <div class="skid-mark">
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
         </div>
-      </section>
-    </div>
-  </div>
+      </div>
+      <div class="car-lane">
+        <label class="car-name">람보르기니</label>
+        <div class="skid-mark">
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+        </div>
+      </div>
+      <div class="car-lane">
+        <label class="car-name">람보르기니</label>
+        <div class="skid-mark">
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+        </div>
+      </div>
+      <div class="car-lane">
+        <label class="car-name">람보르기니</label>
+        <div class="skid-mark">
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+          <div class="forward-icon">️⬇️️</div>
+        </div>
+      </div>
+    </section>
+    <section class="racing-result">
+      <h2 class="text-center">🏆 최종 우승자: <span id="winners"></span> 🏆</h2>
+      <div class="text-center">
+        <button id="restart-btn" type="button" class="btn btn-cyan btn-long">다시 시작하기</button>
+      </div>
+    </section>
+  </section>
   <script type="module" src="./src/js/index.js"></script>
 </body>
 
