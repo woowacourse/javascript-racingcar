@@ -19,8 +19,4 @@ export const EXCEPTIONS = {
   INCORRECT_RACING_COUNT: `${RACING_COUNT.MIN} 이상의 정수로 입력해주세요.`,
 };
 
-export const KEYBOARD = {
-  ENTER: 13,
-};
-
 export const SEPARATOR = ",";
