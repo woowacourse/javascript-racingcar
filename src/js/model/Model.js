@@ -13,6 +13,8 @@ export default class Model {
   }
 
   startRace(racingCount, callback) {
+    this.initRace();
+
     for (let i = 0; i < racingCount; i += 1) {
       this.carList.forEach((car) => car.race());
 
@@ -41,5 +43,9 @@ export default class Model {
 
   insertCarList(carNameList) {
     this.carList = carNameList.map((name) => new Car(name));
+  }
+
+  initRace() {
+    this.carList.forEach((car) => car.initDistance());
   }
 }
