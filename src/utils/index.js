@@ -11,11 +11,11 @@ const validateRacingCount = count => count >= MIN_RACING_COUNT;
 const generateRandomNumber = () => Math.floor(Math.random() * MAX_RANDOM_NUMBER);
 
 const moveCars = (cars, count) => {
-  cars.map(car => {
+  cars.forEach(car=>{
     for (let i = 0; i < count; i++) {
       car.move();
     }
-  });
+  })
 };
 
 const getMaxCount = cars => {
