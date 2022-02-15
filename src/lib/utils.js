@@ -20,3 +20,7 @@ export const generateId = (idSet) => {
 };
 
 export const findElement = (surfix, selector) => document.querySelector(`${surfix}${selector}`);
+
+String.prototype.toID = function () {
+  return `#${this}`;
+};

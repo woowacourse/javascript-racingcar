@@ -1,26 +1,26 @@
 export const DOM = Object.freeze({
-  CAR_NAME_INPUT_FIELD_ID: 'car-name-input-field',
-  COUNT_INPUT_FIELD_ID: 'count-input-field',
+  CAR_NAME_INPUT_FIELD: 'car-name-input-field',
+  COUNT_INPUT_FIELD: 'count-input-field',
 
-  CAR_NAME_BTN_ID: 'car-name-btn',
-  COUNT_BTN_ID: 'count-btn',
+  CAR_NAME_BTN: 'car-name-btn',
+  COUNT_BTN: 'count-btn',
 
-  CAR_NAME_INPUT_ID: 'car-name-input',
-  COUNT_INPUT_ID: 'count-input',
+  CAR_NAME_INPUT: 'car-name-input',
+  COUNT_INPUT: 'count-input',
 
-  RESTART_BTN_ID: 'restart-btn',
+  RESTART_BTN: 'restart-btn',
 
-  COUNT_INPUT_FORM_ID: 'count-input-form',
-  RESULT_FIELD_ID: 'result-field',
-  GAME_PROGRESS_ID: 'game-progress',
-  WINNERS_ID: 'winners',
+  COUNT_INPUT_FORM: 'count-input-form',
+  RESULT_FIELD: 'result-field',
+  GAME_PROGRESS: 'game-progress',
+  WINNERS: 'winners',
 
-  CAR_PROGRESS_CLASS: 'car-progress',
-  CAR_NAME_CLASS: 'car-name',
-  STEP_CLASS: 'step',
+  CAR_PROGRESS: 'car-progress',
+  CAR_NAME: 'car-name',
+  STEP: 'step',
 
-  WINNER_CONTAINER_ID: 'winner-container',
-  WINNER_NAME_ID: 'winner-name',
+  WINNER_CONTAINER: 'winner-container',
+  WINNER_NAME: 'winner-name',
 
   INPUT_FIELD: 'input-field',
 });
