@@ -5,6 +5,7 @@
     <title>🏎️ 자동차 경주 게임🏁</title>
     <link rel="stylesheet" href="src/styles/index.css" />
     <link rel="stylesheet" href="src/styles/spinner.css" />
+    <link rel="stylesheet" href="src/styles/shared.css" />
   </head>
   <body>
     <div id="app">
@@ -18,17 +19,17 @@
           <button id="car-name-input-button">확인</button>
         </div>
       </form>
-      <form id="racing-input-form" class="input-container">
+      <form id="racing-input-form" class="input-container display-none">
         <label class="input-label">시도할 횟수를 입력해주세요.</label>
         <div class="flex">
           <input id="racing-number-input" type="number" />
           <button id="racing-number-input-button">확인</button>
         </div>
       </form>
-      <div id="racing-container">
+      <div id="racing-container" class="display-none">
         <div id="racing-cars" class="flex"></div>
         <h2 id="racing-winner"></h2>
-        <button id="restart-button">다시 시작하기</button>
+        <button id="restart-button" class="display-none">다시 시작하기</button>
       </div>
     </div>
     <script type="module" src="./src/index.js"></script>

@@ -38,22 +38,26 @@ export function removeWinners() {
 
 export function renderRacingInputForm() {
   const racingInputForm = document.getElementById("racing-input-form");
-  racingInputForm.style.display = "flex";
+  racingInputForm.classList.remove("display-none");
+  racingInputForm.classList.add("flex");
 }
 
 export function disapearRacingInputForm() {
   const racingInputForm = document.getElementById("racing-input-form");
-  racingInputForm.style.display = "none";
+  racingInputForm.classList.remove("flex");
+  racingInputForm.classList.add("display-none");
 }
 
 export function renderRacingContainer() {
   const racingContainer = document.getElementById("racing-container");
-  racingContainer.style.display = "flex";
+  racingContainer.classList.remove("display-none");
+  racingContainer.classList.add("flex");
 }
 
 export function disapearRacingContainer() {
   const racingContainer = document.getElementById("racing-container");
-  racingContainer.style.display = "none";
+  racingContainer.classList.remove("flex");
+  racingContainer.classList.add("display-none");
 }
 
 export function changeDisableUserInputs() {
