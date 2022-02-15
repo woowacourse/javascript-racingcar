@@ -1,0 +1,141 @@
+:root {
+  --color-primary: #00bcd4;
+  --color-lighten: #80deea;
+  --color-placeholder: #8b8b8b;
+  --color-border: #b4b4b4;
+  --color-car-name: #f5f5f5;
+  --color-dimmed: rgba(0, 0, 0, 0.5);
+  --color-button-text: white;
+}
+
+* {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.display-none {
+  display: none !important;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+#app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  font-size: 34px;
+  margin: 36px 16px 32px;
+}
+
+.input-section {
+  margin-bottom: 32px;
+}
+
+.input-section__description {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.input-section__input {
+  border-radius: 4px;
+  border: 1px solid gray;
+  width: 360px;
+  height: 36px;
+  color: var(--color-placeholder);
+  outline: 0;
+  font-size: 15px;
+  padding: 8px 8px 4px;
+  margin-right: 16px;
+  border-color: var(--color-border);
+}
+
+.input1 {
+  margin-bottom: 12px;
+}
+
+.input-section__button {
+  width: 66px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+  color: var(--color-button-text);
+  border: 0;
+}
+
+.input-section__form {
+  display: flex;
+  align-items: flex-start;
+}
+
+.step-sections-wrap {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.step-sections {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto 24px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.step-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 96px;
+  margin: 0 4px;
+}
+
+.step-section__name {
+  display: inline-block;
+  width: 96px;
+  height: 36px;
+  line-height: 36px;
+  background-color: var(--color-car-name);
+  text-align: center;
+  border-radius: 4px;
+}
+
+.step-section__arrow {
+  font-size: 32px;
+  line-height: 38px;
+  margin-top: 8px;
+}
+
+#winner {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+#reset-button {
+  width: 152px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 4px;
+  border: 0;
+  background-color: var(--color-primary);
+  color: var(--color-button-text);
+  font-size: 14px;
+  font-weight: 700;
+}

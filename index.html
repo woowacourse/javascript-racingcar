@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="kr">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-</head>
-
-<body>
-  <div id="app">
-  </div>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>🏎️ 자동차 경주 게임</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@woowacourse/mission-utils@1.0.1/dist/mission-utils.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1 id="title">🏎️ 자동차 경주 게임🏁</h1>
+      <section class="input-section">
+        <section>
+          <p class="input-section__description">
+            5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.
+          </p>
+          <form class="input-section__form">
+            <input
+              type="text"
+              placeholder="east, west, south, north, all"
+              class="input-section__input input1 input-section__name-input"
+            />
+            <button class="input-section__button input-section__name-button">확인</button>
+          </form>
+        </section>
+        <section id="count-submit-container">
+          <p class="input-section__description">시도할 횟수를 입력해주세요.</p>
+          <form class="input-section__form">
+            <input
+              type="number"
+              placeholder="10"
+              class="input-section__input input-section__count-input"
+            />
+            <button class="input-section__button input-section__count-button">확인</button>
+          </form>
+        </section>
+      </section>
+      <section class="step-sections-wrap">
+        <section class="step-sections"></section>
+      </section>
+      <p id="winner"></p>
+      <button id="reset-button">다시 시작하기</button>
+    </div>
+    <script src="./src/index.js" type="module"></script>
+  </body>
 </html>
