@@ -16,14 +16,6 @@ export default class Cars {
     this.cars = [];
   }
 
-  getCars() {
-    return this.cars;
-  }
-
-  setCars(cars) {
-    this.cars = cars;
-  }
-
   sortCars() {
     this.cars.sort((left, right) => right.location - left.location);
   }
