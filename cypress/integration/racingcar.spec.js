@@ -1,4 +1,4 @@
-import { MESSAGE, ID } from '../../../src/constants';
+import { MESSAGE, ID } from '../../src/constants.js';
 
 const checkAlertMessage = message => {
   cy.on('window:alert', str => {

@@ -22,4 +22,13 @@ const MESSAGE = {
   WRONG_COUNT: '올바르지 않은 레이싱 횟수입니다',
 };
 
-export { ID, MESSAGE };
+const NAME_LENGTH = {
+  MIN: 1,
+  MAX: 5
+}
+
+const MIN_RACING_COUNT = 1;
+
+const MAX_RANDOM_NUMBER = 10;
+
+export { ID, MESSAGE, NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER };
