@@ -1,14 +1,61 @@
 <!DOCTYPE html>
 <html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏎️ 자동차 경주 게임</title>
+    <!-- <link rel="stylesheet" href="src/css/reset.css"/> -->
+    <link type="text/css" rel="stylesheet" href="./src/css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>🏎️ 자동차 경주 게임</title>
-</head>
+  <body>
+    <div id="app">
+      <div class="game-board">
+        <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
-<body>
-  <div id="app">
-  </div>
-</body>
+        <div class="game-input">
+          <div class="car-name-wrap">
+            <form class="car-name-form">
+              <div class="car-name-input-wrap">
+                <label for="car-name" class="car-name-label"
+                  >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
+                >
+                <input
+                  type="text"
+                  name="car-name"
+                  class="car-name-input"
+                  placeholder="east, west, north, all"
+                />
+              </div>
+              <input type="submit" class="car-name-button" value="확인" />
+            </form>
+          </div>
 
+          <div class="race-count-wrap">
+            <form class="race-count-form">
+              <div class="race-count-input-wrap">
+                <label for="race-count" class="race-count-label"
+                  >시도할 횟수를 입력해주세요.</label
+                >
+                <input
+                  type="number"
+                  name="race-count"
+                  class="race-count-input"
+                  placeholder="10"
+                />
+              </div>
+              <input type="submit" class="race-count-button" value="확인" />
+            </form>
+          </div>
+        </div>
+
+        <div class="racing-result-wrap">
+          <div class="racing-cars"></div>
+          <div class="racing-arrow"></div>
+        </div>
+        <div class="racing-result"></div>
+      </div>
+    </div>
+    <script type="module" src="./src/index.js"></script>
+  </body>
 </html>
