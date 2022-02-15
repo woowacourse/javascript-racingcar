@@ -1,26 +1,23 @@
+import { RULES } from '../constants/index.js';
+
 export const convertToNumber = (value) => parseInt(value, 10);
 
 export const isNotNaturalNumber = (number) => {
   return number < 1 || Math.floor(number) !== number;
 };
 
+export const isEmpty = (value) => {
+  return value === '';
+};
+
+export const isExceedLength = (value) => {
+  return value.length > RULES.MAX_CAR_NAME_LENGTH;
+};
+
+export const isNotNumberType = (value) => {
+  return typeof value !== 'number';
+};
+
 export const generateRandomNumber = () => Math.floor(Math.random() * 10);
 
-export const waitGame = (miliSecond) => new Promise((resolve) => setTimeout(resolve, miliSecond));
-
-export const resetInputElementValue = (inputElement) => {
-  inputElement.value = '';
-};
-
-export const resetElementInnerText = (element) => {
-  element.innerText = '';
-};
-
-export const modifyElementDisplayStyle = (element, value) => {
-  element.style.display = value;
-};
-
-export const handleError = (message, element) => {
-  alert(message);
-  resetInputElementValue(element);
-};
+export const delay = (miliSecond) => new Promise((resolve) => setTimeout(resolve, miliSecond));

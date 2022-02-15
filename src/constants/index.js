@@ -32,5 +32,4 @@ export const RULES = Object.freeze({
   WINNER_LIST_SEPERATOR: ', ',
   WAITING_TIME: 1000,
   MOVE_CONDITION_NUMBER: 4,
-  EMPTY_STRING: '',
 });
