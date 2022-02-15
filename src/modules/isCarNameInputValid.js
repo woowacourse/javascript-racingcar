@@ -1,7 +1,8 @@
+import { CARNAME_LENGTH_LIMIT } from "../constants/constants.js";
 import { OVER_CARNAME_LENGTH_ERROR } from "../constants/error.js";
 import isUserInputEmpty from "./isUserInputEmpty.js";
 import { $ } from "../dom/dom.js";
-import { CARNAME_LENGTH_LIMIT } from "../constants/constants.js";
+
 
 function checkCarNameLength(carNameArray){
     if(carNameArray.filter(carName => carName.length > CARNAME_LENGTH_LIMIT).length){

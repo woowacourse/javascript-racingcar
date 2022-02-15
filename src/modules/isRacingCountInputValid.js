@@ -1,7 +1,7 @@
 import { NOT_INTEGER_TYPE_ERROR, OVER_COUNT_RANGE_ERROR } from "../constants/error.js";
+import { MAXIMUM_RACE_COUNT, MINMUM_RACE_COUNT } from "../constants/constants.js";
 import isUserInputEmpty from "./isUserInputEmpty.js";
 import { $ } from "../dom/dom.js";
-import { MAXIMUM_RACE_COUNT, MINMUM_RACE_COUNT } from "../constants/constants.js";
 
 function isRacingCountInteger(raceCountInput){
     if(!Number.isInteger(raceCountInput)){

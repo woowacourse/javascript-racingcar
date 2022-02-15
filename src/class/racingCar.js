@@ -1,6 +1,7 @@
+import { FORWARD_MARK_NUMBER } from "../constants/constants.js";
 import Car from "./car.js";
 import generateRandomNumber from "../modules/generateRandomNumber.js";
-import { FORWARD_MARK_NUMBER } from "../constants/constants.js";
+
 export default class RacingCar {
     constructor() {
         this.raceCount = 0;

@@ -1,8 +1,11 @@
-import RacingCar from "../class/racingCar.js";
 import { $ } from "../dom/dom.js";
+
+import RacingCar from "../class/racingCar.js";
+import RacingCarView from "../views/racingCarView.js";
+
 import isCarNameInputValid from "./isCarNameInputValid.js";
 import isRacingCountInputValid from "./isRacingCountInputValid.js";
-import RacingCarView from "../views/racingCarView.js";
+
 
 export default function racingCarGame() {
     this.racingGameInfo = {
