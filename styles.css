@@ -86,7 +86,7 @@ button {
     border-radius: 4px;
 }
 
-.move {
+.move, .spinner {
     text-align: center;
     margin: 0.3em;
     background-color: inherit;
@@ -105,6 +105,21 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.spinner {
+    border: 5px solid #00BCD4 ;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1.2s linear infinite;
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg);}
 }
 
 .hidden{

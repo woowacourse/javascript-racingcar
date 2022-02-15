@@ -27,6 +27,8 @@ const generateWinnersView = winners =>
     .map(({ name }) => name)
     .join(',')}🏆</h3>`;
 
+const spinnerView = '<div class="spinner"></div>';
+
 export default class View {
   constructor() {
     this.$carNamesInput = getElement(ID.CAR_NAMES_INPUT);
