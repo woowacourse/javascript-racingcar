@@ -31,9 +31,7 @@ export default class RacingCarController {
     this.view.$restart.addEventListener('click', this.handleRestart.bind(this));
   }
 
-  handleCarNames(event) {
-    event.preventDefault();
-
+  handleCarNames() {
     const carNamesInput = this.view.$carNamesInput.value.split(',');
     const carNames = carNamesInput.map((name) => name.trim());
 
@@ -49,9 +47,7 @@ export default class RacingCarController {
     }
   }
 
-  handleRacingCount(event) {
-    event.preventDefault();
-
+  handleRacingCount() {
     const racingCount = Number(this.view.$racingCountInput.value);
 
     if (isValidRacingCount(racingCount)) {
