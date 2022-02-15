@@ -99,17 +99,8 @@ class RacingcarGame {
   }
 
   findWinner() {
-    let winner = [];
-    let winnerCount = 0;
-    this.carList.forEach((car) => {
-      if (winnerCount < car.count) {
-        winnerCount = car.count;
-        winner = [];
-      }
-      if (winnerCount === car.count) {
-        winner.push(car.carName);
-      }
-    });
+    let winnerCount = Math.max(this.carList);
+    let winner = this.carList.filter((car) => car.count == winnerCount);
     return winner.join(", ");
   }
 
