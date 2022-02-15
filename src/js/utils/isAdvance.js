@@ -1,5 +1,7 @@
+import NUMBERS from '../constants/number';
+
 const isAdvance = () => {
-  return generateRandomNumber(9) >= 4;
+  return generateRandomNumber(NUMBERS.ENTIRE_NUMBER) >= NUMBERS.MOVABLE_NUMBER;
 };
 
 function generateRandomNumber(maxNumber) {
