@@ -1,6 +1,5 @@
 import { SELECTOR } from '../constants.js';
 import { $, $all } from '../utils/utils.js';
-// import template from '../templates.js';
 
 export default class View {
   constructor() {
@@ -9,16 +8,16 @@ export default class View {
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
     this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
     this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
-    this.$result = $(SELECTOR.$RESULT);
     this.$racingResult = $(SELECTOR.$RACING_RESULT);
-  }
-
-  get result() {
-    return this.$result;
+    this.$racingProgress = $(SELECTOR.$RACING_PROGRESS);
   }
 
   get racingResult() {
     return this.$racingResult;
+  }
+
+  get racingProgress() {
+    return this.$racingProgress;
   }
 
   get carNameInput() {

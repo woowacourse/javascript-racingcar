@@ -67,8 +67,8 @@ export default class RacingCarGame {
     this.model.carList = carNameList.map((name) => new Car(name));
     this.view.racingCountInputVisibiled();
     this.view.render(
-      this.view.racingResult,
-      template.renderRacingResult(this.model.carList)
+      this.view.racingProgress,
+      template.renderRacingProgress(this.model.carList)
     );
   }
 
@@ -84,8 +84,8 @@ export default class RacingCarGame {
     for (let i = 0; i < racingCount; i += 1) {
       this.model.carList.forEach((car) => car.race());
       this.view.render(
-        this.view.racingResult,
-        template.renderRacingResult(this.model.carList)
+        this.view.racingProgress,
+        template.renderRacingProgress(this.model.carList)
       );
     }
   }
@@ -102,8 +102,8 @@ export default class RacingCarGame {
 
     this.startRace(racingCount);
     this.view.render(
-      this.view.result,
-      template.renderResult(this.model.winners)
+      this.view.racingResult,
+      template.renderRacingResult(this.model.winners)
     );
   }
 
@@ -116,7 +116,7 @@ export default class RacingCarGame {
     this.model.carList = [];
     this.model.winners = [];
 
+    this.view.render(this.view.racingProgress, '');
     this.view.render(this.view.racingResult, '');
-    this.view.render(this.view.result, '');
   }
 }
