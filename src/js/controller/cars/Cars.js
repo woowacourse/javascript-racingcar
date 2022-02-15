@@ -1,7 +1,7 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
-import { SEPARATOR, EXCEPTIONS, KEYBOARD } from "../../util/constants.js";
+import { SEPARATOR, EXCEPTIONS } from "../../util/constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
 
 export default class Cars {
@@ -21,10 +21,6 @@ export default class Cars {
 
   setCars(cars) {
     this.list = cars;
-  }
-
-  sortCars() {
-    this.list.sort((left, right) => right.location - left.location);
   }
 
   trimCars(carNameArr) {
@@ -56,7 +52,7 @@ export default class Cars {
 
   addCarNameInputEnterEvent() {
     carNamesInput.addEventListener("keyup", e => {
-      if (e.keyCode === KEYBOARD.ENTER && this.makeCars(carNamesInput.value)) {
+      if (e.key === "Enter" && this.makeCars(carNamesInput.value)) {
         Cars.goNextStep();
       }
     });
