@@ -1,9 +1,9 @@
-import { CAR, COUNT, RANDOM } from './common/constants.js';
+import { CAR, COUNT_DEFAULT, RANDOM } from './common/constants.js';
 
 export default class Car {
   constructor(name) {
     this.name = name;
-    this.moveCount = COUNT.DEFAULT;
+    this.moveCount = COUNT_DEFAULT;
   }
 
   moveForward() {

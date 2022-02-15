@@ -10,9 +10,7 @@ export const CAR = {
   MOVE_FORWARD_ARROW: '⬇️️',
 };
 
-export const COUNT = {
-  DEFAULT: 0,
-};
+export const COUNT_DEFAULT = 0;
 
 export const DIRECTIVE = {
   CAR_NAME: '5자 이하의 자동차 이름을 콤마로 구분하여 입력해 주세요.',

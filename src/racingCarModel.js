@@ -1,15 +1,15 @@
 import Car from './car.js';
-import { COUNT } from './common/constants.js';
+import { COUNT_DEFAULT } from './common/constants.js';
 
 export default class RacingCarModel {
   constructor() {
     this.cars = [];
-    this.racingCount = COUNT.DEFAULT;
+    this.racingCount = COUNT_DEFAULT;
   }
 
   init() {
     this.cars = [];
-    this.racingCount = COUNT.DEFAULT;
+    this.racingCount = COUNT_DEFAULT;
   }
 
   setCars(carNames) {
