@@ -101,7 +101,7 @@ form {
   margin-right: 52.32px;
 }
 
-#racing-result {
+#racing-progress {
   margin: 32px 16px 0 16px;
 }
 
@@ -150,7 +150,7 @@ form {
   line-height: 38px;
 }
 
-#result {
+#racing-result {
   display: flex;
   flex-direction: column;
   align-items: center;
