@@ -1,16 +1,16 @@
-import {
-  ERROR_MESSAGE,
-  RACING_COUNT_RANGE,
-  CAR_NAME_LENGTH_RANGE,
-  DELIMETER,
-} from '../configs/constants.js';
+import { ERROR_MESSAGE, DELIMETER } from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
 import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
+import validator from '../utils/validator.js';
 
 export default class View {
   constructor(template) {
     this.template = template;
 
+    this.cacheDOMElements();
+  }
+
+  cacheDOMElements() {
     this.$app = $(SELECTOR.$APP);
     this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
@@ -37,12 +37,7 @@ export default class View {
         splitString(this.$carNameInput.value, DELIMETER)
       );
 
-      if (
-        this.validateCarNameList(carNameList) ||
-        this.validateUniqueCarName(carNameList)
-      ) {
-        return;
-      }
+      if (!this.validateCarNameList(carNameList)) return;
 
       callback(carNameList);
     });
@@ -52,12 +47,7 @@ export default class View {
     this.bindEventListener('click', SELECTOR.$RACING_COUNT_BUTTON, () => {
       const racingCount = this.$racingCountInput.valueAsNumber;
 
-      if (
-        this.validateRacingCount(racingCount)
-        // this.validateCarListFound(carList)
-      ) {
-        return;
-      }
+      if (!this.validateRacingCount(racingCount)) return;
 
       callback(racingCount);
     });
@@ -74,7 +64,8 @@ export default class View {
   }
 
   renderRacingCountButton(carList) {
-    $(SELECTOR.$RACING_COUNT_BUTTON).disabled = this.isCarListNotFound(carList);
+    $(SELECTOR.$RACING_COUNT_BUTTON).disabled =
+      validator.isCarListNotFound(carList);
   }
 
   renderRacingResult(carList) {
@@ -86,65 +77,37 @@ export default class View {
     $(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
   }
 
-  isNotValidCarNamesLength(carNameList) {
-    return !carNameList.every(
-      (name) =>
-        name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
-        name.length <= CAR_NAME_LENGTH_RANGE.MAX
-    );
-  }
-
-  isDuplicatedCarName(carNameList) {
-    return carNameList.length !== new Set(carNameList).size;
-  }
-
-  isNotValidRacingCount(racingCount) {
-    return (
-      !Number.isInteger(racingCount) ||
-      racingCount <= RACING_COUNT_RANGE.MIN ||
-      racingCount > RACING_COUNT_RANGE.MAX
-    );
-  }
-
-  isCarListNotFound(carList) {
-    return !carList.length;
-  }
-
-  validateCarNameList(carNameList) {
-    if (this.isNotValidCarNamesLength(carNameList)) {
-      alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
-      this.initializeInput(this.$carNameInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateUniqueCarName(carNameList) {
-    if (this.isDuplicatedCarName(carNameList)) {
-      alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
-      this.initializeInput(this.$carNameInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateRacingCount(racingCount) {
-    if (this.isNotValidRacingCount(racingCount)) {
-      alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
-      this.initializeInput(this.$racingCountInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
   initializeInput(clearElement, focusElement = clearElement) {
     clearElement.value = '';
     focusElement.focus();
+  }
+
+  validateCarNameList(carNameList) {
+    if (validator.isNotValidCarNamesLength(carNameList)) {
+      alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
+      this.initializeInput(this.$carNameInput);
+
+      return false;
+    }
+
+    if (validator.isDuplicatedCarName(carNameList)) {
+      alert(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
+      this.initializeInput(this.$carNameInput);
+
+      return false;
+    }
+
+    return true;
+  }
+
+  validateRacingCount(racingCount) {
+    if (validator.isNotValidRacingCount(racingCount)) {
+      alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
+      this.initializeInput(this.$racingCountInput);
+
+      return false;
+    }
+
+    return true;
   }
 }

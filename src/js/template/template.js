@@ -1,7 +1,7 @@
 import { DOM_STRING } from '../configs/dom.js';
 import { DELIMETER } from '../configs/constants.js';
 
-const templete = {
+const template = {
   getRacingResultHTML(carList) {
     return `
       <ul id="${DOM_STRING.RESULT_LIST}">
@@ -36,4 +36,4 @@ const templete = {
   },
 };
 
-export default templete;
+export default template;

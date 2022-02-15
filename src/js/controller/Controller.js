@@ -33,6 +33,7 @@ export default class Controller {
 
   restart() {
     this.model.restart(({ carList, winners }) => {
+      this.view.renderRacingCountButton(carList);
       this.view.renderRacingResult(carList);
       this.view.renderResult(winners);
     });

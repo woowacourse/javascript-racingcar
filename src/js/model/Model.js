@@ -6,7 +6,8 @@ export default class Model {
   }
 
   createCarList(carNameList, callback) {
-    this.carList = carNameList.map((name) => new Car(name));
+    this.removeCarList();
+    this.insertCarList(carNameList);
 
     callback(this.carList);
   }
@@ -29,8 +30,16 @@ export default class Model {
   }
 
   restart(callback) {
-    this.carList = [];
+    this.removeCarList();
 
     callback({ carList: this.carList, winners: [] });
+  }
+
+  removeCarList() {
+    this.carList = [];
+  }
+
+  insertCarList(carNameList) {
+    this.carList = carNameList.map((name) => new Car(name));
   }
 }
