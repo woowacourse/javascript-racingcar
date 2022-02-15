@@ -82,6 +82,14 @@ export default class RacingCarModel {
     });
   };
 
+  getCongratulationMessage = (winners) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(`🏆축하합니다! ${winners}님이 우승하셨습니다!`);
+      }, 2000);
+    });
+  };
+
   pickWinners = () => {
     const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
     return this.cars

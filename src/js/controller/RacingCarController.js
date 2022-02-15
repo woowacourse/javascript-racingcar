@@ -68,10 +68,12 @@ export default class RacingCarController {
     this.endGame();
   };
 
-  endGame = () => {
+  endGame = async () => {
     const winners = this.model.pickWinners();
     this.view.removeSpinners();
     this.view.renderWinners(winners);
     this.view.renderReplayButton();
+    const winnerMessage = await this.model.getCongratulationMessage(winners);
+    this.view.alertCongratulationMessage(winnerMessage);
   };
 }

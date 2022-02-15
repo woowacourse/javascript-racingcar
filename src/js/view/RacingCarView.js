@@ -73,6 +73,10 @@ export default class RacingCarView {
     this.$racingCountInput.value = "";
   };
 
+  alertCongratulationMessage = (winnerMessage) => {
+    alert(winnerMessage);
+  };
+
   disableElement = (...args) => {
     args.forEach((arg) => (arg.disabled = true));
   };
