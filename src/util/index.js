@@ -20,7 +20,6 @@ export const modifyElementDisplayStyle = (element, value) => {
   element.style.display = value;
 };
 
-export const handleError = (message, element) => {
+export const handleError = (message) => {
   alert(message);
-  resetInputElementValue(element);
 };

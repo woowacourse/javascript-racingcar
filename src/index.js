@@ -4,51 +4,26 @@ import {
   generateRandomNumber,
   isNotNaturalNumber,
   waitGame,
-  resetInputElementValue,
-  modifyElementDisplayStyle,
-  resetElementInnerText,
   handleError,
 } from './util/index.js';
-import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template/index.js';
 import Car from './model/Car.js';
+import RacingCarGameView from './view/RacingCarGameView.js';
 
-class RacingCar {
+class RacingCarGame {
   constructor() {
-    this.init();
+    this.view = new RacingCarGameView();
+    this.setEventHandler();
     this.racingCarList = [];
     this.racingCount = 0;
   }
 
-  init() {
-    this.initDOM();
-    this.initEventListener();
+  setEventHandler() {
+    this.view.setCarNameFormEventHandler(this.handleCarNameFormSubmitEvent.bind(this));
+    this.view.setRacingCountFormEventHandler(this.handleRacingCountFormSubmitEvent.bind(this));
+    this.view.setRestartBtnEventHandler(this.handleRestartBtnClickEvent.bind(this));
   }
 
-  initDOM() {
-    this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
-    this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
-    this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
-    this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
-    this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
-    this.$finalWinnerResult = document.getElementById(ID.FINAL_WINNER_RESULT);
-    this.$finalWinner = document.getElementById(ID.FINAL_WINNER);
-    this.$restartSection = document.getElementById(ID.RESTART_SECTION);
-    this.$restartBtn = document.getElementById(ID.RESTART_BTN);
-  }
-
-  initEventListener() {
-    this.$carNamesForm.addEventListener('submit', this.handleCarNameFormSubmitEvent.bind(this));
-    this.$racingCountForm.addEventListener(
-      'submit',
-      this.handleRacingCountFormSubmitEvent.bind(this)
-    );
-    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent.bind(this));
-  }
-
-  handleCarNameFormSubmitEvent(e) {
-    e.preventDefault();
-    const carNames = this.$carNamesInput.value;
-
+  handleCarNameFormSubmitEvent(carNames) {
     if (this.isNotValidCarNames(carNames)) {
       return;
     }
@@ -56,34 +31,31 @@ class RacingCar {
     const carNamesArray = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
     this.racingCarList = carNamesArray.map((carName) => new Car(carName));
-    modifyElementDisplayStyle(this.$racingCountForm, 'block');
+    this.view.showRacingCountForm();
   }
 
   isNotValidCarNames(carNames) {
     if (carNames === RULES.EMPTY_STRING) {
-      handleError(ERROR_MESSAGES.EMPTY_CAR_NAME, this.$carNamesInput);
+      handleError(ERROR_MESSAGES.EMPTY_CAR_NAME);
       return true;
     }
 
     const carNamesArray = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
     if (carNamesArray.some((carName) => carName.length > RULES.MAX_CAR_NAME_LENGTH)) {
-      handleError(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH, this.$carNamesInput);
+      handleError(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
       return true;
     }
 
     if (carNamesArray.some((carName) => carName.length === RULES.ZERO_CAR_NAME_LENGTH)) {
-      handleError(ERROR_MESSAGES.BLANK_CAR_NAME, this.$carNamesInput);
+      handleError(ERROR_MESSAGES.BLANK_CAR_NAME);
       return true;
     }
 
     return false;
   }
 
-  handleRacingCountFormSubmitEvent(e) {
-    e.preventDefault();
-    const racingCount = this.$racingCountInput.value;
-
+  handleRacingCountFormSubmitEvent(racingCount) {
     if (this.isNotValidRacingCount(racingCount)) {
       return;
     }
@@ -95,29 +67,29 @@ class RacingCar {
 
   isNotValidRacingCount(racingCount) {
     if (racingCount === RULES.EMPTY_STRING) {
-      handleError(ERROR_MESSAGES.BLANK_RACING_COUNT, this.$racingCountInput);
+      handleError(ERROR_MESSAGES.BLANK_RACING_COUNT);
       return true;
     }
 
     const racingCountNumber = convertToNumber(racingCount);
 
     if (typeof racingCountNumber !== 'number') {
-      handleError(ERROR_MESSAGES.NOT_NUMBER_TYPE, this.$racingCountInput);
+      handleError(ERROR_MESSAGES.NOT_NUMBER_TYPE);
       return true;
     }
 
     if (isNotNaturalNumber(racingCountNumber)) {
-      handleError(ERROR_MESSAGES.NOT_NATURAL_NUMBER, this.$racingCountInput);
+      handleError(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
       return true;
     }
 
     return false;
   }
 
-  handleRestartBtnClickEvent(e) {
+  handleRestartBtnClickEvent() {
     this.resetGameStatus();
-    this.resetElement();
-    this.modifyStyle();
+    this.view.resetElements();
+    this.view.hideElements();
   }
 
   resetGameStatus() {
@@ -125,32 +97,9 @@ class RacingCar {
     this.racingCount = 0;
   }
 
-  resetElement() {
-    resetInputElementValue(this.$carNamesInput);
-    resetInputElementValue(this.$racingCountInput);
-    resetElementInnerText(this.$racingCarList);
-    resetElementInnerText(this.$finalWinnerResult);
-  }
-
-  modifyStyle() {
-    modifyElementDisplayStyle(this.$racingCountForm, 'none');
-    modifyElementDisplayStyle(this.$finalWinner, 'none');
-    modifyElementDisplayStyle(this.$restartSection, 'none');
-  }
-
   play() {
-    this.renderRacingCarList();
-    this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
+    this.view.renderRacingCarList(this.racingCarList);
     this.startRacingGame();
-  }
-
-  renderRacingCarList() {
-    const racingCarItemsTemplate = this.racingCarList.reduce(
-      (previousTemplate, car) => previousTemplate + getRacingCarItemTemplate(car.getName()),
-      ''
-    );
-
-    this.$racingCarList.innerHTML = racingCarItemsTemplate;
   }
 
   async startRacingGame() {
@@ -160,7 +109,7 @@ class RacingCar {
     }
 
     this.handleGameResult();
-    this.showRestartSection();
+    this.view.showRestartSection();
   }
 
   runOneCycleGame() {
@@ -169,18 +118,14 @@ class RacingCar {
 
       if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
         car.moveForward();
-        this.renderRacingCarProgress(index);
+        this.view.renderRacingCarProgress(index);
       }
     });
   }
 
-  renderRacingCarProgress(index) {
-    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', PROGRESS_TEMPLATE);
-  }
-
   handleGameResult() {
     const finalWinner = this.getFinalWinner();
-    this.renderFinalWinner(finalWinner);
+    this.view.renderFinalWinner(finalWinner);
   }
 
   getFinalWinner() {
@@ -201,15 +146,6 @@ class RacingCar {
       .filter((car) => car.getDistance() === maxDistance)
       .map((car) => car.getName());
   }
-
-  renderFinalWinner(finalWinner) {
-    this.$finalWinnerResult.innerText = finalWinner;
-    modifyElementDisplayStyle(this.$finalWinner, 'block');
-  }
-
-  showRestartSection() {
-    modifyElementDisplayStyle(this.$restartSection, 'block');
-  }
 }
 
-new RacingCar();
+new RacingCarGame();
