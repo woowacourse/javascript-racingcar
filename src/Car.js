@@ -1,5 +1,5 @@
 import { generateRandomNumber } from './utils/racingGame.js';
-import { MOVE_CONDITION_NUMBER } from './constants.js';
+import { MOVE_NUMBER } from './constants.js';
 
 export default class Car {
   constructor(name) {
@@ -12,7 +12,10 @@ export default class Car {
   }
 
   move() {
-    if (generateRandomNumber(0, 9) < MOVE_CONDITION_NUMBER) {
+    if (
+      generateRandomNumber(MOVE_NUMBER.MIN, MOVE_NUMBER.MAX) <
+      MOVE_NUMBER.AT_LEAST
+    ) {
       return;
     }
     this.racingCount += 1;

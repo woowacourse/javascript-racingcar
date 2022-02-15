@@ -8,6 +8,12 @@ const NAME_LENGTH = {
   MIN: 1,
 };
 
+const MOVE_NUMBER = {
+  MAX: 9,
+  MIN: 0,
+  AT_LEAST: 4,
+};
+
 const ID = {
   RACING_GAME_FORM: 'racing-game-form',
   CAR_NAMES_INPUT: 'car-names-input',
@@ -29,6 +35,4 @@ const MESSAGE = {
   NOT_DECIMAL_COUNT: '소수는 입력할 수 없습니다.',
 };
 
-const MOVE_CONDITION_NUMBER = 4;
-
-export { ID, MESSAGE, RACING_COUNT, NAME_LENGTH, MOVE_CONDITION_NUMBER };
+export { ID, MESSAGE, RACING_COUNT, NAME_LENGTH, MOVE_NUMBER };
