@@ -1,12 +1,7 @@
 import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import {
-  // makeCar,
-  // playOneTurn,
-  // getWinners,
-  getGameResult,
-} from './core/playRacing.js';
+import { getGameResult } from './core/playRacing.js';
 import {
   renderResult,
   removeBeforeResult,

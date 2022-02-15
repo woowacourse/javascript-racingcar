@@ -1,7 +1,7 @@
 import Car from './Car.js';
 import { RAMDOM_MIN, RAMDOM_MAX } from '../constants/constant.js';
 
-export const getWinners = cars => {
+const getWinners = cars => {
   const maxScore = Math.max(...cars.map(car => car.score));
   const winners = cars
     .filter(car => car.score === maxScore)
