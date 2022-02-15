@@ -1,26 +1,28 @@
+import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
 import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
-import { randomNumber, maxNumber } from './utils/getNumber.js';
+import { getRandomNumber, getMaxNumber } from './utils/getNumber.js';
 import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
 
 function App() {
   this.cars = [];
 
   const selectWinner = () => {
-    const maxDistance = maxNumber(this.cars);
+    const maxDistance = getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
   };
 
-  const increaseCarDistance = (index, inputNumber) => {
-    for (let i = 0; i < inputNumber; i += 1) {
-      const number = randomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
+  const tryCarMoveForward = () => {
+    this.cars.forEach((car) => {
+      const number = getRandomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
       if (isEffectiveScore(number)) {
-        this.cars[index].distance += 1;
+        car.moveForward();
       }
-    }
+    });
   };
+
   const handleError = (message) => {
     alert(message);
   };
@@ -46,7 +48,7 @@ function App() {
   };
 
   const generateCars = (carNames) => {
-    carNames.forEach((name) => this.cars.push({ name, distance: 0 }));
+    this.cars = carNames.map((name) => new Car(name));
   };
 
   const handleCarNamesSubmit = () => {
@@ -66,8 +68,8 @@ function App() {
     if (!isValidRacingCount(inputNumber)) {
       return;
     }
-    for (let i = 0; i < this.cars.length; i += 1) {
-      increaseCarDistance(i, inputNumber);
+    for (let i = 0; i < inputNumber; i += 1) {
+      tryCarMoveForward(inputNumber);
     }
 
     const finalWinner = selectWinner()
@@ -80,9 +82,6 @@ function App() {
 
   const restartRacingGame = () => {
     this.cars = [];
-    $('#car-names-input').value = '';
-    $('#racing-count-input').value = '';
-    $('#result-racing').innerHTML = '';
     startUpScreen();
   };
 

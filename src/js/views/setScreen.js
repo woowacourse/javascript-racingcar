@@ -18,6 +18,10 @@ export const showRacingResult = () => {
 };
 
 export const startUpScreen = () => {
+  $('#car-names-input').value = '';
+  $('#racing-count-input').value = '';
+  $('#result-racing').innerHTML = '';
+
   hideElement($('#racing-count-form'));
   hideElement($('#result-screen'));
   hideElement($('#final-winner'));
