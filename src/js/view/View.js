@@ -72,6 +72,10 @@ export default class View {
     });
   }
 
+  renderRacingCountButton(carList) {
+    $(SELECTOR.$RACING_COUNT_BUTTON).disabled = this.isCarListNotFound(carList);
+  }
+
   renderRacingResult(carList) {
     $(SELECTOR.$RACING_RESULT).innerHTML =
       TEMPLATE.RENDER_RACING_RESULT(carList);
@@ -131,17 +135,6 @@ export default class View {
     if (this.isNotValidRacingCount(racingCount)) {
       alert(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
       this.initializeInput(this.$racingCountInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateCarListFound(carList) {
-    if (this.isCarListNotFound(carList)) {
-      alert(ERROR_MESSAGE.CAR_NAME_SHOULD_COME_FIRST);
-      this.initializeInput(this.$racingCountInput, this.$carNameInput);
 
       return true;
     }

@@ -23,6 +23,7 @@ export default class Controller {
     this.carList = carNameList.map((name) => new Car(name));
 
     this.view.renderRacingResult(this.carList);
+    this.view.renderRacingCountButton(this.carList);
   }
 
   startRace(racingCount) {
@@ -46,6 +47,7 @@ export default class Controller {
     this.carList = [];
     this.winners = [];
 
+    this.view.renderRacingCountButton(this.carList);
     this.view.renderRacingResult(this.carList);
     this.view.renderResult(this.winners);
   }
