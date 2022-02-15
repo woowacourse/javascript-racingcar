@@ -8,11 +8,12 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "rules": { "import/extensions": ["off"],"no-undef":"off" , 
+    "rules": { 
+        "import/extensions": "off",
+        "no-undef":"off" , 
         "no-unused-vars":"off",
-    "class-methods-use-this":"off",
-    "consistent-return":"off",
-    "array-callback-return":"off",
-    
-}
+        "class-methods-use-this":"off",
+        "consistent-return":"off",
+        "array-callback-return":"off"
+        }
 }
