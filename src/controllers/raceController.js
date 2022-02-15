@@ -4,6 +4,8 @@ import {
   renderWinners,
   renderRacingContainer,
   renderRestartButton,
+  renderLoadingSpinner,
+  disapearLoadingSpinner,
 } from "../views/view.js";
 import { raceState, allocateCars, clearState } from "../models/Race.js";
 
@@ -15,17 +17,21 @@ export function startRacing() {
 }
 
 function race(racingNumber) {
-  let racingNumnerCount = 1;
-  const intervalID = setInterval(function () {
-    if (racingNumnerCount > racingNumber) {
+  renderLoadingSpinner();
+  let racingNumberCount = 1;
+  const intervalID = setInterval(() => {
+    if (racingNumberCount > racingNumber) {
+      disapearLoadingSpinner();
       renderWinners(pickWinner());
       renderRestartButton();
       clearState();
       clearInterval(intervalID);
       return;
     }
+    disapearLoadingSpinner();
     moveForwardCars();
-    racingNumnerCount++;
+    renderLoadingSpinner();
+    racingNumberCount++;
   }, 1000);
 }
 

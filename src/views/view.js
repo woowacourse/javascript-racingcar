@@ -80,3 +80,25 @@ export function renderRestartButton() {
   const racingContainer = document.getElementById("restart-button");
   racingContainer.style.display = "flex";
 }
+
+export async function renderLoadingSpinner() {
+  const racingProgress = document.querySelectorAll(".racing-progress");
+  racingProgress.forEach((childNode) => {
+    const loading = document.createElement("div");
+    loading.className = "flex-center";
+    loading.insertAdjacentHTML(
+      "afterbegin",
+      `<div class="relative spinner-container">
+         <span class="material spinner"></span>
+      </div>`
+    );
+    childNode.appendChild(loading);
+  });
+}
+
+export function disapearLoadingSpinner() {
+  const racingProgress = document.querySelectorAll(".racing-progress");
+  racingProgress.forEach((childNode) => {
+    childNode.removeChild(childNode.lastChild);
+  });
+}
