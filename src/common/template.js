@@ -1,4 +1,4 @@
-import { BUTTON, DIRECTIVE, HEADER, WINNER } from './constants.js';
+import { BUTTON, CAR, DIRECTIVE, HEADER, WINNER } from './constants.js';
 import * as style from './style.js';
 
 export function headerTemplate() {
@@ -38,6 +38,10 @@ export function carTemplate(car) {
       <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></div>
     </div>
   `;
+}
+
+export function racingProgressTemplate() {
+  return `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
 }
 
 export function carsTemplate(cars) {

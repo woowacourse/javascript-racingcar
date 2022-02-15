@@ -4,20 +4,21 @@ import {
   carNamesTemplate,
   headerTemplate,
   racingCountTemplate,
+  racingProgressTemplate,
   restartTemplate,
   winnersTemplate,
 } from './common/template.js';
-import { CAR } from './common/constants.js';
+
 import { style } from './common/style.js';
 
 export default class RacingCarView {
   constructor() {
-    this.$app = $('#app');
-
     this.init();
   }
 
   init() {
+    this.$app = $('#app');
+
     document.head.innerHTML += style;
   }
 
@@ -57,23 +58,17 @@ export default class RacingCarView {
 
   resetCarNamesInput() {
     this.$carNamesInput.value = '';
-
-    console.log(this.$carNamesInput.value);
   }
 
   resetRacingCountInput() {
     this.$racingCountInput.value = '';
-
-    console.log(this.$racingCountInput.value);
   }
 
   renderMoveForwardArrow(car) {
     const { name, moveCount } = car;
     const carNode = this.findCarNode(name)[0];
 
-    for (let i = 0; i < moveCount; i += 1) {
-      carNode.innerHTML += `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
-    }
+    carNode.innerHTML += racingProgressTemplate().repeat(moveCount);
   }
 
   findCarNode(name) {
