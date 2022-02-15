@@ -13,7 +13,7 @@ export function carNamesTemplate() {
       <p style="${style.directive}">${DIRECTIVE.CAR_NAME}</p>
       <div class="car-names-input-container">
         <input id="car-names-input" style="${style.input}" />
-        <input type="submit" id="car-names-submit" style="${style.button}" value="${BUTTON.SUBMIT}" />
+        <button type="submit" id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
       </div>
     </form>
     <form id="racing-count"></form>
@@ -26,7 +26,8 @@ export function racingCountTemplate() {
     <p style="${style.directive}">${DIRECTIVE.RACING_COUNT}</p>
     <div class="racing-count-input-container">
       <input type="number" id="racing-count-input" style="${style.input}" />
-      <input type="submit" id="racing-count-submit" style="${style.button}" value="${BUTTON.SUBMIT}" />
+      <button type="submit" id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
+      </div>
     </div>
   `;
 }
