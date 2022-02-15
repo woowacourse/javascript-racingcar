@@ -1,16 +1,30 @@
-html{
+*{
     box-sizing: border-box;
     margin:0;
     padding:0;
+    overflow-x: hidden;
+    background-color: #E5E5E5;
 }
 
-#app {
+body{
+    display: flex;
+    justify-content: center;
+}
+.app, .app > * {
+    background-color: #FFFFFF
+}
+.app {
+    max-width:544px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:  10%;
+    padding: 1.5em 1em;
+    border-radius: 4px;
+    border: 1px solid #0000001F;
 }
 
-form{
+.racing-game-form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,20 +33,28 @@ form{
     height: 150px;
 }
 
+.input-section, 
+.input-section > label ,
+.input-section > input {
+    background-color: inherit;
+}
+
+
 .input-section{
+    display: block;
     width: 400px;
     margin: 0 auto;
 }
 
 
-label{
+.input-section > label{
     display: block;
-    margin-bottom:12px;
+    margin-bottom: 0.75em;
 }
 
-input { 
+.input-section > input { 
     width: 80%;
-    padding: 8px;  
+    padding: 0.5em;  
 }
 
 button {
@@ -40,30 +62,51 @@ button {
     border-radius: 4px;
     color: white;
     border: none;
-    padding: 10px 1em;
+    padding: 0.7em 1em;
 }
-
-
+.racing-status, .racing-status > * {
+    background-color: inherit;
+}
 .racing-status {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
-    margin: 20px 0;
+    margin: 1.25em 0;
 }
 
 .car-status {
-    margin: 0 4px;
+    margin: 0 0.4em;
 }
 
-.user-name{
+.car-name{
     background-color: #F5F5F5;   
-    padding: 7px 10px;
+    padding: 0.5em 0.7em;
     font-size: 16px;
     border-radius: 4px;
 }
 
 .move {
     text-align: center;
-    margin: 4px;
+    margin: 0.3em;
+    background-color: inherit;
+}
+
+.racing-winners, .racing-winners > *{
+    background-color: inherit;    
+}
+
+.racing-winners{
+    margin-bottom: 1.5em;
+}
+
+.racing-result {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-visibility{
+    display: none;
 }
