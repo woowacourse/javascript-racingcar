@@ -1,10 +1,12 @@
 import {
+  addClass,
+  removeClass,
   getElement,
   resetInputValue,
   clearHTML,
   setHTML,
 } from '../utils/dom.js';
-import { ID } from '../constants.js';
+import { ID, CLASS_NAME } from '../constants.js';
 
 const generateMoveView = racingCount =>
   Array.from({ length: racingCount }, () => 0)
@@ -29,8 +31,34 @@ export default class View {
   constructor() {
     this.$carNamesInput = getElement(ID.CAR_NAMES_INPUT);
     this.$racingCountInput = getElement(ID.RACING_COUNT_INPUT);
-    this.$winnersContainer = getElement(ID.RACING_WINNERS);
+    this.$racingCountContainer = getElement(ID.RACING_COUNT_CONTAINER);
     this.$racingStatusContainer = getElement(ID.RACING_STATUS);
+    this.$racingResultContainer = getElement(ID.RACING_RESULT);
+    this.$winnersContainer = getElement(ID.RACING_WINNERS);
+  }
+
+  showRacingCountInput() {
+    removeClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
+  }
+
+  hideRacingCountInput() {
+    addClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
+  }
+
+  showRacingStatus() {
+    removeClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
+  }
+
+  hideRacingStatus() {
+    addClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
+  }
+
+  showRacingResult() {
+    removeClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
+  }
+
+  hideRacingResult() {
+    addClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
   }
 
   restartGame() {
@@ -38,13 +66,18 @@ export default class View {
     resetInputValue(this.$racingCountInput);
     clearHTML(this.$racingStatusContainer);
     clearHTML(this.$winnersContainer);
+    this.hideRacingCountInput();
+    this.hideRacingStatus();
+    this.hideRacingResult();
   }
 
   renderRacingStatus(cars) {
+    this.showRacingStatus();
     setHTML(this.$racingStatusContainer, generateRacingStatusView(cars));
   }
 
   renderWinners(winners) {
+    this.showRacingResult();
     setHTML(this.$winnersContainer, generateWinnersView(winners));
   }
 }

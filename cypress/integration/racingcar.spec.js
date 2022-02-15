@@ -42,20 +42,19 @@ describe('자동차 이름 입력', () => {
     // then
     cy.checkAlertMessage(MESSAGE.DUPLICATE_NAME);
   });
+
+  it('자동차 이름이 입력되면 레이싱 횟수 입력 폼을 확인 할 수 있다.', () => {
+    // when
+    cy.submitCarNames(availableCarName);
+    // then
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).should('be.visible');
+  });
 });
 
 describe('레이싱 횟수 입력 테스트', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
-
-  it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {
-    // when
-    cy.submitRacingCount(1);
-    // then
-    cy.checkAlertMessage(MESSAGE.NO_CAR);
-  });
-
   it('입력된 레이싱 횟수가 1미만일 경우 에러메시지를 확인 할 수 있다.', () => {
     // given
     const lessThenMinimum = RACING_COUNT.MIN - 1;

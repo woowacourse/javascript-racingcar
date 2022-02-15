@@ -107,6 +107,6 @@ button {
     align-items: center;
 }
 
-.no-visibility{
+.hidden{
     display: none;
 }

@@ -54,12 +54,10 @@ class RacingCarGame {
       return alert(MESSAGE.DUPLICATE_NAME);
     }
     this.cars = carNames.map(name => new Car(name));
+    this.view.showRacingCountInput();
   }
 
   onSubmitRacingCount(count) {
-    if (!this.cars.length) {
-      return alert(MESSAGE.NO_CAR);
-    }
     if (!isAvailableRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
