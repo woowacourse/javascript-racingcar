@@ -10,14 +10,6 @@ const validateRacingCount = count => count >= MIN_RACING_COUNT;
 
 const generateRandomNumber = () => Math.floor(Math.random() * MAX_RANDOM_NUMBER);
 
-const moveCars = (cars, count) => {
-  cars.forEach(car=>{
-    for (let i = 0; i < count; i++) {
-      car.move();
-    }
-  })
-};
-
 const getMaxCount = cars => {
   let maxCount = 0;
   for (let i = 0; i < cars.length; i++) {
@@ -28,19 +20,11 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-const removeAllChildNodes = (parent) => {
-  while (parent.firstChild) {
-      parent.removeChild(parent.firstChild);
-  }
-} 
-
 export {
   parseCarName,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
   generateRandomNumber,
-  moveCars,
   getMaxCount,
-  removeAllChildNodes
 };

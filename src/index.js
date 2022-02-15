@@ -1,15 +1,13 @@
 import Car from './Car.js';
 import { ID, MESSAGE } from './constants.js';
 import { getElement } from './utils/dom.js';
-import { userMovementView, winnersView } from './view.js';
+import { carMovementView, carsNameView, loadingView, winnersView, removeAllChildNodes, clearLoadingView } from './view.js';
 import {
   parseCarName,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
-  moveCars,
   getMaxCount,
-  removeAllChildNodes
 } from './utils/index.js';
 
 class CarRacing {
@@ -60,10 +58,32 @@ class CarRacing {
     if (!validateRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
+
     getElement(ID.RACING_COUNT_INPUT).blur();
-    moveCars(this.cars, count);
-    getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', this.printResult());
-    getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));
+
+    getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', carsNameView(this.cars));
+    loadingView(this.cars)
+
+    const timer = setInterval(()=>{
+      if(count <= 1){
+        clearLoadingView(this.cars);
+        getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));
+        clearInterval(timer);
+        return;
+      }
+      this.moveCar(this.cars);
+      loadingView(this.cars)
+      count--;
+    }, 1000);
+  }
+
+  moveCar(cars) {
+    clearLoadingView(cars);
+    cars.forEach((car)=>{
+      if(car.move()){
+        getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', carMovementView())
+      }
+    });
   }
 
   onClickRestart() {
@@ -73,10 +93,6 @@ class CarRacing {
     removeAllChildNodes(getElement(ID.RACING_STATUS));
     this.cars = [];
     this.winners = [];
-  }
-
-  printResult() {
-    return this.cars.map(car => userMovementView(car)).join('');
   }
 
   getWinner() {
