@@ -51,14 +51,13 @@ class RacingCar {
 
     try {
       this.checkValidCarNames(carNamesList);
+      this.racingCarList = carNamesList.map((carName) => new Car(carName));
+      this.$racingCountForm.style.display = 'block';
     } catch (error) {
       this.$carNamesInput.value = '';
       alert(error);
       return;
     }
-
-    this.racingCarList = carNamesList.map((carName) => new Car(carName));
-    this.$racingCountForm.style.display = 'block';
   }
 
   checkValidCarNames(carNamesList) {
@@ -77,14 +76,13 @@ class RacingCar {
 
     try {
       this.checkValidRacingCount(racingCount);
+      this.racingCount = racingCount;
+      this.play();
     } catch (error) {
       this.$racingCountInput.value = '';
       alert(error);
       return;
     }
-
-    this.racingCount = racingCount;
-    this.play();
   }
 
   checkValidRacingCount(racingCount) {
