@@ -15,7 +15,7 @@ import {
   isInteger,
 } from './utils/validations.js';
 
-class CarRacing {
+class RacingCarGame {
   constructor() {
     this.cars = [];
     this.winners = [];
@@ -90,4 +90,4 @@ class CarRacing {
   }
 }
 
-new CarRacing();
+new RacingCarGame();
