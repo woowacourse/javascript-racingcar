@@ -6,7 +6,6 @@ import {
   ERR_NUMBER_UNDER_ZERO,
 } from "../constants/errors.js";
 import { NAME_LENGTH_MAX } from "../constants/conditions.js";
-import { state } from "../models/Race.js";
 
 export function checkNameValid(names) {
   if (hasDuplicatedName(names)) {

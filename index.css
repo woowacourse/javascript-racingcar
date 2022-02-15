@@ -84,6 +84,7 @@
 }
 
 #restart-button {
+  display: none;
   padding: 8px 32px 8px 32px;
   margin-left: 12px;
   background: #00bcd4;

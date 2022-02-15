@@ -75,3 +75,8 @@ export function clearInputs() {
   carNamesInput.value = "";
   racingNumberInput.value = "";
 }
+
+export function renderRestartButton() {
+  const racingContainer = document.getElementById("restart-button");
+  racingContainer.style.display = "flex";
+}
