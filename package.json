@@ -6,8 +6,7 @@
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --browser chrome",
-    "live-server": "live-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "live-server": "live-server"
   },
   "repository": {
     "type": "git",
@@ -20,11 +19,11 @@
   },
   "homepage": "https://github.com/yunjin-kim/javascript-racingcar#readme",
   "dependencies": {
-    "cypress": "^9.4.1",
-    "live-server": "^1.2.1"
   },
   "devDependencies": {
     "eslint": "^8.8.0",
+    "cypress": "^9.4.1",
+    "live-server": "^1.2.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"
