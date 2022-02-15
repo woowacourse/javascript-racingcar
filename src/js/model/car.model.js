@@ -1,11 +1,11 @@
 class CarModel {
   constructor(name) {
     this.name = name;
-    this.moveCount = 0;
+    this.distance = 0;
   }
 
   moveForward() {
-    this.moveCount += 1;
+    this.distance += 1;
   }
 }
 
