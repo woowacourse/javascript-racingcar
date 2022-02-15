@@ -1,4 +1,4 @@
-import { ERROR, SELECTOR } from '../../src/utils/constants.js';
+import { ERROR_MESSAGE, SELECTOR } from '../../src/utils/constants.js';
 
 describe('UI 조작 테스트', () => {
   beforeEach(() => {
@@ -10,7 +10,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.EMPTY_INPUT);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.EMPTY_INPUT);
       });
   });
 
@@ -20,7 +20,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('abcdefg,abc,ddd{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.LONG_LENGTH);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.LONG_LENGTH);
       });
   });
 
@@ -30,7 +30,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('a, a{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.DUPLICATE_NAME);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DUPLICATE_NAME);
       });
   });
 
@@ -41,7 +41,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .type('-3{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.UNDER_MIN_NUMBER);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.UNDER_MIN_NUMBER);
       });
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .clear()
@@ -58,7 +58,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .type('2.8{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.DECIMAL);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DECIMAL);
       });
   });
 });

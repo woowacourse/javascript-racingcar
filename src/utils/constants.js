@@ -1,7 +1,7 @@
 export const MAX_CAR_NAME_LENGTH = 5;
 export const MIN_COUNT = 1;
 
-export const ERROR = Object.freeze({
+export const ERROR_MESSAGE = Object.freeze({
   EMPTY_INPUT: '1글자 이상의 자동차 이름을 입력해주세요.',
   LONG_LENGTH: `각 자동차의 이름을 ${MAX_CAR_NAME_LENGTH}자 이하로 입력해주세요.`,
   UNDER_MIN_NUMBER: `${MIN_COUNT} 이상의 수를 입력해주세요.`,
