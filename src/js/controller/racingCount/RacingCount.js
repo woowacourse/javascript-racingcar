@@ -18,7 +18,9 @@ export default class RacingCount {
 
   makeRacingCount(racingCountInputValue) {
     if (!racingCountInputValue || !isValidRacingCount(racingCountInputValue)) {
-      return alert(EXCEPTIONS.INVALID_RACE_COUNT);
+      alert(EXCEPTIONS.INVALID_RACE_COUNT);
+
+      return false;
     }
 
     this.racingCount = parseInt(racingCountInputValue, 10);
