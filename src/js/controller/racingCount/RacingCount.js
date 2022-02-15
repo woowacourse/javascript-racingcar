@@ -5,10 +5,9 @@ import { $ } from "../../view/getElement.js";
 
 export default class RacingCount {
   constructor(carManager) {
-    this.init();
-    this.addRacingCountInputEnterEvent();
-    this.addRacingCountSubmitButtonClickEvent();
+    this.racingCount = 0;
     this.carManager = carManager;
+    this.addSubmitRacingCountEventListener();
   }
 
   init() {
@@ -40,15 +39,13 @@ export default class RacingCount {
     }
   }
 
-  addRacingCountInputEnterEvent() {
+  addSubmitRacingCountEventListener() {
     $("racing-count-input").addEventListener("keyup", e => {
       if (e.key === "Enter") {
         this.submitRacingCount();
       }
     });
-  }
 
-  addRacingCountSubmitButtonClickEvent() {
     $("racing-count-submit").addEventListener("click", () => {
       this.submitRacingCount();
     });

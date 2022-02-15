@@ -8,8 +8,7 @@ import { trimArray } from "../../utils/trimArray.js";
 export default class CarManager {
   constructor() {
     this.cars = [];
-    this.addCarNameInputEnterEvent();
-    this.addCarNameSubmitButtonClickEvent();
+    this.addSubmitCarNamesEventListener();
   }
 
   init() {
@@ -46,15 +45,13 @@ export default class CarManager {
     }
   }
 
-  addCarNameInputEnterEvent() {
+  addSubmitCarNamesEventListener() {
     $("car-names-input").addEventListener("keyup", e => {
       if (e.key === "Enter") {
         this.submitCarNames();
       }
     });
-  }
 
-  addCarNameSubmitButtonClickEvent() {
     $("car-names-submit").addEventListener("click", () => {
       this.submitCarNames();
     });
