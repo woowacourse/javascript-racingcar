@@ -24,7 +24,11 @@ class RacingcarGame {
     });
     $(".race-count-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      this.checkRaceNumber();
+      this.isCorrectRaceCount = this.isValidRaceNumber();
+      if (!this.isCorrectRaceCount) {
+        alert("몇 번의 이동을 할 것인지 1 이상의 수를 입력해주세요.");
+        return;
+      }
       if (this.canStartGame()) {
         this.startGame();
       }
@@ -44,14 +48,12 @@ class RacingcarGame {
     $(".race-count-wrap").style.visibility = "visible";
   }
 
-  checkRaceNumber() {
+  isValidRaceNumber() {
     this.raceCount = $(".race-count-input").value;
     if (this.raceCount === "" || this.raceCount <= 0) {
-      alert("몇 번의 이동을 할 것인지 1 이상의 수를 입력해주세요.");
-      this.isCorrectRaceCount = false;
-      return;
+      return false;
     }
-    this.isCorrectRaceCount = true;
+    return true;
   }
 
   canStartGame() {
