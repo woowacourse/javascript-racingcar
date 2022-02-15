@@ -1,5 +1,6 @@
 import Car from "./Car.js";
 
+const RANDOM_MAX_NUMBER = 9;
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
@@ -63,6 +64,7 @@ class RacingcarGame {
   }
 
   startGame() {
+    console.log(this.carName);
     this.carList = this.carName.map((name) => new Car(name));
     this.showCarBoxes();
     this.countCarsMove();
@@ -75,7 +77,12 @@ class RacingcarGame {
   countCarsMove() {
     for (let i = 0; i < this.raceCount; i += 1) {
       this.carList.forEach((eachCar) => {
-        eachCar.move();
+        const randomRaceScore = parseInt(
+          Math.random() * (RANDOM_MAX_NUMBER + 1)
+        );
+        if (eachCar.canMove(randomRaceScore)) {
+          eachCar.move();
+        }
       });
     }
   }

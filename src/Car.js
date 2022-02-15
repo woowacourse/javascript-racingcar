@@ -1,3 +1,4 @@
+const MOVE_MIN_NUMBER = 4;
 class Car {
   constructor(carName) {
     this.carName = carName;
@@ -7,13 +8,11 @@ class Car {
   }
 
   move() {
-    if (this.canMove()) {
-      this.count += 1;
-    }
+    this.count += 1;
   }
 
-  canMove() {
-    if (parseInt(Math.random() * 10) < 4) {
+  canMove(randomRaceScore) {
+    if (randomRaceScore < MOVE_MIN_NUMBER) {
       return false;
     }
     return true;
