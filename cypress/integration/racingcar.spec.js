@@ -49,7 +49,7 @@ const submitRacingCountAlert = () => {
     });
 };
 
-const findLocation = (carNames) => {
+const findLocation = carNames => {
   const carsInfo = [];
 
   carNames.forEach(carName => {
@@ -64,7 +64,7 @@ const findLocation = (carNames) => {
   }, () => getWinner(carsInfo));
 };
 
-const getWinner = (carsInfo) => {
+const getWinner = carsInfo => {
   const { RACING_WINNER } = SELECTOR;
   let maxLocation = 0;
   let winner = "";
@@ -76,6 +76,21 @@ const getWinner = (carsInfo) => {
       winner = name;
     }
   }, () => cy.get(RACING_WINNER).should("have.text", winner));
+};
+
+const initLogic = () => {
+  const {
+    CAR_NAMES_INPUT,
+    RACING_COUNT_INPUT,
+    RACING_RESULT,
+    RACING_WINNER,
+    RESTART_BUTTON,
+  } = SELECTOR;
+  cy.get(RESTART_BUTTON).click();
+  cy.get(CAR_NAMES_INPUT).should("have.value", "");
+  cy.get(RACING_COUNT_INPUT).should("have.value", "");
+  cy.get(RACING_RESULT).should("have.text", "");
+  cy.get(RACING_WINNER).should("have.text", "");
 };
 
 describe("정상 시나리오에 대해 만족해야 한다.", () => {
@@ -98,30 +113,29 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
 
   it("게임을 종료하고 우승자를 확인할 수 있어야 한다.", () => {
     const carNames = ["movie", "halee", "east", "west", "south", "north"];
+    const racingCount = 5;
+
     submitCarNames(carNames.join(","));
-    submitRacingCount(10);
+    submitRacingCount(racingCount);
+
+    cy.clock();
+    cy.wait(1000 * racingCount);
+
     findLocation(carNames);
   });
 
   it("다시 시작 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
-    const {
-      CAR_NAMES_INPUT,
-      RACING_COUNT_INPUT,
-      RACING_RESULT,
-      RACING_WINNER,
-      RESTART_BUTTON,
-    } = SELECTOR;
+    const racingCount = 1;
+
     submitCarNames("movie, halee");
-    submitRacingCount(10);
-    cy.get(RESTART_BUTTON).click();
-    cy.get(CAR_NAMES_INPUT).should("have.value", "");
-    cy.get(RACING_COUNT_INPUT).should("have.value", "");
-    cy.get(RACING_RESULT).should("have.value", "");
-    cy.get(RACING_WINNER).should("have.value", "");
+    submitRacingCount(racingCount);
+    cy.clock();
+    cy.wait(1000 * racingCount);
+    initLogic();
   });
 });
 
-describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.", () => {
+describe("비정상 시나리오에 대해 에러 메시지를 확인할 수 있어야 한다.", () => {
   beforeEach(() => {
     cy.visit(baseUrl);
   });
@@ -130,11 +144,11 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
     cy.reload();
   });
 
-  it("자동차 이름이 아무것도 입력되지 않았을 경우 사용자에게 alert를 띄운다.", () => {
+  it("자동차 이름이 아무것도 입력되지 않았을 경우 에러 메시지를 확인할 수 있어야 한다.", () => {
     submitCarNamesAlert();
   });
 
-  it("이름의 길이가 5자를 초과했을 경우 alert를 띄운다.", () => {
+  it("이름의 길이가 5자를 초과했을 경우 에러 메시지를 확인할 수 있어야 한다.", () => {
     let invalidInput = "racingcar";
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
     submitCarNamesAlert();
@@ -145,14 +159,14 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
     submitCarNamesAlert();
   });
 
-  it("중복된 이름의 자동차가 입력될 경우 alert를 띄운다.", () => {
+  it("중복된 이름의 자동차가 입력될 경우 에러 메시지를 확인할 수 있어야 한다.", () => {
     const invalidInput = "woowa,course,woowa";
 
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
     submitCarNamesAlert();
   });
 
-  it("레이싱 횟수가 정수가 아닌 경우 alert를 띄운다.", () => {
+  it("레이싱 횟수가 정수가 아닌 경우 에러 메시지를 확인할 수 있어야 한다.", () => {
     const invalidInput = 12.5;
 
     submitCarNames("movie, halee");
@@ -160,7 +174,7 @@ describe("비정상 시나리오에 대해 사용자에게 alert를 띄운다.",
     submitRacingCountAlert();
   });
 
-  it("1이상의 수가 아닌 경우 alert를 띄운다.", () => {
+  it("1 이상의 수가 아닌 경우 에러 메시지를 확인할 수 있어야 한다.", () => {
     const invalidInput = 0;
 
     submitCarNames("movie, halee");
