@@ -13,30 +13,14 @@ describe("자동차 경주 게임 테스트", () => {
   });
 
   it("자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.", () => {
-    const alertStub = cy.stub();
-
-    cy.on("window:alert", alertStub);
     cy.get(".car-name-input").type("abcdef");
-    cy.get(".car-name-button")
-      .click()
-      .then(() => {
-        expect(alertStub.getCall(0));
-      });
+    cy.checkAlert(".car-name-button");
   });
 
   it("사용자는 몇 번의 이동을 할 것인지를 입력할 수 있어야 한다.", () => {
-    const alertStub = cy.stub();
-
     cy.get(".car-name-input").type("car1,car2,car3");
     cy.get(".car-name-button").click();
-    cy.on("window:alert", alertStub);
-    cy.get(".race-count-button")
-      .click()
-      .then(() => {
-        if (cy.get(".race-count-input").should("have.value", "")) {
-          expect(alertStub.getCall(0));
-        }
-      });
+    cy.checkAlert(".race-count-button");
   });
 
   it("자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.", () => {

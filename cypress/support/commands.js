@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("checkAlert", (name) => {
+  const alertStub = cy.stub();
+
+  cy.on("window:alert", alertStub);
+  cy.get(name)
+    .click()
+    .then(() => {
+      expect(alertStub.getCall(0));
+    });
+});
