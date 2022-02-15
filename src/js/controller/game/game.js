@@ -32,7 +32,14 @@ export default class Game {
 
   goNextStep() {
     this.startGame();
-    // this.showWinner();
+
+    setTimeout(() => {
+      this.showWinner();
+      setTimeout(() => {
+        alert(`축하합니다. ${this.winner.join(", ")} 님이 우승하셨습니다!`);
+      }, 2000);
+    }, 1000 * this.racingCount);
+
     racingCountInput.readOnly = true;
     racingCountSubmitButton.disabled = true;
   }
