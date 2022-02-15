@@ -12,8 +12,8 @@ const generateMoveView = racingCount =>
     .join('');
 
 const generateCarStatusView = ({ name, racingCount }) => `
-<div id="user-status" class="user-status" data-name=${name}>
-    <div id="user-name" class="user-name">${name}</div>
+<div id="car-status" class="car-status" data-name=${name}>
+    <div id="car-name" class="car-name">${name}</div>
     ${generateMoveView(racingCount)}
 </div>`;
 

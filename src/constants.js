@@ -23,7 +23,7 @@ const ID = {
   RESTART_BUTTON: 'restart-button',
   RACING_WINNERS: 'racing-winners',
   RACING_STATUS: 'racing-status',
-  USER_STATUS: 'user-status',
+  CAR_STATUS: 'car-status',
   WINNERS: 'winners',
 };
 
