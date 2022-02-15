@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true, // browser에서 지원하는 기능들을 사용하겠다고 선언한다(에러를 안뿜는다)
-    // es2022에서 지원하는 기능들을 사용하겠다고 선언한다(에러를 안뿜는다)
+    // es2021에서 지원하는 기능들을 사용하겠다고 선언한다(에러를 안뿜는다)
     // 자동으로 ecmaVersion parser option을 12으로 설정한다
     es2021: true,
   },
