@@ -1,30 +1,30 @@
 import {
-  ERR_HAS_DUPLICATE_NAME,
-  ERR_HAS_EMPTY_NAME,
-  ERR_HAS_LONG_NAME,
-  ERR_NUMBER_NOT_INTEGER,
-  ERR_NUMBER_UNDER_ZERO,
+  ERROR_HAS_DUPLICATE_NAME,
+  ERROR_HAS_EMPTY_NAME,
+  ERROR_HAS_LONG_NAME,
+  ERROR_NUMBER_NOT_INTEGER,
+  ERROR_NUMBER_UNDER_ZERO,
 } from "../constants/errors.js";
 import { NAME_LENGTH_MAX } from "../constants/conditions.js";
 
 export function checkNameValid(names) {
   if (hasDuplicatedName(names)) {
-    throw ERR_HAS_DUPLICATE_NAME;
+    throw ERROR_HAS_DUPLICATE_NAME;
   }
   if (hasEmptyName(names)) {
-    throw ERR_HAS_EMPTY_NAME;
+    throw ERROR_HAS_EMPTY_NAME;
   }
   if (hasLongName(names)) {
-    throw ERR_HAS_LONG_NAME;
+    throw ERROR_HAS_LONG_NAME;
   }
 }
 
 export function checkRacingNumberValid(racingNumber) {
   if (!isNumberInteger(racingNumber)) {
-    throw ERR_NUMBER_NOT_INTEGER;
+    throw ERROR_NUMBER_NOT_INTEGER;
   }
   if (isNumberUnderZero(racingNumber)) {
-    throw ERR_NUMBER_UNDER_ZERO;
+    throw ERROR_NUMBER_UNDER_ZERO;
   }
 }
 
