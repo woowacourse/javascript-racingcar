@@ -1,3 +1,5 @@
+import NUMBERS from '../constants/number.js';
+import MESSAGE from '../constants/message.js';
 import {
   isWithComma,
   hasValidLengthInArray,
@@ -10,21 +12,25 @@ import nameStringToArray from './nameStringToArray.js';
 
 const isCarNameInputValid = (value) => {
   if (!isWithComma(value)) {
-    alert(
-      '자동차 이름을 최소 2개 이상 입력해주세요.\n(자동차 이름은 콤마로 구분합니다.)'
-    );
+    alert(MESSAGE.NOT_ENOUGH_INPUT_NAME);
     return false;
   }
 
   const names = nameStringToArray(value);
   console.log(value);
-  if (!hasValidLengthInArray(names, 1, 5)) {
-    alert('자동차 이름은 1자에서 5자까지 입력할 수 있습니다.');
+  if (
+    !hasValidLengthInArray(
+      names,
+      NUMBERS.MIN_NAME_LENGTH,
+      NUMBERS.MAX_NAME_LENGTH
+    )
+  ) {
+    alert(MESSAGE.INVALID_NAME_LENGTH);
     return false;
   }
 
   if (!isUniqueWord(names)) {
-    alert('중복되는 자동차 이름이 있습니다.');
+    alert(MESSAGE.DUPLICATED_NAME_EXIST);
     return false;
   }
 
@@ -32,8 +38,8 @@ const isCarNameInputValid = (value) => {
 };
 
 const isRaceTimeValid = (value) => {
-  if (!isOnlyNumbers(value) || !isNumberInRange(100, value)) {
-    alert('시도 횟수는 1 이상 100 이하의 숫자만 입력할 수 있습니다.');
+  if (!isOnlyNumbers(value) || !isNumberInRange(NUMBERS.MAX_RACE_TIME, value)) {
+    alert(MESSAGE.INVALID_RACE_TIME);
     return false;
   }
 
