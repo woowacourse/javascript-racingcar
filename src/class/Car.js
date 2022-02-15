@@ -1,5 +1,5 @@
-import { generateRandomNumber } from './utils/racingGame.js';
-import { MOVE_NUMBER } from './constants.js';
+import { generateRandomNumber } from '../utils/racingGame.js';
+import { MOVE_NUMBER } from '../constants.js';
 
 export default class Car {
   constructor(name) {
