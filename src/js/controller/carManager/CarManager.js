@@ -2,7 +2,6 @@ import Car from "../../model/Car.js";
 import { isValidCarsName } from "./validation.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
-import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { $ } from "../../view/getElement.js";
 import { trimArray } from "../../utils/trimArray.js";
 
@@ -43,10 +42,7 @@ export default class CarManager {
 
   addCarNameInputEnterEvent() {
     $("car-names-input").addEventListener("keyup", e => {
-      if (
-        e.keyCode === KEYBOARD_ENTER &&
-        this.makeCars($("car-names-input").value)
-      ) {
+      if (e.key === "Enter" && this.makeCars($("car-names-input").value)) {
         this.goNextStep();
       }
     });

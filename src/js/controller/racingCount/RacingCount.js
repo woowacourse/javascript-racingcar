@@ -1,7 +1,6 @@
 import { isValidRacingCount } from "./validation.js";
 import Game from "../game/Game.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
-import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { $ } from "../../view/getElement.js";
 
 export default class RacingCount {
@@ -38,7 +37,7 @@ export default class RacingCount {
   addRacingCountInputEnterEvent() {
     $("racing-count-input").addEventListener("keyup", e => {
       if (
-        e.keyCode === KEYBOARD_ENTER &&
+        e.key === "Enter" &&
         this.makeRacingCount($("racing-count-input").value)
       ) {
         this.goNextStep();
