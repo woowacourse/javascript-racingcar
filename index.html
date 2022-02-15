@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임</title>
@@ -8,17 +8,17 @@
 
   <body>
     <center id="app">
-      <h1 id="logo">🏎️ 자동차 경주 게임 🏁</h1>
-      <div id="car-names-area">
-        <p>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+      <h1>🏎️ 자동차 경주 게임 🏁</h1>
+      <section id="car-names-area">
+        <label>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
         <input type="text" id="car-names-input" />
         <button id="car-names-submit" class="submit-button">확인</button>
-      </div>
-      <div id="racing-count-area">
-        <p>시도할 횟수를 입력해주세요.</p>
+      </section>
+      <section id="racing-count-area">
+        <label>시도할 횟수를 입력해주세요.</label>
         <input type="number" id="racing-count-input" />
         <button id="racing-count-submit" class="submit-button">확인</button>
-      </div>
+      </section>
       <div id="racing-result"></div>
       <h3 id="winner-area">
         🏆 최종 우승자: <span id="racing-winner"></span> 🏆
