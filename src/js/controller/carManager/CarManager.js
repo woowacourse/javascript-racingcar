@@ -4,6 +4,7 @@ import { showRacingCountArea } from "../../view/viewControl.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { $ } from "../../view/getElement.js";
+import { trimArray } from "../../utils/trimArray.js";
 
 export default class CarManager {
   constructor() {
@@ -27,15 +28,14 @@ export default class CarManager {
   }
 
   makeCars(carNamesInputValue) {
-    const carNameArr = carNamesInputValue?.split(",");
+    const carNamesArray = trimArray(carNamesInputValue.split(","));
 
-    this.trimCars();
-    if (!carNamesInputValue || !isValidCarsName(carNameArr)) {
+    if (!carNamesInputValue || !isValidCarsName(carNamesArray)) {
       return alert(EXCEPTIONS.INVALID_CAR_NAMES);
     }
 
-    for (let i = 0; i < carNameArr.length; i++) {
-      this.cars.push(new Car(carNameArr[i].trim()));
+    for (let i = 0; i < carNamesArray.length; i++) {
+      this.cars.push(new Car(carNamesArray[i]));
     }
 
     return true;
