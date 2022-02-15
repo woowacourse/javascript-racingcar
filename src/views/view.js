@@ -1,8 +1,8 @@
-import { state } from "../models/Race.js";
+import { raceState } from "../models/Race.js";
 
 export function renderCarNames() {
   const racingCars = document.getElementById("racing-cars");
-  state.cars.forEach((car) => {
+  raceState.cars.forEach((car) => {
     const racingProgress = document.createElement("div");
     racingProgress.className = "racing-progress flex-column";
     racingCars.appendChild(racingProgress);

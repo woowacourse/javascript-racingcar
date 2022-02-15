@@ -1,25 +1,25 @@
 import { Car } from "./Car.js";
 
-export const state = {
+export const raceState = {
   cars: [],
   racingNumber: 0,
 };
 
 export function setCarNames(carNames) {
-  state.cars = carNames;
+  raceState.cars = carNames;
 }
 
 export function setRound(racingNumber) {
-  state.racingNumber = racingNumber;
+  raceState.racingNumber = racingNumber;
 }
 
 export function allocateCars() {
-  state.cars = state.cars.map((item) => {
+  raceState.cars = raceState.cars.map((item) => {
     return new Car(item);
   });
 }
 
 export function clearState() {
-  state.cars = [];
-  state.racingNumber = 0;
+  raceState.cars = [];
+  raceState.racingNumber = 0;
 }

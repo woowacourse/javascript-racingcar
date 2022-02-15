@@ -5,13 +5,13 @@ import {
   renderRacingContainer,
   renderRestartButton,
 } from "../views/view.js";
-import { state, allocateCars, clearState } from "../models/Race.js";
+import { raceState, allocateCars, clearState } from "../models/Race.js";
 
 export function startRacing() {
   allocateCars();
   renderRacingContainer();
   renderCarNames();
-  race(state.racingNumber);
+  race(raceState.racingNumber);
 }
 
 function race(racingNumber) {
@@ -30,7 +30,7 @@ function race(racingNumber) {
 }
 
 function moveForwardCars() {
-  state.cars.forEach((car, index) => {
+  raceState.cars.forEach((car, index) => {
     if (car.canMoveFoward()) {
       car.moveForward();
       renderProgressArrow(index);
@@ -39,7 +39,7 @@ function moveForwardCars() {
 }
 
 function pickWinner() {
-  const maxLocation = getMaxLocation(state.cars);
+  const maxLocation = getMaxLocation(raceState.cars);
   const winnerArr = getWinnerArr(maxLocation);
   return winnerArr.join(", ");
 }
@@ -49,7 +49,7 @@ function getMaxLocation(arr) {
 }
 
 function getWinnerArr(max) {
-  return state.cars
+  return raceState.cars
     .filter((car) => {
       return car.location === max;
     })
