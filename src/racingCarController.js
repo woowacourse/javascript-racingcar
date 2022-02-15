@@ -20,15 +20,27 @@ export default class RacingCarController {
   }
 
   attachCarNamesEvents() {
-    this.view.$carNamesSubmit.addEventListener('click', this.handleCarNames.bind(this));
+    this.$carNamesSubmit.addEventListener('click', this.handleCarNames.bind(this));
+  }
+
+  get $carNamesSubmit() {
+    return this.view.$carNamesSubmit;
   }
 
   attachRacingCountEvents() {
-    this.view.$racingCountSubmit.addEventListener('click', this.handleRacingCount.bind(this));
+    this.$racingCountSubmit.addEventListener('click', this.handleRacingCount.bind(this));
+  }
+
+  get $racingCountSubmit() {
+    return this.view.$racingCountSubmit;
   }
 
   attachRestartEvents() {
-    this.view.$restart.addEventListener('click', this.handleRestart.bind(this));
+    this.$restart.addEventListener('click', this.handleRestart.bind(this));
+  }
+
+  get $restart() {
+    return this.view.$restart;
   }
 
   handleCarNames() {
@@ -66,8 +78,12 @@ export default class RacingCarController {
 
   race(racingCount) {
     for (let i = 0; i < racingCount; i += 1) {
-      this.model.cars.forEach((car) => car.moveForward());
+      this.cars.forEach((car) => car.moveForward());
     }
+  }
+
+  get cars() {
+    return this.model.cars;
   }
 
   handleRestart() {
