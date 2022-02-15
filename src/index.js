@@ -1,4 +1,4 @@
-import { CLASS, ERROR_MESSAGES, ID, RULES } from './constants/index.js';
+import { ERROR_MESSAGES, RULES } from './constants/index.js';
 import {
   convertToNumber,
   generateRandomNumber,
@@ -6,15 +6,16 @@ import {
   waitGame,
   handleError,
 } from './util/index.js';
+import RacingCarGameModel from './model/RacingCarGameModel.js';
 import Car from './model/Car.js';
 import RacingCarGameView from './view/RacingCarGameView.js';
 
 class RacingCarGame {
   constructor() {
     this.view = new RacingCarGameView();
+    this.model = new RacingCarGameModel();
+
     this.setEventHandler();
-    this.racingCarList = [];
-    this.racingCount = 0;
   }
 
   setEventHandler() {
@@ -28,9 +29,9 @@ class RacingCarGame {
       return;
     }
 
-    const carNamesArray = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
+    const carNameList = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
-    this.racingCarList = carNamesArray.map((carName) => new Car(carName));
+    this.model.setRacingCarList(carNameList);
     this.view.showRacingCountForm();
   }
 
@@ -61,7 +62,7 @@ class RacingCarGame {
     }
 
     const racingCountNumber = convertToNumber(racingCount);
-    this.racingCount = racingCountNumber;
+    this.model.racingCount = racingCountNumber;
     this.play();
   }
 
@@ -87,33 +88,27 @@ class RacingCarGame {
   }
 
   handleRestartBtnClickEvent() {
-    this.resetGameStatus();
+    this.model.resetGameState();
     this.view.resetElements();
     this.view.hideElements();
   }
 
-  resetGameStatus() {
-    this.racingCarList = [];
-    this.racingCount = 0;
-  }
-
   play() {
-    this.view.renderRacingCarList(this.racingCarList);
+    this.view.renderRacingCarList(this.model.racingCarList);
     this.startRacingGame();
   }
 
   async startRacingGame() {
-    for (let i = 0; i < this.racingCount; i++) {
+    for (let i = 0; i < this.model.racingCount; i++) {
       this.runOneCycleGame();
       await waitGame(RULES.WAITING_TIME);
     }
 
     this.handleGameResult();
-    this.view.showRestartSection();
   }
 
   runOneCycleGame() {
-    this.racingCarList.forEach((car, index) => {
+    this.model.racingCarList.forEach((car, index) => {
       const randomNumber = generateRandomNumber();
 
       if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
@@ -124,27 +119,9 @@ class RacingCarGame {
   }
 
   handleGameResult() {
-    const finalWinner = this.getFinalWinner();
+    const finalWinner = this.model.getFinalWinner();
     this.view.renderFinalWinner(finalWinner);
-  }
-
-  getFinalWinner() {
-    const maxDistance = this.getMaxDistance(this.racingCarList);
-    const winnerList = this.getWinnerList(this.racingCarList, maxDistance);
-    return winnerList.join(RULES.WINNER_LIST_SEPERATOR);
-  }
-
-  getMaxDistance(racingCarList) {
-    const distance = racingCarList.map((car) => car.getDistance());
-    const maxDistance = Math.max(...distance);
-
-    return maxDistance;
-  }
-
-  getWinnerList(racingCarList, maxDistance) {
-    return racingCarList
-      .filter((car) => car.getDistance() === maxDistance)
-      .map((car) => car.getName());
+    this.view.showRestartSection();
   }
 }
 
