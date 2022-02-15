@@ -1,6 +1,6 @@
 import handleNameInput from './controller/handleNameInput.js';
 import handleCountInput from './controller/handleCountInput.js';
-import resetView from './view/resetView.js';
+import { resetView } from './view/showResult.js';
 
 function eventHandler() {
   document.querySelector('.name-form').addEventListener('submit', event => {
