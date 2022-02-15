@@ -1,20 +1,10 @@
 import { RULES } from '../constants/index.js';
 
-export const isNotNaturalNumber = (number) => {
-  return number < 1 || Math.floor(number) !== number;
-};
+export const isEmpty = (value) => value === '';
 
-export const isEmpty = (value) => {
-  return value === '';
-};
+export const isExceedLength = (value) => value.length > RULES.MAX_CAR_NAME_LENGTH;
 
-export const isExceedLength = (value) => {
-  return value.length > RULES.MAX_CAR_NAME_LENGTH;
-};
-
-export const isNotNumberType = (value) => {
-  return typeof value !== 'number';
-};
+export const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !== number;
 
 export const convertToNumber = (value) => parseInt(value, 10);
 

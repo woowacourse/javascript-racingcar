@@ -31,7 +31,7 @@ class RacingCarController {
       'submit',
       this.handleRacingCountFormSubmitEvent.bind(this)
     );
-    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent.bind(this));
+    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent);
   }
 
   handleCarNameFormSubmitEvent(e) {
@@ -65,11 +65,11 @@ class RacingCarController {
   }
 
   getRacingCarListTemplate() {
-    const initializeValue = '';
+    const initValue = '';
 
     const racingCarItemsTemplate = this.model
       .getCarList()
-      .reduce((result, car) => result + getRacingCarItemTemplate(car.getName()), initializeValue);
+      .reduce((result, car) => result + getRacingCarItemTemplate(car.getName()), initValue);
 
     return racingCarItemsTemplate;
   }

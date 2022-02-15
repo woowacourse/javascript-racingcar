@@ -20,7 +20,6 @@ export const ERROR_MESSAGES = Object.freeze({
   EMPTY_CAR_NAME: '자동차 이름은 최소 1개 이상 입력해야 한다.',
   EXCEED_CAR_NAME_LENGTH: '자동차 이름의 길이는 5 이하로만 입력해야 한다.',
   BLANK_CAR_NAME: '자동차 이름은 공백이면 안된다.',
-  BLANK_RACING_COUNT: '시도할 횟수는 공백이면 안된다.',
   NOT_NUMBER_TYPE: '시도할 횟수는 숫자 타입을 입력해야 한다.',
   NOT_NATURAL_NUMBER: '시도할 횟수는 자연수를 입력해야 한다.',
 });

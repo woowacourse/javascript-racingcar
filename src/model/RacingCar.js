@@ -1,5 +1,4 @@
-import { ERROR_MESSAGES } from '../constants/index.js';
-import { isEmpty, isExceedLength, isNotNaturalNumber, isNotNumberType } from '../util/index.js';
+import { checkValidCarNames, checkValidRacingCount } from '../validation/index.js';
 import Car from './Car.js';
 
 class RacingCar {
@@ -17,42 +16,18 @@ class RacingCar {
   }
 
   setCarList(carNamesList) {
-    this.checkValidCarNames(carNamesList);
+    checkValidCarNames(carNamesList);
     this.carList = carNamesList.map((carName) => new Car(carName));
+  }
+
+  setRacingCount(racingCount) {
+    checkValidRacingCount(racingCount);
+    this.racingCount = racingCount;
   }
 
   resetStatus() {
     this.carList = [];
     this.racingCount = 0;
-  }
-
-  checkValidCarNames(carNamesList) {
-    if (carNamesList.some(isExceedLength)) {
-      throw new Error(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
-    }
-
-    if (carNamesList.some(isEmpty)) {
-      throw new Error(ERROR_MESSAGES.BLANK_CAR_NAME);
-    }
-  }
-
-  setRacingCount(racingCount) {
-    this.checkValidRacingCount(racingCount);
-    this.racingCount = racingCount;
-  }
-
-  checkValidRacingCount(racingCount) {
-    if (isNaN(racingCount)) {
-      throw new Error(ERROR_MESSAGES.BLANK_RACING_COUNT);
-    }
-
-    if (isNotNumberType(racingCount)) {
-      throw new Error(ERROR_MESSAGES.NOT_NUMBER_TYPE);
-    }
-
-    if (isNotNaturalNumber(racingCount)) {
-      throw new Error(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
-    }
   }
 }
 

@@ -3,10 +3,6 @@ import { PROGRESS_TEMPLATE } from '../template/index.js';
 
 class RacingCarView {
   constructor() {
-    this.init();
-  }
-
-  init() {
     this.initDOM();
   }
 
