@@ -7,7 +7,7 @@ import {
   RANGE_MIN,
 } from '../lib/constants.js';
 import { findElement, pickNumberInRange, splitString } from '../lib/utils.js';
-import RacingCarGameManager from './manage.js';
+import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
 
 class RacingCarGame {
