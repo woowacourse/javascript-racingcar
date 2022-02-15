@@ -1,5 +1,5 @@
 import Car from "../../model/Car.js";
-import { isValidCarsName } from "./checkFunctions.js";
+import { isValidCarsName } from "./validation.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
@@ -7,7 +7,7 @@ import { $ } from "../../view/getElement.js";
 
 export default class CarManager {
   constructor() {
-    this.init();
+    this.cars = [];
     this.addCarNameInputEnterEvent();
     this.addCarNameSubmitButtonClickEvent();
   }

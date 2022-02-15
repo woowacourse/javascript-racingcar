@@ -1,4 +1,4 @@
-import CarManager from "./controller/carsName/CarManager.js";
+import CarManager from "./controller/carManager/CarManager.js";
 import RacingCount from "./controller/racingCount/RacingCount.js";
 import { makeInitialView } from "./view/viewControl.js";
 import { $ } from "./view/getElement.js";
