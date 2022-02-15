@@ -1,4 +1,5 @@
-import { DOM_STRING, DELIMETER } from '../constants.js';
+import { DOM_STRING } from '../configs/dom.js';
+import { DELIMETER } from '../configs/constants.js';
 
 const templete = {
   getRacingResultHTML(carList) {

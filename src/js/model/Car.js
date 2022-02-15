@@ -1,5 +1,5 @@
-import { CAR } from './constants.js';
-import { getRandomNumber } from './utils.js';
+import { CAR } from '../configs/constants.js';
+import { getRandomNumber } from '../utils/utils.js';
 
 export default class Car {
   constructor(name) {

@@ -1,4 +1,5 @@
-import { SELECTOR, ERROR_MESSAGE } from '../../src/js/constants.js';
+import { SELECTOR } from '../../src/js/configs/dom.js';
+import { ERROR_MESSAGE } from '../../src/js/configs/constants.js';
 
 function createAlertStub() {
   const alertStub = cy.stub();

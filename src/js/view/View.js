@@ -1,11 +1,11 @@
 import {
   ERROR_MESSAGE,
-  SELECTOR,
   RACING_COUNT_RANGE,
   CAR_NAME_LENGTH_RANGE,
   DELIMETER,
-} from '../constants.js';
-import { $, $all, splitString, trimStringArray } from '../utils.js';
+} from '../configs/constants.js';
+import { SELECTOR } from '../configs/dom.js';
+import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
 
 export default class View {
   constructor(template) {
