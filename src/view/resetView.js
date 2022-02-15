@@ -1,9 +1,10 @@
 export default function resetView() {
-  const nameInput = document.querySelector('.name-input');
-  const countInput = document.querySelector('.count-input');
-  const countForm = document.querySelector('.count-form');
-  const resultContainer = document.querySelector('.game-result-container');
-  const restart = document.querySelector('.restart-container');
+  const nameInput = document.body.querySelector('.name-input');
+  const countForm = document.body.querySelector('.count-form');
+  const countInput = countForm.children[1].firstChild;
+  const result = document.body.querySelector('.result');
+  const resultContainer = result.children[0];
+  const restart = result.children[1];
 
   nameInput.value = '';
   countInput.value = '';
