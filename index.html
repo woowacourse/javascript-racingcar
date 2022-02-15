@@ -23,7 +23,7 @@
             <button id="car-names-submit-button" class="btn btn-cyan" type="button">확인</button>
           </div>
         </fieldset>
-        <fieldset id="racing-count-fieldset">
+        <fieldset id="racing-count-fieldset" hidden>
           <label class="form-label" for="racing-count">시도할 횟수를 입력해주세요.</label>
           <div class="d-flex">
             <input id="racing-count-input" class="form-control mr-4" name="racing-count" type="number" placeholder="시도 횟수" />
@@ -32,43 +32,7 @@
         </fieldset>
       </form>
     </section>
-    <section id="racing-screen" class="mb-4">
-      <div class="car-lane">
-        <label class="car-name">람보르기니</label>
-        <div class="skid-mark">
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-        </div>
-      </div>
-      <div class="car-lane">
-        <label class="car-name">람보르기니</label>
-        <div class="skid-mark">
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-        </div>
-      </div>
-      <div class="car-lane">
-        <label class="car-name">람보르기니</label>
-        <div class="skid-mark">
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-        </div>
-      </div>
-      <div class="car-lane">
-        <label class="car-name">람보르기니</label>
-        <div class="skid-mark">
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-          <div class="forward-icon">️⬇️️</div>
-        </div>
-      </div>
+    <section id="racing-screen" class="mb-4" hidden>
     </section>
     <section id="racing-result">
       <h2 class="text-center">🏆 최종 우승자: <span id="winners"></span> 🏆</h2>
