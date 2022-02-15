@@ -28,9 +28,9 @@ export default class CarManager {
       return alert(EXCEPTIONS.INVALID_CAR_NAMES);
     }
 
-    for (let i = 0; i < carNamesArray.length; i++) {
-      this.cars.push(new Car(carNamesArray[i]));
-    }
+    carNamesArray.forEach(carName => {
+      this.cars.push(new Car(carName));
+    });
 
     return true;
   }
