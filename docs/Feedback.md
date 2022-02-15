@@ -56,6 +56,10 @@ export const carNamesInput = document.getElementById("car-names-input");
 
 ### 3️⃣ static 관련 피드백
 
+- [ ] **static method의 용도가 적절한가요?**
+
+- 처음에 static method를 사용하게 된 이유는 [lint format (class-method-use-this)](https://eslint.org/docs/rules/class-methods-use-this) 때문이였는데요. 일반 메서드를 정적 메서드로 바꾸면서도 굳이 이렇게 해야하나? 라는 의문이 있었지만 `this`를 사용하지 않으면 정적 메서드로 바꿀 수 있다는 안내를 보고 바꾸게 되었습니다. 검색을 해본 후 정적 메서드는 인스턴스와 관계없이 사용될 수 있기 때문에 유틸리티 함수를 만드는 데에 주로 사용되는 것을 알게 되었고, 제 코드에서는 적절하지 않은 것 같아서 수정이 필요할 것 같습니다.
+
 ### 기타 피드백 
 
 - [ ] **logo에 초기화 이벤트를 달아주었는데 어떤 이유인가요? 편의성때문에 그런걸까요?**
