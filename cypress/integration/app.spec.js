@@ -56,7 +56,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 
-  it('잘못된 자동차 이름을 입력하면 alert가 호출되어야 한다.', () => {
+  it('잘못된 자동차 이름을 입력하면 에러 메지지를 보게된다.', () => {
     //given
     const alertStub = setAlertStub();
     const invalidInput = 'juunzzi';
@@ -70,7 +70,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
   });
 
-  it('횟수 입력란에 1 미만의 값이 주어지면 alert가 호출되어야 한다.', () => {
+  it('횟수 입력란에 1 미만의 값이 주어지면 에러 메세지를 보게된다.', () => {
     //given
     const alertStub = setAlertStub();
     const nameInput = 'bling,juunz';
@@ -86,7 +86,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
   });
 
-  it('재시작 버튼을 누르면 처음 상태로 돌아가야 한다.', () => {
+  it('재시작 버튼을 누르면 시작 화면을 보게된다.', () => {
     //given
     const nameInput = 'bling,juunz';
     const countInput = 2;
