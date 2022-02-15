@@ -1,12 +1,12 @@
 import Car from '../model/Car.js';
-import {
-  ERROR_MESSAGE,
-  RACING_COUNT_RANGE,
-  CAR_NAME_LENGTH_RANGE,
-  DELIMETER,
-} from '../constants.js';
 import template from '../templates.js';
+import { ERROR_MESSAGE, DELIMETER } from '../constants.js';
 import { splitString, trimStringArray } from '../utils/utils.js';
+import {
+  isValidCarNamesLength,
+  isDuplicatedCarName,
+  isValidRacingCount,
+} from '../utils/validations.js';
 
 export default class RacingCarGame {
   constructor(model, view) {
@@ -18,16 +18,8 @@ export default class RacingCarGame {
     this.view.bindClickRestartButton(this.init.bind(this));
   }
 
-  isValidCarNamesLength(carNameList) {
-    return carNameList.every(
-      (name) =>
-        name.length >= CAR_NAME_LENGTH_RANGE.MIN &&
-        name.length <= CAR_NAME_LENGTH_RANGE.MAX
-    );
-  }
-
   validateCarNameList(carNameList) {
-    if (!this.isValidCarNamesLength(carNameList)) {
+    if (!isValidCarNamesLength(carNameList)) {
       this.view.alertErrorMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.view.initializeInput(this.view.carNameInput);
 
@@ -37,12 +29,8 @@ export default class RacingCarGame {
     return false;
   }
 
-  isDuplicatedCarName(carNameList) {
-    return carNameList.length !== new Set(carNameList).size;
-  }
-
   validateUniqueCarName(carNameList) {
-    if (this.isDuplicatedCarName(carNameList)) {
+    if (isDuplicatedCarName(carNameList)) {
       this.view.alertErrorMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.view.initializeInput(this.view.carNameInput);
 
@@ -72,14 +60,6 @@ export default class RacingCarGame {
     );
   }
 
-  isValidRacingCount(racingCount) {
-    return (
-      Number.isInteger(racingCount) &&
-      racingCount >= RACING_COUNT_RANGE.MIN &&
-      racingCount <= RACING_COUNT_RANGE.MAX
-    );
-  }
-
   startRace(racingCount) {
     for (let i = 0; i < racingCount; i += 1) {
       this.model.carList.forEach((car) => car.race());
@@ -93,7 +73,7 @@ export default class RacingCarGame {
   submitRacingCount() {
     const racingCount = this.view.racingCountInput.valueAsNumber;
 
-    if (!this.isValidRacingCount(racingCount)) {
+    if (!isValidRacingCount(racingCount)) {
       this.view.alertErrorMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
       this.view.initializeInput(this.view.racingCountInput);
 
