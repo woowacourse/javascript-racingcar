@@ -23,9 +23,9 @@ class RacingCarGame {
   }
 
   #initDOM() {
-    this.carNameInputField = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FIELD_ID);
-    this.countInputField = findElement(ID_PREFIX, DOM.COUNT_INPUT_FIELD_ID);
-    this.restartButton = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
+    this.carNameInputField = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FIELD);
+    this.countInputField = findElement(ID_PREFIX, DOM.COUNT_INPUT_FIELD);
+    this.restartButton = findElement(ID_PREFIX, DOM.RESTART_BTN);
   }
 
   #bindHandler() {
@@ -37,8 +37,8 @@ class RacingCarGame {
   onCarNameInputFieldClick = (e) => {
     e.preventDefault();
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
-    if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
-      const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT_ID}`).value;
+    if (carNameBtn.id === DOM.CAR_NAME_BTN) {
+      const carNameValue = carNameInputField.querySelector(`#${DOM.CAR_NAME_INPUT}`).value;
       try {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
         const cars = RacingCarGameManager.makeCars(names);
@@ -53,8 +53,8 @@ class RacingCarGame {
   onCountInputFieldClick = (e) => {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
-    if (countBtn.id === DOM.COUNT_BTN_ID) {
-      const count = countInputField.querySelector(`#${DOM.COUNT_INPUT_ID}`).value;
+    if (countBtn.id === DOM.COUNT_BTN) {
+      const count = countInputField.querySelector(`#${DOM.COUNT_INPUT}`).value;
       try {
         this.modelManager.setCount(count);
         this.simulateGame();

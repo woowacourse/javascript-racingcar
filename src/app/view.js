@@ -8,7 +8,7 @@ class RacingCarGameView {
 
   #init() {
     this.inputField = findElement(ID_PREFIX, DOM.INPUT_FIELD);
-    this.resultField = findElement(ID_PREFIX, DOM.RESULT_FIELD_ID);
+    this.resultField = findElement(ID_PREFIX, DOM.RESULT_FIELD);
     this.#initInputField();
     this.#initResultField();
     this.#initDOM();
@@ -34,23 +34,23 @@ class RacingCarGameView {
     this.resultField.innerHTML = `<section id="game-progress">
     </section>
     <section id="winners">
-      <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> 
+      <button id="${DOM.RESTART_BTN}">다시 시작하기</button> 
     </section>`;
   }
 
   #initDOM() {
-    this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM_ID);
-    this.gameProgress = findElement(ID_PREFIX, DOM.GAME_PROGRESS_ID);
-    this.winners = findElement(ID_PREFIX, DOM.WINNERS_ID);
-    this.carNameBtn = findElement(ID_PREFIX, DOM.CAR_NAME_BTN_ID);
-    this.countBtn = findElement(ID_PREFIX, DOM.COUNT_BTN_ID);
-    this.restartBtn = findElement(ID_PREFIX, DOM.RESTART_BTN_ID);
+    this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM);
+    this.gameProgress = findElement(ID_PREFIX, DOM.GAME_PROGRESS);
+    this.winners = findElement(ID_PREFIX, DOM.WINNERS);
+    this.carNameBtn = findElement(ID_PREFIX, DOM.CAR_NAME_BTN);
+    this.countBtn = findElement(ID_PREFIX, DOM.COUNT_BTN);
+    this.restartBtn = findElement(ID_PREFIX, DOM.RESTART_BTN);
   }
 
   renderResults(cars, winners) {
     const progressTemplate = cars.reduce(
       (acc, car) => `${acc}${RacingCarGameView.generateProgressTemplate(car)}`,
-      ''
+      '',
     );
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
@@ -76,16 +76,16 @@ class RacingCarGameView {
 
   static generateProgressTemplate({ name, progress }) {
     return `
-    <div class="${DOM.CAR_PROGRESS_CLASS}">
-      <div class="${DOM.CAR_NAME_CLASS}">${name}</div>
-      ${`<div class="${DOM.STEP_CLASS}">⬇️️</div>`.repeat(progress)}
+    <div class="${DOM.CAR_PROGRESS}">
+      <div class="${DOM.CAR_NAME}">${name}</div>
+      ${`<div class="${DOM.STEP}">⬇️️</div>`.repeat(progress)}
     </div>
   `;
   }
 
   static generateWinnersTemplate({ winners }) {
-    return `<h2 id="${DOM.WINNER_CONTAINER_ID}">🏆최종 승리자:<span id="${
-      DOM.WINNER_NAME_ID
+    return `<h2 id="${DOM.WINNER_CONTAINER}">🏆최종 승리자:<span id="${
+      DOM.WINNER_NAME
     }">${winners.join(',')}</span>🏆</h2>
       `;
   }
