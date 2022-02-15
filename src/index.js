@@ -28,8 +28,8 @@ class RacingcarGame {
   }
 
   checkCarName() {
-    this.carName = $(".car-name-input").value.split(",");
-    this.carName.forEach((name) => {
+    this.carNames = $(".car-name-input").value.split(",");
+    this.carNames.forEach((name) => {
       if (name.length > 5) {
         alert("차 이름은 5자 이하만 가능합니다.");
         this.isCorrectCarName = false;
@@ -59,8 +59,7 @@ class RacingcarGame {
   }
 
   startGame() {
-    console.log(this.carName);
-    this.carList = this.carName.map((name) => new Car(name));
+    this.carList = this.carNames.map((name) => new Car(name));
     this.showCarBoxes();
     this.playGame();
     this.showCarsMove();
