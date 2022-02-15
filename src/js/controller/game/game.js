@@ -1,9 +1,12 @@
+import {
+  racingCountInput,
+  racingCountSubmitButton,
+} from "../../util/elements.js";
 import { EXCEPTIONS } from "../../util/constants.js";
-import { racingCountInput, racingCountSubmitButton } from "../../util/elements.js";
 import { isValidRacingCount } from "./checkFunctions.js";
 import { setResultArea } from "../../view/resultViewControl.js";
-import { showWinnerAndRestartButton } from "../../view/viewControl.js";
 import { setWinnerText } from "../../view/winnerViewControl.js";
+import { showWinnerAndRestartButton } from "../../view/viewControl.js";
 
 export default class Game {
   constructor(cars) {
@@ -29,17 +32,14 @@ export default class Game {
 
   goNextStep() {
     this.startGame();
-    this.showWinner();
+    // this.showWinner();
     racingCountInput.readOnly = true;
     racingCountSubmitButton.disabled = true;
   }
 
   addRacingCountSubmitEvent() {
     racingCountInput.addEventListener("keyup", e => {
-      if (
-        e.key === "Enter" &&
-        this.makeRacingCount(racingCountInput.value)
-      ) {
+      if (e.key === "Enter" && this.makeRacingCount(racingCountInput.value)) {
         this.goNextStep();
       }
     });
@@ -52,10 +52,15 @@ export default class Game {
   }
 
   startGame() {
-    for (let i = 0; i < this.racingCount; i++) {
+    let roundCount = 1;
+
+    const gameRoundInterval = setInterval(() => {
+      if (roundCount++ === this.racingCount) {
+        clearInterval(gameRoundInterval);
+      }
       this.startRound();
-    }
-    this.showResult();
+      this.showResult();
+    }, 1000 * roundCount);
   }
 
   startRound() {
