@@ -18,12 +18,16 @@ class RacingcarGame {
     $(".car-name-form").addEventListener("submit", (event) => {
       event.preventDefault();
       this.checkCarName();
-      this.checkStartGame();
+      if (this.canStartGame()) {
+        this.startGame();
+      }
     });
     $(".race-count-form").addEventListener("submit", (event) => {
       event.preventDefault();
       this.checkRaceNumber();
-      this.checkStartGame();
+      if (this.canStartGame()) {
+        this.startGame();
+      }
     });
   }
 
@@ -51,11 +55,11 @@ class RacingcarGame {
     this.isCorrectRaceCount = true;
   }
 
-  checkStartGame() {
+  canStartGame() {
     if (this.isCorrectCarName === false || this.isCorrectRaceCount === false) {
-      return;
+      return false;
     }
-    this.startGame();
+    return true;
   }
 
   startGame() {
