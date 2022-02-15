@@ -17,8 +17,4 @@ export default class RacingCarView{
                 </div>`
         }).join('');
     }
-    renderRaceGameCountElement = () => {
-        $('.race-count-input-container').style.display = 'flex';
-        
-    };
 }

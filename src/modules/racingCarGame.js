@@ -27,7 +27,7 @@ export default function racingCarGame() {
     const onCarNameButtonClick = () => {
         if(isCarNameInputValid($('#car-name-input').value)){
             this.racingGameInfo.carNameArray = $('#car-name-input').value.split(',').map(carName => carName.trim());
-            this.racingCarView.renderRaceGameCountElement();
+            $('.race-count-input-container').classList.toggle('is-active');
             addRacingCountEvent();
         }
     }
@@ -51,6 +51,7 @@ export default function racingCarGame() {
     }
     const addRestartButtonEvent = () => {
         $('.restart-button').addEventListener('click', () => {
+            $('.race-count-input-container').classList.toggle('is-active');
             location.reload();
         })
     }

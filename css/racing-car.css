@@ -49,6 +49,10 @@ body {
     margin-bottom: 12px;
 }
 
+.race-count-input-container.is-active {
+    display: flex;
+}
+
 label {
     width: 360px;
     height: 24px;
