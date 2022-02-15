@@ -67,14 +67,14 @@ class RacingcarGame {
     console.log(this.carName);
     this.carList = this.carName.map((name) => new Car(name));
     this.showCarBoxes();
-    this.countCarsMove();
+    this.playGame();
     this.showCarsMove();
     const winner = this.findWinner();
     this.showWinner(winner);
     this.bindRestartEvent();
   }
 
-  countCarsMove() {
+  playGame() {
     for (let i = 0; i < this.raceCount; i += 1) {
       this.carList.forEach((eachCar) => {
         const randomRaceScore = parseInt(
