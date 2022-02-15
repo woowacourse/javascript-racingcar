@@ -25,7 +25,7 @@ body {
   background-color: white;
 }
 
-.racing-screen {
+#racing-screen {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
