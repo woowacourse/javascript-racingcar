@@ -40,19 +40,23 @@ export default class CarManager {
     showRacingCountArea();
   }
 
+  submitCarNames() {
+    if (this.makeCars($("car-names-input").value)) {
+      this.goNextStep();
+    }
+  }
+
   addCarNameInputEnterEvent() {
     $("car-names-input").addEventListener("keyup", e => {
-      if (e.key === "Enter" && this.makeCars($("car-names-input").value)) {
-        this.goNextStep();
+      if (e.key === "Enter") {
+        this.submitCarNames();
       }
     });
   }
 
   addCarNameSubmitButtonClickEvent() {
     $("car-names-submit").addEventListener("click", () => {
-      if (this.makeCars($("car-names-input").value)) {
-        this.goNextStep();
-      }
+      this.submitCarNames();
     });
   }
 }
