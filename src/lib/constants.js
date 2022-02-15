@@ -1,9 +1,10 @@
 /* eslint-disable no-extend-native */
-String.prototype.toID = function () {
+/* https://github.com/airbnb/javascript#functions 7.1 */
+String.prototype.toID = function stringIDToPrefix() {
   return `#${this}`;
 };
 
-String.prototype.toCLASS = function () {
+String.prototype.toCLASS = function stringCLASSToPrefix() {
   return `.${this}`;
 };
 
