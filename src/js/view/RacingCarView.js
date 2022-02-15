@@ -22,7 +22,7 @@ export default class RacingCarView {
     Object.entries(stageInfo).forEach(([name, isMoved]) => {
       if (isMoved) {
         $(`#${name}-container`)
-          .querySelector(".car-name")
+          .querySelector(`.${CLASS.CAR_NAME}`)
           .insertAdjacentHTML("afterend", `<div class=${CLASS.ARROW}>⬇️</div>`);
       }
     });
@@ -35,7 +35,7 @@ export default class RacingCarView {
         (carName) => `
         <div id="${carName}-container" class=${CLASS.RACING_INFO}>
           <div class="${CLASS.CAR_NAME}">${carName}</div>
-          <div class="loading"><div class="spinner"></div></div>
+          <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
         </div>
       `
       )
@@ -44,7 +44,7 @@ export default class RacingCarView {
       `;
 
   removeSpinners = () => {
-    document.querySelectorAll(".loading").forEach((loading) => {
+    document.querySelectorAll(`.${CLASS.LOADING}`).forEach((loading) => {
       loading.remove();
     });
   };

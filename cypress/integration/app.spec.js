@@ -7,9 +7,11 @@ const racingCount = 5;
 const inputCarName = (name) => {
   cy.get(`#${ID.CAR_NAME_INPUT}`).type(name);
 };
+
 const clickCarName = () => {
   cy.get(`#${ID.CAR_NAME_BUTTON}`).click();
 };
+
 const submitCarName = (name) => {
   inputCarName(name);
   clickCarName();
@@ -78,13 +80,18 @@ describe("시도 횟수", () => {
 });
 
 describe("우승자 출력 테스트", () => {
-  beforeEach(() => {
+  before(() => {
+    cy.clock();
     cy.visit("index.html");
   });
 
   it("자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다, 우승자가 2명이상인 경우 , 로 구분한다", () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
+
+    for (let i = 0; i < racingCount; i++) {
+      cy.tick(1000);
+    }
 
     let max = -1;
     cy.get(`.${CLASS.RACING_INFO}`).each((racingResult) => {
@@ -95,7 +102,7 @@ describe("우승자 출력 테스트", () => {
     cy.get(`.${CLASS.RACING_INFO}`)
       .each((racingResult) => {
         if (max === racingResult.children().length) {
-          winners.push(racingResult.find(CLASS.CAR_NAME).text());
+          winners.push(racingResult.find(`.${CLASS.CAR_NAME}`).text());
         }
       })
       .then(() => {
@@ -103,6 +110,36 @@ describe("우승자 출력 테스트", () => {
           "have.text",
           `${winnerMesssage(winners.join(", "))}`
         );
+      });
+  });
+});
+
+describe("자동차 경주 게임 2단계 추가 구현 사항", () => {
+  beforeEach(() => {
+    cy.clock();
+    cy.visit("index.html");
+  });
+
+  it("1초의 텀동안 로딩 애니메이션이 보여진다", () => {
+    submitCarName(inputNames);
+    submitRacingCount(racingCount);
+
+    cy.get(CLASS.LOADING).should("exist");
+  });
+
+  it("게임이 끝난후 2초후 축하메시지를 보여준다", () => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
+
+    submitCarName(inputNames);
+    submitRacingCount(racingCount);
+
+    cy.wrap(new Array(racingCount + 2))
+      .each(() => {
+        cy.tick(1000);
+      })
+      .then(() => {
+        expect(alertStub).to.be.called;
       });
   });
 });
