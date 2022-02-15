@@ -1,4 +1,9 @@
-import RacingCarGame from './RacingCarGame.js';
+import Model from './model/Model.js';
+import View from './view/View.js';
+import Controller from './controller/Controller.js';
 
-const racingCarGame = new RacingCarGame();
-racingCarGame.init();
+const view = new View();
+const model = new Model();
+const controller = new Controller(model, view);
+
+controller.init();
