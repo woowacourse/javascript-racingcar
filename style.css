@@ -73,11 +73,12 @@ form > div > input {
   align-items: center;
   margin-top: 10px;
 }
-
-#count-input-form {
-  display: none;
+#count-input-form.show,
+#restart-btn.show {
+  display: block;
 }
 
+#count-input-form,
 #restart-btn {
   display: none;
 }

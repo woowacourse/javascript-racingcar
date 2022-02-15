@@ -62,11 +62,11 @@ class RacingCarGameView {
   }
 
   renderCountInputForm() {
-    this.countInputForm.style.display = 'block';
+    this.countInputForm.classList.add('show');
   }
 
   renderRestartButton() {
-    this.restartBtn.style.display = 'block';
+    this.restartBtn.classList.add('show');
   }
 
   disableInputButtons() {
