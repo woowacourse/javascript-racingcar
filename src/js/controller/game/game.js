@@ -3,19 +3,19 @@ import { showWinnerAndRestartButton } from "../../view/viewControl.js";
 import { setWinnerText } from "../../view/winnerViewControl.js";
 
 export default class Game {
-  static startGame(cars, racingCount) {
+  static startGame(carManager, racingCount) {
     for (let index = 0; index < racingCount; index++) {
-      cars.cars.forEach(car => {
+      carManager.cars.forEach(car => {
         car.advance();
       });
     }
   }
 
-  static getWinners(cars) {
-    const max = cars.cars[0].location;
+  static getWinners(carManager) {
+    const max = carManager.cars[0].location;
     const winners = [];
 
-    cars.cars.forEach(car => {
+    carManager.cars.forEach(car => {
       if (car.location === max) {
         winners.push(car.name);
       }
@@ -24,14 +24,14 @@ export default class Game {
     return winners;
   }
 
-  static getResult(cars, racingCount) {
-    Game.startGame(cars, racingCount);
-    cars.sortCars();
+  static getResult(carManager, racingCount) {
+    Game.startGame(carManager, racingCount);
+    carManager.sortCars();
   }
 
-  static setResult(cars) {
-    setResultArea(cars);
+  static setResult(carManager) {
+    setResultArea(carManager);
     showWinnerAndRestartButton();
-    setWinnerText(Game.getWinners(cars));
+    setWinnerText(Game.getWinners(carManager));
   }
 }

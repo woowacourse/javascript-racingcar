@@ -5,11 +5,11 @@ import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { $ } from "../../view/getElement.js";
 
 export default class RacingCount {
-  constructor(cars) {
+  constructor(carManager) {
     this.init();
     this.addRacingCountInputEnterEvent();
     this.addRacingCountSubmitButtonClickEvent();
-    this.cars = cars;
+    this.carManager = carManager;
   }
 
   init() {
@@ -29,8 +29,8 @@ export default class RacingCount {
   goNextStep() {
     $("racing-count-input").readOnly = true;
     $("racing-count-submit").disabled = true;
-    Game.getResult(this.cars, this.racingCount);
-    Game.setResult(this.cars);
+    Game.getResult(this.carManager, this.racingCount);
+    Game.setResult(this.carManager);
   }
 
   addRacingCountInputEnterEvent() {
