@@ -1,13 +1,22 @@
-p {
+@import "./lodingSpinner.css";
+
+body {
   font-family: Roboto;
   font-style: normal;
+}
+
+section {
+  text-align: start;
+  margin: 0 0 20px 0;
+}
+
+label {
   font-weight: normal;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.87);
-  text-align: start;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }
 
 input {
@@ -18,8 +27,6 @@ input {
   border-radius: 4px;
   padding: 8px;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 24px;
@@ -40,8 +47,6 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
@@ -59,8 +64,6 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
@@ -95,16 +98,9 @@ input:focus {
 }
 
 .position-arrow {
-  font-family: Apple SD Gothic Neo;
-  font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 38px;
   color: #000000;
   margin: 8px;
-}
-
-#logo {
-  cursor: pointer;
-  width: 430px;
 }
