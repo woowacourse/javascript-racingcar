@@ -5,7 +5,7 @@ import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { KEYBOARD_ENTER } from "../../constants/events.js";
 import { $ } from "../../view/getElement.js";
 
-export default class Cars {
+export default class CarManager {
   constructor() {
     this.init();
     this.addCarNameInputEnterEvent();
@@ -53,7 +53,7 @@ export default class Cars {
         e.keyCode === KEYBOARD_ENTER &&
         this.makeCars($("car-names-input").value)
       ) {
-        Cars.goNextStep();
+        CarManager.goNextStep();
       }
     });
   }
@@ -61,7 +61,7 @@ export default class Cars {
   addCarNameSubmitButtonClickEvent() {
     $("car-names-submit").addEventListener("click", () => {
       if (this.makeCars($("car-names-input").value)) {
-        Cars.goNextStep();
+        CarManager.goNextStep();
       }
     });
   }
