@@ -21,12 +21,6 @@ export default class CarManager {
     this.cars.sort((left, right) => right.location - left.location);
   }
 
-  trimCars() {
-    for (let i = 0; i < this.cars.length; i++) {
-      this.cars[i] = this.cars[i].trim();
-    }
-  }
-
   makeCars(carNamesInputValue) {
     const carNamesArray = trimArray(carNamesInputValue.split(","));
 
