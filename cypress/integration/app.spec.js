@@ -80,8 +80,7 @@ describe("시도 횟수", () => {
 });
 
 describe("우승자 출력 테스트", () => {
-  before(() => {
-    cy.clock();
+  beforeEach(() => {
     cy.visit("index.html");
   });
 
@@ -90,7 +89,7 @@ describe("우승자 출력 테스트", () => {
     submitRacingCount(racingCount);
 
     for (let i = 0; i < racingCount; i++) {
-      cy.tick(1000);
+      cy.wait(1000);
     }
 
     let max = -1;
@@ -116,7 +115,6 @@ describe("우승자 출력 테스트", () => {
 
 describe("자동차 경주 게임 2단계 추가 구현 사항", () => {
   beforeEach(() => {
-    cy.clock();
     cy.visit("index.html");
   });
 
@@ -124,7 +122,7 @@ describe("자동차 경주 게임 2단계 추가 구현 사항", () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
 
-    cy.get(CLASS.LOADING).should("exist");
+    cy.get(`.${CLASS.LOADING}`).should("exist");
   });
 
   it("게임이 끝난후 2초후 축하메시지를 보여준다", () => {
@@ -136,7 +134,7 @@ describe("자동차 경주 게임 2단계 추가 구현 사항", () => {
 
     cy.wrap(new Array(racingCount + 2))
       .each(() => {
-        cy.tick(1000);
+        cy.wait(1000);
       })
       .then(() => {
         expect(alertStub).to.be.called;
