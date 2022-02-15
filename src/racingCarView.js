@@ -7,7 +7,7 @@ import {
   restartTemplate,
   winnersTemplate,
 } from './common/template.js';
-import { CAR } from './common/constants.js';
+import { CAR, SELECTOR } from './common/constants.js';
 import { style } from './common/style.js';
 
 export default class RacingCarView {
@@ -42,13 +42,13 @@ export default class RacingCarView {
   }
 
   selectCarNamesDOM() {
-    this.$carNamesInput = $('#car-names-input');
-    this.$carNamesSubmit = $('#car-names-submit');
+    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
   selectRacingCountDOM() {
-    this.$racingCountInput = $('#racing-count-input');
-    this.$racingCountSubmit = $('#racing-count-submit');
+    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
   selectRestartDOM() {
