@@ -1,7 +1,7 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
 import { showRacingCountArea } from "../../view/viewControl.js";
-import { SEPARATOR, EVENT, EXCEPTIONS, KEYBOARD } from "../../constants.js";
+import { EXCEPTIONS, KEYBOARD_ENTER } from "../../constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../elements.js";
 
 export default class Cars {
@@ -34,11 +34,11 @@ export default class Cars {
   }
 
   makeCars(carNamesInputValue) {
-    const carNameArr = carNamesInputValue?.split(SEPARATOR);
+    const carNameArr = carNamesInputValue?.split(",");
 
     this.trimCars();
     if (!carNamesInputValue || !isValidCarsName(carNameArr)) {
-      return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
+      return alert(EXCEPTIONS.INVALID_CAR_NAMES);
     }
 
     for (let i = 0; i < carNameArr.length; i++) {
@@ -55,15 +55,15 @@ export default class Cars {
   }
 
   addCarNameInputEnterEvent() {
-    carNamesInput.addEventListener(EVENT.KEYUP, e => {
-      if (e.keyCode === KEYBOARD.ENTER && this.makeCars(carNamesInput.value)) {
+    carNamesInput.addEventListener("keyup", e => {
+      if (e.keyCode === KEYBOARD_ENTER && this.makeCars(carNamesInput.value)) {
         Cars.goNextStep();
       }
     });
   }
 
   addCarNameSubmitButtonClickEvent() {
-    carNamesSubmitButton.addEventListener(EVENT.CLICK, () => {
+    carNamesSubmitButton.addEventListener("click", () => {
       if (this.makeCars(carNamesInput.value)) {
         Cars.goNextStep();
       }

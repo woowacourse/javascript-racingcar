@@ -1,6 +1,6 @@
 import { isValidRacingCount } from "./checkFunctions.js";
 import Game from "../game/Game.js";
-import { EVENT, EXCEPTIONS, KEYBOARD } from "../../constants.js";
+import { EXCEPTIONS, KEYBOARD_ENTER } from "../../constants.js";
 import { racingCountInput, racingCountSubmitButton } from "../../elements.js";
 
 export default class RacingCount {
@@ -17,7 +17,7 @@ export default class RacingCount {
 
   makeRacingCount(racingCountInputValue) {
     if (!racingCountInputValue || !isValidRacingCount(racingCountInputValue)) {
-      return alert(EXCEPTIONS.INCORRECT_RACING_COUNT);
+      return alert(EXCEPTIONS.INVALID_RACE_COUNT);
     }
 
     this.racingCount = parseInt(racingCountInputValue, 10);
@@ -33,9 +33,9 @@ export default class RacingCount {
   }
 
   addRacingCountInputEnterEvent() {
-    racingCountInput.addEventListener(EVENT.KEYUP, e => {
+    racingCountInput.addEventListener("keyup", e => {
       if (
-        e.keyCode === KEYBOARD.ENTER &&
+        e.keyCode === KEYBOARD_ENTER &&
         this.makeRacingCount(racingCountInput.value)
       ) {
         this.goNextStep();
@@ -44,7 +44,7 @@ export default class RacingCount {
   }
 
   addRacingCountSubmitButtonClickEvent() {
-    racingCountSubmitButton.addEventListener(EVENT.CLICK, () => {
+    racingCountSubmitButton.addEventListener("click", () => {
       if (this.makeRacingCount(racingCountInput.value)) {
         this.goNextStep();
       }
