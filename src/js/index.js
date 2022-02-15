@@ -8,11 +8,11 @@ class RacingCar {
     this.carManager = new CarManager();
     this.racingCount = new RacingCount(this.carManager);
     makeInitialView();
-    RacingCar.addLogoClickEvent();
+    this.addLogoClickEvent();
     this.addRestartEvent();
   }
 
-  static addLogoClickEvent() {
+  addLogoClickEvent() {
     $("logo").addEventListener("click", () => {
       makeInitialView();
     });

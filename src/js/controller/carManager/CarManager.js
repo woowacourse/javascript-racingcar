@@ -35,7 +35,7 @@ export default class CarManager {
     return true;
   }
 
-  static goNextStep() {
+  goNextStep() {
     $("car-names-input").readOnly = true;
     $("car-names-submit").disabled = true;
     showRacingCountArea();
@@ -47,7 +47,7 @@ export default class CarManager {
         e.keyCode === KEYBOARD_ENTER &&
         this.makeCars($("car-names-input").value)
       ) {
-        CarManager.goNextStep();
+        this.goNextStep();
       }
     });
   }
@@ -55,7 +55,7 @@ export default class CarManager {
   addCarNameSubmitButtonClickEvent() {
     $("car-names-submit").addEventListener("click", () => {
       if (this.makeCars($("car-names-input").value)) {
-        CarManager.goNextStep();
+        this.goNextStep();
       }
     });
   }
