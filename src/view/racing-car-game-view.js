@@ -7,11 +7,6 @@ export default class RacingCarGameView {
         $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.remove(SELECTOR.DISPLAY_NONE);
     }
 
-    renderWholeGameResult(carArray) {
-        this.renderRacingContent(carArray);
-        this.renderGameWinners(carArray);
-    }
-
     renderRacingContent(carArray) {
         let racingResult = '';
         carArray.forEach(car => {

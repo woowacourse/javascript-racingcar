@@ -34,12 +34,14 @@ export default class RacingCarGame {
     
     updateWholeGameResult(raceCount){
         let count = 1;
+        const { carArray } = this.model;
         const timeoutId = setInterval(() => {
             this.model.updateCarsSuccessCount();
-            this.view.renderWholeGameResult(this.model.carArray);
+            this.view.renderRacingContent(carArray);
 
             if(count++ === raceCount) {
                 clearInterval(timeoutId);
+                this.view.renderGameWinners(carArray);
                 this.addClickEventToRestartButton();
             }
         }, 1000);
