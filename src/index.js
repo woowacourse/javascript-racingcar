@@ -25,7 +25,6 @@ class RacingcarGame {
 
   bindEvent() {
     this.carNameForm.addEventListener("submit", (event) => {
-      console.log("dsds")
       event.preventDefault();
       this.checkCarName();
       this.isCorrectCarName && this.checkStartGame();
@@ -38,8 +37,13 @@ class RacingcarGame {
   }
 
   checkCarName() {
-    this.carNameList = this.carNameInput.value.split(",");
-    const noValidateCarname = this.carNameList.filter((carName) => carName.length > 5);
+    if (!this.carNameInput.value) {
+      alert("차 이름을 입력해주세요.");
+      return;
+    }
+    const noValidateCarname = this.carNameInput.value
+      .split(",")
+      .filter((carName) => carName.length > 5);
     if (noValidateCarname.length > 0) {
       alert("차 이름은 5자 이하만 가능합니다.");
       this.isCorrectCarName = false;
@@ -52,7 +56,7 @@ class RacingcarGame {
   checkRaceNumber() {
     this.raceCount = this.raceCountInput.value;
     if (this.raceCount === "" || this.raceCount <= 0) {
-      alert("옳바른 수를 입력햇주세요.");
+      alert("옳바른 수를 입력해주세요.");
       this.isCorrectRaceCount = false;
       return;
     }
@@ -67,7 +71,9 @@ class RacingcarGame {
   }
 
   startGame() {
-    this.carList = this.carNameList.map((name) => new Car(name));
+    this.carList = this.carNameInput.value
+      .split(",")
+      .map((name) => new Car(name));
     this.showCarBoxes();
     this.countCarsMove();
     this.showCarsMove();
