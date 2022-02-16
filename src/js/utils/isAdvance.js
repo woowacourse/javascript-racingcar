@@ -1,4 +1,4 @@
-import NUMBERS from '../constants/number';
+import NUMBERS from '../constants/number.js';
 
 const isAdvance = () => {
   return generateRandomNumber(NUMBERS.ENTIRE_NUMBER) >= NUMBERS.MOVABLE_NUMBER;

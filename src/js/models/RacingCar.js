@@ -3,6 +3,7 @@ class RacingCar {
     this.state = {};
     this.state.name = name;
     this.state.distance = 0;
+    this.state.isMovedInLastRound = false;
   }
 
   get name() {
@@ -13,8 +14,17 @@ class RacingCar {
     return this.state.distance;
   }
 
+  get isMovedInLastRound() {
+    return this.state.isMovedInLastRound;
+  }
+
   go() {
     this.state.distance += 1;
+    this.state.isMovedInLastRound = true;
+  }
+
+  stop() {
+    this.state.isMovedInLastRound = false;
   }
 }
 

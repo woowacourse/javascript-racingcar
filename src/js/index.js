@@ -71,18 +71,26 @@ class App {
   handleGamePlay(event) {
     event.preventDefault();
 
+    // 박스 생성
     this.RacingGame.carList.forEach((instance) => {
       const { name } = instance.state;
       this.View.renderAdvanceDiv(name);
     });
 
+    // 라운드만큼 반복
     for (let i = 1; i <= this.RacingGame.round; i += 1) {
-      try {
-        this.RacingGame.play();
-      } catch (err) {
-        alert(err);
-        break;
-      }
+      // 1초간 로딩 애니메이션 적용
+      this.View.LoadingStart();
+      // 1초 타이머 시작
+      // 로딩 애니메이션 시작
+      // 타이머 끝 -> 로딩 애니메이션 삭제
+      this.View.LoadingEnd();
+      this.RacingGame.play();
+      this.RacingGame.carList.forEach((car) => {
+        if (car.isMovedInLastRound) {
+          this.View.renderAdvance(car.name);
+        }
+      });
     }
 
     this.handleWinnerDisplay();

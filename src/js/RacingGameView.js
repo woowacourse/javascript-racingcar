@@ -26,18 +26,22 @@ export default class RacingGameView {
   }
 
   renderAdvanceDiv(carName) {
-    const str = `<div id="car-instance${carName}" class="car-name-box">${carName}</div>`;
+    const str = `<div id="car-instance-${carName}"><div class="car-name-box">${carName}</div></div>`;
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += str;
   }
 
   renderAdvance(target) {
     // 상수 예정
     const str = `<div class="car-advance">⬇️️</div>`;
-    const targetID = '#' + target;
+    const targetID = '#car-instance-' + target;
     console.log(targetID);
     const $target = document.querySelector(targetID);
     $target.innerHTML += str;
   }
+
+  LoadingStart() {}
+
+  LoadingEnd() {}
 
   renderInit() {
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
