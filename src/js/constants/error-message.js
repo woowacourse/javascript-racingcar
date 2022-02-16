@@ -1,4 +1,4 @@
-import GAME_SETTING from './setting.js';
+import GAME_SETTING from './RacingGame/setting.js';
 
 const ERROR = Object.freeze({
   CAR_NAME_MULTIPLE_INPUT:

@@ -1,5 +1,5 @@
-import { $, $$ } from './utils/element-tools.js';
-import { SELECTOR, DOM_ID } from './constants/selector.js';
+import { $, $$ } from '../utils/element-tools.js';
+import { SELECTOR, DOM_ID } from '../constants/RacingGame/selector.js';
 
 export default class RacingGameView {
   init() {

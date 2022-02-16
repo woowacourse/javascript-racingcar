@@ -1,4 +1,4 @@
-import GAME_SETTING from '../constants/setting.js';
+import GAME_SETTING from '../../constants/RacingGame/setting.js';
 
 function getRandomNumber(minNumber, maxNumber) {
   return Math.floor(Math.random() * maxNumber) + minNumber;
@@ -6,9 +6,7 @@ function getRandomNumber(minNumber, maxNumber) {
 
 const isAdvance = () => {
   const { ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX, ADVANCE_NUMBER } = GAME_SETTING;
-  return (
-    getRandomNumber(ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX) >= ADVANCE_NUMBER
-  );
+  return getRandomNumber(ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX) >= ADVANCE_NUMBER;
 };
 
 export default isAdvance;

@@ -1,6 +1,6 @@
-import ERROR from '../constants/error.js';
-import GAME_SETTING from '../constants/setting.js';
-import nameStringToArray from './nameStringToArray.js';
+import ERROR from '../../constants/error-message.js';
+import GAME_SETTING from '../../constants/RacingGame/setting.js';
+import nameStringToArray from '../nameStringToArray.js';
 
 function isOnlyNumbers(value) {
   return /^[0-9]*$/g.test(value) && value > 0;
@@ -26,9 +26,7 @@ export const isCarNameValid = (value) => {
 
   const names = nameStringToArray(value);
   const { CAR_NAME_LENGTH_MIN, CAR_NAME_LENGTH_MAX } = GAME_SETTING;
-  if (
-    !isArrayItemLengthRange(names, CAR_NAME_LENGTH_MIN, CAR_NAME_LENGTH_MAX)
-  ) {
+  if (!isArrayItemLengthRange(names, CAR_NAME_LENGTH_MIN, CAR_NAME_LENGTH_MAX)) {
     alert(ERROR.CAR_NAME_LENGTH_RANGE);
     return false;
   }

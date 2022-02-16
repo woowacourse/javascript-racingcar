@@ -1,4 +1,4 @@
-import GAME_SETTING from '../constants/setting.js';
+import GAME_SETTING from '../constants/RacingGame/setting.js';
 
 export default class RacingCarInstance {
   #state;
