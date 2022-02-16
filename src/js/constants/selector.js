@@ -1,4 +1,8 @@
 const SELECTOR = Object.freeze({
+  // 범용 선택자
+  APP: '#app',
+
+  // RacingGame 사용 선택자
   CAR_NAME_INPUT: '#car-name-input',
   CAR_NAME_BUTTON: '#car-name-button',
   RACE_TIME_INPUT: '#race-time-input',

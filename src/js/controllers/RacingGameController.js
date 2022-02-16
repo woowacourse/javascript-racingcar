@@ -1,7 +1,7 @@
 import RacingGameModel from '../models/RacingGameModel.js';
 import RacingGameView from '../views/RacingGameView.js';
 
-import { SELECTOR } from '../constants/RacingGame/selector.js';
+import { SELECTOR } from '../constants/selector.js';
 import { $ } from '../utils/element-tools.js';
 import nameStringToArray from '../utils/nameStringToArray.js';
 import { isCarNameValid, isRaceTimeValid } from '../utils/RacingGame/validator.js';
@@ -24,9 +24,7 @@ export default class RacingGameController {
 
   bindDefaultEvent() {
     $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', this.handleCarNameInput.bind(this));
-
     $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', this.handleRaceTimeInput.bind(this));
-
     $(SELECTOR.RETRY_BUTTON).addEventListener('click', this.handleGameRetry.bind(this));
   }
 

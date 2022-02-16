@@ -1,4 +1,4 @@
-import { SELECTOR } from '../src/js/constants/RacingGame/selector.js';
+import { SELECTOR } from '../src/js/constants/selector.js';
 
 describe('기본 사용 순서 체크 (E2E)', () => {
   before(() => {
