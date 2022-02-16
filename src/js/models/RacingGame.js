@@ -56,7 +56,9 @@ class RacingGame {
     this.state.carList.forEach((car) => {
       if (isAdvance()) {
         car.go();
+        return;
       }
+      car.stop();
     });
   }
 }
