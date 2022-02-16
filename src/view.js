@@ -1,5 +1,12 @@
 import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
-import { ROUND_DELAY, SELECTOR, STEP_SIGN, WINNER_SEPARATOR } from './utils/constants.js';
+import {
+  ROUND_DELAY,
+  SELECTOR,
+  STEP_SIGN,
+  WINNER_MESSAGE,
+  WINNER_SEPARATOR,
+  WIN_ALERT_DELAY,
+} from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -68,23 +75,7 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  showStepSection(carList) {
-    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
-
-    this.$stepSectionArrowsArray = Array.from(
-      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
-    );
-
-    const count = carList[0].stepByRound.length;
-    for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        this.roundUpdate(carList, i);
-        if (this.isFinalRound(i, count)) {
-          this.removeSpinner();
-        }
-      }, ROUND_DELAY * (i + 1));
-    }
-  }
+  showStepSection(carList) {}
 
   roundUpdate(carList, i) {
     const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
@@ -121,9 +112,30 @@ export default class View {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
   }
 
+  showWinnerByAlert(winnerList) {
+    setTimeout(() => {
+      alert(WINNER_MESSAGE(winnerList));
+    }, WIN_ALERT_DELAY);
+  }
+
   showResult(carList, winnerList) {
-    this.showStepSection(carList);
-    this.showWinner(winnerList);
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
+
+    this.$stepSectionArrowsArray = Array.from(
+      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
+    );
+
+    const count = carList[0].stepByRound.length;
+    for (let i = 0; i < count; i++) {
+      setTimeout(() => {
+        this.roundUpdate(carList, i);
+        if (this.isFinalRound(i, count)) {
+          this.removeSpinner();
+          this.showWinner(winnerList);
+          this.showWinnerByAlert(winnerList);
+        }
+      }, ROUND_DELAY * (i + 1));
+    }
     this.makeResultDisplayNotNone();
   }
 }

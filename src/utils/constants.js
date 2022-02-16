@@ -9,6 +9,10 @@ export const ERROR_MESSAGE = Object.freeze({
   DUPLICATE_NAME: '이름을 중복되지 않게 입력해주세요.',
 });
 
+export const WINNER_MESSAGE = (winnerList) => {
+  return `${winnerList.join(`${WINNER_SEPARATOR} `)} 우승을 축하합니다.`;
+};
+
 export const CAR_NAME_SEPARATOR = ',';
 
 export const WINNER_SEPARATOR = ',';
@@ -39,6 +43,8 @@ export const SELECTOR = Object.freeze({
 });
 
 export const ROUND_DELAY = 1000;
+
+export const WIN_ALERT_DELAY = 2000;
 
 export const STEP_SIGN = {
   GO: 1,
