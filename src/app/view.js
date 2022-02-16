@@ -47,18 +47,28 @@ class RacingCarGameView {
     this.restartBtn = findElement(ID_PREFIX, DOM.RESTART_BTN);
   }
 
-  renderResults(cars, winners) {
+  renderInitialGameState(cars) {
     const progressTemplate = cars.reduce(
       (acc, car) => `${acc}${RacingCarGameView.generateProgressTemplate(car)}`,
       '',
     );
+    this.gameProgress.innerHTML = progressTemplate;
+  }
+
+  renderResults(winners) {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
     });
 
-    this.gameProgress.innerHTML = progressTemplate;
     this.winners.insertAdjacentHTML('beforebegin', winnersTemplate);
     this.renderRestartButton();
+  }
+
+  renderGoForward({ id, name }) {
+    findElement(ID_PREFIX, `${name}${id}`).insertAdjacentHTML(
+      'beforeend',
+      `<div class="${DOM.STEP}">⬇️️</div>`,
+    );
   }
 
   renderCountInputForm() {
@@ -74,11 +84,10 @@ class RacingCarGameView {
     this.countBtn.disabled = true;
   }
 
-  static generateProgressTemplate({ name, progress }) {
+  static generateProgressTemplate({ name, id }) {
     return `
-    <div class="${DOM.CAR_PROGRESS}">
+    <div class="${DOM.CAR_PROGRESS}" id="${name}${id}">
       <div class="${DOM.CAR_NAME}">${name}</div>
-      ${`<div class="${DOM.STEP}">⬇️️</div>`.repeat(progress)}
     </div>
   `;
   }

@@ -71,4 +71,16 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const result = nameInput.split(',').reduce((prev, current) => `${prev}${current}`, '');
     cy.get(DOM.CAR_NAME.toCLASS()).should('have.text', result);
   });
+
+  it('자동차 게임은 1초에 1라운드 씩 수행되기 때문에 모든 라운드가 종료되기 전까진 결과 화면을 확인할 수 없다', () => {
+    const nameInput = 'bling,jun,zzi';
+    const countInput = 2;
+
+    cy.carNameInput(nameInput);
+    cy.countInput(countInput);
+
+    // 왜 둘 다 통과하는 걸까요 ..?
+    cy.get(DOM.WINNER_NAME.toID()).should('not.exist');
+    // cy.get(DOM.WINNER_NAME.toID()).should('exist');
+  });
 });
