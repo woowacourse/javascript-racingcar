@@ -68,31 +68,42 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  stepUpdate(carList) {
+  showStepSection(carList) {
     this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
-    const $stepSectionArrowsArray = Array.from(
+
+    this.$stepSectionArrowsArray = Array.from(
       document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
     );
-    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
 
     const count = carList[0].stepByRound.length;
     for (let i = 0; i < count; i++) {
       setTimeout(() => {
-        carList.map((car, j) => {
-          if (car.stepByRound[i] === 1) {
-            $stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
-          }
-        });
-        if (i + 1 === count) {
-          const $stepSectionLoading = Array.from(
-            document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
-          );
-          $stepSectionArrowsArray.forEach((ul, index) =>
-            ul.removeChild($stepSectionLoading[index]),
-          );
+        this.roundUpdate(carList, i);
+        if (this.isFinalRound(i, count)) {
+          this.removeSpinner();
         }
       }, 1000 * (i + 1));
     }
+  }
+
+  roundUpdate(carList, i) {
+    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
+    carList.map((car, j) => {
+      if (car.stepByRound[i] === 1) {
+        this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+      }
+    });
+  }
+
+  isFinalRound(i, count) {
+    return i + 1 === count;
+  }
+
+  removeSpinner() {
+    const $stepSectionLoading = Array.from(
+      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
+    );
+    this.$stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
   }
 
   generateStepSectionDOM(car) {
@@ -111,7 +122,7 @@ export default class View {
   }
 
   showResult(carList, winnerList) {
-    this.stepUpdate(carList);
+    this.showStepSection(carList);
     this.winnerUpdate(winnerList);
     this.makeResultDisplayNotNone();
   }
