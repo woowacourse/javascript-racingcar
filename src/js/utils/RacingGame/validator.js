@@ -1,22 +1,7 @@
 import ERROR_MESSAGE from '../../constants/error-message.js';
 import GAME_SETTING from '../../constants/RacingGame/setting.js';
 import nameStringToArray from '../nameStringToArray.js';
-
-function isOnlyNumbers(value) {
-  return /^[0-9]*$/g.test(value) && value > 0;
-}
-
-function isWithComma(value) {
-  return value.indexOf(',') > -1;
-}
-
-function isArrayItemLengthRange(values, min, max) {
-  return values.every((item) => item.length >= min && item.length <= max);
-}
-
-function isUniqueWord(values) {
-  return values.length === new Set(values).size;
-}
+import { isNaturalNumber, isWithComma, isArrayItemLengthRange, isUniqueWord } from '../isValid.js';
 
 export const isCarNameValid = (value) => {
   if (!isWithComma(value)) {
@@ -40,7 +25,7 @@ export const isCarNameValid = (value) => {
 };
 
 export const isRaceTimeValid = (value) => {
-  if (!isOnlyNumbers(value)) {
+  if (!isNaturalNumber(value)) {
     alert(ERROR_MESSAGE.RACE_TIME_ONLY_NUMBER);
     return false;
   }
