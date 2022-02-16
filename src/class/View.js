@@ -36,9 +36,9 @@ export default class View {
     this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
     this.$racingCountButton = $(SELECTOR.RACING_COUNT_BUTTON);
     this.$racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
-    this.$racingStatusContainer = $(SELECTOR.RACING_STATUS);
-    this.$racingResultContainer = $(SELECTOR.RACING_RESULT);
-    this.$winnersContainer = $(SELECTOR.RACING_WINNERS);
+    this.$racingStatusContainer = $(SELECTOR.RACING_STATUS_CONTAINER);
+    this.$racingResultContainer = $(SELECTOR.RACING_RESULT_CONTAINER);
+    this.$winnersContainer = $(SELECTOR.WINNERS_CONTAINER);
     this.racingProgressElements = [];
   }
 

@@ -13,7 +13,7 @@ import {
   isValidRacingCount,
   isInteger,
 } from './utils/validations.js';
-import { getTimeInSecond } from './utils/general.js';
+import { getTimeInSecond, delayedAlert } from './utils/general.js';
 
 class RacingCarGame {
   constructor() {
@@ -86,6 +86,7 @@ class RacingCarGame {
   endGame() {
     this.view.removeSpinners();
     this.view.renderWinners(this.getWinners());
+    delayedAlert(MESSAGE.GAME_END);
   }
 
   progressGame(count) {

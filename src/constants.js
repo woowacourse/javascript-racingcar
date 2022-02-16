@@ -22,10 +22,10 @@ const SELECTOR = {
   RACING_COUNT_INPUT: '#racing-count-input',
   RACING_COUNT_BUTTON: '#racing-count-button',
   RESTART_BUTTON: '#restart-button',
-  RACING_WINNERS: '#racing-winners',
-  RACING_STATUS: '#racing-status',
+  WINNERS_CONTAINER: '#winners-container',
+  RACING_STATUS_CONTAINER: '#racing-status-container',
   CAR_INFORMATION: '#car-information',
-  RACING_RESULT: '#racing-result',
+  RACING_RESULT_CONTAINER: '#racing-result-container',
   RACING_PROGRESS: '#progress',
   WINNERS: '#winners',
 };
