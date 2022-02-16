@@ -29,12 +29,12 @@ class App {
   }
 
   gameStart() {
-    const { cars, winners } = getGameResult({
+    const { cars, winners, maxScore } = getGameResult({
       carNames: this.carNames,
       tryCount: this.tryCount,
     });
 
-    renderResult(cars);
+    renderResult({ cars, lastTurnCount: maxScore });
     renderWinners(winners);
     this.resetValue();
   }

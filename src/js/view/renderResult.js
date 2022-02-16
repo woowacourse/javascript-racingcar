@@ -1,18 +1,59 @@
 import { $ } from '../util/dom.js';
 
-const templateCarScore = (name, score) => {
-  return `<div>${name}</div>${'<p>⬇️</p>'.repeat(score)}`;
+const addArrow = (currentTurnCount, cars) => {
+  const carResults = document.querySelectorAll('.car-result');
+
+  carResults.forEach((ele, idx) => {
+    if (cars[idx].score >= currentTurnCount) {
+      const arrow = document.createElement('p');
+      arrow.innerHTML = `⬇️`;
+      ele.appendChild(arrow);
+    }
+  });
 };
 
-export const renderResult = cars => {
-  $('#turn-result').innerHTML = `${cars
-    .map(car => {
-      return `<div id="car-result">${templateCarScore(
-        car.name,
-        car.score,
-      )}</div>`;
+const playTurn = (cars, currentTurnCount) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      addArrow(currentTurnCount, cars);
+      resolve({
+        nextTurnCount: currentTurnCount + 1,
+      });
+    }, 1000);
+  });
+};
+
+const playTurnResult = async ({ lastTurnCount, cars, currentTurnCount }) => {
+  await playTurn(cars, currentTurnCount)
+    .then(res => {
+      const { nextTurnCount } = res;
+
+      if (lastTurnCount >= nextTurnCount) {
+        playTurnResult({
+          lastTurnCount,
+          cars,
+          currentTurnCount: nextTurnCount,
+        });
+      }
     })
-    .join('')}`;
+    .catch(err => console.log('err', err));
+};
+
+export const renderResult = ({ cars, lastTurnCount }) => {
+  const currentTurnCount = 1;
+  const turnResult = document.querySelector('#turn-result');
+
+  cars.forEach(car => {
+    const { name } = car;
+    const carResult = document.createElement('div');
+    carResult.setAttribute('class', 'car-result');
+    const carNameTitle = document.createElement('div');
+    carNameTitle.innerHTML = `${name}`;
+    carResult.appendChild(carNameTitle);
+    turnResult.appendChild(carResult);
+  });
+
+  playTurnResult({ lastTurnCount, cars, currentTurnCount });
 };
 
 export const renderWinners = winners => {
