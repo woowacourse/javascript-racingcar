@@ -2,6 +2,15 @@ export default class Model {
   constructor() {
     this.carNames = [];
     this.winnerNames = [];
+    this.previousCarDistances = [];
+  }
+
+  get previousCarDistanceList() {
+    return this.previousCarDistances;
+  }
+
+  set previousCarDistanceList(previousCarDistances) {
+    this.previousCarDistances = previousCarDistances;
   }
 
   get carList() {
@@ -28,5 +37,6 @@ export default class Model {
   init() {
     this.carNames = [];
     this.winnerNames = [];
+    this.previousCarDistances = [];
   }
 }

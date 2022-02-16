@@ -14,6 +14,10 @@ export default class View {
     this.$$progressList = null;
   }
 
+  set racingResult(racingResult) {
+    this.$racingResult = racingResult;
+  }
+
   get carNameButton() {
     return this.$carNameButton;
   }
@@ -95,9 +99,7 @@ export default class View {
   bindClickRacingCountButton(callback) {
     this.bindEventListener('click', SELECTOR.$RACING_COUNT_BUTTON, () => {
       this.$$progressList = $all(SELECTOR.$PROGRESS_LIST);
-
       callback();
-      this.$racingResult = $(SELECTOR.$RACING_RESULT);
     });
   }
 

@@ -1,11 +1,12 @@
 import Car from '../model/Car.js';
 import template from '../templates.js';
-import { ERROR_MESSAGE, DELIMETER } from '../constants.js';
-import { splitString, trimStringArray } from '../utils/utils.js';
+import { ERROR_MESSAGE, DELIMETER, SELECTOR } from '../constants.js';
+import { splitString, trimStringArray, $ } from '../utils/utils.js';
 import {
   isValidCarNamesLength,
   isDuplicatedCarName,
   isValidRacingCount,
+  isGreaterThanPreviousCarDistance,
 } from '../utils/validations.js';
 
 export default class RacingCarGame {
@@ -61,16 +62,37 @@ export default class RacingCarGame {
     this.view.toggleDisabledButton(this.view.carNameButton);
   }
 
-  startRace(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.model.carList.forEach((car, index) => {
-        car.race();
+  moveCars() {
+    this.model.carList.forEach((car, index) => {
+      car.race();
+      if (
+        isGreaterThanPreviousCarDistance(
+          this.model.previousCarDistanceList[index],
+          car.distance
+        )
+      ) {
+        this.model.previousCarDistanceList[index] = car.distance;
         this.view.render(
           this.view.progressList[index],
           template.renderProgressList(car.distance)
         );
-      });
+      }
+    });
+  }
+
+  setPreviousCarDistanceList() {
+    this.model.previousCarDistanceList = Array(this.model.carList.length).fill(
+      0
+    );
+  }
+
+  startRace(racingCount) {
+    this.setPreviousCarDistanceList();
+
+    for (let i = 0; i < racingCount; i += 1) {
+      this.moveCars();
     }
+    console.log(this.model.carList);
   }
 
   submitRacingCount() {
@@ -88,6 +110,7 @@ export default class RacingCarGame {
       this.view.app,
       template.renderRacingResult(this.model.winners)
     );
+    this.view.racingResult = $(SELECTOR.$RACING_RESULT);
     this.view.toggleDisabledButton(this.view.racingCountButton);
   }
 
