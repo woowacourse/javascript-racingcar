@@ -9,7 +9,7 @@ export const SELECTORS = {
   RACING_SCREEN: '#racing-screen',
   CAR_LANE: '.car-lane',
   CAR_NAME: '.car-name',
-  SKID_MARK: '.skid-mark',
+  DISTANCE: '.distance',
   FORWARD_ICON: '.forward-icon',
   RACING_RESULT: '#racing-result',
   WINNERS: '#winners',
@@ -20,6 +20,8 @@ export const MAX_CAR_NAME_LENGTH = 5;
 export const MIN_CAR_NAME_LENGTH = 1;
 export const MAX_RACING_COUNT = 100;
 export const MIN_RACING_COUNT = 1;
+export const MIN_CONDITION_OF_CAR_MOVE = 4;
+export const RANDOM_RANGE = [0, 9];
 
 export const ERROR_MESSAGES = {
   EMPTY_CAR_NAME: `자동차 이름을 입력해 주세요`,
