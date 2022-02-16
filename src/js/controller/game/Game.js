@@ -34,7 +34,7 @@ export default class Game {
   }
 
   goNextStep() {
-    lockRacingCount();
+    lockRacingCount(true);
     this.startGame();
 
     setTimeout(() => {

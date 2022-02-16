@@ -45,7 +45,7 @@ export default class Cars {
   }
 
   static goNextStep() {
-    lockCarNames();
+    lockCarNames(true);
     toggleHiddenRacingCountArea();
   }
 

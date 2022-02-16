@@ -23,26 +23,24 @@ export const toggleHiddenWinnerAndRestartArea = () => {
   restartButton.classList.toggle("hidden");
 };
 
+export const lockCarNames = whetherLock => {
+  carNamesInput.readOnly = whetherLock;
+  carNamesSubmitButton.disabled = whetherLock;
+};
+
+export const lockRacingCount = whetherLock => {
+  racingCountInput.readOnly = whetherLock;
+  racingCountSubmitButton.disabled = whetherLock;
+};
+
 export const makeInitialView = () => {
   toggleHiddenRacingCountArea();
   toggleHiddenResultArea();
   toggleHiddenWinnerAndRestartArea();
+  lockCarNames(false);
+  lockRacingCount(false);
   carNamesInput.value = "";
-  carNamesInput.readOnly = false;
-  carNamesSubmitButton.disabled = false;
   racingCountInput.value = "";
-  racingCountInput.readOnly = false;
-  racingCountSubmitButton.disabled = false;
   racingResultArea.innerHTML = "";
   racingWinnerText.innerHTML = "";
-};
-
-export const lockCarNames = () => {
-  carNamesInput.readOnly = true;
-  carNamesSubmitButton.disabled = true;
-};
-
-export const lockRacingCount = () => {
-  racingCountInput.readOnly = true;
-  racingCountSubmitButton.disabled = true;
 };
