@@ -1,4 +1,4 @@
-import { SELECTOR } from '../../src/common/constants.js';
+import { ERROR_MESSAGE, SELECTOR } from '../../src/common/constants.js';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
@@ -18,7 +18,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(SELECTOR.CAR_NAMES_SUBMIT)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.CAR_NAMES);
       });
   });
 
@@ -47,7 +47,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(SELECTOR.RACING_COUNT_SUBMIT)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.RACING_COUNT);
       });
   });
 
