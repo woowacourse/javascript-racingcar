@@ -16,14 +16,11 @@ export const SELECTORS = {
   RESTART_BUTTON: '#restart-btn',
 };
 
-export const GAME = {
-  MAX_CAR_NAME_LENGTH: 5,
-  MIN_CAR_NAME_LENGTH: 1,
-  MIN_INPUT_COUNT: 1,
-};
+export const MAX_CAR_NAME_LENGTH = 5;
+export const MIN_CAR_NAME_LENGTH = 1;
 
-export const ERR_MESSAGE = {
-  NAME_TOO_LONG: `이름은 ${GAME.MAX_CAR_NAME_LENGTH}글자 이하로 입력해 주세요.`,
-  NAME_CANNOT_BE_BLANK: '공백만으로는 이름을 구성할 수 없습니다.',
-  COUNT_TOO_SMALL: `${GAME.MIN_INPUT_COUNT} 이상의 숫자를 입력해주세요.`,
+export const ERROR_MESSAGES = {
+  EMPTY_CAR_NAME: `자동차 이름을 입력해 주세요`,
+  BEYOND_MAX_CAR_NAME_LENGTH: `각 자동차 이름을 ${MAX_CAR_NAME_LENGTH}글자 이하로 입력해주세요`,
+  FALL_SHORT_OF_MIN_CAR_NAME_LENGTH: `각 자동차 이름을 ${MIN_CAR_NAME_LENGTH}글자 이상으로 입력해 주세요`,
 };
