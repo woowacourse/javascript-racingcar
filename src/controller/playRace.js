@@ -1,7 +1,9 @@
 import { CAR_CAN_GO_COUNT } from '../util/constants.js';
+
 import generateCars from '../model/generateCars.js';
-import showResult from '../view/showResult.js';
 import getWinners from '../model/getWinners.js';
+
+import showResult from '../view/showResult.js';
 import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
 

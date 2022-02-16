@@ -1,7 +1,10 @@
 import { MIN_COUNT } from '../util/constants.js';
-import { getCountErrorMessage } from '../model/getErrorMessage.js';
 import $ from '../util/dom.js';
+
+import { getCountErrorMessage } from '../model/getErrorMessage.js';
+
 import alertError from '../view/alertError.js';
+
 import playRace from './playRace.js';
 
 function isValidCount(inputCount) {
