@@ -61,12 +61,16 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(SELECTOR.RACING_COUNT_INPUT).should('have.value', '');
   });
 
-  it('올바른 시도 횟수가 제출되면 게임을 다시 시작할 수 있어야 한다.', () => {
+  it('올바른 시도 횟수가 제출되면 우승자를 확인할 수 있어야 한다.', () => {
     const validInput = 3;
 
     cy.get(SELECTOR.RACING_COUNT_INPUT).type(validInput);
     cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
 
+    cy.get('#winners').should('be.visible');
+  });
+
+  it('올바른 시도 횟수가 제출되면 게임을 다시 시작할 수 있어야 한다.', () => {
     cy.get(SELECTOR.RESTART).should('be.visible');
   });
 
