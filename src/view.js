@@ -1,5 +1,5 @@
 import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
-import { ROUND_DELAY, SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
+import { ROUND_DELAY, SELECTOR, STEP_SIGN, WINNER_SEPARATOR } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -89,7 +89,7 @@ export default class View {
   roundUpdate(carList, i) {
     const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
     carList.map((car, j) => {
-      if (car.stepByRound[i] === 1) {
+      if (car.stepByRound[i] === STEP_SIGN.GO) {
         this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
       }
     });

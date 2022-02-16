@@ -39,3 +39,8 @@ export const SELECTOR = Object.freeze({
 });
 
 export const ROUND_DELAY = 1000;
+
+export const STEP_SIGN = {
+  GO: 1,
+  STOP: 0,
+};

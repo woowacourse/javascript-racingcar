@@ -1,5 +1,5 @@
 import { generateRandomNumber } from './utils/common.js';
-import { NUMBER_FOR_MOVE } from './utils/constants.js';
+import { NUMBER_FOR_MOVE, STEP_SIGN } from './utils/constants.js';
 
 export default class Car {
   constructor(name) {
@@ -12,10 +12,10 @@ export default class Car {
     const number = generateRandomNumber();
     if (number >= NUMBER_FOR_MOVE.MOVE_CRITERIA) {
       this.step += 1;
-      this.stepByRound.push(1);
+      this.stepByRound.push(STEP_SIGN.GO);
       return;
     }
-    this.stepByRound.push(0);
+    this.stepByRound.push(STEP_SIGN.STOP);
   }
 
   resetStep() {
