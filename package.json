@@ -1,0 +1,34 @@
+{
+  "name": "javascript-racingcar",
+  "version": "1.0.0",
+  "description": "자바스크립트로 구현 하는 자동차 경주 게임",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome",
+    "test": "npm run cypress:run",
+    "lint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenblues1190/javascript-racingcar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greenblues1190/javascript-racingcar/issues"
+  },
+  "homepage": "https://github.com/greenblues1190/javascript-racingcar#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "cypress": "^9.4.1"
+  }
+}
