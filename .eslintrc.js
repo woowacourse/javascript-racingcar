@@ -14,6 +14,7 @@ module.exports = {
     'max-depth': ['error', 2],
     'prettier/prettier': 'error',
     'import/prefer-default-export': 'off',
+    'class-methods-use-this': 'off',
   },
   plugins: ['prettier'],
 };
