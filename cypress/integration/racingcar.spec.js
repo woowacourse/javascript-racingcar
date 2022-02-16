@@ -1,6 +1,8 @@
 import { MESSAGE, SELECTOR, RACING_COUNT } from '../../src/constants.js';
 
 const availableCarName = '준,포코,공원,제이슨,포비';
+const delayTime = 1000;
+const milliseconds = 1000;
 
 describe('자동차 이름 입력', () => {
   beforeEach(() => {
@@ -41,6 +43,14 @@ describe('자동차 이름 입력', () => {
     cy.submitCarNames(name);
     // then
     cy.checkAlertMessage(MESSAGE.DUPLICATE_NAME);
+  });
+
+  it('자동차 이름이 입력되면 자동차 입력을 할 수 없고, 입력 버튼을 누를 수 없다.', () => {
+    // when
+    cy.submitCarNames(availableCarName);
+    // then
+    cy.get(SELECTOR.CAR_NAMES_INPUT).should('be.disabled');
+    cy.get(SELECTOR.CAR_NAMES_BUTTON).should('be.disabled');
   });
 
   it('자동차 이름이 입력되면 레이싱 횟수 입력 폼을 확인 할 수 있다.', () => {
@@ -85,14 +95,13 @@ describe('레이싱 횟수 입력 테스트', () => {
     cy.checkAlertMessage(MESSAGE.NOT_DECIMAL_COUNT);
   });
 
-  it('레이싱 횟수 입력 후 레이싱 게임의 최종 우승자를 확인 할 수 있다.', () => {
+  it('레이싱 횟수가 입력되면 레이싱 횟수 입력을 할 수 없고, 입력 버튼을 누를 수 없다.', () => {
     // when
     cy.submitCarNames(availableCarName);
-    cy.submitRacingCount(RACING_COUNT.MAX);
+    cy.submitRacingCount(RACING_COUNT.MIN);
     // then
-    cy.get(SELECTOR.WINNERS).then(element => {
-      expect(element.text()).to.contain('최종 우승자');
-    });
+    cy.get(SELECTOR.RACING_COUNT_INPUT).should('be.disabled');
+    cy.get(SELECTOR.RACING_COUNT_BUTTON).should('be.disabled');
   });
 });
 
@@ -103,11 +112,13 @@ describe('최종 우승자 출력', () => {
 
   it('게임을 완료하고 우승자를 확인 할 수 있다.', () => {
     // given
+    cy.clock();
     const name = '공원';
     const winners = `🏆최종 우승자: ${name}🏆`;
     // when
     cy.submitCarNames(name);
     cy.submitRacingCount(RACING_COUNT.MIN);
+    cy.tick(RACING_COUNT.MIN * milliseconds + delayTime);
     // then
     cy.get(SELECTOR.WINNERS).should('have.text', winners);
   });
@@ -119,15 +130,27 @@ describe('다시 시작하기 버튼 테스트', () => {
   });
 
   it('다시 시작하기 버튼을 클릭할 경우 게임이 초기화 된다.', () => {
+    // given
+    cy.clock();
     // when
     cy.submitCarNames(availableCarName);
     cy.submitRacingCount(RACING_COUNT.MIN);
+    cy.tick(RACING_COUNT.MIN * milliseconds + delayTime);
     cy.get(SELECTOR.RESTART_BUTTON).click();
     // then
     cy.get(SELECTOR.CAR_NAMES_INPUT).should('have.value', '');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).should('not.be.disabled');
+    cy.get(SELECTOR.CAR_NAMES_BUTTON).should('not.be.disabled');
+
     cy.get(SELECTOR.RACING_COUNT_INPUT).should('have.value', '');
-    cy.get(SELECTOR.RACING_STATUS).should('be.empty');
-    cy.get(SELECTOR.RACING_WINNERS).should('be.empty');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).should('not.be.disabled');
+    cy.get(SELECTOR.RACING_COUNT_BUTTON).should('not.be.disabled');
+    cy.get(SELECTOR.RACING_COUNT_CONTAINER).should('not.be.visible');
+
+    cy.get(SELECTOR.RACING_STATUS_CONTAINER).should('be.empty');
+    cy.get(SELECTOR.RACING_STATUS_CONTAINER).should('not.be.visible');
+    cy.get(SELECTOR.WINNERS_CONTAINER).should('be.empty');
+    cy.get(SELECTOR.WINNERS_CONTAINER).should('not.be.visible');
   });
 });
 
@@ -137,9 +160,12 @@ describe('예외 사항', () => {
   });
 
   it(' 자동차 이름과 레이싱 횟수 입력 후 Enter 키를 통해 제출 할 수 있다.', () => {
+    // given
+    cy.clock();
     // when
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(availableCarName).type('{enter}');
-    cy.get(SELECTOR.RACING_COUNT_INPUT).type(RACING_COUNT.MAX).type('{enter}');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).type(RACING_COUNT.MIN).type('{enter}');
+    cy.tick(RACING_COUNT.MIN * milliseconds + delayTime);
     // then
     cy.get(SELECTOR.WINNERS).then(element => {
       expect(element.text()).to.contain('최종 우승자');
