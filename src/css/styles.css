@@ -1,0 +1,51 @@
+@import "./component/input.css";
+@import "./component/result.css";
+
+body{
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+    background: #F9F9F9;
+}
+
+#app{
+    position: absolute;
+    width: 544px;
+    height: 590px;
+    left: 448px;
+    top: 56px;
+}
+
+#container{
+    position: absolute;
+    width: 544px;
+    height: 590px;
+    left: 0px;
+    top: 0px;
+
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+h1{
+position: absolute;
+width: 512px;
+height: 36px;
+left: 16px;
+top: 36px;
+
+/* title */
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 600;
+font-size: 34px;
+line-height: 36px;
+/* identical to box height, or 106% */
+
+text-align: center;
+
+color: #000000;
+}
