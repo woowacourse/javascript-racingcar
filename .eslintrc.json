@@ -5,6 +5,7 @@
   },
   "ignorePatterns": "*.spec.js",
   "extends": ["eslint:recommended", "airbnb-base"],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
       "ecmaVersion": 2021,
       "sourceType": "module"
@@ -14,7 +15,8 @@
       "import/extensions": "off",
       "no-alert": "off",
       "class-methods-use-this": "off",
-      "no-underscore-dangle": "off",
       "comma-dangle": "off",
+      "lines-between-class-members": "off",
+      "no-param-reassign": "off"
   }
 }
