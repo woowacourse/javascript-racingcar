@@ -1,9 +1,10 @@
 import { $ } from '../util/dom.js';
+import loadingAnimation from './loading.js';
 
 const addArrow = (currentTurnCount, cars) => {
-  const carResults = document.querySelectorAll('.car-result');
+  const carScoreArrows = document.querySelectorAll('.car-score-arrows');
 
-  carResults.forEach((ele, idx) => {
+  carScoreArrows.forEach((ele, idx) => {
     if (cars[idx].score >= currentTurnCount) {
       const arrow = document.createElement('p');
       arrow.innerHTML = `⬇️`;
@@ -48,6 +49,13 @@ const renderWinners = winners => {
   `;
 };
 
+const removeLoadingAnimation = () => {
+  const carResults = document.querySelectorAll('.car-result');
+  carResults.forEach(ele => {
+    ele.querySelector('.loading-ring').remove();
+  });
+};
+
 export const renderResult = async ({ cars, lastTurnCount, winners }) => {
   const currentTurnCount = 1;
   const turnResult = document.querySelector('#turn-result');
@@ -57,8 +65,13 @@ export const renderResult = async ({ cars, lastTurnCount, winners }) => {
     const carResult = document.createElement('div');
     carResult.setAttribute('class', 'car-result');
     const carNameTitle = document.createElement('div');
+    carNameTitle.setAttribute('class', 'car-Name-title');
     carNameTitle.innerHTML = `${name}`;
-    carResult.appendChild(carNameTitle);
+
+    const carScoreArrowsBox = document.createElement('div');
+    carScoreArrowsBox.setAttribute('class', 'car-score-arrows');
+
+    carResult.append(carNameTitle, carScoreArrowsBox, loadingAnimation());
     turnResult.appendChild(carResult);
   });
 
@@ -68,6 +81,7 @@ export const renderResult = async ({ cars, lastTurnCount, winners }) => {
     currentTurnCount,
   }).then(() => {
     renderWinners(winners);
+    removeLoadingAnimation();
 
     setTimeout(() => {
       window.alert('축하합니다!');

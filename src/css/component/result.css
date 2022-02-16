@@ -9,14 +9,18 @@
 
 .car-result {
   width: 96px;
-  height: 174px;
+  min-height: 174px;
   left: 16px;
   top: 276px;
 
   margin: 0 2px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.car-result div {
+.car-Name-title {
   width: 96px;
   height: 36px;
   left: 16px;
