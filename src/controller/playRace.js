@@ -6,8 +6,7 @@ import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
 
 function sortCars(cars) {
-  const sortedCars = [...cars];
-  return sortedCars.sort((a, b) => b.position - a.position);
+  return [...cars].sort((a, b) => b.position - a.position);
 }
 
 function isCarCanGo() {
