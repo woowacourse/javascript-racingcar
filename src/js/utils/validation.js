@@ -11,3 +11,7 @@ export const isValidLength = (name) => {
 export const isEffectiveScore = (number) => {
   return number >= STANDARD.EFFECTIVE_SCORE;
 };
+
+export const handleError = (message) => {
+  alert(message);
+};

@@ -1,24 +1,29 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
-import { isValidLength, isBlank } from './utils/validation.js';
-import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
+import { isValidLength, isBlank, handleError } from './utils/validation.js';
+import { showCountInput, showRacingResult, startUpScreen } from './views/controlScreen.js';
 import { getMaxNumber } from './utils/getNumber.js';
 import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
 
-function App() {
-  this.cars = [];
+class RacingCar {
+  constructor() {
+    this.cars = [];
+    this.bindEvents();
+  }
 
-  const selectWinner = () => {
+  bindEvents() {
+    $('#car-names-button').addEventListener('click', this.handleCarNamesSubmit.bind(this));
+    $('#racing-count-button').addEventListener('click', this.handleRacingCountSubmit.bind(this));
+    $('#reset-btn').addEventListener('click', this.restartRacingGame.bind(this));
+  }
+
+  selectWinner() {
     const maxDistance = getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
-  };
+  }
 
-  const handleError = (message) => {
-    alert(message);
-  };
-
-  const isValidCarNames = (carName) => {
+  isValidCarNames(carName) {
     if (!carName.every(isValidLength)) {
       handleError(ERROR_MESSAGE.NAME_TOO_LONG);
       return false;
@@ -28,64 +33,58 @@ function App() {
       return false;
     }
     return true;
-  };
+  }
 
-  const isValidRacingCount = (number) => {
+  isValidRacingCount(number) {
     if (number < STANDARD.MIN_INPUT_COUNT) {
       handleError(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
     return true;
-  };
+  }
 
-  const generateCars = (carNames) => {
+  generateCars(carNames) {
     this.cars = carNames.map((name) => new Car(name));
-  };
+  }
 
-  const startRacingGame = (inputNumber) => {
+  startRacingGame(inputNumber) {
     for (let i = 0; i < inputNumber; i += 1) {
       this.cars.forEach((car) => car.tryMoveForward());
     }
-  };
+  }
 
-  const handleCarNamesSubmit = () => {
+  handleCarNamesSubmit() {
     const inputCarNames = $('#car-names-input')
       .value.split(',')
       .map((car) => car.trim());
-    if (!isValidCarNames(inputCarNames)) {
+    if (!this.isValidCarNames(inputCarNames)) {
       $('#car-names-input').value = '';
       return;
     }
-    generateCars(inputCarNames);
+    this.generateCars(inputCarNames);
     showCountInput();
-  };
+  }
 
-  const handleRacingCountSubmit = () => {
+  handleRacingCountSubmit() {
     const inputNumber = $('#racing-count-input').value;
-    if (!isValidRacingCount(inputNumber)) {
+    if (!this.isValidRacingCount(inputNumber)) {
       return;
     }
-    startRacingGame(inputNumber);
+    this.startRacingGame(inputNumber);
 
-    const finalWinner = selectWinner()
+    const finalWinner = this.selectWinner()
       .map((winner) => winner.name)
       .join(', ');
     renderRacingResult(this.cars);
     renderFinalWinner(finalWinner);
     showRacingResult();
-  };
+  }
 
-  const restartRacingGame = () => {
+  restartRacingGame() {
     this.cars = [];
     startUpScreen();
-  };
-
-  $('#car-names-button').addEventListener('click', handleCarNamesSubmit);
-
-  $('#racing-count-button').addEventListener('click', handleRacingCountSubmit);
-
-  $('#reset-btn').addEventListener('click', restartRacingGame);
+  }
 }
 
 // eslint-disable-next-line no-new
-new App();
+new RacingCar();
