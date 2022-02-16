@@ -1,5 +1,5 @@
 import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
-import { SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
+import { ROUND_DELAY, SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -82,7 +82,7 @@ export default class View {
         if (this.isFinalRound(i, count)) {
           this.removeSpinner();
         }
-      }, 1000 * (i + 1));
+      }, ROUND_DELAY * (i + 1));
     }
   }
 

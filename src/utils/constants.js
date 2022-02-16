@@ -37,3 +37,5 @@ export const SELECTOR = Object.freeze({
   WINNER: 'winner',
   RESET_BUTTON: 'reset-button',
 });
+
+export const ROUND_DELAY = 1000;
