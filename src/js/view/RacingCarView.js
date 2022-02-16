@@ -44,7 +44,8 @@ export default class RacingCarView {
 
   renderArrow = (name, isMoved) => {
     if (isMoved) {
-      $(`#${name}-container`)
+      Array.from($$(`.${CLASS.CAR_CONTAINER}`))
+        .filter((car) => car.dataset.carName === name)[0]
         .querySelector(`.${CLASS.CAR_NAME}`)
         .insertAdjacentHTML('afterend', `<div class=${CLASS.ARROW}>⬇️</div>`);
     }

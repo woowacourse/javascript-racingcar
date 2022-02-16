@@ -5,7 +5,7 @@ export const makeCarNamesTemplate = (carNames) => `
   ${carNames
     .map(
       (carName) => `
-      <div id="${carName}-container" class=${CLASS.RACING_INFO}>
+      <div class='${CLASS.CAR_CONTAINER} ${CLASS.RACING_INFO}' data-car-name=${carName}>
         <div class="${CLASS.CAR_NAME}">${carName}</div>
         <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
       </div>`,
@@ -15,11 +15,11 @@ export const makeCarNamesTemplate = (carNames) => `
 `;
 
 export const makeWinnersTemplate = (winners) => `
-<div>
-  <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
-</div>
+  <div>
+    <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
+  </div>
 `;
 
 export const makeReplayButtonTemplate = () => `
-<button class="${CLASS.BTN} ${CLASS.REPLAY_BTN}" id="${ID.REPLAY_BUTTON}">다시 시작하기</button>
+  <button class="${CLASS.BTN} ${CLASS.REPLAY_BTN}" id="${ID.REPLAY_BUTTON}">다시 시작하기</button>
 `;

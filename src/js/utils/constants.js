@@ -17,6 +17,7 @@ export const CLASS = Object.freeze({
   REPLAY_BTN: 'replay-btn',
   LOADING: 'loading',
   SPINNER: 'spinner',
+  CAR_CONTAINER: 'car-container',
 });
 
 export const GAME_NUMBERS = Object.freeze({
