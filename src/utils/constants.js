@@ -33,6 +33,7 @@ export const SELECTOR = Object.freeze({
   STEP_SECTION_NAME: 'step-section__name',
   STEP_SECTION_ARROWS: 'step-section__arrows',
   STEP_SECTION_ARROW: 'step-section__arrow',
+  STEP_SECTION_LOADING: 'step-section__loading',
   WINNER: 'winner',
   RESET_BUTTON: 'reset-button',
 });

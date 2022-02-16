@@ -70,6 +70,19 @@ export default class View {
 
   stepUpdate(carList) {
     this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
+    const $stepSectionArrowsArray = Array.from(
+      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
+    );
+    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
+
+    const count = carList[0].stepByRound.length;
+    for (let i = 0; i < count; i++) {
+      carList.map((car, j) => {
+        if (car.stepByRound[i] === 1) {
+          $stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+        }
+      });
+    }
   }
 
   generateStepSectionDOM(car) {
@@ -77,7 +90,6 @@ export default class View {
     <section class="${SELECTOR.STEP_SECTION}">
       <span class="${SELECTOR.STEP_SECTION_NAME}">${car.name}</span>
       <ul class="${SELECTOR.STEP_SECTION_ARROWS}">
-        ${`<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`.repeat(car.step)}
       </ul>
     </section>
   `;

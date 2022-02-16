@@ -8,8 +8,9 @@ export default class Model {
   startRace(count) {
     this.resetAllCarStep();
     for (let i = 0; i < count; i++) {
-      this.carList.forEach((car) => car.randomMove());
+      this.carList.forEach((car) => car.randomMove(i));
     }
+    console.log('this.carList', this.carList);
   }
 
   resetAllCarStep() {
