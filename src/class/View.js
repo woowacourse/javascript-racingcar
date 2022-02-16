@@ -41,38 +41,18 @@ export default class View {
     removeClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
   }
 
-  hideRacingCountInput() {
-    addClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
-  }
-
-  showRacingStatus() {
-    removeClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
-  }
-
-  hideRacingStatus() {
-    addClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
-  }
-
-  showRacingResult() {
-    removeClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
-  }
-
-  hideRacingResult() {
-    addClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
-  }
-
   restartGame() {
     resetInputValue(this.$carNamesInput);
     resetInputValue(this.$racingCountInput);
     clearHTML(this.$racingStatusContainer);
     clearHTML(this.$winnersContainer);
-    this.hideRacingCountInput();
-    this.hideRacingStatus();
-    this.hideRacingResult();
+    addClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
+    addClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
+    addClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
   }
 
   renderRacingStatus(cars) {
-    this.showRacingStatus();
+    removeClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
     setHTML(this.$racingStatusContainer, generateRacingStatusView(cars));
   }
 
@@ -110,7 +90,7 @@ export default class View {
   }
 
   renderWinners(winners) {
-    this.showRacingResult();
+    removeClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
     setHTML(this.$winnersContainer, generateWinnersView(winners));
   }
 }
