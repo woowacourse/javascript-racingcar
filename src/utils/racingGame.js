@@ -3,13 +3,14 @@ const parseCarName = names => names.split(',').map(name => name.trim());
 const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max + 1 - min)) + min;
 
-const resetCars = cars => {
-  cars.forEach(car => car.resetRacingCount());
-};
-
 const getCarsPositions = cars =>
   cars.map(car => {
-    return { name: car.getName(), isMoved: car.move() };
+    const previousRacingCount = car.getRacingCount();
+    car.move();
+    return {
+      name: car.getName(),
+      isMoved: previousRacingCount < car.getRacingCount(),
+    };
   });
 
 const getMaxCount = cars => {
@@ -22,10 +23,4 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-export {
-  parseCarName,
-  generateRandomNumber,
-  getCarsPositions,
-  resetCars,
-  getMaxCount,
-};
+export { parseCarName, generateRandomNumber, getCarsPositions, getMaxCount };

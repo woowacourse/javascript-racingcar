@@ -7,6 +7,10 @@ export default class Car {
     this.racingCount = 0;
   }
 
+  getRacingCount() {
+    return this.racingCount;
+  }
+
   getName() {
     return this.name;
   }
@@ -16,9 +20,8 @@ export default class Car {
       generateRandomNumber(MOVE_NUMBER.MIN, MOVE_NUMBER.MAX) <
       MOVE_NUMBER.AT_LEAST
     ) {
-      return false;
+      return;
     }
     this.racingCount += 1;
-    return true;
   }
 }
