@@ -83,6 +83,10 @@ export default class View {
         }
       });
     }
+    const $stepSectionLoading = Array.from(
+      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
+    );
+    $stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
   }
 
   generateStepSectionDOM(car) {
