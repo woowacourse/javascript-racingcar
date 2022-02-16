@@ -28,11 +28,16 @@ class App {
     $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
-  startGame() {
-    const cars = makeCars(this.carNames);
+  async startGame() {
+    let cars = makeCars(this.carNames);
     for (let i = 0; i < this.tryCount; i++) {
-      playOneTurn(cars);
-      renderResult(cars);
+      playOneTurn(cars, i);
+      await new Promise(resolve => {
+        setTimeout(() => {
+          renderResult(cars, i, this.tryCount);
+          resolve();
+        }, 1000);
+      });
     }
     renderWinners(getWinners(cars));
     this.resetValue();

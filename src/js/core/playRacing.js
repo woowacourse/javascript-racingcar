@@ -14,12 +14,13 @@ export const getWinners = cars => {
   return winners;
 };
 
-export const playOneTurn = cars => {
+export const playOneTurn = (cars, index) => {
   for (let car of cars) {
     if (car.isAdvance(getRandomInt())) {
       car.addScore();
     }
   }
+  return cars;
 };
 
 const getRandomInt = () => {
