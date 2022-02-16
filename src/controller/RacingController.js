@@ -18,7 +18,7 @@ export default class RacingController {
 
   submitNameHandler(e) {
     e.preventDefault();
-    const nameList = this.getCarNameList();
+    const nameList = RacingController.getCarNameList();
 
     try {
       validateCarNames(nameList);
@@ -32,7 +32,7 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = this.getRacingCount();
+    const racingCount = RacingController.getRacingCount();
 
     try {
       validateCount(racingCount);
@@ -43,6 +43,15 @@ export default class RacingController {
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  startRacingGame() {
+    while (this.model.round) {
+      this.model.goToNextTurn();
+    }
+    this.view.deactivateCountForm();
+    this.view.renderProgress(this.model.cars);
+    this.view.renderResult(this.model.winners);
   }
 
   activateRestartButton() {
@@ -56,23 +65,14 @@ export default class RacingController {
     this.model.reset();
   }
 
-  getCarNameList() {
+  static getCarNameList() {
     const nameList = document
       .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
       .value.split(',');
     return nameList.map((name) => name.trim());
   }
 
-  getRacingCount() {
+  static getRacingCount() {
     return document.getElementById(SELECTOR.ID.RACING_COUNT_INPUT).value;
-  }
-
-  startRacingGame() {
-    while (this.model.round) {
-      this.model.goToNextTurn();
-    }
-    this.view.deactivateCountForm();
-    this.view.renderProgress(this.model.cars);
-    this.view.renderResult(this.model.winners);
   }
 }

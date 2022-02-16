@@ -32,12 +32,10 @@ export default class RacingGame {
   }
 
   findMaxRecord() {
-    const maxRecord = this.cars.reduce((accumulator, current) => {
-      if (current.position > accumulator) {
-        accumulator = current.position;
-      }
-      return accumulator;
-    }, CAR.INITIAL_VALUE);
+    const maxRecord = this.cars.reduce(
+      (accumulator, current) => Math.max(accumulator, current.position),
+      CAR.INITIAL_VALUE
+    );
 
     return maxRecord;
   }
