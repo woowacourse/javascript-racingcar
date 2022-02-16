@@ -18,6 +18,8 @@
       "comma-dangle": "off",
       "lines-between-class-members": "off",
       "no-param-reassign": "off",
-      "no-new": "off"
+      "no-new": "off",
+      "object-curly-newline": "off",
+      "implicit-arrow-linebreak": "off"
   }
 }
