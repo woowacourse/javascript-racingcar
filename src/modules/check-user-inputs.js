@@ -50,5 +50,5 @@ export function checkUserRacingCountInput(raceCountInput){
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         throw new Error(OVER_COUNT_RANGE_ERROR);
     }
-    return raceCountInput;
+    return Number(raceCountInput);
 }

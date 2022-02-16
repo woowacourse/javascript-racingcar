@@ -33,14 +33,21 @@ export default class RacingCarGame {
     }
     
     updateWholeGameResult(raceCount){
-        for(let i = 0; i < raceCount; i++){
+        let count = 1;
+        const timeoutId = setInterval(() => {
             this.model.updateCarsSuccessCount();
-        }
+            
+
+            if(count++ === raceCount) {
+                clearInterval(timeoutId);
+                
+            }
+        }, 1000);
     }
 
     onCarNameButtonClick() {
         try {
-            checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value)
+            checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value);
             this.view.renderRaceGameCountElement();
             this.addClickEventToRaceCountButton();
         } catch(err) {
@@ -52,8 +59,6 @@ export default class RacingCarGame {
         try {
             this.model.generateCars(checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value));
             this.updateWholeGameResult(checkUserRacingCountInput($(SELECTOR.RACE_COUNT_INPUT).value));
-            this.view.renderWholeGameResult(this.model.carArray);
-            this.addClickEventToRestartButton();
         } catch(err) {
             alert(err.message);
         }
