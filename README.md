@@ -77,9 +77,10 @@ live-server 폴더명
 
 #### step2 - 기능 구현 목록
 
-- [] 한 라운드가 실행될 때 1초의 텀동안 로딩 애니메이션을 보여준다.(애니메이션 구현을 위해
-  setInterval, setTimeout, requestAnimationFrame 을 활용한다.)
-- [] 결과가 노출된 후 2초후에 alert로 축하 메세지를 띄운다.
+- 한 라운드에 걸리는 시간은 1초이다.
+- 한 라운드가 실행될 때 1초의 텀동안 로딩 애니메이션을 보여준다.(애니메이션 구현을 위해 setInterval,
+  setTimeout, requestAnimationFrame 을 활용한다.)
+- 결과가 노출된 후 2초후에 alert로 축하 메세지를 띄운다.
 
 ## UI
 
