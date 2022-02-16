@@ -26,6 +26,7 @@ const ID = {
   RACING_STATUS: 'racing-status',
   CAR_STATUS: 'car-status',
   RACING_RESULT: 'racing-result',
+  MOVE_STATUS: 'move-status',
   WINNERS: 'winners',
 };
 

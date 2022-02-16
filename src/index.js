@@ -4,9 +4,8 @@ import { ID, MESSAGE } from './constants.js';
 import { getElement, getInputValue, getEnterEvent } from './utils/dom.js';
 import {
   parseCarName,
-  moveCars,
+  getCarsPositions,
   getMaxCount,
-  resetCars,
 } from './utils/racingGame.js';
 import {
   isAvailableCarNameLength,
@@ -81,10 +80,36 @@ class RacingCarGame {
   }
 
   startGame(count) {
-    resetCars(this.cars);
-    moveCars(this.cars, count);
+    let start = 0;
+    let before = 0;
+    let isLoading = true;
+
+    const moveCars = timestamp => {
+      const timeInSecond = Math.floor(timestamp / 1000);
+      if (!start) {
+        start = timeInSecond;
+      }
+      const progress = timeInSecond - start;
+      if (progress === count) {
+        this.view.removeSpinners();
+        this.view.renderWinners(this.getWinner());
+        window.cancelAnimationFrame(moveCars);
+        return;
+      }
+      if (isLoading) {
+        this.view.renderSpinners();
+        isLoading = false;
+      }
+      if (before !== progress) {
+        this.view.renderMoveStatus(getCarsPositions(this.cars));
+        before = progress;
+        isLoading = true;
+      }
+      window.requestAnimationFrame(moveCars);
+    };
+
     this.view.renderRacingStatus(this.cars);
-    this.view.renderWinners(this.getWinner());
+    window.requestAnimationFrame(moveCars);
   }
 }
 

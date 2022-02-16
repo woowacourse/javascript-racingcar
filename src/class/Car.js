@@ -7,8 +7,8 @@ export default class Car {
     this.racingCount = 0;
   }
 
-  resetRacingCount() {
-    this.racingCount = 0;
+  getName() {
+    return this.name;
   }
 
   move() {
@@ -16,8 +16,9 @@ export default class Car {
       generateRandomNumber(MOVE_NUMBER.MIN, MOVE_NUMBER.MAX) <
       MOVE_NUMBER.AT_LEAST
     ) {
-      return;
+      return false;
     }
     this.racingCount += 1;
+    return true;
   }
 }

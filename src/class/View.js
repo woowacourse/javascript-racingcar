@@ -8,15 +8,15 @@ import {
 } from '../utils/dom.js';
 import { ID, CLASS_NAME } from '../constants.js';
 
-const generateMoveView = racingCount =>
-  Array.from({ length: racingCount }, () => 0)
-    .map(_ => `<div id="move" class="move">⬇️</div>`)
-    .join('');
+const generateMoveView = isMoved => {
+  if (isMoved) return '<div id="move" class="move" data-status="move">⬇️</div>';
+  return '<div class="spinner" data-status="stay"></div>';
+};
 
-const generateCarStatusView = ({ name, racingCount }) => `
+const generateCarStatusView = ({ name }) => `
 <div id="car-status" class="car-status" data-name=${name}>
     <div id="car-name" class="car-name">${name}</div>
-    ${generateMoveView(racingCount)}
+    <div id="move-status" class="move-status"></div>
 </div>`;
 
 const generateRacingStatusView = cars =>
@@ -26,8 +26,6 @@ const generateWinnersView = winners =>
   `<h3 id="winners">🏆최종 우승자: ${winners
     .map(({ name }) => name)
     .join(',')}🏆</h3>`;
-
-const spinnerView = '<div class="spinner"></div>';
 
 export default class View {
   constructor() {
@@ -76,6 +74,43 @@ export default class View {
   renderRacingStatus(cars) {
     this.showRacingStatus();
     setHTML(this.$racingStatusContainer, generateRacingStatusView(cars));
+  }
+
+  removeSpinners() {
+    this.$racingStatusContainer
+      .querySelectorAll('#move-status')
+      .forEach(element => {
+        const { lastChild } = element;
+        if (lastChild && lastChild.dataset.status === 'stay') {
+          element.removeChild(lastChild);
+        }
+      });
+  }
+
+  renderSpinners() {
+    this.$racingStatusContainer
+      .querySelectorAll('#move-status')
+      .forEach(element => {
+        const { lastChild } = element;
+        if (!lastChild || lastChild.dataset.status === 'move') {
+          element.insertAdjacentHTML('beforeend', generateMoveView(false));
+        }
+      });
+  }
+
+  renderMoveStatus(carInformation) {
+    carInformation.forEach(({ name, isMoved }) => {
+      const carStatusElement = this.$racingStatusContainer.querySelector(
+        `[data-name="${name}"]`,
+      );
+      const moveElement = carStatusElement.querySelector(`#${ID.MOVE_STATUS}`);
+      const { lastChild } = moveElement;
+
+      if (isMoved && lastChild.dataset.status === 'stay') {
+        moveElement.removeChild(lastChild);
+        moveElement.insertAdjacentHTML('beforeend', generateMoveView(isMoved));
+      }
+    });
   }
 
   renderWinners(winners) {

@@ -86,6 +86,12 @@ button {
     border-radius: 4px;
 }
 
+.move-status{
+    background-color: inherit;
+    display: flex;
+    flex-direction: column;
+}
+
 .move, .spinner {
     text-align: center;
     margin: 0.3em;

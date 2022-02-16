@@ -1,3 +1,6 @@
+const $ = (selector, target = document) => target.querySelector(selector);
+const $$ = (selector, target = document) => target.querySelectorAll(selector);
+
 const addClass = (element, className) => element.classList.add(className);
 
 const removeClass = (element, className) => element.classList.remove(className);

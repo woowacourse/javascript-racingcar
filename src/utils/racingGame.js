@@ -7,13 +7,10 @@ const resetCars = cars => {
   cars.forEach(car => car.resetRacingCount());
 };
 
-const moveCars = (cars, count) => {
-  cars.forEach(car => {
-    for (let i = 0; i < count; i += 1) {
-      car.move();
-    }
+const getCarsPositions = cars =>
+  cars.map(car => {
+    return { name: car.getName(), isMoved: car.move() };
   });
-};
 
 const getMaxCount = cars => {
   let maxCount = 0;
@@ -25,4 +22,10 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-export { parseCarName, generateRandomNumber, moveCars, resetCars, getMaxCount };
+export {
+  parseCarName,
+  generateRandomNumber,
+  getCarsPositions,
+  resetCars,
+  getMaxCount,
+};
