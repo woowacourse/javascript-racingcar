@@ -15,7 +15,7 @@ describe("자동차 경주 게임 테스트", () => {
     cy.get("#racing-winner").should("not.have.text", "");
   });
 
-  it("게임 중 로딩창을 보여준다.", () => {
+  it("게임의 턴 마다 로딩창을 보여준다.", () => {
     //given
     const validNames = "1, 2, 3";
     const validNumber = "5";
@@ -28,7 +28,10 @@ describe("자동차 경주 게임 테스트", () => {
     cy.get("#racing-number-input").type(validNumber);
     cy.get("#racing-number-input-button").click();
     //then
-    cy.get("span", { timeout: 5000 }).should("have.class", "spinner");
+    for (let i = 0; i < 5; i++) {
+      cy.wait(1000);
+      cy.get("span").should("have.class", "spinner");
+    }
   });
 
   it("정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.", () => {
