@@ -1,4 +1,5 @@
 import { $ } from '../utils/dom.js';
+import { showElement, hideElement } from '../utils/attribute.js';
 
 const carPlayerTemplate = (name, distance) => {
   return `
@@ -17,4 +18,23 @@ export const renderRacingResult = (cars) => {
   cars.forEach(({ name, distance }) => {
     $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
   });
+};
+
+export const showCountInput = () => {
+  showElement($('#racing-count-form'));
+};
+
+export const showRacingResult = () => {
+  showElement($('#result-screen'));
+  showElement($('#final-winner'));
+};
+
+export const startUpScreen = () => {
+  $('#car-names-input').value = '';
+  $('#racing-count-input').value = '';
+  $('#result-racing').innerHTML = '';
+
+  hideElement($('#racing-count-form'));
+  hideElement($('#result-screen'));
+  hideElement($('#final-winner'));
 };

@@ -2,9 +2,14 @@ import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
 import { isValidLength, isBlank, handleError } from './utils/validation.js';
-import { showCountInput, showRacingResult, startUpScreen } from './views/controlScreen.js';
 import { getMaxNumber } from './utils/getNumber.js';
-import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
+import {
+  renderRacingResult,
+  renderFinalWinner,
+  showCountInput,
+  showRacingResult,
+  startUpScreen,
+} from './views/racingResult.js';
 
 class RacingCar {
   constructor() {
