@@ -29,17 +29,26 @@ const playTurnResult = async ({ lastTurnCount, cars, currentTurnCount }) => {
       const { nextTurnCount } = res;
 
       if (lastTurnCount >= nextTurnCount) {
-        playTurnResult({
+        return playTurnResult({
           lastTurnCount,
           cars,
           currentTurnCount: nextTurnCount,
         });
       }
+
+      return res;
     })
     .catch(err => console.log('err', err));
 };
 
-export const renderResult = ({ cars, lastTurnCount }) => {
+const renderWinners = winners => {
+  $('#winners-result').innerHTML = `
+    <p>🏆 최종 우승자 <span id="winners">${winners.join(',')}</span> 🏆</p>
+    <button id="reset-btn">다시 시작하기</button>
+  `;
+};
+
+export const renderResult = async ({ cars, lastTurnCount, winners }) => {
   const currentTurnCount = 1;
   const turnResult = document.querySelector('#turn-result');
 
@@ -53,14 +62,13 @@ export const renderResult = ({ cars, lastTurnCount }) => {
     turnResult.appendChild(carResult);
   });
 
-  playTurnResult({ lastTurnCount, cars, currentTurnCount });
-};
-
-export const renderWinners = winners => {
-  $('#winners-result').innerHTML = `
-    <p>🏆 최종 우승자 <span id="winners">${winners.join(',')}</span> 🏆</p>
-    <button id="reset-btn">다시 시작하기</button>
-  `;
+  await playTurnResult({
+    lastTurnCount,
+    cars,
+    currentTurnCount,
+  }).then(() => {
+    renderWinners(winners);
+  });
 };
 
 export const removeBeforeResult = e => {

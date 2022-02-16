@@ -2,11 +2,7 @@ import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
 import { getGameResult } from './core/playRacing.js';
-import {
-  renderResult,
-  removeBeforeResult,
-  renderWinners,
-} from './view/renderResult.js';
+import { renderResult, removeBeforeResult } from './view/renderResult.js';
 
 class App {
   constructor() {
@@ -34,8 +30,7 @@ class App {
       tryCount: this.tryCount,
     });
 
-    renderResult({ cars, lastTurnCount: maxScore });
-    renderWinners(winners);
+    renderResult({ cars, lastTurnCount: maxScore, winners });
     this.resetValue();
   }
 
