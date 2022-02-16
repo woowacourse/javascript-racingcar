@@ -1,5 +1,5 @@
 import { Car } from '../models/Car.js';
-import { renderCarNames, renderProgressArrow, renderWinners } from '../views/view.js';
+import { renderCarNames, renderWinners, renderProgressArrowOfState } from '../views/view.js';
 import { state } from '../models/state.js';
 
 export function race() {
@@ -7,7 +7,7 @@ export function race() {
   renderCarNames();
   moveCars();
   renderWinners(pickWinner());
-  clearState();
+  renderProgressArrowOfState();
 }
 
 function allocateCars() {
@@ -24,9 +24,7 @@ function moveCars() {
 
 function goForward() {
   for (let i = 0; i < state.cars.length; i++) {
-    if (state.cars[i].moveFoward()) {
-      renderProgressArrow(i);
-    }
+    state.cars[i].moveFoward();
   }
 }
 

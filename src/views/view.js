@@ -16,11 +16,25 @@ export function renderCarNames() {
   }
 }
 
+export function renderProgressArrowOfState() {
+  for (let nowRacingNumber = 0; nowRacingNumber < state.racingNumber; nowRacingNumber++) {
+    setTimeout(() => renderProgressArrowsForOneRound(nowRacingNumber), (nowRacingNumber + 1) * 1000);
+  }
+}
+
+function renderProgressArrowsForOneRound(nowRacingNumber) {
+  state.cars.forEach((element, index) => {
+    if (element.location > nowRacingNumber) {
+      renderProgressArrow(index);
+    }
+  });
+}
+
 export function renderProgressArrow(index) {
   const racingProgress = document.getElementsByClassName('racing-progress');
   const racingArrow = document.createElement('div');
   racingArrow.className = 'racing-progress-arrow';
-  racingArrow.innerHTML = '⬇️️';
+  racingArrow.insertAdjacentHTML('afterbegin', '⬇️️');
   racingProgress[index].appendChild(racingArrow);
 }
 
