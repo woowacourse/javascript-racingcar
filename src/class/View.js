@@ -1,6 +1,8 @@
 import {
   $,
   $$,
+  disableElement,
+  enableElement,
   addClass,
   removeClass,
   resetInputValue,
@@ -30,7 +32,9 @@ const generateWinnersView = winners =>
 export default class View {
   constructor() {
     this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$carNamesButton = $(SELECTOR.CAR_NAMES_BUTTON);
     this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountButton = $(SELECTOR.RACING_COUNT_BUTTON);
     this.$racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
     this.$racingStatusContainer = $(SELECTOR.RACING_STATUS);
     this.$racingResultContainer = $(SELECTOR.RACING_RESULT);
@@ -38,11 +42,18 @@ export default class View {
   }
 
   showRacingCountInput() {
+    disableElement(this.$carNamesInput);
+    disableElement(this.$carNamesButton);
     removeClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
   }
 
   restartGame() {
+    enableElement(this.$carNamesInput);
+    enableElement(this.$carNamesButton);
     resetInputValue(this.$carNamesInput);
+
+    enableElement(this.$racingCountInput);
+    enableElement(this.$racingCountButton);
     resetInputValue(this.$racingCountInput);
 
     clearHTML(this.$racingStatusContainer);
@@ -54,6 +65,8 @@ export default class View {
   }
 
   renderRacingStatus(cars) {
+    disableElement(this.$racingCountInput);
+    disableElement(this.$racingCountButton);
     removeClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
     setHTML(this.$racingStatusContainer, generateRacingStatusView(cars));
   }
