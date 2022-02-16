@@ -2,7 +2,7 @@ import RacingGameController from './RacingGameController.js';
 
 class App {
   constructor() {
-    this._RacingGame = new RacingGameController();
+    new RacingGameController();
   }
 }
 
