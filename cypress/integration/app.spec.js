@@ -127,6 +127,8 @@ describe('자동차 경주 게임 2단계 추가 구현 사항', () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
 
+    expect(alertStub).to.not.be.called;
+
     cy.wait((racingCount + 2) * 1000).then(() => {
       expect(alertStub).to.be.called;
     });
