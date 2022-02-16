@@ -39,6 +39,10 @@ class RacingCarGameModel {
     }
     this.racingCount = parseInt(racingCount, 10);
   }
+
+  tryMoveCars() {
+    this.cars.map((car) => car.tryMove());
+  }
 }
 
 export default RacingCarGameModel;
