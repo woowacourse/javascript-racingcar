@@ -1,12 +1,13 @@
 import {
+  $,
+  $$,
   addClass,
   removeClass,
-  getElement,
   resetInputValue,
   clearHTML,
   setHTML,
 } from '../utils/dom.js';
-import { ID, CLASS_NAME } from '../constants.js';
+import { SELECTOR, CLASS_NAME } from '../constants.js';
 
 const generateMoveView = isMoved => {
   if (isMoved) return '<div id="move" class="move" data-status="move">⬇️</div>';
@@ -29,12 +30,12 @@ const generateWinnersView = winners =>
 
 export default class View {
   constructor() {
-    this.$carNamesInput = getElement(ID.CAR_NAMES_INPUT);
-    this.$racingCountInput = getElement(ID.RACING_COUNT_INPUT);
-    this.$racingCountContainer = getElement(ID.RACING_COUNT_CONTAINER);
-    this.$racingStatusContainer = getElement(ID.RACING_STATUS);
-    this.$racingResultContainer = getElement(ID.RACING_RESULT);
-    this.$winnersContainer = getElement(ID.RACING_WINNERS);
+    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
+    this.$racingStatusContainer = $(SELECTOR.RACING_STATUS);
+    this.$racingResultContainer = $(SELECTOR.RACING_RESULT);
+    this.$winnersContainer = $(SELECTOR.RACING_WINNERS);
   }
 
   showRacingCountInput() {
@@ -77,33 +78,29 @@ export default class View {
   }
 
   removeSpinners() {
-    this.$racingStatusContainer
-      .querySelectorAll('#move-status')
-      .forEach(element => {
-        const { lastChild } = element;
-        if (lastChild && lastChild.dataset.status === 'stay') {
-          element.removeChild(lastChild);
-        }
-      });
+    $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
+      const { lastChild } = element;
+      if (lastChild && lastChild.dataset.status === 'stay') {
+        element.removeChild(lastChild);
+      }
+    });
   }
 
   renderSpinners() {
-    this.$racingStatusContainer
-      .querySelectorAll('#move-status')
-      .forEach(element => {
-        const { lastChild } = element;
-        if (!lastChild || lastChild.dataset.status === 'move') {
-          element.insertAdjacentHTML('beforeend', generateMoveView(false));
-        }
-      });
+    $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
+      const { lastChild } = element;
+      if (!lastChild || lastChild.dataset.status === 'move') {
+        element.insertAdjacentHTML('beforeend', generateMoveView(false));
+      }
+    });
   }
 
   renderMoveStatus(carInformation) {
     carInformation.forEach(({ name, isMoved }) => {
-      const carStatusElement = this.$racingStatusContainer.querySelector(
-        `[data-name="${name}"]`,
+      const moveElement = $(
+        SELECTOR.MOVE_STATUS,
+        $(`[data-name="${name}"]`, this.$racingStatusContainer),
       );
-      const moveElement = carStatusElement.querySelector(`#${ID.MOVE_STATUS}`);
       const { lastChild } = moveElement;
 
       if (isMoved && lastChild.dataset.status === 'stay') {

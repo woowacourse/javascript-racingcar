@@ -14,20 +14,20 @@ const MOVE_NUMBER = {
   AT_LEAST: 4,
 };
 
-const ID = {
-  RACING_GAME_FORM: 'racing-game-form',
-  CAR_NAMES_INPUT: 'car-names-input',
-  CAR_NAMES_BUTTON: 'car-names-button',
-  RACING_COUNT_CONTAINER: 'racing-count-container',
-  RACING_COUNT_INPUT: 'racing-count-input',
-  RACING_COUNT_BUTTON: 'racing-count-button',
-  RESTART_BUTTON: 'restart-button',
-  RACING_WINNERS: 'racing-winners',
-  RACING_STATUS: 'racing-status',
-  CAR_STATUS: 'car-status',
-  RACING_RESULT: 'racing-result',
-  MOVE_STATUS: 'move-status',
-  WINNERS: 'winners',
+const SELECTOR = {
+  RACING_GAME_FORM: '#racing-game-form',
+  CAR_NAMES_INPUT: '#car-names-input',
+  CAR_NAMES_BUTTON: '#car-names-button',
+  RACING_COUNT_CONTAINER: '#racing-count-container',
+  RACING_COUNT_INPUT: '#racing-count-input',
+  RACING_COUNT_BUTTON: '#racing-count-button',
+  RESTART_BUTTON: '#restart-button',
+  RACING_WINNERS: '#racing-winners',
+  RACING_STATUS: '#racing-status',
+  CAR_STATUS: '#car-status',
+  RACING_RESULT: '#racing-result',
+  MOVE_STATUS: '#move-status',
+  WINNERS: '#winners',
 };
 
 const CLASS_NAME = {
@@ -41,4 +41,11 @@ const MESSAGE = {
   NOT_DECIMAL_COUNT: '소수는 입력할 수 없습니다.',
 };
 
-export { ID, CLASS_NAME, MESSAGE, RACING_COUNT, NAME_LENGTH, MOVE_NUMBER };
+export {
+  SELECTOR,
+  CLASS_NAME,
+  MESSAGE,
+  RACING_COUNT,
+  NAME_LENGTH,
+  MOVE_NUMBER,
+};

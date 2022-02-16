@@ -1,7 +1,7 @@
 import Car from './class/Car.js';
 import View from './class/View.js';
-import { ID, MESSAGE } from './constants.js';
-import { getElement, getInputValue, getEnterEvent } from './utils/dom.js';
+import { SELECTOR, MESSAGE } from './constants.js';
+import { $, getInputValue, getEnterEvent } from './utils/dom.js';
 import {
   parseCarName,
   getCarsPositions,
@@ -23,21 +23,19 @@ class RacingCarGame {
   }
 
   bindEvents() {
-    getElement(ID.CAR_NAMES_BUTTON).addEventListener('click', ({ target }) =>
+    $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', ({ target }) =>
       this.onSubmitCarName(getInputValue(target.parentElement)),
     );
-    getElement(ID.RACING_COUNT_BUTTON).addEventListener('click', ({ target }) =>
+    $(SELECTOR.RACING_COUNT_BUTTON).addEventListener('click', ({ target }) =>
       this.onSubmitRacingCount(+getInputValue(target.parentElement)),
     );
-    getElement(ID.RESTART_BUTTON).addEventListener('click', () =>
+    $(SELECTOR.RESTART_BUTTON).addEventListener('click', () =>
       this.onClickRestart(),
     );
-    getElement(ID.CAR_NAMES_INPUT).addEventListener(
-      'keyup',
-      ({ key, target }) =>
-        getEnterEvent(key, () => this.onSubmitCarName(target.value)),
+    $(SELECTOR.CAR_NAMES_INPUT).addEventListener('keyup', ({ key, target }) =>
+      getEnterEvent(key, () => this.onSubmitCarName(target.value)),
     );
-    getElement(ID.RACING_COUNT_INPUT).addEventListener(
+    $(SELECTOR.RACING_COUNT_INPUT).addEventListener(
       'keyup',
       ({ key, target }) =>
         getEnterEvent(key, () => this.onSubmitRacingCount(+target.value)),

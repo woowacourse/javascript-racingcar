@@ -1,4 +1,4 @@
-import { MESSAGE, ID, RACING_COUNT } from '../../src/constants.js';
+import { MESSAGE, SELECTOR, RACING_COUNT } from '../../src/constants.js';
 
 const availableCarName = '준,포코,공원,제이슨,포비';
 
@@ -47,7 +47,7 @@ describe('자동차 이름 입력', () => {
     // when
     cy.submitCarNames(availableCarName);
     // then
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).should('be.visible');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).should('be.visible');
   });
 });
 
@@ -90,7 +90,7 @@ describe('레이싱 횟수 입력 테스트', () => {
     cy.submitCarNames(availableCarName);
     cy.submitRacingCount(RACING_COUNT.MAX);
     // then
-    cy.get(`#${ID.WINNERS}`).then(element => {
+    cy.get(SELECTOR.WINNERS).then(element => {
       expect(element.text()).to.contain('최종 우승자');
     });
   });
@@ -109,7 +109,7 @@ describe('최종 우승자 출력', () => {
     cy.submitCarNames(name);
     cy.submitRacingCount(RACING_COUNT.MIN);
     // then
-    cy.get(`#${ID.WINNERS}`).should('have.text', winners);
+    cy.get(SELECTOR.WINNERS).should('have.text', winners);
   });
 });
 
@@ -122,12 +122,12 @@ describe('다시 시작하기 버튼 테스트', () => {
     // when
     cy.submitCarNames(availableCarName);
     cy.submitRacingCount(RACING_COUNT.MIN);
-    cy.get(`#${ID.RESTART_BUTTON}`).click();
+    cy.get(SELECTOR.RESTART_BUTTON).click();
     // then
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).should('have.value', '');
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).should('have.value', '');
-    cy.get(`#${ID.RACING_STATUS}`).should('be.empty');
-    cy.get(`#${ID.RACING_WINNERS}`).should('be.empty');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).should('have.value', '');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).should('have.value', '');
+    cy.get(SELECTOR.RACING_STATUS).should('be.empty');
+    cy.get(SELECTOR.RACING_WINNERS).should('be.empty');
   });
 });
 
@@ -138,10 +138,10 @@ describe('예외 사항', () => {
 
   it(' 자동차 이름과 레이싱 횟수 입력 후 Enter 키를 통해 제출 할 수 있다.', () => {
     // when
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(availableCarName).type('{enter}');
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(RACING_COUNT.MAX).type('{enter}');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type(availableCarName).type('{enter}');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).type(RACING_COUNT.MAX).type('{enter}');
     // then
-    cy.get(`#${ID.WINNERS}`).then(element => {
+    cy.get(SELECTOR.WINNERS).then(element => {
       expect(element.text()).to.contain('최종 우승자');
     });
   });
