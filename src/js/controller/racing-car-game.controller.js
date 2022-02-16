@@ -14,6 +14,7 @@ class RacingCarGameController {
   // this가 상위 context인 window가 되어버린다
   bindMethods() {
     this.onSubmitCarNames = this.onSubmitCarNames.bind(this);
+    this.onSubmitRacingCount = this.onSubmitRacingCount.bind(this);
   }
 
   bindViews() {
@@ -26,6 +27,16 @@ class RacingCarGameController {
       this.model.updateCars(carNames);
       this.form.resetCarNameInput(this.model.getCarNames());
       this.form.showRacingCountFieldset();
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  onSubmitRacingCount() {
+    const racingCount = this.form.getRacingCount();
+    try {
+      this.model.updateRacingCount(racingCount);
+      this.form.resetRacingCountInput(this.model.getRacingCount());
     } catch (e) {
       alert(e.message);
     }

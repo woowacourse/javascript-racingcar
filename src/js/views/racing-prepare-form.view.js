@@ -25,15 +25,25 @@ class RacingPrepareForm {
 
   registerEventListeners() {
     this.$carNamesSubmitButton.addEventListener('click', this.delegate.onSubmitCarNames);
+    this.$racingCountSubmitButton.addEventListener('click', this.delegate.onSubmitRacingCount);
   }
 
   getCarNames() {
     return this.$carNamesInput.value;
   }
 
+  getRacingCount() {
+    return this.$racingCountInput.value;
+  }
+
   resetCarNameInput(placeholder = '') {
     this.$carNamesInput.value = '';
     this.$carNamesInput.placeholder = placeholder;
+  }
+
+  resetRacingCountInput(placeholder = '') {
+    this.$racingCountInput.value = '';
+    this.$racingCountInput.placeholder = placeholder;
   }
 
   showRacingCountFieldset() {

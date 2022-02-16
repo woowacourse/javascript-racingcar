@@ -18,9 +18,15 @@ export const SELECTORS = {
 
 export const MAX_CAR_NAME_LENGTH = 5;
 export const MIN_CAR_NAME_LENGTH = 1;
+export const MAX_RACING_COUNT = 100;
+export const MIN_RACING_COUNT = 1;
 
 export const ERROR_MESSAGES = {
   EMPTY_CAR_NAME: `자동차 이름을 입력해 주세요`,
   BEYOND_MAX_CAR_NAME_LENGTH: `각 자동차 이름을 ${MAX_CAR_NAME_LENGTH}글자 이하로 입력해주세요`,
   FALL_SHORT_OF_MIN_CAR_NAME_LENGTH: `각 자동차 이름을 ${MIN_CAR_NAME_LENGTH}글자 이상으로 입력해 주세요`,
+  EMPTY_RACING_COUNT: `시도할 횟수를 입력해 주세요`,
+  BEYOND_MAX_RACING_COUNT: `시도 횟수는 ${MAX_RACING_COUNT}회 이하로 입력해 주세요`,
+  FALL_SHORT_OF_MIN_RACING_COUNT: `시도 횟수는 ${MIN_RACING_COUNT}회 이상으로 입력해 주세요`,
+  TYPE_MISMATCH_OF_RACING_COUNT: '시도 횟수는 숫자만 입력 가능합니다',
 };
