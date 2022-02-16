@@ -10,10 +10,7 @@ function sortCars(cars) {
 }
 
 function isCarCanGo() {
-  if (Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT) {
-    return true;
-  }
-  return false;
+  return Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT;
 }
 
 export default function playRace(count) {
