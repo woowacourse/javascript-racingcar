@@ -53,6 +53,13 @@ class RacingPrepareForm {
   hideRacingCountFieldset() {
     hideElement(this.$racingCountFieldset);
   }
+
+  disableSubmit() {
+    this.$carNamesInput.disabled = true;
+    this.$carNamesSubmitButton.disabled = true;
+    this.$racingCountInput.disabled = true;
+    this.$racingCountSubmitButton.disabled = true;
+  }
 }
 
 export default RacingPrepareForm;

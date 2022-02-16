@@ -39,6 +39,7 @@ class RacingCarGameController {
     try {
       this.model.updateRacingCount(racingCount);
       this.form.resetRacingCountInput(this.model.getRacingCount());
+      this.form.disableSubmit();
       this.startGame();
     } catch (e) {
       alert(e.message);
