@@ -1,18 +1,19 @@
 import { CLASS, ID } from '../constants/index.js';
+import { $, $$ } from '../util/index.js';
 import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from '../template/index.js';
 
 class RacingCarGameView {
   constructor() {
-    this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
-    this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
-    this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
-    this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
-    this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
+    this.$carNamesForm = $(`#${ID.CAR_NAMES_FORM}`);
+    this.$carNamesInput = $(`#${ID.CAR_NAMES_INPUT}`);
+    this.$racingCountForm = $(`#${ID.RACING_COUNT_FORM}`);
+    this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
+    this.$racingCarList = $(`#${ID.RACING_CAR_LIST}`);
     this.$racingCarProgress = null;
-    this.$finalWinnerResult = document.getElementById(ID.FINAL_WINNER_RESULT);
-    this.$finalWinner = document.getElementById(ID.FINAL_WINNER);
-    this.$restartSection = document.getElementById(ID.RESTART_SECTION);
-    this.$restartBtn = document.getElementById(ID.RESTART_BTN);
+    this.$finalWinnerResult = $(`#${ID.FINAL_WINNER_RESULT}`);
+    this.$finalWinner = $(`#${ID.FINAL_WINNER}`);
+    this.$restartSection = $(`#${ID.RESTART_SECTION}`);
+    this.$restartBtn = $(`#${ID.RESTART_BTN}`);
   }
 
   setCarNameFormEventHandler(callback) {
@@ -41,9 +42,8 @@ class RacingCarGameView {
       ''
     );
 
-    // this.$racingCarList.innerHTML = racingCarItemsTemplate;
     this.$racingCarList.insertAdjacentHTML('beforeend', racingCarItemsTemplate);
-    this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
+    this.$racingCarProgress = $$(`.${CLASS.RACING_CAR_PROGRESS}`);
   }
 
   renderRacingCarProgress(index) {
