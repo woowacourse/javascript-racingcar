@@ -4,9 +4,12 @@ import {
 } from "../../util/elements.js";
 import { EXCEPTIONS } from "../../util/constants.js";
 import { isValidRacingCount } from "./checkFunctions.js";
-import { setResultArea } from "../../view/resultViewControl.js";
-import { setWinnerText } from "../../view/winnerViewControl.js";
-import { showWinnerAndRestartButton } from "../../view/viewControl.js";
+import { setResultArea } from "../../view/resultView.js";
+import { setWinnerText } from "../../view/winnerView.js";
+import {
+  lockRacingCount,
+  toggleHiddenWinnerAndRestartArea,
+} from "../../view/commonView.js";
 
 export default class Game {
   constructor(cars) {
@@ -31,6 +34,7 @@ export default class Game {
   }
 
   goNextStep() {
+    lockRacingCount();
     this.startGame();
 
     setTimeout(() => {
@@ -39,9 +43,6 @@ export default class Game {
         alert(`축하합니다. ${this.winner.join(", ")} 님이 우승하셨습니다!`);
       }, 2000);
     }, 1000 * this.racingCount);
-
-    racingCountInput.readOnly = true;
-    racingCountSubmitButton.disabled = true;
   }
 
   addRacingCountSubmitEvent() {
@@ -102,7 +103,7 @@ export default class Game {
   }
 
   showWinner() {
-    showWinnerAndRestartButton();
+    toggleHiddenWinnerAndRestartArea();
     this.winner = this.getWinner();
     setWinnerText(this.winner);
   }
