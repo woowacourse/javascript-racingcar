@@ -34,6 +34,7 @@ export const ALERT_MESSAGE = Object.freeze({
   EMPTY_NAME_ERROR: '이름은 공백이 될수없습니다',
   HAS_INVALID_NAME_LENGTH_ERROR: `이름은 ${GAME_NUMBERS.VALID_MAX_NAME_LENGTH}가 넘어갈 수 없습니다.`,
   EMPTY_COUNT_ERROR: '숫자를 입력해주세요',
+  INPUT_POSITIVE_NUMBER: '양의 정수를 입력해주세요',
 });
 
 export const winnerMesssage = (winners) => `🏆 최종 우승자: ${winners} 🏆`;

@@ -12,6 +12,8 @@ const isEmptyName = (names) => names.some((name) => name.length === GAME_NUMBERS
 
 const isEmptyRacingCount = (count) => !count;
 
+const isUnderZero = (count) => count <= 0;
+
 export const checkValidCarNames = (splitedCarNames) => {
   if (hasSpaceInName(splitedCarNames)) {
     throw new Error(ALERT_MESSAGE.HAS_EMPTY_NAME_ERROR);
@@ -30,5 +32,8 @@ export const checkValidCarNames = (splitedCarNames) => {
 export const checkValidRacingCount = (count) => {
   if (isEmptyRacingCount(count)) {
     throw new Error(ALERT_MESSAGE.EMPTY_COUNT_ERROR);
+  }
+  if (isUnderZero(count)) {
+    throw new Error(ALERT_MESSAGE.INPUT_POSITIVE_NUMBER);
   }
 };
