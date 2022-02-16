@@ -10,15 +10,15 @@ export default class RacingCarView {
     this.$racingCountButton = $(`#${ID.RACING_COUNT_BUTTON}`);
   }
 
-  insertTemplate = template => {
+  insertTemplate = (template) => {
     this.$result.insertAdjacentHTML('beforeend', template);
   };
 
-  renderCarNames = carNames => {
+  renderCarNames = (carNames) => {
     this.insertTemplate(this.makeCarNamesTemplate(carNames));
   };
 
-  renderResult = stageInfo => {
+  renderResult = (stageInfo) => {
     Object.entries(stageInfo).forEach(([name, isMoved]) => {
       if (isMoved) {
         $(`#${name}-container`)
@@ -28,32 +28,32 @@ export default class RacingCarView {
     });
   };
 
-  makeCarNamesTemplate = carNames => `
+  makeCarNamesTemplate = (carNames) => `
     <div class="${CLASS.RACING_RESULTS}">
       ${carNames
         .map(
-          carName => `
+          (carName) => `
           <div id="${carName}-container" class=${CLASS.RACING_INFO}>
             <div class="${CLASS.CAR_NAME}">${carName}</div>
             <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
           </div>
-        `,
+`,
         )
         .join('')}
     </div>
     `;
 
   removeSpinners = () => {
-    document.querySelectorAll(`.${CLASS.LOADING}`).forEach(loading => {
+    document.querySelectorAll(`.${CLASS.LOADING}`).forEach((loading) => {
       loading.remove();
     });
   };
 
-  renderWinners = winners => {
+  renderWinners = (winners) => {
     this.insertTemplate(this.makeWinnersTemplate(winners));
   };
 
-  makeWinnersTemplate = winners => `
+  makeWinnersTemplate = (winners) => `
       <div>
         <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
       </div>
@@ -73,16 +73,16 @@ export default class RacingCarView {
     this.$racingCountInput.value = '';
   };
 
-  alertCongratulationMessage = winnerMessage => {
+  alertCongratulationMessage = (winnerMessage) => {
     alert(winnerMessage);
   };
 
   disableElement = (...args) => {
-    args.forEach(arg => (arg.disabled = true));
+    args.forEach((arg) => (arg.disabled = true));
   };
 
   enableElement = (...args) => {
-    args.forEach(arg => (arg.disabled = false));
+    args.forEach((arg) => (arg.disabled = false));
   };
 
   disableCarName = () => {

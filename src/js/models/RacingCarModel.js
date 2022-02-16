@@ -1,5 +1,5 @@
 import { GAME_NUMBERS, ALERT_MESSAGE } from '../utils/constants.js';
-import { generateRandomNumber } from '../utils/random.js';
+import generateRandomNumber from '../utils/random.js';
 import Car from './Car.js';
 
 export default class RacingCarModel {
@@ -9,14 +9,14 @@ export default class RacingCarModel {
     this.prevResult = {};
   }
 
-  setCars = carNames => {
+  setCars = (carNames) => {
     const splitedCarNames = this.splitCarNames(carNames);
 
     this.checkValidCarNames(splitedCarNames);
-    this.cars = splitedCarNames.map(name => new Car(name));
+    this.cars = splitedCarNames.map((name) => new Car(name));
   };
 
-  checkValidCarNames = splitedCarNames => {
+  checkValidCarNames = (splitedCarNames) => {
     if (this.hasSpaceInName(splitedCarNames)) {
       throw new Error(ALERT_MESSAGE.HAS_EMPTY_NAME_ERROR);
     }
@@ -31,12 +31,12 @@ export default class RacingCarModel {
     }
   };
 
-  setRacingCount = count => {
+  setRacingCount = (count) => {
     this.checkValidRacingCount(count);
     this.racingCount = count;
   };
 
-  checkValidRacingCount = count => {
+  checkValidRacingCount = (count) => {
     if (this.isEmptyRacingCount(count)) {
       throw new Error(ALERT_MESSAGE.EMPTY_COUNT_ERROR);
     }
@@ -44,10 +44,10 @@ export default class RacingCarModel {
 
   getRacingCount = () => this.racingCount;
 
-  getCarsName = () => this.cars.map(car => car.name);
+  getCarsName = () => this.cars.map((car) => car.name);
 
   initPrevResult = () => {
-    this.cars.forEach(car => {
+    this.cars.forEach((car) => {
       this.prevResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
     });
   };
@@ -55,7 +55,7 @@ export default class RacingCarModel {
   playTurn = () => {
     const prevResult = { ...this.prevResult };
 
-    this.cars.forEach(car => {
+    this.cars.forEach((car) => {
       this.race(car);
     });
 
@@ -67,36 +67,34 @@ export default class RacingCarModel {
 
   getCars = () => this.cars;
 
-  race = car => {
+  race = (car) => {
     if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
-      this.prevResult[car.name]++;
+      this.prevResult[car.name] += 1;
     }
   };
 
-  racePerSecond = () => {
-    return new Promise(resolve => {
+  racePerSecond = () =>
+    new Promise((resolve) => {
       setTimeout(() => {
         const stageInfo = this.playTurn();
         resolve(stageInfo);
       }, 1000);
     });
-  };
 
-  getCongratulationMessage = winners => {
-    return new Promise(resolve => {
+  getCongratulationMessage = (winners) =>
+    new Promise((resolve) => {
       setTimeout(() => {
         resolve(`🏆축하합니다! ${winners}님이 우승하셨습니다!`);
       }, 2000);
     });
-  };
 
   pickWinners = () => {
-    const maxCount = Math.max(...this.cars.map(car => car.forwardCount));
+    const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
 
     return this.cars
-      .filter(car => car.forwardCount === maxCount)
-      .map(car => car.name)
+      .filter((car) => car.forwardCount === maxCount)
+      .map((car) => car.name)
       .join(', ');
   };
 
@@ -105,16 +103,16 @@ export default class RacingCarModel {
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
   };
 
-  splitCarNames = carNames => carNames.split(',');
+  splitCarNames = (carNames) => carNames.split(',');
 
-  hasInValidNameLength = names =>
-    names.some(name => name.length > GAME_NUMBERS.VALID_MAX_NAME_LENGTH);
+  hasInValidNameLength = (names) =>
+    names.some((name) => name.length > GAME_NUMBERS.VALID_MAX_NAME_LENGTH);
 
-  hasSpaceInName = names => names.some(name => Array.from(name).some(ch => ch.match(/ /)));
+  hasSpaceInName = (names) => names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
 
-  isDuplicatedCarName = names => names.length !== new Set(names).size;
+  isDuplicatedCarName = (names) => names.length !== new Set(names).size;
 
-  isEmptyName = names => names.some(name => name.length === GAME_NUMBERS.EMPTY_NUMBER);
+  isEmptyName = (names) => names.some((name) => name.length === GAME_NUMBERS.EMPTY_NUMBER);
 
-  isEmptyRacingCount = count => !count;
+  isEmptyRacingCount = (count) => !count;
 }

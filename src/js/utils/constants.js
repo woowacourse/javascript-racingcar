@@ -36,4 +36,4 @@ export const ALERT_MESSAGE = Object.freeze({
   EMPTY_COUNT_ERROR: '숫자를 입력해주세요',
 });
 
-export const winnerMesssage = winners => `🏆 최종 우승자: ${winners} 🏆`;
+export const winnerMesssage = (winners) => `🏆 최종 우승자: ${winners} 🏆`;

@@ -1,7 +1,7 @@
 import RacingCarModel from '../models/RacingCarModel.js';
 import RacingCarView from '../view/RacingCarView.js';
 
-import { $ } from '../utils/selector.js';
+import $ from '../utils/selector.js';
 import { ID } from '../utils/constants.js';
 
 export default class RacingCarController {
@@ -20,7 +20,7 @@ export default class RacingCarController {
     $(`#${ID.RESULT}`).addEventListener('click', this.clickReplayButtonHandler);
   };
 
-  submitCarNamesHandler = e => {
+  submitCarNamesHandler = () => {
     const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
 
     try {
@@ -32,7 +32,7 @@ export default class RacingCarController {
     }
   };
 
-  submitRacingCountHandler = e => {
+  submitRacingCountHandler = () => {
     const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
 
     try {
@@ -45,7 +45,7 @@ export default class RacingCarController {
     }
   };
 
-  clickReplayButtonHandler = e => {
+  clickReplayButtonHandler = (e) => {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
@@ -58,7 +58,7 @@ export default class RacingCarController {
     this.model.initPrevResult();
     this.view.renderCarNames(this.model.getCarsName());
 
-    for (let i = 0; i < this.model.getRacingCount(); i++) {
+    for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const stageInfo = await this.model.racePerSecond();
       this.view.renderResult(stageInfo);
     }
