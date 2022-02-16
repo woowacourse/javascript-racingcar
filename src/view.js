@@ -90,6 +90,7 @@ export default class View {
     <section class="${SELECTOR.STEP_SECTION}">
       <span class="${SELECTOR.STEP_SECTION_NAME}">${car.name}</span>
       <ul class="${SELECTOR.STEP_SECTION_ARROWS}">
+        <li class="${SELECTOR.STEP_SECTION_LOADING}"></li>
       </ul>
     </section>
   `;
