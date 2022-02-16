@@ -39,6 +39,7 @@ const MESSAGE = {
   DUPLICATE_NAME: '중복된 자동차 이름은 입력이 불가능합니다.',
   WRONG_COUNT: `올바르지 않은 레이싱 횟수입니다. 레이싱횟수는 최소 ${RACING_COUNT.MIN}회, 최대 ${RACING_COUNT.MAX}회까지 가능합니다.`,
   NOT_DECIMAL_COUNT: '소수는 입력할 수 없습니다.',
+  GAME_END: '축하합니다!',
 };
 
 const CAR_STATUS = {
