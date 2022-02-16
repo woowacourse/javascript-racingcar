@@ -117,13 +117,13 @@ export default class View {
   `;
   }
 
-  winnerUpdate(winnerList) {
+  showWinner(winnerList) {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
   }
 
   showResult(carList, winnerList) {
     this.showStepSection(carList);
-    this.winnerUpdate(winnerList);
+    this.showWinner(winnerList);
     this.makeResultDisplayNotNone();
   }
 }
