@@ -1,5 +1,5 @@
-import { $ } from "../utils/selector.js";
-import { ID, CLASS, winnerMesssage } from "../utils/constants.js";
+import { $ } from '../utils/selector.js';
+import { ID, CLASS, winnerMesssage } from '../utils/constants.js';
 
 export default class RacingCarView {
   constructor() {
@@ -10,50 +10,50 @@ export default class RacingCarView {
     this.$racingCountButton = $(`#${ID.RACING_COUNT_BUTTON}`);
   }
 
-  insertTemplate = (template) => {
-    this.$result.insertAdjacentHTML("beforeend", template);
+  insertTemplate = template => {
+    this.$result.insertAdjacentHTML('beforeend', template);
   };
 
-  renderCarNames = (carNames) => {
+  renderCarNames = carNames => {
     this.insertTemplate(this.makeCarNamesTemplate(carNames));
   };
 
-  renderResult = (stageInfo) => {
+  renderResult = stageInfo => {
     Object.entries(stageInfo).forEach(([name, isMoved]) => {
       if (isMoved) {
         $(`#${name}-container`)
           .querySelector(`.${CLASS.CAR_NAME}`)
-          .insertAdjacentHTML("afterend", `<div class=${CLASS.ARROW}>⬇️</div>`);
+          .insertAdjacentHTML('afterend', `<div class=${CLASS.ARROW}>⬇️</div>`);
       }
     });
   };
 
-  makeCarNamesTemplate = (carNames) => `
+  makeCarNamesTemplate = carNames => `
     <div class="${CLASS.RACING_RESULTS}">
       ${carNames
         .map(
-          (carName) => `
+          carName => `
           <div id="${carName}-container" class=${CLASS.RACING_INFO}>
             <div class="${CLASS.CAR_NAME}">${carName}</div>
             <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
           </div>
-        `
+        `,
         )
-        .join("")}
+        .join('')}
     </div>
     `;
 
   removeSpinners = () => {
-    document.querySelectorAll(`.${CLASS.LOADING}`).forEach((loading) => {
+    document.querySelectorAll(`.${CLASS.LOADING}`).forEach(loading => {
       loading.remove();
     });
   };
 
-  renderWinners = (winners) => {
+  renderWinners = winners => {
     this.insertTemplate(this.makeWinnersTemplate(winners));
   };
 
-  makeWinnersTemplate = (winners) => `
+  makeWinnersTemplate = winners => `
       <div>
         <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
       </div>
@@ -68,21 +68,21 @@ export default class RacingCarView {
     `;
 
   resetGame = () => {
-    this.$result.innerHTML = "";
-    this.$carNameInput.value = "";
-    this.$racingCountInput.value = "";
+    this.$result.innerHTML = '';
+    this.$carNameInput.value = '';
+    this.$racingCountInput.value = '';
   };
 
-  alertCongratulationMessage = (winnerMessage) => {
+  alertCongratulationMessage = winnerMessage => {
     alert(winnerMessage);
   };
 
   disableElement = (...args) => {
-    args.forEach((arg) => (arg.disabled = true));
+    args.forEach(arg => (arg.disabled = true));
   };
 
   enableElement = (...args) => {
-    args.forEach((arg) => (arg.disabled = false));
+    args.forEach(arg => (arg.disabled = false));
   };
 
   disableCarName = () => {

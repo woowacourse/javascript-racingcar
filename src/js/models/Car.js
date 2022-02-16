@@ -1,4 +1,4 @@
-import { GAME_NUMBERS } from "../utils/constants.js";
+import { GAME_NUMBERS } from '../utils/constants.js';
 
 export default class Car {
   constructor(name) {

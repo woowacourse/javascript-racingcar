@@ -1,8 +1,8 @@
-import RacingCarModel from "../models/RacingCarModel.js";
-import RacingCarView from "../view/RacingCarView.js";
+import RacingCarModel from '../models/RacingCarModel.js';
+import RacingCarView from '../view/RacingCarView.js';
 
-import { $ } from "../utils/selector.js";
-import { ID } from "../utils/constants.js";
+import { $ } from '../utils/selector.js';
+import { ID } from '../utils/constants.js';
 
 export default class RacingCarController {
   constructor() {
@@ -15,18 +15,12 @@ export default class RacingCarController {
   };
 
   bindEvent = () => {
-    $(`#${ID.CAR_NAME_BUTTON}`).addEventListener(
-      "click",
-      this.submitCarNamesHandler
-    );
-    $(`#${ID.RACING_COUNT_BUTTON}`).addEventListener(
-      "click",
-      this.submitRacingCountHandler
-    );
-    $(`#${ID.RESULT}`).addEventListener("click", this.clickReplayButtonHandler);
+    $(`#${ID.CAR_NAME_BUTTON}`).addEventListener('click', this.submitCarNamesHandler);
+    $(`#${ID.RACING_COUNT_BUTTON}`).addEventListener('click', this.submitRacingCountHandler);
+    $(`#${ID.RESULT}`).addEventListener('click', this.clickReplayButtonHandler);
   };
 
-  submitCarNamesHandler = (e) => {
+  submitCarNamesHandler = e => {
     const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
 
     try {
@@ -38,7 +32,7 @@ export default class RacingCarController {
     }
   };
 
-  submitRacingCountHandler = (e) => {
+  submitRacingCountHandler = e => {
     const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
 
     try {
@@ -51,7 +45,7 @@ export default class RacingCarController {
     }
   };
 
-  clickReplayButtonHandler = (e) => {
+  clickReplayButtonHandler = e => {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
