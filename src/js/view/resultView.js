@@ -1,5 +1,5 @@
 import { racingResultArea } from "../util/elements.js";
-import { showRacingResultArea } from "./viewControl.js";
+import { toggleHiddenResultArea } from "./commonView.js";
 
 const createPositionArrow = () => {
   const position = document.createElement("div");
@@ -44,7 +44,7 @@ const initResultLog = () => {
 };
 
 export const setResultArea = cars => {
-  showRacingResultArea();
+  toggleHiddenResultArea();
   initResultLog();
   createResultLog(cars);
 };

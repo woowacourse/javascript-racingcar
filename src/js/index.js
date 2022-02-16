@@ -1,6 +1,6 @@
 import Cars from "./controller/cars/Cars.js";
 import Game from "./controller/game/Game.js";
-import { makeInitialView } from "./view/viewControl.js";
+import { makeInitialView } from "./view/commonView.js";
 import { restartButton } from "./util/elements.js";
 
 class RacingCar {
