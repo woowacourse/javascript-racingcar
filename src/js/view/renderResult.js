@@ -68,6 +68,10 @@ export const renderResult = async ({ cars, lastTurnCount, winners }) => {
     currentTurnCount,
   }).then(() => {
     renderWinners(winners);
+
+    setTimeout(() => {
+      window.alert('축하합니다!');
+    }, 2000);
   });
 };
 
