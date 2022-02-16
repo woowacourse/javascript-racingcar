@@ -1,14 +1,16 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
-import { showRacingCountArea } from "../../view/viewControl.js";
 import { SEPARATOR, EXCEPTIONS } from "../../util/constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
+import {
+  lockCarNames,
+  toggleHiddenRacingCountArea,
+} from "../../view/commonView.js";
 
 export default class Cars {
   constructor() {
     this.init();
-    this.addCarNameInputEnterEvent();
-    this.addCarNameSubmitButtonClickEvent();
+    this.addCarNameSubmitEvent();
   }
 
   init() {
@@ -23,42 +25,37 @@ export default class Cars {
     this.list = cars;
   }
 
-  trimCars(carNameArr) {
-    for (let i = 0; i < carNameArr.length; i++) {
-      carNameArr[i] = carNameArr[i].trim();
-    }
+  static trimCarNames(carNameArr) {
+    return carNameArr.map(carName => carName.trim());
   }
 
   makeCars(carNamesInputValue) {
-    const carNameArr = carNamesInputValue?.split(SEPARATOR);
+    let carNameArr = carNamesInputValue?.split(SEPARATOR);
 
-    this.trimCars(carNameArr);
+    carNameArr = Cars.trimCarNames(carNameArr);
     if (!carNamesInputValue || !isValidCarsName(carNameArr)) {
       return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
     }
 
-    for (let i = 0; i < carNameArr.length; i++) {
-      this.list.push(new Car(carNameArr[i].trim()));
-    }
+    carNameArr.forEach(carName => {
+      this.list.push(new Car(carName));
+    });
 
     return true;
   }
 
   static goNextStep() {
-    carNamesInput.readOnly = true;
-    carNamesSubmitButton.disabled = true;
-    showRacingCountArea();
+    lockCarNames();
+    toggleHiddenRacingCountArea();
   }
 
-  addCarNameInputEnterEvent() {
+  addCarNameSubmitEvent() {
     carNamesInput.addEventListener("keyup", e => {
       if (e.key === "Enter" && this.makeCars(carNamesInput.value)) {
         Cars.goNextStep();
       }
     });
-  }
 
-  addCarNameSubmitButtonClickEvent() {
     carNamesSubmitButton.addEventListener("click", () => {
       if (this.makeCars(carNamesInput.value)) {
         Cars.goNextStep();
