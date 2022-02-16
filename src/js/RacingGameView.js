@@ -13,31 +13,26 @@ export default class RacingGameView {
   }
 
   setDisableForm($target, isDisable = true) {
-    $target.parentElement
-      .querySelectorAll('input, button')
-      .forEach(($element) => {
-        if (isDisable === false) {
-          $element.removeAttribute('disabled');
-          return;
-        }
+    $target.parentElement.querySelectorAll('input, button').forEach(($element) => {
+      if (isDisable === false) {
+        $element.removeAttribute('disabled');
+        return;
+      }
 
-        $element.setAttribute('disabled', '');
-      });
+      $element.setAttribute('disabled', '');
+    });
   }
 
   setVisibleResult(isVisible) {
-    $$(`${SELECTOR.RACE_CONTAINER}, ${SELECTOR.RESULT_CONTAINER}`).forEach(
-      ($element) => {
-        $element.dataset.state = isVisible ? 'on' : 'off';
-      }
-    );
+    $$(`${SELECTOR.RACE_CONTAINER}, ${SELECTOR.RESULT_CONTAINER}`).forEach(($element) => {
+      $element.dataset.state = isVisible ? 'on' : 'off';
+    });
   }
 
-  _renderCarContainer(carList) {
+  #renderCarContainer(carList) {
     const insertHTML = carList
       .map(
-        (instance, index) =>
-          `<div class="${DOM_ID.RACE_CAR_STATE}" data-key="${index}">
+        (instance, index) => `<div class="${DOM_ID.RACE_CAR_STATE}" data-key="${index}">
             <div class="${DOM_ID.RACE_CAR_NAME_BOX}">${instance.name}</div>
           </div>`
       )
@@ -45,7 +40,7 @@ export default class RacingGameView {
     $(SELECTOR.RACE_CONTAINER).innerHTML = insertHTML;
   }
 
-  _renderCarAdvance(carList) {
+  #renderCarAdvance(carList) {
     carList.forEach((instance, index) => {
       const { distance } = instance;
       const insertHTML = Array.from(
@@ -53,20 +48,19 @@ export default class RacingGameView {
         () => `<div class="${DOM_ID.RACE_ADVANCE}">⬇️️</div>`
       ).join('');
 
-      $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`).innerHTML +=
-        insertHTML;
+      $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`).innerHTML += insertHTML;
     });
   }
 
-  _renderWinners(winners) {
+  #renderWinners(winners) {
     $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;
   }
 
   renderResult(carList, winners) {
-    this._renderCarContainer(carList);
-    this._renderCarAdvance(carList);
-    this._renderWinners(winners);
+    this.#renderCarContainer(carList);
+    this.#renderCarAdvance(carList);
+    this.#renderWinners(winners);
   }
 }
