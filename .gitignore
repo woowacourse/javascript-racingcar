@@ -218,6 +218,10 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# cypress
+cypress/videos
+cypress/screenshots
+
 ### vscode ###
 .vscode/*
 !.vscode/settings.json
