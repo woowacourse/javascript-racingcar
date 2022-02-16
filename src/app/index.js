@@ -6,7 +6,7 @@ import {
   RANGE_MAX,
   RANGE_MIN,
 } from '../lib/constants.js';
-import { findElement, pickNumberInRange, splitString } from '../lib/utils.js';
+import { findElement, pickNumberInRange, sleep, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
 
@@ -39,48 +39,51 @@ class RacingCarGame {
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN) {
       const carNameValue = carNameInputField.querySelector(DOM.CAR_NAME_INPUT.toID()).value;
-      try {
-        const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-        const cars = RacingCarGameManager.makeCars(names);
-        this.modelManager.setCars(cars);
-        this.view.renderCountInputForm();
-      } catch (error) {
-        alert(error);
-      }
+      this.triggerActionAfterCarNameInput(carNameValue);
     }
   };
+
+  triggerActionAfterCarNameInput(carNameValue) {
+    try {
+      const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
+      const cars = RacingCarGameManager.makeCars(names);
+      this.modelManager.setCars(cars);
+      this.view.renderCountInputForm();
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   onCountInputFieldClick = (e) => {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN) {
       const count = countInputField.querySelector(DOM.COUNT_INPUT.toID()).value;
-      try {
-        this.modelManager.setCount(count);
-        this.simulateGame();
-        this.view.renderResults(this.modelManager.getCars(), this.getWinners());
-        this.afterRenderComplete();
-      } catch (error) {
-        alert(error);
-      }
+      // 로직의 마지막이기 때문에 동기 처리 안함.
+      this.triggerActionAfterCountInput(count);
     }
   };
 
-  afterRenderComplete() {
-    this.view.disableInputButtons();
-    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
-    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
+  async triggerActionAfterCountInput(count) {
+    try {
+      this.modelManager.setCount(count);
+      this.view.renderInitialGameState(this.modelManager.getCars());
+      await this.simulateGame();
+      this.view.renderResults(this.getWinners());
+      this.afterRenderComplete();
+    } catch (error) {
+      alert(error);
+    }
   }
 
-  onRestartButtonClick = () => {
-    this.#init();
-  };
-
-  simulateGame() {
+  async simulateGame() {
     const count = this.modelManager.getCount();
     for (let i = 0; i < count; i += 1) {
-      this.simulateRound();
+      setTimeout(() => {
+        this.simulateRound();
+      }, 1000 * i);
     }
+    await sleep(count);
   }
 
   simulateRound() {
@@ -89,6 +92,7 @@ class RacingCarGame {
       const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
       if (random >= MOVE_CONDITION) {
         car.goForward();
+        this.view.renderGoForward(car);
       }
     });
   }
@@ -102,5 +106,15 @@ class RacingCarGame {
     );
     return winners;
   }
+
+  afterRenderComplete() {
+    this.view.disableInputButtons();
+    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
+    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
+  }
+
+  onRestartButtonClick = () => {
+    this.#init();
+  };
 }
 export default RacingCarGame;
