@@ -47,6 +47,8 @@ const CAR_STATUS = {
   STAY: 'stay',
 };
 
+const END_MESSAGE_DELAY = 2000;
+
 export {
   SELECTOR,
   CLASS_NAME,
@@ -55,4 +57,5 @@ export {
   NAME_LENGTH,
   MOVE_NUMBER,
   CAR_STATUS,
+  END_MESSAGE_DELAY,
 };

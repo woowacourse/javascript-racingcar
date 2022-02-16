@@ -1,6 +1,6 @@
 import Car from './class/Car.js';
 import View from './class/View.js';
-import { SELECTOR, MESSAGE } from './constants.js';
+import { SELECTOR, MESSAGE, END_MESSAGE_DELAY } from './constants.js';
 import { $, getInputValue, getEnterEvent } from './utils/dom.js';
 import {
   parseCarNames,
@@ -86,7 +86,7 @@ class RacingCarGame {
   endGame() {
     this.view.removeSpinners();
     this.view.renderWinners(this.getWinners());
-    delayedAlert(MESSAGE.GAME_END);
+    delayedAlert(MESSAGE.GAME_END, END_MESSAGE_DELAY);
   }
 
   progressGame(count) {
