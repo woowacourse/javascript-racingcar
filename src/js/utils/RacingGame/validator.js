@@ -1,4 +1,4 @@
-import ERROR from '../../constants/error-message.js';
+import ERROR_MESSAGE from '../../constants/error-message.js';
 import GAME_SETTING from '../../constants/RacingGame/setting.js';
 import nameStringToArray from '../nameStringToArray.js';
 
@@ -20,19 +20,19 @@ function isUniqueWord(values) {
 
 export const isCarNameValid = (value) => {
   if (!isWithComma(value)) {
-    alert(ERROR.CAR_NAME_MULTIPLE_INPUT);
+    alert(ERROR_MESSAGE.CAR_NAME_MULTIPLE_INPUT);
     return false;
   }
 
   const names = nameStringToArray(value);
   const { CAR_NAME_LENGTH_MIN, CAR_NAME_LENGTH_MAX } = GAME_SETTING;
   if (!isArrayItemLengthRange(names, CAR_NAME_LENGTH_MIN, CAR_NAME_LENGTH_MAX)) {
-    alert(ERROR.CAR_NAME_LENGTH_RANGE);
+    alert(ERROR_MESSAGE.CAR_NAME_LENGTH_RANGE);
     return false;
   }
 
   if (!isUniqueWord(names)) {
-    alert(ERROR.CAR_NAME_UNIQUE);
+    alert(ERROR_MESSAGE.CAR_NAME_UNIQUE);
     return false;
   }
 
@@ -41,7 +41,7 @@ export const isCarNameValid = (value) => {
 
 export const isRaceTimeValid = (value) => {
   if (!isOnlyNumbers(value)) {
-    alert(ERROR.RACE_TIME_ONLY_NUMBER);
+    alert(ERROR_MESSAGE.RACE_TIME_ONLY_NUMBER);
     return false;
   }
 
