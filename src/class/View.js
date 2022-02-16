@@ -10,17 +10,17 @@ import {
 } from '../utils/dom.js';
 import { SELECTOR, CLASS_NAME, CAR_STATUS } from '../constants.js';
 
-const movedArrowView = `<h3 id="move" class="move" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
+const moveArrowView = `<h3 id="move-arrow" class="move-arrow" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
 const spinnerView = `<div class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
 
-const generateCarStatusView = ({ name }) => `
-<div id="car-status" class="car-status" data-name=${name}>
+const generateCarInformationView = ({ name }) => `
+<div id="car-information" class="car-information" data-name=${name}>
     <div id="car-name" class="car-name">${name}</div>
-    <div id="move-status" class="move-status"></div>
+    <div id="progress" class="progress"></div>
 </div>`;
 
 const generateRacingStatusView = cars =>
-  cars.map(generateCarStatusView).join('');
+  cars.map(generateCarInformationView).join('');
 
 const generateWinnersView = winners =>
   `<h3 id="winners">🏆최종 우승자: ${winners
@@ -44,8 +44,10 @@ export default class View {
   restartGame() {
     resetInputValue(this.$carNamesInput);
     resetInputValue(this.$racingCountInput);
+
     clearHTML(this.$racingStatusContainer);
     clearHTML(this.$winnersContainer);
+
     addClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
     addClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
     addClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
@@ -57,34 +59,38 @@ export default class View {
   }
 
   removeSpinners() {
-    $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
-      const { lastChild } = element;
-      if (lastChild && lastChild.dataset.status === CAR_STATUS.STAY) {
-        element.removeChild(lastChild);
-      }
-    });
+    $$(SELECTOR.RACING_PROGRESS, this.$racingStatusContainer).forEach(
+      element => {
+        const { lastChild } = element;
+        if (lastChild && lastChild.dataset.status === CAR_STATUS.STAY) {
+          element.removeChild(lastChild);
+        }
+      },
+    );
   }
 
   renderSpinners() {
-    $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
-      const { lastChild } = element;
-      if (!lastChild || lastChild.dataset.status === CAR_STATUS.MOVE) {
-        appendHTML(element, spinnerView);
-      }
-    });
+    $$(SELECTOR.RACING_PROGRESS, this.$racingStatusContainer).forEach(
+      element => {
+        const { lastChild } = element;
+        if (!lastChild || lastChild.dataset.status === CAR_STATUS.MOVE) {
+          appendHTML(element, spinnerView);
+        }
+      },
+    );
   }
 
   renderMoveStatus(carInformation) {
     carInformation.forEach(({ name, isMoved }) => {
       const element = $(
-        SELECTOR.MOVE_STATUS,
+        SELECTOR.RACING_PROGRESS,
         $(`[data-name="${name}"]`, this.$racingStatusContainer),
       );
       const { lastChild } = element;
 
       if (isMoved && lastChild.dataset.status === CAR_STATUS.STAY) {
         element.removeChild(lastChild);
-        appendHTML(element, movedArrowView);
+        appendHTML(element, moveArrowView);
       }
     });
   }

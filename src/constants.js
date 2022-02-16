@@ -24,9 +24,9 @@ const SELECTOR = {
   RESTART_BUTTON: '#restart-button',
   RACING_WINNERS: '#racing-winners',
   RACING_STATUS: '#racing-status',
-  CAR_STATUS: '#car-status',
+  CAR_INFORMATION: '#car-information',
   RACING_RESULT: '#racing-result',
-  MOVE_STATUS: '#move-status',
+  RACING_PROGRESS: '#progress',
   WINNERS: '#winners',
 };
 

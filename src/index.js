@@ -3,14 +3,14 @@ import View from './class/View.js';
 import { SELECTOR, MESSAGE } from './constants.js';
 import { $, getInputValue, getEnterEvent } from './utils/dom.js';
 import {
-  parseCarName,
-  getCarsPositions,
+  parseCarNames,
+  getCarsMovement,
   getMaxCount,
 } from './utils/racingGame.js';
 import {
-  isAvailableCarNameLength,
-  isNotDuplicatedCarNames,
-  isAvailableRacingCount,
+  isValidCarNameLength,
+  isDifferentCarNames,
+  isValidRacingCount,
   isInteger,
 } from './utils/validations.js';
 import { getTimeInSecond } from './utils/general.js';
@@ -44,19 +44,19 @@ class RacingCarGame {
   }
 
   onSubmitCarName(names) {
-    const carNames = parseCarName(names);
-    if (!isAvailableCarNameLength(carNames)) {
+    const parsedNames = parseCarNames(names);
+    if (!isValidCarNameLength(parsedNames)) {
       return alert(MESSAGE.WRONG_NAME_LENGTH);
     }
-    if (!isNotDuplicatedCarNames(carNames)) {
+    if (!isDifferentCarNames(parsedNames)) {
       return alert(MESSAGE.DUPLICATE_NAME);
     }
-    this.cars = carNames.map(name => new Car(name));
+    this.cars = parsedNames.map(name => new Car(name));
     this.view.showRacingCountInput();
   }
 
   onSubmitRacingCount(count) {
-    if (!isAvailableRacingCount(count)) {
+    if (!isValidRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
     if (!isInteger(count)) {
@@ -71,7 +71,7 @@ class RacingCarGame {
     this.view.restartGame();
   }
 
-  getWinner() {
+  getWinners() {
     const maxCount = getMaxCount(this.cars);
     return (this.winners = this.cars.filter(
       car => car.racingCount === maxCount,
@@ -85,7 +85,7 @@ class RacingCarGame {
 
   endGame() {
     this.view.removeSpinners();
-    this.view.renderWinners(this.getWinner());
+    this.view.renderWinners(this.getWinners());
   }
 
   progressGame(count) {
@@ -109,7 +109,7 @@ class RacingCarGame {
         isLoading = false;
       }
       if (before !== progress) {
-        this.view.renderMoveStatus(getCarsPositions(this.cars));
+        this.view.renderMoveStatus(getCarsMovement(this.cars));
         before = progress;
         isLoading = true;
       }
