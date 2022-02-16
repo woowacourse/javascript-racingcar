@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-
+import { on, qs } from "./helper.js"
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
@@ -7,33 +7,33 @@ class RacingcarGame {
 
     this.template = new Template();
 
-    this.carNameForm = document.querySelector(".car-name-form");
-    this.raceCountForm = document.querySelector(".race-count-form");
-    this.carNameInput = document.querySelector(".car-name-input");
-    this.raceCountInput = document.querySelector(".race-count-input");
-    this.carNameInputButton = document.querySelector(".car-name-button");
-    this.raceCountInputButton = document.querySelector(".race-count-button");
+    this.carNameForm = qs(".car-name-form");
+    this.raceCountForm = qs(".race-count-form");
+    this.carNameInput = qs(".car-name-input");
+    this.raceCountInput = qs(".race-count-input");
+    this.carNameInputButton = qs(".car-name-button");
+    this.raceCountInputButton = qs(".race-count-button");
 
-    this.racingResultElement = document.querySelector(".racing-result");
-    this.raceCountDisplay = document.querySelector(".race-count-wrap");
-    this.racingArrowElement = document.querySelector(".racing-arrow");
-    this.racingCarsElement = document.querySelector(".racing-cars");
+    this.racingResultElement = qs(".racing-result");
+    this.raceCountDisplay = qs(".race-count-wrap");
+    this.racingArrowElement = qs(".racing-arrow");
+    this.racingCarsElement = qs(".racing-cars");
     this.raceCountDisplay.style.opacity = 0;
 
     this.bindEvent();
   }
 
   bindEvent() {
-    this.carNameForm.addEventListener("submit", (event) => {
+    on(this.carNameForm, "submit", (event) => {
       event.preventDefault();
       this.checkCarName();
       this.isCorrectCarName && this.checkStartGame();
     });
-    this.raceCountForm.addEventListener("submit", (event) => {
+    on(this.raceCountForm, "submit", (event) => {
       event.preventDefault();
       this.checkRaceNumber();
       this.isCorrectRaceCount && this.checkStartGame();
-    });
+    })
   }
 
   checkCarName() {
