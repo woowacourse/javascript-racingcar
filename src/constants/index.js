@@ -14,6 +14,7 @@ export const CLASS = Object.freeze({
   INPUT_BTN: 'input_btn',
   RACING_CAR_PROGRESS: 'racing_car_progress',
   RACING_CAR_NAME: 'racing_car_name',
+  RACING_CAR_ITEM: 'racing_car_item',
 });
 
 export const ERROR_MESSAGES = Object.freeze({

@@ -1,15 +1,23 @@
-import { ID, CLASS } from '../../src/constants/index.js';
+import { ID, CLASS, RULES } from '../../src/constants/index.js';
 
-const URL = 'http://localhost:54683/';
+const URL = 'http://localhost:57275/';
+
+const carNames = 'east,west,south,north,all';
+const racingCount = 5;
 
 const triggerCarNameSubmitEvent = () => {
-  cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(carNames);
   cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
 };
 
 const triggerRacingCountSubmitEvent = () => {
-  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(5);
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(racingCount);
   cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
+};
+
+const delay = () => {
+  const miliSecond = (racingCount + 1) * 1000;
+  cy.wait(miliSecond);
 };
 
 describe('자동차 이름 입력 기능 테스트', () => {
@@ -31,7 +39,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
         expect(stub).to.not.be.called;
       });
 
-    cy.get(`#${ID.RACING_COUNT_FORM}`).should('have.css', 'display', 'block');
+    cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.visible');
   });
 
   it('자동차 이름은 최소 1개 이상 입력해야 한다.', () => {
@@ -132,13 +140,37 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
     cy.visit(URL);
     triggerCarNameSubmitEvent();
     triggerRacingCountSubmitEvent();
+    delay();
   });
 
   it('자동차 이름이 올바르게 렌더링되는지 확인한다.', () => {
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(0).should('have.text', 'east');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(1).should('have.text', 'west');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(2).should('have.text', 'south');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(3).should('have.text', 'north');
-    cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(4).should('have.text', 'all');
+    const carNameList = carNames.split(',');
+
+    cy.get(`.${CLASS.RACING_CAR_NAME}`).each((carName, index) => {
+      expect(carName.text()).to.equal(carNameList[index]);
+    });
+  });
+
+  it('자동차 경주 최종 우승자가 올바르게 출력되는지 확인한다.', () => {
+    const finalWinner = [];
+    let maxDistance = -1;
+
+    cy.get(`.${CLASS.RACING_CAR_PROGRESS}`)
+      .each((progress) => {
+        maxDistance = Math.max(maxDistance, progress.children().length);
+      })
+      .then(() => {
+        cy.get(`.${CLASS.RACING_CAR_ITEM}`).each((item) => {
+          const progressList = item.find(`.${CLASS.RACING_CAR_PROGRESS}`).children();
+
+          if (progressList.length === maxDistance) {
+            finalWinner.push(item.find(`.${CLASS.RACING_CAR_NAME}`).text());
+          }
+        });
+      })
+      .then(() => {
+        const result = finalWinner.join(RULES.WINNER_LIST_SEPERATOR);
+        cy.get(`#${ID.FINAL_WINNER_RESULT}`).should('have.text', result);
+      });
   });
 });
