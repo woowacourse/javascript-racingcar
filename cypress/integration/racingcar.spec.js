@@ -1,5 +1,12 @@
 import { SELECTOR, ERROR_MESSAGE } from '../../src/js/constants.js';
 
+function waitRepeatedly(selector, type, delay, repeatCount) {
+  for (let i = 0; i < repeatCount; i++) {
+    cy.get(selector).should(type);
+    cy.wait(delay);
+  }
+}
+
 function createAlertStub() {
   const alertStub = cy.stub();
   cy.on('window:alert', alertStub);
@@ -9,20 +16,71 @@ function createAlertStub() {
 
 describe('기능 요구사항', () => {
   const testCarNames = ['우디', '꼬재'];
-  const racingCount = 4;
+  const racingCount = '3';
 
   beforeEach(() => {
     cy.visit('index.html');
   });
 
   it('자동차 이름을 입력하고 확인 버튼을 누르면 레이스를 출력할 때 쉼표로 구분된 자동차 이름들을 같이 출력한다.', () => {
-    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(',')); // '우디,꼬재'
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(','));
 
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
     cy.get(SELECTOR.$CAR_NAME).should('have.length', testCarNames.length);
     cy.get(SELECTOR.$CAR_NAME).each((name, index) => {
       cy.wrap(name).should('have.text', testCarNames[index]);
     });
+  });
+
+  it('자동차 이름을 입력하고 확인 버튼을 누르면 버튼이 비활성화 되고, 레이싱 횟수를 입력할 수 있는 폼이 보여지는지 확인한다.', () => {
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(','));
+    cy.get(SELECTOR.$CAR_NAME_BUTTON)
+      .click()
+      .then(() => {
+        cy.get(SELECTOR.$CAR_NAME_BUTTON).should('be.disabled');
+        cy.get(SELECTOR.$INPUT_FORM_LAST_CHILD).should('be.visible');
+      });
+  });
+
+  it('레이싱 횟수를 입력하고 버튼을 누르면 버튼이 비활성화 되는지 확인한다.', () => {
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(','));
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
+      .click()
+      .then(() => {
+        cy.get(SELECTOR.$RACING_COUNT_BUTTON).should('be.disabled');
+      });
+  });
+
+  it('최종 우승자가 보여지는지 확인한다.', () => {
+    const inputString = '꼬재';
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON)
+      .click()
+      .then(() => {
+        cy.get(SELECTOR.$WINNERS).should('have.text', '꼬재');
+      });
+  });
+
+  it('다시 시작하기 버튼을 누르면 레이싱 횟수를 입력하는 폼, 레이싱 과정과 레이싱 결과 화면이 가려지는지 확인한다.', () => {
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(','));
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
+
+    cy.get(SELECTOR.$RESTART_BUTTON)
+      .click()
+      .then(() => {
+        cy.get(SELECTOR.$INPUT_FORM_LAST_CHILD).should('not.be.visible');
+        cy.get(SELECTOR.$RESULT_LIST).should('not.exist');
+        cy.get(SELECTOR.$RACING_RESULT).should('not.exist');
+      });
   });
 });
 
@@ -31,7 +89,7 @@ describe('예외 상황', () => {
     cy.visit('index.html');
   });
 
-  it('자동차 이름이 5자보다 크면 alert를 보여준다.', () => {
+  it('자동차 이름을 입력하고 확인 버튼을 누르면 입력받은 자동차 이름 중에 이름의 길이가 5자보다 길면 사용자에게 에러 메세지를 보여준다.', () => {
     const inputString = '여섯글자이름';
     const alertStub = createAlertStub();
 
@@ -47,7 +105,7 @@ describe('예외 상황', () => {
       });
   });
 
-  it('자동차 이름이 공백으로 이루어지면 alert를 보여준다.', () => {
+  it('자동차 이름을 입력하고 확인 버튼을 누르면 입력받은 자동차 이름 중에 공백인 자동차 이름이 있을 경우 사용자에게 에러 메세지를 보여준다.', () => {
     const inputString = ' ';
     const alertStub = createAlertStub();
 
@@ -63,7 +121,7 @@ describe('예외 상황', () => {
       });
   });
 
-  it('양의 정수가 아닌 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
+  it('양의 정수가 아닌 레이싱 횟수를 입력하고 확인 버튼을 누르면 사용자에게 에러 메세지를 보여준다.', () => {
     const racingCount = '-1';
     const inputString = '우디,꼬재';
     const alertStub = createAlertStub();
@@ -82,8 +140,8 @@ describe('예외 상황', () => {
       });
   });
 
-  it('100보다 큰 레이싱 횟수를 입력하면 alert를 보여준다.', () => {
-    const racingCount = '101';
+  it('10보다 큰 레이싱 횟수를 입력하고 확인 버튼을 누르면 에러 메세지를 사용자에게 보여준다.', () => {
+    const racingCount = '11';
     const inputString = '우디,꼬재';
     const alertStub = createAlertStub();
 
@@ -101,7 +159,7 @@ describe('예외 상황', () => {
       });
   });
 
-  it('입력받은 자동차 이름에 중복이 있으면 alert를 보여준다.', () => {
+  it('자동차 이름을 입력하고 확인 버튼을 누르면 입력받은 자동차 이름에 중복이 있을 경우 에러 메세지를 사용자에게 보여준다.', () => {
     const inputString = '우디,우디,꼬재';
     const alertStub = createAlertStub();
 
@@ -113,5 +171,41 @@ describe('예외 상황', () => {
         cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
         cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
       });
+  });
+});
+
+describe('로딩', () => {
+  beforeEach(() => {
+    cy.visit('index.html');
+  });
+
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀을 두고 진행한다.', () => {
+    const inputString = '우디,꼬재';
+    const racingCount = '3';
+
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
+
+    waitRepeatedly('.spinner', 'be.visible', 1000, racingCount);
+    cy.get('.spinner').should('not.exist');
+  });
+
+  it('게임의 턴이 다 동작된 후에는 결과를 보여주고 2초 후에 축하의 메세지를 보여준다.', () => {
+    const inputString = '우디,꼬재';
+    const racingCount = '3';
+    const alertStub = createAlertStub();
+
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
+    cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
+
+    cy.wait(racingCount * 1000 + 2000).then(() => {
+      expect(alertStub).to.be.called;
+    });
   });
 });
