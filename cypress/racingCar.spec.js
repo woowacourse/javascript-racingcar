@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from '../src/js/utils/constants.js';
+
 /* eslint-disable */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseURL = 'index.html';
@@ -17,29 +19,29 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get('#reset-btn').click();
   };
 
-  it("입력된 자동차 이름 길이가 5보다 크면, '이름은 5 글자 이하로 입력해 주세요.' 에러 메시지가 호출된다", () => {
+  it('자동차 이름을 5자 이상 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type('ab,c,zdffddd');
     cy.get('#car-names-button')
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGE.NAME_TOO_LONG);
       });
   });
 
-  it("입력된 자동차 이름이 공백이면, '공백만으로는 이름을 구성할 수 없습니다.' 에러 메시지가 호출된다", () => {
+  it('자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type(' ');
     cy.get('#car-names-button')
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
       });
   });
 
-  it("입력된 횟수가 1 보다 작으면, '1 이상의 숫자를 입력해주세요.' 에러 메시지가 호출된다", () => {
+  it('입력된 횟수가 1 보다 작을 경우 해당 에러 메시지가 alert에 호출되어야 한다', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type('a,b,c');
@@ -48,7 +50,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get('#racing-count-button')
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGE.COUNT_TOO_SMALL);
       });
   });
 
