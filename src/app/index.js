@@ -116,6 +116,9 @@ class RacingCarGame {
     this.view.disableInputButtons();
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
+    setTimeout(() => {
+      alert(`🎉🎉 축하합니다 ~~~~~ ${winners.join(',')} 님 🎉🎉`);
+    }, 2000);
   }
 
   onRestartButtonClick = () => {
