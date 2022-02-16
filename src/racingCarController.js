@@ -73,20 +73,34 @@ export default class RacingCarController {
   }
 
   handleRacingCount() {
-    const racingCount = Number(this.view.$racingCountInput.value);
+    const racingCount = Number(this.$racingCountInput.value);
 
     if (isValidRacingCount(racingCount)) {
-      this.model.setRacingCount(racingCount);
-      this.race(racingCount);
-      this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
-      this.view.renderWinners(this.model.getWinnners());
-      this.view.renderRestart();
-      this.view.selectRestartDOM();
-      this.attachRestartEvents();
-    } else {
-      alert(ERROR_MESSAGE.RACING_COUNT);
-      this.view.resetRacingCountInput();
+      this.onValidRacingCountSubmit(racingCount);
+
+      return;
     }
+
+    this.onInvalidRacingCountSubmit();
+  }
+
+  get $racingCountInput() {
+    return this.view.$racingCountInput;
+  }
+
+  onValidRacingCountSubmit(racingCount) {
+    this.model.setRacingCount(racingCount);
+    this.race(racingCount);
+    this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
+    this.view.renderWinners(this.model.getWinnners());
+    this.view.renderRestart();
+    this.view.selectRestartDOM();
+    this.attachRestartEvents();
+  }
+
+  onInvalidRacingCountSubmit() {
+    alert(ERROR_MESSAGE.RACING_COUNT);
+    this.view.resetRacingCountInput();
   }
 
   race(racingCount) {
