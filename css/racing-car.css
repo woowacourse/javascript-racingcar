@@ -43,9 +43,13 @@ body {
 }
 
 .race-count-input-container {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin-bottom: 12px;
+}
+
+.display-none {
+  display: none;
 }
 
 label {

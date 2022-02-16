@@ -4,7 +4,7 @@ import resetInputText from '../modules/reset-input-text.js';
 
 export default class RacingCarGameView {
     renderRaceGameCountElement() {
-        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).style.display = 'flex';
+        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.remove(SELECTOR.DISPLAY_NONE);
     }
 
     renderWholeGameResult(carArray) {
@@ -48,7 +48,7 @@ export default class RacingCarGameView {
     }
 
     resetGameView() {
-        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).style.display = 'none';
+        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.add(SELECTOR.DISPLAY_NONE);
         $(SELECTOR.RACING_CONTENT).innerHTML = '';
         $(SELECTOR.RACING_RESULT).innerHTML = '';
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
