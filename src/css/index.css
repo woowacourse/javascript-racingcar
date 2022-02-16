@@ -1,0 +1,110 @@
+p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: rgba(0, 0, 0, 0.87);
+  text-align: start;
+  margin-left: 10px;
+}
+
+input {
+  width: 360px;
+  height: 36px;
+  border: 1px solid #b4b4b4;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #8b8b8b;
+}
+
+input:focus {
+  outline: none;
+}
+
+.submit-button {
+  padding: 6px;
+  width: 65.68px;
+  height: 36px;
+  border: 1px solid #00bcd4;
+  background: #00bcd4;
+  border-radius: 4px;
+  cursor: pointer;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+#restart-button {
+  padding: 6px;
+  width: 152px;
+  height: 36px;
+  border: 1px solid #00bcd4;
+  background: #00bcd4;
+  border-radius: 4px;
+  cursor: pointer;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.car-name-tag {
+  display: flex;
+  width: 96px;
+  height: 36px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+}
+
+#racing-result {
+  padding-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+#car-names-area {
+  width: 450px;
+}
+
+#racing-count-area {
+  width: 450px;
+}
+
+.position-arrow {
+  font-family: Apple SD Gothic Neo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  color: #000000;
+  margin: 8px;
+}
+
+#logo {
+  cursor: pointer;
+  width: 430px;
+}
