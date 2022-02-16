@@ -9,7 +9,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.visit(VISIT_URL);
   });
 
-  it('자동차 이름을 올바르게 입력한다.', () => {
+  it('자동차 이름을 올바르게 입력하면 시도할 횟수 입력 폼을 확인할 수 있어야 한다.', () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
 
     const spy = cy.spy(window, 'alert');
@@ -25,7 +25,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.visible');
   });
 
-  it('자동차 이름은 공백을 입력할 수 없다.', () => {
+  it('입력한 자동차 이름 중 공백이 포함되어 있으면 에러 메시지를 확인할 수 있어야 한다.', () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, , south, north, all');
 
     const stub = cy.stub();
@@ -39,7 +39,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
       });
   });
 
-  it('자동차 이름은 5자 이하만 가능하다.', () => {
+  it('입력한 자동차 이름 중 5자가 초과된 이름이 있으면 에러 메시지를 확인할 수 있어야 한다.', () => {
     cy.get(`#${ID.CAR_NAMES_INPUT}`).type('woowacourse, west, south, north, all');
 
     const stub = cy.stub();
@@ -65,7 +65,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     submitCarName();
   });
 
-  it('시도할 횟수를 올바르게 입력한다.', () => {
+  it('시도할 횟수를 올바르게 입력하면 입력한 자동차의 목록을 확인할 수 있어야 한다.', () => {
     cy.get(`#${ID.RACING_COUNT_INPUT}`).type(10);
 
     const spy = cy.spy(window, 'alert');
@@ -85,7 +85,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.get(`.${CLASS.RACING_CAR_NAME}`).eq(4).should('have.text', 'all');
   });
 
-  it('시도할 횟수는 공백을 입력할 수 없다.', () => {
+  it('시도할 횟수로 공백을 입력하면 에러 메시지를 확인할 수 있어야 한다.', () => {
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
@@ -97,7 +97,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       });
   });
 
-  it('시도할 횟수는 자연수만 입력한다.', () => {
+  it('시도할 횟수로 자연수가 아닌 수를 입력하면 에러 메시지를 확인할 수 있어야 한다.', () => {
     cy.get(`#${ID.RACING_COUNT_INPUT}`).type(-1);
     const stub = cy.stub();
 
