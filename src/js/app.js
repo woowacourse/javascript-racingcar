@@ -40,6 +40,9 @@ class App {
       });
     }
     renderWinners(getWinners(cars));
+    setTimeout(() => {
+      window.alert('축하의 메시지');
+    }, 2000);
     this.resetValue();
   }
 
