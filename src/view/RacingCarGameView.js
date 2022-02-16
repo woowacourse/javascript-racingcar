@@ -1,9 +1,4 @@
 import { CLASS, ID } from '../constants/index.js';
-import {
-  resetInputElementValue,
-  modifyElementDisplayStyle,
-  resetElementInnerText,
-} from '../util/index.js';
 import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from '../template/index.js';
 
 class RacingCarGameView {
@@ -56,29 +51,29 @@ class RacingCarGameView {
 
   renderFinalWinner(finalWinner) {
     this.$finalWinnerResult.innerText = finalWinner;
-    modifyElementDisplayStyle(this.$finalWinner, 'block');
+    this.$finalWinner.style.display = 'block';
   }
 
   showRacingCountForm() {
-    modifyElementDisplayStyle(this.$racingCountForm, 'block');
+    this.$racingCountForm.style.display = 'block';
   }
 
   showRestartSection() {
-    modifyElementDisplayStyle(this.$restartSection, 'block');
+    this.$restartSection.style.display = 'block';
   }
 
   hideElements() {
-    resetInputElementValue(this.$carNamesInput);
-    resetInputElementValue(this.$racingCountInput);
+    this.$carNamesInput.value = '';
+    this.$racingCountInput.value = '';
 
-    resetElementInnerText(this.$racingCarList);
-    resetElementInnerText(this.$finalWinnerResult);
+    this.$racingCarList.innerText = '';
+    this.$finalWinnerResult.innerText = '';
   }
 
   resetElements() {
-    modifyElementDisplayStyle(this.$racingCountForm);
-    modifyElementDisplayStyle(this.$finalWinner);
-    modifyElementDisplayStyle(this.$restartSection);
+    this.$racingCountForm.style.display = 'none';
+    this.$finalWinner.style.display = 'none';
+    this.$restartSection.style.display = 'none';
   }
 }
 
