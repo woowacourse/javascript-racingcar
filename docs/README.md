@@ -31,10 +31,5 @@
 - [x] css (block, none)
 - [x] input 예외상황 더 추가하기(count가 blank 일때)
 - [ ] cypress count가 공백일 경우 테스트 케이스 추가하기 
-
-### 🤔 질문 
-- [ ] class(id) 네이밍 _ vs -
-- [ ] 함수(function vs const 블라블라)
-- [ ] class vs 생성자 함수 
-- [ ] 구조 (데이터 판단하는 로직 어디로...?, 전체적인 구조)
-
+- [ ] isCarCanGo() 함수는 매번 결과값이 달라지기 때문에 예측이 불가능한 함수입니다. input 을 받아서 판단하는 로직으로 변경되면 좋을 거 같습니다. 그리고 isCarCanGo 요건 Car 모델이 있으니 거기서 메서드로 제공해주는 게 좋아 보입니당.
+- [ ] playRace 가 추가적으로 너무 많은 일들을 하고 있습니다.
