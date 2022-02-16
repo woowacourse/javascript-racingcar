@@ -25,7 +25,9 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.visible');
   });
 
-  it('자동차 이름은 최소 1개 이상 입력해야 한다.', () => {
+  it('자동차 이름은 공백을 입력할 수 없다.', () => {
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, , south, north, all');
+
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
@@ -48,20 +50,6 @@ describe('자동차 이름 입력 기능 테스트', () => {
       .click()
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
-      });
-  });
-
-  it('자동차 이름은 공백을 입력할 수 없다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, , south, north, all');
-
-    const stub = cy.stub();
-
-    cy.on('window:alert', stub);
-    cy.get(`.${CLASS.INPUT_BTN}`)
-      .eq(0)
-      .click()
-      .then(() => {
-        expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_CAR_NAME);
       });
   });
 });
