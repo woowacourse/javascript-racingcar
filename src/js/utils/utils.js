@@ -13,3 +13,7 @@ export function splitString(string, delimeter) {
 export function trimStringArray(array) {
   return array.map((string) => string.trim());
 }
+
+export function sleep(delay) {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+}

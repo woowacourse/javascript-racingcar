@@ -72,8 +72,8 @@ export default class View {
     child && parent.removeChild(child);
   }
 
-  render(selector, template) {
-    selector.insertAdjacentHTML('beforeend', template);
+  render(selector, position, template) {
+    selector.insertAdjacentHTML(position, template);
   }
 
   bindEventListener(type, selector, callback) {

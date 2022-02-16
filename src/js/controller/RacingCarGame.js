@@ -1,7 +1,7 @@
 import Car from '../model/Car.js';
 import template from '../templates.js';
 import { ERROR_MESSAGE, DELIMETER, SELECTOR } from '../constants.js';
-import { splitString, trimStringArray, $ } from '../utils/utils.js';
+import { splitString, trimStringArray, sleep, $ } from '../utils/utils.js';
 import {
   isValidCarNamesLength,
   isDuplicatedCarName,
@@ -57,6 +57,7 @@ export default class RacingCarGame {
     this.view.racingCountInputVisibled();
     this.view.render(
       this.view.racingProgress,
+      'beforeend',
       template.renderRacingProgress(this.model.carList)
     );
     this.view.toggleDisabledButton(this.view.carNameButton);
@@ -73,7 +74,8 @@ export default class RacingCarGame {
       ) {
         this.model.previousCarDistanceList[index] = car.distance;
         this.view.render(
-          this.view.progressList[index],
+          this.view.progressList[index].querySelector('.spinner'),
+          'beforebegin',
           template.renderProgressList(car.distance)
         );
       }
@@ -86,16 +88,30 @@ export default class RacingCarGame {
     );
   }
 
-  startRace(racingCount) {
+  async startRace(racingCount) {
     this.setPreviousCarDistanceList();
 
+    this.view.progressList.forEach((progress) => {
+      this.view.render(
+        progress,
+        'beforeend',
+        template.renderLoadingAnimation()
+      );
+    });
+
     for (let i = 0; i < racingCount; i += 1) {
+      await sleep(1000);
       this.moveCars();
     }
+
+    this.view.progressList.forEach((progress) => {
+      progress.removeChild($('.spinner'));
+    });
+
     console.log(this.model.carList);
   }
 
-  submitRacingCount() {
+  async submitRacingCount() {
     const racingCount = this.view.racingCountInput.valueAsNumber;
 
     if (!isValidRacingCount(racingCount)) {
@@ -105,9 +121,10 @@ export default class RacingCarGame {
       return;
     }
 
-    this.startRace(racingCount);
+    await this.startRace(racingCount);
     this.view.render(
       this.view.app,
+      'beforeend',
       template.renderRacingResult(this.model.winners)
     );
     this.view.racingResult = $(SELECTOR.$RACING_RESULT);

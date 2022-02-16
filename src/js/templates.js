@@ -34,6 +34,9 @@ const template = {
   renderProgressList(distance) {
     return distance ? `<li class="${DOM_STRING.PROGRESS}">⬇️️</li>` : '';
   },
+  renderLoadingAnimation() {
+    return `<div class="spinner"><div></div><div></div><div></div><div></div></div>`;
+  },
 };
 
 export default template;
