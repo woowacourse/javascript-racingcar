@@ -1,3 +1,4 @@
+import { INTERVAL, ID } from "./constants.js";
 import { getElement } from "./utils/dom.js";
 
 const carsNameView = (cars) => {
@@ -31,4 +32,14 @@ const clearLoadingView = (cars) => {
   })
 }
 
-export { carsNameView, carMovementView, loadingView, winnersView, clearLoadingView, removeAllChildNodes };
+const winnerAlert = (winner) =>  { setTimeout(() => {
+    return alert(`🎉우승을 축하합니다 ${winner}🎉`)
+  }, INTERVAL.ALERT);
+}
+
+const initRacingStatus = (cars) => {
+  getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', carsNameView(cars));
+  loadingView(cars);
+};
+
+export { carMovementView, loadingView, winnersView, clearLoadingView, removeAllChildNodes, winnerAlert, initRacingStatus };

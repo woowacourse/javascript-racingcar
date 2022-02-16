@@ -67,27 +67,6 @@ describe('에러 처리를 한다', () => {
     });
   });
 
-  it('이름 입력 후 재입력은 불가능하다.', () => {
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
-    inputCarNames('jun,poco');
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('june,poco');
-    cy.get(`#${ID.CAR_NAMES_SUBMIT}`).click().then(()=>{
-      expect(alertStub).to.be.called;
-    });
-  });
-
-  it('레이싱 횟수 입력 후 재입력은 불가능하다.', () => {
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
-    inputCarNames('jun,poco');
-    inputRacingCount(1);
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(1);
-    cy.get(`#${ID.RACING_COUNT_SUBMIT}`).click().then(()=>{
-      expect(alertStub).to.be.called;
-    });
-  });
-
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {
     const alertStub = cy.stub();
     cy.on("window:alert", alertStub);
