@@ -77,16 +77,22 @@ export default class View {
 
     const count = carList[0].stepByRound.length;
     for (let i = 0; i < count; i++) {
-      carList.map((car, j) => {
-        if (car.stepByRound[i] === 1) {
-          $stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+      setTimeout(() => {
+        carList.map((car, j) => {
+          if (car.stepByRound[i] === 1) {
+            $stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+          }
+        });
+        if (i + 1 === count) {
+          const $stepSectionLoading = Array.from(
+            document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
+          );
+          $stepSectionArrowsArray.forEach((ul, index) =>
+            ul.removeChild($stepSectionLoading[index]),
+          );
         }
-      });
+      }, 1000 * (i + 1));
     }
-    const $stepSectionLoading = Array.from(
-      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
-    );
-    $stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
   }
 
   generateStepSectionDOM(car) {
