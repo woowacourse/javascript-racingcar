@@ -1,4 +1,5 @@
 import { DOM, ID_PREFIX } from '../lib/constants.js';
+import icons from '../lib/icons.js';
 import { findElement } from '../lib/utils.js';
 
 class RacingCarGameView {
@@ -66,9 +67,37 @@ class RacingCarGameView {
 
   renderGoForward({ id, name }) {
     findElement(ID_PREFIX, `${name}${id}`).insertAdjacentHTML(
-      'beforeend',
+      'afterend',
       `<div class="${DOM.STEP}">⬇️️</div>`,
     );
+  }
+
+  renderLoadingAboutRound() {
+    const loadingIconNodes = document.querySelectorAll(DOM.LOADING_ICON.toCLASS());
+    const start = null;
+
+    this.switchLoadingIcon(loadingIconNodes);
+    requestAnimationFrame((timestamp) => this.step(timestamp, loadingIconNodes, start));
+  }
+
+  step(time, loadingIconNodes, start) {
+    if (!start) start = time;
+    const progress = time - start;
+    loadingIconNodes.forEach((loadingIconNode) => {
+      loadingIconNode.style.transform = `rotate(${progress / 10}deg)`;
+    });
+    if (progress < 1000) {
+      requestAnimationFrame((timestamp) => this.step(timestamp, loadingIconNodes, start));
+    } else {
+      this.switchLoadingIcon(loadingIconNodes);
+    }
+  }
+
+  switchLoadingIcon(loadingIconNodes) {
+    loadingIconNodes.forEach((loadingIconNode) => {
+      loadingIconNode.classList.toggle('hide');
+      loadingIconNode.classList.toggle('show');
+    });
   }
 
   renderCountInputForm() {
@@ -86,8 +115,9 @@ class RacingCarGameView {
 
   static generateProgressTemplate({ name, id }) {
     return `
-    <div class="${DOM.CAR_PROGRESS}" id="${name}${id}">
-      <div class="${DOM.CAR_NAME}">${name}</div>
+    <div class="${DOM.CAR_PROGRESS}">
+      <div class="${DOM.CAR_NAME}" id="${name}${id}">${name}</div>
+      ${icons.LOADING}
     </div>
   `;
   }

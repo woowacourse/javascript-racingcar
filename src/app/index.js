@@ -38,7 +38,7 @@ class RacingCarGame {
     e.preventDefault();
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN) {
-      const carNameValue = carNameInputField.querySelector(DOM.CAR_NAME_INPUT.toID()).value;
+      const { value: carNameValue } = carNameInputField.querySelector(DOM.CAR_NAME_INPUT.toID());
       this.triggerActionAfterCarNameInput(carNameValue);
     }
   };
@@ -58,9 +58,9 @@ class RacingCarGame {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN) {
-      const count = countInputField.querySelector(DOM.COUNT_INPUT.toID()).value;
+      const { value: countValue } = countInputField.querySelector(DOM.COUNT_INPUT.toID());
       // 로직의 마지막이기 때문에 동기 처리 안함.
-      this.triggerActionAfterCountInput(count);
+      this.triggerActionAfterCountInput(countValue);
     }
   };
 
@@ -69,8 +69,10 @@ class RacingCarGame {
       this.modelManager.setCount(count);
       this.view.renderInitialGameState(this.modelManager.getCars());
       await this.simulateGame();
-      this.view.renderResults(this.getWinners());
-      this.afterRenderComplete();
+
+      const winners = this.getWinners();
+      this.view.renderResults(winners);
+      this.afterRenderComplete(winners);
     } catch (error) {
       alert(error);
     }
@@ -78,7 +80,10 @@ class RacingCarGame {
 
   async simulateGame() {
     const count = this.modelManager.getCount();
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 1; i <= count; i += 1) {
+      setTimeout(() => {
+        this.view.renderLoadingAboutRound();
+      }, 1000 * (i - 1));
       setTimeout(() => {
         this.simulateRound();
       }, 1000 * i);
@@ -107,7 +112,7 @@ class RacingCarGame {
     return winners;
   }
 
-  afterRenderComplete() {
+  afterRenderComplete(winners) {
     this.view.disableInputButtons();
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
