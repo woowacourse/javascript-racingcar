@@ -109,7 +109,7 @@ class RacingCarGame {
         isLoading = false;
       }
       if (before !== progress) {
-        this.view.renderMoveStatus(getCarsMovement(this.cars));
+        this.view.renderRacingProgress(getCarsMovement(this.cars));
         before = progress;
         isLoading = true;
       }

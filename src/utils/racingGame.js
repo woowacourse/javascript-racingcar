@@ -13,14 +13,14 @@ const moveCar = car => {
   return canMove;
 };
 
-const getCarsMovement = cars =>
-  cars.map(car => {
+const getCarsMovement = cars => {
+  const carInformations = new Map();
+  cars.forEach(car => {
     const isMoved = moveCar(car);
-    return {
-      name: car.getName(),
-      isMoved,
-    };
+    carInformations.set(car.getName(), isMoved);
   });
+  return carInformations;
+};
 
 const getMaxCount = cars => {
   let maxCount = 0;

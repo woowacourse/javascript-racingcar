@@ -39,6 +39,7 @@ export default class View {
     this.$racingStatusContainer = $(SELECTOR.RACING_STATUS);
     this.$racingResultContainer = $(SELECTOR.RACING_RESULT);
     this.$winnersContainer = $(SELECTOR.RACING_WINNERS);
+    this.racingProgressElements = [];
   }
 
   showRacingCountInput() {
@@ -62,6 +63,8 @@ export default class View {
     addClass(this.$racingCountContainer, CLASS_NAME.HIDDEN);
     addClass(this.$racingStatusContainer, CLASS_NAME.HIDDEN);
     addClass(this.$racingResultContainer, CLASS_NAME.HIDDEN);
+
+    this.racingProgressElements = [];
   }
 
   renderRacingStatus(cars) {
@@ -72,35 +75,32 @@ export default class View {
   }
 
   removeSpinners() {
-    $$(SELECTOR.RACING_PROGRESS, this.$racingStatusContainer).forEach(
-      element => {
-        const { lastChild } = element;
-        if (lastChild && lastChild.dataset.status === CAR_STATUS.STAY) {
-          element.removeChild(lastChild);
-        }
-      },
-    );
+    this.racingProgressElements.forEach(element => {
+      const { lastChild } = element;
+      if (lastChild && lastChild.dataset.status === CAR_STATUS.STAY) {
+        element.removeChild(lastChild);
+      }
+    });
   }
 
   renderSpinners() {
-    $$(SELECTOR.RACING_PROGRESS, this.$racingStatusContainer).forEach(
-      element => {
-        const { lastChild } = element;
-        if (!lastChild || lastChild.dataset.status === CAR_STATUS.MOVE) {
-          appendHTML(element, spinnerView);
-        }
-      },
-    );
+    if (!this.racingProgressElements.length)
+      this.racingProgressElements = $$(
+        SELECTOR.RACING_PROGRESS,
+        this.$racingStatusContainer,
+      );
+    this.racingProgressElements.forEach(element => {
+      const { lastChild } = element;
+      if (!lastChild || lastChild.dataset.status === CAR_STATUS.MOVE) {
+        appendHTML(element, spinnerView);
+      }
+    });
   }
 
-  renderMoveStatus(carInformation) {
-    carInformation.forEach(({ name, isMoved }) => {
-      const element = $(
-        SELECTOR.RACING_PROGRESS,
-        $(`[data-name="${name}"]`, this.$racingStatusContainer),
-      );
+  renderRacingProgress(carInformations) {
+    this.racingProgressElements.forEach(element => {
+      const isMoved = carInformations.get(element.parentNode.dataset.name);
       const { lastChild } = element;
-
       if (isMoved && lastChild.dataset.status === CAR_STATUS.STAY) {
         element.removeChild(lastChild);
         appendHTML(element, moveArrowView);
