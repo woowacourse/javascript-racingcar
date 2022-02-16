@@ -13,6 +13,7 @@ import {
   isAvailableRacingCount,
   isInteger,
 } from './utils/validations.js';
+import { getTimeInSecond } from './utils/general.js';
 
 class RacingCarGame {
   constructor() {
@@ -78,20 +79,29 @@ class RacingCarGame {
   }
 
   startGame(count) {
+    this.view.renderRacingStatus(this.cars);
+    this.progressGame(count);
+  }
+
+  endGame() {
+    this.view.removeSpinners();
+    this.view.renderWinners(this.getWinner());
+  }
+
+  progressGame(count) {
     let start = 0;
     let before = 0;
     let isLoading = true;
 
-    const moveCars = timestamp => {
-      const timeInSecond = Math.floor(timestamp / 1000);
+    const progressBySecond = timestamp => {
+      const timeInSecond = getTimeInSecond(timestamp);
       if (!start) {
         start = timeInSecond;
       }
       const progress = timeInSecond - start;
       if (progress === count) {
-        this.view.removeSpinners();
-        this.view.renderWinners(this.getWinner());
-        window.cancelAnimationFrame(moveCars);
+        this.endGame();
+        window.cancelAnimationFrame(progressBySecond);
         return;
       }
       if (isLoading) {
@@ -103,11 +113,9 @@ class RacingCarGame {
         before = progress;
         isLoading = true;
       }
-      window.requestAnimationFrame(moveCars);
+      window.requestAnimationFrame(progressBySecond);
     };
-
-    this.view.renderRacingStatus(this.cars);
-    window.requestAnimationFrame(moveCars);
+    window.requestAnimationFrame(progressBySecond);
   }
 }
 
