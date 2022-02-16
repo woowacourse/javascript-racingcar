@@ -1,22 +1,29 @@
 import { ID, CLASS, RULES } from '../../src/constants/index.js';
 
 const URL = 'http://localhost:57275/';
+const CAR_NAMES = 'east,west,south,north,all';
+const RACING_COUNT = 5;
 
-const carNames = 'east,west,south,north,all';
-const racingCount = 5;
+const inputCarName = (carName) => {
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(carName);
+};
+
+const inputRacingCount = (racingCount) => {
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(racingCount);
+};
 
 const triggerCarNameSubmitEvent = () => {
-  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(carNames);
+  inputCarName(CAR_NAMES);
   cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
 };
 
 const triggerRacingCountSubmitEvent = () => {
-  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(racingCount);
+  inputRacingCount(RACING_COUNT);
   cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
 };
 
 const delay = () => {
-  const miliSecond = (racingCount + 1) * 1000;
+  const miliSecond = (RACING_COUNT + 1) * 1000;
   cy.wait(miliSecond);
 };
 
@@ -26,7 +33,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('자동차 이름을 올바르게 입력한다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
+    inputCarName('east,west,south,north,all');
 
     const stub = cy.stub();
 
@@ -56,7 +63,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('자동차 이름은 5자 이하만 가능하다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('woowacourse, west, south, north, all');
+    inputCarName('woowacourse, west, south, north, all');
 
     const stub = cy.stub();
 
@@ -71,7 +78,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('자동차 이름은 공백을 입력할 수 없다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, , south, north, all');
+    inputCarName('east, , south, north, all');
 
     const stub = cy.stub();
 
@@ -93,7 +100,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   });
 
   it('시도할 횟수를 올바르게 입력한다.', () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(10);
+    inputRacingCount(10);
 
     const stub = cy.stub();
 
@@ -121,7 +128,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   });
 
   it('시도할 횟수는 자연수만 입력한다.', () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(-1);
+    inputRacingCount(-1);
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
@@ -144,7 +151,7 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
   });
 
   it('자동차 이름이 올바르게 렌더링되는지 확인한다.', () => {
-    const carNameList = carNames.split(',');
+    const carNameList = CAR_NAMES.split(',');
 
     cy.get(`.${CLASS.RACING_CAR_NAME}`).each((carName, index) => {
       expect(carName.text()).to.equal(carNameList[index]);
