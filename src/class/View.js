@@ -6,13 +6,12 @@ import {
   resetInputValue,
   clearHTML,
   setHTML,
+  appendHTML,
 } from '../utils/dom.js';
 import { SELECTOR, CLASS_NAME } from '../constants.js';
 
-const generateMoveView = isMoved => {
-  if (isMoved) return '<h3 id="move" class="move" data-status="move">⬇️</h3>';
-  return '<div class="spinner" data-status="stay"></div>';
-};
+const movedArrowView = '<h3 id="move" class="move" data-status="move">⬇️</h3>';
+const spinnerView = '<div class="spinner" data-status="stay"></div>';
 
 const generateCarStatusView = ({ name }) => `
 <div id="car-status" class="car-status" data-name=${name}>
@@ -90,22 +89,22 @@ export default class View {
     $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
       const { lastChild } = element;
       if (!lastChild || lastChild.dataset.status === 'move') {
-        element.insertAdjacentHTML('beforeend', generateMoveView(false));
+        appendHTML(element, spinnerView);
       }
     });
   }
 
   renderMoveStatus(carInformation) {
     carInformation.forEach(({ name, isMoved }) => {
-      const moveElement = $(
+      const element = $(
         SELECTOR.MOVE_STATUS,
         $(`[data-name="${name}"]`, this.$racingStatusContainer),
       );
-      const { lastChild } = moveElement;
+      const { lastChild } = element;
 
       if (isMoved && lastChild.dataset.status === 'stay') {
-        moveElement.removeChild(lastChild);
-        moveElement.insertAdjacentHTML('beforeend', generateMoveView(isMoved));
+        element.removeChild(lastChild);
+        appendHTML(element, movedArrowView);
       }
     });
   }

@@ -16,6 +16,10 @@ const setHTML = (element, html) => {
   element.insertAdjacentHTML('afterbegin', html);
 };
 
+const appendHTML = (element, html) => {
+  element.insertAdjacentHTML('beforeend', html);
+};
+
 const getEnterEvent = (key, cb) => {
   if (key !== 'Enter') return;
   cb();
@@ -30,5 +34,6 @@ export {
   resetInputValue,
   clearHTML,
   setHTML,
+  appendHTML,
   getEnterEvent,
 };
