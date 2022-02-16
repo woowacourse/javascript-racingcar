@@ -1,5 +1,6 @@
-import ERROR_MESSAGE from '../../constants/error-message.js';
 import GAME_SETTING from '../../constants/RacingGame/setting.js';
+import ERROR_MESSAGE from '../../constants/error-message.js';
+
 import nameStringToArray from '../nameStringToArray.js';
 import { isNaturalNumber, isWithComma, isArrayItemLengthRange, isUniqueWord } from '../isValid.js';
 

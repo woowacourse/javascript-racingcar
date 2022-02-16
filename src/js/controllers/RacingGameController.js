@@ -1,9 +1,9 @@
 import RacingGameModel from '../models/RacingGameModel.js';
 import RacingGameView from '../views/RacingGameView.js';
 
-import nameStringToArray from '../utils/nameStringToArray.js';
-import { $ } from '../utils/element-tools.js';
 import { SELECTOR } from '../constants/RacingGame/selector.js';
+import { $ } from '../utils/element-tools.js';
+import nameStringToArray from '../utils/nameStringToArray.js';
 import { isCarNameValid, isRaceTimeValid } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
