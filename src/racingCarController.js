@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import RacingCarView from './racingCarView.js';
 import RacingCarModel from './racingCarModel.js';
 import { isValidCarNames, isValidRacingCount } from './common/validator.js';
@@ -44,19 +43,33 @@ export default class RacingCarController {
   }
 
   handleCarNames() {
-    const carNamesInput = this.view.$carNamesInput.value.split(',');
+    const carNamesInput = this.$carNamesInput.value.split(',');
     const carNames = carNamesInput.map((name) => name.trim());
 
     if (isValidCarNames(carNames)) {
-      this.model.setCars(carNames);
-      this.view.renderRacingCount();
-      this.view.selectRacingCountDOM();
-      this.attachRacingCountEvents();
-      this.view.renderCars(this.model.cars);
-    } else {
-      alert(ERROR_MESSAGE.CAR_NAMES);
-      this.view.resetCarNamesInput();
+      this.onValidCarNamesSubmit(carNames);
+
+      return;
     }
+
+    this.onInvalidCarNamesSubmit();
+  }
+
+  get $carNamesInput() {
+    return this.view.$carNamesInput;
+  }
+
+  onValidCarNamesSubmit(carNames) {
+    this.view.renderRacingCount();
+    this.view.selectRacingCountDOM();
+    this.attachRacingCountEvents();
+    this.model.setCars(carNames);
+    this.view.renderCars(this.model.cars);
+  }
+
+  onInvalidCarNamesSubmit() {
+    alert(ERROR_MESSAGE.CAR_NAMES);
+    this.view.resetCarNamesInput();
   }
 
   handleRacingCount() {
