@@ -1,7 +1,8 @@
 import RacingCarModel from '../models/RacingCarModel.js';
 import RacingCarView from '../view/RacingCarView.js';
+import getCongratulationMessage from '../utils/getCongratulationMessage.js';
+import { $ } from '../utils/selector.js';
 
-import $ from '../utils/selector.js';
 import { ID } from '../utils/constants.js';
 
 export default class RacingCarController {
@@ -60,7 +61,7 @@ export default class RacingCarController {
 
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const stageInfo = await this.model.racePerSecond();
-      this.view.renderResult(stageInfo);
+      this.view.renderResults(stageInfo);
     }
 
     this.endGame();
@@ -73,7 +74,7 @@ export default class RacingCarController {
     this.view.renderWinners(winners);
     this.view.renderReplayButton();
 
-    const winnerMessage = await this.model.getCongratulationMessage(winners);
+    const winnerMessage = await getCongratulationMessage(winners);
     this.view.alertCongratulationMessage(winnerMessage);
   };
 }
