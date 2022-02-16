@@ -43,6 +43,7 @@ export default class RacingCarGame {
                 clearInterval(timeoutId);
                 this.view.renderGameWinners(carArray);
                 this.addClickEventToRestartButton();
+                setTimeout(() => alert(`${this.view.winners} 축하합니다!`), 2000);
             }
         }, 1000);
     }

@@ -3,6 +3,8 @@ import { SELECTOR } from '../constants/selector.js';
 import resetInputText from '../modules/reset-input-text.js';
 
 export default class RacingCarGameView {
+    winners = '';
+
     renderRaceGameCountElement() {
         $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.remove(SELECTOR.DISPLAY_NONE);
     }
@@ -31,13 +33,13 @@ export default class RacingCarGameView {
         const maxCount = carArray
             .map(car => car.successCount)
             .sort((a, b) => b - a)[0];
-        const winners = carArray
+        this.winners = carArray
             .filter(car => car.successCount === maxCount)
             .map(car => car.name)
             .join(',');
         
         $(SELECTOR.RACING_RESULT).innerHTML = `
-            <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
+            <h2 class="result-text">🏆 최종 우승자: ${this.winners}🏆</h2>
             <button class="restart-button">다시 시작하기</button>
         `;
     }
