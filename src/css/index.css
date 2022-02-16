@@ -1,0 +1,51 @@
+@import './shared/layout.css';
+@import './shared/typhography.css';
+@import './shared/sizing.css';
+@import './shared/btn.css';
+@import './ui/spinner.css';
+
+:root {
+  --cyan: #00bcd4;
+  --cyan-light: #80deea;
+  --white-gray: #f5f5f5;
+  --gray: #b4b4b4;
+  --white: #ffffff;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.input {
+  padding-left: 8px;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+}
+
+/* car-player */
+.car-player {
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 7px;
+  border-radius: 4px;
+  outline: 0;
+  border-style: none;
+  background-color: var(--white-gray);
+  display: inline-flex;
+  font-weight: 400;
+  position: relative;
+}
+
+/* forward-icon */
+.forward-icon {
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+}
