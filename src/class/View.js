@@ -8,10 +8,10 @@ import {
   setHTML,
   appendHTML,
 } from '../utils/dom.js';
-import { SELECTOR, CLASS_NAME } from '../constants.js';
+import { SELECTOR, CLASS_NAME, CAR_STATUS } from '../constants.js';
 
-const movedArrowView = '<h3 id="move" class="move" data-status="move">⬇️</h3>';
-const spinnerView = '<div class="spinner" data-status="stay"></div>';
+const movedArrowView = `<h3 id="move" class="move" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
+const spinnerView = `<div class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
 
 const generateCarStatusView = ({ name }) => `
 <div id="car-status" class="car-status" data-name=${name}>
@@ -79,7 +79,7 @@ export default class View {
   removeSpinners() {
     $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
       const { lastChild } = element;
-      if (lastChild && lastChild.dataset.status === 'stay') {
+      if (lastChild && lastChild.dataset.status === CAR_STATUS.STAY) {
         element.removeChild(lastChild);
       }
     });
@@ -88,7 +88,7 @@ export default class View {
   renderSpinners() {
     $$(SELECTOR.MOVE_STATUS, this.$racingStatusContainer).forEach(element => {
       const { lastChild } = element;
-      if (!lastChild || lastChild.dataset.status === 'move') {
+      if (!lastChild || lastChild.dataset.status === CAR_STATUS.MOVE) {
         appendHTML(element, spinnerView);
       }
     });
@@ -102,7 +102,7 @@ export default class View {
       );
       const { lastChild } = element;
 
-      if (isMoved && lastChild.dataset.status === 'stay') {
+      if (isMoved && lastChild.dataset.status === CAR_STATUS.STAY) {
         element.removeChild(lastChild);
         appendHTML(element, movedArrowView);
       }

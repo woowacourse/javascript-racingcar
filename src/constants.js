@@ -41,6 +41,11 @@ const MESSAGE = {
   NOT_DECIMAL_COUNT: '소수는 입력할 수 없습니다.',
 };
 
+const CAR_STATUS = {
+  MOVE: 'move',
+  STAY: 'stay',
+};
+
 export {
   SELECTOR,
   CLASS_NAME,
@@ -48,4 +53,5 @@ export {
   RACING_COUNT,
   NAME_LENGTH,
   MOVE_NUMBER,
+  CAR_STATUS,
 };
