@@ -1,4 +1,9 @@
-import { MESSAGE, SELECTOR, RACING_COUNT } from '../../src/constants.js';
+import {
+  MESSAGE,
+  SELECTOR,
+  RACING_COUNT,
+  END_MESSAGE_DELAY,
+} from '../../src/constants.js';
 
 const availableCarName = '준,포코,공원,제이슨,포비';
 const delayTime = 1000;
@@ -170,5 +175,23 @@ describe('예외 사항', () => {
     cy.get(SELECTOR.WINNERS).then(element => {
       expect(element.text()).to.contain('최종 우승자');
     });
+  });
+});
+
+describe('자동차 경주 진행 상황  ', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+  });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하 메시지를 확인 할 수 있다.', () => {
+    // given
+    cy.clock();
+    // when
+    cy.submitCarNames(availableCarName);
+    cy.submitRacingCount(RACING_COUNT.MAX);
+    cy.tick(RACING_COUNT.MAX * milliseconds + delayTime);
+    cy.tick(END_MESSAGE_DELAY);
+    // then
+    cy.checkAlertMessage(MESSAGE.GAME_END);
   });
 });
