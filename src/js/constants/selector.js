@@ -13,14 +13,13 @@ const SELECTOR = Object.freeze({
 });
 
 function replaceSelectorToDomID(origin) {
-  const output = new Object();
+  const output = {};
   Object.entries(origin).forEach(([key, value]) => {
-    output[key] = value.replace(/\#|\./g, '');
+    output[key] = value.replace(/#|\./g, '');
   });
 
   return output;
 }
 
 const DOM_ID = Object.freeze(replaceSelectorToDomID(SELECTOR));
-
 export { SELECTOR, DOM_ID };
