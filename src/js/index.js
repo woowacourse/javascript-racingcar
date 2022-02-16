@@ -68,7 +68,7 @@ class App {
     return false;
   }
 
-  handleGamePlay(event) {
+  async handleGamePlay(event) {
     event.preventDefault();
 
     // 박스 생성
@@ -77,23 +77,18 @@ class App {
       this.View.renderAdvanceDiv(name);
     });
 
+    this.handleProgressDisplay();
+
     // 라운드만큼 반복
     for (let i = 1; i <= this.RacingGame.round; i += 1) {
-      // 1초간 로딩 애니메이션 적용
-      this.View.LoadingStart();
-      // 1초 타이머 시작
-      // 로딩 애니메이션 시작
-      // 타이머 끝 -> 로딩 애니메이션 삭제
-      this.View.LoadingEnd();
-      this.RacingGame.play();
-      this.RacingGame.carList.forEach((car) => {
-        if (car.isMovedInLastRound) {
-          this.View.renderAdvance(car.name);
-        }
-      });
+      await this.progressRound();
     }
 
     this.handleWinnerDisplay();
+  }
+
+  handleProgressDisplay() {
+    this.View.renderProgress();
   }
 
   handleWinnerDisplay() {
@@ -103,6 +98,25 @@ class App {
   handleReplayGame() {
     this.View.renderInit();
     this.RacingGame.init();
+  }
+
+  async progressRound() {
+    const wait = (timeToDelay) =>
+      new Promise((resolve) => setTimeout(resolve, timeToDelay));
+
+    // 로딩 애니메이션 시작
+    this.View.LoadingStart();
+    // 1초 타이머 시작
+    await wait(1000);
+    // 타이머 종료시 로딩 애니메이션 삭제
+    this.View.LoadingEnd();
+
+    this.RacingGame.play();
+    this.RacingGame.carList.forEach((car) => {
+      if (car.isMovedInLastRound) {
+        this.View.renderAdvance(car.name);
+      }
+    });
   }
 }
 

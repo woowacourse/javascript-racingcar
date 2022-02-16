@@ -16,32 +16,38 @@ export default class RacingGameView {
     });
   }
 
-  renderResult(winner) {
-    $$('.racing-car-container, #result').forEach(($element) => {
-      $element.setAttribute('data-state', 'on');
-    });
+  renderProgress() {
+    $('.racing-car-container').setAttribute('data-state', 'on');
+  }
 
+  renderResult(winner) {
+    $('#result').setAttribute('data-state', 'on');
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
       '🏆 최종 우승자: ' + winner + ' 🏆';
   }
 
   renderAdvanceDiv(carName) {
-    const str = `<div id="car-instance-${carName}"><div class="car-name-box">${carName}</div></div>`;
+    const str = `<div id="${carName}" class="car-instance"><div class="car-name-box">${carName}</div></div>`;
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += str;
   }
 
   renderAdvance(target) {
-    // 상수 예정
     const str = `<div class="car-advance">⬇️️</div>`;
-    const targetID = '#car-instance-' + target;
-    console.log(targetID);
-    const $target = document.querySelector(targetID);
-    $target.innerHTML += str;
+    const targetID = '#' + target;
+    $(targetID).innerHTML += str;
   }
 
-  LoadingStart() {}
+  LoadingStart() {
+    $$('.car-instance').forEach(($element) => {
+      $element.innerHTML += '<div class="round-loading">로딩</div>';
+    });
+  }
 
-  LoadingEnd() {}
+  LoadingEnd() {
+    $$('.round-loading').forEach(($element) => {
+      $element.remove();
+    });
+  }
 
   renderInit() {
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
