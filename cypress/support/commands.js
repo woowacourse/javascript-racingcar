@@ -59,7 +59,7 @@ Cypress.Commands.add('inputNames', ({ nameInput, isInvalidName = false }) => {
     btnSelector: `#${DOM.CAR_NAME_BTN_ID}`,
     input: nameInput,
     isInvalidInput: isInvalidName,
-    errorMessage: ERROR_MESSAGE.CAR_NAME_LENGTH_OVER,
+    errorMessage: ERROR_MESSAGE.CAR_NAME_LENGTH_OUT_OF_RANGE,
   });
 });
 

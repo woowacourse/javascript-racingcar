@@ -7,14 +7,14 @@ import {
   RANGE_MIN,
 } from '../lib/constants.js';
 import { isNumberBelowZero, pickNumberInRange, selectDOM, splitString } from '../lib/utils.js';
-import Car from './car.js';
+import CarManager from './carManager.js';
 import RacingCarGameView from './view.js';
 
 class RacingCarGame {
   constructor() {
-    this.cars = null;
     this.count = null;
     this.view = new RacingCarGameView();
+    this.carManager = new CarManager();
     this.initDOM();
     this.initHandler();
   }
@@ -36,7 +36,7 @@ class RacingCarGame {
       const carNameValue = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField).value;
       try {
         const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-        this.cars = RacingCarGame.makeCars(names);
+        this.carManager.makeCars(names);
         this.view.renderCountInputForm();
       } catch ({ message }) {
         alert(message);
@@ -52,7 +52,7 @@ class RacingCarGame {
       try {
         this.setCount(count);
         this.simulateGame();
-        this.view.renderResults(this.cars, this.getWinners());
+        this.view.renderResults(this.carManager.cars, this.getWinners());
         this.afterRenderComplete();
       } catch ({ message }) {
         alert(message);
@@ -83,7 +83,7 @@ class RacingCarGame {
   }
 
   simulateRound() {
-    this.cars.forEach((car) => {
+    this.carManager.cars.forEach((car) => {
       const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
       if (random >= MOVE_CONDITION) {
         car.goForward();
@@ -92,16 +92,12 @@ class RacingCarGame {
   }
 
   getWinners() {
-    const max = Math.max(...this.cars.map((car) => car.progress));
-    const winners = this.cars.reduce(
+    const max = Math.max(...this.carManager.cars.map((car) => car.progress));
+    const winners = this.carManager.cars.reduce(
       (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
       []
     );
     return winners;
-  }
-
-  static makeCars(names) {
-    return names.map((name) => new Car(name));
   }
 }
 export default RacingCarGame;

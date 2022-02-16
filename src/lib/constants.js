@@ -23,13 +23,14 @@ export const DOM = Object.freeze({
   WINNER_NAME_ID: 'winner-name',
 });
 
-export const CAR_NAME_LENGTH_LIMIT = 5;
+export const CAR_NAME_MIN_LENGTH = 1;
+export const CAR_NAME_MAX_LENGTH = 5;
 
 export const CAR_NAME_SEPARATOR = ',';
 
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_COUNT: '횟수는 1 이상을 입력해야 합니다.',
-  CAR_NAME_LENGTH_OVER: `${CAR_NAME_LENGTH_LIMIT}자 이하의 자동차 이름을 입력해주세요`,
+  CAR_NAME_LENGTH_OUT_OF_RANGE: `${CAR_NAME_MIN_LENGTH} - ${CAR_NAME_MAX_LENGTH}자 길이의 자동차 이름을 입력해주세요`,
 });
 
 export const RANGE_MIN = 0;
