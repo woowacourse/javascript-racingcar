@@ -33,7 +33,7 @@ export function racingCountTemplate() {
 
 export function carTemplate(car) {
   return `
-    <article style="${style.carContainer}">
+    <article id="${car.name}" style="${style.carContainer}">
       <section style="${style.carName}"><span>${car.name}</span></section>
       <section class="move-forward-arrow" style="${style.arrow}" data-car-name="${car.name}"></section>
     </article>
