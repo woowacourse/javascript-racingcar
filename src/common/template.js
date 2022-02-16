@@ -13,7 +13,7 @@ export function carNamesTemplate() {
       <label style="${style.directive}">${DIRECTIVE.CAR_NAME}</label>
       <form>
         <input id="car-names-input" style="${style.input}"></input>
-        <button id="car-names-submit" type="button" style="${style.button}">${BUTTON.SUBMIT}</button>
+        <button type="button" id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
       </form>
     </article>
     <article id="racing-count"></article>
@@ -26,7 +26,7 @@ export function racingCountTemplate() {
     <label style="${style.directive}">${DIRECTIVE.RACING_COUNT}</label>
     <form>
       <input type="number" id="racing-count-input" style="${style.input}"></input>
-      <button id="racing-count-submit" type="button" style="${style.button}">${BUTTON.SUBMIT}</button>
+      <button type="button" id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
     </form>
   `;
 }
@@ -35,7 +35,7 @@ export function carTemplate(car) {
   return `
     <article style="${style.carContainer}">
       <section style="${style.carName}"><span>${car.name}</span></section>
-      <section style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></section>
+      <section class="move-forward-arrow" style="${style.arrow}" data-car-name="${car.name}"></section>
     </article>
   `;
 }
