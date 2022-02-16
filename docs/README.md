@@ -47,5 +47,5 @@
 - 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
 - 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여준다.
 
-## [ ] 축하의 alert 메세지
+## [✅] 축하의 alert 메세지
 - 결과를 보여주고 2초 후, 축하의 alert 메세지를 띄운다.

@@ -14,15 +14,9 @@ const loadingView = (cars) => {
   })
 }
 
-const carMovementView = () => {
-  return `<div id="move" class="move">⬇️</div>`;
-}
+const carMovementView = () => `<div id="move" class="move">⬇️</div>`;
 
-const winnersView = winners => {
-  return `<h3>🏆최종 우승자: ${winners
-    .map(({ name }) => name)
-    .join(',')}🏆</h3>`;
-};
+const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
 
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {

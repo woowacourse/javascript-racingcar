@@ -8,6 +8,7 @@ import {
   validateDuplicateCarName,
   validateRacingCount,
   getMaxCount,
+  winnerAlert,
 } from './utils/index.js';
 
 class CarRacing {
@@ -66,10 +67,11 @@ class CarRacing {
 
     const timer = setInterval(()=>{
       if(count <= 1){
+        const winners = this.getWinner().map((car)=>car.name).join(',');
         clearLoadingView(this.cars);
-        getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));
+        getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(winners));
         clearInterval(timer);
-        return;
+        return winnerAlert(winners);
       }
       this.moveCar(this.cars);
       loadingView(this.cars)

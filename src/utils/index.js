@@ -10,6 +10,11 @@ const validateRacingCount = count => count >= MIN_RACING_COUNT;
 
 const generateRandomNumber = () => Math.floor(Math.random() * MAX_RANDOM_NUMBER);
 
+const winnerAlert = (winner) =>  { setTimeout(() => {
+  alert(`🎉우승을 축하합니다 ${winner}🎉`)
+  }, 2000);
+}
+
 const getMaxCount = cars => {
   let maxCount = 0;
   for (let i = 0; i < cars.length; i++) {
@@ -25,6 +30,7 @@ export {
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
+  winnerAlert,
   generateRandomNumber,
   getMaxCount,
 };
