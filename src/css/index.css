@@ -104,3 +104,7 @@ input:focus {
   color: #000000;
   margin: 8px;
 }
+
+.hidden {
+  display: none;
+}
