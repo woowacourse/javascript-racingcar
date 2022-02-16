@@ -1,9 +1,9 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
-import { isValidLength, isBlank, isEffectiveScore } from './utils/validation.js';
+import { isValidLength, isBlank } from './utils/validation.js';
 import { showCountInput, showRacingResult, startUpScreen } from './views/setScreen.js';
-import { getRandomNumber, getMaxNumber } from './utils/getNumber.js';
+import { getMaxNumber } from './utils/getNumber.js';
 import { renderRacingResult, renderFinalWinner } from './views/racingResult.js';
 
 function App() {
@@ -12,15 +12,6 @@ function App() {
   const selectWinner = () => {
     const maxDistance = getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
-  };
-
-  const tryCarMoveForward = () => {
-    this.cars.forEach((car) => {
-      const number = getRandomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
-      if (isEffectiveScore(number)) {
-        car.moveForward();
-      }
-    });
   };
 
   const handleError = (message) => {
@@ -51,6 +42,12 @@ function App() {
     this.cars = carNames.map((name) => new Car(name));
   };
 
+  const startRacingGame = (inputNumber) => {
+    for (let i = 0; i < inputNumber; i += 1) {
+      this.cars.forEach((car) => car.tryMoveForward());
+    }
+  };
+
   const handleCarNamesSubmit = () => {
     const inputCarNames = $('#car-names-input')
       .value.split(',')
@@ -68,9 +65,7 @@ function App() {
     if (!isValidRacingCount(inputNumber)) {
       return;
     }
-    for (let i = 0; i < inputNumber; i += 1) {
-      tryCarMoveForward(inputNumber);
-    }
+    startRacingGame(inputNumber);
 
     const finalWinner = selectWinner()
       .map((winner) => winner.name)

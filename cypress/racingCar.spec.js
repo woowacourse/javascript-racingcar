@@ -19,7 +19,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get('#reset-btn').click();
   };
 
-  it('자동차 이름을 5자 이상 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
+  it('자동차 이름을 5자 이상 입력한 경우 해당 에러 메시지가 alert에 호출되어야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type('ab,c,zdffddd');
@@ -30,7 +30,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       });
   });
 
-  it('자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
+  it('자동차 이름을 공백으로 입력한 경우 해당 에러 메시지가 alert에 호출되어야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get('#car-names-input').type(' ');
