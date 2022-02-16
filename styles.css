@@ -79,15 +79,19 @@ button {
     height: 20px;
     animation: spin 2s linear infinite;
     margin-top: 5px;
-  }
+}
   
-  @keyframes spin {
+@keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
+}
 
-  .racing-result {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
+.racing-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restart-button {
+    visibility: hidden;
+}

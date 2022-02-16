@@ -1,5 +1,5 @@
 import { NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER, INTERVAL, ID } from "../constants.js";
-import { initRacingStatus, winnerAlert, clearLoadingView, carMovementView, loadingView, winnersView } from "../view.js";
+import { initRacingStatus, resultView, clearLoadingView, carMovementView, loadingView } from "../view.js";
 import { getElement } from "./dom.js";
 
 const parseCarName = names => names.split(',').map(name => name.trim())
@@ -28,12 +28,11 @@ const startRacing = (count, cars) => {
     if(count <= 1){
       const winners = getWinner(cars).map((car)=>car.name).join(',');
       clearLoadingView(cars);
-      getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(winners));
       clearInterval(timer);
-      return winnerAlert(winners);
+      return delayResult(winners);
     }
     moveCar(cars);
-    loadingView(cars)
+    loadingView(cars);
     count--;
   }, INTERVAL.LOADING);
 }
@@ -45,6 +44,12 @@ const moveCar = (cars) => {
       getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', carMovementView())
     }
   });
+}
+
+const delayResult = (winners) => {
+  setTimeout(()=>{
+    resultView(winners)
+  }, INTERVAL.ALERT);
 }
 
 const getWinner = (cars) => {

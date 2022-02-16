@@ -13,33 +13,34 @@ const loadingView = (cars) => {
   cars.forEach((car)=>{
     getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', '<div class="loader"></div>')
   })
-}
+};
 
 const carMovementView = () => `<div id="move" class="move">⬇️</div>`;
-
-const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
 
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
   }
-} 
+}; 
 
 const clearLoadingView = (cars) => {
   cars.forEach((car)=>{
     const parent = getElement(`car-status-${car.name}`)
     if(parent.children.length > 1) {parent.removeChild(parent.lastChild)}
   })
+};
+
+const resultView = (winners) =>  { 
+  getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(winners));
+  getElement(ID.RESTART_BUTTON).style.visibility="visible";
+  alert(`🎉우승을 축하합니다 ${winners}🎉`);
 }
 
-const winnerAlert = (winner) =>  { setTimeout(() => {
-    return alert(`🎉우승을 축하합니다 ${winner}🎉`)
-  }, INTERVAL.ALERT);
-}
+const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
 
 const initRacingStatus = (cars) => {
   getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', carsNameView(cars));
   loadingView(cars);
 };
 
-export { carMovementView, loadingView, winnersView, clearLoadingView, removeAllChildNodes, winnerAlert, initRacingStatus };
+export { carMovementView, loadingView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus };

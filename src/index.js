@@ -63,6 +63,7 @@ class CarRacing {
     removeAllChildNodes(getElement(ID.RACING_WINNERS));
     removeAllChildNodes(getElement(ID.RACING_STATUS));
     changeActivity([ID.CAR_NAMES_INPUT, ID.CAR_NAMES_SUBMIT, ID.RACING_COUNT_INPUT, ID.RACING_COUNT_SUBMIT]);
+    getElement(ID.RESTART_BUTTON).style.visibility="hidden";
     this.cars = [];
   }
 }
