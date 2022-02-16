@@ -10,7 +10,7 @@ import {
 import { SELECTOR, CLASS_NAME } from '../constants.js';
 
 const generateMoveView = isMoved => {
-  if (isMoved) return '<div id="move" class="move" data-status="move">⬇️</div>';
+  if (isMoved) return '<h3 id="move" class="move" data-status="move">⬇️</h3>';
   return '<div class="spinner" data-status="stay"></div>';
 };
 
