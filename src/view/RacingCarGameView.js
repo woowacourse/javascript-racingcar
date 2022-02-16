@@ -41,7 +41,8 @@ class RacingCarGameView {
       ''
     );
 
-    this.$racingCarList.innerHTML = racingCarItemsTemplate;
+    // this.$racingCarList.innerHTML = racingCarItemsTemplate;
+    this.$racingCarList.insertAdjacentHTML('beforeend', racingCarItemsTemplate);
     this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
   }
 
