@@ -82,3 +82,10 @@ form > div > input {
 #restart-btn {
   display: none;
 }
+
+.loading-icon.show {
+  display: block;
+}
+.loading-icon.hide {
+  display: none;
+}

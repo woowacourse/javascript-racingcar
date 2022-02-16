@@ -33,6 +33,7 @@ export const DOM = Object.freeze({
   WINNER_NAME: 'winner-name',
 
   INPUT_FIELD: 'input-field',
+  LOADING_ICON: 'loading-icon',
 });
 
 export const CAR_NAME_LENGTH_LIMIT = 5;
