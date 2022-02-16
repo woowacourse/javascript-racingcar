@@ -20,5 +20,6 @@ export default class Car {
 
   resetStep() {
     this.step = 0;
+    this.stepByRound = [];
   }
 }
