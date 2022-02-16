@@ -129,6 +129,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
 
   it('시도할 횟수는 자연수만 입력한다.', () => {
     inputRacingCount(-1);
+
     const stub = cy.stub();
 
     cy.on('window:alert', stub);

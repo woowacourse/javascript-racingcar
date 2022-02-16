@@ -37,15 +37,14 @@ class RacingCarController {
   handleCarNameFormSubmitEvent(e) {
     e.preventDefault();
     const carNames = this.$carNamesInput.value;
-    const carNamesList = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
+    const carNameList = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
     try {
-      this.model.setCarList(carNamesList);
+      this.model.setCarList(carNameList);
       this.view.showRacingCountForm();
     } catch (error) {
       this.view.resetCarNamesInput();
       alert(error);
-      return;
     }
   }
 
@@ -60,7 +59,6 @@ class RacingCarController {
     } catch (error) {
       this.view.resetRacingCountInput();
       alert(error);
-      return;
     }
   }
 
