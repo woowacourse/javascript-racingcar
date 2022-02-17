@@ -10,7 +10,8 @@ export default class View {
   }
 
   renderCarNames(carNames) {
-    $(SELECTOR.CAR_NAMES).innerHTML = this.carNamesTemplate(carNames);
+    $(SELECTOR.CAR_NAMES).textContent = '';
+    $(SELECTOR.CAR_NAMES).insertAdjacentHTML('afterbegin', this.carNamesTemplate(carNames));
   }
 
   winnerTemplate(winners) {
@@ -18,7 +19,7 @@ export default class View {
   }
 
   renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = this.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).textContent = this.winnerTemplate(winners);
   }
 
   carProgressTemplate(carPosition) {
@@ -33,9 +34,9 @@ export default class View {
 
   renderInitial() {
     $(SELECTOR.GAME_RESTART).style.display = 'none';
-    $(SELECTOR.CAR_NAMES).innerHTML = '';
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = '';
-    $(SELECTOR.CAR_PROGRESS).innerHTML = '';
+    $(SELECTOR.CAR_NAMES).textContent = '';
+    $(SELECTOR.CAR_RACING_WINNER).textContent = '';
+    $(SELECTOR.CAR_PROGRESS).textContent = '';
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
