@@ -77,18 +77,22 @@ class RacingCarGame {
   }
 
   simulateGame() {
-    for (let i = 0; i < this.count; i += 1) {
-      this.simulateRound();
-    }
+    this.finishedCount = 0;
+    this.gameIntervalId = setInterval(this.simulateRound.bind(this), 1000);
   }
 
   simulateRound() {
+    if (this.finishedCount === this.count) {
+      clearInterval(this.gameIntervalId);
+      return;
+    }
     this.carManager.cars.forEach((car) => {
       const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
       if (random >= MOVE_CONDITION) {
         car.goForward();
       }
     });
+    this.finishedCount += 1;
   }
 
   getWinners() {
