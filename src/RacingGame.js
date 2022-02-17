@@ -21,7 +21,7 @@ export default class RacingGame {
             if (!isValidCarNames(carNames)) return;
 
             this.racingCars.reset();
-            this.racingCars.update(carNames);
+            this.racingCars.adds(carNames);
             Render.showTryForm();
         });
     }

@@ -9,7 +9,7 @@ export default class RacingCars {
         this.cars.length = 0;
     }
 
-    update(carNames) {
+    adds(carNames) {
         carNames.forEach((carName) => {
             this.cars.push(new Car(carName));
         });
