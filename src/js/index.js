@@ -4,6 +4,7 @@ import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
 import { isCarNameInputValid, isRaceTimeValid } from './racingGameHelper.js';
+import delay from './utils/delay.js';
 
 class App {
   constructor() {
@@ -88,11 +89,10 @@ class App {
     this.View.renderProgress();
   }
 
-  handleWinnerDisplay() {
+  async handleWinnerDisplay() {
     this.View.renderResult(this.RacingGame.winner());
-    setTimeout(() => {
-      alert('우승자는 ' + this.RacingGame.winner() + '입니다. 축하합니다!');
-    }, 2000);
+    await delay(2000);
+    alert('우승자는 ' + this.RacingGame.winner() + '입니다. 축하합니다!');
   }
 
   handleReplayGame() {
@@ -101,14 +101,8 @@ class App {
   }
 
   async progressRound() {
-    const wait = (timeToDelay) =>
-      new Promise((resolve) => setTimeout(resolve, timeToDelay));
-
-    // 로딩 애니메이션 시작
     this.View.LoadingStart();
-    // 1초 타이머 시작
-    await wait(1000);
-    // 타이머 종료시 로딩 애니메이션 삭제
+    await delay(1000);
     this.View.LoadingEnd();
 
     this.RacingGame.play();
