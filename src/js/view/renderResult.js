@@ -51,7 +51,7 @@ const removeLoadingAnimation = () => {
   });
 };
 
-const domInit = async cars => {
+const domInit = cars => {
   return new Promise(resolve => {
     const turnResult = document.querySelector('#turn-result');
 
