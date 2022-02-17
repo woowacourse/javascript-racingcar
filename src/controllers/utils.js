@@ -32,8 +32,3 @@ export function isNumberOverStandard(number) {
   }
   return false;
 }
-
-export function clearState() {
-  state.cars = [];
-  state.racingNumber = 0;
-}

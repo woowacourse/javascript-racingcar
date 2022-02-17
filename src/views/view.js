@@ -22,7 +22,7 @@ export function renderProgressArrowOfState() {
   }
 }
 
-function renderProgressArrowsForOneRound(nowRacingNumber) {
+export function renderProgressArrowsForOneRound(nowRacingNumber) {
   state.cars.forEach((element, index) => {
     if (element.location > nowRacingNumber) {
       renderProgressArrow(index);
@@ -30,12 +30,27 @@ function renderProgressArrowsForOneRound(nowRacingNumber) {
   });
 }
 
-export function renderProgressArrow(index) {
+function renderProgressArrow(index) {
   const racingProgress = document.getElementsByClassName('racing-progress');
   const racingArrow = document.createElement('div');
+  const spinner = document.getElementsByClassName('spinner');
   racingArrow.className = 'racing-progress-arrow';
   racingArrow.insertAdjacentHTML('afterbegin', '⬇️️');
-  racingProgress[index].appendChild(racingArrow);
+  racingProgress[index].insertBefore(racingArrow, spinner[index]);
+}
+
+export function renderSpinnerForOneRound() {
+  state.cars.forEach((element, index) => {
+    renderSpinner(index);
+  });
+}
+
+function renderSpinner(index) {
+  const racingProgress = document.getElementsByClassName('racing-progress');
+  const spinner = document.createElement('div');
+  spinner.className = 'spinner';
+  spinner.insertAdjacentHTML('afterbegin', '');
+  racingProgress[index].appendChild(spinner);
 }
 
 export function renderWinners(names) {
@@ -93,6 +108,16 @@ function derenderRacingInputForm() {
 function derenderRacingContainer() {
   const racingContainer = document.getElementById('racing-container');
   racingContainer.style.display = 'none';
+}
+
+export function eraseSpinner() {
+  const racingProgress = document.getElementsByClassName('racing-progress');
+  const spinner = document.getElementsByClassName('spinner');
+  setTimeout(() => {
+    Array.from(spinner).forEach((element) => {
+      element.remove();
+    });
+  }, (state.racingNumber - 1) * 1000);
 }
 
 function ableUserInput() {
