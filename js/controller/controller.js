@@ -59,7 +59,7 @@ export default class Controller {
 
   goForward(idx) {
     if (this.isMoveCondition()) {
-      this.model.carPosition[idx]++;
+      this.model.goForward(idx);
     }
   }
 

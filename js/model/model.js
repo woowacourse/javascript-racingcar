@@ -18,4 +18,8 @@ export default class Model {
   saveRacingCount(racingCount) {
     this.racingCount = racingCount;
   }
+
+  goForward(idx){
+    this.carPosition[idx]++;
+  }
 }
