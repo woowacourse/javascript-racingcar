@@ -151,8 +151,10 @@ describe('게임 진행 테스트', () => {
 
     cy.wait(GAME_WAITING_TIME);
 
-    cy.get(`#${ID.FINAL_WINNER_RESULT}`).wait(CONGRATUATION_WAITING_TIME);
-
-    expect(stub).to.be.calledWith('축하메시지~~~');
+    cy.get(`#${ID.FINAL_WINNER_RESULT}`)
+      .wait(CONGRATUATION_WAITING_TIME)
+      .then(() => {
+        expect(stub).to.be.called;
+      });
   });
 });
