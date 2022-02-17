@@ -80,7 +80,15 @@ describe('스크린에서 경기가 진행중인 경우', () => {
   });
 
   // 주의: this를 사용하기 위해서는 arrow function을 사용하면 안된다.
-  it('자동차가 달릴 lane이 자동차 갯수만큼 그려진다', function() {
+  it('자동차가 달릴 lane이 자동차 갯수만큼 그려진다', function () {
     cy.get(testid`car-lane`).should('have.length', this.carNameList.length);
+  });
+
+  it('자동차 이름을 입력한 순서대로 lane이 그려진다', function () {
+    cy.get(testid`car-lane`).each(($carLane, i) => {
+      cy.wrap($carLane)
+        .find(testid`car-name`)
+        .should('have.text', this.carNameList[i]);
+    });
   });
 });
