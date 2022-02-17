@@ -7,10 +7,12 @@ export default class CarModel {
     this.position = INIT.POSITION;
   }
 
-  move() {
-    const randomNumber = RandomUtils.pickRandomNumber();
-    if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
-      this.position += CAR.ONE_MOVE;
-    }
-  }
+  // moveOrNot() {
+  //   const randomNumber = RandomUtils.pickRandomNumber();
+  //   if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
+  //     // this.position += CAR.ONE_MOVE;
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
 }

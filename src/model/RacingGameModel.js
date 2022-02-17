@@ -11,10 +11,12 @@ export default class RacingGameModel {
     return this._cars.map((car) => car.name);
   }
 
-  moveCars() {
-    this._cars.forEach((car) => {
-      car.move();
+  moveCars(moves) {
+    console.log('moves', moves);
+    this._cars = this._cars.map((car, index) => {
+      return { ...car, position: car.position + moves[index] };
     });
+    console.log('this._cars', this._cars);
   }
 
   set cars(names) {
@@ -33,10 +35,10 @@ export default class RacingGameModel {
     return this._round;
   }
 
-  goToNextTurn() {
-    this.moveCars();
-    this._round -= CAR.ONE_MOVE;
-  }
+  // goToNextTurn() {
+  //   this.moveCars();
+  //   this._round -= CAR.ONE_MOVE;
+  // }
 
   get winners() {
     return this.findWinners();

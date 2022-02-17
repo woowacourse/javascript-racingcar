@@ -1,7 +1,8 @@
 import { validateCarNames, validateCount } from '../utils/validation.js';
-import { SELECTOR } from '../constants/constants.js';
+import { SELECTOR, CAR } from '../constants/constants.js';
 import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
+import RandomUtils from '../utils/random.js';
 
 export default class RacingController {
   constructor() {
@@ -48,13 +49,44 @@ export default class RacingController {
   }
 
   startRacingGame() {
-    while (this.model.round) {
-      this.model.goToNextTurn();
-    }
     this.view.deactivateCountForm();
     this.view.renderName(this.model.getCarsName());
-    this.view.renderProgress(this.model.cars);
+    this.playNext();
     this.view.renderResult(this.model.winners);
+  }
+
+  playNext() {
+    const { round } = this.model;
+    let progressingRound = 1;
+    const playIntervalId = setInterval(() => {
+      this.play();
+      progressingRound += 1;
+      if (progressingRound >= round) {
+        clearInterval(playIntervalId);
+      }
+    }, 1000);
+
+    // while (this.model.round) {
+    //   this.model.moveCars();
+    //   //
+    // }
+  }
+
+  moveOrNot() {
+    const randomNumber = RandomUtils.pickRandomNumber();
+    if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
+      // this.position += CAR.ONE_MOVE;
+      return 1;
+    }
+    return 0;
+  }
+
+  play() {
+    const moves = this.model.cars.map(() => {
+      return this.moveOrNot();
+    });
+    this.model.moveCars(moves);
+    this.view.renderProgress(this.model.cars);
   }
 
   activateRestartButton() {

@@ -36,7 +36,9 @@ export default class RacingView {
 
   renderProgress(cars) {
     console.log(cars);
-    this.$app.appendChild(DomUtils.createRacingProgressElement(cars));
+    this.$progressContainer.appendChild(
+      DomUtils.createRacingProgressElement(cars)
+    );
     // this.$resultContainer.
   }
 
