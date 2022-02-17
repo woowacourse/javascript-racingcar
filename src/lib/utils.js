@@ -30,3 +30,14 @@ export const asyncSetTimeOut = (cb, ms) =>
       res();
     }, ms),
   );
+
+export const rotateAnimation = (progress, start, nodes, cb) => {
+  nodes.forEach((node) => {
+    node.style.transform = `rotate(${progress / 10}deg)`;
+  });
+  if (progress < 1000) {
+    requestAnimationFrame((timestamp) => rotateAnimation(timestamp - start, start, nodes, cb));
+  } else {
+    cb();
+  }
+};

@@ -73,19 +73,10 @@ form > div > input {
   align-items: center;
   margin-top: 10px;
 }
-#count-input-form.show,
-#restart-btn.show {
+
+.show {
   display: block;
 }
-
-#count-input-form,
-#restart-btn {
-  display: none;
-}
-
-.loading-icon.show {
-  display: block;
-}
-.loading-icon.hide {
+.hide {
   display: none;
 }

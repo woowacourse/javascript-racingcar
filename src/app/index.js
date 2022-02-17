@@ -1,12 +1,5 @@
-import {
-  CAR_NAME_SEPARATOR,
-  DOM,
-  ID_PREFIX,
-  MOVE_CONDITION,
-  RANGE_MAX,
-  RANGE_MIN,
-} from '../lib/constants.js';
-import { asyncSetTimeOut, findElement, pickNumberInRange, splitString } from '../lib/utils.js';
+import { CAR_NAME_SEPARATOR, DOM, ID_PREFIX } from '../lib/constants.js';
+import { asyncSetTimeOut, findElement, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
 
@@ -48,7 +41,7 @@ class RacingCarGame {
       const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
       const cars = RacingCarGameManager.makeCars(names);
       this.modelManager.setCars(cars);
-      this.view.renderCountInputForm();
+      this.view.renderAfterCarSetting();
     } catch (error) {
       alert(error);
     }
