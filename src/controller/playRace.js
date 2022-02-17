@@ -12,7 +12,7 @@ export default function playRace(count) {
     cars.forEach(car => car.go());
   }
 
-  showResult(sortCars(cars));
+  showResult(sortCars(cars), count);
   showWinners(getWinners(cars));
   showRestart();
 }

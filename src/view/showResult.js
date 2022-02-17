@@ -22,29 +22,53 @@ export function showRestart() {
   document.querySelector('.restart-container').style.display = 'flex';
 }
 
-function getPositionArrow(car) {
-  return new Array(car.position)
-    .fill('')
-    .map(() => '<div class="result-arrow">⬇️️</div>')
-    .join('');
-}
-
-function getTemplateRaceResult(cars) {
+function getCarsNameTemplate(cars) {
   return cars
     .map(car => {
       return `<div class="result-car-wrapper">
-                  <div class="result-car-name">${car.name}</div>
-                  <div class="result-arrow-container">${getPositionArrow(car)}</div> 
-                </div>`;
+                <div class="result-car-name">${car.name}</div>
+              </div>`;
     })
     .join('');
 }
 
-export default function showResult(cars) {
+// async function showSpinner() {
+//   const wrapper = document.querySelector('.result-car-wrapper');
+//   const startTime = new Date().getTime();
+//   console.log('spinner...');
+
+//   const callback = function () {
+//     const currentTime = new Date().getTime();
+//     if (currentTime - 1000 < startTime) {
+//       console.log('hi');
+//       requestAnimationFrame(callback);
+//     }
+//   };
+//   requestAnimationFrame(callback);
+// }
+
+function showOneGo(index) {
+  const wrapper = document.querySelectorAll('.result-car-wrapper');
+  wrapper[index].insertAdjacentHTML('beforeend', '<div class="result-arrow">⬇️️</div>');
+}
+
+function showRaceProgress(cars, count) {
+  new Array(+count).fill(0).forEach((value, index) => {
+    cars.forEach(car => {
+      // showSpinner();
+      if (car.position > index) {
+        showOneGo(index);
+      }
+    });
+  });
+}
+
+export default function showResult(cars, count) {
   const resultContainer = document.querySelector('.game-result-container');
   const div = document.createElement('div');
 
   div.className = 'race-result-container';
-  div.innerHTML = getTemplateRaceResult(cars);
+  div.innerHTML = getCarsNameTemplate(cars);
   resultContainer.append(div);
+  showRaceProgress(cars, count);
 }
