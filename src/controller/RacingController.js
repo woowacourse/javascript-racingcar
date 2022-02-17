@@ -56,7 +56,7 @@ export default class RacingController {
       progressingRound += 1;
       if (progressingRound >= round) {
         clearInterval(playIntervalId);
-        this.view.renderResult(this.model.winners);
+        this.displayResult();
         this.activateRestartButton();
         return;
       }
@@ -70,6 +70,14 @@ export default class RacingController {
     });
     this.model.moveCars(moves);
     this.view.renderProgress(this.model.cars);
+  }
+
+  displayResult() {
+    const { winners } = this.model;
+    this.view.renderResult(winners);
+    setTimeout(() => {
+      alert(`우승자는 ${winners.join(', ')}입니다.`);
+    }, 2000);
   }
 
   static moveOrNot() {
