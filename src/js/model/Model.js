@@ -1,40 +1,56 @@
 import Car from './Car.js';
+import { setIntervalForDefinedTimes } from '../utils/utils.js';
+import { RACE_INTERVAL } from '../configs/constants.js';
 
 export default class Model {
   constructor() {
     this.carList = [];
+    this.isRacing = false;
   }
 
   createCarList(carNameList, callback) {
     this.removeCarList();
     this.insertCarList(carNameList);
 
-    callback(this.carList);
+    callback(this.carList, this.isRacing);
   }
 
-  startRace(racingCount, callback) {
+  async startRace(racingCount, callback) {
     this.initRace();
+    this.isRacing = true;
+    callback(this.carList, this.isRacing);
 
-    for (let i = 0; i < racingCount; i += 1) {
-      this.carList.forEach((car) => car.race());
+    await setIntervalForDefinedTimes(
+      () => {
+        this.carList.forEach((car) => car.race());
+        callback(this.carList, this.isRacing);
+      },
+      RACE_INTERVAL,
+      racingCount
+    );
 
-      callback(this.carList);
-    }
+    this.isRacing = false;
+
+    return {
+      carList: this.carList,
+      isRacing: this.isRacing,
+      winners: this.getWinners(),
+    };
   }
 
-  getWinners(callback) {
+  getWinners() {
     const maxDistance = Math.max(...this.carList.map((car) => car.distance));
     const winners = this.carList
       .filter((car) => car.distance === maxDistance)
       .map((winner) => winner.name);
 
-    callback(winners);
+    return winners;
   }
 
   restart(callback) {
     this.removeCarList();
 
-    callback({ carList: this.carList, winners: [] });
+    callback({ carList: this.carList, winners: [], isRacing: this.isRacing });
   }
 
   removeCarList() {

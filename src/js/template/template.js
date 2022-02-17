@@ -2,7 +2,7 @@ import { DOM_STRING } from '../configs/dom.js';
 import { DELIMETER } from '../configs/constants.js';
 
 const template = {
-  getRacingResultHTML(carList) {
+  getRacingResultHTML(carList, isRacing) {
     return `
       <ul id="${DOM_STRING.RESULT_LIST}">
         ${carList
@@ -14,6 +14,11 @@ const template = {
                 ${`<li class="${DOM_STRING.PROGRESS}">⬇️️</li>`.repeat(
                   car.distance
                 )}
+                ${
+                  (isRacing &&
+                    `<li class="progress"><div class="loading"></div></li>`) ||
+                  ''
+                }
               </ul>
             </li>
             `

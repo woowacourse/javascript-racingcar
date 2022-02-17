@@ -68,9 +68,11 @@ export default class View {
       validator.isCarListNotFound(carList);
   }
 
-  renderRacingResult(carList) {
-    $(SELECTOR.$RACING_RESULT).innerHTML =
-      this.template.getRacingResultHTML(carList);
+  renderRacingResult(carList, isRacing) {
+    $(SELECTOR.$RACING_RESULT).innerHTML = this.template.getRacingResultHTML(
+      carList,
+      isRacing
+    );
   }
 
   renderResult(winners) {

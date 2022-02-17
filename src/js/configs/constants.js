@@ -18,6 +18,8 @@ export const CAR = {
   },
 };
 
+export const RACE_INTERVAL = 1000; // ms
+
 export const ERROR_MESSAGE = {
   CAR_NAME_SHOULD_COME_FIRST:
     '자동차가 등록되지 않았습니다. 자동차 이름을 먼저 입력해주세요.',
