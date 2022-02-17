@@ -95,7 +95,6 @@ export default class RacingCarGame {
       const progress = timeInSecond - start;
       if (progress === count) {
         this.endGame();
-        window.cancelAnimationFrame(progressBySecond);
         return;
       }
       if (isLoading) {
