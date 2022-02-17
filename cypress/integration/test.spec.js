@@ -71,3 +71,15 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
     alertTestOnSubmitRaciingCount(invalidCarNames, ERROR_MESSAGES.FALL_SHORT_OF_MIN_RACING_COUNT);
   });
 });
+
+describe('스크린에서 경기가 진행중인 경우', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.prepareRacing('aa,bb,cc,dd', 10);
+  });
+
+  // 주의: this를 사용하기 위해서는 arrow function을 사용하면 안된다.
+  it('자동차가 달릴 lane이 자동차 갯수만큼 그려진다', function() {
+    cy.get(testid`car-lane`).should('have.length', this.carNameList.length);
+  });
+});

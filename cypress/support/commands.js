@@ -9,3 +9,9 @@ Cypress.Commands.add('formSubmit', (inputTestId, buttonTestId, value, handleAler
     });
   }
 });
+
+Cypress.Commands.add('prepareRacing', (validCarNames, validRacingCount) => {
+  cy.formSubmit('car-names-input', 'car-names-submit-button', validCarNames);
+  cy.formSubmit('racing-count-input', 'racing-count-submit-button', validRacingCount);
+  cy.wrap(validCarNames.split(',')).as('carNameList');
+});
