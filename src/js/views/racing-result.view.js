@@ -1,6 +1,6 @@
 import { SELECTORS } from '../constants.js';
 import $ from '../utils/dom.js';
-import { hideElement, showElement } from '../utils/setAttribute.js';
+import { hideElement, showElement } from '../utils/visibility.js';
 
 class RacingResultView {
   constructor(delegate) {
