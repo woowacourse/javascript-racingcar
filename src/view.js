@@ -1,5 +1,6 @@
 import {
   $,
+  $$,
   generateRandomNumber,
   makeDOMDisplayNone,
   makeDOMDisplayNotNone,
@@ -98,9 +99,7 @@ export default class View {
   async showResult(carList, winnerList) {
     this.generateStepSections(carList);
 
-    this.$stepSectionArrowsArray = Array.from(
-      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
-    );
+    this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
 
     this.makeResultDisplayNotNone();
     await this.showStepSection(carList);
@@ -137,9 +136,7 @@ export default class View {
   }
 
   removeSpinner() {
-    const $stepSectionLoading = Array.from(
-      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
-    );
+    const $stepSectionLoading = Array.from($$(SELECTOR.STEP_SECTION_LOADING));
     this.$stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
   }
 
