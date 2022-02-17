@@ -1,6 +1,6 @@
 import { CLASS, ID } from '../constants/index.js';
 import { $, $$ } from '../util/index.js';
-import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from '../template/index.js';
+import { getRacingCarItemTemplate, PROGRESS_TEMPLATE, templateSpinner } from '../template/index.js';
 
 class RacingCarGameView {
   constructor() {
@@ -10,6 +10,7 @@ class RacingCarGameView {
     this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
     this.$racingCarList = $(`#${ID.RACING_CAR_LIST}`);
     this.$racingCarProgress = null;
+    this.$spinnerContainers = null;
     this.$finalWinnerResult = $(`#${ID.FINAL_WINNER_RESULT}`);
     this.$finalWinner = $(`#${ID.FINAL_WINNER}`);
     this.$restartSection = $(`#${ID.RESTART_SECTION}`);
@@ -44,6 +45,7 @@ class RacingCarGameView {
 
     this.$racingCarList.insertAdjacentHTML('beforeend', racingCarItemsTemplate);
     this.$racingCarProgress = $$(`.${CLASS.RACING_CAR_PROGRESS}`);
+    this.$spinnerContainers = $$(`.${CLASS.SPINNER_CONTAINER}`);
   }
 
   renderRacingCarProgress(index) {
@@ -75,6 +77,16 @@ class RacingCarGameView {
     this.$racingCountForm.style.display = 'none';
     this.$finalWinner.style.display = 'none';
     this.$restartSection.style.display = 'none';
+  }
+
+  renderSpinner() {
+    this.$spinnerContainers.forEach(($spinnerContainer) =>
+      $spinnerContainer.insertAdjacentHTML('beforeend', templateSpinner)
+    );
+  }
+
+  removeSpinner() {
+    this.$spinnerContainers.forEach(($spinnerContainer) => $spinnerContainer.remove());
   }
 }
 

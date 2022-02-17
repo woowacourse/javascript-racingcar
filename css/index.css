@@ -108,7 +108,8 @@ form > label {
 }
 
 .racing_car_progress > li {
-  padding: 7px 0 8px;
+  /* padding: 7px 0 8px; */
+  margin: 8px 0;
   font-size: 32px;
 }
 
@@ -133,4 +134,32 @@ form > label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.spinner_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 5px solid #ffffff;
+  border-radius: 100%;
+  border-bottom-color: #00bcd4;
+  border-right-color: #00bcd4;
+  border-left-color: #00bcd4;
+
+  animation: spin 800ms infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

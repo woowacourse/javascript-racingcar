@@ -57,9 +57,15 @@ class RacingCarGame {
   async startRacingGame() {
     for (let i = 0; i < this.model.racingCount; i++) {
       this.runOneCycleGame();
+
+      if (i === 0) {
+        this.view.renderSpinner();
+      }
+
       await waitGame(RULES.WAITING_TIME);
     }
 
+    this.view.removeSpinner();
     this.handleGameResult();
   }
 
