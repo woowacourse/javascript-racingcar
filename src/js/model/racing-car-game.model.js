@@ -43,6 +43,18 @@ class RacingCarGameModel {
   tryMoveCars() {
     this.cars.map((car) => car.tryMove());
   }
+
+  findWinners() {
+    const maxDistance = this.cars.reduce((acc, { distance }) => {
+      return Math.max(acc, distance);
+    }, 0);
+    return this.cars.reduce((acc, { name, distance }) => {
+      if (maxDistance === distance) {
+        acc.push(name);
+      }
+      return acc;
+    }, []);
+  }
 }
 
 export default RacingCarGameModel;

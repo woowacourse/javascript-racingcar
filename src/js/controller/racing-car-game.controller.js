@@ -1,4 +1,5 @@
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
+import RacingResultView from '../views/racing-result.view.js';
 import RacingScreen from '../views/racing-screen.view.js';
 
 class RacingCarGameController {
@@ -21,6 +22,7 @@ class RacingCarGameController {
   bindViews() {
     this.form = new RacingPrepareForm(this);
     this.screen = new RacingScreen(this);
+    this.resultView = new RacingResultView(this);
   }
 
   onSubmitCarNames() {
@@ -54,6 +56,11 @@ class RacingCarGameController {
       this.model.tryMoveCars();
       this.screen.renderDistances(this.model.getCars());
     }
+    this.endGame();
+  }
+
+  endGame() {
+    this.resultView.renderWinners(this.model.findWinners());
   }
 }
 
