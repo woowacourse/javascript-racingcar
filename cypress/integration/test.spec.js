@@ -56,6 +56,11 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
     alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.EMPTY_RACING_COUNT);
   });
 
+  it('시도 횟수에 숫자가 아닌 문자가 들어가면, alert메세지를 띄운다', () => {
+    const invalidRacingCount = 'a12ab';
+    alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.TYPE_MISMATCH_OF_RACING_COUNT);
+  });
+
   it('시도 횟수가 100회를 초과하면, alert 메세지를 띄운다.', () => {
     const invalidRacingCount = 101;
     alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.BEYOND_MAX_RACING_COUNT);
