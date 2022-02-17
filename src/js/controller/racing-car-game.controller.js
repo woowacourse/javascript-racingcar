@@ -15,8 +15,8 @@ class RacingCarGameController {
   // event handler는 윈도우에서 호출하기 때문에, this를 binding해놓지 않으면
   // this가 상위 context인 window가 되어버린다
   bindMethods() {
-    this.onSubmitCarNames = this.onSubmitCarNames.bind(this);
-    this.onSubmitRacingCount = this.onSubmitRacingCount.bind(this);
+    this.onCarNamesSubmit = this.onCarNamesSubmit.bind(this);
+    this.onRacingCountSubmit = this.onRacingCountSubmit.bind(this);
     this.onRestartBtnClick = this.onRestartBtnClick.bind(this);
   }
 
@@ -26,7 +26,7 @@ class RacingCarGameController {
     this.resultView = new RacingResultView(this);
   }
 
-  onSubmitCarNames() {
+  onCarNamesSubmit() {
     const carNames = this.form.getCarNames();
     try {
       this.model.updateCars(carNames);
@@ -37,7 +37,7 @@ class RacingCarGameController {
     }
   }
 
-  onSubmitRacingCount() {
+  onRacingCountSubmit() {
     const racingCount = this.form.getRacingCount();
     try {
       this.model.updateRacingCount(racingCount);

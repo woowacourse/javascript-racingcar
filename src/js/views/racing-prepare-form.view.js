@@ -1,6 +1,6 @@
 import { CAR_NAMES_INPUT_PLACEHOLDER, RACING_COUNT_INPUT_PLACEHOLDER, SELECTORS } from '../constants.js';
 import $ from '../utils/dom.js';
-import { hideElement, showElement } from '../utils/setAttribute.js';
+import { hideElement, showElement } from '../utils/visibility.js';
 
 class RacingPrepareForm {
   constructor(delegate) {
@@ -24,8 +24,8 @@ class RacingPrepareForm {
   }
 
   registerEventListeners() {
-    this.$carNamesSubmitButton.addEventListener('click', this.delegate.onSubmitCarNames);
-    this.$racingCountSubmitButton.addEventListener('click', this.delegate.onSubmitRacingCount);
+    this.$carNamesSubmitButton.addEventListener('click', this.delegate.onCarNamesSubmit);
+    this.$racingCountSubmitButton.addEventListener('click', this.delegate.onRacingCountSubmit);
   }
 
   getCarNames() {
