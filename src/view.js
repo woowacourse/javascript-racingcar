@@ -68,11 +68,7 @@ export default class View {
   }
 
   stepUpdate(carList) {
-    let template = '';
-    carList.forEach((car) => {
-      template += this.generateStepSectionDOM(car);
-    });
-    this.$stepSections.innerHTML = template;
+    this.$stepSections.innerHTML = carList.map(car => this.generateStepSectionDOM(car)).join('')
   }
 
   generateStepSectionDOM(car) {
