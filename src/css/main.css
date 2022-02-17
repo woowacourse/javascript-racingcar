@@ -122,7 +122,54 @@ body {
 
 .car-advance {
   font-size: 2.2rem;
-  margin: 0.25rem 0;
+  margin: 0.3rem 0;
+}
+
+.car-advance > .progress {
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-name: rotate;
+  background-color: #00bcd4;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.car-advance > .progress::before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 50%;
+  height: 50%;
+  left: 0px;
+  top: 0px;
+  background-color: #fff;
+}
+
+.car-advance > .progress::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 70%;
+  height: 70%;
+  left: 50%;
+  top: 50%;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #result-container {
