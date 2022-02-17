@@ -22,15 +22,7 @@ const getCarsMovement = cars => {
   return carInformations;
 };
 
-const getMaxCount = cars => {
-  let maxCount = 0;
-  for (let i = 0; i < cars.length; i += 1) {
-    if (cars[i].racingCount >= maxCount) {
-      maxCount = cars[i].racingCount;
-    }
-  }
-  return maxCount;
-};
+const getMaxCount = cars => Math.max(...cars.map(car => car.racingCount));
 
 const getWinners = cars => {
   const maxCount = getMaxCount(cars);
