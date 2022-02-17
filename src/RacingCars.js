@@ -21,10 +21,6 @@ export default class RacingCars {
         }
     }
 
-    getStatus() {
-        return this.cars.map((car) => ({ name: car.name, step: car.step }));
-    }
-
     getMaxStep() {
         return this.cars.reduce((acc, car) => Math.max(acc, car.step), 0);
     }

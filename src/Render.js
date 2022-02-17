@@ -41,9 +41,9 @@ export default class Render {
         $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
     }
 
-    static showResult(cars, winners) {
-        this.renderResult(cars);
-        this.renderWinners(winners);
+    static showResult(racingCars) {
+        this.renderResult(racingCars.cars);
+        this.renderWinners(racingCars.getWinners());
         this.showResultArea();
     }
 
