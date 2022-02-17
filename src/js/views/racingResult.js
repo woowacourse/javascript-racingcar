@@ -1,11 +1,17 @@
 import { $ } from '../utils/dom.js';
 import { showElement, hideElement } from '../utils/attribute.js';
 
-const carPlayerTemplate = (name, distance) => {
+const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
+
+const carPlayerTemplate = (name) => {
   return `
-    <div class="car-name mr-2" data-car-name=${name}>
-      <div class="car-player">${name}</div>
-      ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(distance)}
+    <div data-car-name=${name}>
+      <div class="car-player mr-2">${name}</div>
+      <div class="d-flex justify-content-center mt-4">
+        <div class="relative spinner-container">
+          <span class="material spinner"></span>
+        </div>
+      </div>
     </div>
   `;
 };

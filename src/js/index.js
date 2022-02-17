@@ -75,14 +75,14 @@ class RacingCar {
     if (!this.isValidRacingCount(inputNumber)) {
       return;
     }
+    showRacingResult();
     this.startRacingGame(inputNumber);
+    renderRacingResult(this.cars);
 
     const finalWinner = this.selectWinner()
       .map((winner) => winner.name)
       .join(', ');
-    renderRacingResult(this.cars);
     renderFinalWinner(finalWinner);
-    showRacingResult();
   }
 
   restartRacingGame() {
