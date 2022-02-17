@@ -33,7 +33,7 @@ export default class Controller {
       const carList = this.model.getCarList();
       validateCountInput(count);
       this.model.startRace(count);
-      this.view.showResult(carList, this.makeWinner(carList));
+      this.view.showResult(carList, this.makeWinnerList(carList));
     } catch (error) {
       alert(error.message);
     }
@@ -43,7 +43,7 @@ export default class Controller {
     this.model.resetCarList();
   }
 
-  makeWinner(carList) {
+  makeWinnerList(carList) {
     const steps = carList.map((car) => car.step);
     const maxStep = Math.max(...steps);
     const winnerCarList = carList.filter((car) => car.step === maxStep);
