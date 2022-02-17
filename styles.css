@@ -52,6 +52,12 @@ button {
     color: white;
     border: none;
     padding: 0.7em 1em;
+    cursor:pointer;
+}
+
+button:disabled {
+    background-color: #4ACADB;
+    cursor: default;
 }
 
 .racing-status-container {
