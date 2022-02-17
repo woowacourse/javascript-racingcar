@@ -1,4 +1,4 @@
-import { CLASS, ID, winnerMesssage } from '../utils/constants.js';
+import { CLASS, CUSTOM_EVENT, ID, winnerMesssage } from '../utils/constants.js';
 import View from './View.js';
 
 export default class WinnerView extends View {
@@ -15,7 +15,7 @@ export default class WinnerView extends View {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
-    this.emit('@clickReplayButton', '');
+    this.emit(CUSTOM_EVENT.CLICK_REPLAY_BUTTON);
   };
 
   renderWinners = (winners) => {

@@ -1,20 +1,22 @@
 export const ID = Object.freeze({
-  CAR_NAME_INPUT: "car-names-input",
-  CAR_NAME_BUTTON: "car-names-button",
-  RACING_COUNT_INPUT: "racing-count-input",
-  RACING_COUNT_BUTTON: "racing-count-button",
-  RESULT: "result",
-  REPLAY_BUTTON: "replay-button",
+  CAR_NAME_INPUT: 'car-names-input',
+  CAR_NAME_BUTTON: 'car-names-button',
+  RACING_COUNT_INPUT: 'racing-count-input',
+  RACING_COUNT_BUTTON: 'racing-count-button',
+  RESULT: 'result',
+  REPLAY_BUTTON: 'replay-button',
+  CAR_NAMES_SECTION: 'car-names-section',
+  RACING_COUNT_SECTION: 'racing-count-section',
 });
 
 export const CLASS = Object.freeze({
-  RACING_RESULTS: "racing-results",
-  RACING_INFO: "racing-info",
-  CAR_NAME: "car-name",
-  ARROW: "arrow",
-  WINNERS: "winners",
-  BTN: "btn",
-  REPLAY_BTN: "replay-btn",
+  RACING_RESULTS: 'racing-results',
+  RACING_INFO: 'racing-info',
+  CAR_NAME: 'car-name',
+  ARROW: 'arrow',
+  WINNERS: 'winners',
+  BTN: 'btn',
+  REPLAY_BTN: 'replay-btn',
 });
 
 export const GAME_NUMBERS = Object.freeze({
@@ -27,11 +29,17 @@ export const GAME_NUMBERS = Object.freeze({
 });
 
 export const ALERT_MESSAGE = Object.freeze({
-  HAS_EMPTY_NAME_ERROR: "이름에 공백이 포함되어있습니다",
-  DUPLICATED_NAME_ERROR: "이름이 중복되었습니다",
-  EMPTY_NAME_ERROR: "이름은 공백이 될수없습니다",
+  HAS_EMPTY_NAME_ERROR: '이름에 공백이 포함되어있습니다',
+  DUPLICATED_NAME_ERROR: '이름이 중복되었습니다',
+  EMPTY_NAME_ERROR: '이름은 공백이 될수없습니다',
   HAS_INVALID_NAME_LENGTH_ERROR: `이름은 ${GAME_NUMBERS.VALID_MAX_NAME_LENGTH}가 넘어갈 수 없습니다.`,
-  EMPTY_COUNT_ERROR: "숫자를 입력해주세요",
+  EMPTY_COUNT_ERROR: '숫자를 입력해주세요',
+});
+
+export const CUSTOM_EVENT = Object.freeze({
+  SUBMIT_CAR_NAMES: '@submitCarNames',
+  SUBMIT_RACING_COUNT: '@submitRacingCount',
+  CLICK_REPLAY_BUTTON: '@clickReplayButton',
 });
 
 export const winnerMesssage = (winners) => `🏆 최종 우승자: ${winners} 🏆`;

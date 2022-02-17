@@ -5,20 +5,21 @@ import ResultView from '../view/ResultView.js';
 import WinnerView from '../view/WinnerView.js';
 
 import { $ } from '../utils/selector.js';
+import { CUSTOM_EVENT, ID } from '../utils/constants.js';
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
-    this.CarNamesInputView = new CarNamesInputView($(`#car-names-section`))
+    this.CarNamesInputView = new CarNamesInputView($(`#${ID.CAR_NAMES_SECTION}`))
       .setup()
-      .on('@submitCarNames', (e) => this.submitCarNamesHandler(e.detail));
-    this.CountInputView = new CountInputView($(`#racing-count-section`))
+      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, (e) => this.submitCarNamesHandler(e.detail));
+    this.CountInputView = new CountInputView($(`#${ID.RACING_COUNT_SECTION}`))
       .setup()
-      .on('@submitRacingCount', (e) => this.submitRacingCountHandler(e.detail));
-    this.ResultView = new ResultView($(`#result`));
-    this.WinnerView = new WinnerView($(`#result`))
+      .on(CUSTOM_EVENT.SUBMIT_RACING_COUNT, (e) => this.submitRacingCountHandler(e.detail));
+    this.ResultView = new ResultView($(`#${ID.RESULT}`));
+    this.WinnerView = new WinnerView($(`#${ID.RESULT}`))
       .setup()
-      .on('@clickReplayButton', this.clickReplayButtonHandler);
+      .on(CUSTOM_EVENT.CLICK_REPLAY_BUTTON, this.clickReplayButtonHandler);
   }
 
   submitCarNamesHandler = (carNames) => {
@@ -60,10 +61,10 @@ export default class RacingCarController {
 
   clickReplayButtonHandler = () => {
     this.model.resetGameStatus();
-    this.resetGame();
+    this.replayGame();
   };
 
-  resetGame = () => {
+  replayGame = () => {
     this.CarNamesInputView.resetValue();
     this.CountInputView.resetValue();
     this.ResultView.resetResult();
