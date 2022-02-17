@@ -13,3 +13,7 @@ export const displayNoneDOM = (array) => {
 export const displayDOM = (array) => {
   array.forEach((element) => element.classList.remove(DISPLAY_NONE));
 };
+
+export const generateRandomNumber = (start, end) => {
+  return MissionUtils.Random.pickNumberInRange(start, end);
+};
