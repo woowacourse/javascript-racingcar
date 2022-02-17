@@ -1,18 +1,15 @@
 export default class Template {
   static winnerTemplate(winnerList) {
     return `
-        <section id="racing-result-container">
-            <h2 id="racing-result">
-                🏆 최종 우승자: ${winnerList.join(', ')}🏆
-            </h2>
-            <button id="restart-button">다시 시작하기</button>
-        </section>
+        <h2 id="racing-result">
+            🏆 최종 우승자: ${winnerList.join(', ')}🏆
+        </h2>
+        <button id="restart-button">다시 시작하기</button>
     `;
   }
 
   static racingProgressTemplate(cars) {
     return `
-      <section id="racing-progress-container">
       ${cars
         .map((car) => {
           return `
@@ -25,7 +22,12 @@ export default class Template {
         `;
         })
         .join('')}
-      </section>
+    `;
+  }
+
+  static loaderTemplate() {
+    return `
+        <div class="loader"></div>
     `;
   }
 }

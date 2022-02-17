@@ -41,30 +41,35 @@ export default class RacingController {
       validateCount(racingCount);
       this.model.round = Number(racingCount);
       this.view.deactivateNamesForm();
+      this.view.deactivateCountForm();
       this.startRacingGame();
-      // this.activateRestartButton();
     } catch (error) {
       alert(error.message);
     }
   }
 
   startRacingGame() {
-    this.view.deactivateCountForm();
-    this.playNext();
-  }
-
-  playNext() {
     const { round } = this.model;
     let progressingRound = 1;
     const playIntervalId = setInterval(() => {
-      this.play();
+      this.playEachTurn();
       progressingRound += 1;
       if (progressingRound >= round) {
         clearInterval(playIntervalId);
         this.view.renderResult(this.model.winners);
         this.activateRestartButton();
+        return;
       }
+      this.view.renderProgressLoading();
     }, 1000);
+  }
+
+  playEachTurn() {
+    const moves = this.model.cars.map(() => {
+      return RacingController.moveOrNot();
+    });
+    this.model.moveCars(moves);
+    this.view.renderProgress(this.model.cars);
   }
 
   static moveOrNot() {
@@ -75,14 +80,6 @@ export default class RacingController {
     return 0;
   }
 
-  play() {
-    const moves = this.model.cars.map(() => {
-      return RacingController.moveOrNot();
-    });
-    this.model.moveCars(moves);
-    this.view.renderProgress(this.model.cars);
-  }
-
   activateRestartButton() {
     document
       .getElementById(SELECTOR.ID.RESTART_BUTTON)
@@ -90,7 +87,6 @@ export default class RacingController {
   }
 
   restartGame() {
-    console.log('restart');
     this.view.reset();
     this.model.reset();
   }

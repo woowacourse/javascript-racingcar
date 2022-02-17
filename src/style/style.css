@@ -1,3 +1,4 @@
+@import './spinner.css';
 body {
   display: flex;
   justify-content: center;
@@ -67,6 +68,7 @@ form > button {
   font-size: 16px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
 }
 
@@ -82,6 +84,6 @@ form > button {
 
 .car-progress-container--status {
   font-size: 32px;
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align: center;
 }

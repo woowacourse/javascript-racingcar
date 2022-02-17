@@ -1,4 +1,4 @@
-import $ from '../utils/selector.js';
+import { $, $$ } from '../utils/selector.js';
 import { SELECTOR } from '../constants/constants.js';
 import Template from '../layouts/template.js';
 
@@ -9,11 +9,20 @@ export default class RacingView {
     this.$countForm = $(`#${SELECTOR.ID.RACING_COUNT_FORM}`);
     this.$progressContainer = $(`#${SELECTOR.ID.RACING_PROGRESS_CONTAINER}`);
     this.$resultContainer = $(`#${SELECTOR.ID.RACING_RESULT_CONTAINER}`);
-    this.template = new Template();
+    this.$nameInput = $(`#${SELECTOR.ID.CAR_NAMES_INPUT}`);
+    this.$countInput = $(`#${SELECTOR.ID.RACING_COUNT_INPUT}`);
+  }
+
+  renderProgressLoading() {
+    const $$eachCarProgressStatus = $$(
+      `.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`
+    );
+    $$eachCarProgressStatus.forEach((status) => {
+      status.insertAdjacentHTML('beforeend', Template.loaderTemplate());
+    });
   }
 
   renderProgress(cars) {
-    console.log(cars);
     this.$progressContainer.innerHTML = Template.racingProgressTemplate(cars);
   }
 
@@ -24,7 +33,7 @@ export default class RacingView {
   reset() {
     this.removeProgress();
     this.removeResult();
-    RacingView.clearInput();
+    this.clearInput();
     this.activateNamesForm();
     this.deactivateCountForm();
   }
@@ -37,9 +46,9 @@ export default class RacingView {
     this.$resultContainer.innerHTML = ``;
   }
 
-  static clearInput() {
-    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
-    document.getElementById(SELECTOR.ID.RACING_COUNT_INPUT).value = '';
+  clearInput() {
+    this.$nameInput.value = '';
+    this.$countInput.value = '';
   }
 
   activateCountForm() {
