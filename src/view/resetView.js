@@ -8,8 +8,6 @@ const resetView = () => {
   $('.winner-container').innerHTML = '';
   hideElement($('.count-form'));
   hideElement($('.restart'));
-  // $('.count-form').classList.add('hidden');
-  // $('.restart').classList.add('hidden');
 };
 
 export default resetView;

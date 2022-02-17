@@ -11,7 +11,6 @@ const sortCars = cars => {
 
 const finishRace = async cars => {
   const winner = getWinners(cars);
-
   showWinners(winner);
   showRestart();
   await waitSeconds(2000);
