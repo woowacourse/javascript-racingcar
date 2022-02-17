@@ -21,3 +21,12 @@ export const generateRandomNumber = () => {
     NUMBER_FOR_MOVE.MAX_NUMBER,
   );
 };
+
+export const makeSetTimeoutPromise = (callback, parametersInCallback, delay) => {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve();
+      callback(...parametersInCallback);
+    }, delay),
+  );
+};

@@ -1,9 +1,9 @@
 import {
   $,
   $$,
-  generateRandomNumber,
   makeDOMDisplayNone,
   makeDOMDisplayNotNone,
+  makeSetTimeoutPromise,
 } from './utils/common.js';
 import {
   ROUND_DELAY,
@@ -100,14 +100,11 @@ export default class View {
     this.generateStepSections(carList);
 
     this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
-
     this.makeResultDisplayNotNone();
     await this.showStepSection(carList);
     this.removeSpinner();
     this.showWinner(winnerList);
-    setTimeout(() => {
-      this.showWinnerByAlert(winnerList);
-    }, WIN_ALERT_DELAY);
+    await this.showWinnerByAlertPromise(winnerList);
   }
 
   async showStepSection(carList) {
@@ -119,6 +116,7 @@ export default class View {
 
   updateRound(carList, i) {
     const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
+    console.log('i', i);
     carList.map((car, j) => {
       if (car.stepByRound[i] === STEP_SIGN.GO) {
         this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
@@ -126,13 +124,9 @@ export default class View {
     });
   }
 
-  updateRoundPromise(carList, i) {
-    return new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-        this.updateRound(carList, i);
-      }, ROUND_DELAY),
-    );
+  // async/await를 붙이지 않으면 비동기 구현이 안되는 이유는?
+  async updateRoundPromise(carList, i) {
+    await makeSetTimeoutPromise(this.updateRound.bind(this), [carList, i], ROUND_DELAY);
   }
 
   removeSpinner() {
@@ -146,5 +140,9 @@ export default class View {
 
   showWinnerByAlert(winnerList) {
     alert(WINNER_MESSAGE(winnerList));
+  }
+
+  async showWinnerByAlertPromise(winnerList) {
+    await makeSetTimeoutPromise(this.showWinnerByAlert, [winnerList], WIN_ALERT_DELAY);
   }
 }
