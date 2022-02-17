@@ -77,3 +77,11 @@ form > div > input {
 #count-input-form {
   display: none;
 }
+
+.spinner {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: #00bcd4 solid 5px;
+  border-top-color: transparent;
+}

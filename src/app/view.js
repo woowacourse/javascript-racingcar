@@ -4,6 +4,7 @@ import { selectDOM } from '../lib/utils.js';
 class RacingCarGameView {
   constructor() {
     this.initDOM();
+    this.initSpinner();
   }
 
   initDOM() {
@@ -13,6 +14,13 @@ class RacingCarGameView {
     this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
     this.carNameBtn = selectDOM(`#${DOM.CAR_NAME_BTN_ID}`);
     this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
+    this.spinner = selectDOM('.spinner');
+  }
+
+  initSpinner() {
+    this.rotateSpinner();
+    this.currentDegrees = 0;
+    this.animationId = null;
   }
 
   renderResults(cars, winners) {
@@ -26,6 +34,7 @@ class RacingCarGameView {
 
     this.gameProgress.innerHTML = progressTemplate;
     this.winners.innerHTML = winnersTemplate;
+    cancelAnimationFrame(this.animationId);
   }
 
   renderCountInputForm() {
@@ -36,6 +45,12 @@ class RacingCarGameView {
     this.carNameBtn.disabled = true;
     this.countBtn.disabled = true;
   }
+
+  rotateSpinner = () => {
+    this.spinner.style.transform = `rotate(${this.currentDegrees}deg)`;
+    this.currentDegrees += 10;
+    this.animationId = requestAnimationFrame(this.rotateSpinner);
+  };
 
   static generateProgressTemplate({ name, progress }) {
     return `
