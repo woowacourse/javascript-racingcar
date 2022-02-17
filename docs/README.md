@@ -68,6 +68,7 @@
 
 - [x] model 클래스 이름에 model을 붙이도록 변경
 - [x] 클래스간 의존성 주입 방법 변경
+- [ ] goToNextTurn()과 moveCars() 메서드를 렌더 사이의 로직으로 위치 변경
 - [ ] dom 만드는 방식을 createElement 에서 html template로 대체
 -
 

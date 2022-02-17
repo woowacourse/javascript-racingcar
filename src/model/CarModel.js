@@ -1,10 +1,10 @@
-import { CAR } from '../constants/constants.js';
+import { CAR, INIT } from '../constants/constants.js';
 import RandomUtils from '../utils/random.js';
 
 export default class CarModel {
   constructor(name) {
     this.name = name;
-    this.position = CAR.INITIAL_VALUE;
+    this.position = INIT.POSITION;
   }
 
   move() {

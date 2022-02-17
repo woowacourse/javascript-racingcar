@@ -36,6 +36,12 @@ export const CAR = {
   RANDOM_MINIMUM_NUMBER: 0,
   RANDOM_MAXIMUM_NUMBER: 9,
   REFERENCE_POINT_FOR_MOVEMENT: 4,
-  INITIAL_VALUE: 0,
   ONE_MOVE: 1
+};
+
+export const INIT = {
+  CARS: [],
+  ROUND: 0,
+  RECORD: 0,
+  POSITION: 0
 };

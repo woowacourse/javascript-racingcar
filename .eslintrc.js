@@ -20,6 +20,7 @@ module.exports = {
       {
         endOfLine: 'auto'
       }
-    ]
+    ],
+    'no-underscore-dangle': 'off'
   }
 };

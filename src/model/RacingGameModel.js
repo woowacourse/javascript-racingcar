@@ -1,10 +1,10 @@
-import { CAR } from '../constants/constants.js';
+import { CAR, INIT } from '../constants/constants.js';
 import CarModel from './CarModel.js';
 
 export default class RacingGameModel {
   constructor() {
-    this.cars = [];
-    this.round = CAR.INITIAL_VALUE;
+    this.cars = INIT.CARS;
+    this.round = INIT.ROUND;
   }
 
   getCarsName() {
@@ -31,14 +31,14 @@ export default class RacingGameModel {
   }
 
   reset() {
-    this.cars = [];
-    this.round = CAR.INITIAL_VALUE;
+    this.cars = INIT.CARS;
+    this.round = INIT.ROUND;
   }
 
   findMaxRecord() {
     const maxRecord = this.cars.reduce(
       (accumulator, current) => Math.max(accumulator, current.position),
-      CAR.INITIAL_VALUE
+      INIT.RECORD
     );
 
     return maxRecord;
