@@ -50,6 +50,7 @@ export default class RacingController {
       this.model.goToNextTurn();
     }
     this.view.deactivateCountForm();
+    this.view.renderName(this.model.getCarsName());
     this.view.renderProgress(this.model.cars);
     this.view.renderResult(this.model.winners);
   }

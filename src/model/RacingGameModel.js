@@ -1,10 +1,14 @@
 import { CAR } from '../constants/constants.js';
-import Car from './Car.js';
+import CarModel from './CarModel.js';
 
-export default class RacingGame {
+export default class RacingGameModel {
   constructor() {
     this.cars = [];
     this.round = CAR.INITIAL_VALUE;
+  }
+
+  getCarsName() {
+    return this.cars.map((car) => car.name);
   }
 
   moveCars() {
@@ -14,7 +18,7 @@ export default class RacingGame {
   }
 
   set players(names) {
-    this.cars = names.map((name) => new Car(name));
+    this.cars = names.map((name) => new CarModel(name));
   }
 
   goToNextTurn() {

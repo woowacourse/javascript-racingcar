@@ -40,6 +40,7 @@ export default class DomUtils {
     const $carProgressStatusList = DomUtils.createCarProgressStatusElement(
       car.position
     );
+
     $carProgressStatusList.forEach(($carProgressStatus) => {
       $carProgressNode.appendChild($carProgressStatus);
     });
@@ -55,9 +56,9 @@ export default class DomUtils {
     return $carProgressName;
   }
 
-  static createCarProgressStatusElement(postion) {
+  static createCarProgressStatusElement(position) {
     const $carProgressStatusList = [];
-    for (let i = 0; i < postion; i += 1) {
+    for (let i = 0; i < position; i += 1) {
       const $carProgressStatus = document.createElement('div');
       $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
       $carProgressStatus.innerText = '⬇';

@@ -1,15 +1,43 @@
 import DomUtils from '../utils/dom-utils.js';
+import $ from '../utils/selector.js';
 import { SELECTOR } from '../constants/constants.js';
 
 export default class RacingView {
   constructor() {
-    this.$app = document.getElementById(SELECTOR.ID.APP);
-    this.$namesForm = document.getElementById(SELECTOR.ID.CAR_NAMES_FORM);
-    this.$countForm = document.getElementById(SELECTOR.ID.RACING_COUNT_FORM);
+    this.$app = $(`#${SELECTOR.ID.APP}`);
+    this.$namesForm = $(`#${SELECTOR.ID.CAR_NAMES_FORM}`);
+    this.$countForm = $(`#${SELECTOR.ID.RACING_COUNT_FORM}`);
+    this.$progressContainer = $(`#${SELECTOR.ID.RACING_PROGRESS_CONTAINER}`);
+    this.$resultContainer = $(`#${SELECTOR.ID.RACING_RESULT_CONTAINER}`);
+  }
+
+  insertIntoProgressContainer(template) {
+    this.$progressContainer.insertAdjacentHTML('beforeend', template);
+  }
+
+  renderName(carNames) {
+    this.insertIntoProgressContainer(this.createCarNamesTemplate(carNames));
+  }
+
+  createCarNamesTemplate(carNames) {
+    return `
+    ${carNames
+      .map(
+        (carName) => `
+      <div id="${carName}-container" class="${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}">
+        <div class="${SELECTOR.CLASS.CAR_PROGRESS_NAME}">${carName}</div>
+      </div > 
+    `
+      )
+      .join('')}
+   
+    `;
   }
 
   renderProgress(cars) {
+    console.log(cars);
     this.$app.appendChild(DomUtils.createRacingProgressElement(cars));
+    // this.$resultContainer.
   }
 
   renderResult(winnerList) {
@@ -40,7 +68,7 @@ export default class RacingView {
 
   static clearInput() {
     document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
-    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
+    document.getElementById(SELECTOR.ID.RACING_COUNT_INPUT).value = '';
   }
 
   activateCountForm() {
