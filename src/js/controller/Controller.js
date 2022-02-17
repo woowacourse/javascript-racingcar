@@ -35,6 +35,7 @@ export default class Controller {
       })
       .then((response) => {
         this.render(response);
+        this.view.celebrate();
       });
   }
 

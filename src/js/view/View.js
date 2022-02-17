@@ -1,4 +1,9 @@
-import { ERROR_MESSAGE, DELIMETER } from '../configs/constants.js';
+import {
+  ERROR_MESSAGE,
+  COMMON_MESSAGE,
+  DELIMETER,
+  CONTRATURATION_INTERVAL,
+} from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
 import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
 import validator from '../utils/validator.js';
@@ -89,6 +94,12 @@ export default class View {
   initializeInput(clearElement, focusElement = clearElement) {
     clearElement.value = '';
     focusElement.focus();
+  }
+
+  celebrate() {
+    setTimeout(() => {
+      alert(COMMON_MESSAGE.CONGRATURATION);
+    }, CONTRATURATION_INTERVAL);
   }
 
   validateCarNameList(carNameList) {
