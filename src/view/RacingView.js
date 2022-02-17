@@ -1,4 +1,3 @@
-import DomUtils from '../utils/dom-utils.js';
 import $ from '../utils/selector.js';
 import { SELECTOR } from '../constants/constants.js';
 import Template from '../layouts/template.js';
