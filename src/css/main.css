@@ -51,19 +51,19 @@ body {
 }
 
 #app button:disabled {
-  color:#777;
+  color: #777;
   background-color: var(--disabled-background);
 }
 
 #app button:disabled:hover {
-  filter: unset; 
+  filter: unset;
 }
 
 #app input {
   padding: 0.5rem;
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
-  font-size: 1.1rem; 
+  font-size: 1.1rem;
 }
 
 #app input::placeholder {
@@ -117,11 +117,13 @@ body {
   border-radius: var(--radius);
   padding: 0.7rem;
   font-size: 1.05rem;
+  text-align: center;
 }
 
 .car-advance {
   font-size: 2.2rem;
   margin: 0.25rem 0;
+  text-align: center;
 }
 
 #result {
@@ -145,4 +147,21 @@ body {
   width: 10.8rem;
   font-size: 1.1rem;
   margin: 0 auto;
+}
+
+.round-loading {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.spinner {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -39,7 +39,8 @@ export default class RacingGameView {
 
   LoadingStart() {
     $$('.car-instance').forEach(($element) => {
-      $element.innerHTML += '<div class="round-loading">로딩</div>';
+      $element.innerHTML +=
+        '<div class="round-loading"><img src="./src/asset/loading.png" class="spinner" alt="loading"></div>';
     });
   }
 
