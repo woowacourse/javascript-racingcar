@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../lib/constants.js';
-import { isNumberBelowZero } from '../lib/utils.js';
+import { ERROR_MESSAGE, MOVE_CONDITION, RANGE_MAX, RANGE_MIN } from '../lib/constants.js';
+import { isNumberBelowZero, pickNumberInRange } from '../lib/utils.js';
 import Car from './car.js';
 
 class RacingCarGameManager {
@@ -30,8 +30,15 @@ class RacingCarGameManager {
     return names.map((name) => new Car(name));
   }
 
-  static goForward(car) {
-    car.goForward();
+  goForwardCars() {
+    return this.cars.map((car) => {
+      const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
+      if (random >= MOVE_CONDITION) {
+        car.goForward();
+        return { isForward: true, car };
+      }
+      return { isForward: false, car };
+    });
   }
 
   getWinners() {
