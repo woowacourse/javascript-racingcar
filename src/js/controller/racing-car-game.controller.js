@@ -30,7 +30,7 @@ class RacingCarGameController {
     const carNames = this.form.getCarNames();
     try {
       this.model.updateCars(carNames);
-      this.form.resetCarNameInput(this.model.getCarNames());
+      this.form.resetCarNamesInput(this.model.getCarNames());
       this.form.showRacingCountFieldset();
     } catch (e) {
       alert(e.message);
@@ -54,7 +54,7 @@ class RacingCarGameController {
   }
 
   startGame() {
-    this.screen.showScreen();
+    this.screen.show();
     this.screen.renderLanes(this.model.getCars());
     this.screen.bindDistances(); // 효율적으로 view를 업데이트 하기 위해서 필요하다
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {

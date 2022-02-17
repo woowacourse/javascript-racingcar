@@ -36,7 +36,7 @@ class RacingPrepareForm {
     return this.$racingCountInput.value;
   }
 
-  resetCarNameInput(placeholder = '') {
+  resetCarNamesInput(placeholder = '') {
     this.$carNamesInput.value = '';
     this.$carNamesInput.placeholder = placeholder;
   }
@@ -70,7 +70,7 @@ class RacingPrepareForm {
 
   reset() {
     this.hideRacingCountFieldset();
-    this.resetCarNameInput(CAR_NAMES_INPUT_PLACEHOLDER);
+    this.resetCarNamesInput(CAR_NAMES_INPUT_PLACEHOLDER);
     this.resetRacingCountInput(RACING_COUNT_INPUT_PLACEHOLDER);
     this.enableSubmit();
   }
