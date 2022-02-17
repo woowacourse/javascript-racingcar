@@ -1,5 +1,8 @@
-import RacingGame from './RacingGame.js';
+import { onSubmitCarNames, onSubmitTryCount, onClickRestartButton } from './eventListener.js';
+import { $ } from './util.js';
 
-const racingGame = new RacingGame();
+$('#car-name-submit-button').addEventListener('click', onSubmitCarNames);
 
-racingGame.initialize();
+$('#try-count-submit-button').addEventListener('click', onSubmitTryCount);
+
+$('#restart-button').addEventListener('click', onClickRestartButton);

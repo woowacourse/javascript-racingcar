@@ -13,6 +13,12 @@ const userInput = {
         $('#car-name-input').value = '';
         $('#try-count-input').value = '';
     },
+    focusCarNameInput() {
+        $('#car-name-input').focus();
+    },
+    focusTryCountInput() {
+        $('#try-count-input').focus();
+    },
 };
 
 export default userInput;
