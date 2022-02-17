@@ -28,8 +28,9 @@ const playTurnResult = async ({ lastTurnCount, cars, currentTurnCount }) => {
   await playTurn(cars, currentTurnCount)
     .then(res => {
       const { nextTurnCount } = res;
+      const shouldPlayNext = lastTurnCount >= nextTurnCount;
 
-      if (lastTurnCount >= nextTurnCount) {
+      if (shouldPlayNext) {
         return playTurnResult({
           lastTurnCount,
           cars,
