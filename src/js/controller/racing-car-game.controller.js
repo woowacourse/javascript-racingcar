@@ -33,6 +33,7 @@ class RacingCarGameController {
       this.form.resetCarNamesInput(this.model.getCarNames());
       this.form.showRacingCountFieldset();
     } catch (e) {
+      console.error(e);
       alert(e.message);
     }
   }
@@ -45,6 +46,7 @@ class RacingCarGameController {
       this.form.disableSubmit();
       this.startGame();
     } catch (e) {
+      console.error(e);
       alert(e.message);
     }
   }
