@@ -60,6 +60,7 @@ class RacingCarGameController {
   }
 
   endGame() {
+    this.resultView.show();
     this.resultView.renderWinners(this.model.findWinners());
   }
 }

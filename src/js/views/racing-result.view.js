@@ -1,5 +1,6 @@
 import { SELECTORS } from '../constants.js';
 import $ from '../utils/dom.js';
+import { hideElement, showElement } from '../utils/setAttribute.js';
 
 class RacingResultView {
   constructor(delegate) {
@@ -19,6 +20,10 @@ class RacingResultView {
   renderWinners(winners) {
     // 마지막 space를 지우기 위해서 trim()을 해준다
     this.$winners.textContent = winners.join(', ').trim();
+  }
+
+  show() {
+    showElement(this.$racingResult);
   }
 }
 
