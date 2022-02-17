@@ -13,15 +13,10 @@ const ERROR_MESSAGE = {
     POSITIVE_CAR_NAME: '양수를 입력해주세요.',
 };
 
-const SELECTOR = {
-    car_name_submit_button: '#car-name-submit-button',
-    try_count_submit_button: '#try-count-submit-button',
-    restart_button: '#restart-button',
-    car_name_input: '#car-name-input',
-    try_count_input: '#try-count-input',
-    app: '#app',
-    track_area: '#track-area',
-    winners: '#winners',
+const CAR_GO_FORWARD_RULE = {
+    MIN: 0,
+    MAX: 9,
+    ENOUGH: 4,
 };
 
-export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, ERROR_MESSAGE, SELECTOR };
+export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, ERROR_MESSAGE, CAR_GO_FORWARD_RULE };

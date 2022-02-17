@@ -1,24 +1,17 @@
 import { generateRandomInRange } from './util.js';
+import { CAR_GO_FORWARD_RULE } from './constant.js';
 
 export default class Car {
     constructor(name) {
         this.name = name;
         this.step = 0;
-        this.MIN_ACCEL = 0;
-        this.MAX_ACCEL = 9;
-        this.FORWARD_ACCEL = 4;
-    }
-
-    pressAccel() {
-        return generateRandomInRange(this.MIN_ACCEL, this.MAX_ACCEL);
-    }
-
-    isCanForward() {
-        return this.pressAccel() >= this.FORWARD_ACCEL;
     }
 
     tryForward() {
-        if (this.isCanForward()) {
+        if (
+            generateRandomInRange(CAR_GO_FORWARD_RULE.MIN, CAR_GO_FORWARD_RULE.MAX) >=
+            CAR_GO_FORWARD_RULE.ENOUGH
+        ) {
             this.forward();
         }
     }
