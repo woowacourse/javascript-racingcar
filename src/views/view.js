@@ -1,4 +1,4 @@
-import { clearInput } from '../controllers/utils.js';
+import { clearInput } from '../utils/utils.js';
 import { state } from '../models/state.js';
 
 export function renderCarNames() {
@@ -54,8 +54,10 @@ function renderSpinner(index) {
 }
 
 export function renderWinners(names) {
-  const racingWinner = document.getElementById('racing-winner');
-  racingWinner.insertAdjacentHTML('afterbegin', `🏆 최종우승자: ${names} 🏆`);
+  setTimeout(() => {
+    const racingWinner = document.getElementById('racing-winner');
+    racingWinner.insertAdjacentHTML('afterbegin', `🏆 최종우승자: ${names} 🏆`);
+  }, (state.racingNumber - 1) * 1000);
 }
 
 export function renderRacingInputForm() {
@@ -81,31 +83,31 @@ export function disableUserInput() {
 }
 
 export function removeRacingContainer() {
-  resetWinners();
-  derenderRacingCars();
-  derenderRacingContainer();
-  derenderRacingInputForm();
+  eraseWinners();
+  eraseRacingCars();
+  eraseRacingContainer();
+  eraseRacingInputForm();
   ableUserInput();
 }
 
-function derenderRacingCars() {
+function eraseRacingCars() {
   const racingCars = document.getElementById('racing-cars');
   while (racingCars.hasChildNodes()) {
     racingCars.removeChild(racingCars.firstChild);
   }
 }
 
-export function resetWinners(names) {
+export function eraseWinners(names) {
   const racingWinner = document.getElementById('racing-winner');
   racingWinner.innerHTML = ``;
 }
 
-function derenderRacingInputForm() {
+function eraseRacingInputForm() {
   const racingInputForm = document.getElementById('racing-input-form');
   racingInputForm.style.display = 'none';
 }
 
-function derenderRacingContainer() {
+function eraseRacingContainer() {
   const racingContainer = document.getElementById('racing-container');
   racingContainer.style.display = 'none';
 }

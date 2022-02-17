@@ -21,7 +21,6 @@ export function isNameValid(names) {
     }
     if (hasLongName(names)) {
       alert(ERR_HAS_LONG_NAME);
-      throw 'name error';
     }
     return true;
   } catch (errorMessage) {

@@ -63,14 +63,7 @@ function getWinnerArr(max) {
 }
 
 function makeArrToString(arr) {
-  let string = '';
-  arr.forEach((item, index) => {
-    if (index !== 0) {
-      string += ', ';
-    }
-    string += item;
-  });
-  return string;
+  return arr.join(', ');
 }
 
 export function clearState() {
