@@ -75,7 +75,7 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
 describe('스크린에서 경기가 진행중인 경우', () => {
   beforeEach(() => {
     cy.visit('/index.html');
-    cy.prepareRacing('aa,bb,cc,dd', 10);
+    cy.startRacing('aa,bb,cc,dd', 10);
   });
 
   // 주의: this를 사용하기 위해서는 arrow function을 사용하면 안된다.
