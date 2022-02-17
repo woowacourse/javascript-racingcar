@@ -1,0 +1,27 @@
+{
+  "name": "javascript-racingcar",
+  "version": "1.0.0",
+  "description": "<p align=\"middle\" >\r   <img width=\"200px;\" src=\"https://user-images.githubusercontent.com/50367798/106415730-2645a280-6493-11eb-876c-ef7172652261.png\"/>\r </p>\r <h2 align=\"middle\">level1 - 자동차 경주 게임</h2>\r <p align=\"middle\">자바스크립트로 구현 하는 자동차 경주 게임</p>\r <p align=\"middle\">\r   <img src=\"https://img.shields.io/badge/version-1.0.0-blue?style=flat-square\" alt=\"template version\"/>\r   <img src=\"https://img.shields.io/badge/language-html-red.svg?style=flat-square\"/>\r   <img src=\"https://img.shields.io/badge/language-css-blue.svg?style=flat-square\"/>\r   <img src=\"https://img.shields.io/badge/language-js-yellow.svg?style=flat-square\"/>\r   <img src=\"https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square\"/>\r </p>",
+  "main": "index.js",
+  "devDependencies": {
+    "cypress": "8.7.0",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb": "^19.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "2.5.0"
+  },
+  "scripts": {
+    "test": "cypress run --browser chrome"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanaandmomo/javascript-racingcar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanaandmomo/javascript-racingcar/issues"
+  },
+  "homepage": "https://github.com/sanaandmomo/javascript-racingcar#readme"
+}
