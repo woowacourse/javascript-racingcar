@@ -1,6 +1,7 @@
 import { ERROR_MESSAGES } from '../utils/constants.js';
 import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
 import { $ } from '../utils/selector.js';
+import { showElement } from '../utils/handleElement.js';
 
 const handleNameInput = () => {
   const names = $('.name-input')
@@ -16,7 +17,7 @@ const handleNameInput = () => {
     return;
   }
 
-  $('.count-form').classList.remove('hidden');
+  showElement($('.count-form'));
   $('.count-input').focus();
 };
 

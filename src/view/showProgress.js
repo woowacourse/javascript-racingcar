@@ -1,3 +1,4 @@
+import { setElementDisabled, setElementEnable } from '../utils/handleElement.js';
 import { $, $$ } from '../utils/selector.js';
 
 const getRaceTemplate = cars => {
@@ -38,4 +39,18 @@ export const showArrowProgress = () => {
     const { positionCount } = container.dataset;
     paintOneArrow(container, Number(positionCount));
   });
+};
+
+export const setDisabledAllForms = () => {
+  setElementDisabled($('.name-input'));
+  setElementDisabled($('.name-button'));
+  setElementDisabled($('.count-input'));
+  setElementDisabled($('.count-button'));
+};
+
+export const setEnabledAllForms = () => {
+  setElementEnable($('.name-input'));
+  setElementEnable($('.name-button'));
+  setElementEnable($('.count-input'));
+  setElementEnable($('.count-button'));
 };

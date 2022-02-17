@@ -1,4 +1,4 @@
-import hideElement from '../utils/hideElement.js';
+import { hideElement } from '../utils/handleElement.js';
 import { $$ } from '../utils/selector.js';
 
 const hideLoader = () => {
