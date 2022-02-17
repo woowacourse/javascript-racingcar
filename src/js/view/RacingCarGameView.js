@@ -1,3 +1,4 @@
+import View from '../core/View.js';
 import {
   ERROR_MESSAGE,
   COMMON_MESSAGE,
@@ -5,13 +6,14 @@ import {
   CONTRATURATION_INTERVAL,
 } from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
-import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
+import { $, splitString, trimStringArray } from '../utils/utils.js';
 import validator from '../utils/validator.js';
 
-export default class View {
+export default class RacingCarGameView extends View {
   constructor($target, template) {
+    super(template);
+
     this.$target = $target;
-    this.template = template;
   }
 
   cacheDOMElements() {
@@ -19,19 +21,6 @@ export default class View {
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
     this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
     this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
-  }
-
-  bindEventListener(type, selector, callback) {
-    const children = [...$all(selector)];
-    const isTarget = (target) =>
-      children.includes(target) || target.closest(selector);
-
-    this.$target.addEventListener(type, (e) => {
-      if (!isTarget(e.target)) return;
-
-      e.preventDefault();
-      callback(e);
-    });
   }
 
   bindSubmitCarNames(callback) {

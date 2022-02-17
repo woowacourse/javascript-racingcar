@@ -1,20 +1,13 @@
+import Model from '../core/Model.js';
 import Car from './Car.js';
-import { setIntervalForDefinedTimes, cloneObject } from '../utils/utils.js';
+import { setIntervalForDefinedTimes } from '../utils/utils.js';
 import { INIT_DATA, RACE_INTERVAL } from '../configs/constants.js';
 
-export default class Model {
-  async init() {
-    this.state = INIT_DATA || {};
+export default class RacingCarGameModel extends Model {
+  async init(state = INIT_DATA) {
+    this.state = state;
 
     return this.generatePayload();
-  }
-
-  setState(newState) {
-    this.state = { ...this.state, ...newState };
-  }
-
-  generatePayload() {
-    return cloneObject(this.state);
   }
 
   async createCarList(carNameList) {

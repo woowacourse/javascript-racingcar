@@ -1,9 +1,6 @@
-export default class Controller {
-  constructor(model, view) {
-    this.model = model;
-    this.view = view;
-  }
+import Controller from '../core/Controller.js';
 
+export default class RacingCarGameController extends Controller {
   init() {
     this.model.init().then((response) => {
       this.render(response);
