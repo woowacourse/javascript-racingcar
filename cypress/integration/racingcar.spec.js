@@ -66,7 +66,7 @@ describe('자동차 이름 입력', () => {
   });
 });
 
-describe('레이싱 횟수 입력 테스트', () => {
+describe('레이싱 횟수 입력', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
