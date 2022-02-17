@@ -5,7 +5,7 @@ export const SELECTOR = {
   $RACING_COUNT_INPUT: '#racing-count-input',
   $RACING_COUNT_BUTTON: '#racing-count-button',
   $RACING_PROGRESS: '#racing-progress',
-  $RESULT_LIST: '#result-list',
+  $RACING_PROGRESS_LIST: '#racing-progress-list',
   $RACING_CAR: '.racing-car',
   $CAR_NAME: '.car-name',
   $PROGRESS_LIST: '.progress-list',
@@ -15,6 +15,7 @@ export const SELECTOR = {
   $WINNERS: '#winners',
   $RESTART_BUTTON: '#restart-button',
   $INPUT_FORM_LAST_CHILD: '.input-form:last-child',
+  $SPINNER: '.spinner',
 };
 
 export const DOM_STRING = {
@@ -23,7 +24,7 @@ export const DOM_STRING = {
   RACING_COUNT_INPUT: 'racing-count-input',
   RACING_COUNT_BUTTON: 'racing-count-button',
   RACING_PROGRESS: 'racing-progress',
-  RESULT_LIST: 'result-list',
+  RACING_PROGRESS_LIST: 'racing-progress-list',
   RACING_CAR: 'racing-car',
   CAR_NAME: 'car-name',
   PROGRESS_LIST: 'progress-list',
@@ -32,6 +33,7 @@ export const DOM_STRING = {
   RESULT_MESSAGE: 'result-message',
   WINNERS: 'winners',
   RESTART_BUTTON: 'restart-button',
+  SPINNER: 'spinner',
 };
 
 export const RACING_COUNT_RANGE = {
@@ -54,6 +56,8 @@ export const CAR = {
   },
 };
 
+export const WINNER_MESSAGE = '자동차 경주 우승을 축하드립니다. 🎉';
+
 export const ERROR_MESSAGE = {
   CAR_NAME_SHOULD_COME_FIRST:
     '자동차가 등록되지 않았습니다. 자동차 이름을 먼저 입력해주세요.',
@@ -64,3 +68,8 @@ export const ERROR_MESSAGE = {
 };
 
 export const DELIMETER = ',';
+
+export const DELAY = {
+  WINNER_ALERT: 2000,
+  RACING_PROGRESS: 1000,
+};

@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants.js';
+import { DELAY, DELIMETER, SELECTOR, WINNER_MESSAGE } from '../constants.js';
 import { $, $all } from '../utils/utils.js';
 
 export default class View {
@@ -42,10 +42,8 @@ export default class View {
 
   winnersAlertMessage(winners) {
     setTimeout(() => {
-      this.alertMessage(
-        `${winners.join(',')} 자동차 경주 우승을 축하드립니다. 🎉`
-      );
-    }, 2000);
+      this.alertMessage(`${winners.join(DELIMETER)}` + WINNER_MESSAGE);
+    }, DELAY.WINNER_ALERT);
   }
 
   alertMessage(message) {
@@ -122,7 +120,7 @@ export default class View {
     this.racingCountInputInvisibled();
 
     this.removeElements(this.$app, SELECTOR.$RACING_RESULT);
-    this.removeElements(this.$racingProgress, SELECTOR.$RESULT_LIST);
+    this.removeElements(this.$racingProgress, SELECTOR.$RACING_PROGRESS_LIST);
 
     this.toggleDisabledButton(this.$carNameButton);
     this.toggleDisabledButton(this.$racingCountButton);

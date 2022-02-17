@@ -1,6 +1,6 @@
 import Car from '../model/Car.js';
 import template from '../templates.js';
-import { ERROR_MESSAGE, DELIMETER } from '../constants.js';
+import { ERROR_MESSAGE, DELIMETER, SELECTOR, DELAY } from '../constants.js';
 import { splitString, trimStringArray, sleep } from '../utils/utils.js';
 import {
   isValidCarNamesLength,
@@ -74,9 +74,9 @@ export default class RacingCarGame {
       ) {
         this.model.previousCarDistanceList[index] = car.distance;
         this.view.render(
-          this.view.progressList[index].querySelector('.spinner'),
+          this.view.progressList[index].querySelector(SELECTOR.$SPINNER),
           'beforebegin',
-          template.renderProgressList(car.distance)
+          template.renderProgressList()
         );
       }
     });
@@ -99,11 +99,11 @@ export default class RacingCarGame {
     this.renderSpinnerAnimation();
 
     for (let i = 0; i < racingCount; i += 1) {
-      await sleep(1000);
+      await sleep(DELAY.RACING_PROGRESS);
       this.moveCars();
     }
 
-    this.view.removeElements(this.view.progressList, '.spinner');
+    this.view.removeElements(this.view.progressList, SELECTOR.$SPINNER);
   }
 
   async submitRacingCount() {

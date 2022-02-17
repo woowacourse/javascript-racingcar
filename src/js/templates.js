@@ -4,7 +4,7 @@ const template = {
   renderRacingProgress(carList) {
     return carList
       ? `
-      <ul id="${DOM_STRING.RESULT_LIST}">
+      <ul id="${DOM_STRING.RACING_PROGRESS_LIST}">
         ${carList
           .map(
             (car) => `
@@ -31,11 +31,11 @@ const template = {
       `
       : '';
   },
-  renderProgressList(distance) {
-    return distance ? `<li class="${DOM_STRING.PROGRESS}">⬇️️</li>` : '';
+  renderProgressList() {
+    return `<li class="${DOM_STRING.PROGRESS}">⬇️️</li>`;
   },
   renderLoadingAnimation() {
-    return `<div class="spinner"><div></div><div></div><div></div><div></div></div>`;
+    return `<div class="${DOM_STRING.SPINNER}"><div></div><div></div><div></div><div></div></div>`;
   },
 };
 
