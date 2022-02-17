@@ -1,6 +1,6 @@
 import { ERROR_MESSAGES } from '../../src/js/constants.js';
 
-describe('자동차 이름에 대한 유효성 검사가 잘 이뤄지고 있는지 확인한다', () => {
+describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 경우', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
