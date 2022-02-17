@@ -1,4 +1,4 @@
-import RacingCars from './RacingCars.js';
+import racingCars from './racingCars.js';
 import render from './render.js';
 import userInput from './userInput.js';
 import { isValidCarNames, isValidTryCount } from './validation.js';
@@ -6,7 +6,7 @@ import { $ } from './util.js';
 
 export default class RacingGame {
     constructor() {
-        this.racingCars = new RacingCars();
+        this.racingCars = racingCars;
     }
 
     initialize() {
