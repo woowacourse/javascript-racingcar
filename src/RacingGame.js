@@ -46,6 +46,6 @@ export default class RacingGame {
 
     runGame(tryCnt) {
         this.racingCars.run(tryCnt);
-        Render.showResult(this.racingCars);
+        Render.renderResult(this.racingCars);
     }
 }

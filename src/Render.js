@@ -1,38 +1,8 @@
 import { $ } from './util.js';
 import { SCREEN_CMD } from './constant.js';
+import template from './template.js';
 
 export default class Render {
-    static parsingStep(step) {
-        let steps = '';
-
-        for (let i = 0; i < step; i += 1) {
-            steps += '<span class="car-step">⬇️️</span>';
-        }
-
-        return steps;
-    }
-
-    static parsingTrack(cars) {
-        return cars
-            .map(
-                ({ name, step }) => `<div class="car-track">
-                        <div class="car-name">${name}</div>
-                        <div class="car-steps">
-                            ${this.parsingStep(step)}
-                        </div>
-                    </div>`,
-            )
-            .join('');
-    }
-
-    static renderResult(cars) {
-        $('#track-area').innerHTML = this.parsingTrack(cars);
-    }
-
-    static renderWinners(winners) {
-        $('#winners').innerText = winners.join(',');
-    }
-
     static showTryForm() {
         $('#app').classList.add(SCREEN_CMD.SHOW_TRT);
     }
@@ -41,9 +11,9 @@ export default class Render {
         $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
     }
 
-    static showResult(racingCars) {
-        this.renderResult(racingCars.cars);
-        this.renderWinners(racingCars.getWinners());
+    static renderResult(racingCars) {
+        $('#track-area').innerHTML = template.track(racingCars.cars);
+        $('#winners').innerText = racingCars.getWinners().join(',');
         this.showResultArea();
     }
 
