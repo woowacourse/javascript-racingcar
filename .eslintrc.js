@@ -4,7 +4,12 @@ module.exports = {
     es6: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'airbnb', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'airbnb',
+    'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
+  ],
   rules: {
     'react/jsx-filename-extension': [
       'error',
