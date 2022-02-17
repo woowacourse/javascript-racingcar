@@ -52,8 +52,6 @@ class RacingCarGame {
       try {
         this.setCount(count);
         this.simulateGame();
-        this.view.renderResults(this.carManager.cars, this.getWinners());
-        this.afterRenderComplete();
       } catch ({ message }) {
         alert(message);
       }
@@ -73,26 +71,37 @@ class RacingCarGame {
     if (isNumberBelowZero(count)) {
       throw Error(ERROR_MESSAGE.INVALID_COUNT);
     }
-    this.count = count;
+    this.count = Number(count);
   }
 
   simulateGame() {
+    this.view.renderGameStart(this.carManager.cars);
     this.finishedCount = 0;
     this.gameIntervalId = setInterval(this.simulateRound.bind(this), 1000);
   }
 
   simulateRound() {
-    if (this.finishedCount === this.count) {
-      clearInterval(this.gameIntervalId);
-      return;
-    }
-    this.carManager.cars.forEach((car) => {
-      const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
-      if (random >= MOVE_CONDITION) {
-        car.goForward();
-      }
-    });
+    const moved = [];
+    this.carManager.cars.forEach((car) => RacingCarGame.processCarRandomMove(car, moved));
     this.finishedCount += 1;
+    this.view.renderRoundResult(moved, this.count, this.finishedCount);
+    if (this.finishedCount === this.count) {
+      this.afterGameComplete();
+    }
+  }
+
+  static processCarRandomMove(car, moved) {
+    const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
+    if (random >= MOVE_CONDITION) {
+      car.goForward();
+      moved.push(car.id);
+    }
+  }
+
+  afterGameComplete() {
+    clearInterval(this.gameIntervalId);
+    this.view.renderGameResults(this.getWinners());
+    this.afterRenderComplete();
   }
 
   getWinners() {

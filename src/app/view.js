@@ -4,7 +4,6 @@ import { selectDOM } from '../lib/utils.js';
 class RacingCarGameView {
   constructor() {
     this.initDOM();
-    this.initSpinner();
   }
 
   initDOM() {
@@ -14,7 +13,6 @@ class RacingCarGameView {
     this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
     this.carNameBtn = selectDOM(`#${DOM.CAR_NAME_BTN_ID}`);
     this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
-    this.spinner = selectDOM(`.${DOM.SPINNER_CLASS}`);
   }
 
   initSpinner() {
@@ -23,16 +21,34 @@ class RacingCarGameView {
     this.animationId = null;
   }
 
-  renderResults(cars, winners) {
+  renderGameStart(cars) {
     const progressTemplate = cars.reduce(
       (acc, car) => `${acc}${RacingCarGameView.generateProgressTemplate(car)}`,
       ''
     );
+    this.gameProgress.innerHTML = progressTemplate;
+    this.spinners = document.querySelectorAll(`.${DOM.SPINNER_CLASS}`);
+    this.initSpinner();
+  }
+
+  renderRoundResult(moved, count, finishedCount) {
+    const spinnerArray = Array.from(this.spinners);
+    spinnerArray.forEach((spinner) => {
+      if (moved.includes(spinner.dataset.carId)) {
+        spinner.insertAdjacentElement('beforebegin', RacingCarGameView.generateStepTemplate());
+      }
+      if (count === finishedCount) {
+        spinner.remove();
+        cancelAnimationFrame(this.animationId);
+      }
+    });
+  }
+
+  renderGameResults(winners) {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
     });
 
-    this.gameProgress.innerHTML = progressTemplate;
     this.winners.innerHTML = winnersTemplate;
     cancelAnimationFrame(this.animationId);
   }
@@ -47,18 +63,28 @@ class RacingCarGameView {
   }
 
   rotateSpinner = () => {
-    this.spinner.style.transform = `rotate(${this.currentDegrees}deg)`;
+    this.spinners.forEach((spinner) => {
+      spinner.style.transform = `rotate(${this.currentDegrees % 360}deg)`;
+    });
+
     this.currentDegrees += 10;
     this.animationId = requestAnimationFrame(this.rotateSpinner);
   };
 
-  static generateProgressTemplate({ name, progress }) {
+  static generateProgressTemplate({ name, id }) {
     return `
     <div class="${DOM.CAR_PROGRESS_CLASS}">
       <div class="${DOM.CAR_NAME_CLASS}">${name}</div>
-      ${`<div class="${DOM.STEP_CLASS}">⬇️️</div>`.repeat(progress)}
-    </div>
-  `;
+      <div class="spinner" data-car-id="${id}"></div>
+      </div>
+      `;
+  }
+
+  static generateStepTemplate() {
+    const stepElement = document.createElement('div');
+    stepElement.className = DOM.STEP_CLASS;
+    stepElement.textContent = '⬇️️';
+    return stepElement;
   }
 
   static generateWinnersTemplate({ winners }) {

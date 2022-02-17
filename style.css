@@ -84,4 +84,5 @@ form > div > input {
   border-radius: 50%;
   border: #00bcd4 solid 5px;
   border-top-color: transparent;
+  margin: 10px auto;
 }
