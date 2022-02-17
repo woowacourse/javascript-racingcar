@@ -9,11 +9,11 @@ export default class Model {
     this.winners = [];
   }
 
-  createCarList(carNameList, callback) {
+  async createCarList(carNameList) {
     this.removeCarList();
     this.insertCarList(carNameList);
 
-    callback(this.generatePayload());
+    return this.generatePayload();
   }
 
   async startRace(racingCount, callback = () => {}) {
@@ -58,11 +58,11 @@ export default class Model {
       .map((winner) => winner.name);
   }
 
-  restart(callback) {
+  async restart() {
     this.removeCarList();
     this.winners = [];
 
-    callback(this.generatePayload());
+    return this.generatePayload();
   }
 
   removeCarList() {

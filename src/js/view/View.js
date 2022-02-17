@@ -63,6 +63,12 @@ export default class View {
     });
   }
 
+  render({ carList, isRacing, winners }) {
+    this.renderRacingCountButton(carList);
+    this.renderRacingResult(carList, isRacing);
+    this.renderResult(winners);
+  }
+
   renderRacingCountButton(carList) {
     $(SELECTOR.$RACING_COUNT_BUTTON).disabled =
       validator.isCarListNotFound(carList);
