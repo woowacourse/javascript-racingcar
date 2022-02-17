@@ -4,14 +4,12 @@ import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
 import validator from '../utils/validator.js';
 
 export default class View {
-  constructor(template) {
+  constructor($target, template) {
+    this.$target = $target;
     this.template = template;
-
-    this.cacheDOMElements();
   }
 
   cacheDOMElements() {
-    this.$app = $(SELECTOR.$APP);
     this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
     this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
     this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
@@ -23,7 +21,7 @@ export default class View {
     const isTarget = (target) =>
       children.includes(target) || target.closest(selector);
 
-    this.$app.addEventListener(type, (e) => {
+    this.$target.addEventListener(type, (e) => {
       if (!isTarget(e.target)) return;
 
       e.preventDefault();
@@ -64,14 +62,17 @@ export default class View {
   }
 
   render({ carList, isRacing, winners }) {
-    this.renderRacingCountButton(carList);
-    this.renderRacingResult(carList, isRacing);
-    this.renderResult(winners);
+    this.renderInputSection({ carList, isRacing, winners });
+    this.renderRacingResult({ carList, isRacing });
+    this.renderResult({ winners });
   }
 
-  renderRacingCountButton(carList) {
-    $(SELECTOR.$RACING_COUNT_BUTTON).disabled =
-      validator.isCarListNotFound(carList);
+  renderInputSection(carList, isRacing, winners) {
+    $(SELECTOR.$INPUT_SECTION).innerHTML = this.template.getInputSectionHTML(
+      carList,
+      isRacing,
+      winners
+    );
   }
 
   renderRacingResult(carList, isRacing) {

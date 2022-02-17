@@ -1,5 +1,6 @@
 export const SELECTOR = {
   $APP: '#app',
+  $INPUT_SECTION: '#input-section',
   $CAR_NAME_INPUT: '#car-name-input',
   $CAR_NAME_BUTTON: '#car-name-button',
   $RACING_COUNT_INPUT: '#racing-count-input',

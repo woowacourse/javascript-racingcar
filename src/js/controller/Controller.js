@@ -5,7 +5,15 @@ export default class Controller {
   }
 
   init() {
-    this.bindEventListners();
+    this.model.init().then((response) => {
+      this.render(response);
+      this.bindEventListners();
+    });
+  }
+
+  render(response) {
+    this.view.render(response);
+    this.view.cacheDOMElements();
   }
 
   bindEventListners() {
@@ -16,23 +24,23 @@ export default class Controller {
 
   createCarList(carNameList) {
     this.model.createCarList(carNameList).then((response) => {
-      this.view.render(response);
+      this.render(response);
     });
   }
 
   startRace(racingCount) {
     this.model
       .startRace(racingCount, (response) => {
-        this.view.render(response);
+        this.render(response);
       })
       .then((response) => {
-        this.view.render(response);
+        this.render(response);
       });
   }
 
   restart() {
     this.model.restart().then((response) => {
-      this.view.render(response);
+      this.render(response);
     });
   }
 }

@@ -9,6 +9,10 @@ export default class Model {
     this.winners = [];
   }
 
+  async init() {
+    return this.generatePayload();
+  }
+
   async createCarList(carNameList) {
     this.removeCarList();
     this.insertCarList(carNameList);
