@@ -1,14 +1,20 @@
+#game-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #turn-result {
-  position: absolute;
-  width: 512px;
-  height: 174px;
+  min-width: 512px;
+  min-height: 174px;
   left: 16px;
   top: 276px;
   display: flex;
+  margin: 0 20px;
 }
 
 .car-result {
-  width: 96px;
+  min-width: 96px;
   min-height: 174px;
   left: 16px;
   top: 276px;
@@ -41,11 +47,11 @@
 }
 
 #winners-result {
-  position: absolute;
   width: 512px;
-  height: 84px;
+  min-height: 84px;
   left: 16px;
   top: 474px;
+  margin-bottom: 30px;
 
   display: flex;
   flex-direction: column;

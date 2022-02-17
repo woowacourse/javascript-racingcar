@@ -7,20 +7,25 @@ body {
   width: 1440px;
   height: 1024px;
   background: #f9f9f9;
+  display: flex;
+  justify-content: center;
 }
 
 #app {
-  position: absolute;
-  width: 544px;
-  height: 590px;
+  min-width: 544px;
+  min-height: 590px;
   left: 448px;
   top: 56px;
 }
 
 #container {
-  position: absolute;
-  width: 544px;
-  height: 590px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+
+  min-width: 544px;
+  min-height: 590px;
   left: 0px;
   top: 0px;
 
@@ -31,7 +36,6 @@ body {
 }
 
 h1 {
-  position: absolute;
   width: 512px;
   height: 36px;
   left: 16px;
