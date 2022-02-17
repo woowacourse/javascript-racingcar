@@ -18,7 +18,7 @@ export default class CarNamesInputView extends View {
     this.emit(CUSTOM_EVENT.SUBMIT_CAR_NAMES, this.inputElement.value);
   };
 
-  resetValue = () => {
+  reset = () => {
     this.inputElement.value = '';
   };
 

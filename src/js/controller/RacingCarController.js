@@ -43,12 +43,14 @@ export default class RacingCarController {
     }
   };
 
-  playGame = () => {
-    this.model.initPrevResult();
+  playGame = async () => {
+    this.model.initPrevRaceResult();
     this.ResultView.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      const stageInfo = this.model.playTurn();
-      this.ResultView.renderArrows(stageInfo);
+      const prevRaceResult = this.model.getPrevRaceResult();
+      await this.model.racePerSecond();
+      const currentRaceResult = this.model.getCurrentRacingResult(prevRaceResult);
+      this.ResultView.renderArrows(currentRaceResult);
     }
     this.endGame();
   };
@@ -65,9 +67,9 @@ export default class RacingCarController {
   };
 
   replayGame = () => {
-    this.CarNamesInputView.resetValue();
-    this.CountInputView.resetValue();
-    this.ResultView.resetResult();
+    [this.CarNamesInputView, this.CountInputView, this.ResultView].forEach((view) => {
+      view.reset();
+    });
     this.CarNamesInputView.enableCarNamesInput();
   };
 }

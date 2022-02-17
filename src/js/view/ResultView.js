@@ -32,7 +32,7 @@ export default class ResultView extends View {
     });
   };
 
-  resetResult = () => {
+  reset = () => {
     this.element.innerHTML = '';
   };
 }

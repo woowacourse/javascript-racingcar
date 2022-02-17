@@ -18,7 +18,7 @@ export default class CountInputView extends View {
     this.emit(CUSTOM_EVENT.SUBMIT_RACING_COUNT, this.inputElement.value);
   };
 
-  resetValue = () => {
+  reset = () => {
     this.inputElement.value = '';
   };
 

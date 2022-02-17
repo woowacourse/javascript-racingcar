@@ -1,12 +1,12 @@
-import { GAME_NUMBERS, ALERT_MESSAGE } from "../utils/constants.js";
-import { generateRandomNumber } from "../utils/random.js";
-import Car from "./Car.js";
+import { GAME_NUMBERS, ALERT_MESSAGE } from '../utils/constants.js';
+import { generateRandomNumber } from '../utils/random.js';
+import Car from './Car.js';
 
 export default class RacingCarModel {
   constructor() {
     this.cars = [];
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
-    this.prevResult = {};
+    this.prevRaceResult = {};
   }
 
   setCars = (carNames) => {
@@ -45,31 +45,41 @@ export default class RacingCarModel {
 
   getCarsName = () => this.cars.map((car) => car.name);
 
-  initPrevResult = () => {
+  getPrevRaceResult = () => ({ ...this.prevRaceResult });
+
+  getCars = () => this.cars;
+
+  initPrevRaceResult = () => {
     this.cars.forEach((car) => {
-      this.prevResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
+      this.prevRaceResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
     });
   };
 
-  playTurn = () => {
-    const prevResult = { ...this.prevResult };
+  racePerSecond = () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        this.playTurn();
+        resolve();
+      }, 1000);
+    });
 
+  playTurn = () => {
     this.cars.forEach((car) => {
       this.race(car);
     });
+  };
 
+  getCurrentRacingResult = (prevRaceResult) => {
     return this.cars.reduce((acc, car) => {
-      acc[car.name] = car.forwardCount - prevResult[car.name];
+      acc[car.name] = car.forwardCount - prevRaceResult[car.name];
       return acc;
     }, {});
   };
 
-  getCars = () => this.cars;
-
   race = (car) => {
     if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
-      this.prevResult[car.name]++;
+      this.prevRaceResult[car.name]++;
     }
   };
 
@@ -78,7 +88,7 @@ export default class RacingCarModel {
     return this.cars
       .filter((car) => car.forwardCount === maxCount)
       .map((car) => car.name)
-      .join(", ");
+      .join(', ');
   };
 
   resetGameStatus = () => {
@@ -86,18 +96,16 @@ export default class RacingCarModel {
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
   };
 
-  splitCarNames = (carNames) => carNames.split(",");
+  splitCarNames = (carNames) => carNames.split(',');
 
   hasInValidNameLength = (names) =>
     names.some((name) => name.length > GAME_NUMBERS.VALID_MAX_NAME_LENGTH);
 
-  hasSpaceInName = (names) =>
-    names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
+  hasSpaceInName = (names) => names.some((name) => Array.from(name).some((ch) => ch.match(/ /)));
 
   isDuplicatedCarName = (names) => names.length !== new Set(names).size;
 
-  isEmptyName = (names) =>
-    names.some((name) => name.length === GAME_NUMBERS.EMPTY_NUMBER);
+  isEmptyName = (names) => names.some((name) => name.length === GAME_NUMBERS.EMPTY_NUMBER);
 
   isEmptyRacingCount = (count) => !count;
 }
