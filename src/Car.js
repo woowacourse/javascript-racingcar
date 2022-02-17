@@ -20,10 +20,6 @@ export default class Car {
         this.step += 1;
     }
 
-    getSteps() {
-        return this.step;
-    }
-
     resetStep() {
         this.step = 0;
     }
