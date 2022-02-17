@@ -32,4 +32,9 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-export { parseCarNames, getCarsMovement, getMaxCount };
+const getWinners = cars => {
+  const maxCount = getMaxCount(cars);
+  return cars.filter(car => car.racingCount === maxCount);
+};
+
+export { parseCarNames, getCarsMovement, getWinners };

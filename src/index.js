@@ -5,7 +5,7 @@ import { $, getInputValue, getEnterEvent } from './utils/dom.js';
 import {
   parseCarNames,
   getCarsMovement,
-  getMaxCount,
+  getWinners,
 } from './utils/racingGame.js';
 import {
   isValidCarNameLength,
@@ -84,8 +84,8 @@ class RacingCarGame {
   }
 
   endGame() {
-    this.view.removeSpinners();
-    this.view.renderWinners(this.getWinners());
+    this.winners = getWinners(this.cars);
+    this.view.endGame(this.winners);
     delayedAlert(MESSAGE.GAME_END, END_MESSAGE_DELAY);
   }
 
