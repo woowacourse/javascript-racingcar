@@ -18,7 +18,13 @@ export default class RacingGame {
     initCarNameFormEvent() {
         $('#car-name-submit-button').addEventListener('click', () => {
             const carNames = userInput.getCarNames();
-            if (!isValidCarNames(carNames)) return;
+
+            try {
+                isValidCarNames(carNames);
+            } catch (error) {
+                alert(error.message);
+                return;
+            }
 
             this.racingCars.reset();
             this.racingCars.adds(carNames);
@@ -29,7 +35,13 @@ export default class RacingGame {
     initTryCountFormEvent() {
         $('#try-count-submit-button').addEventListener('click', () => {
             const tryCount = userInput.getTryCount();
-            if (!isValidTryCount(tryCount)) return;
+
+            try {
+                isValidTryCount(tryCount);
+            } catch (error) {
+                alert(error.message);
+                return;
+            }
 
             this.runGame(tryCount);
             this.racingCars.resetSteps();

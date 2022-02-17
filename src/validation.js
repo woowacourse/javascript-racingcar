@@ -7,9 +7,9 @@ const haveMiddleBlank = someCarNames((carName) => carName.match(/\s+/));
 const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
 
 const isValidCarNames = (carNames) => {
-    if (haveEmpty(carNames)) return alert(ERROR_MESSAGE.EMPTY_CAR_NAME);
-    if (haveMiddleBlank(carNames)) return alert(ERROR_MESSAGE.BLANK_CAR_NAME);
-    if (exceedMaxLength(carNames)) return alert(ERROR_MESSAGE.EXCEED_CAR_NAME);
+    if (haveEmpty(carNames)) throw new Error(ERROR_MESSAGE.EMPTY_CAR_NAME);
+    if (haveMiddleBlank(carNames)) throw new Error(ERROR_MESSAGE.BLANK_CAR_NAME);
+    if (exceedMaxLength(carNames)) throw new Error(ERROR_MESSAGE.EXCEED_CAR_NAME);
 
     return true;
 };
@@ -17,8 +17,8 @@ const isValidCarNames = (carNames) => {
 const isPositiveNumber = (number) => number > 0;
 
 const isValidTryCount = (tryCount) => {
-    if (!Number.isInteger(tryCount)) return alert(ERROR_MESSAGE.NATURAL_CAR_NAME);
-    if (!isPositiveNumber(tryCount)) return alert(ERROR_MESSAGE.POSITIVE_CAR_NAME);
+    if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE.NATURAL_CAR_NAME);
+    if (!isPositiveNumber(tryCount)) throw new Error(ERROR_MESSAGE.POSITIVE_CAR_NAME);
 
     return true;
 };
