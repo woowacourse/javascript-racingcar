@@ -157,3 +157,23 @@ input {
   border-style: none;
   color: #fff;
 }
+
+/*
+  loading spinner
+*/
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+
+  animation: spinner 0.8s ease infinite;
+}
