@@ -71,13 +71,6 @@ class RacingCarGame {
     this.view.restartGame();
   }
 
-  getWinners() {
-    const maxCount = getMaxCount(this.cars);
-    return (this.winners = this.cars.filter(
-      car => car.racingCount === maxCount,
-    ));
-  }
-
   startGame(count) {
     this.view.renderRacingStatus(this.cars);
     this.progressGame(count);
