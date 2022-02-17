@@ -1,4 +1,4 @@
-import { $, displayNoneDOM, displayDOM } from './utils/common.js';
+import { $, $$, displayNoneDOM, displayDOM } from './utils/common.js';
 import { SELECTOR } from './utils/constants.js';
 
 export default class View {
@@ -68,7 +68,7 @@ export default class View {
   }
 
   stepUpdate(carList) {
-    this.$stepSections.innerHTML = carList.map(car => this.generateStepSectionDOM(car)).join('')
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
   }
 
   generateStepSectionDOM(car) {
@@ -76,7 +76,7 @@ export default class View {
     <div class="step-section">
       <span class="step-section__name">${car.name}</span>
       <ul class="step-section__arrows">
-        ${'<li class="step-section__arrow">⬇️️</li>'.repeat(car.step)}
+        ${'<li class="step-section__arrow display-none"></li>'.repeat(car.step)}
       </ul>
     </div>
   `;
@@ -86,9 +86,45 @@ export default class View {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
   }
 
-  showResult(carList, winnerList) {
+  updateResultDOM(carList, winnerList) {
     this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
     this.displayResult();
+  }
+
+  showArrow() {
+    const arrowsList = [...$$('.step-section__arrows')].map((section) => section.children);
+    arrowsList.forEach((arrows) => this.displayEachArrow([...arrows]));
+  }
+
+  displayEachArrow(arrows) {
+    arrows.find((arrow) => this.checkArrowDisplayNone(arrow));
+  }
+
+  checkArrowDisplayNone(arrow) {
+    if (arrow.classList.contains('display-none')) {
+      this.animateSpinningAndShow(arrow);
+      return true;
+    }
+  }
+
+  animateSpinningAndShow(arrow) {
+    const startTime = new Date().getTime();
+    displayDOM([arrow]);
+    let angle = 0;
+    arrow.classList.add('spinning-bg');
+    const callback = () => {
+      const currentTime = new Date().getTime();
+      if (currentTime - 1000 > startTime) {
+        arrow.style.transform = `rotate( 0deg )`;
+        arrow.classList.remove('spinning-bg');
+        arrow.innerText = '⬇️';
+      } else {
+        angle += 1;
+        arrow.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(callback);
+      }
+    };
+    requestAnimationFrame(callback);
   }
 }
