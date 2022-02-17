@@ -10,13 +10,13 @@ class RacingScreen {
 
   static laneTemplate(name) {
     return `<div class="car-lane">
-        <label class="car-name">${name}</label>
-        <div class="distance" data-current-distance="0">
+        <label class="car-name" data-testid="car-name">${name}</label>
+        <div class="distance" data-current-distance="0" data-testid="distance">
         </div>
       </div>`;
   }
 
-  static forwardIcon = `<div class="forward-icon">️⬇️️</div>`;
+  static forwardIcon = `<div class="forward-icon" data-testid="forward-icon">️⬇️️</div>`;
 
   init() {
     this.bindViews();
