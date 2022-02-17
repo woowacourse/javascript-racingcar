@@ -40,6 +40,7 @@ class RacingScreen {
   }
 
   renderLanes(cars) {
+    this.clear();
     cars.forEach(({ name }) => {
       const template = RacingScreen.laneTemplate(name);
       this.$screen.insertAdjacentHTML('beforeend', template);
@@ -56,6 +57,10 @@ class RacingScreen {
       );
       $distance.setAttribute('data-current-distance', car.distance);
     });
+  }
+
+  clear() {
+    this.$screen.innerHTML = '';
   }
 
   reset() {

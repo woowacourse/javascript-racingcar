@@ -69,6 +69,7 @@ class RacingCarGameController {
   endGame() {
     this.resultView.show();
     this.resultView.renderWinners(this.model.findWinners());
+    this.form.enableSubmit(); // 게임이 끝나면 다시 입력 가능하도록 한다
   }
 
   restartGame() {
