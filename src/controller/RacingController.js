@@ -50,7 +50,6 @@ export default class RacingController {
 
   startRacingGame() {
     this.view.deactivateCountForm();
-    this.view.renderName(this.model.getCarsName());
     this.playNext();
   }
 
@@ -68,7 +67,7 @@ export default class RacingController {
     }, 1000);
   }
 
-  moveOrNot() {
+  static moveOrNot() {
     const randomNumber = RandomUtils.pickRandomNumber();
     if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
       return 1;
@@ -78,7 +77,7 @@ export default class RacingController {
 
   play() {
     const moves = this.model.cars.map(() => {
-      return this.moveOrNot();
+      return RacingController.moveOrNot();
     });
     this.model.moveCars(moves);
     this.view.renderProgress(this.model.cars);

@@ -1,5 +1,5 @@
 export default class Template {
-  winnerTemplate(winnerList) {
+  static winnerTemplate(winnerList) {
     return `
         <section id="racing-result-container">
             <h2 id="racing-result">
@@ -10,7 +10,7 @@ export default class Template {
     `;
   }
 
-  racingProgressTemplate(cars) {
+  static racingProgressTemplate(cars) {
     return `
       <section id="racing-progress-container">
       ${cars

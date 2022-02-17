@@ -1,4 +1,4 @@
-import { CAR, INIT } from '../constants/constants.js';
+import { INIT } from '../constants/constants.js';
 import CarModel from './CarModel.js';
 
 export default class RacingGameModel {
@@ -7,16 +7,10 @@ export default class RacingGameModel {
     this._round = INIT.ROUND;
   }
 
-  getCarsName() {
-    return this._cars.map((car) => car.name);
-  }
-
   moveCars(moves) {
-    console.log('moves', moves);
     this._cars = this._cars.map((car, index) => {
       return { ...car, position: car.position + moves[index] };
     });
-    console.log('this._cars', this._cars);
   }
 
   set cars(names) {
@@ -34,11 +28,6 @@ export default class RacingGameModel {
   get round() {
     return this._round;
   }
-
-  // goToNextTurn() {
-  //   this.moveCars();
-  //   this._round -= CAR.ONE_MOVE;
-  // }
 
   get winners() {
     return this.findWinners();

@@ -12,36 +12,13 @@ export default class RacingView {
     this.template = new Template();
   }
 
-  insertIntoProgressContainer(template) {
-    this.$progressContainer.insertAdjacentHTML('beforeend', template);
-  }
-
-  renderName(carNames) {
-    this.insertIntoProgressContainer(this.createCarNamesTemplate(carNames));
-  }
-
-  createCarNamesTemplate(carNames) {
-    return `
-    ${carNames
-      .map(
-        (carName) => `
-      <div id="${carName}-container" class="${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}">
-        <div class="${SELECTOR.CLASS.CAR_PROGRESS_NAME}">${carName}</div>
-      </div > 
-    `
-      )
-      .join('')}
-    `;
-  }
-
   renderProgress(cars) {
     console.log(cars);
-    this.$progressContainer.innerHTML =
-      this.template.racingProgressTemplate(cars);
+    this.$progressContainer.innerHTML = Template.racingProgressTemplate(cars);
   }
 
   renderResult(winnerList) {
-    this.$resultContainer.innerHTML = this.template.winnerTemplate(winnerList);
+    this.$resultContainer.innerHTML = Template.winnerTemplate(winnerList);
   }
 
   reset() {
