@@ -43,7 +43,6 @@ class RacingCarGameController {
     try {
       this.model.updateRacingCount(racingCount);
       this.form.resetRacingCountInput(this.model.getRacingCount());
-      this.form.disableSubmit();
       this.startGame();
     } catch (e) {
       console.error(e);
@@ -56,6 +55,7 @@ class RacingCarGameController {
   }
 
   startGame() {
+    this.form.disableSubmit();
     this.screen.show();
     this.screen.renderLanes(this.model.getCars());
     this.screen.bindDistances(); // 효율적으로 view를 업데이트 하기 위해서 필요하다
@@ -73,10 +73,10 @@ class RacingCarGameController {
   }
 
   restartGame() {
-    this.model.reset();
-    this.form.reset();
+    this.model.resetDistances();
     this.screen.reset();
     this.resultView.reset();
+    this.startGame();
   }
 }
 

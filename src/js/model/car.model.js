@@ -17,6 +17,10 @@ class CarModel {
       this.moveForward();
     }
   }
+
+  resetDistance() {
+    this.distance = 0;
+  }
 }
 
 export default CarModel;

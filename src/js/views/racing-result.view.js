@@ -37,7 +37,6 @@ class RacingResultView {
   }
 
   reset() {
-    this.hide();
     this.$winners.innerHTML = '';
   }
 }

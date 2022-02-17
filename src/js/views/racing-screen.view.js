@@ -64,7 +64,6 @@ class RacingScreen {
   }
 
   reset() {
-    this.hide();
     // event handler가 등록되어 있지 않기 때문에 innerHTML로 삭제해도 된다
     this.$screen.innerHTML = '';
   }

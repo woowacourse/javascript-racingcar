@@ -52,6 +52,10 @@ class RacingCarGameModel {
     return this.cars.filter(({ distance }) => distance === maxDistance).map(({ name }) => name);
   }
 
+  resetDistances() {
+    this.cars.forEach((car) => car.resetDistance());
+  }
+
   reset() {
     this.cars = [];
     this.racingCount = 0;
