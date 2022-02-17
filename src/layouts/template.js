@@ -1,10 +1,12 @@
+import { SELECTOR } from '../constants/constants.js';
+
 export default class Template {
   static winnerTemplate(winnerList) {
     return `
-        <h2 id="racing-result">
+        <h2 id="${SELECTOR.ID.WINNER_SPAN}">
             🏆 최종 우승자: ${winnerList.join(', ')}🏆
         </h2>
-        <button id="restart-button">다시 시작하기</button>
+        <button id="${SELECTOR.ID.RESTART_BUTTON}">다시 시작하기</button>
     `;
   }
 
@@ -13,9 +15,9 @@ export default class Template {
       ${cars
         .map((car) => {
           return `
-          <div class="car-progress-container">
-            <div class="car-progress-container--name">${car.name}</div>
-            ${`<div class="car-progress-container--status">⬇️️</div>`.repeat(
+          <div class="${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}">
+            <div class="${SELECTOR.CLASS.CAR_PROGRESS_NAME}">${car.name}</div>
+            ${`<div class="${SELECTOR.CLASS.CAR_PROGRESS_STATUS}">⬇️️</div>`.repeat(
               car.position
             )}
           </div>

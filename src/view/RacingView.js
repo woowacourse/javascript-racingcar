@@ -13,7 +13,7 @@ export default class RacingView {
     this.$countInput = $(`#${SELECTOR.ID.RACING_COUNT_INPUT}`);
   }
 
-  renderProgressLoading() {
+  static renderProgressLoading() {
     const $$eachCarProgressStatus = $$(
       `.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`
     );

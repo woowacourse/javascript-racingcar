@@ -60,7 +60,7 @@ export default class RacingController {
         this.activateRestartButton();
         return;
       }
-      this.view.renderProgressLoading();
+      RacingView.renderProgressLoading();
     }, 1000);
   }
 
