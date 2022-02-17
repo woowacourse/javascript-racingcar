@@ -1,16 +1,20 @@
 import Car from './Car.js';
 import { setIntervalForDefinedTimes, cloneObject } from '../utils/utils.js';
-import { RACE_INTERVAL } from '../configs/constants.js';
+import { INIT_DATA, RACE_INTERVAL } from '../configs/constants.js';
 
 export default class Model {
-  constructor() {
-    this.isRacing = false;
-    this.carList = [];
-    this.winners = [];
+  async init() {
+    this.state = INIT_DATA || {};
+
+    return this.generatePayload();
   }
 
-  async init() {
-    return this.generatePayload();
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+  }
+
+  generatePayload() {
+    return cloneObject(this.state);
   }
 
   async createCarList(carNameList) {
@@ -30,7 +34,7 @@ export default class Model {
 
   beforeRace(callback) {
     this.initRace();
-    this.isRacing = true;
+    this.setState({ isRacing: true });
     callback(this.generatePayload());
   }
 
@@ -45,47 +49,44 @@ export default class Model {
   }
 
   raceOneLap(callback) {
-    this.carList.forEach((car) => car.race());
+    this.state.carList.forEach((car) => car.race());
     callback(this.generatePayload());
   }
 
   afterRace(callback) {
-    this.isRacing = false;
+    this.setState({ isRacing: false });
     this.getWinners();
     callback(this.generatePayload());
   }
 
   getWinners() {
-    const maxDistance = Math.max(...this.carList.map((car) => car.distance));
-    this.winners = this.carList
-      .filter((car) => car.distance === maxDistance)
-      .map((winner) => winner.name);
+    const maxDistance = Math.max(
+      ...this.state.carList.map((car) => car.distance)
+    );
+
+    this.setState({
+      winners: this.state.carList
+        .filter((car) => car.distance === maxDistance)
+        .map((winner) => winner.name),
+    });
   }
 
   async restart() {
     this.removeCarList();
-    this.winners = [];
+    this.setState({ winners: [] });
 
     return this.generatePayload();
   }
 
   removeCarList() {
-    this.carList = [];
+    this.setState({ carList: [] });
   }
 
   insertCarList(carNameList) {
-    this.carList = carNameList.map((name) => new Car(name));
+    this.setState({ carList: carNameList.map((name) => new Car(name)) });
   }
 
   initRace() {
-    this.carList.forEach((car) => car.initDistance());
-  }
-
-  generatePayload() {
-    return cloneObject({
-      isRacing: this.isRacing,
-      carList: this.carList,
-      winners: this.winners,
-    });
+    this.state.carList.forEach((car) => car.initDistance());
   }
 }

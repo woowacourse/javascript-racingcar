@@ -1,3 +1,9 @@
+export const INIT_DATA = {
+  isRacing: false,
+  carList: [],
+  winners: [],
+};
+
 export const RACING_COUNT_RANGE = {
   MIN: 0,
   MAX: 10,
