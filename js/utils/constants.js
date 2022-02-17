@@ -4,7 +4,7 @@ export const NUMBER = {
   MAX_LENGTH: 5,
 };
 
-export const ERROR_MSG = {
+export const ERROR_MESSAGE = {
   INVALID_CAR_NAME: '자동차를 1 ~ 5 길이로 작명해주세요.',
   INVALID_RACING_COUNT: '시도 횟수를 자연수로 입력해주세요.',
 };

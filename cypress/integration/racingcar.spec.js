@@ -1,4 +1,4 @@
-import { ERROR_MSG, SELECTOR } from '../../js/utils/constants.js';
+import { ERROR_MESSAGE, SELECTOR } from '../../js/utils/constants.js';
 
 describe('자동차의 전진이 정상적으로 작동하는지 검증합니다.', () => {
   beforeEach(() => {
@@ -63,7 +63,7 @@ describe('사용자의 입력을 검증합니다.', () => {
     cy.get(SELECTOR.CAR_NAMES_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_CAR_NAME);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.INVALID_CAR_NAME);
       });
   });
 
@@ -72,7 +72,7 @@ describe('사용자의 입력을 검증합니다.', () => {
     cy.get(SELECTOR.CAR_NAMES_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_CAR_NAME);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.INVALID_CAR_NAME);
       });
   });
 
@@ -83,7 +83,7 @@ describe('사용자의 입력을 검증합니다.', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.INVALID_RACING_COUNT);
       });
   });
 
@@ -94,7 +94,7 @@ describe('사용자의 입력을 검증합니다.', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.INVALID_RACING_COUNT);
       });
   });
 
@@ -105,7 +105,7 @@ describe('사용자의 입력을 검증합니다.', () => {
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR_MSG.INVALID_RACING_COUNT);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.INVALID_RACING_COUNT);
       });
   });
 });
