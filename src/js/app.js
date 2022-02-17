@@ -1,12 +1,21 @@
 import { $ } from './util/dom.js';
 import { checkCarNames, getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import { makeCars, playOneTurn, getWinners } from './core/playRacing.js';
+import {
+  makeCars,
+  playOneTurn,
+  getWinners,
+  isLastTurn,
+} from './core/playRacing.js';
 import {
   renderResult,
   renderWinners,
   removeBeforeResult,
 } from './view/renderResult.js';
+import {
+  TURN_LOADING_DELAY,
+  WINNERS_ALERT_DELAY,
+} from './constants/constant.js';
 
 class App {
   constructor() {
@@ -34,15 +43,15 @@ class App {
       playOneTurn(cars, i);
       await new Promise(resolve => {
         setTimeout(() => {
-          renderResult(cars, i, this.tryCount);
+          renderResult(cars, isLastTurn(i, this.tryCount));
           resolve();
-        }, 1000);
+        }, TURN_LOADING_DELAY);
       });
     }
     renderWinners(getWinners(cars));
     setTimeout(() => {
       window.alert('축하의 메시지');
-    }, 2000);
+    }, WINNERS_ALERT_DELAY);
     this.resetValue();
   }
 

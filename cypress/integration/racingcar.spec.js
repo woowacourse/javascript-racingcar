@@ -1,4 +1,8 @@
 import { alertMessage } from '../../src/js/constants/string';
+import {
+  TURN_LOADING_DELAY,
+  WINNERS_ALERT_DELAY,
+} from '../../src/js/constants/constant';
 
 const CAR_NAMES_BUTTON = '#car-names-button';
 const TRY_COUNT_BUTTON = '#try-count-button';
@@ -65,5 +69,9 @@ it('우승자가 출력되고 2초 후에 축하의 alert 띄우기', () => {
   cy.get('#car-names-input').type(cars);
   cy.get('#car-names-button').click();
   cy.get('#try-count-input').type(tryCount);
-  cy.checkDisplayAlert(TRY_COUNT_BUTTON, '축하의 메시지', 8000);
+  cy.checkDisplayAlert(
+    TRY_COUNT_BUTTON,
+    '축하의 메시지',
+    WINNERS_ALERT_DELAY + tryCount * TURN_LOADING_DELAY,
+  );
 });

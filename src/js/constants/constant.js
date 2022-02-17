@@ -7,3 +7,6 @@ export const MAX_CAR_NAME_LENGTH = 5;
 export const MIN_CAR_COUNT = 2;
 
 export const MIN_TRY_COUNT = 1;
+
+export const WINNERS_ALERT_DELAY = 2000;
+export const TURN_LOADING_DELAY = 1000;

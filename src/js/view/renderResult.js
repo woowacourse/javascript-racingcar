@@ -1,16 +1,12 @@
 import { $ } from '../util/dom.js';
 
-export const renderResult = (cars, index, tryCount) => {
-  let count = 0;
-  if (index !== tryCount - 1) {
-    count = 1;
-  }
+export const renderResult = (cars, isLastTurn) => {
   const template = cars
     .map(car => {
       return `
       <div id="car-result">
         <div>${car.name}</div>${'<p>⬇️</p>'.repeat(car.score)}
-        ${'<p id="loading-animation"></p>'.repeat(count)}
+        ${'<p id="loading-animation"></p>'.repeat(isLastTurn)}
       </div>`;
     })
     .join('');

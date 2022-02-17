@@ -23,6 +23,14 @@ export const playOneTurn = cars => {
   return cars;
 };
 
+export const isLastTurn = (index, tryCount) => {
+  let count = false;
+  if (index !== tryCount - 1) {
+    count = true;
+  }
+  return count;
+};
+
 const getRandomInt = () => {
   return Math.floor(Math.random() * (RAMDOM_MAX - RAMDOM_MIN)) + RAMDOM_MIN; //최댓값은 제외, 최솟값은 포함
 };
