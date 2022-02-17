@@ -1,18 +1,19 @@
 import Car from './Car.js';
-import { setIntervalForDefinedTimes } from '../utils/utils.js';
+import { setIntervalForDefinedTimes, cloneObject } from '../utils/utils.js';
 import { RACE_INTERVAL } from '../configs/constants.js';
 
 export default class Model {
   constructor() {
-    this.carList = [];
     this.isRacing = false;
+    this.carList = [];
+    this.winners = [];
   }
 
   createCarList(carNameList, callback) {
     this.removeCarList();
     this.insertCarList(carNameList);
 
-    callback(this.carList, this.isRacing);
+    callback(this.generatePayload());
   }
 
   async startRace(racingCount, callback = () => {}) {
@@ -20,17 +21,13 @@ export default class Model {
     await this.race(racingCount, callback);
     this.afterRace(callback);
 
-    return {
-      carList: this.carList,
-      isRacing: this.isRacing,
-      winners: this.getWinners(),
-    };
+    return this.generatePayload();
   }
 
   beforeRace(callback) {
     this.initRace();
     this.isRacing = true;
-    callback(this.carList, this.isRacing);
+    callback(this.generatePayload());
   }
 
   async race(racingCount, callback) {
@@ -45,27 +42,27 @@ export default class Model {
 
   raceOneLap(callback) {
     this.carList.forEach((car) => car.race());
-    callback(this.carList, this.isRacing);
+    callback(this.generatePayload());
   }
 
   afterRace(callback) {
     this.isRacing = false;
-    callback(this.carList, this.isRacing);
+    this.getWinners();
+    callback(this.generatePayload());
   }
 
   getWinners() {
     const maxDistance = Math.max(...this.carList.map((car) => car.distance));
-    const winners = this.carList
+    this.winners = this.carList
       .filter((car) => car.distance === maxDistance)
       .map((winner) => winner.name);
-
-    return winners;
   }
 
   restart(callback) {
     this.removeCarList();
+    this.winners = [];
 
-    callback({ carList: this.carList, winners: [], isRacing: this.isRacing });
+    callback(this.generatePayload());
   }
 
   removeCarList() {
@@ -78,5 +75,13 @@ export default class Model {
 
   initRace() {
     this.carList.forEach((car) => car.initDistance());
+  }
+
+  generatePayload() {
+    return cloneObject({
+      isRacing: this.isRacing,
+      carList: this.carList,
+      winners: this.winners,
+    });
   }
 }

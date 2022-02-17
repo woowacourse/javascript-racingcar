@@ -15,7 +15,7 @@ export default class Controller {
   }
 
   createCarList(carNameList) {
-    this.model.createCarList(carNameList, (carList, isRacing) => {
+    this.model.createCarList(carNameList, ({ carList, isRacing }) => {
       this.view.renderRacingResult(carList, isRacing);
       this.view.renderRacingCountButton(carList);
     });
@@ -23,11 +23,10 @@ export default class Controller {
 
   startRace(racingCount) {
     this.model
-      .startRace(racingCount, (carList, isRacing) => {
+      .startRace(racingCount, ({ carList, isRacing }) => {
         this.view.renderRacingResult(carList, isRacing);
       })
-      .then(({ carList, isRacing, winners }) => {
-        this.view.renderRacingResult(carList, isRacing);
+      .then(({ winners }) => {
         this.view.renderResult(winners);
       });
   }
