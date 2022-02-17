@@ -30,9 +30,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   // step1 테스트
   it('올바른 자동차 이름과 횟수를 입력하면 게임이 진행되고 우승자를 확인할 수 있어야 한다.', () => {
     // when
-    playValidGame();
+    const totalPlaySecond = playValidGame();
 
     //then
+    cy.wait(totalPlaySecond * 1000);
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 
@@ -83,10 +84,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     // when
     playValidGame();
 
-    cy.wait(500);
-
-    cy.get(`.${DOM.STEP_CLASS}`).should('not.be.visible');
     cy.get(`.${DOM.SPINNER_CLASS}`).should('be.visible');
+    cy.get(`.${DOM.STEP_CLASS}`, { timeout: 0 }).should('not.exist');
   });
 
   it('입력한 횟수의 초만큼 흐른 뒤 결과를 표시하고 2초 뒤 축하 메시지를 표시해야 한다.', () => {
@@ -96,11 +95,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     // when
     const totalPlaySecond = playValidGame();
 
-    cy.get(`#${DOM.WINNER_NAME_ID}`).should('not.be.visible');
+    // then
+    cy.get(`#${DOM.WINNER_NAME_ID}`, { timeout: 0 }).should('not.exist');
 
+    // when 2
     cy.wait(totalPlaySecond * 1000);
 
-    cy.get(`.${DOM.SPINNER_CLASS}`).should('be.visible');
+    // then 2
+    cy.get(`.${DOM.SPINNER_CLASS}`).should('not.exist');
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
 
     cy.wait(2000).then(() => {
