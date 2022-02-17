@@ -5,7 +5,8 @@ import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index';
 const VISIT_URL = 'http://localhost:5500/';
 const VALID_CAR_NAMES = 'east, west, south, north, all';
 const VALID_RACING_COUNT = 10;
-const WAITING_TIME = 12000;
+const GAME_WAITING_TIME = 10000;
+const CONGRATUATION_WAITING_TIME = 2000;
 
 Cypress.Commands.add('submitCarName', () => {
   cy.get(`#${ID.CAR_NAMES_INPUT}`).type(VALID_CAR_NAMES);
@@ -138,8 +139,20 @@ describe('게임 진행 테스트', () => {
     cy.get(`.${CLASS.SPINNER}`).eq(3).should('exist');
     cy.get(`.${CLASS.SPINNER}`).eq(4).should('exist');
 
-    cy.wait(WAITING_TIME);
+    cy.wait(GAME_WAITING_TIME);
 
     cy.get(`.${CLASS.SPINNER}`).should('not.exist');
+  });
+
+  it('최종 우승자가 출력되고 2초 후에 축하 메시지를 확인할 수 있어야 한다.', () => {
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
+
+    cy.wait(GAME_WAITING_TIME);
+
+    cy.get(`#${ID.FINAL_WINNER_RESULT}`).wait(CONGRATUATION_WAITING_TIME);
+
+    expect(stub).to.be.calledWith('축하메시지~~~');
   });
 });
