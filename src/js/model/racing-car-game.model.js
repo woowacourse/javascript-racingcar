@@ -14,7 +14,10 @@ class RacingCarGameModel {
   }
 
   getCarNames() {
-    return this.cars.map((car) => car.name).join(',');
+    return this.cars
+      .map((car) => car.name)
+      .join(', ')
+      .trim();
   }
 
   getRacingCount() {
