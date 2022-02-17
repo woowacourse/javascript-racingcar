@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { ELEMENT_SELECTOR } from '../../src/js/constants/constant.js';
+
+Cypress.Commands.add('carNamesPositiveInputEvent', carNames => {
+  // Given
+  cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).type(carNames);
+  return cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
+});
+
+Cypress.Commands.add('tryCountPositiveInputEvent', tryCount => {
+  // Given
+  cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(tryCount);
+  return cy.get(ELEMENT_SELECTOR.TRY_COUNT_BUTTON).click();
+});

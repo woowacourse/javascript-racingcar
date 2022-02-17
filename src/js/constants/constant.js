@@ -7,3 +7,12 @@ export const ERROR_MESSAGES = {
   IS_UNIQ_CAR_NAMES: `자동차 이름은 중복 될 수 없습니다.`,
   IS_TRY_COUNT_POSITIVE_NUMBER: `1이상의 수를 입력해 주세요.`,
 };
+export const ELEMENT_SELECTOR = {
+  CAR_NAMES_INPUT: '#car-names-input',
+  CAR_NAMES_BUTTON: '#car-names-button',
+  TRY_COUNT_INPUT: '#try-count-input',
+  TRY_COUNT_BUTTON: '#try-count-button',
+  RESET_BTN: '#reset-btn',
+  TURN_RESULT: '#turn-result',
+  WINNERS_RESULT: '#winners-result',
+};
