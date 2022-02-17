@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
   <title>🏎️ 자동차 경주 게임</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/index.css">
 </head>
 
 <body>
   <div id="app">
-  </div>
+    <h1 class="text-center mb-8">🏎️ 자동차 경주 게임🏁</h1>
+    <section class="mb-8">
+      <form id="racing-game-prepare-form">
+        <fieldset id="car-names-fieldset" class="mb-5">
+          <label class="form-label" for="car-names">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+          <div class="d-flex">
+            <input id="car-names-input" class="form-control mr-4" name="car-names" type="text" placeholder="ex) 람보르기니, 부가티, 마이바흐, 롤스로이스, 코닉세그" />
+            <button id="car-names-submit-button" class="btn btn-cyan" type="button">확인</button>
+          </div>
+        </fieldset>
+        <fieldset id="racing-count-fieldset" hidden>
+          <label class="form-label" for="racing-count">시도할 횟수를 입력해주세요.</label>
+          <div class="d-flex">
+            <input id="racing-count-input" class="form-control mr-4" name="racing-count" type="text" placeholder="시도 횟수" />
+            <button id="racing-count-submit-button" type="button" class="btn btn-cyan">확인</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+    <section id="racing-screen" class="mb-4" hidden>
+    </section>
+    <section id="racing-result">
+      <h2 class="text-center">🏆 최종 우승자: <span id="winners"></span> 🏆</h2>
+      <div class="text-center">
+        <button id="restart-btn" type="button" class="btn btn-cyan btn-long">다시 시작하기</button>
+      </div>
+    </section>
+  </section>
+  <script type="module" src="./src/js/index.js"></script>
 </body>
 
 </html>

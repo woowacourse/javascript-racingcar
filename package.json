@@ -1,0 +1,41 @@
+{
+  "name": "racing-car",
+  "version": "1.0.0",
+  "description": "우아한테크코스4기 프론트엔드 Level-1의 '자동차 경주' 미션입니다",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "test": "cypress run --browser chrome",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airman5573/javascript-racingcar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airman5573/javascript-racingcar/issues"
+  },
+  "homepage": "https://github.com/airman5573/javascript-racingcar#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^16.1.0",
+    "commitizen": "^4.2.4",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cypress": "^9.4.1",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.5.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  }
+}

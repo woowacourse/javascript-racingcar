@@ -1,0 +1,60 @@
+@import "./normalize.css";
+@import "./root.css";
+@import "./flex.css";
+@import "./typhography.css";
+@import "./spacing.css";
+@import "./btn.css";
+@import "./spinner.css";
+@import "./form.css";
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--gray-600);
+}
+
+#app {
+  margin-top: 56px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px 16px 32px 16px;
+  border: 1px solid var(--gray-800);
+  border-radius: 4px;
+  background-color: white;
+}
+
+#racing-screen {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.car-lane {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.car-name {
+  padding: 10px 30px 7px 30px;
+  border-radius: 4px;
+  outline: 0;
+  border-style: none;
+  background-color: #f5f5f5;
+  display: inline-flex;
+  font-weight: 400;
+  position: relative;
+}
+
+.distance {
+  padding-top: 8px;
+}
+
+.forward-icon {
+  font-size: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+[hidden] {
+  display: none !important;
+}
