@@ -92,3 +92,29 @@ describe('스크린에서 경기가 진행중인 경우', () => {
     });
   });
 });
+
+describe('경기가 끝난 경우', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+    cy.startRacing('aa,bb,cc,dd,ee,ff,gg,hh,a,b,c,d', 50);
+  });
+
+  it('이동거리가 가장 긴 자동차가 최종 우승자가 된다', function () {
+    const cars = [];
+    cy.get(testid`car-lane`)
+      .each(($carLane, i) => {
+        const $distance = $carLane.find(testid`distance`);
+        const distance = parseInt($distance.attr('data-current-distance'), 10);
+        cars.push({ name: this.carNameList[i], distance });
+      })
+      .then(() => {
+        const maxDistance = cars.reduce((acc, { distance }) => Math.max(acc, distance), 0);
+        const winners = cars
+          .filter(({ distance }) => distance === maxDistance)
+          .map(({ name }) => name)
+          .join(', ')
+          .trim();
+        cy.get(testid`winners`).should('have.text', winners);
+      });
+  });
+});
