@@ -50,7 +50,7 @@
 
 #### 결과 확인(progressive 재생)
 
-- [ ] data 속성을 사용하여 이름을 넣어준다
+- [x] data 속성을 사용하여 이름을 넣어준다
 - [ ] setInterval, setTimeout, requestAnimationFrame 을 활용한다
   - [ ] 자동차 이름들을 보여준다
   - [ ] 1초 간격으로 스피너가 표시된다

@@ -3,7 +3,7 @@ import { showElement, hideElement } from '../utils/attribute.js';
 
 const carPlayerTemplate = (name, distance) => {
   return `
-    <div class="car-name mr-2">
+    <div class="car-name mr-2" data-car-name=${name}>
       <div class="car-player">${name}</div>
       ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(distance)}
     </div>
