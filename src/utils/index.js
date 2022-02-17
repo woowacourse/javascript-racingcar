@@ -1,6 +1,4 @@
-import { NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER, INTERVAL, ID } from "../constants.js";
-import { initRacingStatus, resultView, clearLoadingView, carMovementView, loadingView } from "../view.js";
-import { getElement } from "./dom.js";
+import { NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER } from "../constants.js";
 
 const parseCarName = names => names.split(',').map(name => name.trim())
 
@@ -22,49 +20,11 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
-const startRacing = (count, cars) => {
-  initRacingStatus(cars)
-  const timer = setInterval(()=>{
-    if(count <= 1){
-      const winners = getWinner(cars).map((car)=>car.name).join(',');
-      clearLoadingView(cars);
-      clearInterval(timer);
-      return delayResult(winners);
-    }
-    moveCar(cars);
-    loadingView(cars);
-    count--;
-  }, INTERVAL.LOADING);
-}
-
-const moveCar = (cars) => {
-  clearLoadingView(cars);
-  cars.forEach((car)=>{
-    if(car.move()){
-      getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', carMovementView())
-    }
-  });
-}
-
-const delayResult = (winners) => {
-  setTimeout(()=>{
-    resultView(winners)
-  }, INTERVAL.ALERT);
-}
-
-const getWinner = (cars) => {
-  const maxCount = getMaxCount(cars);
-  return cars.filter(
-    car => car.racingCount === maxCount,
-  );
-}
-
 export {
   parseCarName,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
   generateRandomNumber,
-  startRacing,
-  moveCar
+  getMaxCount
 };

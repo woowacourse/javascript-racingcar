@@ -1,4 +1,4 @@
-import { INTERVAL, ID } from "./constants.js";
+import { ID } from "./constants.js";
 import { getElement } from "./utils/dom.js";
 
 const carsNameView = (cars) => {
@@ -9,13 +9,14 @@ const carsNameView = (cars) => {
   ).join('');
 };
 
-const loadingView = (cars) => {
-  cars.forEach((car)=>{
-    getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', '<div class="loader"></div>')
-  })
-};
+const loadingView = '<div class="loader"></div>';
 
-const carMovementView = () => `<div id="move" class="move">⬇️</div>`;
+const carMovementView = () => {
+  const moveDiv = document.createElement("div");
+  moveDiv.textContent = '⬇️';
+  moveDiv.className = 'move';
+  return moveDiv;
+};
 
 const removeAllChildNodes = (parent) => {
   while (parent.firstChild) {
@@ -26,21 +27,24 @@ const removeAllChildNodes = (parent) => {
 const clearLoadingView = (cars) => {
   cars.forEach((car)=>{
     const parent = getElement(`car-status-${car.name}`)
-    if(parent.children.length > 1) {parent.removeChild(parent.lastChild)}
+    if(parent.lastChild.className === "loader") {parent.removeChild(parent.lastChild)}
   })
 };
 
 const resultView = (winners) =>  { 
   getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(winners));
   getElement(ID.RESTART_BUTTON).style.visibility="visible";
-  alert(`🎉우승을 축하합니다 ${winners}🎉`);
 }
+
+const winnerAlert = (winners) => alert(`🎉우승을 축하합니다 ${winners}🎉`);
 
 const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
 
 const initRacingStatus = (cars) => {
   getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', carsNameView(cars));
-  loadingView(cars);
+  cars.forEach((car)=>{
+    getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', loadingView)
+  })
 };
 
-export { carMovementView, loadingView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus };
+export { carMovementView, loadingView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus, winnerAlert };
