@@ -1,7 +1,7 @@
 import Car from '../model/Car.js';
 import template from '../templates.js';
 import { ERROR_MESSAGE, DELIMETER, SELECTOR, DELAY } from '../constants.js';
-import { splitString, trimStringArray, sleep } from '../utils/utils.js';
+import { splitString, trimStringArray, sleep, $all } from '../utils/utils.js';
 import {
   isValidCarNamesLength,
   isDuplicatedCarName,
@@ -41,6 +41,12 @@ export default class RacingCarGame {
     return false;
   }
 
+  insertCarName() {
+    $all(SELECTOR.$CAR_NAME).forEach((carNameElement, index) => {
+      this.view.insertText(carNameElement, this.model.carList[index].name);
+    });
+  }
+
   submitCarNames() {
     const carNameList = trimStringArray(
       splitString(this.view.carNameInput.value, DELIMETER)
@@ -60,6 +66,7 @@ export default class RacingCarGame {
       'beforeend',
       template.renderRacingProgress(this.model.carList)
     );
+    this.insertCarName();
     this.view.toggleDisabledButton(this.view.carNameButton);
   }
 
@@ -122,6 +129,10 @@ export default class RacingCarGame {
       this.view.app,
       'beforeend',
       template.renderRacingResult(this.model.winners)
+    );
+    this.view.insertText(
+      SELECTOR.$WINNERS,
+      this.model.winners.join(`${DELIMETER} `)
     );
     this.view.winnersAlertMessage(this.model.winners);
   }

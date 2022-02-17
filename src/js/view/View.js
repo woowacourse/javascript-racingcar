@@ -81,6 +81,15 @@ export default class View {
     });
   }
 
+  insertText(selector, text) {
+    if (typeof selector !== 'string') {
+      selector.textContent = text;
+
+      return;
+    }
+    $(selector).textContent = text;
+  }
+
   render(selector, position, template) {
     selector.insertAdjacentHTML(position, template);
   }
