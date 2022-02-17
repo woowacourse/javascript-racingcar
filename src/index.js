@@ -62,7 +62,7 @@ class RacingCarGame {
         this.view.renderSpinner();
       }
 
-      await waitGame(RULES.WAITING_TIME);
+      await waitGame(RULES.TRUN_INTERVAL_TIME);
     }
 
     this.view.removeSpinner();
@@ -80,10 +80,14 @@ class RacingCarGame {
     });
   }
 
-  handleGameResult() {
+  async handleGameResult() {
     const finalWinner = this.model.getFinalWinner();
     this.view.renderFinalWinner(finalWinner);
     this.view.showRestartSection();
+
+    await waitGame(RULES.RESULT_MESSAGE_WAITING_TIME);
+
+    alert(`축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`);
   }
 }
 
