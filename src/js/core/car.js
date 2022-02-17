@@ -1,4 +1,4 @@
-import { MOVE_FORWARD_WHEN_THE_NUMBER_IS_ABOVE } from '../constants/constant.js';
+import { MIN_ADVANCE_VALUE } from '../constants/constant.js';
 
 export default class Car {
   constructor(name) {
@@ -6,8 +6,8 @@ export default class Car {
     this.score = 0;
   }
 
-  moveForward(randomInt) {
-    if (randomInt >= MOVE_FORWARD_WHEN_THE_NUMBER_IS_ABOVE) {
+  tryMoveForward(randomInt) {
+    if (randomInt >= MIN_ADVANCE_VALUE) {
       this.score += 1;
     }
   }

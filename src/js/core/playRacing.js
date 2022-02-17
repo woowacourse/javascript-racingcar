@@ -16,7 +16,7 @@ const getRandomInt = () => {
 
 const playTurnScoreResult = cars => {
   for (const car of cars) {
-    car.moveForward(getRandomInt());
+    car.tryMoveForward(getRandomInt());
   }
 };
 

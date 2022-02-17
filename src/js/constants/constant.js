@@ -1,6 +1,6 @@
 export const RAMDOM_MIN = 0;
 export const RAMDOM_MAX = 9;
-export const MOVE_FORWARD_WHEN_THE_NUMBER_IS_ABOVE = 4;
+export const MIN_ADVANCE_VALUE = 4;
 export const ERROR_MESSAGES = {
   IS_CORRECT_CAR_NAMES_INPUT_COUNT: `자동차 이름을 2개 이상 입력하세요`,
   IS_CORRECT_CAR_NAME_LENGTH: `자동차 이름은 5자를 초과할 수 없습니다.`,
