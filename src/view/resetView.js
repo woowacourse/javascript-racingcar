@@ -1,3 +1,4 @@
+import hideElement from '../utils/hideElement.js';
 import { $ } from '../utils/selector.js';
 
 const resetView = () => {
@@ -5,8 +6,10 @@ const resetView = () => {
   $('.count-input').value = '';
   $('.race-container').innerHTML = '';
   $('.winner-container').innerHTML = '';
-  $('.count-form').classList.add('hidden');
-  $('.restart').classList.add('hidden');
+  hideElement($('.count-form'));
+  hideElement($('.restart'));
+  // $('.count-form').classList.add('hidden');
+  // $('.restart').classList.add('hidden');
 };
 
 export default resetView;
