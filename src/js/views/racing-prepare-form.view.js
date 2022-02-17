@@ -1,5 +1,5 @@
 import { CAR_NAMES_INPUT_PLACEHOLDER, RACING_COUNT_INPUT_PLACEHOLDER, SELECTORS } from '../constants.js';
-import $ from '../utils/dom.js';
+import { querySelector } from '../utils/dom.js';
 import { hideElement, showElement } from '../utils/visibility.js';
 
 class RacingPrepareForm {
@@ -14,13 +14,16 @@ class RacingPrepareForm {
   }
 
   bindViews() {
-    this.$form = $(SELECTORS.RACING_GAME_PREPARE_FORM);
-    this.$carNamesFieldset = $(SELECTORS.CAR_NAMES_FIELDSET, this.$form);
-    this.$carNamesInput = $(SELECTORS.CAR_NAMES_INPUT, this.$carNamesFieldset);
-    this.$carNamesSubmitButton = $(SELECTORS.CAR_NAMES_SUBMIT_BUTTON, this.$carNamesFieldset);
-    this.$racingCountFieldset = $(SELECTORS.RACING_COUNT_FIELDSET, this.$form);
-    this.$racingCountInput = $(SELECTORS.RACING_COUNT_INPUT, this.$racingCountFieldset);
-    this.$racingCountSubmitButton = $(SELECTORS.RACING_COUNT_SUBMIT_BUTTON, this.$racingCountFieldset);
+    this.$form = querySelector(SELECTORS.RACING_GAME_PREPARE_FORM);
+    this.$carNamesFieldset = querySelector(SELECTORS.CAR_NAMES_FIELDSET, this.$form);
+    this.$carNamesInput = querySelector(SELECTORS.CAR_NAMES_INPUT, this.$carNamesFieldset);
+    this.$carNamesSubmitButton = querySelector(SELECTORS.CAR_NAMES_SUBMIT_BUTTON, this.$carNamesFieldset);
+    this.$racingCountFieldset = querySelector(SELECTORS.RACING_COUNT_FIELDSET, this.$form);
+    this.$racingCountInput = querySelector(SELECTORS.RACING_COUNT_INPUT, this.$racingCountFieldset);
+    this.$racingCountSubmitButton = querySelector(
+      SELECTORS.RACING_COUNT_SUBMIT_BUTTON,
+      this.$racingCountFieldset
+    );
   }
 
   registerEventListeners() {

@@ -1,5 +1,5 @@
 import { SELECTORS } from '../constants.js';
-import $ from '../utils/dom.js';
+import { querySelector, querySelectorAll } from '../utils/dom.js';
 import { hideElement, showElement } from '../utils/visibility.js';
 
 class RacingScreen {
@@ -23,12 +23,12 @@ class RacingScreen {
   }
 
   bindViews() {
-    this.$screen = $(SELECTORS.RACING_SCREEN);
+    this.$screen = querySelector(SELECTORS.RACING_SCREEN);
     this.$distances = [];
   }
 
   bindDistances() {
-    this.$distances = $(SELECTORS.DISTANCE, this.$screen);
+    this.$distances = querySelectorAll(SELECTORS.DISTANCE, this.$screen);
   }
 
   show() {

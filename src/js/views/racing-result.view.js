@@ -1,5 +1,5 @@
 import { SELECTORS } from '../constants.js';
-import $ from '../utils/dom.js';
+import { querySelector } from '../utils/dom.js';
 import { hideElement, showElement } from '../utils/visibility.js';
 
 class RacingResultView {
@@ -14,9 +14,9 @@ class RacingResultView {
   }
 
   bindViews() {
-    this.$racingResult = $(SELECTORS.RACING_RESULT);
-    this.$winners = $(SELECTORS.WINNERS, this.$racingResult);
-    this.$restartBtn = $(SELECTORS.RESTART_BUTTON, this.$racingResult);
+    this.$racingResult = querySelector(SELECTORS.RACING_RESULT);
+    this.$winners = querySelector(SELECTORS.WINNERS, this.$racingResult);
+    this.$restartBtn = querySelector(SELECTORS.RESTART_BUTTON, this.$racingResult);
   }
 
   registerEventListeners() {
