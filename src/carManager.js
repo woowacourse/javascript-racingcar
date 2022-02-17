@@ -1,12 +1,20 @@
-import { NUMBER } from './utils/constants.js';
+import Car from './car.js';
 
 export default class CarManager {
   constructor() {
     this.carList = [];
   }
 
-  saveCarList(carList) {
+  #saveCarList(carList) {
     this.carList = carList;
+  }
+
+  #createCarList(carNamesArray) {
+    return carNamesArray.map((carName) => new Car(carName));
+  }
+
+  createAndSaveCarList(carNamesArray) {
+    this.#saveCarList(this.#createCarList(carNamesArray));
   }
 
   startRace(count) {

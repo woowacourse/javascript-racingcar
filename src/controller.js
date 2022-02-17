@@ -1,6 +1,6 @@
 import View from './view.js';
 import Model from './model.js';
-import Car from './car.js';
+
 import { validateNameInput, validateCountInput } from './utils/validator.js';
 import { trimInArray } from './utils/common.js';
 
@@ -22,14 +22,10 @@ export default class Controller {
       const carNamesArray = trimInArray(carNames.split(','));
       validateNameInput(carNamesArray);
       this.view.displayCountForm();
-      this.model.saveCarList(this.makeCars(carNamesArray));
+      this.model.createAndSaveCarList(carNamesArray);
     } catch (error) {
       alert(error.message);
     }
-  }
-
-  makeCars(carNamesArray) {
-    return carNamesArray.map((carName) => new Car(carName));
   }
 
   onSubmitCount(count) {
