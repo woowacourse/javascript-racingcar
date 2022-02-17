@@ -51,6 +51,8 @@ class RacingCarGameView {
 
     this.winners.innerHTML = winnersTemplate;
     cancelAnimationFrame(this.animationId);
+
+    setTimeout(() => alert(`🎉축하합니다! 우승자는 ${winners.join(',')}입니다!🎉`), 2000);
   }
 
   renderCountInputForm() {

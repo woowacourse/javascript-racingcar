@@ -106,7 +106,11 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
 
     cy.wait(2000).then(() => {
-      expect(alertStub).to.be.calledWith('축하합니다!');
+      expect(alertStub).to.be.called;
+    });
+
+    cy.on('window:alert', (text) => {
+      expect(text).to.contains('🎉축하합니다! 우승자는');
     });
   });
 });
