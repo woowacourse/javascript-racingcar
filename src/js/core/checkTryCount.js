@@ -1,8 +1,9 @@
 import { $ } from '../util/dom.js';
+import { ERROR_MESSAGES } from '../constants/constant.js';
 
 const isTryCountPositiveNumber = tryCountInput => {
   if (tryCountInput < 1) {
-    window.alert('1이상의 수를 입력해 주세요.');
+    window.alert(ERROR_MESSAGES.IS_TRY_COUNT_POSITIVE_NUMBER);
   }
 
   return tryCountInput < 1;

@@ -1,4 +1,5 @@
 import { $ } from '../util/dom.js';
+import { ERROR_MESSAGES } from '../constants/constant.js';
 
 const errorController = ({ isError, message }) => {
   if (isError) {
@@ -11,7 +12,7 @@ const isCorrectCarNamesInputCount = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: '자동차 이름을 2개 이상 입력하세요',
+    message: ERROR_MESSAGES.IS_CORRECT_CAR_NAMES_INPUT_COUNT,
   });
 
   return isSuccess;
@@ -23,7 +24,7 @@ const isCorrectCarNameLength = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: '자동차 이름은 5자를 초과할 수 없습니다.',
+    message: ERROR_MESSAGES.IS_CORRECT_CAR_NAME_LENGTH,
   });
 
   return isSuccess;
@@ -34,7 +35,7 @@ const isUniqCarNames = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: '자동차 이름은 중복 될 수 없습니다.',
+    message: ERROR_MESSAGES.IS_UNIQ_CAR_NAMES,
   });
 
   return isSuccess;
