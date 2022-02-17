@@ -86,6 +86,8 @@ describe('우승자 출력 테스트', () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
 
+    cy.wait(racingCount * 1000);
+
     let max = -1;
     cy.get(`.${CLASS.RACING_INFO}`).each((racingResult) => {
       max = Math.max(max, racingResult.children().length);
