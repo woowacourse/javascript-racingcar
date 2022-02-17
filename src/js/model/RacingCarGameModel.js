@@ -11,8 +11,7 @@ export default class RacingCarGameModel extends Model {
   }
 
   async createCarList(carNameList) {
-    this.removeCarList();
-    this.insertCarList(carNameList);
+    this.setCarList(carNameList);
 
     return this.generatePayload();
   }
@@ -64,18 +63,7 @@ export default class RacingCarGameModel extends Model {
     });
   }
 
-  async restart() {
-    this.removeCarList();
-    this.setState({ winners: [] });
-
-    return this.generatePayload();
-  }
-
-  removeCarList() {
-    this.setState({ carList: [] });
-  }
-
-  insertCarList(carNameList) {
+  setCarList(carNameList) {
     this.setState({ carList: carNameList.map((name) => new Car(name)) });
   }
 

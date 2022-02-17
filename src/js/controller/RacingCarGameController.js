@@ -37,7 +37,7 @@ export default class RacingCarGameController extends Controller {
   }
 
   restart() {
-    this.model.restart().then((response) => {
+    this.model.init().then((response) => {
       this.render(response);
     });
   }
