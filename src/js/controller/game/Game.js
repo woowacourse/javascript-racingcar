@@ -33,30 +33,14 @@ export default class Game {
     return true;
   }
 
-  goNextStep() {
-    lockRacingCount(true);
-    this.startGame();
+  startRound() {
+    const carList = this.cars.getCars();
 
-    setTimeout(() => {
-      this.showWinner();
-      setTimeout(() => {
-        alert(`축하합니다. ${this.winner.join(", ")} 님이 우승하셨습니다!`);
-      }, 2000);
-    }, 1000 * this.racingCount);
-  }
-
-  addRacingCountSubmitEvent() {
-    racingCountInput.addEventListener("keyup", e => {
-      if (e.key === "Enter" && this.makeRacingCount(racingCountInput.value)) {
-        this.goNextStep();
-      }
+    carList.forEach(car => {
+      car.goForward();
     });
 
-    racingCountSubmitButton.addEventListener("click", () => {
-      if (this.makeRacingCount(racingCountInput.value)) {
-        this.goNextStep();
-      }
-    });
+    this.cars.setCars(carList);
   }
 
   startGame() {
@@ -69,16 +53,6 @@ export default class Game {
       this.startRound();
       this.showResult();
     }, 1000 * roundCount);
-  }
-
-  startRound() {
-    const carList = this.cars.getCars();
-
-    carList.forEach(car => {
-      car.goForward();
-    });
-
-    this.cars.setCars(carList);
   }
 
   getWinner() {
@@ -106,5 +80,30 @@ export default class Game {
     toggleHiddenWinnerAndRestartArea();
     this.winner = this.getWinner();
     setWinnerText(this.winner);
+  }
+
+  goNextStep() {
+    lockRacingCount(true);
+    this.startGame();
+
+    setTimeout(() => this.showWinner(), 1000 * this.racingCount);
+    setTimeout(
+      () => alert(`축하합니다. ${this.winner.join(", ")} 님이 우승하셨습니다!`),
+      1000 * this.racingCount + 2000,
+    );
+  }
+
+  addRacingCountSubmitEvent() {
+    racingCountInput.addEventListener("keyup", e => {
+      if (e.key === "Enter" && this.makeRacingCount(racingCountInput.value)) {
+        this.goNextStep();
+      }
+    });
+
+    racingCountSubmitButton.addEventListener("click", () => {
+      if (this.makeRacingCount(racingCountInput.value)) {
+        this.goNextStep();
+      }
+    });
   }
 }
