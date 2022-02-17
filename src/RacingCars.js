@@ -15,8 +15,8 @@ export default class RacingCars {
         });
     }
 
-    run(tryCnt) {
-        for (let i = 0; i < tryCnt; i += 1) {
+    run(tryCount) {
+        for (let i = 0; i < tryCount; i += 1) {
             this.cars.forEach((car) => car.tryForward());
         }
     }

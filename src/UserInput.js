@@ -6,7 +6,7 @@ const userInput = {
             .value.split(',')
             .map((name) => name.trim());
     },
-    getTryCnt() {
+    getTryCount() {
         return Number($('#try-count-input').value);
     },
     reset() {

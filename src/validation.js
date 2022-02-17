@@ -18,11 +18,11 @@ const isValidCarNames = (carNames) => {
 
 const isPositive = (number) => number > 0;
 
-const isValidTryCnt = (tryCnt) => {
-    if (!Number.isInteger(tryCnt)) return alert(ERROR_MESSAGE.NATURAL_CAR_NAME);
-    if (!isPositive(tryCnt)) return alert(ERROR_MESSAGE.POSITIVE_CAR_NAME);
+const isValidTryCount = (tryCount) => {
+    if (!Number.isInteger(tryCount)) return alert(ERROR_MESSAGE.NATURAL_CAR_NAME);
+    if (!isPositive(tryCount)) return alert(ERROR_MESSAGE.POSITIVE_CAR_NAME);
 
     return true;
 };
 
-export { isValidCarNames, isValidTryCnt };
+export { isValidCarNames, isValidTryCount };
