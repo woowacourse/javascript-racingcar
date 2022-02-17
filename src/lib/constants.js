@@ -19,6 +19,8 @@ export const DOM = Object.freeze({
   CAR_NAME_CLASS: 'car-name',
   STEP_CLASS: 'step',
 
+  SPINNER_CLASS: 'spinner',
+
   WINNER_CONTAINER_ID: 'winner-container',
   WINNER_NAME_ID: 'winner-name',
 });

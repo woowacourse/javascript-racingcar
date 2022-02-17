@@ -7,6 +7,18 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.visit(baseUrl);
   });
 
+  const playValidGame = () => {
+    //given
+    const nameInput = 'bling,juunz';
+    const countInput = 5;
+
+    //when
+    cy.inputNames({ nameInput });
+    cy.inputCount({ countInput });
+
+    return countInput;
+  };
+
   // then function
   const isInitialStatus = () => {
     cy.get(`#${DOM.CAR_NAME_INPUT_ID}`).should('not.have.text');
@@ -15,17 +27,21 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`.${DOM.WINNER_CONTAINER_ID}`).should('not.exist');
   };
 
+  // step1 테스트
   it('올바른 자동차 이름과 횟수를 입력하면 게임이 진행되고 우승자를 확인할 수 있어야 한다.', () => {
-    //given
-    const nameInput = 'bling,juunz';
-    const countInput = 1;
-
-    //when
-    cy.inputNames({ nameInput });
-    cy.inputCount({ countInput });
+    // when
+    playValidGame();
 
     //then
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
+  });
+
+  it('자동차 이름을 입력하지 않으면 게임이 진행되지 않고 실패 피드백을 전달한다.', () => {
+    //given
+    const invalidInput = '';
+
+    //then - expect alert
+    cy.inputNames({ nameInput: invalidInput, isInvalidName: true });
   });
 
   it('잘못된 자동차 이름을 입력하면 게임이 진행되지 않고 실패 피드백을 전달한다.', () => {
@@ -60,5 +76,35 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
     //then
     isInitialStatus();
+  });
+
+  // step2 테스트
+  it('올바른 자동차 이름과 횟수를 입력한 후 1초가 지나기 전에는 대기 상태여야 한다.', () => {
+    // when
+    playValidGame();
+
+    cy.wait(500);
+
+    cy.get(`.${DOM.STEP_CLASS}`).should('not.be.visible');
+    cy.get(`.${DOM.SPINNER_CLASS}`).should('be.visible');
+  });
+
+  it('입력한 횟수의 초만큼 흐른 뒤 결과를 표시하고 2초 뒤 축하 메시지를 표시해야 한다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    // when
+    const totalPlaySecond = playValidGame();
+
+    cy.get(`#${DOM.WINNER_NAME_ID}`).should('not.be.visible');
+
+    cy.wait(totalPlaySecond * 1000);
+
+    cy.get(`.${DOM.SPINNER_CLASS}`).should('be.visible');
+    cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
+
+    cy.wait(2000).then(() => {
+      expect(alertStub).to.be.calledWith('축하합니다!');
+    });
   });
 });

@@ -14,7 +14,7 @@ class RacingCarGameView {
     this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
     this.carNameBtn = selectDOM(`#${DOM.CAR_NAME_BTN_ID}`);
     this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
-    this.spinner = selectDOM('.spinner');
+    this.spinner = selectDOM(`.${DOM.SPINNER_CLASS}`);
   }
 
   initSpinner() {

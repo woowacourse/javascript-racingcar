@@ -41,7 +41,9 @@ Cypress.Commands.add('clickShowsAlert', (btnSelector, errorMessage) => {
 Cypress.Commands.add(
   'processInput',
   ({ inputSelector, btnSelector, input, isInvalidInput, errorMessage }) => {
-    cy.get(inputSelector).type(input);
+    if (!!input) {
+      cy.get(inputSelector).type(input);
+    }
 
     // show alert on invalid input
     if (isInvalidInput) {
