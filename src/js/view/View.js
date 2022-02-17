@@ -9,13 +9,7 @@ export default class View {
     this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
     this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
     this.$racingProgress = $(SELECTOR.$RACING_PROGRESS);
-    this.$racingResult = null;
-    this.$resultList = null;
     this.$$progressList = null;
-  }
-
-  set racingResult(racingResult) {
-    this.$racingResult = racingResult;
   }
 
   get carNameButton() {
@@ -46,7 +40,15 @@ export default class View {
     return this.$racingCountInput;
   }
 
-  alertErrorMessage(message) {
+  winnersAlertMessage(winners) {
+    setTimeout(() => {
+      this.alertMessage(
+        `${winners.join(',')} 자동차 경주 우승을 축하드립니다. 🎉`
+      );
+    }, 2000);
+  }
+
+  alertMessage(message) {
     alert(message);
   }
 
@@ -68,8 +70,17 @@ export default class View {
     $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.add('invisibled');
   }
 
-  removeRender(parent, child) {
-    child && parent.removeChild(child);
+  removeElements(parentElements, selector) {
+    if (!parentElements.length) {
+      parentElements.removeChild($(selector));
+
+      return;
+    }
+
+    [...parentElements].forEach((parentElement) => {
+      const childElement = $(selector);
+      parentElement.removeChild(childElement);
+    });
   }
 
   render(selector, position, template) {
@@ -90,10 +101,7 @@ export default class View {
   }
 
   bindClickCarNameButton(callback) {
-    this.bindEventListener('click', SELECTOR.$CAR_NAME_BUTTON, () => {
-      callback();
-      this.$resultList = $(SELECTOR.$RESULT_LIST);
-    });
+    this.bindEventListener('click', SELECTOR.$CAR_NAME_BUTTON, callback);
   }
 
   bindClickRacingCountButton(callback) {
@@ -104,9 +112,7 @@ export default class View {
   }
 
   bindClickRestartButton(callback) {
-    this.bindEventListener('click', SELECTOR.$RESTART_BUTTON, () => {
-      callback();
-    });
+    this.bindEventListener('click', SELECTOR.$RESTART_BUTTON, callback);
   }
 
   init() {
@@ -115,8 +121,8 @@ export default class View {
     this.$carNameInput.focus();
     this.racingCountInputInvisibled();
 
-    this.removeRender(this.$app, this.$racingResult);
-    this.removeRender(this.$racingProgress, this.$resultList);
+    this.removeElements(this.$app, SELECTOR.$RACING_RESULT);
+    this.removeElements(this.$racingProgress, SELECTOR.$RESULT_LIST);
 
     this.toggleDisabledButton(this.$carNameButton);
     this.toggleDisabledButton(this.$racingCountButton);

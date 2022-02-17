@@ -1,7 +1,7 @@
 import Car from '../model/Car.js';
 import template from '../templates.js';
-import { ERROR_MESSAGE, DELIMETER, SELECTOR } from '../constants.js';
-import { splitString, trimStringArray, sleep, $ } from '../utils/utils.js';
+import { ERROR_MESSAGE, DELIMETER } from '../constants.js';
+import { splitString, trimStringArray, sleep } from '../utils/utils.js';
 import {
   isValidCarNamesLength,
   isDuplicatedCarName,
@@ -21,7 +21,7 @@ export default class RacingCarGame {
 
   validateCarNameList(carNameList) {
     if (!isValidCarNamesLength(carNameList)) {
-      this.view.alertErrorMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
+      this.view.alertMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.view.initializeInput(this.view.carNameInput);
 
       return true;
@@ -32,7 +32,7 @@ export default class RacingCarGame {
 
   validateUniqueCarName(carNameList) {
     if (isDuplicatedCarName(carNameList)) {
-      this.view.alertErrorMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
+      this.view.alertMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
       this.view.initializeInput(this.view.carNameInput);
 
       return true;
@@ -82,15 +82,7 @@ export default class RacingCarGame {
     });
   }
 
-  setPreviousCarDistanceList() {
-    this.model.previousCarDistanceList = Array(this.model.carList.length).fill(
-      0
-    );
-  }
-
-  async startRace(racingCount) {
-    this.setPreviousCarDistanceList();
-
+  renderSpinnerAnimation() {
     this.view.progressList.forEach((progress) => {
       this.view.render(
         progress,
@@ -98,40 +90,40 @@ export default class RacingCarGame {
         template.renderLoadingAnimation()
       );
     });
+  }
+
+  async startRace(racingCount) {
+    this.model.previousCarDistanceList = Array(this.model.carList.length).fill(
+      0
+    );
+    this.renderSpinnerAnimation();
 
     for (let i = 0; i < racingCount; i += 1) {
       await sleep(1000);
       this.moveCars();
     }
 
-    this.view.progressList.forEach((progress) => {
-      progress.removeChild($('.spinner'));
-    });
+    this.view.removeElements(this.view.progressList, '.spinner');
   }
 
   async submitRacingCount() {
     const racingCount = this.view.racingCountInput.valueAsNumber;
 
     if (!isValidRacingCount(racingCount)) {
-      this.view.alertErrorMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
+      this.view.alertMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
       this.view.initializeInput(this.view.racingCountInput);
 
       return;
     }
 
+    this.view.toggleDisabledButton(this.view.racingCountButton);
     await this.startRace(racingCount);
     this.view.render(
       this.view.app,
       'beforeend',
       template.renderRacingResult(this.model.winners)
     );
-    this.view.racingResult = $(SELECTOR.$RACING_RESULT);
-    this.view.toggleDisabledButton(this.view.racingCountButton);
-    setTimeout(() => {
-      this.view.alertErrorMessage(
-        `${this.model.winners.join(',')} 자동차 경주 우승을 축하드립니다. 🎉`
-      );
-    }, 2000);
+    this.view.winnersAlertMessage(this.model.winners);
   }
 
   init() {
