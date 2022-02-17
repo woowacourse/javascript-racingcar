@@ -14,7 +14,7 @@ describe('자동차 경주 게임을 진행할 수 있다.', () => {
     cy.get('.count-button').click();
   });
 
-  it('레이싱 실행 이후 우승자를 출력할 수 있어야 한다', () => {
+  it('레이싱 실행 이후 우승자를 확인할 수 있다.', () => {
     cy.get('.winners-name').should('be.visible');
   });
 
