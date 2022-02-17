@@ -42,7 +42,7 @@ export default class RacingController {
       this.model.round = Number(racingCount);
       this.view.deactivateNamesForm();
       this.startRacingGame();
-      this.activateRestartButton();
+      // this.activateRestartButton();
     } catch (error) {
       alert(error.message);
     }
@@ -52,30 +52,29 @@ export default class RacingController {
     this.view.deactivateCountForm();
     this.view.renderName(this.model.getCarsName());
     this.playNext();
-    this.view.renderResult(this.model.winners);
   }
 
   playNext() {
-    const { round } = this.model;
-    let progressingRound = 1;
-    const playIntervalId = setInterval(() => {
-      this.play();
-      progressingRound += 1;
-      if (progressingRound >= round) {
-        clearInterval(playIntervalId);
-      }
-    }, 1000);
+    this.play();
+    this.view.renderResult(this.model.winners);
+    this.activateRestartButton();
 
-    // while (this.model.round) {
-    //   this.model.moveCars();
-    //   //
-    // }
+    // const { round } = this.model;
+    // let progressingRound = 1;
+    // const playIntervalId = setInterval(() => {
+    //   this.play();
+    //   progressingRound += 1;
+    //   if (progressingRound >= round) {
+    //     clearInterval(playIntervalId);
+    //     this.view.renderResult(this.model.winners);
+    //     this.activateRestartButton();
+    //   }
+    // }, 1000);
   }
 
   moveOrNot() {
     const randomNumber = RandomUtils.pickRandomNumber();
     if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
-      // this.position += CAR.ONE_MOVE;
       return 1;
     }
     return 0;
@@ -96,6 +95,7 @@ export default class RacingController {
   }
 
   restartGame() {
+    console.log('restart');
     this.view.reset();
     this.model.reset();
   }

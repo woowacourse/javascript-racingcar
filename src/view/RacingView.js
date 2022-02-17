@@ -1,6 +1,7 @@
 import DomUtils from '../utils/dom-utils.js';
 import $ from '../utils/selector.js';
 import { SELECTOR } from '../constants/constants.js';
+import Template from '../layouts/template.js';
 
 export default class RacingView {
   constructor() {
@@ -9,6 +10,7 @@ export default class RacingView {
     this.$countForm = $(`#${SELECTOR.ID.RACING_COUNT_FORM}`);
     this.$progressContainer = $(`#${SELECTOR.ID.RACING_PROGRESS_CONTAINER}`);
     this.$resultContainer = $(`#${SELECTOR.ID.RACING_RESULT_CONTAINER}`);
+    this.template = new Template();
   }
 
   insertIntoProgressContainer(template) {
@@ -30,20 +32,17 @@ export default class RacingView {
     `
       )
       .join('')}
-   
     `;
   }
 
   renderProgress(cars) {
     console.log(cars);
-    this.$progressContainer.appendChild(
-      DomUtils.createRacingProgressElement(cars)
-    );
-    // this.$resultContainer.
+    this.$progressContainer.innerHTML =
+      this.template.racingProgressTemplate(cars);
   }
 
   renderResult(winnerList) {
-    this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
+    this.$resultContainer.innerHTML = this.template.winnerTemplate(winnerList);
   }
 
   reset() {
@@ -55,17 +54,11 @@ export default class RacingView {
   }
 
   removeProgress() {
-    const $racingProgressNode = document.getElementById(
-      SELECTOR.ID.RACING_PROGRESS_CONTAINER
-    );
-    this.$app.removeChild($racingProgressNode);
+    this.$progressContainer.innerHTML = ``;
   }
 
   removeResult() {
-    const $racingResultNode = document.getElementById(
-      SELECTOR.ID.RACING_RESULT_CONTAINER
-    );
-    this.$app.removeChild($racingResultNode);
+    this.$resultContainer.innerHTML = ``;
   }
 
   static clearInput() {
