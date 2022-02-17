@@ -65,6 +65,15 @@ class RacingCarGameView {
     this.renderRestartButton();
   }
 
+  renderGoForwardCars(results) {
+    results.forEach(({ isForward, car }) => {
+      if (isForward) {
+        this.renderGoForward(car);
+      }
+    });
+  }
+
+  /** this가 없다고 해서 static으로 바꾸긴 싫은데 이 옵션이 어떤 의미에서 필요할까요 ? */
   renderGoForward({ id, name }) {
     findElement(ID_PREFIX, `${name}${id}`).insertAdjacentHTML(
       'afterend',

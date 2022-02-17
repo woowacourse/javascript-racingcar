@@ -93,16 +93,6 @@ class RacingCarGame {
   // }
 
   // 2
-  async simulateGame() {
-    const count = this.modelManager.getCount();
-    // 로딩은 1초간 지속된다. 1초가 지나면 `simulateRound()` 함
-    for (let i = 1; i <= count; i += 1) {
-      this.view.renderLoadingAboutRound();
-      // 병렬화의 이점을 제대로 이용하지못하고 있는 코드
-      await asyncSetTimeOut(() => this.simulateRound(), 1000);
-    }
-  }
-
   // async simulateGame() {
   //   const count = this.modelManager.getCount();
   //   for (let i = 1; i <= count; i += 1) {
@@ -110,21 +100,27 @@ class RacingCarGame {
   //   }
   // }
 
+  // 3
+  // 로딩은 1초간 지속된다. 1초가 지나면 `simulateRound()` 함
+  // 병렬화의 이점을 제대로 이용하지못하고 있는 코드
+  async simulateGame() {
+    const count = this.modelManager.getCount();
+    for (let i = 1; i <= count; i += 1) {
+      this.view.renderLoadingAboutRound();
+      await asyncSetTimeOut(() => this.simulateRound(), 1000);
+    }
+  }
+
   async simulateRound() {
-    const cars = this.modelManager.getCars();
-    cars.forEach((car) => {
-      const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
-      if (random >= MOVE_CONDITION) {
-        RacingCarGameManager.goForward(car);
-        this.view.renderGoForward(car);
-      }
-    });
+    const results = this.modelManager.goForwardCars();
+    this.view.renderGoForwardCars(results);
   }
 
   afterRenderComplete(winners) {
     this.view.disableInputButtons();
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
+
     setTimeout(() => {
       alert(`🎉🎉 축하합니다 ~~~~~ ${winners.join(',')} 님 🎉🎉`);
     }, 2000);
