@@ -1,7 +1,7 @@
-export function hideElement(element) {
+export const hideElement = (element) => {
   return element.setAttribute('hidden', true);
-}
+};
 
-export function showElement(element) {
+export const showElement = (element) => {
   return element.removeAttribute('hidden');
-}
+};
