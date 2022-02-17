@@ -63,4 +63,23 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(ELEMENT_SELECTOR.TURN_RESULT).should('have.text', '');
     cy.get(ELEMENT_SELECTOR.WINNERS_RESULT).should('have.text', '');
   });
+
+  it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
+    const carNames = 'a,b';
+    const tryCount = 1;
+    const seconds = 3000;
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).type(carNames);
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
+    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(tryCount);
+    cy.get(ELEMENT_SELECTOR.TRY_COUNT_BUTTON)
+      .click()
+      .then(() => {
+        setTimeout(() => {
+          expect(alertStub).to.be.called;
+        }, seconds);
+      });
+  });
 });
