@@ -22,3 +22,11 @@ export const generateId = (idSet) => {
 export const findElement = (surfix, selector) => document.querySelector(`${surfix}${selector}`);
 
 export const sleep = (s) => new Promise((resolve) => setTimeout(resolve, s * 1000));
+
+export const asyncSetTimeOut = (cb, ms) =>
+  new Promise((res) =>
+    setTimeout(() => {
+      cb();
+      res();
+    }, ms),
+  );
