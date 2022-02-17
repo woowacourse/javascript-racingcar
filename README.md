@@ -97,6 +97,17 @@
   - 자동차 리스트를 초기화한다.
   - 최종 우승자를 초기화한다.
 
+### Step2
+
+- #### 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
+
+  - 1초의 텀동안 로딩 애니메이션을 보여준다.
+  - 애니메이션 구현을 위해 `setInterval`, `setTimeout`, `requestAnimationFrame` 을 활용한다.
+
+- #### 게임이 시작되면 다시 시작하기 버튼을 제외한 나머지 버튼을 비활성화한다.
+
+- #### 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
+
 ## 📝 License
 
 This project is [MIT](https://github.com/woowacourse/javascript-racingcar/blob/main/LICENSE) licensed.
