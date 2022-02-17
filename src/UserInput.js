@@ -1,18 +1,18 @@
 import { $ } from './util.js';
 
-export default class UserInput {
-    static getCarNames() {
+const userInput = {
+    getCarNames() {
         return $('#car-name-input')
             .value.split(',')
             .map((name) => name.trim());
-    }
-
-    static getTryCnt() {
+    },
+    getTryCnt() {
         return Number($('#try-count-input').value);
-    }
-
-    static reset() {
+    },
+    reset() {
         $('#car-name-input').value = '';
         $('#try-count-input').value = '';
-    }
-}
+    },
+};
+
+export default userInput;

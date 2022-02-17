@@ -1,6 +1,6 @@
 import RacingCars from './RacingCars.js';
 import render from './render.js';
-import UserInput from './UserInput.js';
+import userInput from './userInput.js';
 import { isValidCarNames, isValidTryCnt } from './validation.js';
 import { $ } from './util.js';
 
@@ -17,7 +17,7 @@ export default class RacingGame {
 
     initCarNameFormEvent() {
         $('#car-name-submit-button').addEventListener('click', () => {
-            const carNames = UserInput.getCarNames();
+            const carNames = userInput.getCarNames();
             if (!isValidCarNames(carNames)) return;
 
             this.racingCars.reset();
@@ -28,7 +28,7 @@ export default class RacingGame {
 
     initTryCntFormEvent() {
         $('#try-count-submit-button').addEventListener('click', () => {
-            const tryCnt = UserInput.getTryCnt();
+            const tryCnt = userInput.getTryCnt();
             if (!isValidTryCnt(tryCnt)) return;
 
             this.runGame(tryCnt);
@@ -40,7 +40,7 @@ export default class RacingGame {
         $('#restart-button').addEventListener('click', () => {
             this.racingCars.reset();
             render.reset();
-            UserInput.reset();
+            userInput.reset();
         });
     }
 
