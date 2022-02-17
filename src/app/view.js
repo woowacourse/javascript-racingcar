@@ -1,6 +1,6 @@
 import { DOM, ID_PREFIX } from '../lib/constants.js';
 import icons from '../lib/icons.js';
-import { findElement } from '../lib/utils.js';
+import { findElement, rotateAnimation } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -22,7 +22,7 @@ class RacingCarGameView {
       <input id="car-name-input" type="text" />
       <button id="car-name-btn">확인</button>
     </div>
-  </form>  <form id="count-input-form">
+  </form>  <form id="count-input-form" class="hide">
     <label for="count-input">시도할 횟수를 입력해주세요.</label>
     <div id="count-input-field">
       <input id="count-input" type="number" />
@@ -35,7 +35,7 @@ class RacingCarGameView {
     this.resultField.innerHTML = `<section id="game-progress">
     </section>
     <section id="winners">
-      <button id="${DOM.RESTART_BTN}">다시 시작하기</button> 
+      <button id="${DOM.RESTART_BTN}" class="hide">다시 시작하기</button> 
     </section>`;
   }
 
@@ -56,13 +56,17 @@ class RacingCarGameView {
     this.gameProgress.innerHTML = progressTemplate;
   }
 
+  renderAfterCarSetting() {
+    RacingCarGameView.renderElement(this.countInputForm);
+  }
+
   renderResults(winners) {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
     });
 
     this.winners.insertAdjacentHTML('beforebegin', winnersTemplate);
-    this.renderRestartButton();
+    RacingCarGameView.renderElement(this.restartBtn);
   }
 
   renderGoForwardCars(results) {
@@ -83,38 +87,12 @@ class RacingCarGameView {
 
   renderLoadingAboutRound() {
     const loadingIconNodes = document.querySelectorAll(DOM.LOADING_ICON.toCLASS());
-    const start = null;
-
-    this.switchLoadingIcon(loadingIconNodes);
-    requestAnimationFrame((timestamp) => this.step(timestamp, loadingIconNodes, start));
-  }
-
-  step(time, loadingIconNodes, start) {
-    if (!start) start = time;
-    const progress = time - start;
-    loadingIconNodes.forEach((loadingIconNode) => {
-      loadingIconNode.style.transform = `rotate(${progress / 10}deg)`;
-    });
-    if (progress < 1000) {
-      requestAnimationFrame((timestamp) => this.step(timestamp, loadingIconNodes, start));
-    } else {
-      this.switchLoadingIcon(loadingIconNodes);
-    }
-  }
-
-  switchLoadingIcon(loadingIconNodes) {
-    loadingIconNodes.forEach((loadingIconNode) => {
-      loadingIconNode.classList.toggle('hide');
-      loadingIconNode.classList.toggle('show');
-    });
-  }
-
-  renderCountInputForm() {
-    this.countInputForm.classList.add('show');
-  }
-
-  renderRestartButton() {
-    this.restartBtn.classList.add('show');
+    RacingCarGameView.toggleShowElements(loadingIconNodes);
+    requestAnimationFrame((timestamp) =>
+      rotateAnimation(0, timestamp, loadingIconNodes, () =>
+        RacingCarGameView.toggleShowElements(loadingIconNodes),
+      ),
+    );
   }
 
   disableInputButtons() {
@@ -136,6 +114,33 @@ class RacingCarGameView {
       DOM.WINNER_NAME
     }">${winners.join(',')}</span>🏆</h2>
       `;
+  }
+
+  static renderElements(nodeList) {
+    nodeList.forEach((node) => RacingCarGameView.renderElement(node));
+  }
+
+  static hideElements(nodeList) {
+    nodeList.forEach((node) => RacingCarGameView.hideElement(node));
+  }
+
+  static toggleShowElements(nodeList) {
+    nodeList.forEach((node) => RacingCarGameView.toggleShowElement(node));
+  }
+
+  static renderElement(el) {
+    el.classList.remove('hide');
+    el.classList.add('show');
+  }
+
+  static hideElement(el) {
+    el.classList.remove('show');
+    el.classList.add('hide');
+  }
+
+  static toggleShowElement(el) {
+    el.classList.toggle('show');
+    el.classList.toggle('hide');
   }
 }
 export default RacingCarGameView;
