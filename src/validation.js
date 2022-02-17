@@ -1,10 +1,8 @@
 import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant.js';
 
-const isEmpty = (value) => value === '';
-
 const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
 
-const haveEmpty = someCarNames(isEmpty);
+const haveEmpty = someCarNames((value) => value === '');
 const haveMiddleBlank = someCarNames((carName) => carName.match(/\s+/));
 const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
 
@@ -16,11 +14,11 @@ const isValidCarNames = (carNames) => {
     return true;
 };
 
-const isPositive = (number) => number > 0;
+const isPositiveNumber = (number) => number > 0;
 
 const isValidTryCount = (tryCount) => {
     if (!Number.isInteger(tryCount)) return alert(ERROR_MESSAGE.NATURAL_CAR_NAME);
-    if (!isPositive(tryCount)) return alert(ERROR_MESSAGE.POSITIVE_CAR_NAME);
+    if (!isPositiveNumber(tryCount)) return alert(ERROR_MESSAGE.POSITIVE_CAR_NAME);
 
     return true;
 };
