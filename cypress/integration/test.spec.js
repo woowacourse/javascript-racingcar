@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import { ERROR_MESSAGES } from '../../src/js/constants.js';
 import testid from '../support/utils/test-id.js';
 
