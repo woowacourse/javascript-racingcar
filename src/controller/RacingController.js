@@ -4,7 +4,7 @@ import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
 
 export default class RacingController {
-  constructor(model, view) {
+  constructor() {
     this.model = new RacingGameModel();
     this.view = new RacingView();
   }
@@ -24,7 +24,7 @@ export default class RacingController {
 
     try {
       validateCarNames(nameList);
-      this.model.players = nameList;
+      this.model.cars = nameList;
       this.view.deactivateNamesForm();
       this.view.activateCountForm();
     } catch (error) {
