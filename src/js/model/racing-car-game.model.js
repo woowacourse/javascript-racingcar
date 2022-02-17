@@ -48,15 +48,8 @@ class RacingCarGameModel {
   }
 
   findWinners() {
-    const maxDistance = this.cars.reduce((acc, { distance }) => {
-      return Math.max(acc, distance);
-    }, 0);
-    return this.cars.reduce((acc, { name, distance }) => {
-      if (maxDistance === distance) {
-        acc.push(name);
-      }
-      return acc;
-    }, []);
+    const maxDistance = this.cars.reduce((acc, { distance }) => Math.max(acc, distance), 0);
+    return this.cars.filter((car) => car.distance === maxDistance);
   }
 
   reset() {
