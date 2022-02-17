@@ -1,10 +1,12 @@
 import { validateCarNames, validateCount } from '../utils/validation.js';
 import { SELECTOR } from '../constants/constants.js';
+import RacingGameModel from '../model/RacingGameModel.js';
+import RacingView from '../view/RacingView.js';
 
 export default class RacingController {
   constructor(model, view) {
-    this.model = model;
-    this.view = view;
+    this.model = new RacingGameModel();
+    this.view = new RacingView();
   }
 
   app() {
