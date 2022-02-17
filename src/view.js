@@ -75,28 +75,6 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  showStepSection(carList) {}
-
-  roundUpdate(carList, i) {
-    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
-    carList.map((car, j) => {
-      if (car.stepByRound[i] === STEP_SIGN.GO) {
-        this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
-      }
-    });
-  }
-
-  isFinalRound(i, count) {
-    return i + 1 === count;
-  }
-
-  removeSpinner() {
-    const $stepSectionLoading = Array.from(
-      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
-    );
-    this.$stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
-  }
-
   generateStepSectionDOM(car) {
     return `
     <section class="${SELECTOR.STEP_SECTION}">
@@ -108,34 +86,59 @@ export default class View {
   `;
   }
 
-  showWinner(winnerList) {
-    this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
-  }
-
-  showWinnerByAlert(winnerList) {
-    setTimeout(() => {
-      alert(WINNER_MESSAGE(winnerList));
-    }, WIN_ALERT_DELAY);
-  }
-
-  showResult(carList, winnerList) {
+  async showResult(carList, winnerList) {
     this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
 
     this.$stepSectionArrowsArray = Array.from(
       document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
     );
 
+    this.makeResultDisplayNotNone();
+    await this.showStepSection(carList);
+    this.removeSpinner();
+    this.showWinner(winnerList);
+    setTimeout(() => {
+      this.showWinnerByAlert(winnerList);
+    }, WIN_ALERT_DELAY);
+  }
+
+  async showStepSection(carList) {
     const count = carList[0].stepByRound.length;
     for (let i = 0; i < count; i++) {
-      setTimeout(() => {
-        this.roundUpdate(carList, i);
-        if (this.isFinalRound(i, count)) {
-          this.removeSpinner();
-          this.showWinner(winnerList);
-          this.showWinnerByAlert(winnerList);
-        }
-      }, ROUND_DELAY * (i + 1));
+      await this.updateRoundPromise(carList, i);
     }
-    this.makeResultDisplayNotNone();
+  }
+
+  updateRound(carList, i) {
+    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
+    carList.map((car, j) => {
+      if (car.stepByRound[i] === STEP_SIGN.GO) {
+        this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+      }
+    });
+  }
+
+  updateRoundPromise(carList, i) {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        resolve();
+        this.updateRound(carList, i);
+      }, ROUND_DELAY),
+    );
+  }
+
+  removeSpinner() {
+    const $stepSectionLoading = Array.from(
+      document.querySelectorAll(`.${SELECTOR.STEP_SECTION_LOADING}`),
+    );
+    this.$stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
+  }
+
+  showWinner(winnerList) {
+    this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
+  }
+
+  showWinnerByAlert(winnerList) {
+    alert(WINNER_MESSAGE(winnerList));
   }
 }
