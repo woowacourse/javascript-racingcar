@@ -6,7 +6,8 @@
   "scripts": {
     "cypress:open": "cypress open",
     "test": "cypress run --browser chrome",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "live-server"
   },
   "repository": {
     "type": "git",
