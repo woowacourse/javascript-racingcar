@@ -2,22 +2,21 @@ import { $ } from './util.js';
 import { SCREEN_CMD } from './constant.js';
 import template from './template.js';
 
-export default class Render {
-    static showTryForm() {
+const render = {
+    showTryForm() {
         $('#app').classList.add(SCREEN_CMD.SHOW_TRT);
-    }
-
-    static showResultArea() {
+    },
+    showResultArea() {
         $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
-    }
-
-    static renderResult(racingCars) {
+    },
+    renderResult(racingCars) {
         $('#track-area').innerHTML = template.track(racingCars.cars);
         $('#winners').innerText = racingCars.getWinners().join(',');
         this.showResultArea();
-    }
-
-    static reset() {
+    },
+    reset() {
         $('#app').classList.remove(SCREEN_CMD.SHOW_TRT, SCREEN_CMD.SHOW_RESULT);
-    }
-}
+    },
+};
+
+export default render;

@@ -1,5 +1,5 @@
 import RacingCars from './RacingCars.js';
-import Render from './Render.js';
+import render from './render.js';
 import UserInput from './UserInput.js';
 import { isValidCarNames, isValidTryCnt } from './validation.js';
 import { $ } from './util.js';
@@ -22,7 +22,7 @@ export default class RacingGame {
 
             this.racingCars.reset();
             this.racingCars.adds(carNames);
-            Render.showTryForm();
+            render.showTryForm();
         });
     }
 
@@ -39,13 +39,13 @@ export default class RacingGame {
     initRestartEvent() {
         $('#restart-button').addEventListener('click', () => {
             this.racingCars.reset();
-            Render.reset();
+            render.reset();
             UserInput.reset();
         });
     }
 
     runGame(tryCnt) {
         this.racingCars.run(tryCnt);
-        Render.renderResult(this.racingCars);
+        render.renderResult(this.racingCars);
     }
 }
