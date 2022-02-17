@@ -20,6 +20,7 @@
         "consistent-return":"off",
         "array-callback-return":"off",
         "import/prefer-default-export":"off",
-        "no-restricted-globals":"off"
+        "no-restricted-globals":"off",
+        "no-underscore-dangle":"off"
         }
 }
