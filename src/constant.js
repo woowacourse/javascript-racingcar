@@ -1,16 +1,16 @@
 const CAR_NAME_MAX_LENGTH = 5;
 
 const SCREEN_CMD = {
-    show_try: 'try',
-    show_result: 'result',
+    SHOW_TRT: 'try',
+    SHOW_RESULT: 'result',
 };
 
-const MSG = {
-    empty_car_name: '자동차 이름을 입력해주세요.',
-    blank_car_name: '자동차 이름에 공백이 들어갈 수 없습니다.',
-    exceed_car_name: '자동차 이름은 5자 이하입니다.',
-    natural_number: '자연수를 입력해주세요.',
-    positive_number: '양수를 입력해주세요.',
+const ERROR_MESSAGE = {
+    EMPTY_CAR_NAME: '자동차 이름을 입력해주세요.',
+    BLANK_CAR_NAME: '자동차 이름에 공백이 들어갈 수 없습니다.',
+    EXCEED_CAR_NAME: '자동차 이름은 5자 이하입니다.',
+    NATURAL_CAR_NAME: '자연수를 입력해주세요.',
+    POSITIVE_CAR_NAME: '양수를 입력해주세요.',
 };
 
 const SELECTOR = {
@@ -24,4 +24,4 @@ const SELECTOR = {
     winners: '#winners',
 };
 
-export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, MSG, SELECTOR };
+export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, ERROR_MESSAGE, SELECTOR };

@@ -34,11 +34,11 @@ export default class Render {
     }
 
     static showTryForm() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.show_try);
+        $(SELECTOR.app).classList.add(SCREEN_CMD.SHOW_TRT);
     }
 
     static showResultArea() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.show_result);
+        $(SELECTOR.app).classList.add(SCREEN_CMD.SHOW_RESULT);
     }
 
     static showResult(cars, winners) {
@@ -48,6 +48,6 @@ export default class Render {
     }
 
     static reset() {
-        $(SELECTOR.app).classList.remove(SCREEN_CMD.show_try, SCREEN_CMD.show_result);
+        $(SELECTOR.app).classList.remove(SCREEN_CMD.SHOW_TRT, SCREEN_CMD.SHOW_RESULT);
     }
 }
