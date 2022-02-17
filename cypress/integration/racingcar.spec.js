@@ -119,9 +119,10 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
     submitRacingCount(racingCount);
 
     cy.clock();
-    cy.wait(1000 * racingCount);
-
-    findLocation(carNames);
+    cy.wait(1000 * racingCount)
+      .then(() => {
+        findLocation(carNames);
+      });
   });
 
   it("다시 시작 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
@@ -130,8 +131,25 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
     submitCarNames("movie, halee");
     submitRacingCount(racingCount);
     cy.clock();
-    cy.wait(1000 * racingCount);
-    initLogic();
+    cy.wait(1000 * racingCount)
+      .then(() => {
+        initLogic();
+      });
+  });
+
+  it("게임 결과가 나오고 2초 후에 축하 메시지를 확인할 수 있어야 한다.", () => {
+    const racingCount = 3;
+
+    submitCarNames("movie, halee");
+    submitRacingCount(racingCount);
+
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
+    cy.clock();
+    cy.wait(1000 * racingCount + 2000)
+      .then(() => {
+        expect(alertStub).to.be.called;
+      });
   });
 });
 
