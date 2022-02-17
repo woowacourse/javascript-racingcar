@@ -30,16 +30,17 @@ export const SELECTOR = Object.freeze({
   INPUT_SECTION_COUNT_BUTTON: 'input-section__count-button',
   COUNT_SECTION: 'count-section',
   COUNT_SECTION_DISPLAY_NONE: 'count-section-display-none',
-  RESULT_SECTION: 'result-section',
-  RESULT_SECTION_DISPLAY_NONE: 'result-section-display-none',
   STEP_SECTIONS: 'step-sections',
+  STEP_SECTIONS_DISPLAY_NONE: 'step-sections-display-none',
   STEP_SECTION: 'step-section',
   STEP_SECTION_NAME: 'step-section__name',
   STEP_SECTION_ARROWS: 'step-section__arrows',
   STEP_SECTION_ARROW: 'step-section__arrow',
   STEP_SECTION_LOADING: 'step-section__loading',
   WINNER: 'winner',
+  WINNER_DISPLAY_NONE: 'winner-display-none',
   RESET_BUTTON: 'reset-button',
+  RESET_BUTTON_DISPLAY_NONE: 'reset-button-display-none',
 });
 
 export const ROUND_DELAY = 1000;

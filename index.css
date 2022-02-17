@@ -85,16 +85,6 @@ button {
   display: none;
 }
 
-.result-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.result-section-display-none {
-  display: none;
-}
-
 .step-sections {
   display: flex;
   justify-content: center;
@@ -103,6 +93,10 @@ button {
   white-space: nowrap;
   overflow-x: scroll;
   width: 100%;
+}
+
+.step-sections-display-none {
+  display: none;
 }
 
 .step-section {
@@ -160,6 +154,10 @@ button {
   margin-bottom: 24px;
 }
 
+.winner-display-none {
+  display: none;
+}
+
 .reset-button {
   width: 152px;
   height: 36px;
@@ -171,4 +169,8 @@ button {
   color: white;
   font-size: 14px;
   font-weight: 700;
+}
+
+.reset-button-display-none {
+  display: none;
 }

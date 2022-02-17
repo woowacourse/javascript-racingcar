@@ -27,7 +27,6 @@ export default class View {
     this.$nameButton = $(SELECTOR.INPUT_SECTION_NAME_BUTTON);
     this.$countButton = $(SELECTOR.INPUT_SECTION_COUNT_BUTTON);
     this.$countSection = $(SELECTOR.COUNT_SECTION);
-    this.$resultSection = $(SELECTOR.RESULT_SECTION);
     this.$stepSections = $(SELECTOR.STEP_SECTIONS);
     this.$winner = $(SELECTOR.WINNER);
     this.$resetButton = $(SELECTOR.RESET_BUTTON);
@@ -40,11 +39,39 @@ export default class View {
   }
 
   makeResultDisplayNotNone() {
-    makeDOMDisplayNotNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
+    this.makeStepSectionsDisplayNotNone();
+    this.makeWinnerDisplayNotNone();
+    this.makeResetButtonDisplayNotNone();
   }
 
   makeResultDisplayNone() {
-    makeDOMDisplayNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
+    this.makeStepSectionsDisplayNone();
+    this.makeWinnerDisplayNone();
+    this.makeResetButtonDisplayNone();
+  }
+
+  makeStepSectionsDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$stepSections, SELECTOR.STEP_SECTIONS_DISPLAY_NONE);
+  }
+
+  makeStepSectionsDisplayNone() {
+    makeDOMDisplayNone(this.$stepSections, SELECTOR.STEP_SECTIONS_DISPLAY_NONE);
+  }
+
+  makeWinnerDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$winner, SELECTOR.WINNER_DISPLAY_NONE);
+  }
+
+  makeWinnerDisplayNone() {
+    makeDOMDisplayNone(this.$winner, SELECTOR.WINNER_DISPLAY_NONE);
+  }
+
+  makeResetButtonDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$resetButton, SELECTOR.RESET_BUTTON_DISPLAY_NONE);
+  }
+
+  makeResetButtonDisplayNone() {
+    makeDOMDisplayNone(this.$resetButton, SELECTOR.RESET_BUTTON_DISPLAY_NONE);
   }
 
   makeCountFormDisplayNone() {
@@ -97,11 +124,16 @@ export default class View {
   }
 
   async showResult(carList, winnerList) {
+    this.makeWinnerDisplayNone();
+    this.makeResetButtonDisplayNone();
+    this.makeStepSectionsDisplayNotNone();
+
     this.generateStepSections(carList);
     this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
-    this.makeResultDisplayNotNone();
     await this.showStepSection(carList);
     this.removeSpinner();
+    this.makeWinnerDisplayNotNone();
+    this.makeResetButtonDisplayNotNone();
     this.showWinner(winnerList);
     await this.showWinnerByAlertPromise(winnerList);
   }
