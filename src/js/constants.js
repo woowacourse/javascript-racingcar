@@ -32,3 +32,6 @@ export const ERROR_MESSAGES = {
   FALL_SHORT_OF_MIN_RACING_COUNT: `시도 횟수는 ${MIN_RACING_COUNT}회 이상으로 입력해 주세요`,
   TYPE_MISMATCH_OF_RACING_COUNT: '시도 횟수는 숫자만 입력 가능합니다',
 };
+
+export const CAR_NAMES_INPUT_PLACEHOLDER = 'ex) 람보르기니, 부가티, 마이바흐, 롤스로이스, 코닉세그';
+export const RACING_COUNT_INPUT_PLACEHOLDER = '시도 횟수';

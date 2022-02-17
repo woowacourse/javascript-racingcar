@@ -1,6 +1,6 @@
 import { SELECTORS } from '../constants.js';
 import $ from '../utils/dom.js';
-import { showElement } from '../utils/setAttribute.js';
+import { hideElement, showElement } from '../utils/setAttribute.js';
 
 class RacingScreen {
   constructor(delegate) {
@@ -35,6 +35,10 @@ class RacingScreen {
     showElement(this.$screen);
   }
 
+  hideScreen() {
+    hideElement(this.$screen);
+  }
+
   renderLanes(cars) {
     cars.forEach(({ name }) => {
       const template = RacingScreen.laneTemplate(name);
@@ -52,6 +56,12 @@ class RacingScreen {
       );
       $distance.setAttribute('data-current-distance', car.distance);
     });
+  }
+
+  reset() {
+    this.hideScreen();
+    // event handler가 등록되어 있지 않기 때문에 innerHTML로 삭제해도 된다
+    this.$screen.innerHTML = '';
   }
 }
 

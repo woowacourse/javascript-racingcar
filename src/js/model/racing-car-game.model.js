@@ -55,6 +55,11 @@ class RacingCarGameModel {
       return acc;
     }, []);
   }
+
+  reset() {
+    this.cars = [];
+    this.racingCount = 0;
+  }
 }
 
 export default RacingCarGameModel;

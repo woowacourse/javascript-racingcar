@@ -17,6 +17,7 @@ class RacingCarGameController {
   bindMethods() {
     this.onSubmitCarNames = this.onSubmitCarNames.bind(this);
     this.onSubmitRacingCount = this.onSubmitRacingCount.bind(this);
+    this.onRestartBtnClick = this.onRestartBtnClick.bind(this);
   }
 
   bindViews() {
@@ -48,6 +49,10 @@ class RacingCarGameController {
     }
   }
 
+  onRestartBtnClick() {
+    this.restartGame();
+  }
+
   startGame() {
     this.screen.showScreen();
     this.screen.renderLanes(this.model.getCars());
@@ -62,6 +67,13 @@ class RacingCarGameController {
   endGame() {
     this.resultView.show();
     this.resultView.renderWinners(this.model.findWinners());
+  }
+
+  restartGame() {
+    this.model.reset();
+    this.form.reset();
+    this.screen.reset();
+    this.resultView.reset();
   }
 }
 

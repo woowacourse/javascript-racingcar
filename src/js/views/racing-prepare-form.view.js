@@ -1,4 +1,4 @@
-import { SELECTORS } from '../constants.js';
+import { CAR_NAMES_INPUT_PLACEHOLDER, RACING_COUNT_INPUT_PLACEHOLDER, SELECTORS } from '../constants.js';
 import $ from '../utils/dom.js';
 import { hideElement, showElement } from '../utils/setAttribute.js';
 
@@ -59,6 +59,20 @@ class RacingPrepareForm {
     this.$carNamesSubmitButton.disabled = true;
     this.$racingCountInput.disabled = true;
     this.$racingCountSubmitButton.disabled = true;
+  }
+
+  enableSubmit() {
+    this.$carNamesInput.disabled = false;
+    this.$carNamesSubmitButton.disabled = false;
+    this.$racingCountInput.disabled = false;
+    this.$racingCountSubmitButton.disabled = false;
+  }
+
+  reset() {
+    this.hideRacingCountFieldset();
+    this.resetCarNameInput(CAR_NAMES_INPUT_PLACEHOLDER);
+    this.resetRacingCountInput(RACING_COUNT_INPUT_PLACEHOLDER);
+    this.enableSubmit();
   }
 }
 

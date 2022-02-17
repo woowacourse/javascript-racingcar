@@ -10,11 +10,17 @@ class RacingResultView {
 
   init() {
     this.bindViews();
+    this.registerEventListeners();
   }
 
   bindViews() {
     this.$racingResult = $(SELECTORS.RACING_RESULT);
     this.$winners = $(SELECTORS.WINNERS, this.$racingResult);
+    this.$restartBtn = $(SELECTORS.RESTART_BUTTON, this.$racingResult);
+  }
+
+  registerEventListeners() {
+    this.$restartBtn.addEventListener('click', this.delegate.onRestartBtnClick);
   }
 
   renderWinners(winners) {
@@ -24,6 +30,15 @@ class RacingResultView {
 
   show() {
     showElement(this.$racingResult);
+  }
+
+  hide() {
+    hideElement(this.$racingResult);
+  }
+
+  reset() {
+    this.hide();
+    this.$winners.innerHTML = '';
   }
 }
 
