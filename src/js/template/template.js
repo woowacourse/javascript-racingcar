@@ -55,7 +55,7 @@ const template = {
                 )}
                 ${
                   (isRacing &&
-                    `<li class="progress"><div class="loading"></div></li>`) ||
+                    `<li class="progress"><div class="${DOM_STRING.LOADING}"></div></li>`) ||
                   ''
                 }
               </ul>
