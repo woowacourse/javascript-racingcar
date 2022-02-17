@@ -3,9 +3,9 @@ import { SELECTOR } from '../constants/constants.js';
 export default class Template {
   static winnerTemplate(winnerList) {
     return `
-        <h2 id="${SELECTOR.ID.WINNER_SPAN}">
-            🏆 최종 우승자: ${winnerList.join(', ')}🏆
-        </h2>
+        <h2 id="${SELECTOR.ID.WINNER_SPAN}">🏆 최종 우승자: ${winnerList.join(
+      ', '
+    )}🏆</h2>
         <button id="${SELECTOR.ID.RESTART_BUTTON}">다시 시작하기</button>
     `;
   }
