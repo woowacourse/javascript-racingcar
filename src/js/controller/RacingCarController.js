@@ -1,76 +1,72 @@
-import RacingCarModel from "../models/RacingCarModel.js";
-import RacingCarView from "../view/RacingCarView.js";
+import RacingCarModel from '../models/RacingCarModel.js';
+import CarNamesInputView from '../view/CarNamesInputView.js';
+import CountInputView from '../view/CountInputView.js';
+import ResultView from '../view/ResultView.js';
+import WinnerView from '../view/WinnerView.js';
 
-import { $ } from "../utils/selector.js";
-import { ID } from "../utils/constants.js";
+import { $ } from '../utils/selector.js';
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
-    this.view = new RacingCarView();
+    this.CarNamesInputView = new CarNamesInputView($(`#car-names-section`))
+      .setup()
+      .on('@submitCarNames', (e) => this.submitCarNamesHandler(e.detail));
+    this.CountInputView = new CountInputView($(`#racing-count-section`))
+      .setup()
+      .on('@submitRacingCount', (e) => this.submitRacingCountHandler(e.detail));
+    this.ResultView = new ResultView($(`#result`));
+    this.WinnerView = new WinnerView($(`#result`))
+      .setup()
+      .on('@clickReplayButton', this.clickReplayButtonHandler);
   }
 
-  init = () => {
-    this.bindEvent();
-  };
-
-  bindEvent = () => {
-    $(`#${ID.CAR_NAME_BUTTON}`).addEventListener(
-      "click",
-      this.submitCarNamesHandler
-    );
-    $(`#${ID.RACING_COUNT_BUTTON}`).addEventListener(
-      "click",
-      this.submitRacingCountHandler
-    );
-    $(`#${ID.RESULT}`).addEventListener("click", this.clickReplayButtonHandler);
-  };
-
-  submitCarNamesHandler = (e) => {
-    const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
+  submitCarNamesHandler = (carNames) => {
     try {
       this.model.setCars(carNames);
-      this.view.disableCarName();
-      this.view.enableRacingCount();
+      this.CarNamesInputView.disableCarNamesInput();
+      this.CountInputView.enableCountInput();
     } catch (err) {
       alert(err);
     }
   };
 
-  submitRacingCountHandler = (e) => {
-    const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
+  submitRacingCountHandler = (racingCount) => {
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
-      this.view.disableCarName();
-      this.view.disableRacingCount();
+      this.CarNamesInputView.disableCarNamesInput();
+      this.CountInputView.disableCountInput();
     } catch (err) {
       alert(err);
     }
-  };
-
-  clickReplayButtonHandler = (e) => {
-    if (e.target.id !== ID.REPLAY_BUTTON) {
-      return;
-    }
-    this.model.resetGameStatus();
-    this.view.resetGame();
-    this.view.enableCarName();
   };
 
   playGame = () => {
     this.model.initPrevResult();
-    this.view.renderCarNames(this.model.getCarsName());
+    this.ResultView.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const stageInfo = this.model.playTurn();
-      this.view.renderResult(stageInfo);
+      this.ResultView.renderArrows(stageInfo);
     }
     this.endGame();
   };
 
   endGame = () => {
     const winners = this.model.pickWinners();
-    this.view.renderWinners(winners);
-    this.view.renderReplayButton();
+    this.WinnerView.renderWinners(winners);
+    this.WinnerView.renderReplayButton();
+  };
+
+  clickReplayButtonHandler = () => {
+    this.model.resetGameStatus();
+    this.resetGame();
+  };
+
+  resetGame = () => {
+    this.CarNamesInputView.resetValue();
+    this.CountInputView.resetValue();
+    this.ResultView.resetResult();
+    this.CarNamesInputView.enableCarNamesInput();
   };
 }

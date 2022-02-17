@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="kr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>🏎️ 자동차 경주 게임🏁</title>
-    <link rel="stylesheet" href="./src/css/style.css" />
-  </head>
 
-  <body>
-    <div id="app">
-      <h2 id="game-header">🏎️자동차 경주 게임🏁</h2>
-      <form class="racing-input-form">
-        <section>
-          <label>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
-          <div class="input-container">
-            <input
-              id="car-names-input"
-              type="text"
-              placeholder="자동차 이름을 입력해주세요."
-            />
-            <button type="button" class="input-btn btn" id="car-names-button">
-              확인
-            </button>
-          </div>
-        </section>
-        <section>
-          <label>시도할 횟수를 입력해주세요.</label>
-          <div class="input-container">
-            <input
-              id="racing-count-input"
-              type="number"
-              min="0"
-              placeholder="레이싱 횟수를 입력해주세요."
-              disabled
-            />
-            <button
-              type="button"
-              class="input-btn btn"
-              id="racing-count-button"
-              disabled
-            >
-              확인
-            </button>
-          </div>
-        </section>
-      </form>
-      <div id="result"></div>
-    </div>
-    <script src="./src/js/index.js" type="module"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>🏎️ 자동차 경주 게임🏁</title>
+  <link rel="stylesheet" href="./src/css/style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <h2 id="game-header">🏎️자동차 경주 게임🏁</h2>
+    <form class="racing-input-form">
+      <section id="car-names-section">
+        <label>5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+        <div class="input-container">
+          <input id="car-names-input" type="text" placeholder="자동차 이름을 입력해주세요." />
+          <button type="button" class="input-btn btn" id="car-names-button">
+            확인
+          </button>
+        </div>
+      </section>
+      <section id="racing-count-section">
+        <label>시도할 횟수를 입력해주세요.</label>
+        <div class="input-container">
+          <input id="racing-count-input" type="number" min="0" placeholder="레이싱 횟수를 입력해주세요." disabled />
+          <button type="button" class="input-btn btn" id="racing-count-button" disabled>
+            확인
+          </button>
+        </div>
+      </section>
+    </form>
+    <div id="result"></div>
+  </div>
+  <script src="./src/js/index.js" type="module"></script>
+</body>
+
 </html>
