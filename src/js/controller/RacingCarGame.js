@@ -107,8 +107,6 @@ export default class RacingCarGame {
     this.view.progressList.forEach((progress) => {
       progress.removeChild($('.spinner'));
     });
-
-    console.log(this.model.carList);
   }
 
   async submitRacingCount() {
@@ -129,6 +127,11 @@ export default class RacingCarGame {
     );
     this.view.racingResult = $(SELECTOR.$RACING_RESULT);
     this.view.toggleDisabledButton(this.view.racingCountButton);
+    setTimeout(() => {
+      this.view.alertErrorMessage(
+        `${this.model.winners.join(',')} 자동차 경주 우승을 축하드립니다. 🎉`
+      );
+    }, 2000);
   }
 
   init() {
