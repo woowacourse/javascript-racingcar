@@ -12,3 +12,8 @@ export const LIMIT = {
 export const NUMBER = {
   CAN_GO: 4,
 };
+
+export const TIME = {
+  SPINNER_DELAY: 1000,
+  RESULT_DELAY: 2000,
+};
