@@ -55,21 +55,17 @@ export default class RacingController {
   }
 
   playNext() {
-    this.play();
-    this.view.renderResult(this.model.winners);
-    this.activateRestartButton();
-
-    // const { round } = this.model;
-    // let progressingRound = 1;
-    // const playIntervalId = setInterval(() => {
-    //   this.play();
-    //   progressingRound += 1;
-    //   if (progressingRound >= round) {
-    //     clearInterval(playIntervalId);
-    //     this.view.renderResult(this.model.winners);
-    //     this.activateRestartButton();
-    //   }
-    // }, 1000);
+    const { round } = this.model;
+    let progressingRound = 1;
+    const playIntervalId = setInterval(() => {
+      this.play();
+      progressingRound += 1;
+      if (progressingRound >= round) {
+        clearInterval(playIntervalId);
+        this.view.renderResult(this.model.winners);
+        this.activateRestartButton();
+      }
+    }, 1000);
   }
 
   moveOrNot() {
