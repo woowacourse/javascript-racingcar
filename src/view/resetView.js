@@ -1,6 +1,6 @@
-import { hideElement } from '../utils/handleElement.js';
 import { $ } from '../utils/selector.js';
-import { setEnabledAllForms } from './showProgress.js';
+import { hideElement } from '../utils/handleElement.js';
+import { setEnabledAllForms } from './setFormState.js';
 
 const resetView = () => {
   $('.name-input').value = '';

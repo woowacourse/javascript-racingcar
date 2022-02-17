@@ -2,7 +2,7 @@ import generateCars from '../model/generateCars.js';
 import { getWinners, getMaxPosition } from '../model/getWinners.js';
 import { showArrowProgress, showCarElements } from '../view/showProgress.js';
 import { showRestart, showWinners } from '../view/showResult.js';
-import waitSeconds from '../utils/waitSeconds.js';
+import wait from '../utils/wait.js';
 import hideLoader from '../view/hideLoader.js';
 
 const sortCars = cars => {
@@ -13,7 +13,7 @@ const finishRace = async cars => {
   const winner = getWinners(cars);
   showWinners(winner);
   showRestart();
-  await waitSeconds(2000);
+  await wait(2000);
   alert(`🎉 ${[...winner]}의 우승을 축하합니다! 🎉`);
 };
 
@@ -25,7 +25,7 @@ const handleRace = async count => {
 
   showCarElements(sortCars(cars));
   showArrowProgress();
-  await waitSeconds((getMaxPosition(cars) + 1) * 1000);
+  await wait((getMaxPosition(cars) + 1) * 1000);
   hideLoader();
   finishRace(cars);
 };
