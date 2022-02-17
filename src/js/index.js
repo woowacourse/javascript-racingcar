@@ -1,12 +1,9 @@
 import RacingGame from './models/RacingGame.js';
-import RacingGameView from './RacingGameView.js';
+import RacingGameView from './views/RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/element-tools.js';
 import SELECTOR from './constants/selector.js';
-import {
-  isCarNameInputValid,
-  isRaceTimeValid,
-} from './utils/racingGame-validation.js';
+import { isCarNameInputValid, isRaceTimeValid } from './racingGameHelper.js';
 
 class App {
   constructor() {
