@@ -30,6 +30,7 @@ describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 
 
 describe('유효한 자동차 이름을 입력한 경우', () => {
   it('시도 횟수를 입력하는 fieldset을 보여준다', () => {
+    cy.visit('/index.html');
     const validCarNames = 'aa,bb,cc,dd';
     cy.formSubmit('car-names-input', 'car-names-submit-button', validCarNames);
     cy.get(testid`racing-count-fieldset`).should('be.visible');
