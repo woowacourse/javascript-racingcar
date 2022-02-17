@@ -1,14 +1,14 @@
-import NUMBERS from '../constants/number.js';
-import MESSAGE from '../constants/message.js';
+import NUMBERS from './constants/number.js';
+import MESSAGE from './constants/message.js';
+
+import nameStringToArray from './utils/nameStringToArray.js';
 import {
   isWithComma,
   hasValidLengthInArray,
   isUniqueWord,
   isOnlyNumbers,
   isNumberInRange,
-} from './validator.js';
-
-import nameStringToArray from './nameStringToArray.js';
+} from './utils/validator.js';
 
 const isCarNameInputValid = (value) => {
   if (!isWithComma(value)) {

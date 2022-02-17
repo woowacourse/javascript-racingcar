@@ -1,5 +1,5 @@
-import { $, $$ } from './utils/element-tools.js';
-import SELECTOR from './constants/selector.js';
+import { $, $$ } from '../utils/element-tools.js';
+import SELECTOR from '../constants/selector.js';
 
 export default class RacingGameView {
   setAbleForm($formElement) {
