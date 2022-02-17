@@ -36,3 +36,33 @@ describe('유효한 자동차 이름을 입력한 경우', () => {
     cy.get(testid`racing-count-fieldset`).should('be.visible');
   });
 });
+
+describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경우', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+    // 먼저 자동차 이름을 입력해야 시도 횟수를 입력할 수 있다
+    const validCarNames = 'aa,bb,cc,dd,ee';
+    cy.formSubmit('car-names-input', 'car-names-submit-button', validCarNames);
+  });
+
+  const alertTestOnSubmitRaciingCount = (invalidCarNames, errorMessage) => {
+    cy.formSubmit('racing-count-input', 'racing-count-submit-button', invalidCarNames, (txt) => {
+      expect(txt).to.contains(errorMessage);
+    });
+  };
+
+  it('시도 횟수가 비어있으면, alert메세지를 띄운다', () => {
+    const invalidRacingCount = '';
+    alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.EMPTY_RACING_COUNT);
+  });
+
+  it('시도 횟수가 100회를 초과하면, alert 메세지를 띄운다.', () => {
+    const invalidRacingCount = 101;
+    alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.BEYOND_MAX_RACING_COUNT);
+  });
+
+  it('시도 횟수가 1미만이면, alert 메세지를 띄운다.', () => {
+    const invalidCarNames = 0;
+    alertTestOnSubmitRaciingCount(invalidCarNames, ERROR_MESSAGES.FALL_SHORT_OF_MIN_RACING_COUNT);
+  });
+});
