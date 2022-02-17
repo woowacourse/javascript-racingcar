@@ -1,4 +1,9 @@
-import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
+import {
+  $,
+  generateRandomNumber,
+  makeDOMDisplayNone,
+  makeDOMDisplayNotNone,
+} from './utils/common.js';
 import {
   ROUND_DELAY,
   SELECTOR,
@@ -75,7 +80,7 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  generateStepSectionDOM(car) {
+  generateStepSection(car) {
     return `
     <section class="${SELECTOR.STEP_SECTION}">
       <span class="${SELECTOR.STEP_SECTION_NAME}">${car.name}</span>
@@ -86,8 +91,12 @@ export default class View {
   `;
   }
 
+  generateStepSections(carList) {
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSection(car)).join('');
+  }
+
   async showResult(carList, winnerList) {
-    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
+    this.generateStepSections(carList);
 
     this.$stepSectionArrowsArray = Array.from(
       document.querySelectorAll(`.${SELECTOR.STEP_SECTION_ARROWS}`),
