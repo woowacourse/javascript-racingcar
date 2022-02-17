@@ -9,7 +9,7 @@ class RacingScreen {
   }
 
   static laneTemplate(name) {
-    return `<div class="car-lane">
+    return `<div class="car-lane" data-testid="car-lane">
         <label class="car-name" data-testid="car-name">${name}</label>
         <div class="distance" data-current-distance="0" data-testid="distance">
         </div>
