@@ -17,3 +17,5 @@ export const TIME = {
   SPINNER_DELAY: 1000,
   RESULT_DELAY: 2000,
 };
+
+export const RESULT = '축하합니다! 우승자를 확인하세요!';

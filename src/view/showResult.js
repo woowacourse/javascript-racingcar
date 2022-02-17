@@ -1,4 +1,4 @@
-import { TIME } from '../util/constants.js';
+import { TIME, RESULT } from '../util/constants.js';
 import getWinners from '../model/getWinners.js';
 import sleep from '../util/sleep.js';
 
@@ -65,7 +65,7 @@ function showOneRowArrow(cars, wrappers, currentCount) {
 
 async function showArrow(cars, count, wrappers) {
   for (let i = 0; i < +count; i += 1) {
-    await sleep(TIME.RESULT_DELAY).then(() => showOneRowArrow(cars, wrappers, i));
+    await sleep(TIME.SPINNER_DELAY).then(() => showOneRowArrow(cars, wrappers, i));
   }
   return Promise.resolve();
 }
@@ -79,6 +79,14 @@ async function showRaceProgress(cars, count) {
   return Promise.resolve();
 }
 
+function delayFinalResult(cars) {
+  setTimeout(() => {
+    alert(RESULT);
+    showWinners(getWinners(cars));
+    showRestart();
+  }, TIME.RESULT_DELAY);
+}
+
 export default async function showResult(cars, count) {
   const resultContainer = document.querySelector('.game-result-container');
   const div = document.createElement('div');
@@ -87,6 +95,5 @@ export default async function showResult(cars, count) {
   div.innerHTML = getCarsNameTemplate(cars);
   resultContainer.append(div);
   await showRaceProgress(cars, count);
-  showWinners(getWinners(cars));
-  showRestart();
+  delayFinalResult(cars);
 }
