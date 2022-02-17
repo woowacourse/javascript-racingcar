@@ -98,7 +98,6 @@ export default class View {
 
   async showResult(carList, winnerList) {
     this.generateStepSections(carList);
-
     this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
     this.makeResultDisplayNotNone();
     await this.showStepSection(carList);
@@ -116,7 +115,6 @@ export default class View {
 
   updateRound(carList, i) {
     const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
-    console.log('i', i);
     carList.map((car, j) => {
       if (car.stepByRound[i] === STEP_SIGN.GO) {
         this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
@@ -125,13 +123,14 @@ export default class View {
   }
 
   // async/await를 붙이지 않으면 비동기 구현이 안되는 이유는?
+  // this bind 해줘야 동작하는 이유는?
   async updateRoundPromise(carList, i) {
     await makeSetTimeoutPromise(this.updateRound.bind(this), [carList, i], ROUND_DELAY);
   }
 
   removeSpinner() {
-    const $stepSectionLoading = Array.from($$(SELECTOR.STEP_SECTION_LOADING));
-    this.$stepSectionArrowsArray.forEach((ul, index) => ul.removeChild($stepSectionLoading[index]));
+    const $stepSectionLoadings = Array.from($$(SELECTOR.STEP_SECTION_LOADING));
+    $stepSectionLoadings.forEach(($loading) => $loading.remove());
   }
 
   showWinner(winnerList) {
