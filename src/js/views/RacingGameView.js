@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/element-tools.js';
 import SELECTOR from '../constants/selector.js';
+import TEMPLATE from '../constants/template.js';
 
 export default class RacingGameView {
   setAbleForm($formElement) {
@@ -32,15 +33,14 @@ export default class RacingGameView {
   }
 
   renderAdvance(target) {
-    const str = `<div class="car-advance">⬇️️</div>`;
+    const str = TEMPLATE.ADVANCE_MARK;
     const targetID = '#' + target;
     $(targetID).innerHTML += str;
   }
 
   LoadingStart() {
     $$('.car-instance').forEach(($element) => {
-      $element.innerHTML +=
-        '<div class="round-loading"><img src="./src/asset/loading.png" class="spinner" alt="loading"></div>';
+      $element.innerHTML += TEMPLATE.LOADING_MARK;
     });
   }
 
