@@ -1,6 +1,6 @@
 import { ERROR_MESSAGES } from '../utils/constants.js';
 import { isDuplicatedName, isValidNameLength } from '../utils/valid.js';
-import $ from '../utils/selector.js';
+import { $ } from '../utils/selector.js';
 
 const handleNameInput = () => {
   const names = $('.name-input')

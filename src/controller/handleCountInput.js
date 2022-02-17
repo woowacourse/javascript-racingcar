@@ -1,7 +1,7 @@
+import { $ } from '../utils/selector.js';
 import { ERROR_MESSAGES } from '../utils/constants.js';
-import $ from '../utils/selector.js';
 import { isValidCount } from '../utils/valid.js';
-import playRace from './playRace.js';
+import handleRace from './handleRace.js';
 
 const handleCountInput = () => {
   const { value } = $('.count-input');
@@ -11,7 +11,7 @@ const handleCountInput = () => {
     return;
   }
 
-  playRace(value);
+  handleRace(value);
 };
 
 export default handleCountInput;

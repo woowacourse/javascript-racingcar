@@ -1,4 +1,4 @@
-import $ from '../utils/selector.js';
+import { $ } from '../utils/selector.js';
 import Car from './Car.js';
 
 const generateCars = () => {
