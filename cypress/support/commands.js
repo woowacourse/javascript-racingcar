@@ -38,3 +38,4 @@ Cypress.Commands.add('clearCarNameInput', () => {
 Cypress.Commands.add('clearRacingCountInput', () => {
   cy.get(SELECTOR.RACING_COUNT_INPUT).clear();
 });
+
