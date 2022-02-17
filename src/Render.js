@@ -1,5 +1,5 @@
 import { $ } from './util.js';
-import { SCREEN_CMD, SELECTOR } from './constant.js';
+import { SCREEN_CMD } from './constant.js';
 
 export default class Render {
     static parsingStep(step) {
@@ -26,19 +26,19 @@ export default class Render {
     }
 
     static renderResult(cars) {
-        $(SELECTOR.track_area).innerHTML = this.parsingTrack(cars);
+        $('#track-area').innerHTML = this.parsingTrack(cars);
     }
 
     static renderWinners(winners) {
-        $(SELECTOR.winners).innerText = winners.join(',');
+        $('#winners').innerText = winners.join(',');
     }
 
     static showTryForm() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.SHOW_TRT);
+        $('#app').classList.add(SCREEN_CMD.SHOW_TRT);
     }
 
     static showResultArea() {
-        $(SELECTOR.app).classList.add(SCREEN_CMD.SHOW_RESULT);
+        $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
     }
 
     static showResult(cars, winners) {
@@ -48,6 +48,6 @@ export default class Render {
     }
 
     static reset() {
-        $(SELECTOR.app).classList.remove(SCREEN_CMD.SHOW_TRT, SCREEN_CMD.SHOW_RESULT);
+        $('#app').classList.remove(SCREEN_CMD.SHOW_TRT, SCREEN_CMD.SHOW_RESULT);
     }
 }
