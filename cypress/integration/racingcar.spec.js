@@ -3,6 +3,19 @@
 import { ID, CLASS, ERROR_MESSAGES } from '../../src/constants/index';
 
 const VISIT_URL = 'http://localhost:5500/';
+const VALID_CAR_NAMES = 'east, west, south, north, all';
+const VALID_RACING_COUNT = 10;
+const WAITING_TIME = 12000;
+
+Cypress.Commands.add('submitCarName', () => {
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(VALID_CAR_NAMES);
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
+});
+
+Cypress.Commands.add('submitRacingCount', () => {
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(VALID_RACING_COUNT);
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
+});
 
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
@@ -108,5 +121,25 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       .then(() => {
         expect(stub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
       });
+  });
+});
+
+describe('게임 진행 테스트', () => {
+  beforeEach(() => {
+    cy.visit(VISIT_URL);
+    cy.submitCarName();
+    cy.submitRacingCount();
+  });
+
+  it('자동차 이름과 시도할 횟수를 올바르게 입력한 후 로딩 애니메이션을 확인할 수 있으며 레이싱이 종료된 후 로딩 애니메이션은 사라져야 한다.', () => {
+    cy.get(`.${CLASS.SPINNER}`).eq(0).should('exist');
+    cy.get(`.${CLASS.SPINNER}`).eq(1).should('exist');
+    cy.get(`.${CLASS.SPINNER}`).eq(2).should('exist');
+    cy.get(`.${CLASS.SPINNER}`).eq(3).should('exist');
+    cy.get(`.${CLASS.SPINNER}`).eq(4).should('exist');
+
+    cy.wait(WAITING_TIME);
+
+    cy.get(`.${CLASS.SPINNER}`).should('not.exist');
   });
 });
