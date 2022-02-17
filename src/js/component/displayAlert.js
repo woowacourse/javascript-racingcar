@@ -1,5 +1,3 @@
-export const displayAlert = (isDisplayAlert, alertMessage) => {
-  if (isDisplayAlert) {
-    window.alert(alertMessage);
-  }
+export const displayAlert = alertMessage => {
+  window.alert(alertMessage);
 };

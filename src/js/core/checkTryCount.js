@@ -6,13 +6,18 @@ import { displayAlert } from '../component/displayAlert.js';
 export const getTryCount = e => {
   e.preventDefault();
   const tryCount = $('#try-count-input').value;
-  if (!isTryCountPositiveNumber(tryCount)) {
-    return tryCount;
+  return tryCount;
+};
+
+export const checkTryCount = tryCount => {
+  if (isTryCountPositiveNumber(tryCount)) {
+    displayAlert(alertMessage.TryCountPositiveNumber);
+    return;
   }
+  return tryCount;
 };
 
 const isTryCountPositiveNumber = tryCount => {
   const isIncorrectValue = tryCount < MIN_TRY_COUNT;
-  displayAlert(isIncorrectValue, alertMessage.TryCountPositiveNumber);
   return isIncorrectValue;
 };

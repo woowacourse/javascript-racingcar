@@ -1,17 +1,20 @@
 import { $ } from './util/dom.js';
 import { checkCarNames, getCarNames } from './core/checkCarNames.js';
-import { getTryCount } from './core/checkTryCount.js';
+import { getTryCount, checkTryCount } from './core/checkTryCount.js';
+
 import {
   makeCars,
   playOneTurn,
   getWinners,
   isLastTurn,
 } from './core/playRacing.js';
+
 import {
   renderResult,
   renderWinners,
   removeBeforeResult,
 } from './view/renderResult.js';
+
 import {
   TURN_LOADING_DELAY,
   WINNERS_ALERT_DELAY,
@@ -29,7 +32,7 @@ class App {
       this.setCarNames(checkCarNames(getCarNames(e)));
     });
     $('#try-count-form').addEventListener('submit', e => {
-      this.setTryCount(getTryCount(e));
+      this.setTryCount(checkTryCount(getTryCount(e)));
     });
     $('#try-count-form').addEventListener('submit', () => {
       this.startGame();

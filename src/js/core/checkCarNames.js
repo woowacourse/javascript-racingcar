@@ -17,30 +17,34 @@ export const getCarNames = e => {
 };
 
 export const checkCarNames = carNames => {
-  if (
-    !isUnderMinCarNamesLength(carNames) &&
-    !isOverMaxCarNameLength(carNames) &&
-    !isOverlapCarNames(carNames)
-  ) {
-    return carNames;
+  if (isUnderMinCarNamesLength(carNames)) {
+    displayAlert(alertMessage.UnderMinCarNamesLength);
+    return;
   }
+  if (isOverMaxCarNameLength(carNames)) {
+    displayAlert(alertMessage.overMaxCarNameLength);
+    return;
+  }
+  if (isOverlapCarNames(carNames)) {
+    displayAlert(alertMessage.OverlapCarNames);
+    return;
+  }
+  return carNames;
 };
 
 const isOverMaxCarNameLength = carNames => {
   const isCorrectCarNames = carName => carName.length <= MAX_CAR_NAME_LENGTH;
-  const iscorrectValue = carNames.every(isCorrectCarNames);
-  displayAlert(!iscorrectValue, alertMessage.overMaxCarNameLength);
-  return !iscorrectValue;
+  const isCorrectValue = carNames.every(isCorrectCarNames);
+  console.log(!isCorrectValue);
+  return !isCorrectValue;
 };
 
 const isUnderMinCarNamesLength = carNames => {
   const isIncorrectValue = carNames.length < MIN_CAR_COUNT;
-  displayAlert(isIncorrectValue, alertMessage.UnderMinCarNamesLength);
   return isIncorrectValue;
 };
 
 const isOverlapCarNames = carNames => {
   const isIncorrectValue = carNames.length !== new Set(carNames).size;
-  displayAlert(isIncorrectValue, alertMessage.OverlapCarNames);
   return isIncorrectValue;
 };
