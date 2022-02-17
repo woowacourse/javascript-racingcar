@@ -15,27 +15,42 @@ export default class Model {
     callback(this.carList, this.isRacing);
   }
 
-  async startRace(racingCount, callback) {
-    this.initRace();
-    this.isRacing = true;
-    callback(this.carList, this.isRacing);
-
-    await setIntervalForDefinedTimes(
-      () => {
-        this.carList.forEach((car) => car.race());
-        callback(this.carList, this.isRacing);
-      },
-      RACE_INTERVAL,
-      racingCount
-    );
-
-    this.isRacing = false;
+  async startRace(racingCount, callback = () => {}) {
+    this.beforeRace(callback);
+    await this.race(racingCount, callback);
+    this.afterRace(callback);
 
     return {
       carList: this.carList,
       isRacing: this.isRacing,
       winners: this.getWinners(),
     };
+  }
+
+  beforeRace(callback) {
+    this.initRace();
+    this.isRacing = true;
+    callback(this.carList, this.isRacing);
+  }
+
+  async race(racingCount, callback) {
+    await setIntervalForDefinedTimes(
+      () => {
+        this.raceOneLap(callback);
+      },
+      RACE_INTERVAL,
+      racingCount
+    );
+  }
+
+  raceOneLap(callback) {
+    this.carList.forEach((car) => car.race());
+    callback(this.carList, this.isRacing);
+  }
+
+  afterRace(callback) {
+    this.isRacing = false;
+    callback(this.carList, this.isRacing);
   }
 
   getWinners() {
