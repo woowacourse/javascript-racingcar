@@ -6,7 +6,7 @@ import {
   RANGE_MAX,
   RANGE_MIN,
 } from '../lib/constants.js';
-import { findElement, pickNumberInRange, sleep, splitString } from '../lib/utils.js';
+import { asyncSetTimeOut, findElement, pickNumberInRange, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
 
@@ -70,7 +70,7 @@ class RacingCarGame {
       this.view.renderInitialGameState(this.modelManager.getCars());
       await this.simulateGame();
 
-      const winners = this.getWinners();
+      const winners = this.modelManager.getWinners();
       this.view.renderResults(winners);
       this.afterRenderComplete(winners);
     } catch (error) {
@@ -78,38 +78,47 @@ class RacingCarGame {
     }
   }
 
+  // 1
+  // async simulateGame() {
+  //   const count = this.modelManager.getCount();
+  //   for (let i = 1; i <= count; i += 1) {
+  //     setTimeout(() => {
+  //       this.view.renderLoadingAboutRound();
+  //     }, 1000 * (i - 1));
+  //     setTimeout(() => {
+  //       this.simulateRound();
+  //     }, 1000 * i);
+  //   }
+  //   await sleep(count);
+  // }
+
+  // 2
   async simulateGame() {
     const count = this.modelManager.getCount();
+    // 로딩은 1초간 지속된다. 1초가 지나면 `simulateRound()` 함
     for (let i = 1; i <= count; i += 1) {
-      setTimeout(() => {
-        this.view.renderLoadingAboutRound();
-      }, 1000 * (i - 1));
-      setTimeout(() => {
-        this.simulateRound();
-      }, 1000 * i);
+      this.view.renderLoadingAboutRound();
+      // 병렬화의 이점을 제대로 이용하지못하고 있는 코드
+      await asyncSetTimeOut(() => this.simulateRound(), 1000);
     }
-    await sleep(count);
   }
 
-  simulateRound() {
+  // async simulateGame() {
+  //   const count = this.modelManager.getCount();
+  //   for (let i = 1; i <= count; i += 1) {
+  //     await this.simulateRound();
+  //   }
+  // }
+
+  async simulateRound() {
     const cars = this.modelManager.getCars();
     cars.forEach((car) => {
       const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
       if (random >= MOVE_CONDITION) {
-        car.goForward();
+        RacingCarGameManager.goForward(car);
         this.view.renderGoForward(car);
       }
     });
-  }
-
-  getWinners() {
-    const cars = this.modelManager.getCars();
-    const max = Math.max(...cars.map(({ progress }) => progress));
-    const winners = cars.reduce(
-      (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
-      [],
-    );
-    return winners;
   }
 
   afterRenderComplete(winners) {

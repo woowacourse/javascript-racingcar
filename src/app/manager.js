@@ -30,6 +30,19 @@ class RacingCarGameManager {
     return names.map((name) => new Car(name));
   }
 
+  static goForward(car) {
+    car.goForward();
+  }
+
+  getWinners() {
+    const max = Math.max(...this.cars.map(({ progress }) => progress));
+    const winners = this.cars.reduce(
+      (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
+      [],
+    );
+    return winners;
+  }
+
   #init() {
     this.cars = null;
     this.count = null;
