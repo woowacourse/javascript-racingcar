@@ -35,7 +35,6 @@ export const checkCarNames = carNames => {
 const isOverMaxCarNameLength = carNames => {
   const isCorrectCarNames = carName => carName.length <= MAX_CAR_NAME_LENGTH;
   const isCorrectValue = carNames.every(isCorrectCarNames);
-  console.log(!isCorrectValue);
   return !isCorrectValue;
 };
 
