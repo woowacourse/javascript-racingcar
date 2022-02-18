@@ -1,12 +1,12 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { showElement, hideElement } from '../utils/attribute.js';
 
 const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
 
 const carPlayerTemplate = (name) => {
   return `
-    <div data-car-name=${name}>
-      <div class="car-player mr-2">${name}</div>
+    <div>
+      <div class="car-player mr-2" data-car-name=${name}>${name}</div>
       <div class="d-flex justify-content-center mt-4">
         <div class="relative spinner-container">
           <span class="material spinner"></span>
@@ -21,9 +21,17 @@ export const renderFinalWinner = (finalWinner) => {
 };
 
 export const renderRacingResult = (cars) => {
-  cars.forEach(({ name, distance }) => {
-    $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
+  cars.forEach(({ name }) => {
+    $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name));
   });
+};
+
+export const renderArrow = (name) => {
+  $(`.car-player[data-car-name=${name}]`).insertAdjacentHTML('afterend', arrowTemplate);
+};
+
+export const removeSpinner = () => {
+  $$('.spinner').forEach((element) => hideElement(element));
 };
 
 export const showCountInput = () => {

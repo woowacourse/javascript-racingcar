@@ -1,14 +1,17 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
-import { isValidLength, isBlank, handleError } from './utils/validation.js';
-import { getMaxNumber } from './utils/getNumber.js';
+import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
+import { getMaxNumber, getRandomNumber } from './utils/getNumber.js';
+import { wait } from './utils/wait.js';
 import {
   renderRacingResult,
   renderFinalWinner,
   showCountInput,
   showRacingResult,
   startUpScreen,
+  renderArrow,
+  removeSpinner,
 } from './views/racingResult.js';
 
 class RacingCar {
@@ -52,9 +55,17 @@ class RacingCar {
     this.cars = carNames.map((name) => new Car(name));
   }
 
-  startRacingGame(inputNumber) {
+  async startRacingGame(inputNumber) {
     for (let i = 0; i < inputNumber; i += 1) {
-      this.cars.forEach((car) => car.tryMoveForward());
+      // eslint-disable-next-line no-await-in-loop
+      await wait();
+      this.cars.forEach((car) => {
+        const number = getRandomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
+        if (isEffectiveScore(number)) {
+          car.moveForward();
+          renderArrow(car.name);
+        }
+      });
     }
   }
 
@@ -70,19 +81,19 @@ class RacingCar {
     showCountInput();
   }
 
-  handleRacingCountSubmit() {
+  async handleRacingCountSubmit() {
     const inputNumber = $('#racing-count-input').value;
     if (!this.isValidRacingCount(inputNumber)) {
       return;
     }
     showRacingResult();
-    this.startRacingGame(inputNumber);
     renderRacingResult(this.cars);
-
+    await this.startRacingGame(inputNumber);
     const finalWinner = this.selectWinner()
       .map((winner) => winner.name)
       .join(', ');
     renderFinalWinner(finalWinner);
+    removeSpinner();
   }
 
   restartRacingGame() {
