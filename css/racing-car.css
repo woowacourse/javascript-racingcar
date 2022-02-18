@@ -122,7 +122,7 @@ input {
     align-items: center;
 }
 
-.step-container{
+.step-container p{
     width: 28px;
     font-style: normal;
     font-weight: normal;
