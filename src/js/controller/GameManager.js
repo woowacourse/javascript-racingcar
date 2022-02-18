@@ -45,11 +45,20 @@ export default class GameManager {
     return winners;
   }
 
+  celebrate(winners) {
+    setTimeout(() => {
+      alert(`${winners.join(", ")}(이)가 우승했습니다. 축하합니다 🎉!`);
+    }, 2000);
+  }
+
   raceOver(carManager, racingCount) {
     setTimeout(() => {
+      const winners = this.getWinners(carManager);
+
       hideLoading();
-      setRacingWinnerView(this.getWinners(carManager));
+      setRacingWinnerView(winners);
       showWinnerAndRestartButton();
+      this.celebrate(winners);
     }, (racingCount + 1) * 1000);
   }
 
