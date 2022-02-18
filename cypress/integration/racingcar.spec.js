@@ -186,6 +186,22 @@ describe('예외 상황', () => {
       });
   });
 
+  it('5개보다 많은 자동차 이름을 입력하면 에러메시지를 볼 수 있어야 한다.', () => {
+    const inputString = 'A,B,C,D,E,F';
+    const alertStub = createAlertStub();
+
+    cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
+    cy.get(SELECTOR.$CAR_NAME_BUTTON)
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.calledWith(
+          ERROR_MESSAGE.OUT_OF_NUMBER_OF_CARS_RANGE
+        );
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.value', '');
+        cy.get(SELECTOR.$CAR_NAME_INPUT).should('have.focus');
+      });
+  });
+
   it('자동차 이름이 등록되어 있지 않을 때 레이싱 횟수 인풋 필드와 버튼이 disabled되어 있어야 한다.', () => {
     const inputString = '5';
     const alertStub = createAlertStub();
