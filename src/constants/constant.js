@@ -5,7 +5,7 @@ const FORWARD_CONDITION = 4;
 const KEYCODE_ENTER = 13;
 
 const SCREEN_COMMAND = {
-    SHOW_TRY_FORM: 'show-try-count-form',
+    SHOW_TURN_COUNT_FORM: 'show-turn-count-form',
     SHOW_RESULT: 'show-result-area',
     SHOW_FINAL_RESULT_AREA: 'show-final-result-area',
 };

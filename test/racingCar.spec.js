@@ -2,9 +2,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const baseURL = 'index.html';
     const SELECTOR = {
         CAR_NAME_INPUT: '#car-name-input',
-        TRY_COUNT_INPUT: '#try-count-input',
+        TURN_COUNT_INPUT: '#turn-count-input',
         CAR_NAME_SUBMIT_BUTTON: '#car-name-submit-button',
-        TRY_COUNT_SUBMIT_BUTTON: '#try-count-submit-button',
+        TURN_COUNT_SUBMIT_BUTTON: '#turn-count-submit-button',
         CAR_TRACK: '.car-track',
         CAR_STEP_CONTAINER: '.car-steps',
         WINNERS: '#winners',
@@ -34,7 +34,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
                 });
         };
 
-        const tryCountFormAlertTest = (inputValue) => () => {
+        const turnCountFormAlertTest = (inputValue) => () => {
             // given
             const alertStub = cy.stub();
             const CAR_NAMES = '우아한, 테크, 코스, 소피아';
@@ -43,10 +43,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             // when
             cy.get(SELECTOR.CAR_NAME_INPUT).type(CAR_NAMES);
             cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON).click();
-            inputValue && cy.get(SELECTOR.TRY_COUNT_INPUT).type(inputValue);
+            inputValue && cy.get(SELECTOR.TURN_COUNT_INPUT).type(inputValue);
     
             // then
-            cy.get(SELECTOR.TRY_COUNT_SUBMIT_BUTTON)
+            cy.get(SELECTOR.TURN_COUNT_SUBMIT_BUTTON)
                 .click()
                 .then(() => {
                     expect(alertStub).to.be.called;
@@ -61,25 +61,25 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     
         it(
             '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, alert가 호출되어야 한다.',
-            tryCountFormAlertTest(123.456),
+            turnCountFormAlertTest(123.456),
         );
     
-        it('전진 시도 횟수 입력이 음수인 경우, alert가 호출되어야 한다.', tryCountFormAlertTest(-12));
+        it('전진 시도 횟수 입력이 음수인 경우, alert가 호출되어야 한다.', turnCountFormAlertTest(-12));
     
-        it('전진 시도 횟수 입력이 빈칸인 경우, alert가 호출되어야 한다.', tryCountFormAlertTest(''));
+        it('전진 시도 횟수 입력이 빈칸인 경우, alert가 호출되어야 한다.', turnCountFormAlertTest(''));
 
     })
 
     context('결과 출력', () => {
 
         const CAR_NAMES = ['우아한', '테크', '코스', '소피아'];
-        const TRY_COUNT = 10;
+        const TURN_COUNT = 10;
 
         const playGameCorrectly = () => {
             cy.get(SELECTOR.CAR_NAME_INPUT).type(CAR_NAMES.join(','));
             cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON).click();
-            cy.get(SELECTOR.TRY_COUNT_INPUT).type(TRY_COUNT);
-            cy.get(SELECTOR.TRY_COUNT_SUBMIT_BUTTON).click();
+            cy.get(SELECTOR.TURN_COUNT_INPUT).type(TURN_COUNT);
+            cy.get(SELECTOR.TURN_COUNT_SUBMIT_BUTTON).click();
         }
 
         it('사용자 입력이 모두 끝나면, 각 자동차의 이름이 출력되어야 한다.', () => {
@@ -104,7 +104,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             playGameCorrectly();
 
             cy.tick(500);
-            for (let i = 0; i < TRY_COUNT; i += 1) {
+            for (let i = 0; i < TURN_COUNT; i += 1) {
                 // then
                 cy.get(SELECTOR.LOADER).should('exist');
                 cy.tick(1000);
@@ -122,7 +122,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             // when
             playGameCorrectly();
             
-            cy.tick((TRY_COUNT + 2) * 1000).then(() => {
+            cy.tick((TURN_COUNT + 2) * 1000).then(() => {
                 // then
                 expect(alertStub).to.be.called;
             })
@@ -135,13 +135,13 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             // when
             playGameCorrectly();
             cy.get(SELECTOR.CAR_NAME_INPUT).should('have.value', CAR_NAMES.join(','));
-            cy.get(SELECTOR.TRY_COUNT_INPUT).should('have.value', TRY_COUNT);
-            cy.tick(TRY_COUNT * 1000);
+            cy.get(SELECTOR.TURN_COUNT_INPUT).should('have.value', TURN_COUNT);
+            cy.tick(TURN_COUNT * 1000);
             cy.get(SELECTOR.RESTART_BUTTON).click();
 
             // then
             cy.get(SELECTOR.CAR_NAME_INPUT).should('have.value', '');
-            cy.get(SELECTOR.TRY_COUNT_INPUT).should('have.value', '');
+            cy.get(SELECTOR.TURN_COUNT_INPUT).should('have.value', '');
         })
 
     })

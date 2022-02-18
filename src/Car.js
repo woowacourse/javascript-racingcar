@@ -9,10 +9,10 @@ export default class Car {
 
     playTurn() {
         const random = generateRandomInRange(MIN_OF_RANDOM_NUMBER, MAX_OF_RANDOM_NUMBER);
-        if (random >= FORWARD_CONDITION) this.forward();
+        if (random >= FORWARD_CONDITION) this.stepForward();
     }
 
-    forward() {
+    stepForward() {
         this.step += 1;
     }
 

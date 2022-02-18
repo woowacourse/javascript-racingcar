@@ -10,7 +10,7 @@ export default class View {
     }
 
     updateInitialTrack(cars) {
-        this.resultArea.querySelector(SELECTOR.TRACK_AREA).innerHTML = template.emptyTrack(cars);
+        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.emptyTrack(cars);
     }
 
     updateLoading() {
@@ -19,7 +19,7 @@ export default class View {
     }
 
     updateProgress(cars) {
-        this.resultArea.querySelector(SELECTOR.TRACK_AREA).innerHTML = template.track(cars);
+        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.track(cars);
     }
 
     updateWinner(winners) {
@@ -27,13 +27,13 @@ export default class View {
     }
 
     updateResult(cars, winners) {
-        this.resultArea.querySelector(SELECTOR.TRACK_AREA).innerHTML = template.track(cars);
+        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.track(cars);
         this.resultArea.querySelector(SELECTOR.WINNERS).innerText = winners.join(',');
     }
 
-    showTryForm() {
-        this.app.classList.add(SCREEN_COMMAND.SHOW_TRY_FORM);
-        $(SELECTOR.TRY_COUNT_INPUT).focus();
+    showTurnForm() {
+        this.app.classList.add(SCREEN_COMMAND.SHOW_TURN_COUNT_FORM);
+        $(SELECTOR.TURN_COUNT_INPUT).focus();
     }
 
     showResultArea() {
@@ -51,6 +51,6 @@ export default class View {
     }
 
     reset() {
-        this.app.classList.remove(SCREEN_COMMAND.SHOW_TRY_FORM, SCREEN_COMMAND.SHOW_RESULT);
+        this.app.classList.remove(SCREEN_COMMAND.SHOW_TURN_COUNT_FORM, SCREEN_COMMAND.SHOW_RESULT);
     }
 }

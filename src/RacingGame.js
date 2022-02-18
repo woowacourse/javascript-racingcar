@@ -1,9 +1,10 @@
 import RacingCars from './RacingCars.js';
 import View from './View.js';
-import {
-    validationCarNames, validationTryCount,
-} from './utils/validation.js';
-import { $, userInputValue } from './utils/util.js';
+import userInputValue from './userInputValue.js';
+import { validateCarNames, validateTurnCount } from './validation.js';
+
+import { $ } from './utils/util.js';
+
 import { KEYCODE_ENTER } from './constants/constant.js';
 import SELECTOR from './constants/selectors.js';
 
@@ -20,7 +21,7 @@ export default class RacingGame {
 
     setClickEvent() {
         $(SELECTOR.CAR_NAME_SUBMIT_BUTTON).addEventListener('click', () => { this.onSubmitCarName(); });
-        $(SELECTOR.TRY_COUNT_SUBMIT_BUTTON).addEventListener('click', () => { this.onSubmitTryCount(); });
+        $(SELECTOR.TURN_COUNT_SUBMIT_BUTTON).addEventListener('click', () => { this.onSubmitTurnCount(); });
         $(SELECTOR.RESTART_BUTTON).addEventListener('click', () => { this.onClickRestartButton(); });
     }
 
@@ -31,10 +32,10 @@ export default class RacingGame {
                 this.onSubmitCarName();
             }
         });
-        $(SELECTOR.TRY_COUNT_INPUT).addEventListener('keydown', (event) => {
+        $(SELECTOR.TURN_COUNT_INPUT).addEventListener('keydown', (event) => {
             if (event.keyCode === KEYCODE_ENTER) {
                 event.preventDefault();
-                this.onSubmitTryCount();
+                this.onSubmitTurnCount();
             }
         });
     }
@@ -42,25 +43,25 @@ export default class RacingGame {
     onSubmitCarName() {
         const carNames = userInputValue.carNames();
         try {
-            validationCarNames(carNames);
+            validateCarNames(carNames);
         } catch (error) {
             alert(error.message);
             return;
         }
         this.racingCars.reset();
         this.racingCars.initialize(carNames);
-        this.view.showTryForm();
+        this.view.showTurnForm();
     }
 
-    onSubmitTryCount() {
-        const tryCount = userInputValue.tryCount();
+    onSubmitTurnCount() {
+        const turnCount = userInputValue.turnCount();
         try {
-            validationTryCount(tryCount);
+            validateTurnCount(turnCount);
         } catch (error) {
             alert(error.message);
             return;
         }
-        this.playGame(tryCount);
+        this.playGame(turnCount);
         this.racingCars.resetSteps();
     }
 

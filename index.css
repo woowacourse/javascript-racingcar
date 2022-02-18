@@ -21,13 +21,13 @@ p {
     background-color: white;
 }
 
-.app .try-count,
+.app .turn-count,
 .app .result-area,
 .app .final-result-area {
     display: none;
 }
 
-.app.show-try-count-form .try-count,
+.app.show-turn-count-form .turn-count,
 .app.show-result-area .result-area,
 .app.show-final-result-area .final-result-area {
     display: block;
@@ -90,7 +90,7 @@ p {
     margin-top: 20px;
 }
 
-.track-area {
+.progress-area {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
