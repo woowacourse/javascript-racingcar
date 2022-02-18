@@ -1,6 +1,7 @@
 import racingCars from './racingCars.js';
 import render from './render.js';
 import { passedOneSecond } from './util.js';
+import { SUCCESS_MESSAGE } from './constant.js';
 
 export default class RunGame {
     constructor(tryCount) {
@@ -24,6 +25,7 @@ export default class RunGame {
         if (passedOneSecond(this.startTime)) {
             if (this.draw()) {
                 render.renderWinners(racingCars.getWinners());
+                setTimeout(() => alert(SUCCESS_MESSAGE), 2000);
                 return;
             }
 

@@ -15,10 +15,19 @@ const ERROR_MESSAGE = {
     POSITIVE_CAR_NAME: '양수를 입력해주세요.',
 };
 
+const SUCCESS_MESSAGE = '축하드립니다. 자동차 경주가 무사히 끝났습니다!';
+
 const CAR_GO_FORWARD_RULE = {
     MIN: 0,
     MAX: 9,
     ENOUGH: 4,
 };
 
-export { CAR_NAME_MAX_LENGTH, SCREEN_CMD, ERROR_MESSAGE, CAR_GO_FORWARD_RULE, KEYCODE_ENTER };
+export {
+    CAR_NAME_MAX_LENGTH,
+    SCREEN_CMD,
+    ERROR_MESSAGE,
+    SUCCESS_MESSAGE,
+    CAR_GO_FORWARD_RULE,
+    KEYCODE_ENTER,
+};

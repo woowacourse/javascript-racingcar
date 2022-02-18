@@ -24,6 +24,11 @@ const onSubmitCarNames = () => {
     actionSubmitCarNames(carNames);
 };
 
+const actionSubmitTryCount = (tryCount) => {
+    racingCars.resetSteps();
+    new RunGame(tryCount).start();
+};
+
 const onSubmitTryCount = () => {
     const tryCount = userInput.getTryCount();
 
@@ -34,7 +39,7 @@ const onSubmitTryCount = () => {
         return;
     }
 
-    new RunGame(tryCount).start();
+    actionSubmitTryCount(tryCount);
 };
 
 const onClickRestartButton = () => {
