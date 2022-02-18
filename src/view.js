@@ -1,5 +1,5 @@
 import { $, $$, displayNoneDOM, displayDOM } from './utils/common.js';
-import { SELECTOR, NUMBER } from './utils/constants.js';
+import { SELECTOR, NUMBER, CLASS_NAME } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -96,7 +96,7 @@ export default class View {
   }
 
   showArrowOneRace() {
-    const arrowsList = [...$$('.step-section__arrows')].map((section) => section.children);
+    const arrowsList = [...$$(SELECTOR.STEP_SECTION_ARROWS)].map((section) => section.children);
     arrowsList.forEach((arrows) => this.findDisplayNoneArrow([...arrows]));
   }
 
@@ -105,7 +105,7 @@ export default class View {
   }
 
   showEachArrow(arrow) {
-    if (arrow.classList.contains('display-none')) {
+    if (arrow.classList.contains(CLASS_NAME.DISPLAY_NONE)) {
       displayDOM([arrow]);
       this.animateSpinningAndShowArrow(arrow);
       return true;
@@ -115,12 +115,12 @@ export default class View {
   async animateSpinningAndShowArrow(arrow) {
     const startTime = new Date().getTime();
     let angle = 0;
-    arrow.classList.add('spinning-bg');
+    arrow.classList.add(CLASS_NAME.SPINNING_BACKGROUND);
     const callback = () => {
       const currentTime = new Date().getTime();
-      if (currentTime - 1000 > startTime) {
+      if (currentTime - NUMBER.ARROW_INTERVAL_TIME > startTime) {
         arrow.style.transform = `rotate( 0deg )`;
-        arrow.classList.remove('spinning-bg');
+        arrow.classList.remove(CLASS_NAME.SPINNING_BACKGROUND);
         arrow.innerText = '⬇️';
         return;
       }

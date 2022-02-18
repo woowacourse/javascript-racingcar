@@ -27,6 +27,10 @@ export const SELECTOR = {
   STEP_SECTIONS: '.step-sections',
   WINNER: '#winner',
   RESET_BUTTON: '#reset-button',
+  STEP_SECTION_ARROWS: ".step-section__arrows"
 };
 
-export const DISPLAY_NONE = 'display-none';
+export const CLASS_NAME = {
+  DISPLAY_NONE : 'display-none',
+  SPINNING_BACKGROUND: 'spinning-bg'
+}
