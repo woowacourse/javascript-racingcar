@@ -1,6 +1,6 @@
 import { CLASS, ID } from '../constants/index.js';
 import { $, $$ } from '../util/index.js';
-import { getRacingCarItemTemplate, PROGRESS_TEMPLATE, templateSpinner } from '../template/index.js';
+import { templateRacingCarItem, templateProgress, templateSpinner } from '../template/index.js';
 
 class RacingCarGameView {
   constructor() {
@@ -59,7 +59,7 @@ class RacingCarGameView {
 
   renderRacingCarList(racingCarList) {
     const racingCarItemsTemplate = racingCarList.reduce(
-      (previousTemplate, car) => previousTemplate + getRacingCarItemTemplate(car.getName()),
+      (previousTemplate, car) => previousTemplate + templateRacingCarItem(car.getName()),
       ''
     );
 
@@ -69,7 +69,7 @@ class RacingCarGameView {
   }
 
   renderRacingCarProgress(index) {
-    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', PROGRESS_TEMPLATE);
+    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', templateProgress);
   }
 
   renderFinalWinner(finalWinner) {
