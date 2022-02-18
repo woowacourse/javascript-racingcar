@@ -17,6 +17,8 @@ describe("자동차 경주 게임 테스트", () => {
 
   it("게임의 턴 마다 로딩창을 보여준다.", () => {
     //given
+    const LOADING_TERM = 1000;
+    const LOADING_NUMBER = 5;
     const validNames = "1, 2, 3";
     const validNumber = "5";
     const alertStub = cy.stub();
@@ -28,8 +30,8 @@ describe("자동차 경주 게임 테스트", () => {
     cy.get("#racing-number-input").type(validNumber);
     cy.get("#racing-number-input-button").click();
     //then
-    for (let i = 0; i < 5; i++) {
-      cy.wait(1000);
+    for (let i = 0; i < LOADING_NUMBER; i++) {
+      cy.wait(LOADING_TERM);
       cy.get("span").should("have.class", "spinner");
     }
   });
