@@ -52,3 +52,4 @@ const initRacingStatus = (cars) => {
 };
 
 export { carMovementView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus, winnerAlert, loaderView, loadingView };
+
