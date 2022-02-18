@@ -15,7 +15,9 @@ export default class View {
 
     updateLoading() {
         this.resultArea.querySelectorAll(SELECTOR.CAR_STEPS)
-            .forEach((track) => { track.innerHTML += template.loader(); });
+            .forEach((track) => {
+                track.insertAdjacentHTML('beforeend', template.loader());
+            });
     }
 
     updateProgress(cars) {
