@@ -2,8 +2,8 @@ import RacingCar from '../model/RacingCar.js';
 import RacingCarView from '../view/RacingCarView.js';
 
 import { getRacingCarItemTemplate } from '../template/index.js';
-import { convertToNumber, delay, generateRandomNumber } from '../util/index.js';
-import { ID, RULES } from '../constants/index.js';
+import { convertToNumber, generateRandomNumber } from '../util/index.js';
+import { DELAY, ID, RULES } from '../constants/index.js';
 
 class RacingCarController {
   constructor() {
@@ -55,7 +55,7 @@ class RacingCarController {
     try {
       this.model.setRacingCount(racingCount);
       this.view.renderRacingCarList(this.getRacingCarListTemplate());
-      this.startRacingGame();
+      this.playRacingGame();
     } catch (error) {
       this.view.resetRacingCountInput();
       alert(error);
@@ -72,18 +72,29 @@ class RacingCarController {
     return racingCarItemsTemplate;
   }
 
-  async startRacingGame() {
-    for (let i = 0; i < this.model.getRacingCount(); i = i + 1) {
-      this.runOneCycleGame();
-      await delay(RULES.WAITING_TIME);
-    }
+  playRacingGame() {
+    const racingCount = this.model.getRacingCount();
+    let count = 0;
 
+    const raceTimer = setInterval(() => {
+      this.playRace();
+
+      count += 1;
+
+      if (count === racingCount) {
+        clearInterval(raceTimer);
+        this.endGame();
+      }
+    }, DELAY.RACE_TIME);
+  }
+
+  endGame() {
     this.handleGameResult();
     this.view.showFinalWinner();
     this.view.showRestartSection();
   }
 
-  runOneCycleGame() {
+  playRace() {
     this.model.getCarList().forEach((car, index) => {
       const randomNumber = generateRandomNumber();
 

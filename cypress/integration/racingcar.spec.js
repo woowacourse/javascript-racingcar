@@ -1,6 +1,6 @@
-import { ID, CLASS, RULES } from '../../src/constants/index.js';
+import { ID, CLASS, RULES, DELAY } from '../../src/constants/index.js';
 
-const URL = 'http://localhost:57275/';
+const URL = 'http://localhost:61005/';
 const CAR_NAMES = 'east,west,south,north,all';
 const RACING_COUNT = 5;
 
@@ -23,7 +23,7 @@ const triggerRacingCountSubmitEvent = () => {
 };
 
 const delay = () => {
-  const miliSecond = (RACING_COUNT + 1) * 1000;
+  const miliSecond = (RACING_COUNT + 1) * DELAY.RACE_TIME;
   cy.wait(miliSecond);
 };
 

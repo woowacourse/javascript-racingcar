@@ -30,6 +30,9 @@ export const RULES = Object.freeze({
   ZERO_CAR_NAME_LENGTH: 0,
   CAR_NAME_SEPERATOR: ',',
   WINNER_LIST_SEPERATOR: ', ',
-  WAITING_TIME: 1000,
   MOVE_CONDITION_NUMBER: 4,
+});
+
+export const DELAY = Object.freeze({
+  RACE_TIME: 1000,
 });

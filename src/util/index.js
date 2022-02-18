@@ -9,5 +9,3 @@ export const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !
 export const convertToNumber = (value) => parseInt(value, 10);
 
 export const generateRandomNumber = () => Math.floor(Math.random() * 10);
-
-export const delay = (miliSecond) => new Promise((resolve) => setTimeout(resolve, miliSecond));
