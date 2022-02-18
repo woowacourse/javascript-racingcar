@@ -1,9 +1,11 @@
 import { CAR } from './constants.js';
 
-export function isNotDuplicate(carNames) {
-  const carNamesSet = new Set(carNames);
+export function isCarNotAlone(carNames) {
+  return carNames.length !== 1;
+}
 
-  return carNames.length === carNamesSet.size;
+export function isCarNameNotDuplicate(carNames) {
+  return carNames.length === new Set(carNames).size;
 }
 
 export function isValidCarNamesLength(carNames) {
@@ -13,7 +15,9 @@ export function isValidCarNamesLength(carNames) {
 }
 
 export function isValidCarNames(carNames) {
-  return isNotDuplicate(carNames) && isValidCarNamesLength(carNames);
+  return (
+    isCarNotAlone(carNames) && isCarNameNotDuplicate(carNames) && isValidCarNamesLength(carNames)
+  );
 }
 
 export function isValidRacingCount(racingCount) {

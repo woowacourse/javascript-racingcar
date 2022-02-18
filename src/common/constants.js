@@ -20,7 +20,7 @@ export const DIRECTIVE = {
 };
 
 export const ERROR_MESSAGE = {
-  CAR_NAMES: '1~5자의 서로 다른 자동차 이름을 입력해 주세요!',
+  CAR_NAMES: '1~5자의 서로 다른 자동차 이름을 두 개 이상 입력해 주세요!',
   RACING_COUNT: '양의 정수를 입력해 주세요!',
 };
 
@@ -38,6 +38,7 @@ export const SELECTOR = {
   CAR_NAMES_SUBMIT: '#car-names-submit',
   RACING_COUNT_INPUT: '#racing-count-input',
   RACING_COUNT_SUBMIT: '#racing-count-submit',
+  RESTART: '#restart',
 };
 
 export const WINNER = {
