@@ -90,5 +90,19 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         });
       }
     });
+
+    it('4-2. 결과 렌더링 2초 후 우승자 축하 alert를 띄워야 한다.', () => {
+      const alertStub = cy.stub();
+      cy.on('window:alert', alertStub);
+
+      cy.clock();
+      if (cy.get(SELECTOR.ID.WINNER_SPAN)) {
+        cy.tick(DELAY.NOTIFY_RESULT_TIME).then(() => {
+          cy.expect(alertStub.getCall(0)).to.be.calledWith(
+            `우승자는 Marco입니다.`
+          );
+        });
+      }
+    });
   });
 });
