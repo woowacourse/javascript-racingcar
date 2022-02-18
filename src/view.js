@@ -25,8 +25,12 @@ export default class View {
     this.clearInput();
   }
 
-  displayResult() {
-    displayDOM([this.$winner, this.$resetButton, this.$stepSections]);
+  displayWinnerAndResetButton() {
+    displayDOM([this.$winner, this.$resetButton]);
+  }
+
+  displayStepSection() {
+    displayDOM([this.$stepSections]);
   }
 
   displayNoneResult() {
@@ -89,28 +93,27 @@ export default class View {
   updateResultDOM(carList, winnerList) {
     this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
-    this.displayResult();
   }
 
-  showArrow() {
+  showArrowOneRace() {
     const arrowsList = [...$$('.step-section__arrows')].map((section) => section.children);
-    arrowsList.forEach((arrows) => this.displayEachArrow([...arrows]));
+    arrowsList.forEach((arrows) => this.findDisplayNoneArrow([...arrows]));
   }
 
-  displayEachArrow(arrows) {
-    arrows.find((arrow) => this.checkArrowDisplayNone(arrow));
+  findDisplayNoneArrow(arrows) {
+    arrows.find((arrow) => this.showEachArrow(arrow));
   }
 
-  checkArrowDisplayNone(arrow) {
+  showEachArrow(arrow) {
     if (arrow.classList.contains('display-none')) {
-      this.animateSpinningAndShow(arrow);
+      displayDOM([arrow]);
+      this.animateSpinningAndShowArrow(arrow);
       return true;
     }
   }
 
-  animateSpinningAndShow(arrow) {
+  async animateSpinningAndShowArrow(arrow) {
     const startTime = new Date().getTime();
-    displayDOM([arrow]);
     let angle = 0;
     arrow.classList.add('spinning-bg');
     const callback = () => {
@@ -119,11 +122,11 @@ export default class View {
         arrow.style.transform = `rotate( 0deg )`;
         arrow.classList.remove('spinning-bg');
         arrow.innerText = '⬇️';
-      } else {
-        angle += 1;
-        arrow.style.transform = `rotate(${angle}deg)`;
-        requestAnimationFrame(callback);
+        return;
       }
+      angle += 10;
+      arrow.style.transform = `rotate(${angle}deg)`;
+      requestAnimationFrame(callback);
     };
     requestAnimationFrame(callback);
   }
