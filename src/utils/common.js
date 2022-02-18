@@ -1,6 +1,7 @@
 import { DISPLAY_NONE } from './constants.js';
 
 export const $ = (selector) => document.querySelector(selector);
+export const $$ = (selector) => document.querySelectorAll(selector);
 
 export const trimInArray = (array) => {
   return array.map((element) => element.trim());
