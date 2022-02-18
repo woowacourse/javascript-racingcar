@@ -86,6 +86,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
   });
 
+  // cy.clock 을 이용한 코드로 변경하고 싶은데 아직 이해도가 부족하여 wait으로 작성하였습니다.
   it('승자가 나온 이후 2초가 지나면 축하메세지가 노출된다.', () => {
     const nameInput = 'bling,jun,zzi';
     const countInput = 2;

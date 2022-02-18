@@ -71,29 +71,16 @@ class RacingCarGame {
     }
   }
 
-  // 1
-  // async simulateGame() {
-  //   const count = this.modelManager.getCount();
-  //   for (let i = 1; i <= count; i += 1) {
-  //     setTimeout(() => {
-  //       this.view.renderLoadingAboutRound();
-  //     }, 1000 * (i - 1));
-  //     setTimeout(() => {
-  //       this.simulateRound();
-  //     }, 1000 * i);
-  //   }
-  //   await sleep(count);
-  // }
-
   async simulateGame() {
     const count = this.modelManager.getCount();
     for (let i = 1; i <= count; i += 1) {
-      await this.view.renderLoadingAboutRound();
-      this.simulateRound();
+      await this.simulateRound();
     }
   }
 
-  simulateRound() {
+  async simulateRound() {
+    await this.view.renderLoadingAboutRound();
+
     const results = this.modelManager.goForwardCars();
     this.view.renderGoForwardCars(results);
   }
