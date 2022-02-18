@@ -1,5 +1,5 @@
 import { CAR_NAME_SEPARATOR, DOM, ID_PREFIX } from '../lib/constants.js';
-import { asyncSetTimeOut, findElement, splitString } from '../lib/utils.js';
+import { findElement, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
 
@@ -85,26 +85,15 @@ class RacingCarGame {
   //   await sleep(count);
   // }
 
-  // 2
-  // async simulateGame() {
-  //   const count = this.modelManager.getCount();
-  //   for (let i = 1; i <= count; i += 1) {
-  //     await this.simulateRound();
-  //   }
-  // }
-
-  // 3
-  // 로딩은 1초간 지속된다. 1초가 지나면 `simulateRound()` 함
-  // 병렬화의 이점을 제대로 이용하지못하고 있는 코드
   async simulateGame() {
     const count = this.modelManager.getCount();
     for (let i = 1; i <= count; i += 1) {
-      this.view.renderLoadingAboutRound();
-      await asyncSetTimeOut(() => this.simulateRound(), 1000);
+      await this.view.renderLoadingAboutRound();
+      this.simulateRound();
     }
   }
 
-  async simulateRound() {
+  simulateRound() {
     const results = this.modelManager.goForwardCars();
     this.view.renderGoForwardCars(results);
   }

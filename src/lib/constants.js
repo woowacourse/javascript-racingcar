@@ -51,3 +51,6 @@ export const MOVE_CONDITION = 4;
 
 export const ID_PREFIX = '#';
 export const CLASS_PREFIX = '.';
+
+export const SHOW_CLASS_NAME = 'show';
+export const HIDE_CLASS_NAME = 'hide';
