@@ -3,7 +3,7 @@ import GameManager from "./controller/GameManager.js";
 import UserManager from "./controller/UserManager.js";
 
 import { $ } from "./view/getElement.js";
-import { makeInitialView } from "./view/viewControl.js";
+import { makeInitialView } from "./view/initialView.js";
 
 class RacingCar {
   constructor() {

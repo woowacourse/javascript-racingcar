@@ -1,6 +1,5 @@
-import { setResultArea } from "../view/resultViewControl.js";
-import { showWinnerAndRestartButton } from "../view/viewControl.js";
-import { setWinnerText } from "../view/winnerViewControl.js";
+import { setResultArea, setWinnerText } from "../view/resultView.js";
+import { showWinnerAndRestartButton } from "../view/initialView.js";
 
 // TODO : 전반적인 게임을 관리
 export default class GameManager {

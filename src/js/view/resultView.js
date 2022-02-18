@@ -1,4 +1,4 @@
-import { showRacingResultArea } from "./viewControl.js";
+import { showRacingResultArea } from "./initialView.js";
 import { $ } from "./getElement.js";
 
 const createPositionArrow = () => {
@@ -35,4 +35,8 @@ const createResultLog = cars => {
 export const setResultArea = cars => {
   showRacingResultArea();
   createResultLog(cars);
+};
+
+export const setWinnerText = winners => {
+  $("racing-winner").innerHTML = winners.join(", ");
 };
