@@ -1,11 +1,11 @@
-import { $ } from "../dom/dom.js";
-import { ARROW_RENDER_DELAY_TIME, RESULT_RENDER_DELAY_TIME } from "../constants/constants.js";
+import { $ } from "./dom/dom.js";
+import { ARROW_RENDER_DELAY_TIME, RESULT_RENDER_DELAY_TIME } from "./constants/constants.js";
 
-import RacingCar from "../class/racingCar.js";
-import RacingCarView from "../views/racingCarView.js";
+import RacingCar from "./class/racingCar.js";
+import RacingCarView from "./views/racingCarView.js";
 
-import isCarNameInputValid from "./isCarNameInputValid.js";
-import isRacingCountInputValid from "./isRacingCountInputValid.js";
+import isCarNameInputValid from "./modules/isCarNameInputValid.js";
+import isRacingCountInputValid from "./modules/isRacingCountInputValid.js";
 
 export default function racingCarGame() {
     this.racingGameInfo = {
