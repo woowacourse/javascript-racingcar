@@ -1,5 +1,5 @@
-import { isEmpty, isExceedLength, isNotNaturalNumber } from '../util/index.js';
 import { ERROR_MESSAGES } from '../constants/index.js';
+import { isEmpty, isExceedLength, isNotNaturalNumber } from '../util/index.js';
 
 export const checkValidCarNames = (carNamesList) => {
   if (carNamesList.some(isExceedLength)) {
