@@ -53,11 +53,14 @@ const template = {
                 ${`<li class="${DOM_STRING.PROGRESS}">⬇️️</li>`.repeat(
                   car.distance
                 )}
+<<<<<<< HEAD
                 ${
                   (isRacing &&
                     `<li class="progress"><div class="${DOM_STRING.LOADING}"></div></li>`) ||
                   ''
                 }
+=======
+>>>>>>> remotes/upstream/greenblues1190
               </ul>
             </li>
             `
@@ -66,7 +69,11 @@ const template = {
     </ul>
   `;
   },
+<<<<<<< HEAD
   getResultHTML({ winners }) {
+=======
+  getResultHTML(winners) {
+>>>>>>> remotes/upstream/greenblues1190
     return (
       (winners.length > 0 &&
         `
