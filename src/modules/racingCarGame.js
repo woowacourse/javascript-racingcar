@@ -1,5 +1,5 @@
 import { $ } from "../dom/dom.js";
-import { ARROW_RENDER_DELAY_TIME } from "../constants/constants.js";
+import { ARROW_RENDER_DELAY_TIME, RESULT_RENDER_DELAY_TIME } from "../constants/constants.js";
 
 import RacingCar from "../class/racingCar.js";
 import RacingCarView from "../views/racingCarView.js";
@@ -43,13 +43,41 @@ export default function racingCarGame() {
             handleRacingCarModel();
         }
     }
-    const handleRacingCarModel = () => {
-        const racingCar = new RacingCar();
-        const carInstanceArray = racingCar.playGame(this.racingGameInfo.carNameArray, this.racingGameInfo.raceCount);
+    const handleRacingCarModel =  () => {
+        const carInstanceArray = this.racingCarModel.playGame(this.racingGameInfo.carNameArray, this.racingGameInfo.raceCount);
         this.racingCarView.renderRacingContent(carInstanceArray);
-        handleOneStep(carInstanceArray);
-        this.racingCarView.renderGameWinners(racingCar.getGameWinners());
+        handleOneStepRenderEvent(carInstanceArray);
+    }
+    const handleOneStepRenderEvent = (carInstanceArray) => {
+        handleSpinningRenderEvent(carInstanceArray);
+        let stepCount = 1; 
+        const timer = setInterval(() => {
+            if(stepCount === carInstanceArray.map(car => car.forwardCount).sort((a,b) => b - a)[0]){
+                clearInterval(timer);
+                gameEnd();
+            }
+            handleForwardCountEvent(stepCount, carInstanceArray);
+            stepCount++;
+        },ARROW_RENDER_DELAY_TIME);
+    }
+    const handleSpinningRenderEvent = (carInstanceArray) => {
+        carInstanceArray.forEach((car, index) => {
+            if(car.forwardCount !== 0){
+                this.racingCarView.renderSpinningContent(index, car.forwardCount);
+            }
+        })
+    }
+    const handleForwardCountEvent = (stepCount, carInstanceArray) => {
+        carInstanceArray.forEach((car ,index) => {
+            if(car.forwardCount >= stepCount && car.forwardCount !== 0){
+                this.racingCarView.renderArrowContent(`.step-${index}`, stepCount -1 );
+            }
+        });
+    }
+    const gameEnd = () => {
+        this.racingCarView.renderGameWinners(this.racingCarModel.getGameWinners());
         addRestartButtonEvent();
+        showWinnerAlert();
     }
     const addRestartButtonEvent = () => {
         $('.restart-button').addEventListener('click', () => {
@@ -58,23 +86,12 @@ export default function racingCarGame() {
         })
     }
 
-    const handleOneStep = (carInstanceArray) => {
-        carInstanceArray.forEach((car,index) => {
-            if(car.forwardCount !== 0){
-                handleOneCarArrowContent(index, car.forwardCount);
-            }
-        })
+    const showWinnerAlert = () => {
+        setTimeout(() => {
+            alert(`게임의 우승자인 ${this.racingCarModel.getGameWinners()} 축하합니다`)
+        }, RESULT_RENDER_DELAY_TIME);
+        clearTimeout();
     }
-    const handleOneCarArrowContent = (elementIndex, forwardCount) => {
-        this.racingCarView.renderSpinningContent(elementIndex, forwardCount);
-        let stepIndex = 0;
-        const timer = setInterval(() => {
-            if(stepIndex === forwardCount - 1){
-                clearInterval(timer);
-            }
-            this.racingCarView.renderArrowContent(`.step-${elementIndex}`,stepIndex);
-            stepIndex++;
-        }, ARROW_RENDER_DELAY_TIME);
-    }
+    
 
 }
