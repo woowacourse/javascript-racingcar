@@ -4,14 +4,14 @@ import { showArrowProgress, showCarElements } from '../view/showProgress.js';
 import { showRestart, showWinners } from '../view/showResult.js';
 import hideLoader from '../view/hideLoader.js';
 import wait from '../utils/wait.js';
-import { ALERT_WINNER_DELAY, DELAY, WINNER_MESSAGE } from '../utils/constants.js';
+import { ALERT_WINNER_DELAY, DEFAULT_DELAY, WINNER_ALERT_MESSAGE } from '../utils/constants.js';
 
 const finishRace = async cars => {
   const winner = getWinners(cars);
   showWinners(winner);
   showRestart();
   await wait(ALERT_WINNER_DELAY);
-  alert(`${[...winner] + WINNER_MESSAGE}`);
+  alert(`${[...winner] + WINNER_ALERT_MESSAGE}`);
 };
 
 const playRace = (cars, count) => {
@@ -26,7 +26,7 @@ const playRace = (cars, count) => {
 const handleRace = async count => {
   const cars = generateCars();
   playRace(cars, +count);
-  await wait((getMaxPosition(cars) + 1) * DELAY);
+  await wait((getMaxPosition(cars) + 1) * DEFAULT_DELAY);
   hideLoader();
   finishRace(cars);
 };
