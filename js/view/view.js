@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/dom.js';
 import { SELECTOR } from '../utils/constants.js';
+
 export default class View {
   constructor() {
     this.renderInitial();
@@ -29,7 +30,6 @@ export default class View {
         'beforeend',
         `<div id="car-check">
           <div id="car-progress-result-${i}">
-          
           <div id="loader"></div>
           </div>
         </div>`
@@ -37,24 +37,41 @@ export default class View {
     }
   }
 
-  moveCars(carPosition) {
-    const moveCarsTimer = setInterval(() => {
-      carPosition.forEach((position, idx) => {
-        if (position > 0) {
-          $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-          carPosition[idx] = position - 1;
-        }
-        if (carPosition.every((position) => position === 0)) {
-          $$('#loader').forEach((loader) => (loader.style.display = 'none'));
-          clearInterval(moveCarsTimer);
-        }
-      });
-    }, 1000);
-  }
+  // moveCars(carPosition) {
+  //   return new Promise((resolve) => {
+  //     const moveCarsTimer = setInterval(() => {
+  //       carPosition.forEach((position, idx) => {
+  //         if (position > 0) {
+  //           $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
+  //           carPosition[idx] = position - 1;
+  //         }
+  //         if (carPosition.every((position) => position === 0)) {
+  //           $$('#loader').forEach((loader) => (loader.style.display = 'none'));
+  //           resolve('FINISHED');
+  //           clearInterval(moveCarsTimer);
+  //         }
+  //       });
+  //     }, 1000);
+  //   });
+  // }
 
   renderProgress(carPosition) {
     this.makeLane(carPosition);
-    this.moveCars(carPosition);
+    return new Promise((resolve) => {
+      const moveCarsTimer = setInterval(() => {
+        carPosition.forEach((position, idx) => {
+          if (position > 0) {
+            $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
+            carPosition[idx] = position - 1;
+          }
+          if (carPosition.every((position) => position === 0)) {
+            $$('#loader').forEach((loader) => (loader.style.display = 'none'));
+            resolve('FINISHED');
+            clearInterval(moveCarsTimer);
+          }
+        });
+      }, 1000);
+    });
   }
 
   renderInitial() {
@@ -65,6 +82,8 @@ export default class View {
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = false;
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = '#00bcd4';
   }
 
   renderRestartButton() {

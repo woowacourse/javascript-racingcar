@@ -41,6 +41,8 @@ export default class Controller {
         alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
         return;
       }
+      $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = true;
+      $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = 'gray';
       this.model.saveRacingCount(this.getRacingCountInput());
       this.gameStart();
       this.model.initCarPosition();
@@ -72,14 +74,20 @@ export default class Controller {
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
     this.moveWhileRacingCount();
-    this.displayProgress();
-    this.displayWinner();
-    this.displayRestartButton();
-    this.bindGameRestartEvent();
+    const winnerList = this.getWinnerList();
+
+    this.displayProgress(this.model.carPosition).then(() => {
+      this.displayWinner(winnerList);
+      this.displayRestartButton();
+      this.bindGameRestartEvent();
+      setTimeout(() => {
+        alert('자동차 경주 결과가 나왔습니다. 우승하신 분들 축하드려요!');
+      }, 2000);
+    });
   }
 
   displayProgress() {
-    this.view.renderProgress(this.model.carPosition);
+    return this.view.renderProgress([...this.model.carPosition]);
   }
 
   displayRestartButton() {
@@ -98,8 +106,8 @@ export default class Controller {
     return this.getWinner(this.getMaxDistance()).join(', ');
   }
 
-  displayWinner() {
-    this.view.renderWinner(this.getWinnerList());
+  displayWinner(winnerList) {
+    this.view.renderWinner(winnerList);
   }
 
   bindGameRestartEvent() {
