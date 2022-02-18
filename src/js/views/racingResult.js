@@ -33,3 +33,12 @@ export const renderArrow = (name) => {
 export const removeSpinner = () => {
   $$('.spinner').forEach((element) => hideElement(element));
 };
+
+export const startUpScreen = () => {
+  $('#car-names-input').value = '';
+  $('#racing-count-input').value = '';
+  $('#result-racing').innerHTML = '';
+  hideElement($('#racing-count-form'));
+  hideElement($('#result-screen'));
+  hideElement($('#final-winner'));
+};

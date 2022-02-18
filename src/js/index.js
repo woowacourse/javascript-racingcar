@@ -7,13 +7,14 @@ import {
   isValidRacingCount,
   isEffectiveScore,
 } from './utils/validation.js';
-import { getRandomNumber, delayedAlert } from './utils/general.js';
-import { showElement, hideElement } from './utils/attribute.js';
+import { getMaxNumber, getRandomNumber, delayedAlert } from './utils/general.js';
+import { showElement } from './utils/attribute.js';
 import {
   renderRacingResult,
   renderFinalWinner,
   renderArrow,
   removeSpinner,
+  startUpScreen,
 } from './views/racingResult.js';
 
 class RacingCarGame {
@@ -28,14 +29,8 @@ class RacingCarGame {
     $('#reset-btn').addEventListener('click', this.restartRacingGame.bind(this));
   }
 
-  getMaxNumber() {
-    return this.cars.reduce((acc, { distance }) => {
-      return acc > distance ? acc : distance;
-    }, 0);
-  }
-
   selectWinner() {
-    const maxDistance = this.getMaxNumber();
+    const maxDistance = this.getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
   }
 
@@ -76,15 +71,6 @@ class RacingCarGame {
     }, DELAY_TIME.RACE);
   }
 
-  startUpScreen() {
-    $('#car-names-input').value = '';
-    $('#racing-count-input').value = '';
-    $('#result-racing').innerHTML = '';
-    hideElement($('#racing-count-form'));
-    hideElement($('#result-screen'));
-    hideElement($('#final-winner'));
-  }
-
   handleCarNamesSubmit() {
     const inputCarNames = $('#car-names-input')
       .value.split(',')
@@ -117,7 +103,7 @@ class RacingCarGame {
 
   restartRacingGame() {
     this.cars = [];
-    this.startUpScreen();
+    startUpScreen();
   }
 }
 
