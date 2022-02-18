@@ -1,4 +1,9 @@
-import { ERROR_MESSAGE, SELECTOR } from '../../src/utils/constants.js';
+import {
+  ERROR_MESSAGE,
+  ROUND_DELAY,
+  SELECTOR,
+  WIN_ALERT_DELAY,
+} from '../../src/utils/constants.js';
 
 describe('UI 조작 테스트', () => {
   beforeEach(() => {
@@ -61,6 +66,20 @@ describe('UI 조작 테스트', () => {
         expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DECIMAL);
       });
   });
+
+  it('자동차 경주 게임을 정상적으로 완료하고 2초 뒤에 축하 메시지를 확인할 수 있다.', () => {
+    const RACE_COUNT = 2;
+    const TOTAL_DELAY = ROUND_DELAY * RACE_COUNT + WIN_ALERT_DELAY;
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`).type('east,west,south,north{enter}');
+    cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`).type(`${RACE_COUNT}{enter}`);
+
+    cy.wait(TOTAL_DELAY).then(() => {
+      expect(alertStub).to.be.called;
+    });
+  });
 });
 
 context('화면표시 테스트', () => {
@@ -92,7 +111,16 @@ context('화면표시 테스트', () => {
       .should('have.text', 'north');
   });
 
-  it('자동차 이름과 횟수를 입력하면, 레이싱 경기 우승자가 표시된다.', () => {
+  it('n회 시도할 때, n-1초 후에는 우승자가 표시되지 않는다.', () => {
+    cy.wait(1000);
+    cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
+  });
+
+  it('n회 시도할 때, n-1초 후에는 우승자가 표시되지 않는다.', () => {
+    cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
+  });
+
+  it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
     cy.get(`.${SELECTOR.WINNER}`).should((p) => {
       expect(p).to.contain('최종 우승자');
     });

@@ -154,8 +154,6 @@ export default class View {
     });
   }
 
-  // async/await를 붙이지 않으면 비동기 구현이 안되는 이유는?
-  // this bind 해줘야 동작하는 이유는?
   async updateRoundPromise(carList, i) {
     await makeSetTimeoutPromise(this.updateRound.bind(this), [carList, i], ROUND_DELAY);
   }
