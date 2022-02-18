@@ -1,4 +1,7 @@
-import { RANDOM_RANGE, MINIMUM_ADVANCE_VALUE } from "../util/constants.js";
+import {
+  RANDOM_RANGE,
+  MINIMUM_ADVANCE_VALUE,
+} from "../controller/constants.js";
 import { pickNumberInRange } from "../util/random.js";
 
 export default class Car {

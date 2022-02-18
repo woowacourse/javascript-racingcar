@@ -2,7 +2,7 @@ import {
   racingCountInput,
   racingCountSubmitButton,
 } from "../../util/elements.js";
-import { EXCEPTIONS } from "../../util/constants.js";
+import { EXCEPTIONS } from "../constants.js";
 import { isValidRacingCount } from "./checkFunctions.js";
 import { setResultArea } from "../../view/resultView.js";
 import { setWinnerText } from "../../view/winnerView.js";

@@ -1,6 +1,6 @@
 import Car from "../../model/Car.js";
 import { isValidCarsName } from "./checkFunctions.js";
-import { SEPARATOR, EXCEPTIONS } from "../../util/constants.js";
+import { SEPARATOR, EXCEPTIONS } from "../constants.js";
 import { carNamesInput, carNamesSubmitButton } from "../../util/elements.js";
 import {
   lockCarNames,

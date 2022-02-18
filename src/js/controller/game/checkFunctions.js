@@ -1,4 +1,4 @@
-import { RACING_COUNT } from "../../util/constants.js";
+import { RACING_COUNT } from "../constants.js";
 import { isInteger } from "../../util/checkFunctions.js";
 
 export const isValidRacingCount = racingCountInputValue => {
