@@ -11,7 +11,7 @@ import CarManager from './carManager.js';
 import RacingCarGameView from './view.js';
 
 class RacingCarGame {
-  constructor() {
+  start() {
     this.count = null;
     this.view = new RacingCarGameView();
     this.carManager = new CarManager();
