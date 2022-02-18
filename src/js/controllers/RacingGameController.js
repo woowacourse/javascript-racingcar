@@ -77,27 +77,34 @@ export default class RacingGameController {
   }
 
   playRacingGame() {
-    const { carList } = this.#racingGameModel;
+    const { carList, round: gameRound } = this.#racingGameModel;
 
     this.#racingGameView.renderCarContainer(carList);
     this.#racingGameView.setVisibleProgress(true);
 
-    setTimeout(() => this.handleRaceTimer(), GAME_SETTING.ROUND_INTERVAL);
+    const receState = {
+      stage: 0,
+      round: gameRound,
+    };
+
+    const raceTimer = setInterval(
+      () => this.handleRaceTimer(raceTimer, receState),
+      GAME_SETTING.ROUND_INTERVAL
+    );
   }
 
-  handleRaceTimer(stageNumber = 0) {
-    stageNumber += 1;
+  handleRaceTimer(timer, state) {
+    state.stage += 1;
 
     const carPlayResult = this.#racingGameModel.play();
     this.#racingGameView.renderCarAdvance(carPlayResult);
 
-    const { round: gameRound } = this.#racingGameModel;
-    if (gameRound === stageNumber) {
+    const { round, stage } = state;
+    if (round === stage) {
       this.#racingGameView.setVisibleProgress(false);
       this.#racingGameView.renderWinners(this.#racingGameModel.winners);
-      return;
-    }
 
-    setTimeout(() => this.handleRaceTimer(stageNumber), GAME_SETTING.ROUND_INTERVAL);
+      clearInterval(timer);
+    }
   }
 }
