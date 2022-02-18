@@ -15,6 +15,7 @@ const MOVE_NUMBER = {
 };
 
 const SELECTOR = {
+  APP: '#app',
   RACING_GAME_FORM: '#racing-game-form',
   CAR_NAMES_INPUT: '#car-names-input',
   CAR_NAMES_BUTTON: '#car-names-button',
@@ -59,4 +60,3 @@ export {
   CAR_STATUS,
   END_MESSAGE_DELAY,
 };
-

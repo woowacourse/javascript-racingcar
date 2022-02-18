@@ -10,7 +10,7 @@ const addClass = (element, className) => element.classList.add(className);
 
 const removeClass = (element, className) => element.classList.remove(className);
 
-const getInputValue = target => target.querySelector('input').value;
+const getInputValue = target => target.value;
 
 const resetInputValue = element => (element.value = '');
 

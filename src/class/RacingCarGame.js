@@ -17,6 +17,7 @@ import { getTimeInSecond, delayedAlert } from '../utils/general.js';
 
 export default class RacingCarGame {
   constructor() {
+    this.$app = $(SELECTOR.APP);
     this.cars = [];
     this.winners = [];
     this.view = new View();
@@ -24,22 +25,23 @@ export default class RacingCarGame {
   }
 
   bindEvents() {
-    $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', ({ target }) =>
-      this.onSubmitCarName(getInputValue(target.parentElement)),
+    const carNamesInput = $(SELECTOR.CAR_NAMES_INPUT, this.$app);
+    const racingCountInput = $(SELECTOR.RACING_COUNT_INPUT, this.$app);
+
+    $(SELECTOR.CAR_NAMES_BUTTON, this.$app).addEventListener('click', () =>
+      this.onSubmitCarName(getInputValue(carNamesInput)),
     );
-    $(SELECTOR.RACING_COUNT_BUTTON).addEventListener('click', ({ target }) =>
-      this.onSubmitRacingCount(+getInputValue(target.parentElement)),
+    $(SELECTOR.RACING_COUNT_BUTTON, this.$app).addEventListener('click', () =>
+      this.onSubmitRacingCount(+getInputValue(racingCountInput)),
     );
-    $(SELECTOR.RESTART_BUTTON).addEventListener('click', () =>
+    $(SELECTOR.RESTART_BUTTON, this.$app).addEventListener('click', () =>
       this.onClickRestart(),
     );
-    $(SELECTOR.CAR_NAMES_INPUT).addEventListener('keyup', ({ key, target }) =>
+    carNamesInput.addEventListener('keyup', ({ key, target }) =>
       getEnterEvent(key, () => this.onSubmitCarName(target.value)),
     );
-    $(SELECTOR.RACING_COUNT_INPUT).addEventListener(
-      'keyup',
-      ({ key, target }) =>
-        getEnterEvent(key, () => this.onSubmitRacingCount(+target.value)),
+    racingCountInput.addEventListener('keyup', ({ key, target }) =>
+      getEnterEvent(key, () => this.onSubmitRacingCount(+target.value)),
     );
   }
 
