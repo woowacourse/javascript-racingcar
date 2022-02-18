@@ -23,3 +23,28 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import { DELAY, SELECTOR } from '../../src/constants/index.js';
+
+Cypress.Commands.add('inputCarName', (carName) => {
+  cy.get(`#${SELECTOR.CAR_NAMES_INPUT}`).type(carName);
+});
+
+Cypress.Commands.add('inputRacingCount', (racingCount) => {
+  cy.get(`#${SELECTOR.RACING_COUNT_INPUT}`).type(racingCount);
+});
+
+Cypress.Commands.add('submitValidCarName', (carName) => {
+  cy.inputCarName(carName);
+  cy.get(`.${SELECTOR.INPUT_BTN}`).eq(0).click();
+});
+
+Cypress.Commands.add('submitValidRacingCount', (racingCount) => {
+  cy.inputRacingCount(racingCount);
+  cy.get(`.${SELECTOR.INPUT_BTN}`).eq(1).click();
+});
+
+Cypress.Commands.add('delay', (racingCount) => {
+  const miliSecond = racingCount * DELAY.RACE_TIME;
+  cy.wait(miliSecond);
+});
