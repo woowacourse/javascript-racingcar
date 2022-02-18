@@ -3,6 +3,10 @@ import SELECTOR from '../constants/selector.js';
 import TEMPLATE from '../constants/template.js';
 
 export default class RacingGameView {
+  constructor() {
+    this.TEMPLATE = new TEMPLATE();
+  }
+
   setAbleForm($formElement) {
     console.log($formElement);
     $formElement.querySelectorAll('input, button').forEach(($element) => {
@@ -18,34 +22,34 @@ export default class RacingGameView {
   }
 
   renderProgress() {
-    $('.racing-car-container').setAttribute('data-state', 'on');
+    $(SELECTOR.RACE_CONTAINER_DIV).setAttribute('data-state', 'on');
   }
 
   renderResult(winner) {
-    $('#result').setAttribute('data-state', 'on');
+    $(SELECTOR.RACE_RESULT).setAttribute('data-state', 'on');
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
-      '🏆 최종 우승자: ' + winner + ' 🏆';
+      this.TEMPLATE.WINNER_DISPLAY(winner);
   }
 
   renderAdvanceDiv(carName) {
-    const str = `<div id="${carName}" class="car-instance"><div class="car-name-box">${carName}</div></div>`;
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += str;
+    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML +=
+      this.TEMPLATE.CAR_NAME_BOX(carName);
   }
 
   renderAdvance(target) {
-    const str = TEMPLATE.ADVANCE_MARK;
+    const str = this.TEMPLATE.ADVANCE_MARK();
     const targetID = '#' + target;
     $(targetID).innerHTML += str;
   }
 
   LoadingStart() {
-    $$('.car-instance').forEach(($element) => {
-      $element.innerHTML += TEMPLATE.LOADING_MARK;
+    $$(SELECTOR.RACE_CAR_INSTANCE).forEach(($element) => {
+      $element.innerHTML += this.TEMPLATE.LOADING_MARK();
     });
   }
 
   LoadingEnd() {
-    $$('.round-loading').forEach(($element) => {
+    $$(SELECTOR.RACE_LOADING).forEach(($element) => {
       $element.remove();
     });
   }
