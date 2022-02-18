@@ -51,6 +51,7 @@ export default class RacingGameView {
   }
 
   renderInit() {
+    $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML = '';
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
     $(SELECTOR.CAR_NAME_INPUT).value = '';
     $(SELECTOR.RACE_TIME_INPUT).value = '';
