@@ -43,6 +43,7 @@ export const CAR_NAME_SEPARATOR = ',';
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_COUNT: '횟수는 1 이상을 입력해야 합니다.',
   CAR_NAME_LENGTH_OVER: `${CAR_NAME_LENGTH_LIMIT}자 이하의 자동차 이름을 입력해주세요`,
+  CAR_NAME_LENGTH_BELOW: '자동차 이름을 1자 이상 입력해주세요',
 });
 
 export const RANGE_MIN = 0;
@@ -54,3 +55,5 @@ export const CLASS_PREFIX = '.';
 
 export const SHOW_CLASS_NAME = 'show';
 export const HIDE_CLASS_NAME = 'hide';
+export const DELAY_PER_ROUND = 1000;
+export const DELAY_AFTER_END = 2000;

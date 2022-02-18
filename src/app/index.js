@@ -1,4 +1,4 @@
-import { CAR_NAME_SEPARATOR, DOM, ID_PREFIX } from '../lib/constants.js';
+import { CAR_NAME_SEPARATOR, DELAY_AFTER_END, DOM, ID_PREFIX } from '../lib/constants.js';
 import { findElement, splitString } from '../lib/utils.js';
 import RacingCarGameManager from './manager.js';
 import RacingCarGameView from './view.js';
@@ -105,7 +105,7 @@ class RacingCarGame {
 
     setTimeout(() => {
       alert(`🎉🎉 축하합니다 ~~~~~ ${winners.join(',')} 님 🎉🎉`);
-    }, 2000);
+    }, DELAY_AFTER_END);
   }
 
   onRestartButtonClick = () => {
