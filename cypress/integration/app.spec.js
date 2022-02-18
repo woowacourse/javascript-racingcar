@@ -1,4 +1,9 @@
-import { ID, CLASS, winnerMesssage } from '../../src/js/utils/constants.js';
+import {
+  ID,
+  CLASS,
+  WINNER_TEMPLATE,
+  GAME_NUMBERS,
+} from '../../src/js/utils/constants.js';
 
 const invalidInputNames = 'east,west,south,north,jasmin';
 const inputNames = 'east,west,south,north';
@@ -86,7 +91,7 @@ describe('우승자 출력 테스트', () => {
     submitCarName(inputNames);
     submitRacingCount(racingCount);
 
-    cy.wait(racingCount * 1000);
+    cy.wait(racingCount * GAME_NUMBERS.DELAY_PER_RACE);
 
     let max = -1;
     cy.get(`.${CLASS.RACING_INFO}`).each((racingResult) => {
@@ -101,7 +106,22 @@ describe('우승자 출력 테스트', () => {
         }
       })
       .then(() => {
-        cy.get(`.${CLASS.WINNERS}`).should('have.text', `${winnerMesssage(winners.join(', '))}`);
+        cy.get(`.${CLASS.WINNERS}`).should(
+          'have.text',
+          `${WINNER_TEMPLATE(winners.join(', '))}`,
+        );
       });
+  });
+
+  it('자동차 경주 게임을 완료하고 2초 뒤 축하 메세지를 띄운다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    submitCarName(inputNames);
+    submitRacingCount(racingCount);
+
+    cy.wait(racingCount * GAME_NUMBERS.DELAY_PER_RACE);
+    cy.wait(2 * GAME_NUMBERS.DELAY_PER_RACE).then(() => {
+      expect(alertStub).to.be.called;
+    });
   });
 });
