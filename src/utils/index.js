@@ -10,6 +10,8 @@ const validateRacingCount = count => count >= MIN_RACING_COUNT;
 
 const generateRandomNumber = () => Math.floor(Math.random() * MAX_RANDOM_NUMBER);
 
+const convertToId = (id) => `#${id}`
+
 const getMaxCount = cars => {
   let maxCount = 0;
   for (let i = 0; i < cars.length; i++) {
@@ -26,5 +28,6 @@ export {
   validateDuplicateCarName,
   validateRacingCount,
   generateRandomNumber,
-  getMaxCount
+  getMaxCount,
+  convertToId
 };

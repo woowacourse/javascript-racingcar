@@ -44,7 +44,7 @@ const resultView = (winners) =>  {
 
 const winnerAlert = (winners) => alert(`🎉우승을 축하합니다 ${winners}🎉`);
 
-const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
+const winnersView = (winners) => `<h3 id="winners">🏆최종 우승자: ${winners}🏆</h3>`;
 
 const initRacingStatus = (cars) => {
   getElement(ID.RACING_STATUS).insertAdjacentHTML('beforeend', carsNameView(cars));
