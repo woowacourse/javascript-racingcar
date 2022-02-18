@@ -22,7 +22,7 @@ export const SELECTOR = {
     RACING_WINNERS: '#racing-winners',
     RACING_PROGRESS_CONTAINER: '#racing-progress-container',
     RACING_RESULT_CONTAINER: '#racing-result-container',
-    WINNER_SPAN: '#racing-result',
+    RACING_RESULT: '#racing-result',
     RESTART_BUTTON: '#restart-button'
   },
   CLASS: {

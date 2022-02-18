@@ -18,7 +18,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
 
     // then
-    cy.get(SELECTOR.ID.WINNER_SPAN).should('have.text', winner);
+    cy.get(SELECTOR.ID.RACING_RESULT).should('have.text', winner);
   });
 
   describe('2. 잘못된 자동차 이름 입력 유효성 검사', () => {
@@ -96,7 +96,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.on('window:alert', alertStub);
 
       cy.clock();
-      if (cy.get(SELECTOR.ID.WINNER_SPAN)) {
+      if (cy.get(SELECTOR.ID.RACING_RESULT)) {
         cy.tick(DELAY.NOTIFY_RESULT_TIME).then(() => {
           cy.expect(alertStub.getCall(0)).to.be.calledWith(
             `우승자는 Marco입니다.`
@@ -115,6 +115,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
           cy.get(SELECTOR.ID.RACING_RESULT_CONTAINER)
             .children()
             .should('not.exist');
+          cy.get(SELECTOR.ID.CAR_NAMES_INPUT).should('have.value', '');
+          cy.get(SELECTOR.ID.RACING_COUNT_INPUT).should('have.value', '');
         });
     });
   });

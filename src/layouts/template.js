@@ -3,7 +3,7 @@ import { SELECTOR } from '../constants/constants.js';
 export default class Template {
   static winnerTemplate(winnerList) {
     return `
-        <h2 id="${SELECTOR.ID.WINNER_SPAN.substr(
+        <h2 id="${SELECTOR.ID.RACING_RESULT.substr(
           1
         )}">🏆 최종 우승자: ${winnerList.join(', ')}🏆</h2>
         <button id="${SELECTOR.ID.RESTART_BUTTON.substr(
