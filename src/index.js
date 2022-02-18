@@ -1,12 +1,5 @@
 import { onSubmitCarNames, onSubmitTryCount, onClickRestartButton } from './eventListener.js';
-import { $ } from './util.js';
-import { KEYCODE_ENTER } from './constant.js';
-
-const onSubmitClickedEnter = (onSubmit) => (e) => {
-    if (e.keyCode === KEYCODE_ENTER) {
-        onSubmit();
-    }
-};
+import { $, onSubmitClickedEnter } from './util.js';
 
 $('#car-name-submit-button').addEventListener('click', onSubmitCarNames);
 $('#car-name-input').addEventListener('keyup', onSubmitClickedEnter(onSubmitCarNames));
