@@ -103,7 +103,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             cy.clock();
             playGameCorrectly();
 
-            
             cy.tick(500);
             for (let i = 0; i < TRY_COUNT; i += 1) {
                 // then
@@ -112,6 +111,21 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             }
             // then
             cy.get(SELECTOR.LOADER).should('not.exist');
+        });
+
+        it('게임이 끝나고 2초 뒤, 축하 메세지 창이 떠야 한다.', () => {
+            // given
+            const alertStub = cy.stub();
+            cy.on('window:alert', alertStub);
+            cy.clock();
+
+            // when
+            playGameCorrectly();
+            
+            cy.tick((TRY_COUNT + 2) * 1000).then(() => {
+                // then
+                expect(alertStub).to.be.called;
+            })
         });
         
         it('다시 시도하기 버튼을 클릭하면, 게임이 초기화되어야 한다.', () => {
