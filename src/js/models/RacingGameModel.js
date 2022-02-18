@@ -28,7 +28,7 @@ export default class RacingGameModel {
   }
 
   set round(number) {
-    this.#state.round = number;
+    this.#state.round = Number(number);
   }
 
   get round() {
