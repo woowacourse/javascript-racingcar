@@ -1,4 +1,4 @@
-import { RULES } from './constants/index.js';
+import { RULES, WINNER_MESSAGE } from './constants/index.js';
 import { convertToNumber, generateRandomNumber } from './util/index.js';
 import RacingCarGameModel from './model/RacingCarGameModel.js';
 import RacingCarGameView from './view/RacingCarGameView.js';
@@ -95,7 +95,7 @@ class RacingCarGame {
     this.view.showRestartSection();
 
     setTimeout(() => {
-      alert(`축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`);
+      alert(WINNER_MESSAGE(finalWinner));
     }, RULES.RESULT_MESSAGE_WAITING_TIME);
   }
 }
