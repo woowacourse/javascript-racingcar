@@ -30,15 +30,15 @@ const generateWinnersView = winners =>
     .join(',')}🏆</h3>`;
 
 export default class View {
-  constructor() {
-    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
-    this.$carNamesButton = $(SELECTOR.CAR_NAMES_BUTTON);
-    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
-    this.$racingCountButton = $(SELECTOR.RACING_COUNT_BUTTON);
-    this.$racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
-    this.$racingStatusContainer = $(SELECTOR.RACING_STATUS_CONTAINER);
-    this.$racingResultContainer = $(SELECTOR.RACING_RESULT_CONTAINER);
-    this.$winnersContainer = $(SELECTOR.WINNERS_CONTAINER);
+  constructor($app) {
+    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT, $app);
+    this.$carNamesButton = $(SELECTOR.CAR_NAMES_BUTTON, $app);
+    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT, $app);
+    this.$racingCountButton = $(SELECTOR.RACING_COUNT_BUTTON, $app);
+    this.$racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER, $app);
+    this.$racingStatusContainer = $(SELECTOR.RACING_STATUS_CONTAINER, $app);
+    this.$racingResultContainer = $(SELECTOR.RACING_RESULT_CONTAINER, $app);
+    this.$winnersContainer = $(SELECTOR.WINNERS_CONTAINER, $app);
     this.racingProgressElements = [];
   }
 

@@ -20,7 +20,7 @@ export default class RacingCarGame {
     this.$app = $(SELECTOR.APP);
     this.cars = [];
     this.winners = [];
-    this.view = new View();
+    this.view = new View(this.$app);
     this.bindEvents();
   }
 
