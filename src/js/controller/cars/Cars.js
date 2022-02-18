@@ -30,9 +30,8 @@ export default class Cars {
   }
 
   makeCars(carNamesInputValue) {
-    let carNameArr = carNamesInputValue?.split(SEPARATOR);
+    const carNameArr = Cars.trimCarNames(carNamesInputValue?.split(SEPARATOR));
 
-    carNameArr = Cars.trimCarNames(carNameArr);
     if (!carNamesInputValue || !isValidCarsName(carNameArr)) {
       return alert(EXCEPTIONS.INCORRECT_CAR_NAME);
     }
