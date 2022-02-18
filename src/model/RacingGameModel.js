@@ -2,31 +2,30 @@ import { INIT } from '../constants/constants.js';
 import CarModel from './CarModel.js';
 
 export default class RacingGameModel {
-  constructor() {
-    this._cars = INIT.CARS;
-    this._round = INIT.ROUND;
-  }
+  #cars = INIT.CARS;
+
+  #round = INIT.ROUND;
 
   moveCars(moves) {
-    this._cars = this._cars.map((car, index) => {
+    this.#cars = this.#cars.map((car, index) => {
       return { ...car, position: car.position + moves[index] };
     });
   }
 
   set cars(names) {
-    this._cars = names.map((name) => new CarModel(name));
+    this.#cars = names.map((name) => new CarModel(name));
   }
 
   get cars() {
-    return this._cars;
+    return this.#cars;
   }
 
   set round(newRound) {
-    this._round = newRound;
+    this.#round = newRound;
   }
 
   get round() {
-    return this._round;
+    return this.#round;
   }
 
   get winners() {
@@ -34,12 +33,12 @@ export default class RacingGameModel {
   }
 
   reset() {
-    this._cars = INIT.CARS;
-    this._round = INIT.ROUND;
+    this.#cars = INIT.CARS;
+    this.#round = INIT.ROUND;
   }
 
   findMaxRecord() {
-    const maxRecord = this._cars.reduce(
+    const maxRecord = this.#cars.reduce(
       (accumulator, current) => Math.max(accumulator, current.position),
       INIT.RECORD
     );
@@ -50,7 +49,7 @@ export default class RacingGameModel {
   findWinners() {
     const maxRecord = this.findMaxRecord();
 
-    const winnerList = this._cars.reduce((accumulator, current) => {
+    const winnerList = this.#cars.reduce((accumulator, current) => {
       if (current.position === maxRecord) {
         accumulator.push(current.name);
       }
