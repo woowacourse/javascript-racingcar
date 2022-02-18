@@ -1,5 +1,5 @@
 import { RULES } from './constants/index.js';
-import { convertToNumber, generateRandomNumber, waitGame } from './util/index.js';
+import { convertToNumber, generateRandomNumber } from './util/index.js';
 import RacingCarGameModel from './model/RacingCarGameModel.js';
 import RacingCarGameView from './view/RacingCarGameView.js';
 import validator from './validator/index.js';
@@ -86,14 +86,14 @@ class RacingCarGame {
     });
   }
 
-  async handleGameResult() {
+  handleGameResult() {
     const finalWinner = this.model.getFinalWinner();
     this.view.renderFinalWinner(finalWinner);
     this.view.showRestartSection();
 
-    await waitGame(RULES.RESULT_MESSAGE_WAITING_TIME);
-
-    alert(`축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`);
+    setTimeout(() => {
+      alert(`축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`);
+    }, RULES.RESULT_MESSAGE_WAITING_TIME);
   }
 }
 
