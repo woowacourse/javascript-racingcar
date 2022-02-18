@@ -44,7 +44,16 @@
       <details>
       <summary>예</summary>
       입력받은 문자열: "김, 김, 이"<br>
-      자동차 이름 배열: [<span style="background:skyblue">"김"</span>, <span style="background:skyblue">"김"</span>, "이"]<br>
+      >> 자동차 이름 배열: [<span style="background:skyblue">"김"</span>, <span style="background:skyblue">"김"</span>, "이"]<br>
+      </details>
+
+  - 자동차 이름의 개수가 1 이상 5 이하인지 검증한다.
+
+      <details>
+      <summary>예</summary>
+      입력받은 문자열: "A, B, C, D, E, F"<br>
+      >> 자동차 이름 배열: ["A", "B", "C", "D", "E", "F"]<br>
+      >> 자동차 이름 개수: <span style="background:skyblue">6</span>
       </details>
 
 - #### 자동차 생성하기
