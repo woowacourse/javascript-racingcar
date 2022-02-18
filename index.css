@@ -27,24 +27,41 @@ p {
     display: none;
 }
 
-.app.show-try-form .try-count,
+.app.show-try-count-form .try-count,
 .app.show-result-area .result-area,
 .app.show-final-result-area .final-result-area {
     display: block;
 }
 
 .game-title {
+    margin: 0;
     font-size: 34px;
     text-align: center;
     color: #000000;
 }
 
+.form-area {
+    width: 100%;
+    padding: 32px 34px 0;
+    box-sizing: border-box;
+}
+
 .game-form {
-    width: 89%;
+    width: 100%;
+    margin-bottom: 12px;
 }
 
 .game-form.name {
     margin-bottom: 13px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .input-wrap {
@@ -52,14 +69,6 @@ p {
     align-items: center;
     justify-content: space-between;
     height: 36px;
-}
-
-.form-title {
-    margin-bottom: 4px;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.5px;
-    color: rgba(0, 0, 0, 0.87);
 }
 
 .form-input {
@@ -78,7 +87,7 @@ p {
 .result-area {
     width: 100%;
     text-align: center;
-    margin-top: 32px;
+    margin-top: 20px;
 }
 
 .track-area {
@@ -115,7 +124,7 @@ p {
 .car-steps {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    align-items: center;
     font-size: 32px;
     line-height: 38px;
 }
@@ -124,11 +133,12 @@ p {
     margin-top: 8px;
 }
 
-.last-area {
-    margin-top: 24px;
+.final-result-area {
+    margin-top: 32px;
 }
 
 .stage {
+    margin: 32px 0 24px 0;
     font-size: 20px;
     line-height: 24px;
     color: rgba(0, 0, 0, 0.87);

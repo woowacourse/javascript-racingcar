@@ -11,31 +11,31 @@
   <div class="app" id="app">
     <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
-    <form class="game-form car-names">
-      <p class="form-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+    <section class="form-area">
+      <form class="game-form car-names">
+        <label class="form-label">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+        <div class="input-wrap">
+          <input class="form-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
+          <button class="form-button blue-button" type="button" id="car-name-submit-button">확인</button>
+        </div>
+      </form>
 
-      <div class="input-wrap">
-        <input class="form-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
-        <button class="form-button blue-button" type="button" id="car-name-submit-button">확인</button>
-      </div>
-    </form>
+      <form class="game-form try-count">
+        <label class="form-label">시도할 횟수를 입력해주세요.</label>
+        <div class="input-wrap">
+          <input class="form-input" type="number" placeholder="10" id="try-count-input">
+          <button class="form-button blue-button" type="button" id="try-count-submit-button">확인</button>
+        </div>
+      </form>
+    </section>
 
-    <form class="game-form try-count">
-      <p class="form-title">시도할 횟수를 입력해주세요.</p>
-
-      <div class="input-wrap">
-        <input class="form-input" type="number" placeholder="10" id="try-count-input">
-        <button class="form-button blue-button" type="button" id="try-count-submit-button">확인</button>
-      </div>
-    </form>
-
-    <div class="result-area">
-      <div class="track-area" id="track-area"></div>
-      <div class="final-result-area">
+    <section class="result-area">
+      <section class="track-area" id="track-area"></section>
+      <section class="final-result-area">
         <h3 class="stage">🏆 최종 우승자: <span id="winners"></span> 🏆</h1>
         <button class="restart-button blue-button" type="button" id="restart-button">다시 시작하기</button>
-      </div>
-    </div>
+      </section>
+    </section>
   </div>
   <script type="module" src="src/index.js"></script>
 </body>
