@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/dom.js';
-import { showElement, hideElement } from '../utils/attribute.js';
+import { hideElement } from '../utils/attribute.js';
 
 const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
 
@@ -32,23 +32,4 @@ export const renderArrow = (name) => {
 
 export const removeSpinner = () => {
   $$('.spinner').forEach((element) => hideElement(element));
-};
-
-export const showCountInput = () => {
-  showElement($('#racing-count-form'));
-};
-
-export const showRacingResult = () => {
-  showElement($('#result-screen'));
-  showElement($('#final-winner'));
-};
-
-export const startUpScreen = () => {
-  $('#car-names-input').value = '';
-  $('#racing-count-input').value = '';
-  $('#result-racing').innerHTML = '';
-
-  hideElement($('#racing-count-form'));
-  hideElement($('#result-screen'));
-  hideElement($('#final-winner'));
 };

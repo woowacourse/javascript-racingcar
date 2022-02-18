@@ -3,13 +3,11 @@ import { $ } from './utils/dom.js';
 import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
 import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
 import { getMaxNumber, getRandomNumber } from './utils/getNumber.js';
+import { showElement, hideElement } from './utils/attribute.js';
 import { wait } from './utils/wait.js';
 import {
   renderRacingResult,
   renderFinalWinner,
-  showCountInput,
-  showRacingResult,
-  startUpScreen,
   renderArrow,
   removeSpinner,
 } from './views/racingResult.js';
@@ -69,6 +67,15 @@ class RacingCar {
     }
   }
 
+  startUpScreen() {
+    $('#car-names-input').value = '';
+    $('#racing-count-input').value = '';
+    $('#result-racing').innerHTML = '';
+    hideElement($('#racing-count-form'));
+    hideElement($('#result-screen'));
+    hideElement($('#final-winner'));
+  }
+
   handleCarNamesSubmit() {
     const inputCarNames = $('#car-names-input')
       .value.split(',')
@@ -78,7 +85,7 @@ class RacingCar {
       return;
     }
     this.generateCars(inputCarNames);
-    showCountInput();
+    showElement($('#racing-count-form'));
   }
 
   async handleRacingCountSubmit() {
@@ -86,19 +93,21 @@ class RacingCar {
     if (!this.isValidRacingCount(inputNumber)) {
       return;
     }
-    showRacingResult();
+    showElement($('#result-screen'));
     renderRacingResult(this.cars);
     await this.startRacingGame(inputNumber);
+
     const finalWinner = this.selectWinner()
       .map((winner) => winner.name)
       .join(', ');
     renderFinalWinner(finalWinner);
     removeSpinner();
+    showElement($('#final-winner'));
   }
 
   restartRacingGame() {
     this.cars = [];
-    startUpScreen();
+    this.startUpScreen();
   }
 }
 
