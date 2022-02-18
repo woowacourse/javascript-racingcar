@@ -10,10 +10,8 @@ const racingCars = {
             this.cars.push(new Car(carName));
         });
     },
-    run(tryCount) {
-        for (let i = 0; i < tryCount; i += 1) {
-            this.cars.forEach((car) => car.tryForward());
-        }
+    run() {
+        return this.cars.map((car) => car.tryForward());
     },
     getMaxStep() {
         return this.cars.reduce((acc, car) => Math.max(acc, car.step), 0);

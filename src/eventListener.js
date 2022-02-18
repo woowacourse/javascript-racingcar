@@ -1,6 +1,7 @@
 import racingCars from './racingCars.js';
 import render from './render.js';
 import userInput from './userInput.js';
+import RunGame from './RunGame.js';
 import { isValidCarNames, isValidTryCount } from './validation.js';
 
 const actionSubmitCarNames = (carNames) => {
@@ -23,12 +24,6 @@ const onSubmitCarNames = () => {
     actionSubmitCarNames(carNames);
 };
 
-const actionSubmitTryCount = (tryCount) => {
-    racingCars.run(tryCount);
-    render.renderResult(racingCars);
-    racingCars.resetSteps();
-};
-
 const onSubmitTryCount = () => {
     const tryCount = userInput.getTryCount();
 
@@ -39,7 +34,7 @@ const onSubmitTryCount = () => {
         return;
     }
 
-    actionSubmitTryCount(tryCount);
+    new RunGame(tryCount).start();
 };
 
 const onClickRestartButton = () => {

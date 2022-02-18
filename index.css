@@ -145,3 +145,22 @@ p {
     width: 152px;
     height: 36px;
 }
+
+.loading {
+    width: 32px;
+    height: 32px;
+    margin: 13px auto 0;
+    border: 16px solid #00bcd4;
+    border-top: 16px solid #f3f3f3;
+    border-radius: 100%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

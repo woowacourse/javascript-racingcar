@@ -13,7 +13,10 @@ export default class Car {
             CAR_GO_FORWARD_RULE.ENOUGH
         ) {
             this.forward();
+            return true;
         }
+
+        return false;
     }
 
     forward() {
