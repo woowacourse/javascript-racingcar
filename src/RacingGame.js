@@ -45,6 +45,7 @@ export default class RacingGame {
             validationCarNames(carNames);
         } catch (error) {
             alert(error.message);
+            return;
         }
         this.racingCars.reset();
         this.racingCars.update(carNames);
@@ -57,6 +58,7 @@ export default class RacingGame {
             validationTryCount(tryCount);
         } catch (error) {
             alert(error.message);
+            return;
         }
         this.runGame(tryCount);
         this.racingCars.resetSteps();
