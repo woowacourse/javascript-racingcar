@@ -1,5 +1,6 @@
-import Car from './car.js';
 import { COUNT } from './common/constants.js';
+
+import Car from './car.js';
 
 export default class RacingCarModel {
   constructor() {
@@ -22,11 +23,11 @@ export default class RacingCarModel {
 
   getWinnners() {
     return this.cars
-      .filter((car) => car.moveCount === this.getMaxMoveCount())
+      .filter((car) => car.moveCount === this.#getMaxMoveCount())
       .map((car) => car.name);
   }
 
-  getMaxMoveCount() {
+  #getMaxMoveCount() {
     return Math.max(...this.cars.map((car) => car.moveCount));
   }
 }

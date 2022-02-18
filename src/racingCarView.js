@@ -1,44 +1,24 @@
-import { $, $$ } from './common/DOMHelper.js';
-import {
-  carsTemplate,
-  carNamesTemplate,
-  headerTemplate,
-  racingCountTemplate,
-  restartTemplate,
-  winnersTemplate,
-} from './common/template.js';
 import { CAR, SELECTOR } from './common/constants.js';
+import { $, $$ } from './common/DOMHelper.js';
 import { style } from './common/style.js';
+import * as template from './common/template.js';
 
 export default class RacingCarView {
   constructor() {
     this.$app = $('#app');
-
-    this.init();
+    RacingCarView.init();
   }
 
-  init() {
+  static init() {
     document.head.innerHTML += style;
   }
 
   renderHeader() {
-    this.$app.innerHTML = headerTemplate();
+    this.$app.innerHTML = template.headerTemplate();
   }
 
   renderCarNames() {
-    this.$app.innerHTML += carNamesTemplate();
-  }
-
-  renderRacingCount() {
-    const $racingCount = $('#racing-count');
-
-    $racingCount.innerHTML = racingCountTemplate();
-  }
-
-  renderCars(cars) {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML = carsTemplate(cars);
+    this.$app.innerHTML += template.carNamesTemplate();
   }
 
   selectCarNamesDOM() {
@@ -46,56 +26,57 @@ export default class RacingCarView {
     this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
+  resetCarNamesInput() {
+    this.$carNamesInput.value = '';
+  }
+
+  static renderRacingCount() {
+    $(SELECTOR.RACING_COUNT).innerHTML = template.racingCountTemplate();
+  }
+
   selectRacingCountDOM() {
     this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
     this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
-  selectRestartDOM() {
-    this.$restart = $('#restart');
-  }
-
-  resetCarNamesInput() {
-    this.$carNamesInput.value = '';
+  static renderCars(cars) {
+    $(SELECTOR.GAME_RESULT).innerHTML = template.carsTemplate(cars);
   }
 
   resetRacingCountInput() {
     this.$racingCountInput.value = '';
   }
 
-  renderMoveForwardArrow(car) {
+  static renderMoveForwardArrow(car) {
     const { name, moveCount } = car;
-    const carNode = this.findCarNode(name)[0];
+    const carNode = RacingCarView.#findCarNode(name)[0];
 
     for (let i = 0; i < moveCount; i += 1) {
       carNode.innerHTML += `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
     }
   }
 
-  findCarNode(name) {
+  static #findCarNode(name) {
     const $$moveForwardArrow = $$('.move-forward-arrow');
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
   }
 
-  renderWinners(winners) {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML += winnersTemplate(winners);
+  static renderWinners(winners) {
+    $(SELECTOR.GAME_RESULT).innerHTML += template.winnersTemplate(winners);
   }
 
-  renderRestart() {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML += restartTemplate();
+  static renderRestart() {
+    $(SELECTOR.GAME_RESULT).innerHTML += template.restartTemplate();
   }
 
-  renderInit() {
+  selectRestartDOM() {
+    this.$restart = $(SELECTOR.RESTART);
+  }
+
+  renderReset() {
     this.resetCarNamesInput();
-
-    const $racingCount = $('#racing-count');
-    const $gameResult = $('#game-result');
-    $racingCount.innerHTML = '';
-    $gameResult.innerHTML = '';
+    $(SELECTOR.RACING_COUNT).innerHTML = '';
+    $(SELECTOR.GAME_RESULT).innerHTML = '';
   }
 }

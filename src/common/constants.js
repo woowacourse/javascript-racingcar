@@ -36,6 +36,8 @@ export const RANDOM = {
 export const SELECTOR = {
   CAR_NAMES_INPUT: '#car-names-input',
   CAR_NAMES_SUBMIT: '#car-names-submit',
+  GAME_RESULT: '#game-result',
+  RACING_COUNT: '#racing-count',
   RACING_COUNT_INPUT: '#racing-count-input',
   RACING_COUNT_SUBMIT: '#racing-count-submit',
   RESTART: '#restart',
