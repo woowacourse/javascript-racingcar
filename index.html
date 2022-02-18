@@ -12,7 +12,8 @@
         <h2>🏎️자동차 경주 게임🏁</h2>
       </header>
       <main>
-        <section id="user_input_section">
+        <section id="car_names_input_section">
+          <h2 hidden>자동차 이름 입력</h2>
           <form id="car_names_form">
             <label for="car_names_input"
               >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
@@ -27,6 +28,9 @@
               <button class="input_btn">확인</button>
             </div>
           </form>
+        </section>
+        <section id="racing_count_input_section">
+          <h2 hidden>시도할 횟수 입력</h2>
           <form id="racing_count_form">
             <label for="racing_count_input">시도할 횟수를 입력해주세요.</label>
             <div class="input_box">
@@ -36,10 +40,12 @@
           </form>
         </section>
         <section id="racing_car_display_section">
+          <h2 hidden>자동차 경주 진행 상황</h2>
           <div id="racing_car_list"></div>
           <div id="final_winner">🏆최종 우승자 : <span id="final_winner_result"></span>🏆</div>
         </section>
         <section id="restart_section">
+          <h2 hidden>자동차 경주 다시 시작하기</h2>
           <button id="restart_btn">다시 시작하기</button>
         </section>
       </main>

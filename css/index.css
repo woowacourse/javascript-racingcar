@@ -27,6 +27,7 @@ body {
 header {
   font-size: 34px;
   line-height: 36px;
+  margin-bottom: 32px;
 }
 
 main {
@@ -35,17 +36,18 @@ main {
   align-items: center;
 }
 
-#user_input_section {
+#car_names_input_section {
   width: 425px;
-  margin: 32px 0px;
+  margin-bottom: 12px;
+}
+
+#racing_count_input_section {
+  width: 425px;
+  margin-bottom: 32px;
 }
 
 #racing_count_form {
   display: none;
-}
-
-form {
-  margin-bottom: 12px;
 }
 
 form > label {
@@ -61,10 +63,10 @@ form > label {
 }
 
 .user_input {
-  color: #888888;
+  width: 330px;
   border: 1px solid #888888;
   border-radius: 4px;
-  width: 330px;
+  color: #888888;
   padding: 4px;
 }
 
