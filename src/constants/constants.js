@@ -1,4 +1,4 @@
-export const INPUT_ERROR = {
+export const INPUT_ERROR = Object.freeze({
   INVALID_LENGTH: '자동차 이름은 5자 이하만 가능합니다.',
   DUPLICATED: '자동차 이름이 중복되어서는 안됩니다.',
   CONTAINED_BLANK: '자동차 이름에 공백이 포함되어서는 안됩니다.',
@@ -6,9 +6,9 @@ export const INPUT_ERROR = {
   COUNT_NEGATIVE: '횟수는 음수가 되어서는 안됩니다.',
   COUNT_NOT_NATURAL: '횟수는 자연수가 되어야 합니다.',
   COUNT_EMPTY: '횟수를 입력해주세요!'
-};
+});
 
-export const SELECTOR = {
+export const SELECTOR = Object.freeze({
   ID: {
     APP: '#app',
     CAR_NAMES_INPUT: '#car-names-input',
@@ -30,23 +30,23 @@ export const SELECTOR = {
     CAR_PROGRESS_NAME: '.car-progress-container--name',
     CAR_PROGRESS_STATUS: '.car-progress-container--status'
   }
-};
+});
 
-export const CAR = {
+export const CAR = Object.freeze({
   RANDOM_MINIMUM_NUMBER: 0,
   RANDOM_MAXIMUM_NUMBER: 9,
   REFERENCE_POINT_FOR_MOVEMENT: 4,
   ONE_MOVE: 1
-};
+});
 
-export const INIT = {
+export const INIT = Object.freeze({
   CARS: [],
   ROUND: 0,
   RECORD: 0,
   POSITION: 0
-};
+});
 
-export const DELAY = {
+export const DELAY = Object.freeze({
   TURN_BETWEEN_TIME: 1000,
   NOTIFY_RESULT_TIME: 2000
-};
+});
