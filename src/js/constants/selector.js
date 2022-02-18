@@ -4,7 +4,7 @@ const SELECTOR = Object.freeze({
   // 범용 선택자
   APP: '#app',
   PROGRESS: '.progress',
-  PROGRESS_INNER: '.round',
+  PROGRESS_INNER: '.circle',
 
   // RacingGame 사용 선택자
   CAR_NAME_INPUT: '#car-name-input',
