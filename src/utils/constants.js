@@ -7,6 +7,7 @@ export const NUMBER = {
   STEP_BASE_NUMBER: 4,
   STEP: 1,
   ARROW_INTERVAL_TIME: 1000,
+  WINNER_ALERT_TIME: 2000,
 };
 
 export const ERROR = {
