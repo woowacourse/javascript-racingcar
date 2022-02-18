@@ -1,4 +1,4 @@
-export const baseUrl = "../../index.html";
+export const BASE_URL = "../../index.html";
 export const SELECTOR = {
     CAR_NAME_INPUT: "#car-name-input",
     CAR_NAME_BUTTON: '#car-name-button',

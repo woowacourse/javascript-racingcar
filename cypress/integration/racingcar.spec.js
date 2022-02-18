@@ -1,8 +1,8 @@
-import {baseUrl} from '../support/constants.js';
+import {BASE_URL} from '../support/constants.js';
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   beforeEach(() => {
-    cy.visit(baseUrl);
+    cy.visit(BASE_URL);
   });
 
   /* 우승자 확인 */
