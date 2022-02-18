@@ -3,6 +3,7 @@ import RacingGameView from '../views/RacingGameView.js';
 
 import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
+import { RESULT_MESSAGE } from '../constants/message.js';
 import { $ } from '../utils/element-tools.js';
 import { nameStringToArray } from '../utils/data-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
@@ -101,10 +102,16 @@ export default class RacingGameController {
 
     const { round, stage } = state;
     if (round === stage) {
-      this.#racingGameView.setVisibleProgress(false);
-      this.#racingGameView.renderWinners(this.#racingGameModel.winners);
-
       clearInterval(timer);
+      setTimeout(() => {
+        this.handleWinnersResult();
+      }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
     }
+  }
+
+  handleWinnersResult() {
+    this.#racingGameView.setVisibleProgress(false);
+    this.#racingGameView.renderWinners(this.#racingGameModel.winners);
+    alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
   }
 }
