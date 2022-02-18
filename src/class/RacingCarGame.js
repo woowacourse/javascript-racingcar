@@ -16,25 +16,26 @@ import {
 import { getTimeInSecond, delayedAlert } from '../utils/general.js';
 
 export default class RacingCarGame {
+  #$app = $(SELECTOR.APP);
+  #cars = [];
+  #winners = [];
+  #view = new View(this.#$app);
+
   constructor() {
-    this.$app = $(SELECTOR.APP);
-    this.cars = [];
-    this.winners = [];
-    this.view = new View(this.$app);
     this.bindEvents();
   }
 
   bindEvents() {
-    const carNamesInput = $(SELECTOR.CAR_NAMES_INPUT, this.$app);
-    const racingCountInput = $(SELECTOR.RACING_COUNT_INPUT, this.$app);
+    const carNamesInput = $(SELECTOR.CAR_NAMES_INPUT, this.#$app);
+    const racingCountInput = $(SELECTOR.RACING_COUNT_INPUT, this.#$app);
 
-    $(SELECTOR.CAR_NAMES_BUTTON, this.$app).addEventListener('click', () =>
+    $(SELECTOR.CAR_NAMES_BUTTON, this.#$app).addEventListener('click', () =>
       this.onSubmitCarName(getInputValue(carNamesInput)),
     );
-    $(SELECTOR.RACING_COUNT_BUTTON, this.$app).addEventListener('click', () =>
+    $(SELECTOR.RACING_COUNT_BUTTON, this.#$app).addEventListener('click', () =>
       this.onSubmitRacingCount(+getInputValue(racingCountInput)),
     );
-    $(SELECTOR.RESTART_BUTTON, this.$app).addEventListener('click', () =>
+    $(SELECTOR.RESTART_BUTTON, this.#$app).addEventListener('click', () =>
       this.onClickRestart(),
     );
     carNamesInput.addEventListener('keyup', ({ key, target }) =>
@@ -53,8 +54,8 @@ export default class RacingCarGame {
     if (!isDifferentCarNames(parsedNames)) {
       return alert(MESSAGE.DUPLICATE_NAME);
     }
-    this.cars = parsedNames.map(name => new Car(name));
-    this.view.showRacingCountInput();
+    this.#cars = parsedNames.map(name => new Car(name));
+    this.#view.showRacingCountInput();
   }
 
   onSubmitRacingCount(count) {
@@ -68,19 +69,19 @@ export default class RacingCarGame {
   }
 
   onClickRestart() {
-    this.cars = [];
-    this.winners = [];
-    this.view.restartGame();
+    this.#cars = [];
+    this.#winners = [];
+    this.#view.restartGame();
   }
 
   startGame(count) {
-    this.view.renderRacingStatus(this.cars);
+    this.#view.renderRacingStatus(this.#cars);
     this.progressGame(count);
   }
 
   endGame() {
-    this.winners = getWinners(this.cars);
-    this.view.endGame(this.winners);
+    this.#winners = getWinners(this.#cars);
+    this.#view.endGame(this.#winners);
     delayedAlert(MESSAGE.GAME_END, END_MESSAGE_DELAY);
   }
 
@@ -100,11 +101,11 @@ export default class RacingCarGame {
         return;
       }
       if (isLoading) {
-        this.view.renderSpinners();
+        this.#view.renderSpinners();
         isLoading = false;
       }
       if (before !== progress) {
-        this.view.renderRacingProgress(getCarsMovement(this.cars));
+        this.#view.renderRacingProgress(getCarsMovement(this.#cars));
         before = progress;
         isLoading = true;
       }
