@@ -4,7 +4,6 @@ import { DELAY_TIME, ERROR_MESSAGE, RACING_MIN_COUNT, RACING_SCORE } from './uti
 import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
 import { getMaxNumber, getRandomNumber } from './utils/getNumber.js';
 import { showElement, hideElement } from './utils/attribute.js';
-import { wait } from './utils/wait.js';
 import {
   renderRacingResult,
   renderFinalWinner,
@@ -53,18 +52,37 @@ class RacingCar {
     this.cars = carNames.map((name) => new Car(name));
   }
 
-  async startRacingGame(inputNumber) {
-    for (let i = 0; i < inputNumber; i += 1) {
-      // eslint-disable-next-line no-await-in-loop
-      await wait();
-      this.cars.forEach((car) => {
-        const number = getRandomNumber(RACING_SCORE.MIN, RACING_SCORE.MAX);
-        if (isEffectiveScore(number)) {
-          car.moveForward();
-          renderArrow(car.name);
-        }
-      });
-    }
+  playRace() {
+    this.cars.forEach((car) => {
+      const number = getRandomNumber(RACING_SCORE.MIN, RACING_SCORE.MAX);
+      if (isEffectiveScore(number)) {
+        car.moveForward();
+        renderArrow(car.name);
+      }
+    });
+  }
+
+  endRacingGame() {
+    const finalWinner = this.selectWinner()
+      .map((winner) => winner.name)
+      .join(', ');
+    renderFinalWinner(finalWinner);
+    removeSpinner();
+    showElement($('#final-winner'));
+    this.showCongratulationsMessage(finalWinner);
+  }
+
+  startRacingGame(inputNumber) {
+    let lap = 0;
+    const raceTimer = setInterval(() => {
+      this.playRace();
+
+      lap += 1;
+      if (lap === Number(inputNumber)) {
+        clearInterval(raceTimer);
+        this.endRacingGame();
+      }
+    }, DELAY_TIME.RACE);
   }
 
   showCongratulationsMessage(winner) {
@@ -86,6 +104,7 @@ class RacingCar {
     const inputCarNames = $('#car-names-input')
       .value.split(',')
       .map((car) => car.trim());
+
     if (!this.isValidCarNames(inputCarNames)) {
       $('#car-names-input').value = '';
       return;
@@ -94,22 +113,14 @@ class RacingCar {
     showElement($('#racing-count-form'));
   }
 
-  async handleRacingCountSubmit() {
+  handleRacingCountSubmit() {
     const inputNumber = $('#racing-count-input').value;
     if (!this.isValidRacingCount(inputNumber)) {
       return;
     }
     showElement($('#result-screen'));
     renderRacingResult(this.cars);
-    await this.startRacingGame(inputNumber);
-
-    const finalWinner = this.selectWinner()
-      .map((winner) => winner.name)
-      .join(', ');
-    renderFinalWinner(finalWinner);
-    removeSpinner();
-    showElement($('#final-winner'));
-    this.showCongratulationsMessage(finalWinner);
+    this.startRacingGame(inputNumber);
   }
 
   restartRacingGame() {
