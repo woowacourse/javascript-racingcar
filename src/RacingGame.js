@@ -76,7 +76,9 @@ export default class RacingGame {
     }
 
     endGame() {
-        this.view.showFinalResult(this.racingCars.getWinners());
+        const winners = this.racingCars.getWinners();
+        setTimeout(() => { alert(`🎉 축하합니다! 🎉 \n🏆 우승자: ${winners}!`); }, 2000);
+        this.view.showFinalResult(winners);
     }
 
     playTurns(turnCount) {
