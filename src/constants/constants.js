@@ -10,25 +10,25 @@ export const INPUT_ERROR = {
 
 export const SELECTOR = {
   ID: {
-    APP: 'app',
-    CAR_NAMES_INPUT: 'car-names-input',
-    CAR_NAMES_BUTTON: 'car-names-submit',
-    CAR_NAMES_FORM: 'car-names-form',
-    RACING_COUNT_FORM: 'racing-count-form',
-    RACING_COUNT_COMMAND: 'racing-count-command',
-    RACING_COUNT_INPUT: 'racing-count-input',
-    RACING_COUNT_SUBMIT: 'racing-count-submit',
-    RESULT: 'result',
-    RACING_WINNERS: 'racing-winners',
-    RACING_PROGRESS_CONTAINER: 'racing-progress-container',
-    RACING_RESULT_CONTAINER: 'racing-result-container',
-    WINNER_SPAN: 'racing-result',
-    RESTART_BUTTON: 'restart-button'
+    APP: '#app',
+    CAR_NAMES_INPUT: '#car-names-input',
+    CAR_NAMES_BUTTON: '#car-names-submit',
+    CAR_NAMES_FORM: '#car-names-form',
+    RACING_COUNT_FORM: '#racing-count-form',
+    RACING_COUNT_COMMAND: '#racing-count-command',
+    RACING_COUNT_INPUT: '#racing-count-input',
+    RACING_COUNT_SUBMIT: '#racing-count-submit',
+    RESULT: '#result',
+    RACING_WINNERS: '#racing-winners',
+    RACING_PROGRESS_CONTAINER: '#racing-progress-container',
+    RACING_RESULT_CONTAINER: '#racing-result-container',
+    WINNER_SPAN: '#racing-result',
+    RESTART_BUTTON: '#restart-button'
   },
   CLASS: {
-    CAR_PROGRESS_CONTAINER: 'car-progress-container',
-    CAR_PROGRESS_NAME: 'car-progress-container--name',
-    CAR_PROGRESS_STATUS: 'car-progress-container--status'
+    CAR_PROGRESS_CONTAINER: '.car-progress-container',
+    CAR_PROGRESS_NAME: '.car-progress-container--name',
+    CAR_PROGRESS_STATUS: '.car-progress-container--status'
   }
 };
 

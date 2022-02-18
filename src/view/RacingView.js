@@ -4,19 +4,17 @@ import Template from '../layouts/template.js';
 
 export default class RacingView {
   constructor() {
-    this.$app = $(`#${SELECTOR.ID.APP}`);
-    this.$namesForm = $(`#${SELECTOR.ID.CAR_NAMES_FORM}`);
-    this.$countForm = $(`#${SELECTOR.ID.RACING_COUNT_FORM}`);
-    this.$progressContainer = $(`#${SELECTOR.ID.RACING_PROGRESS_CONTAINER}`);
-    this.$resultContainer = $(`#${SELECTOR.ID.RACING_RESULT_CONTAINER}`);
-    this.$nameInput = $(`#${SELECTOR.ID.CAR_NAMES_INPUT}`);
-    this.$countInput = $(`#${SELECTOR.ID.RACING_COUNT_INPUT}`);
+    this.$app = $(SELECTOR.ID.APP);
+    this.$namesForm = $(SELECTOR.ID.CAR_NAMES_FORM);
+    this.$countForm = $(SELECTOR.ID.RACING_COUNT_FORM);
+    this.$progressContainer = $(SELECTOR.ID.RACING_PROGRESS_CONTAINER);
+    this.$resultContainer = $(SELECTOR.ID.RACING_RESULT_CONTAINER);
+    this.$nameInput = $(SELECTOR.ID.CAR_NAMES_INPUT);
+    this.$countInput = $(SELECTOR.ID.RACING_COUNT_INPUT);
   }
 
   static renderProgressLoading() {
-    const $$eachCarProgressStatus = $$(
-      `.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`
-    );
+    const $$eachCarProgressStatus = $$(SELECTOR.CLASS.CAR_PROGRESS_CONTAINER);
     $$eachCarProgressStatus.forEach((status) => {
       status.insertAdjacentHTML('beforeend', Template.loaderTemplate());
     });

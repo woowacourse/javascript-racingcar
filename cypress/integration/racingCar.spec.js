@@ -1,14 +1,15 @@
-import { INPUT_ERROR } from '../../src/constants/constants';
+import { INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
+
 /* eslint-disable no-undef */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
-  const SELECTOR = {
-    CAR_NAMES_INPUT: '#car-names-input',
-    CAR_NAMES_SUBMIT_BUTTON: '#car-names-submit',
-    RACING_COUNT_INPUT: '#racing-count-input',
-    RACING_COUNT_SUBMIT_BUTTON: '#racing-count-submit',
-    WINNERS: '#racing-result'
-  };
+  // const SELECTOR = {
+  //   CAR_NAMES_INPUT: '#car-names-input',
+  //   CAR_NAMES_SUBMIT_BUTTON: '#car-names-submit',
+  //   RACING_COUNT_INPUT: '#racing-count-input',
+  //   RACING_COUNT_SUBMIT_BUTTON: '#racing-count-submit',
+  //   WINNERS: '#racing-result'
+  // };
 
   beforeEach(() => {
     cy.stubRandomReturns([5, 1]);
@@ -21,13 +22,13 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const racingCount = 1;
 
     // when
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type(carNames);
-    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
-    cy.get(SELECTOR.RACING_COUNT_INPUT).type(racingCount);
-    cy.get(SELECTOR.RACING_COUNT_SUBMIT_BUTTON).click();
+    cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carNames);
+    cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
+    cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
 
     // then
-    cy.get(SELECTOR.WINNERS).should('have.text', winner);
+    cy.get(SELECTOR.ID.WINNER_SPAN).should('have.text', winner);
   });
 
   describe('2. 잘못된 자동차 이름 입력 유효성 검사', () => {
@@ -40,10 +41,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
       // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
         .click()
         .then(() => {
           expect(alertStub.getCall(0)).to.be.calledWith(
@@ -58,10 +59,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
       // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
         .click()
         .then(() => {
           expect(alertStub.getCall(0)).to.be.calledWith(INPUT_ERROR.DUPLICATED);
@@ -74,10 +75,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
       // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
         .click()
         .then(() => {
           expect(alertStub.getCall(0)).to.be.calledWith(
@@ -92,10 +93,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       const alertStub = cy.stub();
       cy.on('window:alert', alertStub);
       // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
         .click()
         .then(() => {
           expect(alertStub.getCall(0)).to.be.calledWith(INPUT_ERROR.NAME_EMPTY);
@@ -109,8 +110,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
       const name = 'mak,make';
 
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(name);
-      cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(name);
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
     });
 
     it('3-1. 시도 횟수를 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
@@ -120,10 +121,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.on('window:alert', alertStub);
 
       // when
-      cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidCountInput);
+      cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(invalidCountInput);
 
       // then
-      cy.get(SELECTOR.RACING_COUNT_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT)
         .click()
         .then(() => {
           expect(alertStub).to.be.calledWith(INPUT_ERROR.COUNT_EMPTY);
@@ -137,10 +138,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.on('window:alert', alertStub);
 
       // when
-      cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidCountInput);
+      cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(invalidCountInput);
 
       // then
-      cy.get(SELECTOR.RACING_COUNT_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT)
         .click()
         .then(() => {
           expect(alertStub).to.be.calledWith(INPUT_ERROR.COUNT_NEGATIVE);
@@ -154,10 +155,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.on('window:alert', alertStub);
 
       // when
-      cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidCountInput);
+      cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(invalidCountInput);
 
       // then
-      cy.get(SELECTOR.RACING_COUNT_SUBMIT_BUTTON)
+      cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT)
         .click()
         .then(() => {
           expect(alertStub).to.be.calledWith(INPUT_ERROR.COUNT_NOT_NATURAL);
