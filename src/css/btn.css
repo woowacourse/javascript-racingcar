@@ -24,3 +24,7 @@
 .btn-long {
   width: 152px;
 }
+
+.btn:disabled {
+  cursor: not-allowed;
+}
