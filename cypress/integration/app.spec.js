@@ -1,4 +1,4 @@
-import { DOM } from '../../src/lib/constants.js';
+import { DOM, GAME_ROUND_INTERVAL } from '../../src/lib/constants.js';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../../index.html';
@@ -17,7 +17,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.inputNames({ nameInput });
     cy.inputCount({ countInput });
 
-    return countInput;
+    return countInput * GAME_ROUND_INTERVAL;
   };
 
   // then function
@@ -31,10 +31,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   // step1 테스트
   it('올바른 자동차 이름과 횟수를 입력하면 게임이 진행되고 우승자를 확인할 수 있어야 한다.', () => {
     // when
-    const totalPlaySecond = playValidGame();
+    const totalPlayTime = playValidGame();
 
     //then
-    cy.tick(totalPlaySecond * 1000);
+    cy.tick(totalPlayTime);
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 
@@ -67,14 +67,11 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   });
 
   it('재시작 버튼을 누르면 진행된 게임 정보가 지워지고 다시 게임을 진행할 수 있는 상태가 되어야 한다.', () => {
-    //given
-    const nameInput = 'bling,juunz';
-    const countInput = 2;
+    // when
+    const totalPlayTime = playValidGame();
 
-    //when
-    cy.inputNames({ nameInput });
-    cy.inputCount({ countInput });
-    cy.tick(5000);
+    //then
+    cy.tick(totalPlayTime);
     cy.get(`#${DOM.RESTART_BTN_ID}`).click();
 
     //then
@@ -90,20 +87,25 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`.${DOM.STEP_CLASS}`, { timeout: 0 }).should('not.exist');
   });
 
-  it('입력한 횟수의 초만큼 흐른 뒤 결과를 표시하고 2초 뒤 축하 메시지를 표시해야 한다.', () => {
+  it('게임이 시작한 직후에는 승자의 이름이 표시되어서는 안된다.', () => {
+    // when
+    playValidGame();
+
+    // then
+    cy.get(`#${DOM.WINNER_NAME_ID}`, { timeout: 0 }).should('not.exist');
+  });
+
+  it('입력값에 따라 시간이 흐른 뒤 결과를 표시하고 2초 뒤 축하 메시지를 표시해야 한다.', () => {
+    // given
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
     // when
-    const totalPlaySecond = playValidGame();
+    const totalPlayTime = playValidGame();
+
+    cy.tick(totalPlayTime);
 
     // then
-    cy.get(`#${DOM.WINNER_NAME_ID}`, { timeout: 0 }).should('not.exist');
-
-    // when 2
-    cy.tick(totalPlaySecond * 1000);
-
-    // then 2
     cy.get(`.${DOM.SPINNER_CLASS}`).should('not.exist');
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
 
@@ -112,7 +114,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
 
     cy.on('window:alert', (text) => {
-      expect(text).to.contains('🎉축하합니다! 우승자는');
+      expect(text).to.contains('축하합니다!');
     });
   });
 });

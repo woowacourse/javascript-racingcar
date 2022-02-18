@@ -1,4 +1,4 @@
-import { DOM } from '../lib/constants.js';
+import { DOM, WINNER_ALERT_TIMEOUT } from '../lib/constants.js';
 import { selectDOM } from '../lib/utils.js';
 
 class RacingCarGameView {
@@ -18,7 +18,6 @@ class RacingCarGameView {
   initSpinner() {
     this.rotateSpinner();
     this.currentDegrees = 0;
-    this.animationId = null;
   }
 
   renderGameStart(cars) {
@@ -44,15 +43,16 @@ class RacingCarGameView {
     });
   }
 
-  renderGameResults(winners) {
+  renderGameResults(winnersArray) {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
-      winners,
+      winnersArray,
     });
-
     this.winners.innerHTML = winnersTemplate;
-    cancelAnimationFrame(this.animationId);
 
-    setTimeout(() => alert(`🎉축하합니다! 우승자는 ${winners.join(',')}입니다!🎉`), 2000);
+    setTimeout(
+      () => alert(RacingCarGameView.generateWinnerString(winnersArray)),
+      WINNER_ALERT_TIMEOUT
+    );
   }
 
   renderCountInputForm() {
@@ -73,6 +73,10 @@ class RacingCarGameView {
     this.animationId = requestAnimationFrame(this.rotateSpinner);
   };
 
+  static generateWinnerString(winnerNames) {
+    return `🎉축하합니다! 우승자는 ${winnerNames.join(',')}입니다!🎉`;
+  }
+
   static generateProgressTemplate({ name, id }) {
     return `
     <div class="${DOM.CAR_PROGRESS_CLASS}">
@@ -89,10 +93,10 @@ class RacingCarGameView {
     return stepElement;
   }
 
-  static generateWinnersTemplate({ winners }) {
+  static generateWinnersTemplate({ winnersArray }) {
     return `<h2 id="${DOM.WINNER_CONTAINER_ID}">🏆최종 승리자:<span id="${
       DOM.WINNER_NAME_ID
-    }">${winners.join(',')}</span>🏆</h2>
+    }">${winnersArray.join(',')}</span>🏆</h2>
       <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> `;
   }
 }

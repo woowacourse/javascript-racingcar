@@ -27,7 +27,6 @@ export const DOM = Object.freeze({
 
 export const CAR_NAME_MIN_LENGTH = 1;
 export const CAR_NAME_MAX_LENGTH = 5;
-
 export const CAR_NAME_SEPARATOR = ',';
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -38,3 +37,6 @@ export const ERROR_MESSAGE = Object.freeze({
 export const RANGE_MIN = 0;
 export const RANGE_MAX = 9;
 export const MOVE_CONDITION = 4;
+
+export const GAME_ROUND_INTERVAL = 1000;
+export const WINNER_ALERT_TIMEOUT = 2000;

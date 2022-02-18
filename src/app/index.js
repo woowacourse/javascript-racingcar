@@ -1,12 +1,12 @@
 import {
-  CAR_NAME_SEPARATOR,
   DOM,
   ERROR_MESSAGE,
+  GAME_ROUND_INTERVAL,
   MOVE_CONDITION,
   RANGE_MAX,
   RANGE_MIN,
 } from '../lib/constants.js';
-import { isNumberBelowZero, pickNumberInRange, selectDOM, splitString } from '../lib/utils.js';
+import { isNumberBelowZero, pickNumberInRange, selectDOM } from '../lib/utils.js';
 import CarManager from './carManager.js';
 import RacingCarGameView from './view.js';
 
@@ -35,8 +35,7 @@ class RacingCarGame {
     if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
       const carNameValue = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField).value;
       try {
-        const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-        this.carManager.makeCars(names);
+        this.carManager.makeCars(carNameValue);
         this.view.renderCountInputForm();
       } catch ({ message }) {
         alert(message);
@@ -58,15 +57,6 @@ class RacingCarGame {
     }
   };
 
-  afterRenderComplete() {
-    this.view.disableInputButtons();
-
-    const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
-    restartButton.addEventListener('click', () => window.location.reload());
-    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
-    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
-  }
-
   setCount(count) {
     if (isNumberBelowZero(count)) {
       throw Error(ERROR_MESSAGE.INVALID_COUNT);
@@ -77,12 +67,15 @@ class RacingCarGame {
   simulateGame() {
     this.view.renderGameStart(this.carManager.cars);
     this.finishedCount = 0;
-    this.gameIntervalId = setInterval(this.simulateRound.bind(this), 1000);
+    this.gameIntervalId = setInterval(this.simulateRound.bind(this), GAME_ROUND_INTERVAL);
   }
 
   simulateRound() {
     const moved = [];
-    this.carManager.cars.forEach((car) => RacingCarGame.processCarRandomMove(car, moved));
+    this.carManager.cars.forEach((car) => {
+      const carMoved = RacingCarGame.processCarRandomMove(car);
+      if (carMoved) moved.push(car.id);
+    });
     this.finishedCount += 1;
     this.view.renderRoundResult(moved, this.count, this.finishedCount);
     if (this.finishedCount === this.count) {
@@ -90,12 +83,13 @@ class RacingCarGame {
     }
   }
 
-  static processCarRandomMove(car, moved) {
+  static processCarRandomMove(car) {
     const random = pickNumberInRange(RANGE_MIN, RANGE_MAX);
     if (random >= MOVE_CONDITION) {
       car.goForward();
-      moved.push(car.id);
+      return true;
     }
+    return false;
   }
 
   afterGameComplete() {
@@ -111,6 +105,15 @@ class RacingCarGame {
       []
     );
     return winners;
+  }
+
+  afterRenderComplete() {
+    this.view.disableInputButtons();
+
+    const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
+    restartButton.addEventListener('click', () => window.location.reload());
+    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
+    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
   }
 }
 export default RacingCarGame;

@@ -1,5 +1,10 @@
-import { CAR_NAME_MAX_LENGTH, CAR_NAME_MIN_LENGTH, ERROR_MESSAGE } from '../lib/constants.js';
-import { checkStringInRange } from '../lib/utils.js';
+import {
+  CAR_NAME_MAX_LENGTH,
+  CAR_NAME_MIN_LENGTH,
+  CAR_NAME_SEPARATOR,
+  ERROR_MESSAGE,
+} from '../lib/constants.js';
+import { checkStringInRange, splitString } from '../lib/utils.js';
 import Car from './car.js';
 
 class CarManager {
@@ -7,7 +12,8 @@ class CarManager {
     this.cars = null;
   }
 
-  makeCars(names) {
+  makeCars(carNameValue) {
+    const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
     if (!CarManager.isValidCarNameInput(names)) {
       throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH_OUT_OF_RANGE);
     }
