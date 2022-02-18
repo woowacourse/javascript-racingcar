@@ -37,7 +37,7 @@ class RacingCarView {
   }
 
   hideElement() {
-    this.$racingCountForm.classList.remove('visible');
+    this.$racingCountInputSection.classList.remove('visible');
     this.$finalWinner.classList.remove('visible');
     this.$restartSection.classList.remove('visible');
   }
