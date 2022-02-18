@@ -1,12 +1,13 @@
 import CarManager from "./controller/carManager/CarManager.js";
-import RacingCount from "./controller/racingCount/RacingCount.js";
-import { makeInitialView } from "./view/viewControl.js";
+import UserManager from "./controller/racingCount/UserManager.js";
+
 import { $ } from "./view/getElement.js";
+import { makeInitialView } from "./view/viewControl.js";
 
 class RacingCar {
   constructor() {
     this.carManager = new CarManager();
-    this.racingCount = new RacingCount(this.carManager);
+    this.racingCount = new UserManager(this.carManager);
     makeInitialView();
     this.addLogoClickEvent();
     this.addRestartEvent();

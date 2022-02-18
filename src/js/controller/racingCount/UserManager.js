@@ -3,7 +3,8 @@ import Game from "../game/Game.js";
 import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { $ } from "../../view/getElement.js";
 
-export default class RacingCount {
+// TODO : 사용자의 입력을 저장하고 관리
+export default class UserManager {
   constructor(carManager) {
     this.racingCount = 0;
     this.carManager = carManager;

@@ -5,6 +5,7 @@ import { EXCEPTIONS } from "../../constants/exceptions.js";
 import { $ } from "../../view/getElement.js";
 import { trimArray } from "../../utils/trimArray.js";
 
+// TODO : 자동차들을 만들고 관리
 export default class CarManager {
   constructor() {
     this.cars = [];
