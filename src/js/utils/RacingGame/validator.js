@@ -1,5 +1,5 @@
 import GAME_SETTING from '../../constants/RacingGame/setting.js';
-import ERROR_MESSAGE from '../../constants/error-message.js';
+import { ERROR_MESSAGE } from '../../constants/message.js';
 
 import { nameStringToArray, getRandomNumber } from '../data-manager.js';
 import {

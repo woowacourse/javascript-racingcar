@@ -8,4 +8,8 @@ const ERROR_MESSAGE = Object.freeze({
   RACE_TIME_ONLY_NUMBER: '시도 횟수는 1 이상의 숫자만 입력할 수 있습니다.',
 });
 
-export default ERROR_MESSAGE;
+const RESULT_MESSAGE = Object.freeze({
+  RACING_GAME_WINNERS: '레이싱 게임이 종료되었습니다 🎉\n우승자를 확인해주세요.',
+});
+
+export { ERROR_MESSAGE, RESULT_MESSAGE };
