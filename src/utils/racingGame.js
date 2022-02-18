@@ -22,11 +22,11 @@ const getCarsMovement = cars => {
   return carInformations;
 };
 
-const getMaxCount = cars => Math.max(...cars.map(car => car.racingCount));
+const getMaxCount = cars => Math.max(...cars.map(car => car.getRacingCount()));
 
 const getWinners = cars => {
   const maxCount = getMaxCount(cars);
-  return cars.filter(car => car.racingCount === maxCount);
+  return cars.filter(car => car.getRacingCount() === maxCount);
 };
 
 export { parseCarNames, getCarsMovement, getWinners };

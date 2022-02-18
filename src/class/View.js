@@ -15,18 +15,21 @@ import { SELECTOR, CLASS_NAME, CAR_STATUS } from '../constants.js';
 const moveArrowView = `<h3 id="move-arrow" class="move-arrow" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
 const spinnerView = `<div class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
 
-const generateCarInformationView = ({ name }) => `
-<div id="car-information" class="car-information" data-name=${name}>
-    <div id="car-name" class="car-name">${name}</div>
-    <div id="progress" class="progress"></div>
-</div>`;
+const generateCarInformationView = car => {
+  const name = car.getName();
+  return `
+    <div id="car-information" class="car-information" data-name=${name}>
+        <div id="car-name" class="car-name">${name}</div>
+        <div id="progress" class="progress"></div>
+    </div>`;
+};
 
 const generateRacingStatusView = cars =>
   cars.map(generateCarInformationView).join('');
 
 const generateWinnersView = winners =>
   `<h3 id="winners">🏆최종 우승자: ${winners
-    .map(({ name }) => name)
+    .map(winner => winner.getName())
     .join(',')}🏆</h3>`;
 
 export default class View {
