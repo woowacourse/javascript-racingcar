@@ -3,20 +3,20 @@ import handleCountInput from './controller/handleCountInput.js';
 import resetView from './view/resetView.js';
 import { $ } from './utils/selector.js';
 
+const submitName = e => {
+  e.preventDefault();
+  handleNameInput();
+};
+
+const submitCount = e => {
+  e.preventDefault();
+  handleCountInput();
+};
+
 const initEvent = () => {
-  $('.name-form').addEventListener('submit', event => {
-    event.preventDefault();
-    handleNameInput();
-  });
-
-  $('.count-form').addEventListener('submit', event => {
-    event.preventDefault();
-    handleCountInput();
-  });
-
-  $('.restart').addEventListener('click', () => {
-    resetView();
-  });
+  $('.name-form').addEventListener('submit', submitName);
+  $('.count-form').addEventListener('submit', submitCount);
+  $('.restart').addEventListener('click', resetView);
 };
 
 resetView();
