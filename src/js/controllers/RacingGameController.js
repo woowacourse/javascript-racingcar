@@ -2,10 +2,10 @@ import RacingGameModel from '../models/RacingGameModel.js';
 import RacingGameView from '../views/RacingGameView.js';
 
 import { SELECTOR } from '../constants/selector.js';
-import { $ } from '../utils/element-tools.js';
-import nameStringToArray from '../utils/nameStringToArray.js';
-import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
+import { $ } from '../utils/element-tools.js';
+import { nameStringToArray } from '../utils/data-manager.js';
+import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
   #racingGameModel;

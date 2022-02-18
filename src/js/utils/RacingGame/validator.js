@@ -1,10 +1,15 @@
 import GAME_SETTING from '../../constants/RacingGame/setting.js';
 import ERROR_MESSAGE from '../../constants/error-message.js';
 
-import nameStringToArray from '../nameStringToArray.js';
-import { isNaturalNumber, isWithComma, isArrayItemLengthRange, isUniqueWord } from '../isValid.js';
+import { nameStringToArray, getRandomNumber } from '../data-manager.js';
+import {
+  isNaturalNumber,
+  isWithComma,
+  isArrayItemLengthRange,
+  isUniqueWord,
+} from '../validator.js';
 
-export const isCarNameValid = (value) => {
+const isCarNameValid = (value) => {
   if (!isWithComma(value)) {
     alert(ERROR_MESSAGE.CAR_NAME_MULTIPLE_INPUT);
     return false;
@@ -25,7 +30,7 @@ export const isCarNameValid = (value) => {
   return true;
 };
 
-export const isRaceTimeValid = (value) => {
+const isRaceTimeValid = (value) => {
   if (!isNaturalNumber(value)) {
     alert(ERROR_MESSAGE.RACE_TIME_ONLY_NUMBER);
     return false;
@@ -34,4 +39,11 @@ export const isRaceTimeValid = (value) => {
   return true;
 };
 
-export const isGameSetup = (round, carList) => round > 0 && carList > 0;
+const isGameSetup = (round, carList) => round > 0 && carList > 0;
+
+const isAdvance = () => {
+  const { ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX, ADVANCE_NUMBER } = GAME_SETTING;
+  return getRandomNumber(ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX) >= ADVANCE_NUMBER;
+};
+
+export { isCarNameValid, isRaceTimeValid, isGameSetup, isAdvance };

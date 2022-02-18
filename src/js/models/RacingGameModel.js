@@ -1,5 +1,5 @@
 import RacingCarInstance from './RacingCarInstance.js';
-import isAdvance from '../utils/RacingGame/isAdvance.js';
+import { isAdvance } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameModel {
   #state;
