@@ -9,13 +9,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         CAR_STEP_CONTAINER: '.car-steps',
         WINNERS: '#winners',
         RESTART_BUTTON: '#restart-button',
+        LOADER: '.loader',
     };
 
     beforeEach(() => {
         cy.visit(baseURL);
     });
 
-    context('입력 예외처리', () => {
+    context('입력 예외 처리', () => {
 
         const carNameFormAlertTest = (inputValue) => () => {
             // given
@@ -69,7 +70,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
     })
 
-    context('View 업데이트 확인', () => {
+    context('결과 출력', () => {
 
         const CAR_NAMES = ['우아한', '테크', '코스', '소피아'];
         const TRY_COUNT = 10;
@@ -81,51 +82,47 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             cy.get(SELECTOR.TRY_COUNT_SUBMIT_BUTTON).click();
         }
 
-        it('사용자 입력이 모두 끝나면, 각 자동차의 이름과 위치가 출력되어야 한다.', () => {
+        it('사용자 입력이 모두 끝나면, 각 자동차의 이름이 출력되어야 한다.', () => {
             // when
             playGameCorrectly();
 
-            // then
             cy.get(SELECTOR.CAR_TRACK)
+                // then
                 .should('have.length', CAR_NAMES.length)
                 .each((track, index) => {
                     cy.wrap(track).within(() => {
+                        // then
                         cy.contains(CAR_NAMES[index]).should('exist');
-                        cy.get(SELECTOR.CAR_STEP_CONTAINER).should('exist');
                     })
                 }
             );
         });
-    
-        it('게임이 끝나면, 우승자가 출력되어야 한다.', () => {
-            // when
-            playGameCorrectly();
-    
-            // then
-            const cars = [];
-            cy.get(SELECTOR.CAR_TRACK)
-                .each((track, index) => {
-                    cy.wrap(track).within(() => {
-                        cy.get(SELECTOR.CAR_STEP_CONTAINER).children().its('length')
-                            .then((step) => {
-                                cars.push({ name: CAR_NAMES[index], step })
-                        });
-                    })
-                }
-            ).then(() => {
-                const maxStep = Math.max(...cars.map(car => car.step));
-                const winners = cars.filter(car => car.step === maxStep).map(car => car.name).join(',');
-    
-                cy.get(SELECTOR.WINNERS).should('have.text', winners);
-            });
-        });
 
+        it('각 턴이 진행되는 동안, 로딩 애니메이션이 보여야 한다.', () => {
+            // when
+            cy.clock();
+            playGameCorrectly();
+
+            
+            cy.tick(500);
+            for (let i = 0; i < TRY_COUNT; i += 1) {
+                // then
+                cy.get(SELECTOR.LOADER).should('exist');
+                cy.tick(1000);
+            }
+            // then
+            cy.get(SELECTOR.LOADER).should('not.exist');
+        });
         
         it('다시 시도하기 버튼을 클릭하면, 게임이 초기화되어야 한다.', () => {
+            // given
+            cy.clock();
+
             // when
             playGameCorrectly();
             cy.get(SELECTOR.CAR_NAME_INPUT).should('have.value', CAR_NAMES.join(','));
             cy.get(SELECTOR.TRY_COUNT_INPUT).should('have.value', TRY_COUNT);
+            cy.tick(TRY_COUNT * 1000);
             cy.get(SELECTOR.RESTART_BUTTON).click();
 
             // then
