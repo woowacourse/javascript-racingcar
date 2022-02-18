@@ -104,5 +104,18 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         });
       }
     });
+
+    it('4-3. 다시 시작하기 버튼 클릭 후 입력 폼만 보이고 입력 값을 초기화해야 한다.', () => {
+      cy.get(SELECTOR.ID.RESTART_BUTTON)
+        .click()
+        .then(() => {
+          cy.get(SELECTOR.ID.RACING_PROGRESS_CONTAINER)
+            .children()
+            .should('not.exist');
+          cy.get(SELECTOR.ID.RACING_RESULT_CONTAINER)
+            .children()
+            .should('not.exist');
+        });
+    });
   });
 });
