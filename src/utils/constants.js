@@ -6,7 +6,7 @@ export const NUMBER = {
   RANGE_END: 9,
   STEP_BASE_NUMBER: 4,
   STEP: 1,
-  ARROW_INTERVAL_TIME = 1000
+  ARROW_INTERVAL_TIME: 1000,
 };
 
 export const ERROR = {
@@ -27,10 +27,10 @@ export const SELECTOR = {
   STEP_SECTIONS: '.step-sections',
   WINNER: '#winner',
   RESET_BUTTON: '#reset-button',
-  STEP_SECTION_ARROWS: ".step-section__arrows"
+  STEP_SECTION_ARROWS: '.step-section__arrows',
 };
 
 export const CLASS_NAME = {
-  DISPLAY_NONE : 'display-none',
-  SPINNING_BACKGROUND: 'spinning-bg'
-}
+  DISPLAY_NONE: 'display-none',
+  SPINNING_BACKGROUND: 'spinning-bg',
+};
