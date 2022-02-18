@@ -13,6 +13,8 @@ export default class RacingGameView {
 
     $(SELECTOR.CAR_NAME_INPUT).value = '';
     $(SELECTOR.RACE_TIME_INPUT).value = '';
+
+    $(SELECTOR.RETRY_BUTTON).classList.add('hidden');
   }
 
   setDisableForm($target, isDisable = true) {
@@ -79,6 +81,10 @@ export default class RacingGameView {
     $(SELECTOR.WINNERS).innerText = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;
+  }
+
+  renderRetryButton() {
+    $(SELECTOR.RETRY_BUTTON).classList.remove('hidden');
   }
 
   bindCarNameInput(handler) {

@@ -194,3 +194,7 @@ body {
   font-size: 1.1rem;
   margin: 0 auto;
 }
+
+#retry-button.hidden {
+  display: none;
+}

@@ -9,7 +9,8 @@ const ERROR_MESSAGE = Object.freeze({
 });
 
 const RESULT_MESSAGE = Object.freeze({
-  RACING_GAME_WINNERS: '레이싱 게임이 종료되었습니다 🎉\n우승자를 확인해주세요.',
+  RACING_GAME_WINNERS:
+    '레이싱 게임이 종료되었습니다! 우승자를 확인해주세요! 🎉\n(하단의 다시 시작하기를 누르시면 게임을 다시 시작할 수 있습니다.)',
 });
 
 export { ERROR_MESSAGE, RESULT_MESSAGE };

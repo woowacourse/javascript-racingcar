@@ -101,14 +101,16 @@ export default class RacingGameController {
     }
 
     clearInterval(timer);
-    setTimeout(() => {
-      this.handleWinnersResult();
-    }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    this.winnersResult();
   }
 
-  handleWinnersResult() {
+  winnersResult() {
     this.#racingGameView.setVisibleProgress(false);
     this.#racingGameView.renderWinners(this.#racingGameModel.winners);
-    alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
+
+    setTimeout(() => {
+      alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
+      this.#racingGameView.renderRetryButton();
+    }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
   }
 }
