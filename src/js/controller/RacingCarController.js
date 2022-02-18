@@ -5,17 +5,28 @@ import ResultView from '../view/ResultView.js';
 import WinnerView from '../view/WinnerView.js';
 
 import { $ } from '../utils/selector.js';
-import { CUSTOM_EVENT, ID } from '../utils/constants.js';
+import {
+  CUSTOM_EVENT,
+  GAME_NUMBERS,
+  ID,
+  WINNER_CONGRATULATION,
+} from '../utils/constants.js';
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
-    this.CarNamesInputView = new CarNamesInputView($(`#${ID.CAR_NAMES_SECTION}`))
+    this.CarNamesInputView = new CarNamesInputView(
+      $(`#${ID.CAR_NAMES_SECTION}`),
+    )
       .setup()
-      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, (e) => this.submitCarNamesHandler(e.detail));
+      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, (e) =>
+        this.submitCarNamesHandler(e.detail),
+      );
     this.CountInputView = new CountInputView($(`#${ID.RACING_COUNT_SECTION}`))
       .setup()
-      .on(CUSTOM_EVENT.SUBMIT_RACING_COUNT, (e) => this.submitRacingCountHandler(e.detail));
+      .on(CUSTOM_EVENT.SUBMIT_RACING_COUNT, (e) =>
+        this.submitRacingCountHandler(e.detail),
+      );
     this.ResultView = new ResultView($(`#${ID.RESULT}`));
     this.WinnerView = new WinnerView($(`#${ID.RESULT}`))
       .setup()
@@ -29,6 +40,7 @@ export default class RacingCarController {
       this.CountInputView.enableCountInput();
     } catch (err) {
       alert(err);
+      this.CarNamesInputView.reset();
     }
   };
 
@@ -40,6 +52,7 @@ export default class RacingCarController {
       this.CountInputView.disableCountInput();
     } catch (err) {
       alert(err);
+      this.CountInputView.reset();
     }
   };
 
@@ -49,7 +62,8 @@ export default class RacingCarController {
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
       const prevRaceResult = this.model.getPrevRaceResult();
       await this.model.racePerSecond();
-      const currentRaceResult = this.model.getCurrentRacingResult(prevRaceResult);
+      const currentRaceResult =
+        this.model.getCurrentRacingResult(prevRaceResult);
       this.ResultView.renderArrows(currentRaceResult);
     }
     this.endGame();
@@ -60,6 +74,9 @@ export default class RacingCarController {
     const winners = this.model.pickWinners();
     this.WinnerView.renderWinners(winners);
     this.WinnerView.renderReplayButton();
+    setTimeout(() => {
+      alert(WINNER_CONGRATULATION(winners));
+    }, GAME_NUMBERS.DELAY_PER_ALERT_WINNER_MESSAGE);
   };
 
   clickReplayButtonHandler = () => {
@@ -68,9 +85,11 @@ export default class RacingCarController {
   };
 
   replayGame = () => {
-    [this.CarNamesInputView, this.CountInputView, this.ResultView].forEach((view) => {
-      view.reset();
-    });
+    [this.CarNamesInputView, this.CountInputView, this.ResultView].forEach(
+      (view) => {
+        view.reset();
+      },
+    );
     this.CarNamesInputView.enableCarNamesInput();
   };
 }

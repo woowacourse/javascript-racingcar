@@ -1,7 +1,11 @@
 export const disableElements = (...args) => {
-  args.forEach((arg) => (arg.disabled = true));
+  args.forEach((arg) => {
+    arg.disabled = true;
+  });
 };
 
 export const enableElements = (...args) => {
-  args.forEach((arg) => (arg.disabled = false));
+  args.forEach((arg) => {
+    arg.disabled = false;
+  });
 };

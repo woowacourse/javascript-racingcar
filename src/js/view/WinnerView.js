@@ -1,4 +1,8 @@
-import { CLASS, CUSTOM_EVENT, ID, winnerMesssage } from '../utils/constants.js';
+import { CUSTOM_EVENT, ID } from '../utils/constants.js';
+import {
+  makeReplayButtonTemplate,
+  makeWinnersTemplate,
+} from '../utils/template.js';
 import View from './View.js';
 
 export default class WinnerView extends View {
@@ -19,20 +23,10 @@ export default class WinnerView extends View {
   };
 
   renderWinners = (winners) => {
-    this.insertTemplate(this.makeWinnersTemplate(winners));
+    this.insertTemplate(makeWinnersTemplate(winners));
   };
-
-  makeWinnersTemplate = (winners) => `
-    <div>
-      <h3 class="${CLASS.WINNERS}">${winnerMesssage(winners)}</h3>
-    </div>
-    `;
 
   renderReplayButton = () => {
-    this.insertTemplate(this.makeReplayButtonTemplate());
+    this.insertTemplate(makeReplayButtonTemplate());
   };
-
-  makeReplayButtonTemplate = () => `
-      <button class="${CLASS.BTN} ${CLASS.REPLAY_BTN}" id="${ID.REPLAY_BUTTON}">다시 시작하기</button>
-    `;
 }

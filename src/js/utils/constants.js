@@ -28,6 +28,8 @@ export const GAME_NUMBERS = Object.freeze({
   INIT_RACING_COUNT: 0,
   FORWARD_STANDARD_NUMBER: 4,
   INIT_CAR_FORWARD_COUNT: 0,
+  DELAY_PER_RACE: 1000,
+  DELAY_PER_ALERT_WINNER_MESSAGE: 2000,
 });
 
 export const ALERT_MESSAGE = Object.freeze({
@@ -36,6 +38,8 @@ export const ALERT_MESSAGE = Object.freeze({
   EMPTY_NAME_ERROR: '이름은 공백이 될수없습니다',
   HAS_INVALID_NAME_LENGTH_ERROR: `이름은 ${GAME_NUMBERS.VALID_MAX_NAME_LENGTH}가 넘어갈 수 없습니다.`,
   EMPTY_COUNT_ERROR: '숫자를 입력해주세요',
+  NOT_A_NUMBER_ERROR: ' 숫자를 입력해 주세요.',
+  NEGATIVE_COUNT_ERROR: '올바른 숫자를 입력해 주세요.',
 });
 
 export const CUSTOM_EVENT = Object.freeze({
@@ -44,4 +48,6 @@ export const CUSTOM_EVENT = Object.freeze({
   CLICK_REPLAY_BUTTON: '@clickReplayButton',
 });
 
-export const winnerMesssage = (winners) => `🏆 최종 우승자: ${winners} 🏆`;
+export const WINNER_TEMPLATE = (winners) => `🏆 최종 우승자: ${winners} 🏆`;
+export const WINNER_CONGRATULATION = (winners) =>
+  `최종 우승자는 ${winners}입니다. 축하합니다🎆`;

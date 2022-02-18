@@ -1,25 +1,11 @@
 import { CLASS } from '../utils/constants.js';
+import { makeCarNamesTemplate } from '../utils/template.js';
 import View from './View.js';
 
 export default class ResultView extends View {
   renderCarNames = (carNames) => {
-    this.insertTemplate(this.makeCarNamesTemplate(carNames));
+    this.insertTemplate(makeCarNamesTemplate(carNames));
   };
-
-  makeCarNamesTemplate = (carNames) => `
-      <div class="${CLASS.RACING_RESULTS}">
-    ${carNames
-      .map(
-        (carName) => `
-        <div id="${carName}-container" class=${CLASS.RACING_INFO}>
-          <div data-name="${carName}" class="${CLASS.CAR_NAME}">${carName}</div>
-          <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
-        </div>
-      `,
-      )
-      .join('')}
-      </div>
-      `;
 
   renderArrows = (stageResult) => {
     Object.entries(stageResult).forEach(([name, isMoved]) => {
@@ -36,6 +22,8 @@ export default class ResultView extends View {
   };
 
   removeSpinners = () => {
-    this.element.querySelectorAll(`.${CLASS.LOADING}`).forEach((element) => element.remove());
+    this.element
+      .querySelectorAll(`.${CLASS.LOADING}`)
+      .forEach((element) => element.remove());
   };
 }
