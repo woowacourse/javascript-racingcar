@@ -11,6 +11,7 @@
         <h1>🏎️ 자동차 경주 게임🏁</h1>
       </header>
       <section id="racing-form-container">
+        <h2 hidden>자동차 경주 게임 입력 폼</h2>
         <form id="car-names-form" disabled>
           <label for="car-names-input"
             >5자 이하의 이름을 콤마로 구분해서 입력해주세요.</label
@@ -33,8 +34,12 @@
           <button id="racing-count-submit" type="submit" disabled>확인</button>
         </form>
       </section>
-      <section id="racing-progress-container"></section>
-      <section id="racing-result-container"></section>
+      <section id="racing-progress-container">
+        <h2 hidden>게임 진행 상황</h2>
+      </section>
+      <section id="racing-result-container">
+        <h2 hidden>게임 결과</h2>
+      </section>
     </div>
     <script type="module" src="/src/index.js"></script>
   </body>
