@@ -29,6 +29,11 @@ describe('자동차 경주 구현 기능 테스트', () => {
     cy.get('.count-form').should('not.be.visible');
     cy.get('.race-container').should('not.be.visible');
     cy.get('.restart-container').should('not.be.visible');
+
+    cy.get('.name-input').should('be.enabled');
+    cy.get('.count-input').should('be.enabled');
+    cy.get('.name-button').should('be.enabled');
+    cy.get('.count-button').should('be.enabled');
   });
 
   it('우승자가 출력되면 2초뒤에 축하 메세지를 확인할 수 있어야 한다.', () => {
@@ -42,6 +47,18 @@ describe('자동차 경주 구현 기능 테스트', () => {
     cy.on('window:alert', text => {
       expect(text).to.contain(WINNER_ALERT_MESSAGE);
     });
+  });
+
+  it('게임이 시작되면 이름과 횟수 입력창이 비활성화 된다.', () => {
+    const carNames = 'east, west, south, north, all';
+    const count = 5;
+
+    cy.inputCarNames(carNames);
+    cy.inputCount(count);
+    cy.get('.name-input').should('be.disabled');
+    cy.get('.count-input').should('be.disabled');
+    cy.get('.name-button').should('be.disabled');
+    cy.get('.count-button').should('be.disabled');
   });
 });
 
@@ -74,6 +91,15 @@ describe('예외 사항 테스트', () => {
   it('시도할 횟수가 1미만이면 에러메세지가 표시된다.', () => {
     const carNames = 'east, west, south, north, all';
     const invalidInput = '-3';
+
+    cy.inputCarNames(carNames);
+    cy.inputCount(invalidInput);
+    cy.verifyAlertMessage(ERROR_MESSAGES.INVALID_COUNT);
+  });
+
+  it('시도할 횟수가 20자를 초과하면 에러메세지가 표시된다.', () => {
+    const carNames = 'east, west, south, north, all';
+    const invalidInput = '21';
 
     cy.inputCarNames(carNames);
     cy.inputCount(invalidInput);
