@@ -1,17 +1,22 @@
+import { SELECTOR } from '../../src/constants/selector';
+
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = "../../index.html";
 
   beforeEach(() => {
+    cy.clock();
     cy.visit(baseUrl);
   });
 
   /* 우승자 확인 */
   it("게임을 완료하고 우승자를 확인할 수 있어야 한다.", () => {
-    
-    cy.normalWorking("tt,sally", 1);
-    cy.get('.result-text').should((result) => {
-      const text = result.text();
-      expect(text).to.include('최종 우승자')
+    const raceCount = 1;
+    cy.normalWorking("tt,sally", raceCount);
+    cy.tick(raceCount * 1000).then(() => {
+      cy.get(SELECTOR.RESULT_TEXT).should((result) => {
+        const text = result.text();
+        expect(text).to.include('최종 우승자');
+      });
     });
   });
 
@@ -31,10 +36,11 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   /* 다시 시작 */
   it("다시 시작하기 버튼을 눌렀을 때에 race-count-input-container 요소가 display none이어야 한다", () => {
-    cy.normalWorking("tt,sally", 1);
-
-    cy.get('.restart-button').click();
-
-    cy.get('.race-count-input-container').should('not.have.css', 'display', 'flex');
+    const raceCount = 1;
+    cy.normalWorking("tt,sally", raceCount);
+    cy.tick(raceCount * 1000).then(() => {
+      cy.get(SELECTOR.RESTART_BUTTON).click();
+      cy.get(SELECTOR.RACE_COUNT_INPUT_CONTAINER).should('not.have.css', 'display', 'flex');
+    })
   });
 });
