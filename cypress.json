@@ -4,6 +4,5 @@
   "screenshotOnRunFailure": true,
   "video": false,
   "pluginsFile": false,
-  "supportFile": false,
-  "blockHosts": ["cdn.jsdelivr.net"]
+  "supportFile": false
 }
