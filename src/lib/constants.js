@@ -17,6 +17,7 @@ export const DOM = Object.freeze({
 
   CAR_PROGRESS_CLASS: 'car-progress',
   CAR_NAME_CLASS: 'car-name',
+  STEP_CONTAINER_CLASS: 'step-container',
   STEP_CLASS: 'step',
 
   SPINNER_CLASS: 'spinner',
