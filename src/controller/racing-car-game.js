@@ -77,6 +77,7 @@ export default class RacingCarGame {
 
     onRaceCountButtonClick() {
         try {
+            clearInterval(this.timeIntervalId);
             this.model.generateCars(checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value));
             this.updateWholeGameResult(checkUserRacingCountInput($(SELECTOR.RACE_COUNT_INPUT).value));
         } catch(err) {
@@ -85,6 +86,7 @@ export default class RacingCarGame {
     }
 
     onRestartButtonClick() {
+        clearInterval(this.timeIntervalId);
         this.model.resetCarArray();
         this.view.resetGameView();
     }
