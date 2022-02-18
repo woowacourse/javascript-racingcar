@@ -1,5 +1,6 @@
 import {
   createEachLog,
+  hideLoading,
   initializeRacingResultView,
 } from "../view/resultView.js";
 import {
@@ -10,6 +11,7 @@ import {
 export default class GameManager {
   race(carManager, racingCount) {
     let count = 0;
+
     const turns = setInterval(() => {
       count += 1;
       this.turn(carManager);
@@ -30,13 +32,6 @@ export default class GameManager {
     });
   }
 
-  raceOver(carManager, racingCount) {
-    setTimeout(() => {
-      setRacingWinnerView(this.getWinners(carManager));
-      showWinnerAndRestartButton();
-    }, (racingCount + 1) * 1000);
-  }
-
   getWinners(carManager) {
     const winnerScore = carManager.sortCars()[0].location;
     const winners = [];
@@ -48,6 +43,14 @@ export default class GameManager {
     });
 
     return winners;
+  }
+
+  raceOver(carManager, racingCount) {
+    setTimeout(() => {
+      hideLoading();
+      setRacingWinnerView(this.getWinners(carManager));
+      showWinnerAndRestartButton();
+    }, (racingCount + 1) * 1000);
   }
 
   startGame(carManager, racingCount) {

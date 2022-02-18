@@ -1,4 +1,4 @@
-import { $ } from "./getElement.js";
+import { $, $$ } from "./getElement.js";
 
 const showRacingResult = () => {
   $("racing-result").hidden = false;
@@ -7,11 +7,15 @@ const showRacingResult = () => {
 const createEachResultLogContainer = car => {
   const container = document.createElement("div");
   const carNameTag = document.createElement("div");
+  const loading = document.createElement("div");
 
   container.setAttribute("id", `${car.name}-container`);
   carNameTag.setAttribute("class", "car-name-tag");
   carNameTag.innerHTML = car.name;
+  loading.innerHTML = `<img src="src/images/loading.svg" alt="loading" class="loading" />`;
+  loading.setAttribute("id", `${car.name}-loading`);
   container.append(carNameTag);
+  container.append(loading);
 
   return container;
 };
@@ -37,5 +41,13 @@ const createPositionArrow = () => {
 };
 
 export const createEachLog = car => {
-  $(`${car.name}-container`).append(createPositionArrow());
+  $(`${car.name}-loading`).prepend(createPositionArrow());
+};
+
+export const hideLoading = () => {
+  const allLoadings = $$("loading");
+
+  for (let index = 0; index < allLoadings.length; index++) {
+    allLoadings[index].hidden = true;
+  }
 };
