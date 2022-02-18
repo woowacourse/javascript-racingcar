@@ -86,7 +86,9 @@ class RacingCarGameView {
   }
 
   removeSpinner() {
-    this.$spinnerContainers.forEach(($spinnerContainer) => $spinnerContainer.remove());
+    this.$spinnerContainers.forEach(($spinnerContainer) =>
+      $spinnerContainer.removeChild($spinnerContainer.lastElementChild)
+    );
   }
 }
 

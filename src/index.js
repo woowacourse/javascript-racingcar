@@ -54,19 +54,25 @@ class RacingCarGame {
     this.startRacingGame();
   }
 
-  async startRacingGame() {
-    for (let i = 0; i < this.model.racingCount; i++) {
-      this.runOneCycleGame();
+  startRacingGame() {
+    let turn = 1;
 
-      if (i === 0) {
-        this.view.renderSpinner();
+    const raceTimer = setInterval(() => {
+      if (turn !== 1) {
+        this.view.removeSpinner();
       }
 
-      await waitGame(RULES.TRUN_INTERVAL_TIME);
-    }
+      this.runOneCycleGame();
 
-    this.view.removeSpinner();
-    this.handleGameResult();
+      if (turn === this.model.racingCount) {
+        clearInterval(raceTimer);
+        this.handleGameResult();
+        return;
+      }
+
+      this.view.renderSpinner();
+      turn += 1;
+    }, RULES.TRUN_INTERVAL_TIME);
   }
 
   runOneCycleGame() {

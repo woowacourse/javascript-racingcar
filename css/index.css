@@ -108,7 +108,6 @@ form > label {
 }
 
 .racing_car_progress > li {
-  /* padding: 7px 0 8px; */
   margin: 8px 0;
   font-size: 32px;
 }
@@ -152,7 +151,7 @@ form > label {
   border-right-color: #00bcd4;
   border-left-color: #00bcd4;
 
-  animation: spin 800ms infinite;
+  animation: spin 1000ms linear;
 }
 
 @keyframes spin {
