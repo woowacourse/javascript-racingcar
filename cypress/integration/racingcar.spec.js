@@ -1,16 +1,18 @@
-import { ERROR_MESSAGES } from '../../src/utils/constants.js';
+import { ALERT_WINNER_DELAY, DEFAULT_DELAY, ERROR_MESSAGES, WINNER_ALERT_MESSAGE } from '../../src/utils/constants.js';
 
 describe('자동차 경주 구현 기능 테스트', () => {
   beforeEach(() => {
+    cy.clock();
     cy.visit('index.html');
   });
 
-  it('레이싱 실행 이후 우승자를 출력할 수 있어야 한다', () => {
+  it('레이싱 실행 이후 우승자를 출력할 수 있어야 한다.', () => {
     const carNames = 'east, west, south, north, all';
     const count = 5;
 
     cy.inputCarNames(carNames);
     cy.inputCount(count);
+    cy.tick(count * DEFAULT_DELAY);
     cy.get('.winners-name').should('be.visible');
   });
 
@@ -20,10 +22,26 @@ describe('자동차 경주 구현 기능 테스트', () => {
 
     cy.inputCarNames(carNames);
     cy.inputCount(count);
+    cy.tick(count * DEFAULT_DELAY);
+    cy.tick(ALERT_WINNER_DELAY);
+
     cy.get('.restart').click();
     cy.get('.count-form').should('not.be.visible');
-    cy.get('.game-result-container').should('not.be.visible');
+    cy.get('.race-container').should('not.be.visible');
     cy.get('.restart-container').should('not.be.visible');
+  });
+
+  it('우승자가 출력되면 2초뒤에 축하 메세지를 확인할 수 있어야 한다.', () => {
+    const carNames = 'east, west, south, north, all';
+    const count = 5;
+
+    cy.inputCarNames(carNames);
+    cy.inputCount(count);
+    cy.tick(count * DEFAULT_DELAY);
+    cy.tick(ALERT_WINNER_DELAY);
+    cy.on('window:alert', text => {
+      expect(text).to.contain(WINNER_ALERT_MESSAGE);
+    });
   });
 });
 
