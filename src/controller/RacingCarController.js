@@ -3,7 +3,7 @@ import RacingCarView from '../view/RacingCarView.js';
 
 import { getRacingCarItemTemplate } from '../template/index.js';
 import { convertToNumber, generateRandomNumber } from '../util/index.js';
-import { DELAY, ID, RULES } from '../constants/index.js';
+import { CONGRATS_MESSAGE, DELAY, ID, RULES } from '../constants/index.js';
 
 class RacingCarController {
   constructor() {
@@ -92,6 +92,7 @@ class RacingCarController {
     this.handleGameResult();
     this.view.showFinalWinner();
     this.view.showRestartSection();
+    this.view.showCongratsMessage();
   }
 
   playRace() {

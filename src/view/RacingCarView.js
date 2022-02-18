@@ -1,4 +1,4 @@
-import { CLASS, ID } from '../constants/index.js';
+import { CLASS, CONGRATS_MESSAGE, DELAY, ID } from '../constants/index.js';
 import { PROGRESS_TEMPLATE } from '../template/index.js';
 
 class RacingCarView {
@@ -27,6 +27,12 @@ class RacingCarView {
 
   showRestartSection() {
     this.$restartSection.style.display = 'block';
+  }
+
+  showCongratsMessage() {
+    setTimeout(() => {
+      alert(CONGRATS_MESSAGE);
+    }, DELAY.RESULT_TIME);
   }
 
   hideElement() {

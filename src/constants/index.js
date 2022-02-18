@@ -25,6 +25,8 @@ export const ERROR_MESSAGES = Object.freeze({
   NOT_NATURAL_NUMBER: '시도할 횟수는 자연수를 입력해야 한다.',
 });
 
+export const CONGRATS_MESSAGE = '자동차 경주 게임이 끝났습니다. 우승을 축하드립니다.';
+
 export const RULES = Object.freeze({
   MAX_CAR_NAME_LENGTH: 5,
   ZERO_CAR_NAME_LENGTH: 0,
@@ -35,4 +37,5 @@ export const RULES = Object.freeze({
 
 export const DELAY = Object.freeze({
   RACE_TIME: 1000,
+  RESULT_TIME: 2000,
 });
