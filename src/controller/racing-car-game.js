@@ -43,11 +43,21 @@ export default class RacingCarGame {
                 clearInterval(timeoutId);
                 this.model.resetCarsIsCurrentTurnSuccess();
                 this.view.renderRacingContent(this.model.carArray);
-                this.view.renderGameWinners(this.model.carArray);
+                this.view.renderGameWinners(this.getGameWinners(this.model.carArray));
                 this.addClickEventToRestartButton();
-                setTimeout(() => alert(`${this.view.winners} 축하합니다!`), 2000);
+                setTimeout(() => alert(`${this.getGameWinners(this.model.carArray)} 축하합니다!`), 2000);
             }
         }, 1000);
+    }
+
+    getGameWinners(carArray) {
+        const maxCount = carArray
+            .map(car => car.successCount)
+            .sort((a, b) => b - a)[0]; // 내림차순으로 sorting하면 0번째 값이 최대값
+        return carArray
+            .filter(car => car.successCount === maxCount)
+            .map(car => car.name)
+            .join(',');
     }
 
     onCarNameButtonClick() {
