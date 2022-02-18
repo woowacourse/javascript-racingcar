@@ -56,17 +56,28 @@ export default class RacingGameView {
     });
   }
 
-  renderCarContainer(carList) {
-    $(SELECTOR.RACE_CONTAINER).dataset.state = 'on';
+  #createCarStateConatiner(carList) {
+    return carList.map((instance, index) => {
+      const $carStateContainer = document.createElement('DIV');
+      $carStateContainer.dataset.key = index;
+      $carStateContainer.classList.add(DOM_ID.RACE_CAR_STATE);
 
-    const insertHTML = carList
-      .map(
-        (instance, index) => `<div class="${DOM_ID.RACE_CAR_STATE}" data-key="${index}">
-            <div class="${DOM_ID.RACE_CAR_NAME_BOX}">${instance.name}</div>
-          </div>`
-      )
-      .join('');
-    $(SELECTOR.RACE_CONTAINER).innerHTML = insertHTML;
+      const $carName = document.createElement('DIV');
+      $carName.classList.add(DOM_ID.RACE_CAR_NAME_BOX);
+      $carName.innerText = instance.name;
+      $carStateContainer.append($carName);
+
+      return $carStateContainer;
+    });
+  }
+
+  renderCarContainer(carList) {
+    const $$carList = this.#createCarStateConatiner(carList);
+
+    const $raceContainer = $(SELECTOR.RACE_CONTAINER);
+    $raceContainer.innerHTML = '';
+    $raceContainer.append(...$$carList);
+    $raceContainer.dataset.state = 'on';
   }
 
   renderCarAdvance(carList) {
