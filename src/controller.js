@@ -33,7 +33,8 @@ export default class Controller {
       const carList = this.model.getCarList();
       validateCountInput(count);
       this.model.startRace(count);
-      this.view.showResult(carList, this.makeWinnerList(carList));
+      this.view.updateResultDOM(carList, this.makeWinnerList(carList));
+      this.ShowResult(carList);
     } catch (error) {
       alert(error.message);
     }
@@ -43,9 +44,42 @@ export default class Controller {
     this.model.resetCarList();
   }
 
-  makeWinnerList(carList) {
+  findMaxStep(carList) {
     const steps = carList.map((car) => car.step);
-    const maxStep = Math.max(...steps);
+    return Math.max(...steps);
+  }
+
+  ShowResult(carList) {
+    const runningTime = this.findMaxStep(carList) * 1000;
+    this.view.displayStepSection();
+    this.view.showArrowOneRace();
+    this.setArrowInterval(runningTime);
+    this.setWinnerTimeOut(runningTime);
+  }
+
+  setArrowInterval(runningTime) {
+    const ArrowInterval = this.startArrowInterval();
+    const ArrowTimeOut = setTimeout(() => {
+      clearInterval(ArrowInterval);
+      clearTimeout(ArrowTimeOut);
+    }, runningTime);
+  }
+
+  startArrowInterval() {
+    return setInterval(() => {
+      this.view.showArrowOneRace();
+    }, 1000);
+  }
+
+  setWinnerTimeOut(afterTime) {
+    const winnerTimeOut = setTimeout(() => {
+      this.view.displayWinnerAndResetButton();
+      clearTimeout(winnerTimeOut);
+    }, afterTime);
+  }
+
+  makeWinnerList(carList) {
+    const maxStep = this.findMaxStep(carList);
     const winnerCarList = carList.filter((car) => car.step === maxStep);
     return winnerCarList.map((car) => car.name);
   }
