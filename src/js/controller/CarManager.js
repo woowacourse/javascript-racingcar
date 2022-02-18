@@ -10,7 +10,9 @@ export default class CarManager {
   }
 
   sortCars() {
-    this.cars.sort((left, right) => right.location - left.location);
+    return this.cars
+      .slice()
+      .sort((left, right) => right.location - left.location);
   }
 
   createCars(carNamesArray) {

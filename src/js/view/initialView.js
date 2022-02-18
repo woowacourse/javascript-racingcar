@@ -14,16 +14,3 @@ export const initializeView = () => {
   $("racing-winner").innerHTML = "";
   $("restart-button").hidden = true;
 };
-
-export const showRacingCountArea = () => {
-  $("racing-count-area").hidden = false;
-};
-
-export const showRacingResultArea = () => {
-  $("racing-result").hidden = false;
-};
-
-export const showWinnerAndRestartButton = () => {
-  $("winner-area").hidden = false;
-  $("restart-button").hidden = false;
-};

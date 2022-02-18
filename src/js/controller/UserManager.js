@@ -42,8 +42,7 @@ export default class UserManager {
       return;
     }
 
-    this.gameManager.getResult(this.carManager, racingCount);
-    this.gameManager.setResult(this.carManager);
+    this.gameManager.startGame(this.carManager, racingCount);
     disableCountInputForm();
   }
 

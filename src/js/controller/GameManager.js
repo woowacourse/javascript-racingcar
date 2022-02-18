@@ -1,21 +1,48 @@
-import { setResultArea, setWinnerText } from "../view/resultView.js";
-import { showWinnerAndRestartButton } from "../view/initialView.js";
+import {
+  createEachLog,
+  initializeRacingResultView,
+} from "../view/resultView.js";
+import {
+  setRacingWinnerView,
+  showWinnerAndRestartButton,
+} from "../view/winnerView.js";
 
 export default class GameManager {
-  startGame(carManager, racingCount) {
-    for (let index = 0; index < racingCount; index++) {
-      carManager.cars.forEach(car => {
-        car.advance();
-      });
-    }
+  race(carManager, racingCount) {
+    let count = 0;
+    const turns = setInterval(() => {
+      count += 1;
+      this.turn(carManager);
+
+      if (count === racingCount) {
+        clearInterval(turns);
+      }
+    }, 1000);
+
+    this.raceOver(carManager, racingCount);
+  }
+
+  turn(carManager) {
+    carManager.cars.forEach(car => {
+      if (car.advance()) {
+        createEachLog(car);
+      }
+    });
+  }
+
+  raceOver(carManager, racingCount) {
+    setTimeout(() => {
+      setRacingWinnerView(this.getWinners(carManager));
+      showWinnerAndRestartButton();
+    }, (racingCount + 1) * 1000);
   }
 
   getWinners(carManager) {
-    const max = carManager.cars[0].location;
+    const winnerScore = carManager.sortCars()[0].location;
     const winners = [];
 
     carManager.cars.forEach(car => {
-      if (car.location === max) {
+      if (car.location === winnerScore) {
         winners.push(car.name);
       }
     });
@@ -23,14 +50,8 @@ export default class GameManager {
     return winners;
   }
 
-  getResult(carManager, racingCount) {
-    this.startGame(carManager, racingCount);
-    carManager.sortCars();
-  }
-
-  setResult(carManager) {
-    setResultArea(carManager);
-    showWinnerAndRestartButton();
-    setWinnerText(this.getWinners(carManager));
+  startGame(carManager, racingCount) {
+    initializeRacingResultView(carManager);
+    this.race(carManager, racingCount);
   }
 }

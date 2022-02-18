@@ -14,6 +14,9 @@ export default class Car {
   advance() {
     if (this.validateAdvance()) {
       this.location += 1;
+      return true;
     }
+
+    return false;
   }
 }
