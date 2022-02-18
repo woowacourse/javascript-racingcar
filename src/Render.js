@@ -33,7 +33,7 @@ const render = {
         });
     },
     renderWinners(winners) {
-        $('#winners').innerHTML = winners.join(',');
+        $('#winners').innerText = winners.join(',');
     },
 };
 
