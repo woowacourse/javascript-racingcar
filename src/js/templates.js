@@ -20,7 +20,8 @@ const template = {
   renderRacingResult() {
     return `
       <section id="racing-result">
-        <h2 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${DOM_STRING.WINNERS}"></span> 🏆</h2>
+        <h2 hidden>자동차 경주 결과</h2>
+        <h3 id="${DOM_STRING.RESULT_MESSAGE}">🏆 최종 우승자: <span id="${DOM_STRING.WINNERS}"></span> 🏆</h3>
         <button id="${DOM_STRING.RESTART_BUTTON}">다시 시작하기</button>
       </section>
       `;

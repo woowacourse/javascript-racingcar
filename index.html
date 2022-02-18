@@ -22,7 +22,8 @@
       <header>
         <h1 id="title">🏎 자동차 경주 게임🏁</h1>
       </header>
-      <section id="input-section">
+      <section id="car-name-input-section">
+        <h2 hidden>자동차 이름 입력</h2>
         <div class="input-form">
           <label id="car-name-description" for="car-name-input"
             >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
@@ -36,7 +37,10 @@
             <button id="car-name-button">확인</button>
           </form>
         </div>
-        <div class="input-form invisibled">
+      </section>
+      <section id="racing-count-input-section" class="invisibled">
+        <h2 hidden>레이싱 횟수 입력</h2>
+        <div class="input-form">
           <label id="racing-count-description" for="racing-count-input"
             >시도할 횟수를 입력해주세요.</label
           >
@@ -46,7 +50,9 @@
           </form>
         </div>
       </section>
-      <section id="racing-progress"></section>
+      <section id="racing-progress">
+        <h2 hidden>레이싱 경주 진행 과정</h2>
+      </section>
     </div>
     <script type="module" src="src/js/index.js"></script>
   </body>

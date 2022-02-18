@@ -14,7 +14,7 @@ export const SELECTOR = {
   $RESULT_MESSAGE: '#result-message',
   $WINNERS: '#winners',
   $RESTART_BUTTON: '#restart-button',
-  $INPUT_FORM_LAST_CHILD: '.input-form:last-child',
+  $RACING_COUNT_INPUT_SECTION: '#racing-count-input-section',
   $SPINNER: '.spinner',
 };
 

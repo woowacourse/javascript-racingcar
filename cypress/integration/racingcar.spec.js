@@ -43,7 +43,7 @@ describe('기능 요구사항', () => {
       .click()
       .then(() => {
         cy.get(SELECTOR.$CAR_NAME_BUTTON).should('be.disabled');
-        cy.get(SELECTOR.$INPUT_FORM_LAST_CHILD).should('be.visible');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT_SECTION).should('be.visible');
       });
   });
 
@@ -82,7 +82,7 @@ describe('기능 요구사항', () => {
     cy.get(SELECTOR.$RESTART_BUTTON)
       .click()
       .then(() => {
-        cy.get(SELECTOR.$INPUT_FORM_LAST_CHILD).should('not.be.visible');
+        cy.get(SELECTOR.$RACING_COUNT_INPUT_SECTION).should('not.be.visible');
         cy.get(SELECTOR.$RACING_PROGRESS_LIST).should('not.exist');
         cy.get(SELECTOR.$RACING_RESULT).should('not.exist');
       });

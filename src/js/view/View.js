@@ -61,11 +61,11 @@ export default class View {
   }
 
   racingCountInputVisibled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.remove('invisibled');
+    $(SELECTOR.$RACING_COUNT_INPUT_SECTION).classList.remove('invisibled');
   }
 
   racingCountInputInvisibled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).classList.add('invisibled');
+    $(SELECTOR.$RACING_COUNT_INPUT_SECTION).classList.add('invisibled');
   }
 
   removeElements(parentElements, selector) {
