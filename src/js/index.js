@@ -25,7 +25,6 @@ class RacingCar {
     $("restart-button").addEventListener("click", () => {
       makeInitialView();
       this.carManager.init();
-      this.userManager.init();
     });
   }
 }

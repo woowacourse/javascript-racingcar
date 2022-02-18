@@ -4,7 +4,7 @@ import { setWinnerText } from "../view/winnerViewControl.js";
 
 // TODO : 전반적인 게임을 관리
 export default class GameManager {
-  static startGame(carManager, racingCount) {
+  startGame(carManager, racingCount) {
     for (let index = 0; index < racingCount; index++) {
       carManager.cars.forEach(car => {
         car.advance();
@@ -12,7 +12,7 @@ export default class GameManager {
     }
   }
 
-  static getWinners(carManager) {
+  getWinners(carManager) {
     const max = carManager.cars[0].location;
     const winners = [];
 
@@ -25,14 +25,14 @@ export default class GameManager {
     return winners;
   }
 
-  static getResult(carManager, racingCount) {
-    GameManager.startGame(carManager, racingCount);
+  getResult(carManager, racingCount) {
+    this.startGame(carManager, racingCount);
     carManager.sortCars();
   }
 
-  static setResult(carManager) {
+  setResult(carManager) {
     setResultArea(carManager);
     showWinnerAndRestartButton();
-    setWinnerText(GameManager.getWinners(carManager));
+    setWinnerText(this.getWinners(carManager));
   }
 }
