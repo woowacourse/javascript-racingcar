@@ -96,7 +96,7 @@ export default class RacingGameController {
     this.#racingGameView.renderCarAdvance(carPlayResult);
 
     const { round, stage } = state;
-    if (round !== stage) {
+    if (round > stage) {
       return false;
     }
 
