@@ -1,7 +1,6 @@
 import { setResultArea, setWinnerText } from "../view/resultView.js";
 import { showWinnerAndRestartButton } from "../view/initialView.js";
 
-// TODO : 전반적인 게임을 관리
 export default class GameManager {
   startGame(carManager, racingCount) {
     for (let index = 0; index < racingCount; index++) {

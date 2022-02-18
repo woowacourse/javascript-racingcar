@@ -7,7 +7,6 @@ import { CarNameValidation, RacingCountValidation } from "./Validate.js";
 import { EXCEPTIONS } from "../constants/exceptions.js";
 import { trimArray } from "../utils/trimArray.js";
 
-// TODO : 사용자의 입력에 대한 처리
 export default class UserManager {
   constructor(carManager, gameManager) {
     this.carManager = carManager;
