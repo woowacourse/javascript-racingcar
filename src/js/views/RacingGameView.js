@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/element-tools.js';
 import { SELECTOR } from '../constants/selector.js';
+import { isSameDistance } from '../utils/RacingGame/validator.js';
 import { templateProgress } from '../template/share.js';
 import { templateCarStateConatiner, templateCarAdvance } from '../template/RacingGame.js';
 
@@ -64,7 +65,7 @@ export default class RacingGameView {
       const $carStateContainer = $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`);
       const $$advanceElements = $carStateContainer.querySelectorAll(SELECTOR.RACE_ADVANCE);
 
-      if ($$advanceElements.length === distance) {
+      if (isSameDistance($$advanceElements.length, distance)) {
         return;
       }
 

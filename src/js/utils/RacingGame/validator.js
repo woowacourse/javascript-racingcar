@@ -46,4 +46,6 @@ const isAdvance = () => {
   return getRandomNumber(ADVANCE_RANGE_MIN, ADVANCE_RANGE_MAX) >= ADVANCE_NUMBER;
 };
 
-export { isCarNameValid, isRaceTimeValid, isGameSetup, isAdvance };
+const isSameDistance = (before, after) => before === after;
+
+export { isCarNameValid, isRaceTimeValid, isGameSetup, isAdvance, isSameDistance };
