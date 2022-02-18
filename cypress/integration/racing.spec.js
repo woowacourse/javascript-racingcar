@@ -116,8 +116,11 @@ context('화면표시 테스트', () => {
     cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
   });
 
-  it('n회 시도할 때, n-1초 후에는 우승자가 표시되지 않는다.', () => {
-    cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
+  it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
+    cy.wait(2000);
+    cy.get(`.${SELECTOR.WINNER}`).should((p) => {
+      expect(p).to.contain('최종 우승자');
+    });
   });
 
   it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
