@@ -1,5 +1,5 @@
 import generateCars from '../model/generateCars.js';
-import { getWinners, getMaxPosition } from '../model/getWinners.js';
+import getWinners from '../model/getWinners.js';
 import { showArrowProgress, showCarElements } from '../view/showProgress.js';
 import { showRestart, showWinners } from '../view/showResult.js';
 import hideLoader from '../view/hideLoader.js';
@@ -25,8 +25,8 @@ const playRace = (cars, count) => {
 
 const handleRace = async count => {
   const cars = generateCars();
-  playRace(cars, +count);
-  await wait((getMaxPosition(cars) + 1) * DEFAULT_DELAY);
+  playRace(cars, count);
+  await wait(count * DEFAULT_DELAY);
   hideLoader();
   finishRace(cars);
 };

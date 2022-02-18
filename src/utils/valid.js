@@ -9,5 +9,5 @@ export const isDuplicatedName = names => {
 };
 
 export const isValidCount = count => {
-  return +count >= MIN_TRY_COUNT && +count <= MAX_TRY_COUNT;
+  return count >= MIN_TRY_COUNT && count <= MAX_TRY_COUNT;
 };

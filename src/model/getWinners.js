@@ -1,8 +1,7 @@
-export const getMaxPosition = cars => {
+const getWinners = cars => {
   const getCarPositions = cars.map(car => car.position);
-  return Math.max(...getCarPositions);
+  const maxPosition = Math.max(...getCarPositions);
+  return cars.filter(car => car.position === maxPosition).map(car => car.name);
 };
 
-export const getWinners = cars => {
-  return cars.filter(car => car.position === getMaxPosition(cars)).map(car => car.name);
-};
+export default getWinners;

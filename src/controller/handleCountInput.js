@@ -7,13 +7,13 @@ import handleRace from './handleRace.js';
 const handleCountInput = () => {
   const { value } = $('.count-input');
 
-  if (!isValidCount(value)) {
+  if (!isValidCount(Number(value))) {
     alert(ERROR_MESSAGES.INVALID_COUNT);
     return;
   }
 
   setDisabledAllForms();
-  handleRace(value);
+  handleRace(Number(value));
 };
 
 export default handleCountInput;
