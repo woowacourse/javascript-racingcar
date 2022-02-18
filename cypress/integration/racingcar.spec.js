@@ -1,4 +1,4 @@
-import { ID, CLASS, RULES, DELAY } from '../../src/constants/index.js';
+import { ID, CLASS, RULES, DELAY, CONGRATS_MESSAGE } from '../../src/constants/index.js';
 
 const URL = 'http://localhost:61005/';
 const CAR_NAMES = 'east,west,south,north,all';
@@ -180,5 +180,25 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
         const result = finalWinner.join(RULES.WINNER_LIST_SEPERATOR);
         cy.get(`#${ID.FINAL_WINNER_RESULT}`).should('have.text', result);
       });
+  });
+});
+
+describe('자동차 경주 우승자 축하 메세지 출력 테스트', () => {
+  beforeEach(() => {
+    cy.visit(URL);
+    triggerCarNameSubmitEvent();
+    triggerRacingCountSubmitEvent();
+  });
+
+  it('자동차 게임의 턴인 정상적으로 다 동작된 후, 2초 후에 경고창이 발생한다.', () => {
+    const totalDelayTime = RACING_COUNT * DELAY.RACE_TIME + DELAY.RESULT_TIME;
+
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
+
+    cy.wait(totalDelayTime).then(() => {
+      expect(stub.getCall(0)).to.be.calledWith(CONGRATS_MESSAGE);
+    });
   });
 });
