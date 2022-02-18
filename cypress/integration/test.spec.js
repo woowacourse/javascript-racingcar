@@ -95,11 +95,13 @@ describe('스크린에서 경기가 진행중인 경우', () => {
 
 describe('경기가 끝난 경우', () => {
   beforeEach(() => {
+    cy.clock();
     cy.visit('/index.html');
-    cy.startRacing('aa,bb,cc,dd,ee,ff,gg,hh,a,b,c,d', 50);
+    cy.startRacing('aa,bb,cc,dd', 10);
   });
 
   it('이동거리가 가장 긴 자동차가 최종 우승자가 된다', function () {
+    cy.tick(10 * 1000); // 10초 기다린다
     const cars = [];
     cy.get(testid`car-lane`)
       .each(($carLane, i) => {
