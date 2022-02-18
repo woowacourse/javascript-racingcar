@@ -6,21 +6,15 @@ import {
   CONTRATURATION_INTERVAL,
 } from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
-import { $, splitString, trimStringArray } from '../utils/utils.js';
+import { splitString, trimStringArray } from '../utils/utils.js';
 import validator from '../utils/validator.js';
 
 export default class RacingCarGameView extends View {
-  constructor($target, template) {
-    super(template);
-
-    this.$target = $target;
-  }
-
   cacheDOMElements() {
-    this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
-    this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
-    this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
-    this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
+    this.$carNameInput = this.get(SELECTOR.$CAR_NAME_INPUT);
+    this.$carNameButton = this.get(SELECTOR.$CAR_NAME_BUTTON);
+    this.$racingCountInput = this.get(SELECTOR.$RACING_COUNT_INPUT);
+    this.$racingCountButton = this.get(SELECTOR.$RACING_COUNT_BUTTON);
   }
 
   bindSubmitCarNames(callback) {
@@ -62,22 +56,17 @@ export default class RacingCarGameView extends View {
   }
 
   renderInputSection(carList, isRacing, winners) {
-    $(SELECTOR.$INPUT_SECTION).innerHTML = this.template.getInputSectionHTML(
-      carList,
-      isRacing,
-      winners
-    );
+    this.get(SELECTOR.$INPUT_SECTION).innerHTML =
+      this.template.getInputSectionHTML(carList, isRacing, winners);
   }
 
   renderRacingResult(carList, isRacing) {
-    $(SELECTOR.$RACING_RESULT).innerHTML = this.template.getRacingResultHTML(
-      carList,
-      isRacing
-    );
+    this.get(SELECTOR.$RACING_RESULT).innerHTML =
+      this.template.getRacingResultHTML(carList, isRacing);
   }
 
   renderResult(winners) {
-    $(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
+    this.get(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
   }
 
   initializeInput(clearElement, focusElement = clearElement) {

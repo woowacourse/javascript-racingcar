@@ -1,9 +1,9 @@
-export function $(selector) {
-  return document.querySelector(selector);
+export function $(selector, scope = document) {
+  return scope.querySelector(selector);
 }
 
-export function $all(selector) {
-  return document.querySelectorAll(selector);
+export function $all(selector, scope = document) {
+  return scope.querySelectorAll(selector);
 }
 
 export function splitString(string, delimeter) {
