@@ -50,12 +50,23 @@ export default class Controller {
     return Math.max(...steps);
   }
 
+  makeWinnerList(carList) {
+    const maxStep = this.findMaxStep(carList);
+    const winnerCarList = carList.filter((car) => car.step === maxStep);
+    return winnerCarList.map((car) => car.name);
+  }
+
   ShowResult(carList) {
-    const runningTime = this.findMaxStep(carList) * NUMBER.ARROW_INTERVAL_TIME;
     this.view.displayStepSection();
     this.view.showArrowOneRace();
+    this.setShowResultTimer(carList);
+  }
+
+  setShowResultTimer(carList) {
+    const runningTime = this.findMaxStep(carList) * NUMBER.ARROW_INTERVAL_TIME;
     this.setArrowInterval(runningTime);
     this.setWinnerTimeOut(runningTime);
+    this.setWinnerAlertTimeOut(this.makeWinnerList(carList), runningTime + NUMBER.WINNER_ALERT_TIME);
   }
 
   setArrowInterval(runningTime) {
@@ -79,9 +90,10 @@ export default class Controller {
     }, afterTime);
   }
 
-  makeWinnerList(carList) {
-    const maxStep = this.findMaxStep(carList);
-    const winnerCarList = carList.filter((car) => car.step === maxStep);
-    return winnerCarList.map((car) => car.name);
+  setWinnerAlertTimeOut(winnerList, afterTime) {
+    const alertTimeOut = setTimeout(() => {
+      alert(`${winnerList.join(', ')}의 우승을 축하합니다!`);
+      clearTimeout(alertTimeOut);
+    }, afterTime);
   }
 }
