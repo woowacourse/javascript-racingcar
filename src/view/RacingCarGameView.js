@@ -8,6 +8,7 @@ class RacingCarGameView {
     this.$carNamesInput = $(`#${ID.CAR_NAMES_INPUT}`);
     this.$racingCountForm = $(`#${ID.RACING_COUNT_FORM}`);
     this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
+    this.$inputBtns = $$(`.${CLASS.INPUT_BTN}`);
     this.$racingCarList = $(`#${ID.RACING_CAR_LIST}`);
     this.$racingCarProgress = null;
     this.$spinnerContainers = null;
@@ -34,6 +35,25 @@ class RacingCarGameView {
   setRestartBtnEventHandler(callback) {
     this.$restartBtn.addEventListener('click', () => {
       callback();
+    });
+  }
+
+  changeToDisableForm() {
+    this.$carNamesInput.setAttribute('disabled', true);
+    this.$racingCountInput.setAttribute('disabled', true);
+    this.$inputBtns.forEach(($inputBtn) => {
+      $inputBtn.setAttribute('disabled', true);
+      $inputBtn.classList.add(CLASS.DISABLED_INPUT_BTN);
+    });
+  }
+
+  changeToEnabledForm() {
+    this.$carNamesInput.removeAttribute('disabled');
+    this.$racingCountInput.removeAttribute('disabled');
+
+    this.$inputBtns.forEach(($inputBtn) => {
+      $inputBtn.removeAttribute('disabled');
+      $inputBtn.classList.remove(CLASS.DISABLED_INPUT_BTN);
     });
   }
 

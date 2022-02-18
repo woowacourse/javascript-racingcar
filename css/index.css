@@ -71,6 +71,10 @@ form > label {
   cursor: pointer;
 }
 
+.disabled_input_btn {
+  background-color: #888888;
+}
+
 #racing_car_display_section {
   width: 100%;
   margin: 0 16px 24px;

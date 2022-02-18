@@ -12,6 +12,7 @@ export const ID = Object.freeze({
 
 export const CLASS = Object.freeze({
   INPUT_BTN: 'input_btn',
+  DISABLED_INPUT_BTN: 'disabled_input_btn',
   RACING_CAR_PROGRESS: 'racing_car_progress',
   RACING_CAR_NAME: 'racing_car_name',
   SPINNER_CONTAINER: 'spinner_container',
