@@ -5,10 +5,13 @@ import { checkUserCarNameInput, checkUserRacingCountInput } from '../modules/che
 import { SELECTOR } from '../constants/selector.js';
 import { CONGRATS_MESSAGE_TIME_INTERVAL, ONE_ROUND_TIME_INTERVAL } from '../constants/game-condition.js';
 
-export default class RacingCarGame {
+class RacingCarGame {
     constructor() {
         this.view = new RacingCarGameView();
         this.model = new RacingCarGameModel();
+    }
+
+    gameStart() {
         this.addClickEventToCarNameButton();
     }
 
@@ -44,7 +47,8 @@ export default class RacingCarGame {
             if(count++ === raceCount) {
                 this.stopUpdatingWholeGameResult();
                 this.addClickEventToRestartButton();
-                setTimeout(() => alert(`${this.getGameWinners(this.model.carArray)} 축하합니다!`), CONGRATS_MESSAGE_TIME_INTERVAL);
+                setTimeout(() => alert(`${this.getGameWinners(this.model.carArray)} 축하합니다!`)
+                , CONGRATS_MESSAGE_TIME_INTERVAL);
             }
         }, ONE_ROUND_TIME_INTERVAL);
     }
@@ -92,3 +96,5 @@ export default class RacingCarGame {
         this.view.resetGameView();
     }
 }
+
+export default new RacingCarGame();

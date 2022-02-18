@@ -1,3 +1,3 @@
-import RacingCarGame from './controller/racing-car-game.js';
+import racingCarGame from './controller/racing-car-game.js';
 
-new RacingCarGame();
+racingCarGame.gameStart();
