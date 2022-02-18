@@ -4,14 +4,14 @@ import { showArrowProgress, showCarElements } from '../view/showProgress.js';
 import { showRestart, showWinners } from '../view/showResult.js';
 import hideLoader from '../view/hideLoader.js';
 import wait from '../utils/wait.js';
-import { ALERT_WINNER_DELAY, DELAY } from '../utils/constants.js';
+import { ALERT_WINNER_DELAY, DELAY, WINNER_MESSAGE } from '../utils/constants.js';
 
 const finishRace = async cars => {
   const winner = getWinners(cars);
   showWinners(winner);
   showRestart();
   await wait(ALERT_WINNER_DELAY);
-  alert(`🎉 ${[...winner]}의 우승을 축하합니다! 🎉`);
+  alert(`${[...winner] + WINNER_MESSAGE}`);
 };
 
 const playRace = (cars, count) => {

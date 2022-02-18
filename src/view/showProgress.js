@@ -1,3 +1,4 @@
+import { DELAY } from '../utils/constants.js';
 import { $, $$ } from '../utils/selector.js';
 
 const getRaceTemplate = cars => {
@@ -30,7 +31,7 @@ const paintOneArrow = (container, positionCount) => {
       clearInterval(arrowProgress);
     }
     container.insertAdjacentHTML('beforeend', '<div class="arrow">⬇️️</div>');
-  }, 1000);
+  }, DELAY);
 };
 
 export const showArrowProgress = () => {
