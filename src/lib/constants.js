@@ -39,4 +39,4 @@ export const RANGE_MAX = 9;
 export const MOVE_CONDITION = 4;
 
 export const GAME_ROUND_INTERVAL = 1000;
-export const WINNER_ALERT_TIMEOUT = 2000;
+export const WINNER_ALERT_TIMEOUT_AMOUNT = 2000;

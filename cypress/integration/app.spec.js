@@ -32,9 +32,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   it('올바른 자동차 이름과 횟수를 입력하면 게임이 진행되고 우승자를 확인할 수 있어야 한다.', () => {
     // when
     const totalPlayTime = playValidGame();
+    cy.tick(totalPlayTime);
 
     //then
-    cy.tick(totalPlayTime);
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 

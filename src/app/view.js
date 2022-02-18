@@ -1,4 +1,4 @@
-import { DOM, WINNER_ALERT_TIMEOUT } from '../lib/constants.js';
+import { DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../lib/constants.js';
 import { createElementWithClass, createElementWithId, selectDOM } from '../lib/utils.js';
 
 class RacingCarGameView {
@@ -48,7 +48,7 @@ class RacingCarGameView {
 
     setTimeout(
       () => alert(RacingCarGameView.generateWinnerString(winnersArray)),
-      WINNER_ALERT_TIMEOUT
+      WINNER_ALERT_TIMEOUT_AMOUNT
     );
   }
 
