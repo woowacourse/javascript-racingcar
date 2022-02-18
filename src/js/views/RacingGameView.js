@@ -79,4 +79,11 @@ export default class RacingGameView {
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;
   }
+
+  bindCarNameInput(handler) {
+    $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (event) => {
+      event.preventDefault();
+      handler({ event, carNameList: $(SELECTOR.CAR_NAME_INPUT).value });
+    });
+  }
 }

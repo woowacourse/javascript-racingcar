@@ -25,24 +25,21 @@ export default class RacingGameController {
   }
 
   bindDefaultEvent() {
-    $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', this.handleCarNameInput.bind(this));
+    this.#racingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
+
     $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', this.handleRaceTimeInput.bind(this));
     $(SELECTOR.RETRY_BUTTON).addEventListener('click', this.handleGameRetry.bind(this));
   }
 
-  handleCarNameInput(event) {
-    event.preventDefault();
-
-    const carNameValue = $(SELECTOR.CAR_NAME_INPUT).value;
-    if (!isCarNameValid(carNameValue)) {
+  handleCarNameInput({ event, carNameList }) {
+    if (!isCarNameValid(carNameList)) {
       return false;
     }
 
     this.#racingGameView.setDisableForm(event.target);
-    this.#racingGameModel.carList = nameStringToArray(carNameValue);
+    this.#racingGameModel.carList = nameStringToArray(carNameList);
 
     this.tryRacingGameStart();
-    return false;
   }
 
   handleRaceTimeInput(event) {
@@ -57,7 +54,6 @@ export default class RacingGameController {
     this.#racingGameModel.round = raceTimeValue;
 
     this.tryRacingGameStart();
-    return false;
   }
 
   handleGameRetry(event) {
@@ -65,7 +61,6 @@ export default class RacingGameController {
 
     this.#racingGameModel.init();
     this.#racingGameView.init();
-    return false;
   }
 
   tryRacingGameStart() {
