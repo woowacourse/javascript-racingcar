@@ -73,10 +73,10 @@ class RacingCarGameController {
   }
 
   restartGame() {
-    this.model.resetDistances();
+    this.model.reset();
+    this.form.reset();
     this.screen.reset();
     this.resultView.reset();
-    this.startGame();
   }
 }
 
