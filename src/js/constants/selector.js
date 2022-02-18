@@ -1,3 +1,5 @@
+import { EMPTY_STRING } from './constants.js';
+
 const SELECTOR = Object.freeze({
   // 범용 선택자
   APP: '#app',
@@ -19,7 +21,7 @@ const SELECTOR = Object.freeze({
 function replaceSelectorToDomID(origin) {
   const output = {};
   Object.entries(origin).forEach(([key, value]) => {
-    output[key] = value.replace(/#|\./g, '');
+    output[key] = value.replace(/#|\./g, EMPTY_STRING);
   });
 
   return output;

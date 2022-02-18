@@ -1,2 +1,4 @@
-// eslint-disable-next-line import/prefer-default-export
-export const MILLISECOND = 1000;
+const MILLISECOND = 1000;
+const EMPTY_STRING = '';
+
+export { MILLISECOND, EMPTY_STRING };
