@@ -83,6 +83,7 @@ class RacingCarController {
 
       if (count === racingCount) {
         clearInterval(raceTimer);
+        this.view.removeLoadingSpinner();
         this.endGame();
       }
     }, DELAY.RACE_TIME);
@@ -98,7 +99,6 @@ class RacingCarController {
   playRace() {
     this.model.getCarList().forEach((car, index) => {
       const randomNumber = generateRandomNumber();
-
       if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
         car.moveForward();
         this.view.renderRacingCarProgress(index);

@@ -112,6 +112,36 @@ form > label {
   font-size: 32px;
 }
 
+.loading {
+  display: flex;
+  justify-items: center;
+  padding: 7px 0 8px;
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.loading::after {
+  content: '';
+  width: 25px;
+  height: 25px;
+  border: 7px solid #00bcd4;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: loader 1s linear infinite;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1.5turn);
+  }
+}
+
 #final_winner {
   font-size: 20px;
   font-weight: 600;

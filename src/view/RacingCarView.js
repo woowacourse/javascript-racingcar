@@ -62,11 +62,17 @@ class RacingCarView {
 
   renderRacingCarProgress(index) {
     this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
-    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', PROGRESS_TEMPLATE);
+    this.$racingCarProgress[index].insertAdjacentHTML('afterbegin', PROGRESS_TEMPLATE);
   }
 
   renderFinalWinnerResult(finalWinner) {
     this.$finalWinnerResult.innerText = finalWinner;
+  }
+
+  removeLoadingSpinner() {
+    Array.from(this.$racingCarProgress).forEach((element) => {
+      element.lastElementChild.classList.add('hidden');
+    });
   }
 }
 
