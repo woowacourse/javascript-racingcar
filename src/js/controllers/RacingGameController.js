@@ -4,7 +4,7 @@ import RacingGameView from '../views/RacingGameView.js';
 import { SELECTOR } from '../constants/selector.js';
 import { $ } from '../utils/element-tools.js';
 import nameStringToArray from '../utils/nameStringToArray.js';
-import { isCarNameValid, isRaceTimeValid } from '../utils/RacingGame/validator.js';
+import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
   #racingGameModel;
@@ -39,7 +39,7 @@ export default class RacingGameController {
     this.#racingGameView.setDisableForm(event.target);
     this.#racingGameModel.carList = nameStringToArray(carNameValue);
 
-    this.handleGameTry();
+    this.tryRacingGameStart();
     return false;
   }
 
@@ -54,26 +54,8 @@ export default class RacingGameController {
     this.#racingGameView.setDisableForm(event.target);
     this.#racingGameModel.round = raceTimeValue;
 
-    this.handleGameTry();
+    this.tryRacingGameStart();
     return false;
-  }
-
-  handleGameTry() {
-    const { round, carList } = this.#racingGameModel;
-    if (!round || carList.length === 0) {
-      return false;
-    }
-
-    this.handleGamePlay();
-  }
-
-  handleGamePlay() {
-    const { round: gameRound } = this.#racingGameModel;
-    Array.from({ length: gameRound }, () => this.#racingGameModel.play());
-
-    const { carList, winners } = this.#racingGameModel;
-    this.#racingGameView.renderResult(carList, winners);
-    this.#racingGameView.setVisibleResult(true);
   }
 
   handleGameRetry(event) {
@@ -82,5 +64,23 @@ export default class RacingGameController {
     this.#racingGameModel.init();
     this.#racingGameView.init();
     return false;
+  }
+
+  tryRacingGameStart() {
+    const { round, carList } = this.#racingGameModel;
+    if (isGameSetup(round, carList.length) === false) {
+      return false;
+    }
+
+    this.playRacingGame();
+  }
+
+  playRacingGame() {
+    const { round: gameRound } = this.#racingGameModel;
+    Array.from({ length: gameRound }, () => this.#racingGameModel.play());
+
+    const { carList, winners } = this.#racingGameModel;
+    this.#racingGameView.renderResult(carList, winners);
+    this.#racingGameView.setVisibleResult(true);
   }
 }

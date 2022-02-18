@@ -33,3 +33,5 @@ export const isRaceTimeValid = (value) => {
 
   return true;
 };
+
+export const isGameSetup = (round, carList) => round > 0 && carList > 0;
