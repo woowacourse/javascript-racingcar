@@ -1,5 +1,10 @@
 /* eslint-disable func-names */
-import { ERROR_MESSAGES } from '../../src/js/constants.js';
+import {
+  CAR_NAMES_INPUT_PLACEHOLDER,
+  CELEBRATE_MESSAGE,
+  ERROR_MESSAGES,
+  RACING_COUNT_INPUT_PLACEHOLDER,
+} from '../../src/js/constants.js';
 import testid from '../support/utils/test-id.js';
 
 describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 경우', () => {
@@ -98,10 +103,10 @@ describe('경기가 끝난 경우', () => {
     cy.clock();
     cy.visit('/index.html');
     cy.startRacing('aa,bb,cc,dd', 10);
+    cy.tick(10 * 1000); // 10초 기다린다
   });
 
   it('이동거리가 가장 긴 자동차가 최종 우승자가 된다', function () {
-    cy.tick(10 * 1000); // 10초 기다린다
     const cars = [];
     cy.get(testid`car-lane`)
       .each(($carLane, i) => {
@@ -118,5 +123,25 @@ describe('경기가 끝난 경우', () => {
           .trim();
         cy.get(testid`winners`).should('have.text', winners);
       });
+  });
+
+  it('경기가 끝나고 2초후 축하 메세지를 띄운다', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    cy.tick(2 * 1000).then(() => {
+      expect(alertStub).to.be.calledWith(CELEBRATE_MESSAGE);
+    });
+  });
+
+  it('다시 시작하기 버튼을 누르면 모든 상태가 초기화된다', () => {
+    cy.tick(2 * 1000).then(() => {
+      cy.get(testid`restart-btn`).click();
+      cy.get(testid`car-names-input`).should('have.value', '');
+      cy.get(testid`car-names-input`).should('have.attr', 'placeholder', CAR_NAMES_INPUT_PLACEHOLDER);
+      cy.get(testid`racing-count-input`).should('have.value', '');
+      cy.get(testid`racing-count-input`).should('have.attr', 'placeholder', RACING_COUNT_INPUT_PLACEHOLDER);
+      cy.get(testid`racing-screen`).should('not.be.visible');
+      cy.get(testid`racing-result`).should('not.be.visible');
+    });
   });
 });
