@@ -53,20 +53,20 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
                 });
         }
 
-        it('자동차 이름에 공백이 포함된 경우, alert가 호출되어야 한다.', carNameFormAlertTest('ab cd'));
+        it('공백이 포함된 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('ab cd'));
 
-        it('자동차 이름이 5자가 넘는 경우, alert가 호출되어야 한다.', carNameFormAlertTest('abcdfesf'));
+        it('5자 초과의 넘는 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('abcdfesf'));
     
-        it('자동차 이름에 공백인 경우, alert가 호출되어야 한다.', carNameFormAlertTest(''));
+        it('빈 문자열을 자동차 이름으로 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest(''));
     
         it(
-            '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, alert가 호출되어야 한다.',
+            '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, 에러 메시지를 확인할 수 있어야 한다.',
             turnCountFormAlertTest(123.456),
         );
     
-        it('전진 시도 횟수 입력이 음수인 경우, alert가 호출되어야 한다.', turnCountFormAlertTest(-12));
+        it('전진 시도 횟수 입력이 음수인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(-12));
     
-        it('전진 시도 횟수 입력이 빈칸인 경우, alert가 호출되어야 한다.', turnCountFormAlertTest(''));
+        it('전진 시도 횟수 입력이 빈칸인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(''));
 
     })
 
