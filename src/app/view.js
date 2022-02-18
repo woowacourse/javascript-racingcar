@@ -1,5 +1,5 @@
 import { DOM, WINNER_ALERT_TIMEOUT } from '../lib/constants.js';
-import { selectDOM } from '../lib/utils.js';
+import { createElementWithClass, createElementWithId, selectDOM } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -21,11 +21,8 @@ class RacingCarGameView {
   }
 
   renderGameStart(cars) {
-    const progressTemplate = cars.reduce(
-      (acc, car) => `${acc}${RacingCarGameView.generateProgressTemplate(car)}`,
-      ''
-    );
-    this.gameProgress.innerHTML = progressTemplate;
+    const progressTemplate = cars.map((car) => RacingCarGameView.generateProgressTemplate(car));
+    this.gameProgress.append(...progressTemplate);
     this.spinners = document.querySelectorAll(`.${DOM.SPINNER_CLASS}`);
     this.initSpinner();
   }
@@ -47,7 +44,7 @@ class RacingCarGameView {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winnersArray,
     });
-    this.winners.innerHTML = winnersTemplate;
+    this.winners.append(...winnersTemplate);
 
     setTimeout(
       () => alert(RacingCarGameView.generateWinnerString(winnersArray)),
@@ -78,12 +75,19 @@ class RacingCarGameView {
   }
 
   static generateProgressTemplate({ name, id }) {
-    return `
-    <div class="${DOM.CAR_PROGRESS_CLASS}">
-      <div class="${DOM.CAR_NAME_CLASS}">${name}</div>
-      <div class="spinner" data-car-id="${id}"></div>
-      </div>
-      `;
+    const progressElement = createElementWithClass({
+      className: DOM.CAR_PROGRESS_CLASS,
+    });
+    const nameElement = createElementWithClass({
+      className: DOM.CAR_NAME_CLASS,
+    });
+    nameElement.textContent = name;
+    const spinnerElement = createElementWithClass({
+      className: 'spinner',
+    });
+    spinnerElement.dataset.carId = id;
+    progressElement.append(nameElement, spinnerElement);
+    return progressElement;
   }
 
   static generateStepTemplate() {
@@ -94,10 +98,15 @@ class RacingCarGameView {
   }
 
   static generateWinnersTemplate({ winnersArray }) {
-    return `<h2 id="${DOM.WINNER_CONTAINER_ID}">🏆최종 승리자:<span id="${
-      DOM.WINNER_NAME_ID
-    }">${winnersArray.join(',')}</span>🏆</h2>
-      <button id="${DOM.RESTART_BTN_ID}">다시 시작하기</button> `;
+    const winnerContainerElement = createElementWithId({ tag: 'h2', id: DOM.WINNER_CONTAINER_ID });
+    const winnerNamesElement = createElementWithId({ tag: 'span', id: DOM.WINNER_NAME_ID });
+    winnerNamesElement.textContent = winnersArray.join(',');
+    winnerContainerElement.append('🏆최종 승리자:', winnerNamesElement, '🏆');
+
+    const restartButton = createElementWithId({ tag: 'button', id: DOM.RESTART_BTN_ID });
+    restartButton.textContent = '다시 시작하기';
+
+    return [winnerContainerElement, restartButton];
   }
 }
 export default RacingCarGameView;

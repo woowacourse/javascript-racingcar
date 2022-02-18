@@ -8,6 +8,18 @@ export const checkStringInRange = (str, min, max) => str.length >= min && str.le
 
 export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
+export const createElementWithClass = ({ tag = 'div', className }) => {
+  const element = document.createElement(tag);
+  element.className = className;
+  return element;
+};
+
+export const createElementWithId = ({ tag = 'div', id }) => {
+  const element = document.createElement(tag);
+  element.id = id;
+  return element;
+};
+
 // 기능 요구 사항
 // 1. id는 중복될 수 없다.
 // 2. id는 6개의 숫자로 구성된 문자열이다.
