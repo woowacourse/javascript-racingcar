@@ -83,6 +83,7 @@ describe('예외 처리 체크', () => {
 
   it('자동차의 이름은 빈칸일 수 없다.', () => {
     const stub = cy.stub();
+
     cy.on('window:alert', stub);
 
     cy.get(SELECTOR.CAR_NAME_BUTTON)
@@ -94,6 +95,7 @@ describe('예외 처리 체크', () => {
 
   it('자동차의 이름은 유일해야 한다.', () => {
     const stub = cy.stub();
+
     cy.on('window:alert', stub);
 
     cy.get(SELECTOR.CAR_NAME_INPUT).type('usage, usage, compy');
@@ -106,6 +108,7 @@ describe('예외 처리 체크', () => {
 
   it('자동차의 이름은 5자를 초과할 수 없다.', () => {
     const stub = cy.stub();
+
     cy.on('window:alert', stub);
 
     cy.get(SELECTOR.CAR_NAME_INPUT).type('usageness, usage, compy');
@@ -118,12 +121,39 @@ describe('예외 처리 체크', () => {
 
   it('시도 횟수는 빈칸일 수 없다.', () => {
     const stub = cy.stub();
+
     cy.on('window:alert', stub);
     cy.reload();
 
     cy.get(SELECTOR.CAR_NAME_INPUT).type('compy, usage');
     cy.get(SELECTOR.CAR_NAME_BUTTON).click();
 
+    cy.get(SELECTOR.RACE_TIME_BUTTON)
+      .click()
+      .then(() => {
+        expect(stub).to.be.called;
+      });
+  });
+
+  it('시도 횟수는 1보다 작을 수 없다.', () => {
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
+
+    cy.get(SELECTOR.RACE_TIME_INPUT).type('0');
+    cy.get(SELECTOR.RACE_TIME_BUTTON)
+      .click()
+      .then(() => {
+        expect(stub).to.be.called;
+      });
+  });
+
+  it('시도 횟수는 100보다 클 수 없다.', () => {
+    const stub = cy.stub();
+
+    cy.on('window:alert', stub);
+
+    cy.get(SELECTOR.RACE_TIME_INPUT).type('101');
     cy.get(SELECTOR.RACE_TIME_BUTTON)
       .click()
       .then(() => {
