@@ -46,8 +46,4 @@ export default class RacingCarGameView {
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         resetInputText($(SELECTOR.CAR_NAME_INPUT));
     }
-
-    renderLoadingSpinner() {
-
-    }
 }
