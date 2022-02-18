@@ -27,7 +27,12 @@ export default class View {
     for (let i = 0; i < carPosition.length; i++) {
       $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
         'beforeend',
-        `<div id="car-progress-result-${i}"></div>`
+        `<div id="car-check">
+          <div id="car-progress-result-${i}">
+          
+          <div id="loader"></div>
+          </div>
+        </div>`
       );
     }
   }
@@ -36,7 +41,7 @@ export default class View {
     setInterval(() => {
       carPosition.forEach((position, idx) => {
         if (position > 0) {
-          $(`#car-progress-result-${idx}`).innerHTML += '️️⬇️️';
+          $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
           carPosition[idx] = position - 1;
         }
       });
