@@ -3,6 +3,8 @@ import { EMPTY_STRING } from './constants.js';
 const SELECTOR = Object.freeze({
   // 범용 선택자
   APP: '#app',
+  PROGRESS: '.progress',
+  PROGRESS_INNER: '.round',
 
   // RacingGame 사용 선택자
   CAR_NAME_INPUT: '#car-name-input',

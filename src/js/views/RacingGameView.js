@@ -31,7 +31,7 @@ export default class RacingGameView {
       .querySelectorAll(SELECTOR.RACE_CAR_STATE)
       .forEach(($element) => {
         if (isVisible === false) {
-          $element.querySelector('.progress').remove();
+          $element.querySelector(SELECTOR.PROGRESS).remove();
           return;
         }
 
@@ -41,10 +41,10 @@ export default class RacingGameView {
 
   #renderProgress($raceContainer) {
     const $container = document.createElement('DIV');
-    $container.classList.add('progress');
+    $container.classList.add(DOM_ID.PROGRESS);
 
     const $progress = document.createElement('DIV');
-    $progress.classList.add('round');
+    $progress.classList.add(DOM_ID.PROGRESS_INNER);
     $container.append($progress);
 
     $raceContainer.append($container);
