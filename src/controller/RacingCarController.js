@@ -1,9 +1,9 @@
 import RacingCar from '../model/RacingCar.js';
 import RacingCarView from '../view/RacingCarView.js';
 
+import { DELAY, RULES, SELECTOR } from '../constants/index.js';
 import { getRacingCarItemTemplate } from '../template/index.js';
 import { convertToNumber, generateRandomNumber } from '../util/index.js';
-import { CONGRATS_MESSAGE, DELAY, ID, RULES } from '../constants/index.js';
 
 class RacingCarController {
   constructor() {
@@ -18,11 +18,11 @@ class RacingCarController {
   }
 
   initDOM() {
-    this.$carNamesForm = document.getElementById(ID.CAR_NAMES_FORM);
-    this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
-    this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
-    this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
-    this.$restartBtn = document.getElementById(ID.RESTART_BTN);
+    this.$carNamesForm = document.getElementById(SELECTOR.CAR_NAMES_FORM);
+    this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
+    this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
+    this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
+    this.$restartBtn = document.getElementById(SELECTOR.RESTART_BTN);
   }
 
   initEventListener() {
@@ -84,12 +84,12 @@ class RacingCarController {
       if (count === racingCount) {
         clearInterval(raceTimer);
         this.view.removeLoadingSpinner();
-        this.endGame();
+        this.endRacingGame();
       }
     }, DELAY.RACE_TIME);
   }
 
-  endGame() {
+  endRacingGame() {
     this.handleGameResult();
     this.view.showFinalWinner();
     this.view.showRestartSection();

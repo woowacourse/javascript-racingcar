@@ -1,5 +1,6 @@
-import { checkValidCarNames, checkValidRacingCount } from '../validation/index.js';
 import Car from './Car.js';
+
+import { checkValidCarNames, checkValidRacingCount } from '../validation/index.js';
 
 class RacingCar {
   constructor() {

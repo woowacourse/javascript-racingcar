@@ -1,4 +1,4 @@
-export const ID = Object.freeze({
+export const SELECTOR = Object.freeze({
   CAR_NAMES_FORM: 'car_names_form',
   CAR_NAMES_INPUT: 'car_names_input',
   RACING_COUNT_FORM: 'racing_count_form',
@@ -8,9 +8,6 @@ export const ID = Object.freeze({
   FINAL_WINNER: 'final_winner',
   RESTART_SECTION: 'restart_section',
   RESTART_BTN: 'restart_btn',
-});
-
-export const CLASS = Object.freeze({
   INPUT_BTN: 'input_btn',
   RACING_CAR_PROGRESS: 'racing_car_progress',
   RACING_CAR_NAME: 'racing_car_name',
@@ -25,14 +22,14 @@ export const ERROR_MESSAGES = Object.freeze({
   NOT_NATURAL_NUMBER: '시도할 횟수는 자연수를 입력해야 한다.',
 });
 
-export const CONGRATS_MESSAGE = '자동차 경주 게임이 끝났습니다. 우승을 축하드립니다.';
+export const CONGRATS_MESSAGE = '자동차 경주 게임이 끝났습니다. 우승을 축하드립니다.🎉🎉🎉';
 
 export const RULES = Object.freeze({
   MAX_CAR_NAME_LENGTH: 5,
   ZERO_CAR_NAME_LENGTH: 0,
+  MOVE_CONDITION_NUMBER: 4,
   CAR_NAME_SEPERATOR: ',',
   WINNER_LIST_SEPERATOR: ', ',
-  MOVE_CONDITION_NUMBER: 4,
 });
 
 export const DELAY = Object.freeze({

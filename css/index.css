@@ -15,6 +15,15 @@ body {
   background: white;
 }
 
+/* 해당 클래스로 element display 제어 */
+.visible {
+  display: block !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
 header {
   font-size: 34px;
   line-height: 36px;
@@ -116,10 +125,6 @@ form > label {
   display: flex;
   justify-items: center;
   padding: 7px 0 8px;
-}
-
-.loading.hidden {
-  display: none;
 }
 
 .loading::after {

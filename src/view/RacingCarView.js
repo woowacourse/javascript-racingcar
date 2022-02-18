@@ -1,4 +1,4 @@
-import { CLASS, CONGRATS_MESSAGE, DELAY, ID } from '../constants/index.js';
+import { CONGRATS_MESSAGE, DELAY, SELECTOR } from '../constants/index.js';
 import { PROGRESS_TEMPLATE } from '../template/index.js';
 
 class RacingCarView {
@@ -7,26 +7,26 @@ class RacingCarView {
   }
 
   initDOM() {
-    this.$carNamesInput = document.getElementById(ID.CAR_NAMES_INPUT);
-    this.$racingCountForm = document.getElementById(ID.RACING_COUNT_FORM);
-    this.$racingCountInput = document.getElementById(ID.RACING_COUNT_INPUT);
-    this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
-    this.$finalWinner = document.getElementById(ID.FINAL_WINNER);
-    this.$restartSection = document.getElementById(ID.RESTART_SECTION);
-    this.$finalWinnerResult = document.getElementById(ID.FINAL_WINNER_RESULT);
-    this.$racingCarList = document.getElementById(ID.RACING_CAR_LIST);
+    this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
+    this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
+    this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCarList = document.getElementById(SELECTOR.RACING_CAR_LIST);
+    this.$finalWinner = document.getElementById(SELECTOR.FINAL_WINNER);
+    this.$restartSection = document.getElementById(SELECTOR.RESTART_SECTION);
+    this.$finalWinnerResult = document.getElementById(SELECTOR.FINAL_WINNER_RESULT);
+    this.$racingCarList = document.getElementById(SELECTOR.RACING_CAR_LIST);
   }
 
   showRacingCountForm() {
-    this.$racingCountForm.style.display = 'block';
+    this.$racingCountForm.classList.add('visible');
   }
 
   showFinalWinner() {
-    this.$finalWinner.style.display = 'block';
+    this.$finalWinner.classList.add('visible');
   }
 
   showRestartSection() {
-    this.$restartSection.style.display = 'block';
+    this.$restartSection.classList.add('visible');
   }
 
   showCongratsMessage() {
@@ -36,9 +36,9 @@ class RacingCarView {
   }
 
   hideElement() {
-    this.$racingCountForm.style.display = 'none';
-    this.$finalWinner.style.display = 'none';
-    this.$restartSection.style.display = 'none';
+    this.$racingCountForm.classList.remove('visible');
+    this.$finalWinner.classList.remove('visible');
+    this.$restartSection.classList.remove('visible');
   }
 
   resetCarNamesInput() {
@@ -61,7 +61,7 @@ class RacingCarView {
   }
 
   renderRacingCarProgress(index) {
-    this.$racingCarProgress = document.getElementsByClassName(CLASS.RACING_CAR_PROGRESS);
+    this.$racingCarProgress = document.getElementsByClassName(SELECTOR.RACING_CAR_PROGRESS);
     this.$racingCarProgress[index].insertAdjacentHTML('afterbegin', PROGRESS_TEMPLATE);
   }
 
