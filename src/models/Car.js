@@ -1,4 +1,4 @@
-import { makeRandomNumber, isNumberOverStandard } from '../controllers/utils.js';
+import { makeRandomNumber, isNumberOverStandard } from '../utils/utils.js';
 
 export class Car {
   constructor(name) {

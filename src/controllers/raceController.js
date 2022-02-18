@@ -1,5 +1,11 @@
 import { Car } from '../models/Car.js';
-import { renderCarNames, renderProgressArrow, renderWinners } from '../views/view.js';
+import {
+  renderCarNames,
+  renderWinners,
+  renderProgressArrowsOfState,
+  renderSpinnerForOneRound,
+  eraseSpinner,
+} from '../views/view.js';
 import { state } from '../models/state.js';
 
 export function race() {
@@ -7,7 +13,9 @@ export function race() {
   renderCarNames();
   moveCars();
   renderWinners(pickWinner());
-  clearState();
+  renderSpinnerForOneRound();
+  renderProgressArrowsOfState();
+  eraseSpinner();
 }
 
 function allocateCars() {
@@ -24,9 +32,7 @@ function moveCars() {
 
 function goForward() {
   for (let i = 0; i < state.cars.length; i++) {
-    if (state.cars[i].moveFoward()) {
-      renderProgressArrow(i);
-    }
+    state.cars[i].moveFoward();
   }
 }
 
@@ -57,14 +63,7 @@ function getWinnerArr(max) {
 }
 
 function makeArrToString(arr) {
-  let string = '';
-  arr.forEach((item, index) => {
-    if (index !== 0) {
-      string += ', ';
-    }
-    string += item;
-  });
-  return string;
+  return arr.join(', ');
 }
 
 export function clearState() {
