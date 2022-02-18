@@ -1,4 +1,10 @@
-import { DOM, HIDE_CLASS_NAME, ID_PREFIX, SHOW_CLASS_NAME } from '../lib/constants.js';
+import {
+  DELAY_PER_ROUND,
+  DOM,
+  HIDE_CLASS_NAME,
+  ID_PREFIX,
+  SHOW_CLASS_NAME,
+} from '../lib/constants.js';
 import icons from '../lib/icons.js';
 import { delay, findElement } from '../lib/utils.js';
 
@@ -84,7 +90,11 @@ class RacingCarGameView {
   async renderLoadingAboutRound() {
     const loadingIconNodes = document.querySelectorAll(DOM.LOADING_ICON.toCLASS());
     RacingCarGameView.renderElements(loadingIconNodes);
-    await RacingCarGameView.triggerAnimation(loadingIconNodes, RacingCarGameView.rotateAnimation);
+    await RacingCarGameView.triggerAnimation(
+      loadingIconNodes,
+      RacingCarGameView.rotateAnimation,
+      DELAY_PER_ROUND,
+    );
     RacingCarGameView.hideElements(loadingIconNodes);
   }
 
@@ -125,18 +135,18 @@ class RacingCarGameView {
     el.classList.replace(SHOW_CLASS_NAME, HIDE_CLASS_NAME);
   }
 
-  static async triggerAnimation(nodes, animation) {
-    requestAnimationFrame((timestamp) => animation(0, timestamp, nodes));
-    await delay(1000);
+  static async triggerAnimation(nodes, animation, during) {
+    requestAnimationFrame((timestamp) => animation(0, timestamp, nodes, during));
+    await delay(during);
   }
 
-  static rotateAnimation = (progress, start, nodes) => {
+  static rotateAnimation = (progress, start, nodes, during) => {
     nodes.forEach((node) => {
       node.style.transform = `rotate(${progress / 10}deg)`;
     });
     if (progress < 1000) {
       requestAnimationFrame((timestamp) =>
-        RacingCarGameView.rotateAnimation(timestamp - start, start, nodes),
+        RacingCarGameView.rotateAnimation(timestamp - start, start, nodes, during),
       );
     }
   };
