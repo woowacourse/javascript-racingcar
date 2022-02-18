@@ -38,90 +38,109 @@ describe('기본 사용 순서 체크', () => {
       .should('eq', 'disabled');
   });
 
-  it('자동차의 전진 기준은 0에서 9 사이의 무작위 값을 구한 후 값이 4 이상일 시 전진한다.', () => {
-    // 랜덤 함수 출력 테스트
-    // 전진 테스트
+  it('경주가 종료되면 우승자를 확인할 수 있어야한다.', () => {
+    // 대기
+    cy.wait(5000).then(() => {
+      cy.get('#winner').should(($element) => {
+        const text = $element.text();
+
+        expect(text).to.include('🏆 최종 우승자: ');
+        expect(text).not.to.eq('🏆 최종 우승자: 🏆');
+      });
+    });
   });
 
-  it('자동차의 전진 횟수에 따라 화살표를 표시한다.', () => {});
+  it('경주가 종료되고 2초 후 축하 메시지가 표시되어야 한다.', () => {
+    const stub = cy.stub();
 
-  it('전진 횟수가 가장 많은 자동차는 우승자가 된다.', () => {});
+    cy.on('window:alert', stub);
+
+    cy.wait(2000).then(() => {
+      expect(stub).to.be.called;
+    });
+  });
+
+  it('다시하기 버튼을 누르면 초기 상태로 돌아가야 한다.', () => {
+    // 입력 & 클릭
+    cy.get('#retry').click();
+
+    cy.get('#car-name-input')
+      .invoke('attr', 'disabled')
+      .should('eq', undefined);
+    cy.get('#car-name-button')
+      .invoke('attr', 'disabled')
+      .should('eq', undefined);
+
+    cy.get('#race-time-input')
+      .invoke('attr', 'disabled')
+      .should('eq', undefined);
+    cy.get('#race-time-button')
+      .invoke('attr', 'disabled')
+      .should('eq', 'disabled');
+  });
 });
 
-/*
-describe('입력 예외사항 체크', () => {
+describe('예외 처리 체크', () => {
   before(() => {
     cy.visit('./');
+    cy.reload();
   });
 
-  it('자동차 이름 유효성 검사 체크', () => {
-    // alert 발동 리스너 등록
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
+  it('자동차의 이름은 빈칸일 수 없다.', () => {
+    const stub = cy.stub();
+    cy.on('window:alert', stub);
 
-    // 자동차 이름은 빈칸일 수 없다.
-    cy.get('#car-name').type('');
+    // 입력 & 클릭
     cy.get('#car-name-button')
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith('자동차 이름을 입력해주세요.');
-      });
-
-    // 자동차 이름은 최소 2개 이상 입력하여야 한다.
-    cy.get('#car-name').type('콤피');
-    cy.get('#car-name-button')
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.calledWith(
-          '자동차 이름을 최소 2개 이상 입력해주세요.'
-        );
-      });
-
-    // 자동차 이름은 1자 미만, 5자를 초과할 수 없다.
-    cy.get('#car-name').type('콤피,유세지세지세지');
-    cy.get('#car-name-button')
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.calledWith(
-          '자동차 이름은 최소 1자에서 5자까지 입력해주세요.'
-        );
+        // 경고창 체크
+        expect(stub).to.be.called;
       });
   });
 
-  it('시도 횟수 유효성 검사 체크', () => {
-    // alert 발동 리스너 등록
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
+  it('자동차의 이름은 유일해야 한다.', () => {
+    const stub = cy.stub();
+    cy.on('window:alert', stub);
 
-    // 시도 횟수는 빈칸일 수 없다.
-    cy.get('#race-time').type('');
+    // 입력 & 클릭
+    cy.get('#car-name-input').type('usage, usage, compy');
+    cy.get('#car-name-button')
+      .click()
+      .then(() => {
+        // 경고창 체크
+        expect(stub).to.be.called;
+      });
+  });
+
+  it('자동차의 이름은 5자를 초과할 수 없다.', () => {
+    const stub = cy.stub();
+    cy.on('window:alert', stub);
+
+    // 입력 & 클릭
+    cy.get('#car-name-input').type('usageness, usage, compy');
+    cy.get('#car-name-button')
+      .click()
+      .then(() => {
+        // 경고창 체크
+        expect(stub).to.be.called;
+      });
+  });
+
+  it('시도 횟수는 빈칸일 수 없다.', () => {
+    const stub = cy.stub();
+    cy.on('window:alert', stub);
+    cy.reload();
+
+    // 입력 & 클릭
+    cy.get('#car-name-input').type('compy, usage');
+    cy.get('#car-name-button').click();
+
     cy.get('#race-time-button')
       .click()
       .then(() => {
-        expect(alertStub).to.be.calledWith('시도 횟수를 입력해주세요.');
-      });
-
-    // 시도 횟수는 숫자만 입력하여야 한다.
-    cy.get('#race-time').type('야자 멈춰!');
-    cy.get('#race-time-button')
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.calledWith(
-          '시도 횟수는 숫자만 입력할 수 있습니다.'
-        );
-      });
-
-    // 시도 횟수는 음수를 입력할 수 없다.
-    cy.get('#car-name').type('-777');
-    cy.get('#car-name-button')
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.calledWith(
-          '시도 횟수를 최소 1회 이상 입력해주세요.'
-        );
+        // 경고창 체크
+        expect(stub).to.be.called;
       });
   });
-
-  // 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해, 메시지를 보여준다.
 });
-*/
