@@ -4,6 +4,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../../index.html';
 
   beforeEach(() => {
+    cy.clock();
     cy.visit(baseUrl);
   });
 
@@ -33,7 +34,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const totalPlaySecond = playValidGame();
 
     //then
-    cy.wait(totalPlaySecond * 1000);
+    cy.tick(totalPlaySecond * 1000);
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
   });
 
@@ -73,6 +74,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     //when
     cy.inputNames({ nameInput });
     cy.inputCount({ countInput });
+    cy.tick(5000);
     cy.get(`#${DOM.RESTART_BTN_ID}`).click();
 
     //then
@@ -99,13 +101,13 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`#${DOM.WINNER_NAME_ID}`, { timeout: 0 }).should('not.exist');
 
     // when 2
-    cy.wait(totalPlaySecond * 1000);
+    cy.tick(totalPlaySecond * 1000);
 
     // then 2
     cy.get(`.${DOM.SPINNER_CLASS}`).should('not.exist');
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
 
-    cy.wait(2000).then(() => {
+    cy.tick(2000).then(() => {
       expect(alertStub).to.be.called;
     });
 
