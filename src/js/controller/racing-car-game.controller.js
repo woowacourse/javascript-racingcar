@@ -1,3 +1,4 @@
+import { CELEBRATE_MESSAGE } from '../constants.js';
 import setIntervalX from '../utils/timer.js';
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
 import RacingResultView from '../views/racing-result.view.js';
@@ -83,8 +84,11 @@ class RacingCarGameController {
   }
 
   endGame() {
-    this.resultView.show();
     this.resultView.renderWinners(this.model.findWinners());
+    this.resultView.show();
+    setTimeout(() => {
+      alert(CELEBRATE_MESSAGE);
+    }, 2000);
   }
 
   restartGame() {

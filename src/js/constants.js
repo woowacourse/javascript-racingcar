@@ -36,3 +36,5 @@ export const ERROR_MESSAGES = {
 
 export const CAR_NAMES_INPUT_PLACEHOLDER = 'ex) 람보르기니, 부가티, 마이바흐, 롤스로이스, 코닉세그';
 export const RACING_COUNT_INPUT_PLACEHOLDER = '시도 횟수';
+
+export const CELEBRATE_MESSAGE = '🎉🎉 축하합니다 🎉🎉';
