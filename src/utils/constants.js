@@ -10,7 +10,7 @@ export const NUMBER = {
   WINNER_ALERT_TIME: 2000,
 };
 
-export const ERROR = {
+export const MESSAGE = {
   EMPTY_INPUT: '1글자 이상의 자동차 이름을 입력해주세요.',
   LONG_LENGTH: `각 자동차의 이름을 ${NUMBER.MAX_LENGTH}자 이하로 입력해주세요.`,
   UNDER_MIN_NUMBER: `${NUMBER.MIN_NUMBER} 이상의 수를 입력해주세요.`,
