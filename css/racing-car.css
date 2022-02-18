@@ -129,6 +129,7 @@ input {
     font-size: 32px;
     margin: 8px;
 }
+
 /*스피너 애니메이션 */
 @keyframes spinning{
     from {transform:rotate(0deg);}

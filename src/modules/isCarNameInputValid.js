@@ -15,6 +15,7 @@ export default function isCarNameInputValid(userCarNameInput){
     try{
         let isCarNameValid = false;
         if(!isUserInputEmpty(userCarNameInput)){
+
             isCarNameValid = checkCarNameLength(userCarNameInput.split(',').map(carName => carName.trim()));
         };
         return isCarNameValid;
@@ -23,3 +24,4 @@ export default function isCarNameInputValid(userCarNameInput){
         alert(msg);
     }
 }
+

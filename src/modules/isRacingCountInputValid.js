@@ -32,3 +32,4 @@ export default function isRacingCountInputValid(userRacingCountInput){
         $('#race-count-input').value = '';
     } 
 }
+
