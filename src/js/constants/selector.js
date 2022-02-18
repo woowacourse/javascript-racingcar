@@ -1,12 +1,4 @@
-import { EMPTY_STRING } from './constants.js';
-
 const SELECTOR = Object.freeze({
-  // 범용 선택자
-  APP: '#app',
-  PROGRESS: '.progress',
-  PROGRESS_INNER: '.round',
-
-  // RacingGame 사용 선택자
   CAR_NAME_INPUT: '#car-name-input',
   CAR_NAME_BUTTON: '#car-name-button',
   RACE_TIME_INPUT: '#race-time-input',
@@ -20,14 +12,15 @@ const SELECTOR = Object.freeze({
   RETRY_BUTTON: '#retry-button',
 });
 
-const replaceSelectorToDomID = (origin) => {
-  const output = {};
+function replaceSelectorToDomID(origin) {
+  const output = new Object();
   Object.entries(origin).forEach(([key, value]) => {
-    output[key] = value.replace(/#|\./g, EMPTY_STRING);
+    output[key] = value.replace(/\#|\./g, '');
   });
 
   return output;
-};
+}
 
 const DOM_ID = Object.freeze(replaceSelectorToDomID(SELECTOR));
+
 export { SELECTOR, DOM_ID };

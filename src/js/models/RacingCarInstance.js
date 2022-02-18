@@ -1,24 +1,22 @@
-import GAME_SETTING from '../constants/RacingGame/setting.js';
+import GAME_SETTING from '../constants/setting.js';
 
 export default class RacingCarInstance {
-  #state;
-
   constructor(inputName) {
-    this.#state = {
+    this._state = {
       name: inputName,
       distance: 0,
     };
   }
 
   get name() {
-    return this.#state.name;
+    return this._state.name;
   }
 
   get distance() {
-    return this.#state.distance;
+    return this._state.distance;
   }
 
   go() {
-    this.#state.distance += GAME_SETTING.DISTANCE_NUMBER;
+    this._state.distance += GAME_SETTING.DISTANCE_NUMBER;
   }
 }

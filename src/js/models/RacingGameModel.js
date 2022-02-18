@@ -1,50 +1,53 @@
 import RacingCarInstance from './RacingCarInstance.js';
-import { isAdvance } from '../utils/RacingGame/validator.js';
+import isAdvance from '../utils/isAdvance.js';
 
 export default class RacingGameModel {
-  #state;
-  #maxDistance;
-
   constructor() {
     this.init();
   }
 
   init() {
-    this.#state = {
+    this._state = {
       carList: [],
       round: 0,
       winners: [],
     };
 
-    this.#maxDistance = Number.MIN_SAFE_INTEGER;
+    this._maxDistance = Number.MIN_SAFE_INTEGER;
   }
 
   get carList() {
-    return this.#state.carList;
+    return this._state.carList;
   }
 
-  set carList(nameList) {
-    this.#state.carList = nameList.map((name) => new RacingCarInstance(name));
+  set carList(array) {
+    const { carList } = this._state;
+    carList.length = 0;
+
+    array.forEach((carName) => {
+      const newCar = new RacingCarInstance(carName);
+      carList.push(newCar);
+    });
   }
 
   set round(number) {
-    this.#state.round = Number(number);
+    this._state.round = number;
   }
 
   get round() {
-    return this.#state.round;
+    return this._state.round;
   }
 
-  #isWinner(carInstance) {
+  _isWinner(carInstance) {
     const { distance } = carInstance;
-    const { winners } = this.#state;
+    const { winners } = this._state;
 
-    if (distance < this.#maxDistance) {
+    if (distance < this._maxDistance) {
       return false;
     }
 
-    if (distance > this.#maxDistance) {
-      this.#maxDistance = distance;
+    if (distance > this._maxDistance) {
+      this._maxDistance = distance;
       winners.length = 0;
     }
 
@@ -52,9 +55,9 @@ export default class RacingGameModel {
   }
 
   get winners() {
-    const { winners, carList } = this.#state;
+    const { winners, carList } = this._state;
     carList.forEach((carInstance) => {
-      if (this.#isWinner(carInstance) === false) {
+      if (this._isWinner(carInstance) === false) {
         return;
       }
 
@@ -65,7 +68,7 @@ export default class RacingGameModel {
   }
 
   play() {
-    const { carList } = this.#state;
+    const { carList } = this._state;
 
     carList.forEach((carInstance) => {
       if (isAdvance() === false) {

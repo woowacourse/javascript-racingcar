@@ -1,8 +1,8 @@
-import RacingGameController from './controllers/RacingGameController.js';
+import RacingGameController from './RacingGameController.js';
 
 class App {
   constructor() {
-    new RacingGameController();
+    this._RacingGame = new RacingGameController();
   }
 }
 
