@@ -22,6 +22,10 @@
 //
 //
 // -- This will overwrite an existing command --
+
+import { INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
+import RandomUtils from '../../src/utils/random';
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 const baseUrl = '../index.html';
 
@@ -34,11 +38,41 @@ Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
 
   cy.visit(baseUrl, {
     onBeforeLoad: (window) => {
-      window.MissionUtils = {
-        Random: {
-          pickNumberInRange: randomStub
-        }
+      window.RandomUtils = {
+        pickNumberInRange: [5, 1]
       };
     }
   });
+});
+
+Cypress.Commands.add('nameInputValidator', (nameInput, errorMessage) => {
+  // given
+  const invalidInput = nameInput;
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+  // when
+  cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
+
+  // then
+  cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
+    .click()
+    .then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(errorMessage);
+    });
+});
+
+Cypress.Commands.add('countInputValidator', (countInput, errorMessage) => {
+  // given
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+
+  // when
+  cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(countInput);
+
+  // then
+  cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.calledWith(errorMessage);
+    });
 });

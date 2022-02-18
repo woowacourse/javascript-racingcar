@@ -2,7 +2,7 @@ import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
 import RandomUtils from '../utils/random.js';
 import { validateCarNames, validateCount } from '../utils/validation.js';
-import { SELECTOR, CAR } from '../constants/constants.js';
+import { SELECTOR, CAR, DELAY } from '../constants/constants.js';
 import { $ } from '../utils/selector.js';
 
 export default class RacingController {
@@ -64,7 +64,7 @@ export default class RacingController {
         return;
       }
       RacingView.renderProgressLoading();
-    }, 1000);
+    }, DELAY.TURN_BETWEEN_TIME);
   }
 
   playEachTurn() {
@@ -80,7 +80,7 @@ export default class RacingController {
     this.view.renderResult(winners);
     setTimeout(() => {
       alert(`우승자는 ${winners.join(', ')}입니다.`);
-    }, 2000);
+    }, DELAY.NOTIFY_RESULT_TIME);
   }
 
   static moveOrNot() {

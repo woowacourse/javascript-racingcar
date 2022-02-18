@@ -45,3 +45,8 @@ export const INIT = {
   RECORD: 0,
   POSITION: 0
 };
+
+export const DELAY = {
+  TURN_BETWEEN_TIME: 1000,
+  NOTIFY_RESULT_TIME: 2000
+};
