@@ -1,6 +1,6 @@
 const template = {
     loader() {
-        return '<span class="car-step loader">load</span>';
+        return '<span class="car-step loader"></span>';
     },
     step(step) {
         return '<span class="car-step">⬇️️</span>'.repeat(step);
