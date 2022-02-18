@@ -66,12 +66,12 @@ export default class RacingCarView {
 
   renderMoveForwardArrow(car) {
     const { name, moveCount } = car;
-    const carNode = this.findCarNode(name)[0];
+    const carNode = this.#findCarNode(name)[0];
 
     carNode.innerHTML += racingProgressTemplate().repeat(moveCount);
   }
 
-  findCarNode(name) {
+  #findCarNode(name) {
     const $$moveForwardArrow = $$('.move-forward-arrow');
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
