@@ -12,6 +12,7 @@ export const TEST_IDS = {
   RACING_RESULT: 'racing-result',
   WINNERS: 'winners',
   RESTART_BUTTON: 'restart-btn',
+  SPINNER: 'spinner',
 };
 
 export const DEFAULT_CAR_NAMES = 'aa,bb,cc,dd';

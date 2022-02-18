@@ -131,6 +131,16 @@ describe('스크린에서 경기가 진행중인 경우', () => {
       });
     }
   });
+
+  it('자동차가 이동하는 사이사이에 스피너가 표시되어야한다', function () {
+    for (let i = 0; i < 10; i += 1) {
+      cy.tick(500);
+      cy.get(testid(TEST_IDS.CAR_LANE)).each(($carLane) => {
+        const $spinner = $carLane.find(testid(TEST_IDS.SPINNER));
+        cy.wrap($spinner).should('be.visible');
+      });
+    }
+  });
 });
 
 describe('경기가 끝난 경우', () => {
