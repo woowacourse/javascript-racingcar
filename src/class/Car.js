@@ -7,7 +7,6 @@ export default class Car {
   }
 
   getName() {
-    console.log(this.#name);
     return this.#name;
   }
 
