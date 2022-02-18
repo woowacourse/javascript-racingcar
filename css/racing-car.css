@@ -135,7 +135,7 @@ input {
     to {transform: rotate(360deg);}
 }
 
-.step-container.is-loading{
+.is-loading{
     width: 32px;
     height: 30px;
     border: 6px solid #00BCD4 ;

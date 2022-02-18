@@ -1,11 +1,11 @@
 import { $ } from "../dom/dom.js";
+import { ARROW_RENDER_DELAY_TIME } from "../constants/constants.js";
 
 import RacingCar from "../class/racingCar.js";
 import RacingCarView from "../views/racingCarView.js";
 
 import isCarNameInputValid from "./isCarNameInputValid.js";
 import isRacingCountInputValid from "./isRacingCountInputValid.js";
-
 
 export default function racingCarGame() {
     this.racingGameInfo = {
@@ -45,7 +45,9 @@ export default function racingCarGame() {
     }
     const handleRacingCarModel = () => {
         const racingCar = new RacingCar();
-        this.racingCarView.renderRacingContent(racingCar.playGame(this.racingGameInfo.carNameArray,this.racingGameInfo.raceCount));
+        const carInstanceArray = racingCar.playGame(this.racingGameInfo.carNameArray, this.racingGameInfo.raceCount);
+        this.racingCarView.renderRacingContent(carInstanceArray);
+        handleOneStep(carInstanceArray);
         this.racingCarView.renderGameWinners(racingCar.getGameWinners());
         addRestartButtonEvent();
     }
@@ -55,5 +57,24 @@ export default function racingCarGame() {
             location.reload();
         })
     }
-    
+
+    const handleOneStep = (carInstanceArray) => {
+        carInstanceArray.forEach((car,index) => {
+            if(car.forwardCount !== 0){
+                handleOneCarArrowContent(index, car.forwardCount);
+            }
+        })
+    }
+    const handleOneCarArrowContent = (elementIndex, forwardCount) => {
+        this.racingCarView.renderSpinningContent(elementIndex, forwardCount);
+        let stepIndex = 0;
+        const timer = setInterval(() => {
+            if(stepIndex === forwardCount - 1){
+                clearInterval(timer);
+            }
+            this.racingCarView.renderArrowContent(`.step-${elementIndex}`,stepIndex);
+            stepIndex++;
+        }, ARROW_RENDER_DELAY_TIME);
+    }
+
 }
