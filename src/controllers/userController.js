@@ -1,5 +1,4 @@
-import { isNameValid, isRacingNumberValid, isUserInputExist } from '../utils/validation.js';
-import { doTrim } from '../utils/utils.js';
+
 import { race, clearState } from './raceController.js';
 import {
   renderRacingInputForm,

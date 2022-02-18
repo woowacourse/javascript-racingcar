@@ -1,4 +1,3 @@
-import { clearInput } from '../utils/utils.js';
 import { state } from '../models/state.js';
 
 export function renderCarNames() {
@@ -16,49 +15,7 @@ export function renderCarNames() {
   }
 }
 
-export function renderProgressArrowsOfState() {
-  for (let nowRacingNumber = 0; nowRacingNumber < state.racingNumber; nowRacingNumber++) {
-    setTimeout(() => renderProgressArrowsOfOneRound(nowRacingNumber), (nowRacingNumber + 1) * 1000);
-  }
-}
 
-export function renderProgressArrowsOfOneRound(nowRacingNumber) {
-  state.cars.forEach((element, index) => {
-    if (element.location > nowRacingNumber) {
-      renderProgressArrow(index);
-    }
-  });
-}
-
-function renderProgressArrow(index) {
-  const racingProgress = document.getElementsByClassName('racing-progress');
-  const racingArrow = document.createElement('div');
-  const spinner = document.getElementsByClassName('spinner');
-  racingArrow.className = 'racing-progress-arrow';
-  racingArrow.insertAdjacentHTML('afterbegin', '⬇️️');
-  racingProgress[index].insertBefore(racingArrow, spinner[index]);
-}
-
-export function renderSpinnerForOneRound() {
-  state.cars.forEach((element, index) => {
-    renderSpinner(index);
-  });
-}
-
-function renderSpinner(index) {
-  const racingProgress = document.getElementsByClassName('racing-progress');
-  const spinner = document.createElement('div');
-  spinner.className = 'spinner';
-  spinner.insertAdjacentHTML('afterbegin', '');
-  racingProgress[index].appendChild(spinner);
-}
-
-export function renderWinners(names) {
-  setTimeout(() => {
-    const racingWinner = document.getElementById('racing-winner');
-    racingWinner.insertAdjacentHTML('afterbegin', `🏆 최종우승자: ${names} 🏆`);
-  }, (state.racingNumber - 1) * 1000);
-}
 
 export function renderRacingInputForm() {
   const racingInputForm = document.getElementById('racing-input-form');
@@ -83,43 +40,25 @@ export function disableUserInput() {
 }
 
 export function removeRacingContainer() {
-  eraseWinners();
-  eraseRacingCars();
-  eraseRacingContainer();
-  eraseRacingInputForm();
-  ableUserInput();
-}
-
-function eraseRacingCars() {
   const racingCars = document.getElementById('racing-cars');
   while (racingCars.hasChildNodes()) {
     racingCars.removeChild(racingCars.firstChild);
   }
 }
 
-export function eraseWinners(names) {
+
   const racingWinner = document.getElementById('racing-winner');
   racingWinner.innerHTML = ``;
 }
 
-function eraseRacingInputForm() {
+
   const racingInputForm = document.getElementById('racing-input-form');
   racingInputForm.style.display = 'none';
 }
 
-function eraseRacingContainer() {
+
   const racingContainer = document.getElementById('racing-container');
   racingContainer.style.display = 'none';
-}
-
-export function eraseSpinner() {
-  const racingProgress = document.getElementsByClassName('racing-progress');
-  const spinner = document.getElementsByClassName('spinner');
-  setTimeout(() => {
-    Array.from(spinner).forEach((element) => {
-      element.remove();
-    });
-  }, (state.racingNumber - 1) * 1000);
 }
 
 function ableUserInput() {
