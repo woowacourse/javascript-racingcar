@@ -1,5 +1,7 @@
 import { $, $$ } from '../utils/element-tools.js';
-import { SELECTOR, DOM_ID } from '../constants/selector.js';
+import { SELECTOR } from '../constants/selector.js';
+import { templateProgress } from '../template/share.js';
+import { templateCarStateConatiner, templateCarAdvance } from '../template/RacingGame.js';
 
 export default class RacingGameView {
   init() {
@@ -35,19 +37,9 @@ export default class RacingGameView {
           return;
         }
 
-        this.#renderProgress($element);
+        const $progress = templateProgress();
+        $element.append($progress);
       });
-  }
-
-  #renderProgress($raceContainer) {
-    const $container = document.createElement('DIV');
-    $container.classList.add(DOM_ID.PROGRESS);
-
-    const $progress = document.createElement('DIV');
-    $progress.classList.add(DOM_ID.PROGRESS_INNER);
-    $container.append($progress);
-
-    $raceContainer.append($container);
   }
 
   setVisibleResult(isVisible) {
@@ -56,23 +48,8 @@ export default class RacingGameView {
     });
   }
 
-  #createCarStateConatiner(carList) {
-    return carList.map((instance, index) => {
-      const $carStateContainer = document.createElement('DIV');
-      $carStateContainer.dataset.key = index;
-      $carStateContainer.classList.add(DOM_ID.RACE_CAR_STATE);
-
-      const $carName = document.createElement('DIV');
-      $carName.classList.add(DOM_ID.RACE_CAR_NAME_BOX);
-      $carName.innerText = instance.name;
-      $carStateContainer.append($carName);
-
-      return $carStateContainer;
-    });
-  }
-
   renderCarContainer(carList) {
-    const $$carList = this.#createCarStateConatiner(carList);
+    const $$carList = templateCarStateConatiner(carList);
 
     const $raceContainer = $(SELECTOR.RACE_CONTAINER);
     $raceContainer.innerHTML = '';
@@ -91,17 +68,14 @@ export default class RacingGameView {
         return;
       }
 
-      const $advance = document.createElement('DIV');
-      $advance.classList.add(DOM_ID.RACE_ADVANCE);
-      $advance.innerText = '⬇️️';
-
+      const $advance = templateCarAdvance();
       $carStateContainer.querySelector(SELECTOR.RACE_CAR_NAME_BOX).after($advance);
     });
   }
 
   renderWinners(winners) {
     $(SELECTOR.RESULT_CONTAINER).dataset.state = 'on';
-    $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
+    $(SELECTOR.WINNERS).innerText = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;
   }
