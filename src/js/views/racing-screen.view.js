@@ -13,6 +13,7 @@ class RacingScreen {
         <label class="car-name" data-testid="car-name">${name}</label>
         <div class="distance" data-current-distance="0" data-testid="distance">
         </div>
+        <div class="spinner-container" hidden><div class="spinner" data-testid="spinner"></div></div>
       </div>`;
   }
 
@@ -39,6 +40,16 @@ class RacingScreen {
     hideElement(this.$screen);
   }
 
+  showSpinner(distanceIndex) {
+    const $spinner = this.$distances[distanceIndex].nextElementSibling;
+    showElement($spinner);
+  }
+
+  hideSpinner(distanceIndex) {
+    const $spinner = this.$distances[distanceIndex].nextElementSibling;
+    hideElement($spinner);
+  }
+
   renderLanes(cars) {
     this.clear();
     cars.forEach(({ name }) => {
@@ -47,16 +58,11 @@ class RacingScreen {
     });
   }
 
-  renderDistances(cars) {
-    cars.forEach((car, i) => {
-      const $distance = this.$distances[i];
-      const currentDistance = parseInt($distance.getAttribute('data-current-distance'), 10);
-      $distance.insertAdjacentHTML(
-        'beforeend',
-        RacingScreen.forwardIcon.repeat(car.distance - currentDistance)
-      );
-      $distance.setAttribute('data-current-distance', car.distance);
-    });
+  renderDistance(i, distance) {
+    const $distance = this.$distances[i];
+    const currentDistance = parseInt($distance.getAttribute('data-current-distance'), 10);
+    $distance.insertAdjacentHTML('beforeend', RacingScreen.forwardIcon.repeat(distance - currentDistance));
+    $distance.setAttribute('data-current-distance', distance);
   }
 
   clear() {

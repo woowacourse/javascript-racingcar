@@ -1,3 +1,4 @@
+import setIntervalX from '../utils/timer.js';
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
 import RacingResultView from '../views/racing-result.view.js';
 import RacingScreen from '../views/racing-screen.view.js';
@@ -59,11 +60,26 @@ class RacingCarGameController {
     this.screen.show();
     this.screen.renderLanes(this.model.getCars());
     this.screen.bindDistances(); // 효율적으로 view를 업데이트 하기 위해서 필요하다
-    for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      this.model.tryMoveCars();
-      this.screen.renderDistances(this.model.getCars());
-    }
-    this.endGame();
+    const before = (i, car) => {
+      car.tryMove();
+      this.screen.showSpinner(i);
+    };
+    const after = (i, car) => {
+      this.screen.renderDistance(i, car.distance);
+      this.screen.hideSpinner(i);
+    };
+    const end = () => {
+      this.endGame();
+    };
+    this.model.getCars().forEach((car, i) => {
+      setIntervalX(
+        this.model.getRacingCount(),
+        1000,
+        before.bind(null, i, car),
+        after.bind(null, i, car),
+        end
+      );
+    });
   }
 
   endGame() {
