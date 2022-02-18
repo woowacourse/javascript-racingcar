@@ -1,5 +1,6 @@
-import CarManager from "./controller/carManager/CarManager.js";
-import UserManager from "./controller/racingCount/UserManager.js";
+import CarManager from "./controller/CarManager.js";
+import GameManager from "./controller/GameManager.js";
+import UserManager from "./controller/UserManager.js";
 
 import { $ } from "./view/getElement.js";
 import { makeInitialView } from "./view/viewControl.js";
@@ -7,7 +8,8 @@ import { makeInitialView } from "./view/viewControl.js";
 class RacingCar {
   constructor() {
     this.carManager = new CarManager();
-    this.racingCount = new UserManager(this.carManager);
+    this.gameManager = new GameManager();
+    this.userManager = new UserManager(this.carManager, this.gameManager);
     makeInitialView();
     this.addLogoClickEvent();
     this.addRestartEvent();
@@ -23,7 +25,7 @@ class RacingCar {
     $("restart-button").addEventListener("click", () => {
       makeInitialView();
       this.carManager.init();
-      this.racingCount.init();
+      this.userManager.init();
     });
   }
 }

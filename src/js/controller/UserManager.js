@@ -1,13 +1,14 @@
-import { isValidRacingCount } from "./validation.js";
-import Game from "../game/Game.js";
-import { EXCEPTIONS } from "../../constants/exceptions.js";
-import { $ } from "../../view/getElement.js";
+import { isValidRacingCount } from "./racingCount/validation.js";
+import GameManager from "./GameManager.js";
+import { EXCEPTIONS } from "../constants/exceptions.js";
+import { $ } from "../view/getElement.js";
 
 // TODO : 사용자의 입력을 저장하고 관리
 export default class UserManager {
-  constructor(carManager) {
+  constructor(carManager, gameManager) {
     this.racingCount = 0;
     this.carManager = carManager;
+    this.gameManager = gameManager;
     this.addSubmitRacingCountEventListener();
   }
 
@@ -30,8 +31,8 @@ export default class UserManager {
   goNextStep() {
     $("racing-count-input").readOnly = true;
     $("racing-count-submit").disabled = true;
-    Game.getResult(this.carManager, this.racingCount);
-    Game.setResult(this.carManager);
+    GameManager.getResult(this.carManager, this.racingCount);
+    GameManager.setResult(this.carManager);
   }
 
   submitRacingCount() {

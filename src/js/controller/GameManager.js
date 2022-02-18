@@ -1,9 +1,9 @@
-import { setResultArea } from "../../view/resultViewControl.js";
-import { showWinnerAndRestartButton } from "../../view/viewControl.js";
-import { setWinnerText } from "../../view/winnerViewControl.js";
+import { setResultArea } from "../view/resultViewControl.js";
+import { showWinnerAndRestartButton } from "../view/viewControl.js";
+import { setWinnerText } from "../view/winnerViewControl.js";
 
 // TODO : 전반적인 게임을 관리
-export default class Game {
+export default class GameManager {
   static startGame(carManager, racingCount) {
     for (let index = 0; index < racingCount; index++) {
       carManager.cars.forEach(car => {
@@ -26,13 +26,13 @@ export default class Game {
   }
 
   static getResult(carManager, racingCount) {
-    Game.startGame(carManager, racingCount);
+    GameManager.startGame(carManager, racingCount);
     carManager.sortCars();
   }
 
   static setResult(carManager) {
     setResultArea(carManager);
     showWinnerAndRestartButton();
-    setWinnerText(Game.getWinners(carManager));
+    setWinnerText(GameManager.getWinners(carManager));
   }
 }
