@@ -79,19 +79,12 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   });
 
   // step2 테스트
-  it('올바른 자동차 이름과 횟수를 입력한 후 1초가 지나기 전에는 대기 상태여야 한다.', () => {
+  it('올바른 자동차 이름과 횟수를 입력한 직후에는 대기 상태여야 한다.', () => {
     // when
     playValidGame();
 
     cy.get(`.${DOM.SPINNER_CLASS}`).should('be.visible');
     cy.get(`.${DOM.STEP_CLASS}`, { timeout: 0 }).should('not.exist');
-  });
-
-  it('게임이 시작한 직후에는 승자의 이름이 표시되어서는 안된다.', () => {
-    // when
-    playValidGame();
-
-    // then
     cy.get(`#${DOM.WINNER_NAME_ID}`, { timeout: 0 }).should('not.exist');
   });
 
@@ -110,11 +103,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.get(`#${DOM.WINNER_NAME_ID}`).should('be.visible');
 
     cy.tick(2000).then(() => {
-      expect(alertStub).to.be.called;
-    });
-
-    cy.on('window:alert', (text) => {
-      expect(text).to.contains('축하합니다!');
+      expect(alertStub.getCall(0).lastArg).to.contains('축하합니다!');
     });
   });
 });
