@@ -2,31 +2,69 @@ import { SELECTOR } from '../../src/common/constants.js';
 
 const baseUrl = '../index.html';
 
-describe('정상적으로 프로그램이 실행되는 지 테스트한다', () => {
-  before(() => {
+describe('자동차 게임 테스트', () => {
+  beforeEach(() => {
     cy.visit(baseUrl);
-  });
-
-  it('자동차 이름을 입력할 수 있어야한다', () => {});
-
-  it('자동차 이름이 입력이 되면 순서에 맞게 자동차 이름들이 보여야한다.', () => {});
-
-  it('자동차 이름이 입력이 되면 시도할 횟수를 입력할 수 있어야 한다.', () => {
     const validCarNamesInput = 'apple,banan,carro';
 
     cy.get(SELECTOR.CAR_NAMES_INPUT).type(validCarNamesInput);
-
     cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
-
-    cy.get(SELECTOR.RACING_COUNT_INPUT).should('exist');
-    cy.get(SELECTOR.RACING_COUNT_SUBMIT).should('exist');
   });
 
-  it('자동차 이름과 시도할 횟수를 입력하면, 최종 우승자가 보여야한다.', () => {});
+  context('자동차 이름이 입력된 후, 시도할 횟수 입력창과 자동차 이름들이 보이는 지 테스트', () => {
+    it('자동차 이름이 입력이 되면 시도할 횟수를 입력할 수 있어야 한다.', () => {
+      cy.get(SELECTOR.RACING_COUNT_INPUT).should('be.visible');
+      cy.get(SELECTOR.RACING_COUNT_SUBMIT).should('be.visible');
+    });
 
-  it('자동차 이름과 시도할 횟수를 입력하면, 다시 시작하기 버튼이 보여야한다.', () => {});
+    it('자동차 이름이 입력이 되면, 순서에 맞게 자동차 이름들이 보인다.', () => {
+      cy.get(SELECTOR.CARS_CONTAINER).contains('apple');
+      cy.get(SELECTOR.CARS_CONTAINER).contains('banan');
+      cy.get(SELECTOR.CARS_CONTAINER).contains('carro');
+    });
+  });
 
-  it('다시 시작하기 버튼을 클릭하면, 게임이 초기화된다.', () => {});
+  context(
+    '자동차 이름과 시도할 횟수를 입력하면, 최종 우승자와 다시 시작하기 버튼이 보이는 지 테스트',
+    () => {
+      beforeEach(() => {
+        const validRacingCountInput = 2;
+
+        cy.get(SELECTOR.RACING_COUNT_INPUT).type(validRacingCountInput);
+        cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
+      });
+
+      it('자동차 이름과 시도할 횟수를 입력하면, 최종 우승자가 보여야한다.', () => {
+        cy.get(SELECTOR.WINNERS).should('be.visible');
+      });
+
+      it('자동차 이름과 시도할 횟수를 입력하면, 다시 시작하기 버튼이 보여야한다.', () => {
+        cy.get(SELECTOR.RESTART).should('be.visible');
+      });
+    }
+  );
+
+  context('다시 시작하기 버튼을 클릭했을 때 리셋되는 지 테스트', () => {
+    beforeEach(() => {
+      const validRacingCountInput = 2;
+
+      cy.get(SELECTOR.RACING_COUNT_INPUT).type(validRacingCountInput);
+      cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
+      cy.get(SELECTOR.RESTART).click();
+    });
+
+    it('다시 시작하기 버튼을 클릭하면, 다시 시작하기 버튼이 사라진다.', () => {
+      cy.get(SELECTOR.RESTART).should('not.exist');
+    });
+
+    it('다시 시작하기 버튼을 클릭하면, 자동차 이름 입력값이 사라진다.', () => {
+      cy.get(SELECTOR.CAR_NAMES_INPUT).should('have.value', '');
+    });
+
+    it('다시 시작하기 버튼을 클릭하면, 시도할 횟수 입력창이 사라진다.', () => {
+      cy.get(SELECTOR.RACING_COUNT_INPUT).should('not.exist');
+    });
+  });
 });
 
 describe('예외 사항', () => {

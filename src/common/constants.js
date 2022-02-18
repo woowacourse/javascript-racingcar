@@ -37,13 +37,15 @@ export const WINNER = {
 };
 
 export const SELECTOR = {
+  APP: '#app',
   CAR_NAMES_INPUT: '#car-names-input',
   CAR_NAMES_SUBMIT: '#car-names-submit',
+  CARS_CONTAINER: '#cars-container',
+  GAME_RESULT: '#game-result',
+  MOVE_FORWARD_ARROW: '.move-forward-arrow',
   RACING_COUNT_INPUT: '#racing-count-input',
   RACING_COUNT_SUBMIT: '#racing-count-submit',
   RACING_COUNT: '#racing-count',
-  GAME_RESULT: '#game-result',
   RESTART: '#restart',
-  MOVE_FORWARD_ARROW: '.move-forward-arrow',
-  APP: '#app',
+  WINNERS: '#winners',
 };

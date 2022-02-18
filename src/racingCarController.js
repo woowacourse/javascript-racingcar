@@ -54,7 +54,7 @@ export default class RacingCarController {
   handleRacingCount(event) {
     event.preventDefault();
 
-    const racingCount =this.view.$racingCountInput.valueAsNumber;
+    const racingCount = this.view.$racingCountInput.valueAsNumber;
 
     if (isValidRacingCount(racingCount)) {
       this.model.setRacingCount(racingCount);

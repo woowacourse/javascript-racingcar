@@ -47,7 +47,7 @@ export function racingProgressTemplate() {
 
 export function carsTemplate(cars) {
   return `
-    <div style="${style.carsContainer}">
+    <div id="cars-container" style="${style.carsContainer}">
       ${cars.map((car) => carTemplate(car)).join('')}
     </div>
   `;
