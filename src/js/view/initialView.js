@@ -1,6 +1,6 @@
 import { $ } from "./getElement.js";
 
-export const makeInitialView = () => {
+export const initializeView = () => {
   $("car-names-input").value = "";
   $("car-names-input").readOnly = false;
   $("car-names-submit").disabled = false;

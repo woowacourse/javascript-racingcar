@@ -6,6 +6,7 @@ import {
 import { CarNameValidation, RacingCountValidation } from "./Validate.js";
 import { EXCEPTIONS } from "../constants/exceptions.js";
 import { trimArray } from "../utils/trimArray.js";
+import { initializeView } from "../view/initialView.js";
 
 export default class UserManager {
   constructor(carManager, gameManager) {
@@ -49,6 +50,8 @@ export default class UserManager {
   addSubmitEventListener() {
     this.addCarNamesSubmitEventListener();
     this.addSubmitRacingCountEventListener();
+    this.addLogoClickEventListener();
+    this.addRestartEventListener();
   }
 
   addCarNamesSubmitEventListener() {
@@ -72,6 +75,20 @@ export default class UserManager {
 
     $("racing-count-submit").addEventListener("click", () => {
       this.submitRacingCount();
+    });
+  }
+
+  addLogoClickEventListener() {
+    $("logo").addEventListener("click", () => {
+      initializeView();
+      this.carManager.init();
+    });
+  }
+
+  addRestartEventListener() {
+    $("restart-button").addEventListener("click", () => {
+      initializeView();
+      this.carManager.init();
     });
   }
 }
