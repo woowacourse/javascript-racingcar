@@ -22,14 +22,30 @@ export default class View {
     $(SELECTOR.CAR_RACING_WINNER).textContent = this.winnerTemplate(winners);
   }
 
-  carProgressTemplate(carPosition) {
-    return carPosition
-      .map((position) => `<div id="car-progress-result">${'⬇️️'.repeat(position)}</div>`)
-      .join('');
+  makeLane(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).textContent = '';
+    for (let i = 0; i < carPosition.length; i++) {
+      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
+        'beforeend',
+        `<div id="car-progress-result-${i}"></div>`
+      );
+    }
+  }
+
+  moveCars(carPosition) {
+    setInterval(() => {
+      carPosition.forEach((position, idx) => {
+        if (position > 0) {
+          $(`#car-progress-result-${idx}`).innerHTML += '️️⬇️️';
+          carPosition[idx] = position - 1;
+        }
+      });
+    }, 1000);
   }
 
   renderProgress(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
+    this.makeLane(carPosition);
+    this.moveCars(carPosition);
   }
 
   renderInitial() {

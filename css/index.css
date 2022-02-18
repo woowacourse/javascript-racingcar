@@ -275,7 +275,16 @@ button {
   flex-direction: row;
 }
 
-#car-progress-result {
+/* #car-progress-result {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  width: 96px;
+  display: flex;
+  align-items: center;
+  margin: 0px 5px;
+} */
+
+[id^='car-progress-result'] {
   writing-mode: vertical-rl;
   text-orientation: upright;
   width: 96px;
