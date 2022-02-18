@@ -96,12 +96,14 @@ export default class RacingGameController {
     this.#racingGameView.renderCarAdvance(carPlayResult);
 
     const { round, stage } = state;
-    if (round === stage) {
-      clearInterval(timer);
-      setTimeout(() => {
-        this.handleWinnersResult();
-      }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    if (round < stage) {
+      return false;
     }
+
+    clearInterval(timer);
+    setTimeout(() => {
+      this.handleWinnersResult();
+    }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
   }
 
   handleWinnersResult() {
