@@ -12,7 +12,11 @@ export default class RacingCarGameModel {
 
     updateCarsSuccessCount() {
         this.carArray.forEach(car => {
-            this.generateRandomNumber() >= CAR_MOVE_FORWARD_CRITERIA && car.increaseSuccessCount(CAR_MOVE_FORWARD_STEP);
+            car.updateIsCurrentTurnSuccess(false);
+            if(this.generateRandomNumber() >= CAR_MOVE_FORWARD_CRITERIA) {
+                car.increaseSuccessCount(CAR_MOVE_FORWARD_STEP);
+                car.updateIsCurrentTurnSuccess(true);
+            }
         });
     }
 
@@ -22,5 +26,9 @@ export default class RacingCarGameModel {
 
     resetCarArray() {
         this.carArray = [];
+    }
+
+    resetCarsIsCurrentTurnSuccess() {
+        this.carArray.map(car => car.updateIsCurrentTurnSuccess(false));
     }
 }

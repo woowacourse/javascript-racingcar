@@ -14,25 +14,30 @@ export default class RacingCarGameView {
         carArray.forEach(car => {
             racingResult += `<div class="car">
                 <label>${car.name}</label>
-                <div>${this.renderOneCarContent(car.successCount)}</div>
+                <div>${this.renderOneCarContent(car.successCount, car.isCurrentTurnSuccess)}</div>
                 </div>
             `;
         });
         $(SELECTOR.RACING_CONTENT).innerHTML = racingResult;
     }
 
-    renderOneCarContent(carCount) {
+    renderOneCarContent(carCount, isCurrentTurnSuccess) {
+        return carCount <= 0 ? '' : this.getOneCarContent(carCount, isCurrentTurnSuccess);
+    }
+
+    getOneCarContent(carCount, isCurrentTurnSuccess) {
         let arrowResult = '';
-        for(let i = 0; i < carCount; i++) {
+        for(let i = 0; i < carCount - 1; i++) {
             arrowResult +='<p>⬇️</p>';
         }
+        arrowResult += isCurrentTurnSuccess ? '<p class="loading-spinner"></p>' : '<p>⬇️</p>';
         return arrowResult;
     }
     
     renderGameWinners(carArray){
         const maxCount = carArray
             .map(car => car.successCount)
-            .sort((a, b) => b - a)[0];
+            .sort((a, b) => b - a)[0]; // 내림차순으로 sorting 후 0번째 값이 최대값
         this.winners = carArray
             .filter(car => car.successCount === maxCount)
             .map(car => car.name)
@@ -50,5 +55,9 @@ export default class RacingCarGameView {
         $(SELECTOR.RACING_RESULT).innerHTML = '';
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         resetInputText($(SELECTOR.CAR_NAME_INPUT));
+    }
+
+    renderLoadingSpinner() {
+
     }
 }
