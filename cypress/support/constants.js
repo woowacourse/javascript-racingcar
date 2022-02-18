@@ -8,3 +8,5 @@ export const SELECTOR = {
     RESTART_BUTTON: '.restart-button',
 };
 
+export const POSITIVE_CAR_NAME_INPUT = 'tt,sally';
+export const POSITIVE_RACE_COUNT_INPUT = 1;
