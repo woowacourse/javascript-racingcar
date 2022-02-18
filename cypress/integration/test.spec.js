@@ -5,6 +5,7 @@ import {
   ERROR_MESSAGES,
   RACING_COUNT_INPUT_PLACEHOLDER,
 } from '../../src/js/constants.js';
+import { TEST_IDS, DEFAULT_CAR_NAMES, DEFAULT_RACING_COUNT } from '../support/constants.js';
 import testid from '../support/utils/test-id.js';
 
 describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 경우', () => {
@@ -13,7 +14,7 @@ describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 
   });
 
   const alertTestOnSubmitCarNames = (invalidCarNames, errorMessage) => {
-    cy.formSubmit('car-names-input', 'car-names-submit-button', invalidCarNames, (txt) => {
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, invalidCarNames, (txt) => {
       expect(txt).to.contains(errorMessage);
     });
   };
@@ -35,11 +36,20 @@ describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 
 });
 
 describe('유효한 자동차 이름을 입력한 경우', () => {
-  it('시도 횟수를 입력하는 fieldset을 보여준다', () => {
+  beforeEach(() => {
     cy.visit('/index.html');
-    const validCarNames = 'aa,bb,cc,dd';
-    cy.formSubmit('car-names-input', 'car-names-submit-button', validCarNames);
-    cy.get(testid`racing-count-fieldset`).should('be.visible');
+  });
+
+  it('한글자만 입력해도 문제없다', () => {
+    const validCarNames = 'a';
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, validCarNames);
+    cy.get(testid(TEST_IDS.RACING_COUNT_FIELDSET)).should('be.visible');
+  });
+
+  it('자동차 이름에 공백이 껴있어도 문제없다', () => {
+    const validCarNames = 'a a, bb, c  d';
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, validCarNames);
+    cy.get(testid(TEST_IDS.RACING_COUNT_FIELDSET)).should('be.visible');
   });
 });
 
@@ -48,7 +58,7 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
     cy.visit('/index.html');
     // 먼저 자동차 이름을 입력해야 시도 횟수를 입력할 수 있다
     const validCarNames = 'aa,bb,cc,dd,ee';
-    cy.formSubmit('car-names-input', 'car-names-submit-button', validCarNames);
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, validCarNames);
   });
 
   const alertTestOnSubmitRaciingCount = (invalidCarNames, errorMessage) => {
@@ -78,31 +88,44 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
   });
 });
 
+describe('유효한 시도횟수를 입력한 경우', () => {
+  beforeEach(() => {
+    cy.visit('/index.html');
+    // 먼저 자동차 이름을 입력해야 시도 횟수를 입력할 수 있다
+    const validCarNames = 'aa,bb,cc,dd,ee';
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, validCarNames);
+  });
+
+  it('경주 스크린이 보여야한다', () => {
+    const validRacingCount = 10;
+    cy.formSubmit('racing-count-input', 'racing-count-submit-button', validRacingCount);
+    cy.get(testid(TEST_IDS.RACING_SCREEN)).should('be.visible');
+  });
+});
+
 describe('스크린에서 경기가 진행중인 경우', () => {
   beforeEach(() => {
     cy.clock();
     cy.visit('/index.html');
-    cy.startRacing('aa,bb,cc,dd', 10);
+    cy.startRacing(DEFAULT_CAR_NAMES, DEFAULT_RACING_COUNT);
   });
 
   // 주의: this를 사용하기 위해서는 arrow function을 사용하면 안된다.
   it('자동차가 달릴 lane이 자동차 갯수만큼 그려진다', function () {
-    cy.get(testid`car-lane`).should('have.length', this.carNameList.length);
+    cy.get(testid(TEST_IDS.CAR_LANE)).should('have.length', this.carNameList.length);
   });
 
   it('자동차 이름을 입력한 순서대로 lane이 그려진다', function () {
-    cy.get(testid`car-lane`).each(($carLane, i) => {
-      cy.wrap($carLane)
-        .find(testid`car-name`)
-        .should('have.text', this.carNameList[i]);
+    cy.get(testid(TEST_IDS.CAR_LANE)).each(($carLane, i) => {
+      cy.wrap($carLane).find(testid(TEST_IDS.CAR_NAME)).should('have.text', this.carNameList[i]);
     });
   });
 
   it('자동차의 이동거리가 화면에 표시되야한다', function () {
     for (let i = 0; i < 10; i += 1) {
       cy.tick(1000);
-      cy.get(testid`car-lane`).each(($carLane) => {
-        const $distance = $carLane.find(testid`distance`);
+      cy.get(testid(TEST_IDS.CAR_LANE)).each(($carLane) => {
+        const $distance = $carLane.find(testid(TEST_IDS.DISTANCE));
         const distance = parseInt($distance.attr('data-current-distance'), 10);
         cy.wrap($distance.children()).should('have.length', distance);
       });
@@ -114,15 +137,16 @@ describe('경기가 끝난 경우', () => {
   beforeEach(() => {
     cy.clock();
     cy.visit('/index.html');
-    cy.startRacing('aa,bb,cc,dd', 10);
+    cy.startRacing(DEFAULT_CAR_NAMES, DEFAULT_RACING_COUNT);
     cy.tick(10 * 1000); // 10초 기다린다
   });
 
   it('이동거리가 가장 긴 자동차가 최종 우승자가 된다', function () {
+    const { CAR_LANE, DISTANCE, WINNERS } = TEST_IDS;
     const cars = [];
-    cy.get(testid`car-lane`)
+    cy.get(testid(CAR_LANE))
       .each(($carLane, i) => {
-        const $distance = $carLane.find(testid`distance`);
+        const $distance = $carLane.find(testid(DISTANCE));
         const distance = parseInt($distance.attr('data-current-distance'), 10);
         cars.push({ name: this.carNameList[i], distance });
       })
@@ -133,7 +157,7 @@ describe('경기가 끝난 경우', () => {
           .map(({ name }) => name)
           .join(', ')
           .trim();
-        cy.get(testid`winners`).should('have.text', winners);
+        cy.get(testid(WINNERS)).should('have.text', winners);
       });
   });
 
@@ -146,14 +170,15 @@ describe('경기가 끝난 경우', () => {
   });
 
   it('다시 시작하기 버튼을 누르면 모든 상태가 초기화된다', () => {
+    const { RESTART_BUTTON, CAR_NAMES_INPUT, RACING_COUNT_INPUT, RACING_SCREEN, RACING_RESULT } = TEST_IDS;
     cy.tick(2 * 1000).then(() => {
-      cy.get(testid`restart-btn`).click();
-      cy.get(testid`car-names-input`).should('have.value', '');
-      cy.get(testid`car-names-input`).should('have.attr', 'placeholder', CAR_NAMES_INPUT_PLACEHOLDER);
-      cy.get(testid`racing-count-input`).should('have.value', '');
-      cy.get(testid`racing-count-input`).should('have.attr', 'placeholder', RACING_COUNT_INPUT_PLACEHOLDER);
-      cy.get(testid`racing-screen`).should('not.be.visible');
-      cy.get(testid`racing-result`).should('not.be.visible');
+      cy.get(testid(RESTART_BUTTON)).click();
+      cy.get(testid(CAR_NAMES_INPUT)).should('have.value', '');
+      cy.get(testid(CAR_NAMES_INPUT)).should('have.attr', 'placeholder', CAR_NAMES_INPUT_PLACEHOLDER);
+      cy.get(testid(RACING_COUNT_INPUT)).should('have.value', '');
+      cy.get(testid(RACING_COUNT_INPUT)).should('have.attr', 'placeholder', RACING_COUNT_INPUT_PLACEHOLDER);
+      cy.get(testid(RACING_SCREEN)).should('not.be.visible');
+      cy.get(testid(RACING_RESULT)).should('not.be.visible');
     });
   });
 });
