@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { SELECTOR } from '../utils/constants.js';
 export default class View {
   constructor() {
@@ -38,11 +38,15 @@ export default class View {
   }
 
   moveCars(carPosition) {
-    setInterval(() => {
+    const moveCarsTimer = setInterval(() => {
       carPosition.forEach((position, idx) => {
         if (position > 0) {
           $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
           carPosition[idx] = position - 1;
+        }
+        if (carPosition.every((position) => position === 0)) {
+          $$('#loader').forEach((loader) => (loader.style.display = 'none'));
+          clearInterval(moveCarsTimer);
         }
       });
     }, 1000);
