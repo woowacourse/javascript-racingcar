@@ -36,18 +36,20 @@ describe('2단계 기능 요구사항', () => {
   beforeEach(() => {
     cy.clock();
     cy.visit('index.html');
+    cy.tick(100);
   });
 
   it('사용자는 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀동안 로딩 애니메이션을 볼 수 있어야 한다.', () => {
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+    cy.tick(100);
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        cy.tick(1999);
+        cy.tick(2000);
         cy.get(SELECTOR.$LOADING).should('exist');
-        cy.tick(1);
+        cy.tick(100);
         cy.get(SELECTOR.$LOADING).should('not.exist');
       });
   });
@@ -55,16 +57,18 @@ describe('2단계 기능 요구사항', () => {
   it('사용자는 게임이 시작되면 다시 시작하기 버튼을 제외한 나머지 버튼을 클릭할 수 없어야 한다.', () => {
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+    cy.tick(100);
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
+        cy.tick(100);
         cy.get('button').each((button) => {
           cy.get(SELECTOR.$CAR_NAME_BUTTON).should('be.disabled');
           cy.get(SELECTOR.$RACING_COUNT_BUTTON).should('be.disabled');
         });
         cy.tick(2000);
-        cy.wait(100);
+        cy.tick(100);
         cy.get(SELECTOR.$CAR_NAME_BUTTON).should('be.disabled');
         cy.get(SELECTOR.$RACING_COUNT_BUTTON).should('be.disabled');
         cy.get(SELECTOR.$RESTART_BUTTON).should('not.be.disabled');
@@ -76,13 +80,14 @@ describe('2단계 기능 요구사항', () => {
 
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+    cy.tick(100);
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
       .then(() => {
-        cy.tick(1999);
+        cy.tick(2000);
         cy.get(SELECTOR.$WINNERS).should('not.exist');
-        cy.tick(1);
+        cy.tick(100);
         cy.get(SELECTOR.$WINNERS).should('exist');
         cy.tick(2000).then(() => {
           expect(alertStub).to.be.calledWith(COMMON_MESSAGE.CONGRATURATION);
