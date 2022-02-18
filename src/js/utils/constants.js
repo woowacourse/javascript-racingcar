@@ -17,10 +17,12 @@ export const CLASS = Object.freeze({
   WINNERS: 'winners',
   BTN: 'btn',
   REPLAY_BTN: 'replay-btn',
+  LOADING: 'loading',
+  SPINNER: 'spinner',
 });
 
 export const GAME_NUMBERS = Object.freeze({
-  MAX_RANDOM_NUMBER: 9,
+  MAX_RANDOM_NUMBER: 10,
   EMPTY_NUMBER: 0,
   VALID_MAX_NAME_LENGTH: 5,
   INIT_RACING_COUNT: 0,

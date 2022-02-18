@@ -1,5 +1,4 @@
 import { CLASS } from '../utils/constants.js';
-import { $ } from '../utils/selector.js';
 import View from './View.js';
 
 export default class ResultView extends View {
@@ -13,7 +12,8 @@ export default class ResultView extends View {
       .map(
         (carName) => `
         <div id="${carName}-container" class=${CLASS.RACING_INFO}>
-          <div class="${CLASS.CAR_NAME}">${carName}</div>
+          <div data-name="${carName}" class="${CLASS.CAR_NAME}">${carName}</div>
+          <div class=${CLASS.LOADING}><div class=${CLASS.SPINNER}></div></div>
         </div>
       `,
       )
@@ -24,15 +24,18 @@ export default class ResultView extends View {
   renderArrows = (stageResult) => {
     Object.entries(stageResult).forEach(([name, isMoved]) => {
       if (isMoved) {
-        $(`#${name}-container`).insertAdjacentHTML(
-          'beforeend',
-          `<div class=${CLASS.ARROW}>⬇️</div>`,
-        );
+        this.element
+          .querySelector(`.${CLASS.CAR_NAME}[data-name="${name}"]`)
+          .insertAdjacentHTML('afterend', `<div class=${CLASS.ARROW}>⬇️</div>`);
       }
     });
   };
 
   reset = () => {
     this.element.innerHTML = '';
+  };
+
+  removeSpinners = () => {
+    this.element.querySelectorAll(`.${CLASS.LOADING}`).forEach((element) => element.remove());
   };
 }
