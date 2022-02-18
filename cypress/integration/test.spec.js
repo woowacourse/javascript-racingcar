@@ -80,6 +80,7 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
 
 describe('스크린에서 경기가 진행중인 경우', () => {
   beforeEach(() => {
+    cy.clock();
     cy.visit('/index.html');
     cy.startRacing('aa,bb,cc,dd', 10);
   });
@@ -95,6 +96,17 @@ describe('스크린에서 경기가 진행중인 경우', () => {
         .find(testid`car-name`)
         .should('have.text', this.carNameList[i]);
     });
+  });
+
+  it('자동차의 이동거리가 화면에 표시되야한다', function () {
+    for (let i = 0; i < 10; i += 1) {
+      cy.tick(1000);
+      cy.get(testid`car-lane`).each(($carLane) => {
+        const $distance = $carLane.find(testid`distance`);
+        const distance = parseInt($distance.attr('data-current-distance'), 10);
+        cy.wrap($distance.children()).should('have.length', distance);
+      });
+    }
   });
 });
 
