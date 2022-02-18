@@ -92,6 +92,13 @@ export default class RacingCarGameView extends View {
   }
 
   validateCarNameList(carNameList) {
+    if (validator.isNotValidNumberOfCars(carNameList)) {
+      alert(ERROR_MESSAGE.OUT_OF_NUMBER_OF_CARS_RANGE);
+      this.initializeInput(this.$carNameInput);
+
+      return false;
+    }
+
     if (validator.isNotValidCarNamesLength(carNameList)) {
       alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.initializeInput(this.$carNameInput);
