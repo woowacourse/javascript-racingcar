@@ -1,4 +1,4 @@
-import { ERROR } from '../../src/util/constants.js';
+import { ERROR, RESULT } from '../../src/util/constants.js';
 
 const ENTRY = 'index.html';
 const SELECTOR = {
@@ -14,29 +14,30 @@ const SELECTOR = {
 };
 
 describe('valid racingcar Test', () => {
+  const delayPerRace = 1000;
+  const delayAfterEnd = 2000;
+  const raceCount = 5;
+  const totalDelay = delayPerRace * raceCount + delayAfterEnd;
+
   beforeEach(() => {
     const carNames = 'east, west, south, north, all';
-    const count = 5;
 
+    cy.clock();
     cy.visit(ENTRY);
 
     cy.get(SELECTOR.NAME_INPUT).type(carNames);
     cy.get(SELECTOR.NAME_BUTTON).click();
 
-    cy.get(SELECTOR.COUNT_INPUT).type(count);
+    cy.get(SELECTOR.COUNT_INPUT).type(raceCount);
     cy.get(SELECTOR.COUNT_BUTTON).click();
   });
 
-  it('레이싱 실행 이후 우승자를 출력할 수 있어야 한다', () => {
-    cy.get(SELECTOR.WINNERS_NAME).should('be.visible');
-  });
-
-  it('다시 시작하기 버튼 클릭시 화면이 리셋 돼야 한다.', () => {
-    cy.get(SELECTOR.RESTART).click();
-
-    cy.get(SELECTOR.COUNT_FORM).should('not.be.visible');
-    cy.get(SELECTOR.RESULT_CONTAINER).should('not.be.visible');
-    cy.get(SELECTOR.RESTART_CONTAINER).should('not.be.visible');
+  it('자동차 경주 게임을 정상적으로 완료하고 2초 뒤에 축하 메시지를 확인할 수 있다.', () => {
+    cy.tick(totalDelay).then(() => {
+      cy.on('window:alert', text => {
+        expect(text).to.equal(RESULT);
+      });
+    });
   });
 });
 
