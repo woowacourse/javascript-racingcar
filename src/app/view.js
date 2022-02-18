@@ -1,6 +1,6 @@
-import { DOM, ID_PREFIX } from '../lib/constants.js';
+import { DOM, HIDE_CLASS_NAME, ID_PREFIX, SHOW_CLASS_NAME } from '../lib/constants.js';
 import icons from '../lib/icons.js';
-import { findElement, rotateAnimation } from '../lib/utils.js';
+import { delay, findElement } from '../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -64,35 +64,28 @@ class RacingCarGameView {
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winners,
     });
-
     this.winners.insertAdjacentHTML('beforebegin', winnersTemplate);
+
     RacingCarGameView.renderElement(this.restartBtn);
   }
 
+  /** this가 없다고 해서 static으로 바꾸긴 싫은데 이 옵션이 어떤 의미에서 필요할까요 ? */
   renderGoForwardCars(results) {
-    results.forEach(({ isForward, car }) => {
+    results.forEach(({ isForward, car: { name, id } }) => {
       if (isForward) {
-        this.renderGoForward(car);
+        findElement(ID_PREFIX, `${name}${id}`).insertAdjacentHTML(
+          'afterend',
+          `<div class="${DOM.STEP}">⬇️️</div>`,
+        );
       }
     });
   }
 
-  /** this가 없다고 해서 static으로 바꾸긴 싫은데 이 옵션이 어떤 의미에서 필요할까요 ? */
-  renderGoForward({ id, name }) {
-    findElement(ID_PREFIX, `${name}${id}`).insertAdjacentHTML(
-      'afterend',
-      `<div class="${DOM.STEP}">⬇️️</div>`,
-    );
-  }
-
-  renderLoadingAboutRound() {
+  async renderLoadingAboutRound() {
     const loadingIconNodes = document.querySelectorAll(DOM.LOADING_ICON.toCLASS());
-    RacingCarGameView.toggleShowElements(loadingIconNodes);
-    requestAnimationFrame((timestamp) =>
-      rotateAnimation(0, timestamp, loadingIconNodes, () =>
-        RacingCarGameView.toggleShowElements(loadingIconNodes),
-      ),
-    );
+    RacingCarGameView.renderElements(loadingIconNodes);
+    await RacingCarGameView.triggerAnimation(loadingIconNodes, RacingCarGameView.rotateAnimation);
+    RacingCarGameView.hideElements(loadingIconNodes);
   }
 
   disableInputButtons() {
@@ -124,23 +117,29 @@ class RacingCarGameView {
     nodeList.forEach((node) => RacingCarGameView.hideElement(node));
   }
 
-  static toggleShowElements(nodeList) {
-    nodeList.forEach((node) => RacingCarGameView.toggleShowElement(node));
-  }
-
   static renderElement(el) {
-    el.classList.remove('hide');
-    el.classList.add('show');
+    el.classList.replace(HIDE_CLASS_NAME, SHOW_CLASS_NAME);
   }
 
   static hideElement(el) {
-    el.classList.remove('show');
-    el.classList.add('hide');
+    el.classList.replace(SHOW_CLASS_NAME, HIDE_CLASS_NAME);
   }
 
-  static toggleShowElement(el) {
-    el.classList.toggle('show');
-    el.classList.toggle('hide');
+  static async triggerAnimation(nodes, animation) {
+    requestAnimationFrame((timestamp) => animation(0, timestamp, nodes));
+    await delay(1000);
   }
+
+  static rotateAnimation = (progress, start, nodes) => {
+    nodes.forEach((node) => {
+      node.style.transform = `rotate(${progress / 10}deg)`;
+    });
+    if (progress < 1000) {
+      requestAnimationFrame((timestamp) =>
+        RacingCarGameView.rotateAnimation(timestamp - start, start, nodes),
+      );
+    }
+  };
 }
+// (timestamp) => rotateAnimation(0, timestamp, nodes)
 export default RacingCarGameView;

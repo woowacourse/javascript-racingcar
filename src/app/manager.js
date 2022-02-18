@@ -7,6 +7,11 @@ class RacingCarGameManager {
     this.#init();
   }
 
+  #init() {
+    this.cars = null;
+    this.count = null;
+  }
+
   setCars(cars) {
     this.cars = cars;
   }
@@ -48,11 +53,6 @@ class RacingCarGameManager {
       [],
     );
     return winners;
-  }
-
-  #init() {
-    this.cars = null;
-    this.count = null;
   }
 }
 export default RacingCarGameManager;
