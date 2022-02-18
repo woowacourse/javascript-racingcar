@@ -36,9 +36,18 @@ class RacingResultView {
     hideElement(this.$racingResult);
   }
 
+  enableRestartBtn() {
+    this.$restartBtn.disabled = false;
+  }
+
+  disableRestartBtn() {
+    this.$restartBtn.disabled = true;
+  }
+
   reset() {
     this.hide();
     this.$winners.innerHTML = '';
+    this.enableRestartBtn();
   }
 }
 

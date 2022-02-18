@@ -72,22 +72,25 @@ class RacingCarGameController {
     const end = () => {
       this.endGame();
     };
-    this.model.getCars().forEach((car, i) => {
+    const cars = this.model.getCars();
+    cars.forEach((car, i) => {
       setIntervalX(
         this.model.getRacingCount(),
         1000,
         before.bind(null, i, car),
         after.bind(null, i, car),
-        end
+        i === cars.length - 1 ? end : false // 마지막에만 end를 호출한다
       );
     });
   }
 
   endGame() {
+    this.resultView.disableRestartBtn();
     this.resultView.renderWinners(this.model.findWinners());
     this.resultView.show();
     setTimeout(() => {
       alert(CELEBRATE_MESSAGE);
+      this.resultView.enableRestartBtn();
     }, 2000);
   }
 

@@ -1,11 +1,11 @@
 const setIntervalX = (times, delay, before, after, end) => {
   if (!times) {
-    end();
+    end && end();
     return;
   }
-  before();
+  before && before();
   setTimeout(() => {
-    after();
+    after && after();
     setIntervalX(times - 1, delay, before, after, end);
   }, delay);
 };
