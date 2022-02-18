@@ -9,23 +9,12 @@
   },
   "repository": {
     "type": "git",
-<<<<<<< HEAD
-    "url": "git+https://github.com/hwangstar156/javascript-racingcar.git"
-=======
     "url": "git+https://github.com/kwannee/javascript-racingcar.git"
->>>>>>> step2-kwannee
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-<<<<<<< HEAD
-    "url": "https://github.com/hwangstar156/javascript-racingcar/issues"
-  },
-  "homepage": "https://github.com/hwangstar156/javascript-racingcar#readme",
-  "devDependencies": {
-    "cypress": "^9.4.1"
-=======
     "url": "https://github.com/kwannee/javascript-racingcar/issues"
   },
   "homepage": "https://github.com/kwannee/javascript-racingcar#readme",
@@ -36,6 +25,5 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.4"
->>>>>>> step2-kwannee
   }
 }
