@@ -1,11 +1,11 @@
 import { SELECTOR } from '../../src/utils/constants.js';
 
-describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않을 때 alert가 나타나는지 테스트', () => {
+describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않을 때 에러 메세지가 나타나는지 테스트', () => {
   beforeEach(() => {
     cy.visit('index.html');
   });
 
-  it('자동차 이름이 공백이거나, 5자를 넘을 경우 alert를 띄운다', () => {
+  it('자동차 이름이 공백이거나, 5자를 넘을 경우 에러 메세지를 띄운다', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get(SELECTOR.NAME_INPUT)
@@ -23,7 +23,7 @@ describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않
       });
   });
 
-  it('자동차 이름이 중복될 경우 alert를 띄운다.', () => {
+  it('자동차 이름이 중복될 경우 에러 메세지를 띄운다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get(SELECTOR.NAME_INPUT)
@@ -33,7 +33,7 @@ describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않
       });
   });
 
-  it('시도할 횟수가 0 또는 음수인 경우 alert를 띄운다', () => {
+  it('시도할 횟수가 0 또는 음수인 경우 에러 메세지를 띄운다', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get(SELECTOR.NAME_INPUT).type('east,west,south,north{enter}');
@@ -50,7 +50,7 @@ describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않
       });
   });
 
-  it('시도할 횟수가 소수점인 경우 alert를 띄운다.', () => {
+  it('시도할 횟수가 소수점인 경우 에러 메세지를 띄운다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
     cy.get(SELECTOR.NAME_INPUT).type('east,west,south,north{enter}');
@@ -104,7 +104,7 @@ context('"다시 시작하기 버튼을 클릭했을 때 초기 화면의 상태
       });
   });
 
-  it('"다시 시작하기" 버튼을 클릭하면, input들을 초기화한다.', () => {
+  it('"다시 시작하기" 버튼을 클릭하면, 입력창들을 초기화한다.', () => {
     cy.get(SELECTOR.RESET_BUTTON)
       .click()
       .then(() => {
