@@ -7,7 +7,7 @@ export default class Car {
         this.step = 0;
     }
 
-    tryForward() {
+    playTurn() {
         const random = generateRandomInRange(MIN_OF_RANDOM_NUMBER, MAX_OF_RANDOM_NUMBER);
         if (random >= FORWARD_CONDITION) this.forward();
     }

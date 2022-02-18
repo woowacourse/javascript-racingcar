@@ -1,13 +1,14 @@
 const SELECTOR = {
-    car_name_submit_button: '#car-name-submit-button',
-    try_count_submit_button: '#try-count-submit-button',
-    restart_button: '#restart-button',
-    car_name_input: '#car-name-input',
-    try_count_input: '#try-count-input',
-    app: '#app',
-    result_area: '.result-area',
-    track_area: '#track-area',
-    winners: '#winners',
+    CAR_NAME_SUBMIT_BUTTON: '#car-name-submit-button',
+    TRY_COUNT_SUBMIT_BUTTON: '#try-count-submit-button',
+    RESTART_BUTTON: '#restart-button',
+    CAR_NAME_INPUT: '#car-name-input',
+    TRY_COUNT_INPUT: '#try-count-input',
+    APP: '#app',
+    RESULT_AREA: '.result-area',
+    TRACK_AREA: '#track-area',
+    CAR_STEPS: '.car-steps',
+    WINNERS: '#winners',
 };
 
 export default SELECTOR;

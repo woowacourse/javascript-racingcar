@@ -6,17 +6,17 @@ const generateRandomInRange = (min, max) => Math.floor(Math.random() * (max + 1 
 
 const userInputValue = {
     carNames() {
-        const carNames = $(SELECTOR.car_name_input)
+        const carNames = $(SELECTOR.CAR_NAME_INPUT)
             .value.split(',')
             .map((name) => name.trim());
         return carNames;
     },
     tryCount() {
-        return Number($(SELECTOR.try_count_input).value);
+        return Number($(SELECTOR.TRY_COUNT_INPUT).value);
     },
     reset() {
-        $(SELECTOR.car_name_input).value = '';
-        $(SELECTOR.try_count_input).value = '';
+        $(SELECTOR.CAR_NAME_INPUT).value = '';
+        $(SELECTOR.TRY_COUNT_INPUT).value = '';
     },
 };
 

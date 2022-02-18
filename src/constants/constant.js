@@ -5,8 +5,8 @@ const FORWARD_CONDITION = 4;
 const KEYCODE_ENTER = 13;
 
 const SCREEN_COMMAND = {
-    show_try: 'show-try-form',
-    show_result: 'show-result-area',
+    SHOW_TRY_FORM: 'show-try-form',
+    SHOW_RESULT: 'show-result-area',
 };
 
 export {
