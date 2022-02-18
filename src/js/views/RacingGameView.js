@@ -26,13 +26,39 @@ export default class RacingGameView {
       });
   }
 
+  setVisibleProgress(isVisible) {
+    $(SELECTOR.RACE_CONTAINER)
+      .querySelectorAll(SELECTOR.RACE_CAR_STATE)
+      .forEach(($element) => {
+        if (isVisible === false) {
+          $element.querySelector('.progress').remove();
+          return;
+        }
+
+        this.#renderProgress($element);
+      });
+  }
+
+  #renderProgress($raceContainer) {
+    const $container = document.createElement('DIV');
+    $container.classList.add('progress');
+
+    const $progress = document.createElement('DIV');
+    $progress.classList.add('round');
+    $container.append($progress);
+
+    $raceContainer.append($container);
+  }
+
   setVisibleResult(isVisible) {
     $$(`${SELECTOR.RACE_CONTAINER}, ${SELECTOR.RESULT_CONTAINER}`).forEach(($element) => {
       $element.dataset.state = isVisible ? 'on' : 'off';
     });
   }
 
-  #renderCarContainer(carList) {
+  renderCarContainer(carList) {
+    $(SELECTOR.RACE_CONTAINER).dataset.state = 'on';
+
     const insertHTML = carList
       .map(
         (instance, index) => `<div class="${DOM_ID.RACE_CAR_STATE}" data-key="${index}">
@@ -43,27 +69,29 @@ export default class RacingGameView {
     $(SELECTOR.RACE_CONTAINER).innerHTML = insertHTML;
   }
 
-  #renderCarAdvance(carList) {
+  renderCarAdvance(carList) {
     carList.forEach((instance, index) => {
       const { distance } = instance;
-      const insertHTML = Array.from(
-        { length: distance },
-        () => `<div class="${DOM_ID.RACE_ADVANCE}">⬇️️</div>`
-      ).join('');
 
-      $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`).innerHTML += insertHTML;
+      const $carStateContainer = $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`);
+      const $$advanceElements = $carStateContainer.querySelectorAll(SELECTOR.RACE_ADVANCE);
+
+      if ($$advanceElements.length === distance) {
+        return;
+      }
+
+      const $advance = document.createElement('DIV');
+      $advance.classList.add(DOM_ID.RACE_ADVANCE);
+      $advance.innerText = '⬇️️';
+
+      $carStateContainer.querySelector(SELECTOR.RACE_CAR_NAME_BOX).after($advance);
     });
   }
 
-  #renderWinners(winners) {
+  renderWinners(winners) {
+    $(SELECTOR.RESULT_CONTAINER).dataset.state = 'on';
     $(SELECTOR.WINNERS).innerHTML = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;
-  }
-
-  renderResult(carList, winners) {
-    this.#renderCarContainer(carList);
-    this.#renderCarAdvance(carList);
-    this.#renderWinners(winners);
   }
 }

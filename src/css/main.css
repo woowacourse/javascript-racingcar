@@ -120,12 +120,13 @@ body {
   font-weight: bold;
 }
 
-.car-advance {
+.car-advance,
+.progress {
   font-size: 2.2rem;
   margin: 0.3rem 0;
 }
 
-.car-advance > .progress {
+.progress > .round {
   position: relative;
   width: 2.2rem;
   height: 2.2rem;
@@ -138,7 +139,7 @@ body {
   margin: 0 auto;
 }
 
-.car-advance > .progress::before {
+.progress > .round::before {
   position: absolute;
   display: block;
   content: '';
@@ -149,7 +150,7 @@ body {
   background-color: #fff;
 }
 
-.car-advance > .progress::after {
+.progress > .round::after {
   position: absolute;
   display: block;
   content: '';

@@ -5,6 +5,7 @@ import { SELECTOR } from '../constants/selector.js';
 import { $ } from '../utils/element-tools.js';
 import nameStringToArray from '../utils/nameStringToArray.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
+import GAME_SETTING from '../constants/RacingGame/setting.js';
 
 export default class RacingGameController {
   #racingGameModel;
@@ -76,11 +77,27 @@ export default class RacingGameController {
   }
 
   playRacingGame() {
-    const { round: gameRound } = this.#racingGameModel;
-    Array.from({ length: gameRound }, () => this.#racingGameModel.play());
+    const { carList } = this.#racingGameModel;
 
-    const { carList, winners } = this.#racingGameModel;
-    this.#racingGameView.renderResult(carList, winners);
-    this.#racingGameView.setVisibleResult(true);
+    this.#racingGameView.renderCarContainer(carList);
+    this.#racingGameView.setVisibleProgress(true);
+
+    setTimeout(() => this.handleRaceTimer(), GAME_SETTING.ROUND_INTERVAL);
+  }
+
+  handleRaceTimer(stageNumber = 0) {
+    stageNumber += 1;
+
+    const carPlayResult = this.#racingGameModel.play();
+    this.#racingGameView.renderCarAdvance(carPlayResult);
+
+    const { round: gameRound } = this.#racingGameModel;
+    if (gameRound === stageNumber) {
+      this.#racingGameView.setVisibleProgress(false);
+      this.#racingGameView.renderWinners(this.#racingGameModel.winners);
+      return;
+    }
+
+    setTimeout(() => this.handleRaceTimer(stageNumber), GAME_SETTING.ROUND_INTERVAL);
   }
 }
