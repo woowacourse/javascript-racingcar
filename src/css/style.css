@@ -77,6 +77,7 @@ body {
 
 .racing-results {
   width: 100%;
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
 }
@@ -87,6 +88,18 @@ body {
   gap: 10px;
   flex-direction: column;
   align-items: center;
+=======
+  justify-content: space-between;
+  display: flex;
+}
+
+.racing-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+>>>>>>> step2-kwannee
 }
 
 .car-name {
@@ -109,3 +122,41 @@ body {
   padding: 8px 20px;
   font-size: 13px;
 }
+<<<<<<< HEAD
+=======
+
+.loading {
+  display: block;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 10px 0;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading .spinner {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  border-top-color: #00bcd4;
+  border-bottom-color: #00bcd4;
+  border-left-color: #00bcd4;
+  animation: spinner 0.6s linear infinite;
+}
+>>>>>>> step2-kwannee

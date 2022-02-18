@@ -1,75 +1,95 @@
-import RacingCarModel from "../models/RacingCarModel.js";
-import RacingCarView from "../view/RacingCarView.js";
+import RacingCarModel from '../models/RacingCarModel.js';
+import CarNamesInputView from '../view/CarNamesInputView.js';
+import CountInputView from '../view/CountInputView.js';
+import ResultView from '../view/ResultView.js';
+import WinnerView from '../view/WinnerView.js';
 
-import { $ } from "../utils/selector.js";
-import { ID } from "../utils/constants.js";
+import { $ } from '../utils/selector.js';
+import {
+  CUSTOM_EVENT,
+  GAME_NUMBERS,
+  ID,
+  WINNER_CONGRATULATION,
+} from '../utils/constants.js';
 
 export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
-    this.view = new RacingCarView();
+    this.CarNamesInputView = new CarNamesInputView(
+      $(`#${ID.CAR_NAMES_SECTION}`),
+    )
+      .setup()
+      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, (e) =>
+        this.submitCarNamesHandler(e.detail),
+      );
+    this.CountInputView = new CountInputView($(`#${ID.RACING_COUNT_SECTION}`))
+      .setup()
+      .on(CUSTOM_EVENT.SUBMIT_RACING_COUNT, (e) =>
+        this.submitRacingCountHandler(e.detail),
+      );
+    this.ResultView = new ResultView($(`#${ID.RESULT}`));
+    this.WinnerView = new WinnerView($(`#${ID.RESULT}`))
+      .setup()
+      .on(CUSTOM_EVENT.CLICK_REPLAY_BUTTON, this.clickReplayButtonHandler);
   }
 
-  init = () => {
-    this.bindEvent();
-  };
-
-  bindEvent = () => {
-    $(`#${ID.CAR_NAME_BUTTON}`).addEventListener(
-      "click",
-      this.submitCarNamesHandler
-    );
-    $(`#${ID.RACING_COUNT_BUTTON}`).addEventListener(
-      "click",
-      this.submitRacingCountHandler
-    );
-    $(`#${ID.RESULT}`).addEventListener("click", this.clickReplayButtonHandler);
-  };
-
-  submitCarNamesHandler = (e) => {
-    const carNames = $(`#${ID.CAR_NAME_INPUT}`).value;
+  submitCarNamesHandler = (carNames) => {
     try {
       this.model.setCars(carNames);
-      this.view.disableCarName();
-      this.view.enableRacingCount();
+      this.CarNamesInputView.disableCarNamesInput();
+      this.CountInputView.enableCountInput();
     } catch (err) {
       alert(err);
+      this.CarNamesInputView.reset();
     }
   };
 
-  submitRacingCountHandler = (e) => {
-    const racingCount = $(`#${ID.RACING_COUNT_INPUT}`).value;
+  submitRacingCountHandler = (racingCount) => {
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
-      this.view.disableCarName();
-      this.view.disableRacingCount();
+      this.CarNamesInputView.disableCarNamesInput();
+      this.CountInputView.disableCountInput();
     } catch (err) {
       alert(err);
+      this.CountInputView.reset();
     }
   };
 
-  clickReplayButtonHandler = (e) => {
-    if (e.target.id !== ID.REPLAY_BUTTON) {
-      return;
-    }
-    this.model.resetGameStatus();
-    this.view.resetGame();
-    this.view.enableCarName();
-  };
-
-  playGame = () => {
+  playGame = async () => {
+    this.model.initPrevRaceResult();
+    this.ResultView.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      const raceResult = this.model.playTurn();
-      this.view.setResult(raceResult);
-      this.view.renderResult();
+      const prevRaceResult = this.model.getPrevRaceResult();
+      await this.model.racePerSecond();
+      const currentRaceResult =
+        this.model.getCurrentRacingResult(prevRaceResult);
+      this.ResultView.renderArrows(currentRaceResult);
     }
     this.endGame();
   };
 
   endGame = () => {
+    this.ResultView.removeSpinners();
     const winners = this.model.pickWinners();
-    this.view.renderWinners(winners);
-    this.view.renderReplayButton();
+    this.WinnerView.renderWinners(winners);
+    this.WinnerView.renderReplayButton();
+    setTimeout(() => {
+      alert(WINNER_CONGRATULATION(winners));
+    }, GAME_NUMBERS.DELAY_PER_ALERT_WINNER_MESSAGE);
+  };
+
+  clickReplayButtonHandler = () => {
+    this.model.resetGameStatus();
+    this.replayGame();
+  };
+
+  replayGame = () => {
+    [this.CarNamesInputView, this.CountInputView, this.ResultView].forEach(
+      (view) => {
+        view.reset();
+      },
+    );
+    this.CarNamesInputView.enableCarNamesInput();
   };
 }
