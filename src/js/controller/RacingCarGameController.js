@@ -1,16 +1,19 @@
 import Controller from '../core/Controller.js';
+import View from '../core/View.js';
 
 export default class RacingCarGameController extends Controller {
   init() {
     this.model.init().then((response) => {
-      this.render(response);
+      this.notify(response);
       this.bindEventListners();
     });
   }
 
-  render(response) {
-    this.view.render(response);
-    this.view.cacheDOMElements();
+  notify(response) {
+    View.update(() => {
+      this.view.render(response);
+      this.view.cacheDOMElements();
+    });
   }
 
   bindEventListners() {
@@ -21,24 +24,24 @@ export default class RacingCarGameController extends Controller {
 
   createCarList(carNameList) {
     this.model.createCarList(carNameList).then((response) => {
-      this.render(response);
+      this.notify(response);
     });
   }
 
   startRace(racingCount) {
     this.model
       .startRace(racingCount, (response) => {
-        this.render(response);
+        this.notify(response);
       })
       .then((response) => {
-        this.render(response);
+        this.notify(response);
         this.view.celebrate();
       });
   }
 
   restart() {
     this.model.init().then((response) => {
-      this.render(response);
+      this.notify(response);
     });
   }
 }

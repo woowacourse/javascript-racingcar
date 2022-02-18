@@ -1,9 +1,30 @@
 import { $, $all } from '../utils/utils.js';
 
 export default class View {
+  static renderStack = [];
+
   constructor($target, template) {
     this.$target = $target;
     this.template = template;
+
+    View.render();
+  }
+
+  static render() {
+    const checkUpdated = () => {
+      if (View.renderStack.length > 0) {
+        View.renderStack.pop()();
+        View.renderStack.length = 0;
+      }
+
+      requestAnimationFrame(checkUpdated);
+    };
+
+    requestAnimationFrame(checkUpdated);
+  }
+
+  static update(callback) {
+    View.renderStack.push(callback);
   }
 
   bindEventListener(type, selector, callback) {
