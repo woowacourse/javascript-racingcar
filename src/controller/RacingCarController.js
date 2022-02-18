@@ -3,7 +3,7 @@ import RacingCarView from '../view/RacingCarView.js';
 
 import { DELAY, RULES, SELECTOR } from '../constants/index.js';
 import { getRacingCarItemTemplate } from '../template/index.js';
-import { convertToNumber, generateRandomNumber } from '../util/index.js';
+import { convertToNumber, pickRandomNumber } from '../util/index.js';
 
 class RacingCarController {
   constructor() {
@@ -79,14 +79,25 @@ class RacingCarController {
     const raceTimer = setInterval(() => {
       this.playRace();
 
-      count += 1;
+      count = count + 1;
 
       if (count === racingCount) {
         clearInterval(raceTimer);
-        this.view.removeLoadingSpinner();
+        this.view.hideLoadingSpinner();
         this.endRacingGame();
       }
     }, DELAY.RACE_TIME);
+  }
+
+  playRace() {
+    this.model.getCarList().forEach((car, index) => {
+      const randomNumber = pickRandomNumber(RULES.RANDOM_MIN_NUMBER, RULES.RANDOM_MAX_NUMBER);
+
+      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
+        car.moveForward();
+        this.view.renderRacingCarProgress(index);
+      }
+    });
   }
 
   endRacingGame() {
@@ -94,16 +105,6 @@ class RacingCarController {
     this.view.showFinalWinner();
     this.view.showRestartSection();
     this.view.showCongratsMessage();
-  }
-
-  playRace() {
-    this.model.getCarList().forEach((car, index) => {
-      const randomNumber = generateRandomNumber();
-      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
-        car.moveForward();
-        this.view.renderRacingCarProgress(index);
-      }
-    });
   }
 
   handleGameResult() {

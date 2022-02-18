@@ -44,9 +44,6 @@ main {
 #racing_count_input_section {
   width: 425px;
   margin-bottom: 32px;
-}
-
-#racing_count_form {
   display: none;
 }
 

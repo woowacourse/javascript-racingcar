@@ -3,6 +3,7 @@ export const SELECTOR = Object.freeze({
   CAR_NAMES_INPUT: 'car_names_input',
   RACING_COUNT_FORM: 'racing_count_form',
   RACING_COUNT_INPUT: 'racing_count_input',
+  RACING_COUNT_INPUT_SECTION: 'racing_count_input_section',
   RACING_CAR_LIST: 'racing_car_list',
   FINAL_WINNER_RESULT: 'final_winner_result',
   FINAL_WINNER: 'final_winner',
@@ -27,6 +28,8 @@ export const CONGRATS_MESSAGE = '자동차 경주 게임이 끝났습니다. 우
 export const RULES = Object.freeze({
   MAX_CAR_NAME_LENGTH: 5,
   ZERO_CAR_NAME_LENGTH: 0,
+  RANDOM_MIN_NUMBER: 0,
+  RANDOM_MAX_NUMBER: 9,
   MOVE_CONDITION_NUMBER: 4,
   CAR_NAME_SEPERATOR: ',',
   WINNER_LIST_SEPERATOR: ', ',

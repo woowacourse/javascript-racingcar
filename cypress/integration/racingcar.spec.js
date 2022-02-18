@@ -155,7 +155,7 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
   });
 
   it('자동차 경주 최종 우승자가 올바르게 출력되는지 확인한다.', () => {
-    const finalWinner = [];
+    const winnerList = [];
     let maxDistance = -1;
 
     //then
@@ -168,12 +168,13 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
           const progressList = item.find(`.${SELECTOR.RACING_CAR_PROGRESS}`).children();
 
           if (progressList.length === maxDistance) {
-            finalWinner.push(item.find(`.${SELECTOR.RACING_CAR_NAME}`).text());
+            const carName = item.find(`.${SELECTOR.RACING_CAR_NAME}`).text();
+            winnerList.push(carName);
           }
         });
       })
       .then(() => {
-        const result = finalWinner.join(RULES.WINNER_LIST_SEPERATOR);
+        const result = winnerList.join(RULES.WINNER_LIST_SEPERATOR);
         cy.get(`#${SELECTOR.FINAL_WINNER_RESULT}`).should('have.text', result);
       });
   });

@@ -8,4 +8,4 @@ export const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !
 
 export const convertToNumber = (value) => parseInt(value, 10);
 
-export const generateRandomNumber = () => Math.floor(Math.random() * 10);
+export const pickRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
