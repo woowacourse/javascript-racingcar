@@ -7,6 +7,7 @@ const KEYCODE_ENTER = 13;
 const SCREEN_COMMAND = {
     SHOW_TRY_FORM: 'show-try-form',
     SHOW_RESULT: 'show-result-area',
+    SHOW_FINAL_RESULT_AREA: 'show-final-result-area',
 };
 
 export {

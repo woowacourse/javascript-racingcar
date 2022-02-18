@@ -22,12 +22,14 @@ p {
 }
 
 .app .try-count,
-.app .result-area {
+.app .result-area,
+.app .final-result-area {
     display: none;
 }
 
 .app.show-try-form .try-count,
-.app.show-result-area .result-area {
+.app.show-result-area .result-area,
+.app.show-final-result-area .final-result-area {
     display: block;
 }
 
