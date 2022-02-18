@@ -39,6 +39,10 @@ export default class RacingCarGameView {
         `;
     }
 
+    removeGameWinnerResult() {
+        $(SELECTOR.RACING_RESULT).innerHTML = '';
+    }
+
     resetGameView() {
         $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.add(SELECTOR.DISPLAY_NONE);
         $(SELECTOR.RACING_CONTENT).innerHTML = '';
