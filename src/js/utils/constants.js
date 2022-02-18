@@ -21,3 +21,5 @@ export const ERROR_MESSAGE = {
   NAME_CANNOT_BE_BLANK: '공백만으로는 이름을 구성할 수 없습니다.',
   COUNT_TOO_SMALL: `${RACING_MIN_COUNT} 이상의 숫자를 입력해주세요.`,
 };
+
+export const CELEBRATE_MESSAGE = '🎉 축하합니다!! 🎉';

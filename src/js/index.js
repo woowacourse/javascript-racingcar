@@ -1,8 +1,14 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
-import { DELAY_TIME, ERROR_MESSAGE, RACING_MIN_COUNT, RACING_SCORE } from './utils/constants.js';
+import {
+  CELEBRATE_MESSAGE,
+  DELAY_TIME,
+  ERROR_MESSAGE,
+  RACING_MIN_COUNT,
+  RACING_SCORE,
+} from './utils/constants.js';
 import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
-import { getMaxNumber, getRandomNumber } from './utils/getNumber.js';
+import { getRandomNumber, delayedAlert } from './utils/general.js';
 import { showElement, hideElement } from './utils/attribute.js';
 import {
   renderRacingResult,
@@ -11,7 +17,7 @@ import {
   removeSpinner,
 } from './views/racingResult.js';
 
-class RacingCar {
+class RacingCarGame {
   constructor() {
     this.cars = [];
     this.bindEvents();
@@ -23,8 +29,14 @@ class RacingCar {
     $('#reset-btn').addEventListener('click', this.restartRacingGame.bind(this));
   }
 
+  getMaxNumber() {
+    return this.cars.reduce((acc, { distance }) => {
+      return acc > distance ? acc : distance;
+    }, 0);
+  }
+
   selectWinner() {
-    const maxDistance = getMaxNumber(this.cars);
+    const maxDistance = this.getMaxNumber();
     return this.cars.filter((car) => car.distance === maxDistance);
   }
 
@@ -69,7 +81,7 @@ class RacingCar {
     renderFinalWinner(finalWinner);
     removeSpinner();
     showElement($('#final-winner'));
-    this.showCongratulationsMessage(finalWinner);
+    delayedAlert(CELEBRATE_MESSAGE, DELAY_TIME.ALERT);
   }
 
   startRacingGame(inputNumber) {
@@ -83,12 +95,6 @@ class RacingCar {
         this.endRacingGame();
       }
     }, DELAY_TIME.RACE);
-  }
-
-  showCongratulationsMessage(winner) {
-    setTimeout(() => {
-      handleError(`🎉 축하합니다!! 우승자는 ${winner} 입니다. 🎉`);
-    }, DELAY_TIME.ALERT);
   }
 
   startUpScreen() {
@@ -130,4 +136,4 @@ class RacingCar {
 }
 
 // eslint-disable-next-line no-new
-new RacingCar();
+new RacingCarGame();
