@@ -73,7 +73,7 @@ describe('기본 사용 순서 체크', () => {
 
     cy.get('#race-time-input')
       .invoke('attr', 'disabled')
-      .should('eq', undefined);
+      .should('eq', 'disabled');
     cy.get('#race-time-button')
       .invoke('attr', 'disabled')
       .should('eq', 'disabled');
