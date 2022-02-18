@@ -79,7 +79,10 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
 
     const CAR_NAMES = ['우아한', '테크', '코스'];
-    const TRY_COUNT = 10;
+    const TRY_COUNT = 5;
+    const DELAY_PER_RACE = 1000;
+    const DELAY_AFTER_END = 2000;
+    const TOTAL_DELAY = DELAY_PER_RACE * TRY_COUNT + DELAY_AFTER_END;
 
     const submitCarNameCorrectly = () => {
         submitCarName(CAR_NAMES.join(','));
@@ -138,26 +141,40 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
             playGameCorrectly();
 
-            cy.get(SELECTOR.CAR_TRACK)
-                .each((track, index) => {
-                    cy.wrap(track).within(() => {
-                        cy.get(SELECTOR.CAR_STEP_CONTAINER)
-                            .children()
-                            .its('length')
-                            .then((step) => {
-                                cars.push({ name: CAR_NAMES[index], step });
-                            });
-                    });
-                })
-                .then(() => {
-                    const maxStep = Math.max(...cars.map((car) => car.step));
-                    const winners = cars
-                        .filter((car) => car.step === maxStep)
-                        .map((car) => car.name)
-                        .join(',');
+            cy.clock();
+            cy.tick(TOTAL_DELAY).then(() => {
+                cy.get(SELECTOR.CAR_TRACK)
+                    .each((track, index) => {
+                        cy.wrap(track).within(() => {
+                            cy.get(SELECTOR.CAR_STEP_CONTAINER)
+                                .children()
+                                .its('length')
+                                .then((step) => {
+                                    cars.push({ name: CAR_NAMES[index], step });
+                                });
+                        });
+                    })
+                    .then(() => {
+                        const maxStep = Math.max(...cars.map((car) => car.step));
+                        const winners = cars
+                            .filter((car) => car.step === maxStep)
+                            .map((car) => car.name)
+                            .join(',');
 
-                    cy.get(SELECTOR.WINNERS).should('have.text', winners);
-                });
+                        cy.get(SELECTOR.WINNERS).should('have.text', winners);
+                    });
+            });
+        });
+
+        it('게임이 끝난 후, 2초 뒤에 축하 메세지 확인할 수 있어야 한다.', () => {
+            const alertStub = giveAlertStub();
+
+            playGameCorrectly();
+
+            cy.clock();
+            cy.tick(TOTAL_DELAY).then(() => {
+                expect(alertStub).to.be.called;
+            });
         });
     });
 
