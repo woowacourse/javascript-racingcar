@@ -1,7 +1,7 @@
 import Car from './Car.js';
 import { ID, MESSAGE, INTERVAL } from './constants.js';
 import { getElement, changeActivity } from './utils/dom.js';
-import { removeAllChildNodes, clearLoadingView, resultView, winnerAlert, initRacingStatus, carMovementView, loadingView } from './view.js';
+import { removeAllChildNodes, clearLoadingView, resultView, winnerAlert, initRacingStatus, carMovementView, loaderView, loadingView } from './view.js';
 import {
   parseCarName,
   validateCarNameLength,
@@ -12,7 +12,7 @@ import {
 class CarRacing {
   constructor() {
     this.cars = [];
-    this.winners = [];
+    this.winners = '';
     this.bindEvents();
   }
 
@@ -69,30 +69,22 @@ class CarRacing {
   }
 
   progressGame(count){
-    let startTime = 0
-    let progressCount = 0;
-    let progressSecond = 0;
+    let startTime = 0, progressCount = 0, progressSecond = 0;
     initRacingStatus(this.cars);
 
     const render = (timeStamp) => {
-      const timeStandard = timeStamp;
-      if(!startTime) startTime = timeStandard;
-      progressCount = Math.floor((timeStamp - startTime)/1000);
-
+      if(!startTime) startTime = timeStamp;
+      progressSecond = Math.floor((timeStamp - startTime)/1000);
       if(progressCount === count){
         cancelAnimationFrame(render);
-        this.moveCar(this.cars);
-        const winners = this.findWinner(this.cars);
         clearLoadingView(this.cars);
-        resultView(winners)
-        return this.delayResult(winners);
+        this.findWinner(this.cars);
+        resultView(this.winners);
+        return this.delayResult(this.winners);
       }
-      this.cars.forEach((car)=>{
-        getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', '<div class="loader></div>')
-      })
-      if(progressSecond!==progressCount){
+      if(progressCount!==progressSecond){
         this.moveCar(this.cars);
-        progressSecond=progressCount;
+        progressCount=progressSecond;
       }
       requestAnimationFrame(render)
     }
@@ -117,7 +109,7 @@ class CarRacing {
   
   findWinner(cars) {
     const maxCount = getMaxCount(cars);
-    return cars.filter(
+    this.winners = cars.filter(
       car => car.racingCount === maxCount,
     ).map((car)=>car.name).join(',');
   }

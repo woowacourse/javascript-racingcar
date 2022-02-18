@@ -1,6 +1,8 @@
 import { ID } from "./constants.js";
 import { getElement } from "./utils/dom.js";
 
+const loadingView = '<div class="loader"></div>';
+
 const carsNameView = (cars) => {
   return cars.map(({name}) =>
     `<div id="car-status-${name}" class="car-status" data-name=${name}>
@@ -9,7 +11,11 @@ const carsNameView = (cars) => {
   ).join('');
 };
 
-const loadingView = '<div class="loader"></div>';
+const loaderView = (cars) => {
+  cars.forEach((car)=>{
+    getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', loadingView)
+  })
+}
 
 const carMovementView = () => {
   const moveDiv = document.createElement("div");
@@ -41,10 +47,8 @@ const winnerAlert = (winners) => alert(`🎉우승을 축하합니다 ${winners}
 const winnersView = (winners) => `<h3>🏆최종 우승자: ${winners}🏆</h3>`;
 
 const initRacingStatus = (cars) => {
-  getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', carsNameView(cars));
-  cars.forEach((car)=>{
-    getElement(`car-status-${car.name}`).insertAdjacentHTML('beforeend', loadingView)
-  })
+  getElement(ID.RACING_STATUS).insertAdjacentHTML('beforeend', carsNameView(cars));
+  loaderView(cars)
 };
 
-export { carMovementView, loadingView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus, winnerAlert };
+export { carMovementView, clearLoadingView, removeAllChildNodes, resultView, initRacingStatus, winnerAlert, loaderView, loadingView };
