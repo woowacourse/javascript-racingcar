@@ -5,7 +5,7 @@ export const CAR_NAME_LENGTH = {
 
 export const RACING_MIN_COUNT = 1;
 
-export const RACING_SCORE = {
+export const MOVE_SCORE = {
   MIN: 0,
   MAX: 9,
   EFFECTIVE: 4,

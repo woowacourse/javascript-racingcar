@@ -1,13 +1,12 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
+import { CELEBRATE_MESSAGE, DELAY_TIME, ERROR_MESSAGE, MOVE_SCORE } from './utils/constants.js';
 import {
-  CELEBRATE_MESSAGE,
-  DELAY_TIME,
-  ERROR_MESSAGE,
-  RACING_MIN_COUNT,
-  RACING_SCORE,
-} from './utils/constants.js';
-import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
+  isValidCarNameLength,
+  isValidCarNameBlank,
+  isValidRacingCount,
+  isEffectiveScore,
+} from './utils/validation.js';
 import { getRandomNumber, delayedAlert } from './utils/general.js';
 import { showElement, hideElement } from './utils/attribute.js';
 import {
@@ -40,33 +39,13 @@ class RacingCarGame {
     return this.cars.filter((car) => car.distance === maxDistance);
   }
 
-  isValidCarNames(carName) {
-    if (!carName.every(isValidLength)) {
-      handleError(ERROR_MESSAGE.NAME_TOO_LONG);
-      return false;
-    }
-    if (!carName.every(isBlank)) {
-      handleError(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
-      return false;
-    }
-    return true;
-  }
-
-  isValidRacingCount(number) {
-    if (number < RACING_MIN_COUNT) {
-      handleError(ERROR_MESSAGE.COUNT_TOO_SMALL);
-      return false;
-    }
-    return true;
-  }
-
   generateCars(carNames) {
     this.cars = carNames.map((name) => new Car(name));
   }
 
   playRace() {
     this.cars.forEach((car) => {
-      const number = getRandomNumber(RACING_SCORE.MIN, RACING_SCORE.MAX);
+      const number = getRandomNumber(MOVE_SCORE.MIN, MOVE_SCORE.MAX);
       if (isEffectiveScore(number)) {
         car.moveForward();
         renderArrow(car.name);
@@ -111,17 +90,24 @@ class RacingCarGame {
       .value.split(',')
       .map((car) => car.trim());
 
-    if (!this.isValidCarNames(inputCarNames)) {
-      $('#car-names-input').value = '';
+    if (!isValidCarNameLength(inputCarNames)) {
+      alert(ERROR_MESSAGE.NAME_TOO_LONG);
       return;
     }
+    if (!isValidCarNameBlank(inputCarNames)) {
+      $('#car-names-input').value = '';
+      alert(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
+      return;
+    }
+
     this.generateCars(inputCarNames);
     showElement($('#racing-count-form'));
   }
 
   handleRacingCountSubmit() {
     const inputNumber = $('#racing-count-input').value;
-    if (!this.isValidRacingCount(inputNumber)) {
+    if (isValidRacingCount(inputNumber)) {
+      alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return;
     }
     showElement($('#result-screen'));

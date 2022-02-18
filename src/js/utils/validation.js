@@ -1,17 +1,17 @@
-import { CAR_NAME_LENGTH, RACING_SCORE } from './constants.js';
+import { CAR_NAME_LENGTH, RACING_MIN_COUNT, MOVE_SCORE } from './constants.js';
 
-export const isBlank = (name) => {
-  return name.length >= CAR_NAME_LENGTH.MIN;
+export const isValidCarNameBlank = (names) => {
+  return names.every((name) => name.length >= CAR_NAME_LENGTH.MIN);
 };
 
-export const isValidLength = (name) => {
-  return name.length <= CAR_NAME_LENGTH.MAX;
+export const isValidCarNameLength = (names) => {
+  return names.every((name) => name.length <= CAR_NAME_LENGTH.MAX);
+};
+
+export const isValidRacingCount = (number) => {
+  return number < RACING_MIN_COUNT;
 };
 
 export const isEffectiveScore = (number) => {
-  return number >= RACING_SCORE.EFFECTIVE;
-};
-
-export const handleError = (message) => {
-  alert(message);
+  return number >= MOVE_SCORE.EFFECTIVE;
 };
