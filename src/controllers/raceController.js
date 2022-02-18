@@ -2,7 +2,7 @@ import { Car } from '../models/Car.js';
 import {
   renderCarNames,
   renderWinners,
-  renderProgressArrowOfState,
+  renderProgressArrowsOfState,
   renderSpinnerForOneRound,
   eraseSpinner,
 } from '../views/view.js';
@@ -14,7 +14,7 @@ export function race() {
   moveCars();
   renderWinners(pickWinner());
   renderSpinnerForOneRound();
-  renderProgressArrowOfState();
+  renderProgressArrowsOfState();
   eraseSpinner();
 }
 

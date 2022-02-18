@@ -16,13 +16,13 @@ export function renderCarNames() {
   }
 }
 
-export function renderProgressArrowOfState() {
+export function renderProgressArrowsOfState() {
   for (let nowRacingNumber = 0; nowRacingNumber < state.racingNumber; nowRacingNumber++) {
-    setTimeout(() => renderProgressArrowsForOneRound(nowRacingNumber), (nowRacingNumber + 1) * 1000);
+    setTimeout(() => renderProgressArrowsOfOneRound(nowRacingNumber), (nowRacingNumber + 1) * 1000);
   }
 }
 
-export function renderProgressArrowsForOneRound(nowRacingNumber) {
+export function renderProgressArrowsOfOneRound(nowRacingNumber) {
   state.cars.forEach((element, index) => {
     if (element.location > nowRacingNumber) {
       renderProgressArrow(index);
