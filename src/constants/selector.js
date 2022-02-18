@@ -8,5 +8,6 @@ export const SELECTOR = {
     RACE_COUNT_INPUT_CONTAINER: '.race-count-input-container',
     RACING_CONTENT: '.racing-content',
     RACING_RESULT: '.racing-result',
-    DISPLAY_NONE: 'display-none',
 };
+
+export const DISPLAY_NONE = 'display-none';

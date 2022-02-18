@@ -1,10 +1,10 @@
 import { $ } from '../modules/dom-selector.js';
-import { SELECTOR } from '../constants/selector.js';
+import { DISPLAY_NONE, SELECTOR } from '../constants/selector.js';
 import resetInputText from '../modules/reset-input-text.js';
 
 export default class RacingCarGameView {
     renderRaceGameCountElement() {
-        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.remove(SELECTOR.DISPLAY_NONE);
+        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.remove(DISPLAY_NONE);
     }
 
     renderRacingContent(carArray) {
@@ -44,7 +44,7 @@ export default class RacingCarGameView {
     }
 
     resetGameView() {
-        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.add(SELECTOR.DISPLAY_NONE);
+        $(SELECTOR.RACE_COUNT_INPUT_CONTAINER).classList.add(DISPLAY_NONE);
         $(SELECTOR.RACING_CONTENT).innerHTML = '';
         $(SELECTOR.RACING_RESULT).innerHTML = '';
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
