@@ -1,4 +1,4 @@
-import { INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
+import { DELAY, INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
 
 /* eslint-disable no-undef */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
@@ -62,6 +62,33 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
     it('3-3. 시도 횟수를 정수가 아닌 수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
       cy.countInputValidator('2.3', INPUT_ERROR.COUNT_NOT_NATURAL);
+    });
+  });
+
+  describe('4. 화면 렌더링 확인', () => {
+    beforeEach(() => {
+      // given
+      cy.visit(baseUrl);
+      const carNames = 'Marco';
+      const racingCount = 3;
+
+      // when
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carNames);
+      cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
+      cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
+      cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
+    });
+
+    it('4-1. 시도횟수 동안 1초의 텀을 두고 스피너 로딩 애니메이션이 표시되어야 한다.', () => {
+      const racingCount = 3;
+      cy.clock();
+
+      for (let i = 0; i < racingCount; i++) {
+        cy.tick(DELAY.TURN_BETWEEN_TIME);
+        cy.get(SELECTOR.CLASS.CAR_PROGRESS_CONTAINER).each((container) => {
+          cy.get(container).find('.loader').should('exist');
+        });
+      }
     });
   });
 });
