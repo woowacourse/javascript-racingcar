@@ -13,14 +13,17 @@ export default class RacingGameView {
   }
 
   setDisableForm($target, isDisable = true) {
-    $target.parentElement.querySelectorAll('input, button').forEach(($element) => {
-      if (isDisable === false) {
-        $element.removeAttribute('disabled');
-        return;
-      }
+    $target
+      .closest('form')
+      .querySelectorAll('input, button')
+      .forEach(($element) => {
+        if (isDisable === false) {
+          $element.removeAttribute('disabled');
+          return;
+        }
 
-      $element.setAttribute('disabled', '');
-    });
+        $element.setAttribute('disabled', '');
+      });
   }
 
   setVisibleResult(isVisible) {
