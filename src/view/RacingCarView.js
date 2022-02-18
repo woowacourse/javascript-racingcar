@@ -57,7 +57,7 @@ class RacingCarView {
   }
 
   renderRacingCarList(template) {
-    this.$racingCarList.innerHTML = template;
+    this.$racingCarList.insertAdjacentHTML('afterbegin', template);
   }
 
   renderRacingCarProgress(index) {
