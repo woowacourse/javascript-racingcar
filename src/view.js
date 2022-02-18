@@ -1,5 +1,5 @@
 import { $, $$, displayNoneDOM, displayDOM } from './utils/common.js';
-import { SELECTOR } from './utils/constants.js';
+import { SELECTOR, NUMBER } from './utils/constants.js';
 
 export default class View {
   constructor() {

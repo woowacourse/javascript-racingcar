@@ -3,6 +3,7 @@ import Model from './model.js';
 
 import { validateNameInput, validateCountInput } from './utils/validator.js';
 import { trimInArray } from './utils/common.js';
+import { NUMBER } from './utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -50,7 +51,7 @@ export default class Controller {
   }
 
   ShowResult(carList) {
-    const runningTime = this.findMaxStep(carList) * 1000;
+    const runningTime = this.findMaxStep(carList) * NUMBER.ARROW_INTERVAL_TIME;
     this.view.displayStepSection();
     this.view.showArrowOneRace();
     this.setArrowInterval(runningTime);
@@ -68,7 +69,7 @@ export default class Controller {
   startArrowInterval() {
     return setInterval(() => {
       this.view.showArrowOneRace();
-    }, 1000);
+    }, NUMBER.ARROW_INTERVAL_TIME);
   }
 
   setWinnerTimeOut(afterTime) {

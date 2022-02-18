@@ -6,6 +6,7 @@ export const NUMBER = {
   RANGE_END: 9,
   STEP_BASE_NUMBER: 4,
   STEP: 1,
+  ARROW_INTERVAL_TIME = 1000
 };
 
 export const ERROR = {
