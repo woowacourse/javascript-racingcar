@@ -1,15 +1,15 @@
-import { STANDARD } from './constants.js';
+import { CAR_NAME_LENGTH, RACING_SCORE } from './constants.js';
 
 export const isBlank = (name) => {
-  return name.length >= STANDARD.MIN_NAME_LENGTH;
+  return name.length >= CAR_NAME_LENGTH.MIN;
 };
 
 export const isValidLength = (name) => {
-  return name.length <= STANDARD.MAX_NAME_LENGTH;
+  return name.length <= CAR_NAME_LENGTH.MAX;
 };
 
 export const isEffectiveScore = (number) => {
-  return number >= STANDARD.EFFECTIVE_SCORE;
+  return number >= RACING_SCORE.EFFECTIVE;
 };
 
 export const handleError = (message) => {

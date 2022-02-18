@@ -1,6 +1,6 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
-import { ERROR_MESSAGE, STANDARD } from './utils/constants.js';
+import { DELAY_TIME, ERROR_MESSAGE, RACING_MIN_COUNT, RACING_SCORE } from './utils/constants.js';
 import { isValidLength, isBlank, handleError, isEffectiveScore } from './utils/validation.js';
 import { getMaxNumber, getRandomNumber } from './utils/getNumber.js';
 import { showElement, hideElement } from './utils/attribute.js';
@@ -42,7 +42,7 @@ class RacingCar {
   }
 
   isValidRacingCount(number) {
-    if (number < STANDARD.MIN_INPUT_COUNT) {
+    if (number < RACING_MIN_COUNT) {
       handleError(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return false;
     }
@@ -58,7 +58,7 @@ class RacingCar {
       // eslint-disable-next-line no-await-in-loop
       await wait();
       this.cars.forEach((car) => {
-        const number = getRandomNumber(STANDARD.MIN_SCORE, STANDARD.MAX_SCORE);
+        const number = getRandomNumber(RACING_SCORE.MIN, RACING_SCORE.MAX);
         if (isEffectiveScore(number)) {
           car.moveForward();
           renderArrow(car.name);
@@ -70,7 +70,7 @@ class RacingCar {
   showCongratulationsMessage(winner) {
     setTimeout(() => {
       handleError(`🎉 축하합니다!! 우승자는 ${winner} 입니다. 🎉`);
-    }, 2000);
+    }, DELAY_TIME.ALERT);
   }
 
   startUpScreen() {
