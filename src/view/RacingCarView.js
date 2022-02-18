@@ -52,8 +52,8 @@ class RacingCarView {
   resetElement() {
     this.$carNamesInput.value = '';
     this.$racingCountInput.value = '';
-    this.$racingCarList.innerText = '';
-    this.$finalWinnerResult.innerText = '';
+    this.$racingCarList.textContent = '';
+    this.$finalWinnerResult.textContent = '';
   }
 
   renderRacingCarList(template) {
@@ -66,11 +66,13 @@ class RacingCarView {
   }
 
   renderFinalWinnerResult(finalWinner) {
-    this.$finalWinnerResult.innerText = finalWinner;
+    this.$finalWinnerResult.textContent = finalWinner;
   }
 
   removeLoadingSpinner() {
-    Array.from(this.$racingCarProgress).forEach((element) => {
+    const racingCarProgressList = Array.from(this.$racingCarProgress);
+
+    racingCarProgressList.forEach((element) => {
       element.lastElementChild.classList.add('hidden');
     });
   }
