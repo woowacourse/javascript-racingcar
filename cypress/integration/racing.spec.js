@@ -1,4 +1,4 @@
-import { SELECTOR } from '../../src/utils/constants.js';
+import { SELECTOR, CLASS_NAME, NUMBER } from '../../src/utils/constants.js';
 
 describe('입력된 자동차 이름과 시도할 횟수가 조건에 맞지 않을 때 에러 메세지가 나타나는지 테스트', () => {
   beforeEach(() => {
@@ -111,5 +111,43 @@ context('"다시 시작하기 버튼을 클릭했을 때 초기 화면의 상태
         cy.get(SELECTOR.NAME_INPUT).should('have.value', '');
         cy.get(SELECTOR.COUNT_INPUT).should('have.value', '');
       });
+  });
+});
+
+describe('레이스 결과와 축하 메세지를 표시하는 텀이 요구하는 바와 일치하는지 테스트', () => {
+  beforeEach(() => {});
+
+  it('각 레이스의 결과 표시 전에 1초의 텀동안 로딩 애니메이션을 보여준다.', () => {
+    const randomStub = cy.stub().onFirstCall().returns(0.8);
+    cy.clock();
+    cy.visit('index.html').then((contenWindow) => {
+      cy.stub(contenWindow.Math, 'random').callsFake(randomStub);
+    });
+    cy.get(SELECTOR.NAME_INPUT).type('east,west,south,north{enter}');
+    cy.get(SELECTOR.COUNT_INPUT).type('5{enter}');
+    cy.get(`${SELECTOR.STEP_SECTION_ARROWS}`)
+      .eq(0)
+      .children()
+      .eq(0)
+      .should('have.class', CLASS_NAME.SPINNING_BACKGROUND);
+    cy.tick(NUMBER.ARROW_INTERVAL_TIME + 100);
+    cy.get(`${SELECTOR.STEP_SECTION_ARROWS}`)
+      .eq(0)
+      .children()
+      .eq(0)
+      .should('not.have.class', CLASS_NAME.SPINNING_BACKGROUND);
+  });
+
+  it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 메세지를 띄운다.', () => {
+    const alertStub = cy.stub();
+    cy.clock();
+    cy.on('window:alert', alertStub);
+    cy.visit('index.html');
+    cy.get(SELECTOR.NAME_INPUT).type('east,west,south,north{enter}');
+    cy.get(SELECTOR.COUNT_INPUT).type('1{enter}');
+    cy.clock().then((clock) => {
+      clock.tick(NUMBER.ARROW_INTERVAL_TIME + NUMBER.WINNER_ALERT_TIME + 100);
+      expect(alertStub).to.be.called;
+    });
   });
 });
