@@ -79,8 +79,10 @@ body {
   padding: 0.4rem 2.4rem;
 }
 
-.input-container > p {
+.input-container > label {
+  display: block;
   font-size: 1.05rem;
+  margin-bottom: 0.7rem;
 }
 
 .input-container > form {
