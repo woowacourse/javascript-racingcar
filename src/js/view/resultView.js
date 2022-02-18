@@ -7,15 +7,15 @@ const showRacingResult = () => {
 const createEachResultLogContainer = car => {
   const container = document.createElement("div");
   const carNameTag = document.createElement("div");
-  const loading = document.createElement("div");
+  const way = document.createElement("div");
 
   container.setAttribute("id", `${car.name}-container`);
   carNameTag.setAttribute("class", "car-name-tag");
   carNameTag.innerHTML = car.name;
-  loading.innerHTML = `<img src="src/images/loading.svg" alt="loading" class="loading" />`;
-  loading.setAttribute("id", `${car.name}-loading`);
+  way.innerHTML = `<img src="src/images/loading.svg" alt="loading" class="loading" />`;
+  way.setAttribute("id", `${car.name}-way`);
   container.append(carNameTag);
-  container.append(loading);
+  container.append(way);
 
   return container;
 };
@@ -41,7 +41,7 @@ const createPositionArrow = () => {
 };
 
 export const createEachLog = car => {
-  $(`${car.name}-loading`).prepend(createPositionArrow());
+  $(`${car.name}-way`).prepend(createPositionArrow());
 };
 
 export const hideLoading = () => {
