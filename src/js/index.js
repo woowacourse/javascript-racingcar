@@ -121,5 +121,4 @@ class RacingCarGame {
   }
 }
 
-// eslint-disable-next-line no-new
 new RacingCarGame();
