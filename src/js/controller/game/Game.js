@@ -20,7 +20,6 @@ export default class Game {
 
   init() {
     this.racingCount = 0;
-    this.round = [];
     this.winner = [];
   }
 
@@ -72,7 +71,6 @@ export default class Game {
 
   showResult() {
     const roundResult = JSON.parse(JSON.stringify(this.cars.getCars()));
-    this.round.push(roundResult);
     setResultArea(roundResult);
   }
 
