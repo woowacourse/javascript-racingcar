@@ -11,6 +11,8 @@ export default class RacingCarGame {
         this.addClickEventToCarNameButton();
     }
 
+    timeIntervalId = 0
+
     addClickEventToCarNameButton() {
         $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (e) => {
             e.preventDefault();
@@ -34,15 +36,12 @@ export default class RacingCarGame {
     
     updateWholeGameResult(raceCount){
         let count = 1;
-        const timeoutId = setInterval(() => {
+        this.timeIntervalId = setInterval(() => {
             this.model.updateCarArrayForEachCar();
             this.view.renderRacingContent(this.model.carArray);
 
             if(count++ === raceCount) {
-                clearInterval(timeoutId);
-                this.model.resetCarsIsCurrentTurnSuccess();
-                this.view.renderRacingContent(this.model.carArray);
-                this.view.renderGameWinners(this.getGameWinners(this.model.carArray));
+                this.stopUpdatingWholeGameResult();
                 this.addClickEventToRestartButton();
                 setTimeout(() => alert(`${this.getGameWinners(this.model.carArray)} 축하합니다!`), 2000);
             }
@@ -57,6 +56,13 @@ export default class RacingCarGame {
             .filter(car => car.successCount === maxCount)
             .map(car => car.name)
             .join(',');
+    }
+
+    stopUpdatingWholeGameResult() {
+        clearInterval(this.timeIntervalId);
+        this.model.resetCarsIsCurrentTurnSuccess();
+        this.view.renderRacingContent(this.model.carArray);
+        this.view.renderGameWinners(this.getGameWinners(this.model.carArray));
     }
 
     onCarNameButtonClick() {
