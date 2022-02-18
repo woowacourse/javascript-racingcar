@@ -20,14 +20,14 @@ const SELECTOR = Object.freeze({
   RETRY_BUTTON: '#retry-button',
 });
 
-function replaceSelectorToDomID(origin) {
+const replaceSelectorToDomID = (origin) => {
   const output = {};
   Object.entries(origin).forEach(([key, value]) => {
     output[key] = value.replace(/#|\./g, EMPTY_STRING);
   });
 
   return output;
-}
+};
 
 const DOM_ID = Object.freeze(replaceSelectorToDomID(SELECTOR));
 export { SELECTOR, DOM_ID };
