@@ -4,7 +4,7 @@ import RacingCarGameModel from './model/RacingCarGameModel.js';
 import RacingCarGameView from './view/RacingCarGameView.js';
 import validator from './validator/index.js';
 
-class RacingCarGame {
+class RacingCarGameController {
   constructor() {
     this.view = new RacingCarGameView();
     this.model = new RacingCarGameModel();
@@ -100,4 +100,4 @@ class RacingCarGame {
   }
 }
 
-new RacingCarGame();
+new RacingCarGameController();
