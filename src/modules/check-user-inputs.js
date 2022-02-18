@@ -16,7 +16,8 @@ export function checkUserCarNameInput(carNameInput) {
 
     const carNameArray = carNameInput
         .split(',')
-        .filter(carName => !!carName.trim().length);
+        .map(carName => carName.trim())
+        .filter(carName => !!carName.length);
 
     if(!carNameArray.length) {
         resetInputText($(SELECTOR.CAR_NAME_INPUT));
