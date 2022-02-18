@@ -2,6 +2,9 @@ import { SELECTOR } from '../../src/constants/selector';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = "../../index.html";
+  const raceCount = 1;
+  const oneRoundTimeInterval = 1000;
+  const congratulationsMessageTimeInterval = 2000;
 
   beforeEach(() => {
     cy.clock();
@@ -10,9 +13,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   /* 우승자 확인 */
   it("게임을 완료하고 우승자를 확인할 수 있어야 한다.", () => {
-    const raceCount = 1;
     cy.normalWorking("tt,sally", raceCount);
-    cy.tick(raceCount * 1000).then(() => {
+    cy.tick(raceCount * oneRoundTimeInterval).then(() => {
       cy.get(SELECTOR.RESULT_TEXT).should((result) => {
         const text = result.text();
         expect(text).to.include('최종 우승자');
@@ -36,11 +38,21 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   /* 다시 시작 */
   it("다시 시작하기 버튼을 눌렀을 때에 race-count-input-container 요소가 display none이어야 한다", () => {
-    const raceCount = 1;
     cy.normalWorking("tt,sally", raceCount);
-    cy.tick(raceCount * 1000).then(() => {
+    cy.tick(raceCount * oneRoundTimeInterval).then(() => {
       cy.get(SELECTOR.RESTART_BUTTON).click();
       cy.get(SELECTOR.RACE_COUNT_INPUT_CONTAINER).should('not.have.css', 'display', 'flex');
     })
+  });
+
+  /* 축하 메세지 */
+  it("자동차 경주 우승자가 나오고 2초 후에 축하 메세지가 나와야 한다.", () => {
+    const alertStub = cy.stub();
+    cy.on("window:alert", alertStub);
+
+    cy.normalWorking("tt,sally", raceCount);
+    cy.tick(raceCount * oneRoundTimeInterval + congratulationsMessageTimeInterval).then(() => {
+      expect(alertStub).to.be.called;
+    });
   });
 });
