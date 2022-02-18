@@ -12,6 +12,7 @@ class RacingCarGameManager {
     this.count = null;
   }
 
+  // get함수와 set함수를 작성하는 것은 항상 필요한 일인가요 ?
   setCars(cars) {
     this.cars = cars;
   }

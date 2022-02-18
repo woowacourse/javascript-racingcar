@@ -119,6 +119,7 @@ class RacingCarGameView {
       `;
   }
 
+  /** static 메소드는 언제 작성하면 좋을까요? */
   static renderElements(nodeList) {
     nodeList.forEach((node) => RacingCarGameView.renderElement(node));
   }
@@ -140,6 +141,7 @@ class RacingCarGameView {
     await delay(during);
   }
 
+  // 인자를 직접 수정하고 싶지 않은데 방법이 없을까요?
   static rotateAnimation = (progress, start, nodes, during) => {
     nodes.forEach((node) => {
       node.style.transform = `rotate(${progress / 10}deg)`;
@@ -151,5 +153,4 @@ class RacingCarGameView {
     }
   };
 }
-// (timestamp) => rotateAnimation(0, timestamp, nodes)
 export default RacingCarGameView;

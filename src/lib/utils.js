@@ -21,5 +21,3 @@ export const generateId = (idSet) => {
 export const findElement = (surfix, selector) => document.querySelector(`${surfix}${selector}`);
 
 export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// 인자를 직접 수정하고 싶지는 않은데 어떤 방법이 있을까요 ?
