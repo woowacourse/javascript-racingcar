@@ -67,6 +67,12 @@ class RacingCar {
     }
   }
 
+  showCongratulationsMessage(winner) {
+    setTimeout(() => {
+      handleError(`🎉 축하합니다!! 우승자는 ${winner} 입니다. 🎉`);
+    }, 2000);
+  }
+
   startUpScreen() {
     $('#car-names-input').value = '';
     $('#racing-count-input').value = '';
@@ -103,6 +109,7 @@ class RacingCar {
     renderFinalWinner(finalWinner);
     removeSpinner();
     showElement($('#final-winner'));
+    this.showCongratulationsMessage(finalWinner);
   }
 
   restartRacingGame() {
