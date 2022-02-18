@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임</title>
@@ -19,7 +19,7 @@
             <button class="name-button">확인</button>
           </div>
         </form>
-        <form class="count-form">
+        <form class="count-form hidden">
           <label for="count-input">시도할 횟수를 입력해주세요.</label>
           <div class="input-container">
             <input id="count-input" class="count-input" type="number" />
@@ -29,7 +29,7 @@
         <div class="race-container"></div>
         <div class="winner-container"></div>
         <div class="restart-container">
-          <button class="restart">다시 시작하기</button>
+          <button class="restart hidden">다시 시작하기</button>
         </div>
       </main>
       <script type="module" src="./src/index.js"></script>

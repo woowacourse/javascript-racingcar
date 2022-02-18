@@ -19,5 +19,4 @@ const initEvent = () => {
   $('.restart').addEventListener('click', resetView);
 };
 
-resetView();
 initEvent();
