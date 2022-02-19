@@ -3,6 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { validator } from '../validator/validator.js';
 import { ERROR_MESSAGE, NUMBER, SELECTOR } from '../utils/constants.js';
+import { input } from '../view/input.js';
 
 export default class Controller {
   constructor() {
@@ -15,9 +16,7 @@ export default class Controller {
   bindCarNamesEvent() {
     $(SELECTOR.CAR_NAMES_FORM).addEventListener('submit', (e) => {
       e.preventDefault();
-      const carNamesInput = $(SELECTOR.CAR_NAMES_INPUT)
-        .value.split(',')
-        .map((carName) => carName.trim());
+      const carNamesInput = input.getCarNamesInput();
 
       if (validator.isInvalidCarNamesInput(carNamesInput)) {
         alert(ERROR_MESSAGE.INVALID_NAME_LENGTH);
@@ -33,7 +32,7 @@ export default class Controller {
   bindRacingCountEvent() {
     $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener('submit', (e) => {
       e.preventDefault();
-      const carRacingCountInput = $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
+      const carRacingCountInput = input.getRacingCountInput();
 
       if (validator.isInvalidRacingCountInput(carRacingCountInput)) {
         alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
@@ -87,7 +86,7 @@ export default class Controller {
   }
 
   displayProgress() {
-    this.view.renderProgress(this.model.carPosition);
+    this.view.renderCarProgress(this.model.carPosition);
   }
 
   displayRestartButton() {

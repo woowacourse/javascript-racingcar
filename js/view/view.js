@@ -1,34 +1,21 @@
 import { $, $$ } from '../utils/dom.js';
 import { SELECTOR } from '../utils/constants.js';
+import { template } from './template.js';
 export default class View {
   constructor() {
     this.renderInitial();
   }
 
-  carNamesTemplate(carNames) {
-    return carNames.map((carName) => `<span id="result-car-name">${carName}</span>`).join('');
-  }
-
   renderCarNames(carNames) {
-    $(SELECTOR.CAR_NAMES).innerHTML = this.carNamesTemplate(carNames);
-  }
-
-  winnerTemplate(winners) {
-    return `🏆 최종 우승자: ${winners} 🏆`;
+    $(SELECTOR.CAR_NAMES).innerHTML = template.carNamesTemplate(carNames);
   }
 
   renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = this.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).innerHTML = template.winnerTemplate(winners);
   }
 
-  carProgressTemplate(carPosition) {
-    return carPosition
-      .map((position) => `<div id="car-progress-result">${'⬇️️'.repeat(position)}</div>`)
-      .join('');
-  }
-
-  renderProgress(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
+  renderCarProgress(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).innerHTML = template.carProgressTemplate(carPosition);
   }
 
   renderInitialLoading(carPosition) {
