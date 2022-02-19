@@ -72,6 +72,17 @@ class RacingGameView {
 
   showWinner(winner) {
     this.racingResultElement.innerHTML = this.template.racingResult(winner);
+    this.racingResultElement.style.opacity = 0;
+    setTimeout(() => this.showWinnerResult(), this.max * 1000);
+    setTimeout(() => this.showWinnerAlert(), this.max * 1000 + 2000);
+  }
+
+  showWinnerResult() {
+    this.racingResultElement.style.opacity = 0.99;
+  }
+
+  showWinnerAlert() {
+    alert("축하합니다.");
   }
 
   makeDisableForm() {
