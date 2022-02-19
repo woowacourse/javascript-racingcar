@@ -5,6 +5,7 @@ import {
   templateRacingCarItem,
   templateProgress,
   templateSpinner,
+  templateRestartButton,
 } from '../template/index.js';
 
 class RacingCarGameView {
@@ -38,7 +39,11 @@ class RacingCarGameView {
   }
 
   setRestartBtnEventHandler(callback) {
-    this.$restartBtn.addEventListener('click', () => {
+    this.$restartSection.addEventListener('click', (e) => {
+      if (e.target.id !== ID.RESTART_BTN) {
+        return;
+      }
+
       callback();
     });
   }
@@ -92,14 +97,15 @@ class RacingCarGameView {
     this.$finalWinner.style.display = 'block';
   }
 
-  showRestartSection() {
-    this.$restartSection.style.display = 'block';
+  renderRestartButton() {
+    this.$restartSection.insertAdjacentHTML('beforeend', templateRestartButton);
   }
 
   reset() {
     this.$carNamesInput.value = '';
     this.$racingCountForm.innerHTML = '';
     this.$racingCountInput = null;
+    this.$restartSection.innerHTML = '';
   }
 
   hideElements() {
@@ -111,7 +117,6 @@ class RacingCarGameView {
 
   resetElements() {
     this.$finalWinner.style.display = 'none';
-    this.$restartSection.style.display = 'none';
   }
 
   renderSpinner() {

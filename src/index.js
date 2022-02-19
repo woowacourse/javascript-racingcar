@@ -94,7 +94,7 @@ class RacingCarGameController {
   handleGameResult() {
     const finalWinner = this.model.getFinalWinner();
     this.view.renderFinalWinner(finalWinner);
-    this.view.showRestartSection();
+    this.view.renderRestartButton();
 
     setTimeout(() => {
       alert(WINNER_MESSAGE(finalWinner));

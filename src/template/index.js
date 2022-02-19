@@ -18,3 +18,5 @@ export const templateRacingCarItem = (carName) => `
 export const templateProgress = '<li>⬇</li>';
 
 export const templateSpinner = '<div class="spinner"/>';
+
+export const templateRestartButton = '<button id="restart_btn">다시 시작하기</button>';
