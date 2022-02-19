@@ -1,30 +1,28 @@
-import { $ } from "./dom/dom.js";
-import { ARROW_RENDER_DELAY_TIME, RESULT_RENDER_DELAY_TIME } from "./constants/constants.js";
+import { $ } from "../dom/dom.js";
+import { ARROW_RENDER_DELAY_TIME, RESULT_RENDER_DELAY_TIME } from "../constants/constants.js";
 
-import RacingCar from "./class/racingCar.js";
-import RacingCarView from "./views/racingCarView.js";
+import RacingCarModel from "../models/racingCarModel.js";
+import RacingCarView from "../views/racingCarView.js";
 
-import isCarNameInputValid from "./modules/isCarNameInputValid.js";
-import isRacingCountInputValid from "./modules/isRacingCountInputValid.js";
+import isCarNameInputValid from "../modules/isCarNameInputValid.js";
+import isRacingCountInputValid from "../modules/isRacingCountInputValid.js";
 
-export default function racingCarGame() {
+export default function racingCarGameController() {
     this.racingGameInfo = {
         carNameArray : [],
         raceCount : 0,
     };
     this.racingCarView = new RacingCarView();
-    this.racingCarModel = new RacingCar();
+    this.racingCarModel = new RacingCarModel();
     
     this.init = () => {
         addCarNameEvent();
     };
     const addCarNameEvent = () => {
-        $('#car-name-button').addEventListener('click', (e) => {
-            e.preventDefault();  
-            onCarNameButtonClick();
-        });
+        $('#car-name-button').addEventListener('click',onCarNameButtonClick);
     }
-    const onCarNameButtonClick = () => {
+    const onCarNameButtonClick = (event) => {
+        event.preventDefault();
         if(isCarNameInputValid($('#car-name-input').value)){
             this.racingGameInfo.carNameArray = $('#car-name-input').value.split(',').map(carName => carName.trim());
             $('.race-count-input-container').classList.toggle('is-active');
@@ -32,12 +30,10 @@ export default function racingCarGame() {
         }
     }
     const addRacingCountEvent = () => {
-        $('#race-count-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            onRacingCountButtonClick();
-        })
+        $('#race-count-button').addEventListener('click',onRacingCountButtonClick);
     }
-    const onRacingCountButtonClick = () => {
+    const onRacingCountButtonClick = (event) => {
+        event.preventDefault();
         if(isRacingCountInputValid($('#race-count-input').value)){
             this.racingGameInfo.raceCount = Number($('#race-count-input').value);
             handleRacingCarModel();
