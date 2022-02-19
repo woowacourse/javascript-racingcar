@@ -22,21 +22,23 @@ class RacingCarGameController {
   #initDOM() {
     this.carNameInputField = selectDOM(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
     this.countInputField = selectDOM(`#${DOM.COUNT_INPUT_FIELD_ID}`);
+    this.gameStartBtn = selectDOM(`#${DOM.GAME_START_BTN_ID}`);
   }
 
   #initHandler() {
     this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.addEventListener('click', this.onCountInputFieldClick);
+    this.gameStartBtn.addEventListener('click', this.onGameStartBtnClick);
   }
 
   onCarNameInputFieldClick = (e) => {
     e.preventDefault();
     const { target: carNameBtn, currentTarget: carNameInputField } = e;
     if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
-      const carNameValue = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField).value;
+      const carNameInput = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField);
       try {
-        this.carManager.makeCars(carNameValue);
-        this.view.renderCountInputForm();
+        this.carManager.makeCars(carNameInput.value);
+        this.view.renderNameInputSuccess(carNameInput, carNameBtn);
       } catch ({ message }) {
         alert(message);
       }
@@ -47,14 +49,18 @@ class RacingCarGameController {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN_ID) {
-      const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField).value;
+      const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField);
       try {
-        this.setTotalRounds(countInput);
-        this.simulateGame();
+        this.setTotalRounds(countInput.value);
+        this.view.renderCountInputSuccess(countInput, countBtn);
       } catch ({ message }) {
         alert(message);
       }
     }
+  };
+
+  onGameStartBtnClick = () => {
+    this.simulateGame();
   };
 
   setTotalRounds(countInput) {
@@ -108,8 +114,6 @@ class RacingCarGameController {
   }
 
   afterRenderComplete() {
-    this.view.disableInputButtons();
-
     const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);

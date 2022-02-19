@@ -8,11 +8,10 @@ class RacingCarGameView {
 
   #initDOM() {
     this.countInputForm = selectDOM(`#${DOM.COUNT_INPUT_FORM_ID}`);
+    this.gameStartBtn = selectDOM(`#${DOM.GAME_START_BTN_ID}`);
     this.resultField = selectDOM(`#${DOM.RESULT_FIELD_ID}`);
     this.gameProgress = selectDOM(`#${DOM.GAME_PROGRESS_ID}`);
     this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
-    this.carNameBtn = selectDOM(`#${DOM.CAR_NAME_BTN_ID}`);
-    this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
   }
 
   #initSpinner() {
@@ -21,6 +20,7 @@ class RacingCarGameView {
   }
 
   renderGameStart(cars) {
+    this.disableGameStartBtn();
     const progressTemplate = cars.map((car) => RacingCarGameView.generateProgressTemplate(car));
 
     this.gameProgress.append(...progressTemplate);
@@ -50,6 +50,7 @@ class RacingCarGameView {
   }
 
   renderGameResults(winnersArray) {
+    this.gameStartBtn.textContent = '게임 진행 완료';
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winnersArray,
     });
@@ -61,13 +62,23 @@ class RacingCarGameView {
     );
   }
 
-  renderCountInputForm() {
-    this.countInputForm.style.display = 'block';
+  renderNameInputSuccess(carNameInput, carNameBtn) {
+    carNameInput.disabled = true;
+    carNameBtn.disabled = true;
+    carNameBtn.textContent = '입력완료';
+    this.countInputForm.classList.remove('hide');
   }
 
-  disableInputButtons() {
-    this.carNameBtn.disabled = true;
-    this.countBtn.disabled = true;
+  renderCountInputSuccess(countInput, countBtn) {
+    countInput.disabled = true;
+    countBtn.disabled = true;
+    countBtn.textContent = '입력완료';
+    this.gameStartBtn.classList.remove('hide');
+  }
+
+  disableGameStartBtn() {
+    this.gameStartBtn.disabled = true;
+    this.gameStartBtn.textContent = '게임 진행 중';
   }
 
   rotateSpinner = () => {

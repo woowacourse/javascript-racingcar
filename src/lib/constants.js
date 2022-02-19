@@ -8,6 +8,8 @@ export const DOM = Object.freeze({
   CAR_NAME_INPUT_ID: 'car-name-input',
   COUNT_INPUT_ID: 'count-input',
 
+  GAME_START_BTN_ID: 'game-start-btn',
+
   RESTART_BTN_ID: 'restart-btn',
 
   COUNT_INPUT_FORM_ID: 'count-input-form',

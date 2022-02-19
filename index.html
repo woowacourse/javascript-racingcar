@@ -13,19 +13,20 @@
         <section id="input-field" aria-labeledby="a11y-input-section">
           <h2 hidden id="a11y-input-section">자동차 이름 및 게임 시행 횟수 입력 섹션</h2>
           <form id="car-name-input-form">
-            <label for="car-name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+            <label for="car-name-input">5자 이하의 자동차 이름을 쉼표로 구분하여 입력해주세요.</label>
             <div id="car-name-input-field">
               <input id="car-name-input" type="text" />
-              <button id="car-name-btn">확인</button>
+              <button id="car-name-btn">입력하기</button>
             </div>
           </form>
-          <form id="count-input-form">
+          <form id="count-input-form" class="hide">
             <label for="count-input">시도할 횟수를 입력해주세요.</label>
-            <div id="count-input-field">
+            <div id="count-input-field" >
               <input id="count-input" type="number" />
-              <button id="count-btn">확인</button>
+              <button id="count-btn">입력하기</button>
             </div>
           </form>
+          <button id="game-start-btn" class="hide">게임 시작하기</button>
         </section>
         <section id="result-field" aria-labeledby="a11y-result-section">
           <h2 hidden id="a11y-result-section">게임 진행 결과 표시 섹션</h2>

@@ -16,6 +16,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     //when
     cy.inputNames({ nameInput });
     cy.inputCount({ countInput });
+    cy.get(`#${DOM.GAME_START_BTN_ID}`).click();
 
     return countInput * GAME_ROUND_INTERVAL;
   };

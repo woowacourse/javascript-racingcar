@@ -1,6 +1,7 @@
 body {
   background-color: #f9f9f9;
 }
+
 body button {
   background-color: #00bcd4;
   color: #ffffff;
@@ -8,23 +9,36 @@ body button {
   padding: 10px 20px;
   border-radius: 4px;
 }
+
 input {
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 10px;
   border-radius: 4px;
   outline: none;
 }
+
+input:disabled::after {
+  background-color: #888888;
+}
+
+button:disabled {
+  background-color: #888888;
+}
+
 h1,
 h2 {
   text-align: center;
 }
+
 form {
-  margin: 20px auto;
+  width: 100%;
   max-width: 500px;
 }
+
 form > label {
   color: rgba(0, 0, 0, 0.87);
 }
+
 form > div {
   width: 100%;
   display: flex;
@@ -33,6 +47,7 @@ form > div {
 
   margin: 10px 0;
 }
+
 form > div > input {
   flex: 1;
 }
@@ -74,7 +89,7 @@ form > div > input {
   margin-top: 10px;
 }
 
-#count-input-form {
+.hide {
   display: none;
 }
 
@@ -85,4 +100,12 @@ form > div > input {
   border: #00bcd4 solid 5px;
   border-top-color: transparent;
   margin: 10px auto;
+}
+
+#input-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
 }
