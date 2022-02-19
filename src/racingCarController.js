@@ -83,10 +83,7 @@ export default class RacingCarController {
   #racing(car) {
     let turn = 0;
     const racingTimer = setInterval(() => {
-      car.moveForward();
-
-      if (car.isMoved) RacingCarView.renderMoveForward(car);
-
+      RacingCarController.#moveOrStop(car);
       turn += 1;
 
       if (turn === this.model.racingCount) {
@@ -94,6 +91,14 @@ export default class RacingCarController {
         clearInterval(racingTimer);
       }
     }, 1000);
+  }
+
+  static #moveOrStop(car) {
+    car.moveForward();
+
+    if (car.isMoved) {
+      RacingCarView.renderMoveForward(car);
+    }
   }
 
   #finishRace() {
