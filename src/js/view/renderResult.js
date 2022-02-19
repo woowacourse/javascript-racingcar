@@ -52,32 +52,28 @@ const removeLoadingAnimation = () => {
 };
 
 const domInit = cars => {
-  return new Promise(resolve => {
-    const turnResult = document.querySelector('#turn-result');
+  const turnResult = document.querySelector('#turn-result');
 
-    cars.forEach(car => {
-      const { name } = car;
-      const carResult = document.createElement('div');
-      const carNameTitle = document.createElement('div');
-      const carScoreArrowsBox = document.createElement('div');
+  cars.forEach(car => {
+    const { name } = car;
+    const carResult = document.createElement('div');
+    const carNameTitle = document.createElement('div');
+    const carScoreArrowsBox = document.createElement('div');
 
-      carResult.setAttribute('class', 'car-result');
-      carNameTitle.setAttribute('class', 'car-Name-title');
-      carNameTitle.innerHTML = `${name}`;
-      carScoreArrowsBox.setAttribute('class', 'car-score-arrows');
+    carResult.setAttribute('class', 'car-result');
+    carNameTitle.setAttribute('class', 'car-Name-title');
+    carNameTitle.innerHTML = `${name}`;
+    carScoreArrowsBox.setAttribute('class', 'car-score-arrows');
 
-      carResult.append(carNameTitle, carScoreArrowsBox, loadingAnimation());
-      turnResult.appendChild(carResult);
-    });
-
-    resolve();
+    carResult.append(carNameTitle, carScoreArrowsBox, loadingAnimation());
+    turnResult.appendChild(carResult);
   });
 };
 
 export const renderResult = async ({ cars, lastTurnCount, winners }) => {
   const currentTurnCount = 1;
 
-  await domInit(cars);
+  domInit(cars);
 
   await playTurnResult({
     lastTurnCount,
