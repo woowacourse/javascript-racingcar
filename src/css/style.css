@@ -247,13 +247,40 @@
 }
 
 .racing-arrow-box {
+  margin-right: 8px;
   width: 96px;
 }
 
 .racing-arrow-wrap {
+  width: 96px;
   height: 36px;
   text-align: center;
   margin-right: 8px;
+}
+
+.loading-spin-wrap {
+  width: 20px;
+  height: 20px;
+  margin-left: 38px;
+  animation-name: spin;
+  animation-duration: 5000ms;
+  box-sizing: border-box;
+  border: 3px solid #00bcd4;
+  border-radius: 50%;
+  border-right-color: transparent;
+  -webkit-animation: spin 1000ms infinite linear;
+  -moz-animation: spin 1000ms infinite linear;
+  -ms-animation: spin 1000ms infinite linear;
+  animation: spin 1000ms infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .racing-winner {

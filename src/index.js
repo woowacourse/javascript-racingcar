@@ -2,6 +2,7 @@ import Car from "./Car.js";
 import { $ } from "./dom.js";
 
 const RANDOM_MAX_NUMBER = 9;
+const GAME_DELAY_TIME = 1000;
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
@@ -49,7 +50,7 @@ class RacingcarGame {
   }
 
   isValidRaceNumber() {
-    this.raceCount = $(".race-count-input").value;
+    this.raceCount = Number($(".race-count-input").value);
     if (this.raceCount === "" || this.raceCount <= 0) {
       return false;
     }
@@ -67,34 +68,6 @@ class RacingcarGame {
     this.carList = this.carNames.map((name) => new Car(name));
     this.showCarBoxes();
     this.playGame();
-    this.showCarsMove();
-    const winner = this.findWinner();
-    this.showWinner(winner);
-    this.bindRestartEvent();
-  }
-
-  playGame() {
-    for (let i = 0; i < this.raceCount; i += 1) {
-      this.carList.forEach((eachCar) => {
-        const randomRaceScore = parseInt(
-          Math.random() * (RANDOM_MAX_NUMBER + 1)
-        );
-        if (eachCar.canMove(randomRaceScore)) {
-          eachCar.move();
-        }
-      });
-    }
-  }
-
-  showCarsMove() {
-    this.carList
-      .map((car) => this.template.carArrow(car.count))
-      .map((arrowTemplate) => {
-        const wrap = document.createElement("div");
-        wrap.classList.add("racing-arrow-box");
-        wrap.innerHTML = arrowTemplate;
-        $(".racing-arrow").append(wrap);
-      });
   }
 
   showCarBoxes() {
@@ -103,9 +76,66 @@ class RacingcarGame {
       .join("");
   }
 
+  playGame() {
+    let count = 0;
+    this.settingCarMove();
+    const racingTimer = setInterval(() => {
+      this.playOneTurn();
+      count += 1;
+      if (count === this.raceCount) {
+        clearInterval(racingTimer);
+        this.endGame();
+      }
+    }, GAME_DELAY_TIME);
+  }
+
+  playOneTurn() {
+    this.carList.forEach((eachCar, index) => {
+      const randomRaceScore = parseInt(Math.random() * (RANDOM_MAX_NUMBER + 1));
+      if (eachCar.canMove(randomRaceScore)) {
+        eachCar.move();
+        this.showCarMove(index);
+      }
+    });
+  }
+
+  settingCarMove() {
+    this.carList.forEach((car, index) => {
+      const wrap = document.createElement("div");
+      wrap.setAttribute("class", "racing-arrow-box");
+      wrap.setAttribute("id", `racing-arrow-box-${index}`);
+      wrap.innerHTML = Template.loading();
+      $(".racing-arrow").append(wrap);
+    });
+  }
+
+  showCarMove(index) {
+    $(`#racing-arrow-box-${index}`).insertAdjacentHTML(
+      "afterbegin",
+      Template.carArrow()
+    );
+  }
+
+  endGame() {
+    this.endLoading();
+    const winner = this.findWinner();
+    this.showWinner(winner);
+    this.bindRestartEvent();
+  }
+
+  endLoading() {
+    this.carList.forEach((car, index) => {
+      let carMoveState = $(`#racing-arrow-box-${index}`);
+      carMoveState.removeChild(carMoveState.lastChild);
+    });
+  }
+
   findWinner() {
-    let winnerCount = Math.max(this.carList);
-    let winner = this.carList.filter((car) => car.count == winnerCount);
+    const carCountList = this.carList.map((car) => car.count);
+    let winnerCount = Math.max(...carCountList);
+    let winner = this.carList
+      .filter((car) => car.count == winnerCount)
+      .map((car) => car.carName);
     return winner.join(", ");
   }
 
@@ -113,8 +143,10 @@ class RacingcarGame {
     $(
       ".racing-result"
     ).innerHTML = `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`;
-    $(".racing-result").innerHTML +=
-      "<div class='restart-button'>다시 시작하기</div>";
+    $(".racing-result").insertAdjacentHTML(
+      "beforeend",
+      "<div class='restart-button'>다시 시작하기</div>"
+    );
     this.makeDisableInput();
   }
 
@@ -148,8 +180,12 @@ class RacingcarGame {
 }
 
 class Template {
-  carArrow(eachcount) {
-    return `<div class="racing-arrow-wrap">⬇️️</div>`.repeat(eachcount);
+  static carArrow() {
+    return '<div class="racing-arrow-wrap">⬇️️</div>';
+  }
+
+  static loading() {
+    return '<div class="loading-spin-wrap"> </div>';
   }
 }
 
