@@ -59,11 +59,6 @@ export default class RacingCarController {
     if (isValidRacingCount(racingCount)) {
       this.model.setRacingCount(racingCount);
       this.race(racingCount);
-      this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
-      this.view.renderWinners(this.model.getWinnners());
-      this.view.renderRestart();
-      this.view.selectRestartDOM();
-      this.attachRestartEvents();
 
       return;
     }
@@ -73,9 +68,32 @@ export default class RacingCarController {
   }
 
   race(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.model.cars.forEach((car) => car.moveForward());
-    }
+    console.log('spinner 킴');
+    const raceInterval = this.raceInterval();
+
+    setTimeout(() => {
+      clearInterval(raceInterval);
+      this.renderResultAfterTime();
+    }, racingCount * 1000);
+  }
+
+  renderResultAfterTime() {
+    return setTimeout(() => {
+      this.view.renderWinners(this.model.getWinnners());
+      this.view.renderRestart();
+      this.view.selectRestartDOM();
+      this.attachRestartEvents();
+    }, 2000);
+  }
+
+  raceInterval() {
+    return setInterval(() => {
+      console.log('spinner 끔');
+      this.model.cars.forEach((car) => {
+        if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
+      });
+      console.log('spinner 킴');
+    }, 1000);
   }
 
   handleRestart() {

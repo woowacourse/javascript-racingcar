@@ -65,10 +65,8 @@ export default class RacingCarView {
   }
 
   renderMoveForwardArrow(car) {
-    const { name, moveCount } = car;
-    const carNode = this.#findCarNode(name)[0];
-
-    carNode.innerHTML += racingProgressTemplate().repeat(moveCount);
+    const carNode = this.#findCarNode(car.name)[0];
+    carNode.innerHTML += racingProgressTemplate();
   }
 
   #findCarNode(name) {
