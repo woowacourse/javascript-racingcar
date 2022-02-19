@@ -1,21 +1,18 @@
 import Car from './Car.js';
-import { ID, MESSAGE } from './constants.js';
-import { getElement } from './utils/dom.js';
-import { userMovementView, winnersView } from './view.js';
+import { ID, MESSAGE, INTERVAL } from './constants.js';
+import { getElement, changeActivity } from './utils/dom.js';
+import { removeAllChildNodes, clearLoadingView, resultView, winnerAlert, initRacingStatus, carMovementView, loaderView, loadingView } from './view.js';
 import {
   parseCarName,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
-  moveCars,
-  getMaxCount,
-  removeAllChildNodes
+  getMaxCount
 } from './utils/index.js';
-
 class CarRacing {
   constructor() {
     this.cars = [];
-    this.winners = [];
+    this.winners = '';
     this.bindEvents();
   }
 
@@ -36,9 +33,6 @@ class CarRacing {
   }
 
   onSubmitCarName(names) {
-    if (this.cars.length) {
-      return alert(MESSAGE.REINPUT_NAME);
-    }
     const carNames = parseCarName(names);
     if (!validateCarNameLength(carNames)) {
       return alert(MESSAGE.WRONG_NAME_LENGTH);
@@ -48,22 +42,20 @@ class CarRacing {
     }
     getElement(ID.RACING_COUNT_INPUT).focus();
     this.cars = carNames.map(name => new Car(name));
+
+    changeActivity([ID.CAR_NAMES_INPUT, ID.CAR_NAMES_SUBMIT]);
   }
 
   onSubmitRacingCount(count) {
-    if (this.winners.length) {
-      return alert(MESSAGE.REINPUT_COUNT);
-    }
     if (!this.cars.length) {
       return alert(MESSAGE.NO_CAR);
     }
     if (!validateRacingCount(count)) {
       return alert(MESSAGE.WRONG_COUNT);
     }
-    getElement(ID.RACING_COUNT_INPUT).blur();
-    moveCars(this.cars, count);
-    getElement(ID.RACING_STATUS).insertAdjacentHTML('afterbegin', this.printResult());
-    getElement(ID.RACING_WINNERS).insertAdjacentHTML('afterbegin', winnersView(this.getWinner()));
+
+    changeActivity([ID.RACING_COUNT_INPUT, ID.RACING_COUNT_SUBMIT]);
+    this.progressGame(parseInt(count))
   }
 
   onClickRestart() {
@@ -71,19 +63,55 @@ class CarRacing {
     getElement(ID.RACING_COUNT_INPUT).value = '';
     removeAllChildNodes(getElement(ID.RACING_WINNERS));
     removeAllChildNodes(getElement(ID.RACING_STATUS));
+    changeActivity([ID.CAR_NAMES_INPUT, ID.CAR_NAMES_SUBMIT, ID.RACING_COUNT_INPUT, ID.RACING_COUNT_SUBMIT]);
+    getElement(ID.RESTART_BUTTON).style.visibility="hidden";
     this.cars = [];
-    this.winners = [];
   }
 
-  printResult() {
-    return this.cars.map(car => userMovementView(car)).join('');
+  progressGame(count){
+    let startTime = 0, progressCount = 0, progressSecond = 0;
+    initRacingStatus(this.cars);
+
+    const render = (timeStamp) => {
+      if(!startTime) startTime = timeStamp;
+      progressSecond = Math.floor((timeStamp - startTime)/1000);
+      if(progressCount === count){
+        cancelAnimationFrame(render);
+        clearLoadingView(this.cars);
+        this.findWinner(this.cars);
+        resultView(this.winners);
+        return this.delayResult(this.winners);
+      }
+      if(progressCount!==progressSecond){
+        this.moveCar(this.cars);
+        progressCount=progressSecond;
+      }
+      requestAnimationFrame(render)
+    }
+    requestAnimationFrame(render)
   }
 
-  getWinner() {
-    const maxCount = getMaxCount(this.cars);
-    return (this.winners = this.cars.filter(
+  moveCar(cars) {
+    cars.forEach((car)=>{
+      if(car.move()){
+        const carStatus = getElement(`car-status-${car.name}`)
+        carStatus.replaceChild(carMovementView(), carStatus.lastChild);
+        carStatus.insertAdjacentHTML('beforeend', loadingView);
+      }
+    });
+  }
+  
+  delayResult(winners)  {
+    setTimeout(()=>{
+      winnerAlert(winners)
+    }, INTERVAL.ALERT);
+  }
+  
+  findWinner(cars) {
+    const maxCount = getMaxCount(cars);
+    this.winners = cars.filter(
       car => car.racingCount === maxCount,
-    ));
+    ).map((car)=>car.name).join(',');
   }
 }
 
