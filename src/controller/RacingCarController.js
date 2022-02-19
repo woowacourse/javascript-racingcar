@@ -135,6 +135,8 @@ class RacingCarController {
   handleRestartBtnClickEvent() {
     this.model.resetStatus();
     this.view.resetElement();
+    this.view.activateCarNamesForm();
+    this.view.activateRacingCountForm();
     this.view.hideElement();
   }
 }

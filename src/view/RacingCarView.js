@@ -80,6 +80,16 @@ class RacingCarView {
     this.$finalWinnerResult.textContent = finalWinner;
   }
 
+  activateCarNamesForm() {
+    this.$carNamesInput.disabled = false;
+    this.$carNamesButton.disabled = false;
+  }
+
+  activateRacingCountForm() {
+    this.$racingCountInput.disabled = false;
+    this.$racingCountButton.disabled = false;
+  }
+
   deactivateCarNamesForm() {
     this.$carNamesInput.disabled = true;
     this.$carNamesButton.disabled = true;
