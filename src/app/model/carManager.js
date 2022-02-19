@@ -25,7 +25,7 @@ class CarManager {
   }
 
   static isCarNameInRange(name) {
-    return checkStringInRange(name, CAR_NAME_MIN_LENGTH, CAR_NAME_MAX_LENGTH);
+    return checkStringInRange({ str: name, min: CAR_NAME_MIN_LENGTH, max: CAR_NAME_MAX_LENGTH });
   }
 }
 

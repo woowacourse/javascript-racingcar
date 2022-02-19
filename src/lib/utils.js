@@ -4,7 +4,7 @@ export const splitString = (str, separator) => str.split(separator);
 
 export const isNumberBelowZero = (number) => number <= 0;
 
-export const checkStringInRange = (str, min, max) => str.length >= min && str.length <= max;
+export const checkStringInRange = ({ str, min, max }) => str.length >= min && str.length <= max;
 
 export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
