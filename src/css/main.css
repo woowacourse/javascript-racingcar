@@ -100,12 +100,16 @@ body {
 
 .racing-car-container {
   display: none;
-  grid-template-columns: repeat(5, 1fr);
-  grid-column-gap: 0.58rem;
 }
 
 .racing-car-container[data-state='on'] {
-  display: grid;
+  display: flex;
+  justify-content: center;
+}
+
+.car-instance {
+  min-width: 6.5rem;
+  margin: 0.38rem;
 }
 
 .racing-car {
