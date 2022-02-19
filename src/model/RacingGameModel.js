@@ -50,12 +50,9 @@ export default class RacingGameModel {
   findWinners() {
     const maxPosition = this.findMaxPosition();
 
-    const winnerList = this.#cars.reduce((accumulator, current) => {
-      if (current.position === maxPosition) {
-        accumulator.push(current.name);
-      }
-      return accumulator;
-    }, []);
+    const winnerList = this.#cars
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
 
     return winnerList;
   }
