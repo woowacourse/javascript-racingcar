@@ -185,10 +185,15 @@ describe('자동차 경주 진행 상황  ', () => {
 
   it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하 메시지를 확인 할 수 있다.', () => {
     // given
+    const alert = cy.spy(window, 'alert');
     cy.clock();
     // when
     cy.submitCarNames(availableCarName);
     cy.submitRacingCount(RACING_COUNT.MAX);
+
+    // 2초가 지나가기 전에는 축하 메시지를 볼 수 없다.
+    expect(alert).to.not.be.called;
+
     cy.tick(RACING_COUNT.MAX * milliseconds + delayTime);
     cy.tick(END_MESSAGE_DELAY);
     // then
