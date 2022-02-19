@@ -1,6 +1,6 @@
 import { NUMBER, ERROR_MSG } from '../utils/constants.js';
 
-export const Validator = {
+export const validator = {
   isCarNameBlank(carNames) {
     const filtered = carNames.filter((name) => name === '');
     if (filtered.length > NUMBER.ZERO) {
@@ -17,7 +17,7 @@ export const Validator = {
     }
   },
 
-  isInValidCarNamesInput(carNames) {
+  isInvalidCarNamesInput(carNames) {
     return ['isCarNameBlank', 'isInvalidCarNameLength'].some((method) => this[method](carNames));
   },
 
@@ -28,7 +28,7 @@ export const Validator = {
     }
   },
 
-  isInValidRacingCountInput(number) {
+  isInvalidRacingCountInput(number) {
     return this.isNotNaturalNumber(number);
   },
 };

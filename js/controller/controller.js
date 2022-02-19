@@ -1,7 +1,7 @@
 import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
-import { Validator } from '../validator/validator.js';
+import { validator } from '../validator/validator.js';
 import { NUMBER, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
@@ -19,7 +19,7 @@ export default class Controller {
         .value.split(',')
         .map((carName) => carName.trim());
 
-      if (Validator.isInValidCarNamesInput(carNamesInput)) {
+      if (validator.isInvalidCarNamesInput(carNamesInput)) {
         return;
       }
 
@@ -34,7 +34,7 @@ export default class Controller {
       e.preventDefault();
       const carRacingCountInput = $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
 
-      if (Validator.isInValidRacingCountInput(carRacingCountInput)) {
+      if (validator.isInvalidRacingCountInput(carRacingCountInput)) {
         return;
       }
 
