@@ -1,4 +1,4 @@
-import { DELAY_AFTER_END, DELAY_PER_ROUND, DOM } from '../../src/lib/constants.js';
+import { DELAY_AFTER_END, DELAY_PER_ROUND, DOM, ERROR_MESSAGE } from '../../src/lib/constants.js';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../../index.html';
@@ -27,7 +27,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.on('window:alert', alertStub);
 
     // when - then
-    cy.isStubCalled(cy.carNameInput(invalidInput), alertStub);
+    cy.isStubCalled(cy.carNameInput(invalidInput), alertStub, ERROR_MESSAGE.CAR_NAME_LENGTH_OVER);
   });
 
   it('횟수 입력란에 1 미만의 값이 주어지면 에러 메세지를 보게된다.', () => {
@@ -41,7 +41,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.carNameInput(nameInput);
 
     // when - then
-    cy.isStubCalled(cy.countInput(invalidInput), alertStub);
+    cy.isStubCalled(cy.countInput(invalidInput), alertStub, ERROR_MESSAGE.INVALID_COUNT);
   });
 
   it('재시작 버튼을 누르면 시작 화면을 보게된다.', () => {
@@ -100,7 +100,6 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.carNameInput(nameInput);
     cy.countInput(countInput);
 
-    // cy.wait(totalDelay);
     cy.wait(totalDelay).then(() => {
       expect(alertStub).to.be.called;
     });

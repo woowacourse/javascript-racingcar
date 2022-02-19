@@ -43,7 +43,7 @@ class RacingCarGame {
       this.modelManager.setCars(cars);
       this.view.renderAfterCarSetting();
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   }
 
@@ -66,7 +66,7 @@ class RacingCarGame {
       this.view.renderResults(winners);
       this.afterRenderComplete(winners);
     } catch (error) {
-      alert(error);
+      alert(error.message);
     }
   }
 

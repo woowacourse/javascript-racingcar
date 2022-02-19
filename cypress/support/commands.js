@@ -10,9 +10,9 @@ Cypress.Commands.add('countInput', (countInput) => {
   return cy.get(DOM.COUNT_BTN.toID()).click();
 });
 
-Cypress.Commands.add('isStubCalled', (when, stub) => {
+Cypress.Commands.add('isStubCalled', (when, stub, message) => {
   when.then(() => {
-    expect(stub).to.be.called;
+    expect(stub).to.be.calledWith(message);
   });
 });
 
