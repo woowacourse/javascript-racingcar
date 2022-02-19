@@ -17,14 +17,14 @@ class RacingcarGame {
   }
 
   bindEvent() {
-    $(".car-name-form").addEventListener("submit", (event) => {
+    $(".car-name-button").addEventListener("click", (event) => {
       event.preventDefault();
       this.checkCarName();
       if (this.canStartGame()) {
         this.startGame();
       }
     });
-    $(".race-count-form").addEventListener("submit", (event) => {
+    $(".race-count-button").addEventListener("click", (event) => {
       event.preventDefault();
       this.isCorrectRaceCount = this.isValidRaceNumber();
       if (!this.isCorrectRaceCount) {
