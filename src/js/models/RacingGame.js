@@ -1,5 +1,6 @@
 import RacingCar from './RacingCar.js';
-import isAdvance from '../utils/isAdvance.js';
+import NUMBERS from '../constants/number.js';
+import generateRandomNumber from '../utils/generateRandomNumber.js';
 
 class RacingGame {
   constructor() {
@@ -54,12 +55,18 @@ class RacingGame {
 
   play() {
     this.state.carList.forEach((car) => {
-      if (isAdvance()) {
+      if (this.isAdvance()) {
         car.go();
         return;
       }
       car.stop();
     });
+  }
+
+  isAdvance() {
+    return (
+      generateRandomNumber(NUMBERS.ENTIRE_NUMBER) >= NUMBERS.MOVABLE_NUMBER
+    );
   }
 }
 
