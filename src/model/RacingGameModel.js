@@ -7,9 +7,11 @@ export default class RacingGameModel {
   #round = INIT.ROUND;
 
   moveCars(moves) {
-    this.#cars = this.#cars.map((car, index) => {
-      return { ...car, position: car.position + moves[index] };
-    });
+    this.#cars = this.#cars.map((car, index) => ({
+      ...car,
+      position: car.position + moves[index]
+    }));
+    console.log(this.#cars);
   }
 
   set cars(names) {

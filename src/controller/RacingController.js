@@ -53,7 +53,7 @@ export default class RacingController {
 
   startRacingGame() {
     const { round } = this.model;
-    let currentRound = 1;
+    let currentRound = 0;
     const playIntervalId = setInterval(() => {
       this.playEachTurn();
       currentRound += 1;
@@ -71,6 +71,7 @@ export default class RacingController {
     const moves = this.model.cars.map(() => {
       return RacingController.moveOrNot();
     });
+    console.log('moves', moves);
     this.model.moveCars(moves);
     this.view.renderProgress(this.model.cars);
   }
