@@ -11,9 +11,9 @@ import {
 import { clearState, setCars, setRoundCount } from "../models/Race.js";
 import {
   clearInputs,
-  disapearRoundCountInputForm,
-  disapearRacingContainer,
-  disapearRestartButton,
+  hideRoundCountInputForm,
+  hideRacingContainer,
+  hideRestartButton,
   removeCarNames,
   removeWinners,
 } from "../views/view.js";
@@ -58,9 +58,9 @@ function clickRestartButton() {
   clearState();
   clearInputs();
   changeDisableUserInputs();
-  disapearRoundCountInputForm();
-  disapearRacingContainer();
-  disapearRestartButton();
+  hideRoundCountInputForm();
+  hideRacingContainer();
+  hideRestartButton();
   removeCarNames();
   removeWinners();
 }

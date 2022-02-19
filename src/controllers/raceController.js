@@ -5,7 +5,7 @@ import {
   renderRacingContainer,
   renderRestartButton,
   renderLoadingSpinner,
-  disapearLoadingSpinner,
+  hideLoadingSpinner,
 } from "../views/view.js";
 import { raceState, allocateCars, clearState } from "../models/Race.js";
 import { LOADING_TERM } from "../constants/conditions.js";
@@ -23,7 +23,7 @@ function progressRacing(roundCount) {
   const intervalID = setInterval(() => {
     if (progressCount > roundCount) {
       const winners = pickWinners();
-      disapearLoadingSpinner();
+      hideLoadingSpinner();
       renderWinners(winners);
       renderRestartButton();
       showCongraturationAlert(winners);
@@ -31,7 +31,7 @@ function progressRacing(roundCount) {
       clearInterval(intervalID);
       return;
     }
-    disapearLoadingSpinner();
+    hideLoadingSpinner();
     showMoveForwardCars();
     renderLoadingSpinner();
     progressCount++;

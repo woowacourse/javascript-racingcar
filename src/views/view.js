@@ -42,7 +42,7 @@ export function renderRoundCountInputForm() {
   racingInputForm.classList.add("flex");
 }
 
-export function disapearRoundCountInputForm() {
+export function hideRoundCountInputForm() {
   const racingInputForm = document.getElementById("round-count-input-form");
   racingInputForm.classList.remove("flex");
   racingInputForm.classList.add("display-none");
@@ -54,7 +54,7 @@ export function renderRacingContainer() {
   racingContainer.classList.add("flex");
 }
 
-export function disapearRacingContainer() {
+export function hideRacingContainer() {
   const racingContainer = document.getElementById("racing-container");
   racingContainer.classList.remove("flex");
   racingContainer.classList.add("display-none");
@@ -86,7 +86,7 @@ export function renderRestartButton() {
   racingContainer.classList.add("flex");
 }
 
-export function disapearRestartButton() {
+export function hideRestartButton() {
   const racingContainer = document.getElementById("restart-button");
   racingContainer.classList.remove("flex");
   racingContainer.classList.add("display-none");
@@ -107,7 +107,7 @@ export async function renderLoadingSpinner() {
   });
 }
 
-export function disapearLoadingSpinner() {
+export function hideLoadingSpinner() {
   const racingProgress = document.querySelectorAll(".racing-progress");
   racingProgress.forEach((childNode) => {
     childNode.removeChild(childNode.lastChild);
