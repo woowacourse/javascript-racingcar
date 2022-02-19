@@ -69,7 +69,7 @@ export const ERROR_MESSAGE = {
 
 export const DELIMETER = ',';
 
-export const DELAY = {
+export const DELAY_TIME = {
   WINNER_ALERT: 2000,
   RACING_PROGRESS: 1000,
 };

@@ -19,10 +19,3 @@ export function isValidRacingCount(racingCount) {
     racingCount <= RACING_COUNT_RANGE.MAX
   );
 }
-
-export function isGreaterThanPreviousCarDistance(
-  previousDistance,
-  currentDistance
-) {
-  return previousDistance < currentDistance;
-}

@@ -14,6 +14,6 @@ export function trimStringArray(array) {
   return array.map((string) => string.trim());
 }
 
-export function sleep(delay) {
+export function delay(delay) {
   return new Promise((resolve) => setTimeout(resolve, delay));
 }

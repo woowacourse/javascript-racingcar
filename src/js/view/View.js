@@ -1,4 +1,9 @@
-import { DELAY, DELIMETER, SELECTOR, WINNER_MESSAGE } from '../constants.js';
+import {
+  DELAY_TIME,
+  DELIMETER,
+  SELECTOR,
+  WINNER_MESSAGE,
+} from '../constants.js';
 import { $, $all } from '../utils/utils.js';
 
 export default class View {
@@ -43,7 +48,7 @@ export default class View {
   winnersAlertMessage(winners) {
     setTimeout(() => {
       this.alertMessage(`${winners.join(DELIMETER)}` + WINNER_MESSAGE);
-    }, DELAY.WINNER_ALERT);
+    }, DELAY_TIME.WINNER_ALERT);
   }
 
   alertMessage(message) {

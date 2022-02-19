@@ -1,7 +1,7 @@
 import {
   SELECTOR,
   ERROR_MESSAGE,
-  DELAY,
+  DELAY_TIME,
   WINNER_MESSAGE,
 } from '../../src/js/constants.js';
 
@@ -190,7 +190,7 @@ describe('로딩', () => {
     cy.waitRepeatedly({
       selector: SELECTOR.$SPINNER,
       type: 'be.visible',
-      delay: DELAY.RACING_PROGRESS,
+      delay: DELAY_TIME.RACING_PROGRESS,
       repeatCount: racingCount,
     });
     cy.get(SELECTOR.$SPINNER).should('not.exist');
@@ -201,7 +201,7 @@ describe('로딩', () => {
     const racingCount = '3';
     const alertStub = createAlertStub();
     const totalDelayTime =
-      racingCount * DELAY.RACING_PROGRESS + DELAY.WINNER_ALERT;
+      racingCount * DELAY_TIME.RACING_PROGRESS + DELAY_TIME.WINNER_ALERT;
 
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
