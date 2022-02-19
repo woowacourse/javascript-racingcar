@@ -1,24 +1,24 @@
+/* eslint-disable no-undef */
 import { DELAY, INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
 
-/* eslint-disable no-undef */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
+  const carName = 'Marco';
+  const racingCount = 3;
 
   it('1. 게임을 완료하고 우승자를 확인할 수 있어야 한다.', () => {
     // given
     cy.visit(baseUrl);
-    const carNames = 'Marco';
-    const winner = '🏆 최종 우승자: Marco🏆';
-    const racingCount = 1;
+    const winnerSpan = `🏆 최종 우승자: ${carName}🏆`;
 
     // when
-    cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carNames);
+    cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carName);
     cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
     cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
 
     // then
-    cy.get(SELECTOR.ID.RACING_RESULT).should('have.text', winner);
+    cy.get(SELECTOR.ID.RACING_RESULT).should('have.text', winnerSpan);
   });
 
   describe('2. 잘못된 자동차 이름 입력 유효성 검사', () => {
@@ -69,18 +69,15 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     beforeEach(() => {
       // given
       cy.visit(baseUrl);
-      const carNames = 'Marco';
-      const racingCount = 3;
 
       // when
-      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carNames);
+      cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carName);
       cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
       cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
       cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
     });
 
     it('4-1. 시도횟수 동안 1초의 텀을 두고 스피너 로딩 애니메이션이 표시되어야 한다.', () => {
-      const racingCount = 3;
       cy.clock();
 
       for (let i = 0; i < racingCount; i++) {
@@ -99,7 +96,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       if (cy.get(SELECTOR.ID.RACING_RESULT)) {
         cy.tick(DELAY.NOTIFY_RESULT_TIME).then(() => {
           cy.expect(alertStub.getCall(0)).to.be.calledWith(
-            `우승자는 Marco입니다.`
+            `우승자는 ${carName}입니다.`
           );
         });
       }
