@@ -1,7 +1,7 @@
 import RacingGame from './models/RacingGame.js';
 import RacingGameView from './views/RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
-import { $ } from './utils/element-tools.js';
+import { $ } from './utils/elementSeletor.js';
 import SELECTOR from './constants/selector.js';
 import { isCarNameInputValid, isRaceTimeValid } from './racingGameHelper.js';
 import delay from './utils/delay.js';

@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/element-tools.js';
+import { $, $$ } from '../utils/elementSeletor.js';
 import SELECTOR from '../constants/selector.js';
 import TEMPLATE from '../constants/template.js';
 
