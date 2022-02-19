@@ -23,13 +23,13 @@ export default class View {
   }
 
   renderLoader() {
-    $$('#car-progress-result').forEach((el) => {
+    $$(SELECTOR.CAR_PROGRESS_RESULT).forEach((el) => {
       el.insertAdjacentHTML('beforeend', template.loaderTemplate());
     });
   }
 
   hideLoader() {
-    $$('.loader').forEach((el) => {
+    $$(SELECTOR.LOADER).forEach((el) => {
       el.style.display = 'none';
     });
   }

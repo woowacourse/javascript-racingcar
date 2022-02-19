@@ -30,7 +30,6 @@ export const SELECTOR = {
   CAR_RACING_WINNER: '#car-racing-winner',
   GAME_RESTART: '#game-restart',
 
-  RESULT_CAR_NAME: 'result-car-name',
-  CAR_PROGRESS_RESULT: 'car-progress-result',
-  WINDOW_ALERT: 'window:alert',
+  CAR_PROGRESS_RESULT: '#car-progress-result',
+  LOADER: '.loader',
 };
