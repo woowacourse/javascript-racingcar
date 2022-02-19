@@ -37,7 +37,6 @@ class RacingGame {
   winner() {
     let maxDistance = Number.MIN_SAFE_INTEGER;
     this.carList.forEach((item) => {
-      console.log(item.name, item.distance);
       if (item.distance < maxDistance) {
         return false;
       }

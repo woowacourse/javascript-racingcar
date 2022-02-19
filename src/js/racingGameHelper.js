@@ -17,7 +17,7 @@ const isCarNameInputValid = (value) => {
   }
 
   const names = nameStringToArray(value);
-  console.log(value);
+
   if (
     !hasValidLengthInArray(
       names,

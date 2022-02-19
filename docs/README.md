@@ -101,7 +101,7 @@
 - [x] generateRandomNumber 오류 수정
 - [ ] isMovedInLastRound 로직 다시 한 번 고민
 - [ ] 테스트 코드 매직 넘버 정리, `calledWith` 사용, 주석 표기
-- [ ] 로깅 함수 삭제
+- [x] 로깅 함수 삭제
 
 ---
 
