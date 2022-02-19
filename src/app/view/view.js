@@ -15,12 +15,12 @@ class RacingCarGameView {
   }
 
   #initSpinner() {
-    this.rotateSpinner();
+    this.#rotateSpinner();
     this.currentDegrees = 0;
   }
 
   renderGameStart(cars) {
-    this.disableGameStartBtn();
+    this.#disableGameStartBtn();
     const progressTemplate = cars.map((car) => RacingCarGameView.generateProgressTemplate(car));
 
     this.gameProgress.append(...progressTemplate);
@@ -37,11 +37,11 @@ class RacingCarGameView {
       }
     });
     if (isGameOver) {
-      this.removeSpinner();
+      this.#removeSpinner();
     }
   }
 
-  removeSpinner() {
+  #removeSpinner() {
     cancelAnimationFrame(this.animationId);
     const spinnerArray = Array.from(this.spinners);
     spinnerArray.forEach((spinner) => {
@@ -76,18 +76,18 @@ class RacingCarGameView {
     this.gameStartBtn.classList.remove('hide');
   }
 
-  disableGameStartBtn() {
+  #disableGameStartBtn() {
     this.gameStartBtn.disabled = true;
     this.gameStartBtn.textContent = BUTTON_TEXT.GAME_BUTTON_TEXT_DURING;
   }
 
-  rotateSpinner = () => {
+  #rotateSpinner = () => {
     this.spinners.forEach((spinner) => {
       spinner.style.transform = `rotate(${this.currentDegrees % 360}deg)`;
     });
 
     this.currentDegrees += 10;
-    this.animationId = requestAnimationFrame(this.rotateSpinner);
+    this.animationId = requestAnimationFrame(this.#rotateSpinner);
   };
 
   static generateWinnerString(winnerNames) {

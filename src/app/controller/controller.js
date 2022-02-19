@@ -12,7 +12,6 @@ import RacingCarGameView from '../view/view.js';
 
 class RacingCarGameController {
   start() {
-    this.totalRounds = null;
     this.view = new RacingCarGameView();
     this.carManager = new CarManager();
     this.#initDOM();
@@ -24,25 +23,25 @@ class RacingCarGameController {
   }
 
   #initHandler() {
-    this.inputField.addEventListener('click', this.onInputFieldClick);
+    this.inputField.addEventListener('click', this.#onInputFieldClick);
   }
 
-  onInputFieldClick = (e) => {
+  #onInputFieldClick = (e) => {
     e.preventDefault();
     const { target } = e;
 
     if (target.id === DOM.CAR_NAME_BTN_ID) {
-      this.onCarNameInputFieldClick(target);
+      this.#onCarNameInputFieldClick(target);
     }
     if (target.id === DOM.COUNT_BTN_ID) {
-      this.onCountInputFieldClick(target);
+      this.#onCountInputFieldClick(target);
     }
     if (target.id === DOM.GAME_START_BTN_ID) {
-      this.simulateGame();
+      this.#simulateGame();
     }
   };
 
-  onCarNameInputFieldClick = (target) => {
+  #onCarNameInputFieldClick = (target) => {
     const carNameInput = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, this.inputField);
     try {
       this.carManager.makeCars(carNameInput.value);
@@ -52,30 +51,30 @@ class RacingCarGameController {
     }
   };
 
-  onCountInputFieldClick = (target) => {
+  #onCountInputFieldClick = (target) => {
     const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, this.inputField);
     try {
-      this.setTotalRounds(countInput.value);
+      this.#setTotalRounds(countInput.value);
       this.view.renderCountInputSuccess(countInput, target);
     } catch ({ message }) {
       alert(message);
     }
   };
 
-  setTotalRounds(countInput) {
+  #setTotalRounds(countInput) {
     if (isNumberBelowZero(countInput)) {
       throw Error(ERROR_MESSAGE.INVALID_COUNT);
     }
     this.totalRounds = Number(countInput);
   }
 
-  simulateGame() {
+  #simulateGame() {
     this.view.renderGameStart(this.carManager.cars);
     this.finishedRounds = 0;
-    this.gameIntervalId = setInterval(this.simulateRound.bind(this), GAME_ROUND_INTERVAL);
+    this.gameIntervalId = setInterval(this.#simulateRound.bind(this), GAME_ROUND_INTERVAL);
   }
 
-  simulateRound() {
+  #simulateRound() {
     const movedCars = [];
     this.carManager.cars.forEach((car) => {
       const isMovedCar = RacingCarGameController.processCarRandomMove(car);
@@ -85,7 +84,7 @@ class RacingCarGameController {
     const isGameOver = this.totalRounds === this.finishedRounds;
     this.view.renderRoundResult(movedCars, isGameOver);
     if (isGameOver) {
-      this.afterGameComplete();
+      this.#afterGameComplete();
     }
   }
 
@@ -98,13 +97,13 @@ class RacingCarGameController {
     return false;
   }
 
-  afterGameComplete() {
+  #afterGameComplete() {
     clearInterval(this.gameIntervalId);
-    this.view.renderGameResults(this.getWinners());
-    this.afterRenderComplete();
+    this.view.renderGameResults(this.#getWinners());
+    this.#afterRenderComplete();
   }
 
-  getWinners() {
+  #getWinners() {
     const max = Math.max(...this.carManager.cars.map((car) => car.progress));
     const winners = this.carManager.cars.reduce(
       (arr, { name, progress }) => (progress === max ? [...arr, name] : [...arr]),
@@ -113,10 +112,10 @@ class RacingCarGameController {
     return winners;
   }
 
-  afterRenderComplete() {
+  #afterRenderComplete() {
     const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
-    this.inputField.removeEventListener('click', this.onInputFieldClick);
+    this.inputField.removeEventListener('click', this.#onInputFieldClick);
   }
 }
 export default RacingCarGameController;
