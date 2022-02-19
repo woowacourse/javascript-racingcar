@@ -25,13 +25,19 @@
         ],
         // console.log는 제거
         "no-console": "warn",
-        // param을 재할당하는 것은 anti-pattern이라고 생각함  
-        "no-param-reassign": "error",
+        // param을 재할당하는 것은 anti-pattern이라고 생각함 
+        // > 수정: param 전체가 아닌 그 prop 값은 변경 할 수 있도록 수정 
+        "no-param-reassign": [
+            "error",
+            {
+                "props": false
+            }
+        ],
         "linebreak-style": "off",
         "import/extensions": "off",
         "no-alert": "off",
         "operator-linebreak": "off",
         "comma-dangle": "off",
-        "object-curly-newline": ["error", {"ImportDeclaration": {"minProperties": 5}}]
+        "object-curly-newline": "off"
     }
 }

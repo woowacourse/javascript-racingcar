@@ -1,4 +1,5 @@
-/* eslint-disable no-new */
-import RacingCarGame from './app/index.js';
+import RacingCarGameController from './app/controller/controller.js';
 
-new RacingCarGame();
+const game = new RacingCarGameController();
+
+game.start();
