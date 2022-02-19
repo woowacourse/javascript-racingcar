@@ -299,8 +299,8 @@ button {
 }
 
 .loader {
-  border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid #3498db; /* Blue */
+  border: 8px solid #00bcd4; /* Light grey */
+  border-top: 8px solid #ffffff; /* Blue */
   border-radius: 50%;
   width: 25px;
   height: 25px;
