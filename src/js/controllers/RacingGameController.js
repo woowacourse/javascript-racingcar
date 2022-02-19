@@ -4,7 +4,6 @@ import RacingGameView from '../views/RacingGameView.js';
 import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
-import { MILLISECOND } from '../constants/constants.js';
 import { $ } from '../utils/element-tools.js';
 import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
@@ -86,23 +85,21 @@ export default class RacingGameController {
     let startTime = new Date().getTime();
     const callback = () => {
       const currentTime = new Date().getTime();
-      if (currentTime - 1000 > startTime) {
-        startTime = new Date().getTime();
-        const gamePlay = this.handleRacePlay();
-        if (gamePlay === true) {
-          return;
-        }
-      }
+      const percent = getTimeDiffToPercent(startTime, currentTime, GAME_SETTING.ROUND_INTERVAL);
 
-      const percent = getTimeDiffToPercent(startTime, currentTime, 1 * MILLISECOND);
       this.#racingGameView.setProgressPercent(percent);
-      requestAnimationFrame(callback);
+      const raceInterval = requestAnimationFrame(callback);
+
+      if (currentTime - GAME_SETTING.ROUND_INTERVAL > startTime) {
+        startTime = new Date().getTime();
+        this.handleRacePlay(raceInterval);
+      }
     };
 
     requestAnimationFrame(callback);
   }
 
-  handleRacePlay() {
+  handleRacePlay(raceInterval) {
     const { isGameOver, carList } = this.#racingGameModel.play();
     this.#racingGameView.renderCarAdvance(carList);
 
@@ -111,7 +108,7 @@ export default class RacingGameController {
     }
 
     this.handleWinnersResult();
-    return true;
+    cancelAnimationFrame(raceInterval);
   }
 
   handleWinnersResult() {
