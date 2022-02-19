@@ -2,8 +2,8 @@ import { ERROR_MESSAGE } from '../../src/util/constants.js';
 
 describe('자동차 경주 게임을 진행할 수 있다.', () => {
   beforeEach(() => {
-    const carNames = 'east, west, south, north, all';
-    const count = 5;
+    const carNames = 'east, west, south';
+    const count = 3;
 
     cy.visit('index.html');
 
@@ -19,10 +19,24 @@ describe('자동차 경주 게임을 진행할 수 있다.', () => {
   });
 
   it('다시 시작하기 버튼 클릭시 화면이 리셋 돼야 한다.', () => {
-    cy.get('.restart').click();
+    cy.get('.restart').click({ force: true });
     cy.get('.count-form').should('not.be.visible');
     cy.get('.game-result-container').should('not.be.visible');
     cy.get('.restart-container').should('not.be.visible');
+  });
+});
+
+describe('게임이 끝난 후, 우승자를 확인할 수 있어야한다.', () => {
+  it('게임이 끝난 후, 우승자를 알림창으로 확인할 수 있어야한다.', () => {
+    cy.visit('index.html');
+    const invalidInput = '위니';
+
+    cy.get('.name-input').type(invalidInput);
+    cy.get('.name-button').click();
+
+    cy.on('window:alert', text => {
+      expect(text).to.equal('우승자는 위니 입니다. 🥳');
+    });
   });
 });
 
@@ -50,20 +64,6 @@ describe('예외 상황에서 적절한 에러메시지를 출력한다.', () =>
 
     cy.on('window:alert', text => {
       expect(text).to.equal(ERROR_MESSAGE.NAME_IS_BLANK);
-    });
-  });
-
-  it('시도 횟수가 1미만이면 에러메세지가 뜬다.', () => {
-    const carNames = 'east, west, south, north, all';
-    const invalidInput = '-3';
-
-    cy.get('.name-input').type(carNames);
-    cy.get('.name-button').click();
-    cy.get('.count-input').type(invalidInput);
-    cy.get('.count-button').click();
-
-    cy.on('window:alert', text => {
-      expect(text).to.equal(ERROR_MESSAGE.UNDER_MIN_COUNT);
     });
   });
 });

@@ -9,10 +9,6 @@ import showRestart from '../view/showRestart.js';
 import spinSpinner from '../view/spinSpinner.js';
 import alertWinners from '../view/alertWinners.js';
 
-function sortCars(cars) {
-  return [...cars].sort((a, b) => b.position - a.position);
-}
-
 function isCarCanGo() {
   return Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT;
 }
