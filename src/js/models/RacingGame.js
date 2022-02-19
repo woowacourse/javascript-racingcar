@@ -11,6 +11,7 @@ class RacingGame {
     this.state = {
       carList: [],
       round: 0,
+      movedInThisRound: [],
       winner: [],
     };
   }
@@ -38,6 +39,10 @@ class RacingGame {
     return this.state.winner;
   }
 
+  get movedInThisRound() {
+    return this.state.movedInThisRound;
+  }
+
   setWinner() {
     let maxDistance = Number.MIN_SAFE_INTEGER;
     this.carList.forEach((item) => {
@@ -55,13 +60,18 @@ class RacingGame {
   }
 
   runRound() {
+    this.state.movedInThisRound.length = 0;
     this.state.carList.forEach((car) => {
       if (this.isAdvance()) {
         car.go();
+        this.addCarInMovedList(car);
         return;
       }
-      car.stop();
     });
+  }
+
+  addCarInMovedList(car) {
+    this.state.movedInThisRound.push(car);
   }
 
   isAdvance() {

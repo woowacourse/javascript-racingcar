@@ -112,10 +112,8 @@ class App {
     this.View.LoadingEnd();
 
     this.RacingGame.runRound();
-    this.RacingGame.carList.forEach((car) => {
-      if (car.isMovedInLastRound) {
-        this.View.renderAdvance(car.name);
-      }
+    this.RacingGame.movedInThisRound.forEach((car) => {
+      this.View.renderAdvance(car.name);
     });
   }
 }
