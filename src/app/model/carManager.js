@@ -3,8 +3,8 @@ import {
   CAR_NAME_MIN_LENGTH,
   CAR_NAME_SEPARATOR,
   ERROR_MESSAGE,
-} from '../lib/constants.js';
-import { checkStringInRange, splitString } from '../lib/utils.js';
+} from '../../lib/constants.js';
+import { checkStringInRange, splitString } from '../../lib/utils.js';
 import Car from './car.js';
 
 class CarManager {

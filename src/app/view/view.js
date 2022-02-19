@@ -1,5 +1,5 @@
-import { DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../lib/constants.js';
-import { createDivWithClass, createElementWithId, selectDOM } from '../lib/utils.js';
+import { DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../../lib/constants.js';
+import { createDivWithClass, createElementWithId, selectDOM } from '../../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {

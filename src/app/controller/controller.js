@@ -5,12 +5,12 @@ import {
   MOVE_CONDITION,
   RANGE_MAX,
   RANGE_MIN,
-} from '../lib/constants.js';
-import { isNumberBelowZero, pickNumberInRange, selectDOM } from '../lib/utils.js';
-import CarManager from './carManager.js';
-import RacingCarGameView from './view.js';
+} from '../../lib/constants.js';
+import { isNumberBelowZero, pickNumberInRange, selectDOM } from '../../lib/utils.js';
+import CarManager from '../model/carManager.js';
+import RacingCarGameView from '../view/view.js';
 
-class RacingCarGame {
+class RacingCarGameController {
   start() {
     this.count = null;
     this.view = new RacingCarGameView();
@@ -73,7 +73,7 @@ class RacingCarGame {
   simulateRound() {
     const moved = [];
     this.carManager.cars.forEach((car) => {
-      const carMoved = RacingCarGame.processCarRandomMove(car);
+      const carMoved = RacingCarGameController.processCarRandomMove(car);
       if (carMoved) moved.push(car.id);
     });
     this.finishedCount += 1;
@@ -116,4 +116,4 @@ class RacingCarGame {
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
   }
 }
-export default RacingCarGame;
+export default RacingCarGameController;

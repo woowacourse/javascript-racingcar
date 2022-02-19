@@ -1,4 +1,4 @@
-import { generateId } from '../lib/utils.js';
+import { generateId } from '../../lib/utils.js';
 
 class Car {
   static carIdSet = new Set();
