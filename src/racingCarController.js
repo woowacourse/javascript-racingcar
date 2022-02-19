@@ -8,7 +8,6 @@ export default class RacingCarController {
   constructor() {
     this.model = new RacingCarModel();
     this.view = new RacingCarView();
-    this.init();
   }
 
   init() {
@@ -19,11 +18,11 @@ export default class RacingCarController {
   }
 
   #attachCarNamesEvents() {
-    this.view.$carNamesSubmit.addEventListener('click', this.#handleCarNames.bind(this));
+    this.view.$getCarNamesSubmit().addEventListener('click', this.#handleCarNames.bind(this));
   }
 
   #handleCarNames() {
-    const carNamesInput = this.view.$carNamesInput.value.split(',');
+    const carNamesInput = this.view.$getCarNamesInput().value.split(',');
     const carNames = carNamesInput.map((name) => name.trim());
 
     if (!isValidCarNames(carNames)) {
@@ -45,17 +44,17 @@ export default class RacingCarController {
     this.view.selectRacingCountDOM();
     this.#attachRacingCountEvents();
     this.model.setCars(carNames);
-    RacingCarView.renderCars(this.model.cars);
+    RacingCarView.renderCars(this.model.getCars());
   }
 
   #attachRacingCountEvents() {
-    this.view.$racingCountSubmit.addEventListener('click', this.#handleRacingCount.bind(this));
+    this.view.$getRacingCountSubmit().addEventListener('click', this.#handleRacingCount.bind(this));
   }
 
   #handleRacingCount() {
-    const racingCount = this.view.$racingCountInput.valueAsNumber;
+    const racingCount = this.view.$getRacingCountInput().valueAsNumber;
 
-    if (this.model.racingCount) return;
+    if (this.model.getRacingCount()) return;
 
     if (!isValidRacingCount(racingCount)) {
       this.#onInvalidRacingCountSubmit();
@@ -74,7 +73,7 @@ export default class RacingCarController {
 
   #startRace(racingCount) {
     this.model.setRacingCount(racingCount);
-    this.model.cars.forEach((car) => {
+    this.model.getCars().forEach((car) => {
       RacingCarView.renderLoading(car);
       this.#racing(car);
     });
@@ -86,7 +85,7 @@ export default class RacingCarController {
       RacingCarController.#moveOrStop(car);
       turn += 1;
 
-      if (turn === this.model.racingCount) {
+      if (turn === this.model.getRacingCount()) {
         RacingCarView.removeLoading(car);
         clearInterval(racingTimer);
       }
@@ -111,11 +110,11 @@ export default class RacingCarController {
       RacingCarView.renderRestart();
       this.view.selectRestartDOM();
       this.#attachRestartEvents();
-    }, 1000 * this.model.racingCount);
+    }, 1000 * this.model.getRacingCount());
   }
 
   #attachRestartEvents() {
-    this.view.$restart.addEventListener('click', this.#handleRestart.bind(this));
+    this.view.$getRestart().addEventListener('click', this.#handleRestart.bind(this));
   }
 
   #handleRestart() {

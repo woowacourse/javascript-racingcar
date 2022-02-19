@@ -6,6 +6,16 @@ import loadingElement from './common/element.js';
 import * as template from './common/template.js';
 
 export default class RacingCarView {
+  #carNamesInput;
+
+  #carNamesSubmit;
+
+  #racingCountInput;
+
+  #racingCountSubmit;
+
+  #restart;
+
   constructor() {
     this.$app = $('#app');
     RacingCarView.init();
@@ -24,13 +34,13 @@ export default class RacingCarView {
   }
 
   selectCarNamesDOM() {
-    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
-    this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
+    this.#carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.#carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
   resetCarNamesInput() {
-    this.$carNamesInput.value = '';
-    this.$carNamesInput.focus();
+    this.#carNamesInput.value = '';
+    this.#carNamesInput.focus();
   }
 
   static renderRacingCount() {
@@ -38,8 +48,8 @@ export default class RacingCarView {
   }
 
   selectRacingCountDOM() {
-    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
-    this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
+    this.#racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.#racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
   static renderCars(cars) {
@@ -47,8 +57,8 @@ export default class RacingCarView {
   }
 
   resetRacingCountInput() {
-    this.$racingCountInput.value = '';
-    this.$racingCountInput.focus();
+    this.#racingCountInput.value = '';
+    this.#racingCountInput.focus();
   }
 
   static renderLoading(car) {
@@ -83,12 +93,32 @@ export default class RacingCarView {
   }
 
   selectRestartDOM() {
-    this.$restart = $(SELECTOR.RESTART);
+    this.#restart = $(SELECTOR.RESTART);
   }
 
   renderReset() {
     this.resetCarNamesInput();
     $(SELECTOR.RACING_COUNT).innerHTML = '';
     $(SELECTOR.GAME_RESULT).innerHTML = '';
+  }
+
+  $getCarNamesInput() {
+    return this.#carNamesInput;
+  }
+
+  $getCarNamesSubmit() {
+    return this.#carNamesSubmit;
+  }
+
+  $getRacingCountInput() {
+    return this.#racingCountInput;
+  }
+
+  $getRacingCountSubmit() {
+    return this.#racingCountSubmit;
+  }
+
+  $getRestart() {
+    return this.#restart;
   }
 }
