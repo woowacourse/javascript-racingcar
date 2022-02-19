@@ -10,23 +10,21 @@ export default class View {
     $(SELECTOR.CAR_NAMES).innerHTML = template.carNamesTemplate(carNames);
   }
 
-  renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = template.winnerTemplate(winners);
-  }
-
   renderCarProgress(carPosition) {
     $(SELECTOR.CAR_PROGRESS).innerHTML = template.carProgressTemplate(carPosition);
   }
 
-  renderInitialLoading(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = carPosition
-      .map((position) => `<div id="car-progress-result"><div class="loader"></div></div>`)
-      .join('');
+  renderWinner(winners) {
+    $(SELECTOR.CAR_RACING_WINNER).innerHTML = template.winnerTemplate(winners);
   }
 
-  renderLoading() {
+  renderInitialLoader(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).innerHTML = template.initialLoaderTemplate(carPosition);
+  }
+
+  renderLoader() {
     $$('#car-progress-result').forEach((el) => {
-      el.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
+      el.insertAdjacentHTML('beforeend', template.loaderTemplate());
     });
   }
 
