@@ -182,7 +182,6 @@ h1 {
 .car-racing-count-box {
   display: flex;
   flex-direction: row-reverse;
-  /* margin: 20px; */
   justify-content: center;
   align-items: center;
 }
@@ -238,13 +237,6 @@ button {
   text-transform: uppercase;
 }
 
-/* #game-result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
 #game-restart {
   width: 120px;
   height: 36px;
@@ -299,8 +291,8 @@ button {
 }
 
 .loader {
-  border: 8px solid #00bcd4; /* Light grey */
-  border-top: 8px solid #ffffff; /* Blue */
+  border: 8px solid #00bcd4;
+  border-top: 8px solid #ffffff;
   border-radius: 50%;
   width: 25px;
   height: 25px;
