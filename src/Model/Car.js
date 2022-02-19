@@ -1,7 +1,7 @@
 const MIN_NUMBER_OF_MOVE = 4;
 class Car {
   constructor(carName) {
-    this.carName = carName;
+    this.name = carName;
     this.count = 0;
   }
 

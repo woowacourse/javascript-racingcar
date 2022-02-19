@@ -73,7 +73,7 @@ class RacingcarGame {
 
   showCarBoxes() {
     $(".racing-cars").innerHTML = this.carList
-      .map((car) => Template.carNameBox(car.carName))
+      .map((car) => Template.carNameBox(car.name))
       .join("");
   }
 
@@ -135,7 +135,7 @@ class RacingcarGame {
     let winnerCount = Math.max(...carCountList);
     let winner = this.carList
       .filter((car) => car.count == winnerCount)
-      .map((car) => car.carName);
+      .map((car) => car.name);
     return winner.join(", ");
   }
 
