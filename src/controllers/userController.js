@@ -8,7 +8,7 @@ import {
   renderRoundCountInputForm,
   changeDisableUserInputs,
 } from "../views/view.js";
-import { clearState, setCars, setRoundCount } from "../models/Race.js";
+import { raceState } from "../models/Race.js";
 import {
   clearInputs,
   hideRoundCountInputForm,
@@ -17,6 +17,8 @@ import {
   removeCarNames,
   removeWinners,
 } from "../views/view.js";
+
+const { clearState, setCars, setRoundCount } = raceState;
 
 export function registerClickEventListeners() {
   const carNamesButton = document.getElementById("car-name-input-button");

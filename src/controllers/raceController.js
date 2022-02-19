@@ -7,8 +7,10 @@ import {
   renderLoadingSpinner,
   hideLoadingSpinner,
 } from "../views/view.js";
-import { raceState, allocateCars, clearState } from "../models/Race.js";
+import { raceState } from "../models/Race.js";
 import { LOADING_TERM } from "../constants/conditions.js";
+
+const { allocateCars, clearState } = raceState;
 
 export function startRacing() {
   allocateCars();
