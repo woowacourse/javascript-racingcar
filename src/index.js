@@ -19,6 +19,11 @@ class RacingcarGame {
   }
 
   bindEvent() {
+    this.bindCarNameEvent();
+    this.bindRaceCountEvent();
+  }
+
+  bindCarNameEvent() {
     $(".car-name-button").addEventListener("click", (event) => {
       event.preventDefault();
       this.checkCarName();
@@ -26,6 +31,9 @@ class RacingcarGame {
         this.startGame();
       }
     });
+  }
+
+  bindRaceCountEvent() {
     $(".race-count-button").addEventListener("click", (event) => {
       event.preventDefault();
       this.isCorrectRaceCount = this.isValidRaceNumber();
