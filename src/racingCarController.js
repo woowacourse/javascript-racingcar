@@ -95,7 +95,11 @@ export default class RacingCarController {
 
   #finishRace() {
     setTimeout(() => {
-      RacingCarView.renderWinners(this.model.getWinnners());
+      const winners = this.model.getWinnners();
+      RacingCarView.renderWinners(winners);
+      setTimeout(() => {
+        alert(`축하합니다! 최종 우승자는 🎉 ${winners.join(', ')} 🎉 입니다!`);
+      }, 2000);
       RacingCarView.renderRestart();
       this.view.selectRestartDOM();
       this.#attachRestartEvents();
