@@ -1,4 +1,6 @@
 export const DOM = Object.freeze({
+  INPUT_FIELD_ID: 'input-field',
+
   CAR_NAME_INPUT_FIELD_ID: 'car-name-input-field',
   COUNT_INPUT_FIELD_ID: 'count-input-field',
 

@@ -20,47 +20,46 @@ class RacingCarGameController {
   }
 
   #initDOM() {
-    this.carNameInputField = selectDOM(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
-    this.countInputField = selectDOM(`#${DOM.COUNT_INPUT_FIELD_ID}`);
-    this.gameStartBtn = selectDOM(`#${DOM.GAME_START_BTN_ID}`);
+    this.inputField = selectDOM(`#${DOM.INPUT_FIELD_ID}`);
   }
 
   #initHandler() {
-    this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
-    this.countInputField.addEventListener('click', this.onCountInputFieldClick);
-    this.gameStartBtn.addEventListener('click', this.onGameStartBtnClick);
+    this.inputField.addEventListener('click', this.onInputFieldClick);
   }
 
-  onCarNameInputFieldClick = (e) => {
+  onInputFieldClick = (e) => {
     e.preventDefault();
-    const { target: carNameBtn, currentTarget: carNameInputField } = e;
-    if (carNameBtn.id === DOM.CAR_NAME_BTN_ID) {
-      const carNameInput = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, carNameInputField);
-      try {
-        this.carManager.makeCars(carNameInput.value);
-        this.view.renderNameInputSuccess(carNameInput, carNameBtn);
-      } catch ({ message }) {
-        alert(message);
-      }
+    const { target } = e;
+
+    if (target.id === DOM.CAR_NAME_BTN_ID) {
+      this.onCarNameInputFieldClick(target);
+    }
+    if (target.id === DOM.COUNT_BTN_ID) {
+      this.onCountInputFieldClick(target);
+    }
+    if (target.id === DOM.GAME_START_BTN_ID) {
+      this.simulateGame();
     }
   };
 
-  onCountInputFieldClick = (e) => {
-    e.preventDefault();
-    const { target: countBtn, currentTarget: countInputField } = e;
-    if (countBtn.id === DOM.COUNT_BTN_ID) {
-      const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField);
-      try {
-        this.setTotalRounds(countInput.value);
-        this.view.renderCountInputSuccess(countInput, countBtn);
-      } catch ({ message }) {
-        alert(message);
-      }
+  onCarNameInputFieldClick = (target) => {
+    const carNameInput = selectDOM(`#${DOM.CAR_NAME_INPUT_ID}`, this.inputField);
+    try {
+      this.carManager.makeCars(carNameInput.value);
+      this.view.renderNameInputSuccess(carNameInput, target);
+    } catch ({ message }) {
+      alert(message);
     }
   };
 
-  onGameStartBtnClick = () => {
-    this.simulateGame();
+  onCountInputFieldClick = (target) => {
+    const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, this.inputField);
+    try {
+      this.setTotalRounds(countInput.value);
+      this.view.renderCountInputSuccess(countInput, target);
+    } catch ({ message }) {
+      alert(message);
+    }
   };
 
   setTotalRounds(countInput) {
@@ -117,8 +116,7 @@ class RacingCarGameController {
   afterRenderComplete() {
     const restartButton = selectDOM(`#${DOM.RESTART_BTN_ID}`);
     restartButton.addEventListener('click', () => window.location.reload());
-    this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
-    this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
+    this.inputField.removeEventListener('click', this.onInputFieldClick);
   }
 }
 export default RacingCarGameController;
