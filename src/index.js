@@ -152,13 +152,13 @@ class RacingcarGame {
     this.bindRestartEvent();
     ViewManager.makeDisableInput();
     setTimeout(
-      this.alertCongratsMessage.bind(this),
+      RacingcarGame.alertCongratsMessage,
       GAME_RESULT_DELAY_TIME,
       winner
     );
   }
 
-  alertCongratsMessage(winner) {
+  static alertCongratsMessage(winner) {
     alert(`${winner} 우승을 축하합니다!`);
   }
 
