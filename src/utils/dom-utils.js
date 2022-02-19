@@ -23,17 +23,6 @@ export default class DomUtils {
     return $winnerContainer;
   }
 
-  static createRacingProgressElement(cars) {
-    const $racingProgressNode = document.createElement('section');
-    $racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
-
-    cars.forEach((car) => {
-      $racingProgressNode.appendChild(this.createCarProgressElement(car));
-    });
-
-    return $racingProgressNode;
-  }
-
   static createCarProgressElement(car) {
     const $carProgressNode = this.createCarProgressNode();
 
@@ -46,7 +35,13 @@ export default class DomUtils {
     $carProgressStatusList.forEach(($carProgressStatus) => {
       $carProgressNode.appendChild($carProgressStatus);
     });
-    $carProgressNode.appendChild(this.circle());
+
+    return $carProgressNode;
+  }
+
+  static createCarProgressElementWithLoading(car) {
+    const $carProgressNode = this.createCarProgressElement(car);
+    $carProgressNode.appendChild(this.spinner());
 
     return $carProgressNode;
   }
@@ -84,7 +79,7 @@ export default class DomUtils {
     element.disabled = isDisabled;
   }
 
-  static circle() {
+  static spinner() {
     const $carProgressStatus = document.createElement('div');
     $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_LOADGING;
     const $circle = document.createElement('img');
