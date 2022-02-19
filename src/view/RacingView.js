@@ -13,15 +13,18 @@ export default class RacingView {
     this.$roundInput = $(SELECTOR.ID.RACING_ROUND_INPUT);
   }
 
-  static renderProgressLoading() {
+  static renderProgressLoader() {
     const $$eachCarProgressStatus = $$(SELECTOR.CLASS.CAR_PROGRESS_CONTAINER);
     $$eachCarProgressStatus.forEach((status) => {
       status.insertAdjacentHTML('beforeend', Template.loaderTemplate());
     });
   }
 
-  renderProgress(cars) {
-    this.$progressContainer.innerHTML = Template.racingProgressTemplate(cars);
+  renderProgressOfEachCar(name, position) {
+    this.$progressContainer.insertAdjacentHTML(
+      'beforeend',
+      Template.racingProgressTemplate(name, position)
+    );
   }
 
   renderResult(winnerList) {

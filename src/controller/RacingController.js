@@ -1,7 +1,7 @@
 import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
 import { validateCarNames, validateRound } from '../utils/validation.js';
-import { SELECTOR, CAR, DELAY } from '../constants/constants.js';
+import { SELECTOR, DELAY } from '../constants/constants.js';
 import { $ } from '../utils/selector.js';
 
 export default class RacingController {
@@ -62,20 +62,21 @@ export default class RacingController {
         this.activateRestartButton();
         return;
       }
-      RacingView.renderProgressLoading();
+      RacingView.renderProgressLoader();
     }, DELAY.TURN_BETWEEN_TIME);
   }
 
   playEachTurn() {
-    // const moves = this.model.cars.map(() => {
-    //   return RacingController.moveOrNot();
-    // });
+    this.view.removeProgress();
     this.model.moveCarsOnce();
-    this.view.renderProgress(this.model.cars);
+    const cars = [...this.model.cars];
+    cars.forEach((car) => {
+      this.view.renderProgressOfEachCar(car.name, car.position);
+    });
   }
 
   displayResult() {
-    const { winners } = this.model;
+    const winners = [...this.model.winners];
     this.view.renderResult(winners);
     setTimeout(() => {
       alert(`우승자는 ${winners.join(', ')}입니다.`);

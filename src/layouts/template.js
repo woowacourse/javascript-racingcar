@@ -12,22 +12,14 @@ export default class Template {
     `;
   }
 
-  static racingProgressTemplate(cars) {
+  static racingProgressTemplate(name, position) {
     return `
-      ${cars
-        .map((car) => {
-          return `
-          <div class="${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER.substr(1)}">
-            <div class="${SELECTOR.CLASS.CAR_PROGRESS_NAME.substr(1)}">${
-            car.name
-          }</div>
-            ${`<div class="${SELECTOR.CLASS.CAR_PROGRESS_STATUS.substr(
-              1
-            )}">⬇️️</div>`.repeat(car.position)}
-          </div>
-        `;
-        })
-        .join('')}
+      <div class="${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER.substr(1)}">
+        <div class="${SELECTOR.CLASS.CAR_PROGRESS_NAME.substr(1)}">${name}</div>
+        ${`<div class="${SELECTOR.CLASS.CAR_PROGRESS_STATUS.substr(
+          1
+        )}">⬇️️</div>`.repeat(position)}
+      </div>
     `;
   }
 
