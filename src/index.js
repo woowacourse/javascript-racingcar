@@ -42,7 +42,7 @@ class RacingcarGame {
   checkCarName() {
     this.carNames = $(".car-name-input").value.split(",");
     const errorCarName = this.carNames.filter((name) => name.length > 5);
-    if (errorCarName.length > 0 || $(".car-name-input").value == "") {
+    if (errorCarName.length > 0 || $(".car-name-input").value === "") {
       alert(alertMessage.InvalidCarNameLength);
       this.isCorrectCarName = false;
       ViewManager.hideRaceCountSection();
@@ -136,7 +136,7 @@ class RacingcarGame {
     const carCountList = this.carList.map((car) => car.count);
     let winnerCount = Math.max(...carCountList);
     let winner = this.carList
-      .filter((car) => car.count == winnerCount)
+      .filter((car) => car.count === winnerCount)
       .map((car) => car.name);
     return winner.join(", ");
   }
