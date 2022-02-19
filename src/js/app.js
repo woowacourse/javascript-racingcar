@@ -17,14 +17,20 @@ class App {
     });
     $('#try-count-form').addEventListener('submit', e => {
       this.setTryCount(getTryCount(e));
-    });
-    $('#try-count-form').addEventListener('submit', () => {
       this.gameStart();
     });
     $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
+  isGameReady() {
+    return this.carNames.length > 0 && this.tryCount > 0;
+  }
+
   gameStart() {
+    if (!this.isGameReady()) {
+      return;
+    }
+
     const { cars, winners, maxScore } = getGameResult({
       carNames: this.carNames,
       tryCount: this.tryCount,
