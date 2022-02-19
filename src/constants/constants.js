@@ -3,9 +3,9 @@ export const INPUT_ERROR = Object.freeze({
   DUPLICATED: '자동차 이름이 중복되어서는 안됩니다.',
   CONTAINED_BLANK: '자동차 이름에 공백이 포함되어서는 안됩니다.',
   NAME_EMPTY: '자동차 이름이 빈 문자열이 되어서는 안됩니다.',
-  COUNT_NEGATIVE: '횟수는 음수가 되어서는 안됩니다.',
-  COUNT_NOT_NATURAL: '횟수는 자연수가 되어야 합니다.',
-  COUNT_EMPTY: '횟수를 입력해주세요!'
+  ROUND_NEGATIVE: '횟수는 음수가 되어서는 안됩니다.',
+  ROUND_NOT_NATURAL: '횟수는 자연수가 되어야 합니다.',
+  ROUND_EMPTY: '횟수를 입력해주세요!'
 });
 
 export const SELECTOR = Object.freeze({
@@ -14,10 +14,10 @@ export const SELECTOR = Object.freeze({
     CAR_NAMES_INPUT: '#car-names-input',
     CAR_NAMES_BUTTON: '#car-names-submit',
     CAR_NAMES_FORM: '#car-names-form',
-    RACING_COUNT_FORM: '#racing-count-form',
-    RACING_COUNT_COMMAND: '#racing-count-command',
-    RACING_COUNT_INPUT: '#racing-count-input',
-    RACING_COUNT_SUBMIT: '#racing-count-submit',
+    RACING_ROUND_FORM: '#racing-round-form',
+    RACING_ROUND_COMMAND: '#racing-round-command',
+    RACING_ROUND_INPUT: '#racing-round-input',
+    RACING_ROUND_SUBMIT: '#racing-round-submit',
     RESULT: '#result',
     RACING_WINNERS: '#racing-winners',
     RACING_PROGRESS_CONTAINER: '#racing-progress-container',
@@ -42,7 +42,6 @@ export const CAR = Object.freeze({
 export const INIT = Object.freeze({
   CARS: [],
   ROUND: 0,
-  RECORD: 0,
   POSITION: 0
 });
 

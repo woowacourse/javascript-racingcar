@@ -43,16 +43,16 @@ Cypress.Commands.add('checkNameInputValid', (nameInput, errorMessage) => {
     });
 });
 
-Cypress.Commands.add('checkCountInputValid', (countInput, errorMessage) => {
+Cypress.Commands.add('checkRoundInputValid', (roundInput, errorMessage) => {
   // given
   const alertStub = cy.stub();
   cy.on('window:alert', alertStub);
 
   // when
-  cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(countInput);
+  cy.get(SELECTOR.ID.RACING_ROUND_INPUT).type(roundInput);
 
   // then
-  cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT)
+  cy.get(SELECTOR.ID.RACING_ROUND_SUBMIT)
     .click()
     .then(() => {
       expect(alertStub).to.be.calledWith(errorMessage);

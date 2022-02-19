@@ -11,7 +11,6 @@ export default class RacingGameModel {
       ...car,
       position: car.position + moves[index]
     }));
-    console.log(this.#cars);
   }
 
   set cars(names) {
@@ -39,20 +38,20 @@ export default class RacingGameModel {
     this.#round = INIT.ROUND;
   }
 
-  findMaxRecord() {
-    const maxRecord = this.#cars.reduce(
+  findMaxPosition() {
+    const maxPosition = this.#cars.reduce(
       (accumulator, current) => Math.max(accumulator, current.position),
-      INIT.RECORD
+      INIT.POSITION
     );
 
-    return maxRecord;
+    return maxPosition;
   }
 
   findWinners() {
-    const maxRecord = this.findMaxRecord();
+    const maxPosition = this.findMaxPosition();
 
     const winnerList = this.#cars.reduce((accumulator, current) => {
-      if (current.position === maxRecord) {
+      if (current.position === maxPosition) {
         accumulator.push(current.name);
       }
       return accumulator;

@@ -1,7 +1,7 @@
 import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
 import RandomUtils from '../utils/random.js';
-import { validateCarNames, validateCount } from '../utils/validation.js';
+import { validateCarNames, validateRound } from '../utils/validation.js';
 import { SELECTOR, CAR, DELAY } from '../constants/constants.js';
 import { $ } from '../utils/selector.js';
 
@@ -16,9 +16,9 @@ export default class RacingController {
       'click',
       this.submitNameHandler.bind(this)
     );
-    $(SELECTOR.ID.RACING_COUNT_SUBMIT).addEventListener(
+    $(SELECTOR.ID.RACING_ROUND_SUBMIT).addEventListener(
       'click',
-      this.submitCountHandler.bind(this)
+      this.submitRoundHandler.bind(this)
     );
   }
 
@@ -30,21 +30,21 @@ export default class RacingController {
       validateCarNames(nameList);
       this.model.cars = nameList;
       this.view.deactivateNamesForm();
-      this.view.activateCountForm();
+      this.view.activateRoundForm();
     } catch (error) {
       alert(error.message);
     }
   }
 
-  submitCountHandler(e) {
+  submitRoundHandler(e) {
     e.preventDefault();
-    const racingCount = this.view.getRacingCount();
+    const racingRound = this.view.getRacingRound();
 
     try {
-      validateCount(racingCount);
-      this.model.round = Number(racingCount);
+      validateRound(racingRound);
+      this.model.round = Number(racingRound);
       this.view.deactivateNamesForm();
-      this.view.deactivateCountForm();
+      this.view.deactivateRoundForm();
       this.startRacingGame();
     } catch (error) {
       alert(error.message);
@@ -71,7 +71,6 @@ export default class RacingController {
     const moves = this.model.cars.map(() => {
       return RacingController.moveOrNot();
     });
-    console.log('moves', moves);
     this.model.moveCars(moves);
     this.view.renderProgress(this.model.cars);
   }

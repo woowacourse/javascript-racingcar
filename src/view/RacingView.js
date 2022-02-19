@@ -6,11 +6,11 @@ export default class RacingView {
   constructor() {
     this.$app = $(SELECTOR.ID.APP);
     this.$namesForm = $(SELECTOR.ID.CAR_NAMES_FORM);
-    this.$countForm = $(SELECTOR.ID.RACING_COUNT_FORM);
+    this.$roundForm = $(SELECTOR.ID.RACING_ROUND_FORM);
     this.$progressContainer = $(SELECTOR.ID.RACING_PROGRESS_CONTAINER);
     this.$resultContainer = $(SELECTOR.ID.RACING_RESULT_CONTAINER);
     this.$nameInput = $(SELECTOR.ID.CAR_NAMES_INPUT);
-    this.$countInput = $(SELECTOR.ID.RACING_COUNT_INPUT);
+    this.$roundInput = $(SELECTOR.ID.RACING_ROUND_INPUT);
   }
 
   static renderProgressLoading() {
@@ -33,7 +33,7 @@ export default class RacingView {
     this.removeResult();
     this.clearInput();
     this.activateNamesForm();
-    this.deactivateCountForm();
+    this.deactivateRoundForm();
   }
 
   removeProgress() {
@@ -46,18 +46,18 @@ export default class RacingView {
 
   clearInput() {
     this.$nameInput.value = '';
-    this.$countInput.value = '';
+    this.$roundInput.value = '';
   }
 
-  activateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = false;
+  activateRoundForm() {
+    for (let i = 0; i < this.$roundForm.childNodes.length; i += 1) {
+      this.$roundForm.childNodes[i].disabled = false;
     }
   }
 
-  deactivateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = true;
+  deactivateRoundForm() {
+    for (let i = 0; i < this.$roundForm.childNodes.length; i += 1) {
+      this.$roundForm.childNodes[i].disabled = true;
     }
   }
 
@@ -78,7 +78,7 @@ export default class RacingView {
     return nameList.map((name) => name.trim());
   }
 
-  getRacingCount() {
-    return this.$countInput.value;
+  getRacingRound() {
+    return this.$roundInput.value;
   }
 }

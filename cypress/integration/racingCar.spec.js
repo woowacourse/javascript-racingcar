@@ -4,7 +4,7 @@ import { DELAY, INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
   const carName = 'Marco';
-  const racingCount = 3;
+  const racingRound = 3;
 
   it('1. 게임을 완료하고 우승자를 확인할 수 있어야 한다.', () => {
     // given
@@ -14,8 +14,8 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     // when
     cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carName);
     cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
-    cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
-    cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
+    cy.get(SELECTOR.ID.RACING_ROUND_INPUT).type(racingRound);
+    cy.get(SELECTOR.ID.RACING_ROUND_SUBMIT).click();
 
     // then
     cy.get(SELECTOR.ID.RACING_RESULT).should('have.text', winnerSpan);
@@ -53,15 +53,15 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
 
     it('3-1. 시도 횟수를 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.checkCountInputValid(' ', INPUT_ERROR.COUNT_EMPTY);
+      cy.checkRoundInputValid(' ', INPUT_ERROR.ROUND_EMPTY);
     });
 
     it('3-2. 시도 횟수를 음수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.checkCountInputValid('-1', INPUT_ERROR.COUNT_NEGATIVE);
+      cy.checkRoundInputValid('-1', INPUT_ERROR.ROUND_NEGATIVE);
     });
 
     it('3-3. 시도 횟수를 정수가 아닌 수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.checkCountInputValid('2.3', INPUT_ERROR.COUNT_NOT_NATURAL);
+      cy.checkRoundInputValid('2.3', INPUT_ERROR.ROUND_NOT_NATURAL);
     });
   });
 
@@ -73,14 +73,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       // when
       cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(carName);
       cy.get(SELECTOR.ID.CAR_NAMES_BUTTON).click();
-      cy.get(SELECTOR.ID.RACING_COUNT_INPUT).type(racingCount);
-      cy.get(SELECTOR.ID.RACING_COUNT_SUBMIT).click();
+      cy.get(SELECTOR.ID.RACING_ROUND_INPUT).type(racingRound);
+      cy.get(SELECTOR.ID.RACING_ROUND_SUBMIT).click();
     });
 
     it('4-1. 시도횟수 동안 1초의 텀을 두고 스피너 로딩 애니메이션이 표시되어야 한다.', () => {
       cy.clock();
 
-      for (let i = 0; i < racingCount; i++) {
+      for (let i = 0; i < racingRound; i++) {
         cy.tick(DELAY.TURN_BETWEEN_TIME);
         cy.get(SELECTOR.CLASS.CAR_PROGRESS_CONTAINER).each((container) => {
           cy.get(container).find('.loader').should('exist');
@@ -113,7 +113,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             .children()
             .should('not.exist');
           cy.get(SELECTOR.ID.CAR_NAMES_INPUT).should('have.value', '');
-          cy.get(SELECTOR.ID.RACING_COUNT_INPUT).should('have.value', '');
+          cy.get(SELECTOR.ID.RACING_ROUND_INPUT).should('have.value', '');
         });
     });
   });
