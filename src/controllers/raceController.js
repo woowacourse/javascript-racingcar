@@ -8,19 +8,20 @@ import {
   disapearLoadingSpinner,
 } from "../views/view.js";
 import { raceState, allocateCars, clearState } from "../models/Race.js";
+import { LOADING_TERM } from "../constants/conditions.js";
 
 export function startRacing() {
   allocateCars();
   renderRacingContainer();
   renderCarNames();
-  progressRacing(raceState.racingNumber);
+  progressRacing(raceState.roundCount);
 }
 
-function progressRacing(racingNumber) {
+function progressRacing(roundCount) {
   renderLoadingSpinner();
-  let racingNumberCount = 1;
+  let progressCount = 1;
   const intervalID = setInterval(() => {
-    if (racingNumberCount > racingNumber) {
+    if (progressCount > roundCount) {
       const winners = pickWinners();
       disapearLoadingSpinner();
       renderWinners(winners);
@@ -33,13 +34,13 @@ function progressRacing(racingNumber) {
     disapearLoadingSpinner();
     showMoveForwardCars();
     renderLoadingSpinner();
-    racingNumberCount++;
-  }, 1000);
+    progressCount++;
+  }, LOADING_TERM);
 }
 
 function showMoveForwardCars() {
   raceState.cars.forEach((car, index) => {
-    if (car.canMoveFoward()) {
+    if (car.canMoveForward()) {
       car.moveForward();
       renderProgressArrow(index);
     }

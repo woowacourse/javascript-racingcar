@@ -1,17 +1,17 @@
 import {
   checkNameValid,
-  checkRacingNumberValid,
+  checkRoundCountValid,
 } from "../validations/validation.js";
 import { doTrim } from "../utils/utils.js";
 import { startRacing } from "./raceController.js";
 import {
-  renderRacingInputForm,
+  renderRoundCountInputForm,
   changeDisableUserInputs,
 } from "../views/view.js";
-import { clearState, setCarNames, setRound } from "../models/Race.js";
+import { clearState, setCars, setRoundCount } from "../models/Race.js";
 import {
   clearInputs,
-  disapearRacingInputForm,
+  disapearRoundCountInputForm,
   disapearRacingContainer,
   disapearRestartButton,
   removeCarNames,
@@ -20,12 +20,10 @@ import {
 
 export function registerClickEventListeners() {
   const carNamesButton = document.getElementById("car-name-input-button");
-  const racingNumberButton = document.getElementById(
-    "racing-number-input-button"
-  );
+  const roundCountButton = document.getElementById("round-count-input-button");
   const restartButton = document.getElementById("restart-button");
   carNamesButton.addEventListener("click", clickCarNamesButton);
-  racingNumberButton.addEventListener("click", clickRacingNumberButton);
+  roundCountButton.addEventListener("click", clickRoundCountButton);
   restartButton.addEventListener("click", clickRestartButton);
 }
 
@@ -38,20 +36,20 @@ function clickCarNamesButton(event) {
     alert(error);
     return;
   }
-  setCarNames(carNames);
-  renderRacingInputForm();
+  setCars(carNames);
+  renderRoundCountInputForm();
 }
 
-function clickRacingNumberButton(event) {
+function clickRoundCountButton(event) {
   event.preventDefault();
-  const racingNumber = getRacingNumberFormInput();
+  const roundCount = getRoundCountFromInput();
   try {
-    checkRacingNumberValid(racingNumber);
+    checkRoundCountValid(roundCount);
   } catch (error) {
     alert(error);
     return;
   }
-  setRound(racingNumber);
+  setRoundCount(roundCount);
   changeDisableUserInputs();
   startRacing();
 }
@@ -60,7 +58,7 @@ function clickRestartButton() {
   clearState();
   clearInputs();
   changeDisableUserInputs();
-  disapearRacingInputForm();
+  disapearRoundCountInputForm();
   disapearRacingContainer();
   disapearRestartButton();
   removeCarNames();
@@ -72,7 +70,7 @@ function getCarsNamesFromInput() {
   return doTrim(carNamesInput.value.split(","));
 }
 
-function getRacingNumberFormInput() {
-  const racingNumberInput = document.getElementById("racing-number-input");
-  return racingNumberInput.value;
+function getRoundCountFromInput() {
+  const roundCountInput = document.getElementById("round-count-input");
+  return roundCountInput.value;
 }

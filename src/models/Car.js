@@ -17,7 +17,7 @@ export class Car {
     return this.name;
   }
 
-  canMoveFoward() {
+  canMoveForward() {
     return isNumberOverStandard(makeRandomNumber());
   }
 

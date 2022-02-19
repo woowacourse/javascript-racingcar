@@ -36,14 +36,14 @@ export function removeWinners() {
   racingWinner.innerHTML = "";
 }
 
-export function renderRacingInputForm() {
-  const racingInputForm = document.getElementById("racing-input-form");
+export function renderRoundCountInputForm() {
+  const racingInputForm = document.getElementById("round-count-input-form");
   racingInputForm.classList.remove("display-none");
   racingInputForm.classList.add("flex");
 }
 
-export function disapearRacingInputForm() {
-  const racingInputForm = document.getElementById("racing-input-form");
+export function disapearRoundCountInputForm() {
+  const racingInputForm = document.getElementById("round-count-input-form");
   racingInputForm.classList.remove("flex");
   racingInputForm.classList.add("display-none");
 }
@@ -62,22 +62,22 @@ export function disapearRacingContainer() {
 
 export function changeDisableUserInputs() {
   const carNamesInput = document.getElementById("car-name-input");
-  const carNamesInputBtn = document.getElementById("car-name-input-button");
-  const racingNumberInput = document.getElementById("racing-number-input");
-  const racingNumberInputBtn = document.getElementById(
-    "racing-number-input-button"
+  const carNamesInputButton = document.getElementById("car-name-input-button");
+  const roundCountInput = document.getElementById("round-count-input");
+  const roundCountInputButton = document.getElementById(
+    "round-count-input-button"
   );
   carNamesInput.disabled = !carNamesInput.disabled;
-  carNamesInputBtn.disabled = !carNamesInputBtn.disabled;
-  racingNumberInput.disabled = !racingNumberInput.disabled;
-  racingNumberInputBtn.disabled = !racingNumberInputBtn.disabled;
+  carNamesInputButton.disabled = !carNamesInputButton.disabled;
+  roundCountInput.disabled = !roundCountInput.disabled;
+  roundCountInputButton.disabled = !roundCountInputButton.disabled;
 }
 
 export function clearInputs() {
   const carNamesInput = document.getElementById("car-name-input");
-  const racingNumberInput = document.getElementById("racing-number-input");
+  const roundCountInput = document.getElementById("round-count-input");
   carNamesInput.value = "";
-  racingNumberInput.value = "";
+  roundCountInput.value = "";
 }
 
 export function renderRestartButton() {

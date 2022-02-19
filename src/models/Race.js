@@ -2,15 +2,15 @@ import { Car } from "./Car.js";
 
 export const raceState = {
   cars: [],
-  racingNumber: 0,
+  roundCount: 0,
 };
 
-export function setCarNames(carNames) {
-  raceState.cars = carNames;
+export function setCars(cars) {
+  raceState.cars = cars;
 }
 
-export function setRound(racingNumber) {
-  raceState.racingNumber = racingNumber;
+export function setRoundCount(roundCount) {
+  raceState.roundCount = roundCount;
 }
 
 export function allocateCars() {
@@ -21,5 +21,5 @@ export function allocateCars() {
 
 export function clearState() {
   raceState.cars = [];
-  raceState.racingNumber = 0;
+  raceState.roundCount = 0;
 }

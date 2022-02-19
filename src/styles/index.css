@@ -47,11 +47,11 @@
   cursor: pointer;
 }
 
-#racing-number-input {
+#round-count-input {
   width: 340px;
 }
 
-#racing-number-input-button {
+#round-count-input-button {
   padding: 8px 16px 8px 18px;
   margin-left: 12px;
   background: #00bcd4;

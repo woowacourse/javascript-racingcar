@@ -19,11 +19,11 @@ export function checkNameValid(names) {
   }
 }
 
-export function checkRacingNumberValid(racingNumber) {
-  if (!isNumberInteger(racingNumber)) {
+export function checkRoundCountValid(roundCount) {
+  if (!isNumberInteger(roundCount)) {
     throw ERROR_NUMBER_NOT_INTEGER;
   }
-  if (isNumberUnderZero(racingNumber)) {
+  if (isNumberUnderZero(roundCount)) {
     throw ERROR_NUMBER_UNDER_ZERO;
   }
 }
