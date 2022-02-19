@@ -15,7 +15,7 @@ export function renderCarNames() {
 
 export function removeCarNames() {
   const racingCars = document.getElementById("racing-cars");
-  racingCars.innerHTML = "";
+  racingCars.replaceChildren();
 }
 
 export function renderProgressArrow(index) {
@@ -33,7 +33,7 @@ export function renderWinners(names) {
 
 export function removeWinners() {
   const racingWinner = document.getElementById("racing-winner");
-  racingWinner.innerHTML = "";
+  racingWinner.replaceChildren();
 }
 
 export function renderRoundCountInputForm() {

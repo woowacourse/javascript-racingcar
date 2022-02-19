@@ -9,6 +9,7 @@ import {
 } from "../views/view.js";
 import { raceState } from "../models/Race.js";
 import { LOADING_TERM } from "../constants/conditions.js";
+import { SHOW_CONGRATULATION_ALERT_TERM } from "../constants/conditions.js";
 
 const { allocateCars, clearState } = raceState;
 
@@ -23,6 +24,10 @@ function progressRacing(roundCount) {
   renderLoadingSpinner();
   let progressCount = 1;
   const intervalID = setInterval(() => {
+    hideLoadingSpinner();
+    showMoveForwardCars();
+    renderLoadingSpinner();
+    progressCount++;
     if (progressCount > roundCount) {
       const winners = pickWinners();
       hideLoadingSpinner();
@@ -33,10 +38,6 @@ function progressRacing(roundCount) {
       clearInterval(intervalID);
       return;
     }
-    hideLoadingSpinner();
-    showMoveForwardCars();
-    renderLoadingSpinner();
-    progressCount++;
   }, LOADING_TERM);
 }
 
@@ -72,5 +73,5 @@ function getWinnerArr(max) {
 function showCongratulationAlert(winners) {
   setTimeout(() => {
     alert(`우승자는 ${winners}입니다. 축하합니다 🎉`);
-  }, 2000);
+  }, SHOW_CONGRATULATION_ALERT_TERM);
 }
