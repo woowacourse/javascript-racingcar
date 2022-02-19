@@ -163,9 +163,7 @@ class RacingcarGame {
   }
 
   bindRestartEvent() {
-    $(".restart-button").addEventListener("click", () => {
-      this.restartRace();
-    });
+    $(".restart-button").addEventListener("click", this.restartRace);
   }
 
   restartRace() {
