@@ -44,6 +44,7 @@ export default class RacingView {
   }
 
   renderResult(winnerList) {
+    alert(`🎉 축하합니다. 최종 우승자는 ${winnerList.join(', ')}입니다! 🎉`);
     this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
   }
 

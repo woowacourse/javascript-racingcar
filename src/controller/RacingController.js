@@ -74,8 +74,10 @@ export default class RacingController {
       this.view.renderProgress(this.model.cars);
       if (!this.model.round) {
         this.view.removeLoading();
-        this.view.renderResult(this.model.winners);
-        this.activateRestartButton();
+        setTimeout(() => {
+          this.view.renderResult(this.model.winners);
+          this.activateRestartButton();
+        }, 2000);
         clearInterval(runRound);
       }
     }, 1000);
