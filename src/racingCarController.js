@@ -58,7 +58,7 @@ export default class RacingCarController {
 
     if (isValidRacingCount(racingCount)) {
       this.model.setRacingCount(racingCount);
-      this.race(racingCount);
+      this.startRace(racingCount);
 
       return;
     }
@@ -67,26 +67,31 @@ export default class RacingCarController {
     this.view.resetRacingCountInput();
   }
 
-  race(racingCount) {
+  startRace(racingCount) {
     this.view.showSpinners();
     const raceInterval = this.raceInterval();
 
     setTimeout(() => {
       clearInterval(raceInterval);
       this.view.hideSpinners();
-      this.renderResultAfterTime();
+      this.endRace();
     }, racingCount * 1000);
   }
 
-  renderResultAfterTime() {
-    return setTimeout(() => {
-      this.view.renderWinners(this.model.getWinnners());
-      this.view.renderRestart();
-      this.view.selectRestartDOM();
-      this.attachRestartEvents();
-      this.view.hideSpinners();
+  endRace() {
+    const winners = this.model.getWinnners();
+
+    this.view.renderWinners(winners);
+    this.view.renderRestart();
+    this.view.selectRestartDOM();
+    this.attachRestartEvents();
+
+    setTimeout(() => {
+      this.view.renderCelebration(winners);
     }, 2000);
   }
+
+  render;
 
   raceInterval() {
     return setInterval(() => {
