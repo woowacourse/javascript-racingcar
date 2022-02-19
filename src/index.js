@@ -39,7 +39,7 @@ class RacingCarGameController {
       const racingCountNumber = convertToNumber(racingCount);
       this.model.racingCount = racingCountNumber;
 
-      this.view.changeToDisableForm();
+      this.view.deactivateForm();
       this.play();
     } catch (error) {
       alert(error.message);
@@ -48,7 +48,6 @@ class RacingCarGameController {
 
   handleRestartBtnClickEvent() {
     this.model.resetGameState();
-    this.view.changeToEnabledForm();
     this.view.reset();
   }
 

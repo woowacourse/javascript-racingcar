@@ -48,7 +48,7 @@ class RacingCarGameView {
     });
   }
 
-  changeToDisableForm() {
+  deactivateForm() {
     this.$carNamesInput.setAttribute('disabled', true);
     this.$racingCountInput.setAttribute('disabled', true);
     this.$inputBtns.forEach(($inputBtn) => {
@@ -57,14 +57,13 @@ class RacingCarGameView {
     });
   }
 
-  changeToEnabledForm() {
+  // racingCountForm 내부에 있는 Input과 Button은 this.reset() 안에서 제거되므로
+  // 해당 함수에는 carNamesForm 내부 Input과 Button만 활성화시킴
+  activateForm() {
     this.$carNamesInput.removeAttribute('disabled');
-    this.$racingCountInput.removeAttribute('disabled');
 
-    this.$inputBtns.forEach(($inputBtn) => {
-      $inputBtn.removeAttribute('disabled');
-      $inputBtn.classList.remove(CLASS.DISABLED_INPUT_BTN);
-    });
+    this.$inputBtns[0].removeAttribute('disabled');
+    this.$inputBtns[0].classList.remove(CLASS.DISABLED_INPUT_BTN);
   }
 
   renderRacingCountForm() {
@@ -113,6 +112,7 @@ class RacingCarGameView {
   }
 
   reset() {
+    this.activateForm();
     this.$carNamesInput.value = '';
     this.$racingCountForm.innerHTML = '';
     this.$racingCountInput = null;
