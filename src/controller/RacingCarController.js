@@ -37,7 +37,10 @@ class RacingCarController {
   handleCarNameFormSubmitEvent(e) {
     e.preventDefault();
     const carNames = this.$carNamesInput.value;
-    const carNameList = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
+    const carNameList =
+      carNames === ''
+        ? null
+        : carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
     try {
       this.model.setCarList(carNameList);
@@ -51,7 +54,8 @@ class RacingCarController {
 
   handleRacingCountFormSubmitEvent(e) {
     e.preventDefault();
-    const racingCount = convertToNumber(this.$racingCountInput.value);
+    const _racingCount = this.$racingCountInput.value;
+    const racingCount = _racingCount === '' ? null : convertToNumber(_racingCount);
 
     try {
       this.model.setRacingCount(racingCount);

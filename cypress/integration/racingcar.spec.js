@@ -50,8 +50,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
-        // 수정 필요
-        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_CAR_NAME);
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_EXIST_CAR_NAME);
       });
   });
 
@@ -107,7 +106,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
       });
   });
 
-  it('시도할 횟수는 공백을 입력할 수 없다.', () => {
+  it('시도할 횟수는 값을 입력해야 한다.', () => {
     //given
     const alertStub = createAlertStub();
 
@@ -117,8 +116,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
-        //수정 필요
-        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NUMBER_TYPE);
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_EXIST_RACING_COUNT);
       });
   });
 

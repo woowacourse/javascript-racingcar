@@ -1,6 +1,8 @@
 import { RULES } from '../constants/index.js';
 
-export const isEmpty = (value) => value === '';
+export const isNotExist = (value) => value === null;
+
+export const isBlank = (value) => value === '';
 
 export const isExceedLength = (value) => value.length > RULES.MAX_CAR_NAME_LENGTH;
 
