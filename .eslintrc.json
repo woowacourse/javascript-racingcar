@@ -13,6 +13,7 @@
         "no-new":"off",
         "no-undef":"off" , 
         "no-unused-vars":"off",
+        "no-unused-expressions":"off",
         "no-return-assign":"off",
         "no-param-reassign":"off",
         "no-alert":"off",
