@@ -30,6 +30,7 @@ export default class RacingCarView {
 
   resetCarNamesInput() {
     this.$carNamesInput.value = '';
+    this.$carNamesInput.focus();
   }
 
   static renderRacingCount() {
@@ -47,6 +48,7 @@ export default class RacingCarView {
 
   resetRacingCountInput() {
     this.$racingCountInput.value = '';
+    this.$racingCountInput.focus();
   }
 
   static renderLoading(car) {
