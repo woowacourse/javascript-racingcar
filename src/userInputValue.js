@@ -11,10 +11,6 @@ const userInputValue = {
     turnCount() {
         return Number($(SELECTOR.TURN_COUNT_INPUT).value);
     },
-    reset() {
-        $(SELECTOR.CAR_NAME_INPUT).value = '';
-        $(SELECTOR.TURN_COUNT_INPUT).value = '';
-    },
 };
 
 export default userInputValue;

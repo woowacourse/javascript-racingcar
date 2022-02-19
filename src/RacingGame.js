@@ -68,7 +68,6 @@ export default class RacingGame {
     onClickRestartButton() {
         this.racingCars.reset();
         this.view.reset();
-        userInputValue.reset();
     }
 
     endGame() {

@@ -54,5 +54,7 @@ export default class View {
 
     reset() {
         this.app.classList.remove(SCREEN_COMMAND.SHOW_TURN_COUNT_FORM, SCREEN_COMMAND.SHOW_RESULT);
+        $(SELECTOR.CAR_NAME_INPUT).value = '';
+        $(SELECTOR.TURN_COUNT_INPUT).value = '';
     }
 }
