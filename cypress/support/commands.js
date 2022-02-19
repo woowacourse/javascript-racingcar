@@ -35,6 +35,17 @@ Cypress.Commands.add("checkAlert", (name) => {
     });
 });
 
+Cypress.Commands.add("checkAlertWithMessage", (name, errorMessage) => {
+  const alertStub = cy.stub();
+
+  cy.on("window:alert", alertStub);
+  cy.get(name)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.calledWith(errorMessage);
+    });
+});
+
 Cypress.Commands.add("checkAlertWinners", (name) => {
   const alertStub = cy.stub();
 

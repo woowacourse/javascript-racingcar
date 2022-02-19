@@ -116,6 +116,7 @@
   text-align: center;
   color: #000000;
   border: solid 3px #ffffff;
+  margin-top: 10px;
 }
 
 #racing-container {
@@ -127,6 +128,6 @@
 #racing-cars {
   display: flex;
   flex-wrap: wrap;
-  width: 954px;
   margin: 0 auto;
+  justify-content: center;
 }

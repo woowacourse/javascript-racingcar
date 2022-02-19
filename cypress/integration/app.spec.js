@@ -55,51 +55,65 @@ describe("입력 예외처리 테스트", () => {
   it("사용자가 6자이상의 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "abcdefgh";
+    const ERROR_HAS_LONG_NAME = "5글자 이하의 이름을 입력해주세요.";
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.checkAlert("#car-name-input-button");
+    cy.checkAlertWithMessage("#car-name-input-button", ERROR_HAS_LONG_NAME);
   });
 
   it("사용자가 중복된 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "1, 2, 1";
+    const ERROR_HAS_DUPLICATE_NAME = "중복된 이름이 있습니다.";
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.checkAlert("#car-name-input-button");
+    cy.checkAlertWithMessage(
+      "#car-name-input-button",
+      ERROR_HAS_DUPLICATE_NAME
+    );
   });
 
   it("사용자가 공백으로된 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "1 , , 2";
+    const ERROR_HAS_EMPTY_NAME = "공백으로된 이름이 있습니다.";
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.checkAlert("#car-name-input-button");
+    cy.checkAlertWithMessage("#car-name-input-button", ERROR_HAS_EMPTY_NAME);
   });
 
   it("사용자가 입력한 시도할 횟수가 0이하인 경우, alert 호출한다.", () => {
     //given
     const validNames = "1, 2, 3";
     const invalidNumber = "-1";
+    const ERROR_NUMBER_UNDER_ZERO = "1이상의 수를 입력해주세요.";
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
     cy.get("#round-count-input").type(invalidNumber);
     //then
-    cy.checkAlert("#round-count-input-button");
+    cy.checkAlertWithMessage(
+      "#round-count-input-button",
+      ERROR_NUMBER_UNDER_ZERO
+    );
   });
 
   it("사용자가 입력한 시도할 횟수가 정수가 아닌 경우, alert 호출한다.", () => {
     //given
     const validNames = "1, 2, 3";
     const invalidNumber = "1.23";
+    const ERROR_NUMBER_NOT_INTEGER = "소수점을 제외하고 입력해주세요.";
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
     cy.get("#round-count-input").type(invalidNumber);
     //then
-    cy.checkAlert("#round-count-input-button");
+    cy.checkAlertWithMessage(
+      "#round-count-input-button",
+      ERROR_NUMBER_NOT_INTEGER
+    );
   });
 });
