@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, DELAY_TIME, CELEBRATE_MESSAGE } from '../../src/js/utils/constants.js';
+import { SELECTOR, ERROR_MESSAGE, DELAY_TIME, CELEBRATE_MESSAGE } from '../../src/js/utils/constants.js';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseURL = 'index.html';
@@ -24,7 +24,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   it('자동차 이름이 입력되면 레이싱 횟수 입력 폼을 확인 할 수 있다.', () => {
     cy.submitCarNames(normalName);
-    cy.get('#racing-count-form').should('be.visible');
+    cy.get(SELECTOR.RACING_COUNT_CONTAINER).should('be.visible');
   });
 
   it('입력된 횟수가 1 보다 작을 경우 해당 에러 메시지가 alert에 호출되어야 한다', () => {
@@ -40,7 +40,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.submitCarNames(normalName);
     cy.submitRacingCount(normalCount);
     cy.tick(normalCount * milliseconds + DELAY_TIME.RACE);
-    cy.get('#winner-names').should('have.text', winners);
+    cy.get(SELECTOR.FINAL_WINNER).should('have.text', winners);
   });
 
   it('레이싱 게임이 끝나면, 2초 후에 축하 메시지를 확인 할 수 있다.', () => {
@@ -57,12 +57,12 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.submitCarNames(normalName);
     cy.submitRacingCount(normalCount);
     cy.tick(normalCount * milliseconds + DELAY_TIME.RACE);
-    cy.get('#reset-btn').click();
+    cy.get(SELECTOR.RESTART_BUTTON).click();
 
-    cy.get('#car-names-input').should('have.value', '');
-    cy.get('#racing-count-input').should('have.value', '');
-    cy.get('#racing-count-form').should('not.be.disabled');
-    cy.get('#result-screen').should('not.be.disabled');
-    cy.get('#final-winner').should('not.be.disabled');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).should('have.value', '');
+    cy.get(SELECTOR.RACING_COUNT_INPUT).should('have.value', '');
+    cy.get(SELECTOR.RACING_COUNT_CONTAINER).should('not.be.disabled');
+    cy.get(SELECTOR.RACING_CONTAINER).should('not.be.disabled');
+    cy.get(SELECTOR.RESULT_CONTAINER).should('not.be.disabled');
   });
 });

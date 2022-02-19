@@ -1,6 +1,6 @@
 import Car from './model/Car.js';
 import { $ } from './utils/dom.js';
-import { CELEBRATE_MESSAGE, DELAY_TIME, ERROR_MESSAGE, MOVE_SCORE } from './utils/constants.js';
+import { SELECTOR, CELEBRATE_MESSAGE, DELAY_TIME, ERROR_MESSAGE, MOVE_SCORE } from './utils/constants.js';
 import {
   isValidCarNameLength,
   isValidCarNameBlank,
@@ -24,9 +24,9 @@ class RacingCarGame {
   }
 
   bindEvents() {
-    $('#car-names-button').addEventListener('click', this.handleCarNamesSubmit.bind(this));
-    $('#racing-count-button').addEventListener('click', this.handleRacingCountSubmit.bind(this));
-    $('#reset-btn').addEventListener('click', this.restartRacingGame.bind(this));
+    $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', this.handleCarNamesSubmit.bind(this));
+    $(SELECTOR.RACING_COUNT_BUTTON).addEventListener('click', this.handleRacingCountSubmit.bind(this));
+    $(SELECTOR.RESTART_BUTTON).addEventListener('click', this.restartRacingGame.bind(this));
   }
 
   selectWinner() {
@@ -54,7 +54,7 @@ class RacingCarGame {
       .join(', ');
     renderFinalWinner(finalWinner);
     removeSpinner();
-    showElement($('#final-winner'));
+    showElement($(SELECTOR.RESULT_CONTAINER));
     delayedAlert(CELEBRATE_MESSAGE, DELAY_TIME.ALERT);
   }
 
@@ -72,31 +72,33 @@ class RacingCarGame {
   }
 
   handleCarNamesSubmit() {
-    const inputCarNames = $('#car-names-input')
+    const inputCarNames = $(SELECTOR.CAR_NAMES_INPUT)
       .value.split(',')
       .map((car) => car.trim());
 
     if (!isValidCarNameLength(inputCarNames)) {
+      $(SELECTOR.CAR_NAMES_INPUT).value = '';
       alert(ERROR_MESSAGE.NAME_TOO_LONG);
       return;
     }
     if (!isValidCarNameBlank(inputCarNames)) {
-      $('#car-names-input').value = '';
+      $(SELECTOR.CAR_NAMES_INPUT).value = '';
       alert(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
       return;
     }
 
     this.generateCars(inputCarNames);
-    showElement($('#racing-count-form'));
+    showElement($(SELECTOR.RACING_COUNT_CONTAINER));
   }
 
   handleRacingCountSubmit() {
-    const inputNumber = $('#racing-count-input').value;
+    const inputNumber = $(SELECTOR.RACING_COUNT_INPUT).value;
     if (isValidRacingCount(inputNumber)) {
+      $(SELECTOR.RACING_COUNT_INPUT).value = '';
       alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return;
     }
-    showElement($('#result-screen'));
+    showElement($(SELECTOR.RACING_CONTAINER));
     renderRacingResult(this.cars);
     this.startRacingGame(inputNumber);
   }

@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/dom.js';
 import { hideElement } from '../utils/attribute.js';
+import { SELECTOR } from '../utils/constants.js';
 
 const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
 
@@ -17,28 +18,28 @@ const carPlayerTemplate = (name) => {
 };
 
 export const renderFinalWinner = (finalWinner) => {
-  $('#winner-names').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
+  $(SELECTOR.FINAL_WINNER).innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
 };
 
 export const renderRacingResult = (cars) => {
   cars.forEach(({ name }) => {
-    $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name));
+    $(SELECTOR.RACING_STATUS).insertAdjacentHTML('beforeend', carPlayerTemplate(name));
   });
 };
 
 export const renderArrow = (name) => {
-  $(`.car-player[data-car-name=${name}]`).insertAdjacentHTML('afterend', arrowTemplate);
+  $(`${SELECTOR.CAR_PLAYER}[data-car-name=${name}]`).insertAdjacentHTML('afterend', arrowTemplate);
 };
 
 export const removeSpinner = () => {
-  $$('.spinner').forEach((element) => hideElement(element));
+  $$(SELECTOR.SPINNER).forEach((element) => hideElement(element));
 };
 
 export const startUpScreen = () => {
-  $('#car-names-input').value = '';
-  $('#racing-count-input').value = '';
-  $('#result-racing').innerHTML = '';
-  hideElement($('#racing-count-form'));
-  hideElement($('#result-screen'));
-  hideElement($('#final-winner'));
+  $(SELECTOR.CAR_NAMES_INPUT).value = '';
+  $(SELECTOR.RACING_COUNT_INPUT).value = '';
+  $(SELECTOR.RACING_STATUS).innerText = '';
+  hideElement($(SELECTOR.RACING_COUNT_CONTAINER));
+  hideElement($(SELECTOR.RACING_CONTAINER));
+  hideElement($(SELECTOR.RESULT_CONTAINER));
 };

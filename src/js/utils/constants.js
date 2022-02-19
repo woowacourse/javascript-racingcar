@@ -1,3 +1,18 @@
+export const SELECTOR = {
+  CAR_NAMES_INPUT: '#car-names-input',
+  CAR_NAMES_BUTTON: '#car-names-button',
+  RACING_COUNT_CONTAINER: '#racing-count-container',
+  RACING_COUNT_INPUT: '#racing-count-input',
+  RACING_COUNT_BUTTON: '#racing-count-button',
+  RACING_CONTAINER: '#racing-container',
+  RACING_STATUS: '#racing-status',
+  RESULT_CONTAINER: '#result-container',
+  FINAL_WINNER: '#final-winner',
+  RESTART_BUTTON: '#restart-button',
+  CAR_PLAYER: '.car-player',
+  SPINNER: '.spinner',
+};
+
 export const CAR_NAME_LENGTH = {
   MAX: 5,
   MIN: 1,
