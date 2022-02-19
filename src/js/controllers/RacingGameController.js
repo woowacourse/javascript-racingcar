@@ -4,8 +4,9 @@ import RacingGameView from '../views/RacingGameView.js';
 import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
+import { MILLISECOND } from '../constants/constants.js';
 import { $ } from '../utils/element-tools.js';
-import { nameStringToArray } from '../utils/data-manager.js';
+import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
@@ -73,39 +74,49 @@ export default class RacingGameController {
   }
 
   playRacingGame() {
-    const { carList, round: gameRound } = this.#racingGameModel;
+    const { carList } = this.#racingGameModel;
 
     this.#racingGameView.renderCarContainer(carList);
-    this.#racingGameView.setVisibleProgress(true);
+    this.#racingGameView.setRenderProgress(true);
 
-    const receState = {
-      stage: 0,
-      round: gameRound,
-    };
-
-    const raceTimer = setInterval(
-      () => this.handleRaceTimer(raceTimer, receState),
-      GAME_SETTING.ROUND_INTERVAL
-    );
+    this.handleRaceInterval();
   }
 
-  handleRaceTimer(timer, state) {
-    state.stage += 1;
+  handleRaceInterval() {
+    let raceStage = 0;
+    let startTime = new Date().getTime();
+    const callback = () => {
+      const currentTime = new Date().getTime();
+      if (currentTime - 1000 > startTime) {
+        raceStage += 1;
+        startTime = new Date().getTime();
+        const gamePlay = this.handleRacePlay(raceStage);
+        if (gamePlay === true) {
+          return;
+        }
+      }
 
+      const percent = getTimeDiffToPercent(startTime, currentTime, 1 * MILLISECOND);
+      this.#racingGameView.setProgressPercent(percent);
+      requestAnimationFrame(callback);
+    };
+
+    requestAnimationFrame(callback);
+  }
+
+  handleRacePlay(raceStage) {
     const carPlayResult = this.#racingGameModel.play();
     this.#racingGameView.renderCarAdvance(carPlayResult);
 
-    const { round, stage } = state;
-    if (round > stage) {
+    if (this.#racingGameModel.round > raceStage) {
       return false;
     }
-
-    clearInterval(timer);
-    this.winnersResult();
+    this.handleWinnersResult();
+    return true;
   }
 
-  winnersResult() {
-    this.#racingGameView.setVisibleProgress(false);
+  handleWinnersResult() {
+    this.#racingGameView.setRenderProgress(false);
     this.#racingGameView.renderWinners(this.#racingGameModel.winners);
 
     setTimeout(() => {

@@ -123,30 +123,24 @@ body {
 }
 
 .car-advance,
-.progress {
+.progress-container {
   font-size: 2.2rem;
   margin: 0.3rem 0;
 }
 
-.progress > .circle {
-  position: relative;
-  width: 1.8rem;
-  height: 1.8rem;
-  animation: rotate 1s linear infinite;
+.progress {
+  --size: 1.8rem;
+  --border-color: #00bcd4;
+  --bg: transparent;
+  width: var(--size);
+  height: var(--size);
   border-radius: 50%;
-  border: 0.4rem solid #00bcd4;
-  border-top-color: transparent;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(closest-side, white 70%, transparent 0 99.9%, white 0),
+    conic-gradient(var(--border-color) calc(var(--value) * 1%), var(--bg) 0);
+  color: var(--border-color);
   margin: 0 auto;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 #result-container {
