@@ -14,7 +14,8 @@ export default class RacingGameModel {
   }
 
   set cars(names) {
-    this.#cars = names.map((name) => new CarModel(name));
+    this.#cars = names.map((name) => ({ name, position: INIT.POSITION }));
+    console.log(this.#cars);
   }
 
   get cars() {
