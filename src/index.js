@@ -1,4 +1,5 @@
-import Car from "./Model/Car.js";
+import Car from "./model/Car.js";
+import ViewManager from "./view/ViewManager.js";
 import { $ } from "./dom.js";
 
 const RANDOM_MAX_NUMBER = 9;
@@ -9,9 +10,7 @@ class RacingcarGame {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
 
-    this.template = new Template();
-
-    $(".race-count-wrap").style.visibility = "hidden";
+    ViewManager.hideRaceCountSection();
 
     this.bindEvent();
   }
@@ -43,11 +42,11 @@ class RacingcarGame {
     if (errorCarName.length > 0 || $(".car-name-input").value == "") {
       alert("차 이름은 5자 이하만 가능합니다.");
       this.isCorrectCarName = false;
-      $(".race-count-wrap").style.visibility = "hidden";
+      ViewManager.hideRaceCountSection();
       return;
     }
     this.isCorrectCarName = true;
-    $(".race-count-wrap").style.visibility = "visible";
+    ViewManager.showRaceCountSection();
   }
 
   isValidRaceNumber() {
@@ -73,7 +72,7 @@ class RacingcarGame {
 
   showCarBoxes() {
     $(".racing-cars").innerHTML = this.carList
-      .map((car) => Template.carNameBox(car.name))
+      .map((car) => ViewManager.carNameBox(car))
       .join("");
   }
 
@@ -105,7 +104,7 @@ class RacingcarGame {
       const wrap = document.createElement("div");
       wrap.setAttribute("class", "racing-arrow-box");
       wrap.setAttribute("id", `racing-arrow-box-${index}`);
-      wrap.innerHTML = Template.loading();
+      wrap.innerHTML = ViewManager.loading();
       $(".racing-arrow").append(wrap);
     });
   }
@@ -113,7 +112,7 @@ class RacingcarGame {
   showCarMove(index) {
     $(`#racing-arrow-box-${index}`).insertAdjacentHTML(
       "afterbegin",
-      Template.carArrow()
+      ViewManager.carArrow()
     );
   }
 
@@ -148,7 +147,7 @@ class RacingcarGame {
       "<div class='restart-button'>다시 시작하기</div>"
     );
     this.bindRestartEvent();
-    this.makeDisableInput();
+    ViewManager.makeDisableInput();
     setTimeout(
       this.alertCongratsMessage.bind(this),
       GAME_RESULT_DELAY_TIME,
@@ -160,13 +159,6 @@ class RacingcarGame {
     alert(`${winner} 우승을 축하합니다!`);
   }
 
-  makeDisableInput() {
-    $(".car-name-input").disabled = true;
-    $(".race-count-input").disabled = true;
-    $(".car-name-button").disabled = true;
-    $(".race-count-button").disabled = true;
-  }
-
   bindRestartEvent() {
     $(".restart-button").addEventListener("click", () => {
       this.restartRace();
@@ -176,34 +168,7 @@ class RacingcarGame {
   restartRace() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
-    $(".racing-cars").innerHTML = "";
-    $(".racing-arrow").innerHTML = "";
-    $(".racing-result").innerHTML = "";
-    $(".car-name-input").value = "";
-    $(".race-count-input").value = "";
-    $(".car-name-input").disabled = false;
-    $(".race-count-input").disabled = false;
-    $(".car-name-button").disabled = false;
-    $(".race-count-button").disabled = false;
-    $(".race-count-wrap").style.visibility = "hidden";
-  }
-}
-
-class Template {
-  static carArrow() {
-    return '<div class="racing-arrow-wrap">⬇️️</div>';
-  }
-
-  static loading() {
-    return '<div class="loading-spin-wrap"> </div>';
-  }
-
-  static carNameBox(carName) {
-    return `
-      <div class="car-name-box">
-        <div class="car-name-box-text">${carName}</div>
-      </div>
-    `;
+    ViewManager.restartSetting();
   }
 }
 
