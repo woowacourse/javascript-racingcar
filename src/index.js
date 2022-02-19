@@ -1,4 +1,4 @@
-import Car from "./Car.js";
+import Car from "./Model/Car.js";
 import { $ } from "./dom.js";
 
 const RANDOM_MAX_NUMBER = 9;
@@ -73,7 +73,7 @@ class RacingcarGame {
 
   showCarBoxes() {
     $(".racing-cars").innerHTML = this.carList
-      .map((car) => car.carNameTemplate)
+      .map((car) => Template.carNameBox(car.carName))
       .join("");
   }
 
@@ -196,6 +196,14 @@ class Template {
 
   static loading() {
     return '<div class="loading-spin-wrap"> </div>';
+  }
+
+  static carNameBox(carName) {
+    return `
+      <div class="car-name-box">
+        <div class="car-name-box-text">${carName}</div>
+      </div>
+    `;
   }
 }
 
