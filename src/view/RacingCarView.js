@@ -1,5 +1,5 @@
 import { CONGRATS_MESSAGE, DELAY, SELECTOR } from '../constants/index.js';
-import { PROGRESS_TEMPLATE } from '../template/index.js';
+import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template.js';
 
 class RacingCarView {
   constructor() {
@@ -32,7 +32,7 @@ class RacingCarView {
     this.$restartSection.classList.add('visible');
   }
 
-  showCongratsMessage() {
+  showCongratulationMessage() {
     setTimeout(() => {
       alert(CONGRATS_MESSAGE);
     }, DELAY.RESULT_TIME);
@@ -67,8 +67,15 @@ class RacingCarView {
     this.$finalWinnerResult.textContent = '';
   }
 
-  renderRacingCarList(template) {
-    this.$racingCarList.insertAdjacentHTML('afterbegin', template);
+  renderRacingCarList(carNameList) {
+    let initValue = '';
+
+    const racingCarListTemplate = carNameList.reduce(
+      (result, carName) => result + getRacingCarItemTemplate(carName),
+      initValue
+    );
+
+    this.$racingCarList.insertAdjacentHTML('afterbegin', racingCarListTemplate);
   }
 
   renderRacingCarProgress(index) {

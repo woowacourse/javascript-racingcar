@@ -2,7 +2,6 @@ import RacingCar from '../model/RacingCar.js';
 import RacingCarView from '../view/RacingCarView.js';
 
 import { DELAY, RULES, SELECTOR } from '../constants/index.js';
-import { getRacingCarItemTemplate } from '../template/index.js';
 import { convertToNumber, pickRandomNumber } from '../util/index.js';
 
 class RacingCarController {
@@ -60,7 +59,11 @@ class RacingCarController {
     try {
       this.model.setRacingCount(racingCount);
       this.view.deactivateRacingCountForm();
-      this.view.renderRacingCarList(this.getRacingCarListTemplate());
+
+      // 수정한 부분
+      const carNameList = this.model.getCarNameList();
+      this.view.renderRacingCarList(carNameList);
+
       this.playRacingGame();
     } catch (error) {
       this.view.resetRacingCountInput();
@@ -68,26 +71,16 @@ class RacingCarController {
     }
   }
 
-  getRacingCarListTemplate() {
-    const initValue = '';
-
-    const racingCarItemsTemplate = this.model
-      .getCarList()
-      .reduce((result, car) => result + getRacingCarItemTemplate(car.getName()), initValue);
-
-    return racingCarItemsTemplate;
-  }
-
   playRacingGame() {
     const racingCount = this.model.getRacingCount();
-    let count = 0;
+    let gameTurn = 0;
 
     const raceTimer = setInterval(() => {
       this.playRace();
 
-      count = count + 1;
+      gameTurn = gameTurn + 1;
 
-      if (count === racingCount) {
+      if (gameTurn === racingCount) {
         clearInterval(raceTimer);
         this.view.hideLoadingSpinner();
         this.endRacingGame();
@@ -95,6 +88,7 @@ class RacingCarController {
     }, DELAY.RACE_TIME);
   }
 
+  // TODO: 수정 필요
   playRace() {
     this.model.getCarList().forEach((car, index) => {
       const randomNumber = pickRandomNumber(RULES.RANDOM_MIN_NUMBER, RULES.RANDOM_MAX_NUMBER);
@@ -110,30 +104,14 @@ class RacingCarController {
     this.handleGameResult();
     this.view.showFinalWinner();
     this.view.showRestartSection();
-    this.view.showCongratsMessage();
+    this.view.showCongratulationMessage();
   }
 
   handleGameResult() {
-    const finalWinner = this.getFinalWinner();
+    const maxDistance = this.model.getMaxDistance();
+    const winnerList = this.model.getWinnerList(maxDistance);
+    const finalWinner = winnerList.join(RULES.WINNER_LIST_SEPERATOR);
     this.view.renderFinalWinnerResult(finalWinner);
-  }
-
-  getFinalWinner() {
-    const maxDistance = this.getMaxDistance(this.model.getCarList());
-    const winnerList = this.getWinnerList(maxDistance);
-
-    return winnerList.join(RULES.WINNER_LIST_SEPERATOR);
-  }
-
-  getMaxDistance(carList) {
-    return Math.max(...carList.map((car) => car.getDistance()));
-  }
-
-  getWinnerList(maxDistance) {
-    return this.model
-      .getCarList()
-      .filter((car) => car.getDistance() === maxDistance)
-      .map((car) => car.getName());
   }
 
   handleRestartBtnClickEvent() {

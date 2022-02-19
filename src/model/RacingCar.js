@@ -15,6 +15,20 @@ class RacingCar {
     return this.racingCount;
   }
 
+  getCarNameList() {
+    return this.getCarList().map((car) => car.getName());
+  }
+
+  getMaxDistance() {
+    return Math.max(...this.getCarList().map((car) => car.getDistance()));
+  }
+
+  getWinnerList(maxDistance) {
+    return this.getCarList()
+      .filter((car) => car.getDistance() === maxDistance)
+      .map((car) => car.getName());
+  }
+
   setCarList(carNamesList) {
     checkValidCarNames(carNamesList);
     this.carList = carNamesList.map((carName) => new Car(carName));
