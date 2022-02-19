@@ -68,11 +68,12 @@ export default class RacingCarController {
   }
 
   race(racingCount) {
-    console.log('spinner 킴');
+    this.view.showSpinners();
     const raceInterval = this.raceInterval();
 
     setTimeout(() => {
       clearInterval(raceInterval);
+      this.view.hideSpinners();
       this.renderResultAfterTime();
     }, racingCount * 1000);
   }
@@ -83,16 +84,17 @@ export default class RacingCarController {
       this.view.renderRestart();
       this.view.selectRestartDOM();
       this.attachRestartEvents();
+      this.view.hideSpinners();
     }, 2000);
   }
 
   raceInterval() {
     return setInterval(() => {
-      console.log('spinner 끔');
+      this.view.hideSpinners();
       this.model.cars.forEach((car) => {
         if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
       });
-      console.log('spinner 킴');
+      this.view.showSpinners();
     }, 1000);
   }
 

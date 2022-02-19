@@ -86,7 +86,8 @@ export const winner = `
   margin: 24px 0px;
 	font-weight: 600;
 	font-size: 20px;
-	color: #000000
+	color: #000000;
+  text-align: center;
 `;
 
 export const carName = `
@@ -136,4 +137,5 @@ export const restartButton = `
 export const spinner = `
   width: 30px;
   margin-top: 10px;
+  transform: rotate(1deg);
 `;

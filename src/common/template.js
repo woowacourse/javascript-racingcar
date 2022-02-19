@@ -37,6 +37,7 @@ export function carTemplate(car) {
     <div style="${style.carContainer}">
       <div style="${style.carName}"><span>${car.name}</span></div>
       <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></div>
+      <img id="spinner" style="${style.spinner}" src="src/image/loading.png" class="hidden" alt="로딩" />
     </div>
   `;
 }

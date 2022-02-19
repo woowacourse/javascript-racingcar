@@ -95,4 +95,37 @@ export default class RacingCarView {
     $racingCount.innerHTML = '';
     $gameResult.innerHTML = '';
   }
+
+  showSpinners() {
+    const $$spinner = $$('#spinner');
+
+    [...$$spinner].forEach((spinner) => {
+      spinner.classList.remove('hidden');
+      this.#animateSpinner(spinner);
+    });
+  }
+
+  hideSpinners() {
+    const $$spinner = $$('#spinner');
+
+    [...$$spinner].forEach((spinner) => {
+      spinner.classList.add('hidden');
+    });
+  }
+
+  #animateSpinner(spinner) {
+    const startTime = new Date().getTime();
+    let i = 0;
+
+    const animatedSpinner = () => {
+      const currentTime = new Date().getTime();
+      i += 1;
+      spinner.style.transform = `rotate(${i}deg)`;
+      if (currentTime - 1000 > startTime) {
+        return;
+      }
+      requestAnimationFrame(animatedSpinner);
+    };
+    requestAnimationFrame(animatedSpinner);
+  }
 }
