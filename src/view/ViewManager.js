@@ -1,4 +1,4 @@
-import { $ } from "../dom.js";
+import { $ } from "../utils/dom.js";
 
 export default class ViewManager {
   static carArrow() {

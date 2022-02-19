@@ -6,7 +6,7 @@ import {
 } from "./constants/ConstantsManager.js";
 import Car from "./model/Car.js";
 import ViewManager from "./view/ViewManager.js";
-import { $ } from "./dom.js";
+import { $ } from "./utils/dom.js";
 
 class RacingcarGame {
   constructor() {
