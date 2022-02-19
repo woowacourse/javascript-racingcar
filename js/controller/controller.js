@@ -33,17 +33,16 @@ export default class Controller {
   bindRacingCountInputSubmitEvent() {
     $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener('submit', (e) => {
       e.preventDefault();
-      const carRacingCountInput = input.getRacingCountInput();
+      const racingCountInput = input.getRacingCountInput();
 
-      if (validator.isInvalidRacingCountInput(carRacingCountInput)) {
+      if (validator.isInvalidRacingCountInput(racingCountInput)) {
         alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
         return;
       }
 
       this.view.disableRacingCountForm();
-      this.model.saveRacingCount(carRacingCountInput);
+      this.model.saveRacingCount(racingCountInput);
       this.gameStart();
-      this.model.initCarPosition();
     });
   }
 
@@ -57,7 +56,7 @@ export default class Controller {
     setTimeout(() => {
       this.setMoveState();
       this.displayProgress();
-      this.view.renderLoading();
+      this.view.renderLoader();
     }, 1000 * i);
   }
 
@@ -69,7 +68,7 @@ export default class Controller {
 
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
-    this.view.renderInitialLoading(this.model.carPosition);
+    this.view.renderInitialLoader(this.model.carPosition);
     this.setMoveStateByRacingCount();
 
     setTimeout(() => {
