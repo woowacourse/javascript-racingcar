@@ -42,10 +42,10 @@ class RacingCarGameView {
   }
 
   removeSpinner() {
+    cancelAnimationFrame(this.animationId);
     const spinnerArray = Array.from(this.spinners);
     spinnerArray.forEach((spinner) => {
       spinner.remove();
-      cancelAnimationFrame(this.animationId);
     });
   }
 
