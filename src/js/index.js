@@ -46,7 +46,7 @@ class App {
 
     this.View.setDisableForm($(SELECTOR.CAR_NAME_FORM));
     this.View.setAbleForm($(SELECTOR.RACE_TIME_FORM));
-    this.RacingGame.carListPush(nameStringToArray(carNameValue));
+    this.RacingGame.generateCar(nameStringToArray(carNameValue));
 
     return true;
   }
@@ -94,9 +94,10 @@ class App {
   }
 
   async handleWinnerDisplay() {
-    this.View.renderResult(this.RacingGame.winner());
+    this.RacingGame.setWinner();
+    this.View.renderResult(this.RacingGame.winner);
     await delay(2000);
-    alert('우승자는 ' + this.RacingGame.winner() + '입니다. 축하합니다!');
+    alert('우승자는 ' + this.RacingGame.winner + '입니다. 축하합니다!');
     this.View.renderReplayButton();
   }
 
@@ -110,7 +111,7 @@ class App {
     await delay(1000);
     this.View.LoadingEnd();
 
-    this.RacingGame.play();
+    this.RacingGame.runRound();
     this.RacingGame.carList.forEach((car) => {
       if (car.isMovedInLastRound) {
         this.View.renderAdvance(car.name);

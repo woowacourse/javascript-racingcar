@@ -15,7 +15,7 @@ class RacingGame {
     };
   }
 
-  carListPush(array) {
+  generateCar(array) {
     array.forEach((carName) => {
       const newCar = new RacingCar(carName);
       this.state.carList.push(newCar);
@@ -34,7 +34,11 @@ class RacingGame {
     return this.state.round;
   }
 
-  winner() {
+  get winner() {
+    return this.state.winner;
+  }
+
+  setWinner() {
     let maxDistance = Number.MIN_SAFE_INTEGER;
     this.carList.forEach((item) => {
       if (item.distance < maxDistance) {
@@ -48,11 +52,9 @@ class RacingGame {
 
       this.state.winner.push(item.name);
     });
-
-    return this.state.winner;
   }
 
-  play() {
+  runRound() {
     this.state.carList.forEach((car) => {
       if (this.isAdvance()) {
         car.go();
