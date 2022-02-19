@@ -6,13 +6,21 @@ export default class Car {
     this.moveCount = COUNT_DEFAULT;
   }
 
-  #getRandomDigit() {
+  #generateRandomDigit() {
     return Math.floor(Math.random() * (RANDOM.MAX_DIGIT - RANDOM.MIN_DIGIT + 1)) + RANDOM.MIN_DIGIT;
   }
 
-  moveForward() {
-    if (this.#getRandomDigit() >= CAR.MIN_MOVE_FORWARD_CONDITION) {
-      this.moveCount += 1;
+  #moveForward() {
+    this.moveCount += 1;
+  }
+
+  tryMoveForward() {
+    if (this.#generateRandomDigit() >= CAR.MIN_MOVE_FORWARD_CONDITION) {
+      this.#moveForward();
+
+      return true;
     }
+
+    return false;
   }
 }
