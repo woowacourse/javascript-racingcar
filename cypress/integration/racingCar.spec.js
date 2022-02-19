@@ -130,6 +130,28 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
   });
 
+  it('게임이 끝나고 2초 후에 최종 우승자 축하 메세지를 확인할 수 있어야 한다.', () => {
+    const alertStub = cy.stub();
+    const racingCount = 5;
+    const delayPerRace = 1000;
+    const delayAfterEnd = 2000;
+    const totalDelay = delayPerRace * racingCount + delayAfterEnd;
+
+    cy.on('window:alert', alertStub);
+
+    // when
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type('king, white, tiger');
+    cy.get(SELECTOR.CAR_NAMES_SUBMIT).click();
+
+    cy.get(SELECTOR.RACING_COUNT_INPUT).type(racingCount);
+    cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
+
+    cy.tick(totalDelay).then(() => {
+      // then
+      expect(alertStub).to.be.called;
+    });
+  });
+
   it('게임을 다시 시작하면 자동차 이름 입력만 할 수 있어야 한다.', () => {
     const racingCount = 5;
     const delayPerRace = 1000;
