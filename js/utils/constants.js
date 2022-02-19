@@ -36,3 +36,8 @@ export const SELECTOR = {
 export const RESULT = {
   RACE_RESULT: '자동차 경주 결과가 나왔습니다. 우승하신 분들 축하드려요!',
 };
+
+export const TIMER = {
+  DELAY_AFTER_END: 2000,
+  DELAY_MOVE: 1000,
+};

@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/dom.js';
-import { SELECTOR } from '../utils/constants.js';
+import { SELECTOR, TIMER } from '../utils/constants.js';
 
 export default class View {
   constructor() {
@@ -52,7 +52,7 @@ export default class View {
             clearInterval(moveCarsTimer);
           }
         });
-      }, 1000);
+      }, TIMER.DELAY_MOVE);
     });
   }
 

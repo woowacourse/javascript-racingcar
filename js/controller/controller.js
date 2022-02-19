@@ -3,7 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getValues.js';
 import Validator from '../validator/validator.js';
-import { ERROR_MESSAGE, NUMBER, RESULT, SELECTOR } from '../utils/constants.js';
+import { ERROR_MESSAGE, NUMBER, RESULT, SELECTOR, TIMER } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -82,7 +82,7 @@ export default class Controller {
       this.bindGameRestartEvent();
       setTimeout(() => {
         alert(RESULT.RACE_RESULT);
-      }, 2000);
+      }, TIMER.DELAY_AFTER_END);
     });
   }
 
