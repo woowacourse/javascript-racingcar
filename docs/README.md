@@ -100,7 +100,7 @@
 - [x] 다시 시작하기 버튼은 우승자가 출력되고 난 후로 수정
 - [x] generateRandomNumber 오류 수정
 - [ ] isMovedInLastRound 로직 다시 한 번 고민
-- [ ] 테스트 코드 매직 넘버 정리, `calledWith` 사용, 주석 표기
+- [x] 테스트 코드 매직 넘버 정리, `calledWith` 사용, 주석 표기
 - [x] 로깅 함수 삭제
 
 ---
