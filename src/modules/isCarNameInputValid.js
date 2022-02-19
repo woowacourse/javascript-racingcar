@@ -1,6 +1,6 @@
 import { CARNAME_LENGTH_LIMIT } from "../constants/constants.js";
 import { OVER_CARNAME_LENGTH_ERROR } from "../constants/error.js";
-import isUserInputEmpty from "./isUserInputEmpty.js";
+import checkUserInputIsEmpty from "./checkUserInputIsEmpty.js";
 import { $ } from "../dom/dom.js";
 
 
@@ -14,8 +14,7 @@ function checkCarNameLength(carNameArray){
 export default function isCarNameInputValid(userCarNameInput){
     try{
         let isCarNameValid = false;
-        if(!isUserInputEmpty(userCarNameInput)){
-
+        if(!checkUserInputIsEmpty(userCarNameInput)){
             isCarNameValid = checkCarNameLength(userCarNameInput.split(',').map(carName => carName.trim()));
         };
         return isCarNameValid;
