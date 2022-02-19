@@ -127,15 +127,15 @@ class RacingcarGame {
 
   endLoading() {
     this.carList.forEach((car, index) => {
-      let carMoveState = $(`#racing-arrow-box-${index}`);
+      const carMoveState = $(`#racing-arrow-box-${index}`);
       carMoveState.removeChild(carMoveState.lastChild);
     });
   }
 
   findWinner() {
     const carCountList = this.carList.map((car) => car.count);
-    let winnerCount = Math.max(...carCountList);
-    let winner = this.carList
+    const winnerCount = Math.max(...carCountList);
+    const winner = this.carList
       .filter((car) => car.count === winnerCount)
       .map((car) => car.name);
     return winner.join(", ");
