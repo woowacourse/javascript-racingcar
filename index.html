@@ -12,6 +12,7 @@
     <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
     <section class="form-area">
+      <h2 hidden>사용자 입력</h2>
       <form class="game-form car-names">
         <label class="form-label">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
         <div class="input-wrap">
@@ -30,7 +31,11 @@
     </section>
 
     <section class="result-area">
-      <section class="progress-area" id="progress-area"></section>
+      <h2 hidden>게임 결과</h2>
+      <section id="progress-area">
+        <h3 hidden>자동차별 진행 상황</h3>
+        <div class="car-track-area" id="car-track-area"></div>
+      </section>
       <section class="final-result-area">
         <h3 class="stage">🏆 최종 우승자: <span id="winners"></span> 🏆</h1>
         <button class="restart-button blue-button" type="button" id="restart-button">다시 시작하기</button>

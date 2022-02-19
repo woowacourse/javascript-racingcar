@@ -10,7 +10,7 @@ export default class View {
     }
 
     updateInitialTrack(cars) {
-        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.emptyTrack(cars);
+        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = template.emptyTrack(cars);
     }
 
     updateLoading() {
@@ -21,7 +21,7 @@ export default class View {
     }
 
     updateProgress(cars) {
-        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.track(cars);
+        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = template.track(cars);
     }
 
     updateWinner(winners) {
@@ -29,7 +29,7 @@ export default class View {
     }
 
     updateResult(cars, winners) {
-        this.resultArea.querySelector(SELECTOR.PROGRESS_AREA).innerHTML = template.track(cars);
+        this.updateProgress(cars);
         this.resultArea.querySelector(SELECTOR.WINNERS).innerText = winners.join(',');
     }
 
