@@ -1,6 +1,5 @@
 import RacingGameModel from '../model/RacingGameModel.js';
 import RacingView from '../view/RacingView.js';
-import RandomUtils from '../utils/random.js';
 import { validateCarNames, validateRound } from '../utils/validation.js';
 import { SELECTOR, CAR, DELAY } from '../constants/constants.js';
 import { $ } from '../utils/selector.js';
@@ -68,10 +67,10 @@ export default class RacingController {
   }
 
   playEachTurn() {
-    const moves = this.model.cars.map(() => {
-      return RacingController.moveOrNot();
-    });
-    this.model.moveCars(moves);
+    // const moves = this.model.cars.map(() => {
+    //   return RacingController.moveOrNot();
+    // });
+    this.model.moveCarsOnce();
     this.view.renderProgress(this.model.cars);
   }
 
@@ -81,14 +80,6 @@ export default class RacingController {
     setTimeout(() => {
       alert(`우승자는 ${winners.join(', ')}입니다.`);
     }, DELAY.NOTIFY_RESULT_TIME);
-  }
-
-  static moveOrNot() {
-    const randomNumber = RandomUtils.pickRandomNumber();
-    if (randomNumber >= CAR.REFERENCE_POINT_FOR_MOVEMENT) {
-      return 1;
-    }
-    return 0;
   }
 
   activateRestartButton() {

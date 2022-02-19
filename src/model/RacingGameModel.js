@@ -1,21 +1,23 @@
 import { INIT } from '../constants/constants.js';
-import CarModel from './CarModel.js';
+import RandomUtils from '../utils/random.js';
 
 export default class RacingGameModel {
   #cars = INIT.CARS;
 
   #round = INIT.ROUND;
 
-  moveCars(moves) {
+  moveCarsOnce() {
+    const oneMoveOfCars = this.#cars.map(() => {
+      return RandomUtils.decideOneMoveAtRandom();
+    });
     this.#cars = this.#cars.map((car, index) => ({
       ...car,
-      position: car.position + moves[index]
+      position: car.position + oneMoveOfCars[index]
     }));
   }
 
   set cars(names) {
     this.#cars = names.map((name) => ({ name, position: INIT.POSITION }));
-    console.log(this.#cars);
   }
 
   get cars() {
