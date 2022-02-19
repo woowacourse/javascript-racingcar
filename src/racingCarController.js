@@ -55,6 +55,8 @@ export default class RacingCarController {
   #handleRacingCount() {
     const racingCount = this.view.$racingCountInput.valueAsNumber;
 
+    if (this.model.racingCount) return;
+
     if (!isValidRacingCount(racingCount)) {
       this.#onInvalidRacingCountSubmit();
 
@@ -80,15 +82,16 @@ export default class RacingCarController {
 
   #racing(car) {
     let turn = 0;
-    const racingInterval = setInterval(() => {
+    const racingTimer = setInterval(() => {
       car.moveForward();
 
       if (car.isMoved) RacingCarView.renderMoveForward(car);
 
-      // eslint-disable-next-line no-plusplus
-      if (++turn === this.model.racingCount) {
+      turn += 1;
+
+      if (turn === this.model.racingCount) {
         RacingCarView.removeLoading(car);
-        clearInterval(racingInterval);
+        clearInterval(racingTimer);
       }
     }, 1000);
   }
