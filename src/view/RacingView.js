@@ -72,4 +72,13 @@ export default class RacingView {
       this.$namesForm.childNodes[i].disabled = true;
     }
   }
+
+  getCarNameList() {
+    const nameList = this.$nameInput.value.split(',');
+    return nameList.map((name) => name.trim());
+  }
+
+  getRacingCount() {
+    return this.$countInput.value;
+  }
 }

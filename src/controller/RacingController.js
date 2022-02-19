@@ -24,7 +24,7 @@ export default class RacingController {
 
   submitNameHandler(e) {
     e.preventDefault();
-    const nameList = RacingController.getCarNameList();
+    const nameList = this.view.getCarNameList();
 
     try {
       validateCarNames(nameList);
@@ -38,7 +38,7 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = RacingController.getRacingCount();
+    const racingCount = this.view.getRacingCount();
 
     try {
       validateCount(racingCount);
@@ -101,14 +101,5 @@ export default class RacingController {
   restartGame() {
     this.view.reset();
     this.model.reset();
-  }
-
-  static getCarNameList() {
-    const nameList = $(SELECTOR.ID.CAR_NAMES_INPUT).value.split(',');
-    return nameList.map((name) => name.trim());
-  }
-
-  static getRacingCount() {
-    return $(SELECTOR.ID.RACING_COUNT_INPUT).value;
   }
 }

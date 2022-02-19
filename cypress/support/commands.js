@@ -23,11 +23,9 @@
 //
 // -- This will overwrite an existing command --
 
-import { INPUT_ERROR, SELECTOR } from '../../src/constants/constants';
-import RandomUtils from '../../src/utils/random';
+import { SELECTOR } from '../../src/constants/constants';
 
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-const baseUrl = '../index.html';
 
 Cypress.Commands.add('checkNameInputValid', (nameInput, errorMessage) => {
   // given
