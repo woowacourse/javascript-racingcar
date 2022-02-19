@@ -1,145 +1,85 @@
-import Car from '../model/Car.js';
-import template from '../templates.js';
-import {
-  ERROR_MESSAGE,
-  DELIMETER,
-  SELECTOR,
-  DELAY_TIME,
-} from '../constants.js';
-import { splitString, trimStringArray, delay, $all } from '../utils/utils.js';
-import {
-  isValidCarNamesLength,
-  isDuplicatedCarName,
-  isValidRacingCount,
-} from '../utils/validations.js';
+import { DELAY_TIME } from '../constants.js';
+import { delay } from '../utils/utils.js';
 
 export default class RacingCarGame {
-  constructor(model, view) {
+  constructor(
+    model,
+    carNameInputView,
+    racingCountInputView,
+    racingProgressView,
+    racingResultView
+  ) {
     this.model = model;
-    this.view = view;
+    this.carNameInputView = carNameInputView;
+    this.racingCountInputView = racingCountInputView;
+    this.racingProgressView = racingProgressView;
+    this.racingResultView = racingResultView;
 
-    this.view.bindClickCarNameButton(this.submitCarNames.bind(this));
-    this.view.bindClickRacingCountButton(this.submitRacingCount.bind(this));
-    this.view.bindClickRestartButton(this.init.bind(this));
-  }
+    this.previousCarDistanceList = [];
 
-  validateCarNameList(carNameList) {
-    if (!isValidCarNamesLength(carNameList)) {
-      this.view.alertMessage(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
-      this.view.initializeInput(this.view.carNameInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  validateUniqueCarName(carNameList) {
-    if (isDuplicatedCarName(carNameList)) {
-      this.view.alertMessage(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
-      this.view.initializeInput(this.view.carNameInput);
-
-      return true;
-    }
-
-    return false;
-  }
-
-  insertCarName() {
-    $all(SELECTOR.$CAR_NAME).forEach((carNameElement, index) => {
-      this.view.insertText(carNameElement, this.model.carList[index].name);
-    });
+    this.carNameInputView.bindClickCarNameButton(
+      this.submitCarNames.bind(this)
+    );
+    this.racingCountInputView.bindClickRacingCountButton(
+      this.submitRacingCount.bind(this)
+    );
+    this.racingResultView.bindClickRestartButton(this.init.bind(this));
   }
 
   submitCarNames() {
-    const carNameList = trimStringArray(
-      splitString(this.view.carNameInput.value, DELIMETER)
-    );
-
-    if (
-      this.validateCarNameList(carNameList) ||
-      this.validateUniqueCarName(carNameList)
-    ) {
+    const carNameList = this.carNameInputView.getUserCarNameInput();
+    if (!this.carNameInputView.isValidateCarNameList(carNameList)) {
       return;
     }
 
-    this.model.carList = carNameList.map((name) => new Car(name));
-    this.view.racingCountInputVisibled();
-    this.view.render(
-      this.view.racingProgress,
-      'beforeend',
-      template.renderRacingProgress(this.model.carList)
-    );
-    this.insertCarName();
-    this.view.toggleDisabledButton(this.view.carNameButton);
+    this.model.setCarList(carNameList);
+    this.racingCountInputView.visibleSection();
+    this.racingProgressView.renderCarList(this.model.carList);
+    this.carNameInputView.disabledInputButton();
   }
 
   moveCars() {
     this.model.carList.forEach((car, index) => {
       car.race();
-      if (this.model.previousCarDistanceList[index] >= car.distance) {
+
+      if (this.previousCarDistanceList[index] >= car.distance) {
         return;
       }
 
-      this.model.previousCarDistanceList[index] = car.distance;
-      this.view.render(
-        this.view.progressList[index].querySelector(SELECTOR.$SPINNER),
-        'beforebegin',
-        template.renderProgressList()
-      );
-    });
-  }
-
-  renderSpinnerAnimation() {
-    this.view.progressList.forEach((progress) => {
-      this.view.render(
-        progress,
-        'beforeend',
-        template.renderLoadingAnimation()
-      );
+      this.previousCarDistanceList[index] = car.distance;
+      this.racingProgressView.renderProgressList(index);
     });
   }
 
   async startRace(racingCount) {
-    this.model.previousCarDistanceList = Array(this.model.carList.length).fill(
-      0
-    );
-    this.renderSpinnerAnimation();
+    this.previousCarDistanceList = Array(this.model.carList.length).fill(0);
+    this.racingProgressView.renderSpinnerAnimation();
 
     for (let i = 0; i < racingCount; i += 1) {
       await delay(DELAY_TIME.RACING_PROGRESS);
       this.moveCars();
     }
 
-    this.view.removeElements(this.view.progressList, SELECTOR.$SPINNER);
+    this.racingProgressView.removeSpinnerAnimation();
   }
 
   async submitRacingCount() {
-    const racingCount = this.view.racingCountInput.valueAsNumber;
+    const racingCount = this.racingCountInputView.getUserRacingCountInput();
 
-    if (!isValidRacingCount(racingCount)) {
-      this.view.alertMessage(ERROR_MESSAGE.OUT_OF_RACING_COUNT_RANGE);
-      this.view.initializeInput(this.view.racingCountInput);
-
+    if (!this.racingCountInputView.isValidRacingCount(racingCount)) {
       return;
     }
 
-    this.view.toggleDisabledButton(this.view.racingCountButton);
+    this.racingCountInputView.disabledInputButton();
     await this.startRace(racingCount);
-    this.view.render(
-      this.view.app,
-      'beforeend',
-      template.renderRacingResult(this.model.winners)
-    );
-    this.view.insertText(
-      SELECTOR.$WINNERS,
-      this.model.winners.join(`${DELIMETER} `)
-    );
-    this.view.winnersAlertMessage(this.model.winners);
+    this.racingResultView.renderWinners(this.model.winners);
   }
 
   init() {
     this.model.init();
-    this.view.init();
+    this.carNameInputView.init();
+    this.racingCountInputView.init();
+    this.racingProgressView.init();
+    this.racingResultView.init();
   }
 }

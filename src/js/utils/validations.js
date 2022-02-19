@@ -12,10 +12,10 @@ export function isDuplicatedCarName(carNameList) {
   return carNameList.length !== new Set(carNameList).size;
 }
 
-export function isValidRacingCount(racingCount) {
+export function isOutOfRacingCountRange(racingCount) {
   return (
-    Number.isInteger(racingCount) &&
-    racingCount >= RACING_COUNT_RANGE.MIN &&
-    racingCount <= RACING_COUNT_RANGE.MAX
+    !Number.isInteger(racingCount) ||
+    racingCount < RACING_COUNT_RANGE.MIN ||
+    racingCount > RACING_COUNT_RANGE.MAX
   );
 }
