@@ -12,27 +12,29 @@ export default class RacingGameModel {
   init() {
     this.#state = {
       carList: [],
-      round: 0,
+      currentRound: 0,
+      totalRound: 0,
+      round: { total: 0, current: 0 },
       winners: [],
     };
 
     this.#maxDistance = Number.MIN_SAFE_INTEGER;
   }
 
-  get carList() {
-    return this.#state.carList;
-  }
-
   set carList(nameList) {
     this.#state.carList = nameList.map((name) => new RacingCarInstance(name));
   }
 
+  get carList() {
+    return this.#state.carList;
+  }
+
   set round(number) {
-    this.#state.round = Number(number);
+    this.#state.totalRound = Number(number);
   }
 
   get round() {
-    return this.#state.round;
+    return this.#state.totalRound;
   }
 
   #isWinner(carInstance) {
@@ -64,9 +66,12 @@ export default class RacingGameModel {
     return winners;
   }
 
+  #isGameOver() {
+    return this.#state.currentRound === this.#state.totalRound;
+  }
+
   play() {
     const { carList } = this.#state;
-
     carList.forEach((carInstance) => {
       if (isAdvance() === false) {
         return;
@@ -75,6 +80,7 @@ export default class RacingGameModel {
       carInstance.go();
     });
 
-    return carList;
+    this.#state.currentRound += 1;
+    return { isGameOver: this.#isGameOver(), carList };
   }
 }

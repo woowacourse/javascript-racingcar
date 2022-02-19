@@ -83,14 +83,12 @@ export default class RacingGameController {
   }
 
   handleRaceInterval() {
-    let raceStage = 0;
     let startTime = new Date().getTime();
     const callback = () => {
       const currentTime = new Date().getTime();
       if (currentTime - 1000 > startTime) {
-        raceStage += 1;
         startTime = new Date().getTime();
-        const gamePlay = this.handleRacePlay(raceStage);
+        const gamePlay = this.handleRacePlay();
         if (gamePlay === true) {
           return;
         }
@@ -104,13 +102,14 @@ export default class RacingGameController {
     requestAnimationFrame(callback);
   }
 
-  handleRacePlay(raceStage) {
-    const carPlayResult = this.#racingGameModel.play();
-    this.#racingGameView.renderCarAdvance(carPlayResult);
+  handleRacePlay() {
+    const { isGameOver, carList } = this.#racingGameModel.play();
+    this.#racingGameView.renderCarAdvance(carList);
 
-    if (this.#racingGameModel.round > raceStage) {
+    if (isGameOver === false) {
       return false;
     }
+
     this.handleWinnersResult();
     return true;
   }
