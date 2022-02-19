@@ -19,7 +19,7 @@ body{
 
 }
 
-.racing-game-form{
+.app > form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,19 +29,19 @@ body{
 }
 
 
-.input-section{
+.input-wrapper{
     display: block;
     width: 400px;
     margin: 0 auto;
 }
 
 
-.input-section > label{
+.input-wrapper > label{
     display: block;
     margin-bottom: 0.75em;
 }
 
-.input-section > input { 
+.input-wrapper > input { 
     width: 80%;
     padding: 0.5em;  
 }
@@ -60,7 +60,31 @@ button:disabled {
     cursor: default;
 }
 
-.racing-status-container {
+
+.information-wrapper {
+    margin: 0 0.4em;
+}
+
+.name-wrapper {
+    background-color: #F5F5F5;   
+    padding: 0.5em 0.7em;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.progress-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-wrapper > h3, div {
+    text-align: center;
+    margin: 0.3em;
+}
+
+
+.status-wrapper {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -68,38 +92,16 @@ button:disabled {
     margin: 1.25em 0;
 }
 
-.car-information {
-    margin: 0 0.4em;
-}
 
-.car-name{
-    background-color: #F5F5F5;   
-    padding: 0.5em 0.7em;
-    font-size: 16px;
-    border-radius: 4px;
-}
-
-.progress{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.move-arrow, .spinner {
-    text-align: center;
-    margin: 0.3em;
-}
-
-
-.winners-container{
-    margin-bottom: 1.5em;
-}
-
-.racing-result-container {
+.result-wrapper {
     width:100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.result-wrapper > div {
+    margin-bottom: 1.5em;
 }
 
 .spinner {

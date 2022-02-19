@@ -12,15 +12,15 @@ import {
 } from '../utils/dom.js';
 import { SELECTOR, CLASS_NAME, CAR_STATUS } from '../constants.js';
 
-const moveArrowView = `<h3 id="move-arrow" class="move-arrow" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
+const moveArrowView = `<h3 id="move-arrow" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
 const spinnerView = `<div id="spinner" class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
 
 const generateCarInformationView = car => {
   const name = car.getName();
   return `
-    <div id="car-information" class="car-information" data-name=${name}>
-        <div id="car-name" class="car-name">${name}</div>
-        <div id="progress" class="progress"></div>
+    <div id="car-information" class="information-wrapper" data-name=${name}>
+        <div id="car-name" class="name-wrapper">${name}</div>
+        <div id="progress" class="progress-wrapper"></div>
     </div>`;
 };
 
