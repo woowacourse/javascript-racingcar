@@ -74,7 +74,14 @@ export default class Controller {
       this.displayWinner();
       this.displayRestartButton();
       this.bindGameRestartEvent();
+      this.displayCongratulatoryMessage();
     }, 1000 * this.model.racingCount);
+  }
+
+  displayCongratulatoryMessage() {
+    setTimeout(() => {
+      alert(`축하합니다! 우승자는 ${this.getWinnerList()}입니다.`);
+    }, 2000);
   }
 
   displayProgress() {
