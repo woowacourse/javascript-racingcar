@@ -7,6 +7,7 @@ import addGameProcessTemplate from '../view/addGameProcessTemplate.js';
 import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
 import spinSpinner from '../view/spinSpinner.js';
+import alertWinners from '../view/alertWinners.js';
 
 function sortCars(cars) {
   return [...cars].sort((a, b) => b.position - a.position);
@@ -35,6 +36,7 @@ function updateGameProcess() {
 function endGame(cars) {
   hideSpinner(document.querySelectorAll('.spinner'));
   showWinners(getWinners(cars));
+  alertWinners(getWinners(cars));
   showRestart();
 }
 
@@ -53,6 +55,4 @@ export default function playRace(count) {
 
     updateGameProcess();
   }, 1000);
-
-  console.log(cars);
 }
