@@ -1,5 +1,5 @@
 import { validateCarNames, validateCount } from '../utils/validation.js';
-import { SELECTOR } from '../constants/constants.js';
+import { SELECTOR, TIME } from '../constants/constants.js';
 import DomUtils from '../utils/dom-utils.js';
 
 export default class RacingController {
@@ -79,13 +79,13 @@ export default class RacingController {
         return;
       }
       this.view.renderProgress(this.model.cars);
-    }, 1000);
+    }, TIME.DELAY_RACE_TIME);
   }
 
   renderWinner() {
     setTimeout(() => {
       this.view.renderResult(this.model.winners);
       this.activateRestartButton();
-    }, 2000);
+    }, TIME.DELAY_RACE_RESULT);
   }
 }

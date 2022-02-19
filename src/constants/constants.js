@@ -21,6 +21,7 @@ export const SELECTOR = {
     RESULT: 'result',
     RACING_WINNERS: 'racing-winners',
     RACING_PROGRESS_CONTAINER: 'racing-progress-container',
+    RACING_PROGRESS_TITLE: 'racing-progress-title',
     RACING_RESULT_CONTAINER: 'racing-result-container',
     WINNER_SPAN: 'racing-result',
     RESTART_BUTTON: 'restart-button'
@@ -45,4 +46,14 @@ export const RACINGGAME = {
   INIT_ROUND: 0,
   ROUND_PER_PROCESS: 1,
   MAX_RACING_COUNT: 20
+};
+
+export const TIME = {
+  DELAY_RACE_TIME: 1000,
+  DELAY_RACE_RESULT: 2000
+};
+
+export const COMMENT = {
+  RACING_PROGRESS_TITLE: '자동차 경주 진행 상황',
+  RESTART: '다시 시작하기'
 };
