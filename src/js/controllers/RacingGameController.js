@@ -69,19 +69,19 @@ export default class RacingGameController {
       return false;
     }
 
-    this.playRacingGame();
+    this.startRacingGame();
   }
 
-  playRacingGame() {
+  startRacingGame() {
     const { carList } = this.#racingGameModel;
 
     this.#racingGameView.renderCarContainer(carList);
     this.#racingGameView.setRenderProgress(true);
 
-    this.handleRaceInterval();
+    this.racePlayInterval();
   }
 
-  handleRaceInterval() {
+  racePlayInterval() {
     let startTime = new Date().getTime();
     const callback = () => {
       const currentTime = new Date().getTime();
@@ -92,14 +92,14 @@ export default class RacingGameController {
 
       if (currentTime - GAME_SETTING.ROUND_INTERVAL > startTime) {
         startTime = new Date().getTime();
-        this.handleRacePlay(raceInterval);
+        this.racePlay(raceInterval);
       }
     };
 
     requestAnimationFrame(callback);
   }
 
-  handleRacePlay(raceInterval) {
+  racePlay(raceInterval) {
     const { isGameOver, carList } = this.#racingGameModel.play();
     this.#racingGameView.renderCarAdvance(carList);
 
@@ -107,11 +107,11 @@ export default class RacingGameController {
       return false;
     }
 
-    this.handleWinnersResult();
+    this.getWinnersResult();
     cancelAnimationFrame(raceInterval);
   }
 
-  handleWinnersResult() {
+  getWinnersResult() {
     this.#racingGameView.setRenderProgress(false);
     this.#racingGameView.renderWinners(this.#racingGameModel.winners);
 
