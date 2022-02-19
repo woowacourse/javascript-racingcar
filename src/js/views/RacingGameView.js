@@ -38,7 +38,7 @@ export default class RacingGameView {
 
   renderAdvance(target) {
     const str = this.TEMPLATE.ADVANCE_MARK();
-    const targetID = '#' + target;
+    const targetID = '#car-' + target;
     $(targetID).innerHTML += str;
   }
 

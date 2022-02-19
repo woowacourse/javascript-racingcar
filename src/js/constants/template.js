@@ -8,7 +8,7 @@ export default class TEMPLATE {
   }
 
   CAR_NAME_BOX(carName) {
-    return `<div id="${carName}" class="car-instance"><div class="car-name-box">${carName}</div></div>`;
+    return `<div id="car-${carName}" class="car-instance"><div class="car-name-box">${carName}</div></div>`;
   }
 
   WINNER_DISPLAY(winner) {
