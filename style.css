@@ -8,6 +8,7 @@ body button {
   border: 0;
   padding: 10px 20px;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 input {
@@ -21,7 +22,12 @@ input:disabled::after {
   background-color: #888888;
 }
 
-button:disabled {
+button:hover {
+  background-color: #80deea;
+}
+
+button:disabled,
+button:hover:disabled {
   background-color: #888888;
 }
 
