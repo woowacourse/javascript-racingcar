@@ -15,16 +15,16 @@ class RacingCarGame {
     this.count = null;
     this.view = new RacingCarGameView();
     this.carManager = new CarManager();
-    this.initDOM();
-    this.initHandler();
+    this.#initDOM();
+    this.#initHandler();
   }
 
-  initDOM() {
+  #initDOM() {
     this.carNameInputField = selectDOM(`#${DOM.CAR_NAME_INPUT_FIELD_ID}`);
     this.countInputField = selectDOM(`#${DOM.COUNT_INPUT_FIELD_ID}`);
   }
 
-  initHandler() {
+  #initHandler() {
     this.carNameInputField.addEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.addEventListener('click', this.onCountInputFieldClick);
   }

@@ -3,10 +3,10 @@ import { createDivWithClass, createElementWithId, selectDOM } from '../lib/utils
 
 class RacingCarGameView {
   constructor() {
-    this.initDOM();
+    this.#initDOM();
   }
 
-  initDOM() {
+  #initDOM() {
     this.countInputForm = selectDOM(`#${DOM.COUNT_INPUT_FORM_ID}`);
     this.resultField = selectDOM(`#${DOM.RESULT_FIELD_ID}`);
     this.gameProgress = selectDOM(`#${DOM.GAME_PROGRESS_ID}`);
@@ -15,7 +15,7 @@ class RacingCarGameView {
     this.countBtn = selectDOM(`#${DOM.COUNT_BTN_ID}`);
   }
 
-  initSpinner() {
+  #initSpinner() {
     this.rotateSpinner();
     this.currentDegrees = 0;
   }
@@ -26,7 +26,7 @@ class RacingCarGameView {
     this.gameProgress.append(...progressTemplate);
     this.spinners = this.gameProgress.querySelectorAll(`.${DOM.SPINNER_CLASS}`);
     this.stepContainers = this.gameProgress.querySelectorAll(`.${DOM.STEP_CONTAINER_CLASS}`);
-    this.initSpinner();
+    this.#initSpinner();
   }
 
   renderRoundResult(moved, count, finishedCount) {
