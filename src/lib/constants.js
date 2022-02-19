@@ -43,3 +43,10 @@ export const MOVE_CONDITION = 4;
 
 export const GAME_ROUND_INTERVAL = 1000;
 export const WINNER_ALERT_TIMEOUT_AMOUNT = 2000;
+
+export const BUTTON_TEXT = Object.freeze({
+  GAME_BUTTON_TEXT_DURING: '게임 진행 중',
+  GAME_BUTTON_TEXT_FINISHED: '게임 진행 완료',
+  INPUT_BUTTON_DISABLED: '입력 완료',
+  RESTART_BUTTON: '다시 시작하기',
+});

@@ -1,4 +1,4 @@
-import { DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../../lib/constants.js';
+import { BUTTON_TEXT, DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../../lib/constants.js';
 import { createDivWithClassName, createElementWithId, selectDOM } from '../../lib/utils.js';
 
 class RacingCarGameView {
@@ -50,7 +50,7 @@ class RacingCarGameView {
   }
 
   renderGameResults(winnersArray) {
-    this.gameStartBtn.textContent = '게임 진행 완료';
+    this.gameStartBtn.textContent = BUTTON_TEXT.GAME_BUTTON_TEXT_FINISHED;
     const winnersTemplate = RacingCarGameView.generateWinnersTemplate({
       winnersArray,
     });
@@ -65,20 +65,20 @@ class RacingCarGameView {
   renderNameInputSuccess(carNameInput, carNameBtn) {
     carNameInput.disabled = true;
     carNameBtn.disabled = true;
-    carNameBtn.textContent = '입력완료';
+    carNameBtn.textContent = BUTTON_TEXT.INPUT_BUTTON_DISABLED;
     this.countInputForm.classList.remove('hide');
   }
 
   renderCountInputSuccess(countInput, countBtn) {
     countInput.disabled = true;
     countBtn.disabled = true;
-    countBtn.textContent = '입력완료';
+    countBtn.textContent = BUTTON_TEXT.INPUT_BUTTON_DISABLED;
     this.gameStartBtn.classList.remove('hide');
   }
 
   disableGameStartBtn() {
     this.gameStartBtn.disabled = true;
-    this.gameStartBtn.textContent = '게임 진행 중';
+    this.gameStartBtn.textContent = BUTTON_TEXT.GAME_BUTTON_TEXT_DURING;
   }
 
   rotateSpinner = () => {
@@ -126,7 +126,7 @@ class RacingCarGameView {
     winnerContainerElement.append('🏆최종 승리자:', winnerNamesElement, '🏆');
 
     const restartButton = createElementWithId({ tag: 'button', id: DOM.RESTART_BTN_ID });
-    restartButton.textContent = '다시 시작하기';
+    restartButton.textContent = BUTTON_TEXT.RESTART_BUTTON;
 
     return [winnerContainerElement, restartButton];
   }
