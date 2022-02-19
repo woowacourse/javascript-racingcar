@@ -19,31 +19,28 @@ export default class ViewManager {
     `;
   }
 
-  static hideRaceCountSection() {
-    $(SELECTOR.race_count_wrap).style.visibility = "hidden";
+  static setRaceCountSectionVisibility(visibility) {
+    $(SELECTOR.race_count_wrap).style.visibility = visibility;
   }
 
-  static showRaceCountSection() {
-    $(SELECTOR.race_count_wrap).style.visibility = "visible";
+  static setInputDisable(disabled) {
+    $(SELECTOR.car_name_input).disabled = disabled;
+    $(SELECTOR.race_count_input).disabled = disabled;
+    $(SELECTOR.car_name_button).disabled = disabled;
+    $(SELECTOR.race_count_button).disabled = disabled;
   }
 
-  static makeDisableInput() {
-    $(SELECTOR.car_name_input).disabled = true;
-    $(SELECTOR.race_count_input).disabled = true;
-    $(SELECTOR.car_name_button).disabled = true;
-    $(SELECTOR.race_count_button).disabled = true;
-  }
-
-  static restartSetting() {
+  static makeReset() {
     $(SELECTOR.racing_cars).innerHTML = "";
     $(SELECTOR.racing_arrow).innerHTML = "";
     $(SELECTOR.racing_result).innerHTML = "";
     $(SELECTOR.car_name_input).value = "";
     $(SELECTOR.race_count_input).value = "";
-    $(SELECTOR.car_name_input).disabled = false;
-    $(SELECTOR.race_count_input).disabled = false;
-    $(SELECTOR.car_name_button).disabled = false;
-    $(SELECTOR.race_count_button).disabled = false;
-    $(SELECTOR.race_count_wrap).style.visibility = "hidden";
+  }
+
+  static restartSetting() {
+    ViewManager.makeReset();
+    ViewManager.setInputDisable(false);
+    ViewManager.setRaceCountSectionVisibility("hidden");
   }
 }

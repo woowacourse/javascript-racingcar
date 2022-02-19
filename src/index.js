@@ -17,7 +17,7 @@ class RacingcarGame {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
 
-    ViewManager.hideRaceCountSection();
+    ViewManager.setRaceCountSectionVisibility("hidden");
 
     this.bindEvent();
   }
@@ -57,11 +57,11 @@ class RacingcarGame {
     if (errorCarName.length > 0 || $(SELECTOR.car_name_input).value === "") {
       alert(alertMessage.InvalidCarNameLength);
       this.isCorrectCarName = false;
-      ViewManager.hideRaceCountSection();
+      ViewManager.setRaceCountSectionVisibility("hidden");
       return;
     }
     this.isCorrectCarName = true;
-    ViewManager.showRaceCountSection();
+    ViewManager.setRaceCountSectionVisibility("visible");
   }
 
   isValidRaceNumber() {
@@ -164,7 +164,7 @@ class RacingcarGame {
       "<div class='restart-button'>다시 시작하기</div>"
     );
     this.bindRestartEvent();
-    ViewManager.makeDisableInput();
+    ViewManager.setInputDisable(true);
     setTimeout(
       RacingcarGame.alertCongratsMessage,
       GAME_RESULT_DELAY_TIME,
