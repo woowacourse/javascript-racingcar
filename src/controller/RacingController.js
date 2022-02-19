@@ -53,11 +53,11 @@ export default class RacingController {
 
   startRacingGame() {
     const { round } = this.model;
-    let progressingRound = 1;
+    let currentRound = 1;
     const playIntervalId = setInterval(() => {
       this.playEachTurn();
-      progressingRound += 1;
-      if (progressingRound >= round) {
+      currentRound += 1;
+      if (currentRound >= round) {
         clearInterval(playIntervalId);
         this.displayResult();
         this.activateRestartButton();
