@@ -2,7 +2,7 @@ import { $, $$ } from '../utils/dom.js';
 import Model from '../model/model.js';
 import View from '../view/view.js';
 import { validator } from '../validator/validator.js';
-import { NUMBER, SELECTOR } from '../utils/constants.js';
+import { ERROR_MESSAGE, NUMBER, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -20,6 +20,7 @@ export default class Controller {
         .map((carName) => carName.trim());
 
       if (validator.isInvalidCarNamesInput(carNamesInput)) {
+        alert(ERROR_MESSAGE.INVALID_NAME_LENGTH);
         return;
       }
 
@@ -35,6 +36,7 @@ export default class Controller {
       const carRacingCountInput = $(SELECTOR.CAR_RACING_COUNT_INPUT).value;
 
       if (validator.isInvalidRacingCountInput(carRacingCountInput)) {
+        alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
         return;
       }
 
