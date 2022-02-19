@@ -23,12 +23,10 @@ export default class Controller {
         return;
       }
 
-      this.view.disabledCarNamesInput();
-      this.view.disabledCarNamesSubmitButton();
-
+      this.view.disableCarNamesForm();
       this.model.saveCars(carNamesInput);
       this.model.initCarPosition();
-      this.view.renderCarRacingInputBox();
+      this.view.renderRacingCountForm();
     });
   }
 
@@ -42,9 +40,7 @@ export default class Controller {
         return;
       }
 
-      this.view.disabledRacingCountInput();
-      this.view.disabledRacingCountSubmitButton();
-
+      this.view.disableRacingCountForm();
       this.model.saveRacingCount(carRacingCountInput);
       this.gameStart();
       this.model.initCarPosition();

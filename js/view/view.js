@@ -36,23 +36,17 @@ export default class View {
     });
   }
 
-  disabledCarNamesInput() {
+  disableCarNamesForm() {
     $(SELECTOR.CAR_NAMES_INPUT).disabled = true;
-  }
-
-  disabledRacingCountInput() {
-    $(SELECTOR.CAR_RACING_COUNT_INPUT).disabled = true;
-  }
-
-  disabledCarNamesSubmitButton() {
     $(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).disabled = true;
   }
 
-  disabledRacingCountSubmitButton() {
+  disableRacingCountForm() {
+    $(SELECTOR.CAR_RACING_COUNT_INPUT).disabled = true;
     $(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).disabled = true;
   }
 
-  enableForms() {
+  enableAllForms() {
     $(SELECTOR.CAR_NAMES_INPUT).disabled = false;
     $(SELECTOR.CAR_RACING_COUNT_INPUT).disabled = false;
     $(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).disabled = false;
@@ -67,14 +61,14 @@ export default class View {
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
-    this.enableForms();
+    this.enableAllForms();
   }
 
   renderRestartButton() {
     $(SELECTOR.GAME_RESTART).style.display = 'block';
   }
 
-  renderCarRacingInputBox() {
+  renderRacingCountForm() {
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
   }
 }
