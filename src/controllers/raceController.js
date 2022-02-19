@@ -28,7 +28,7 @@ function progressRacing(roundCount) {
       hideLoadingSpinner();
       renderWinners(winners);
       renderRestartButton();
-      showCongraturationAlert(winners);
+      showCongratulationAlert(winners);
       clearState();
       clearInterval(intervalID);
       return;
@@ -69,7 +69,7 @@ function getWinnerArr(max) {
     });
 }
 
-function showCongraturationAlert(winners) {
+function showCongratulationAlert(winners) {
   setTimeout(() => {
     alert(`우승자는 ${winners}입니다. 축하합니다 🎉`);
   }, 2000);
