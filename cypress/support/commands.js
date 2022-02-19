@@ -31,6 +31,6 @@ Cypress.Commands.add("checkAlert", (name) => {
   cy.get(name)
     .click()
     .then(() => {
-      expect(alertStub.getCall(0));
+      expect(alertStub).to.be.called;
     });
 });
