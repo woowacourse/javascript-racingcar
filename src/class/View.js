@@ -13,7 +13,7 @@ import {
 import { SELECTOR, CLASS_NAME, CAR_STATUS } from '../constants.js';
 
 const moveArrowView = `<h3 id="move-arrow" class="move-arrow" data-status="${CAR_STATUS.MOVE}">⬇️</h3>`;
-const spinnerView = `<div class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
+const spinnerView = `<div id="spinner" class="spinner" data-status="${CAR_STATUS.STAY}"></div>`;
 
 const generateCarInformationView = car => {
   const name = car.getName();

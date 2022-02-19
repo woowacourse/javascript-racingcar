@@ -183,6 +183,21 @@ describe('자동차 경주 진행 상황  ', () => {
     cy.visit('/index.html');
   });
 
+  it('자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.', () => {
+    // given
+    cy.clock();
+    // when
+    cy.submitCarNames(availableCarName);
+    cy.submitRacingCount(RACING_COUNT.MAX);
+    cy.tick(1 * milliseconds);
+    // then
+    cy.get(SELECTOR.SPINNER).should('exist');
+
+    // 게임이 끝난 후에는 Spinner를 볼 수 없다.
+    cy.tick(RACING_COUNT.MAX * milliseconds + delayTime);
+    cy.get(SELECTOR.SPINNER).should('not.exist');
+  });
+
   it('정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하 메시지를 확인 할 수 있다.', () => {
     // given
     const alert = cy.spy(window, 'alert');

@@ -16,6 +16,7 @@ const MOVE_NUMBER = {
 
 const SELECTOR = {
   APP: '#app',
+  SPINNER: '#spinner',
   RACING_GAME_FORM: '#racing-game-form',
   CAR_NAMES_INPUT: '#car-names-input',
   CAR_NAMES_BUTTON: '#car-names-button',
