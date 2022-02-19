@@ -1,4 +1,5 @@
 import { $, $$ } from './common/DOMHelper.js';
+import { SELECTOR } from './common/constants.js';
 import {
   carsTemplate,
   carNamesTemplate,
@@ -17,7 +18,7 @@ export default class RacingCarView {
   }
 
   init() {
-    this.$app = $('#app');
+    this.$app = $(SELECTOR.APP);
 
     document.head.innerHTML += style;
   }
@@ -31,29 +32,29 @@ export default class RacingCarView {
   }
 
   renderRacingCount() {
-    const $racingCount = $('#racing-count');
+    const $racingCount = $(SELECTOR.RACING_COUNT);
 
     $racingCount.innerHTML = racingCountTemplate();
   }
 
   renderCars(cars) {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML = carsTemplate(cars);
   }
 
   selectCarNamesDOM() {
-    this.$carNamesInput = $('#car-names-input');
-    this.$carNamesSubmit = $('#car-names-submit');
+    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
   selectRacingCountDOM() {
-    this.$racingCountInput = $('#racing-count-input');
-    this.$racingCountSubmit = $('#racing-count-submit');
+    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
   selectRestartDOM() {
-    this.$restart = $('#restart');
+    this.$restart = $(SELECTOR.RESTART);
   }
 
   resetCarNamesInput() {
@@ -70,13 +71,13 @@ export default class RacingCarView {
   }
 
   #findCarNode(name) {
-    const $$moveForwardArrow = $$('.move-forward-arrow');
+    const $$moveForwardArrow = $$(SELECTOR.MOVE_FORWARD_ARROW);
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
   }
 
   renderWinners(winners) {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML += winnersTemplate(winners);
   }
@@ -86,7 +87,7 @@ export default class RacingCarView {
   }
 
   renderRestart() {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML += restartTemplate();
   }
@@ -94,14 +95,14 @@ export default class RacingCarView {
   renderInit() {
     this.resetCarNamesInput();
 
-    const $racingCount = $('#racing-count');
-    const $gameResult = $('#game-result');
+    const $racingCount = $(SELECTOR.RACING_COUNT);
+    const $gameResult = $(SELECTOR.GAME_RESULT);
     $racingCount.innerHTML = '';
     $gameResult.innerHTML = '';
   }
 
   showSpinners() {
-    const $$spinner = $$('#spinner');
+    const $$spinner = $$(SELECTOR.SPINNER);
 
     [...$$spinner].forEach((spinner) => {
       spinner.classList.remove('hidden');
@@ -110,7 +111,7 @@ export default class RacingCarView {
   }
 
   hideSpinners() {
-    const $$spinner = $$('#spinner');
+    const $$spinner = $$(SELECTOR.SPINNER);
 
     [...$$spinner].forEach((spinner) => {
       spinner.classList.add('hidden');
@@ -125,9 +126,9 @@ export default class RacingCarView {
       const currentTime = new Date().getTime();
       i += 1;
       spinner.style.transform = `rotate(${i}deg)`;
-      if (currentTime - 1000 > startTime) {
-        return;
-      }
+
+      if (currentTime - 1000 > startTime) return;
+
       requestAnimationFrame(animatedSpinner);
     };
     requestAnimationFrame(animatedSpinner);

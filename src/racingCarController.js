@@ -1,8 +1,7 @@
-/* eslint-disable max-lines-per-function */
 import RacingCarView from './racingCarView.js';
 import RacingCarModel from './racingCarModel.js';
 import { isValidCarNames, isValidRacingCount } from './common/validator.js';
-import { ERROR_MESSAGE } from './common/constants.js';
+import { ERROR_MESSAGE, DELAY } from './common/constants.js';
 
 export default class RacingCarController {
   constructor() {
@@ -29,6 +28,11 @@ export default class RacingCarController {
 
   attachRestartEvents() {
     this.view.$restart.addEventListener('click', this.handleRestart.bind(this));
+  }
+
+  handleRestart() {
+    this.view.renderInit();
+    this.model.init();
   }
 
   handleCarNames(event) {
@@ -75,7 +79,17 @@ export default class RacingCarController {
       clearInterval(raceInterval);
       this.view.hideSpinners();
       this.endRace();
-    }, racingCount * 1000);
+    }, racingCount * DELAY.RACE_INTERVAL);
+  }
+
+  raceInterval() {
+    return setInterval(() => {
+      this.view.hideSpinners();
+      this.model.cars.forEach((car) => {
+        if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
+      });
+      this.view.showSpinners();
+    }, 1000);
   }
 
   endRace() {
@@ -88,23 +102,6 @@ export default class RacingCarController {
 
     setTimeout(() => {
       this.view.renderCelebration(winners);
-    }, 2000);
-  }
-
-  render;
-
-  raceInterval() {
-    return setInterval(() => {
-      this.view.hideSpinners();
-      this.model.cars.forEach((car) => {
-        if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
-      });
-      this.view.showSpinners();
-    }, 1000);
-  }
-
-  handleRestart() {
-    this.view.renderInit();
-    this.model.init();
+    }, DELAY.CELEBRATION);
   }
 }

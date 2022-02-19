@@ -12,6 +12,11 @@ export const CAR = {
 
 export const COUNT_DEFAULT = 0;
 
+export const DELAY = {
+  CELEBRATION: 2000,
+  RACE_INTERVAL: 1000,
+};
+
 export const DIRECTIVE = {
   CAR_NAME: '5자 이하의 자동차 이름을 콤마로 구분하여 입력해 주세요.',
   RACING_COUNT: '시도할 횟수를 입력해주세요.',
@@ -31,11 +36,6 @@ export const RANDOM = {
   MAX_DIGIT: 9,
 };
 
-export const WINNER = {
-  ICON: '🏆',
-  TITLE: '최종 우승자:',
-};
-
 export const SELECTOR = {
   APP: '#app',
   CAR_NAMES_INPUT: '#car-names-input',
@@ -47,5 +47,11 @@ export const SELECTOR = {
   RACING_COUNT_SUBMIT: '#racing-count-submit',
   RACING_COUNT: '#racing-count',
   RESTART: '#restart',
+  SPINNER: '#spinner',
   WINNERS: '#winners',
+};
+
+export const WINNER = {
+  ICON: '🏆',
+  TITLE: '최종 우승자:',
 };
