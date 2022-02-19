@@ -1,7 +1,7 @@
 let rotateCount = 0;
 let startTime = null;
 
-export default function spinSpinner(timestamp) {
+export function spinSpinner(timestamp) {
   const spinners = document.querySelectorAll('.spinner img');
   if (!startTime) {
     startTime = timestamp;
@@ -14,4 +14,10 @@ export default function spinSpinner(timestamp) {
     spinner.style.transform = 'rotate(' + rotateCount + 'deg)';
   });
   requestAnimationFrame(spinSpinner);
+}
+
+export function hideSpinner(spinners) {
+  spinners.forEach(spinner => {
+    spinner.classList.add('display-none');
+  });
 }

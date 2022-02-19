@@ -4,8 +4,4 @@ export default class Car {
     this.position = 0;
     this.move = 0;
   }
-
-  go() {
-    this.position += 1;
-  }
 }

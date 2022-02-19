@@ -6,17 +6,11 @@ import getWinners from '../model/getWinners.js';
 import addGameProcessTemplate from '../view/addGameProcessTemplate.js';
 import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
-import spinSpinner from '../view/spinSpinner.js';
+import { spinSpinner, hideSpinner } from '../view/viewSpinner.js';
 import alertWinners from '../view/alertWinners.js';
 
 function isCarCanGo() {
   return Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT;
-}
-
-function hideSpinner(spinners) {
-  spinners.forEach(spinner => {
-    spinner.classList.add('display-none');
-  });
 }
 
 function updateGameProcess() {
