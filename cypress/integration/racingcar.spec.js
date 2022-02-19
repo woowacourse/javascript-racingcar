@@ -24,7 +24,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('자동차 이름을 올바르게 입력하면 시도할 횟수 입력 폼을 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(VALID_CAR_NAMES);
 
     const spy = cy.spy(window, 'alert');
 
@@ -36,11 +36,12 @@ describe('자동차 이름 입력 기능 테스트', () => {
         expect(spy).to.not.be.called;
       });
 
-    cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.visible');
+    cy.get(`#${ID.RACING_COUNT_FORM}`).should('be.exist');
   });
 
   it('입력한 자동차 이름 중 공백이 포함되어 있으면 에러 메시지를 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, , south, north, all');
+    const CASE_MPTY_CAR_NAME = 'east, , south, north, all';
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(CASE_MPTY_CAR_NAME);
 
     const stub = cy.stub();
 
@@ -54,7 +55,8 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('입력한 자동차 이름 중 5자가 초과된 이름이 있으면 에러 메시지를 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('woowacourse, west, south, north, all');
+    const CASE_EXCEED_CAR_NAME_LENGTH = 'woowacourse, west, south, north, all';
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(CASE_EXCEED_CAR_NAME_LENGTH);
 
     const stub = cy.stub();
 
@@ -69,18 +71,13 @@ describe('자동차 이름 입력 기능 테스트', () => {
 });
 
 describe('시도할 횟수 입력 기능 테스트', () => {
-  const submitCarName = () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type('east, west, south, north, all');
-    cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
-  };
-
   beforeEach(() => {
     cy.visit(VISIT_URL);
-    submitCarName();
+    cy.submitCarName();
   });
 
   it('시도할 횟수를 올바르게 입력하면 입력한 자동차의 목록을 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(10);
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(VALID_RACING_COUNT);
 
     const spy = cy.spy(window, 'alert');
 
@@ -112,7 +109,9 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   });
 
   it('시도할 횟수로 자연수가 아닌 수를 입력하면 에러 메시지를 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(-1);
+    const CASE_NOT_NATURAL_NUMBER = -1;
+
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(CASE_NOT_NATURAL_NUMBER);
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
