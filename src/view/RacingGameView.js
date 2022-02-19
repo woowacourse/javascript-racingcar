@@ -1,7 +1,7 @@
-import { $ } from './utils/util.js';
-import { SCREEN_COMMAND } from './constants/constant.js';
-import SELECTOR from './constants/selectors.js';
-import template from './templates/template.js';
+import { $ } from '../util/util.js';
+import { SCREEN_COMMAND } from '../constant/constant.js';
+import SELECTOR from '../constant/selectors.js';
+import racingGameTemplate from './racingGameTemplate.js';
 
 export default class View {
     constructor() {
@@ -10,18 +10,18 @@ export default class View {
     }
 
     updateInitialTrack(cars) {
-        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = template.emptyTrack(cars);
+        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = racingGameTemplate.emptyTrack(cars);
     }
 
     updateLoading() {
         this.resultArea.querySelectorAll(SELECTOR.CAR_STEPS)
             .forEach((track) => {
-                track.insertAdjacentHTML('beforeend', template.loader());
+                track.insertAdjacentHTML('beforeend', racingGameTemplate.loader());
             });
     }
 
     updateProgress(cars) {
-        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = template.track(cars);
+        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = racingGameTemplate.track(cars);
     }
 
     updateWinner(winners) {

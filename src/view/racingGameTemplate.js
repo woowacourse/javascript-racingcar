@@ -1,4 +1,4 @@
-const template = {
+const racingGameTemplate = {
     loader() {
         return '<span class="car-step loader"></span>';
     },
@@ -28,4 +28,4 @@ const template = {
     },
 };
 
-export default template;
+export default racingGameTemplate;

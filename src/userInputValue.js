@@ -1,5 +1,5 @@
-import { $ } from './utils/util.js';
-import SELECTOR from './constants/selectors.js';
+import { $ } from './util/util.js';
+import SELECTOR from './constant/selectors.js';
 
 const userInputValue = {
     carNames() {

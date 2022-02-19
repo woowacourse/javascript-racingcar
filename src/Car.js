@@ -1,5 +1,5 @@
-import { FORWARD_CONDITION, MAX_OF_RANDOM_NUMBER, MIN_OF_RANDOM_NUMBER } from './constants/constant.js';
-import { generateRandomInRange } from './utils/util.js';
+import { FORWARD_CONDITION, MAX_OF_RANDOM_NUMBER, MIN_OF_RANDOM_NUMBER } from './constant/constant.js';
+import { generateRandomInRange } from './util/util.js';
 
 export default class Car {
     constructor(name) {

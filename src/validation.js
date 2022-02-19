@@ -1,7 +1,7 @@
-import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constants/validation.js';
+import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant/validation.js';
 
-import { isEmptyString, isPositiveNumber } from './utils/util.js';
-import ValidationError from './utils/ValidationError.js';
+import { isEmptyString, isPositiveNumber } from './util/util.js';
+import ValidationError from './util/ValidationError.js';
 
 const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
 
