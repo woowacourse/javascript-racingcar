@@ -42,6 +42,10 @@ export default class RacingGameView {
     $(targetID).innerHTML += str;
   }
 
+  renderReplayButton() {
+    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('data-state', 'on');
+  }
+
   LoadingStart() {
     $$(SELECTOR.RACE_CAR_INSTANCE).forEach(($element) => {
       $element.innerHTML += this.TEMPLATE.LOADING_MARK();
@@ -55,6 +59,7 @@ export default class RacingGameView {
   }
 
   renderInit() {
+    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('data-state', 'off');
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML = '';
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
     $(SELECTOR.CAR_NAME_INPUT).value = '';

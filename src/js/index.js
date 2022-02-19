@@ -93,6 +93,7 @@ class App {
     this.View.renderResult(this.RacingGame.winner());
     await delay(2000);
     alert('우승자는 ' + this.RacingGame.winner() + '입니다. 축하합니다!');
+    this.View.renderReplayButton();
   }
 
   handleReplayGame() {

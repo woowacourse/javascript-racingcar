@@ -147,6 +147,10 @@ body {
 }
 
 #retry {
+  display: none;
+}
+
+#retry[data-state='on'] {
   display: block;
   width: 10.8rem;
   font-size: 1.1rem;
