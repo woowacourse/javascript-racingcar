@@ -19,4 +19,8 @@ export const templateProgress = '<li>⬇</li>';
 
 export const templateSpinner = '<div class="spinner"/>';
 
+export const templateFinalWinner = (finalWinner) => `
+  🏆최종 우승자 : <span id="final_winner_result">${finalWinner}</span>🏆
+`;
+
 export const templateRestartButton = '<button id="restart_btn">다시 시작하기</button>';

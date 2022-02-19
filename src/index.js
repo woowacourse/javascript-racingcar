@@ -50,8 +50,6 @@ class RacingCarGameController {
     this.model.resetGameState();
     this.view.changeToEnabledForm();
     this.view.reset();
-    this.view.resetElements();
-    this.view.hideElements();
   }
 
   play() {

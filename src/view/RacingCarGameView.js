@@ -5,6 +5,7 @@ import {
   templateRacingCarItem,
   templateProgress,
   templateSpinner,
+  templateFinalWinner,
   templateRestartButton,
 } from '../template/index.js';
 
@@ -18,7 +19,6 @@ class RacingCarGameView {
     this.$racingCarList = $(`#${ID.RACING_CAR_LIST}`);
     this.$racingCarProgress = null;
     this.$spinnerContainers = null;
-    this.$finalWinnerResult = $(`#${ID.FINAL_WINNER_RESULT}`);
     this.$finalWinner = $(`#${ID.FINAL_WINNER}`);
     this.$restartSection = $(`#${ID.RESTART_SECTION}`);
     this.$restartBtn = $(`#${ID.RESTART_BTN}`);
@@ -93,30 +93,11 @@ class RacingCarGameView {
   }
 
   renderFinalWinner(finalWinner) {
-    this.$finalWinnerResult.innerText = finalWinner;
-    this.$finalWinner.style.display = 'block';
+    this.$finalWinner.insertAdjacentHTML('beforeend', templateFinalWinner(finalWinner));
   }
 
   renderRestartButton() {
     this.$restartSection.insertAdjacentHTML('beforeend', templateRestartButton);
-  }
-
-  reset() {
-    this.$carNamesInput.value = '';
-    this.$racingCountForm.innerHTML = '';
-    this.$racingCountInput = null;
-    this.$restartSection.innerHTML = '';
-  }
-
-  hideElements() {
-    this.$carNamesInput.value = '';
-
-    this.$racingCarList.innerText = '';
-    this.$finalWinnerResult.innerText = '';
-  }
-
-  resetElements() {
-    this.$finalWinner.style.display = 'none';
   }
 
   renderSpinner() {
@@ -129,6 +110,15 @@ class RacingCarGameView {
     this.$spinnerContainers.forEach(($spinnerContainer) =>
       $spinnerContainer.removeChild($spinnerContainer.lastElementChild)
     );
+  }
+
+  reset() {
+    this.$carNamesInput.value = '';
+    this.$racingCountForm.innerHTML = '';
+    this.$racingCountInput = null;
+    this.$racingCarList.innerText = '';
+    this.$finalWinner.innerHTML = '';
+    this.$restartSection.innerHTML = '';
   }
 }
 
