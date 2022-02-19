@@ -78,7 +78,11 @@ class App {
     this.handleProgressDisplay();
 
     // 라운드만큼 반복
-    for (let i = 1; i <= this.RacingGame.round; i += 1) {
+    for (
+      let currentRound = 1;
+      currentRound <= this.RacingGame.round;
+      currentRound += 1
+    ) {
       await this.progressRound();
     }
 
