@@ -7,8 +7,6 @@ export default class RacingCarController {
   constructor() {
     this.view = new RacingCarView();
     this.model = new RacingCarModel();
-
-    this.init();
   }
 
   init() {

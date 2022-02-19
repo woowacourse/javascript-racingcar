@@ -1,3 +1,5 @@
 import RacingCarController from './racingCarController.js';
 
-new RacingCarController();
+const racingGame = new RacingCarController();
+
+racingGame.init();
