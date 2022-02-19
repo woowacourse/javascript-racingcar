@@ -3,20 +3,20 @@ import { ELEMENT_SELECTOR } from '../../src/js/constants/constant.js';
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = 'index.html';
 
-  const positiveCarNamesInputTest = carNames => {
+  const negativeCarNamesInputTest = carNames => {
     // when
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
-    cy.carNamesPositiveInputEvent(carNames).then(() => {
+    cy.carNamesNegativeInputEvent(carNames).then(() => {
       expect(alertStub).to.be.called;
     });
   };
 
-  const positiveTryCountInputTest = tryCount => {
+  const negativeTryCountInputTest = tryCount => {
     // when
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
-    cy.tryCountPositiveInputEvent(tryCount).then(() => {
+    cy.tryCountNegativeInputEvent(tryCount).then(() => {
       expect(alertStub).to.be.called;
     });
   };
@@ -27,27 +27,27 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   it('자동차의 이름이 5자 초과일 때 확인버튼을 누를 시, alert 띄우기', () => {
     const carNames = 'abcdef,ab';
-    positiveCarNamesInputTest(carNames);
+    negativeCarNamesInputTest(carNames);
   });
 
   it('자동차 이름에 중복이 존재할 때 확인버튼을 누를 시, alert 띄우기', () => {
     const carNames = 'ab,ab';
-    positiveCarNamesInputTest(carNames);
+    negativeCarNamesInputTest(carNames);
   });
 
   it('자동차가 1대 이하일 때 확인버튼을 누를 시, alert 띄우기', () => {
     const carNames = 'a';
-    positiveCarNamesInputTest(carNames);
+    negativeCarNamesInputTest(carNames);
   });
 
   it('`,`뒤에 자동차 이름이 입력되지 않았을 때 확인버튼을 누를 시, alert 띄우기', () => {
     const carNames = 'abcf,';
-    positiveCarNamesInputTest(carNames);
+    negativeCarNamesInputTest(carNames);
   });
 
   it('시도 횟수 입력된 숫자가 1이상의 수가 아닐 시, alert 띄우기', () => {
     const tryCount = -1;
-    positiveTryCountInputTest(tryCount);
+    negativeTryCountInputTest(tryCount);
   });
 
   it('다시 게임을 시작하면 이전 결과를 지워준다.', () => {
@@ -67,7 +67,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
     const carNames = 'a,b';
     const tryCount = 1;
-    const seconds = 3000;
+    const milliseconds = 3000;
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
@@ -79,7 +79,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       .then(() => {
         setTimeout(() => {
           expect(alertStub).to.be.called;
-        }, seconds);
+        }, milliseconds);
       });
   });
 });
