@@ -22,11 +22,11 @@ export default class RacingGameView {
   }
 
   renderProgress() {
-    $(SELECTOR.RACE_CONTAINER_DIV).setAttribute('data-state', 'on');
+    $(SELECTOR.RACE_CONTAINER_DIV).setAttribute('visible', 'true');
   }
 
   renderResult(winner) {
-    $(SELECTOR.RACE_RESULT).setAttribute('data-state', 'on');
+    $(SELECTOR.RACE_RESULT).setAttribute('visible', 'true');
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
       this.TEMPLATE.WINNER_DISPLAY(winner);
   }
@@ -43,7 +43,7 @@ export default class RacingGameView {
   }
 
   renderReplayButton() {
-    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('data-state', 'on');
+    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('visible', 'true');
   }
 
   LoadingStart() {
@@ -59,7 +59,7 @@ export default class RacingGameView {
   }
 
   renderInit() {
-    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('data-state', 'off');
+    $(SELECTOR.RACE_REPLAY_BUTTON).setAttribute('visible', 'false');
     $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML = '';
     $(SELECTOR.RACE_CONTAINER_DIV).innerHTML = '';
     $(SELECTOR.CAR_NAME_INPUT).value = '';

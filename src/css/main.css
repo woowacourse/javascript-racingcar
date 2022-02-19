@@ -102,7 +102,7 @@ body {
   display: none;
 }
 
-.racing-car-container[data-state='on'] {
+.racing-car-container[visible='true'] {
   display: flex;
   justify-content: center;
 }
@@ -135,7 +135,7 @@ body {
   margin: 1.1rem;
 }
 
-#result[data-state='on'] {
+#result[visible='true'] {
   display: block;
 }
 
@@ -150,7 +150,7 @@ body {
   display: none;
 }
 
-#retry[data-state='on'] {
+#retry[visible='true'] {
   display: block;
   width: 10.8rem;
   font-size: 1.1rem;
