@@ -46,21 +46,21 @@ export default class Controller {
     });
   }
 
-  setMoveStateByRacingCount() {
-    for (let i = 1; i < Number(this.model.racingCount) + 1; i++) {
-      this.displayProgressEverySecond(i);
+  displayCarProgressByRacingCount() {
+    for (let i = 1; i <= Number(this.model.racingCount); i++) {
+      this.displayCarProgressAfterSeconds(i);
     }
   }
 
-  displayProgressEverySecond(i) {
+  displayCarProgressAfterSeconds(i) {
     setTimeout(() => {
-      this.setMoveState();
-      this.displayProgress();
+      this.calaulateCarProgress();
+      this.view.renderCarProgress(this.model.carPosition);
       this.view.renderLoader();
     }, 1000 * i);
   }
 
-  setMoveState() {
+  calaulateCarProgress() {
     this.model.carNames.forEach((carNames, idx) => {
       this.model.goForward(idx);
     });
@@ -69,15 +69,15 @@ export default class Controller {
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
     this.view.renderInitialLoader(this.model.carPosition);
-    this.setMoveStateByRacingCount();
+    this.displayCarProgressByRacingCount();
 
     setTimeout(() => {
       this.view.hideLoader();
-      this.displayWinner();
-      this.displayRestartButton();
+      this.view.renderWinner(this.getWinnerList());
+      this.view.renderRestartButton();
       this.bindGameRestartEvent();
       this.displayCongratulatoryMessage();
-    }, 1000 * this.model.racingCount);
+    }, 1000 * Number(this.model.racingCount));
   }
 
   displayCongratulatoryMessage() {
@@ -86,23 +86,11 @@ export default class Controller {
     }, 2000);
   }
 
-  displayProgress() {
-    this.view.renderCarProgress(this.model.carPosition);
-  }
-
-  displayRestartButton() {
-    this.view.renderRestartButton();
-  }
-
   getWinnerList() {
     const maxDistance = Math.max(...this.model.carPosition);
     return this.model.carNames
       .filter((car, idx) => this.model.carPosition[idx] === maxDistance)
       .join(', ');
-  }
-
-  displayWinner() {
-    this.view.renderWinner(this.getWinnerList());
   }
 
   bindGameRestartEvent() {
