@@ -1,4 +1,4 @@
-import RacingGameController from "./RacingGameController.js";
+import RacingGameController from "./class/RacingGameController.js";
 
 document.addEventListener("DOMContentLoaded", racingGame);
 

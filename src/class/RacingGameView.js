@@ -1,4 +1,4 @@
-import { qs, on, emit } from "./utils/helper.js"
+import { qs, on, emit, qsAll } from "../utils/helper.js"
 
 class RacingGameView {
   constructor() {
@@ -49,14 +49,25 @@ class RacingGameView {
   }
 
   showCarsMove(carList) {
-    carList
-      .map((car) => this.template.carArrow(car.count))
-      .map((arrowTemplate) => {
-        const wrap = document.createElement("div");
-        wrap.classList.add("racing-arrow-box");
-        wrap.innerHTML = arrowTemplate;
-        this.racingArrowElement.append(wrap);
-      });
+    this.carMove = carList.map((v) => v.count);
+    this.max = Math.max(...this.carMove);
+    this.carArrowBox = qsAll(".car-arrow-box");
+    this.num = 0;
+    this.carRaceInterval = setInterval(() => this.carRace(), 1000);
+  }
+
+  carRace() {
+    this.num++;
+    for (let j = 0; j < this.carMove.length; j++) {
+      if (this.carMove[j] >= this.num) {
+        this.carArrowBox[j].insertAdjacentHTML("afterbegin", `<div class="racing-arrow-wrap">⬇️️</div>`);
+      } 
+      if (this.num === this.max) {
+        const spinner = qsAll(".spinner");
+        spinner.map((v) => v.style.opacity = 0);
+        clearInterval(this.carRaceInterval);
+      }
+    }
   }
 
   showWinner(winner) {
@@ -91,10 +102,6 @@ class RacingGameView {
 }
 
 class Template {
-  carArrow(eachcount) {
-    return `<div class="racing-arrow-wrap">⬇️️</div>`.repeat(eachcount);
-  }
-
   racingResult(winner) {
     return `
       <p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>

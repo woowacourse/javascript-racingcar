@@ -226,6 +226,7 @@
 
 .racing-cars {
   display: flex;
+  overflow: hidden;
 }
 
 .car-name-box {
@@ -293,4 +294,26 @@
   text-transform: uppercase;
   margin-bottom: 32px;
   color: #ffffff;
+}
+
+.car-arrow-box {
+  width: 96px;
+  padding-top: 10px;
+  margin: auto;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #00BCD4;
+  border-top: 3px solid white;
+  border-radius: 50%;
+  margin: auto;
+} 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spinner {
+  animation: spin 2s linear infinite;
 }

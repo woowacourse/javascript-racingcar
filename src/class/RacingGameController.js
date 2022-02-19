@@ -1,5 +1,5 @@
-import { on } from "./utils/helper.js";
-import { checkRaceNumber, checkValidCarName } from "./InputValidation.js";
+import { on } from "../utils/helper.js";
+import { checkRaceNumber, checkValidCarName } from "../InputValidation.js";
 import RacingGameModel from "./RacingGameModel.js";
 import RacingGameView from "./RacingGameView.js";
 
@@ -45,9 +45,9 @@ class RacingGameController {
 
   showRacingGameResult(carList, winner) {
     this.racingGameView.showCarBoxes(carList);
+    this.racingGameView.makeDisableForm();
     this.racingGameView.showCarsMove(carList);
     this.racingGameView.showWinner(winner);
-    this.racingGameView.makeDisableForm();
     this.racingGameView.bindRestartEvent();
     on(this.racingGameView.restartButton, "@restartGame", () => this.submitRestartRace());
   }
