@@ -1,16 +1,20 @@
-import { NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER } from "../constants.js";
-
 const parseCarName = names => names.split(',').map(name => name.trim())
 
-const validateCarNameLength = names => names.every(name => name.length <= NAME_LENGTH.MAX && name.length >= NAME_LENGTH.MIN);
+const validateCarNameLength = names => names.every(name => name.length <= 5 && name.length > 0);
 
 const validateDuplicateCarName = names => new Set(names).size === names.length;
 
-const validateRacingCount = count => count >= MIN_RACING_COUNT;
+const validateRacingCount = count => count > 0;
 
-const generateRandomNumber = () => Math.floor(Math.random() * MAX_RANDOM_NUMBER);
+const generateRandomNumber = () => Math.floor(Math.random() * 9);
 
-const convertToId = (id) => `#${id}`
+const moveCars = (cars, count) => {
+  cars.map(car => {
+    for (let i = 0; i < count; i++) {
+      car.move();
+    }
+  });
+};
 
 const getMaxCount = cars => {
   let maxCount = 0;
@@ -22,12 +26,19 @@ const getMaxCount = cars => {
   return maxCount;
 };
 
+const removeAllChildNodes = (parent) => {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
+} 
+
 export {
   parseCarName,
   validateCarNameLength,
   validateDuplicateCarName,
   validateRacingCount,
   generateRandomNumber,
+  moveCars,
   getMaxCount,
-  convertToId
+  removeAllChildNodes
 };

@@ -8,9 +8,8 @@ export default class Car {
 
   move() {
     if (generateRandomNumber() < 4) {
-      return false;
+      return;
     }
     this.racingCount += 1;
-    return true;
   }
 }

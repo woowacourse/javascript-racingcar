@@ -52,14 +52,11 @@ button {
     margin: 20px 0;
 }
 
-.car-status {
+.user-status {
     margin: 0 4px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.car-name{
+.user-name{
     background-color: #F5F5F5;   
     padding: 7px 10px;
     font-size: 16px;
@@ -69,29 +66,4 @@ button {
 .move {
     text-align: center;
     margin: 4px;
-}
-
-.loader {
-    border: 5px solid #00BCD4;
-    border-bottom: 5px solid #f3f3f3; 
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 2s linear infinite;
-    margin-top: 5px;
-}
-  
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.racing-result {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.restart-button {
-    visibility: hidden;
 }
