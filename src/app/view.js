@@ -146,7 +146,7 @@ class RacingCarGameView {
     nodes.forEach((node) => {
       node.style.transform = `rotate(${progress / 10}deg)`;
     });
-    if (progress < 1000) {
+    if (progress < during) {
       requestAnimationFrame((timestamp) =>
         RacingCarGameView.rotateAnimation(timestamp - start, start, nodes, during),
       );
