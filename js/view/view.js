@@ -42,18 +42,26 @@ export default class View {
     return new Promise((resolve) => {
       const moveCarsTimer = setInterval(() => {
         carPosition.forEach((position, idx) => {
-          if (position > 0) {
-            $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-            carPosition[idx] = position - 1;
-          }
+          this.renderArrow(position, idx, carPosition);
           if (carPosition.every((position) => position === 0)) {
-            $$('#loader').forEach((loader) => (loader.style.display = 'none'));
+            this.hideLoader();
             resolve('FINISHED');
             clearInterval(moveCarsTimer);
           }
         });
       }, TIMER.DELAY_MOVE);
     });
+  }
+
+  renderArrow(position, idx, carPosition) {
+    if (position > 0) {
+      $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
+      carPosition[idx] = position - 1;
+    }
+  }
+
+  hideLoader() {
+    $$('#loader').forEach((loader) => (loader.style.display = 'none'));
   }
 
   renderInitial() {
