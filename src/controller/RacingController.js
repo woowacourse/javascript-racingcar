@@ -33,8 +33,8 @@ export default class RacingController {
       this.view.deactivateNamesForm();
       this.model.setRound(Number(racingCount));
       this.startRacingGame();
-      this.activateRestartButton();
     } catch (error) {
+      // eslint-disable-next-line no-alert
       alert(error.message);
     }
   }
@@ -58,19 +58,26 @@ export default class RacingController {
 
     try {
       validateCarNames(nameList);
-      this.view.activateCountForm();
       this.model.players = nameList;
+      this.view.activateCountForm();
     } catch (error) {
+      // eslint-disable-next-line no-alert
       alert(error.message);
     }
   }
 
   startRacingGame() {
-    while (this.model.round) {
-      this.model.goToNextTurn();
-    }
     this.view.deactivateCountForm();
-    this.view.renderProgress(this.model.cars);
-    this.view.renderResult(this.model.winners);
+    this.view.renderName(this.model.carNameList);
+    const runRound = setInterval(() => {
+      this.model.goToNextTurn();
+      this.view.renderProgress(this.model.cars);
+      if (!this.model.round) {
+        this.view.removeLoading();
+        this.view.renderResult(this.model.winners);
+        this.activateRestartButton();
+        clearInterval(runRound);
+      }
+    }, 1000);
   }
 }

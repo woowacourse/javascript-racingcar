@@ -14,6 +14,10 @@ export default class RacingGame {
     });
   }
 
+  get carNameList() {
+    return this.cars.map((car) => car.name);
+  }
+
   setRound(round) {
     if (!isInRange(round)) {
       throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);

@@ -35,8 +35,7 @@ export default class DomUtils {
   }
 
   static createCarProgressElement(car) {
-    const $carProgressNode = document.createElement('div');
-    $carProgressNode.className = SELECTOR.CLASS.CAR_PROGRESS_CONTAINER;
+    const $carProgressNode = this.createCarProgressNode();
 
     const $carProgressName = DomUtils.createCarProgressNameElement(car.name);
     $carProgressNode.appendChild($carProgressName);
@@ -47,7 +46,14 @@ export default class DomUtils {
     $carProgressStatusList.forEach(($carProgressStatus) => {
       $carProgressNode.appendChild($carProgressStatus);
     });
+    $carProgressNode.appendChild(this.circle());
 
+    return $carProgressNode;
+  }
+
+  static createCarProgressNode() {
+    const $carProgressNode = document.createElement('div');
+    $carProgressNode.className = SELECTOR.CLASS.CAR_PROGRESS_CONTAINER;
     return $carProgressNode;
   }
 
@@ -62,17 +68,43 @@ export default class DomUtils {
   static createCarProgressStatusElement(position) {
     return Array(position)
       .fill()
-      .map(() => {
-        const $carProgressStatus = document.createElement('div');
-        $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
-        $carProgressStatus.innerText = '⬇';
+      .map(() => this.createCarOneStepElement());
+  }
 
-        return $carProgressStatus;
-      });
+  static createCarOneStepElement() {
+    const $carProgressStatus = document.createElement('div');
+    $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
+    $carProgressStatus.innerText = '⬇';
+
+    return $carProgressStatus;
   }
 
   static controlNodeDisabled(node, isDisabled) {
     const element = node;
     element.disabled = isDisabled;
+  }
+
+  static circle() {
+    const $carProgressStatus = document.createElement('div');
+    $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_LOADGING;
+    const $circle = document.createElement('img');
+    $circle.src = '../../public/assets/img/loading.png';
+    $carProgressStatus.append($circle);
+    const makeCb = (target, duration) => {
+      let start;
+      return function cb(timestamp) {
+        if (!start) {
+          start = timestamp;
+        }
+        const elasped = timestamp - start;
+        const node = target;
+        node.style.transform = `rotate(${elasped}deg)`;
+        if (elasped < duration) {
+          requestAnimationFrame(cb);
+        }
+      };
+    };
+    requestAnimationFrame(makeCb($carProgressStatus, 2000));
+    return $carProgressStatus;
   }
 }

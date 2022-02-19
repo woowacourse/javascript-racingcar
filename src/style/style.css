@@ -94,3 +94,13 @@ form > button {
     display: flex;
     justify-content: center;
 }
+
+img{
+    width: 36px;
+    height: 36px;
+}
+
+.car-progress-container--loading{
+    displaY:flex;
+    justify-content: center;
+}

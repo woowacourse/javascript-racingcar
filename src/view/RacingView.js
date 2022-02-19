@@ -8,7 +8,38 @@ export default class RacingView {
     this.$countForm = DomUtils.$(SELECTOR.ID.RACING_COUNT_FORM);
   }
 
+  renderName(nameList) {
+    this.$racingProgressNode = document.createElement('section');
+    this.$racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
+
+    nameList.forEach((name) => {
+      const $container = DomUtils.createCarProgressNode();
+      $container.appendChild(DomUtils.createCarProgressNameElement(name));
+      this.$racingProgressNode.appendChild($container);
+    });
+    this.$app.appendChild(this.$racingProgressNode);
+    this.renderLoading();
+  }
+
+  renderLoading() {
+    this.$racingProgressNode
+      .querySelectorAll(`.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`)
+      .forEach((element) => {
+        element.appendChild(DomUtils.circle());
+      });
+  }
+
+  removeLoading() {
+    const loadingElements = document.querySelectorAll(
+      `.${SELECTOR.CLASS.CAR_PROGRESS_LOADGING}`
+    );
+    loadingElements.forEach((element) => {
+      element.remove();
+    });
+  }
+
   renderProgress(cars) {
+    this.removeProgress();
     this.$app.appendChild(DomUtils.createRacingProgressElement(cars));
   }
 
@@ -28,7 +59,9 @@ export default class RacingView {
     const $racingProgressNode = DomUtils.$(
       SELECTOR.ID.RACING_PROGRESS_CONTAINER
     );
-    this.$app.removeChild($racingProgressNode);
+    if ($racingProgressNode) {
+      this.$app.removeChild($racingProgressNode);
+    }
   }
 
   removeResult() {

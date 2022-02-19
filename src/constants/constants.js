@@ -28,7 +28,8 @@ export const SELECTOR = {
   CLASS: {
     CAR_PROGRESS_CONTAINER: 'car-progress-container',
     CAR_PROGRESS_NAME: 'car-progress-container--name',
-    CAR_PROGRESS_STATUS: 'car-progress-container--status'
+    CAR_PROGRESS_STATUS: 'car-progress-container--status',
+    CAR_PROGRESS_LOADGING: 'car-progress-container--loading'
   }
 };
 
