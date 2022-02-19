@@ -90,11 +90,11 @@ class RacingCarGameView {
   async renderLoadingAboutRound() {
     const loadingIconNodes = document.querySelectorAll(DOM.LOADING_ICON.toCLASS());
     RacingCarGameView.renderElements(loadingIconNodes);
-    await RacingCarGameView.triggerAnimation(
-      loadingIconNodes,
-      RacingCarGameView.rotateAnimation,
-      DELAY_PER_ROUND,
-    );
+    await RacingCarGameView.triggerAnimation({
+      targetNodes: loadingIconNodes,
+      animation: RacingCarGameView.rotateAnimation,
+      during: DELAY_PER_ROUND,
+    });
     RacingCarGameView.hideElements(loadingIconNodes);
   }
 
@@ -136,21 +136,22 @@ class RacingCarGameView {
     el.classList.replace(SHOW_CLASS_NAME, HIDE_CLASS_NAME);
   }
 
-  static async triggerAnimation(nodes, animation, during) {
-    requestAnimationFrame((timestamp) => animation(0, timestamp, nodes, during));
+  static async triggerAnimation({ targetNodes, animation, during }) {
+    requestAnimationFrame((timestamp) => animation(0, timestamp, targetNodes, during));
     await delay(during);
   }
 
   // 인자를 직접 수정하고 싶지 않은데 방법이 없을까요?
   static rotateAnimation = (progress, start, nodes, during) => {
+    if (progress >= during) {
+      return;
+    }
     nodes.forEach((node) => {
       node.style.transform = `rotate(${progress / 10}deg)`;
     });
-    if (progress < during) {
-      requestAnimationFrame((timestamp) =>
-        RacingCarGameView.rotateAnimation(timestamp - start, start, nodes, during),
-      );
-    }
+    requestAnimationFrame((timestamp) =>
+      RacingCarGameView.rotateAnimation(timestamp - start, start, nodes, during),
+    );
   };
 }
 export default RacingCarGameView;
