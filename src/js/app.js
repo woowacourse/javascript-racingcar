@@ -46,9 +46,7 @@ class App {
   }
 
   setTryCount(newTryCount) {
-    if (newTryCount) {
-      this.tryCount = newTryCount;
-    }
+    this.tryCount = newTryCount;
   }
 }
 

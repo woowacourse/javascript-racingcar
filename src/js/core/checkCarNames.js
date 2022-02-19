@@ -12,7 +12,7 @@ const isCorrectCarNamesInputCount = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: ERROR_MESSAGES.IS_CORRECT_CAR_NAMES_INPUT_COUNT,
+    message: ERROR_MESSAGES.CAR_MIN_COUNT,
   });
 
   return isSuccess;
@@ -24,7 +24,7 @@ const isCorrectCarNameLength = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: ERROR_MESSAGES.IS_CORRECT_CAR_NAME_LENGTH,
+    message: ERROR_MESSAGES.CAR_NAME_MAX_LENGTH,
   });
 
   return isSuccess;
@@ -35,7 +35,7 @@ const isUniqCarNames = carNamesInput => {
 
   errorController({
     isError: !isSuccess,
-    message: ERROR_MESSAGES.IS_UNIQ_CAR_NAMES,
+    message: ERROR_MESSAGES.UNIQ_CAR_NAMES,
   });
 
   return isSuccess;

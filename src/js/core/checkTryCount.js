@@ -1,20 +1,36 @@
 import { $ } from '../util/dom.js';
 import { ERROR_MESSAGES } from '../constants/constant.js';
 
+const errorController = ({ isError, message }) => {
+  if (isError) {
+    window.alert(message);
+  }
+};
+
 const isTryCountPositiveNumber = tryCountInput => {
-  if (tryCountInput < 1) {
-    window.alert(ERROR_MESSAGES.IS_TRY_COUNT_POSITIVE_NUMBER);
+  const isSuccess = tryCountInput >= 1;
+
+  errorController({
+    isError: !isSuccess,
+    message: ERROR_MESSAGES.TRY_COUNT_MIN_NUMBER,
+  });
+
+  return isSuccess;
+};
+
+const tryCountValidation = tryCountInput => {
+  let tryCount = 0;
+
+  if (isTryCountPositiveNumber(tryCountInput)) {
+    tryCount = tryCountInput;
   }
 
-  return tryCountInput < 1;
+  return tryCount;
 };
 
 export const getTryCount = e => {
   e.preventDefault();
   const tryCountInput = $('#try-count-input').value;
-  if (!isTryCountPositiveNumber(tryCountInput)) {
-    return tryCountInput;
-  }
 
-  return undefined;
+  return tryCountValidation(tryCountInput);
 };
