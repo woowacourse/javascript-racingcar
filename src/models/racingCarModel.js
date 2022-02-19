@@ -1,10 +1,9 @@
 import { FORWARD_MARK_NUMBER } from "../constants/constants.js";
-import Car from "./car.js";
+import Car from '../class/car.js';
 import generateRandomNumber from "../modules/generateRandomNumber.js";
 
-export default class RacingCar {
+export default class RacingCarModel {
     constructor() {
-        this.raceCount = 0;
         this.carArray = [];
     }
     
@@ -36,8 +35,7 @@ export default class RacingCar {
         .map(car => car.forwardCount)
         .sort((a,b) => b - a)[0];
         return this.carArray
-        .filter((item) => item.forwardCount === maxCount)
-        .map(item => item.name).join(',');
+        .filter((item) => item.forwardCount === maxCount);
     }
     
 }

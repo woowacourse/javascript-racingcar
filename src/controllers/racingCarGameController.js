@@ -71,9 +71,10 @@ export default function racingCarGameController() {
         });
     }
     const gameEnd = () => {
-        this.racingCarView.renderGameWinners(this.racingCarModel.getGameWinners());
+        const winners = this.racingCarModel.getGameWinners().map(car => car.name).join(',');
+        this.racingCarView.renderGameWinners(winners);
         addRestartButtonEvent();
-        showWinnerAlert();
+        showWinnerAlert(winners);
     }
     const addRestartButtonEvent = () => {
         $('.restart-button').addEventListener('click', () => {
@@ -82,12 +83,10 @@ export default function racingCarGameController() {
         })
     }
 
-    const showWinnerAlert = () => {
+    const showWinnerAlert = (winners) => {
         setTimeout(() => {
-            alert(`게임의 우승자인 ${this.racingCarModel.getGameWinners()} 축하합니다`)
+            alert(`게임의 우승자인 ${winners} 축하합니다`)
         }, RESULT_RENDER_DELAY_TIME);
         clearTimeout();
     }
-    
-
 }
