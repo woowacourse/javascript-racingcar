@@ -23,7 +23,6 @@ function hideSpinner(spinners) {
 }
 
 function updateGameProcess() {
-  console.log('게임진행');
   const cars = document.querySelectorAll('.result-car-wrapper');
   cars.forEach(car => {
     if (isCarCanGo()) {
@@ -41,8 +40,8 @@ function endGame(cars) {
 
 export default function playRace(count) {
   const cars = generateCars();
-  addGameProcessTemplate(cars); // 다른걸루 바꿀예정(템플릿 생성과 같이)
-  spinSpinner(); // 계속 돌아감
+  addGameProcessTemplate(cars);
+  spinSpinner();
 
   const timer = setInterval(() => {
     if (count === 0) {
@@ -52,6 +51,8 @@ export default function playRace(count) {
     }
     count -= 1;
 
-    updateGameProcess(cars);
+    updateGameProcess();
   }, 1000);
+
+  console.log(cars);
 }
