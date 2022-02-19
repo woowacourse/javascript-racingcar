@@ -1,11 +1,8 @@
 import {
   $,
   $$,
-  disableElement,
-  enableElement,
   addClass,
   removeClass,
-  resetInputValue,
   clearHTML,
   setHTML,
   appendHTML,
@@ -18,10 +15,10 @@ const spinnerView = `<div id="spinner" class="spinner" data-status="${CAR_STATUS
 const generateCarInformationView = car => {
   const name = car.getName();
   return `
-    <div id="car-information" class="information-wrapper" data-name=${name}>
-        <div id="car-name" class="name-wrapper">${name}</div>
-        <div id="progress" class="progress-wrapper"></div>
-    </div>`;
+      <div id="car-information" class="information-wrapper" data-name=${name}>
+          <div id="car-name" class="name-wrapper">${name}</div>
+          <div id="progress" class="progress-wrapper"></div>
+      </div>`;
 };
 
 const generateRacingStatusView = cars =>
@@ -33,36 +30,25 @@ const generateWinnersView = winners =>
     .join(',')}🏆</h3>`;
 
 export default class View {
-  #carNamesInput;
-  #carNamesButton;
-  #racingCountInput;
-  #racingCountButton;
-  #racingCountContainer;
   #racingStatusContainer;
   #racingResultContainer;
   #winnersContainer;
   #racingProgressElements = [];
 
-  constructor($app) {
-    this.#carNamesInput = $(SELECTOR.CAR_NAMES_INPUT, $app);
-    this.#carNamesButton = $(SELECTOR.CAR_NAMES_BUTTON, $app);
-    this.#racingCountInput = $(SELECTOR.RACING_COUNT_INPUT, $app);
-    this.#racingCountButton = $(SELECTOR.RACING_COUNT_BUTTON, $app);
-    this.#racingCountContainer = $(SELECTOR.RACING_COUNT_CONTAINER, $app);
-    this.#racingStatusContainer = $(SELECTOR.RACING_STATUS_CONTAINER, $app);
-    this.#racingResultContainer = $(SELECTOR.RACING_RESULT_CONTAINER, $app);
-    this.#winnersContainer = $(SELECTOR.WINNERS_CONTAINER, $app);
-  }
-
-  showRacingCountInput() {
-    disableElement(this.#carNamesInput);
-    disableElement(this.#carNamesButton);
-    removeClass(this.#racingCountContainer, CLASS_NAME.HIDDEN);
+  constructor() {
+    const container = $(SELECTOR.APP);
+    this.#racingStatusContainer = $(
+      SELECTOR.RACING_STATUS_CONTAINER,
+      container,
+    );
+    this.#racingResultContainer = $(
+      SELECTOR.RACING_RESULT_CONTAINER,
+      container,
+    );
+    this.#winnersContainer = $(SELECTOR.WINNERS_CONTAINER, container);
   }
 
   renderRacingStatus(cars) {
-    disableElement(this.#racingCountInput);
-    disableElement(this.#racingCountButton);
     removeClass(this.#racingStatusContainer, CLASS_NAME.HIDDEN);
     setHTML(this.#racingStatusContainer, generateRacingStatusView(cars));
   }
@@ -107,18 +93,9 @@ export default class View {
   }
 
   restartGame() {
-    enableElement(this.#carNamesInput);
-    enableElement(this.#carNamesButton);
-    resetInputValue(this.#carNamesInput);
-
-    enableElement(this.#racingCountInput);
-    enableElement(this.#racingCountButton);
-    resetInputValue(this.#racingCountInput);
-
     clearHTML(this.#racingStatusContainer);
     clearHTML(this.#winnersContainer);
 
-    addClass(this.#racingCountContainer, CLASS_NAME.HIDDEN);
     addClass(this.#racingStatusContainer, CLASS_NAME.HIDDEN);
     addClass(this.#racingResultContainer, CLASS_NAME.HIDDEN);
 

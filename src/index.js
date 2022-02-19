@@ -1,3 +1,3 @@
-import RacingCarGame from './class/RacingCarGame.js';
+import RacingCarGame from './components/RacingCarGame.js';
 
 new RacingCarGame();
