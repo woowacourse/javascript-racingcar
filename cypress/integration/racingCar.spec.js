@@ -25,7 +25,7 @@ describe('자동차 게임 테스트', () => {
   });
 
   context(
-    '자동차 이름과 시도할 횟수를 입력하면, 최종 우승자와 다시 시작하기 버튼이 보이는 지 테스트',
+    '자동차 이름과 시도할 횟수를 입력하면, 최종 우승자와 다시 시작하기 버튼, 축하 메시지가 보이는 지 테스트',
     () => {
       beforeEach(() => {
         const validRacingCountInput = 2;
@@ -40,6 +40,18 @@ describe('자동차 게임 테스트', () => {
 
       it('자동차 이름과 시도할 횟수를 입력하면, 다시 시작하기 버튼이 보여야한다.', () => {
         cy.get(SELECTOR.RESTART).should('be.visible');
+      });
+
+      it('자동차 이름과 시도할 횟수를 입력하면, 결과가 나온 후 2초 후에 축하 메시지가 보여야한다.', () => {
+        const alertStub = cy.stub();
+        cy.on('window:alert', alertStub);
+        cy.clock();
+
+        cy.get(SELECTOR.RESTART)
+          .tick(2000)
+          .then(() => {
+            expect(alertStub).to.be.called;
+          });
       });
     }
   );
@@ -78,7 +90,7 @@ describe('예외 사항', () => {
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
-      cy.checkAlert(SELECTOR.CAR_NAMES_SUBMIT);
+      cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
     it('공백으로만 이루어진 자동차 이름이 제출된 경우에 alert를 이용해 메시지를 보여준다', () => {
@@ -86,7 +98,7 @@ describe('예외 사항', () => {
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
-      cy.checkAlert(SELECTOR.CAR_NAMES_SUBMIT);
+      cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
     it('중복된 자동차 이름이 제출된 경우에 alert를 이용해 메시지를 보여준다', () => {
@@ -94,7 +106,7 @@ describe('예외 사항', () => {
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
-      cy.checkAlert(SELECTOR.CAR_NAMES_SUBMIT);
+      cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
     it('제출된 시도할 횟수가 양의 정수가 아닌 경우에 alert을 이용해 메시지를 보여준다.', () => {
@@ -107,7 +119,7 @@ describe('예외 사항', () => {
 
       cy.get(SELECTOR.RACING_COUNT_INPUT).type(invalidInput);
 
-      cy.checkAlert(SELECTOR.RACING_COUNT_SUBMIT);
+      cy.clickCheckAlert(SELECTOR.RACING_COUNT_SUBMIT);
     });
   });
 
