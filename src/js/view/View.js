@@ -21,7 +21,7 @@ export default class View {
   }
 
   toggleVisibled(element) {
-    element.classList.toggle('invisibled');
+    element.classList.toggle('invisible');
   }
 
   removeElements(parentElements, selector) {
