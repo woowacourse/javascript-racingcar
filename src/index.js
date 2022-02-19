@@ -1,10 +1,13 @@
+import {
+  RANDOM_MAX_NUMBER,
+  GAME_DELAY_TIME,
+  GAME_RESULT_DELAY_TIME,
+  alertMessage,
+} from "./constants/ConstantsManager.js";
 import Car from "./model/Car.js";
 import ViewManager from "./view/ViewManager.js";
 import { $ } from "./dom.js";
 
-const RANDOM_MAX_NUMBER = 9;
-const GAME_DELAY_TIME = 1000;
-const GAME_RESULT_DELAY_TIME = 2000;
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
@@ -27,7 +30,7 @@ class RacingcarGame {
       event.preventDefault();
       this.isCorrectRaceCount = this.isValidRaceNumber();
       if (!this.isCorrectRaceCount) {
-        alert("몇 번의 이동을 할 것인지 1 이상의 수를 입력해주세요.");
+        alert(alertMessage.InvalidRaceCount);
         return;
       }
       if (this.canStartGame()) {
@@ -40,7 +43,7 @@ class RacingcarGame {
     this.carNames = $(".car-name-input").value.split(",");
     const errorCarName = this.carNames.filter((name) => name.length > 5);
     if (errorCarName.length > 0 || $(".car-name-input").value == "") {
-      alert("차 이름은 5자 이하만 가능합니다.");
+      alert(alertMessage.InvalidCarNameLength);
       this.isCorrectCarName = false;
       ViewManager.hideRaceCountSection();
       return;

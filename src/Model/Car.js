@@ -1,5 +1,6 @@
-const MIN_NUMBER_OF_MOVE = 4;
-class Car {
+import { MIN_NUMBER_OF_MOVE } from "../constants/ConstantsManager.js";
+
+export default class Car {
   constructor(carName) {
     this.name = carName;
     this.count = 0;
@@ -16,5 +17,3 @@ class Car {
     return true;
   }
 }
-
-export default Car;
