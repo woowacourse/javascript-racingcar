@@ -1,22 +1,15 @@
 import { SELECTOR } from '../../js/utils/constants.js';
 
-describe('자동차 경주 게임', () => {
+describe('예외 처리 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5500/');
   });
 
-  it('자동차 이름은 쉼표(,)를 기준으로 구분하며 이름은 5자 이하만 가능하다.', () => {
+  it('자동차 이름은 1자 이상 입력해야 한다.', () => {
     const alertStub = cy.stub();
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type('easteee,west');
-    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-  });
+    cy.on('window:alert', alertStub);
 
-  it('자동차 이름이 빈칸이면 alert을 띄운다.', () => {
-    const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
-
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type(',b,c');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type(',west,north');
     cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
       .click()
       .then(() => {
@@ -24,11 +17,23 @@ describe('자동차 경주 게임', () => {
       });
   });
 
-  it('시도할 횟수가 음수이면 alert을 띄운다.', () => {
+  it('자동차 이름은 5자 이하로 입력해야 한다.', () => {
     const alertStub = cy.stub();
-    cy.on(SELECTOR.WINDOW_ALERT, alertStub);
+    cy.on('window:alert', alertStub);
 
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type('a,b,c');
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west,northh');
+    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON)
+      .click()
+      .then(() => {
+        expect(alertStub).to.be.called;
+      });
+  });
+
+  it('시도할 횟수로 음수를 입력할 수 없다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west,north');
     cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
     cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(-3);
     cy.get(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON)
@@ -37,13 +42,11 @@ describe('자동차 경주 게임', () => {
         expect(alertStub).to.be.called;
       });
   });
+});
 
-  it('사용자가 몇 번의 이동을 할 것인지를 정상적으로 입력하면 다시 시작하기 버튼이 보여야 한다.', () => {
-    cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west');
-    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
-    cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(5);
-    cy.get(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).click();
-    cy.contains('다시 시작하기').should('be.visible');
+describe('기능 테스트', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:5500/');
   });
 
   it('자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출력할 때 자동차 이름을 같이 출력한다.', () => {
@@ -62,11 +65,36 @@ describe('자동차 경주 게임', () => {
     cy.get(SELECTOR.CAR_PROGRESS).contains('⬇️️');
   });
 
-  it('최종 우승자를 출력할 수 있다.', () => {
+  it('게임이 종료되면 이름을 최종 우승자 이름을 보여준다.', () => {
     cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west,south,north');
     cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
     cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(5);
     cy.get(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).click();
+
+    cy.wait(5000);
     cy.get(SELECTOR.CAR_RACING_WINNER).contains('최종 우승자');
+  });
+
+  it('게임 종료 2초 후 축하 메시지를 보여준다.', () => {
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west,south,north');
+    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
+    cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(5);
+    cy.get(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).click();
+
+    cy.wait(5000 + 2000).then(() => {
+      expect(alertStub).to.be.called;
+    });
+  });
+
+  it('턴이 진행되는 사이에 로딩 애니메이션이 표시된다.', () => {
+    cy.get(SELECTOR.CAR_NAMES_INPUT).type('east,west,south,north');
+    cy.get(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).click();
+    cy.get(SELECTOR.CAR_RACING_COUNT_INPUT).type(5);
+    cy.get(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).click();
+    cy.wait(100);
+    cy.get(SELECTOR.LOADER).should('be.visible');
   });
 });
