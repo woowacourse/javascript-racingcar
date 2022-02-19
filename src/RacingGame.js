@@ -71,11 +71,6 @@ export default class RacingGame {
         userInputValue.reset();
     }
 
-    waitForTurnLoading() {
-        this.view.updateLoading();
-        this.racingCars.playTurn();
-    }
-
     endGame() {
         const winners = this.racingCars.getWinners();
         setTimeout(() => { alert(`🎉 축하합니다! 🎉 \n🏆 우승자: ${winners}!`); }, 2000);
@@ -84,14 +79,15 @@ export default class RacingGame {
 
     playTurns(turnCount) {
         let currentTurnNumber = 0;
-        this.waitForTurnLoading();
+        this.view.updateLoading();
         const turnTimerID = setInterval(() => {
             if (currentTurnNumber + 1 === turnCount) {
                 clearInterval(turnTimerID);
                 this.endGame();
             }
+            this.racingCars.playTurn();
             this.view.updateProgress(this.racingCars.cars);
-            if (currentTurnNumber + 1 < turnCount) this.waitForTurnLoading();
+            if (currentTurnNumber + 1 < turnCount) this.view.updateLoading();
             currentTurnNumber += 1;
         }, 1000);
     }
