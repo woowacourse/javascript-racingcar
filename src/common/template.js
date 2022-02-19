@@ -1,4 +1,4 @@
-import { BUTTON, CAR, DIRECTIVE, HEADER, WINNER } from './constants.js';
+import { BUTTON, CAR, DIRECTIVE, HEADER, PLACEHOLDER, WINNER } from './constants.js';
 import * as style from './style.js';
 
 export function headerTemplate() {
@@ -12,7 +12,7 @@ export function carNamesTemplate() {
     <article>
       <label style="${style.directive}">${DIRECTIVE.CAR_NAME}</label>
       <form onsubmit="return false;">
-        <input id="car-names-input" style="${style.input}"></input>
+        <input id="car-names-input" style="${style.input}" placeholder="${PLACEHOLDER.CAR_NAMES_INPUT}"></input>
         <button type="button" id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
       </form>
     </article>
@@ -25,7 +25,7 @@ export function racingCountTemplate() {
   return `
     <label style="${style.directive}">${DIRECTIVE.RACING_COUNT}</label>
     <form onsubmit="return false;">
-      <input type="number" id="racing-count-input" style="${style.input}"></input>
+      <input type="number" id="racing-count-input" style="${style.input}" placeholder="${PLACEHOLDER.RACING_COUNT_INPUT}"></input>
       <button type="button" id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
     </form>
   `;

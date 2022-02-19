@@ -28,6 +28,11 @@ export const HEADER = {
   MAIN: '🏎️ 자동차 경주 게임🏁',
 };
 
+export const PLACEHOLDER = {
+  CAR_NAMES_INPUT: 'east, west, south, north, all',
+  RACING_COUNT_INPUT: 10,
+};
+
 export const RANDOM = {
   MIN_DIGIT: 0,
   MAX_DIGIT: 9,
