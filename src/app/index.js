@@ -52,7 +52,6 @@ class RacingCarGame {
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN) {
       const { value: countValue } = countInputField.querySelector(DOM.COUNT_INPUT.toID());
-      // 로직의 마지막이기 때문에 동기 처리 안함.
       this.triggerActionAfterCountInput(countValue);
     }
   };
