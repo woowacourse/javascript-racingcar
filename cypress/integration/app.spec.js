@@ -46,9 +46,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.inputNames({ nameInput: invalidInput, isInvalidName: true });
   });
 
-  it('잘못된 자동차 이름을 입력하면 게임이 진행되지 않고 실패 피드백을 전달한다.', () => {
+  it('5자 이상의 자동차 이름을 입력하면 게임이 진행되지 않고 실패 피드백을 전달한다.', () => {
     //given
-    const invalidInput = 'juunzzi';
+    const invalidInput = 'bling,juunzzi';
 
     //then - expect alert
     cy.inputNames({ nameInput: invalidInput, isInvalidName: true });

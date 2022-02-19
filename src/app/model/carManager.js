@@ -21,7 +21,11 @@ class CarManager {
   }
 
   static isValidCarNameInput(names) {
-    return names.some((name) => checkStringInRange(name, CAR_NAME_MIN_LENGTH, CAR_NAME_MAX_LENGTH));
+    return names.every((name) => CarManager.isCarNameInRange(name));
+  }
+
+  static isCarNameInRange(name) {
+    return checkStringInRange(name, CAR_NAME_MIN_LENGTH, CAR_NAME_MAX_LENGTH);
   }
 }
 
