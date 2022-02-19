@@ -22,7 +22,7 @@ class RacingCarController {
     this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
     this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
     this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
-    this.$restartBtn = document.getElementById(SELECTOR.RESTART_BTN);
+    this.$restartBtn = document.getElementById(SELECTOR.RESTART_BUTTON);
   }
 
   initEventListener() {
@@ -41,6 +41,7 @@ class RacingCarController {
 
     try {
       this.model.setCarList(carNameList);
+      this.view.deactivateCarNamesForm();
       this.view.showRacingCountForm();
     } catch (error) {
       this.view.resetCarNamesInput();
@@ -54,6 +55,7 @@ class RacingCarController {
 
     try {
       this.model.setRacingCount(racingCount);
+      this.view.deactivateRacingCountForm();
       this.view.renderRacingCarList(this.getRacingCarListTemplate());
       this.playRacingGame();
     } catch (error) {

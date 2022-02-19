@@ -8,8 +8,10 @@ class RacingCarView {
 
   initDOM() {
     this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
+    this.$carNamesButton = document.getElementById(SELECTOR.CAR_NAMES_BUTTON);
     this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
     this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountButton = document.getElementById(SELECTOR.RACING_COUNT_BUTTON);
     this.$racingCarList = document.getElementById(SELECTOR.RACING_CAR_LIST);
     this.$finalWinner = document.getElementById(SELECTOR.FINAL_WINNER);
     this.$restartSection = document.getElementById(SELECTOR.RESTART_SECTION);
@@ -76,6 +78,16 @@ class RacingCarView {
 
   renderFinalWinnerResult(finalWinner) {
     this.$finalWinnerResult.textContent = finalWinner;
+  }
+
+  deactivateCarNamesForm() {
+    this.$carNamesInput.disabled = true;
+    this.$carNamesButton.disabled = true;
+  }
+
+  deactivateRacingCountForm() {
+    this.$racingCountInput.disabled = true;
+    this.$racingCountButton.disabled = true;
   }
 }
 

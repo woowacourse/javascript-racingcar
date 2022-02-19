@@ -25,8 +25,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.inputCarName(VALID_CAR_NAMES);
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(0)
+    cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.not.be.called;
@@ -42,8 +41,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     //when - input element의 default value가 ''이다.
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(0)
+    cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -58,8 +56,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.inputCarName('woowacourse, west, south, north, all');
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(0)
+    cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -74,8 +71,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.inputCarName('east, , south, north, all');
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(0)
+    cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -97,8 +93,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.inputRacingCount(VALID_RACING_COUNT);
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(1)
+    cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.not.be.called;
@@ -112,8 +107,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     //when - input element의 default value가 ''이다.
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(1)
+    cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;
@@ -128,8 +122,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.inputRacingCount(-1);
 
     //then
-    cy.get(`.${SELECTOR.INPUT_BTN}`)
-      .eq(1)
+    cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
         expect(alertStub).to.be.called;

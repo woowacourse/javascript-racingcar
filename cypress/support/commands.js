@@ -36,12 +36,12 @@ Cypress.Commands.add('inputRacingCount', (racingCount) => {
 
 Cypress.Commands.add('submitValidCarName', (carName) => {
   cy.inputCarName(carName);
-  cy.get(`.${SELECTOR.INPUT_BTN}`).eq(0).click();
+  cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`).click();
 });
 
 Cypress.Commands.add('submitValidRacingCount', (racingCount) => {
   cy.inputRacingCount(racingCount);
-  cy.get(`.${SELECTOR.INPUT_BTN}`).eq(1).click();
+  cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`).click();
 });
 
 Cypress.Commands.add('delay', (racingCount) => {

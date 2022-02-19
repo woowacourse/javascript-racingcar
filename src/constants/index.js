@@ -1,18 +1,23 @@
 export const SELECTOR = Object.freeze({
+  // 자동차 이름 입력창
   CAR_NAMES_FORM: 'car_names_form',
   CAR_NAMES_INPUT: 'car_names_input',
+  CAR_NAMES_BUTTON: 'car_names_button',
+  // 시도할 횟수 입력창
+  RACING_COUNT_INPUT_SECTION: 'racing_count_input_section',
   RACING_COUNT_FORM: 'racing_count_form',
   RACING_COUNT_INPUT: 'racing_count_input',
-  RACING_COUNT_INPUT_SECTION: 'racing_count_input_section',
+  RACING_COUNT_BUTTON: 'racing_count_button',
+  // 자동차 경주 진행 상황
   RACING_CAR_LIST: 'racing_car_list',
-  FINAL_WINNER_RESULT: 'final_winner_result',
-  FINAL_WINNER: 'final_winner',
-  RESTART_SECTION: 'restart_section',
-  RESTART_BTN: 'restart_btn',
-  INPUT_BTN: 'input_btn',
-  RACING_CAR_PROGRESS: 'racing_car_progress',
   RACING_CAR_NAME: 'racing_car_name',
   RACING_CAR_ITEM: 'racing_car_item',
+  RACING_CAR_PROGRESS: 'racing_car_progress',
+  FINAL_WINNER: 'final_winner',
+  FINAL_WINNER_RESULT: 'final_winner_result',
+  // 다시 시작하기
+  RESTART_SECTION: 'restart_section',
+  RESTART_BUTTON: 'restart_button',
 });
 
 export const ERROR_MESSAGES = Object.freeze({
