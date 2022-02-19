@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add(
+  'waitRepeatedly',
+  ({ selector, type, delay, repeatCount }) => {
+    for (let i = 0; i < repeatCount; i++) {
+      cy.get(selector).should(type);
+      cy.wait(delay);
+    }
+  }
+);

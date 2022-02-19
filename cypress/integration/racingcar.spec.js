@@ -5,13 +5,6 @@ import {
   WINNER_MESSAGE,
 } from '../../src/js/constants.js';
 
-function waitRepeatedly(selector, type, delay, repeatCount) {
-  for (let i = 0; i < repeatCount; i++) {
-    cy.get(selector).should(type);
-    cy.wait(delay);
-  }
-}
-
 function createAlertStub() {
   const alertStub = cy.stub();
   cy.on('window:alert', alertStub);
@@ -194,19 +187,21 @@ describe('로딩', () => {
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
 
-    waitRepeatedly(
-      SELECTOR.$SPINNER,
-      'be.visible',
-      DELAY.RACING_PROGRESS,
-      racingCount
-    );
+    cy.waitRepeatedly({
+      selector: SELECTOR.$SPINNER,
+      type: 'be.visible',
+      delay: DELAY.RACING_PROGRESS,
+      repeatCount: racingCount,
+    });
     cy.get(SELECTOR.$SPINNER).should('not.exist');
   });
 
-  it('게임의 턴이 다 동작된 후에는 결과를 보여주고 2초 후에 축하의 메세지를 보여준다.', () => {
+  it('자동차 경주 게임이 종료되고, 경주의 우승자가 결정되면 2초 후에 축하의 메시지를 보여준다.', () => {
     const inputString = '꼬재';
     const racingCount = '3';
     const alertStub = createAlertStub();
+    const totalDelayTime =
+      racingCount * DELAY.RACING_PROGRESS + DELAY.WINNER_ALERT;
 
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
@@ -214,10 +209,8 @@ describe('로딩', () => {
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
 
-    cy.wait(racingCount * DELAY.RACING_PROGRESS + DELAY.WINNER_ALERT).then(
-      () => {
-        expect(alertStub).to.be.calledWith('꼬재' + WINNER_MESSAGE);
-      }
-    );
+    cy.wait(totalDelayTime).then(() => {
+      expect(alertStub).to.be.calledWith('꼬재' + WINNER_MESSAGE);
+    });
   });
 });
