@@ -7,11 +7,11 @@ class RacingCarGameView {
   }
 
   #initDOM() {
-    this.countInputForm = selectDOM(`#${DOM.COUNT_INPUT_FORM_ID}`);
-    this.gameStartBtn = selectDOM(`#${DOM.GAME_START_BTN_ID}`);
+    this.inputField = selectDOM(`#${DOM.INPUT_FIELD_ID}`);
+    this.gameStartBtn = selectDOM(`#${DOM.GAME_START_BTN_ID}`, this.inputField);
     this.resultField = selectDOM(`#${DOM.RESULT_FIELD_ID}`);
-    this.gameProgress = selectDOM(`#${DOM.GAME_PROGRESS_ID}`);
-    this.winners = selectDOM(`#${DOM.WINNERS_ID}`);
+    this.gameProgress = selectDOM(`#${DOM.GAME_PROGRESS_ID}`, this.resultField);
+    this.winners = selectDOM(`#${DOM.WINNERS_ID}`, this.resultField);
   }
 
   #initSpinner() {
@@ -66,7 +66,8 @@ class RacingCarGameView {
     carNameInput.disabled = true;
     carNameBtn.disabled = true;
     carNameBtn.textContent = BUTTON_TEXT.INPUT_BUTTON_DISABLED;
-    this.countInputForm.classList.remove('hide');
+    const countInputForm = selectDOM(`#${DOM.COUNT_INPUT_FORM_ID}`, this.inputField);
+    countInputForm.classList.remove('hide');
   }
 
   renderCountInputSuccess(countInput, countBtn) {
