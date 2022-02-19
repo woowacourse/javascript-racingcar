@@ -3,7 +3,7 @@ import Model from '../model/model.js';
 import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getValues.js';
 import Validator from '../validator/validator.js';
-import { ERROR_MESSAGE, NUMBER, SELECTOR } from '../utils/constants.js';
+import { ERROR_MESSAGE, NUMBER, RESULT, SELECTOR } from '../utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -81,7 +81,7 @@ export default class Controller {
       this.displayRestartButton();
       this.bindGameRestartEvent();
       setTimeout(() => {
-        alert('자동차 경주 결과가 나왔습니다. 우승하신 분들 축하드려요!');
+        alert(RESULT.RACE_RESULT);
       }, 2000);
     });
   }

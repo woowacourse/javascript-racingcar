@@ -32,3 +32,7 @@ export const SELECTOR = {
   CAR_PROGRESS_RESULT: 'car-progress-result',
   WINDOW_ALERT: 'window:alert',
 };
+
+export const RESULT = {
+  RACE_RESULT: '자동차 경주 결과가 나왔습니다. 우승하신 분들 축하드려요!',
+};

@@ -37,24 +37,6 @@ export default class View {
     }
   }
 
-  // moveCars(carPosition) {
-  //   return new Promise((resolve) => {
-  //     const moveCarsTimer = setInterval(() => {
-  //       carPosition.forEach((position, idx) => {
-  //         if (position > 0) {
-  //           $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-  //           carPosition[idx] = position - 1;
-  //         }
-  //         if (carPosition.every((position) => position === 0)) {
-  //           $$('#loader').forEach((loader) => (loader.style.display = 'none'));
-  //           resolve('FINISHED');
-  //           clearInterval(moveCarsTimer);
-  //         }
-  //       });
-  //     }, 1000);
-  //   });
-  // }
-
   renderProgress(carPosition) {
     this.makeLane(carPosition);
     return new Promise((resolve) => {
