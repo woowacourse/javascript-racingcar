@@ -104,7 +104,7 @@
 }
 
 .car-name-box {
-  width: 96px;
+  width: 100px;
   height: 36px;
   background: #f5f5f5;
   border-radius: 4px;
@@ -122,4 +122,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#racing-cars {
+  display: flex;
+  flex-wrap: wrap;
+  width: 954px;
+  margin: 0 auto;
 }
