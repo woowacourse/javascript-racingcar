@@ -8,7 +8,7 @@ export const checkStringInRange = (str, min, max) => str.length >= min && str.le
 
 export const pickNumberInRange = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
-export const createDivWithClass = (className) => {
+export const createDivWithClassName = (className) => {
   const element = document.createElement('div');
   element.className = className;
   return element;

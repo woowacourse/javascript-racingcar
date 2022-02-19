@@ -12,7 +12,7 @@ import RacingCarGameView from '../view/view.js';
 
 class RacingCarGameController {
   start() {
-    this.count = null;
+    this.totalRounds = null;
     this.view = new RacingCarGameView();
     this.carManager = new CarManager();
     this.#initDOM();
@@ -47,9 +47,9 @@ class RacingCarGameController {
     e.preventDefault();
     const { target: countBtn, currentTarget: countInputField } = e;
     if (countBtn.id === DOM.COUNT_BTN_ID) {
-      const count = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField).value;
+      const countInput = selectDOM(`#${DOM.COUNT_INPUT_ID}`, countInputField).value;
       try {
-        this.setCount(count);
+        this.setTotalRounds(countInput);
         this.simulateGame();
       } catch ({ message }) {
         alert(message);
@@ -57,28 +57,28 @@ class RacingCarGameController {
     }
   };
 
-  setCount(count) {
-    if (isNumberBelowZero(count)) {
+  setTotalRounds(countInput) {
+    if (isNumberBelowZero(countInput)) {
       throw Error(ERROR_MESSAGE.INVALID_COUNT);
     }
-    this.count = Number(count);
+    this.totalRounds = Number(countInput);
   }
 
   simulateGame() {
     this.view.renderGameStart(this.carManager.cars);
-    this.finishedCount = 0;
+    this.finishedRounds = 0;
     this.gameIntervalId = setInterval(this.simulateRound.bind(this), GAME_ROUND_INTERVAL);
   }
 
   simulateRound() {
-    const moved = [];
+    const movedCars = [];
     this.carManager.cars.forEach((car) => {
-      const carMoved = RacingCarGameController.processCarRandomMove(car);
-      if (carMoved) moved.push(car.id);
+      const isMovedCar = RacingCarGameController.processCarRandomMove(car);
+      if (isMovedCar) movedCars.push(car.id);
     });
-    this.finishedCount += 1;
-    this.view.renderRoundResult(moved, this.count, this.finishedCount);
-    if (this.finishedCount === this.count) {
+    this.finishedRounds += 1;
+    this.view.renderRoundResult(movedCars, this.totalRounds, this.finishedRounds);
+    if (this.finishedRounds === this.totalRounds) {
       this.afterGameComplete();
     }
   }

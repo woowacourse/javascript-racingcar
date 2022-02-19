@@ -1,5 +1,5 @@
 import { DOM, WINNER_ALERT_TIMEOUT_AMOUNT } from '../../lib/constants.js';
-import { createDivWithClass, createElementWithId, selectDOM } from '../../lib/utils.js';
+import { createDivWithClassName, createElementWithId, selectDOM } from '../../lib/utils.js';
 
 class RacingCarGameView {
   constructor() {
@@ -29,14 +29,14 @@ class RacingCarGameView {
     this.#initSpinner();
   }
 
-  renderRoundResult(moved, count, finishedCount) {
+  renderRoundResult(movedCars, totalRounds, finishedRounds) {
     const stepContainersArray = Array.from(this.stepContainers);
     stepContainersArray.forEach((container) => {
-      if (moved.includes(container.dataset.carId)) {
+      if (movedCars.includes(container.dataset.carId)) {
         container.append(RacingCarGameView.generateStepTemplate());
       }
     });
-    if (count === finishedCount) {
+    if (totalRounds === finishedRounds) {
       this.removeSpinner();
     }
   }
@@ -84,10 +84,10 @@ class RacingCarGameView {
   }
 
   static generateProgressTemplate({ name, id }) {
-    const progressElement = createDivWithClass(DOM.CAR_PROGRESS_CLASS);
-    const nameElement = createDivWithClass(DOM.CAR_NAME_CLASS);
+    const progressElement = createDivWithClassName(DOM.CAR_PROGRESS_CLASS);
+    const nameElement = createDivWithClassName(DOM.CAR_NAME_CLASS);
     nameElement.textContent = name;
-    const stepContainerElement = createDivWithClass(DOM.STEP_CONTAINER_CLASS);
+    const stepContainerElement = createDivWithClassName(DOM.STEP_CONTAINER_CLASS);
     stepContainerElement.dataset.carId = id;
     progressElement.append(
       nameElement,
@@ -98,7 +98,7 @@ class RacingCarGameView {
   }
 
   static generateSpinnerElement() {
-    return createDivWithClass(DOM.SPINNER_CLASS);
+    return createDivWithClassName(DOM.SPINNER_CLASS);
   }
 
   static generateStepTemplate() {
