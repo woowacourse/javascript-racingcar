@@ -1,4 +1,10 @@
-import { RULES, DELAY, CONGRATS_MESSAGE, SELECTOR } from '../../src/constants/index.js';
+import {
+  RULES,
+  DELAY,
+  CONGRATS_MESSAGE,
+  SELECTOR,
+  ERROR_MESSAGES,
+} from '../../src/constants/index.js';
 
 const URL = '../index.html';
 const VALID_CAR_NAMES = 'east,west,south,north,all';
@@ -44,7 +50,8 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        // 수정 필요
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_CAR_NAME);
       });
   });
 
@@ -59,7 +66,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
       });
   });
 
@@ -74,7 +81,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.CAR_NAMES_BUTTON}`)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.BLANK_CAR_NAME);
       });
   });
 });
@@ -110,7 +117,8 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        //수정 필요
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NUMBER_TYPE);
       });
   });
 
@@ -125,7 +133,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
     cy.get(`#${SELECTOR.RACING_COUNT_BUTTON}`)
       .click()
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub.getCall(0)).to.be.calledWith(ERROR_MESSAGES.NOT_NATURAL_NUMBER);
       });
   });
 });

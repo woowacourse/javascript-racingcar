@@ -45,7 +45,7 @@ class RacingCarController {
       this.view.showRacingCountForm();
     } catch (error) {
       this.view.resetCarNamesInput();
-      alert(error);
+      alert(error.message);
     }
   }
 
@@ -60,7 +60,7 @@ class RacingCarController {
       this.playRacingGame();
     } catch (error) {
       this.view.resetRacingCountInput();
-      alert(error);
+      alert(error.message);
     }
   }
 
