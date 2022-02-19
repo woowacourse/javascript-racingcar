@@ -1,6 +1,8 @@
-import { CAR, SELECTOR } from './common/constants.js';
+import { SELECTOR } from './common/constants.js';
 import { $, $$ } from './common/DOMHelper.js';
 import { style } from './common/style.js';
+
+import loadingElement from './common/element.js';
 import * as template from './common/template.js';
 
 export default class RacingCarView {
@@ -47,19 +49,27 @@ export default class RacingCarView {
     this.$racingCountInput.value = '';
   }
 
-  static renderMoveForwardArrow(car) {
-    const { name, moveCount } = car;
-    const carNode = RacingCarView.#findCarNode(name)[0];
+  static renderLoading(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    carNode.append(loadingElement());
+  }
 
-    for (let i = 0; i < moveCount; i += 1) {
-      carNode.innerHTML += `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
-    }
+  static renderMoveForward(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    RacingCarView.removeLoading(car);
+    carNode.innerHTML += template.moveForwardTemplate();
+    RacingCarView.renderLoading(car);
   }
 
   static #findCarNode(name) {
     const $$moveForwardArrow = $$('.move-forward-arrow');
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
+  }
+
+  static removeLoading(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    [...carNode.children].filter((child) => child.className === 'loading')[0].remove();
   }
 
   static renderWinners(winners) {

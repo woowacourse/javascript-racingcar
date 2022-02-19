@@ -39,6 +39,18 @@ export const style = `
       flex-direction: column;
       align-items: center;
     }
+
+    img.loading {
+      margin-top: 15px;
+      animation: rotate_image 1s linear infinite;
+      transform-origin: 50% 50%;
+    }
+
+    @keyframes rotate_image{
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 `;
 
@@ -91,6 +103,11 @@ export const button = `
   line-height: 16px;
   letter-spacing: 1.25px;
   color: ${color.white};
+`;
+
+export const moveForward = `
+  display: flex;
+  justify-content: center;
 `;
 
 export const winner = `

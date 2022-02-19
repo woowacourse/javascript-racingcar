@@ -9,9 +9,9 @@ export function isCarNameNotDuplicate(carNames) {
 }
 
 export function isValidCarNamesLength(carNames) {
-  return carNames.every((name) => {
-    return CAR.MIN_NAME_LENGTH <= name.length && name.length <= CAR.MAX_NAME_LENGTH;
-  });
+  return carNames.every(
+    (name) => CAR.MIN_NAME_LENGTH <= name.length && name.length <= CAR.MAX_NAME_LENGTH
+  );
 }
 
 export function isValidCarNames(carNames) {

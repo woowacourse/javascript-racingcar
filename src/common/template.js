@@ -1,4 +1,4 @@
-import { BUTTON, DIRECTIVE, HEADER, WINNER } from './constants.js';
+import { BUTTON, CAR, DIRECTIVE, HEADER, WINNER } from './constants.js';
 import * as style from './style.js';
 
 export function headerTemplate() {
@@ -11,7 +11,7 @@ export function carNamesTemplate() {
   return `
     <article>
       <label style="${style.directive}">${DIRECTIVE.CAR_NAME}</label>
-      <form>
+      <form onsubmit="return false;">
         <input id="car-names-input" style="${style.input}"></input>
         <button type="button" id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
       </form>
@@ -24,7 +24,7 @@ export function carNamesTemplate() {
 export function racingCountTemplate() {
   return `
     <label style="${style.directive}">${DIRECTIVE.RACING_COUNT}</label>
-    <form>
+    <form onsubmit="return false;">
       <input type="number" id="racing-count-input" style="${style.input}"></input>
       <button type="button" id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
     </form>
@@ -46,6 +46,10 @@ export function carsTemplate(cars) {
       ${cars.map((car) => carTemplate(car)).join('')}
     </section>
   `;
+}
+
+export function moveForwardTemplate() {
+  return `<div style="${style.moveForward}"><p>${CAR.MOVE_FORWARD_ARROW}</p></div>`;
 }
 
 export function winnersTemplate(winners) {

@@ -53,7 +53,7 @@ export default class RacingCarController {
   }
 
   #handleRacingCount() {
-    const racingCount = Number(this.view.$racingCountInput.value);
+    const racingCount = this.view.$racingCountInput.valueAsNumber;
 
     if (!isValidRacingCount(racingCount)) {
       this.#onInvalidRacingCountSubmit();
@@ -61,7 +61,8 @@ export default class RacingCarController {
       return;
     }
 
-    this.#onValidRacingCountSubmit(racingCount);
+    this.#startRace(racingCount);
+    this.#finishRace();
   }
 
   #onInvalidRacingCountSubmit() {
@@ -69,20 +70,36 @@ export default class RacingCarController {
     this.view.resetRacingCountInput();
   }
 
-  #onValidRacingCountSubmit(racingCount) {
+  #startRace(racingCount) {
     this.model.setRacingCount(racingCount);
-    this.#race(racingCount);
-    this.model.cars.forEach((car) => RacingCarView.renderMoveForwardArrow(car));
-    RacingCarView.renderWinners(this.model.getWinnners());
-    RacingCarView.renderRestart();
-    this.view.selectRestartDOM();
-    this.#attachRestartEvents();
+    this.model.cars.forEach((car) => {
+      RacingCarView.renderLoading(car);
+      this.#racing(car);
+    });
   }
 
-  #race(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.model.cars.forEach((car) => car.moveForward());
-    }
+  #racing(car) {
+    let turn = 0;
+    const racingInterval = setInterval(() => {
+      car.moveForward();
+
+      if (car.isMoved) RacingCarView.renderMoveForward(car);
+
+      // eslint-disable-next-line no-plusplus
+      if (++turn === this.model.racingCount) {
+        RacingCarView.removeLoading(car);
+        clearInterval(racingInterval);
+      }
+    }, 1000);
+  }
+
+  #finishRace() {
+    setTimeout(() => {
+      RacingCarView.renderWinners(this.model.getWinnners());
+      RacingCarView.renderRestart();
+      this.view.selectRestartDOM();
+      this.#attachRestartEvents();
+    }, 1000 * this.model.racingCount);
   }
 
   #attachRestartEvents() {
