@@ -26,19 +26,19 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.visit(baseUrl);
     });
     it('2-1. 자동차 이름을 5자 이상 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.nameInputValidator('makerjun', INPUT_ERROR.INVALID_LENGTH);
+      cy.checkNameInputValid('makerjun', INPUT_ERROR.INVALID_LENGTH);
     });
 
     it('2-2. 자동차 이름을 중복되게 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.nameInputValidator('maker,maker', INPUT_ERROR.DUPLICATED);
+      cy.checkNameInputValid('maker,maker', INPUT_ERROR.DUPLICATED);
     });
 
     it('2-3. 자동차 이름 안에 공백이 포함되어 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.nameInputValidator('na me', INPUT_ERROR.CONTAINED_BLANK);
+      cy.checkNameInputValid('na me', INPUT_ERROR.CONTAINED_BLANK);
     });
 
     it('2-4. 자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.nameInputValidator('   ', INPUT_ERROR.NAME_EMPTY);
+      cy.checkNameInputValid('   ', INPUT_ERROR.NAME_EMPTY);
     });
   });
 
@@ -53,15 +53,15 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
 
     it('3-1. 시도 횟수를 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.countInputValidator(' ', INPUT_ERROR.COUNT_EMPTY);
+      cy.checkCountInputValid(' ', INPUT_ERROR.COUNT_EMPTY);
     });
 
     it('3-2. 시도 횟수를 음수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.countInputValidator('-1', INPUT_ERROR.COUNT_NEGATIVE);
+      cy.checkCountInputValid('-1', INPUT_ERROR.COUNT_NEGATIVE);
     });
 
     it('3-3. 시도 횟수를 정수가 아닌 수로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      cy.countInputValidator('2.3', INPUT_ERROR.COUNT_NOT_NATURAL);
+      cy.checkCountInputValid('2.3', INPUT_ERROR.COUNT_NOT_NATURAL);
     });
   });
 

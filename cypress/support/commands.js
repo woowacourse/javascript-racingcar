@@ -29,23 +29,7 @@ import RandomUtils from '../../src/utils/random';
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 const baseUrl = '../index.html';
 
-Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
-  const randomStub = cy.stub();
-
-  returnValues.forEach((value, index) => {
-    randomStub.onCall(index).returns(value);
-  });
-
-  cy.visit(baseUrl, {
-    onBeforeLoad: (window) => {
-      window.RandomUtils = {
-        pickNumberInRange: [5, 1]
-      };
-    }
-  });
-});
-
-Cypress.Commands.add('nameInputValidator', (nameInput, errorMessage) => {
+Cypress.Commands.add('checkNameInputValid', (nameInput, errorMessage) => {
   // given
   const invalidInput = nameInput;
   const alertStub = cy.stub();
@@ -61,7 +45,7 @@ Cypress.Commands.add('nameInputValidator', (nameInput, errorMessage) => {
     });
 });
 
-Cypress.Commands.add('countInputValidator', (countInput, errorMessage) => {
+Cypress.Commands.add('checkCountInputValid', (countInput, errorMessage) => {
   // given
   const alertStub = cy.stub();
   cy.on('window:alert', alertStub);
