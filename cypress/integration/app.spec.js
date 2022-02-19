@@ -9,8 +9,8 @@ describe("자동차 경주 게임 테스트", () => {
     //when
     cy.get("#car-name-input").type(names);
     cy.get("#car-name-input-button").click();
-    cy.get("#racing-number-input").type(3);
-    cy.get("#racing-number-input-button").click();
+    cy.get("#round-count-input").type(3);
+    cy.get("#round-count-input-button").click();
     //then
     cy.get("#racing-winner").should("not.have.text", "");
   });
@@ -21,14 +21,11 @@ describe("자동차 경주 게임 테스트", () => {
     const LOADING_NUMBER = 5;
     const validNames = "1, 2, 3";
     const validNumber = "5";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
-
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
-    cy.get("#racing-number-input").type(validNumber);
-    cy.get("#racing-number-input-button").click();
+    cy.get("#round-count-input").type(validNumber);
+    cy.get("#round-count-input-button").click();
     //then
     for (let i = 0; i < LOADING_NUMBER; i++) {
       cy.wait(LOADING_TERM);
@@ -40,17 +37,13 @@ describe("자동차 경주 게임 테스트", () => {
     //given
     const validNames = "1, 2, 3";
     const validNumber = "3";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
-    cy.get("#racing-number-input").type(validNumber);
-    cy.get("#racing-number-input-button").click();
+    cy.get("#round-count-input").type(validNumber);
+    cy.get("#round-count-input-button").click();
     //then
-    cy.wait(6000).then(() => {
-      expect(alertStub).to.be.called;
-    });
+    cy.checkAlertWinners();
   });
 });
 
@@ -62,81 +55,51 @@ describe("입력 예외처리 테스트", () => {
   it("사용자가 6자이상의 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "abcdefgh";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.get("#car-name-input-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.checkAlert("#car-name-input-button");
   });
 
   it("사용자가 중복된 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "1, 2, 1";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.get("#car-name-input-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.checkAlert("#car-name-input-button");
   });
 
   it("사용자가 공백으로된 이름을 설정한 경우, alert 호출한다.", () => {
     //given
     const invalidNames = "1 , , 2";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(invalidNames);
     //then
-    cy.get("#car-name-input-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.checkAlert("#car-name-input-button");
   });
 
   it("사용자가 입력한 시도할 횟수가 0이하인 경우, alert 호출한다.", () => {
     //given
     const validNames = "1, 2, 3";
     const invalidNumber = "-1";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
-    cy.get("#racing-number-input").type(invalidNumber);
+    cy.get("#round-count-input").type(invalidNumber);
     //then
-    cy.get("#racing-number-input-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.checkAlert("#round-count-input-button");
   });
 
   it("사용자가 입력한 시도할 횟수가 정수가 아닌 경우, alert 호출한다.", () => {
     //given
     const validNames = "1, 2, 3";
     const invalidNumber = "1.23";
-    const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
     //when
     cy.get("#car-name-input").type(validNames);
     cy.get("#car-name-input-button").click();
-    cy.get("#racing-number-input").type(invalidNumber);
+    cy.get("#round-count-input").type(invalidNumber);
     //then
-    cy.get("#racing-number-input-button")
-      .click()
-      .then(() => {
-        expect(alertStub).to.be.called;
-      });
+    cy.checkAlert("#round-count-input-button");
   });
 });

@@ -37,10 +37,6 @@ function hasEmptyName(names) {
   return names.includes("");
 }
 
-function isNameTooLong(name) {
-  return name.length > NAME_LENGTH_MAX;
-}
-
 function isNumberInteger(number) {
   return Number.isInteger(Number(number));
 }
@@ -50,10 +46,9 @@ function isNumberUnderZero(number) {
 }
 
 function hasLongName(names) {
-  for (let i = 0; i < names.length; i++) {
-    if (isNameTooLong(names[i])) {
-      return true;
-    }
-  }
-  return false;
+  return names.some(isNameTooLong);
+}
+
+function isNameTooLong(name) {
+  return name.length > NAME_LENGTH_MAX;
 }
