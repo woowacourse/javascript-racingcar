@@ -82,9 +82,10 @@ class RacingcarGame {
   }
 
   showCarBoxes() {
-    $(".racing-cars").innerHTML = this.carList
-      .map((car) => ViewManager.carNameBox(car))
-      .join("");
+    $(".racing-cars").insertAdjacentHTML(
+      "afterbegin",
+      this.carList.map((car) => ViewManager.carNameBox(car)).join("")
+    );
   }
 
   playGame() {
@@ -115,7 +116,7 @@ class RacingcarGame {
       const wrap = document.createElement("div");
       wrap.setAttribute("class", "racing-arrow-box");
       wrap.setAttribute("id", `racing-arrow-box-${index}`);
-      wrap.innerHTML = ViewManager.loading();
+      wrap.insertAdjacentHTML("afterbegin", ViewManager.loading());
       $(".racing-arrow").append(wrap);
     });
   }
@@ -150,9 +151,10 @@ class RacingcarGame {
   }
 
   showWinner(winner) {
-    $(
-      ".racing-result"
-    ).innerHTML = `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`;
+    $(".racing-result").insertAdjacentHTML(
+      "afterbegin",
+      `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`
+    );
     $(".racing-result").insertAdjacentHTML(
       "beforeend",
       "<div class='restart-button'>다시 시작하기</div>"
