@@ -83,8 +83,9 @@ class RacingCarGameController {
       if (isMovedCar) movedCars.push(car.id);
     });
     this.finishedRounds += 1;
-    this.view.renderRoundResult(movedCars, this.totalRounds, this.finishedRounds);
-    if (this.finishedRounds === this.totalRounds) {
+    const isGameOver = this.totalRounds === this.finishedRounds;
+    this.view.renderRoundResult(movedCars, isGameOver);
+    if (isGameOver) {
       this.afterGameComplete();
     }
   }

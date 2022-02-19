@@ -29,14 +29,14 @@ class RacingCarGameView {
     this.#initSpinner();
   }
 
-  renderRoundResult(movedCars, totalRounds, finishedRounds) {
+  renderRoundResult(movedCars, isGameOver) {
     const stepContainersArray = Array.from(this.stepContainers);
     stepContainersArray.forEach((container) => {
       if (movedCars.includes(container.dataset.carId)) {
         container.append(RacingCarGameView.generateStepTemplate());
       }
     });
-    if (totalRounds === finishedRounds) {
+    if (isGameOver) {
       this.removeSpinner();
     }
   }
