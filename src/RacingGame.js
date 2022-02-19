@@ -1,6 +1,5 @@
 import RacingCars from './RacingCars.js';
 import View from './view/RacingGameView.js';
-import userInputValue from './userInputValue.js';
 import { validateCarNames, validateTurnCount } from './validation.js';
 
 import { $ } from './util/util.js';
@@ -41,7 +40,7 @@ export default class RacingGame {
     }
 
     onSubmitCarName() {
-        const carNames = userInputValue.carNames();
+        const carNames = $(SELECTOR.CAR_NAME_INPUT).value.split(',').map((name) => name.trim());
         try {
             validateCarNames(carNames);
         } catch (error) {
@@ -54,7 +53,7 @@ export default class RacingGame {
     }
 
     onSubmitTurnCount() {
-        const turnCount = userInputValue.turnCount();
+        const turnCount = Number($(SELECTOR.TURN_COUNT_INPUT).value);
         try {
             validateTurnCount(turnCount);
         } catch (error) {
