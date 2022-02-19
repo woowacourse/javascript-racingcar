@@ -1,14 +1,19 @@
 import { CLASS, ID } from '../constants/index.js';
 import { $, $$ } from '../util/index.js';
-import { templateRacingCarItem, templateProgress, templateSpinner } from '../template/index.js';
+import {
+  templateRacingCountForm,
+  templateRacingCarItem,
+  templateProgress,
+  templateSpinner,
+} from '../template/index.js';
 
 class RacingCarGameView {
   constructor() {
     this.$carNamesForm = $(`#${ID.CAR_NAMES_FORM}`);
     this.$carNamesInput = $(`#${ID.CAR_NAMES_INPUT}`);
     this.$racingCountForm = $(`#${ID.RACING_COUNT_FORM}`);
-    this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
-    this.$inputBtns = $$(`.${CLASS.INPUT_BTN}`);
+    this.$racingCountInput = null;
+    this.$inputBtns = null;
     this.$racingCarList = $(`#${ID.RACING_CAR_LIST}`);
     this.$racingCarProgress = null;
     this.$spinnerContainers = null;
@@ -57,6 +62,16 @@ class RacingCarGameView {
     });
   }
 
+  renderRacingCountForm() {
+    if (this.$racingCountInput !== null) {
+      return;
+    }
+
+    this.$racingCountForm.insertAdjacentHTML('beforeend', templateRacingCountForm);
+    this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
+    this.$inputBtns = $$(`.${CLASS.INPUT_BTN}`);
+  }
+
   renderRacingCarList(racingCarList) {
     const racingCarItemsTemplate = racingCarList.reduce(
       (previousTemplate, car) => previousTemplate + templateRacingCarItem(car.getName()),
@@ -77,24 +92,24 @@ class RacingCarGameView {
     this.$finalWinner.style.display = 'block';
   }
 
-  showRacingCountForm() {
-    this.$racingCountForm.style.display = 'block';
-  }
-
   showRestartSection() {
     this.$restartSection.style.display = 'block';
   }
 
+  reset() {
+    this.$carNamesInput.value = '';
+    this.$racingCountForm.innerHTML = '';
+    this.$racingCountInput = null;
+  }
+
   hideElements() {
     this.$carNamesInput.value = '';
-    this.$racingCountInput.value = '';
 
     this.$racingCarList.innerText = '';
     this.$finalWinnerResult.innerText = '';
   }
 
   resetElements() {
-    this.$racingCountForm.style.display = 'none';
     this.$finalWinner.style.display = 'none';
     this.$restartSection.style.display = 'none';
   }

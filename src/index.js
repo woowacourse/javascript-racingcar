@@ -25,7 +25,8 @@ class RacingCarGameController {
       validator.checkVCarNames(carNameList);
 
       this.model.setRacingCarList(carNameList);
-      this.view.showRacingCountForm();
+
+      this.view.renderRacingCountForm();
     } catch (error) {
       alert(error.message);
     }
@@ -48,6 +49,7 @@ class RacingCarGameController {
   handleRestartBtnClickEvent() {
     this.model.resetGameState();
     this.view.changeToEnabledForm();
+    this.view.reset();
     this.view.resetElements();
     this.view.hideElements();
   }
