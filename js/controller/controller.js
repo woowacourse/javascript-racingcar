@@ -41,8 +41,7 @@ export default class Controller {
         alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
         return;
       }
-      $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = true;
-      $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = 'gray';
+      this.view.disableRacingCountButton();
       this.model.saveRacingCount(this.getRacingCountInput());
       this.gameStart();
       this.model.initCarPosition();

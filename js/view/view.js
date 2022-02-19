@@ -83,4 +83,9 @@ export default class View {
   renderCarRacingInputBox() {
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
   }
+
+  disableRacingCountButton() {
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = true;
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = 'gray';
+  }
 }
