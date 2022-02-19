@@ -30,7 +30,7 @@ class RacingCarGame {
   }
 
   selectWinner() {
-    const maxDistance = this.getMaxNumber(this.cars);
+    const maxDistance = getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
   }
 
