@@ -1,3 +1,5 @@
+import { SELECTOR } from "../constants/ConstantsManager.js";
+
 import { $ } from "../utils/dom.js";
 
 export default class ViewManager {
@@ -18,30 +20,30 @@ export default class ViewManager {
   }
 
   static hideRaceCountSection() {
-    $(".race-count-wrap").style.visibility = "hidden";
+    $(SELECTOR.race_count_wrap).style.visibility = "hidden";
   }
 
   static showRaceCountSection() {
-    $(".race-count-wrap").style.visibility = "visible";
+    $(SELECTOR.race_count_wrap).style.visibility = "visible";
   }
 
   static makeDisableInput() {
-    $(".car-name-input").disabled = true;
-    $(".race-count-input").disabled = true;
-    $(".car-name-button").disabled = true;
-    $(".race-count-button").disabled = true;
+    $(SELECTOR.car_name_input).disabled = true;
+    $(SELECTOR.race_count_input).disabled = true;
+    $(SELECTOR.car_name_button).disabled = true;
+    $(SELECTOR.race_count_button).disabled = true;
   }
 
   static restartSetting() {
-    $(".racing-cars").innerHTML = "";
-    $(".racing-arrow").innerHTML = "";
-    $(".racing-result").innerHTML = "";
-    $(".car-name-input").value = "";
-    $(".race-count-input").value = "";
-    $(".car-name-input").disabled = false;
-    $(".race-count-input").disabled = false;
-    $(".car-name-button").disabled = false;
-    $(".race-count-button").disabled = false;
-    $(".race-count-wrap").style.visibility = "hidden";
+    $(SELECTOR.racing_cars).innerHTML = "";
+    $(SELECTOR.racing_arrow).innerHTML = "";
+    $(SELECTOR.racing_result).innerHTML = "";
+    $(SELECTOR.car_name_input).value = "";
+    $(SELECTOR.race_count_input).value = "";
+    $(SELECTOR.car_name_input).disabled = false;
+    $(SELECTOR.race_count_input).disabled = false;
+    $(SELECTOR.car_name_button).disabled = false;
+    $(SELECTOR.race_count_button).disabled = false;
+    $(SELECTOR.race_count_wrap).style.visibility = "hidden";
   }
 }

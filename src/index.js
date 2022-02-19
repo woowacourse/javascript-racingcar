@@ -3,9 +3,13 @@ import {
   GAME_DELAY_TIME,
   GAME_RESULT_DELAY_TIME,
   alertMessage,
+  SELECTOR,
 } from "./constants/ConstantsManager.js";
+
 import Car from "./model/Car.js";
+
 import ViewManager from "./view/ViewManager.js";
+
 import { $ } from "./utils/dom.js";
 
 class RacingcarGame {
@@ -24,7 +28,7 @@ class RacingcarGame {
   }
 
   bindCarNameEvent() {
-    $(".car-name-button").addEventListener("click", (event) => {
+    $(SELECTOR.car_name_button).addEventListener("click", (event) => {
       event.preventDefault();
       this.checkCarName();
       if (this.canStartGame()) {
@@ -34,7 +38,7 @@ class RacingcarGame {
   }
 
   bindRaceCountEvent() {
-    $(".race-count-button").addEventListener("click", (event) => {
+    $(SELECTOR.race_count_button).addEventListener("click", (event) => {
       event.preventDefault();
       this.isCorrectRaceCount = this.isValidRaceNumber();
       if (!this.isCorrectRaceCount) {
@@ -48,9 +52,9 @@ class RacingcarGame {
   }
 
   checkCarName() {
-    this.carNames = $(".car-name-input").value.split(",");
+    this.carNames = $(SELECTOR.car_name_input).value.split(",");
     const errorCarName = this.carNames.filter((name) => name.length > 5);
-    if (errorCarName.length > 0 || $(".car-name-input").value === "") {
+    if (errorCarName.length > 0 || $(SELECTOR.car_name_input).value === "") {
       alert(alertMessage.InvalidCarNameLength);
       this.isCorrectCarName = false;
       ViewManager.hideRaceCountSection();
@@ -61,7 +65,7 @@ class RacingcarGame {
   }
 
   isValidRaceNumber() {
-    this.raceCount = Number($(".race-count-input").value);
+    this.raceCount = Number($(SELECTOR.race_count_input).value);
     if (this.raceCount === "" || this.raceCount <= 0) {
       return false;
     }
@@ -82,7 +86,7 @@ class RacingcarGame {
   }
 
   showCarBoxes() {
-    $(".racing-cars").insertAdjacentHTML(
+    $(SELECTOR.racing_cars).insertAdjacentHTML(
       "afterbegin",
       this.carList.map((car) => ViewManager.carNameBox(car)).join("")
     );
@@ -117,7 +121,7 @@ class RacingcarGame {
       wrap.setAttribute("class", "racing-arrow-box");
       wrap.setAttribute("id", `racing-arrow-box-${index}`);
       wrap.insertAdjacentHTML("afterbegin", ViewManager.loading());
-      $(".racing-arrow").append(wrap);
+      $(SELECTOR.racing_arrow).append(wrap);
     });
   }
 
@@ -151,11 +155,11 @@ class RacingcarGame {
   }
 
   showWinner(winner) {
-    $(".racing-result").insertAdjacentHTML(
+    $(SELECTOR.racing_result).insertAdjacentHTML(
       "afterbegin",
       `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`
     );
-    $(".racing-result").insertAdjacentHTML(
+    $(SELECTOR.racing_result).insertAdjacentHTML(
       "beforeend",
       "<div class='restart-button'>다시 시작하기</div>"
     );
@@ -173,7 +177,7 @@ class RacingcarGame {
   }
 
   bindRestartEvent() {
-    $(".restart-button").addEventListener("click", this.restartRace);
+    $(SELECTOR.restart_button).addEventListener("click", this.restartRace);
   }
 
   restartRace() {
