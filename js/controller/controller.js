@@ -45,9 +45,17 @@ export default class Controller {
   }
 
   setMoveStateByRacingCount() {
-    for (let i = 0; i < this.model.racingCount; i++) {
-      this.setMoveState();
+    for (let i = 1; i < Number(this.model.racingCount) + 1; i++) {
+      this.displayProgressEverySecond(i);
     }
+  }
+
+  displayProgressEverySecond(i) {
+    setTimeout(() => {
+      this.setMoveState();
+      this.displayProgress();
+      this.view.renderLoading();
+    }, 1000 * i);
   }
 
   setMoveState() {
@@ -58,11 +66,15 @@ export default class Controller {
 
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
+    this.view.renderInitialLoading(this.model.carPosition);
     this.setMoveStateByRacingCount();
-    this.displayProgress();
-    this.displayWinner();
-    this.displayRestartButton();
-    this.bindGameRestartEvent();
+
+    setTimeout(() => {
+      this.view.hideLoader();
+      this.displayWinner();
+      this.displayRestartButton();
+      this.bindGameRestartEvent();
+    }, 1000 * this.model.racingCount);
   }
 
   displayProgress() {

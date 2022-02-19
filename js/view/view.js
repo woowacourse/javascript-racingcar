@@ -1,4 +1,4 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { SELECTOR } from '../utils/constants.js';
 export default class View {
   constructor() {
@@ -29,6 +29,24 @@ export default class View {
 
   renderProgress(carPosition) {
     $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
+  }
+
+  renderInitialLoading(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).innerHTML = carPosition
+      .map((position) => `<div id="car-progress-result"><div class="loader"></div></div>`)
+      .join('');
+  }
+
+  renderLoading() {
+    $$('#car-progress-result').forEach((el) => {
+      el.insertAdjacentHTML('beforeend', '<div class="loader"></div>');
+    });
+  }
+
+  hideLoader() {
+    $$('.loader').forEach((el) => {
+      el.style.display = 'none';
+    });
   }
 
   renderInitial() {
