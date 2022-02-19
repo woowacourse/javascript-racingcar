@@ -1,3 +1,4 @@
+
 import {
   RANDOM_MAX_NUMBER,
   GAME_DELAY_TIME,
@@ -17,8 +18,8 @@ class RacingcarGame {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
 
-    ViewManager.setRaceCountSectionVisibility("hidden");
 
+    ViewManager.setRaceCountSectionVisibility("hidden");
     this.bindEvent();
   }
 
