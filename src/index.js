@@ -3,6 +3,7 @@ import { $ } from "./dom.js";
 
 const RANDOM_MAX_NUMBER = 9;
 const GAME_DELAY_TIME = 1000;
+const GAME_RESULT_DELAY_TIME = 2000;
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
@@ -120,7 +121,6 @@ class RacingcarGame {
     this.endLoading();
     const winner = this.findWinner();
     this.showWinner(winner);
-    this.bindRestartEvent();
   }
 
   endLoading() {
@@ -147,7 +147,17 @@ class RacingcarGame {
       "beforeend",
       "<div class='restart-button'>다시 시작하기</div>"
     );
+    this.bindRestartEvent();
     this.makeDisableInput();
+    setTimeout(
+      this.alertCongratsMessage.bind(this),
+      GAME_RESULT_DELAY_TIME,
+      winner
+    );
+  }
+
+  alertCongratsMessage(winner) {
+    alert(`${winner} 우승을 축하합니다!`);
   }
 
   makeDisableInput() {
