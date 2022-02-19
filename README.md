@@ -27,7 +27,10 @@ npm install -g live-server
 live-server 폴더명
 ```
 
+<br>
+
 ## :page_with_curl: 코드 구조
+
 ![코드구조](./docs/big-picture.png)
 
 <br>
