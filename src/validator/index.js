@@ -13,7 +13,7 @@ const isNotNumberType = (racingCount) => typeof racingCount !== 'number';
 const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !== number;
 
 const validator = {
-  checkVCarNames: (carNameList) => {
+  checkCarNames: (carNameList) => {
     if (isEmptyName(carNameList)) {
       throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAME);
     }

@@ -22,7 +22,7 @@ class RacingCarGameController {
     try {
       const carNameList = carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
 
-      validator.checkVCarNames(carNameList);
+      validator.checkCarNames(carNameList);
 
       this.model.setRacingCarList(carNameList);
 
