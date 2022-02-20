@@ -79,14 +79,15 @@ class RacingCarGameController {
       this.endGame();
     };
     const cars = this.model.getCars();
+    const racingCount = this.model.getRacingCount();
     cars.forEach((car, i) => {
-      setIntervalX(
-        this.model.getRacingCount(),
-        CAR_MOVE_DELAY,
-        before.bind(null, i, car),
-        after.bind(null, i, car),
-        i === cars.length - 1 ? end : false // 마지막에만 end를 호출한다
-      );
+      setIntervalX({
+        times: racingCount,
+        delay: CAR_MOVE_DELAY,
+        before: before.bind(null, i, car),
+        after: after.bind(null, i, car),
+        end: i === cars.length - 1 ? end : undefined,
+      });
     });
   }
 
