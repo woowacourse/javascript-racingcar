@@ -6,7 +6,7 @@ function checkValidCarName(carName) {
   const zeroLengthCar = carName
     .split(",")
     .filter((carName) => carName.length === 0);
-  if (zeroLengthCar) {
+  if (zeroLengthCar.length) {
     alert("차 이름에 빈칸은 불가능합니다")
     return false;
   }
