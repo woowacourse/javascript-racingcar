@@ -26,7 +26,7 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value;
+    const racingCount = DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value.trim();
 
     try {
       validateCount(racingCount);
