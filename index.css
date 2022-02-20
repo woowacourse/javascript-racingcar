@@ -21,12 +21,12 @@ p {
     background-color: white;
 }
 
-.app .game-section.try,
+.app .input-form.try,
 .app .result-area {
     display: none;
 }
 
-.app.try .game-section.try,
+.app.try .input-form.try,
 .app.result .result-area {
     display: block;
 }
@@ -37,11 +37,11 @@ p {
     color: #000000;
 }
 
-.game-section {
+.input-form {
     width: 89%;
 }
 
-.game-section.name {
+.input-form.name {
     margin-bottom: 13px;
 }
 
