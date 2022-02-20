@@ -129,15 +129,33 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
                 });
         }
 
-        it('공백이 포함된 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('ab cd'));
+        const turnCountFormValidationMessageTest = (inputValue, validationMessage) => () => {
+            // given
+            const alertStub = cy.stub();
+            const CAR_NAMES = '우아한, 테크, 코스, 소피아';
+            cy.on('window:alert', alertStub);
+    
+            // when
+            cy.get(SELECTOR.CAR_NAME_INPUT).type(CAR_NAMES);
+            cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON).click();
+            inputValue && cy.get(SELECTOR.TURN_COUNT_INPUT).type(inputValue);
 
-        it('5자 초과의 넘는 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('abcdfesf'));
+            // then
+            cy.get(SELECTOR.TURN_COUNT_SUBMIT_BUTTON).click()
+            cy.get(SELECTOR.TURN_COUNT_INPUT).then((input) => {
+                expect(input[0].validationMessage).to.be.eq(validationMessage);
+            })
+        }
+
+        it('공백이 포함된 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('테크 코스'));
+
+        it('5자 초과의 넘는 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('우아한테크코스'));
     
         it('빈 문자열을 자동차 이름으로 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest(''));
     
         it(
             '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, 에러 메시지를 확인할 수 있어야 한다.',
-            turnCountFormAlertTest(123.456),
+            turnCountFormValidationMessageTest(12.456, '유효한 값을 입력해 주세요. 가장 근접한 유효 값 2개는 12 및 13입니다.'),
         );
     
         it('전진 시도 횟수 입력이 음수인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(-12));
