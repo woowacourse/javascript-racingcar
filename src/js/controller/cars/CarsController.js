@@ -36,7 +36,7 @@ export default class CarsController {
     const cars = carNameArr.reduce((res, carName) => {
       const trimmedName = carName.trim();
       if (!isValidLengthCarName(trimmedName)) throw new Error(EXCEPTIONS.INCORRECT_CAR_NAME);
-      if (res.findIndex(({ name }) => name === trimmedName) === -1) {
+      if (!res.find(({ name }) => name === trimmedName)) {
         res.push(new Car(trimmedName));
       }
       return res;
