@@ -35,3 +35,5 @@ export const CLASS_NAME = Object.freeze({
   DISPLAY_NONE: 'display-none',
   SPINNING_BACKGROUND: 'spinning-bg',
 });
+
+export const ARROW_TEXT = '⬇️';

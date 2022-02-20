@@ -1,5 +1,5 @@
 import { $, $$, displayNoneDOM, displayDOM } from './utils/common.js';
-import { SELECTOR, NUMBER, CLASS_NAME } from './utils/constants.js';
+import { SELECTOR, NUMBER, CLASS_NAME, ARROW_TEXT } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -119,9 +119,9 @@ export default class View {
     const callback = () => {
       const currentTime = new Date().getTime();
       if (currentTime - NUMBER.ARROW_INTERVAL_TIME > startTime) {
-        arrow.style.transform = `rotate( 0deg )`;
+        arrow.style.transform = ``;
         arrow.classList.remove(CLASS_NAME.SPINNING_BACKGROUND);
-        arrow.innerText = '⬇️';
+        arrow.innerText = ARROW_TEXT;
         return;
       }
       angle += 10;
