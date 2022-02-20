@@ -18,13 +18,13 @@ export function resetView() {
 
   nameInput.value = '';
   countInput.value = '';
-  countForm.style.display = 'none';
+  countForm.classList.add('d-none');
+  restart.classList.add('d-none');
   resultContainer.innerHTML = '';
-  restart.style.display = 'none';
 }
 
 export function showRestart() {
-  document.querySelector('.restart-container').style.display = 'flex';
+  document.querySelector('.restart-container').classList.remove('d-none');
 }
 
 function getCarsNameTemplate(cars) {

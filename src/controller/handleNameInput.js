@@ -29,7 +29,7 @@ export default function handleNameInput() {
   const countForm = document.querySelector('.count-form');
 
   if (handleException(names)) {
-    countForm.style.display = 'block';
+    countForm.classList.remove('d-none');
     countInput.focus();
   }
 }

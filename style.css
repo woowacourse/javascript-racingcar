@@ -10,7 +10,7 @@ main{
 }
 
 .count-form {
-  display: none;
+  display: block;
 }
 
 .name-form,
@@ -52,8 +52,12 @@ main{
 }
 
 .restart-container {
-  display: none;
+  display: flex;
   justify-content: center;
+}
+
+.d-none {
+  display: none;
 }
 
 .restart {
