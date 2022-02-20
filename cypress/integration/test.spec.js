@@ -1,11 +1,10 @@
 /* eslint-disable func-names */
 import {
   CAR_MOVE_DELAY,
-  CAR_NAMES_INPUT_PLACEHOLDER,
   CELEBRATE_MESSAGE,
   CELEBRATE_MESSAGE_SHOW_DELAY,
   ERROR_MESSAGES,
-  RACING_COUNT_INPUT_PLACEHOLDER,
+  SUBMITTED_CLASS_NAME,
 } from '../../src/js/constants.js';
 import { TEST_IDS, DEFAULT_CAR_NAMES, DEFAULT_RACING_COUNT } from '../support/constants.js';
 import testid from '../support/utils/test-id.js';
@@ -35,6 +34,12 @@ describe('입력된 자동차 이름에 대한 유효성 검사가 실패하는 
     const invalidCarNames = 'aa,bb,aa';
     alertTestOnSubmitCarNames(invalidCarNames, ERROR_MESSAGES.DUPLICATED_CAR_NAME);
   });
+
+  it('자동차 이름을 입력하는 필드의 배경색을 원래대로(하얀색) 돌려놔야한다', () => {
+    const invalidCarNames = 'aaaaaaa';
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, invalidCarNames);
+    cy.get(testid(TEST_IDS.CAR_NAMES_INPUT)).should('not.have.class', SUBMITTED_CLASS_NAME);
+  });
 });
 
 describe('유효한 자동차 이름을 입력한 경우', () => {
@@ -52,6 +57,11 @@ describe('유효한 자동차 이름을 입력한 경우', () => {
     const validCarNames = 'a a, bb, c  d';
     cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, validCarNames);
     cy.get(testid(TEST_IDS.RACING_COUNT_FIELDSET)).should('be.visible');
+  });
+
+  it('자동차 이름을 입력하는 필드의 배경색이 어두워야한다', () => {
+    cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, DEFAULT_CAR_NAMES);
+    cy.get(testid(TEST_IDS.CAR_NAMES_INPUT)).should('have.class', SUBMITTED_CLASS_NAME);
   });
 });
 
@@ -88,6 +98,12 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
     const invalidCarNames = 0;
     alertTestOnSubmitRaciingCount(invalidCarNames, ERROR_MESSAGES.FALL_SHORT_OF_MIN_RACING_COUNT);
   });
+
+  it('시도 횟수를 입력하는 필드의 배경색을 원래대로(하얀색) 돌려놔야한다', () => {
+    const invalidRacingCount = 0;
+    cy.formSubmit(TEST_IDS.RACING_COUNT_INPUT, TEST_IDS.RACING_COUNT_SUBMIT_BUTTON, invalidRacingCount);
+    cy.get(testid(TEST_IDS.RACING_COUNT_INPUT)).should('not.have.class', SUBMITTED_CLASS_NAME);
+  });
 });
 
 describe('유효한 시도횟수를 입력한 경우', () => {
@@ -102,6 +118,11 @@ describe('유효한 시도횟수를 입력한 경우', () => {
     const validRacingCount = 10;
     cy.formSubmit('racing-count-input', 'racing-count-submit-button', validRacingCount);
     cy.get(testid(TEST_IDS.RACING_SCREEN)).should('be.visible');
+  });
+
+  it('시도횟수를 입력하는 필드의 배경색이 어두워야한다', () => {
+    cy.formSubmit(TEST_IDS.RACING_COUNT_INPUT, TEST_IDS.RACING_COUNT_SUBMIT_BUTTON, DEFAULT_RACING_COUNT);
+    cy.get(testid(TEST_IDS.RACING_COUNT_INPUT)).should('have.class', SUBMITTED_CLASS_NAME);
   });
 });
 
@@ -186,9 +207,9 @@ describe('경기가 끝난 경우', () => {
     cy.tick(CELEBRATE_MESSAGE_SHOW_DELAY).then(() => {
       cy.get(testid(RESTART_BUTTON)).click();
       cy.get(testid(CAR_NAMES_INPUT)).should('have.value', '');
-      cy.get(testid(CAR_NAMES_INPUT)).should('have.attr', 'placeholder', CAR_NAMES_INPUT_PLACEHOLDER);
+      cy.get(testid(CAR_NAMES_INPUT)).should('not.have.class', SUBMITTED_CLASS_NAME);
       cy.get(testid(RACING_COUNT_INPUT)).should('have.value', '');
-      cy.get(testid(RACING_COUNT_INPUT)).should('have.attr', 'placeholder', RACING_COUNT_INPUT_PLACEHOLDER);
+      cy.get(testid(RACING_COUNT_INPUT)).should('not.have.value', SUBMITTED_CLASS_NAME);
       cy.get(testid(RACING_SCREEN)).should('not.be.visible');
       cy.get(testid(RACING_RESULT)).should('not.be.visible');
     });
