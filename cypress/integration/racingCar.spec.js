@@ -1,4 +1,9 @@
-import { SELECTOR, ERROR_MESSAGE, DELAY_TIME, CELEBRATE_MESSAGE } from '../../src/js/utils/constants.js';
+import {
+  SELECTOR,
+  ERROR_MESSAGE,
+  DELAY_TIME,
+  CELEBRATE_MESSAGE,
+} from '../../src/js/utils/constants.js';
 
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseURL = 'index.html';
@@ -35,27 +40,27 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   });
 
   it('레이싱 게임을 완료하고, 최종 우승자를 보여준다.', () => {
-    cy.clock();
     const winners = `🏆 최종 우승자: ${normalName} 🏆`;
     cy.submitCarNames(normalName);
     cy.submitRacingCount(normalCount);
+    cy.clock();
     cy.tick(normalCount * milliseconds + DELAY_TIME.RACE);
     cy.get(SELECTOR.FINAL_WINNER).should('have.text', winners);
   });
 
   it('레이싱 게임이 끝나면, 2초 후에 축하 메시지를 확인 할 수 있다.', () => {
-    cy.clock();
     cy.submitCarNames(normalName);
     cy.submitRacingCount(normalCount);
+    cy.clock();
     cy.tick(normalCount * milliseconds + DELAY_TIME.RACE);
     cy.tick(DELAY_TIME.ALERT);
     cy.checkAlertMessage(CELEBRATE_MESSAGE);
   });
 
   it('다시 시도하기 버튼을 클릭하면, 게임이 초기화되어야 한다.', () => {
-    cy.clock();
     cy.submitCarNames(normalName);
     cy.submitRacingCount(normalCount);
+    cy.clock();
     cy.tick(normalCount * milliseconds + DELAY_TIME.RACE);
     cy.get(SELECTOR.RESTART_BUTTON).click();
 
