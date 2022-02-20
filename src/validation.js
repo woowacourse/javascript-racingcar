@@ -19,8 +19,8 @@ const isPositiveNumber = (number) => number > 0;
 
 const isValidTryCount = (tryCount) => {
     if (racingCars.isEmpty()) throw new Error(ERROR_MESSAGE.FIRST_ENROLL_CAR);
-    if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE.NATURAL_CAR_NAME);
-    if (!isPositiveNumber(tryCount)) throw new Error(ERROR_MESSAGE.POSITIVE_CAR_NAME);
+    if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE.NO_NUMBER_TRY_COUNT);
+    if (!isPositiveNumber(tryCount)) throw new Error(ERROR_MESSAGE.NEGATIVE_TRY_COUNT);
 
     return true;
 };
