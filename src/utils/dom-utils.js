@@ -24,7 +24,7 @@ export default class DomUtils {
   }
 
   static createCarProgressElement(car) {
-    const $carProgressNode = this.createCarProgressNode();
+    const $carProgressNode = this.createCarProgressNode(car.name);
 
     const $carProgressName = DomUtils.createCarProgressNameElement(car.name);
     $carProgressNode.appendChild($carProgressName);
@@ -46,9 +46,10 @@ export default class DomUtils {
     return $carProgressNode;
   }
 
-  static createCarProgressNode() {
+  static createCarProgressNode(name) {
     const $carProgressNode = document.createElement('div');
     $carProgressNode.className = SELECTOR.CLASS.CAR_PROGRESS_CONTAINER;
+    $carProgressNode.dataset.name = name;
     return $carProgressNode;
   }
 
