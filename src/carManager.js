@@ -5,21 +5,26 @@ export default class CarManager {
     this.carList = [];
   }
 
-  #saveCarList(carList) {
-    this.carList = carList;
+  createAndSaveCarList(carNamesArray) {
+    const carList = this.#createCarInstanceList(carNamesArray);
+    this.#saveCarList(carList);
   }
 
-  #createCarList(carNamesArray) {
+  #createCarInstanceList(carNamesArray) {
     return carNamesArray.map((carName) => new Car(carName));
   }
 
-  createAndSaveCarList(carNamesArray) {
-    this.#saveCarList(this.#createCarList(carNamesArray));
+  #saveCarList(carList) {
+    this.carList = carList;
   }
 
   startRace(count) {
     this.#resetAllCarStep();
     this.#repeatEachRace(count);
+  }
+
+  #resetAllCarStep() {
+    this.carList.forEach((car) => car.resetStep());
   }
 
   #repeatEachRace(count) {
@@ -28,10 +33,6 @@ export default class CarManager {
       .forEach((_) => {
         this.carList.forEach((car) => car.randomMove());
       });
-  }
-
-  #resetAllCarStep() {
-    this.carList.forEach((car) => car.resetStep());
   }
 
   resetCarList() {
