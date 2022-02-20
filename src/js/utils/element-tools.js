@@ -1,5 +1,9 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
+import { SELECTOR } from '../constants/selector.js';
+
+const $APP = document.querySelector(SELECTOR.APP);
+
+const $ = (selector) => $APP.querySelector(selector);
+const $$ = (selector) => $APP.querySelectorAll(selector);
 
 const createElement = (tagName, nodeProperty = {}) => {
   const $create = document.createElement(tagName);
