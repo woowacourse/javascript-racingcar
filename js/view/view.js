@@ -27,15 +27,16 @@ export default class View {
   makeLane(carPosition) {
     $(SELECTOR.CAR_PROGRESS).textContent = '';
     for (let i = 0; i < carPosition.length; i++) {
-      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
-        'beforeend',
-        `<div id="car-check">
-          <div id="car-progress-result-${i}">
-          <div id="loader"></div>
-          </div>
-        </div>`
-      );
+      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML('beforeend', this.templateLane(i));
     }
+  }
+
+  templateLane(i) {
+    return `<div id="car-check">
+              <div id="car-progress-result-${i}">
+              <div id="loader"></div>
+              </div>
+            </div>`;
   }
 
   async renderProgress(carPosition) {
@@ -43,7 +44,7 @@ export default class View {
     await this.doRacing(carPosition);
   }
 
-  async doRacing(carPosition) {
+  doRacing(carPosition) {
     return new Promise((resolve) => {
       const moveCarsTimer = setInterval(() => {
         this.decideGo(carPosition);
