@@ -3,7 +3,7 @@ import { SELECTOR } from '../../src/common/constants.js';
 const baseUrl = '../index.html';
 
 describe('자동차 게임 테스트', () => {
-  beforeEach(() => {
+  before(() => {
     cy.visit(baseUrl);
     const validCarNamesInput = 'apple,banan,carro';
 
@@ -12,12 +12,12 @@ describe('자동차 게임 테스트', () => {
   });
 
   context('자동차 이름이 입력된 후, 시도할 횟수 입력창과 자동차 이름들이 보이는 지 테스트', () => {
-    it('자동차 이름이 입력이 되면 시도할 횟수를 입력할 수 있어야 한다.', () => {
+    it('시도 횟수 입력창을 보여준다.', () => {
       cy.get(SELECTOR.RACING_COUNT_INPUT).should('be.visible');
       cy.get(SELECTOR.RACING_COUNT_SUBMIT).should('be.visible');
     });
 
-    it('자동차 이름이 입력이 되면, 순서에 맞게 자동차 이름들이 보인다.', () => {
+    it('자동차 이름들을 보여준다.', () => {
       cy.get(SELECTOR.CARS_CONTAINER).contains('apple');
       cy.get(SELECTOR.CARS_CONTAINER).contains('banan');
       cy.get(SELECTOR.CARS_CONTAINER).contains('carro');
@@ -25,24 +25,16 @@ describe('자동차 게임 테스트', () => {
   });
 
   context(
-    '자동차 이름과 시도할 횟수를 입력하면, 최종 우승자와 다시 시작하기 버튼, 축하 메시지가 보이는 지 테스트',
+    '시도할 횟수가 입력된 후, 최종 우승자와 다시 시작하기 버튼, 축하 메시지가 보이는 지 테스트',
     () => {
-      beforeEach(() => {
+      before(() => {
         const validRacingCountInput = 2;
 
         cy.get(SELECTOR.RACING_COUNT_INPUT).type(validRacingCountInput);
         cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
       });
 
-      it('자동차 이름과 시도할 횟수를 입력하면, 최종 우승자가 보여야한다.', () => {
-        cy.get(SELECTOR.WINNERS).should('be.visible');
-      });
-
-      it('자동차 이름과 시도할 횟수를 입력하면, 다시 시작하기 버튼이 보여야한다.', () => {
-        cy.get(SELECTOR.RESTART).should('be.visible');
-      });
-
-      it('자동차 이름과 시도할 횟수를 입력하면, 결과가 나온 후 2초 후에 축하 메시지가 보여야한다.', () => {
+      it('결과가 나온 후 2초 후에 축하 메시지가 보여야한다.', () => {
         const alertStub = cy.stub();
         cy.on('window:alert', alertStub);
         cy.clock();
@@ -53,27 +45,31 @@ describe('자동차 게임 테스트', () => {
             expect(alertStub).to.be.called;
           });
       });
+
+      it('최종 우승자가 보여야한다.', () => {
+        cy.get(SELECTOR.WINNERS).should('be.visible');
+      });
+
+      it('다시 시작하기 버튼이 보여야한다.', () => {
+        cy.get(SELECTOR.RESTART).should('be.visible');
+      });
     }
   );
 
-  context('다시 시작하기 버튼을 클릭했을 때 리셋되는 지 테스트', () => {
-    beforeEach(() => {
-      const validRacingCountInput = 2;
-
-      cy.get(SELECTOR.RACING_COUNT_INPUT).type(validRacingCountInput);
-      cy.get(SELECTOR.RACING_COUNT_SUBMIT).click();
+  context('다시 시작하기 버튼을 클릭하면, 리셋되는 지 테스트', () => {
+    before(() => {
       cy.get(SELECTOR.RESTART).click();
     });
 
-    it('다시 시작하기 버튼을 클릭하면, 다시 시작하기 버튼이 사라진다.', () => {
+    it('다시 시작하기 버튼이 사라진다.', () => {
       cy.get(SELECTOR.RESTART).should('not.exist');
     });
 
-    it('다시 시작하기 버튼을 클릭하면, 자동차 이름 입력값이 사라진다.', () => {
+    it('자동차 이름 입력값이 사라진다.', () => {
       cy.get(SELECTOR.CAR_NAMES_INPUT).should('have.value', '');
     });
 
-    it('다시 시작하기 버튼을 클릭하면, 시도할 횟수 입력창이 사라진다.', () => {
+    it('시도할 횟수 입력창이 사라진다.', () => {
       cy.get(SELECTOR.RACING_COUNT_INPUT).should('not.exist');
     });
   });
@@ -84,7 +80,7 @@ describe('예외 사항', () => {
     cy.visit(baseUrl);
   });
 
-  context('입력값이 잘못된 경우 사용자들이 알 수 있게 해준다', () => {
+  context('입력값이 잘못된 경우 메시지 테스트', () => {
     it('5자를 초과하는 자동차 이름이 제출된 경우에 alert을 이용해 메시지를 보여준다.', () => {
       const invalidInput = 'ab,cde,fghijk';
 
@@ -123,7 +119,7 @@ describe('예외 사항', () => {
     });
   });
 
-  context('입력값이 잘못된 경우 사용자들이 다시 입력할 수 있게 해준다', () => {
+  context('입력값이 잘못된 경우 리셋 기능 테스트', () => {
     it('5자를 초과하는 자동차 이름이 제출된 경우에 다시 입력할 수 있게 한다.', () => {
       const invalidInput = 'abcdef';
 
