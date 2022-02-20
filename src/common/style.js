@@ -42,11 +42,11 @@ export const style = `
 
     img.loading {
       margin-top: 15px;
-      animation: rotate_image 1s linear infinite;
+      animation: loading_spin 1s linear infinite;
       transform-origin: 50% 50%;
     }
 
-    @keyframes rotate_image{
+    @keyframes loading_spin {
       100% {
         transform: rotate(360deg);
       }
