@@ -1,5 +1,5 @@
 export const BUTTON = {
-  SUBMIT: '확인',
+  CONFIRM: '확인',
   RESTART: '다시 시작하기',
 };
 
@@ -39,12 +39,12 @@ export const RANDOM = {
 };
 
 export const SELECTOR = {
+  CAR_NAMES_FORM: '#car-names-form',
   CAR_NAMES_INPUT: '#car-names-input',
-  CAR_NAMES_SUBMIT: '#car-names-submit',
   GAME_RESULT: '#game-result',
   RACING_COUNT: '#racing-count',
+  RACING_COUNT_FORM: '#racing-count-form',
   RACING_COUNT_INPUT: '#racing-count-input',
-  RACING_COUNT_SUBMIT: '#racing-count-submit',
   RESTART: '#restart',
 };
 

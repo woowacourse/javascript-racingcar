@@ -11,9 +11,9 @@ export function carNamesTemplate() {
   return `
     <article>
       <label style="${style.directive}">${DIRECTIVE.CAR_NAME}</label>
-      <form onsubmit="return false;">
+      <form id="car-names-form">
         <input id="car-names-input" style="${style.input}" placeholder="${PLACEHOLDER.CAR_NAMES_INPUT}"></input>
-        <button type="button" id="car-names-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
+        <button style="${style.button}">${BUTTON.CONFIRM}</button>
       </form>
     </article>
     <article id="racing-count"></article>
@@ -24,9 +24,9 @@ export function carNamesTemplate() {
 export function racingCountTemplate() {
   return `
     <label style="${style.directive}">${DIRECTIVE.RACING_COUNT}</label>
-    <form onsubmit="return false;">
+    <form id="racing-count-form">
       <input type="number" id="racing-count-input" style="${style.input}" placeholder="${PLACEHOLDER.RACING_COUNT_INPUT}"></input>
-      <button type="button" id="racing-count-submit" style="${style.button}">${BUTTON.SUBMIT}</button>
+      <button style="${style.button}">${BUTTON.CONFIRM}</button>
     </form>
   `;
 }

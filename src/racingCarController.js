@@ -18,10 +18,11 @@ export default class RacingCarController {
   }
 
   #attachCarNamesEvents() {
-    this.view.$getCarNamesSubmit().addEventListener('click', this.#handleCarNames.bind(this));
+    this.view.$getCarNamesForm().addEventListener('submit', this.#handleCarNames.bind(this));
   }
 
-  #handleCarNames() {
+  #handleCarNames(event) {
+    event.preventDefault();
     const carNamesInput = this.view.$getCarNamesInput().value.split(',');
     const carNames = carNamesInput.map((name) => name.trim());
 
@@ -42,16 +43,18 @@ export default class RacingCarController {
   #onValidCarNamesSubmit(carNames) {
     RacingCarView.renderRacingCount();
     this.view.selectRacingCountDOM();
+    this.view.resetRacingCountInput();
     this.#attachRacingCountEvents();
     this.model.setCars(carNames);
     RacingCarView.renderCars(this.model.getCars());
   }
 
   #attachRacingCountEvents() {
-    this.view.$getRacingCountSubmit().addEventListener('click', this.#handleRacingCount.bind(this));
+    this.view.$getRacingCountForm().addEventListener('submit', this.#handleRacingCount.bind(this));
   }
 
-  #handleRacingCount() {
+  #handleRacingCount(event) {
+    event.preventDefault();
     const racingCount = this.view.$getRacingCountInput().valueAsNumber;
 
     if (this.model.getRacingCount()) return;

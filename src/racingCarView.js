@@ -6,13 +6,13 @@ import loadingElement from './common/element.js';
 import * as template from './common/template.js';
 
 export default class RacingCarView {
+  #carNamesForm;
+
   #carNamesInput;
 
-  #carNamesSubmit;
+  #racingCountForm;
 
   #racingCountInput;
-
-  #racingCountSubmit;
 
   #restart;
 
@@ -34,8 +34,8 @@ export default class RacingCarView {
   }
 
   selectCarNamesDOM() {
+    this.#carNamesForm = $(SELECTOR.CAR_NAMES_FORM);
     this.#carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
-    this.#carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
   resetCarNamesInput() {
@@ -48,8 +48,8 @@ export default class RacingCarView {
   }
 
   selectRacingCountDOM() {
+    this.#racingCountForm = $(SELECTOR.RACING_COUNT_FORM);
     this.#racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
-    this.#racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
   static renderCars(cars) {
@@ -102,20 +102,20 @@ export default class RacingCarView {
     $(SELECTOR.GAME_RESULT).innerHTML = '';
   }
 
+  $getCarNamesForm() {
+    return this.#carNamesForm;
+  }
+
   $getCarNamesInput() {
     return this.#carNamesInput;
   }
 
-  $getCarNamesSubmit() {
-    return this.#carNamesSubmit;
+  $getRacingCountForm() {
+    return this.#racingCountForm;
   }
 
   $getRacingCountInput() {
     return this.#racingCountInput;
-  }
-
-  $getRacingCountSubmit() {
-    return this.#racingCountSubmit;
   }
 
   $getRestart() {
