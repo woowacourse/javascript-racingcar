@@ -7,7 +7,7 @@ const addArrow = (currentTurnCount, cars) => {
   carScoreArrows.forEach((ele, idx) => {
     if (cars[idx].score >= currentTurnCount) {
       const arrow = document.createElement('p');
-      arrow.innerHTML = `⬇️`;
+      arrow.textContent = `⬇️`;
       ele.appendChild(arrow);
     }
   });
@@ -38,16 +38,19 @@ const playTurnResult = async ({ lastTurnCount, cars, currentTurnCount }) => {
 };
 
 const renderWinners = winners => {
-  $('#winners-result').innerHTML = `
+  $('#winners-result').insertAdjacentHTML(
+    'afterbegin',
+    `
     <p>🏆 최종 우승자 <span id="winners">${winners.join(',')}</span> 🏆</p>
     <button id="reset-btn">다시 시작하기</button>
-  `;
+  `,
+  );
 };
 
 const removeLoadingAnimation = () => {
   const carResults = document.querySelectorAll('.car-result');
   carResults.forEach(ele => {
-    ele.querySelector('.loading-ring').remove();
+    ele.querySelector('.loading-indicator').remove();
   });
 };
 
@@ -56,17 +59,15 @@ const domInit = cars => {
 
   cars.forEach(car => {
     const { name } = car;
-    const carResult = document.createElement('div');
-    const carNameTitle = document.createElement('div');
-    const carScoreArrowsBox = document.createElement('div');
 
-    carResult.setAttribute('class', 'car-result');
-    carNameTitle.setAttribute('class', 'car-Name-title');
-    carNameTitle.innerHTML = `${name}`;
-    carScoreArrowsBox.setAttribute('class', 'car-score-arrows');
-
-    carResult.append(carNameTitle, carScoreArrowsBox, loadingAnimation());
-    turnResult.appendChild(carResult);
+    turnResult.insertAdjacentHTML(
+      'beforeend',
+      `<div class='car-result'>
+        <p class='car-Name-title'>${name}</p>
+        <div class='car-score-arrows'></div>
+        ${loadingAnimation()}
+      </div>`,
+    );
   });
 };
 
