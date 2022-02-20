@@ -34,7 +34,6 @@ export default class RacingController {
       this.model.setRound(Number(racingCount));
       this.startRacingGame();
     } catch (error) {
-      // eslint-disable-next-line no-alert
       alert(error.message);
     }
   }
@@ -61,7 +60,6 @@ export default class RacingController {
       this.model.players = nameList;
       this.view.activateCountForm();
     } catch (error) {
-      // eslint-disable-next-line no-alert
       alert(error.message);
     }
   }
