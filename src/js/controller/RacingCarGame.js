@@ -1,6 +1,3 @@
-import { DELAY_TIME } from '../constants.js';
-import { delay } from '../utils/utils.js';
-
 export default class RacingCarGame {
   constructor(
     model,
@@ -14,8 +11,6 @@ export default class RacingCarGame {
     this.racingCountInputView = racingCountInputView;
     this.racingProgressView = racingProgressView;
     this.racingResultView = racingResultView;
-
-    this.previousCarDistanceList = [];
 
     this.carNameInputView.bindClickCarNameButton(
       this.submitCarNames.bind(this)
@@ -38,27 +33,13 @@ export default class RacingCarGame {
     this.carNameInputView.disabledInputButton();
   }
 
-  moveCars() {
-    this.model.carList.forEach((car, index) => {
-      car.race();
-
-      if (this.previousCarDistanceList[index] >= car.distance) {
-        return;
-      }
-
-      this.previousCarDistanceList[index] = car.distance;
-      this.racingProgressView.renderProgressList(index);
-    });
-  }
-
   async startRace(racingCount) {
-    this.previousCarDistanceList = Array(this.model.carList.length).fill(0);
     this.racingProgressView.renderSpinnerAnimation();
 
-    for (let i = 0; i < racingCount; i += 1) {
-      await delay(DELAY_TIME.RACING_PROGRESS);
-      this.moveCars();
-    }
+    await this.racingProgressView.renderRacingProgress(
+      racingCount,
+      this.model.carList
+    );
 
     this.racingProgressView.removeSpinnerAnimation();
   }

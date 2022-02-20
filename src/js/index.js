@@ -8,7 +8,7 @@ import RacingCarGame from './controller/RacingCarGame.js';
 
 import Model from './model/Model.js';
 
-new View();
+// new View();
 
 new RacingCarGame(
   new Model(),

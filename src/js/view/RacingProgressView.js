@@ -1,5 +1,5 @@
 import { $, $all } from '../utils/utils.js';
-import { SELECTOR } from '../constants.js';
+import { SELECTOR, DELAY_TIME } from '../constants.js';
 import template from '../templates.js';
 
 import View from './View.js';
@@ -10,6 +10,47 @@ export default class RacingProgressView extends View {
 
     this.$racingProgress = $(SELECTOR.$RACING_PROGRESS);
     this.$$progressList = null;
+  }
+
+  moveCars(carList, previousCarDistanceList) {
+    carList.forEach((car, index) => {
+      car.race();
+
+      if (previousCarDistanceList[index] >= car.distance) {
+        return;
+      }
+
+      previousCarDistanceList[index] = car.distance;
+      this.renderProgressList(index);
+    });
+  }
+
+  renderRacingProgress(racingCount, carList) {
+    const startTime = new Date().getTime();
+    let repeatCount = 1;
+    let previousCarDistanceList = Array(carList.length).fill(0);
+
+    return new Promise((resolve) => {
+      const animation = () => {
+        const currentTime = new Date().getTime();
+        const repeatTime =
+          currentTime - DELAY_TIME.RACING_PROGRESS * repeatCount;
+
+        if (repeatTime > startTime) {
+          repeatCount++;
+          this.moveCars(carList, previousCarDistanceList);
+        }
+
+        const requestAnimationFrameId = requestAnimationFrame(animation);
+
+        if (repeatCount > racingCount) {
+          cancelAnimationFrame(requestAnimationFrameId);
+          resolve();
+        }
+      };
+
+      requestAnimationFrame(animation);
+    });
   }
 
   removeSpinnerAnimation() {
