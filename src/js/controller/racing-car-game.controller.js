@@ -1,4 +1,4 @@
-import { CAR_MOVE_DELAY, CELEBRATE_MESSAGE } from '../constants.js';
+import { CAR_MOVE_DELAY, CELEBRATE_MESSAGE, CELEBRATE_MESSAGE_SHOW_DELAY } from '../constants.js';
 import setIntervalX from '../utils/timer.js';
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
 import RacingResultView from '../views/racing-result.view.js';
@@ -91,7 +91,7 @@ class RacingCarGameController {
     setTimeout(() => {
       alert(CELEBRATE_MESSAGE);
       this.resultView.enableRestartBtn();
-    }, 2000);
+    }, CELEBRATE_MESSAGE_SHOW_DELAY);
   }
 
   restartGame() {

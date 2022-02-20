@@ -3,6 +3,7 @@ import {
   CAR_MOVE_DELAY,
   CAR_NAMES_INPUT_PLACEHOLDER,
   CELEBRATE_MESSAGE,
+  CELEBRATE_MESSAGE_SHOW_DELAY,
   ERROR_MESSAGES,
   RACING_COUNT_INPUT_PLACEHOLDER,
 } from '../../src/js/constants.js';
@@ -175,14 +176,14 @@ describe('경기가 끝난 경우', () => {
   it('경기가 끝나고 2초후 축하 메세지를 띄운다', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
-    cy.tick(2 * 1000).then(() => {
+    cy.tick(CELEBRATE_MESSAGE_SHOW_DELAY).then(() => {
       expect(alertStub).to.be.calledWith(CELEBRATE_MESSAGE);
     });
   });
 
   it('다시 시작하기 버튼을 누르면 모든 상태가 초기화된다', () => {
     const { RESTART_BUTTON, CAR_NAMES_INPUT, RACING_COUNT_INPUT, RACING_SCREEN, RACING_RESULT } = TEST_IDS;
-    cy.tick(2 * 1000).then(() => {
+    cy.tick(CELEBRATE_MESSAGE_SHOW_DELAY).then(() => {
       cy.get(testid(RESTART_BUTTON)).click();
       cy.get(testid(CAR_NAMES_INPUT)).should('have.value', '');
       cy.get(testid(CAR_NAMES_INPUT)).should('have.attr', 'placeholder', CAR_NAMES_INPUT_PLACEHOLDER);
