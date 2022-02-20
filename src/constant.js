@@ -9,7 +9,6 @@ const ERROR_MESSAGE = {
     EMPTY_CAR_NAME: '자동차 이름을 입력해주세요.',
     BLANK_CAR_NAME: '자동차 이름에 공백이 들어갈 수 없습니다.',
     EXCEED_CAR_NAME: '자동차 이름은 5자 이하입니다.',
-    NO_NUMBER_TRY_COUNT: '숫자를 입력해주세요.',
     NEGATIVE_TRY_COUNT: '양수를 입력해주세요.',
     FIRST_ENROLL_CAR: '자동차를 먼저 등록해주세요.',
 };
