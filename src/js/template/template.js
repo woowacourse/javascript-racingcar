@@ -78,6 +78,9 @@ const template = {
       ''
     );
   },
+  congraturation(winners) {
+    return `최종 우승자 ${winners.join(', ')}! 축하합니다!`;
+  },
 };
 
 export default template;

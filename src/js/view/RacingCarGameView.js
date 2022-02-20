@@ -1,9 +1,8 @@
 import View from '../core/View.js';
 import {
   ERROR_MESSAGE,
-  COMMON_MESSAGE,
   DELIMETER,
-  CONTRATURATION_INTERVAL,
+  CONGRATURATION_INTERVAL,
 } from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
 import { splitString, trimStringArray } from '../utils/utils.js';
@@ -49,24 +48,24 @@ export default class RacingCarGameView extends View {
     });
   }
 
-  render({ carList, isRacing, winners }) {
-    this.renderInputSection({ carList, isRacing, winners });
-    this.renderRacingResult({ carList, isRacing });
-    this.renderResult({ winners });
+  render(props) {
+    this.renderInputSection(props);
+    this.renderRacingResult(props);
+    this.renderResult(props);
   }
 
-  renderInputSection(carList, isRacing, winners) {
+  renderInputSection(props) {
     this.get(SELECTOR.$INPUT_SECTION).innerHTML =
-      this.template.getInputSectionHTML(carList, isRacing, winners);
+      this.template.getInputSectionHTML(props);
   }
 
-  renderRacingResult(carList, isRacing) {
+  renderRacingResult(props) {
     this.get(SELECTOR.$RACING_RESULT).innerHTML =
-      this.template.getRacingResultHTML(carList, isRacing);
+      this.template.getRacingResultHTML(props);
   }
 
-  renderResult(winners) {
-    this.get(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
+  renderResult(props) {
+    this.get(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(props);
   }
 
   initializeInput(clearElement, focusElement = clearElement) {
@@ -74,10 +73,10 @@ export default class RacingCarGameView extends View {
     focusElement.focus();
   }
 
-  celebrate() {
+  celebrate(winners) {
     setTimeout(() => {
-      alert(COMMON_MESSAGE.CONGRATURATION);
-    }, CONTRATURATION_INTERVAL);
+      alert(this.template.congraturation(winners));
+    }, CONGRATURATION_INTERVAL);
   }
 
   validateCarNameList(carNameList) {

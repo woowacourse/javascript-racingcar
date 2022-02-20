@@ -35,7 +35,7 @@ export default class RacingCarGameController extends Controller {
       })
       .then((response) => {
         this.updateView(response);
-        this.view.celebrate();
+        this.view.celebrate(response.winners);
       });
   }
 
