@@ -46,4 +46,10 @@ const isRaceTimeValid = (value) => {
   return true;
 };
 
-export { isCarNameInputValid, isRaceTimeValid };
+const displayCongratuation = (winnerArray) => {
+  if (winnerArray.length !== 0) {
+    alert('우승자는 ' + winnerArray + '입니다. 축하합니다!');
+  }
+};
+
+export { isCarNameInputValid, isRaceTimeValid, displayCongratuation };

@@ -4,8 +4,12 @@ import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/elementSeletor.js';
 import SELECTOR from './constants/selector.js';
 import NUMBER from './constants/number.js';
-import { isCarNameInputValid, isRaceTimeValid } from './racingGameHelper.js';
 import delay from './utils/delay.js';
+import {
+  isCarNameInputValid,
+  isRaceTimeValid,
+  displayCongratuation,
+} from './racingGameHelper.js';
 
 class App {
   constructor() {
@@ -97,9 +101,9 @@ class App {
   async handleWinnerDisplay() {
     this.RacingGame.setWinner();
     this.View.renderResult(this.RacingGame.winner);
-    await delay(NUMBER.ALERT_DISPLAY_TIME);
-    alert('우승자는 ' + this.RacingGame.winner + '입니다. 축하합니다!');
     this.View.renderReplayButton();
+    await delay(NUMBER.ALERT_DISPLAY_TIME);
+    displayCongratuation(this.RacingGame.winner);
   }
 
   handleReplayGame() {

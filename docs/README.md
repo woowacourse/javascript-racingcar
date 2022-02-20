@@ -104,7 +104,7 @@
 - [x] 로깅 함수 삭제
 - [x] `RacingGame` 모델에서 불필요한 상태인 `movedInThisRound` 걷어내기
 - [x] `template` 스태틱 메서드 형태로 변경해보기
-- [ ] 우승자 `alert`이 표시되기 전 다시 시작 시 `alert` 표시하지 않음
+- [x] 우승자 `alert`이 표시되기 전 다시 시작 시 `alert` 표시하지 않음
 
 ---
 
