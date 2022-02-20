@@ -1,5 +1,5 @@
 import { $, $$ } from './common/DOMHelper.js';
-import { SELECTOR, DELAY } from './common/constants.js';
+import { DELAY, SELECTOR, SPINNER_SPEED } from './common/constants.js';
 import {
   carsTemplate,
   carNamesTemplate,
@@ -124,7 +124,7 @@ export default class RacingCarView {
 
     const animatedSpinner = () => {
       const currentTime = new Date().getTime();
-      i += 1;
+      i += SPINNER_SPEED;
       spinner.style.transform = `rotate(${i}deg)`;
 
       if (currentTime - DELAY.RACE_INTERVAL > startTime) return;

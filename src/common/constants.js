@@ -47,6 +47,8 @@ export const SELECTOR = {
   WINNERS: '#winners',
 };
 
+export const SPINNER_SPEED = 4;  
+
 export const WINNER = {
   ICON: '🏆',
   TITLE: '최종 우승자:',
