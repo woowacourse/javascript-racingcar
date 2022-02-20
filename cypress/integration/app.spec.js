@@ -11,6 +11,7 @@ beforeEach(() => {
   cy.visit("index.html");
 });
 it("사용자가 자동차 이름이 5자 초과인 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.", () => {
+
   const alertStub = cy.stub();
 
   cy.on("window:alert", alertStub);
@@ -80,3 +81,4 @@ it("정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주
     cy.on("window:alert", alertStub);
   })
 });
+
