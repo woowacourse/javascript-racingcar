@@ -40,11 +40,11 @@ export default class RacingView {
   }
 
   removeProgress() {
-    this.$progressContainer.innerHTML = ``;
+    this.$progressContainer.textContent = '';
   }
 
   removeResult() {
-    this.$resultContainer.innerHTML = ``;
+    this.$resultContainer.textContent = '';
   }
 
   clearInput() {

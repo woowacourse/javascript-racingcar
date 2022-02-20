@@ -12,7 +12,7 @@ export default class RacingGameModel {
     });
 
     this.#cars.forEach((car, index) => {
-      // eslint-disable-next-line no-param-reassign
+      /* eslint no-param-reassign: ["error", { "props": false }] */
       car.position += oneMoveOfCars[index];
     });
   }
