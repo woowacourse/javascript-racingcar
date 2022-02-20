@@ -80,12 +80,11 @@ async function showRaceProgress(cars, count) {
   removeSpinner(wrappers);
 }
 
-function delayFinalResult(cars) {
-  setTimeout(() => {
-    alert(RESULT);
-    showWinners(getWinners(cars));
-    showRestart();
-  }, TIME.RESULT_DELAY);
+async function delayFinalResult(cars) {
+  await delay(TIME.RESULT_DELAY);
+  alert(RESULT);
+  showWinners(getWinners(cars));
+  showRestart();
 }
 
 export default async function showResult(cars, count) {
