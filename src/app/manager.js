@@ -12,12 +12,11 @@ class RacingCarGameManager {
     this.count = null;
   }
 
-  // get함수와 set함수를 작성하는 것은 항상 필요한 일인가요 ?
-  setCars(cars) {
-    this.cars = cars;
+  getCount() {
+    return this.count;
   }
 
-  setCount(count) {
+  createRoundCount(count) {
     if (isNumberBelowZero(count)) {
       throw Error(ERROR_MESSAGE.INVALID_COUNT);
     }
@@ -28,12 +27,12 @@ class RacingCarGameManager {
     return this.cars;
   }
 
-  getCount() {
-    return this.count;
-  }
-
-  static makeCars(names) {
-    return names.map((name) => new Car(name));
+  createCars(names) {
+    try {
+      this.cars = names.map((name) => new Car(name));
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   goForwardCars() {

@@ -37,14 +37,9 @@ class RacingCarGame {
   };
 
   triggerActionAfterCarNameInput(carNameValue) {
-    try {
-      const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
-      const cars = RacingCarGameManager.makeCars(names);
-      this.modelManager.setCars(cars);
-      this.view.renderAfterCarSetting();
-    } catch (error) {
-      alert(error.message);
-    }
+    const names = splitString(carNameValue, CAR_NAME_SEPARATOR);
+    this.modelManager.createCars(names);
+    this.view.renderAfterCarSetting();
   }
 
   onCountInputFieldClick = (e) => {
@@ -58,7 +53,7 @@ class RacingCarGame {
 
   async triggerActionAfterCountInput(count) {
     try {
-      this.modelManager.setCount(count);
+      this.modelManager.createRoundCount(count);
       this.view.renderInitialGameState(this.modelManager.getCars());
       await this.simulateGame();
 
