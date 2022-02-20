@@ -23,7 +23,7 @@ export default class Model {
     this.carPosition[idx]++;
   }
 
-  useFuel() {
+  decideGo() {
     this.carPosition = this.carPosition.map((position) => {
       if (position > 0) {
         return position - 1;

@@ -91,7 +91,7 @@ export default class Controller {
 
   decideGo() {
     this.view.decideGo(this.model.carPosition);
-    this.model.useFuel();
+    this.model.decideGo();
   }
 
   async afterRacingFinished(winnerList) {
