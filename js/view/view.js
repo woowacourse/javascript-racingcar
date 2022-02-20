@@ -73,7 +73,7 @@ export default class View {
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
     $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = false;
-    $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = '#00bcd4';
+    $(SELECTOR.CAR_NAMES_BUTTON).disabled = false;
   }
 
   renderRestartButton() {
@@ -84,8 +84,8 @@ export default class View {
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
   }
 
-  disableRacingCountButton() {
+  disableButtons() {
+    $(SELECTOR.CAR_NAMES_BUTTON).disabled = true;
     $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = true;
-    $(SELECTOR.CAR_RACING_COUNT_BUTTON).style.backgroundColor = 'gray';
   }
 }

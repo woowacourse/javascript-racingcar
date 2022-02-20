@@ -238,12 +238,9 @@ button {
   text-transform: uppercase;
 }
 
-/* #game-result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
+button:disabled {
+  background: gray;
+}
 
 #game-restart {
   width: 120px;

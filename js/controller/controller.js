@@ -42,7 +42,7 @@ export default class Controller {
         alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
         return;
       }
-      this.view.disableRacingCountButton();
+      this.view.disableButtons();
       this.model.saveRacingCount(this.getRacingCountInput());
       this.gameStart();
       this.model.initCarPosition();
