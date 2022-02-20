@@ -1,5 +1,5 @@
 import DomUtils from '../utils/dom-utils.js';
-import { SELECTOR } from '../constants/constants.js';
+import { SELECTOR, TIME } from '../constants/constants.js';
 import RacingProgressView from './RacingProgresView.js';
 
 export default class RacingView {
@@ -16,8 +16,10 @@ export default class RacingView {
   }
 
   renderResult(winnerList) {
-    alert(`🎉 축하합니다. 최종 우승자는 ${winnerList.join(', ')}입니다! 🎉`);
     this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
+    setTimeout(() => {
+      alert(`🎉 축하합니다. 최종 우승자는 ${winnerList.join(', ')}입니다! 🎉`);
+    }, TIME.DELAY_RACE_RESULT);
   }
 
   renderFinalProgress(cars) {

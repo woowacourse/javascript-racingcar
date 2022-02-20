@@ -83,9 +83,7 @@ export default class RacingController {
   }
 
   renderWinner() {
-    setTimeout(() => {
-      this.view.renderResult(this.model.winners);
-      this.activateRestartButton();
-    }, TIME.DELAY_RACE_RESULT);
+    this.view.renderResult(this.model.winners);
+    this.activateRestartButton();
   }
 }

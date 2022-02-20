@@ -24,28 +24,28 @@ Cypress.Commands.add('submitCarNames', (names) => {
 });
 
 Cypress.Commands.add('submitRacingCount', (count) => {
-    cy.get(`#${SELECTOR.ID.RACING_COUNT_INPUT}`).type(count);
-    cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`).click();
+  cy.get(`#${SELECTOR.ID.RACING_COUNT_INPUT}`).type(count);
+  cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`).click();
 });
-  
-Cypress.Commands.add('checkNamesError',(error)=>{
-    const alertStub = cy.stub();
-    cy.on('window:alert',alertStub);
 
-    cy.get(`#${SELECTOR.ID.CAR_NAMES_BUTTON}`)
+Cypress.Commands.add('checkNamesError', (error) => {
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+
+  cy.get(`#${SELECTOR.ID.CAR_NAMES_BUTTON}`)
     .click()
     .then(() => {
       expect(alertStub).to.be.calledWith(error);
     });
-})
+});
 
-Cypress.Commands.add('checkCountError',(error)=>{
-    const alertStub = cy.stub();
-    cy.on('window:alert',alertStub);
-    
-    cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`)
-        .click()
-        .then(() => {
-          expect(alertStub).to.be.calledWith(error);
-        });
-})
+Cypress.Commands.add('checkCountError', (error) => {
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+
+  cy.get(`#${SELECTOR.ID.RACING_COUNT_SUBMIT}`)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.calledWith(error);
+    });
+});
