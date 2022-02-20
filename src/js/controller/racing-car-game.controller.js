@@ -1,4 +1,10 @@
-import { CAR_MOVE_DELAY, CELEBRATE_MESSAGE, CELEBRATE_MESSAGE_SHOW_DELAY } from '../constants.js';
+import {
+  CAR_MOVE_DELAY,
+  CELEBRATE_MESSAGE,
+  CELEBRATE_MESSAGE_SHOW_DELAY,
+  VALIDATION_ERROR_NAME,
+} from '../constants.js';
+import consoleErrorWithConditionalAlert from '../utils/console.js';
 import setIntervalX from '../utils/timer.js';
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
 import RacingResultView from '../views/racing-result.view.js';
@@ -35,8 +41,7 @@ class RacingCarGameController {
       this.form.resetCarNamesInput(this.model.getCarNames());
       this.form.showRacingCountFieldset();
     } catch (e) {
-      console.error(e);
-      alert(e.message);
+      consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
     }
   }
 
@@ -47,8 +52,7 @@ class RacingCarGameController {
       this.form.resetRacingCountInput(this.model.getRacingCount());
       this.startGame();
     } catch (e) {
-      console.error(e);
-      alert(e.message);
+      consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
     }
   }
 

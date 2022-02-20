@@ -40,3 +40,5 @@ export const CAR_NAMES_INPUT_PLACEHOLDER = 'ex) 람보르기니, 부가티, 마�
 export const RACING_COUNT_INPUT_PLACEHOLDER = '시도 횟수';
 
 export const CELEBRATE_MESSAGE = '🎉🎉 축하합니다 🎉🎉';
+
+export const VALIDATION_ERROR_NAME = 'ValidationError';
