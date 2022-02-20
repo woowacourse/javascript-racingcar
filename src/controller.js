@@ -34,7 +34,7 @@ export default class Controller {
       const carList = this.model.getCarList();
       validateCountInput(count);
       this.model.startRace(count);
-      this.view.updateResultDOM(carList, this.makeWinnerList(carList));
+      this.view.updateResultDOM(carList, this.createWinnerNameList(carList));
       this.showResult(carList);
     } catch (error) {
       alert(error.message);
@@ -50,7 +50,7 @@ export default class Controller {
     return Math.max(...steps);
   }
 
-  makeWinnerList(carList) {
+  createWinnerNameList(carList) {
     const maxStep = this.findMaxStep(carList);
     const winnerCarList = carList.filter((car) => car.step === maxStep);
     return winnerCarList.map((car) => car.name);
@@ -67,7 +67,7 @@ export default class Controller {
     const winnerAlertTime = runningTime + NUMBER.WINNER_ALERT_TIME;
     this.setArrowInterval(runningTime);
     this.setWinnerTimeOut(runningTime);
-    this.setWinnerAlertTimeOut(this.makeWinnerList(carList), winnerAlertTime);
+    this.setWinnerAlertTimeOut(this.createWinnerNameList(carList), winnerAlertTime);
   }
 
   setArrowInterval(runningTime) {
