@@ -1,16 +1,27 @@
 import Game from "./model/Game.js";
 import Cars from "./controller/cars/CarsController.js";
 import { EXCEPTIONS, RACING_COUNT } from "./controller/constants.js";
-import { racingCountArea, racingCountInput, restartButton } from "./util/elements.js";
-import { isInteger } from "./util/checkFunctions.js";
-import { lockRacingCount, makeInitialView, toggleHiddenWinnerAndRestartArea } from "./view/commonView.js";
 import { setResultArea } from "./view/resultView.js";
 import { setWinnerText } from "./view/winnerView.js";
+import {
+  focusElement,
+  lockRacingCount,
+  makeInitialView,
+  toggleHiddenWinnerAndRestartArea,
+} from "./view/commonView.js";
+import { isInteger } from "./util/checkFunctions.js";
+import {
+  carNamesInput,
+  racingCountArea,
+  racingCountInput,
+  restartButton,
+} from "./util/elements.js";
 
 class RacingCarGame {
   constructor() {
     this.cars = new Cars();
     this.game = new Game();
+    focusElement(carNamesInput);
     this.addRacingCountSubmitEvent();
     this.addRestartEvent();
   }
@@ -44,6 +55,7 @@ class RacingCarGame {
     const racingCount = this.game.getRacingCount();
     let roundCount = 1;
 
+    setResultArea(this.cars.list.getCars());
     const gameRoundInterval = setInterval(() => {
       if (roundCount++ === racingCount) {
         clearInterval(gameRoundInterval);
