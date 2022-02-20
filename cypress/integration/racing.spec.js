@@ -52,7 +52,7 @@ describe('UI 조작 테스트', () => {
       .clear()
       .type('0{enter}')
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.UNDER_MIN_NUMBER);
       });
   });
 
@@ -77,7 +77,8 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`).type(`${RACE_COUNT}{enter}`);
 
     cy.wait(TOTAL_DELAY).then(() => {
-      expect(alertStub).to.be.called;
+      const actualMessage = alertStub.getCall(0).lastArg;
+      expect(actualMessage).to.have.string('축하합니다.');
     });
   });
 });
@@ -114,13 +115,6 @@ context('화면표시 테스트', () => {
   it('n회 시도할 때, n-1초 후에는 우승자가 표시되지 않는다.', () => {
     cy.wait(1000);
     cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
-  });
-
-  it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
-    cy.wait(2000);
-    cy.get(`.${SELECTOR.WINNER}`).should((p) => {
-      expect(p).to.contain('최종 우승자');
-    });
   });
 
   it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
