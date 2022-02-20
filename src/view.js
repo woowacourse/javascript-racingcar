@@ -121,21 +121,28 @@ export default class View {
 
   generateStepSections(carList) {
     this.$stepSections.innerHTML = carList.map((car) => this.generateStepSection(car)).join('');
+    this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
   }
 
-  async showResult(carList, winnerList) {
+  async showAllResult(carList, winnerList) {
+    await this.showRacingProcess(carList);
+    this.showWinnerResult(winnerList);
+  }
+
+  async showRacingProcess(carList) {
     this.makeWinnerDisplayNone();
     this.makeResetButtonDisplayNone();
     this.makeStepSectionsDisplayNotNone();
-
     this.generateStepSections(carList);
-    this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
     await this.showStepSection(carList);
     this.removeSpinner();
+  }
+
+  showWinnerResult(winnerList) {
     this.makeWinnerDisplayNotNone();
     this.makeResetButtonDisplayNotNone();
     this.showWinner(winnerList);
-    await this.showWinnerByAlertPromise(winnerList);
+    this.showWinnerByAlertPromise(winnerList);
   }
 
   async showStepSection(carList) {
