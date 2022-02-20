@@ -1,5 +1,3 @@
-import { EMPTY_STRING } from './constants.js';
-
 const SELECTOR = Object.freeze({
   // 범용 선택자
   APP: '#app',
@@ -20,14 +18,17 @@ const SELECTOR = Object.freeze({
   RETRY_BUTTON: '#retry-button',
 });
 
-const replaceSelectorToDomID = (origin) => {
-  const output = {};
+const replaceSelectorToDomName = (origin) => {
+  const output = { ID: {}, CLASS: {} };
   Object.entries(origin).forEach(([key, value]) => {
-    output[key] = value.replace(/#|\./g, EMPTY_STRING);
+    const name = value.substr(1);
+
+    if (value.substr(0, 1) === '#') output.ID[key] = name;
+    else if (value.substr(0, 1) === '.') output.CLASS[key] = name;
   });
 
   return output;
 };
 
-const DOM_ID = Object.freeze(replaceSelectorToDomID(SELECTOR));
-export { SELECTOR, DOM_ID };
+const DOM_NAME = Object.freeze(replaceSelectorToDomName(SELECTOR));
+export { SELECTOR, DOM_NAME };
