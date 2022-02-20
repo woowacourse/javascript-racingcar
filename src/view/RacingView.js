@@ -11,10 +11,6 @@ export default class RacingView {
     this.$app.appendChild(this.$progressContainer.node);
   }
 
-  renderProgress(cars) {
-    this.$progressContainer.renderProgress(cars);
-  }
-
   renderResult(winnerList) {
     this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
     setTimeout(() => {
@@ -22,8 +18,12 @@ export default class RacingView {
     }, TIME.DELAY_RACE_RESULT);
   }
 
-  renderFinalProgress(cars) {
-    this.$progressContainer.renderFinalProgress(cars);
+  initCarList(names, round) {
+    this.$progressContainer.initCarList(names, round);
+  }
+
+  renderProgress(movedCars) {
+    this.$progressContainer.renderProgress(movedCars);
   }
 
   reset() {

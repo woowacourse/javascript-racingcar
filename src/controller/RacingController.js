@@ -68,17 +68,14 @@ export default class RacingController {
 
   startRacingGame() {
     this.view.deactivateCountForm();
-    this.view.renderProgress(this.model.cars);
-
+    this.view.initCarList(this.model.carNameList, this.model.round);
     const runRound = setInterval(() => {
       this.model.goToNextTurn();
+      this.view.renderProgress(this.model.movedCars);
       if (!this.model.round) {
-        this.view.renderFinalProgress(this.model.cars);
         this.renderWinner();
         clearInterval(runRound);
-        return;
       }
-      this.view.renderProgress(this.model.cars);
     }, TIME.DELAY_RACE_TIME);
   }
 

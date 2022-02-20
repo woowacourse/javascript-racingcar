@@ -21,22 +21,27 @@ export default class RacingProgressView {
     this.$racingProgressNode.appendChild($racingProgressTitle);
   }
 
-  renderProgress(cars) {
-    this.removeChilds();
-    this.insertTitle();
-    cars.forEach((car) => {
-      this.$racingProgressNode.appendChild(
-        DomUtils.createCarProgressElementWithLoading(car)
-      );
-    });
+  renderProgress(names) {
+    [
+      ...this.$racingProgressNode.querySelectorAll(
+        `.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`
+      )
+    ]
+      .filter((element) => names.includes(element.dataset.name))
+      .forEach((element) => {
+        element
+          .querySelector(`.${SELECTOR.CLASS.CAR_PROGRESS_NAME}`)
+          .insertAdjacentElement(
+            'afterend',
+            DomUtils.createCarOneStepElement()
+          );
+      });
   }
 
-  renderFinalProgress(cars) {
-    this.removeChilds();
-    this.insertTitle();
-    cars.forEach((car) => {
+  initCarList(names, round) {
+    names.forEach((name) => {
       this.$racingProgressNode.appendChild(
-        DomUtils.createCarProgressElement(car)
+        DomUtils.createCarProgressElementWithName(name, round)
       );
     });
   }

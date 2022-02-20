@@ -1,5 +1,4 @@
 import { CAR } from '../constants/constants.js';
-import RandomUtils from '../utils/random.js';
 
 export default class Car {
   constructor(name) {
@@ -8,9 +7,18 @@ export default class Car {
   }
 
   move() {
-    const randomNumber = RandomUtils.pickRandomNumber();
-    if (randomNumber >= CAR.MOVE_NUMBER) {
+    this.judgeMove();
+    if (this.canMove) {
       this.position += CAR.CAR_MOVE_DISTANCE_PER_PROCESS;
     }
+  }
+
+  judgeMove() {
+    this.canMove =
+      // eslint-disable-next-line no-undef
+      MissionUtils.Random.pickNumberInRange(
+        CAR.RANDOM_MINIMUM_NUMBER,
+        CAR.RANDOM_MAXIMUM_NUMBER
+      ) >= CAR.MOVE_NUMBER;
   }
 }

@@ -52,4 +52,8 @@ export default class RacingGame {
       .filter((car) => car.position === this.findMaxRecord())
       .map((car) => car.name);
   }
+
+  get movedCars() {
+    return this.cars.filter((car) => car.canMove).map((car) => car.name);
+  }
 }
