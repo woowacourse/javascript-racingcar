@@ -1,4 +1,5 @@
 import { INPUT_ERROR, TIME } from '../../src/constants/constants';
+import { CAR, GAME } from '../support/contants.js';
 /* eslint-disable no-undef */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
@@ -16,16 +17,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   it('1. 게임을 완료하고 우승자를 확인할 수 있어야 한다.', () => {
     // given
-    const carNames = 'poco,park';
-    const winner = '🏆 최종 우승자: poco🏆';
     const racingCount = 1;
 
     // when
-    cy.submitCarNames(carNames);
+    cy.submitCarNames(CAR.VALID_NAMES);
     cy.submitRacingCount(racingCount);
     cy.wait(TIME.DELAY_RACE_RESULT + TIME.DELAY_RACE_TIME * racingCount);
     // then
-    cy.get(SELECTOR.WINNERS).should('have.text', winner);
+    cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
   });
 
   it('1-1. 게임을 완료하고 우승자가 포함된 축하메세지를 확인할 수 있어야 한다.', () => {
@@ -33,22 +32,18 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
 
-    const carNames = 'poco,park';
-    const winner = '🏆 최종 우승자: poco🏆';
     const racingCount = 4;
 
     // when
-    cy.submitCarNames(carNames);
+    cy.submitCarNames(CAR.VALID_NAMES);
     cy.submitRacingCount(racingCount);
     // then
     cy.wait(TIME.DELAY_RACE_RESULT + TIME.DELAY_RACE_TIME * racingCount).then(
       () => {
-        expect(alertStub).to.be.calledWith(
-          `🎉 축하합니다. 최종 우승자는 poco입니다! 🎉`
-        );
+        cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
+        expect(alertStub).to.be.calledWith(GAME.WINNER_CELEBRATION);
       }
     );
-    cy.get(SELECTOR.WINNERS).should('have.text', winner);
   });
 
   describe('2. 잘못된 자동차 이름 입력 유효성 검사', () => {
