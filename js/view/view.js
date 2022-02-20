@@ -27,11 +27,11 @@ export default class View {
   makeLane(carPosition) {
     $(SELECTOR.CAR_PROGRESS).textContent = '';
     for (let i = 0; i < carPosition.length; i++) {
-      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML('beforeend', this.templateLane(i));
+      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML('beforeend', this.laneTemplate(i));
     }
   }
 
-  templateLane(i) {
+  laneTemplate(i) {
     return `<div id="car-check">
               <div id="car-progress-result-${i}">
                 <div id="loader"></div>
