@@ -52,7 +52,7 @@ function makeSpinner(wrappers) {
 
 function removeSpinner(wrappers) {
   wrappers.forEach(wrapper => {
-    wrapper.lastChild.remove();
+    wrapper.querySelector('.spinner').remove();
   });
 }
 
