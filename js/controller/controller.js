@@ -70,23 +70,22 @@ export default class Controller {
     });
   }
 
-  gameStart() {
+  async gameStart() {
     this.view.renderCarNames(this.model.carNames);
     this.moveWhileRacingCount();
     const winnerList = this.getWinnerList();
 
-    this.displayProgress(this.model.carPosition).then(() => {
-      this.displayWinner(winnerList);
-      this.displayRestartButton();
-      this.bindGameRestartEvent();
-      setTimeout(() => {
-        alert(RESULT.RACE_RESULT);
-      }, TIMER.DELAY_AFTER_END);
-    });
+    await this.displayProgress(this.model.carPosition);
+    this.displayWinner(winnerList);
+    this.displayRestartButton();
+    this.bindGameRestartEvent();
+    setTimeout(() => {
+      alert(RESULT.RACE_RESULT);
+    }, TIMER.DELAY_AFTER_END);
   }
 
   displayProgress() {
-    return this.view.renderProgress([...this.model.carPosition]);
+    return this.view.renderProgress(this.model.carPosition);
   }
 
   displayRestartButton() {

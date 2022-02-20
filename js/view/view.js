@@ -37,7 +37,7 @@ export default class View {
     }
   }
 
-  renderProgress(carPosition) {
+  async renderProgress(carPosition) {
     this.makeLane(carPosition);
     return new Promise((resolve) => {
       const moveCarsTimer = setInterval(() => {
