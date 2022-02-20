@@ -8,6 +8,10 @@ class RacingGameModel {
       .map((name) => new Car(name));
   }
 
+  getCarMaxRace() {
+    return Math.max(...this.carList.map((v) => v.count));
+  }
+
   countCarsMove(raceCountValue) {
     this.carList
       .map((car) => {

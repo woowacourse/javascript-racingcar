@@ -1,29 +1,28 @@
 import { on } from "../utils/helper.js";
 import { checkRaceNumber, checkValidCarName } from "../InputValidation.js";
-import RacingGameModel from "./RacingGameModel.js";
-import RacingGameView from "./RacingGameView.js";
-
 class RacingGameController {
-  constructor() {
+  constructor(racingGameModel, { racingInputView, racingGameView, racingResultView }) {
+    this.racingGameModel = racingGameModel;
+    this.racingInputView = racingInputView;
+    this.racingGameView = racingGameView;
+    this.racingResultView = racingResultView;
+
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
-
-    this.racingGameView = new RacingGameView();
-    this.racingGameModel = new RacingGameModel();
 
     this.subscribeViewEvent();
 
   }
 
   subscribeViewEvent() {
-    on(this.racingGameView.carNameForm, "@carName", (event) => this.submitCarName(event));
-    on(this.racingGameView.raceCountForm, "@raceCount", (event) => this.submitRaceCount(event));
+    on(this.racingInputView.carNameForm, "@carName", (event) => this.submitCarName(event));
+    on(this.racingInputView.raceCountForm, "@raceCount", (event) => this.submitRaceCount(event));
   }
 
   submitCarName(event) {
     this.carNameValue = event.detail;
     this.isCorrectCarName = checkValidCarName(event.detail);
-    this.isCorrectCarName && this.racingGameView.showRaceCountForm();
+    this.isCorrectCarName && this.racingInputView.showRaceCountForm();
     this.isCorrectCarName && this.checkStartRacingGame();
   }
 
@@ -37,23 +36,25 @@ class RacingGameController {
     if (!this.isCorrectCarName || !this.isCorrectRaceCount) {
       return;
     }
-    const carList = this.racingGameModel.startRacingGame(this.carNameValue);
+    this.carList = this.racingGameModel.startRacingGame(this.carNameValue);
     this.racingGameModel.countCarsMove(this.raceCountValue)
-    const winner = this.racingGameModel.findWinner();
-    this.showRacingGameResult(carList, winner);
+    this.carMaxRace = this.racingGameModel.getCarMaxRace();
+    this.winner = this.racingGameModel.findWinner();
+    this.showRacingGameResult();
   }
 
-  showRacingGameResult(carList, winner) {
-    this.racingGameView.showCarBoxes(carList);
-    this.racingGameView.makeDisableForm();
-    this.racingGameView.showCarsMove(carList);
-    this.racingGameView.showWinner(winner);
-    this.racingGameView.bindRestartEvent();
-    on(this.racingGameView.restartButton, "@restartGame", () => this.submitRestartRace());
+  showRacingGameResult() {
+    this.racingGameView.showCarBoxes(this.carList);
+    this.racingInputView.makeDisableForm();
+    this.racingGameView.showCarsMove(this.carList, this.carMaxRace);
+    this.racingResultView.showWinner(this.carMaxRace, this.winner);
+    this.racingResultView.bindRestartEvent();
+    on(this.racingResultView.restartButton, "@restartGame", () => this.submitRestartRace());
   }
 
   submitRestartRace() {
     this.racingGameView.restartRace();
+    this.racingInputView.restartRace();
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
   }
