@@ -1,17 +1,17 @@
 export default class TEMPLATE {
-  ADVANCE_MARK() {
+  static ADVANCE_MARK() {
     return '<div class="car-advance">⬇️️</div>';
   }
 
-  LOADING_MARK() {
+  static LOADING_MARK() {
     return '<div class="round-loading"><img src="./src/asset/loading.png" class="spinner" alt="loading"></div>';
   }
 
-  CAR_NAME_BOX(carName) {
+  static CAR_NAME_BOX(carName) {
     return `<div id="car-${carName}" class="car-instance"><div class="car-name-box">${carName}</div></div>`;
   }
 
-  WINNER_DISPLAY(winner) {
+  static WINNER_DISPLAY(winner) {
     return `🏆 최종 우승자: ${winner} 🏆`;
   }
 }

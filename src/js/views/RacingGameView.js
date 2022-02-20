@@ -1,11 +1,9 @@
 import { $, $$ } from '../utils/elementSeletor.js';
 import SELECTOR from '../constants/selector.js';
-import TEMPLATE from '../constants/template.js';
+import TEMPLATE from './template.js';
 
 export default class RacingGameView {
-  constructor() {
-    this.TEMPLATE = new TEMPLATE();
-  }
+  constructor() {}
 
   setAbleForm($formElement) {
     $formElement.querySelectorAll('input, button').forEach(($element) => {
@@ -25,17 +23,15 @@ export default class RacingGameView {
 
   renderResult(winner) {
     $(SELECTOR.RACE_RESULT).setAttribute('visible', 'true');
-    $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML =
-      this.TEMPLATE.WINNER_DISPLAY(winner);
+    $(SELECTOR.RACE_WINNER_DISPLAY).innerHTML = TEMPLATE.WINNER_DISPLAY(winner);
   }
 
   renderAdvanceDiv(carName) {
-    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML +=
-      this.TEMPLATE.CAR_NAME_BOX(carName);
+    $(SELECTOR.RACE_CONTAINER_DIV).innerHTML += TEMPLATE.CAR_NAME_BOX(carName);
   }
 
   renderAdvance(target) {
-    const str = this.TEMPLATE.ADVANCE_MARK();
+    const str = TEMPLATE.ADVANCE_MARK();
     const targetID = '#car-' + target;
     $(targetID).innerHTML += str;
   }
@@ -46,7 +42,7 @@ export default class RacingGameView {
 
   LoadingStart() {
     $$(SELECTOR.RACE_CAR_INSTANCE).forEach(($element) => {
-      $element.innerHTML += this.TEMPLATE.LOADING_MARK();
+      $element.innerHTML += TEMPLATE.LOADING_MARK();
     });
   }
 
