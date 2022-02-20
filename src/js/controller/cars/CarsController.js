@@ -19,6 +19,18 @@ export default class CarsController {
     this.addCarNameSubmitEvent();
   }
 
+  getCarList() {
+    return this.list.getCars();
+  }
+
+  setCarList(cars) {
+    this.list.setCars(cars);
+  }
+
+  init() {
+    this.list.init();
+  }
+
   makeCars(carNamesInputValue = '') {
     const carNameArr = carNamesInputValue.split(SEPARATOR);
     const cars = carNameArr.reduce((res, carName) => {
@@ -32,7 +44,7 @@ export default class CarsController {
     if (cars.length < 2 || carNameArr.length !== cars.length) {
       throw new Error(EXCEPTIONS.INCORRECT_CAR_NAME);
     }
-    this.list.setCars(cars);
+    this.setCarList(cars);
   }
 
   submitFunc = e => {

@@ -42,20 +42,20 @@ class RacingCarGame {
   }
 
   startRound() {
-    const carList = this.cars.list.getCars();
+    const carList = this.cars.getCarList();
 
     carList.forEach(car => {
       car.goForward();
     });
 
-    this.cars.list.setCars(carList);
+    this.cars.setCarList(carList);
   }
 
   startGame() {
     const racingCount = this.game.getRacingCount();
     let roundCount = 1;
 
-    setResultArea(this.cars.list.getCars());
+    setResultArea(this.cars.getCarList());
     const gameRoundInterval = setInterval(() => {
       if (roundCount++ === racingCount) {
         clearInterval(gameRoundInterval);
@@ -66,7 +66,7 @@ class RacingCarGame {
   }
 
   getWinner() {
-    const carList = this.cars.list.getCars();
+    const carList = this.cars.getCarList();
     const winners = [];
     const maxLocation = Math.max(...carList.map(car => car.location));
 
@@ -81,7 +81,7 @@ class RacingCarGame {
   }
 
   showResult() {
-    const roundResult = JSON.parse(JSON.stringify(this.cars.list.getCars()));
+    const roundResult = JSON.parse(JSON.stringify(this.cars.getCarList()));
     setResultArea(roundResult);
   }
 
@@ -118,7 +118,7 @@ class RacingCarGame {
   addRestartEvent() {
     restartButton.addEventListener("click", () => {
       makeInitialView();
-      this.cars.list.init();
+      this.cars.init();
       this.game.init();
     });
   }
