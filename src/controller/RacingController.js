@@ -71,7 +71,7 @@ export default class RacingController {
     this.model.moveCarsOnce();
     const cars = [...this.model.cars];
     cars.forEach((car) => {
-      this.view.renderProgressOfEachCar(car.name, car.position);
+      this.view.renderProgressBy(car.name, car.position);
     });
   }
 

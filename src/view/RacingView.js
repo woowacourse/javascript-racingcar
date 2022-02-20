@@ -20,7 +20,7 @@ export default class RacingView {
     });
   }
 
-  renderProgressOfEachCar(name, position) {
+  renderProgressBy(name, position) {
     this.$progressContainer.insertAdjacentHTML(
       'beforeend',
       Template.racingProgressTemplate(name, position)
