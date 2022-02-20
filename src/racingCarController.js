@@ -45,7 +45,7 @@ export default class RacingCarController {
     this.view.selectRacingCountDOM();
     this.view.resetRacingCountInput();
     this.#attachRacingCountEvents();
-    this.model.setCars(carNames);
+    this.model.createCars(carNames);
     RacingCarView.renderCars(this.model.getCars());
   }
 

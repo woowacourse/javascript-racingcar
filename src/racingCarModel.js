@@ -31,7 +31,7 @@ export default class RacingCarModel {
     return this.#cars;
   }
 
-  setCars(carNames) {
+  createCars(carNames) {
     this.#cars = carNames.map((name) => new Car(name));
   }
 
