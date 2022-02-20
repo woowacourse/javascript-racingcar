@@ -56,7 +56,7 @@ export default class View {
     carPosition.forEach((position, idx) => {
       if (position > 0) {
         $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-        carPosition[idx] = position - 1;
+        carPosition[idx]--;
       }
     });
   }
