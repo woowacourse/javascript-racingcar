@@ -21,8 +21,30 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     });
   };
 
+  const positiveGameOver = () => {
+    const carNames = 'a,b';
+    const tryCount = 1;
+    const milliseconds = 3000;
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).type(carNames);
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
+    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(tryCount);
+    cy.get(ELEMENT_SELECTOR.TRY_COUNT_BUTTON).click();
+    cy.wait(milliseconds).then(() => {
+      expect(alertStub).to.be.called;
+    });
+  };
+
   before(() => {
     cy.visit(baseUrl);
+    cy.clock();
+  });
+
+  afterEach(() => {
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).clear();
+    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).clear();
   });
 
   it('자동차의 이름이 5자 초과일 때 확인버튼을 누를 시, alert 띄우기', () => {
@@ -50,39 +72,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     negativeTryCountInputTest(tryCount);
   });
 
-  /*
-  // TODO: reset 버튼 렌더링 후 동작이 실행되도록 해야한다.
+  it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
+    positiveGameOver();
+  });
+
   it('다시 게임을 시작하면 이전 결과를 지워준다.', () => {
-    const cars = 'a,b';
-    const tryCount = 3;
-
-    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(cars);
-    cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
-    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(tryCount);
-    cy.get(ELEMENT_SELECTOR.TRY_COUNT_BUTTON).click();
+    positiveGameOver();
     cy.get(ELEMENT_SELECTOR.RESET_BTN).click();
-
     cy.get(ELEMENT_SELECTOR.TURN_RESULT).should('have.text', '');
     cy.get(ELEMENT_SELECTOR.WINNERS_RESULT).should('have.text', '');
-  });
-  */
-
-  it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
-    const carNames = 'a,b';
-    const tryCount = 1;
-    const milliseconds = 3000;
-    const alertStub = cy.stub();
-    cy.on('window:alert', alertStub);
-
-    cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).type(carNames);
-    cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
-    cy.get(ELEMENT_SELECTOR.TRY_COUNT_INPUT).type(tryCount);
-    cy.get(ELEMENT_SELECTOR.TRY_COUNT_BUTTON)
-      .click()
-      .then(() => {
-        setTimeout(() => {
-          expect(alertStub).to.be.called;
-        }, milliseconds);
-      });
   });
 });
