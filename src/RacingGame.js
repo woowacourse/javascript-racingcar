@@ -71,7 +71,7 @@ export default class RacingGame {
 
     endGame() {
         const winners = this.racingCars.getWinners();
-        setTimeout(() => { alert(`🎉 축하합니다! 🎉 \n🏆 우승자: ${winners}!`); }, 2000);
+        setTimeout(() => { alert(`🎉 축하합니다! 우승자는 ${winners}! 🎉`); }, 2000);
         this.view.showFinalResult(winners);
     }
 
