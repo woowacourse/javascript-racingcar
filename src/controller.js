@@ -35,7 +35,7 @@ export default class Controller {
       validateCountInput(count);
       this.model.startRace(count);
       this.view.updateResultDOM(carList, this.makeWinnerList(carList));
-      this.ShowResult(carList);
+      this.showResult(carList);
     } catch (error) {
       alert(error.message);
     }
@@ -56,7 +56,7 @@ export default class Controller {
     return winnerCarList.map((car) => car.name);
   }
 
-  ShowResult(carList) {
+  showResult(carList) {
     this.view.displayStepSection();
     this.view.showArrowOneRace();
     this.setShowResultTimer(carList);
