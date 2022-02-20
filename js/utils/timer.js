@@ -3,3 +3,16 @@ export const delay = (ms) => {
     setTimeout(resolve, ms);
   });
 };
+
+export const repeatAction = (action, intervalMs, canRepeat) => {
+  return new Promise((resolve) => {
+    const timer = setInterval(() => {
+      if (!canRepeat()) {
+        clearInterval(timer);
+        resolve();
+        return;
+      }
+      action();
+    }, intervalMs);
+  });
+};

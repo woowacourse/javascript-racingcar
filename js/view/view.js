@@ -39,35 +39,12 @@ export default class View {
             </div>`;
   }
 
-  async renderProgress(carPosition) {
-    this.makeLane(carPosition);
-    await this.doRacing(carPosition);
-  }
-
-  doRacing(carPosition) {
-    return new Promise((resolve) => {
-      const moveCarsTimer = setInterval(() => {
-        this.decideGo(carPosition);
-        this.decideStopRacing(carPosition, resolve, moveCarsTimer);
-      }, TIMER.DELAY_MOVE);
-    });
-  }
-
   decideGo(carPosition) {
     carPosition.forEach((position, idx) => {
       if (position > 0) {
         $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-        carPosition[idx]--;
       }
     });
-  }
-
-  decideStopRacing(carPosition, resolve, moveCarsTimer) {
-    if (Validator.isNowRacing(carPosition)) {
-      return;
-    }
-    resolve('FINISHED');
-    clearInterval(moveCarsTimer);
   }
 
   hideLoader() {

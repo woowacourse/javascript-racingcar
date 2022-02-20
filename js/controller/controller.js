@@ -4,7 +4,7 @@ import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getValues.js';
 import Validator from '../validator/validator.js';
 import { ERROR_MESSAGE, NUMBER, RESULT, SELECTOR, TIMER } from '../utils/constants.js';
-import { delay } from '../utils/timer.js';
+import { delay, repeatAction } from '../utils/timer.js';
 
 export default class Controller {
   constructor() {
@@ -73,22 +73,35 @@ export default class Controller {
   async gameStart() {
     this.view.renderCarNames(this.model.carNames);
     this.moveWhileRacingCount();
+
+    this.view.makeLane(this.model.carPosition);
     const winnerList = this.getWinnerList();
-    await this.displayProgress(this.model.carPosition);
+
+    await this.doRacing(this.model.carPosition);
+    await this.afterRacingFinished(winnerList);
+  }
+
+  async doRacing() {
+    return repeatAction(
+      () => this.decideGo(this.model.carPosition),
+      TIMER.DELAY_MOVE,
+      () => Validator.isNowRacing(this.model.carPosition)
+    );
+  }
+
+  decideGo() {
+    this.view.decideGo(this.model.carPosition);
+    this.model.useFuel();
+  }
+
+  async afterRacingFinished(winnerList) {
     this.view.hideLoader();
-    this.displayWinner(winnerList);
-    this.displayRestartButton();
+    this.view.renderWinner(winnerList);
+    this.view.renderRestartButton();
     this.bindGameRestartEvent();
+
     await delay(TIMER.DELAY_AFTER_END);
     alert(RESULT.RACE_RESULT);
-  }
-
-  displayProgress() {
-    return this.view.renderProgress(this.model.carPosition);
-  }
-
-  displayRestartButton() {
-    this.view.renderRestartButton();
   }
 
   getWinner(maxDistance) {
@@ -101,10 +114,6 @@ export default class Controller {
 
   getWinnerList() {
     return this.getWinner(this.getMaxDistance()).join(', ');
-  }
-
-  displayWinner(winnerList) {
-    this.view.renderWinner(winnerList);
   }
 
   bindGameRestartEvent() {
