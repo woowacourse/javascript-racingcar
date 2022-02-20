@@ -1,3 +1,5 @@
+import { EXCEPTIONS } from "../../src/js/controller/constants.js";
+
 const baseUrl = "../../index.html";
 const SELECTOR = {
   CAR_NAMES_INPUT: "#car-names-input",
@@ -34,7 +36,7 @@ const submitCarNamesAlert = () => {
   cy.get(SELECTOR.CAR_NAMES_SUBMIT)
     .click()
     .then(() => {
-      expect(alertStub).to.be.called;
+      expect(alertStub).to.be.calledWith(EXCEPTIONS.INCORRECT_CAR_NAME);
     });
 };
 
@@ -45,7 +47,7 @@ const submitRacingCountAlert = () => {
   cy.get(SELECTOR.RACING_COUNT_SUBMIT)
     .click()
     .then(() => {
-      expect(alertStub).to.be.called;
+      expect(alertStub).to.be.calledWith(EXCEPTIONS.INCORRECT_RACING_COUNT);
     });
 };
 
@@ -53,7 +55,7 @@ const findLocation = carNames => {
   const carsInfo = [];
 
   carNames.forEach(carName => {
-    cy.get(`#${carName}-container`)
+    cy.get(`.${carName}-container`)
       .find(".position-arrow")
       .then(position => {
         carsInfo.push({
@@ -66,16 +68,16 @@ const findLocation = carNames => {
 
 const getWinner = carsInfo => {
   const { RACING_WINNER } = SELECTOR;
+  const winner = [];
   let maxLocation = 0;
-  let winner = "";
 
   carsInfo.forEach(carInfo => {
     const { name, location } = carInfo;
     if (carInfo.location > maxLocation) {
       maxLocation = location;
-      winner = name;
+      winner.push(name);
     }
-  }, () => cy.get(RACING_WINNER).should("have.text", winner));
+  }, () => cy.get(RACING_WINNER).should("have.text", winner.join(", ")));
 };
 
 const initLogic = () => {
@@ -118,7 +120,6 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
     submitCarNames(carNames.join(","));
     submitRacingCount(racingCount);
 
-    cy.clock();
     cy.wait(1000 * racingCount)
       .then(() => {
         findLocation(carNames);
@@ -130,7 +131,7 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
 
     submitCarNames("movie, halee");
     submitRacingCount(racingCount);
-    cy.clock();
+
     cy.wait(1000 * racingCount)
       .then(() => {
         initLogic();
@@ -145,10 +146,11 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
 
     const alertStub = cy.stub();
     cy.on("window:alert", alertStub);
-    cy.clock();
     cy.wait(1000 * racingCount + 2000)
       .then(() => {
-        expect(alertStub).to.be.called;
+        cy.get(SELECTOR.RACING_WINNER).then(element => {
+          expect(alertStub).to.be.calledWith(`축하합니다. ${element[0].innerText} 님이 우승하셨습니다!`);
+        });
       });
   });
 });
