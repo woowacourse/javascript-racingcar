@@ -19,6 +19,11 @@ export default class RacingGame {
     this.cars = carNames.map((name) => new Car(name));
   }
 
+  handleCarNamesSubmit(carNames) {
+    this.generateCars(carNames);
+    this.RacingResult.showNextStage($(SELECTOR.RACING_COUNT_CONTAINER));
+  }
+
   selectWinner() {
     const maxDistance = getMaxNumber(this.cars);
     return this.cars.filter((car) => car.distance === maxDistance);
@@ -34,11 +39,8 @@ export default class RacingGame {
     });
   }
 
-  showCelebrateMessage() {
-    setTimeout(() => alert(CELEBRATE_MESSAGE), DELAY_TIME.ALERT);
-  }
-
   startRacingGame(racingCount) {
+    this.RacingResult.showNextStage($(SELECTOR.RACING_CONTAINER));
     this.RacingResult.renderRacingStatus(this.cars);
 
     let round = 0;
@@ -51,6 +53,10 @@ export default class RacingGame {
         this.endRacingGame();
       }
     }, DELAY_TIME.RACE);
+  }
+
+  showCelebrateMessage() {
+    setTimeout(() => alert(CELEBRATE_MESSAGE), DELAY_TIME.ALERT);
   }
 
   endRacingGame() {
