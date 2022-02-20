@@ -10,10 +10,10 @@ export function showWinners(winners) {
 export function resetView() {
   const nameInput = document.body.querySelector('.name-input');
   const countForm = document.body.querySelector('.count-form');
-  const countInput = countForm.children[1].firstChild;
+  const countInput = countForm.querySelector('.count-input');
   const result = document.body.querySelector('.result');
-  const resultContainer = result.children[0];
-  const restart = result.children[1];
+  const resultContainer = result.querySelector('.game-result-container');
+  const restart = result.querySelector('.restart-container');
 
   nameInput.value = '';
   countInput.value = '';
