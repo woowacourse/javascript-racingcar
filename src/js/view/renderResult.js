@@ -71,9 +71,15 @@ const domInit = cars => {
   });
 };
 
+const resetDom = () => {
+  $('#turn-result').innerHTML = '';
+  $('#winners-result').innerHTML = '';
+};
+
 export const renderResult = async ({ cars, lastTurnCount, winners }) => {
   const currentTurnCount = 1;
 
+  resetDom();
   domInit(cars);
 
   await playTurnResult({
@@ -92,7 +98,6 @@ export const renderResult = async ({ cars, lastTurnCount, winners }) => {
 
 export const removeBeforeResult = e => {
   if (e.target.id === 'reset-btn') {
-    $('#turn-result').innerHTML = '';
-    $('#winners-result').innerHTML = '';
+    resetDom();
   }
 };

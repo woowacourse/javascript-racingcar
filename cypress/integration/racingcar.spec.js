@@ -71,9 +71,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     negativeTryCountInputTest(tryCount);
   });
 
-  // it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
-  //   positiveGameOver();
-  // });
+  it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
+    positiveGameOver();
+  });
 
   it('다시 게임을 시작하면 이전 결과를 지워준다.', () => {
     positiveGameOver();
