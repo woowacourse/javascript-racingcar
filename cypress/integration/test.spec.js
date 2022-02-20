@@ -59,6 +59,14 @@ describe('유효한 자동차 이름을 입력한 경우', () => {
     cy.get(testid(TEST_IDS.RACING_COUNT_FIELDSET)).should('be.visible');
   });
 
+  it('자동차 이름에 "<" 혹은 ">" 와 같은 특수문자가 있어도 자동차 이름이 그대로 표시된다', function () {
+    const validCarNames = '<div>,abc,</p>';
+    cy.startRacing(validCarNames, DEFAULT_RACING_COUNT);
+    cy.get(testid(TEST_IDS.CAR_NAME)).each(($carName, index) => {
+      cy.wrap($carName).should('have.text', this.carNameList[index]);
+    });
+  });
+
   it('자동차 이름을 입력하는 필드의 배경색이 어두워야한다', () => {
     cy.formSubmit(TEST_IDS.CAR_NAMES_INPUT, TEST_IDS.CAR_NAMES_SUBMIT_BUTTON, DEFAULT_CAR_NAMES);
     cy.get(testid(TEST_IDS.CAR_NAMES_INPUT)).should('have.class', SUBMITTED_CLASS_NAME);
