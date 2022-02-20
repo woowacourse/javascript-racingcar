@@ -34,6 +34,7 @@ const onKeyUpCarNamesInput = () => {
 
 const actionSubmitTryCount = (tryCount) => {
     racingCars.resetSteps();
+    render.resetWinners();
     runGame.setTryCount(tryCount).start();
 };
 

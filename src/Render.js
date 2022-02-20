@@ -38,6 +38,9 @@ const render = {
     renderWinners(winners) {
         $('#winners').innerText = winners.join(',');
     },
+    resetWinners() {
+        $('#winners').innerText = '';
+    },
     readyToGame(cars) {
         this.appendTrack(cars);
         this.onLoading();
