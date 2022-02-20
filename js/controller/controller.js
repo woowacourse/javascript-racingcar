@@ -45,7 +45,6 @@ export default class Controller {
       this.view.disableButtons();
       this.model.saveRacingCount(this.getRacingCountInput());
       this.gameStart();
-      this.model.initCarPosition();
     });
   }
 
@@ -76,6 +75,7 @@ export default class Controller {
     this.moveWhileRacingCount();
     const winnerList = this.getWinnerList();
     await this.displayProgress(this.model.carPosition);
+    this.view.hideLoader();
     this.displayWinner(winnerList);
     this.displayRestartButton();
     this.bindGameRestartEvent();

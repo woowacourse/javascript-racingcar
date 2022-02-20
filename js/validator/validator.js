@@ -30,6 +30,9 @@ const Validator = {
   isInValidRacingCountInput(number) {
     return this.isFloat(number) || this.isNotNaturalNumber(number) || this.isString(number);
   },
+  isNowRacing(carPosition) {
+    return !carPosition.every((position) => position === 0);
+  },
 };
 
 export default Validator;

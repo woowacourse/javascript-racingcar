@@ -1,5 +1,6 @@
 import { $, $$ } from '../utils/dom.js';
 import { SELECTOR, TIMER } from '../utils/constants.js';
+import Validator from '../validator/validator.js';
 
 export default class View {
   constructor() {
@@ -39,25 +40,33 @@ export default class View {
 
   async renderProgress(carPosition) {
     this.makeLane(carPosition);
+    await this.doRacing(carPosition);
+  }
+
+  async doRacing(carPosition) {
     return new Promise((resolve) => {
       const moveCarsTimer = setInterval(() => {
-        carPosition.forEach((position, idx) => {
-          this.renderArrow(position, idx, carPosition);
-          if (carPosition.every((position) => position === 0)) {
-            this.hideLoader();
-            resolve('FINISHED');
-            clearInterval(moveCarsTimer);
-          }
-        });
+        this.decideGo(carPosition);
+        this.decideStopRacing(carPosition, resolve, moveCarsTimer);
       }, TIMER.DELAY_MOVE);
     });
   }
 
-  renderArrow(position, idx, carPosition) {
-    if (position > 0) {
-      $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
-      carPosition[idx] = position - 1;
+  decideGo(carPosition) {
+    carPosition.forEach((position, idx) => {
+      if (position > 0) {
+        $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
+        carPosition[idx] = position - 1;
+      }
+    });
+  }
+
+  decideStopRacing(carPosition, resolve, moveCarsTimer) {
+    if (Validator.isNowRacing(carPosition)) {
+      return;
     }
+    resolve('FINISHED');
+    clearInterval(moveCarsTimer);
   }
 
   hideLoader() {
