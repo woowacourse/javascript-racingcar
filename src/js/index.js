@@ -11,7 +11,6 @@ class RacingCarGame {
   constructor() {
     this.cars = new Cars();
     this.game = new Game();
-    makeInitialView();
     this.addRacingCountSubmitEvent();
     this.addRestartEvent();
   }

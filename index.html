@@ -15,17 +15,17 @@
         <input type="text" id="car-names-input" />
         <button type="submit" id="car-names-submit" class="submit-button">확인</button>
       </form>
-      <form id="racing-count-area">
+      <form id="racing-count-area" class="hidden">
         <h2 hidden>Racing Count Section</h2>
         <label for="racing-count-input">시도할 횟수를 입력해주세요.</label>
         <input type="text" id="racing-count-input" />
         <button type="submit" id="racing-count-submit" class="submit-button">확인</button>
       </form>
-      <div id="racing-result"></div>
-      <h3 id="winner-area">
+      <div id="racing-result" class="hidden"></div>
+      <h3 id="winner-area" class="hidden">
         🏆 최종 우승자: <span id="racing-winner"></span> 🏆
       </h3>
-      <button id="restart-button">다시 시작하기</button>
+      <button id="restart-button" class="hidden">다시 시작하기</button>
     </center>
     <script type="module" src="src/js/index.js"></script>
   </body>
