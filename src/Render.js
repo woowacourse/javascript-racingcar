@@ -38,8 +38,14 @@ const render = {
     renderWinners(winners) {
         $('#winners').innerText = winners.join(',');
     },
-    isRunningGame() {
-        return $('#app').classList.contains(SCREEN_CMD.SHOW_RESULT);
+    readyToGame(cars) {
+        this.appendTrack(cars);
+        this.onLoading();
+        this.showResultArea();
+    },
+    updateTrackAfterOffLoading(carRunResults) {
+        this.offLoading();
+        this.updateTrack(carRunResults);
     },
 };
 

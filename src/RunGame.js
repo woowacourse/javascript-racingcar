@@ -8,6 +8,10 @@ export default class RunGame {
         this.running = false;
     }
 
+    isRunning() {
+        return this.running;
+    }
+
     initializeStartTime() {
         this.startTime = new Date().getTime();
     }
@@ -25,39 +29,39 @@ export default class RunGame {
     }
 
     start() {
-        render.appendTrack(racingCars.cars);
-        render.onLoading();
-        render.showResultArea();
+        render.readyToGame(racingCars.cars);
         this.readyToAnimate();
         requestAnimationFrame(this.animate.bind(this));
     }
 
     animate() {
         if (passedOneSecond(this.startTime)) {
-            if (this.draw()) {
-                render.renderWinners(racingCars.getWinners());
-                racingCars.reset();
-                setTimeout(() => alert(SUCCESS_MESSAGE), 2000);
-                this.running = false;
+            render.updateTrackAfterOffLoading(racingCars.run());
+
+            if (this.isFinishGame()) {
+                this.finishGame();
                 return;
             }
 
-            render.onLoading();
-            this.initializeStartTime();
-            this.count += 1;
+            this.gameToNextStep();
         }
 
         requestAnimationFrame(this.animate.bind(this));
     }
 
-    isRunning() {
-        return this.running;
+    isFinishGame() {
+        return this.count === this.tryCount - 1;
     }
 
-    draw() {
-        render.offLoading();
-        render.updateTrack(racingCars.run());
+    finishGame() {
+        render.renderWinners(racingCars.getWinners());
+        setTimeout(() => alert(SUCCESS_MESSAGE), 2000);
+        this.running = false;
+    }
 
-        return this.count === this.tryCount - 1;
+    gameToNextStep() {
+        render.onLoading();
+        this.initializeStartTime();
+        this.count += 1;
     }
 }
