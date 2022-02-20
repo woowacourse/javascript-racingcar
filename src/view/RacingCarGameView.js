@@ -34,6 +34,11 @@ class RacingCarGameView {
   setRacingCountFormEventHandler(callback) {
     this.$racingCountForm.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      if (this.$racingCountInput === null) {
+        return;
+      }
+
       callback(this.$racingCountInput.value);
     });
   }
@@ -50,8 +55,8 @@ class RacingCarGameView {
 
   deactivateForm() {
     this.$carNamesInput.setAttribute('disabled', true);
-    this.$racingCountInput.setAttribute('disabled', true);
-    this.$inputBtns.forEach(($inputBtn) => {
+    this.$racingCountInput?.setAttribute('disabled', true);
+    this.$inputBtns?.forEach(($inputBtn) => {
       $inputBtn.setAttribute('disabled', true);
       $inputBtn.classList.add(CLASS.DISABLED_INPUT_BTN);
     });
@@ -61,6 +66,10 @@ class RacingCarGameView {
   // 해당 함수에는 carNamesForm 내부 Input과 Button만 활성화시킴
   #activateNameForm() {
     this.$carNamesInput.removeAttribute('disabled');
+
+    if (this.$inputBtns === null) {
+      return;
+    }
 
     this.$inputBtns[0].removeAttribute('disabled');
     this.$inputBtns[0].classList.remove(CLASS.DISABLED_INPUT_BTN);
@@ -88,6 +97,10 @@ class RacingCarGameView {
   }
 
   renderRacingCarProgress(index) {
+    if (this.$racingCarProgress === null) {
+      return;
+    }
+
     this.$racingCarProgress[index].insertAdjacentHTML('beforeend', templateProgress);
   }
 
@@ -100,13 +113,13 @@ class RacingCarGameView {
   }
 
   renderSpinner() {
-    this.$spinnerContainers.forEach(($spinnerContainer) =>
+    this.$spinnerContainers?.forEach(($spinnerContainer) =>
       $spinnerContainer.insertAdjacentHTML('beforeend', templateSpinner)
     );
   }
 
   removeSpinner() {
-    this.$spinnerContainers.forEach(($spinnerContainer) =>
+    this.$spinnerContainers?.forEach(($spinnerContainer) =>
       $spinnerContainer.removeChild($spinnerContainer.lastElementChild)
     );
   }
