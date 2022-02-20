@@ -4,9 +4,9 @@ export const template = {
   },
 
   initialLoaderTemplate(carPosition) {
-    return carPosition
-      .map((position) => `<div id="car-progress-result"><div class="loader"></div></div>`)
-      .join('');
+    return `<div id="car-progress-result"><div class="loader"></div></div>`.repeat(
+      carPosition.length
+    );
   },
 
   carProgressTemplate(carPosition) {
