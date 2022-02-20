@@ -64,9 +64,10 @@ export default class DomUtils {
   static spinner(round) {
     const $carProgressStatus = document.createElement('div');
     $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_LOADGING;
-    const $circle = document.createElement('img');
-    $circle.src = '../../public/assets/img/loading.png';
-    $carProgressStatus.append($circle);
+    const $spinnerImg = document.createElement('img');
+    $spinnerImg.src = '../../public/assets/img/loading.png';
+    $spinnerImg.className = SELECTOR.CLASS.SPINNER;
+    $carProgressStatus.append($spinnerImg);
 
     requestAnimationFrame(
       DomUtils.animationCallBack(

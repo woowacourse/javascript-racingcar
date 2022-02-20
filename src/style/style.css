@@ -95,7 +95,7 @@ form > button {
     justify-content: center;
 }
 
-img{
+.loading-spinner{
     width: 36px;
     height: 36px;
 }
