@@ -6,6 +6,9 @@ const SELECTOR = Object.freeze({
   RACE_TIME_INPUT: '#race-time-input',
   RACE_TIME_BUTTON: '#race-time-button',
   RACE_CONTAINER_DIV: '.racing-car-container',
+  RACE_CAR_INSTANCE: '.car-instance',
+  RACE_LOADING: '.round-loading',
+  RACE_RESULT: '#result',
   RACE_WINNER_DISPLAY: '#winner',
   RACE_REPLAY_BUTTON: '#retry',
 });

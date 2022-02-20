@@ -1,12 +1,15 @@
 import RacingGame from './models/RacingGame.js';
-import RacingGameView from './RacingGameView.js';
+import RacingGameView from './views/RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
-import { $ } from './utils/element-tools.js';
+import { $ } from './utils/elementSeletor.js';
 import SELECTOR from './constants/selector.js';
+import NUMBER from './constants/number.js';
+import delay from './utils/delay.js';
 import {
   isCarNameInputValid,
   isRaceTimeValid,
-} from './utils/racingGame-validation.js';
+  displayCongratuation,
+} from './racingGameHelper.js';
 
 class App {
   constructor() {
@@ -48,7 +51,7 @@ class App {
 
     this.View.setDisableForm($(SELECTOR.CAR_NAME_FORM));
     this.View.setAbleForm($(SELECTOR.RACE_TIME_FORM));
-    this.RacingGame.carListPush(nameStringToArray(carNameValue));
+    this.RacingGame.generateCar(nameStringToArray(carNameValue));
 
     return true;
   }
@@ -68,33 +71,54 @@ class App {
     return false;
   }
 
-  handleGamePlay(event) {
+  async handleGamePlay(event) {
     event.preventDefault();
 
+    // 박스 생성
     this.RacingGame.carList.forEach((instance) => {
       const { name } = instance.state;
       this.View.renderAdvanceDiv(name);
     });
 
-    for (let i = 1; i <= this.RacingGame.round; i += 1) {
-      try {
-        this.RacingGame.play();
-      } catch (err) {
-        alert(err);
-        break;
-      }
+    this.handleProgressDisplay();
+
+    // 라운드만큼 반복
+    for (
+      let currentRound = 1;
+      currentRound <= this.RacingGame.round;
+      currentRound += 1
+    ) {
+      await this.progressRound();
     }
 
     this.handleWinnerDisplay();
   }
 
-  handleWinnerDisplay() {
-    this.View.renderResult(this.RacingGame.winner());
+  handleProgressDisplay() {
+    this.View.renderProgress();
+  }
+
+  async handleWinnerDisplay() {
+    this.RacingGame.setWinner();
+    this.View.renderResult(this.RacingGame.winner);
+    this.View.renderReplayButton();
+    await delay(NUMBER.ALERT_DISPLAY_TIME);
+    displayCongratuation(this.RacingGame.winner);
   }
 
   handleReplayGame() {
     this.View.renderInit();
     this.RacingGame.init();
+  }
+
+  async progressRound() {
+    this.View.LoadingStart();
+    await delay(NUMBER.PROCESS_ROUND_TIME);
+    this.View.LoadingEnd();
+
+    this.RacingGame.processRound().forEach((name) =>
+      this.View.renderAdvance(name)
+    );
   }
 }
 

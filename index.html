@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="./src/css/nanumbarungothic.css" />
@@ -23,16 +23,16 @@
         </form>
         <p>시도할 횟수를 입력해주세요.</p>
         <form id="race-time-form">
-          <input type="text" id="race-time-input" placeholder="10" />
+          <input type="text" id="race-time-input" placeholder="10" disabled />
           <button id="race-time-button" disabled>확인</button>
         </form>
       </div>
 
-      <div class="racing-car-container" data-state="off"></div>
+      <div class="racing-car-container" visible="false"></div>
 
-      <div id="result" data-state="off">
-        <p id="winner">🏆 최종 우승자: east, west 🏆</p>
-        <button id="retry">다시 시작하기</button>
+      <div id="result" visible="false">
+        <p id="winner"></p>
+        <button id="retry" visible="false">다시 시작하기</button>
       </div>
     </div>
     <script type="module" src="./src/js/index.js"></script>

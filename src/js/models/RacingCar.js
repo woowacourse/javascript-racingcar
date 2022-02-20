@@ -13,6 +13,10 @@ class RacingCar {
     return this.state.distance;
   }
 
+  get isMovedInLastRound() {
+    return this.state.isMovedInLastRound;
+  }
+
   go() {
     this.state.distance += 1;
   }

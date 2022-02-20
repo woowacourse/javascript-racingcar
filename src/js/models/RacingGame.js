@@ -1,5 +1,6 @@
 import RacingCar from './RacingCar.js';
-import isAdvance from '../utils/isAdvance.js';
+import NUMBERS from '../constants/number.js';
+import generateRandomNumber from '../utils/generateRandomNumber.js';
 
 class RacingGame {
   constructor() {
@@ -14,7 +15,7 @@ class RacingGame {
     };
   }
 
-  carListPush(array) {
+  generateCar(array) {
     array.forEach((carName) => {
       const newCar = new RacingCar(carName);
       this.state.carList.push(newCar);
@@ -33,10 +34,13 @@ class RacingGame {
     return this.state.round;
   }
 
-  winner() {
+  get winner() {
+    return this.state.winner;
+  }
+
+  setWinner() {
     let maxDistance = Number.MIN_SAFE_INTEGER;
     this.carList.forEach((item) => {
-      console.log(item.name, item.distance);
       if (item.distance < maxDistance) {
         return false;
       }
@@ -48,16 +52,29 @@ class RacingGame {
 
       this.state.winner.push(item.name);
     });
-
-    return this.state.winner;
   }
 
-  play() {
-    this.state.carList.forEach((car) => {
-      if (isAdvance()) {
+  processRound() {
+    const roundResult = this.state.carList.map((car) => ({
+      car,
+      isProcessed: this.isAdvance(),
+    }));
+
+    roundResult.forEach(({ isProcessed, car }) => {
+      if (isProcessed) {
         car.go();
       }
     });
+
+    return roundResult
+      .filter((result) => result.isProcessed)
+      .map((result) => result.car.name);
+  }
+
+  isAdvance() {
+    return (
+      generateRandomNumber(NUMBERS.ENTIRE_NUMBER) >= NUMBERS.MOVABLE_NUMBER
+    );
   }
 }
 
