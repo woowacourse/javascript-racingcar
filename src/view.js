@@ -95,20 +95,22 @@ export default class View {
     this.winnerUpdate(winnerList);
   }
 
-  showArrowOneRace() {
+  showEachArrowOneRace() {
     const arrowsList = [...$$(SELECTOR.STEP_SECTION_ARROWS)].map((section) => section.children);
-    arrowsList.forEach((arrows) => this.findDisplayNoneArrow([...arrows]));
+    arrowsList.forEach((arrows) => {
+      const displayNoneArrow = this.findDisplayNoneArrow([...arrows]);
+      this.showArrow(displayNoneArrow);
+    });
   }
 
   findDisplayNoneArrow(arrows) {
-    arrows.find((arrow) => this.showEachArrow(arrow));
+    return arrows.find((arrow) => arrow.classList.contains(CLASS_NAME.DISPLAY_NONE));
   }
 
-  showEachArrow(arrow) {
-    if (arrow.classList.contains(CLASS_NAME.DISPLAY_NONE)) {
+  showArrow(arrow) {
+    if (arrow) {
       displayDOM([arrow]);
       this.animateSpinningAndShowArrow(arrow);
-      return true;
     }
   }
 

@@ -58,7 +58,7 @@ export default class Controller {
 
   showResult(carList) {
     this.view.displayStepSection();
-    this.view.showArrowOneRace();
+    this.view.showEachArrowOneRace();
     this.setShowResultTimer(carList);
   }
 
@@ -79,7 +79,7 @@ export default class Controller {
 
   startArrowInterval() {
     return setInterval(() => {
-      this.view.showArrowOneRace();
+      this.view.showEachArrowOneRace();
     }, NUMBER.ARROW_INTERVAL_TIME);
   }
 
