@@ -17,10 +17,6 @@ const isContainedNull = (names) => {
   return names.some((name) => name === '');
 };
 
-const isInteger = (number) => {
-  return number % 1 === 0;
-};
-
 export const isInRange = (number) => {
   return number > 0 && number <= RACINGGAME.MAX_RACING_COUNT;
 };
@@ -48,7 +44,7 @@ export const validateCount = (count) => {
   if (isBlank(count)) {
     throw new Error(INPUT_ERROR.COUNT_BLANK);
   }
-  if (!isInteger(count)) {
+  if (!Number.isInteger(Number(count))) {
     throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
   }
 };
