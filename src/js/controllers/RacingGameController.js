@@ -5,7 +5,8 @@ import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
 import { $ } from '../utils/element-tools.js';
-import { getTimeDiffToPercent, nameStringToArray, setDelay } from '../utils/data-manager.js';
+import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
+import { setDelay, runAnimation } from '../utils/event-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
@@ -78,36 +79,34 @@ export default class RacingGameController {
     this.#racingGameView.renderCarContainer(carList);
     this.#racingGameView.setRenderProgress(true);
 
-    this.racePlayInterval();
+    this.startRace();
   }
 
-  racePlayInterval() {
+  async startRace() {
     let startTime = new Date().getTime();
-    const animationProgress = () => {
+    let isRaceStop = false;
+
+    while (isRaceStop === false) {
+      await runAnimation();
       const currentTime = new Date().getTime();
       const percent = getTimeDiffToPercent(startTime, currentTime, GAME_SETTING.ROUND_INTERVAL);
 
       this.#racingGameView.setProgressPercent(percent);
-      const raceInterval = requestAnimationFrame(animationProgress);
-      if (currentTime - GAME_SETTING.ROUND_INTERVAL > startTime) {
+      if (currentTime - GAME_SETTING.ROUND_INTERVAL >= startTime) {
         startTime = new Date().getTime();
-        this.racePlay(raceInterval);
+        isRaceStop = this.getRacePlayResult();
       }
-    };
-
-    requestAnimationFrame(animationProgress);
+    }
   }
 
-  racePlay(raceInterval) {
+  getRacePlayResult() {
     const { isGameOver, carList } = this.#racingGameModel.play();
+
     this.#racingGameView.renderCarAdvance(carList);
-
-    if (isGameOver === false) {
-      return;
+    if (isGameOver === true) {
+      this.getWinnersResult();
     }
-
-    this.getWinnersResult();
-    cancelAnimationFrame(raceInterval);
+    return isGameOver;
   }
 
   async getWinnersResult() {

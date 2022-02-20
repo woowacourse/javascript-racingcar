@@ -20,7 +20,8 @@
         "no-param-reassign": "off",
         "no-new": "off",
         "object-curly-newline": "off",
-        "implicit-arrow-linebreak": "off"
+        "implicit-arrow-linebreak": "off",
+        "no-await-in-loop": "off"
     }
   }
   
