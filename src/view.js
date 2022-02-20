@@ -1,10 +1,4 @@
-import {
-  $,
-  $$,
-  makeDOMDisplayNone,
-  makeDOMDisplayNotNone,
-  makeSetTimeoutPromise,
-} from './utils/common.js';
+import { $, $$, makeDOMDisplayNone, makeDOMDisplayNotNone, wait } from './utils/common.js';
 import {
   ROUND_DELAY,
   SELECTOR,
@@ -138,17 +132,19 @@ export default class View {
     this.removeSpinner();
   }
 
-  showWinnerResult(winnerList) {
+  async showWinnerResult(winnerList) {
     this.makeWinnerDisplayNotNone();
     this.makeResetButtonDisplayNotNone();
     this.showWinner(winnerList);
-    this.showWinnerByAlertPromise(winnerList);
+    await wait(WIN_ALERT_DELAY);
+    this.showWinnerByAlert(winnerList);
   }
 
   async showStepSection(carList) {
     const count = carList[0].stepByRound.length;
     for (let i = 0; i < count; i++) {
-      await this.updateRoundPromise(carList, i);
+      await wait(ROUND_DELAY);
+      this.updateRound(carList, i);
     }
   }
 
@@ -159,10 +155,6 @@ export default class View {
         this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
       }
     });
-  }
-
-  async updateRoundPromise(carList, i) {
-    await makeSetTimeoutPromise(this.updateRound.bind(this), [carList, i], ROUND_DELAY);
   }
 
   removeSpinner() {
@@ -176,9 +168,5 @@ export default class View {
 
   showWinnerByAlert(winnerList) {
     alert(WINNER_MESSAGE(winnerList));
-  }
-
-  async showWinnerByAlertPromise(winnerList) {
-    await makeSetTimeoutPromise(this.showWinnerByAlert, [winnerList], WIN_ALERT_DELAY);
   }
 }

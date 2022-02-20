@@ -22,11 +22,10 @@ export const generateRandomNumber = () => {
   );
 };
 
-export const makeSetTimeoutPromise = (callback, parametersInCallback, delay) => {
+export const wait = (delay) => {
   return new Promise((resolve) =>
     setTimeout(() => {
       resolve();
-      callback(...parametersInCallback);
     }, delay),
   );
 };
