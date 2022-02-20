@@ -35,8 +35,6 @@ export const RULES = Object.freeze({
   RANDOM_MIN_NUMBER: 0,
   RANDOM_MAX_NUMBER: 9,
   MOVE_CONDITION_NUMBER: 4,
-  CAR_NAME_SEPERATOR: ',',
-  WINNER_LIST_SEPERATOR: ', ',
 });
 
 export const DELAY = Object.freeze({

@@ -1,8 +1,8 @@
 import RacingCar from '../model/RacingCar.js';
 import RacingCarView from '../view/RacingCarView.js';
 
-import { DELAY, RULES, SELECTOR } from '../constants/index.js';
 import { convertToNumber } from '../util/index.js';
+import { DELAY } from '../constants/index.js';
 
 class RacingCarController {
   constructor() {
@@ -20,9 +20,7 @@ class RacingCarController {
 
   handleCarNameFormSubmitEvent(carNames) {
     const carNameList =
-      carNames === ''
-        ? null
-        : carNames.split(RULES.CAR_NAME_SEPERATOR).map((carName) => carName.trim());
+      carNames === '' ? null : carNames.split(',').map((carName) => carName.trim());
 
     try {
       this.model.setCarList(carNameList);
@@ -36,11 +34,11 @@ class RacingCarController {
     this.view.showRacingCountForm();
   }
 
-  handleRacingCountFormSubmitEvent(_racingCount) {
-    const racingCount = _racingCount === '' ? null : convertToNumber(_racingCount);
+  handleRacingCountFormSubmitEvent(racingCount) {
+    const _racingCount = racingCount === '' ? null : convertToNumber(racingCount);
 
     try {
-      this.model.setRacingCount(racingCount);
+      this.model.setRacingCount(_racingCount);
     } catch (error) {
       this.view.resetRacingCountInput();
       alert(error.message);
@@ -93,7 +91,7 @@ class RacingCarController {
   handleGameResult() {
     const maxDistance = this.model.getMaxDistance();
     const winnerList = this.model.getWinnerList(maxDistance);
-    const finalWinner = winnerList.join(RULES.WINNER_LIST_SEPERATOR);
+    const finalWinner = winnerList.join(', ');
     this.view.renderFinalWinnerResult(finalWinner);
   }
 }

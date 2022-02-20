@@ -1,8 +1,8 @@
 import Car from './Car.js';
 
 import { pickRandomNumber } from '../util/index.js';
-import { checkValidCarNames, checkValidRacingCount } from './validation.js';
 import { RULES } from '../constants/index.js';
+import { validateCarNames, validateRacingCount } from './validation.js';
 
 class RacingCar {
   constructor() {
@@ -33,12 +33,12 @@ class RacingCar {
   }
 
   setCarList(carNamesList) {
-    checkValidCarNames(carNamesList);
+    validateCarNames(carNamesList);
     this.carList = carNamesList.map((carName) => new Car(carName));
   }
 
   setRacingCount(racingCount) {
-    checkValidRacingCount(racingCount);
+    validateRacingCount(racingCount);
     this.racingCount = racingCount;
   }
 

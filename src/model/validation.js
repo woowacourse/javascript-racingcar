@@ -1,7 +1,7 @@
-import { ERROR_MESSAGES } from '../constants/index.js';
 import { isBlank, isExceedLength, isNotExist, isNotNaturalNumber } from '../util/index.js';
+import { ERROR_MESSAGES } from '../constants/index.js';
 
-export const checkValidCarNames = (carNamesList) => {
+export const validateCarNames = (carNamesList) => {
   if (isNotExist(carNamesList)) {
     throw new Error(ERROR_MESSAGES.NOT_EXIST_CAR_NAME);
   }
@@ -15,7 +15,7 @@ export const checkValidCarNames = (carNamesList) => {
   }
 };
 
-export const checkValidRacingCount = (racingCount) => {
+export const validateRacingCount = (racingCount) => {
   if (isNotExist(racingCount)) {
     throw new Error(ERROR_MESSAGES.NOT_EXIST_RACING_COUNT);
   }

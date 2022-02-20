@@ -1,4 +1,4 @@
-import { RULES, DELAY, SELECTOR, ERROR_MESSAGES } from '../../src/constants/index.js';
+import { DELAY, SELECTOR, ERROR_MESSAGES } from '../../src/constants/index.js';
 import { getCongratulationTemplate } from '../../src/view/template.js';
 
 const URL = '../index.html';
@@ -168,7 +168,7 @@ describe('자동차 경주 진행 상황 기능 테스트', () => {
         });
       })
       .then(() => {
-        const result = winnerList.join(RULES.WINNER_LIST_SEPERATOR);
+        const result = winnerList.join(', ');
         cy.get(`#${SELECTOR.FINAL_WINNER_RESULT}`).should('have.text', result);
       });
   });
