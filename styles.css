@@ -1,16 +1,25 @@
-html{
+*{
     box-sizing: border-box;
     margin:0;
     padding:0;
+    overflow-x: hidden;
+    background-color: #FFFFFF
 }
 
-#app {
+body{
+    display: flex;
+    justify-content: center;
+}
+.app {
+    max-width:544px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:  10%;
+
 }
 
-form{
+.app > form{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -19,20 +28,22 @@ form{
     height: 150px;
 }
 
-.input-section{
+
+.input-wrapper{
+    display: block;
     width: 400px;
     margin: 0 auto;
 }
 
 
-label{
+.input-wrapper > label{
     display: block;
-    margin-bottom:12px;
+    margin-bottom: 0.75em;
 }
 
-input { 
+.input-wrapper > input { 
     width: 80%;
-    padding: 8px;  
+    padding: 0.5em;  
 }
 
 button {
@@ -40,30 +51,74 @@ button {
     border-radius: 4px;
     color: white;
     border: none;
-    padding: 10px 1em;
+    padding: 0.7em 1em;
+    cursor:pointer;
+}
+
+button:disabled {
+    background-color: #4ACADB;
+    cursor: default;
 }
 
 
-.racing-status {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    margin: 20px 0;
+.information-wrapper {
+    margin: 0 0.4em;
 }
 
-.user-status {
-    margin: 0 4px;
-}
-
-.user-name{
+.name-wrapper {
     background-color: #F5F5F5;   
-    padding: 7px 10px;
+    padding: 0.5em 0.7em;
     font-size: 16px;
     border-radius: 4px;
 }
 
-.move {
+.progress-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-wrapper > h3, div {
     text-align: center;
-    margin: 4px;
+    margin: 0.3em;
+}
+
+
+.status-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin: 1.25em 0;
+}
+
+
+.result-wrapper {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result-wrapper > div {
+    margin-bottom: 1.5em;
+}
+
+.spinner {
+    border: 5px solid #00BCD4 ;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    width:20px;
+    height: 20px;
+    animation: spin 1.2s linear infinite;
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg);}
+}
+
+.hidden{
+    display: none;
 }

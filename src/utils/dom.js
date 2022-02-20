@@ -1,6 +1,16 @@
-const getElement = (id, target = document) => target.getElementById(id);
+const $ = (selector, target = document) => target.querySelector(selector);
 
-const getInputValue = target => target.querySelector('input').value;
+const $$ = (selector, target = document) => target.querySelectorAll(selector);
+
+const disableElement = element => (element.disabled = true);
+
+const enableElement = element => (element.disabled = false);
+
+const addClass = (element, className) => element.classList.add(className);
+
+const removeClass = (element, className) => element.classList.remove(className);
+
+const getInputValue = target => target.value;
 
 const resetInputValue = element => (element.value = '');
 
@@ -11,16 +21,26 @@ const setHTML = (element, html) => {
   element.insertAdjacentHTML('afterbegin', html);
 };
 
+const appendHTML = (element, html) => {
+  element.insertAdjacentHTML('beforeend', html);
+};
+
 const getEnterEvent = (key, cb) => {
   if (key !== 'Enter') return;
   cb();
 };
 
 export {
-  getElement,
+  $,
+  $$,
+  disableElement,
+  enableElement,
+  addClass,
+  removeClass,
   getInputValue,
   resetInputValue,
   clearHTML,
   setHTML,
+  appendHTML,
   getEnterEvent,
 };
