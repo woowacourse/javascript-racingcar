@@ -7,10 +7,10 @@ import {
 
 class RacingCarView {
   constructor() {
-    this.initDOM();
+    this.#initDOM();
   }
 
-  initDOM() {
+  #initDOM() {
     //자동차 이름 입력창
     this.$carNamesForm = document.getElementById(SELECTOR.CAR_NAMES_FORM);
     this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);

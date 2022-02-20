@@ -9,10 +9,10 @@ class RacingCarController {
     this.model = new RacingCar();
     this.view = new RacingCarView();
 
-    this.setEventHandler();
+    this.#setEventHandler();
   }
 
-  setEventHandler() {
+  #setEventHandler() {
     this.view.setCarNameFormSubmitEvent(this.handleCarNameFormSubmitEvent.bind(this));
     this.view.setRacingCountFormSubmitEvent(this.handleRacingCountFormSubmitEvent.bind(this));
     this.view.setRestartButtonClickEvent(this.handleRestartBtnClickEvent.bind(this));
@@ -48,7 +48,7 @@ class RacingCarController {
     this.view.deactivateRacingCountForm();
     const carNameList = this.model.getCarNameList();
     this.view.renderRacingCarList(carNameList);
-    this.playRacingGame();
+    this.#playRacingGame();
   }
 
   handleRestartBtnClickEvent() {
@@ -59,36 +59,36 @@ class RacingCarController {
     this.view.hideElement();
   }
 
-  playRacingGame() {
+  #playRacingGame() {
     const racingCount = this.model.getRacingCount();
     let gameTurn = 0;
 
     const raceTimer = setInterval(() => {
-      this.playRace();
+      this.#playRace();
 
       gameTurn = gameTurn + 1;
 
       if (gameTurn === racingCount) {
         clearInterval(raceTimer);
         this.view.hideLoadingSpinner();
-        this.endRacingGame();
+        this.#endRacingGame();
       }
     }, DELAY.RACE_TIME);
   }
 
-  playRace() {
+  #playRace() {
     const movedRacingCarList = this.model.tryMoveRacingCarList();
     this.view.renderRacingCarProgress(movedRacingCarList);
   }
 
-  endRacingGame() {
-    this.handleGameResult();
+  #endRacingGame() {
+    this.#handleGameResult();
     this.view.showFinalWinner();
     this.view.showRestartSection();
     this.view.showCongratulationMessage();
   }
 
-  handleGameResult() {
+  #handleGameResult() {
     const maxDistance = this.model.getMaxDistance();
     const winnerList = this.model.getWinnerList(maxDistance);
     const finalWinner = winnerList.join(', ');

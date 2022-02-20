@@ -10,7 +10,7 @@ class RacingCar {
     this.racingCount = 0;
   }
 
-  getCarList() {
+  #getCarList() {
     return this.carList;
   }
 
@@ -19,15 +19,15 @@ class RacingCar {
   }
 
   getCarNameList() {
-    return this.getCarList().map((car) => car.getName());
+    return this.#getCarList().map((car) => car.getName());
   }
 
   getMaxDistance() {
-    return Math.max(...this.getCarList().map((car) => car.getDistance()));
+    return Math.max(...this.#getCarList().map((car) => car.getDistance()));
   }
 
   getWinnerList(maxDistance) {
-    return this.getCarList()
+    return this.#getCarList()
       .filter((car) => car.getDistance() === maxDistance)
       .map((car) => car.getName());
   }
@@ -50,7 +50,7 @@ class RacingCar {
   tryMoveRacingCarList() {
     const movedRacingCarList = [];
 
-    this.getCarList().forEach((car, index) => {
+    this.#getCarList().forEach((car, index) => {
       const randomNumber = pickRandomNumber(RULES.RANDOM_MIN_NUMBER, RULES.RANDOM_MAX_NUMBER);
 
       if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
