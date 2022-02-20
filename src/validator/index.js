@@ -13,7 +13,7 @@ const isNotNumberType = (racingCount) => typeof racingCount !== 'number';
 const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !== number;
 
 const validator = {
-  checkCarNames: (carNameList) => {
+  validateCarNames: (carNameList) => {
     if (isEmptyName(carNameList)) {
       throw new Error(ERROR_MESSAGES.EMPTY_CAR_NAME);
     }
@@ -22,7 +22,7 @@ const validator = {
       throw new Error(ERROR_MESSAGES.EXCEED_CAR_NAME_LENGTH);
     }
   },
-  checkRacingCount: (racingCount) => {
+  validateRacingCount: (racingCount) => {
     if (isEmptyString(racingCount)) {
       throw new Error(ERROR_MESSAGES.BLANK_RACING_COUNT);
     }
