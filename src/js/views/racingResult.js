@@ -1,5 +1,5 @@
 import { $, $$ } from '../utils/dom.js';
-import { hideElement } from '../utils/attribute.js';
+import { showElement, hideElement } from '../utils/attribute.js';
 import { SELECTOR } from '../utils/constants.js';
 
 const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
@@ -21,7 +21,7 @@ export const renderFinalWinner = (finalWinner) => {
   $(SELECTOR.FINAL_WINNER).innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
 };
 
-export const renderRacingResult = (cars) => {
+export const renderRacingStatus = (cars) => {
   cars.forEach(({ name }) => {
     $(SELECTOR.RACING_STATUS).insertAdjacentHTML('beforeend', carPlayerTemplate(name));
   });
@@ -33,6 +33,10 @@ export const renderArrow = (name) => {
 
 export const removeSpinner = () => {
   $$(SELECTOR.SPINNER).forEach((element) => hideElement(element));
+};
+
+export const showNextStage = (target) => {
+  showElement(target);
 };
 
 export const startUpScreen = () => {
