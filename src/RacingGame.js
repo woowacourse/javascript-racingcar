@@ -4,7 +4,6 @@ import { validateCarNames, validateTurnCount } from './validation.js';
 
 import { $ } from './util/util.js';
 
-import { KEYCODE_ENTER } from './constant/constant.js';
 import SELECTOR from './constant/selectors.js';
 
 export default class RacingGame {
@@ -14,32 +13,17 @@ export default class RacingGame {
     }
 
     initialize() {
-        this.setClickEvent();
-        this.setKeyDownEnterEvent();
+        this.setSubmitEvent();
     }
 
-    setClickEvent() {
-        $(SELECTOR.CAR_NAME_SUBMIT_BUTTON).addEventListener('click', () => { this.onSubmitCarName(); });
-        $(SELECTOR.TURN_COUNT_SUBMIT_BUTTON).addEventListener('click', () => { this.onSubmitTurnCount(); });
+    setSubmitEvent() {
+        $(SELECTOR.CAR_NAME_FORM).addEventListener('submit', (e) => { this.onSubmitCarName(e); });
+        $(SELECTOR.TURN_COUNT_FORM).addEventListener('submit', (e) => { this.onSubmitTurnCount(e); });
         $(SELECTOR.RESTART_BUTTON).addEventListener('click', () => { this.onClickRestartButton(); });
     }
 
-    setKeyDownEnterEvent() {
-        $(SELECTOR.CAR_NAME_INPUT).addEventListener('keydown', (event) => {
-            if (event.keyCode === KEYCODE_ENTER) {
-                event.preventDefault();
-                this.onSubmitCarName();
-            }
-        });
-        $(SELECTOR.TURN_COUNT_INPUT).addEventListener('keydown', (event) => {
-            if (event.keyCode === KEYCODE_ENTER) {
-                event.preventDefault();
-                this.onSubmitTurnCount();
-            }
-        });
-    }
-
-    onSubmitCarName() {
+    onSubmitCarName(e) {
+        e.preventDefault();
         const carNames = $(SELECTOR.CAR_NAME_INPUT).value.split(',').map((name) => name.trim());
         try {
             validateCarNames(carNames);
@@ -52,7 +36,8 @@ export default class RacingGame {
         this.view.showTurnForm();
     }
 
-    onSubmitTurnCount() {
+    onSubmitTurnCount(e) {
+        e.preventDefault();
         const turnCount = Number($(SELECTOR.TURN_COUNT_INPUT).value);
         try {
             validateTurnCount(turnCount);
