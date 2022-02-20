@@ -21,15 +21,15 @@ class RacingCarView {
   }
 
   showRacingCountForm() {
-    this.$racingCountInputSection.classList.add('visible');
+    this.$racingCountInputSection.removeAttribute('hidden');
   }
 
   showFinalWinner() {
-    this.$finalWinner.classList.add('visible');
+    this.$finalWinner.removeAttribute('hidden');
   }
 
   showRestartSection() {
-    this.$restartSection.classList.add('visible');
+    this.$restartSection.removeAttribute('hidden');
   }
 
   showCongratulationMessage() {
@@ -39,16 +39,16 @@ class RacingCarView {
   }
 
   hideElement() {
-    this.$racingCountInputSection.classList.remove('visible');
-    this.$finalWinner.classList.remove('visible');
-    this.$restartSection.classList.remove('visible');
+    this.$racingCountInputSection.setAttribute('hidden', true);
+    this.$finalWinner.setAttribute('hidden', true);
+    this.$restartSection.setAttribute('hidden', true);
   }
 
   hideLoadingSpinner() {
     const racingCarProgressList = [...this.$racingCarProgress];
 
     racingCarProgressList.forEach((element) => {
-      element.lastElementChild.classList.add('hidden');
+      element.lastElementChild.classList.add('loading-hidden');
     });
   }
 

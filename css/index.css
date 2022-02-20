@@ -15,15 +15,6 @@ body {
   background: white;
 }
 
-/* 해당 클래스로 element display 제어 */
-.visible {
-  display: block !important;
-}
-
-.hidden {
-  display: none !important;
-}
-
 header {
   font-size: 34px;
   line-height: 36px;
@@ -44,7 +35,7 @@ main {
 #racing_count_input_section {
   width: 425px;
   margin-bottom: 32px;
-  display: none;
+  /* display: none; */
 }
 
 form > label {
@@ -147,6 +138,10 @@ form > label {
   animation: loader 1s linear infinite;
 }
 
+.loading-hidden {
+  display: none;
+}
+
 @keyframes loader {
   from {
     transform: rotate(0turn);
@@ -160,12 +155,12 @@ form > label {
 #final_winner {
   font-size: 20px;
   font-weight: 600;
-  display: none;
+  /* display: none; */
 }
 
 #restart_section {
   padding-bottom: 42px;
-  display: none;
+  /* display: none; */
 }
 
 #restart_button {
