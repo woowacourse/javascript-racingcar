@@ -13,7 +13,7 @@ describe('잘못된 자동차 이름이 제출되면 에러 메세지를 확인�
 
     cy.on('window:alert', alertStub);
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames).then(() => {
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames).then(() => {
       expect(alertStub).to.be.calledWith(message);
     });
   });
@@ -28,7 +28,7 @@ describe('잘못된 자동차 이름이 제출되면 에러 메세지를 확인�
 
     cy.on('window:alert', alertStub);
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames).then(() => {
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames).then(() => {
       expect(alertStub).to.be.calledWith(message);
     });
   });
@@ -43,7 +43,7 @@ describe('잘못된 자동차 이름이 제출되면 에러 메세지를 확인�
 
     cy.on('window:alert', alertStub);
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames).then(() => {
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames).then(() => {
       expect(alertStub).to.be.calledWith(message);
     });
   });
@@ -58,7 +58,7 @@ describe('잘못된 자동차 이름이 제출되면 에러 메세지를 확인�
 
     cy.on('window:alert', alertStub);
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames).then(() => {
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames).then(() => {
       expect(alertStub).to.be.calledWith(message);
     });
   });
@@ -70,57 +70,18 @@ describe('잘못된 자동차 이름이 제출되면 에러 메세지를 확인�
 
 describe('잘못된 시도 횟수가 제출되면 에러 메세지를 확인하고 시도 횟수를 다시 입력할 수 있어야 한다.', () => {
   const message = ERROR_MESSAGE.RACING_COUNT;
-
-  it('숫자가 아닌 시도 횟수가 제출되면 에러 메세지를 확인할 수 있어야 한다.', () => {
-    const alertStub = cy.stub();
-    const carNames = 'king, white, tiger';
-    const racingCount = 'e';
-
-    cy.on('window:alert', alertStub);
-
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames);
-    cy.submitForm(SELECTOR.RACING_COUNT_INPUT, SELECTOR.RACING_COUNT_SUBMIT, racingCount).then(
-      () => {
-        expect(alertStub).to.be.calledWith(message);
-      }
-    );
-  });
-
-  it('숫자가 아닌 시도 횟수가 제출되면 시도 횟수를 다시 입력할 수 있어야 한다.', () => {
-    cy.initInput(SELECTOR.RACING_COUNT_INPUT);
-  });
-
   it('1 미만의 시도 횟수가 제출되면 에러 메세지를 확인할 수 있어야 한다.', () => {
     const alertStub = cy.stub();
     const racingCount = 0;
 
     cy.on('window:alert', alertStub);
 
-    cy.submitForm(SELECTOR.RACING_COUNT_INPUT, SELECTOR.RACING_COUNT_SUBMIT, racingCount).then(
-      () => {
-        expect(alertStub).to.be.calledWith(message);
-      }
-    );
+    cy.submitForm(SELECTOR.RACING_COUNT_INPUT, racingCount).then(() => {
+      expect(alertStub).to.be.calledWith(message);
+    });
   });
 
   it('1 미만의 시도 횟수가 제출되면 시도 횟수를 다시 입력할 수 있어야 한다.', () => {
-    cy.initInput(SELECTOR.RACING_COUNT_INPUT);
-  });
-
-  it('정수가 아닌 시도 횟수가 제출되면 에러 메세지를 확인할 수 있어야 한다.', () => {
-    const alertStub = cy.stub();
-    const racingCount = 1.5;
-
-    cy.on('window:alert', alertStub);
-
-    cy.submitForm(SELECTOR.RACING_COUNT_INPUT, SELECTOR.RACING_COUNT_SUBMIT, racingCount).then(
-      () => {
-        expect(alertStub).to.be.calledWith(message);
-      }
-    );
-  });
-
-  it('정수가 아닌 시도 횟수가 제출되면 시도 횟수를 다시 입력할 수 있어야 한다.', () => {
     cy.initInput(SELECTOR.RACING_COUNT_INPUT);
   });
 });
@@ -140,7 +101,7 @@ describe('자동차 경주 게임을 진행할 수 있어야 한다.', () => {
   it('올바른 자동차 이름이 제출되면 자동차 이름을 확인할 수 있어야 한다.', () => {
     const carNames = 'king, white, tiger';
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames);
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames);
 
     cy.get('#white').should('be.visible');
     cy.get('#king').should('be.visible');
@@ -150,10 +111,9 @@ describe('자동차 경주 게임을 진행할 수 있어야 한다.', () => {
   it('올바른 자동차 이름이 제출되면 시도 횟수를 입력할 수 있어야 한다.', () => {
     const carNames = 'king, white, tiger';
 
-    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, carNames);
+    cy.submitForm(SELECTOR.CAR_NAMES_INPUT, carNames);
 
-    cy.get(SELECTOR.RACING_COUNT_INPUT).should('be.visible');
-    cy.get(SELECTOR.RACING_COUNT_SUBMIT).should('be.visible');
+    cy.get(SELECTOR.RACING_COUNT_FORM).should('be.visible');
   });
 
   it('게임이 끝나면 최종 우승자를 확인할 수 있어야 한다.', () => {
@@ -180,21 +140,17 @@ describe('자동차 경주 게임을 진행할 수 있어야 한다.', () => {
   });
 
   it('게임을 다시 시작하면 자동차 이름 입력만 할 수 있어야 한다.', () => {
-    const racingCount = 5;
-
     cy.race(0).then(() => {
       cy.get(SELECTOR.RESTART).click();
     });
 
-    cy.get(SELECTOR.CAR_NAMES_INPUT).should('be.visible');
-    cy.get(SELECTOR.CAR_NAMES_SUBMIT).should('be.visible');
+    cy.get(SELECTOR.CAR_NAMES_FORM).should('be.visible');
 
     cy.get('#king').should('not.exist');
     cy.get('#white').should('not.exist');
     cy.get('#tiger').should('not.exist');
 
-    cy.get(SELECTOR.RACING_COUNT_INPUT).should('not.exist');
-    cy.get(SELECTOR.RACING_COUNT_SUBMIT).should('not.exist');
+    cy.get(SELECTOR.RACING_COUNT_FORM).should('not.exist');
 
     cy.get('#winners').should('not.exist');
     cy.get(SELECTOR.RESTART).should('not.exist');

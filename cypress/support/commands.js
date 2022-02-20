@@ -26,9 +26,8 @@
 
 import { SELECTOR } from '../../src/common/constants.js';
 
-Cypress.Commands.add('submitForm', ($input, $submit, carNames) => {
-  cy.get($input).type(carNames);
-  cy.get($submit).click();
+Cypress.Commands.add('submitForm', ($input, userInput) => {
+  cy.get($input).type(userInput).type('{enter}');
 });
 
 Cypress.Commands.add('initInput', ($input) => {
@@ -41,7 +40,7 @@ Cypress.Commands.add('race', (delayAfterEnd) => {
   const delayPerRace = 1000;
   const totalDelay = delayPerRace * racingCount + delayAfterEnd;
 
-  cy.submitForm(SELECTOR.CAR_NAMES_INPUT, SELECTOR.CAR_NAMES_SUBMIT, 'king, white, tiger');
-  cy.submitForm(SELECTOR.RACING_COUNT_INPUT, SELECTOR.RACING_COUNT_SUBMIT, racingCount);
+  cy.submitForm(SELECTOR.CAR_NAMES_INPUT, 'king, white, tiger').type('{enter}');
+  cy.submitForm(SELECTOR.RACING_COUNT_INPUT, racingCount).type('{enter}');
   cy.tick(totalDelay);
 });
