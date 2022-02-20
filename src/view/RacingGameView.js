@@ -1,4 +1,4 @@
-import { $ } from '../util/util.js';
+import { $, $$ } from '../util/util.js';
 import { SCREEN_COMMAND } from '../constant/constant.js';
 import SELECTOR from '../constant/selectors.js';
 import racingGameTemplate from './racingGameTemplate.js';
@@ -10,27 +10,22 @@ export default class View {
     }
 
     updateInitialTrack(cars) {
-        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = racingGameTemplate.emptyTrack(cars);
+        $(SELECTOR.CAR_TRACK_AREA, this.resultArea).innerHTML = racingGameTemplate.emptyTrack(cars);
     }
 
     updateLoading() {
-        this.resultArea.querySelectorAll(SELECTOR.CAR_STEPS)
+        $$(SELECTOR.CAR_STEPS, this.resultArea)
             .forEach((track) => {
                 track.insertAdjacentHTML('beforeend', racingGameTemplate.loader());
             });
     }
 
     updateProgress(cars) {
-        this.resultArea.querySelector(SELECTOR.CAR_TRACK_AREA).innerHTML = racingGameTemplate.track(cars);
+        $(SELECTOR.CAR_TRACK_AREA, this.resultArea).innerHTML = racingGameTemplate.track(cars);
     }
 
     updateWinner(winners) {
-        this.resultArea.querySelector(SELECTOR.WINNERS).innerText = winners.join(',');
-    }
-
-    updateResult(cars, winners) {
-        this.updateProgress(cars);
-        this.resultArea.querySelector(SELECTOR.WINNERS).innerText = winners.join(',');
+        $(SELECTOR.WINNERS, this.resultArea).innerText = winners.join(',');
     }
 
     showTurnForm() {
