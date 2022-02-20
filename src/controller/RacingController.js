@@ -31,7 +31,7 @@ export default class RacingController {
     try {
       validateCount(racingCount);
       this.view.deactivateNamesForm();
-      this.model.setRound(Number(racingCount));
+      this.model.initialRound = Number(racingCount);
       this.startRacingGame();
     } catch (error) {
       alert(error.message);

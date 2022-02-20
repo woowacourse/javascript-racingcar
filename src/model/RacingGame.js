@@ -3,9 +3,11 @@ import { isInRange } from '../utils/validation.js';
 import Car from './Car.js';
 
 export default class RacingGame {
+  #round;
+
   constructor() {
     this.cars = [];
-    this.round = RACINGGAME.INIT_ROUND;
+    this.#round = RACINGGAME.INIT_ROUND;
   }
 
   moveCars() {
@@ -18,11 +20,19 @@ export default class RacingGame {
     return this.cars.map((car) => car.name);
   }
 
-  setRound(round) {
+  set initialRound(round) {
     if (!isInRange(round)) {
       throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);
     }
-    this.round = round;
+    this.#round = round;
+  }
+
+  set round(round) {
+    this.#round = round;
+  }
+
+  get round() {
+    return this.#round;
   }
 
   set players(names) {
