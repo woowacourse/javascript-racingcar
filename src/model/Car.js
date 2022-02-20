@@ -1,19 +1,22 @@
 class Car {
+  #name = '';
+
+  #distance = 0;
+
   constructor(name) {
-    this.name = name;
-    this.distance = 0;
+    this.#name = name;
   }
 
   getName() {
-    return this.name;
+    return this.#name;
   }
 
   getDistance() {
-    return this.distance;
+    return this.#distance;
   }
 
   moveForward() {
-    this.distance = this.distance + 1;
+    this.#distance = this.#distance + 1;
   }
 }
 

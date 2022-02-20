@@ -2,22 +2,29 @@ import { RULES } from '../constants/index.js';
 import Car from './Car.js';
 
 class RacingCarGameModel {
-  constructor() {
-    this.racingCarList = [];
-    this.racingCount = 0;
-  }
+  #racingCarList = [];
+
+  #racingCount = 0;
 
   setRacingCarList(carNameList) {
-    this.racingCarList = carNameList.map((carName) => new Car(carName));
+    this.#racingCarList = carNameList.map((carName) => new Car(carName));
+  }
+
+  getRacingCarList() {
+    return this.#racingCarList;
   }
 
   setRacingCount(racingCount) {
-    this.racingCount = racingCount;
+    this.#racingCount = racingCount;
+  }
+
+  getRacingCount() {
+    return this.#racingCount;
   }
 
   resetGameState() {
-    this.racingCarList = [];
-    this.racingCount = 0;
+    this.#racingCarList = [];
+    this.#racingCount = 0;
   }
 
   getFinalWinner() {
@@ -27,14 +34,14 @@ class RacingCarGameModel {
   }
 
   getMaxDistance() {
-    const distance = this.racingCarList.map((car) => car.getDistance());
+    const distance = this.#racingCarList.map((car) => car.getDistance());
     const maxDistance = Math.max(...distance);
 
     return maxDistance;
   }
 
   getWinnerList(maxDistance) {
-    return this.racingCarList
+    return this.#racingCarList
       .filter((car) => car.getDistance() === maxDistance)
       .map((car) => car.getName());
   }

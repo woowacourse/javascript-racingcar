@@ -52,12 +52,13 @@ class RacingCarGameController {
   }
 
   play() {
-    this.view.renderRacingCarList(this.model.racingCarList);
+    this.view.renderRacingCarList(this.model.getRacingCarList());
     this.startRacingGame();
   }
 
   startRacingGame() {
     let turn = 1;
+    const racingCount = this.model.getRacingCount();
 
     const raceTimer = setInterval(() => {
       if (turn !== 1) {
@@ -66,7 +67,7 @@ class RacingCarGameController {
 
       this.runOneCycleGame();
 
-      if (turn === this.model.racingCount) {
+      if (turn === racingCount) {
         clearInterval(raceTimer);
         this.handleGameResult();
         return;
@@ -78,7 +79,7 @@ class RacingCarGameController {
   }
 
   runOneCycleGame() {
-    this.model.racingCarList.forEach((car, index) => {
+    this.model.getRacingCarList().forEach((car, index) => {
       const randomNumber = generateRandomNumber();
 
       if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
