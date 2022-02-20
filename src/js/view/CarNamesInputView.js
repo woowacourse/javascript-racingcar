@@ -3,30 +3,33 @@ import { disableElements, enableElements } from '../utils/ui.js';
 import View from './View.js';
 
 export default class CarNamesInputView extends View {
-  setup = () => {
+  setup() {
     this.inputElement = this.element.querySelector(`#${ID.CAR_NAME_INPUT}`);
     this.buttonElement = this.element.querySelector(`#${ID.CAR_NAME_BUTTON}`);
     this.bindEvent();
     return this;
-  };
+  }
 
-  bindEvent = () => {
-    this.buttonElement.addEventListener('click', this.onClickCarNamesButton);
-  };
+  bindEvent() {
+    this.buttonElement.addEventListener(
+      'click',
+      this.onClickCarNamesButton.bind(this),
+    );
+  }
 
-  onClickCarNamesButton = () => {
+  onClickCarNamesButton() {
     this.emit(CUSTOM_EVENT.SUBMIT_CAR_NAMES, this.inputElement.value);
-  };
+  }
 
-  reset = () => {
+  reset() {
     this.inputElement.value = '';
-  };
+  }
 
-  disableCarNamesInput = () => {
+  disableCarNamesInput() {
     disableElements(this.inputElement, this.buttonElement);
-  };
+  }
 
-  enableCarNamesInput = () => {
+  enableCarNamesInput() {
     enableElements(this.inputElement, this.buttonElement);
-  };
+  }
 }

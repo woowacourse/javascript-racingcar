@@ -3,11 +3,11 @@ import { makeCarNamesTemplate } from '../utils/template.js';
 import View from './View.js';
 
 export default class ResultView extends View {
-  renderCarNames = (carNames) => {
+  renderCarNames(carNames) {
     this.insertTemplate(makeCarNamesTemplate(carNames));
-  };
+  }
 
-  renderArrows = (stageResult) => {
+  renderArrows(stageResult) {
     Object.entries(stageResult).forEach(([name, isMoved]) => {
       if (isMoved) {
         this.element
@@ -15,15 +15,15 @@ export default class ResultView extends View {
           .insertAdjacentHTML('afterend', `<div class=${CLASS.ARROW}>⬇️</div>`);
       }
     });
-  };
+  }
 
-  reset = () => {
+  reset() {
     this.element.innerHTML = '';
-  };
+  }
 
-  removeSpinners = () => {
+  removeSpinners() {
     this.element
       .querySelectorAll(`.${CLASS.LOADING}`)
       .forEach((element) => element.remove());
-  };
+  }
 }

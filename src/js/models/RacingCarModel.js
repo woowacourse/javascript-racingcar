@@ -14,16 +14,16 @@ export default class RacingCarModel {
     this.prevRaceResult = {};
   }
 
-  setCars = (carNames) => {
+  setCars(carNames) {
     const splitedCarNames = splitCarNames(carNames);
     checkValidCarNames(splitedCarNames);
     this.cars = splitedCarNames.map((name) => new Car(name));
-  };
+  }
 
-  setRacingCount = (count) => {
+  setRacingCount(count) {
     checkValidRacingCount(count);
     this.racingCount = count;
-  };
+  }
 
   getRacingCount = () => this.racingCount;
 
@@ -33,49 +33,51 @@ export default class RacingCarModel {
 
   getCars = () => this.cars;
 
-  initPrevRaceResult = () => {
+  initPrevRaceResult() {
     this.cars.forEach((car) => {
       this.prevRaceResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
     });
-  };
+  }
 
-  racePerSecond = () =>
-    new Promise((resolve) => {
+  racePerSecond() {
+    return new Promise((resolve) => {
       setTimeout(() => {
         this.playTurn();
         resolve();
       }, GAME_NUMBERS.DELAY_PER_RACE);
     });
+  }
 
-  playTurn = () => {
+  playTurn() {
     this.cars.forEach((car) => {
       this.race(car);
     });
-  };
+  }
 
-  getCurrentRacingResult = (prevRaceResult) =>
-    this.cars.reduce((acc, car) => {
+  getCurrentRacingResult(prevRaceResult) {
+    return this.cars.reduce((acc, car) => {
       acc[car.name] = car.forwardCount - prevRaceResult[car.name];
       return acc;
     }, {});
+  }
 
-  race = (car) => {
+  race(car) {
     if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
       this.prevRaceResult[car.name] += 1;
     }
-  };
+  }
 
-  pickWinners = () => {
+  pickWinners() {
     const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
     return this.cars
       .filter((car) => car.forwardCount === maxCount)
       .map((car) => car.name)
       .join(', ');
-  };
+  }
 
-  resetGameStatus = () => {
+  resetGameStatus() {
     this.cars = [];
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
-  };
+  }
 }

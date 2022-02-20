@@ -6,27 +6,27 @@ import {
 import View from './View.js';
 
 export default class WinnerView extends View {
-  setup = () => {
+  setup() {
     this.bindEvent();
     return this;
-  };
+  }
 
-  bindEvent = () => {
-    this.element.addEventListener('click', this.onClickReplayButton);
-  };
+  bindEvent() {
+    this.element.addEventListener('click', this.onClickReplayButton.bind(this));
+  }
 
   onClickReplayButton = (e) => {
     if (e.target.id !== ID.REPLAY_BUTTON) {
       return;
     }
-    this.emit(CUSTOM_EVENT.CLICK_REPLAY_BUTTON);
+    this.emit(CUSTOM_EVENT.CLICK_REPLAY_BUTTON, '');
   };
 
-  renderWinners = (winners) => {
+  renderWinners(winners) {
     this.insertTemplate(makeWinnersTemplate(winners));
-  };
+  }
 
-  renderReplayButton = () => {
+  renderReplayButton() {
     this.insertTemplate(makeReplayButtonTemplate());
-  };
+  }
 }

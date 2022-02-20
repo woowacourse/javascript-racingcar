@@ -3,18 +3,18 @@ export default class View {
     this.element = element;
   }
 
-  insertTemplate = (template) => {
+  insertTemplate(template) {
     this.element.insertAdjacentHTML('beforeend', template);
-  };
+  }
 
-  on = (event, handler) => {
+  on(event, handler) {
     this.element.addEventListener(event, handler);
     return this;
-  };
+  }
 
-  emit = (event, data) => {
+  emit(event, data) {
     const customEvent = new CustomEvent(event, { detail: data });
     this.element.dispatchEvent(customEvent);
     return this;
-  };
+  }
 }

@@ -19,32 +19,33 @@ export default class RacingCarController {
       $(`#${ID.CAR_NAMES_SECTION}`),
     )
       .setup()
-      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, (e) =>
-        this.submitCarNamesHandler(e.detail),
-      );
+      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, this.submitCarNamesHandler.bind(this));
     this.CountInputView = new CountInputView($(`#${ID.RACING_COUNT_SECTION}`))
       .setup()
-      .on(CUSTOM_EVENT.SUBMIT_RACING_COUNT, (e) =>
-        this.submitRacingCountHandler(e.detail),
+      .on(
+        CUSTOM_EVENT.SUBMIT_RACING_COUNT,
+        this.submitRacingCountHandler.bind(this),
       );
     this.ResultView = new ResultView($(`#${ID.RESULT}`));
     this.WinnerView = new WinnerView($(`#${ID.RESULT}`))
       .setup()
-      .on(CUSTOM_EVENT.CLICK_REPLAY_BUTTON, this.clickReplayButtonHandler);
+      .on(
+        CUSTOM_EVENT.CLICK_REPLAY_BUTTON,
+        this.clickReplayButtonHandler.bind(this),
+      );
   }
 
-  submitCarNamesHandler = (carNames) => {
+  submitCarNamesHandler({ detail: carNames }) {
     try {
       this.model.setCars(carNames);
       this.CarNamesInputView.disableCarNamesInput();
       this.CountInputView.enableCountInput();
     } catch (err) {
       alert(err);
-      this.CarNamesInputView.reset();
     }
-  };
+  }
 
-  submitRacingCountHandler = (racingCount) => {
+  submitRacingCountHandler({ detail: racingCount }) {
     try {
       this.model.setRacingCount(racingCount);
       this.playGame();
@@ -52,11 +53,10 @@ export default class RacingCarController {
       this.CountInputView.disableCountInput();
     } catch (err) {
       alert(err);
-      this.CountInputView.reset();
     }
-  };
+  }
 
-  playGame = async () => {
+  async playGame() {
     this.model.initPrevRaceResult();
     this.ResultView.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
@@ -67,9 +67,9 @@ export default class RacingCarController {
       this.ResultView.renderArrows(currentRaceResult);
     }
     this.endGame();
-  };
+  }
 
-  endGame = () => {
+  endGame() {
     this.ResultView.removeSpinners();
     const winners = this.model.pickWinners();
     this.WinnerView.renderWinners(winners);
@@ -77,19 +77,19 @@ export default class RacingCarController {
     setTimeout(() => {
       alert(WINNER_CONGRATULATION(winners));
     }, GAME_NUMBERS.DELAY_PER_ALERT_WINNER_MESSAGE);
-  };
+  }
 
-  clickReplayButtonHandler = () => {
+  clickReplayButtonHandler() {
     this.model.resetGameStatus();
     this.replayGame();
-  };
+  }
 
-  replayGame = () => {
+  replayGame() {
     [this.CarNamesInputView, this.CountInputView, this.ResultView].forEach(
       (view) => {
         view.reset();
       },
     );
     this.CarNamesInputView.enableCarNamesInput();
-  };
+  }
 }

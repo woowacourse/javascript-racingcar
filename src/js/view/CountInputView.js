@@ -3,30 +3,35 @@ import { disableElements, enableElements } from '../utils/ui.js';
 import View from './View.js';
 
 export default class CountInputView extends View {
-  setup = () => {
+  setup() {
     this.inputElement = this.element.querySelector(`#${ID.RACING_COUNT_INPUT}`);
-    this.buttonElement = this.element.querySelector(`#${ID.RACING_COUNT_BUTTON}`);
+    this.buttonElement = this.element.querySelector(
+      `#${ID.RACING_COUNT_BUTTON}`,
+    );
     this.bindEvent();
     return this;
-  };
+  }
 
-  bindEvent = () => {
-    this.buttonElement.addEventListener('click', this.onClickCountButton);
-  };
+  bindEvent() {
+    this.buttonElement.addEventListener(
+      'click',
+      this.onClickCountButton.bind(this),
+    );
+  }
 
-  onClickCountButton = () => {
+  onClickCountButton() {
     this.emit(CUSTOM_EVENT.SUBMIT_RACING_COUNT, this.inputElement.value);
-  };
+  }
 
-  reset = () => {
+  reset() {
     this.inputElement.value = '';
-  };
+  }
 
-  disableCountInput = () => {
+  disableCountInput() {
     disableElements(this.inputElement, this.buttonElement);
-  };
+  }
 
-  enableCountInput = () => {
+  enableCountInput() {
     enableElements(this.inputElement, this.buttonElement);
-  };
+  }
 }
