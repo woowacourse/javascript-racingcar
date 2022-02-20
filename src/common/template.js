@@ -1,9 +1,9 @@
-import { BUTTON, CAR, DIRECTIVE, HEADER, WINNER } from './constants.js';
+import { BUTTON, CAR, DIRECTIVE, WINNER } from './constants.js';
 import * as style from './style.js';
 
 export function headerTemplate() {
   return `
-    <h1 style="${style.header}">${HEADER.MAIN}</h1>
+    <h1 style="${style.header}">🏎️ 자동차 경주 게임🏁</h1>
   `;
 }
 

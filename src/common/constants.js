@@ -27,10 +27,6 @@ export const ERROR_MESSAGE = {
   RACING_COUNT: '양의 정수를 입력해 주세요!',
 };
 
-export const HEADER = {
-  MAIN: '🏎️ 자동차 경주 게임🏁',
-};
-
 export const RANDOM = {
   MIN_DIGIT: 0,
   MAX_DIGIT: 9,
