@@ -1,4 +1,4 @@
-import Car from './Car.js';
+import Car from './car.js';
 import { RAMDOM_MIN, RAMDOM_MAX } from '../constants/constant.js';
 
 const getWinners = cars => {
