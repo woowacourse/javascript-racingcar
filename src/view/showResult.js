@@ -1,6 +1,6 @@
 import { TIME, RESULT } from '../util/constants.js';
 import getWinners from '../model/getWinners.js';
-import sleep from '../util/sleep.js';
+import delay from '../util/delay.js';
 import { isNumber } from '../util/typeCheck.js';
 
 export function showWinners(winners) {
@@ -67,7 +67,7 @@ function showOneRowArrow(cars, wrappers, currentCount) {
 async function showArrow(cars, count, wrappers) {
   if (!isNumber(count)) return;
   for (let i = 0; i < count; i += 1) {
-    await sleep(TIME.SPINNER_DELAY);
+    await delay(TIME.SPINNER_DELAY);
     showOneRowArrow(cars, wrappers, i);
   }
 }
