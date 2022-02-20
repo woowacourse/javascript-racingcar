@@ -8,7 +8,7 @@ export default class Car {
     this.stepByRound = [];
   }
 
-  randomMove(i) {
+  randomMove() {
     const number = generateRandomNumber();
     if (number >= NUMBER_FOR_MOVE.MOVE_CRITERIA) {
       this.step += 1;
