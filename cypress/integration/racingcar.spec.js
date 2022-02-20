@@ -1,10 +1,5 @@
-import {
-  RULES,
-  DELAY,
-  SELECTOR,
-  ERROR_MESSAGES,
-  CONGRATULATION_MESSAGE,
-} from '../../src/constants/index.js';
+import { RULES, DELAY, SELECTOR, ERROR_MESSAGES } from '../../src/constants/index.js';
+import { getCongratulationTemplate } from '../../src/view/template.js';
 
 const URL = '../index.html';
 const VALID_CAR_NAMES = 'east,west,south,north,all';
@@ -192,9 +187,11 @@ describe('자동차 경주 우승자 축하 메세지 출력 테스트', () => {
     const totalDelayTime = VALID_RACING_COUNT * DELAY.RACE_TIME + DELAY.RESULT_TIME;
 
     //when
-    cy.wait(totalDelayTime).then(() => {
-      //then
-      expect(alertStub.getCall(0)).to.be.calledWith(CONGRATULATION_MESSAGE);
-    });
+    cy.wait(totalDelayTime);
+    cy.get(`#${SELECTOR.FINAL_WINNER_RESULT}`)
+      .invoke('text')
+      .then((winner) => {
+        expect(alertStub.getCall(0)).to.be.calledWith(getCongratulationTemplate(winner));
+      });
   });
 });

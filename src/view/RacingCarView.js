@@ -1,5 +1,9 @@
-import { CONGRATULATION_MESSAGE, DELAY, SELECTOR } from '../constants/index.js';
-import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template.js';
+import { DELAY, SELECTOR } from '../constants/index.js';
+import {
+  getCongratulationTemplate,
+  getRacingCarItemTemplate,
+  PROGRESS_TEMPLATE,
+} from './template.js';
 
 class RacingCarView {
   constructor() {
@@ -33,8 +37,10 @@ class RacingCarView {
   }
 
   showCongratulationMessage() {
+    const winner = this.$finalWinnerResult.innerText;
+
     setTimeout(() => {
-      alert(CONGRATULATION_MESSAGE);
+      alert(getCongratulationTemplate(winner));
     }, DELAY.RESULT_TIME);
   }
 
