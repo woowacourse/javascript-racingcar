@@ -95,8 +95,8 @@ describe('입력된 시도 횟수에 대한 유효성 검사가 실패하는 경
   });
 
   it('시도 횟수가 1미만이면, alert 메세지를 띄운다.', () => {
-    const invalidCarNames = 0;
-    alertTestOnSubmitRaciingCount(invalidCarNames, ERROR_MESSAGES.FALL_SHORT_OF_MIN_RACING_COUNT);
+    const invalidRacingCount = 0;
+    alertTestOnSubmitRaciingCount(invalidRacingCount, ERROR_MESSAGES.FALL_SHORT_OF_MIN_RACING_COUNT);
   });
 
   it('시도 횟수를 입력하는 필드의 배경색을 원래대로(하얀색) 돌려놔야한다', () => {
