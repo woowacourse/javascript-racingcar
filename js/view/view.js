@@ -34,7 +34,7 @@ export default class View {
   templateLane(i) {
     return `<div id="car-check">
               <div id="car-progress-result-${i}">
-              <div id="loader"></div>
+                <div id="loader"></div>
               </div>
             </div>`;
   }
