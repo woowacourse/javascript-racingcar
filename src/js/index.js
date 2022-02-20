@@ -3,6 +3,7 @@ import RacingGameView from './views/RacingGameView.js';
 import nameStringToArray from './utils/nameStringToArray.js';
 import { $ } from './utils/elementSeletor.js';
 import SELECTOR from './constants/selector.js';
+import NUMBER from './constants/number.js';
 import { isCarNameInputValid, isRaceTimeValid } from './racingGameHelper.js';
 import delay from './utils/delay.js';
 
@@ -96,7 +97,7 @@ class App {
   async handleWinnerDisplay() {
     this.RacingGame.setWinner();
     this.View.renderResult(this.RacingGame.winner);
-    await delay(2000);
+    await delay(NUMBER.ALERT_DISPLAY_TIME);
     alert('우승자는 ' + this.RacingGame.winner + '입니다. 축하합니다!');
     this.View.renderReplayButton();
   }
@@ -108,7 +109,7 @@ class App {
 
   async progressRound() {
     this.View.LoadingStart();
-    await delay(1000);
+    await delay(NUMBER.PROCESS_ROUND_TIME);
     this.View.LoadingEnd();
 
     this.RacingGame.processRound().forEach((name) =>
