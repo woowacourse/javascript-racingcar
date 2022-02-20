@@ -1,6 +1,6 @@
 import RacingGame from './RacingGame.js';
+import RacingResult from '../views/RacingResult.js';
 import { $ } from '../utils/dom.js';
-import { showNextStage } from '../views/racingResult.js';
 import { SELECTOR, ERROR_MESSAGE } from '../utils/constants.js';
 import {
   isValidCarNameBlank,
@@ -11,6 +11,7 @@ import {
 export default class RacingForm {
   constructor() {
     this.RacingGame = new RacingGame();
+    this.RacingResult = new RacingResult();
     this.bindEvents();
   }
 
@@ -38,7 +39,7 @@ export default class RacingForm {
       return;
     }
     this.RacingGame.generateCars(carNames);
-    showNextStage($(SELECTOR.RACING_COUNT_CONTAINER));
+    this.RacingResult.showNextStage($(SELECTOR.RACING_COUNT_CONTAINER));
   }
 
   handleRacingCountSubmit() {
@@ -48,7 +49,7 @@ export default class RacingForm {
       alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return;
     }
-    showNextStage($(SELECTOR.RACING_CONTAINER));
+    this.RacingResult.showNextStage($(SELECTOR.RACING_CONTAINER));
     this.RacingGame.startRacingGame(racingCount);
   }
 }

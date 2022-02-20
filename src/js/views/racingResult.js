@@ -1,49 +1,54 @@
 import { $, $$ } from '../utils/dom.js';
 import { showElement, hideElement } from '../utils/attribute.js';
 import { SELECTOR } from '../utils/constants.js';
+import { carPlayerTemplate, arrowTemplate } from './template.js';
 
-const arrowTemplate = '<div class="forward-icon mt-2">⬇️️</div>';
+export default class RacingResult {
+  constructor() {
+    this.initDom();
+  }
 
-const carPlayerTemplate = (name) => {
-  return `
-    <div>
-      <div class="car-player mr-2" data-car-name=${name}>${name}</div>
-      <div class="d-flex justify-content-center mt-4">
-        <div class="relative spinner-container">
-          <span class="material spinner"></span>
-        </div>
-      </div>
-    </div>
-  `;
-};
+  initDom() {
+    this.$namesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$countInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$countContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
+    this.$racingContainer = $(SELECTOR.RACING_CONTAINER);
+    this.$resultContainer = $(SELECTOR.RESULT_CONTAINER);
+    this.$racingStatus = $(SELECTOR.RACING_STATUS);
+    this.$finalWinner = $(SELECTOR.FINAL_WINNER);
+  }
 
-export const renderFinalWinner = (finalWinner) => {
-  $(SELECTOR.FINAL_WINNER).innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
-};
+  renderFinalWinner(finalWinner) {
+    this.$finalWinner.innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
+  }
 
-export const renderRacingStatus = (cars) => {
-  cars.forEach(({ name }) => {
-    $(SELECTOR.RACING_STATUS).insertAdjacentHTML('beforeend', carPlayerTemplate(name));
-  });
-};
+  renderRacingStatus(cars) {
+    cars.forEach(({ name }) => {
+      this.$racingStatus.insertAdjacentHTML('beforeend', carPlayerTemplate(name));
+    });
+  }
 
-export const renderMoveForward = (name) => {
-  $(`${SELECTOR.CAR_PLAYER}[data-car-name=${name}]`).insertAdjacentHTML('afterend', arrowTemplate);
-};
+  renderMoveForward(name) {
+    $(`${SELECTOR.CAR_PLAYER}[data-car-name=${name}]`).insertAdjacentHTML(
+      'afterend',
+      arrowTemplate,
+    );
+  }
 
-export const removeSpinner = () => {
-  $$(SELECTOR.SPINNER).forEach((element) => hideElement(element));
-};
+  removeSpinner() {
+    $$(SELECTOR.SPINNER).forEach((element) => hideElement(element));
+  }
 
-export const showNextStage = (target) => {
-  showElement(target);
-};
+  showNextStage(target) {
+    showElement(target);
+  }
 
-export const startUpScreen = () => {
-  $(SELECTOR.CAR_NAMES_INPUT).value = '';
-  $(SELECTOR.RACING_COUNT_INPUT).value = '';
-  $(SELECTOR.RACING_STATUS).innerText = '';
-  hideElement($(SELECTOR.RACING_COUNT_CONTAINER));
-  hideElement($(SELECTOR.RACING_CONTAINER));
-  hideElement($(SELECTOR.RESULT_CONTAINER));
-};
+  startUpScreen() {
+    this.$namesInput.value = '';
+    this.$countInput.value = '';
+    this.$racingStatus.innerText = '';
+    hideElement(this.$countContainer);
+    hideElement(this.$racingContainer);
+    hideElement(this.$resultContainer);
+  }
+}
