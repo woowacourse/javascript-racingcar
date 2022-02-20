@@ -36,7 +36,7 @@ const submitCarNamesAlert = () => {
   cy.get(SELECTOR.CAR_NAMES_SUBMIT)
     .click()
     .then(() => {
-      expect(alertStub).to.be.calledWith(EXCEPTIONS.INCORRECT_CAR_NAME);
+      expect(alertStub).to.be.calledWith(new Error(EXCEPTIONS.INCORRECT_CAR_NAME));
     });
 };
 
