@@ -2,7 +2,7 @@ import RacingCar from '../model/RacingCar.js';
 import RacingCarView from '../view/RacingCarView.js';
 
 import { DELAY, RULES, SELECTOR } from '../constants/index.js';
-import { convertToNumber, pickRandomNumber } from '../util/index.js';
+import { convertToNumber } from '../util/index.js';
 
 class RacingCarController {
   constructor() {
@@ -59,11 +59,8 @@ class RacingCarController {
     try {
       this.model.setRacingCount(racingCount);
       this.view.deactivateRacingCountForm();
-
-      // 수정한 부분
       const carNameList = this.model.getCarNameList();
       this.view.renderRacingCarList(carNameList);
-
       this.playRacingGame();
     } catch (error) {
       this.view.resetRacingCountInput();
@@ -88,16 +85,9 @@ class RacingCarController {
     }, DELAY.RACE_TIME);
   }
 
-  // TODO: 수정 필요
   playRace() {
-    this.model.getCarList().forEach((car, index) => {
-      const randomNumber = pickRandomNumber(RULES.RANDOM_MIN_NUMBER, RULES.RANDOM_MAX_NUMBER);
-
-      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
-        car.moveForward();
-        this.view.renderRacingCarProgress(index);
-      }
-    });
+    const movedRacingCarList = this.model.tryMoveRacingCarList();
+    this.view.renderRacingCarProgress(movedRacingCarList);
   }
 
   endRacingGame() {

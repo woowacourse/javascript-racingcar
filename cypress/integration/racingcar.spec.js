@@ -1,9 +1,9 @@
 import {
   RULES,
   DELAY,
-  CONGRATS_MESSAGE,
   SELECTOR,
   ERROR_MESSAGES,
+  CONGRATULATION_MESSAGE,
 } from '../../src/constants/index.js';
 
 const URL = '../index.html';
@@ -194,7 +194,7 @@ describe('자동차 경주 우승자 축하 메세지 출력 테스트', () => {
     //when
     cy.wait(totalDelayTime).then(() => {
       //then
-      expect(alertStub.getCall(0)).to.be.calledWith(CONGRATS_MESSAGE);
+      expect(alertStub.getCall(0)).to.be.calledWith(CONGRATULATION_MESSAGE);
     });
   });
 });

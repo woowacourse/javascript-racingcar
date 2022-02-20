@@ -1,4 +1,4 @@
-import { CONGRATS_MESSAGE, DELAY, SELECTOR } from '../constants/index.js';
+import { CONGRATULATION_MESSAGE, DELAY, SELECTOR } from '../constants/index.js';
 import { getRacingCarItemTemplate, PROGRESS_TEMPLATE } from './template.js';
 
 class RacingCarView {
@@ -34,7 +34,7 @@ class RacingCarView {
 
   showCongratulationMessage() {
     setTimeout(() => {
-      alert(CONGRATS_MESSAGE);
+      alert(CONGRATULATION_MESSAGE);
     }, DELAY.RESULT_TIME);
   }
 
@@ -78,9 +78,12 @@ class RacingCarView {
     this.$racingCarList.insertAdjacentHTML('afterbegin', racingCarListTemplate);
   }
 
-  renderRacingCarProgress(index) {
+  renderRacingCarProgress(movedCarList) {
     this.$racingCarProgress = document.getElementsByClassName(SELECTOR.RACING_CAR_PROGRESS);
-    this.$racingCarProgress[index].insertAdjacentHTML('afterbegin', PROGRESS_TEMPLATE);
+
+    movedCarList.forEach((movedCar) => {
+      this.$racingCarProgress[movedCar].insertAdjacentHTML('afterbegin', PROGRESS_TEMPLATE);
+    });
   }
 
   renderFinalWinnerResult(finalWinner) {
