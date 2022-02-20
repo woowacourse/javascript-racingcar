@@ -77,18 +77,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.checkNamesError(INPUT_ERROR.DUPLICATED);
     });
 
-    it('2-3. 자동차 이름 안에 공백이 포함되어 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      // given
-      const invalidInput = 'm un';
-
-      // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
-
-      // then
-      cy.checkNamesError(INPUT_ERROR.CONTAINED_BLANK);
-    });
-
-    it('2-4. 자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
+    it('2-3. 자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
       // given
       const invalidInput = '     ';
 
@@ -96,7 +85,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.checkNamesError(INPUT_ERROR.NULL);
+      cy.checkNamesError(INPUT_ERROR.INVALID_LENGTH);
     });
   });
 

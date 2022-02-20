@@ -1,7 +1,11 @@
-import { INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
+import { CAR, INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
 
 const isValidLength = (names) => {
-  return names.every((name) => name.length <= 5);
+  return names.every(
+    (name) =>
+      name.length <= CAR.MAXIMUM_NAME_LENGTH &&
+      name.length >= CAR.MININUM_NAME_LENGTH
+  );
 };
 
 const isDuplicated = (names) => {
@@ -13,10 +17,6 @@ const isContainedBlank = (names) => {
   return names.some((name) => name.includes(' '));
 };
 
-const isContainedNull = (names) => {
-  return names.some((name) => name === '');
-};
-
 export const isInRange = (number) => {
   return number > 0 && number <= RACINGGAME.MAX_RACING_COUNT;
 };
@@ -26,9 +26,6 @@ const isBlank = (number) => {
 };
 
 export const validateCarNames = (names) => {
-  if (isContainedNull(names)) {
-    throw new Error(INPUT_ERROR.NULL);
-  }
   if (!isValidLength(names)) {
     throw new Error(INPUT_ERROR.INVALID_LENGTH);
   }

@@ -1,7 +1,6 @@
 export const INPUT_ERROR = {
-  INVALID_LENGTH: '자동차 이름은 5자 이하만 가능합니다.',
+  INVALID_LENGTH: '자동차 이름은 1자 이상 5자 이하만 가능합니다.',
   DUPLICATED: '자동차 이름이 중복되어서는 안됩니다.',
-  CONTAINED_BLANK: '자동차 이름에 공백이 포함되어서는 안됩니다.',
   NULL: '자동차 이름이 빈 문자열이 되어서는 안됩니다.',
   COUNT_NOT_IN_RANGE: '횟수는 1이상 20이하여야 합니다.',
   COUNT_NOT_NATURAL: '횟수는 자연수가 되어야 합니다.',
@@ -40,7 +39,9 @@ export const CAR = {
   RANDOM_MAXIMUM_NUMBER: 9,
   MOVE_NUMBER: 4,
   INIT_POSITION: 0,
-  CAR_MOVE_DISTANCE_PER_PROCESS: 1
+  CAR_MOVE_DISTANCE_PER_PROCESS: 1,
+  MININUM_NAME_LENGTH: 1,
+  MAXIMUM_NAME_LENGTH: 5
 };
 
 export const RACINGGAME = {
