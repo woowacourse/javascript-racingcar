@@ -111,7 +111,7 @@ export default class View {
     if (arrow) {
       displayDOM([arrow]);
       await this.animateSpinning(arrow);
-      this.insetArrowText(arrow);
+      this.insertArrowText(arrow);
     }
   }
 
@@ -135,7 +135,7 @@ export default class View {
     });
   }
 
-  insetArrowText(arrow) {
+  insertArrowText(arrow) {
     arrow.innerText = ARROW_TEXT;
   }
 }
