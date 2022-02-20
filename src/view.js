@@ -107,29 +107,35 @@ export default class View {
     return arrows.find((arrow) => arrow.classList.contains(CLASS_NAME.DISPLAY_NONE));
   }
 
-  showArrow(arrow) {
+  async showArrow(arrow) {
     if (arrow) {
       displayDOM([arrow]);
-      this.animateSpinningAndShowArrow(arrow);
+      await this.animateSpinning(arrow);
+      this.insetArrowText(arrow);
     }
   }
 
-  animateSpinningAndShowArrow(arrow) {
-    const startTime = new Date().getTime();
-    let angle = 0;
-    arrow.classList.add(CLASS_NAME.SPINNING_BACKGROUND);
-    const callback = () => {
-      const currentTime = new Date().getTime();
-      if (currentTime - NUMBER.ARROW_INTERVAL_TIME > startTime) {
-        arrow.style.transform = ``;
-        arrow.classList.remove(CLASS_NAME.SPINNING_BACKGROUND);
-        arrow.innerText = ARROW_TEXT;
-        return;
-      }
-      angle += 10;
-      arrow.style.transform = `rotate(${angle}deg)`;
+  animateSpinning(arrow) {
+    return new Promise((resolve) => {
+      const startTime = new Date().getTime();
+      let angle = 0;
+      arrow.classList.add(CLASS_NAME.SPINNING_BACKGROUND);
+      const callback = () => {
+        const currentTime = new Date().getTime();
+        if (currentTime - NUMBER.ARROW_INTERVAL_TIME > startTime) {
+          arrow.style.transform = ``;
+          arrow.classList.remove(CLASS_NAME.SPINNING_BACKGROUND);
+          return resolve();
+        }
+        angle += 10;
+        arrow.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(callback);
+      };
       requestAnimationFrame(callback);
-    };
-    requestAnimationFrame(callback);
+    });
+  }
+
+  insetArrowText(arrow) {
+    arrow.innerText = ARROW_TEXT;
   }
 }
