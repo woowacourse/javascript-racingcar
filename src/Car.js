@@ -1,5 +1,5 @@
 import { generateRandomInRange } from './util.js';
-import { CAR_GO_FORWARD_RULE } from './constant.js';
+import { TRIAL_BOUNDARIES, FORWARD_MINIMUM } from './constant.js';
 
 export default class Car {
     constructor(name) {
@@ -8,10 +8,7 @@ export default class Car {
     }
 
     tryForward() {
-        if (
-            generateRandomInRange(CAR_GO_FORWARD_RULE.MIN, CAR_GO_FORWARD_RULE.MAX) >=
-            CAR_GO_FORWARD_RULE.ENOUGH
-        ) {
+        if (generateRandomInRange(TRIAL_BOUNDARIES.MIN, TRIAL_BOUNDARIES.MAX) >= FORWARD_MINIMUM) {
             this.forward();
             return true;
         }
