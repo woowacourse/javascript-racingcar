@@ -40,7 +40,7 @@ describe('최종 우승자를 검증합니다.', () => {
     const alertStub = cy.stub();
     cy.on(SELECTOR.WINDOW_ALERT, alertStub);
     cy.get(SELECTOR.CAR_RACING_COUNT_BUTTON).click();
-    cy.wait(3000).then(() => {
+    cy.wait(4000).then(() => {
       expect(alertStub).to.be.calledWith(RESULT.RACE_RESULT);
     });
   });
