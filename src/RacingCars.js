@@ -1,33 +1,37 @@
 import Car from './Car.js';
 
 export default class RacingCars {
+    #cars;
+
     constructor() {
-        this.cars = [];
+        this.#cars = [];
     }
 
+    get cars() { return this.#cars; }
+
     reset() {
-        this.cars.length = 0;
+        this.#cars.length = 0;
     }
 
     initialize(carNames) {
-        this.cars = carNames.map((carName) => new Car(carName));
+        this.#cars = carNames.map((carName) => new Car(carName));
     }
 
     playTurn() {
-        this.cars.forEach((car) => car.playTurn());
+        this.#cars.forEach((car) => car.playTurn());
     }
 
     getMaxStep() {
-        return this.cars.reduce((acc, car) => Math.max(acc, car.step), 0);
+        return this.#cars.reduce((acc, car) => Math.max(acc, car.step), 0);
     }
 
     getWinners() {
         const maxStep = this.getMaxStep();
-        return this.cars.filter((car) => car.step === maxStep).map((winner) => winner.name);
+        return this.#cars.filter((car) => car.step === maxStep).map((winner) => winner.name);
     }
 
     resetSteps() {
-        this.cars.forEach((car) => {
+        this.#cars.forEach((car) => {
             car.resetStep();
         });
     }
