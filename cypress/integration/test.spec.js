@@ -1,5 +1,6 @@
 /* eslint-disable func-names */
 import {
+  CAR_MOVE_DELAY,
   CAR_NAMES_INPUT_PLACEHOLDER,
   CELEBRATE_MESSAGE,
   ERROR_MESSAGES,
@@ -123,7 +124,7 @@ describe('스크린에서 경기가 진행중인 경우', () => {
 
   it('자동차의 이동거리가 화면에 표시되야한다', function () {
     for (let i = 0; i < DEFAULT_RACING_COUNT; i += 1) {
-      cy.tick(1000);
+      cy.tick(CAR_MOVE_DELAY);
       cy.get(testid(TEST_IDS.CAR_LANE)).each(($carLane) => {
         const $distance = $carLane.find(testid(TEST_IDS.DISTANCE));
         const distance = parseInt($distance.attr('data-current-distance'), 10);

@@ -1,4 +1,4 @@
-import { CELEBRATE_MESSAGE } from '../constants.js';
+import { CAR_MOVE_DELAY, CELEBRATE_MESSAGE } from '../constants.js';
 import setIntervalX from '../utils/timer.js';
 import RacingPrepareForm from '../views/racing-prepare-form.view.js';
 import RacingResultView from '../views/racing-result.view.js';
@@ -76,7 +76,7 @@ class RacingCarGameController {
     cars.forEach((car, i) => {
       setIntervalX(
         this.model.getRacingCount(),
-        1000,
+        CAR_MOVE_DELAY,
         before.bind(null, i, car),
         after.bind(null, i, car),
         i === cars.length - 1 ? end : false // 마지막에만 end를 호출한다

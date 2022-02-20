@@ -22,6 +22,7 @@ export const MAX_RACING_COUNT = 100;
 export const MIN_RACING_COUNT = 1;
 export const MIN_CONDITION_OF_CAR_MOVE = 4;
 export const RANDOM_RANGE = [0, 9];
+export const CAR_MOVE_DELAY = 1000;
 
 export const ERROR_MESSAGES = {
   EMPTY_CAR_NAME: `자동차 이름을 입력해 주세요`,
