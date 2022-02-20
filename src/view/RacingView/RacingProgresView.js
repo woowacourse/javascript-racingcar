@@ -2,14 +2,16 @@ import { COMMENT, SELECTOR } from '../../constants/constants.js';
 import DomUtils from '../../utils/dom-utils.js';
 
 export default class RacingProgressView {
+  #$racingProgressNode;
+
   constructor() {
     this.createContainer();
   }
 
   createContainer() {
-    this.$racingProgressNode = document.createElement('section');
-    this.$racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
-    this.$racingProgressNode.ariaLabel = SELECTOR.ID.RACING_PROGRESS_TITLE;
+    this.#$racingProgressNode = document.createElement('section');
+    this.#$racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
+    this.#$racingProgressNode.ariaLabel = SELECTOR.ID.RACING_PROGRESS_TITLE;
     this.insertTitle();
   }
 
@@ -18,12 +20,12 @@ export default class RacingProgressView {
     $racingProgressTitle.textContent = COMMENT.RACING_PROGRESS_TITLE;
     $racingProgressTitle.hidden = true;
     $racingProgressTitle.id = SELECTOR.ID.RACING_PROGRESS_TITLE;
-    this.$racingProgressNode.appendChild($racingProgressTitle);
+    this.#$racingProgressNode.appendChild($racingProgressTitle);
   }
 
   renderProgress(names) {
     [
-      ...this.$racingProgressNode.querySelectorAll(
+      ...this.#$racingProgressNode.querySelectorAll(
         `.${SELECTOR.CLASS.CAR_PROGRESS_CONTAINER}`
       )
     ]
@@ -40,19 +42,21 @@ export default class RacingProgressView {
 
   initCarList(names, round) {
     names.forEach((name) => {
-      this.$racingProgressNode.appendChild(
+      this.#$racingProgressNode.appendChild(
         DomUtils.createCarProgressElementWithName(name, round)
       );
     });
   }
 
   removeChilds() {
-    while (this.$racingProgressNode.firstChild) {
-      this.$racingProgressNode.removeChild(this.$racingProgressNode.firstChild);
+    while (this.#$racingProgressNode.firstChild) {
+      this.#$racingProgressNode.removeChild(
+        this.#$racingProgressNode.firstChild
+      );
     }
   }
 
   get node() {
-    return this.$racingProgressNode;
+    return this.#$racingProgressNode;
   }
 }
