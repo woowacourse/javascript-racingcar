@@ -5,8 +5,8 @@ import { setEnabledAllForms } from './setFormState.js';
 const resetView = () => {
   $('.name-input').value = '';
   $('.count-input').value = '';
-  $('.race-container').innerHTML = '';
-  $('.winner-container').innerHTML = '';
+  $('.race-container').replaceChildren();
+  $('.winner-container').replaceChildren();
   hideElement($('.count-form'));
   hideElement($('.restart'));
   setEnabledAllForms();

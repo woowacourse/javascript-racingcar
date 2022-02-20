@@ -29,8 +29,8 @@ main {
   align-items: center;
 }
 
-#name-input,
-#count-input {
+.name-input,
+.count-input {
   flex: 1;
   height: 36px;
   border: 1px solid rgba(0, 0, 0, 0.12);
