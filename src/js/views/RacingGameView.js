@@ -2,7 +2,7 @@ import { $, $$ } from '../utils/element-tools.js';
 import { SELECTOR } from '../constants/selector.js';
 import { isSameDistance } from '../utils/RacingGame/validator.js';
 import { templateProgress } from '../template/Share.js';
-import { templateCarStateConatiner, templateCarAdvance } from '../template/RacingGame.js';
+import { templateCarStateContainer, templateCarAdvance } from '../template/RacingGame.js';
 
 export default class RacingGameView {
   #progressList = [];
@@ -63,7 +63,7 @@ export default class RacingGameView {
   }
 
   renderCarContainer(carList) {
-    const $$carList = templateCarStateConatiner(carList);
+    const $$carList = templateCarStateContainer(carList);
 
     const $raceContainer = $(SELECTOR.RACE_CONTAINER);
     $raceContainer.innerHTML = '';
@@ -98,10 +98,24 @@ export default class RacingGameView {
     $(SELECTOR.RETRY_BUTTON).classList.remove('hidden');
   }
 
-  bindCarNameInput(handler) {
+  static bindCarNameInput(handler) {
     $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (event) => {
       event.preventDefault();
       handler({ event, carNameList: $(SELECTOR.CAR_NAME_INPUT).value });
+    });
+  }
+
+  static bindRaceTimeInput(handler) {
+    $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', (event) => {
+      event.preventDefault();
+      handler({ event, raceTimeInput: $(SELECTOR.RACE_TIME_INPUT).value });
+    });
+  }
+
+  static bindGameRetry(handler) {
+    $(SELECTOR.RETRY_BUTTON).addEventListener('click', (event) => {
+      event.preventDefault();
+      handler({ event });
     });
   }
 }

@@ -1,10 +1,8 @@
 import RacingGameModel from '../models/RacingGameModel.js';
 import RacingGameView from '../views/RacingGameView.js';
 
-import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
-import { $ } from '../utils/element-tools.js';
 import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
 import { setDelay, runAnimation } from '../utils/event-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
@@ -26,15 +24,14 @@ export default class RacingGameController {
   }
 
   bindDefaultEvent() {
-    this.#racingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
-
-    $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', this.handleRaceTimeInput.bind(this));
-    $(SELECTOR.RETRY_BUTTON).addEventListener('click', this.handleGameRetry.bind(this));
+    RacingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
+    RacingGameView.bindRaceTimeInput(this.handleRaceTimeInput.bind(this));
+    RacingGameView.bindGameRetry(this.handleGameRetry.bind(this));
   }
 
   handleCarNameInput({ event, carNameList }) {
     if (!isCarNameValid(carNameList)) {
-      return false;
+      return;
     }
 
     this.#racingGameView.setDisableForm(event.target);
@@ -43,23 +40,18 @@ export default class RacingGameController {
     this.tryRacingGameStart();
   }
 
-  handleRaceTimeInput(event) {
-    event.preventDefault();
-
-    const raceTimeValue = $(SELECTOR.RACE_TIME_INPUT).value;
-    if (!isRaceTimeValid(raceTimeValue)) {
-      return false;
+  handleRaceTimeInput({ event, raceTimeInput }) {
+    if (!isRaceTimeValid(raceTimeInput)) {
+      return;
     }
 
     this.#racingGameView.setDisableForm(event.target);
-    this.#racingGameModel.round = raceTimeValue;
+    this.#racingGameModel.round = raceTimeInput;
 
     this.tryRacingGameStart();
   }
 
-  handleGameRetry(event) {
-    event.preventDefault();
-
+  handleGameRetry() {
     this.#racingGameModel.init();
     this.#racingGameView.init();
   }
@@ -67,7 +59,7 @@ export default class RacingGameController {
   tryRacingGameStart() {
     const { round, carList } = this.#racingGameModel;
     if (isGameSetup(round, carList.length) === false) {
-      return false;
+      return;
     }
 
     this.startRacingGame();

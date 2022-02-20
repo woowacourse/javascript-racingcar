@@ -1,7 +1,7 @@
 import { DOM_NAME } from '../constants/selector.js';
 import { createElement } from '../utils/element-tools.js';
 
-const templateCarStateConatiner = (carList) =>
+const templateCarStateContainer = (carList) =>
   carList.map((instance, index) => {
     const $carStateContainer = createElement('DIV', {
       className: DOM_NAME.CLASS.RACE_CAR_STATE,
@@ -24,4 +24,4 @@ const templateCarAdvance = () =>
     innerText: '⬇️️',
   });
 
-export { templateCarStateConatiner, templateCarAdvance };
+export { templateCarStateContainer, templateCarAdvance };
