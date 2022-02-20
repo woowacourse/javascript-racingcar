@@ -8,5 +8,5 @@ const removeSpinner = () => {
 
 export const setWinnerText = winners => {
   removeSpinner();
-  racingWinnerText.innerHTML = winners.join(", ");
+  racingWinnerText.innerText = winners.join(", ");
 };
