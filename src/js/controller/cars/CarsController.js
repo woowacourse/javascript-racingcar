@@ -1,6 +1,6 @@
 import Car from "../../model/Car.js";
 import Cars from "../../model/Cars.js";
-import { isValidCarsName, isValidLengthCarName } from "./checkFunctions.js";
+import { isValidLengthCarName } from "./checkFunctions.js";
 import { SEPARATOR, EXCEPTIONS } from "../constants.js";
 import { carNamesArea, carNamesInput } from "../../util/elements.js";
 import {
@@ -14,40 +14,31 @@ export default class CarsController {
     this.addCarNameSubmitEvent();
   }
 
-  makeCars(carNamesInputValue) {
-    const { INCORRECT_CAR_NAME } = EXCEPTIONS;
-
-    if (!carNamesInputValue) {
-      return alert(INCORRECT_CAR_NAME);
-    }
-
-    const carNameArr = carNamesInputValue.split(SEPARATOR).map(carName => carName.trim());
-    
-    if (!isValidCarsName(carNameArr)) {
-      return alert(INCORRECT_CAR_NAME);
-    }
-
-    const cars = [];
-
-    for (let i = 0; i < carNameArr.length; i++) {
-      const car = new Car(carNameArr[i]);
-      if (!isValidLengthCarName(carNameArr[i])) {
-        return alert(INCORRECT_CAR_NAME);
+  makeCars(carNamesInputValue = '') {
+    const carNameArr = carNamesInputValue.split(SEPARATOR);
+    const cars = carNameArr.reduce((res, carName) => {
+      const trimmedName = carName.trim();
+      if (!isValidLengthCarName(trimmedName)) throw new Error(EXCEPTIONS.INCORRECT_CAR_NAME);
+      if (res.findIndex(({ name }) => name === trimmedName) === -1) {
+        res.push(new Car(trimmedName));
       }
-      cars.push(car);
+      return res;
+    }, []);
+    if (cars.length < 2 || carNameArr.length !== cars.length) {
+      throw new Error(EXCEPTIONS.INCORRECT_CAR_NAME);
     }
-
     this.list.setCars(cars);
-    return true;
   }
 
   submitFunc = e => {
     e.preventDefault();
-    const cars = this.makeCars(carNamesInput.value);
-    if (cars) {
-      lockCarNames(true);
-      toggleHiddenRacingCountArea();
+    try {
+      this.makeCars(carNamesInput.value);
+    } catch (exception) {
+      return alert(exception);
     }
+    lockCarNames(true);
+    toggleHiddenRacingCountArea();
   }
 
   addCarNameSubmitEvent() {
