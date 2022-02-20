@@ -14,7 +14,7 @@ fieldset {
 .form-control {
   display: block;
   width: 100%;
-  padding: 8px 8px 4px 8px;
+  padding: 8px 8px 4px;
   border: 1px solid var(--gray-900);
   border-radius: 4px;
   font-weight: normal;
