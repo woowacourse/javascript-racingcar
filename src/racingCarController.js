@@ -87,7 +87,7 @@ export default class RacingCarController {
         if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
       });
       this.view.showSpinners();
-    }, 1000);
+    }, DELAY.RACE_INTERVAL);
   }
 
   endRace() {
