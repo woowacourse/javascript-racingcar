@@ -23,6 +23,19 @@ fieldset {
   letter-spacing: 0.5px;
 }
 
+.form-control.submitted {
+  background-color: var(--gray-800);
+}
+
+.form-control:disabled {
+  background-color: var(--gray-800);
+  cursor: not-allowed;
+}
+
+.form-control:focus {
+  background-color: white !important;
+}
+
 ::placeholder {
   color: var(--gray-900);
   opacity: 1; /* Firefox */

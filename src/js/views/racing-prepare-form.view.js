@@ -1,4 +1,4 @@
-import { CAR_NAMES_INPUT_PLACEHOLDER, RACING_COUNT_INPUT_PLACEHOLDER, SELECTORS } from '../constants.js';
+import { SELECTORS, SUBMITTED_CLASS_NAME } from '../constants.js';
 import { querySelector } from '../utils/dom.js';
 import { hideElement, showElement } from '../utils/visibility.js';
 
@@ -39,22 +39,52 @@ class RacingPrepareForm {
     return this.$racingCountInput.value;
   }
 
-  resetCarNamesInput(placeholder = '') {
-    this.$carNamesInput.value = '';
-    this.$carNamesInput.placeholder = placeholder;
-  }
-
-  resetRacingCountInput(placeholder = '') {
-    this.$racingCountInput.value = '';
-    this.$racingCountInput.placeholder = placeholder;
-  }
-
   showRacingCountFieldset() {
     showElement(this.$racingCountFieldset);
   }
 
   hideRacingCountFieldset() {
     hideElement(this.$racingCountFieldset);
+  }
+
+  markAsSubmitted($input) {
+    if ($input.classList.contains(SUBMITTED_CLASS_NAME)) {
+      return;
+    }
+    $input.classList.add(SUBMITTED_CLASS_NAME);
+  }
+
+  markCarNamesInputAsSubmitted() {
+    this.markAsSubmitted(this.$carNamesInput);
+  }
+
+  markRacingCountInputAsSubmitted() {
+    this.markAsSubmitted(this.$racingCountInput);
+  }
+
+  removeSubmittedMark($input) {
+    if (!$input.classList.contains(SUBMITTED_CLASS_NAME)) {
+      return;
+    }
+    $input.classList.remove(SUBMITTED_CLASS_NAME);
+  }
+
+  removeSubmittedMarkInCarNamesInput() {
+    this.removeSubmittedMark(this.$carNamesInput);
+  }
+
+  removeSubmittedMarkInRacingCountInput() {
+    this.removeSubmittedMark(this.$racingCountInput);
+  }
+
+  resetCarNamesInput() {
+    this.$carNamesInput.value = '';
+    this.removeSubmittedMarkInCarNamesInput();
+  }
+
+  resetRacingCountInput() {
+    this.$racingCountInput.value = '';
+    this.removeSubmittedMarkInRacingCountInput();
   }
 
   disableSubmit() {
@@ -73,8 +103,8 @@ class RacingPrepareForm {
 
   reset() {
     this.hideRacingCountFieldset();
-    this.resetCarNamesInput(CAR_NAMES_INPUT_PLACEHOLDER);
-    this.resetRacingCountInput(RACING_COUNT_INPUT_PLACEHOLDER);
+    this.resetCarNamesInput();
+    this.resetRacingCountInput();
     this.enableSubmit();
   }
 }

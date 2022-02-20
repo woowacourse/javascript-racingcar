@@ -18,5 +18,6 @@ module.exports = {
     'import/extensions': ['error', 'always'], // import할때 확장자명을 꼭 써줘야한다
     'max-depth': ['error', 2], // code block의 depth를 2로 제한한다
     'no-unused-expressions': ['error', { allowShortCircuit: true }],
+    'class-methods-use-this': 'off',
   },
 };

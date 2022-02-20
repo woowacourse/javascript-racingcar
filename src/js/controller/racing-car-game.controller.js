@@ -38,9 +38,10 @@ class RacingCarGameController {
     const carNames = this.form.getCarNames();
     try {
       this.model.updateCars(carNames);
-      this.form.resetCarNamesInput(this.model.getCarNames());
       this.form.showRacingCountFieldset();
+      this.form.markCarNamesInputAsSubmitted();
     } catch (e) {
+      this.form.removeSubmittedMarkInCarNamesInput();
       consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
     }
   }
@@ -49,9 +50,10 @@ class RacingCarGameController {
     const racingCount = this.form.getRacingCount();
     try {
       this.model.updateRacingCount(racingCount);
-      this.form.resetRacingCountInput(this.model.getRacingCount());
+      this.form.markRacingCountInputAsSubmitted();
       this.startGame();
     } catch (e) {
+      this.form.removeSubmittedMarkInRacingCountInput();
       consoleErrorWithConditionalAlert(e, VALIDATION_ERROR_NAME);
     }
   }
