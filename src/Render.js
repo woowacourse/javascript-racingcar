@@ -6,6 +6,9 @@ const render = {
     showTryForm() {
         $('#app').classList.add(SCREEN_CMD.SHOW_TRT);
     },
+    hideTryForm() {
+        $('#app').classList.remove(SCREEN_CMD.SHOW_TRT);
+    },
     showResultArea() {
         $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
     },
@@ -34,6 +37,9 @@ const render = {
     },
     renderWinners(winners) {
         $('#winners').innerText = winners.join(',');
+    },
+    isRunningGame() {
+        return $('#app').classList.contains(SCREEN_CMD.SHOW_RESULT);
     },
 };
 

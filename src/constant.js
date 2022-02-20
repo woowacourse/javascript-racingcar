@@ -11,6 +11,7 @@ const ERROR_MESSAGE = {
     EXCEED_CAR_NAME: '자동차 이름은 5자 이하입니다.',
     NATURAL_CAR_NAME: '자연수를 입력해주세요.',
     POSITIVE_CAR_NAME: '양수를 입력해주세요.',
+    FIRST_ENROLL_CAR: '자동차를 먼저 등록해주세요.',
 };
 
 const SUCCESS_MESSAGE = '축하드립니다. 자동차 경주가 무사히 끝났습니다!';

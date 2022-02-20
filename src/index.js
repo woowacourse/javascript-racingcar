@@ -1,7 +1,13 @@
-import { onSubmitCarNames, onSubmitTryCount, onClickRestartButton } from './eventListener.js';
+import {
+    onSubmitCarNames,
+    onKeyUpCarNamesInput,
+    onSubmitTryCount,
+    onClickRestartButton,
+} from './eventListener.js';
 import { $, onSubmitAfterPreventDefault } from './util.js';
 
 $('#input-form-name').addEventListener('submit', onSubmitAfterPreventDefault(onSubmitCarNames));
+$('#car-name-input').addEventListener('keyup', onKeyUpCarNamesInput);
 
 $('#input-form-try').addEventListener('submit', onSubmitAfterPreventDefault(onSubmitTryCount));
 

@@ -1,4 +1,5 @@
 import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant.js';
+import racingCars from './racingCars.js';
 
 const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
 
@@ -17,6 +18,7 @@ const isValidCarNames = (carNames) => {
 const isPositiveNumber = (number) => number > 0;
 
 const isValidTryCount = (tryCount) => {
+    if (racingCars.isEmpty()) throw new Error(ERROR_MESSAGE.FIRST_ENROLL_CAR);
     if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE.NATURAL_CAR_NAME);
     if (!isPositiveNumber(tryCount)) throw new Error(ERROR_MESSAGE.POSITIVE_CAR_NAME);
 

@@ -5,6 +5,9 @@ const racingCars = {
     reset() {
         this.cars.length = 0;
     },
+    isEmpty() {
+        return this.cars.length === 0;
+    },
     adds(carNames) {
         carNames.forEach((carName) => {
             this.cars.push(new Car(carName));

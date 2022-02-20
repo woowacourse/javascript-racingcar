@@ -4,14 +4,17 @@ import userInput from './userInput.js';
 import RunGame from './RunGame.js';
 import { isValidCarNames, isValidTryCount } from './validation.js';
 
+const runGame = new RunGame();
+
 const actionSubmitCarNames = (carNames) => {
-    racingCars.reset();
     racingCars.adds(carNames);
     render.showTryForm();
     userInput.focusTryCountInput();
 };
 
 const onSubmitCarNames = () => {
+    if (runGame.isRunning()) return;
+
     const carNames = userInput.getCarNames();
 
     try {
@@ -24,12 +27,19 @@ const onSubmitCarNames = () => {
     actionSubmitCarNames(carNames);
 };
 
+const onKeyUpCarNamesInput = () => {
+    racingCars.reset();
+    render.hideTryForm();
+};
+
 const actionSubmitTryCount = (tryCount) => {
     racingCars.resetSteps();
-    new RunGame(tryCount).start();
+    runGame.setTryCount(tryCount).start();
 };
 
 const onSubmitTryCount = () => {
+    if (runGame.isRunning()) return;
+
     const tryCount = userInput.getTryCount();
 
     try {
@@ -49,4 +59,4 @@ const onClickRestartButton = () => {
     userInput.focusCarNameInput();
 };
 
-export { onSubmitCarNames, onSubmitTryCount, onClickRestartButton };
+export { onSubmitCarNames, onKeyUpCarNamesInput, onSubmitTryCount, onClickRestartButton };
