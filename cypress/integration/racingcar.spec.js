@@ -1,22 +1,8 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-expressions */
-import { ID, CLASS, ERROR_MESSAGES, RULES } from '../../src/constants/index';
+import { ID, CLASS, ERROR_MESSAGES, RULES, TEST } from '../../src/constants/index';
 
 const VISIT_URL = 'http://localhost:5500/';
-const VALID_CAR_NAMES = 'east, west, south, north, all';
-const VALID_RACING_COUNT = 10;
-const CAR_NAMES_LENGTH = 5;
-const CONGRATUATION_WAITING_TIME = 2000;
-
-Cypress.Commands.add('submitCarName', () => {
-  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(VALID_CAR_NAMES);
-  cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
-});
-
-Cypress.Commands.add('submitRacingCount', () => {
-  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(VALID_RACING_COUNT);
-  cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
-});
 
 describe('자동차 이름 입력 기능 테스트', () => {
   beforeEach(() => {
@@ -24,7 +10,7 @@ describe('자동차 이름 입력 기능 테스트', () => {
   });
 
   it('자동차 이름을 올바르게 입력하면 시도할 횟수 입력 폼을 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(VALID_CAR_NAMES);
+    cy.get(`#${ID.CAR_NAMES_INPUT}`).type(TEST.VALID_CAR_NAMES);
 
     const spy = cy.spy(window, 'alert');
 
@@ -77,7 +63,7 @@ describe('시도할 횟수 입력 기능 테스트', () => {
   });
 
   it('시도할 횟수를 올바르게 입력하면 입력한 자동차의 목록을 확인할 수 있어야 한다.', () => {
-    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(VALID_RACING_COUNT);
+    cy.get(`#${ID.RACING_COUNT_INPUT}`).type(TEST.VALID_RACING_COUNT);
 
     const spy = cy.spy(window, 'alert');
 
@@ -132,9 +118,9 @@ describe('게임 진행 테스트', () => {
   });
 
   it('자동차 이름과 시도할 횟수를 올바르게 입력한 후 로딩 애니메이션을 확인할 수 있으며 레이싱이 종료된 후 로딩 애니메이션은 사라져야 한다.', () => {
-    const gameWaitingTime = RULES.TRUN_INTERVAL_TIME * VALID_RACING_COUNT;
+    const gameWaitingTime = RULES.TRUN_INTERVAL_TIME * TEST.VALID_RACING_COUNT;
 
-    cy.get(`.${CLASS.SPINNER}`).should('have.length', CAR_NAMES_LENGTH);
+    cy.get(`.${CLASS.SPINNER}`).should('have.length', TEST.VALID_CAR_NAMES_LENGTH);
 
     cy.wait(gameWaitingTime);
 
@@ -142,7 +128,7 @@ describe('게임 진행 테스트', () => {
   });
 
   it('최종 우승자가 출력되고 2초 후에 축하 메시지를 확인할 수 있어야 한다.', () => {
-    const gameWaitingTime = RULES.TRUN_INTERVAL_TIME * VALID_RACING_COUNT;
+    const gameWaitingTime = RULES.TRUN_INTERVAL_TIME * TEST.VALID_RACING_COUNT;
     const stub = cy.stub();
 
     cy.on('window:alert', stub);
@@ -150,7 +136,7 @@ describe('게임 진행 테스트', () => {
     cy.wait(gameWaitingTime);
 
     cy.get(`#${ID.FINAL_WINNER_RESULT}`)
-      .wait(CONGRATUATION_WAITING_TIME)
+      .wait(RULES.RESULT_MESSAGE_WAITING_TIME)
       .then(() => {
         expect(stub).to.be.called;
       });

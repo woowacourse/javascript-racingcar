@@ -38,4 +38,10 @@ export const RULES = Object.freeze({
   EMPTY_STRING: '',
 });
 
+export const TEST = Object.freeze({
+  VALID_CAR_NAMES: 'east, west, south, north, all',
+  VALID_RACING_COUNT: 10,
+  VALID_CAR_NAMES_LENGTH: 5,
+});
+
 export const WINNER_MESSAGE = (finalWinner) => `축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`;
