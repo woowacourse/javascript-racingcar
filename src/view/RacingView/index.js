@@ -1,5 +1,5 @@
-import DomUtils from '../utils/dom-utils.js';
-import { SELECTOR, TIME } from '../constants/constants.js';
+import DomUtils from '../../utils/dom-utils.js';
+import { SELECTOR, TIME } from '../../constants/constants.js';
 import RacingProgressView from './RacingProgresView.js';
 
 export default class RacingView {

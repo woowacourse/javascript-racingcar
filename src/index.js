@@ -1,5 +1,5 @@
 import RacingController from './controller/RacingController.js';
-import RacingView from './view/RacingView.js';
+import RacingView from './view/RacingView/index.js';
 import RacingModel from './model/RacingGame.js';
 
 window.addEventListener('DOMContentLoaded', () => {

@@ -1,5 +1,5 @@
-import { COMMENT, SELECTOR } from '../constants/constants.js';
-import DomUtils from '../utils/dom-utils.js';
+import { COMMENT, SELECTOR } from '../../constants/constants.js';
+import DomUtils from '../../utils/dom-utils.js';
 
 export default class RacingProgressView {
   constructor() {
