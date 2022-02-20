@@ -64,12 +64,12 @@ export default class RacingGame {
         let currentTurnNumber = 0;
         this.view.updateLoading();
         const turnTimerID = setInterval(() => {
+            this.racingCars.playTurn();
+            this.view.updateProgress(this.racingCars.cars);
             if (currentTurnNumber + 1 === turnCount) {
                 clearInterval(turnTimerID);
                 this.endGame();
             }
-            this.racingCars.playTurn();
-            this.view.updateProgress(this.racingCars.cars);
             if (currentTurnNumber + 1 < turnCount) this.view.updateLoading();
             currentTurnNumber += 1;
         }, 1000);
