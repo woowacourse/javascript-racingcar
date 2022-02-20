@@ -42,7 +42,6 @@ export default function playRace(count) {
       return;
     }
     count -= 1;
-
     updateGameProcess();
   }, 1000);
 }

@@ -1,7 +1,7 @@
 import { MIN_COUNT } from '../util/constants.js';
 import $ from '../util/dom.js';
 
-import { getCountErrorMessage } from '../model/getErrorMessage.js';
+import { getCountErrorMessage } from '../util/getErrorMessage.js';
 
 import alertError from '../view/alertError.js';
 
