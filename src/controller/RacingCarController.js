@@ -43,12 +43,14 @@ class RacingCarController {
 
     try {
       this.model.setCarList(carNameList);
-      this.view.deactivateCarNamesForm();
-      this.view.showRacingCountForm();
     } catch (error) {
       this.view.resetCarNamesInput();
       alert(error.message);
+      return;
     }
+
+    this.view.deactivateCarNamesForm();
+    this.view.showRacingCountForm();
   }
 
   handleRacingCountFormSubmitEvent(e) {
@@ -58,14 +60,16 @@ class RacingCarController {
 
     try {
       this.model.setRacingCount(racingCount);
-      this.view.deactivateRacingCountForm();
-      const carNameList = this.model.getCarNameList();
-      this.view.renderRacingCarList(carNameList);
-      this.playRacingGame();
     } catch (error) {
       this.view.resetRacingCountInput();
       alert(error.message);
+      return;
     }
+
+    this.view.deactivateRacingCountForm();
+    const carNameList = this.model.getCarNameList();
+    this.view.renderRacingCarList(carNameList);
+    this.playRacingGame();
   }
 
   playRacingGame() {

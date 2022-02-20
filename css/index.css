@@ -35,7 +35,6 @@ main {
 #racing_count_input_section {
   width: 425px;
   margin-bottom: 32px;
-  /* display: none; */
 }
 
 form > label {
@@ -155,12 +154,10 @@ form > label {
 #final_winner {
   font-size: 20px;
   font-weight: 600;
-  /* display: none; */
 }
 
 #restart_section {
   padding-bottom: 42px;
-  /* display: none; */
 }
 
 #restart_button {
