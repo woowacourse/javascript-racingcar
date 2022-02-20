@@ -5,7 +5,7 @@ import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
 import { $ } from '../utils/element-tools.js';
-import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
+import { getTimeDiffToPercent, nameStringToArray, setDelay } from '../utils/data-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
@@ -83,20 +83,19 @@ export default class RacingGameController {
 
   racePlayInterval() {
     let startTime = new Date().getTime();
-    const callback = () => {
+    const animationProgress = () => {
       const currentTime = new Date().getTime();
       const percent = getTimeDiffToPercent(startTime, currentTime, GAME_SETTING.ROUND_INTERVAL);
 
       this.#racingGameView.setProgressPercent(percent);
-      const raceInterval = requestAnimationFrame(callback);
-
+      const raceInterval = requestAnimationFrame(animationProgress);
       if (currentTime - GAME_SETTING.ROUND_INTERVAL > startTime) {
         startTime = new Date().getTime();
         this.racePlay(raceInterval);
       }
     };
 
-    requestAnimationFrame(callback);
+    requestAnimationFrame(animationProgress);
   }
 
   racePlay(raceInterval) {
@@ -111,13 +110,12 @@ export default class RacingGameController {
     cancelAnimationFrame(raceInterval);
   }
 
-  getWinnersResult() {
+  async getWinnersResult() {
     this.#racingGameView.setRenderProgress(false);
     this.#racingGameView.renderWinners(this.#racingGameModel.winners);
 
-    setTimeout(() => {
-      alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
-      this.#racingGameView.renderRetryButton();
-    }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    await setDelay(GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
+    this.#racingGameView.renderRetryButton();
   }
 }
