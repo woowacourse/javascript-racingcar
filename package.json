@@ -1,7 +1,7 @@
 {
   "name": "javascript-racingcar-lv1",
   "version": "1.0.0",
-  "description": "racingcar-lv1",
+  "description": "javascript-racingcar",
   "main": "index.js",
   "directories": {
     "doc": "docs",

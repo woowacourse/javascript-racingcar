@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임🏁</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="src/styles/index.css" />
+    <link rel="stylesheet" href="src/styles/spinner.css" />
+    <link rel="stylesheet" href="src/styles/shared.css" />
   </head>
   <body>
     <div id="app">
       <h1 id="title">🏎️ 자동차 경주 게임🏁</h1>
       <form class="input-container">
-        <label class="input-label">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+        <label class="input-label"
+          >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
+        >
         <div class="flex">
           <input id="car-name-input" />
           <button id="car-name-input-button">확인</button>
         </div>
       </form>
-      <form id="racing-input-form" class="input-container">
-        <label class="input-label"> 시도할 횟수를 입력해주세요.</label>
+      <form id="round-count-input-form" class="input-container display-none">
+        <label class="input-label">시도할 횟수를 입력해주세요.</label>
         <div class="flex">
-          <input id="racing-number-input" type="number" />
-          <button id="racing-number-input-button">확인</button>
+          <input id="round-count-input" type="number" />
+          <button id="round-count-input-button">확인</button>
         </div>
       </form>
-      <div id="racing-container">
+      <div id="racing-container" class="display-none">
         <div id="racing-cars" class="flex"></div>
         <h2 id="racing-winner"></h2>
-        <button id="restart-button">다시 시작하기</button>
+        <button id="restart-button" class="display-none">다시 시작하기</button>
       </div>
     </div>
     <script type="module" src="./src/index.js"></script>

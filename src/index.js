@@ -1,3 +1,3 @@
-import { registerClickEventListners } from './controllers/userController.js';
+import { registerClickEventListeners } from "./controllers/userController.js";
 
-registerClickEventListners();
+registerClickEventListeners();

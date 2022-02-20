@@ -1,65 +1,78 @@
-import { isNameValid, isRacingNumberValid, isUserInputExist } from './validation.js';
-import { doTrim } from './utils.js';
-import { race, clearState } from './raceController.js';
 import {
-  renderRacingInputForm,
-  renderRacingContainer,
-  disableUserInput,
-  removeRacingContainer,
-} from '../views/view.js';
-import { state } from '../models/state.js';
+  checkNameValid,
+  checkRoundCountValid,
+} from "../validations/validation.js";
+import { doTrim } from "../utils/utils.js";
+import { startRacing } from "./raceController.js";
+import {
+  renderRoundCountInputForm,
+  changeDisableUserInputs,
+} from "../views/view.js";
+import { raceState } from "../models/Race.js";
+import {
+  clearInputs,
+  hideRoundCountInputForm,
+  hideRacingContainer,
+  hideRestartButton,
+  removeCarNames,
+  removeWinners,
+} from "../views/view.js";
 
-export function registerClickEventListners() {
-  setCarNamesClick();
-  setRoundClick();
-  restartBtnClick();
+const { clearState, setCars, setRoundCount } = raceState;
+
+export function registerClickEventListeners() {
+  const carNamesButton = document.getElementById("car-name-input-button");
+  const roundCountButton = document.getElementById("round-count-input-button");
+  const restartButton = document.getElementById("restart-button");
+  carNamesButton.addEventListener("click", clickCarNamesButton);
+  roundCountButton.addEventListener("click", clickRoundCountButton);
+  restartButton.addEventListener("click", clickRestartButton);
 }
 
-function setCarNamesClick() {
-  const carNamesInputBtn = document.getElementById('car-name-input-button');
-  carNamesInputBtn.addEventListener('click', () => {
-    setCarNames(event);
-  });
-}
-
-function setCarNames(event) {
+function clickCarNamesButton(event) {
   event.preventDefault();
-  const carNamesInput = document.getElementById('car-name-input');
-  const carNames = doTrim(carNamesInput.value.split(','));
-  if (isNameValid(carNames)) {
-    state.cars = carNames;
-    renderRacingInputForm();
+  const carNames = getCarsNamesFromInput();
+  try {
+    checkNameValid(carNames);
+  } catch (error) {
+    alert(error);
+    return;
   }
+  setCars(carNames);
+  renderRoundCountInputForm();
 }
 
-function setRoundClick() {
-  const racingNumberInputButton = document.getElementById('racing-number-input-button');
-  racingNumberInputButton.addEventListener('click', (event) => {
-    setRound(event);
-    if (isUserInputExist()) {
-      disableUserInput();
-      race();
-    }
-  });
-}
-
-function setRound(event) {
+function clickRoundCountButton(event) {
   event.preventDefault();
-  const racingNumberInput = document.getElementById('racing-number-input');
-  const racingNumber = racingNumberInput.value;
-  if (isRacingNumberValid(racingNumber)) {
-    state.racingNumber = racingNumber;
-    renderRacingContainer();
-    return true;
+  const roundCount = getRoundCountFromInput();
+  try {
+    checkRoundCountValid(roundCount);
+  } catch (error) {
+    alert(error);
+    return;
   }
+  setRoundCount(roundCount);
+  changeDisableUserInputs();
+  startRacing();
 }
 
-function restartBtnClick() {
-  const restartBtn = document.getElementById('restart-button');
-  restartBtn.addEventListener('click', doRestart);
-}
-
-function doRestart() {
+function clickRestartButton() {
   clearState();
-  removeRacingContainer();
+  clearInputs();
+  changeDisableUserInputs();
+  hideRoundCountInputForm();
+  hideRacingContainer();
+  hideRestartButton();
+  removeCarNames();
+  removeWinners();
+}
+
+function getCarsNamesFromInput() {
+  const carNamesInput = document.getElementById("car-name-input");
+  return doTrim(carNamesInput.value.split(","));
+}
+
+function getRoundCountFromInput() {
+  const roundCountInput = document.getElementById("round-count-input");
+  return roundCountInput.value;
 }

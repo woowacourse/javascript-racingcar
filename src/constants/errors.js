@@ -1,9 +1,7 @@
-export const ERR_HAS_DUPLICATE_NAME = '이름입력 에러 : 중복된 이름 있음';
-export const ERR_HAS_EMPTY_NAME = '이름입력 에러 : 공백 이름 있음';
-export const ERR_HAS_LONG_NAME = '이름입력 에러 : 6글자 이상의 이름 있음';
-export const ERR_NUMBER_NOT_INTEGER = '숫자입력 에러 :정수가 아닌 횟수';
-export const ERR_NUMBER_UNDER_ZERO = '숫자입력 에러 : 0이하의 횟수';
-export const ERR_CAR_NAME_NOT_EXIST = '이름입력 에러 : 자동차 이름을 먼저 입력해주세요.';
-
-export const ERR_KEY_NUMBER = '숫';
-export const ERR_KEY_NAME = '이';
+export const ERROR_HAS_DUPLICATE_NAME = "중복된 이름이 있습니다.";
+export const ERROR_HAS_EMPTY_NAME = "공백으로된 이름이 있습니다.";
+export const ERROR_HAS_LONG_NAME = "5글자 이하의 이름을 입력해주세요.";
+export const ERROR_NUMBER_NOT_INTEGER = "소수점을 제외하고 입력해주세요.";
+export const ERROR_NUMBER_UNDER_ZERO = "1이상의 수를 입력해주세요.";
+export const ERROR_CAR_NAME_NOT_EXIST = "자동차 이름을 먼저 입력해주세요.";
+export const ERROR_ROUND_COUNT_NOT_EXIST = "라운드 수를 입력해주세요.";
