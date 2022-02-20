@@ -1,7 +1,7 @@
 import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import { getGameResult } from './core/playRacing.js';
+import { gamePlay } from './core/playRacing.js';
 import { renderResult, removeBeforeResult } from './view/renderResult.js';
 
 class App {
@@ -31,7 +31,7 @@ class App {
       return;
     }
 
-    const { cars, winners, maxScore } = getGameResult({
+    const { cars, winners, maxScore } = gamePlay({
       carNames: this.carNames,
       tryCount: this.tryCount,
     });

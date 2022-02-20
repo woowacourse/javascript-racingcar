@@ -20,7 +20,7 @@ const playTurnScoreResult = cars => {
   }
 };
 
-export const getGameResult = ({ carNames, tryCount }) => {
+export const gamePlay = ({ carNames, tryCount }) => {
   const cars = carNames.map(carName => new Car(carName));
 
   for (let i = 0; i < tryCount; i++) {
