@@ -33,7 +33,7 @@ export default class View {
 
   hideLoader() {
     $$(SELECTOR.LOADER).forEach((el) => {
-      el.style.display = 'none';
+      el.classList.add('d-none');
     });
   }
 
@@ -55,22 +55,22 @@ export default class View {
   }
 
   renderInitial() {
-    $(SELECTOR.GAME_RESTART).style.display = 'none';
+    $(SELECTOR.GAME_RESTART).classList.add('d-none');
     $(SELECTOR.CAR_NAMES).innerText = '';
     $(SELECTOR.CAR_PROGRESS).innerText = '';
     $(SELECTOR.CAR_RACING_WINNER).innerText = '';
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).classList.add('d-none');
     this.disableCarNamesForm(false);
     this.disableRacingCountForm(false);
   }
 
   renderRestartButton() {
-    $(SELECTOR.GAME_RESTART).style.display = 'block';
+    $(SELECTOR.GAME_RESTART).classList.remove('d-none');
   }
 
   renderRacingCountForm() {
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).classList.remove('d-none');
   }
 }
