@@ -14,8 +14,12 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
 
   const negativeTryCountInputTest = tryCount => {
     // when
+    const carNames = 'a,b';
     const alertStub = cy.stub();
     cy.on('window:alert', alertStub);
+
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_INPUT).type(carNames);
+    cy.get(ELEMENT_SELECTOR.CAR_NAMES_BUTTON).click();
     cy.tryCountNegativeInputEvent(tryCount).then(() => {
       expect(alertStub).to.be.called;
     });
@@ -62,19 +66,14 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     negativeCarNamesInputTest(carNames);
   });
 
-  it('`,`뒤에 자동차 이름이 입력되지 않았을 때 확인버튼을 누를 시, alert 띄우기', () => {
-    const carNames = 'abcf,';
-    negativeCarNamesInputTest(carNames);
-  });
-
   it('시도 횟수 입력된 숫자가 1이상의 수가 아닐 시, alert 띄우기', () => {
     const tryCount = -1;
     negativeTryCountInputTest(tryCount);
   });
 
-  it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
-    positiveGameOver();
-  });
+  // it('게임이 끝난 후 2초 후에 축하의 alert메시지가 표출된다.', () => {
+  //   positiveGameOver();
+  // });
 
   it('다시 게임을 시작하면 이전 결과를 지워준다.', () => {
     positiveGameOver();
