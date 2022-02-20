@@ -3,7 +3,7 @@ import RacingResult from '../views/RacingResult.js';
 import { $ } from '../utils/dom.js';
 import { SELECTOR, CELEBRATE_MESSAGE, DELAY_TIME, MOVE_SCORE } from '../utils/constants.js';
 import { isEffectiveScore } from '../utils/validation.js';
-import { getMaxNumber, getRandomNumber, delayedAlert } from '../utils/general.js';
+import { getMaxNumber, getRandomNumber } from '../utils/number.js';
 
 export default class RacingGame {
   constructor() {
@@ -35,6 +35,10 @@ export default class RacingGame {
     });
   }
 
+  showCelebrateMessage() {
+    setTimeout(() => alert(CELEBRATE_MESSAGE), DELAY_TIME.ALERT);
+  }
+
   startRacingGame(racingCount) {
     this.RacingResult.renderRacingStatus(this.cars);
 
@@ -57,7 +61,7 @@ export default class RacingGame {
       .join(', ');
     this.RacingResult.showNextStage($(SELECTOR.RESULT_CONTAINER));
     this.RacingResult.renderFinalWinner(finalWinner);
-    delayedAlert(CELEBRATE_MESSAGE, DELAY_TIME.ALERT);
+    this.showCelebrateMessage();
   }
 
   restartRacingGame() {
