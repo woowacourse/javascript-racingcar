@@ -1,4 +1,4 @@
-import { $, $$ } from '../utils/dom.js';
+import { $, $$, hideElement, showElement } from '../utils/dom.js';
 import { SELECTOR, TIMER } from '../utils/constants.js';
 import Validator from '../validator/validator.js';
 
@@ -70,27 +70,30 @@ export default class View {
   }
 
   hideLoader() {
-    $$('#loader').forEach((loader) => (loader.style.display = 'none'));
+    $$('#loader').forEach(hideElement);
   }
 
   renderInitial() {
-    $(SELECTOR.GAME_RESTART).style.display = 'none';
+    hideElement($(SELECTOR.GAME_RESTART));
+    hideElement($(SELECTOR.CAR_RACING_COUNT_WRAPPER));
+
     $(SELECTOR.CAR_NAMES).textContent = '';
     $(SELECTOR.CAR_RACING_WINNER).textContent = '';
     $(SELECTOR.CAR_PROGRESS).textContent = '';
+
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
+
     $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = false;
     $(SELECTOR.CAR_NAMES_BUTTON).disabled = false;
   }
 
   renderRestartButton() {
-    $(SELECTOR.GAME_RESTART).style.display = 'block';
+    showElement($(SELECTOR.GAME_RESTART));
   }
 
   renderCarRacingInputBox() {
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
+    showElement($(SELECTOR.CAR_RACING_COUNT_WRAPPER));
   }
 
   disableButtons() {
