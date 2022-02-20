@@ -64,9 +64,10 @@ export default class Controller {
 
   setShowResultTimer(carList) {
     const runningTime = this.findMaxStep(carList) * NUMBER.ARROW_INTERVAL_TIME;
+    const winnerAlertTime = runningTime + NUMBER.WINNER_ALERT_TIME;
     this.setArrowInterval(runningTime);
     this.setWinnerTimeOut(runningTime);
-    this.setWinnerAlertTimeOut(this.makeWinnerList(carList), runningTime + NUMBER.WINNER_ALERT_TIME);
+    this.setWinnerAlertTimeOut(this.makeWinnerList(carList), winnerAlertTime);
   }
 
   setArrowInterval(runningTime) {
