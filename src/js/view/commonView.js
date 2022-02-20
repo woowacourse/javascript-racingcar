@@ -33,12 +33,17 @@ export const lockRacingCount = whetherLock => {
   racingCountSubmitButton.disabled = whetherLock;
 };
 
+export const focusElement = element => {
+  element.focus();
+};
+
 export const makeInitialView = () => {
   toggleHiddenRacingCountArea();
   toggleHiddenResultArea();
   toggleHiddenWinnerAndRestartArea();
   lockCarNames(false);
   lockRacingCount(false);
+  focusElement(carNamesInput);
   carNamesInput.value = "";
   racingCountInput.value = "";
   racingResultArea.innerHTML = "";

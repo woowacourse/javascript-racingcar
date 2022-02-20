@@ -2,8 +2,13 @@ import Car from "../../model/Car.js";
 import Cars from "../../model/Cars.js";
 import { isValidLengthCarName } from "./checkFunctions.js";
 import { SEPARATOR, EXCEPTIONS } from "../constants.js";
-import { carNamesArea, carNamesInput } from "../../util/elements.js";
 import {
+  carNamesArea,
+  carNamesInput,
+  racingCountInput,
+} from "../../util/elements.js";
+import {
+  focusElement,
   lockCarNames,
   toggleHiddenRacingCountArea,
 } from "../../view/commonView.js";
@@ -39,6 +44,7 @@ export default class CarsController {
     }
     lockCarNames(true);
     toggleHiddenRacingCountArea();
+    focusElement(racingCountInput);
   }
 
   addCarNameSubmitEvent() {
