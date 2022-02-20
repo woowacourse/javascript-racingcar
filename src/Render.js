@@ -2,44 +2,61 @@ import { $, $$ } from './util.js';
 import { SCREEN_CMD } from './constant.js';
 import template from './template.js';
 
+const forEachCarSteps = (eachFn) => {
+    $$('.car-track .car-steps').forEach(eachFn);
+};
+
 const render = {
+    showElement(className) {
+        $('#app').classList.add(className);
+    },
+    hideElement(className) {
+        $('#app').classList.remove(className);
+    },
     showTryForm() {
-        $('#app').classList.add(SCREEN_CMD.SHOW_TRT);
+        this.showElement(SCREEN_CMD.SHOW_TRT);
     },
     hideTryForm() {
-        $('#app').classList.remove(SCREEN_CMD.SHOW_TRT);
+        this.hideElement(SCREEN_CMD.SHOW_TRT);
     },
     showResultArea() {
-        $('#app').classList.add(SCREEN_CMD.SHOW_RESULT);
+        this.showElement(SCREEN_CMD.SHOW_RESULT);
+    },
+    hideResultArea() {
+        this.hideElement(SCREEN_CMD.SHOW_RESULT);
     },
     reset() {
-        $('#app').classList.remove(SCREEN_CMD.SHOW_TRT, SCREEN_CMD.SHOW_RESULT);
+        this.hideTryForm();
+        this.hideResultArea();
+    },
+    setWinners(value) {
+        $('#winners').innerText = value;
+    },
+    renderWinners(winners) {
+        this.setWinners(winners.join(','));
+    },
+    resetWinners() {
+        this.setWinners('');
     },
     appendTrack(cars) {
         $('#track-area').innerHTML = template.track(cars);
     },
     updateTrack(carRunResults) {
-        $$('.car-track .car-steps').forEach(($track, index) => {
+        forEachCarSteps(($track, index) => {
             if (!carRunResults[index]) return;
 
             $track.insertAdjacentHTML('beforeend', template.step());
         });
     },
     onLoading() {
-        $$('.car-track .car-steps').forEach(($track) => {
+        forEachCarSteps(($track) => {
             $track.insertAdjacentHTML('beforeend', template.loading());
         });
     },
     offLoading() {
-        $$('.car-track .car-steps').forEach(($track) => {
+        forEachCarSteps(($track) => {
             $track.removeChild($track.lastElementChild);
         });
-    },
-    renderWinners(winners) {
-        $('#winners').innerText = winners.join(',');
-    },
-    resetWinners() {
-        $('#winners').innerText = '';
     },
     readyToGame(cars) {
         this.appendTrack(cars);
