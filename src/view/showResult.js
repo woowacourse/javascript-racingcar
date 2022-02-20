@@ -90,11 +90,11 @@ function delayFinalResult(cars) {
 
 export default async function showResult(cars, count) {
   const resultContainer = document.querySelector('.game-result-container');
-  const div = document.createElement('div');
+  const raceContainer = document.createElement('div');
 
-  div.className = 'race-result-container';
-  div.innerHTML = getCarsNameTemplate(cars);
-  resultContainer.append(div);
+  raceContainer.className = 'race-result-container';
+  raceContainer.innerHTML = getCarsNameTemplate(cars);
+  resultContainer.append(raceContainer);
   await showRaceProgress(cars, count);
   delayFinalResult(cars);
 }
