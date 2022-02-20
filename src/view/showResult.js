@@ -67,9 +67,9 @@ function showOneRowArrow(cars, wrappers, currentCount) {
 async function showArrow(cars, count, wrappers) {
   if (!isNumber(count)) return;
   for (let i = 0; i < count; i += 1) {
-    await sleep(TIME.SPINNER_DELAY).then(() => showOneRowArrow(cars, wrappers, i));
+    await sleep(TIME.SPINNER_DELAY);
+    showOneRowArrow(cars, wrappers, i);
   }
-  return Promise.resolve();
 }
 
 async function showRaceProgress(cars, count) {
@@ -78,7 +78,6 @@ async function showRaceProgress(cars, count) {
   makeSpinner(wrappers);
   await showArrow(cars, +count, wrappers);
   removeSpinner(wrappers);
-  return Promise.resolve();
 }
 
 function delayFinalResult(cars) {
