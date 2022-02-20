@@ -1,3 +1,4 @@
+export const carNamesArea = document.getElementById("car-names-area");
 export const carNamesInput = document.getElementById("car-names-input");
 export const carNamesSubmitButton = document.getElementById("car-names-submit");
 export const racingCountArea = document.getElementById("racing-count-area");
