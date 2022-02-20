@@ -4,6 +4,7 @@ import View from '../view/view.js';
 import { getRandomNumber } from '../utils/getValues.js';
 import Validator from '../validator/validator.js';
 import { ERROR_MESSAGE, NUMBER, RESULT, SELECTOR, TIMER } from '../utils/constants.js';
+import { delay } from '../utils/timer.js';
 
 export default class Controller {
   constructor() {
@@ -74,14 +75,12 @@ export default class Controller {
     this.view.renderCarNames(this.model.carNames);
     this.moveWhileRacingCount();
     const winnerList = this.getWinnerList();
-
     await this.displayProgress(this.model.carPosition);
     this.displayWinner(winnerList);
     this.displayRestartButton();
     this.bindGameRestartEvent();
-    setTimeout(() => {
-      alert(RESULT.RACE_RESULT);
-    }, TIMER.DELAY_AFTER_END);
+    await delay(TIMER.DELAY_AFTER_END);
+    alert(RESULT.RACE_RESULT);
   }
 
   displayProgress() {
