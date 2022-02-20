@@ -10,10 +10,11 @@ export default class RacingGameModel {
     const oneMoveOfCars = this.#cars.map(() => {
       return RandomUtils.decideOneMoveAtRandom();
     });
-    this.#cars = this.#cars.map((car, index) => ({
-      ...car,
-      position: car.position + oneMoveOfCars[index]
-    }));
+
+    this.#cars.forEach((car, index) => {
+      // eslint-disable-next-line no-param-reassign
+      car.position += oneMoveOfCars[index];
+    });
   }
 
   set cars(names) {
