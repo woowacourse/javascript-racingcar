@@ -7,15 +7,22 @@ export default class View {
   }
 
   renderCarNames(carNames) {
-    $(SELECTOR.CAR_NAMES).innerHTML = template.carNamesTemplate(carNames);
+    $(SELECTOR.CAR_NAMES).insertAdjacentHTML('afterbegin', template.carNamesTemplate(carNames));
   }
 
   renderInitialLoader(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = template.initialLoaderTemplate(carPosition);
+    $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
+      'afterbegin',
+      template.initialLoaderTemplate(carPosition)
+    );
   }
 
   renderCarProgress(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = template.carProgressTemplate(carPosition);
+    $(SELECTOR.CAR_PROGRESS).replaceChildren('');
+    $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
+      'afterbegin',
+      template.carProgressTemplate(carPosition)
+    );
   }
 
   renderLoader() {
@@ -31,7 +38,10 @@ export default class View {
   }
 
   renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = template.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).insertAdjacentHTML(
+      'afterbegin',
+      template.winnerTemplate(winners)
+    );
   }
 
   disableCarNamesForm() {
@@ -53,9 +63,9 @@ export default class View {
 
   renderInitial() {
     $(SELECTOR.GAME_RESTART).style.display = 'none';
-    $(SELECTOR.CAR_NAMES).innerHTML = '';
-    $(SELECTOR.CAR_PROGRESS).innerHTML = '';
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = '';
+    $(SELECTOR.CAR_NAMES).innerText = '';
+    $(SELECTOR.CAR_PROGRESS).innerText = '';
+    $(SELECTOR.CAR_RACING_WINNER).innerText = '';
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
