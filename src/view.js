@@ -112,7 +112,7 @@ export default class View {
     }
   }
 
-  async animateSpinningAndShowArrow(arrow) {
+  animateSpinningAndShowArrow(arrow) {
     const startTime = new Date().getTime();
     let angle = 0;
     arrow.classList.add(CLASS_NAME.SPINNING_BACKGROUND);
