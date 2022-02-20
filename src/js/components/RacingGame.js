@@ -3,13 +3,13 @@ import { $ } from '../utils/dom.js';
 import { SELECTOR, CELEBRATE_MESSAGE, DELAY_TIME, MOVE_SCORE } from '../utils/constants.js';
 import { isEffectiveScore } from '../utils/validation.js';
 import { getMaxNumber, getRandomNumber, delayedAlert } from '../utils/general.js';
-import { showElement } from '../utils/attribute.js';
 import {
   renderFinalWinner,
-  renderArrow,
   renderRacingStatus,
   removeSpinner,
+  showNextStage,
   startUpScreen,
+  renderMoveForward,
 } from '../views/racingResult.js';
 
 export default class RacingGame {
@@ -36,7 +36,7 @@ export default class RacingGame {
       const number = getRandomNumber(MOVE_SCORE.MIN, MOVE_SCORE.MAX);
       if (isEffectiveScore(number)) {
         car.moveForward();
-        renderArrow(car.name);
+        renderMoveForward(car.name);
       }
     });
   }
@@ -45,24 +45,24 @@ export default class RacingGame {
     renderRacingStatus(this.cars);
 
     let round = 0;
-    const racingTimer = setInterval(() => {
+    const raceTimer = setInterval(() => {
       this.playRace();
 
       round += 1;
       if (round === Number(racingCount)) {
-        clearInterval(racingTimer);
+        clearInterval(raceTimer);
         this.endRacingGame();
       }
     }, DELAY_TIME.RACE);
   }
 
   endRacingGame() {
+    removeSpinner();
     const finalWinner = this.selectWinner()
       .map((winner) => winner.name)
       .join(', ');
+    showNextStage($(SELECTOR.RESULT_CONTAINER));
     renderFinalWinner(finalWinner);
-    removeSpinner();
-    showElement($(SELECTOR.RESULT_CONTAINER));
     delayedAlert(CELEBRATE_MESSAGE, DELAY_TIME.ALERT);
   }
 

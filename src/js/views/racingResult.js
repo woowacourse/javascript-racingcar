@@ -27,7 +27,7 @@ export const renderRacingStatus = (cars) => {
   });
 };
 
-export const renderArrow = (name) => {
+export const renderMoveForward = (name) => {
   $(`${SELECTOR.CAR_PLAYER}[data-car-name=${name}]`).insertAdjacentHTML('afterend', arrowTemplate);
 };
 
