@@ -1,4 +1,4 @@
-import { COMMENT, SELECTOR } from '../constants/constants.js';
+import { COMMENT, SELECTOR, TIME } from '../constants/constants.js';
 
 export default class DomUtils {
   static $(id) {
@@ -23,25 +23,12 @@ export default class DomUtils {
     return $winnerContainer;
   }
 
-  static createCarProgressElement(car) {
-    const $carProgressNode = this.createCarProgressNode(car.name);
+  static createCarProgressElementWithName(name, round) {
+    const $carProgressNode = this.createCarProgressNode(name);
 
-    const $carProgressName = DomUtils.createCarProgressNameElement(car.name);
+    const $carProgressName = DomUtils.createCarProgressNameElement(name);
     $carProgressNode.appendChild($carProgressName);
-
-    const $carProgressStatusList = DomUtils.createCarProgressStatusElement(
-      car.position
-    );
-    $carProgressStatusList.forEach(($carProgressStatus) => {
-      $carProgressNode.appendChild($carProgressStatus);
-    });
-
-    return $carProgressNode;
-  }
-
-  static createCarProgressElementWithLoading(car) {
-    const $carProgressNode = this.createCarProgressElement(car);
-    $carProgressNode.appendChild(this.spinner());
+    $carProgressNode.appendChild(this.spinner(round));
 
     return $carProgressNode;
   }
@@ -61,12 +48,6 @@ export default class DomUtils {
     return $carProgressName;
   }
 
-  static createCarProgressStatusElement(position) {
-    return Array(position)
-      .fill()
-      .map(() => this.createCarOneStepElement());
-  }
-
   static createCarOneStepElement() {
     const $carProgressStatus = document.createElement('div');
     $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
@@ -80,14 +61,19 @@ export default class DomUtils {
     element.disabled = isDisabled;
   }
 
-  static spinner() {
+  static spinner(round) {
     const $carProgressStatus = document.createElement('div');
     $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_LOADGING;
     const $circle = document.createElement('img');
     $circle.src = '../../public/assets/img/loading.png';
     $carProgressStatus.append($circle);
 
-    requestAnimationFrame(DomUtils.animationCallBack($carProgressStatus, 2000));
+    requestAnimationFrame(
+      DomUtils.animationCallBack(
+        $carProgressStatus,
+        round * TIME.DELAY_RACE_TIME
+      )
+    );
     return $carProgressStatus;
   }
 
@@ -100,6 +86,9 @@ export default class DomUtils {
       const elasped = timestamp - start;
       const node = target;
       node.style.transform = `rotate(${elasped}deg)`;
+      if (elasped >= duration) {
+        target.remove();
+      }
       if (elasped < duration) {
         requestAnimationFrame(cb);
       }
