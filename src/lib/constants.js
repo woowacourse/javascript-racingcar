@@ -20,6 +20,7 @@ export const DOM = Object.freeze({
 
   RESTART_BTN: 'restart-btn',
 
+  CAR_NAME_INPUT_FORM: 'car-name-input-form',
   COUNT_INPUT_FORM: 'count-input-form',
   RESULT_FIELD: 'result-field',
   GAME_PROGRESS: 'game-progress',

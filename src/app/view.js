@@ -46,6 +46,7 @@ class RacingCarGameView {
   }
 
   #initDOM() {
+    this.carNameInputForm = findElement(ID_PREFIX, DOM.CAR_NAME_INPUT_FORM);
     this.countInputForm = findElement(ID_PREFIX, DOM.COUNT_INPUT_FORM);
     this.gameProgress = findElement(ID_PREFIX, DOM.GAME_PROGRESS);
     this.winners = findElement(ID_PREFIX, DOM.WINNERS);
@@ -98,7 +99,9 @@ class RacingCarGameView {
     RacingCarGameView.hideElements(loadingIconNodes);
   }
 
-  disableInputButtons() {
+  disableInputForms() {
+    this.carNameInputForm.disabled = true;
+    this.countInputForm.disabled = true;
     this.carNameBtn.disabled = true;
     this.countBtn.disabled = true;
   }

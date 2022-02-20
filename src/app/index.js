@@ -85,7 +85,7 @@ class RacingCarGame {
   }
 
   afterRenderComplete(winners) {
-    this.view.disableInputButtons();
+    this.view.disableInputForms();
     this.carNameInputField.removeEventListener('click', this.onCarNameInputFieldClick);
     this.countInputField.removeEventListener('click', this.onCountInputFieldClick);
 
