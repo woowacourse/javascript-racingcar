@@ -1,3 +1,7 @@
+export const GO_FORWARD_CONDITION = 4;
+export const RANDOM_NUM_MAX = 9;
+export const NAME_LENGTH_MAX = 5;
+
 export const ERR_HAS_DUPLICATE_NAME = '이름입력 에러 : 중복된 이름 있음';
 export const ERR_HAS_EMPTY_NAME = '이름입력 에러 : 공백 이름 있음';
 export const ERR_HAS_LONG_NAME = '이름입력 에러 : 6글자 이상의 이름 있음';

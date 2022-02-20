@@ -97,7 +97,7 @@ function eraseRacingCars() {
   }
 }
 
-export function eraseWinners(names) {
+export function eraseWinners() {
   const racingWinner = document.getElementById('racing-winner');
   racingWinner.innerHTML = ``;
 }
@@ -113,7 +113,6 @@ function eraseRacingContainer() {
 }
 
 export function eraseSpinner() {
-  const racingProgress = document.getElementsByClassName('racing-progress');
   const spinner = document.getElementsByClassName('spinner');
   setTimeout(() => {
     Array.from(spinner).forEach((element) => {

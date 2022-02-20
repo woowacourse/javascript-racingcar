@@ -17,7 +17,7 @@ export function registerClickEventListners() {
 
 function registerCarNamesClickEvent() {
   const carNamesInputBtn = document.getElementById('car-name-input-button');
-  carNamesInputBtn.addEventListener('click', () => {
+  carNamesInputBtn.addEventListener('click', (event) => {
     setCarNames(event);
   });
 }
