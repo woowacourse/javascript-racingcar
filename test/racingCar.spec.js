@@ -16,61 +16,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
         cy.visit(baseURL);
     });
 
-    context('입력 예외 처리', () => {
-
-        const carNameFormAlertTest = (inputValue) => () => {
-            // given
-            const alertStub = cy.stub();
-            cy.on('window:alert', alertStub);
-    
-            // when
-            inputValue && cy.get(SELECTOR.CAR_NAME_INPUT).type(inputValue);
-    
-            // then
-            cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON)
-                .click()
-                .then(() => {
-                    expect(alertStub).to.be.called;
-                });
-        };
-
-        const turnCountFormAlertTest = (inputValue) => () => {
-            // given
-            const alertStub = cy.stub();
-            const CAR_NAMES = '우아한, 테크, 코스, 소피아';
-            cy.on('window:alert', alertStub);
-    
-            // when
-            cy.get(SELECTOR.CAR_NAME_INPUT).type(CAR_NAMES);
-            cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON).click();
-            inputValue && cy.get(SELECTOR.TURN_COUNT_INPUT).type(inputValue);
-    
-            // then
-            cy.get(SELECTOR.TURN_COUNT_SUBMIT_BUTTON)
-                .click()
-                .then(() => {
-                    expect(alertStub).to.be.called;
-                });
-        }
-
-        it('공백이 포함된 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('ab cd'));
-
-        it('5자 초과의 넘는 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('abcdfesf'));
-    
-        it('빈 문자열을 자동차 이름으로 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest(''));
-    
-        it(
-            '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, 에러 메시지를 확인할 수 있어야 한다.',
-            turnCountFormAlertTest(123.456),
-        );
-    
-        it('전진 시도 횟수 입력이 음수인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(-12));
-    
-        it('전진 시도 횟수 입력이 빈칸인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(''));
-
-    })
-
-    context('결과 출력', () => {
+    context('게임 실행 결과 출력에 대한 테스트', () => {
 
         const CAR_NAMES = ['우아한', '테크', '코스', '소피아'];
         const TURN_COUNT = 10;
@@ -143,6 +89,60 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
             cy.get(SELECTOR.CAR_NAME_INPUT).should('have.value', '');
             cy.get(SELECTOR.TURN_COUNT_INPUT).should('have.value', '');
         })
+
+    })
+
+    context('입력 예외 처리에 대한 테스트', () => {
+
+        const carNameFormAlertTest = (inputValue) => () => {
+            // given
+            const alertStub = cy.stub();
+            cy.on('window:alert', alertStub);
+    
+            // when
+            inputValue && cy.get(SELECTOR.CAR_NAME_INPUT).type(inputValue);
+    
+            // then
+            cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON)
+                .click()
+                .then(() => {
+                    expect(alertStub).to.be.called;
+                });
+        };
+
+        const turnCountFormAlertTest = (inputValue) => () => {
+            // given
+            const alertStub = cy.stub();
+            const CAR_NAMES = '우아한, 테크, 코스, 소피아';
+            cy.on('window:alert', alertStub);
+    
+            // when
+            cy.get(SELECTOR.CAR_NAME_INPUT).type(CAR_NAMES);
+            cy.get(SELECTOR.CAR_NAME_SUBMIT_BUTTON).click();
+            inputValue && cy.get(SELECTOR.TURN_COUNT_INPUT).type(inputValue);
+    
+            // then
+            cy.get(SELECTOR.TURN_COUNT_SUBMIT_BUTTON)
+                .click()
+                .then(() => {
+                    expect(alertStub).to.be.called;
+                });
+        }
+
+        it('공백이 포함된 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('ab cd'));
+
+        it('5자 초과의 넘는 자동차 이름을 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest('abcdfesf'));
+    
+        it('빈 문자열을 자동차 이름으로 입력하면, 에러 메시지를 확인할 수 있어야 한다.', carNameFormAlertTest(''));
+    
+        it(
+            '전진 시도 횟수 입력이 소숫점 자리를 가진 경우, 에러 메시지를 확인할 수 있어야 한다.',
+            turnCountFormAlertTest(123.456),
+        );
+    
+        it('전진 시도 횟수 입력이 음수인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(-12));
+    
+        it('전진 시도 횟수 입력이 빈칸인 경우, 에러 메시지를 확인할 수 있어야 한다.', turnCountFormAlertTest(''));
 
     })
 });
