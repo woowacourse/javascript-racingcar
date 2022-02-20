@@ -2,7 +2,6 @@ import Car from '../model/Car.js';
 import RacingResult from '../views/RacingResult.js';
 import { $ } from '../utils/dom.js';
 import { SELECTOR, CELEBRATE_MESSAGE, DELAY_TIME, MOVE_SCORE } from '../utils/constants.js';
-import { isEffectiveScore } from '../utils/validation.js';
 import { getMaxNumber, getRandomNumber } from '../utils/number.js';
 
 export default class RacingGame {
@@ -27,8 +26,8 @@ export default class RacingGame {
 
   playRace() {
     this.cars.forEach((car) => {
-      const number = getRandomNumber(MOVE_SCORE.MIN, MOVE_SCORE.MAX);
-      if (isEffectiveScore(number)) {
+      const randomNumber = getRandomNumber(MOVE_SCORE.MIN, MOVE_SCORE.MAX);
+      if (randomNumber >= MOVE_SCORE.EFFECTIVE) {
         car.moveForward();
         this.RacingResult.renderMoveForward(car.name);
       }
