@@ -38,6 +38,11 @@ input:focus {
   outline: none;
 }
 
+input:read-only {
+  background-color: lightgray;
+  cursor: none;
+}
+
 .submit-button {
   padding: 6px;
   width: 65.68px;
@@ -53,6 +58,12 @@ input:focus {
   letter-spacing: 1.25px;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+.submit-button:disabled {
+  border: 1px solid gray;
+  background: gray;
+  cursor: none;
 }
 
 #restart-button {
