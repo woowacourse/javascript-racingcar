@@ -37,7 +37,7 @@ class RacingCarGameController {
       validator.checkRacingCount(racingCount);
 
       const racingCountNumber = convertToNumber(racingCount);
-      this.model.racingCount = racingCountNumber;
+      this.model.setRacingCount(racingCountNumber);
 
       this.view.deactivateForm();
       this.play();
