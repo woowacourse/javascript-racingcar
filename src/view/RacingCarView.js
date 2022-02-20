@@ -26,6 +26,7 @@ class RacingCarView {
 
   showRacingCountForm() {
     this.$racingCountInputSection.removeAttribute('hidden');
+    this.$racingCountInput.focus();
   }
 
   showFinalWinner() {
