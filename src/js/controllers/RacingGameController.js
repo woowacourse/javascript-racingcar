@@ -1,11 +1,10 @@
 import RacingGameModel from '../models/RacingGameModel.js';
 import RacingGameView from '../views/RacingGameView.js';
 
-import { SELECTOR } from '../constants/selector.js';
 import GAME_SETTING from '../constants/RacingGame/setting.js';
 import { RESULT_MESSAGE } from '../constants/message.js';
-import { $ } from '../utils/element-tools.js';
-import { nameStringToArray } from '../utils/data-manager.js';
+import { getTimeDiffToPercent, nameStringToArray } from '../utils/data-manager.js';
+import { setDelay, runAnimation } from '../utils/event-manager.js';
 import { isCarNameValid, isRaceTimeValid, isGameSetup } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameController {
@@ -25,15 +24,14 @@ export default class RacingGameController {
   }
 
   bindDefaultEvent() {
-    this.#racingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
-
-    $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', this.handleRaceTimeInput.bind(this));
-    $(SELECTOR.RETRY_BUTTON).addEventListener('click', this.handleGameRetry.bind(this));
+    RacingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
+    RacingGameView.bindRaceTimeInput(this.handleRaceTimeInput.bind(this));
+    RacingGameView.bindGameRetry(this.handleGameRetry.bind(this));
   }
 
   handleCarNameInput({ event, carNameList }) {
     if (!isCarNameValid(carNameList)) {
-      return false;
+      return;
     }
 
     this.#racingGameView.setDisableForm(event.target);
@@ -42,23 +40,18 @@ export default class RacingGameController {
     this.tryRacingGameStart();
   }
 
-  handleRaceTimeInput(event) {
-    event.preventDefault();
-
-    const raceTimeValue = $(SELECTOR.RACE_TIME_INPUT).value;
-    if (!isRaceTimeValid(raceTimeValue)) {
-      return false;
+  handleRaceTimeInput({ event, raceTimeInput }) {
+    if (!isRaceTimeValid(raceTimeInput)) {
+      return;
     }
 
     this.#racingGameView.setDisableForm(event.target);
-    this.#racingGameModel.round = raceTimeValue;
+    this.#racingGameModel.round = raceTimeInput;
 
     this.tryRacingGameStart();
   }
 
-  handleGameRetry(event) {
-    event.preventDefault();
-
+  handleGameRetry() {
     this.#racingGameModel.init();
     this.#racingGameView.init();
   }
@@ -66,51 +59,54 @@ export default class RacingGameController {
   tryRacingGameStart() {
     const { round, carList } = this.#racingGameModel;
     if (isGameSetup(round, carList.length) === false) {
-      return false;
+      return;
     }
 
-    this.playRacingGame();
+    this.startRacingGame();
   }
 
-  playRacingGame() {
-    const { carList, round: gameRound } = this.#racingGameModel;
+  startRacingGame() {
+    const { carList } = this.#racingGameModel;
 
     this.#racingGameView.renderCarContainer(carList);
-    this.#racingGameView.setVisibleProgress(true);
+    this.#racingGameView.setRenderProgress(true);
 
-    const receState = {
-      stage: 0,
-      round: gameRound,
-    };
-
-    const raceTimer = setInterval(
-      () => this.handleRaceTimer(raceTimer, receState),
-      GAME_SETTING.ROUND_INTERVAL
-    );
+    this.startRace();
   }
 
-  handleRaceTimer(timer, state) {
-    state.stage += 1;
+  async startRace() {
+    let startTime = new Date().getTime();
+    let isRaceStop = false;
 
-    const carPlayResult = this.#racingGameModel.play();
-    this.#racingGameView.renderCarAdvance(carPlayResult);
+    while (isRaceStop === false) {
+      await runAnimation();
+      const currentTime = new Date().getTime();
+      const percent = getTimeDiffToPercent(startTime, currentTime, GAME_SETTING.ROUND_INTERVAL);
 
-    const { round, stage } = state;
-    if (round > stage) {
-      return false;
+      this.#racingGameView.setProgressPercent(percent);
+      if (currentTime - GAME_SETTING.ROUND_INTERVAL >= startTime) {
+        startTime = new Date().getTime();
+        isRaceStop = this.getRacePlayResult();
+      }
     }
-
-    clearInterval(timer);
-    this.winnersResult();
   }
 
-  winnersResult() {
-    this.#racingGameView.setVisibleProgress(false);
+  getRacePlayResult() {
+    const { isGameOver, carList } = this.#racingGameModel.play();
+
+    this.#racingGameView.renderCarAdvance(carList);
+    if (isGameOver === true) {
+      this.getWinnersResult();
+    }
+    return isGameOver;
+  }
+
+  async getWinnersResult() {
+    this.#racingGameView.setRenderProgress(false);
     this.#racingGameView.renderWinners(this.#racingGameModel.winners);
 
-    setTimeout(() => {
-      alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
-      this.#racingGameView.renderRetryButton();
-    }, GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    await setDelay(GAME_SETTING.WINNER_MESSAGE_INTERVAL);
+    alert(RESULT_MESSAGE.RACING_GAME_WINNERS);
+    this.#racingGameView.renderRetryButton();
   }
 }

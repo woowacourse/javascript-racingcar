@@ -1,16 +1,16 @@
-import { DOM_ID } from '../constants/selector.js';
+import { DOM_NAME } from '../constants/selector.js';
 import { createElement } from '../utils/element-tools.js';
 
-const templateCarStateConatiner = (carList) =>
+const templateCarStateContainer = (carList) =>
   carList.map((instance, index) => {
     const $carStateContainer = createElement('DIV', {
-      className: DOM_ID.RACE_CAR_STATE,
+      className: DOM_NAME.CLASS.RACE_CAR_STATE,
     });
     $carStateContainer.dataset.key = index;
-    $carStateContainer.classList.add(DOM_ID.RACE_CAR_STATE);
+    $carStateContainer.classList.add(DOM_NAME.CLASS.RACE_CAR_STATE);
 
     const $carName = createElement('DIV', {
-      className: DOM_ID.RACE_CAR_NAME_BOX,
+      className: DOM_NAME.CLASS.RACE_CAR_NAME_BOX,
       innerText: instance.name,
     });
 
@@ -20,8 +20,8 @@ const templateCarStateConatiner = (carList) =>
 
 const templateCarAdvance = () =>
   createElement('DIV', {
-    className: DOM_ID.RACE_ADVANCE,
+    className: DOM_NAME.CLASS.RACE_ADVANCE,
     innerText: '⬇️️',
   });
 
-export { templateCarStateConatiner, templateCarAdvance };
+export { templateCarStateContainer, templateCarAdvance };

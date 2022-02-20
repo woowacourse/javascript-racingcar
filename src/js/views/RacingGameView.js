@@ -1,10 +1,12 @@
 import { $, $$ } from '../utils/element-tools.js';
 import { SELECTOR } from '../constants/selector.js';
 import { isSameDistance } from '../utils/RacingGame/validator.js';
-import { templateProgress } from '../template/share.js';
-import { templateCarStateConatiner, templateCarAdvance } from '../template/RacingGame.js';
+import { templateProgress } from '../template/Share.js';
+import { templateCarStateContainer, templateCarAdvance } from '../template/RacingGame.js';
 
 export default class RacingGameView {
+  #progressList = [];
+
   init() {
     this.setVisibleResult(false);
 
@@ -31,18 +33,27 @@ export default class RacingGameView {
       });
   }
 
-  setVisibleProgress(isVisible) {
+  setRenderProgress(isVisible) {
     $(SELECTOR.RACE_CONTAINER)
       .querySelectorAll(SELECTOR.RACE_CAR_STATE)
       .forEach(($element) => {
         if (isVisible === false) {
-          $element.querySelector(SELECTOR.PROGRESS).remove();
+          $element.querySelector(SELECTOR.PROGRESS_CONTAINER).remove();
+          this.#progressList.length = 0;
           return;
         }
 
-        const $progress = templateProgress();
-        $element.append($progress);
+        const $progressContainer = templateProgress();
+        this.#progressList.push($progressContainer.querySelector(SELECTOR.PROGRESS));
+
+        $element.append($progressContainer);
       });
+  }
+
+  setProgressPercent(percent) {
+    this.#progressList.forEach(($progress) => {
+      $progress.setAttribute('style', `--value: ${percent}`);
+    });
   }
 
   setVisibleResult(isVisible) {
@@ -52,7 +63,7 @@ export default class RacingGameView {
   }
 
   renderCarContainer(carList) {
-    const $$carList = templateCarStateConatiner(carList);
+    const $$carList = templateCarStateContainer(carList);
 
     const $raceContainer = $(SELECTOR.RACE_CONTAINER);
     $raceContainer.innerHTML = '';
@@ -87,10 +98,24 @@ export default class RacingGameView {
     $(SELECTOR.RETRY_BUTTON).classList.remove('hidden');
   }
 
-  bindCarNameInput(handler) {
+  static bindCarNameInput(handler) {
     $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (event) => {
       event.preventDefault();
       handler({ event, carNameList: $(SELECTOR.CAR_NAME_INPUT).value });
+    });
+  }
+
+  static bindRaceTimeInput(handler) {
+    $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', (event) => {
+      event.preventDefault();
+      handler({ event, raceTimeInput: $(SELECTOR.RACE_TIME_INPUT).value });
+    });
+  }
+
+  static bindGameRetry(handler) {
+    $(SELECTOR.RETRY_BUTTON).addEventListener('click', (event) => {
+      event.preventDefault();
+      handler({ event });
     });
   }
 }

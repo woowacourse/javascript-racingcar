@@ -3,7 +3,7 @@
         "browser": true,
         "es2021": true
     },
-    "ignorePatterns": "*.spec.js",
+    "ignorePatterns": ["*.spec.js", "*.d.js"],
     "extends": ["eslint:recommended", "airbnb-base"],
     "parser": "@babel/eslint-parser",
     "parserOptions": {
@@ -20,7 +20,8 @@
         "no-param-reassign": "off",
         "no-new": "off",
         "object-curly-newline": "off",
-        "implicit-arrow-linebreak": "off"
+        "implicit-arrow-linebreak": "off",
+        "no-await-in-loop": "off"
     }
   }
   

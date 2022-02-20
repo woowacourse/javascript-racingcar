@@ -17,16 +17,6 @@ describe('기본 사용 순서 체크 (E2E)', () => {
     cy.visit('./');
   });
 
-  Cypress.Commands.add('formSubmit', (value, input, button) => {
-    cy.get(input).type(value);
-    cy.get(button).click();
-  });
-
-  Cypress.Commands.add('disabledCheck', (input, button) => {
-    cy.get(input).invoke('attr', 'disabled').should('eq', 'disabled');
-    cy.get(button).invoke('attr', 'disabled').should('eq', 'disabled');
-  });
-
   it('1. 자동차의 이름을 입력할 수 있어야한다.', () => {
     cy.formSubmit(INPUT_VALUE.CAR_NAME, SELECTOR.CAR_NAME_INPUT, SELECTOR.CAR_NAME_BUTTON);
     cy.disabledCheck(SELECTOR.CAR_NAME_INPUT, SELECTOR.CAR_NAME_BUTTON);
@@ -40,11 +30,6 @@ describe('기본 사용 순서 체크 (E2E)', () => {
   it('3. 자동차 이름과 이동 횟수를 입력했다면 게임이 진행되어야 한다.', () => {
     cy.get(SELECTOR.RACE_CONTAINER).invoke('attr', 'data-state').should('eq', 'on');
     cy.get(SELECTOR.PROGRESS);
-  });
-
-  Cypress.Commands.add('enabledCheck', (input, button) => {
-    cy.get(input).invoke('attr', 'disabled').should('eq', undefined);
-    cy.get(button).invoke('attr', 'disabled').should('eq', undefined);
   });
 
   it('4. 모든 라운드가 진행된 후 우승자 알림창이 출력되어야 한다.', () => {
