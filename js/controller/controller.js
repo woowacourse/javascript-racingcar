@@ -14,6 +14,7 @@ export default class Controller {
       'submit',
       this.racingCountInputSubmitHandler
     );
+    $(SELECTOR.GAME_RESTART).addEventListener('click', this.gameRestartHandler);
   }
 
   carNamesInputSubmitHandler = (e) => {
@@ -79,7 +80,6 @@ export default class Controller {
       this.view.hideLoader();
       this.view.renderWinner(this.getWinnerList());
       this.view.renderRestartButton();
-      $(SELECTOR.GAME_RESTART).addEventListener('click', this.gameRestartHandler);
       this.displayCongratulatoryMessage();
     }, 1000 * Number(this.model.racingCount));
   }
