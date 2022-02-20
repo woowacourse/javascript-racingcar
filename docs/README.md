@@ -1,3 +1,7 @@
+## [데모페이지](https://intae92.github.io/javascript-racingcar/)
+
+---
+
 ## step2 구현할 기능 목록
 
 ### step2 TODO
