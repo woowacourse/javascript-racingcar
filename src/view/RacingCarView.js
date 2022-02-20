@@ -11,17 +11,46 @@ class RacingCarView {
   }
 
   initDOM() {
+    //자동차 이름 입력창
+    this.$carNamesForm = document.getElementById(SELECTOR.CAR_NAMES_FORM);
     this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
     this.$carNamesButton = document.getElementById(SELECTOR.CAR_NAMES_BUTTON);
+    //시도할 횟수 입력창
+    this.$racingCountInputSection = document.getElementById(SELECTOR.RACING_COUNT_INPUT_SECTION);
     this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
     this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
     this.$racingCountButton = document.getElementById(SELECTOR.RACING_COUNT_BUTTON);
+    //자동차 경주 진행 상황
     this.$racingCarList = document.getElementById(SELECTOR.RACING_CAR_LIST);
     this.$finalWinner = document.getElementById(SELECTOR.FINAL_WINNER);
-    this.$restartSection = document.getElementById(SELECTOR.RESTART_SECTION);
     this.$finalWinnerResult = document.getElementById(SELECTOR.FINAL_WINNER_RESULT);
-    this.$racingCarList = document.getElementById(SELECTOR.RACING_CAR_LIST);
-    this.$racingCountInputSection = document.getElementById(SELECTOR.RACING_COUNT_INPUT_SECTION);
+    // 다시 시작하기
+    this.$restartSection = document.getElementById(SELECTOR.RESTART_SECTION);
+    this.$restartButton = document.getElementById(SELECTOR.RESTART_BUTTON);
+  }
+
+  setCarNameFormSubmitEvent(callback) {
+    this.$carNamesForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const carNames = this.$carNamesInput.value;
+      callback(carNames);
+    });
+  }
+
+  setRacingCountFormSubmitEvent(callback) {
+    this.$racingCountForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const racingCount = this.$racingCountInput.value;
+      callback(racingCount);
+    });
+  }
+
+  setRestartButtonClickEvent(callback) {
+    this.$restartButton.addEventListener('click', () => {
+      callback();
+    });
   }
 
   showRacingCountForm() {

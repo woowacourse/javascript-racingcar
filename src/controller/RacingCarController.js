@@ -8,34 +8,17 @@ class RacingCarController {
   constructor() {
     this.model = new RacingCar();
     this.view = new RacingCarView();
-    this.init();
+
+    this.setEventHandler();
   }
 
-  init() {
-    this.initDOM();
-    this.initEventListener();
+  setEventHandler() {
+    this.view.setCarNameFormSubmitEvent(this.handleCarNameFormSubmitEvent.bind(this));
+    this.view.setRacingCountFormSubmitEvent(this.handleRacingCountFormSubmitEvent.bind(this));
+    this.view.setRestartButtonClickEvent(this.handleRestartBtnClickEvent.bind(this));
   }
 
-  initDOM() {
-    this.$carNamesForm = document.getElementById(SELECTOR.CAR_NAMES_FORM);
-    this.$carNamesInput = document.getElementById(SELECTOR.CAR_NAMES_INPUT);
-    this.$racingCountForm = document.getElementById(SELECTOR.RACING_COUNT_FORM);
-    this.$racingCountInput = document.getElementById(SELECTOR.RACING_COUNT_INPUT);
-    this.$restartBtn = document.getElementById(SELECTOR.RESTART_BUTTON);
-  }
-
-  initEventListener() {
-    this.$carNamesForm.addEventListener('submit', this.handleCarNameFormSubmitEvent.bind(this));
-    this.$racingCountForm.addEventListener(
-      'submit',
-      this.handleRacingCountFormSubmitEvent.bind(this)
-    );
-    this.$restartBtn.addEventListener('click', this.handleRestartBtnClickEvent.bind(this));
-  }
-
-  handleCarNameFormSubmitEvent(e) {
-    e.preventDefault();
-    const carNames = this.$carNamesInput.value;
+  handleCarNameFormSubmitEvent(carNames) {
     const carNameList =
       carNames === ''
         ? null
@@ -53,9 +36,7 @@ class RacingCarController {
     this.view.showRacingCountForm();
   }
 
-  handleRacingCountFormSubmitEvent(e) {
-    e.preventDefault();
-    const _racingCount = this.$racingCountInput.value;
+  handleRacingCountFormSubmitEvent(_racingCount) {
     const racingCount = _racingCount === '' ? null : convertToNumber(_racingCount);
 
     try {
@@ -70,6 +51,14 @@ class RacingCarController {
     const carNameList = this.model.getCarNameList();
     this.view.renderRacingCarList(carNameList);
     this.playRacingGame();
+  }
+
+  handleRestartBtnClickEvent() {
+    this.model.resetStatus();
+    this.view.resetElement();
+    this.view.activateCarNamesForm();
+    this.view.activateRacingCountForm();
+    this.view.hideElement();
   }
 
   playRacingGame() {
@@ -106,14 +95,6 @@ class RacingCarController {
     const winnerList = this.model.getWinnerList(maxDistance);
     const finalWinner = winnerList.join(RULES.WINNER_LIST_SEPERATOR);
     this.view.renderFinalWinnerResult(finalWinner);
-  }
-
-  handleRestartBtnClickEvent() {
-    this.model.resetStatus();
-    this.view.resetElement();
-    this.view.activateCarNamesForm();
-    this.view.activateRacingCountForm();
-    this.view.hideElement();
   }
 }
 
