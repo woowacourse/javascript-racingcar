@@ -70,15 +70,27 @@ it("자동차에 이름을 부여할 수 있다. 전진하는 자동차를 출�
 it("정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다", () => {
   const alertStub = cy.stub();
 
-
   cy.get(".car-name-input").type("car1,car2,car3");
   cy.get(".car-name-button").click();
   cy.get(".race-count-input").type(1);
-  cy.get(".race-count-input").should("have.value", 1);
+  cy.get(".race-count-button").click();
+
+  cy.clock().then((clock) => {
+    clock.tick(1000);
+    cy.on("window:alert", alertStub);
+    expect(alertStub).to.not.be.called;
+    clock.restore();
+  })
 
   cy.clock().then((clock) => {
     clock.tick(3000);
-    cy.on("window:alert", alertStub);
+    cy.get(".car-name-box").children().eq(0).contains("car1");
+    cy.get(".car-name-box").children().eq(1).contains("car2");
+    cy.get(".car-name-box").children().eq(2).contains("car3");
+    cy.get(".racing-winner").contains("최종 우승자");
+    cy.on("window:alert", (text) => {
+      expect(text).to.equal("축하합니다.")
+    });
   })
 });
 
