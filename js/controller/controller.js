@@ -9,42 +9,46 @@ export default class Controller {
   constructor() {
     this.model = new Model();
     this.view = new View();
-    this.bindCarNamesInputSubmitEvent();
-    this.bindRacingCountInputSubmitEvent();
+    $(SELECTOR.CAR_NAMES_FORM).addEventListener('submit', this.carNamesInputSubmitHandler);
+    $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener(
+      'submit',
+      this.racingCountInputSubmitHandler
+    );
   }
 
-  bindCarNamesInputSubmitEvent() {
-    $(SELECTOR.CAR_NAMES_FORM).addEventListener('submit', (e) => {
-      e.preventDefault();
-      const carNamesInput = input.getCarNamesInput();
+  carNamesInputSubmitHandler = (e) => {
+    e.preventDefault();
+    const carNamesInput = input.getCarNamesInput();
 
-      if (validator.isInvalidCarNamesInput(carNamesInput)) {
-        alert(ERROR_MESSAGE.INVALID_NAME_LENGTH);
-        return;
-      }
+    if (validator.isInvalidCarNamesInput(carNamesInput)) {
+      alert(ERROR_MESSAGE.INVALID_NAME_LENGTH);
+      return;
+    }
 
-      this.view.disableCarNamesForm();
-      this.model.saveCars(carNamesInput);
-      this.model.initCarPosition();
-      this.view.renderRacingCountForm();
-    });
-  }
+    this.view.disableCarNamesForm();
+    this.model.saveCars(carNamesInput);
+    this.model.initCarPosition();
+    this.view.renderRacingCountForm();
+  };
 
-  bindRacingCountInputSubmitEvent() {
-    $(SELECTOR.CAR_RACING_COUNT_FORM).addEventListener('submit', (e) => {
-      e.preventDefault();
-      const racingCountInput = input.getRacingCountInput();
+  racingCountInputSubmitHandler = (e) => {
+    e.preventDefault();
+    const racingCountInput = input.getRacingCountInput();
 
-      if (validator.isInvalidRacingCountInput(racingCountInput)) {
-        alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
-        return;
-      }
+    if (validator.isInvalidRacingCountInput(racingCountInput)) {
+      alert(ERROR_MESSAGE.INVALID_RACING_COUNT);
+      return;
+    }
 
-      this.view.disableRacingCountForm();
-      this.model.saveRacingCount(racingCountInput);
-      this.gameStart();
-    });
-  }
+    this.view.disableRacingCountForm();
+    this.model.saveRacingCount(racingCountInput);
+    this.gameStart();
+  };
+
+  gameRestartHandler = () => {
+    this.view.renderInitial();
+    this.model = new Model();
+  };
 
   displayCarProgressByRacingCount() {
     for (let i = 1; i <= Number(this.model.racingCount); i++) {
@@ -75,7 +79,7 @@ export default class Controller {
       this.view.hideLoader();
       this.view.renderWinner(this.getWinnerList());
       this.view.renderRestartButton();
-      this.bindGameRestartEvent();
+      $(SELECTOR.GAME_RESTART).addEventListener('click', this.gameRestartHandler);
       this.displayCongratulatoryMessage();
     }, 1000 * Number(this.model.racingCount));
   }
@@ -91,12 +95,5 @@ export default class Controller {
     return this.model.carNames
       .filter((car, idx) => this.model.carPosition[idx] === maxDistance)
       .join(', ');
-  }
-
-  bindGameRestartEvent() {
-    $(SELECTOR.GAME_RESTART).addEventListener('click', (e) => {
-      this.view.renderInitial();
-      this.model = new Model();
-    });
   }
 }
