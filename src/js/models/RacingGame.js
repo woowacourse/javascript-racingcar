@@ -11,7 +11,6 @@ class RacingGame {
     this.state = {
       carList: [],
       round: 0,
-      movedInThisRound: [],
       winner: [],
     };
   }
@@ -39,10 +38,6 @@ class RacingGame {
     return this.state.winner;
   }
 
-  get movedInThisRound() {
-    return this.state.movedInThisRound;
-  }
-
   setWinner() {
     let maxDistance = Number.MIN_SAFE_INTEGER;
     this.carList.forEach((item) => {
@@ -59,19 +54,21 @@ class RacingGame {
     });
   }
 
-  runRound() {
-    this.state.movedInThisRound.length = 0;
-    this.state.carList.forEach((car) => {
-      if (this.isAdvance()) {
+  processRound() {
+    const roundResult = this.state.carList.map((car) => ({
+      car,
+      isProcessed: this.isAdvance(),
+    }));
+
+    roundResult.forEach(({ isProcessed, car }) => {
+      if (isProcessed) {
         car.go();
-        this.addCarInMovedList(car);
-        return;
       }
     });
-  }
 
-  addCarInMovedList(car) {
-    this.state.movedInThisRound.push(car);
+    return roundResult
+      .filter((result) => result.isProcessed)
+      .map((result) => result.car.name);
   }
 
   isAdvance() {

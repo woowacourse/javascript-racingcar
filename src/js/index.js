@@ -111,10 +111,9 @@ class App {
     await delay(1000);
     this.View.LoadingEnd();
 
-    this.RacingGame.runRound();
-    this.RacingGame.movedInThisRound.forEach((car) => {
-      this.View.renderAdvance(car.name);
-    });
+    this.RacingGame.processRound().forEach((name) =>
+      this.View.renderAdvance(name)
+    );
   }
 }
 
