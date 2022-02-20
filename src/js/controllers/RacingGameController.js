@@ -104,7 +104,7 @@ export default class RacingGameController {
     this.#racingGameView.renderCarAdvance(carList);
 
     if (isGameOver === false) {
-      return false;
+      return;
     }
 
     this.getWinnersResult();
