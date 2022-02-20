@@ -1,6 +1,7 @@
 import { TIME, RESULT } from '../util/constants.js';
 import getWinners from '../model/getWinners.js';
 import sleep from '../util/sleep.js';
+import { isNumber } from '../util/typeCheck.js';
 
 export function showWinners(winners) {
   const resultContainer = document.querySelector('.game-result-container');
@@ -64,7 +65,8 @@ function showOneRowArrow(cars, wrappers, currentCount) {
 }
 
 async function showArrow(cars, count, wrappers) {
-  for (let i = 0; i < +count; i += 1) {
+  if (!isNumber(count)) return;
+  for (let i = 0; i < count; i += 1) {
     await sleep(TIME.SPINNER_DELAY).then(() => showOneRowArrow(cars, wrappers, i));
   }
   return Promise.resolve();
@@ -74,7 +76,7 @@ async function showRaceProgress(cars, count) {
   const wrappers = document.querySelectorAll('.result-progress-wrapper');
 
   makeSpinner(wrappers);
-  await showArrow(cars, count, wrappers);
+  await showArrow(cars, +count, wrappers);
   removeSpinner(wrappers);
   return Promise.resolve();
 }

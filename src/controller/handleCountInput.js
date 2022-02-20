@@ -12,5 +12,5 @@ export default function handleCountInput() {
     alert(ERROR.MIN_COUNT);
     return;
   }
-  playRace(inputCount);
+  playRace(+inputCount);
 }
