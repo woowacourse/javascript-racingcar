@@ -12,12 +12,14 @@ export function resetView() {
   const nameInput = document.body.querySelector('.name-input');
   const countForm = document.body.querySelector('.count-form');
   const countInput = countForm.querySelector('.count-input');
+  const countButton = countForm.querySelector('.count-button');
   const result = document.body.querySelector('.result');
   const resultContainer = result.querySelector('.game-result-container');
   const restart = result.querySelector('.restart-container');
 
   nameInput.value = '';
   countInput.value = '';
+  countButton.removeAttribute('disabled');
   countForm.classList.add('d-none');
   restart.classList.add('d-none');
   resultContainer.innerHTML = '';
