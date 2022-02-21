@@ -11,6 +11,10 @@
   <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square"/>
 </p>
 
+### 실행 페이지
+
+https://nan-noo.github.io/javascript-racingcar/
+
 ### 🎯 기능 요구사항
 
 #### 렌더링 관련 요구사항
