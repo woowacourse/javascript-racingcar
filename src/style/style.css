@@ -40,6 +40,10 @@ button {
     cursor: pointer;
 }
 
+button:hover{
+    background-color: #80DEEA;
+}
+
 button:disabled{
     cursor:default;
     background-color:#D1D1D1;
@@ -88,5 +92,15 @@ form > button {
 .car-progress-container--status{
     font-size:32px;
     display: flex;
+    justify-content: center;
+}
+
+.loading-spinner{
+    width: 36px;
+    height: 36px;
+}
+
+.car-progress-container--loading{
+    displaY:flex;
     justify-content: center;
 }

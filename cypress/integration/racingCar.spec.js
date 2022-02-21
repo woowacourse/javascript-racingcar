@@ -1,4 +1,5 @@
-import { INPUT_ERROR } from '../../src/constants/constants';
+import { INPUT_ERROR, TIME } from '../../src/constants/constants';
+import { CAR, GAME } from '../support/contants.js';
 /* eslint-disable no-undef */
 describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   const baseUrl = '../index.html';
@@ -10,23 +11,40 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     WINNERS: '#racing-result'
   };
 
-
   beforeEach(() => {
+    cy.visit(baseUrl);
     cy.stubRandomReturns([5, 1]);
   });
 
   it('1. 게임을 완료하고 우승자를 확인할 수 있어야 한다.', () => {
     // given
-    const carNames = 'poco,park';
-    const winner = '🏆 최종 우승자: poco🏆';
     const racingCount = 1;
 
     // when
-    cy.submitCarNames(carNames);
+    cy.submitCarNames(CAR.VALID_NAMES);
     cy.submitRacingCount(racingCount);
-
+    cy.wait(TIME.DELAY_RACE_RESULT + TIME.DELAY_RACE_TIME * racingCount);
     // then
-    cy.get(SELECTOR.WINNERS).should('have.text', winner);
+    cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
+  });
+
+  it('1-1. 게임을 완료하고 우승자가 포함된 축하메세지를 확인할 수 있어야 한다.', () => {
+    // given
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    const racingCount = 4;
+
+    // when
+    cy.submitCarNames(CAR.VALID_NAMES);
+    cy.submitRacingCount(racingCount);
+    // then
+    cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
+    cy.wait(TIME.DELAY_RACE_RESULT + TIME.DELAY_RACE_TIME * racingCount).then(
+      () => {
+        expect(alertStub).to.be.calledWith(GAME.WINNER_CELEBRATION);
+      }
+    );
   });
 
   describe('2. 잘못된 자동차 이름 입력 유효성 검사', () => {
@@ -36,7 +54,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     it('2-1. 자동차 이름을 5자 이상 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
       // given
       const invalidInput = 'makerjun';
-      
+
       // when
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
@@ -55,18 +73,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.checkNamesError(INPUT_ERROR.DUPLICATED);
     });
 
-    it('2-3. 자동차 이름 안에 공백이 포함되어 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
-      // given
-      const invalidInput = 'm un';
-
-      // when
-      cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
-
-      // then
-      cy.checkNamesError(INPUT_ERROR.CONTAINED_BLANK);
-    });
-
-    it('2-4. 자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
+    it('2-3. 자동차 이름을 공백으로 입력한 경우 해당 에러 메세지가 alert에 호출되어야 한다.', () => {
       // given
       const invalidInput = '     ';
 
@@ -74,7 +81,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
 
       // then
-      cy.checkNamesError(INPUT_ERROR.NULL);
+      cy.checkNamesError(INPUT_ERROR.INVALID_LENGTH);
     });
   });
 

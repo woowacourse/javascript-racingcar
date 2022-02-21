@@ -1,5 +1,5 @@
 import { validateCarNames, validateCount } from '../utils/validation.js';
-import { SELECTOR } from '../constants/constants.js';
+import { SELECTOR, TIME } from '../constants/constants.js';
 import DomUtils from '../utils/dom-utils.js';
 
 export default class RacingController {
@@ -8,7 +8,7 @@ export default class RacingController {
     this.view = view;
   }
 
-  app() {
+  init() {
     DomUtils.$(SELECTOR.ID.CAR_NAMES_BUTTON).addEventListener(
       'click',
       this.submitNameHandler.bind(this)
@@ -26,14 +26,13 @@ export default class RacingController {
 
   submitCountHandler(e) {
     e.preventDefault();
-    const racingCount = DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value;
+    const racingCount = DomUtils.$(SELECTOR.ID.RACING_COUNT_INPUT).value.trim();
 
     try {
       validateCount(racingCount);
       this.view.deactivateNamesForm();
-      this.model.round = Number(racingCount);
+      this.model.initialRound = Number(racingCount);
       this.startRacingGame();
-      this.activateRestartButton();
     } catch (error) {
       alert(error.message);
     }
@@ -47,6 +46,7 @@ export default class RacingController {
   }
 
   restartGame() {
+    this.view.clearCelebration();
     this.view.reset();
     this.model.reset();
   }
@@ -58,19 +58,28 @@ export default class RacingController {
 
     try {
       validateCarNames(nameList);
-      this.view.activateCountForm();
       this.model.players = nameList;
+      this.view.activateCountForm();
     } catch (error) {
       alert(error.message);
     }
   }
 
   startRacingGame() {
-    while (this.model.round) {
-      this.model.goToNextTurn();
-    }
     this.view.deactivateCountForm();
-    this.view.renderProgress(this.model.cars);
+    this.view.initCarList(this.model.carNameList, this.model.round);
+    const runRound = setInterval(() => {
+      this.model.goToNextTurn();
+      this.view.renderProgress(this.model.movedCars);
+      if (!this.model.round) {
+        this.renderWinner();
+        clearInterval(runRound);
+      }
+    }, TIME.DELAY_RACE_TIME);
+  }
+
+  renderWinner() {
     this.view.renderResult(this.model.winners);
+    this.activateRestartButton();
   }
 }

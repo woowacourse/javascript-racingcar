@@ -14,6 +14,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
-    'import/extensions': ['off']
+    'import/extensions': ['off'],
+    'no-alert': 'off'
   }
 };

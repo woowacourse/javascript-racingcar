@@ -1,4 +1,4 @@
-import { SELECTOR } from '../constants/constants.js';
+import { COMMENT, SELECTOR, TIME } from '../constants/constants.js';
 
 export default class DomUtils {
   static $(id) {
@@ -15,7 +15,7 @@ export default class DomUtils {
 
     const $restartButton = document.createElement('button');
     $restartButton.id = SELECTOR.ID.RESTART_BUTTON;
-    $restartButton.innerText = '다시 시작하기';
+    $restartButton.innerText = COMMENT.RESTART;
 
     $winnerContainer.appendChild($winnerSpan);
     $winnerContainer.appendChild($restartButton);
@@ -23,31 +23,20 @@ export default class DomUtils {
     return $winnerContainer;
   }
 
-  static createRacingProgressElement(cars) {
-    const $racingProgressNode = document.createElement('section');
-    $racingProgressNode.id = SELECTOR.ID.RACING_PROGRESS_CONTAINER;
+  static createCarProgressElementWithName(name, round) {
+    const $carProgressNode = this.createCarProgressNode(name);
 
-    cars.forEach((car) => {
-      $racingProgressNode.appendChild(this.createCarProgressElement(car));
-    });
+    const $carProgressName = DomUtils.createCarProgressNameElement(name);
+    $carProgressNode.appendChild($carProgressName);
+    $carProgressNode.appendChild(this.spinner(round));
 
-    return $racingProgressNode;
+    return $carProgressNode;
   }
 
-  static createCarProgressElement(car) {
+  static createCarProgressNode(name) {
     const $carProgressNode = document.createElement('div');
     $carProgressNode.className = SELECTOR.CLASS.CAR_PROGRESS_CONTAINER;
-
-    const $carProgressName = DomUtils.createCarProgressNameElement(car.name);
-    $carProgressNode.appendChild($carProgressName);
-
-    const $carProgressStatusList = DomUtils.createCarProgressStatusElement(
-      car.position
-    );
-    $carProgressStatusList.forEach(($carProgressStatus) => {
-      $carProgressNode.appendChild($carProgressStatus);
-    });
-
+    $carProgressNode.dataset.name = name;
     return $carProgressNode;
   }
 
@@ -59,15 +48,51 @@ export default class DomUtils {
     return $carProgressName;
   }
 
-  static createCarProgressStatusElement(position) {
-    return Array(position)
-      .fill()
-      .map(() => {
-        const $carProgressStatus = document.createElement('div');
-        $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
-        $carProgressStatus.innerText = '⬇';
+  static createCarOneStepElement() {
+    const $carProgressStatus = document.createElement('div');
+    $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_STATUS;
+    $carProgressStatus.innerText = '⬇';
 
-        return $carProgressStatus;
-      });
+    return $carProgressStatus;
   }
+
+  static controlNodeDisabled(node, isDisabled) {
+    const element = node;
+    element.disabled = isDisabled;
+  }
+
+  static spinner(round) {
+    const $carProgressStatus = document.createElement('div');
+    $carProgressStatus.className = SELECTOR.CLASS.CAR_PROGRESS_LOADGING;
+    const $spinnerImg = document.createElement('img');
+    $spinnerImg.src = '../../public/assets/img/loading.png';
+    $spinnerImg.className = SELECTOR.CLASS.SPINNER;
+    $carProgressStatus.append($spinnerImg);
+
+    requestAnimationFrame(
+      DomUtils.animationCallBack(
+        $carProgressStatus,
+        round * TIME.DELAY_RACE_TIME
+      )
+    );
+    return $carProgressStatus;
+  }
+
+  static animationCallBack = (target, duration) => {
+    let start;
+    return function cb(timestamp) {
+      if (!start) {
+        start = timestamp;
+      }
+      const elasped = timestamp - start;
+      const node = target;
+      node.style.transform = `rotate(${elasped}deg)`;
+      if (elasped >= duration) {
+        target.remove();
+      }
+      if (elasped < duration) {
+        requestAnimationFrame(cb);
+      }
+    };
+  };
 }

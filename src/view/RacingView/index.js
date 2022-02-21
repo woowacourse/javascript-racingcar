@@ -1,34 +1,41 @@
-import DomUtils from '../utils/dom-utils.js';
-import { SELECTOR } from '../constants/constants.js';
+import DomUtils from '../../utils/dom-utils.js';
+import { SELECTOR, TIME } from '../../constants/constants.js';
+import RacingProgressView from './RacingProgresView.js';
 
 export default class RacingView {
   constructor() {
     this.$app = DomUtils.$(SELECTOR.ID.APP);
     this.$namesForm = DomUtils.$(SELECTOR.ID.CAR_NAMES_FORM);
     this.$countForm = DomUtils.$(SELECTOR.ID.RACING_COUNT_FORM);
-  }
-
-  renderProgress(cars) {
-    this.$app.appendChild(DomUtils.createRacingProgressElement(cars));
+    this.$progressContainer = new RacingProgressView();
+    this.$app.appendChild(this.$progressContainer.node);
   }
 
   renderResult(winnerList) {
     this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
+    this.celebartionAlram = setTimeout(() => {
+      alert(`🎉 축하합니다. 최종 우승자는 ${winnerList.join(', ')}입니다! 🎉`);
+    }, TIME.DELAY_RACE_RESULT);
+  }
+
+  clearCelebration() {
+    clearTimeout(this.celebartionAlram);
+  }
+
+  initCarList(names, round) {
+    this.$progressContainer.initCarList(names, round);
+  }
+
+  renderProgress(movedCars) {
+    this.$progressContainer.renderProgress(movedCars);
   }
 
   reset() {
-    this.removeProgress();
+    this.$progressContainer.removeChilds();
     this.removeResult();
     RacingView.clearInput();
     this.activateNamesForm();
     this.deactivateCountForm();
-  }
-
-  removeProgress() {
-    const $racingProgressNode = DomUtils.$(
-      SELECTOR.ID.RACING_PROGRESS_CONTAINER
-    );
-    this.$app.removeChild($racingProgressNode);
   }
 
   removeResult() {
@@ -43,29 +50,25 @@ export default class RacingView {
 
   activateCountForm() {
     this.$countForm.childNodes.forEach((node) => {
-      const element = node;
-      element.disabled = false;
+      DomUtils.controlNodeDisabled(node, false);
     });
   }
 
   deactivateCountForm() {
     this.$countForm.childNodes.forEach((node) => {
-      const element = node;
-      element.disabled = true;
+      DomUtils.controlNodeDisabled(node, true);
     });
   }
 
   activateNamesForm() {
     this.$namesForm.childNodes.forEach((node) => {
-      const element = node;
-      element.disabled = false;
+      DomUtils.controlNodeDisabled(node, false);
     });
   }
 
   deactivateNamesForm() {
     this.$namesForm.childNodes.forEach((node) => {
-      const element = node;
-      element.disabled = true;
+      DomUtils.controlNodeDisabled(node, true);
     });
   }
 }

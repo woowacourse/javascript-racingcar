@@ -1,7 +1,11 @@
-import { INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
+import { CAR, INPUT_ERROR, RACINGGAME } from '../constants/constants.js';
 
 const isValidLength = (names) => {
-  return names.every((name) => name.length <= 5);
+  return names.every(
+    (name) =>
+      name.length <= CAR.MAXIMUM_NAME_LENGTH &&
+      name.length >= CAR.MININUM_NAME_LENGTH
+  );
 };
 
 const isDuplicated = (names) => {
@@ -13,15 +17,7 @@ const isContainedBlank = (names) => {
   return names.some((name) => name.includes(' '));
 };
 
-const isContainedNull = (names) => {
-  return names.some((name) => name === '');
-};
-
-const isInteger = (number) => {
-  return number % 1 === 0;
-};
-
-const isInRange = (number) => {
+export const isInRange = (number) => {
   return number > 0 && number <= RACINGGAME.MAX_RACING_COUNT;
 };
 
@@ -30,9 +26,6 @@ const isBlank = (number) => {
 };
 
 export const validateCarNames = (names) => {
-  if (isContainedNull(names)) {
-    throw new Error(INPUT_ERROR.NULL);
-  }
   if (!isValidLength(names)) {
     throw new Error(INPUT_ERROR.INVALID_LENGTH);
   }
@@ -48,10 +41,7 @@ export const validateCount = (count) => {
   if (isBlank(count)) {
     throw new Error(INPUT_ERROR.COUNT_BLANK);
   }
-  if (!isInRange(count)) {
-    throw new Error(INPUT_ERROR.COUNT_NOT_IN_RANGE);
-  }
-  if (!isInteger(count)) {
+  if (!Number.isInteger(Number(count))) {
     throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
   }
 };
