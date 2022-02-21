@@ -6,7 +6,7 @@ import getWinners from '../model/getWinners.js';
 import addGameProcessTemplate from '../view/addGameProcessTemplate.js';
 import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
-import { spinSpinner, hideSpinner } from '../view/viewSpinner.js';
+import { spinSpinner, deleteSpinner } from '../view/viewSpinner.js';
 import alertWinners from '../view/alertWinners.js';
 
 function isCarCanGo() {
@@ -26,7 +26,7 @@ function updateGameProcess() {
 function endGame(cars) {
   const winners = getWinners(cars);
 
-  hideSpinner();
+  deleteSpinner();
   showWinners(winners);
   alertWinners(winners);
   showRestart();

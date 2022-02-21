@@ -16,9 +16,9 @@ export function spinSpinner(timestamp) {
   requestAnimationFrame(spinSpinner);
 }
 
-export function hideSpinner() {
+export function deleteSpinner() {
   const spinners = document.querySelectorAll('.spinner');
   spinners.forEach(spinner => {
-    spinner.classList.add('display-none');
+    spinner.innerHTML = '';
   });
 }
