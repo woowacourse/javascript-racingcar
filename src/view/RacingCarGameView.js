@@ -62,8 +62,6 @@ class RacingCarGameView {
     });
   }
 
-  // racingCountForm 내부에 있는 Input과 Button은 this.reset() 안에서 제거되므로
-  // 해당 함수에는 carNamesForm 내부 Input과 Button만 활성화시킴
   #activateNameForm() {
     this.$carNamesInput.removeAttribute('disabled');
 
