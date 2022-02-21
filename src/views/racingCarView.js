@@ -40,8 +40,8 @@ export default class RacingCarView {
     for (let i = 0; i < count; i++) {
       document
         .querySelectorAll(`.step-${index}`)
-        [count].classList.remove("is-loading");
-      document.querySelectorAll(`.step-${index}`)[count].textContent = "⬇️";
+        [count - 1].classList.remove("is-loading");
+      document.querySelectorAll(`.step-${index}`)[count - 1].textContent = "⬇️";
     }
   }
   renderGameWinners(winners) {

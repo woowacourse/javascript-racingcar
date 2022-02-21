@@ -80,7 +80,7 @@ export default function racingCarGameController() {
   };
 
   const updateForwardCount = (stepCount) => {
-    if (stepCount >= this.racingGameInfo.raceCount - 1) {
+    if (stepCount >= this.racingGameInfo.raceCount) {
       return;
     }
     this.racingCarModel.getCarInstanceArray().forEach((item, index) => {
@@ -92,22 +92,38 @@ export default function racingCarGameController() {
   };
 
   const addSpinningEvent = (stepCount) => {
-    if (stepCount >= this.racingGameInfo.raceCount - 1) {
+    if (stepCount === 0) {
+      this.successCount.forEach((count, index) => {
+        if (count > 0) {
+          this.racingCarView.renderSpinningEvent(count - 1, index);
+        }
+      });
+      return;
+    }
+    if (stepCount > this.racingGameInfo.raceCount - 1) {
       return;
     }
     this.successCount.forEach((count, index) => {
-      if (count != 0) {
-        this.racingCarView.renderSpinningEvent(count, index);
+      if (count > 0) {
+        this.racingCarView.renderSpinningEvent(count - 1, index);
       }
     });
   };
 
   const handleArrowRenderEvent = (stepCount) => {
-    if (stepCount >= this.racingGameInfo.raceCount - 1) {
+    if (stepCount === 0) {
+      this.successCount.forEach((count, index) => {
+        if (count > 0) {
+          this.racingCarView.renderArrowContent(count, index);
+        }
+      });
+      return;
+    }
+    if (stepCount > this.racingGameInfo.raceCount - 1) {
       return;
     }
     this.successCount.forEach((count, index) => {
-      if (count != 0) {
+      if (count > 0) {
         this.racingCarView.renderArrowContent(count, index);
       }
     });
