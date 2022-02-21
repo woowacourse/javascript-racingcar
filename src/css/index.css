@@ -1,13 +1,22 @@
-p {
+@import "./lodingSpinner.css";
+
+body {
   font-family: Roboto;
   font-style: normal;
+}
+
+form {
+  text-align: start;
+  margin: 0 0 20px 0;
+}
+
+label {
   font-weight: normal;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.5px;
   color: rgba(0, 0, 0, 0.87);
-  text-align: start;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }
 
 input {
@@ -18,8 +27,6 @@ input {
   border-radius: 4px;
   padding: 8px;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
   font-size: 15px;
   line-height: 24px;
@@ -31,6 +38,11 @@ input:focus {
   outline: none;
 }
 
+input:read-only {
+  background-color: lightgray;
+  cursor: none;
+}
+
 .submit-button {
   padding: 6px;
   width: 65.68px;
@@ -40,14 +52,18 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
   letter-spacing: 1.25px;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+.submit-button:disabled {
+  border: 1px solid gray;
+  background: gray;
+  cursor: none;
 }
 
 #restart-button {
@@ -59,8 +75,6 @@ input:focus {
   border-radius: 4px;
   cursor: pointer;
 
-  font-family: Roboto;
-  font-style: normal;
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
@@ -95,8 +109,6 @@ input:focus {
 }
 
 .position-arrow {
-  font-family: Apple SD Gothic Neo;
-  font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 38px;
@@ -104,7 +116,6 @@ input:focus {
   margin: 8px;
 }
 
-#logo {
-  cursor: pointer;
-  width: 430px;
+.hidden {
+  display: none;
 }
