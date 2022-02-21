@@ -35,9 +35,11 @@ export function racingCountTemplate() {
 export function carTemplate(car) {
   return `
     <div style="${style.carContainer}">
-      <div style="${style.carName}"><span>${car.name}</span></div>
-      <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></div>
-      <img id="spinner" style="${style.spinner}" src="src/image/loading.png" class="hidden" alt="로딩" />
+      <div style="${style.carName}"><span>${car.getName()}</span></div>
+      <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.getName()}"></div>
+      <img id="spinner" style="${
+        style.spinner
+      }" src="src/image/loading.png" class="hidden" alt="로딩" />
     </div>
   `;
 }

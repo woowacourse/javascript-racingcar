@@ -44,7 +44,7 @@ export default class RacingCarController {
       this.view.renderRacingCount();
       this.view.selectRacingCountDOM();
       this.attachRacingCountEvents();
-      this.view.renderCars(this.model.cars);
+      this.view.renderCars(this.model.getCars());
 
       return;
     }
@@ -83,7 +83,7 @@ export default class RacingCarController {
   raceInterval() {
     return setInterval(() => {
       this.view.hideSpinners();
-      this.model.cars.forEach((car) => {
+      this.model.getCars().forEach((car) => {
         if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
       });
       this.view.showSpinners();
@@ -92,6 +92,8 @@ export default class RacingCarController {
 
   endRace() {
     const winners = this.model.getWinnners();
+
+    console.log(winners);
 
     this.view.renderWinners(winners);
     this.view.renderRestart();

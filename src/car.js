@@ -1,9 +1,21 @@
 import { CAR, COUNT_DEFAULT, RANDOM } from './common/constants.js';
 
 export default class Car {
+  #name;
+
+  #moveCount;
+
   constructor(name) {
-    this.name = name;
-    this.moveCount = COUNT_DEFAULT;
+    this.#name = name;
+    this.#moveCount = COUNT_DEFAULT;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getMoveCount() {
+    return this.#moveCount;
   }
 
   #generateRandomDigit() {
@@ -11,7 +23,7 @@ export default class Car {
   }
 
   #moveForward() {
-    this.moveCount += 1;
+    this.#moveCount += 1;
   }
 
   tryMoveForward() {
