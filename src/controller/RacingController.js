@@ -8,7 +8,7 @@ export default class RacingController {
     this.view = view;
   }
 
-  initRacingGame() {
+  init() {
     DomUtils.$(SELECTOR.ID.CAR_NAMES_BUTTON).addEventListener(
       'click',
       this.submitNameHandler.bind(this)
