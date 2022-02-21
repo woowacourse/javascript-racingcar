@@ -61,7 +61,11 @@ button {
 
 .car-name{
     background-color: #F5F5F5;   
-    padding: 7px 10px;
+    width: 96px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
     border-radius: 4px;
 }
