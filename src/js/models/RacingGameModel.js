@@ -1,53 +1,52 @@
 import RacingCarInstance from './RacingCarInstance.js';
-import isAdvance from '../utils/isAdvance.js';
+import { isAdvance } from '../utils/RacingGame/validator.js';
 
 export default class RacingGameModel {
+  #state;
+  #maxDistance;
+
   constructor() {
     this.init();
   }
 
   init() {
-    this._state = {
+    this.#state = {
       carList: [],
-      round: 0,
+      currentRound: 0,
+      totalRound: 0,
+      round: { total: 0, current: 0 },
       winners: [],
     };
 
-    this._maxDistance = Number.MIN_SAFE_INTEGER;
+    this.#maxDistance = Number.MIN_SAFE_INTEGER;
+  }
+
+  set carList(nameList) {
+    this.#state.carList = nameList.map((name) => new RacingCarInstance(name));
   }
 
   get carList() {
-    return this._state.carList;
-  }
-
-  set carList(array) {
-    const { carList } = this._state;
-    carList.length = 0;
-
-    array.forEach((carName) => {
-      const newCar = new RacingCarInstance(carName);
-      carList.push(newCar);
-    });
+    return this.#state.carList;
   }
 
   set round(number) {
-    this._state.round = number;
+    this.#state.totalRound = Number(number);
   }
 
   get round() {
-    return this._state.round;
+    return this.#state.totalRound;
   }
 
-  _isWinner(carInstance) {
+  #isWinner(carInstance) {
     const { distance } = carInstance;
-    const { winners } = this._state;
+    const { winners } = this.#state;
 
-    if (distance < this._maxDistance) {
+    if (distance < this.#maxDistance) {
       return false;
     }
 
-    if (distance > this._maxDistance) {
-      this._maxDistance = distance;
+    if (distance > this.#maxDistance) {
+      this.#maxDistance = distance;
       winners.length = 0;
     }
 
@@ -55,9 +54,9 @@ export default class RacingGameModel {
   }
 
   get winners() {
-    const { winners, carList } = this._state;
+    const { winners, carList } = this.#state;
     carList.forEach((carInstance) => {
-      if (this._isWinner(carInstance) === false) {
+      if (this.#isWinner(carInstance) === false) {
         return;
       }
 
@@ -67,9 +66,12 @@ export default class RacingGameModel {
     return winners;
   }
 
-  play() {
-    const { carList } = this._state;
+  #isGameOver() {
+    return this.#state.currentRound === this.#state.totalRound;
+  }
 
+  play() {
+    const { carList } = this.#state;
     carList.forEach((carInstance) => {
       if (isAdvance() === false) {
         return;
@@ -78,6 +80,7 @@ export default class RacingGameModel {
       carInstance.go();
     });
 
-    return carList;
+    this.#state.currentRound += 1;
+    return { isGameOver: this.#isGameOver(), carList };
   }
 }

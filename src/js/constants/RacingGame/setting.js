@@ -1,3 +1,5 @@
+import { MILLISECOND } from '../constants.js';
+
 const GAME_SETTING = Object.freeze({
   ADVANCE_NUMBER: 4,
   ADVANCE_RANGE_MIN: 0,
@@ -5,6 +7,8 @@ const GAME_SETTING = Object.freeze({
   DISTANCE_NUMBER: 1,
   CAR_NAME_LENGTH_MIN: 1,
   CAR_NAME_LENGTH_MAX: 5,
+  ROUND_INTERVAL: 1 * MILLISECOND,
+  WINNER_MESSAGE_INTERVAL: 2 * MILLISECOND,
 });
 
 export default GAME_SETTING;

@@ -1,4 +1,10 @@
 const SELECTOR = Object.freeze({
+  // 범용 선택자
+  APP: '#app',
+  PROGRESS_CONTAINER: '.progress-container',
+  PROGRESS: '.progress',
+
+  // RacingGame 사용 선택자
   CAR_NAME_INPUT: '#car-name-input',
   CAR_NAME_BUTTON: '#car-name-button',
   RACE_TIME_INPUT: '#race-time-input',
@@ -12,15 +18,17 @@ const SELECTOR = Object.freeze({
   RETRY_BUTTON: '#retry-button',
 });
 
-function replaceSelectorToDomID(origin) {
-  const output = new Object();
+const replaceSelectorToDomName = (origin) => {
+  const output = { ID: {}, CLASS: {} };
   Object.entries(origin).forEach(([key, value]) => {
-    output[key] = value.replace(/\#|\./g, '');
+    const name = value.substr(1);
+
+    if (value.substr(0, 1) === '#') output.ID[key] = name;
+    else if (value.substr(0, 1) === '.') output.CLASS[key] = name;
   });
 
   return output;
-}
+};
 
-const DOM_ID = Object.freeze(replaceSelectorToDomID(SELECTOR));
-
-export { SELECTOR, DOM_ID };
+const DOM_NAME = Object.freeze(replaceSelectorToDomName(SELECTOR));
+export { SELECTOR, DOM_NAME };

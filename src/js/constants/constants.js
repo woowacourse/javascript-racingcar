@@ -1,0 +1,4 @@
+const MILLISECOND = 1000;
+const EMPTY_STRING = '';
+
+export { MILLISECOND, EMPTY_STRING };
