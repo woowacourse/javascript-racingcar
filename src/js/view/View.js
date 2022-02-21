@@ -24,13 +24,11 @@ export default class View {
     element.classList.toggle('invisible');
   }
 
+  removeElement(parentElement, selector) {
+    parentElement.removeChild($(selector));
+  }
+
   removeElements(parentElements, selector) {
-    if (!parentElements.length) {
-      parentElements.removeChild($(selector));
-
-      return;
-    }
-
     [...parentElements].forEach((parentElement) => {
       const childElement = $(selector);
       parentElement.removeChild(childElement);
@@ -38,12 +36,7 @@ export default class View {
   }
 
   insertText(selector, text) {
-    if (typeof selector !== 'string') {
-      selector.textContent = text;
-
-      return;
-    }
-    $(selector).textContent = text;
+    selector.textContent = text;
   }
 
   render(selector, position, text) {

@@ -7,6 +7,7 @@ import {
 } from '../constants.js';
 
 import View from './View.js';
+import { $ } from '../utils/utils.js';
 
 export default class RacingResultView extends View {
   winnersAlertMessage(winners) {
@@ -17,7 +18,7 @@ export default class RacingResultView extends View {
 
   renderWinners(winners) {
     this.render(this.$app, 'beforeend', template.renderRacingResult(winners));
-    this.insertText(SELECTOR.$WINNERS, winners.join(`${DELIMETER} `));
+    this.insertText($(SELECTOR.$WINNERS), winners.join(`${DELIMETER} `));
     this.winnersAlertMessage(winners);
   }
 
@@ -26,6 +27,6 @@ export default class RacingResultView extends View {
   }
 
   init() {
-    this.removeElements(this.$app, SELECTOR.$RACING_RESULT);
+    this.removeElement(this.$app, SELECTOR.$RACING_RESULT);
   }
 }

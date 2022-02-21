@@ -86,6 +86,6 @@ export default class RacingProgressView extends View {
   }
 
   init() {
-    this.removeElements(this.$racingProgress, SELECTOR.$RACING_PROGRESS_LIST);
+    this.removeElement(this.$racingProgress, SELECTOR.$RACING_PROGRESS_LIST);
   }
 }
