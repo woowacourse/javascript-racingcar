@@ -13,7 +13,6 @@ const TEST_SETTING = Object.freeze({
 
 describe('기본 사용 순서 체크 (E2E)', () => {
   before(() => {
-    cy.clock();
     cy.visit('./');
   });
 
