@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임</title>
@@ -8,10 +8,14 @@
 
   <body>
     <div id="app">
-      <main id="racing-game">
+      <main id="racing-game" aria-labelledby="racing-game-title">
         <h1 id="racing-game-title">🏎️자동차 경주 게임🏁</h1>
-        <section id="input-field"></section>
-        <section id="result-field"></section>
+        <section id="input-field" aria-labelledby="input-field">
+          <h2 hidden id="input-field">자동차와 게임횟수를 입력하는 섹션</h2>
+        </section>
+        <section id="result-field" aria-labelledby="result-field">
+          <h2 hidden id="result-field">게임의 결과가 보여지는 섹션</h2>
+        </section>
       </main>
     </div>
     <script src="./src/index.js" type="module"></script>

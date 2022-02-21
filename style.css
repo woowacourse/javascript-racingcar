@@ -74,10 +74,9 @@ form > div > input {
   margin-top: 10px;
 }
 
-#count-input-form {
-  display: none;
+.show {
+  display: block;
 }
-
-#restart-btn {
+.hide {
   display: none;
 }
