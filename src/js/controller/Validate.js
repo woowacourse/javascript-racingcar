@@ -2,8 +2,8 @@ import { CAR_NAME_LENGTH, MIN_RACE_COUNT } from "../constants/games.js";
 
 export const carNameValidation = {
   isValidLengthAll(carNamesArray) {
-    for (let index = 0; index < carNamesArray.length; index++) {
-      if (!this.isValidLength(carNamesArray[index])) {
+    for (let i = 0; i < carNamesArray.length; i++) {
+      if (!this.isValidLength(carNamesArray[i])) {
         return false;
       }
     }

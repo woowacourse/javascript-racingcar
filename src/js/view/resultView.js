@@ -47,7 +47,7 @@ export const createEachLog = car => {
 export const hideLoading = () => {
   const allLoadings = $$("loading");
 
-  for (let index = 0; index < allLoadings.length; index++) {
-    allLoadings[index].hidden = true;
+  for (let i = 0; i < allLoadings.length; i++) {
+    allLoadings[i].hidden = true;
   }
 };
