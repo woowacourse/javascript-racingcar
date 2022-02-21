@@ -41,7 +41,7 @@ export default class RacingGame {
 
   goToNextTurn() {
     this.moveCars();
-    this.round -= RACINGGAME.ROUND_PER_PROCESS;
+    this.#round -= RACINGGAME.ROUND_PER_PROCESS;
   }
 
   get winners() {
@@ -50,7 +50,7 @@ export default class RacingGame {
 
   reset() {
     this.cars = [];
-    this.round = RACINGGAME.INIT_ROUND;
+    this.#round = RACINGGAME.INIT_ROUND;
   }
 
   findMaxRecord() {
