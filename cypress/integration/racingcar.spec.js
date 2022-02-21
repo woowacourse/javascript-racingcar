@@ -93,6 +93,11 @@ const getWinnerScore = results => {
 };
 
 describe("정상 시나리오에 대해 만족해야 한다.", () => {
+  const carNames = "east, west, north";
+  const racingCount = 5;
+  const delayPerTurn = 1000;
+  const totalDelay = delayPerTurn * (racingCount + 1);
+
   beforeEach(() => {
     cy.visit(baseUrl);
     cy.clock();
@@ -115,20 +120,17 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
   });
 
   it("게임이 종료된 후 우승자를 확인할 수 있어야 한다. ", () => {
-    const carNames = ["east", "west", "north"];
-    const racingCount = 5;
-    const delayPerTurn = 1000;
-    const totalDelay = delayPerTurn * (racingCount + 1);
+    const carNamesArray = ["east", "west", "north"];
     const winners = [];
     let winnerScore = 0;
     let racingResult = [];
 
-    submitCarNames(carNames.join(","));
+    submitCarNames(carNamesArray.join(","));
     submitRacingCount(racingCount);
 
     cy.tick(totalDelay)
       .then(() => {
-        racingResult = getRacingResult(carNames);
+        racingResult = getRacingResult(carNamesArray);
       })
       .then(() => {
         racingResult.sort((left, right) => right.location - left.location);
@@ -147,30 +149,23 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
   });
 
   it("게임을 종료되고 2초 뒤 우승자를 축하하는 메시지가 나타난다.", () => {
-    const carNames = "east, west, north";
-    const racingCount = 5;
-    const delayPerTurn = 1000;
     const delayForCelebrating = 2000;
-    const totalDelay = delayPerTurn * (racingCount + 1) + delayForCelebrating;
+    const totalDelayForCelebrating = totalDelay + delayForCelebrating;
     const alertStub = cy.stub();
 
     cy.on("window:alert", alertStub);
 
     submitCarNames(carNames);
     submitRacingCount(racingCount);
-    cy.tick(totalDelay).then(() => {
+    cy.tick(totalDelayForCelebrating).then(() => {
       expect(alertStub).to.be.called;
     });
   });
 
   it("'다시 시작하기' 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
-    const carNames = "east, west, north";
-    const racingCount = 5;
-    const delayPerTurn = 1000;
-    const totalDelay = delayPerTurn * (racingCount + 1);
-
     submitCarNames(carNames);
     submitRacingCount(racingCount);
+
     cy.tick(totalDelay).then(() => {
       cy.get(SELECTOR.RESTART_BUTTON).click();
       cy.get(SELECTOR.CAR_NAMES_INPUT).should("have.value", "");
