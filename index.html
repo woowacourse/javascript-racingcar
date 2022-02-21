@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🏎️ 자동차 경주 게임</title>
     <!-- <link rel="stylesheet" href="src/css/reset.css"/> -->
-    <link type="text/css" rel="stylesheet" href="./src/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="src/css/style.css" />
   </head>
 
   <body>
@@ -14,45 +14,44 @@
         <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
         <div class="game-input">
-          <div class="car-name-wrap">
-            <form class="car-name-form">
-              <div class="car-name-input-wrap">
-                <label for="car-name" class="car-name-label"
-                  >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
-                >
-                <input
-                  type="text"
-                  name="car-name"
-                  class="car-name-input"
-                  placeholder="east, west, north, all"
-                />
-              </div>
-              <input type="submit" class="car-name-button" value="확인" />
-            </form>
-          </div>
+          <section class="car-name-wrap">
+            <h2 class="visually-hidden">자동차 이름 입력</h2>
+            <div class="car-name-input-wrap">
+              <label for="car-name" class="car-name-label"
+                >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
+              >
+              <input
+                type="text"
+                name="car-name"
+                class="car-name-input"
+                placeholder="east, west, north, all"
+              />
+            </div>
+            <button class="car-name-button">확인</button>
+          </section>
 
-          <div class="race-count-wrap">
-            <form class="race-count-form">
-              <div class="race-count-input-wrap">
-                <label for="race-count" class="race-count-label"
-                  >시도할 횟수를 입력해주세요.</label
-                >
-                <input
-                  type="number"
-                  name="race-count"
-                  class="race-count-input"
-                  placeholder="10"
-                />
-              </div>
-              <input type="submit" class="race-count-button" value="확인" />
-            </form>
-          </div>
+          <section class="race-count-wrap">
+            <h2 class="visually-hidden">자동차 경주 게임 횟수 입력</h2>
+            <div class="race-count-input-wrap">
+              <label for="race-count" class="race-count-label"
+                >시도할 횟수를 입력해주세요.</label
+              >
+              <input
+                type="number"
+                name="race-count"
+                class="race-count-input"
+                placeholder="10"
+              />
+            </div>
+            <button class="race-count-button">확인</button>
+          </section>
         </div>
 
-        <div class="racing-result-wrap">
+        <section class="racing-result-wrap">
+          <h2 class="visually-hidden">자동차 경주 게임 진행 상황</h2>
           <div class="racing-cars"></div>
           <div class="racing-arrow"></div>
-        </div>
+        </section>
         <div class="racing-result"></div>
       </div>
     </div>

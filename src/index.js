@@ -1,32 +1,48 @@
-import Car from "./Car.js";
-import { $ } from "./dom.js";
+import {
+  RANDOM_MAX_NUMBER,
+  GAME_DELAY_TIME,
+  GAME_RESULT_DELAY_TIME,
+  alertMessage,
+  SELECTOR,
+} from "./constants/ConstantsManager.js";
 
-const RANDOM_MAX_NUMBER = 9;
+import Car from "./model/Car.js";
+
+import ViewManager from "./view/ViewManager.js";
+
+import { $ } from "./utils/dom.js";
+
 class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
+    this.view = new ViewManager();
 
-    this.template = new Template();
-
-    $(".race-count-wrap").style.visibility = "hidden";
-
+    ViewManager.setRaceCountSectionVisibility("hidden");
     this.bindEvent();
   }
 
   bindEvent() {
-    $(".car-name-form").addEventListener("submit", (event) => {
+    this.bindCarNameEvent();
+    this.bindRaceCountEvent();
+  }
+
+  bindCarNameEvent() {
+    $(SELECTOR.car_name_button).addEventListener("click", (event) => {
       event.preventDefault();
       this.checkCarName();
       if (this.canStartGame()) {
         this.startGame();
       }
     });
-    $(".race-count-form").addEventListener("submit", (event) => {
+  }
+
+  bindRaceCountEvent() {
+    $(SELECTOR.race_count_button).addEventListener("click", (event) => {
       event.preventDefault();
       this.isCorrectRaceCount = this.isValidRaceNumber();
       if (!this.isCorrectRaceCount) {
-        alert("몇 번의 이동을 할 것인지 1 이상의 수를 입력해주세요.");
+        alert(alertMessage.InvalidRaceCount);
         return;
       }
       if (this.canStartGame()) {
@@ -36,20 +52,20 @@ class RacingcarGame {
   }
 
   checkCarName() {
-    this.carNames = $(".car-name-input").value.split(",");
+    this.carNames = $(SELECTOR.car_name_input).value.split(",");
     const errorCarName = this.carNames.filter((name) => name.length > 5);
-    if (errorCarName.length > 0 || $(".car-name-input").value == "") {
-      alert("차 이름은 5자 이하만 가능합니다.");
+    if (errorCarName.length > 0 || $(SELECTOR.car_name_input).value === "") {
+      alert(alertMessage.InvalidCarNameLength);
       this.isCorrectCarName = false;
-      $(".race-count-wrap").style.visibility = "hidden";
+      ViewManager.setRaceCountSectionVisibility("hidden");
       return;
     }
     this.isCorrectCarName = true;
-    $(".race-count-wrap").style.visibility = "visible";
+    ViewManager.setRaceCountSectionVisibility("visible");
   }
 
   isValidRaceNumber() {
-    this.raceCount = $(".race-count-input").value;
+    this.raceCount = Number($(SELECTOR.race_count_input).value);
     if (this.raceCount === "" || this.raceCount <= 0) {
       return false;
     }
@@ -67,89 +83,103 @@ class RacingcarGame {
     this.carList = this.carNames.map((name) => new Car(name));
     this.showCarBoxes();
     this.playGame();
-    this.showCarsMove();
-    const winner = this.findWinner();
-    this.showWinner(winner);
-    this.bindRestartEvent();
-  }
-
-  playGame() {
-    for (let i = 0; i < this.raceCount; i += 1) {
-      this.carList.forEach((eachCar) => {
-        const randomRaceScore = parseInt(
-          Math.random() * (RANDOM_MAX_NUMBER + 1)
-        );
-        if (eachCar.canMove(randomRaceScore)) {
-          eachCar.move();
-        }
-      });
-    }
-  }
-
-  showCarsMove() {
-    this.carList
-      .map((car) => this.template.carArrow(car.count))
-      .map((arrowTemplate) => {
-        const wrap = document.createElement("div");
-        wrap.classList.add("racing-arrow-box");
-        wrap.innerHTML = arrowTemplate;
-        $(".racing-arrow").append(wrap);
-      });
   }
 
   showCarBoxes() {
-    $(".racing-cars").innerHTML = this.carList
-      .map((car) => car.carNameTemplate)
-      .join("");
+    $(SELECTOR.racing_cars).insertAdjacentHTML(
+      "afterbegin",
+      this.carList.map((car) => ViewManager.carNameBox(car)).join("")
+    );
+  }
+
+  playGame() {
+    let count = 0;
+    this.settingCarMove();
+    const racingTimer = setInterval(() => {
+      this.playOneTurn();
+      count += 1;
+      if (count === this.raceCount) {
+        clearInterval(racingTimer);
+        this.endGame();
+      }
+    }, GAME_DELAY_TIME);
+  }
+
+  playOneTurn() {
+    this.carList.forEach((eachCar, index) => {
+      const randomRaceScore = parseInt(Math.random() * (RANDOM_MAX_NUMBER + 1));
+      if (eachCar.canMove(randomRaceScore)) {
+        eachCar.move();
+        this.view.showCarMove(index);
+      }
+    });
+  }
+
+  settingCarMove() {
+    this.carList.forEach((car, index) => {
+      const wrap = document.createElement("div");
+      wrap.setAttribute("class", "racing-arrow-box");
+      wrap.setAttribute("id", `racing-arrow-box-${index}`);
+      wrap.insertAdjacentHTML("afterbegin", ViewManager.loading());
+      $(SELECTOR.racing_arrow).append(wrap);
+    });
+  }
+
+  endGame() {
+    this.endLoading();
+    const winner = this.findWinner();
+    this.showWinner(winner);
+  }
+
+  endLoading() {
+    this.carList.forEach((car, index) => {
+      const carMoveState = $(`#racing-arrow-box-${index}`);
+      carMoveState.removeChild(carMoveState.lastChild);
+    });
   }
 
   findWinner() {
-    let winnerCount = Math.max(this.carList);
-    let winner = this.carList.filter((car) => car.count == winnerCount);
+    const carCountList = this.carList.map((car) => car.count);
+    const winnerCount = Math.max(...carCountList);
+    const winner = this.carList
+      .filter((car) => car.count === winnerCount)
+      .map((car) => car.name);
     return winner.join(", ");
   }
 
   showWinner(winner) {
-    $(
-      ".racing-result"
-    ).innerHTML = `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`;
-    $(".racing-result").innerHTML +=
-      "<div class='restart-button'>다시 시작하기</div>";
-    this.makeDisableInput();
+    $(SELECTOR.racing_result).insertAdjacentHTML(
+      "afterbegin",
+      `<p class="racing-winner">🏆 최종 우승자: ${winner} 🏆</p>`
+    );
+    $(SELECTOR.racing_result).insertAdjacentHTML(
+      "beforeend",
+      "<div class='restart-button'>다시 시작하기</div>"
+    );
+    this.bindRestartEvent();
+    ViewManager.setInputDisable(true);
+    setTimeout(
+      RacingcarGame.alertCongratsMessage,
+      GAME_RESULT_DELAY_TIME,
+      winner
+    );
   }
 
-  makeDisableInput() {
-    $(".car-name-input").disabled = true;
-    $(".race-count-input").disabled = true;
-    $(".car-name-button").disabled = true;
-    $(".race-count-button").disabled = true;
+  static alertCongratsMessage(winner) {
+    alert(`${winner} 우승을 축하합니다!`);
   }
 
   bindRestartEvent() {
-    $(".restart-button").addEventListener("click", () => {
-      this.restartRace();
-    });
+    $(SELECTOR.restart_button).addEventListener(
+      "click",
+      this.restartRace.bind(this)
+    );
   }
 
   restartRace() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
-    $(".racing-cars").innerHTML = "";
-    $(".racing-arrow").innerHTML = "";
-    $(".racing-result").innerHTML = "";
-    $(".car-name-input").value = "";
-    $(".race-count-input").value = "";
-    $(".car-name-input").disabled = false;
-    $(".race-count-input").disabled = false;
-    $(".car-name-button").disabled = false;
-    $(".race-count-button").disabled = false;
-    $(".race-count-wrap").style.visibility = "hidden";
-  }
-}
-
-class Template {
-  carArrow(eachcount) {
-    return `<div class="racing-arrow-wrap">⬇️️</div>`.repeat(eachcount);
+    this.view.restartSetting();
   }
 }
 
