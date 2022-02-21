@@ -46,6 +46,7 @@ export default class RacingController {
   }
 
   restartGame() {
+    this.view.clearCelebration();
     this.view.reset();
     this.model.reset();
   }

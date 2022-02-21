@@ -13,9 +13,13 @@ export default class RacingView {
 
   renderResult(winnerList) {
     this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
-    setTimeout(() => {
+    this.celebartionAlram = setTimeout(() => {
       alert(`🎉 축하합니다. 최종 우승자는 ${winnerList.join(', ')}입니다! 🎉`);
     }, TIME.DELAY_RACE_RESULT);
+  }
+
+  clearCelebration() {
+    clearTimeout(this.celebartionAlram);
   }
 
   initCarList(names, round) {

@@ -12,6 +12,7 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
   };
 
   beforeEach(() => {
+    cy.visit(baseUrl);
     cy.stubRandomReturns([5, 1]);
   });
 
@@ -38,9 +39,9 @@ describe('구현 결과가 요구사항과 일치해야 한다.', () => {
     cy.submitCarNames(CAR.VALID_NAMES);
     cy.submitRacingCount(racingCount);
     // then
+    cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
     cy.wait(TIME.DELAY_RACE_RESULT + TIME.DELAY_RACE_TIME * racingCount).then(
       () => {
-        cy.get(SELECTOR.WINNERS).should('have.text', GAME.EXPECTED_WINNER);
         expect(alertStub).to.be.calledWith(GAME.WINNER_CELEBRATION);
       }
     );
