@@ -96,6 +96,7 @@ export default class CarRacing {
         clearLoadingView(this.cars);
         this.findWinner(this.cars);
         resultView(this.winners);
+        toggleDisable([ID.RESTART_BUTTON]);
         return this.delayResult(this.winners);
       }
       if (progressCount !== progressSecond) {
@@ -123,6 +124,7 @@ export default class CarRacing {
   delayResult(winners) {
     setTimeout(() => {
       winnerAlert(winners);
+      toggleDisable([ID.RESTART_BUTTON]);
     }, INTERVAL.ALERT);
   }
 
