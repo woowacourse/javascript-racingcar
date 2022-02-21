@@ -31,5 +31,6 @@ module.exports = {
     'no-alert': 'off',
     'no-plusplus': 'off',
     'no-new': 'off',
+    'import/no-unresolved': 'off',
   },
 };

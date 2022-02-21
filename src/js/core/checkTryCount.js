@@ -1,19 +1,30 @@
 import { $ } from '../util/dom.js';
+import { ERROR_MESSAGES } from '../constants/constant.js';
+
+const errorController = ({ isError, message }) => {
+  if (isError) {
+    window.alert(message);
+  }
+};
 
 const isTryCountPositiveNumber = tryCountInput => {
-  if (tryCountInput < 1) {
-    window.alert('1이상의 수를 입력해 주세요.');
-  }
+  const isSuccess = tryCountInput >= 1;
 
-  return tryCountInput < 1;
+  errorController({
+    isError: !isSuccess,
+    message: ERROR_MESSAGES.TRY_COUNT_MIN_NUMBER,
+  });
+
+  return isSuccess;
+};
+
+const tryCountValidation = tryCountInput => {
+  return isTryCountPositiveNumber(tryCountInput) ? tryCountInput : 0;
 };
 
 export const getTryCount = e => {
   e.preventDefault();
   const tryCountInput = $('#try-count-input').value;
-  if (!isTryCountPositiveNumber(tryCountInput)) {
-    return tryCountInput;
-  }
 
-  return undefined;
+  return tryCountValidation(tryCountInput);
 };

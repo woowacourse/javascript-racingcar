@@ -1,73 +1,86 @@
-#input-container{
-    position: absolute;
-    width: 441.68px;
-    height: 140px;
-    left: 50px;
-    top: 104px;
+#input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 140px;
+  left: 50px;
+  top: 104px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
+#car-names-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+#car-names-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 441.68px;
 }
 
-#car-names-form{ 
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+#car-names-form div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-size: 13px;
+  line-height: 24px;
+  height: 64px;
 }
 
-#car-names-form div{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    font-size: 13px;
-    line-height: 24px;
-    height: 64px;
+#try-count-container {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
 }
 
-#try-count-form{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
+#try-count-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 441.68px;
 }
 
-#try-count-form div{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    font-size: 13px;
-    line-height: 24px;
-    height: 64px;
+#try-count-form div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-size: 13px;
+  line-height: 24px;
+  height: 64px;
 }
 
-#input-container input{
-    width: 360px;
-    height: 64px;
+#input-container input {
+  width: 360px;
+  height: 64px;
 }
 
-#car-names-button, #try-count-button{
-/* primary */
-background: #00BCD4;
-border-radius: 4px;
-border: 0;
+#car-names-button,
+#try-count-button {
+  /* primary */
+  background: #00bcd4;
+  border-radius: 4px;
+  border: 0;
 
-position: static;
+  position: static;
 
-top: calc(50% - 16px/2);
+  top: calc(50% - 16px / 2);
 
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 14px;
-line-height: 16px;
-/* identical to box height, or 114% */
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
 
-letter-spacing: 1.25px;
-text-transform: uppercase;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
 
-color: #FFFFFF;
-width: 65px;
-height: 36px;
+  color: #ffffff;
+  width: 65px;
+  height: 36px;
 }
-
-

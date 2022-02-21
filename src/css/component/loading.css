@@ -1,0 +1,30 @@
+.loading-indicator {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  padding-right: 17px;
+}
+.loading-indicator div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: 3px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  animation: loading-indicator 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #00bcd4 transparent transparent;
+}
+.loading-indicator div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+@keyframes loading-indicator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,12 +1,8 @@
 import { $ } from './util/dom.js';
 import { getCarNames } from './core/checkCarNames.js';
 import { getTryCount } from './core/checkTryCount.js';
-import { makeCar, playOneTurn, getWinners } from './core/playRacing.js';
-import {
-  renderResult,
-  removeBeforeResult,
-  renderWinners,
-} from './view/renderResult.js';
+import { gamePlay } from './core/playRacing.js';
+import { renderResult, removeBeforeResult } from './view/renderResult.js';
 
 class App {
   constructor() {
@@ -21,20 +17,26 @@ class App {
     });
     $('#try-count-form').addEventListener('submit', e => {
       this.setTryCount(getTryCount(e));
-    });
-    $('#try-count-form').addEventListener('submit', () => {
       this.gameStart();
     });
     $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
+  isGameReady() {
+    return this.carNames.length > 0 && this.tryCount > 0;
+  }
+
   gameStart() {
-    const cars = makeCar(this.carNames);
-    for (let i = 0; i < this.tryCount; i++) {
-      playOneTurn(cars);
-      renderResult(cars);
+    if (!this.isGameReady()) {
+      return;
     }
-    renderWinners(getWinners(cars));
+
+    const { cars, winners } = gamePlay({
+      carNames: this.carNames,
+      tryCount: this.tryCount,
+    });
+
+    renderResult({ cars, lastTurnCount: this.tryCount, winners });
     this.resetValue();
   }
 
@@ -50,9 +52,7 @@ class App {
   }
 
   setTryCount(newTryCount) {
-    if (newTryCount) {
-      this.tryCount = newTryCount;
-    }
+    this.tryCount = newTryCount;
   }
 }
 
