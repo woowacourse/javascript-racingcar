@@ -4,22 +4,25 @@ import { SELECTOR } from '../utils/constants.js';
 import { carPlayerTemplate, arrowTemplate } from './template.js';
 
 export default class RacingResult {
+  #racingStatus;
+  #finalWinner;
+
   constructor() {
     this.initDom();
   }
 
   initDom() {
-    this.$racingStatus = $(SELECTOR.RACING_STATUS);
-    this.$finalWinner = $(SELECTOR.FINAL_WINNER);
+    this.#racingStatus = $(SELECTOR.RACING_STATUS);
+    this.#finalWinner = $(SELECTOR.FINAL_WINNER);
   }
 
-  renderFinalWinner(finalWinner) {
-    this.$finalWinner.innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
+  renderFinalWinner(winners) {
+    this.#finalWinner.innerHTML = `🏆 최종 우승자: ${winners} 🏆`;
   }
 
   renderRacingStatus(cars) {
     cars.forEach(({ name }) => {
-      this.$racingStatus.insertAdjacentHTML('beforeend', carPlayerTemplate(name));
+      this.#racingStatus.insertAdjacentHTML('beforeend', carPlayerTemplate(name));
     });
   }
 

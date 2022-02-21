@@ -4,8 +4,9 @@ import { SELECTOR, ERROR_MESSAGE, CAR_NAME_LENGTH, RACING_MIN_COUNT } from '../u
 import { isLessNumber, isValidBlankInArray, isValidLengthInArray } from '../utils/validation.js';
 
 export default class RacingForm {
+  #RacingGame = new RacingGame();
+
   constructor() {
-    this.RacingGame = new RacingGame();
     this.bindEvents();
   }
 
@@ -29,7 +30,7 @@ export default class RacingForm {
       alert(ERROR_MESSAGE.NAME_CANNOT_BE_BLANK);
       return;
     }
-    this.RacingGame.handleCarNamesSubmit(carNames);
+    this.#RacingGame.handleCarNamesSubmit(carNames);
   }
 
   onSubmitRacingCount() {
@@ -39,6 +40,6 @@ export default class RacingForm {
       alert(ERROR_MESSAGE.COUNT_TOO_SMALL);
       return;
     }
-    this.RacingGame.startRacingGame(racingCount);
+    this.#RacingGame.startRacingGame(racingCount);
   }
 }

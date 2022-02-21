@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: ['airbnb-base', 'plugin:prettier/recommended'],
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
   rules: {
@@ -17,6 +17,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-new': 'off',
     'no-undef': 'off',
+    'lines-between-class-members': 'off',
   },
   plugins: ['prettier'],
 };

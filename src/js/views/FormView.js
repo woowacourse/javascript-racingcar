@@ -3,17 +3,24 @@ import { showElement, hideElement } from '../utils/attribute.js';
 import { SELECTOR } from '../utils/constants.js';
 
 export default class FormView {
+  #namesInput;
+  #countInput;
+  #racingStatus;
+  #countContainer;
+  #racingContainer;
+  #resultContainer;
+
   constructor() {
     this.initDom();
   }
 
   initDom() {
-    this.$namesInput = $(SELECTOR.CAR_NAMES_INPUT);
-    this.$countInput = $(SELECTOR.RACING_COUNT_INPUT);
-    this.$racingStatus = $(SELECTOR.RACING_STATUS);
-    this.$countContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
-    this.$racingContainer = $(SELECTOR.RACING_CONTAINER);
-    this.$resultContainer = $(SELECTOR.RESULT_CONTAINER);
+    this.#namesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.#countInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.#racingStatus = $(SELECTOR.RACING_STATUS);
+    this.#countContainer = $(SELECTOR.RACING_COUNT_CONTAINER);
+    this.#racingContainer = $(SELECTOR.RACING_CONTAINER);
+    this.#resultContainer = $(SELECTOR.RESULT_CONTAINER);
   }
 
   showNextStage(sectionElement) {
@@ -21,11 +28,11 @@ export default class FormView {
   }
 
   startUpScreen() {
-    this.$namesInput.value = '';
-    this.$countInput.value = '';
-    this.$racingStatus.innerText = '';
-    hideElement(this.$countContainer);
-    hideElement(this.$racingContainer);
-    hideElement(this.$resultContainer);
+    this.#namesInput.value = '';
+    this.#countInput.value = '';
+    this.#racingStatus.innerText = '';
+    hideElement(this.#countContainer);
+    hideElement(this.#racingContainer);
+    hideElement(this.#resultContainer);
   }
 }
