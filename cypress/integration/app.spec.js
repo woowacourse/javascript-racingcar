@@ -3,7 +3,7 @@ import {
   CLASS,
   WINNER_TEMPLATE,
   GAME_NUMBERS,
-} from '../../src/js/utils/constants.js';
+} from '../../src/js/constant/index.js';
 
 const invalidInputNames = 'east,west,south,north,jasmin';
 const inputNames = 'east,west,south,north';
