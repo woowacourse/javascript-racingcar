@@ -13,6 +13,11 @@ const ID = {
   RACING_STATUS: 'racing-status',
 };
 
+const CLASS = {
+  CAR_STATUS: 'car-status',
+  CAR_NAME: 'car-name',
+};
+
 const MESSAGE = {
   WRONG_NAME_LENGTH: '1~5자의 자동차 이름을 입력해 주세요.',
   DUPLICATE_NAME: '중복된 자동차 이름은 입력이 불가능합니다.',
@@ -36,6 +41,7 @@ const INTERVAL = {
 
 export {
   ID,
+  CLASS,
   MESSAGE,
   NAME_LENGTH,
   MIN_RACING_COUNT,

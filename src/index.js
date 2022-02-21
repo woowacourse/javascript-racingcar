@@ -1,6 +1,6 @@
 import Car from './Car.js';
-import { ID, MESSAGE, INTERVAL } from './constants.js';
-import { getElement, changeActivity } from './utils/dom.js';
+import { ID, CLASS, MESSAGE, INTERVAL } from './constants.js';
+import { getElement, toggleDisable, getElements } from './utils/dom.js';
 import {
   removeAllChildNodes,
   clearLoadingView,
@@ -51,7 +51,7 @@ class CarRacing {
     getElement(ID.RACING_COUNT_INPUT).focus();
     this.cars = carNames.map(name => new Car(name));
 
-    changeActivity([ID.CAR_NAMES_INPUT, ID.CAR_NAMES_SUBMIT]);
+    toggleDisable([ID.CAR_NAMES_INPUT, ID.CAR_NAMES_SUBMIT]);
   }
 
   onSubmitRacingCount(count) {
@@ -62,7 +62,7 @@ class CarRacing {
       return alert(MESSAGE.WRONG_COUNT);
     }
 
-    changeActivity([ID.RACING_COUNT_INPUT, ID.RACING_COUNT_SUBMIT]);
+    toggleDisable([ID.RACING_COUNT_INPUT, ID.RACING_COUNT_SUBMIT]);
     this.progressGame(parseInt(count));
   }
 
@@ -71,7 +71,7 @@ class CarRacing {
     getElement(ID.RACING_COUNT_INPUT).value = '';
     removeAllChildNodes(getElement(ID.RACING_WINNERS));
     removeAllChildNodes(getElement(ID.RACING_STATUS));
-    changeActivity([
+    toggleDisable([
       ID.CAR_NAMES_INPUT,
       ID.CAR_NAMES_SUBMIT,
       ID.RACING_COUNT_INPUT,
@@ -108,9 +108,7 @@ class CarRacing {
 
   moveCar(cars) {
     cars.forEach(car => {
-      const carStatuses = Array.from(
-        document.getElementsByClassName('car-status'),
-      );
+      const carStatuses = Array.from(getElements(CLASS.CAR_STATUS));
       if (car.move()) {
         const carStatus = carStatuses.filter(
           names => names.dataset.name === car.name,

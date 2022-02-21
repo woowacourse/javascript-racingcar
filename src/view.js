@@ -1,5 +1,5 @@
-import { ID } from './constants.js';
-import { getElement } from './utils/dom.js';
+import { CLASS, ID } from './constants.js';
+import { getElement, getElements } from './utils/dom.js';
 
 const loadingView = '<div class="loader"></div>';
 
@@ -7,7 +7,7 @@ const carsNameView = cars => {
   return cars
     .map(
       ({ name }) =>
-        `<div class="car-status" data-name=${name}><div class="car-name">${name}</div>${loadingView}</div>`,
+        `<div class=${CLASS.CAR_STATUS} data-name=${name}><div class=${CLASS.CAR_NAME}>${name}</div>${loadingView}</div>`,
     )
     .join('');
 };
@@ -27,7 +27,7 @@ const removeAllChildNodes = parent => {
 };
 
 const clearLoadingView = cars => {
-  const parents = Array.from(document.getElementsByClassName('car-status'));
+  const parents = Array.from(getElements(CLASS.CAR_STATUS));
   parents.forEach(parent => {
     if (parent.lastChild.className === 'loader') {
       parent.removeChild(parent.lastChild);
