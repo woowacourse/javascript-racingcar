@@ -1,120 +1,127 @@
-import RacingCarView from './racingCarView.js';
-import RacingCarModel from './racingCarModel.js';
-import { isValidCarNames, isValidRacingCount } from './common/validator.js';
 import { ERROR_MESSAGE } from './common/constants.js';
+import { isValidCarNames, isValidRacingCount } from './common/validator.js';
+
+import RacingCarModel from './racingCarModel.js';
+import RacingCarView from './racingCarView.js';
 
 export default class RacingCarController {
   constructor() {
-    this.view = new RacingCarView();
     this.model = new RacingCarModel();
-
-    this.init();
+    this.view = new RacingCarView();
   }
 
   init() {
     this.view.renderHeader();
     this.view.renderCarNames();
     this.view.selectCarNamesDOM();
-    this.attachCarNamesEvents();
+    this.#attachCarNamesEvents();
   }
 
-  attachCarNamesEvents() {
-    this.$carNamesSubmit.addEventListener('click', this.handleCarNames.bind(this));
+  #attachCarNamesEvents() {
+    this.view.$getCarNamesForm().addEventListener('submit', this.#handleCarNames.bind(this));
   }
 
-  get $carNamesSubmit() {
-    return this.view.$carNamesSubmit;
-  }
-
-  attachRacingCountEvents() {
-    this.$racingCountSubmit.addEventListener('click', this.handleRacingCount.bind(this));
-  }
-
-  get $racingCountSubmit() {
-    return this.view.$racingCountSubmit;
-  }
-
-  attachRestartEvents() {
-    this.$restart.addEventListener('click', this.handleRestart.bind(this));
-  }
-
-  get $restart() {
-    return this.view.$restart;
-  }
-
-  handleCarNames() {
-    const carNamesInput = this.$carNamesInput.value.split(',');
+  #handleCarNames(event) {
+    event.preventDefault();
+    const carNamesInput = this.view.$getCarNamesInput().value.split(',');
     const carNames = carNamesInput.map((name) => name.trim());
 
-    if (isValidCarNames(carNames)) {
-      this.onValidCarNamesSubmit(carNames);
+    if (!isValidCarNames(carNames)) {
+      this.#onInvalidCarNamesSubmit();
 
       return;
     }
 
-    this.onInvalidCarNamesSubmit();
+    this.#onValidCarNamesSubmit(carNames);
   }
 
-  get $carNamesInput() {
-    return this.view.$carNamesInput;
-  }
-
-  onValidCarNamesSubmit(carNames) {
-    this.view.renderRacingCount();
-    this.view.selectRacingCountDOM();
-    this.attachRacingCountEvents();
-    this.model.setCars(carNames);
-    this.view.renderCars(this.model.cars);
-  }
-
-  onInvalidCarNamesSubmit() {
+  #onInvalidCarNamesSubmit() {
     alert(ERROR_MESSAGE.CAR_NAMES);
     this.view.resetCarNamesInput();
   }
 
-  handleRacingCount() {
-    const racingCount = Number(this.$racingCountInput.value);
+  #onValidCarNamesSubmit(carNames) {
+    RacingCarView.renderRacingCount();
+    this.view.selectRacingCountDOM();
+    this.view.resetRacingCountInput();
+    this.#attachRacingCountEvents();
+    this.model.createCars(carNames);
+    RacingCarView.renderCars(this.model.getCars());
+  }
 
-    if (isValidRacingCount(racingCount)) {
-      this.onValidRacingCountSubmit(racingCount);
+  #attachRacingCountEvents() {
+    this.view.$getRacingCountForm().addEventListener('submit', this.#handleRacingCount.bind(this));
+  }
+
+  #handleRacingCount(event) {
+    event.preventDefault();
+    const racingCount = this.view.$getRacingCountInput().valueAsNumber;
+
+    if (this.model.getRacingCount()) return;
+
+    if (!isValidRacingCount(racingCount)) {
+      this.#onInvalidRacingCountSubmit();
 
       return;
     }
 
-    this.onInvalidRacingCountSubmit();
+    this.#startRace(racingCount);
+    this.#finishRace();
   }
 
-  get $racingCountInput() {
-    return this.view.$racingCountInput;
-  }
-
-  onValidRacingCountSubmit(racingCount) {
-    this.model.setRacingCount(racingCount);
-    this.race(racingCount);
-    this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
-    this.view.renderWinners(this.model.getWinnners());
-    this.view.renderRestart();
-    this.view.selectRestartDOM();
-    this.attachRestartEvents();
-  }
-
-  onInvalidRacingCountSubmit() {
+  #onInvalidRacingCountSubmit() {
     alert(ERROR_MESSAGE.RACING_COUNT);
     this.view.resetRacingCountInput();
   }
 
-  race(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.cars.forEach((car) => car.moveForward());
+  #startRace(racingCount) {
+    this.model.setRacingCount(racingCount);
+    this.model.getCars().forEach((car) => {
+      RacingCarView.renderLoading(car);
+      this.#racing(car);
+    });
+  }
+
+  #racing(car) {
+    let turn = 0;
+    const racingTimer = setInterval(() => {
+      RacingCarController.#moveOrStop(car);
+      turn += 1;
+
+      if (turn === this.model.getRacingCount()) {
+        RacingCarView.removeLoading(car);
+        clearInterval(racingTimer);
+      }
+    }, 1000);
+  }
+
+  static #moveOrStop(car) {
+    car.moveForward();
+
+    if (car.isMoved) {
+      RacingCarView.renderMoveForward(car);
     }
   }
 
-  get cars() {
-    return this.model.cars;
+  #finishRace() {
+    setTimeout(() => {
+      const winners = this.model.getWinnners();
+      RacingCarView.renderWinners(winners);
+      setTimeout(() => {
+        alert(`축하합니다! 최종 우승자는 🎉 ${winners.join(', ')} 🎉 입니다!`);
+      }, 2000);
+      RacingCarView.renderRestart();
+      this.view.selectRestartDOM();
+      this.#attachRestartEvents();
+    }, 1000 * this.model.getRacingCount());
   }
 
-  handleRestart() {
-    this.view.renderInit();
+  #attachRestartEvents() {
+    this.view.$getRestart().addEventListener('click', this.#handleRestart.bind(this));
+  }
+
+  #handleRestart() {
     this.model.init();
+    this.view.renderReset();
   }
 }

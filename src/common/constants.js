@@ -1,5 +1,5 @@
 export const BUTTON = {
-  SUBMIT: '확인',
+  CONFIRM: '확인',
   RESTART: '다시 시작하기',
 };
 
@@ -20,12 +20,17 @@ export const DIRECTIVE = {
 };
 
 export const ERROR_MESSAGE = {
-  CAR_NAMES: '1~5자의 서로 다른 자동차 이름을 입력해 주세요!',
+  CAR_NAMES: '1~5자의 서로 다른 자동차 이름을 두 개 이상 입력해 주세요!',
   RACING_COUNT: '양의 정수를 입력해 주세요!',
 };
 
 export const HEADER = {
   MAIN: '🏎️ 자동차 경주 게임🏁',
+};
+
+export const PLACEHOLDER = {
+  CAR_NAMES_INPUT: 'east, west, south, north, all',
+  RACING_COUNT_INPUT: 10,
 };
 
 export const RANDOM = {
@@ -34,10 +39,13 @@ export const RANDOM = {
 };
 
 export const SELECTOR = {
+  CAR_NAMES_FORM: '#car-names-form',
   CAR_NAMES_INPUT: '#car-names-input',
-  CAR_NAMES_SUBMIT: '#car-names-submit',
+  GAME_RESULT: '#game-result',
+  RACING_COUNT: '#racing-count',
+  RACING_COUNT_FORM: '#racing-count-form',
   RACING_COUNT_INPUT: '#racing-count-input',
-  RACING_COUNT_SUBMIT: '#racing-count-submit',
+  RESTART: '#restart',
 };
 
 export const WINNER = {

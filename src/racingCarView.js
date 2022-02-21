@@ -1,101 +1,124 @@
+import { SELECTOR } from './common/constants.js';
 import { $, $$ } from './common/DOMHelper.js';
-import {
-  carsTemplate,
-  carNamesTemplate,
-  headerTemplate,
-  racingCountTemplate,
-  restartTemplate,
-  winnersTemplate,
-} from './common/template.js';
-import { CAR, SELECTOR } from './common/constants.js';
 import { style } from './common/style.js';
 
+import loadingElement from './common/element.js';
+import * as template from './common/template.js';
+
 export default class RacingCarView {
+  #carNamesForm;
+
+  #carNamesInput;
+
+  #racingCountForm;
+
+  #racingCountInput;
+
+  #restart;
+
   constructor() {
     this.$app = $('#app');
-
-    this.init();
+    RacingCarView.init();
   }
 
-  init() {
+  static init() {
     document.head.innerHTML += style;
   }
 
   renderHeader() {
-    this.$app.innerHTML = headerTemplate();
+    this.$app.innerHTML = template.headerTemplate();
   }
 
   renderCarNames() {
-    this.$app.innerHTML += carNamesTemplate();
-  }
-
-  renderRacingCount() {
-    const $racingCount = $('#racing-count');
-
-    $racingCount.innerHTML = racingCountTemplate();
-  }
-
-  renderCars(cars) {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML = carsTemplate(cars);
+    this.$app.innerHTML += template.carNamesTemplate();
   }
 
   selectCarNamesDOM() {
-    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
-    this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
-  }
-
-  selectRacingCountDOM() {
-    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
-    this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
-  }
-
-  selectRestartDOM() {
-    this.$restart = $('#restart');
+    this.#carNamesForm = $(SELECTOR.CAR_NAMES_FORM);
+    this.#carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
   }
 
   resetCarNamesInput() {
-    this.$carNamesInput.value = '';
+    this.#carNamesInput.value = '';
+    this.#carNamesInput.focus();
+  }
+
+  static renderRacingCount() {
+    $(SELECTOR.RACING_COUNT).innerHTML = template.racingCountTemplate();
+  }
+
+  selectRacingCountDOM() {
+    this.#racingCountForm = $(SELECTOR.RACING_COUNT_FORM);
+    this.#racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+  }
+
+  static renderCars(cars) {
+    $(SELECTOR.GAME_RESULT).innerHTML = template.carsTemplate(cars);
   }
 
   resetRacingCountInput() {
-    this.$racingCountInput.value = '';
+    this.#racingCountInput.value = '';
+    this.#racingCountInput.focus();
   }
 
-  renderMoveForwardArrow(car) {
-    const { name, moveCount } = car;
-    const carNode = this.findCarNode(name)[0];
-
-    for (let i = 0; i < moveCount; i += 1) {
-      carNode.innerHTML += `<p>${CAR.MOVE_FORWARD_ARROW}</p>`;
-    }
+  static renderLoading(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    carNode.append(loadingElement());
   }
 
-  findCarNode(name) {
+  static renderMoveForward(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    RacingCarView.removeLoading(car);
+    carNode.innerHTML += template.moveForwardTemplate();
+    RacingCarView.renderLoading(car);
+  }
+
+  static #findCarNode(name) {
     const $$moveForwardArrow = $$('.move-forward-arrow');
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
   }
 
-  renderWinners(winners) {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML += winnersTemplate(winners);
+  static removeLoading(car) {
+    const carNode = RacingCarView.#findCarNode(car.name)[0];
+    [...carNode.children].filter((child) => child.className === 'loading')[0].remove();
   }
 
-  renderRestart() {
-    const $gameResult = $('#game-result');
-
-    $gameResult.innerHTML += restartTemplate();
+  static renderWinners(winners) {
+    $(SELECTOR.GAME_RESULT).innerHTML += template.winnersTemplate(winners);
   }
 
-  renderInit() {
+  static renderRestart() {
+    $(SELECTOR.GAME_RESULT).innerHTML += template.restartTemplate();
+  }
+
+  selectRestartDOM() {
+    this.#restart = $(SELECTOR.RESTART);
+  }
+
+  renderReset() {
     this.resetCarNamesInput();
+    $(SELECTOR.RACING_COUNT).innerHTML = '';
+    $(SELECTOR.GAME_RESULT).innerHTML = '';
+  }
 
-    const $racingCount = $('#racing-count');
-    const $gameResult = $('#game-result');
-    $racingCount.innerHTML = '';
-    $gameResult.innerHTML = '';
+  $getCarNamesForm() {
+    return this.#carNamesForm;
+  }
+
+  $getCarNamesInput() {
+    return this.#carNamesInput;
+  }
+
+  $getRacingCountForm() {
+    return this.#racingCountForm;
+  }
+
+  $getRacingCountInput() {
+    return this.#racingCountInput;
+  }
+
+  $getRestart() {
+    return this.#restart;
   }
 }
