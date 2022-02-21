@@ -1,20 +1,39 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
+import { hideElement } from '../utils/attribute.js';
+import { SELECTOR } from '../utils/constants.js';
+import { carPlayerTemplate, arrowTemplate } from './template.js';
 
-const carPlayerTemplate = (name, distance) => {
-  return `
-    <div class="car-name mr-2">
-      <div class="car-player">${name}</div>
-      ${'<div class="forward-icon mt-2">⬇️️</div>'.repeat(distance)}
-    </div>
-  `;
-};
+export default class RacingResult {
+  #racingStatus;
+  #finalWinner;
 
-export const renderFinalWinner = (finalWinner) => {
-  $('#winner-names').innerHTML = `🏆 최종 우승자: ${finalWinner} 🏆`;
-};
+  constructor() {
+    this.initDom();
+  }
 
-export const renderRacingResult = (cars) => {
-  cars.forEach(({ name, distance }) => {
-    $('#result-racing').insertAdjacentHTML('beforeend', carPlayerTemplate(name, distance));
-  });
-};
+  initDom() {
+    this.#racingStatus = $(SELECTOR.RACING_STATUS);
+    this.#finalWinner = $(SELECTOR.FINAL_WINNER);
+  }
+
+  renderFinalWinner(winners) {
+    this.#finalWinner.innerHTML = `🏆 최종 우승자: ${winners} 🏆`;
+  }
+
+  renderRacingStatus(cars) {
+    cars.forEach(({ name }) => {
+      this.#racingStatus.insertAdjacentHTML('beforeend', carPlayerTemplate(name));
+    });
+  }
+
+  renderMoveForward(name) {
+    $(`${SELECTOR.CAR_PLAYER}[data-car-name=${name}]`).insertAdjacentHTML(
+      'afterend',
+      arrowTemplate,
+    );
+  }
+
+  removeSpinner() {
+    $$(SELECTOR.SPINNER).forEach((element) => hideElement(element));
+  }
+}

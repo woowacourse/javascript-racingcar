@@ -1,17 +1,9 @@
-import { STANDARD } from './constants.js';
-
-export const isBlank = (name) => {
-  return name.length >= STANDARD.MIN_NAME_LENGTH;
+export const isValidBlankInArray = (names, min) => {
+  return names.every((name) => name.length >= min);
 };
 
-export const isValidLength = (name) => {
-  return name.length <= STANDARD.MAX_NAME_LENGTH;
+export const isValidLengthInArray = (names, max) => {
+  return names.every((name) => name.length <= max);
 };
 
-export const isEffectiveScore = (number) => {
-  return number >= STANDARD.EFFECTIVE_SCORE;
-};
-
-export const handleError = (message) => {
-  alert(message);
-};
+export const isLessNumber = (number, min) => number < min;
