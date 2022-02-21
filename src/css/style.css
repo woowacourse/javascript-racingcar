@@ -106,7 +106,7 @@
   flex-direction: row;
   align-items: flex-start;
   padding: 6px 6px 6px 20px;
-  line-height: 24px
+  line-height: 24px;
 
   position: absolute;
   width: 65.68px;
@@ -192,6 +192,7 @@
   align-items: flex-start;
   padding: 6px 6px 6px 20px;
   line-height: 24px;
+
   position: absolute;
   width: 65.68px;
   height: 36px;
