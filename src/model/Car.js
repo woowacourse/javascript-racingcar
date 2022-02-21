@@ -1,19 +1,33 @@
 class Car {
+  #name = '';
+
+  #distance = 0;
+
+  #isForwarded = false;
+
   constructor(name) {
-    this.name = name;
-    this.distance = 0;
+    this.#name = name;
   }
 
   getName() {
-    return this.name;
+    return this.#name;
   }
 
   getDistance() {
-    return this.distance;
+    return this.#distance;
+  }
+
+  getIsForwarded() {
+    return this.#isForwarded;
   }
 
   moveForward() {
-    this.distance = this.distance + 1;
+    this.#distance = this.#distance + 1;
+    this.#isForwarded = true;
+  }
+
+  stop() {
+    this.#isForwarded = false;
   }
 }
 

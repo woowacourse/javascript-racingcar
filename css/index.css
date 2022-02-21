@@ -31,10 +31,6 @@ main {
   margin: 32px 0px;
 }
 
-#racing_count_form {
-  display: none;
-}
-
 form {
   margin-bottom: 12px;
 }
@@ -69,6 +65,10 @@ form > label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.disabled_input_btn {
+  background-color: #888888;
 }
 
 #racing_car_display_section {
@@ -108,24 +108,19 @@ form > label {
 }
 
 .racing_car_progress > li {
-  padding: 7px 0 8px;
+  margin: 8px 0;
   font-size: 32px;
 }
 
 #final_winner {
   font-size: 20px;
   font-weight: 600;
-  display: none;
-}
-
-#restart_section {
-  padding-bottom: 42px;
-  display: none;
 }
 
 #restart_btn {
   width: 152px;
   height: 36px;
+  margin-bottom: 42px;
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
@@ -133,4 +128,32 @@ form > label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.spinner_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 5px solid #ffffff;
+  border-radius: 100%;
+  border-bottom-color: #00bcd4;
+  border-right-color: #00bcd4;
+  border-left-color: #00bcd4;
+
+  animation: spin 1000ms linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

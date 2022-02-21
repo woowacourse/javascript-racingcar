@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { ID, CLASS, TEST } from '../../src/constants/index.js';
+
+Cypress.Commands.add('submitCarName', () => {
+  cy.get(`#${ID.CAR_NAMES_INPUT}`).type(TEST.VALID_CAR_NAMES);
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(0).click();
+});
+
+Cypress.Commands.add('submitRacingCount', () => {
+  cy.get(`#${ID.RACING_COUNT_INPUT}`).type(TEST.VALID_RACING_COUNT);
+  cy.get(`.${CLASS.INPUT_BTN}`).eq(1).click();
+});

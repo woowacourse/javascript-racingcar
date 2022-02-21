@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <title>🏎️ 자동차 경주 게임</title>
@@ -27,23 +27,15 @@
               <button class="input_btn">확인</button>
             </div>
           </form>
-          <form id="racing_count_form">
-            <label for="racing_count_input">시도할 횟수를 입력해주세요.</label>
-            <div class="input_box">
-              <input type="number" id="racing_count_input" class="user_input" placeholder="10" />
-              <button class="input_btn">확인</button>
-            </div>
-          </form>
+          <form id="racing_count_form"></form>
         </section>
         <section id="racing_car_display_section">
           <div id="racing_car_list"></div>
-          <div id="final_winner">🏆최종 우승자 : <span id="final_winner_result"></span>🏆</div>
+          <div id="final_winner"></div>
         </section>
-        <section id="restart_section">
-          <button id="restart_btn">다시 시작하기</button>
-        </section>
+        <section id="restart_section"></section>
       </main>
     </div>
-    <script type="module" src="src/index.js" />
+    <script type="module" src="src/index.js"></script>
   </body>
 </html>

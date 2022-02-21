@@ -12,14 +12,16 @@ export const ID = Object.freeze({
 
 export const CLASS = Object.freeze({
   INPUT_BTN: 'input_btn',
+  DISABLED_INPUT_BTN: 'disabled_input_btn',
   RACING_CAR_PROGRESS: 'racing_car_progress',
   RACING_CAR_NAME: 'racing_car_name',
+  SPINNER_CONTAINER: 'spinner_container',
+  SPINNER: 'spinner',
 });
 
 export const ERROR_MESSAGES = Object.freeze({
-  EMPTY_CAR_NAME: '자동차 이름은 최소 1개 이상 입력해야 한다.',
+  EMPTY_CAR_NAME: '자동차 이름은 공백이면 안된다.',
   EXCEED_CAR_NAME_LENGTH: '자동차 이름의 길이는 5 이하로만 입력해야 한다.',
-  BLANK_CAR_NAME: '자동차 이름은 공백이면 안된다.',
   BLANK_RACING_COUNT: '시도할 횟수는 공백이면 안된다.',
   NOT_NUMBER_TYPE: '시도할 횟수는 숫자 타입을 입력해야 한다.',
   NOT_NATURAL_NUMBER: '시도할 횟수는 자연수를 입력해야 한다.',
@@ -30,7 +32,16 @@ export const RULES = Object.freeze({
   ZERO_CAR_NAME_LENGTH: 0,
   CAR_NAME_SEPERATOR: ',',
   WINNER_LIST_SEPERATOR: ', ',
-  WAITING_TIME: 1000,
+  TRUN_INTERVAL_TIME: 1000,
+  RESULT_MESSAGE_WAITING_TIME: 2000,
   MOVE_CONDITION_NUMBER: 4,
   EMPTY_STRING: '',
 });
+
+export const TEST = Object.freeze({
+  VALID_CAR_NAMES: 'east, west, south, north, all',
+  VALID_RACING_COUNT: 10,
+  VALID_CAR_NAMES_LENGTH: 5,
+});
+
+export const WINNER_MESSAGE = (finalWinner) => `축하합니다🎉🎉 \n우승자는 ${finalWinner} 입니다.`;
