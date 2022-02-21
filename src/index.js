@@ -108,8 +108,13 @@ class CarRacing {
 
   moveCar(cars) {
     cars.forEach(car => {
+      const carStatuses = Array.from(
+        document.getElementsByClassName('car-status'),
+      );
       if (car.move()) {
-        const carStatus = getElement(`car-status-${car.name}`);
+        const carStatus = carStatuses.filter(
+          names => names.dataset.name === car.name,
+        )[0];
         carStatus.replaceChild(carMovementView(), carStatus.lastChild);
         carStatus.insertAdjacentHTML('beforeend', loadingView);
       }

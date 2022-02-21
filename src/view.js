@@ -7,20 +7,9 @@ const carsNameView = cars => {
   return cars
     .map(
       ({ name }) =>
-        `<div id="car-status-${name}" class="car-status" data-name=${name}>
-      <div id="car-name" class="car-name">${name}</div>
-    </div>`,
+        `<div class="car-status" data-name=${name}><div class="car-name">${name}</div>${loadingView}</div>`,
     )
     .join('');
-};
-
-const loaderView = cars => {
-  cars.forEach(car => {
-    getElement(`car-status-${car.name}`).insertAdjacentHTML(
-      'beforeend',
-      loadingView,
-    );
-  });
 };
 
 const carMovementView = () => {
@@ -38,8 +27,8 @@ const removeAllChildNodes = parent => {
 };
 
 const clearLoadingView = cars => {
-  cars.forEach(car => {
-    const parent = getElement(`car-status-${car.name}`);
+  const parents = Array.from(document.getElementsByClassName('car-status'));
+  parents.forEach(parent => {
     if (parent.lastChild.className === 'loader') {
       parent.removeChild(parent.lastChild);
     }
@@ -63,7 +52,6 @@ const initRacingStatus = cars => {
     'beforeend',
     carsNameView(cars),
   );
-  loaderView(cars);
 };
 
 export {
@@ -73,6 +61,5 @@ export {
   resultView,
   initRacingStatus,
   winnerAlert,
-  loaderView,
   loadingView,
 };
