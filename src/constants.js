@@ -13,6 +13,11 @@ const ID = {
   RACING_STATUS: 'racing-status',
 };
 
+const CLASS = {
+  CAR_STATUS: 'car-status',
+  CAR_NAME: 'car-name',
+};
+
 const MESSAGE = {
   WRONG_NAME_LENGTH: '1~5자의 자동차 이름을 입력해 주세요.',
   DUPLICATE_NAME: '중복된 자동차 이름은 입력이 불가능합니다.',
@@ -22,8 +27,8 @@ const MESSAGE = {
 
 const NAME_LENGTH = {
   MIN: 1,
-  MAX: 5
-}
+  MAX: 5,
+};
 
 const MIN_RACING_COUNT = 1;
 
@@ -31,7 +36,15 @@ const MAX_RANDOM_NUMBER = 10;
 
 const INTERVAL = {
   LOADING: 1000,
-  ALERT: 2000
-}
+  ALERT: 2000,
+};
 
-export { ID, MESSAGE, NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER, INTERVAL };
+export {
+  ID,
+  CLASS,
+  MESSAGE,
+  NAME_LENGTH,
+  MIN_RACING_COUNT,
+  MAX_RANDOM_NUMBER,
+  INTERVAL,
+};

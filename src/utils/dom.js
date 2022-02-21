@@ -1,11 +1,13 @@
-const getElement = (id, target = document) => {
-  return target.getElementById(id);
+const getElement = (id, target = document) => target.getElementById(id);
+
+const getElements = (className, target = document) =>
+  target.getElementsByClassName(className);
+
+const toggleDisable = ids => {
+  ids.forEach(id => {
+    getElement(id).disabled = !getElement(id).disabled;
+    getElement(id).classList.toggle('disabled-button');
+  });
 };
 
-const changeActivity = (ids) => {
-  ids.forEach(id=>{
-    getElement(id).disabled = !getElement(id).disabled;
-  })
-}
-
-export { getElement, changeActivity };
+export { getElement, getElements, toggleDisable };

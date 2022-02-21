@@ -43,6 +43,10 @@ button {
     padding: 10px 1em;
 }
 
+button:hover {
+    filter: brightness(110%);
+    transition: 0.5s;
+}
 
 .racing-status {
     display: flex;
@@ -61,7 +65,11 @@ button {
 
 .car-name{
     background-color: #F5F5F5;   
-    padding: 7px 10px;
+    width: 96px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
     border-radius: 4px;
 }
@@ -92,6 +100,11 @@ button {
     align-items: center;
 }
 
-.restart-button {
+#restart-button {
     visibility: hidden;
+}
+
+.disabled-button {
+    filter: brightness(80%);
+    pointer-events: none;
 }

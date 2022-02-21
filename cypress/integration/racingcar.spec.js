@@ -32,57 +32,68 @@ describe('결과 출력', () => {
     cy.tick(racingCount * milliseconds + bufferTime);
     cy.get('h3').should('be.visible');
   });
-
-  it('다시 시작하기 버튼을 클릭한다.', () => {
-    cy.get(convertToId(ID.RESTART_BUTTON)).click();
-    cy.get(convertToId(ID.CAR_COUNTS_INPUT)).should('have.value', '');
-    cy.get(convertToId(ID.RACING_COUNT_INPUT)).should('have.value', '');
-    cy.get(convertToId(ID.RACING_STATUS)).should('be.empty');
-    cy.get(convertToId(ID.RACING_WINNERS)).should('be.empty');
-  });
-})
+});
 
 describe('결과 메시지', () => {
   it('게임이 정상적으로 동작된 2초후, 결과 메시지를 확인할 수 있다', () => {
     cy.clock();
     cy.visit('/index.html');
     const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
+    cy.on('window:alert', alertStub);
     cy.submitCarNames(names.join(','));
     cy.submitRacingCount(racingCount);
     cy.tick(racingCount * milliseconds + bufferTime);
-    cy.tick(2*milliseconds + bufferTime).then(()=>{
+    cy.tick(2 * milliseconds + bufferTime).then(() => {
       expect(alertStub).to.be.called;
     });
-  })
-})
+  });
+});
 
-describe('에러 처리를 한다', () => {
+describe('다시 시작하기', () => {
+  it('결과 출력 2초 후 다시 시작하기 버튼을 누르면 게임을 다시 시작할 수 있다.', () => {
+    cy.clock();
+    cy.visit('/index.html');
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    cy.submitCarNames(names.join(','));
+    cy.submitRacingCount(racingCount);
+    cy.tick(racingCount * milliseconds + bufferTime);
+    cy.tick(2 * milliseconds + bufferTime).then(() => {
+      cy.get(convertToId(ID.RESTART_BUTTON)).click();
+      cy.get(convertToId(ID.CAR_COUNTS_INPUT)).should('have.value', '');
+      cy.get(convertToId(ID.RACING_COUNT_INPUT)).should('have.value', '');
+      cy.get(convertToId(ID.RACING_STATUS)).should('be.empty');
+      cy.get(convertToId(ID.RACING_WINNERS)).should('be.empty');
+    });
+  });
+});
+
+describe('에러 처리', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
 
   it('입력한 이름이 5글자 초과 1글자 미만일 수 없다.', () => {
     const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
+    cy.on('window:alert', alertStub);
     cy.get(convertToId(ID.CAR_NAMES_INPUT)).type('jun,dddddd');
-    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT))
+    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT));
     cy.get(convertToId(ID.CAR_NAMES_INPUT)).type('jun,,');
-    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT))
+    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT));
   });
 
   it('중복된 이름은 입력이 불가능하다', () => {
     const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
+    cy.on('window:alert', alertStub);
     cy.get(convertToId(ID.CAR_NAMES_INPUT)).type('jun,jun');
-    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT))
+    cy.checkAlert(convertToId(ID.CAR_NAMES_SUBMIT));
   });
 
   it('자동차 이름이 입력되지 않았다면 레이싱 횟수를 입력할 수 없다.', () => {
     const alertStub = cy.stub();
-    cy.on("window:alert", alertStub);
+    cy.on('window:alert', alertStub);
     cy.get(convertToId(ID.RACING_COUNT_INPUT)).type(5);
-    cy.checkAlert(convertToId(ID.RACING_COUNT_SUBMIT))
+    cy.checkAlert(convertToId(ID.RACING_COUNT_SUBMIT));
   });
 
   it('입력한 레이싱 횟수가 1 미만일 수 없다.', () => {
