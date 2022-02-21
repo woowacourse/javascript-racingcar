@@ -1,4 +1,4 @@
-import { $, $$ } from "./getElement.js";
+import { $ } from "./getElement.js";
 
 const showRacingResult = () => {
   $("racing-result").hidden = false;
@@ -45,7 +45,7 @@ export const createEachLog = car => {
 };
 
 export const hideLoading = () => {
-  const allLoadings = $$("loading");
+  const allLoadings = document.getElementsByClassName("loading");
 
   for (let i = 0; i < allLoadings.length; i++) {
     allLoadings[i].hidden = true;
