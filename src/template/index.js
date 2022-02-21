@@ -1,4 +1,4 @@
-export const templateRacingCountForm = `
+export const racingCountFormTemplate = `
   <label for="racing_count_input">시도할 횟수를 입력해주세요.</label>
   <div class="input_box">
     <input type="number" id="racing_count_input" class="user_input" placeholder="10" />
@@ -6,7 +6,7 @@ export const templateRacingCountForm = `
   </div>
 `;
 
-export const templateRacingCarItem = (carName) => `
+export const getRacingCarItemTemplate = (carName) => `
     <div class="racing_car_item">
       <div class="racing_car_name">${carName}</div>
       <ul class="racing_car_progress">
@@ -15,12 +15,12 @@ export const templateRacingCarItem = (carName) => `
     </div>
   `;
 
-export const templateProgress = '<li>⬇</li>';
+export const progressTemplate = '<li>⬇</li>';
 
-export const templateSpinner = '<div class="spinner"/>';
+export const spinnerTemplate = '<div class="spinner"/>';
 
-export const templateFinalWinner = (finalWinner) => `
+export const getFinalWinnerTemplate = (finalWinner) => `
   🏆최종 우승자 : <span id="final_winner_result">${finalWinner}</span>🏆
 `;
 
-export const templateRestartButton = '<button id="restart_btn">다시 시작하기</button>';
+export const restartButtonTemplate = '<button id="restart_btn">다시 시작하기</button>';

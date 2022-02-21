@@ -1,12 +1,12 @@
 import { CLASS, ID } from '../constants/index.js';
 import { $, $$ } from '../util/index.js';
 import {
-  templateRacingCountForm,
-  templateRacingCarItem,
-  templateProgress,
-  templateSpinner,
-  templateFinalWinner,
-  templateRestartButton,
+  racingCountFormTemplate,
+  getRacingCarItemTemplate,
+  progressTemplate,
+  spinnerTemplate,
+  getFinalWinnerTemplate,
+  restartButtonTemplate,
 } from '../template/index.js';
 
 class RacingCarGameView {
@@ -78,14 +78,14 @@ class RacingCarGameView {
       return;
     }
 
-    this.$racingCountForm.insertAdjacentHTML('beforeend', templateRacingCountForm);
+    this.$racingCountForm.insertAdjacentHTML('beforeend', racingCountFormTemplate);
     this.$racingCountInput = $(`#${ID.RACING_COUNT_INPUT}`);
     this.$inputBtns = $$(`.${CLASS.INPUT_BTN}`);
   }
 
   renderRacingCarList(racingCarList) {
     const racingCarItemsTemplate = racingCarList.reduce(
-      (previousTemplate, car) => previousTemplate + templateRacingCarItem(car.getName()),
+      (previousTemplate, car) => previousTemplate + getRacingCarItemTemplate(car.getName()),
       ''
     );
 
@@ -101,22 +101,22 @@ class RacingCarGameView {
 
     racingCarList.forEach((car, index) => {
       if (car.getIsForwarded()) {
-        this.$racingCarProgress[index].insertAdjacentHTML('beforeend', templateProgress);
+        this.$racingCarProgress[index].insertAdjacentHTML('beforeend', progressTemplate);
       }
     });
   }
 
   renderFinalWinner(finalWinner) {
-    this.$finalWinner.insertAdjacentHTML('beforeend', templateFinalWinner(finalWinner));
+    this.$finalWinner.insertAdjacentHTML('beforeend', getFinalWinnerTemplate(finalWinner));
   }
 
   renderRestartButton() {
-    this.$restartSection.insertAdjacentHTML('beforeend', templateRestartButton);
+    this.$restartSection.insertAdjacentHTML('beforeend', restartButtonTemplate);
   }
 
   renderSpinner() {
     this.$spinnerContainers?.forEach(($spinnerContainer) =>
-      $spinnerContainer.insertAdjacentHTML('beforeend', templateSpinner)
+      $spinnerContainer.insertAdjacentHTML('beforeend', spinnerTemplate)
     );
   }
 
