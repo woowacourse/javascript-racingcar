@@ -24,12 +24,9 @@ export default class RacingCarGameView {
     }
 
     getOneCarContent(carCount, isCurrentTurnSuccess) {
-        let arrowResult = '';
-        for(let i = 0; i < carCount - 1; i++) {
-            arrowResult +='<p>⬇️</p>';
-        }
-        arrowResult += isCurrentTurnSuccess ? '<p class="loading-spinner"></p>' : '<p>⬇️</p>';
-        return arrowResult;
+        const arrowResult = Array.from({length: carCount - 1}, () => '<p>⬇️</p>');
+        arrowResult.push(isCurrentTurnSuccess ? '<p class="loading-spinner"></p>' : '<p>⬇️</p>');
+        return arrowResult.join('');
     }
     
     renderGameWinners(winners){
