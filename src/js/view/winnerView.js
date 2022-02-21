@@ -6,5 +6,5 @@ export const showWinnerAndRestartButton = () => {
 };
 
 export const setRacingWinnerView = winners => {
-  $("racing-winner").innerHTML = winners.join(", ");
+  $("racing-winner").append(document.createTextNode(winners.join(", ")));
 };
