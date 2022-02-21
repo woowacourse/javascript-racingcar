@@ -182,7 +182,6 @@ h1 {
 .car-racing-count-box {
   display: flex;
   flex-direction: row-reverse;
-  /* margin: 20px; */
   justify-content: center;
   align-items: center;
 }
@@ -238,13 +237,6 @@ button {
   text-transform: uppercase;
 }
 
-/* #game-result {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-} */
-
 #game-restart {
   width: 120px;
   height: 36px;
@@ -265,11 +257,6 @@ button {
   color: rgba(0, 0, 0, 0.87);
 }
 
-/* #car-progress-result {
-  display: flex;
-  align-items: center;
-} */
-
 #car-progress {
   display: flex;
   flex-direction: row;
@@ -279,6 +266,7 @@ button {
   writing-mode: vertical-rl;
   text-orientation: upright;
   width: 96px;
+  font-size: 25px;
   display: flex;
   align-items: center;
   margin: 0px 5px;
@@ -288,6 +276,7 @@ button {
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
+  font-size: 20px;
 }
 
 #result-car-name {
@@ -299,4 +288,27 @@ button {
   align-items: center;
   justify-content: center;
   margin: 10px 5px;
+}
+
+.loader {
+  border: 8px solid #00bcd4;
+  border-top: 8px solid #ffffff;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  margin-top: 7px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.d-none {
+  display: none;
 }

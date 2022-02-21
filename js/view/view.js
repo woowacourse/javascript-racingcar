@@ -1,51 +1,76 @@
-import { $ } from '../utils/dom.js';
+import { $, $$ } from '../utils/dom.js';
 import { SELECTOR } from '../utils/constants.js';
+import { template } from './template.js';
 export default class View {
   constructor() {
     this.renderInitial();
   }
 
-  carNamesTemplate(carNames) {
-    return carNames.map((carName) => `<span id="result-car-name">${carName}</span>`).join('');
-  }
-
   renderCarNames(carNames) {
-    $(SELECTOR.CAR_NAMES).innerHTML = this.carNamesTemplate(carNames);
+    $(SELECTOR.CAR_NAMES).insertAdjacentHTML('afterbegin', template.carNamesTemplate(carNames));
   }
 
-  winnerTemplate(winners) {
-    return `🏆 최종 우승자: ${winners} 🏆`;
+  renderInitialLoader(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
+      'afterbegin',
+      template.initialLoaderTemplate(carPosition)
+    );
+  }
+
+  renderCarProgress(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).replaceChildren('');
+    $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML(
+      'afterbegin',
+      template.carProgressTemplate(carPosition)
+    );
+  }
+
+  renderLoader() {
+    $$(SELECTOR.CAR_PROGRESS_RESULT).forEach((el) => {
+      el.insertAdjacentHTML('beforeend', template.loaderTemplate());
+    });
+  }
+
+  hideLoader() {
+    $$(SELECTOR.LOADER).forEach((el) => {
+      el.classList.add('d-none');
+    });
   }
 
   renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = this.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).insertAdjacentHTML(
+      'afterbegin',
+      template.winnerTemplate(winners)
+    );
   }
 
-  carProgressTemplate(carPosition) {
-    return carPosition
-      .map((position) => `<div id="car-progress-result">${'⬇️️'.repeat(position)}</div>`)
-      .join('');
+  disableCarNamesForm(enable) {
+    $(SELECTOR.CAR_NAMES_INPUT).disabled = enable;
+    $(SELECTOR.CAR_NAMES_SUBMIT_BUTTON).disabled = enable;
   }
 
-  renderProgress(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
+  disableRacingCountForm(enable) {
+    $(SELECTOR.CAR_RACING_COUNT_INPUT).disabled = enable;
+    $(SELECTOR.CAR_RACING_COUNT_SUBMIT_BUTTON).disabled = enable;
   }
 
   renderInitial() {
-    $(SELECTOR.GAME_RESTART).style.display = 'none';
-    $(SELECTOR.CAR_NAMES).innerHTML = '';
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = '';
-    $(SELECTOR.CAR_PROGRESS).innerHTML = '';
+    $(SELECTOR.GAME_RESTART).classList.add('d-none');
+    $(SELECTOR.CAR_NAMES).innerText = '';
+    $(SELECTOR.CAR_PROGRESS).innerText = '';
+    $(SELECTOR.CAR_RACING_WINNER).innerText = '';
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).classList.add('d-none');
+    this.disableCarNamesForm(false);
+    this.disableRacingCountForm(false);
   }
 
   renderRestartButton() {
-    $(SELECTOR.GAME_RESTART).style.display = 'block';
+    $(SELECTOR.GAME_RESTART).classList.remove('d-none');
   }
 
-  renderCarRacingInputBox() {
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
+  renderRacingCountForm() {
+    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).classList.remove('d-none');
   }
 }
