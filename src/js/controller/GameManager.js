@@ -26,7 +26,7 @@ export default class GameManager {
 
   turn(carManager) {
     carManager.cars.forEach(car => {
-      if (car.advance()) {
+      if (car.isAdvance()) {
         createEachLog(car);
       }
     });
