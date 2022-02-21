@@ -1,9 +1,7 @@
-const $ = (selector, node = document) => {
-  const nodeList = node.querySelectorAll(selector);
-  if (nodeList.length === 1) {
-    return nodeList[0];
-  }
-  return nodeList;
+export const querySelector = (selector, context = document) => context.querySelector(selector);
+export const querySelectorAll = (selector, context = document) => context.querySelectorAll(selector);
+export const htmlToElement = (htmlString) => {
+  const template = document.createElement('div');
+  template.innerHTML = htmlString;
+  return template.firstElementChild;
 };
-
-export default $;

@@ -14,7 +14,10 @@ class RacingCarGameModel {
   }
 
   getCarNames() {
-    return this.cars.map((car) => car.name).join(',');
+    return this.cars
+      .map((car) => car.name)
+      .join(', ')
+      .trim();
   }
 
   getRacingCount() {
@@ -42,6 +45,20 @@ class RacingCarGameModel {
 
   tryMoveCars() {
     this.cars.map((car) => car.tryMove());
+  }
+
+  findWinners() {
+    const maxDistance = this.cars.reduce((acc, { distance }) => Math.max(acc, distance), 0);
+    return this.cars.filter(({ distance }) => distance === maxDistance).map(({ name }) => name);
+  }
+
+  resetDistances() {
+    this.cars.forEach((car) => car.resetDistance());
+  }
+
+  reset() {
+    this.cars = [];
+    this.racingCount = 0;
   }
 }
 

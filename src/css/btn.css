@@ -1,6 +1,6 @@
 .btn {
   width: 65px;
-  padding: 10px 0 10px 0;
+  padding: 10px 0;
   border-radius: 4px;
   outline: 0;
   border-style: none;
@@ -23,4 +23,8 @@
 
 .btn-long {
   width: 152px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
 }

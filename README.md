@@ -29,6 +29,12 @@ live-server 폴더명
 
 <br>
 
+## :page_with_curl: 코드 구조
+
+![코드구조](./docs/big-picture.png)
+
+<br>
+
 ## 👏 Contributing
 
 만약 미션 수행 중에 개선사항이 보인다면, 언제든 자유롭게 PR을 보내주세요. 
