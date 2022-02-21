@@ -1,15 +1,12 @@
-/* eslint-disable max-lines-per-function */
 import RacingCarView from './racingCarView.js';
 import RacingCarModel from './racingCarModel.js';
 import { isValidCarNames, isValidRacingCount } from './common/validator.js';
-import { ERROR_MESSAGE } from './common/constants.js';
+import { ERROR_MESSAGE, DELAY } from './common/constants.js';
 
 export default class RacingCarController {
   constructor() {
     this.view = new RacingCarView();
     this.model = new RacingCarModel();
-
-    this.init();
   }
 
   init() {
@@ -31,6 +28,11 @@ export default class RacingCarController {
     this.view.$restart.addEventListener('click', this.handleRestart.bind(this));
   }
 
+  handleRestart() {
+    this.view.renderInit();
+    this.model.init();
+  }
+
   handleCarNames(event) {
     event.preventDefault();
 
@@ -42,7 +44,7 @@ export default class RacingCarController {
       this.view.renderRacingCount();
       this.view.selectRacingCountDOM();
       this.attachRacingCountEvents();
-      this.view.renderCars(this.model.cars);
+      this.view.renderCars(this.model.getCars());
 
       return;
     }
@@ -54,16 +56,11 @@ export default class RacingCarController {
   handleRacingCount(event) {
     event.preventDefault();
 
-    const racingCount =this.view.$racingCountInput.valueAsNumber;
+    const racingCount = this.view.$racingCountInput.valueAsNumber;
 
     if (isValidRacingCount(racingCount)) {
       this.model.setRacingCount(racingCount);
-      this.race(racingCount);
-      this.model.cars.forEach((car) => this.view.renderMoveForwardArrow(car));
-      this.view.renderWinners(this.model.getWinnners());
-      this.view.renderRestart();
-      this.view.selectRestartDOM();
-      this.attachRestartEvents();
+      this.startRace(racingCount);
 
       return;
     }
@@ -72,14 +69,37 @@ export default class RacingCarController {
     this.view.resetRacingCountInput();
   }
 
-  race(racingCount) {
-    for (let i = 0; i < racingCount; i += 1) {
-      this.model.cars.forEach((car) => car.moveForward());
-    }
+  startRace(racingCount) {
+    this.view.showSpinners();
+    const raceInterval = this.raceInterval();
+
+    setTimeout(() => {
+      clearInterval(raceInterval);
+      this.view.hideSpinners();
+      this.endRace();
+    }, racingCount * DELAY.RACE_INTERVAL);
   }
 
-  handleRestart() {
-    this.view.renderInit();
-    this.model.init();
+  raceInterval() {
+    return setInterval(() => {
+      this.view.hideSpinners();
+      this.model.getCars().forEach((car) => {
+        if (car.tryMoveForward()) this.view.renderMoveForwardArrow(car);
+      });
+      this.view.showSpinners();
+    }, DELAY.RACE_INTERVAL);
+  }
+
+  endRace() {
+    const winners = this.model.getWinnners();
+
+    this.view.renderWinners(winners);
+    this.view.renderRestart();
+    this.view.selectRestartDOM();
+    this.attachRestartEvents();
+
+    setTimeout(() => {
+      this.view.showCelebrationAlert(winners);
+    }, DELAY.CELEBRATION);
   }
 }

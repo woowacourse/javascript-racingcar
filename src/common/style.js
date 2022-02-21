@@ -26,6 +26,10 @@ export const style = `
       align-items: center;
     }
 
+    .hidden {
+      display: none;
+    }
+
     .car-names-input-container, .racing-count-input-container {
       display: flex;
       align-items: end;
@@ -34,12 +38,10 @@ export const style = `
 `;
 
 export const header = `
-  margin: 36px 0px 30px 0px;
+  margin: 36px 0px;
   font-size: 34px;
   font-weight: 600;
   line-height: 36px;
-  letter-spacing: 0px;
-  text-align: center;
 `;
 
 export const directive = `
@@ -61,14 +63,11 @@ export const input = `
   margin-top: 4px;
 
   font-size: 15px;
-  line-height: 24px;
   color: #8B8B8B;
-
-  outline: none;
 `;
 
 export const button = `
-  width: 65.68px;
+  width: 66px;
   height: 36px;
   padding: 6px 6px 6px 8px;
   margin-left: 16px;
@@ -84,12 +83,11 @@ export const button = `
 `;
 
 export const winner = `
-    margin: 24px 0px;
+  margin: 24px 0px;
 	font-weight: 600;
 	font-size: 20px;
-	line-height: 24px;
-	text-align: center;
-	color: #000000
+	color: #000000;
+  text-align: center;
 `;
 
 export const carName = `
@@ -133,6 +131,11 @@ export const restartButton = `
 	font-weight: bold;
 	font-size: 14px;
 	line-height: 16px;
-	text-align: center;
 	color: #FFFFFF;
+`;
+
+export const spinner = `
+  width: 30px;
+  margin-top: 10px;
+  transform: rotate(1deg);
 `;

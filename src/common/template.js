@@ -1,9 +1,9 @@
-import { BUTTON, CAR, DIRECTIVE, HEADER, WINNER } from './constants.js';
+import { BUTTON, CAR, DIRECTIVE, WINNER } from './constants.js';
 import * as style from './style.js';
 
 export function headerTemplate() {
   return `
-    <h1 style="${style.header}">${HEADER.MAIN}</h1>
+    <h1 style="${style.header}">🏎️ 자동차 경주 게임🏁</h1>
   `;
 }
 
@@ -35,8 +35,11 @@ export function racingCountTemplate() {
 export function carTemplate(car) {
   return `
     <div style="${style.carContainer}">
-      <div style="${style.carName}"><span>${car.name}</span></div>
-      <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.name}"></div>
+      <div style="${style.carName}"><span>${car.getName()}</span></div>
+      <div style="${style.arrow}" class="move-forward-arrow" data-car-name="${car.getName()}"></div>
+      <img id="spinner" style="${
+        style.spinner
+      }" src="src/image/loading.png" class="hidden" alt="로딩" />
     </div>
   `;
 }
@@ -47,7 +50,7 @@ export function racingProgressTemplate() {
 
 export function carsTemplate(cars) {
   return `
-    <div style="${style.carsContainer}">
+    <div id="cars-container" style="${style.carsContainer}">
       ${cars.map((car) => carTemplate(car)).join('')}
     </div>
   `;

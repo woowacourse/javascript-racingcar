@@ -12,6 +12,11 @@ export const CAR = {
 
 export const COUNT_DEFAULT = 0;
 
+export const DELAY = {
+  CELEBRATION: 2000,
+  RACE_INTERVAL: 1000,
+};
+
 export const DIRECTIVE = {
   CAR_NAME: '5자 이하의 자동차 이름을 콤마로 구분하여 입력해 주세요.',
   RACING_COUNT: '시도할 횟수를 입력해주세요.',
@@ -22,14 +27,27 @@ export const ERROR_MESSAGE = {
   RACING_COUNT: '양의 정수를 입력해 주세요!',
 };
 
-export const HEADER = {
-  MAIN: '🏎️ 자동차 경주 게임🏁',
-};
-
 export const RANDOM = {
   MIN_DIGIT: 0,
   MAX_DIGIT: 9,
 };
+
+export const SELECTOR = {
+  APP: '#app',
+  CAR_NAMES_INPUT: '#car-names-input',
+  CAR_NAMES_SUBMIT: '#car-names-submit',
+  CARS_CONTAINER: '#cars-container',
+  GAME_RESULT: '#game-result',
+  MOVE_FORWARD_ARROW: '.move-forward-arrow',
+  RACING_COUNT_INPUT: '#racing-count-input',
+  RACING_COUNT_SUBMIT: '#racing-count-submit',
+  RACING_COUNT: '#racing-count',
+  RESTART: '#restart',
+  SPINNER: '#spinner',
+  WINNERS: '#winners',
+};
+
+export const SPINNER_SPEED = 4;  
 
 export const WINNER = {
   ICON: '🏆',

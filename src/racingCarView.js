@@ -1,4 +1,5 @@
 import { $, $$ } from './common/DOMHelper.js';
+import { DELAY, SELECTOR, SPINNER_SPEED } from './common/constants.js';
 import {
   carsTemplate,
   carNamesTemplate,
@@ -17,7 +18,7 @@ export default class RacingCarView {
   }
 
   init() {
-    this.$app = $('#app');
+    this.$app = $(SELECTOR.APP);
 
     document.head.innerHTML += style;
   }
@@ -31,29 +32,29 @@ export default class RacingCarView {
   }
 
   renderRacingCount() {
-    const $racingCount = $('#racing-count');
+    const $racingCount = $(SELECTOR.RACING_COUNT);
 
     $racingCount.innerHTML = racingCountTemplate();
   }
 
   renderCars(cars) {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML = carsTemplate(cars);
   }
 
   selectCarNamesDOM() {
-    this.$carNamesInput = $('#car-names-input');
-    this.$carNamesSubmit = $('#car-names-submit');
+    this.$carNamesInput = $(SELECTOR.CAR_NAMES_INPUT);
+    this.$carNamesSubmit = $(SELECTOR.CAR_NAMES_SUBMIT);
   }
 
   selectRacingCountDOM() {
-    this.$racingCountInput = $('#racing-count-input');
-    this.$racingCountSubmit = $('#racing-count-submit');
+    this.$racingCountInput = $(SELECTOR.RACING_COUNT_INPUT);
+    this.$racingCountSubmit = $(SELECTOR.RACING_COUNT_SUBMIT);
   }
 
   selectRestartDOM() {
-    this.$restart = $('#restart');
+    this.$restart = $(SELECTOR.RESTART);
   }
 
   resetCarNamesInput() {
@@ -65,26 +66,28 @@ export default class RacingCarView {
   }
 
   renderMoveForwardArrow(car) {
-    const { name, moveCount } = car;
-    const carNode = this.findCarNode(name)[0];
-
-    carNode.innerHTML += racingProgressTemplate().repeat(moveCount);
+    const [carNode] = this.#findCarNode(car.getName());
+    carNode.innerHTML += racingProgressTemplate();
   }
 
-  findCarNode(name) {
-    const $$moveForwardArrow = $$('.move-forward-arrow');
+  #findCarNode(name) {
+    const $$moveForwardArrow = $$(SELECTOR.MOVE_FORWARD_ARROW);
 
     return [...$$moveForwardArrow].filter((elem) => elem.dataset.carName === name);
   }
 
   renderWinners(winners) {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML += winnersTemplate(winners);
   }
 
+  showCelebrationAlert(winners) {
+    alert(`${winners.join(', ')} 우승 축하드립니다😀`);
+  }
+
   renderRestart() {
-    const $gameResult = $('#game-result');
+    const $gameResult = $(SELECTOR.GAME_RESULT);
 
     $gameResult.innerHTML += restartTemplate();
   }
@@ -92,9 +95,42 @@ export default class RacingCarView {
   renderInit() {
     this.resetCarNamesInput();
 
-    const $racingCount = $('#racing-count');
-    const $gameResult = $('#game-result');
+    const $racingCount = $(SELECTOR.RACING_COUNT);
+    const $gameResult = $(SELECTOR.GAME_RESULT);
     $racingCount.innerHTML = '';
     $gameResult.innerHTML = '';
+  }
+
+  showSpinners() {
+    const $$spinner = $$(SELECTOR.SPINNER);
+
+    [...$$spinner].forEach((spinner) => {
+      spinner.classList.remove('hidden');
+      this.#animateSpinner(spinner);
+    });
+  }
+
+  hideSpinners() {
+    const $$spinner = $$(SELECTOR.SPINNER);
+
+    [...$$spinner].forEach((spinner) => {
+      spinner.classList.add('hidden');
+    });
+  }
+
+  #animateSpinner(spinner) {
+    const startTime = new Date().getTime();
+    let i = 0;
+
+    const animatedSpinner = () => {
+      const currentTime = new Date().getTime();
+      i += SPINNER_SPEED;
+      spinner.style.transform = `rotate(${i}deg)`;
+
+      if (currentTime - DELAY.RACE_INTERVAL > startTime) return;
+
+      requestAnimationFrame(animatedSpinner);
+    };
+    requestAnimationFrame(animatedSpinner);
   }
 }
