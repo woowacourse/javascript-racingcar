@@ -10,6 +10,7 @@ export default class RacingGame {
     constructor() {
         this.racingCars = new RacingCars();
         this.view = new View();
+        this.submitted = false;
     }
 
     initialize() {
@@ -24,6 +25,7 @@ export default class RacingGame {
 
     onSubmitCarName(e) {
         e.preventDefault();
+        if (this.submitted) return;
         const carNames = $(SELECTOR.CAR_NAME_INPUT).value.split(',').map((name) => name.trim());
         try {
             validateCarNames(carNames);
@@ -38,6 +40,7 @@ export default class RacingGame {
 
     onSubmitTurnCount(e) {
         e.preventDefault();
+        if (this.submitted) return;
         const turnCount = Number($(SELECTOR.TURN_COUNT_INPUT).value);
         try {
             validateTurnCount(turnCount);
@@ -46,12 +49,13 @@ export default class RacingGame {
             return;
         }
         this.playGame(turnCount);
-        this.racingCars.resetSteps();
+        this.submitted = true;
     }
 
     onClickRestartButton() {
         this.racingCars.reset();
         this.view.reset();
+        this.submitted = false;
     }
 
     endGame() {
