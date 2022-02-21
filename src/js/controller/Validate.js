@@ -1,6 +1,6 @@
 import { CAR_NAME_LENGTH, MIN_RACE_COUNT } from "../constants/games.js";
 
-export const CarNameValidation = {
+export const carNameValidation = {
   isValidLengthAll(carNamesArray) {
     for (let index = 0; index < carNamesArray.length; index++) {
       if (!this.isValidLength(carNamesArray[index])) {
@@ -23,7 +23,7 @@ export const CarNameValidation = {
   },
 };
 
-export const RacingCountValidation = {
+export const racingCountValidation = {
   isValidRange(count) {
     return count >= MIN_RACE_COUNT;
   },

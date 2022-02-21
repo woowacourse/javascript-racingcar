@@ -3,7 +3,7 @@ import {
   disableCountInputForm,
   enableCountInputForm,
 } from "../view/countView.js";
-import { CarNameValidation, RacingCountValidation } from "./Validate.js";
+import { carNameValidation, racingCountValidation } from "./Validate.js";
 import { EXCEPTIONS } from "../constants/exceptions.js";
 import { trimArray } from "../utils/trimArray.js";
 import { initializeView } from "../view/initialView.js";
@@ -18,11 +18,11 @@ export default class UserManager {
   submitCarNames() {
     const carNamesArray = trimArray($("car-names-input").value.split(","));
 
-    if (!CarNameValidation.isValidLengthAll(carNamesArray)) {
+    if (!carNameValidation.isValidLengthAll(carNamesArray)) {
       alert(EXCEPTIONS.INVALID_CAR_NAME_LENGTH);
       return;
     }
-    if (CarNameValidation.isDuplicatedName(carNamesArray)) {
+    if (carNameValidation.isDuplicatedName(carNamesArray)) {
       alert(EXCEPTIONS.DUPLICATED_CAR);
       return;
     }
@@ -35,7 +35,7 @@ export default class UserManager {
     const racingCount = $("racing-count-input").valueAsNumber;
 
     if (
-      !RacingCountValidation.isValidRange(racingCount) ||
+      !racingCountValidation.isValidRange(racingCount) ||
       !Number.isInteger(racingCount)
     ) {
       alert(EXCEPTIONS.INVALID_RACE_COUNT);
