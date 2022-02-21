@@ -1,5 +1,5 @@
-import { isNameValid, isRacingNumberValid, isUserInputExist } from './validation.js';
-import { doTrim } from './utils.js';
+import { isNameValid, isRacingNumberValid, isUserInputExist } from '../utils/validation.js';
+import { doTrim } from '../utils/utils.js';
 import { race, clearState } from './raceController.js';
 import {
   renderRacingInputForm,
@@ -17,7 +17,7 @@ export function registerClickEventListners() {
 
 function registerCarNamesClickEvent() {
   const carNamesInputBtn = document.getElementById('car-name-input-button');
-  carNamesInputBtn.addEventListener('click', () => {
+  carNamesInputBtn.addEventListener('click', (event) => {
     setCarNames(event);
   });
 }

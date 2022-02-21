@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/KangYunHo1221/javascript-racingcar#readme",
   "dependencies": {
-    "cypress": "^9.4.1"
+    "cypress": "^9.4.1",
+    "mocha": "^9.2.0"
   }
 }

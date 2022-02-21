@@ -1,3 +1,5 @@
+import { it } from 'mocha';
+
 describe('자동차 경주 게임 테스트', () => {
   beforeEach(() => {
     cy.visit('index.html');

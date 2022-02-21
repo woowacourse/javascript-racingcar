@@ -4,8 +4,9 @@ import {
   ERR_HAS_LONG_NAME,
   ERR_NUMBER_NOT_INTEGER,
   ERR_NUMBER_UNDER_ZERO,
-} from '../constants/errors.js';
-import { NAME_LENGTH_MAX } from '../constants/conditions.js';
+  NAME_LENGTH_MAX,
+} from '../constants/consts.js';
+
 import { state } from '../models/state.js';
 import { clearInput, findAlertInputId } from './utils.js';
 

@@ -1,4 +1,4 @@
-import { GO_FORWARD_CONDITION, RANDOM_NUM_MAX } from '../constants/conditions.js';
+import { GO_FORWARD_CONDITION, RANDOM_NUM_MAX } from '../constants/consts.js';
 
 export function doTrim(names) {
   const newNames = names.map((item) => {
