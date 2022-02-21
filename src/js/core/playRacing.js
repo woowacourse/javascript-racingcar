@@ -23,7 +23,7 @@ export const playOneTurn = cars => {
   return cars;
 };
 
-export const isLastTurn = (index, tryCount) => {
+export const isNotLastTurn = (index, tryCount) => {
   let count = false;
   if (index !== tryCount - 1) {
     count = true;

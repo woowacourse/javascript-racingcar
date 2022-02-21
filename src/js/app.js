@@ -6,7 +6,7 @@ import {
   makeCars,
   playOneTurn,
   getWinners,
-  isLastTurn,
+  isNotLastTurn,
 } from './core/playRacing.js';
 
 import {
@@ -41,12 +41,12 @@ class App {
   }
 
   async startGame() {
-    let cars = makeCars(this.carNames);
+    const cars = makeCars(this.carNames);
     for (let i = 0; i < this.tryCount; i++) {
-      playOneTurn(cars, i);
       await new Promise(resolve => {
         setTimeout(() => {
-          renderResult(cars, isLastTurn(i, this.tryCount));
+          playOneTurn(cars, i);
+          renderResult(cars, isNotLastTurn(i, this.tryCount));
           resolve();
         }, TURN_LOADING_DELAY);
       });
