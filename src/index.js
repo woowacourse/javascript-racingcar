@@ -6,5 +6,5 @@ window.addEventListener('DOMContentLoaded', () => {
   const model = new RacingModel();
   const view = new RacingView(model);
   const controller = new RacingController(model, view);
-  controller.app();
+  controller.initRacingGame();
 });
