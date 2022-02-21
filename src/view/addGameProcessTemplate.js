@@ -8,7 +8,7 @@ function getRaceResultTemplate(cars) {
       <div class="result-car-wrapper">
         <div class="result-car-name">${car.name}</div>
         <div class="result-arrow-container"></div>
-        <div class="spinner"><img src="../loading.png" alt=""></div> 
+        <div class="spinner"><img src="./src/util/img/loading.png" alt=""></div> 
       </div>
     `;
   });
