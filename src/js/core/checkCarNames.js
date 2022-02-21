@@ -50,13 +50,7 @@ const isCorrectCarNames = carNamesInput => {
 };
 
 const carNamesValidation = carNamesInput => {
-  let carNames = [];
-
-  if (isCorrectCarNames(carNamesInput)) {
-    carNames = carNamesInput;
-  }
-
-  return carNames;
+  return isCorrectCarNames(carNamesInput) ? carNamesInput : [];
 };
 
 export const getCarNames = e => {

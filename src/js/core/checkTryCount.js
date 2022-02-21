@@ -19,13 +19,7 @@ const isTryCountPositiveNumber = tryCountInput => {
 };
 
 const tryCountValidation = tryCountInput => {
-  let tryCount = 0;
-
-  if (isTryCountPositiveNumber(tryCountInput)) {
-    tryCount = tryCountInput;
-  }
-
-  return tryCount;
+  return isTryCountPositiveNumber(tryCountInput) ? tryCountInput : 0;
 };
 
 export const getTryCount = e => {
