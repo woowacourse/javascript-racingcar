@@ -33,6 +33,8 @@ export default function racingCarGameController() {
       this.racingGameInfo.carNameArray = $("#car-name-input")
         .value.split(",")
         .map((carName) => carName.trim());
+      $("#car-name-input").disabled = true;
+      $("#car-name-button").disabled = true;
       $(".race-count-input-container").classList.toggle("is-active");
       addRacingCountEvent();
     }
@@ -44,6 +46,8 @@ export default function racingCarGameController() {
     event.preventDefault();
     if (isRacingCountInputValid($("#race-count-input").value)) {
       this.racingGameInfo.raceCount = Number($("#race-count-input").value);
+      $("#race-count-input").disabled = true;
+      $("#race-count-button").disabled = true;
       playGame();
     }
   };
