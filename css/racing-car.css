@@ -35,13 +35,18 @@ body {
 .user-input-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
+  width: 27.5em;
+  height: fit-content;
+  margin: 0 auto;
 }
 
 .car-name-input-container {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.75em;
+  width: 100%;
 }
 
 .input-container {
@@ -52,6 +57,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.75em;
+  width: 100%;
 }
 
 .display-none {
@@ -64,12 +70,6 @@ label {
 
   display: block;
   margin: 0.25em 0;
-}
-
-.user-input-container {
-  width: 27.5em;
-  height: fit-content;
-  margin: 0 auto;
 }
 
 .input-button {
@@ -89,7 +89,7 @@ label {
 }
 
 input {
-  width: 22.5em;
+  width: 100%;
   margin: 0.25em 0;
   padding: 0.5em 0.5em 0.25em;
 }
