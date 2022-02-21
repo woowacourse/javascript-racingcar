@@ -39,7 +39,9 @@ export default class CarNameInputView extends View {
   }
 
   getUserCarNameInput() {
-    return trimStringArray(splitString(this.$carNameInput.value, DELIMETER));
+    return trimStringArray(
+      splitString(this.$carNameInput.value, DELIMETER.COMMA)
+    );
   }
 
   bindClickCarNameButton(callback) {

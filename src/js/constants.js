@@ -56,7 +56,9 @@ export const CAR = {
   },
 };
 
-export const WINNER_MESSAGE = '자동차 경주 우승을 축하드립니다. 🎉';
+export const WINNER_MESSAGE = {
+  CELEBRATION: ' 자동차 경주 우승을 축하드립니다. 🎉',
+};
 
 export const ERROR_MESSAGE = {
   CAR_NAME_SHOULD_COME_FIRST:
@@ -67,7 +69,9 @@ export const ERROR_MESSAGE = {
   OUT_OF_CAR_NAME_LENGTH_RANGE: `자동차 이름이 너무 길거나 짧습니다. ${CAR_NAME_LENGTH_RANGE.MIN}자 이상 ${CAR_NAME_LENGTH_RANGE.MAX}자 이하의 자동차 이름을 입력해주세요.`,
 };
 
-export const DELIMETER = ',';
+export const DELIMETER = {
+  COMMA: ',',
+};
 
 export const DELAY_TIME = {
   WINNER_ALERT: 2000,

@@ -213,7 +213,7 @@ describe('경기 진행 과정과 경기 결과', () => {
     cy.get(SELECTOR.$RACING_COUNT_BUTTON).click();
 
     cy.wait(totalDelayTime).then(() => {
-      expect(alertStub).to.be.calledWith('꼬재' + WINNER_MESSAGE);
+      expect(alertStub).to.be.calledWith('꼬재' + WINNER_MESSAGE.CELEBRATION);
     });
   });
 });
