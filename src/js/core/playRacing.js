@@ -7,7 +7,7 @@ const getWinners = cars => {
     .filter(car => car.score === maxScore)
     .map(car => car.name);
 
-  return { winners, maxScore };
+  return winners;
 };
 
 const getRandomInt = () => {
@@ -29,6 +29,6 @@ export const gamePlay = ({ carNames, tryCount }) => {
 
   return {
     cars,
-    ...getWinners(cars),
+    winners: getWinners(cars),
   };
 };

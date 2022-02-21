@@ -31,12 +31,12 @@ class App {
       return;
     }
 
-    const { cars, winners, maxScore } = gamePlay({
+    const { cars, winners } = gamePlay({
       carNames: this.carNames,
       tryCount: this.tryCount,
     });
 
-    renderResult({ cars, lastTurnCount: maxScore, winners });
+    renderResult({ cars, lastTurnCount: this.tryCount, winners });
     this.resetValue();
   }
 

@@ -5,7 +5,9 @@ const addArrow = (currentTurnCount, cars) => {
   const carScoreArrows = document.querySelectorAll('.car-score-arrows');
 
   carScoreArrows.forEach((ele, idx) => {
-    if (cars[idx].score >= currentTurnCount) {
+    const isAddArrow = cars[idx].scoreBoard[currentTurnCount];
+
+    if (isAddArrow) {
       const arrow = document.createElement('p');
       arrow.textContent = `⬇️`;
       ele.appendChild(arrow);
@@ -20,6 +22,7 @@ const playTurn = (cars, currentTurnCount) => {
       resolve({
         nextTurnCount: currentTurnCount + 1,
       });
+      console.log('currentTurnCount: ', currentTurnCount);
     }, 1000);
   });
 };
