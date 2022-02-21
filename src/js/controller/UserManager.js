@@ -1,8 +1,5 @@
 import { $ } from "../view/getElement.js";
-import {
-  disableCountInputForm,
-  enableCountInputForm,
-} from "../view/countView.js";
+import { disableCountForm, enableCountForm } from "../view/countView.js";
 import { carNameValidation, racingCountValidation } from "./Validate.js";
 import { EXCEPTIONS } from "../constants/exceptions.js";
 import { trimArray } from "../utils/trimArray.js";
@@ -28,7 +25,7 @@ export default class UserManager {
     }
 
     this.carManager.createCars(carNamesArray);
-    enableCountInputForm();
+    enableCountForm();
   }
 
   submitRacingCount() {
@@ -43,7 +40,7 @@ export default class UserManager {
     }
 
     this.gameManager.startGame(this.carManager, racingCount);
-    disableCountInputForm();
+    disableCountForm();
   }
 
   addSubmitEventListener() {
