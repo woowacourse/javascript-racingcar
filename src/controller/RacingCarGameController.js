@@ -65,7 +65,8 @@ class RacingCarGameController {
         this.view.removeSpinner();
       }
 
-      this.runOneCycleGame();
+      this.model.playOneGame();
+      this.view.renderRacingCarProgress(this.model.getRacingCarList());
 
       if (currentRacingCount === racingCount) {
         clearInterval(raceTimer);

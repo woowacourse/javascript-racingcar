@@ -96,12 +96,16 @@ class RacingCarGameView {
     this.$spinnerContainers = $$(`.${CLASS.SPINNER_CONTAINER}`);
   }
 
-  renderRacingCarProgress(index) {
+  renderRacingCarProgress(racingCarList) {
     if (this.$racingCarProgress === null) {
       return;
     }
 
-    this.$racingCarProgress[index].insertAdjacentHTML('beforeend', templateProgress);
+    racingCarList.forEach((car, index) => {
+      if (car.getIsForwarded()) {
+        this.$racingCarProgress[index].insertAdjacentHTML('beforeend', templateProgress);
+      }
+    });
   }
 
   renderFinalWinner(finalWinner) {

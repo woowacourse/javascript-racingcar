@@ -1,4 +1,5 @@
 import { RULES } from '../constants/index.js';
+import { generateRandomNumber } from '../util/index.js';
 import Car from './Car.js';
 
 class RacingCarGameModel {
@@ -44,6 +45,19 @@ class RacingCarGameModel {
     return this.#racingCarList
       .filter((car) => car.getDistance() === maxDistance)
       .map((car) => car.getName());
+  }
+
+  playOneGame() {
+    this.#racingCarList.forEach((car) => {
+      const randomNumber = generateRandomNumber();
+
+      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
+        car.moveForward();
+        return;
+      }
+
+      car.stop();
+    });
   }
 }
 

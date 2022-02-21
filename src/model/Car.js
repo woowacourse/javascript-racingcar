@@ -3,6 +3,8 @@ class Car {
 
   #distance = 0;
 
+  #isForwarded = false;
+
   constructor(name) {
     this.#name = name;
   }
@@ -15,8 +17,17 @@ class Car {
     return this.#distance;
   }
 
+  getIsForwarded() {
+    return this.#isForwarded;
+  }
+
   moveForward() {
     this.#distance = this.#distance + 1;
+    this.#isForwarded = true;
+  }
+
+  stop() {
+    this.#isForwarded = false;
   }
 }
 
