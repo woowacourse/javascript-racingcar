@@ -5,6 +5,7 @@ const getElement = (id, target = document) => {
 const changeActivity = ids => {
   ids.forEach(id => {
     getElement(id).disabled = !getElement(id).disabled;
+    getElement(id).classList.toggle('disabled-button');
   });
 };
 
