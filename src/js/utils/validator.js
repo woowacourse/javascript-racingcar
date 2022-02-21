@@ -1,9 +1,15 @@
 import {
+  NUMBER_OF_CARS_RANGE,
   RACING_COUNT_RANGE,
   CAR_NAME_LENGTH_RANGE,
 } from '../configs/constants.js';
 
 const validator = {
+  isNotValidNumberOfCars: (carNameList) =>
+    !(
+      carNameList.length >= NUMBER_OF_CARS_RANGE.MIN &&
+      carNameList.length <= NUMBER_OF_CARS_RANGE.MAX
+    ),
   isNotValidCarNamesLength: (carNameList) =>
     !carNameList.every(
       (name) =>

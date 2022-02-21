@@ -1,5 +1,6 @@
 export const SELECTOR = {
   $APP: '#app',
+  $INPUT_SECTION: '#input-section',
   $CAR_NAME_INPUT: '#car-name-input',
   $CAR_NAME_BUTTON: '#car-name-button',
   $RACING_COUNT_INPUT: '#racing-count-input',
@@ -10,6 +11,7 @@ export const SELECTOR = {
   $CAR_NAME: '.car-name',
   $PROGRESS_LIST: '.progress-list',
   $PROGRESS: '.progress,',
+  $LOADING: '.loading',
   $RESULT: '#result',
   $RESULT_MESSAGE: '#result-message',
   $WINNERS: '#winners',
@@ -27,6 +29,7 @@ export const DOM_STRING = {
   CAR_NAME: 'car-name',
   PROGRESS_LIST: 'progress-list',
   PROGRESS: 'progress',
+  LOADING: 'loading',
   RESULT: 'result',
   RESULT_MESSAGE: 'result-message',
   WINNERS: 'winners',

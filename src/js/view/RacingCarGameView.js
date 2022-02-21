@@ -1,34 +1,19 @@
-import { ERROR_MESSAGE, DELIMETER } from '../configs/constants.js';
+import View from '../core/View.js';
+import {
+  ERROR_MESSAGE,
+  DELIMETER,
+  CONGRATURATION_INTERVAL,
+} from '../configs/constants.js';
 import { SELECTOR } from '../configs/dom.js';
-import { $, $all, splitString, trimStringArray } from '../utils/utils.js';
+import { splitString, trimStringArray } from '../utils/utils.js';
 import validator from '../utils/validator.js';
 
-export default class View {
-  constructor(template) {
-    this.template = template;
-
-    this.cacheDOMElements();
-  }
-
+export default class RacingCarGameView extends View {
   cacheDOMElements() {
-    this.$app = $(SELECTOR.$APP);
-    this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
-    this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
-    this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
-    this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
-  }
-
-  bindEventListener(type, selector, callback) {
-    const children = [...$all(selector)];
-    const isTarget = (target) =>
-      children.includes(target) || target.closest(selector);
-
-    this.$app.addEventListener(type, (e) => {
-      if (!isTarget(e.target)) return;
-
-      e.preventDefault();
-      callback(e);
-    });
+    this.$carNameInput = this.get(SELECTOR.$CAR_NAME_INPUT);
+    this.$carNameButton = this.get(SELECTOR.$CAR_NAME_BUTTON);
+    this.$racingCountInput = this.get(SELECTOR.$RACING_COUNT_INPUT);
+    this.$racingCountButton = this.get(SELECTOR.$RACING_COUNT_BUTTON);
   }
 
   bindSubmitCarNames(callback) {
@@ -63,18 +48,24 @@ export default class View {
     });
   }
 
-  renderRacingCountButton(carList) {
-    $(SELECTOR.$RACING_COUNT_BUTTON).disabled =
-      validator.isCarListNotFound(carList);
+  render(props) {
+    this.renderInputSection(props);
+    this.renderRacingResult(props);
+    this.renderResult(props);
   }
 
-  renderRacingResult(carList) {
-    $(SELECTOR.$RACING_RESULT).innerHTML =
-      this.template.getRacingResultHTML(carList);
+  renderInputSection(props) {
+    this.get(SELECTOR.$INPUT_SECTION).innerHTML =
+      this.template.getInputSectionHTML(props);
   }
 
-  renderResult(winners) {
-    $(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(winners);
+  renderRacingResult(props) {
+    this.get(SELECTOR.$RACING_RESULT).innerHTML =
+      this.template.getRacingResultHTML(props);
+  }
+
+  renderResult(props) {
+    this.get(SELECTOR.$RESULT).innerHTML = this.template.getResultHTML(props);
   }
 
   initializeInput(clearElement, focusElement = clearElement) {
@@ -82,7 +73,20 @@ export default class View {
     focusElement.focus();
   }
 
+  celebrate(winners) {
+    setTimeout(() => {
+      alert(this.template.congraturation(winners));
+    }, CONGRATURATION_INTERVAL);
+  }
+
   validateCarNameList(carNameList) {
+    if (validator.isNotValidNumberOfCars(carNameList)) {
+      alert(ERROR_MESSAGE.OUT_OF_NUMBER_OF_CARS_RANGE);
+      this.initializeInput(this.$carNameInput);
+
+      return false;
+    }
+
     if (validator.isNotValidCarNamesLength(carNameList)) {
       alert(ERROR_MESSAGE.OUT_OF_CAR_NAME_LENGTH_RANGE);
       this.initializeInput(this.$carNameInput);
