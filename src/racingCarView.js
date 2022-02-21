@@ -82,7 +82,7 @@ export default class RacingCarView {
     $gameResult.innerHTML += winnersTemplate(winners);
   }
 
-  renderCelebration(winners) {
+  showCelebrationAlert(winners) {
     alert(`${winners.join(', ')} 우승 축하드립니다😀`);
   }
 

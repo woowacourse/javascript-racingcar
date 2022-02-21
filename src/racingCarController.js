@@ -93,15 +93,13 @@ export default class RacingCarController {
   endRace() {
     const winners = this.model.getWinnners();
 
-    console.log(winners);
-
     this.view.renderWinners(winners);
     this.view.renderRestart();
     this.view.selectRestartDOM();
     this.attachRestartEvents();
 
     setTimeout(() => {
-      this.view.renderCelebration(winners);
+      this.view.showCelebrationAlert(winners);
     }, DELAY.CELEBRATION);
   }
 }
