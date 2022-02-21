@@ -16,6 +16,7 @@ class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
+    this.view = new ViewManager();
 
     ViewManager.setRaceCountSectionVisibility("hidden");
     this.bindEvent();
@@ -109,7 +110,7 @@ class RacingcarGame {
       const randomRaceScore = parseInt(Math.random() * (RANDOM_MAX_NUMBER + 1));
       if (eachCar.canMove(randomRaceScore)) {
         eachCar.move();
-        ViewManager.showCarMove(index);
+        this.view.showCarMove(index);
       }
     });
   }
@@ -169,13 +170,16 @@ class RacingcarGame {
   }
 
   bindRestartEvent() {
-    $(SELECTOR.restart_button).addEventListener("click", this.restartRace);
+    $(SELECTOR.restart_button).addEventListener(
+      "click",
+      this.restartRace.bind(this)
+    );
   }
 
   restartRace() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
-    ViewManager.restartSetting();
+    this.view.restartSetting();
   }
 }
 

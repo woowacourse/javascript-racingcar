@@ -19,10 +19,10 @@ export default class ViewManager {
     `;
   }
 
-  static showCarMove(index) {
+  showCarMove(index) {
     $(`#racing-arrow-box-${index}`).insertAdjacentHTML(
       "afterbegin",
-      ViewManager.carArrow()
+      this.constructor.carArrow()
     );
   }
 
@@ -45,9 +45,9 @@ export default class ViewManager {
     $(SELECTOR.race_count_input).value = "";
   }
 
-  static restartSetting() {
-    ViewManager.makeReset();
-    ViewManager.setInputDisable(false);
-    ViewManager.setRaceCountSectionVisibility("hidden");
+  restartSetting() {
+    this.constructor.makeReset();
+    this.constructor.setInputDisable(false);
+    this.constructor.setRaceCountSectionVisibility("hidden");
   }
 }
