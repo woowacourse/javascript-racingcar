@@ -98,21 +98,21 @@ export default class RacingGameView {
     $(SELECTOR.RETRY_BUTTON).classList.remove('hidden');
   }
 
-  static bindCarNameInput(handler) {
+  bindCarNameInput(handler) {
     $(SELECTOR.CAR_NAME_BUTTON).addEventListener('click', (event) => {
       event.preventDefault();
       handler({ event, carNameList: $(SELECTOR.CAR_NAME_INPUT).value });
     });
   }
 
-  static bindRaceTimeInput(handler) {
+  bindRaceTimeInput(handler) {
     $(SELECTOR.RACE_TIME_BUTTON).addEventListener('click', (event) => {
       event.preventDefault();
       handler({ event, raceTimeInput: $(SELECTOR.RACE_TIME_INPUT).value });
     });
   }
 
-  static bindGameRetry(handler) {
+  bindGameRetry(handler) {
     $(SELECTOR.RETRY_BUTTON).addEventListener('click', (event) => {
       event.preventDefault();
       handler({ event });

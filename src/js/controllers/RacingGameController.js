@@ -24,9 +24,9 @@ export default class RacingGameController {
   }
 
   bindDefaultEvent() {
-    RacingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
-    RacingGameView.bindRaceTimeInput(this.handleRaceTimeInput.bind(this));
-    RacingGameView.bindGameRetry(this.handleGameRetry.bind(this));
+    this.#racingGameView.bindCarNameInput(this.handleCarNameInput.bind(this));
+    this.#racingGameView.bindRaceTimeInput(this.handleRaceTimeInput.bind(this));
+    this.#racingGameView.bindGameRetry(this.handleGameRetry.bind(this));
   }
 
   handleCarNameInput({ event, carNameList }) {
