@@ -161,7 +161,7 @@ input {
 /*
   loading spinner
 */
-@keyframes spinner {
+@keyframes spinner-loading {
   from {
     transform: rotate(0deg);
   }
@@ -178,5 +178,5 @@ input {
   border-top: 5px solid transparent;
   border-radius: 50%;
 
-  animation: spinner 0.8s linear infinite;
+  animation: spinner-loading 0.8s linear infinite;
 }
