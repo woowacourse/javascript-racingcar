@@ -1,5 +1,5 @@
 import { RULES, WINNER_MESSAGE } from '../constants/index.js';
-import { convertToNumber, generateRandomNumber } from '../util/index.js';
+import { convertToNumber } from '../util/index.js';
 import RacingCarGameModel from '../model/RacingCarGameModel.js';
 import RacingCarGameView from '../view/RacingCarGameView.js';
 import validator from '../validator/index.js';
@@ -77,17 +77,6 @@ class RacingCarGameController {
       this.view.renderSpinner();
       currentRacingCount += 1;
     }, RULES.TRUN_INTERVAL_TIME);
-  }
-
-  runOneCycleGame() {
-    this.model.getRacingCarList().forEach((car, index) => {
-      const randomNumber = generateRandomNumber();
-
-      if (randomNumber >= RULES.MOVE_CONDITION_NUMBER) {
-        car.moveForward();
-        this.view.renderRacingCarProgress(index);
-      }
-    });
   }
 
   handleGameResult() {
