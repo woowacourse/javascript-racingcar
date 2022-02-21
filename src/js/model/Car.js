@@ -11,9 +11,12 @@ export default class Car {
     return getRandomNumber() >= MIN_ADVANCE_VALUE;
   }
 
-  advance() {
+  isAdvance() {
     if (this.validateAdvance()) {
       this.location += 1;
+      return true;
     }
+
+    return false;
   }
 }

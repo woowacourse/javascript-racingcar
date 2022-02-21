@@ -1,6 +1,6 @@
 import { $ } from "./getElement.js";
 
-export const makeInitialView = () => {
+export const initializeView = () => {
   $("car-names-input").value = "";
   $("car-names-input").readOnly = false;
   $("car-names-submit").disabled = false;
@@ -13,17 +13,4 @@ export const makeInitialView = () => {
   $("winner-area").hidden = true;
   $("racing-winner").innerHTML = "";
   $("restart-button").hidden = true;
-};
-
-export const showRacingCountArea = () => {
-  $("racing-count-area").hidden = false;
-};
-
-export const showRacingResultArea = () => {
-  $("racing-result").hidden = false;
-};
-
-export const showWinnerAndRestartButton = () => {
-  $("winner-area").hidden = false;
-  $("restart-button").hidden = false;
 };

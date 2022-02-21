@@ -1,4 +1,9 @@
-p {
+label {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -78,6 +83,7 @@ input:focus {
   justify-content: center;
   align-items: center;
   margin-left: 8px;
+  margin-bottom: 8px;
 }
 
 #racing-result {
@@ -107,4 +113,27 @@ input:focus {
 #logo {
   cursor: pointer;
   width: 430px;
+}
+
+.loading {
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

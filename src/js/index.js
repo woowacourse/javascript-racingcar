@@ -1,29 +1,15 @@
-import CarManager from "./controller/carManager/CarManager.js";
-import RacingCount from "./controller/racingCount/RacingCount.js";
-import { makeInitialView } from "./view/viewControl.js";
-import { $ } from "./view/getElement.js";
+import CarManager from "./controller/CarManager.js";
+import GameManager from "./controller/GameManager.js";
+import UserManager from "./controller/UserManager.js";
+
+import { initializeView } from "./view/initialView.js";
 
 class RacingCar {
   constructor() {
     this.carManager = new CarManager();
-    this.racingCount = new RacingCount(this.carManager);
-    makeInitialView();
-    this.addLogoClickEvent();
-    this.addRestartEvent();
-  }
-
-  addLogoClickEvent() {
-    $("logo").addEventListener("click", () => {
-      makeInitialView();
-    });
-  }
-
-  addRestartEvent() {
-    $("restart-button").addEventListener("click", () => {
-      makeInitialView();
-      this.carManager.init();
-      this.racingCount.init();
-    });
+    this.gameManager = new GameManager();
+    this.userManager = new UserManager(this.carManager, this.gameManager);
+    initializeView();
   }
 }
 

@@ -49,42 +49,64 @@ const submitRacingCountAlert = () => {
     });
 };
 
-const countLocation = () => {
-  let movieCount, haleeCount;
+const countAdvance = carName => {
+  let count = [];
 
-  cy.get("#movie-container")
+  cy.get(`#${carName}-container`)
     .find(".position-arrow")
     .then(position => {
-      movieCount = Cypress.$(position).length;
-    })
-    .then(() => {
-      cy.get("#halee-container")
-        .find(".position-arrow")
-        .then(position => {
-          haleeCount = Cypress.$(position).length;
-          getWinner(movieCount, haleeCount);
-        });
+      count.push(Cypress.$(position).length);
     });
+
+  cy.log(count[0]);
+
+  return count[0];
 };
 
-const getWinner = (movieCount, haleeCount) => {
-  const { RACING_WINNER } = SELECTOR;
+const getRacingResult = carNamesArray => {
+  const results = [];
 
-  if (movieCount > haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "movie");
-  } else if (movieCount < haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "halee");
-  } else if (movieCount === haleeCount) {
-    cy.get(RACING_WINNER).should("have.text", "movie, halee");
+  carNamesArray.forEach(car => {
+    cy.get(`#${car}-container`)
+      .find(".position-arrow")
+      .then(position => {
+        results.push({
+          name: car,
+          location: Cypress.$(position).length,
+        });
+      });
+  });
+
+  return results;
+};
+
+const getWinnerScore = results => {
+  let winnerScore = 0;
+
+  for (let index = 0; index < results.length; index++) {
+    if (winnerScore < car.location) {
+      winnerScore = results[index].location;
+    }
   }
+
+  return winnerScore;
 };
 
 describe("정상 시나리오에 대해 만족해야 한다.", () => {
+  const carNames = "east, west, north";
+  const racingCount = 5;
+  const delayPerTurn = 1000;
+  const totalDelay = delayPerTurn * (racingCount + 1);
+
   beforeEach(() => {
     cy.visit(baseUrl);
+    cy.clock();
   });
 
   afterEach(() => {
+    cy.clock().then(clock => {
+      clock.restore();
+    });
     cy.reload();
   });
 
@@ -97,27 +119,60 @@ describe("정상 시나리오에 대해 만족해야 한다.", () => {
     submitRacingCount(10);
   });
 
-  it("게임을 종료되면 우승자를 확인할 수 있어야 한다.", () => {
-    submitCarNames("movie, halee");
-    submitRacingCount(10);
-    countLocation();
+  it("게임이 종료된 후 우승자를 확인할 수 있어야 한다. ", () => {
+    const carNamesArray = ["east", "west", "north"];
+    const winners = [];
+    let winnerScore = 0;
+    let racingResult = [];
+
+    submitCarNames(carNamesArray.join(","));
+    submitRacingCount(racingCount);
+
+    cy.tick(totalDelay)
+      .then(() => {
+        racingResult = getRacingResult(carNamesArray);
+      })
+      .then(() => {
+        racingResult.sort((left, right) => right.location - left.location);
+        winnerScore = racingResult[0].location;
+      })
+      .then(() => {
+        racingResult.forEach(car => {
+          if (car.location === winnerScore) {
+            winners.push(car.name);
+          }
+        });
+      })
+      .then(() => {
+        cy.get(SELECTOR.RACING_WINNER).should("have.text", winners.join(", "));
+      });
+  });
+
+  it("게임을 종료되고 2초 뒤 우승자를 축하하는 메시지가 나타난다.", () => {
+    const delayForCelebrating = 2000;
+    const totalDelayForCelebrating = totalDelay + delayForCelebrating;
+    const alertStub = cy.stub();
+
+    cy.on("window:alert", alertStub);
+
+    submitCarNames(carNames);
+    submitRacingCount(racingCount);
+    cy.tick(totalDelayForCelebrating).then(() => {
+      expect(alertStub).to.be.called;
+    });
   });
 
   it("'다시 시작하기' 버튼을 누르면 화면 내의 모든 값이 초기화되어야 한다.", () => {
-    const {
-      CAR_NAMES_INPUT,
-      RACING_COUNT_INPUT,
-      RACING_RESULT,
-      RACING_WINNER,
-      RESTART_BUTTON,
-    } = SELECTOR;
-    submitCarNames("movie, halee");
-    submitRacingCount(10);
-    cy.get(RESTART_BUTTON).click();
-    cy.get(CAR_NAMES_INPUT).should("have.value", "");
-    cy.get(RACING_COUNT_INPUT).should("have.value", "");
-    cy.get(RACING_RESULT).should("have.value", "");
-    cy.get(RACING_WINNER).should("have.value", "");
+    submitCarNames(carNames);
+    submitRacingCount(racingCount);
+
+    cy.tick(totalDelay).then(() => {
+      cy.get(SELECTOR.RESTART_BUTTON).click();
+      cy.get(SELECTOR.CAR_NAMES_INPUT).should("have.value", "");
+      cy.get(SELECTOR.RACING_COUNT_INPUT).should("have.value", "");
+      cy.get(SELECTOR.RACING_RESULT).should("have.value", "");
+      cy.get(SELECTOR.RACING_WINNER).should("have.value", "");
+    });
   });
 });
 
