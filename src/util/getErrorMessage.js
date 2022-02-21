@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, MIN_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../util/constants.js';
+import { ERROR_MESSAGE, MIN_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from './constants.js';
 
 export function getCountErrorMessage(inputCount) {
   if (inputCount.length === 0) {

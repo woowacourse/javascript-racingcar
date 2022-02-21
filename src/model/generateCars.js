@@ -1,5 +1,6 @@
-import Car from './Car.js';
 import $ from '../util/dom.js';
+
+import Car from './Car.js';
 
 export default function generateCars() {
   const names = $('.name-input')

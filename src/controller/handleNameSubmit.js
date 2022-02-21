@@ -1,6 +1,8 @@
 import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../util/constants.js';
-import { getNameErrorMessage } from '../model/getErrorMessage.js';
 import $ from '../util/dom.js';
+
+import { getNameErrorMessage } from '../util/getErrorMessage.js';
+
 import alertError from '../view/alertError.js';
 
 function isValidNames(inputNames) {

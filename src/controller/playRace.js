@@ -1,33 +1,49 @@
 import { CAR_CAN_GO_COUNT } from '../util/constants.js';
+
 import generateCars from '../model/generateCars.js';
-import showResult from '../view/showResult.js';
 import getWinners from '../model/getWinners.js';
+
+import addGameProcessTemplate from '../view/addGameProcessTemplate.js';
 import showWinners from '../view/showWinners.js';
 import showRestart from '../view/showRestart.js';
-
-function sortCars(cars) {
-  const sortedCars = [...cars];
-  return sortedCars.sort((a, b) => b.position - a.position);
-}
+import { spinSpinner, deleteSpinner } from '../view/viewSpinner.js';
+import alertWinners from '../view/alertWinners.js';
 
 function isCarCanGo() {
-  if (Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT) {
-    return true;
-  }
-  return false;
+  return Math.floor(Math.random() * 10) >= CAR_CAN_GO_COUNT;
+}
+
+function updateGameProcess() {
+  const cars = document.querySelectorAll('.result-car-wrapper');
+  cars.forEach(car => {
+    if (isCarCanGo()) {
+      const arrowContainer = car.querySelector('.result-arrow-container');
+      arrowContainer.insertAdjacentHTML('beforeend', '<div class="result-arrow">⬇️️</div>');
+    }
+  });
+}
+
+function endGame(cars) {
+  const winners = getWinners(cars);
+
+  deleteSpinner();
+  showWinners(winners);
+  alertWinners(winners);
+  showRestart();
 }
 
 export default function playRace(count) {
   const cars = generateCars();
-  while (count) {
-    cars.forEach(car => {
-      if (isCarCanGo()) {
-        car.go();
-      }
-    });
+  addGameProcessTemplate(cars);
+  spinSpinner();
+
+  const timer = setInterval(() => {
+    if (count === 0) {
+      clearInterval(timer);
+      endGame(cars);
+      return;
+    }
     count -= 1;
-  }
-  showResult(sortCars(cars));
-  showWinners(getWinners(cars));
-  showRestart();
+    updateGameProcess();
+  }, 1000);
 }
