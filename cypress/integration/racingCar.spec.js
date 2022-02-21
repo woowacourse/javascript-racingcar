@@ -80,8 +80,8 @@ describe('예외 사항', () => {
     cy.visit(baseUrl);
   });
 
-  context('입력값이 잘못된 경우 메시지 테스트', () => {
-    it('5자를 초과하는 자동차 이름이 제출된 경우에 alert을 이용해 메시지를 보여준다.', () => {
+  context('입력값이 잘못된 경우 에러 메시지 테스트', () => {
+    it('5자를 초과하는 자동차 이름이 제출된 경우에 alert을 이용해 에러 메시지를 보여준다.', () => {
       const invalidInput = 'ab,cde,fghijk';
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
@@ -89,7 +89,7 @@ describe('예외 사항', () => {
       cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
-    it('공백으로만 이루어진 자동차 이름이 제출된 경우에 alert를 이용해 메시지를 보여준다', () => {
+    it('공백으로만 이루어진 자동차 이름이 제출된 경우에 alert를 이용해 에러 메시지를 보여준다', () => {
       const invalidInput = ' , , ';
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
@@ -97,7 +97,7 @@ describe('예외 사항', () => {
       cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
-    it('중복된 자동차 이름이 제출된 경우에 alert를 이용해 메시지를 보여준다', () => {
+    it('중복된 자동차 이름이 제출된 경우에 alert를 이용해 에러 메시지를 보여준다', () => {
       const invalidInput = 'abc,abc,abcd';
 
       cy.get(SELECTOR.CAR_NAMES_INPUT).type(invalidInput);
@@ -105,7 +105,7 @@ describe('예외 사항', () => {
       cy.clickCheckAlert(SELECTOR.CAR_NAMES_SUBMIT);
     });
 
-    it('제출된 시도할 횟수가 양의 정수가 아닌 경우에 alert을 이용해 메시지를 보여준다.', () => {
+    it('제출된 시도할 횟수가 양의 정수가 아닌 경우에 alert을 이용해 에러 메시지를 보여준다.', () => {
       const invalidInput = 'e';
       const validCarNamesInput = 'apple,banan,carro';
 
