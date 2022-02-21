@@ -24,9 +24,11 @@ function updateGameProcess() {
 }
 
 function endGame(cars) {
+  const winners = getWinners(cars);
+
   hideSpinner(document.querySelectorAll('.spinner'));
-  showWinners(getWinners(cars));
-  alertWinners(getWinners(cars));
+  showWinners(winners);
+  alertWinners(winners);
   showRestart();
 }
 
