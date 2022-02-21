@@ -37,19 +37,14 @@ function isCorrectRaceCountRange(raceCountInput) {
 }
 
 export function checkUserRacingCountInput(raceCountInput){
-    if(raceCountInput === ''){
-        resetInputText($(SELECTOR.RACE_COUNT_INPUT));
-        throw new Error(EMPTY_INPUT_ERROR);
-    }
-    
-    if(!Number(raceCountInput)) {
+    if(!raceCountInput) {
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         throw new Error(NOT_NUMBER_TYPE_ERROR);
     }
     
-    if(!isCorrectRaceCountRange(Number(raceCountInput))){  
+    if(!isCorrectRaceCountRange(raceCountInput)){  
         resetInputText($(SELECTOR.RACE_COUNT_INPUT));
         throw new Error(OVER_COUNT_RANGE_ERROR);
     }
-    return Number(raceCountInput);
+    return raceCountInput;
 }

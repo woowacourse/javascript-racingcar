@@ -85,7 +85,7 @@ class RacingCarGame {
             clearInterval(this.timeIntervalId);
             this.view.removeGameWinnerResult();
             this.model.generateCars(checkUserCarNameInput($(SELECTOR.CAR_NAME_INPUT).value));
-            this.updateWholeGameResult(checkUserRacingCountInput($(SELECTOR.RACE_COUNT_INPUT).value));
+            this.updateWholeGameResult(checkUserRacingCountInput(Number($(SELECTOR.RACE_COUNT_INPUT).value)));
         } catch(err) {
             alert(err.message);
         }
