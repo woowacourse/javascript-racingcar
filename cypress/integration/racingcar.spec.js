@@ -32,14 +32,6 @@ describe('결과 출력', () => {
     cy.tick(racingCount * milliseconds + bufferTime);
     cy.get('h3').should('be.visible');
   });
-
-  it('다시 시작하기 버튼을 클릭한다.', () => {
-    cy.get(convertToId(ID.RESTART_BUTTON)).click();
-    cy.get(convertToId(ID.CAR_COUNTS_INPUT)).should('have.value', '');
-    cy.get(convertToId(ID.RACING_COUNT_INPUT)).should('have.value', '');
-    cy.get(convertToId(ID.RACING_STATUS)).should('be.empty');
-    cy.get(convertToId(ID.RACING_WINNERS)).should('be.empty');
-  });
 });
 
 describe('결과 메시지', () => {
@@ -57,7 +49,26 @@ describe('결과 메시지', () => {
   });
 });
 
-describe('에러 처리를 한다', () => {
+describe('다시 시작하기', () => {
+  it('결과 출력 2초 후 다시 시작하기 버튼을 누르면 게임을 다시 시작할 수 있다.', () => {
+    cy.clock();
+    cy.visit('/index.html');
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+    cy.submitCarNames(names.join(','));
+    cy.submitRacingCount(racingCount);
+    cy.tick(racingCount * milliseconds + bufferTime);
+    cy.tick(2 * milliseconds + bufferTime).then(() => {
+      cy.get(convertToId(ID.RESTART_BUTTON)).click();
+      cy.get(convertToId(ID.CAR_COUNTS_INPUT)).should('have.value', '');
+      cy.get(convertToId(ID.RACING_COUNT_INPUT)).should('have.value', '');
+      cy.get(convertToId(ID.RACING_STATUS)).should('be.empty');
+      cy.get(convertToId(ID.RACING_WINNERS)).should('be.empty');
+    });
+  });
+});
+
+describe('에러 처리', () => {
   beforeEach(() => {
     cy.visit('/index.html');
   });
