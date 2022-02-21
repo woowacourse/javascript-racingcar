@@ -9,12 +9,14 @@ export default class View {
 
   on(event, handler) {
     this.element.addEventListener(event, handler);
+
     return this;
   }
 
   emit(event, data) {
     const customEvent = new CustomEvent(event, { detail: data });
     this.element.dispatchEvent(customEvent);
+
     return this;
   }
 }

@@ -1,4 +1,4 @@
-import { CUSTOM_EVENT, ID } from '../utils/constants.js';
+import { CUSTOM_EVENT, ID } from '../constant/index.js';
 import { disableElements, enableElements } from '../utils/ui.js';
 import View from './View.js';
 
@@ -7,6 +7,7 @@ export default class CarNamesInputView extends View {
     this.inputElement = this.element.querySelector(`#${ID.CAR_NAME_INPUT}`);
     this.buttonElement = this.element.querySelector(`#${ID.CAR_NAME_BUTTON}`);
     this.bindEvent();
+
     return this;
   }
 

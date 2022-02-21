@@ -1,4 +1,4 @@
-import { ALERT_MESSAGE, GAME_NUMBERS } from './constants.js';
+import { ALERT_MESSAGE, GAME_NUMBERS } from '../constant/index.js';
 
 export const hasInValidNameLength = (names) =>
   names.some((name) => name.length > GAME_NUMBERS.VALID_MAX_NAME_LENGTH);

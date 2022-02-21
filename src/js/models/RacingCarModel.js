@@ -1,4 +1,4 @@
-import { GAME_NUMBERS } from '../utils/constants.js';
+import { GAME_NUMBERS } from '../constant/index.js';
 import { generateRandomNumber } from '../utils/random.js';
 import { splitCarNames } from '../utils/string.js';
 import {
@@ -70,6 +70,7 @@ export default class RacingCarModel {
 
   pickWinners() {
     const maxCount = Math.max(...this.cars.map((car) => car.forwardCount));
+
     return this.cars
       .filter((car) => car.forwardCount === maxCount)
       .map((car) => car.name)

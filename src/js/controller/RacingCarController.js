@@ -10,7 +10,7 @@ import {
   GAME_NUMBERS,
   ID,
   WINNER_CONGRATULATION,
-} from '../utils/constants.js';
+} from '../constant/index.js';
 
 export default class RacingCarController {
   constructor() {

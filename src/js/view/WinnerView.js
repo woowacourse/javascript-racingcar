@@ -1,4 +1,4 @@
-import { CUSTOM_EVENT, ID } from '../utils/constants.js';
+import { CUSTOM_EVENT, ID } from '../constant/index.js';
 import {
   makeReplayButtonTemplate,
   makeWinnersTemplate,
@@ -8,6 +8,7 @@ import View from './View.js';
 export default class WinnerView extends View {
   setup() {
     this.bindEvent();
+
     return this;
   }
 

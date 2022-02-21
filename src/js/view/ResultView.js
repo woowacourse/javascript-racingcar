@@ -1,4 +1,4 @@
-import { CLASS } from '../utils/constants.js';
+import { CLASS } from '../constant/index.js';
 import { makeCarNamesTemplate } from '../utils/template.js';
 import View from './View.js';
 

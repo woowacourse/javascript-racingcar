@@ -1,4 +1,4 @@
-import { CUSTOM_EVENT, ID } from '../utils/constants.js';
+import { CUSTOM_EVENT, ID } from '../constant/index.js';
 import { disableElements, enableElements } from '../utils/ui.js';
 import View from './View.js';
 
@@ -9,6 +9,7 @@ export default class CountInputView extends View {
       `#${ID.RACING_COUNT_BUTTON}`,
     );
     this.bindEvent();
+
     return this;
   }
 

@@ -1,4 +1,4 @@
-import { CLASS, ID, WINNER_TEMPLATE } from './constants.js';
+import { CLASS, ID, WINNER_TEMPLATE } from '../constant/index.js';
 
 export const makeWinnersTemplate = (winners) => `
 <div>
