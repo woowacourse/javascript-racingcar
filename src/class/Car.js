@@ -23,8 +23,13 @@ class Car {
 class Template {
   carNameBox(carName) {
     return `
-      <div class="car-name-box">
-        <div class="car-name-box-text">${carName}</div>
+      <div>
+        <div class="car-name-box">
+          <div class="car-name-box-text">${carName}</div>
+        </div>
+        <div class="car-arrow-box">
+          <div class="spinner"></div>
+        </div>
       </div>
     `;
   }
