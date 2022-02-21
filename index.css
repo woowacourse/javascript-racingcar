@@ -84,6 +84,11 @@ p {
     height: 100%;
 }
 
+.form-button:disabled {
+    background-color: grey;
+    cursor: default;
+}
+
 .result-area {
     width: 100%;
     text-align: center;

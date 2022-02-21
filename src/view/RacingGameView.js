@@ -28,6 +28,16 @@ export default class View {
         $(SELECTOR.WINNERS, this.resultArea).innerText = winners.join(',');
     }
 
+    updateSubmitFormDisabled() {
+        $(SELECTOR.CAR_NAME_SUBMIT_BUTTON, this.app).setAttribute('disabled', '');
+        $(SELECTOR.TURN_COUNT_SUBMIT_BUTTON, this.app).setAttribute('disabled', '');
+    }
+
+    updateSubmitFormActive() {
+        $(SELECTOR.CAR_NAME_SUBMIT_BUTTON, this.app).removeAttribute('disabled');
+        $(SELECTOR.TURN_COUNT_SUBMIT_BUTTON, this.app).removeAttribute('disabled');
+    }
+
     showTurnForm() {
         this.app.classList.add(SCREEN_COMMAND.SHOW_TURN_COUNT_FORM);
         $(SELECTOR.TURN_COUNT_INPUT).focus();
@@ -49,6 +59,7 @@ export default class View {
 
     reset() {
         this.app.classList.remove(SCREEN_COMMAND.SHOW_TURN_COUNT_FORM, SCREEN_COMMAND.SHOW_RESULT);
+        this.updateSubmitFormActive();
         $(SELECTOR.CAR_NAME_INPUT).value = '';
         $(SELECTOR.TURN_COUNT_INPUT).value = '';
     }

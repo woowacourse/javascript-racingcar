@@ -50,6 +50,7 @@ export default class RacingGame {
         }
         this.playGame(turnCount);
         this.submitted = true;
+        this.view.updateSubmitFormDisabled();
     }
 
     onClickRestartButton() {
