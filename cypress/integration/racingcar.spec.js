@@ -22,8 +22,8 @@ describe('기능 요구사항', () => {
 
   it('자동차 이름을 입력하고 확인 버튼을 누르면 레이스를 출력할 때 쉼표로 구분된 자동차 이름들을 같이 출력한다.', () => {
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(testCarNames.join(','));
-
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
     cy.get(SELECTOR.$CAR_NAME).should('have.length', testCarNames.length);
     cy.get(SELECTOR.$CAR_NAME).each((name, index) => {
       cy.wrap(name).should('have.text', testCarNames[index]);
@@ -54,6 +54,7 @@ describe('기능 요구사항', () => {
 
   it('최종 우승자가 보여지는지 확인한다.', () => {
     const inputString = '꼬재';
+
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
 
@@ -126,6 +127,7 @@ describe('예외 상황', () => {
 
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
@@ -145,6 +147,7 @@ describe('예외 상황', () => {
 
     cy.get(SELECTOR.$CAR_NAME_INPUT).type(inputString);
     cy.get(SELECTOR.$CAR_NAME_BUTTON).click();
+
     cy.get(SELECTOR.$RACING_COUNT_INPUT).type(racingCount);
     cy.get(SELECTOR.$RACING_COUNT_BUTTON)
       .click()
@@ -172,7 +175,7 @@ describe('예외 상황', () => {
   });
 });
 
-describe('로딩', () => {
+describe('경기 진행 과정과 경기 결과', () => {
   beforeEach(() => {
     cy.visit('index.html');
   });
