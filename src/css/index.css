@@ -13,11 +13,19 @@ h1 {
   line-height: 36px;
 }
 
-h2 {
+h3 {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.15px;
+}
+
+.invisible {
+  display: none;
+}
+
+.disabled {
+  background-color: #b4b4b4;
 }
 
 label {
@@ -92,28 +100,25 @@ form {
   margin-bottom: 32px;
 }
 
-#input-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
+#racing-count-input-section,
+#car-name-input-section {
   margin-left: 50px;
   margin-right: 52.32px;
 }
 
-#racing-result {
+#car-name-input-section {
+  margin-bottom: 12px;
+}
+
+#racing-progress {
   margin: 32px 16px 0 16px;
 }
 
-#result-list {
+#racing-progress-list {
   display: flex;
   justify-content: center;
 
   gap: 8px;
-}
-
-.input-form:last-child {
-  display: none;
 }
 
 .car-name {
@@ -131,6 +136,7 @@ form {
 .progress-list {
   margin-top: 8px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 8px;
 }
@@ -150,7 +156,7 @@ form {
   line-height: 38px;
 }
 
-#result {
+#racing-result {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,4 +175,48 @@ form {
 
 #restart-button {
   padding: 10px 30.5px 10px 32.5px;
+}
+
+/* 로딩 애니메이션 */
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 96px;
+  height: 36px;
+}
+
+.spinner div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #00bcd4 transparent transparent transparent;
+}
+
+.spinner div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.spinner div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.spinner div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

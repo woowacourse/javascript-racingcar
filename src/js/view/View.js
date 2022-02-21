@@ -1,35 +1,12 @@
 import { SELECTOR } from '../constants.js';
 import { $, $all } from '../utils/utils.js';
-// import template from '../templates.js';
 
 export default class View {
   constructor() {
     this.$app = $(SELECTOR.$APP);
-    this.$carNameInput = $(SELECTOR.$CAR_NAME_INPUT);
-    this.$carNameButton = $(SELECTOR.$CAR_NAME_BUTTON);
-    this.$racingCountInput = $(SELECTOR.$RACING_COUNT_INPUT);
-    this.$racingCountButton = $(SELECTOR.$RACING_COUNT_BUTTON);
-    this.$result = $(SELECTOR.$RESULT);
-    this.$racingResult = $(SELECTOR.$RACING_RESULT);
   }
 
-  get result() {
-    return this.$result;
-  }
-
-  get racingResult() {
-    return this.$racingResult;
-  }
-
-  get carNameInput() {
-    return this.$carNameInput;
-  }
-
-  get racingCountInput() {
-    return this.$racingCountInput;
-  }
-
-  alertErrorMessage(message) {
+  alertMessage(message) {
     alert(message);
   }
 
@@ -38,16 +15,32 @@ export default class View {
     focusElement.focus();
   }
 
-  racingCountInputVisibiled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'block';
+  toggleDisabledButton(selector) {
+    selector.disabled = !selector.disabled;
+    selector.classList.toggle('disabled');
   }
 
-  racingCountInputInvisibiled() {
-    $(SELECTOR.$INPUT_FORM_LAST_CHILD).style.display = 'none';
+  toggleVisibled(element) {
+    element.classList.toggle('invisible');
   }
 
-  render(selector, template) {
-    selector.innerHTML = template;
+  removeElement(parentElement, selector) {
+    parentElement.removeChild($(selector));
+  }
+
+  removeElements(parentElements, selector) {
+    [...parentElements].forEach((parentElement) => {
+      const childElement = $(selector);
+      parentElement.removeChild(childElement);
+    });
+  }
+
+  insertText(selector, text) {
+    selector.textContent = text;
+  }
+
+  render(selector, position, text) {
+    selector.insertAdjacentHTML(position, text);
   }
 
   bindEventListener(type, selector, callback) {
@@ -60,24 +53,6 @@ export default class View {
 
       e.preventDefault();
       callback(e);
-    });
-  }
-
-  bindClickCarNameButton(callback) {
-    this.bindEventListener('click', SELECTOR.$CAR_NAME_BUTTON, () => {
-      callback();
-    });
-  }
-
-  bindClickRacingCountButton(callback) {
-    this.bindEventListener('click', SELECTOR.$RACING_COUNT_BUTTON, () => {
-      callback();
-    });
-  }
-
-  bindClickRestartButton(callback) {
-    this.bindEventListener('click', SELECTOR.$RESTART_BUTTON, () => {
-      callback();
     });
   }
 }
