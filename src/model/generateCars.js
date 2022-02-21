@@ -1,12 +1,9 @@
-import { $ } from '../utils/selector.js';
 import Car from './Car.js';
 
-const generateCars = () => {
-  const names = $('.name-input')
-    .value.split(',')
-    .map(name => name.trim());
-
-  return names.map(name => new Car(name));
+export const getCarNameArrays = value => {
+  return value.split(',').map(name => name.trim());
 };
 
-export default generateCars;
+export const generateCars = value => {
+  return getCarNameArrays(value).map(name => new Car(name));
+};

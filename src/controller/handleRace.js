@@ -1,10 +1,11 @@
-import generateCars from '../model/generateCars.js';
+import { generateCars } from '../model/generateCars.js';
 import getWinners from '../model/getWinners.js';
 import { showArrowProgress, showCarElements } from '../view/showProgress.js';
 import { showRestart, showWinners } from '../view/showResult.js';
 import hideLoader from '../view/hideLoader.js';
 import wait from '../utils/wait.js';
 import { ALERT_WINNER_DELAY, DEFAULT_DELAY, WINNER_ALERT_MESSAGE } from '../utils/constants.js';
+import { $ } from '../utils/selector.js';
 
 const finishRace = async cars => {
   const winner = getWinners(cars);
@@ -24,7 +25,9 @@ const playRace = (cars, count) => {
 };
 
 const handleRace = async count => {
-  const cars = generateCars();
+  const { value } = $('.name-input');
+  const cars = generateCars(value);
+
   playRace(cars, count);
   await wait(count * DEFAULT_DELAY);
   hideLoader();
