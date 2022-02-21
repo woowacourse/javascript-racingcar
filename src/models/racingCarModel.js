@@ -1,39 +1,30 @@
-import { FORWARD_MARK_NUMBER } from "../constants/constants.js";
 import Car from "../class/car.js";
-import generateRandomNumber from "../modules/generateRandomNumber.js";
 
 export default class RacingCarModel {
   constructor() {
-    this.carArray = [];
+    this.carInstanceArray = [];
   }
 
-  generateCars(carNameArray) {
-    carNameArray.forEach((carName) => {
-      this.carArray.push(new Car(carName));
+  generateCarInstanceArray(carNameArray) {
+    this.carInstanceArray = carNameArray.map((carName) => {
+      return new Car(carName);
     });
   }
 
-  playGame(carNameArray, raceCount) {
-    this.raceCount = raceCount;
-    this.generateCars(carNameArray);
-    for (let i = 0; i < this.raceCount; i++) {
-      this.updateCarForwardCount();
-    }
-    return this.carArray;
-  }
-
-  updateCarForwardCount() {
-    this.carArray.forEach((item) => {
-      if (generateRandomNumber() >= FORWARD_MARK_NUMBER) {
-        item.forwardCount++;
-      }
-    });
+  updateCarForwardCount(index) {
+    this.carInstanceArray[index].forwardCount++;
   }
 
   getGameWinners() {
-    const maxCount = this.carArray
+    const maxCount = this.carInstanceArray
       .map((car) => car.forwardCount)
       .sort((a, b) => b - a)[0];
-    return this.carArray.filter((item) => item.forwardCount === maxCount);
+    return this.carInstanceArray.filter(
+      (item) => item.forwardCount === maxCount
+    );
+  }
+
+  getCarInstanceArray() {
+    return this.carInstanceArray;
   }
 }
