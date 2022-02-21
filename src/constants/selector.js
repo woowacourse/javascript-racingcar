@@ -9,3 +9,5 @@ export const SELECTOR = {
     RACING_CONTENT: '.racing-content',
     RACING_RESULT: '.racing-result',
 };
+
+export const DISPLAY_NONE = 'display-none';

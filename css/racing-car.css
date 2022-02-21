@@ -16,26 +16,37 @@ body {
   height: fit-content;
 
   background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 0.0625em solid rgba(0, 0, 0, 0.12);
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 0.25em;
 }
 
 .title {
-  width: 512px;
-  height: 36px;
+  width: fit-content;
+  height: 1.125em;
   text-align: center;
   align-items: center;
-  margin: 36px auto 32px;
+  margin: 1.125em auto 1em;
 }
 
 /*
     input
 */
+.user-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 27.5em;
+  height: fit-content;
+  margin: 0 1em;
+}
+
 .car-name-input-container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
+  margin-bottom: 0.75em;
+  width: 100%;
 }
 
 .input-container {
@@ -43,38 +54,44 @@ body {
 }
 
 .race-count-input-container {
-  display: none;
+  display: flex;
   flex-direction: column;
-  margin-bottom: 12px;
+  margin-bottom: 0.75em;
+  width: 100%;
+}
+
+.display-none {
+  display: none;
 }
 
 label {
-  width: 360px;
-  height: 24px;
+  width: fit-content;
+  height: 1.5em;
 
   display: block;
-  margin: 4px 0;
-}
-.user-input-container {
-  width: 440px;
-  height: fit-content;
-  margin: 0 auto;
+  margin: 0.25em 0;
 }
 
 .input-button {
-  width: 65.68px;
-  height: 36px;
+  width: 4em;
+  height: 2.25em;
   background: #00bcd4;
-  border-radius: 4px;
+  border-radius: 0.25em;
   border: none;
   color: #ffffff;
-  margin-left: 16px;
+  margin: 0.25em;
+}
+.input-button:hover {
+  background: #62efff;
+}
+.input-button:active {
+  background: #008ba3;
 }
 
 input {
-  width: 360px;
-  margin: 4px 0px;
-  padding: 8px 8px 4px;
+  width: 100%;
+  margin: 0.25em 0;
+  padding: 0.5em 0.5em 0.25em;
 }
 
 /*
@@ -91,23 +108,20 @@ input {
 .car {
   display: flex;
   flex-direction: column;
-  margin-right: 8px;
+  margin-right: 0.5em;
 }
 .car:first-child {
-  margin-left: 8px;
-}
-.car:last-child {
-  margin-right: 8px;
+  margin-left: 0.5em;
 }
 
 .car label {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 96px;
-  height: 36px;
+  width: 6em;
+  height: 2.25em;
   background: #f5f5f5;
-  border-radius: 4px;
+  border-radius: 0.25em;
 }
 
 .car div {
@@ -117,11 +131,10 @@ input {
 }
 
 .car div p {
-  width: 28px;
   font-style: normal;
   font-weight: normal;
-  font-size: 32px;
-  margin: 8px;
+  font-size: 2rem;
+  margin: 0.5em;
 }
 
 /*
@@ -137,19 +150,42 @@ input {
 .result-text {
   font-style: normal;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.35rem;
   text-align: center;
   color: rgba(0, 0, 0, 0.87);
 
-  margin: 24px 0;
+  margin: 1.5em 0;
 }
 
 .restart-button {
-  margin-bottom: 32px;
-  width: 152px;
-  height: 36px;
+  margin-bottom: 2em;
+  width: 9.5em;
+  height: 2.25em;
   background: #00bcd4;
-  border-radius: 4px;
+  border-radius: 0.25em;
   border-style: none;
   color: #fff;
+}
+
+/*
+  loading spinner
+*/
+@keyframes spinner-loading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  margin: 0.5em;
+  border: 0.25em solid #00bcd4;
+  border-top: 0.25em solid transparent;
+  border-radius: 50%;
+
+  animation: spinner-loading 0.8s linear infinite;
 }
