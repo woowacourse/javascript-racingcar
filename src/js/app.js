@@ -1,12 +1,24 @@
 import { $ } from './util/dom.js';
 import { checkCarNames, getCarNames } from './core/checkCarNames.js';
-import { getTryCount } from './core/checkTryCount.js';
-import { makeCars, playOneTurn, getWinners } from './core/playRacing.js';
+import { getTryCount, checkTryCount } from './core/checkTryCount.js';
+
+import {
+  makeCars,
+  playOneTurn,
+  getWinners,
+  isNotLastTurn,
+} from './core/playRacing.js';
+
 import {
   renderResult,
   renderWinners,
   removeBeforeResult,
 } from './view/renderResult.js';
+
+import {
+  TURN_LOADING_DELAY,
+  WINNERS_ALERT_DELAY,
+} from './constants/constant.js';
 
 class App {
   constructor() {
@@ -20,7 +32,7 @@ class App {
       this.setCarNames(checkCarNames(getCarNames(e)));
     });
     $('#try-count-form').addEventListener('submit', e => {
-      this.setTryCount(getTryCount(e));
+      this.setTryCount(checkTryCount(getTryCount(e)));
     });
     $('#try-count-form').addEventListener('submit', () => {
       this.startGame();
@@ -28,13 +40,21 @@ class App {
     $('#app').addEventListener('click', e => removeBeforeResult(e));
   }
 
-  startGame() {
+  async startGame() {
     const cars = makeCars(this.carNames);
     for (let i = 0; i < this.tryCount; i++) {
-      playOneTurn(cars);
-      renderResult(cars);
+      await new Promise(resolve => {
+        setTimeout(() => {
+          playOneTurn(cars, i);
+          renderResult(cars, isNotLastTurn(i, this.tryCount));
+          resolve();
+        }, TURN_LOADING_DELAY);
+      });
     }
     renderWinners(getWinners(cars));
+    setTimeout(() => {
+      window.alert('축하의 메시지');
+    }, WINNERS_ALERT_DELAY);
     this.resetValue();
   }
 

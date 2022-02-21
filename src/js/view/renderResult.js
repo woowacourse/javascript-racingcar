@@ -1,14 +1,16 @@
 import { $ } from '../util/dom.js';
 
-export const renderResult = cars => {
+export const renderResult = (cars, isNotLastTurn) => {
   const template = cars
     .map(car => {
       return `
       <div id="car-result">
         <div>${car.name}</div>${'<p>⬇️</p>'.repeat(car.score)}
+        ${'<p id="loading-animation"></p>'.repeat(isNotLastTurn)}
       </div>`;
     })
     .join('');
+
   $('#turn-result').innerHTML = template;
 };
 

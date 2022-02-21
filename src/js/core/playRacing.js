@@ -20,6 +20,15 @@ export const playOneTurn = cars => {
       car.addScore();
     }
   }
+  return cars;
+};
+
+export const isNotLastTurn = (index, tryCount) => {
+  let count = false;
+  if (index !== tryCount - 1) {
+    count = true;
+  }
+  return count;
 };
 
 const getRandomInt = () => {
