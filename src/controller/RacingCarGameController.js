@@ -57,24 +57,24 @@ class RacingCarGameController {
   }
 
   startRacingGame() {
-    let turn = 1;
+    let currentRacingCount = 1;
     const racingCount = this.model.getRacingCount();
 
     const raceTimer = setInterval(() => {
-      if (turn !== 1) {
+      if (currentRacingCount !== 1) {
         this.view.removeSpinner();
       }
 
       this.runOneCycleGame();
 
-      if (turn === racingCount) {
+      if (currentRacingCount === racingCount) {
         clearInterval(raceTimer);
         this.handleGameResult();
         return;
       }
 
       this.view.renderSpinner();
-      turn += 1;
+      currentRacingCount += 1;
     }, RULES.TRUN_INTERVAL_TIME);
   }
 
