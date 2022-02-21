@@ -1,4 +1,4 @@
-import { generateRandomNumber } from './utils/index.js';
+import { generateRandomNumber } from '../utils/index.js';
 
 export default class Car {
   constructor(name) {

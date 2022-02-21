@@ -1,5 +1,5 @@
-import { CLASS, ID } from './constants.js';
-import { getElement, getElements } from './utils/dom.js';
+import { CLASS, ID } from '../constants.js';
+import { getElement, getElements } from '../utils/dom.js';
 
 const loadingView = '<div class="loader"></div>';
 
