@@ -54,7 +54,7 @@ export default class RacingGameView {
 
   setVisibleResult(isVisible) {
     $$(`${SELECTOR.RACE_CONTAINER}, ${SELECTOR.RESULT_CONTAINER}`).forEach(($element) => {
-      $element.dataset.state = isVisible ? 'on' : 'off';
+      $element.dataset.visible = isVisible ? 'on' : 'off';
     });
   }
 
@@ -64,7 +64,7 @@ export default class RacingGameView {
     const $raceContainer = $(SELECTOR.RACE_CONTAINER);
     $raceContainer.innerHTML = '';
     $raceContainer.append(...$$carList);
-    $raceContainer.dataset.state = 'on';
+    $raceContainer.dataset.visible = 'on';
   }
 
   renderCarAdvance(carList) {
@@ -84,7 +84,7 @@ export default class RacingGameView {
   }
 
   renderWinners(winners) {
-    $(SELECTOR.RESULT_CONTAINER).dataset.state = 'on';
+    $(SELECTOR.RESULT_CONTAINER).dataset.visible = 'on';
     $(SELECTOR.WINNERS).innerText = `🏆 최종 우승자: ${winners
       .map((carInstance) => carInstance.name)
       .join(', ')} 🏆`;

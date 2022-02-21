@@ -27,7 +27,7 @@ describe('기본 사용 순서 체크 (E2E)', () => {
   });
 
   it('3. 자동차 이름과 이동 횟수를 입력했다면 게임이 진행되어야 한다.', () => {
-    cy.get(SELECTOR.RACE_CONTAINER).invoke('attr', 'data-state').should('eq', 'on');
+    cy.get(SELECTOR.RACE_CONTAINER).invoke('attr', 'data-visible').should('eq', 'on');
     cy.get(SELECTOR.PROGRESS);
   });
 
