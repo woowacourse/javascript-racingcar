@@ -33,7 +33,7 @@ export const checkValidRacingCount = (count) => {
   if (isNaN(count)) {
     throw new Error(ALERT_MESSAGE.NOT_A_NUMBER_ERROR);
   }
-  if (Number(count) < 0) {
+  if (Number(count) <= 0) {
     throw new Error(ALERT_MESSAGE.NEGATIVE_COUNT_ERROR);
   }
   if (isEmptyRacingCount(count)) {
