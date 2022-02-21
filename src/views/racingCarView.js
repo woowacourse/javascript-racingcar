@@ -1,20 +1,31 @@
 import { $ } from "../dom/dom.js";
 export default class RacingCarView {
   renderRacingContent(racingGameInfo) {
-    const carElement = racingGameInfo.carNameArray
-      .map((name, index) => {
-        return `<div class="car">
-                <label>${name}</label>
-                <div class="car-${index} step-container">
-                ${this.renderStepContainer(index, racingGameInfo)}
-                </div>
-                </div>`;
-      })
-      .join("");
-    $(".racing-content").insertAdjacentHTML("afterbegin", carElement);
+    racingGameInfo.carNameArray.forEach((name, index) => {
+      const carContainer = document.createElement("div");
+      carContainer.className = "car";
+
+      const carNameLabel = document.createElement("label");
+      carNameLabel.textContent = name;
+
+      const stepContainer = document.createElement("div");
+      stepContainer.classList.add("step-container");
+      stepContainer.classList.add(`car-${index}`);
+
+      carContainer.appendChild(carNameLabel);
+      this.renderStepContainer(stepContainer, index, racingGameInfo);
+      carContainer.appendChild(stepContainer);
+
+      $(".racing-content").appendChild(carContainer);
+    });
   }
-  renderStepContainer(index, racingGameInfo) {
-    return `<p class="step-${index}"></p>`.repeat(racingGameInfo.raceCount);
+
+  renderStepContainer(element, index, racingGameInfo) {
+    for (let i = 0; i < racingGameInfo.raceCount; i++) {
+      const step = document.createElement("p");
+      step.className = `step-${index}`;
+      element.appendChild(step);
+    }
   }
   renderSpinningEvent(count, index) {
     if (
