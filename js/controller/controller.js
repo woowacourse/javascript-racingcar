@@ -4,6 +4,7 @@ import View from '../view/view.js';
 import { validator } from '../validator/validator.js';
 import { ERROR_MESSAGE, NUMBER, SELECTOR } from '../utils/constants.js';
 import { input } from '../view/input.js';
+import { delay } from '../utils/helper.js';
 
 export default class Controller {
   constructor() {
@@ -51,18 +52,20 @@ export default class Controller {
     this.model = new Model();
   };
 
-  displayCarProgressByRacingCount() {
-    for (let i = 1; i <= Number(this.model.racingCount); i++) {
-      this.displayCarProgressAfterSeconds(i);
-    }
-  }
-
-  displayCarProgressAfterSeconds(i) {
-    setTimeout(() => {
+  async playGame() {
+    for (let i = 0; i < Number(this.model.racingCount); i++) {
+      await delay(1000);
       this.calaulateCarProgress();
       this.view.renderCarProgress(this.model.carPosition);
       this.view.renderLoader();
-    }, 1000 * i);
+    }
+
+    this.view.hideLoader();
+    this.view.renderWinner(this.getWinnerList());
+    this.view.renderRestartButton();
+
+    await delay(2000);
+    this.displayCongratulatoryMessage();
   }
 
   calaulateCarProgress() {
@@ -74,20 +77,11 @@ export default class Controller {
   gameStart() {
     this.view.renderCarNames(this.model.carNames);
     this.view.renderInitialLoader(this.model.carPosition);
-    this.displayCarProgressByRacingCount();
-
-    setTimeout(() => {
-      this.view.hideLoader();
-      this.view.renderWinner(this.getWinnerList());
-      this.view.renderRestartButton();
-      this.displayCongratulatoryMessage();
-    }, 1000 * Number(this.model.racingCount));
+    this.playGame();
   }
 
   displayCongratulatoryMessage() {
-    setTimeout(() => {
-      alert(`축하합니다! 우승자는 ${this.getWinnerList()}입니다.`);
-    }, 2000);
+    alert(`축하합니다! 우승자는 ${this.getWinnerList()}입니다.`);
   }
 
   getWinnerList() {

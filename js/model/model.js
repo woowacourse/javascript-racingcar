@@ -1,5 +1,5 @@
 import { NUMBER } from '../utils/constants.js';
-import { getRandomNumber } from '../utils/getRandomNumber.js';
+import { getRandomNumber } from '../utils/helper.js';
 
 export default class Model {
   constructor() {
