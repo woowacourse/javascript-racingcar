@@ -61,7 +61,7 @@ export default class RacingProgressView extends View {
     this.$$progressList = $all(SELECTOR.$PROGRESS_LIST);
 
     this.$$progressList.forEach((progress) => {
-      this.render(progress, 'beforeend', template.renderLoadingAnimation());
+      this.render(progress, 'beforeend', template.loadingAnimation);
     });
   }
 
@@ -69,7 +69,7 @@ export default class RacingProgressView extends View {
     this.render(
       this.$$progressList[index].querySelector(SELECTOR.$SPINNER),
       'beforebegin',
-      template.renderProgressList()
+      template.progressList
     );
   }
 
@@ -77,7 +77,7 @@ export default class RacingProgressView extends View {
     this.render(
       this.$racingProgress,
       'beforeend',
-      template.renderRacingProgress(carList)
+      template.racingProgress(carList)
     );
 
     $all(SELECTOR.$CAR_NAME).forEach((carNameElement, index) => {

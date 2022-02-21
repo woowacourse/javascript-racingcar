@@ -12,10 +12,10 @@ export default class RacingCarGame {
     this.racingProgressView = racingProgressView;
     this.racingResultView = racingResultView;
 
-    this.bindEventListener();
+    this.bindingEventListener();
   }
 
-  bindEventListener() {
+  bindingEventListener() {
     this.carNameInputView.bindClickCarNameButton(
       this.submitCarNames.bind(this)
     );

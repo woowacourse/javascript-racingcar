@@ -19,7 +19,7 @@ export default class RacingResultView extends View {
   }
 
   renderWinners(winners) {
-    this.render(this.$app, 'beforeend', template.renderRacingResult(winners));
+    this.render(this.$app, 'beforeend', template.racingResult);
     this.insertText($(SELECTOR.$WINNERS), winners.join(`${DELIMETER.COMMA} `));
     this.winnersAlertMessage(winners);
   }
