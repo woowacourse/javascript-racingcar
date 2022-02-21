@@ -19,17 +19,20 @@ export default class RacingCarController {
       $(`#${ID.CAR_NAMES_SECTION}`),
     )
       .setup()
-      .on(CUSTOM_EVENT.SUBMIT_CAR_NAMES, this.submitCarNamesHandler.bind(this));
+      .onEvent(
+        CUSTOM_EVENT.SUBMIT_CAR_NAMES,
+        this.submitCarNamesHandler.bind(this),
+      );
     this.CountInputView = new CountInputView($(`#${ID.RACING_COUNT_SECTION}`))
       .setup()
-      .on(
+      .onEvent(
         CUSTOM_EVENT.SUBMIT_RACING_COUNT,
         this.submitRacingCountHandler.bind(this),
       );
     this.ResultView = new ResultView($(`#${ID.RESULT}`));
     this.WinnerView = new WinnerView($(`#${ID.RESULT}`))
       .setup()
-      .on(
+      .onEvent(
         CUSTOM_EVENT.CLICK_REPLAY_BUTTON,
         this.clickReplayButtonHandler.bind(this),
       );

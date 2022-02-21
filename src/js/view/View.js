@@ -7,7 +7,7 @@ export default class View {
     this.element.insertAdjacentHTML('beforeend', template);
   }
 
-  on(event, handler) {
+  onEvent(event, handler) {
     this.element.addEventListener(event, handler);
 
     return this;
