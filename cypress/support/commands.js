@@ -22,23 +22,39 @@
 //
 //
 // -- This will overwrite an existing command --
+
+import { SELECTOR } from '../../src/constants/constants';
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-const baseUrl = '../index.html';
 
-Cypress.Commands.add('stubRandomReturns', (returnValues = []) => {
-  const randomStub = cy.stub();
+Cypress.Commands.add('checkNameInputValid', (nameInput, errorMessage) => {
+  // given
+  const invalidInput = nameInput;
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+  // when
+  cy.get(SELECTOR.ID.CAR_NAMES_INPUT).type(invalidInput);
 
-  returnValues.forEach((value, index) => {
-    randomStub.onCall(index).returns(value);
-  });
+  // then
+  cy.get(SELECTOR.ID.CAR_NAMES_BUTTON)
+    .click()
+    .then(() => {
+      expect(alertStub.getCall(0)).to.be.calledWith(errorMessage);
+    });
+});
 
-  cy.visit(baseUrl, {
-    onBeforeLoad: (window) => {
-      window.MissionUtils = {
-        Random: {
-          pickNumberInRange: randomStub
-        }
-      };
-    }
-  });
+Cypress.Commands.add('checkRoundInputValid', (roundInput, errorMessage) => {
+  // given
+  const alertStub = cy.stub();
+  cy.on('window:alert', alertStub);
+
+  // when
+  cy.get(SELECTOR.ID.RACING_ROUND_INPUT).type(roundInput);
+
+  // then
+  cy.get(SELECTOR.ID.RACING_ROUND_SUBMIT)
+    .click()
+    .then(() => {
+      expect(alertStub).to.be.calledWith(errorMessage);
+    });
 });

@@ -1,57 +1,66 @@
-import DomUtils from '../utils/dom-utils.js';
+import { $, $$ } from '../utils/selector.js';
 import { SELECTOR } from '../constants/constants.js';
+import Template from '../layouts/template.js';
 
 export default class RacingView {
   constructor() {
-    this.$app = document.getElementById(SELECTOR.ID.APP);
-    this.$namesForm = document.getElementById(SELECTOR.ID.CAR_NAMES_FORM);
-    this.$countForm = document.getElementById(SELECTOR.ID.RACING_COUNT_FORM);
+    this.$app = $(SELECTOR.ID.APP);
+    this.$namesForm = $(SELECTOR.ID.CAR_NAMES_FORM);
+    this.$roundForm = $(SELECTOR.ID.RACING_ROUND_FORM);
+    this.$progressContainer = $(SELECTOR.ID.RACING_PROGRESS_CONTAINER);
+    this.$resultContainer = $(SELECTOR.ID.RACING_RESULT_CONTAINER);
+    this.$nameInput = $(SELECTOR.ID.CAR_NAMES_INPUT);
+    this.$roundInput = $(SELECTOR.ID.RACING_ROUND_INPUT);
   }
 
-  renderProgress(cars) {
-    this.$app.appendChild(DomUtils.createRacingProgressElement(cars));
+  static renderProgressLoader() {
+    const $$eachCarProgressStatus = $$(SELECTOR.CLASS.CAR_PROGRESS_CONTAINER);
+    $$eachCarProgressStatus.forEach((status) => {
+      status.insertAdjacentHTML('beforeend', Template.loaderTemplate());
+    });
+  }
+
+  renderProgressBy(name, position) {
+    this.$progressContainer.insertAdjacentHTML(
+      'beforeend',
+      Template.racingProgressTemplate(name, position)
+    );
   }
 
   renderResult(winnerList) {
-    this.$app.appendChild(DomUtils.createWinnerElement(winnerList));
+    this.$resultContainer.innerHTML = Template.winnerTemplate(winnerList);
   }
 
   reset() {
     this.removeProgress();
     this.removeResult();
-    RacingView.clearInput();
+    this.clearInput();
     this.activateNamesForm();
-    this.deactivateCountForm();
+    this.deactivateRoundForm();
   }
 
   removeProgress() {
-    const $racingProgressNode = document.getElementById(
-      SELECTOR.ID.RACING_PROGRESS_CONTAINER
-    );
-    this.$app.removeChild($racingProgressNode);
+    this.$progressContainer.textContent = '';
   }
 
   removeResult() {
-    const $racingResultNode = document.getElementById(
-      SELECTOR.ID.RACING_RESULT_CONTAINER
-    );
-    this.$app.removeChild($racingResultNode);
+    this.$resultContainer.textContent = '';
   }
 
-  static clearInput() {
-    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
-    document.getElementById(SELECTOR.ID.CAR_NAMES_INPUT).value = '';
+  clearInput() {
+    this.$nameInput.value = '';
+    this.$roundInput.value = '';
   }
 
-  activateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = false;
+  activateRoundForm() {
+    for (let i = 0; i < this.$roundForm.childNodes.length; i += 1) {
+      this.$roundForm.childNodes[i].disabled = false;
     }
   }
 
-  deactivateCountForm() {
-    for (let i = 0; i < this.$countForm.childNodes.length; i += 1) {
-      this.$countForm.childNodes[i].disabled = true;
+  deactivateRoundForm() {
+    for (let i = 0; i < this.$roundForm.childNodes.length; i += 1) {
+      this.$roundForm.childNodes[i].disabled = true;
     }
   }
 
@@ -65,5 +74,14 @@ export default class RacingView {
     for (let i = 0; i < this.$namesForm.childNodes.length; i += 1) {
       this.$namesForm.childNodes[i].disabled = true;
     }
+  }
+
+  getCarNameList() {
+    const nameList = this.$nameInput.value.split(',');
+    return nameList.map((name) => name.trim());
+  }
+
+  getRacingRound() {
+    return this.$roundInput.value;
   }
 }

@@ -25,7 +25,7 @@ const isNotNegative = (number) => {
   return number >= 0;
 };
 
-const isCountEmpty = (number) => {
+const isRoundEmpty = (number) => {
   return number.trim() === '';
 };
 
@@ -44,14 +44,14 @@ export const validateCarNames = (names) => {
   }
 };
 
-export const validateCount = (count) => {
-  if (isCountEmpty(count)) {
-    throw new Error(INPUT_ERROR.COUNT_EMPTY);
+export const validateRound = (round) => {
+  if (isRoundEmpty(round)) {
+    throw new Error(INPUT_ERROR.ROUND_EMPTY);
   }
-  if (!isNotNegative(count)) {
-    throw new Error(INPUT_ERROR.COUNT_NEGATIVE);
+  if (!isNotNegative(round)) {
+    throw new Error(INPUT_ERROR.ROUND_NEGATIVE);
   }
-  if (!isInteger(count)) {
-    throw new Error(INPUT_ERROR.COUNT_NOT_NATURAL);
+  if (!isInteger(round)) {
+    throw new Error(INPUT_ERROR.ROUND_NOT_NATURAL);
   }
 };

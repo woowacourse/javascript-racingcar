@@ -1,78 +1,97 @@
-import { validateCarNames, validateCount } from '../utils/validation.js';
-import { SELECTOR } from '../constants/constants.js';
+import RacingGameModel from '../model/RacingGameModel.js';
+import RacingView from '../view/RacingView.js';
+import { validateCarNames, validateRound } from '../utils/validation.js';
+import { SELECTOR, DELAY } from '../constants/constants.js';
+import { $ } from '../utils/selector.js';
 
 export default class RacingController {
-  constructor(model, view) {
-    this.model = model;
-    this.view = view;
+  constructor() {
+    this.model = new RacingGameModel();
+    this.view = new RacingView();
   }
 
   app() {
-    document
-      .getElementById(SELECTOR.ID.CAR_NAMES_BUTTON)
-      .addEventListener('click', this.submitNameHandler.bind(this));
-    document
-      .getElementById(SELECTOR.ID.RACING_COUNT_SUBMIT)
-      .addEventListener('click', this.submitCountHandler.bind(this));
+    $(SELECTOR.ID.CAR_NAMES_BUTTON).addEventListener(
+      'click',
+      this.submitNameHandler.bind(this)
+    );
+    $(SELECTOR.ID.RACING_ROUND_SUBMIT).addEventListener(
+      'click',
+      this.submitRoundHandler.bind(this)
+    );
   }
 
   submitNameHandler(e) {
     e.preventDefault();
-    const nameList = this.getCarNameList();
+    const nameList = this.view.getCarNameList();
 
     try {
       validateCarNames(nameList);
-      this.model.players = nameList;
+      this.model.cars = nameList;
       this.view.deactivateNamesForm();
-      this.view.activateCountForm();
+      this.view.activateRoundForm();
     } catch (error) {
       alert(error.message);
     }
   }
 
-  submitCountHandler(e) {
+  submitRoundHandler(e) {
     e.preventDefault();
-    const racingCount = this.getRacingCount();
+    const racingRound = this.view.getRacingRound();
 
     try {
-      validateCount(racingCount);
-      this.model.round = Number(racingCount);
+      validateRound(racingRound);
+      this.model.round = Number(racingRound);
       this.view.deactivateNamesForm();
+      this.view.deactivateRoundForm();
       this.startRacingGame();
-      this.activateRestartButton();
     } catch (error) {
       alert(error.message);
     }
+  }
+
+  startRacingGame() {
+    const { round } = this.model;
+    let currentRound = 0;
+    const playIntervalId = setInterval(() => {
+      this.playEachTurn();
+      currentRound += 1;
+      if (currentRound >= round) {
+        clearInterval(playIntervalId);
+        this.displayResult();
+        this.activateRestartButton();
+        return;
+      }
+      RacingView.renderProgressLoader();
+    }, DELAY.TURN_BETWEEN_TIME);
+  }
+
+  playEachTurn() {
+    this.view.removeProgress();
+    this.model.moveCarsOnce();
+    const cars = [...this.model.cars];
+    cars.forEach((car) => {
+      this.view.renderProgressBy(car.name, car.position);
+    });
+  }
+
+  displayResult() {
+    const winners = [...this.model.winners];
+    this.view.renderResult(winners);
+    setTimeout(() => {
+      alert(`우승자는 ${winners.join(', ')}입니다.`);
+    }, DELAY.NOTIFY_RESULT_TIME);
   }
 
   activateRestartButton() {
-    document
-      .getElementById(SELECTOR.ID.RESTART_BUTTON)
-      .addEventListener('click', this.restartGame.bind(this));
+    $(SELECTOR.ID.RESTART_BUTTON).addEventListener(
+      'click',
+      this.restartGame.bind(this)
+    );
   }
 
   restartGame() {
     this.view.reset();
     this.model.reset();
-  }
-
-  getCarNameList() {
-    const nameList = document
-      .getElementById(SELECTOR.ID.CAR_NAMES_INPUT)
-      .value.split(',');
-    return nameList.map((name) => name.trim());
-  }
-
-  getRacingCount() {
-    return document.getElementById(SELECTOR.ID.RACING_COUNT_INPUT).value;
-  }
-
-  startRacingGame() {
-    while (this.model.round) {
-      this.model.goToNextTurn();
-    }
-    this.view.deactivateCountForm();
-    this.view.renderProgress(this.model.cars);
-    this.view.renderResult(this.model.winners);
   }
 }
