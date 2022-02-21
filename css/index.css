@@ -18,6 +18,7 @@ body {
 header {
   font-size: 34px;
   line-height: 36px;
+  margin-bottom: 32px;
 }
 
 main {
@@ -26,17 +27,14 @@ main {
   align-items: center;
 }
 
-#user_input_section {
+#car_names_input_section {
   width: 425px;
-  margin: 32px 0px;
-}
-
-#racing_count_form {
-  display: none;
-}
-
-form {
   margin-bottom: 12px;
+}
+
+#racing_count_input_section {
+  width: 425px;
+  margin-bottom: 32px;
 }
 
 form > label {
@@ -52,23 +50,34 @@ form > label {
 }
 
 .user_input {
-  color: #888888;
+  width: 330px;
   border: 1px solid #888888;
   border-radius: 4px;
-  width: 330px;
+  color: #888888;
   padding: 4px;
 }
 
-.input_btn {
+.user_input:disabled {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
+  cursor: not-allowed;
+}
+
+.input_button {
   width: 65.68px;
   height: 36px;
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
-  background: #00bcd4;
+  background: rgb(0, 188, 212);
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.input_button:disabled {
+  background: rgba(0, 188, 212, 0.4);
+  cursor: not-allowed;
 }
 
 #racing_car_display_section {
@@ -112,18 +121,46 @@ form > label {
   font-size: 32px;
 }
 
+.loading {
+  display: flex;
+  justify-items: center;
+  padding: 7px 0 8px;
+}
+
+.loading::after {
+  content: '';
+  width: 25px;
+  height: 25px;
+  border: 7px solid #00bcd4;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: loader 1s linear infinite;
+}
+
+.loading-hidden {
+  display: none;
+}
+
+@keyframes loader {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1.5turn);
+  }
+}
+
 #final_winner {
   font-size: 20px;
   font-weight: 600;
-  display: none;
 }
 
 #restart_section {
   padding-bottom: 42px;
-  display: none;
 }
 
-#restart_btn {
+#restart_button {
   width: 152px;
   height: 36px;
   font-size: 14px;

@@ -1,6 +1,8 @@
 import { RULES } from '../constants/index.js';
 
-export const isEmpty = (value) => value === '';
+export const isNotExist = (value) => value === null;
+
+export const isBlank = (value) => value === '';
 
 export const isExceedLength = (value) => value.length > RULES.MAX_CAR_NAME_LENGTH;
 
@@ -8,6 +10,4 @@ export const isNotNaturalNumber = (number) => number < 1 || Math.floor(number) !
 
 export const convertToNumber = (value) => parseInt(value, 10);
 
-export const generateRandomNumber = () => Math.floor(Math.random() * 10);
-
-export const delay = (miliSecond) => new Promise((resolve) => setTimeout(resolve, miliSecond));
+export const pickRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);

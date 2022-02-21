@@ -9,10 +9,11 @@
   <body>
     <div id="app">
       <header>
-        <h2>🏎️자동차 경주 게임🏁</h2>
+        <h1>🏎️자동차 경주 게임🏁</h1>
       </header>
       <main>
-        <section id="user_input_section">
+        <section id="car_names_input_section">
+          <h2 hidden>자동차 이름 입력</h2>
           <form id="car_names_form">
             <label for="car_names_input"
               >5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label
@@ -23,24 +24,39 @@
                 id="car_names_input"
                 class="user_input"
                 placeholder="east, west, south, north, all"
+                autocomplete="off"
+                autofocus
               />
-              <button class="input_btn">확인</button>
+              <button id="car_names_button" class="input_button">확인</button>
             </div>
           </form>
+        </section>
+        <section hidden id="racing_count_input_section">
+          <h2 hidden>시도할 횟수 입력</h2>
           <form id="racing_count_form">
             <label for="racing_count_input">시도할 횟수를 입력해주세요.</label>
             <div class="input_box">
-              <input type="number" id="racing_count_input" class="user_input" placeholder="10" />
-              <button class="input_btn">확인</button>
+              <input
+                type="number"
+                id="racing_count_input"
+                class="user_input"
+                placeholder="10"
+                autocomplete="off"
+              />
+              <button id="racing_count_button" class="input_button">확인</button>
             </div>
           </form>
         </section>
         <section id="racing_car_display_section">
+          <h2 hidden>자동차 경주 진행 상황</h2>
           <div id="racing_car_list"></div>
-          <div id="final_winner">🏆최종 우승자 : <span id="final_winner_result"></span>🏆</div>
+          <div hidden id="final_winner">
+            🏆최종 우승자 : <span id="final_winner_result"></span>🏆
+          </div>
         </section>
-        <section id="restart_section">
-          <button id="restart_btn">다시 시작하기</button>
+        <section hidden id="restart_section">
+          <h2 hidden>자동차 경주 다시 시작하기</h2>
+          <button id="restart_button">다시 시작하기</button>
         </section>
       </main>
     </div>
