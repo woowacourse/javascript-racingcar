@@ -1,5 +1,7 @@
-import { $ } from '../utils/dom.js';
-import { SELECTOR } from '../utils/constants.js';
+import { $, $$, hideElement, showElement } from '../utils/dom.js';
+import { SELECTOR, TIMER } from '../utils/constants.js';
+import Validator from '../validator/validator.js';
+
 export default class View {
   constructor() {
     this.renderInitial();
@@ -10,7 +12,8 @@ export default class View {
   }
 
   renderCarNames(carNames) {
-    $(SELECTOR.CAR_NAMES).innerHTML = this.carNamesTemplate(carNames);
+    $(SELECTOR.CAR_NAMES).textContent = '';
+    $(SELECTOR.CAR_NAMES).insertAdjacentHTML('afterbegin', this.carNamesTemplate(carNames));
   }
 
   winnerTemplate(winners) {
@@ -18,34 +21,61 @@ export default class View {
   }
 
   renderWinner(winners) {
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = this.winnerTemplate(winners);
+    $(SELECTOR.CAR_RACING_WINNER).textContent = this.winnerTemplate(winners);
   }
 
-  carProgressTemplate(carPosition) {
-    return carPosition
-      .map((position) => `<div id="car-progress-result">${'⬇️️'.repeat(position)}</div>`)
-      .join('');
+  makeLane(carPosition) {
+    $(SELECTOR.CAR_PROGRESS).textContent = '';
+    for (let i = 0; i < carPosition.length; i++) {
+      $(SELECTOR.CAR_PROGRESS).insertAdjacentHTML('beforeend', this.laneTemplate(i));
+    }
   }
 
-  renderProgress(carPosition) {
-    $(SELECTOR.CAR_PROGRESS).innerHTML = this.carProgressTemplate(carPosition);
+  laneTemplate(i) {
+    return `<div id="car-check">
+              <div id="car-progress-result-${i}">
+                <div id="loader"></div>
+              </div>
+            </div>`;
+  }
+
+  decideGo(carPosition) {
+    carPosition.forEach((position, idx) => {
+      if (position > 0) {
+        $(`#car-progress-result-${idx}`).insertAdjacentHTML('afterbegin', '️️⬇️');
+      }
+    });
+  }
+
+  hideLoader() {
+    $$('#loader').forEach(hideElement);
   }
 
   renderInitial() {
-    $(SELECTOR.GAME_RESTART).style.display = 'none';
-    $(SELECTOR.CAR_NAMES).innerHTML = '';
-    $(SELECTOR.CAR_RACING_WINNER).innerHTML = '';
-    $(SELECTOR.CAR_PROGRESS).innerHTML = '';
+    hideElement($(SELECTOR.GAME_RESTART));
+    hideElement($(SELECTOR.CAR_RACING_COUNT_WRAPPER));
+
+    $(SELECTOR.CAR_NAMES).textContent = '';
+    $(SELECTOR.CAR_RACING_WINNER).textContent = '';
+    $(SELECTOR.CAR_PROGRESS).textContent = '';
+
     $(SELECTOR.CAR_NAMES_INPUT).value = '';
     $(SELECTOR.CAR_RACING_COUNT_INPUT).value = '';
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'none';
+
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = false;
+    $(SELECTOR.CAR_NAMES_BUTTON).disabled = false;
   }
 
   renderRestartButton() {
-    $(SELECTOR.GAME_RESTART).style.display = 'block';
+    showElement($(SELECTOR.GAME_RESTART));
   }
 
   renderCarRacingInputBox() {
-    $(SELECTOR.CAR_RACING_COUNT_WRAPPER).style.display = 'block';
+    showElement($(SELECTOR.CAR_RACING_COUNT_WRAPPER));
+  }
+
+  disableButtons() {
+    $(SELECTOR.CAR_NAMES_BUTTON).disabled = true;
+    $(SELECTOR.CAR_RACING_COUNT_BUTTON).disabled = true;
   }
 }

@@ -4,7 +4,7 @@ export const NUMBER = {
   MAX_LENGTH: 5,
 };
 
-export const ERROR_MSG = {
+export const ERROR_MESSAGE = {
   INVALID_CAR_NAME: '자동차를 1 ~ 5 길이로 작명해주세요.',
   INVALID_RACING_COUNT: '시도 횟수를 자연수로 입력해주세요.',
 };
@@ -31,4 +31,13 @@ export const SELECTOR = {
   RESULT_CAR_NAME: 'result-car-name',
   CAR_PROGRESS_RESULT: 'car-progress-result',
   WINDOW_ALERT: 'window:alert',
+};
+
+export const RESULT = {
+  RACE_RESULT: '자동차 경주 결과가 나왔습니다. 우승하신 분들 축하드려요!',
+};
+
+export const TIMER = {
+  DELAY_AFTER_END: 2000,
+  DELAY_MOVE: 1000,
 };
