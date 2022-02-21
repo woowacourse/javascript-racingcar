@@ -7,18 +7,22 @@ export default class Car {
   }
 
   move() {
-    this.judgeMove();
-    if (this.canMove) {
+    if (this.#judgeMove()) {
       this.position += CAR.CAR_MOVE_DISTANCE_PER_PROCESS;
+      this.isMoved = true;
+      return;
     }
+    this.isMoved = false;
   }
 
-  judgeMove() {
-    this.canMove =
+  // eslint-disable-next-line class-methods-use-this
+  #judgeMove() {
+    return (
       // eslint-disable-next-line no-undef
       MissionUtils.Random.pickNumberInRange(
         CAR.RANDOM_MINIMUM_NUMBER,
         CAR.RANDOM_MAXIMUM_NUMBER
-      ) >= CAR.MOVE_NUMBER;
+      ) >= CAR.MOVE_NUMBER
+    );
   }
 }

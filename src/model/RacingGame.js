@@ -66,6 +66,6 @@ export default class RacingGame {
   }
 
   get movedCars() {
-    return this.#cars.filter((car) => car.canMove).map((car) => car.name);
+    return this.#cars.filter((car) => car.isMoved).map((car) => car.name);
   }
 }
