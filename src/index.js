@@ -1,4 +1,3 @@
-
 import {
   RANDOM_MAX_NUMBER,
   GAME_DELAY_TIME,
@@ -17,7 +16,6 @@ class RacingcarGame {
   constructor() {
     this.isCorrectCarName = false;
     this.isCorrectRaceCount = false;
-
 
     ViewManager.setRaceCountSectionVisibility("hidden");
     this.bindEvent();
@@ -111,7 +109,7 @@ class RacingcarGame {
       const randomRaceScore = parseInt(Math.random() * (RANDOM_MAX_NUMBER + 1));
       if (eachCar.canMove(randomRaceScore)) {
         eachCar.move();
-        this.showCarMove(index);
+        ViewManager.showCarMove(index);
       }
     });
   }
@@ -124,13 +122,6 @@ class RacingcarGame {
       wrap.insertAdjacentHTML("afterbegin", ViewManager.loading());
       $(SELECTOR.racing_arrow).append(wrap);
     });
-  }
-
-  showCarMove(index) {
-    $(`#racing-arrow-box-${index}`).insertAdjacentHTML(
-      "afterbegin",
-      ViewManager.carArrow()
-    );
   }
 
   endGame() {

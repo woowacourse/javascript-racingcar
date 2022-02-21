@@ -19,6 +19,13 @@ export default class ViewManager {
     `;
   }
 
+  static showCarMove(index) {
+    $(`#racing-arrow-box-${index}`).insertAdjacentHTML(
+      "afterbegin",
+      ViewManager.carArrow()
+    );
+  }
+
   static setRaceCountSectionVisibility(visibility) {
     $(SELECTOR.race_count_wrap).style.visibility = visibility;
   }
