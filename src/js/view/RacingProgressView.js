@@ -28,7 +28,7 @@ export default class RacingProgressView extends View {
   renderRacingProgress(racingCount, carList) {
     const startTime = new Date().getTime();
     let repeatCount = 1;
-    let previousCarDistanceList = Array(carList.length).fill(0);
+    const previousCarDistanceList = Array(carList.length).fill(0);
 
     return new Promise((resolve) => {
       const animation = () => {
