@@ -29,7 +29,7 @@ body {
   padding: var(--container-padding);
 }
 
-#app > h1.title {
+#app > header > h1.title {
   text-align: center;
   font-size: 2.4rem;
   margin: 1.45rem 0;
@@ -75,28 +75,33 @@ body {
   background-color: var(--disabled-background);
 }
 
-.input-container {
+#app section.container > h2 {
+  display: none;
+}
+
+#game-setting-container {
   padding: 0.4rem 2.4rem;
 }
 
-.input-container > label {
+#game-setting-container > label {
   display: block;
   font-size: 1.05rem;
   margin-bottom: 0.7rem;
 }
 
-.input-container > form {
+#game-setting-container > form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
-.input-container > form > input[type='text']:first-child {
+#game-setting-container > form > input[type='text']:first-child,
+#game-setting-container > form > input[type='number']:first-child {
   grid-column: 3 span;
 }
 
-.input-container > form > button:last-child {
+#game-setting-container > form > button:last-child {
   grid-column: 1 span;
 }
 
@@ -106,7 +111,7 @@ body {
   grid-column-gap: 0.58rem;
 }
 
-#racing-car-container[data-state='on'] {
+#racing-car-container[data-visible='on'] {
   display: grid;
 }
 
@@ -148,7 +153,7 @@ body {
   margin: 1.1rem;
 }
 
-#result-container[data-state='on'] {
+#result-container[data-visible='on'] {
   display: block;
 }
 

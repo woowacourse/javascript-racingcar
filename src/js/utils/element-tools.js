@@ -2,8 +2,19 @@ import { SELECTOR } from '../constants/selector.js';
 
 const $APP = document.querySelector(SELECTOR.APP);
 
-const $ = (selector) => $APP.querySelector(selector);
-const $$ = (selector) => $APP.querySelectorAll(selector);
+const $ = (parentElement, childSelector = null) => {
+  const target = childSelector || parentElement;
+  const $parent = childSelector ? parentElement : $APP;
+
+  return $parent.querySelector(target);
+};
+
+const $$ = (parentElement, childSelector = null) => {
+  const target = childSelector || parentElement;
+  const $parent = childSelector ? parentElement : $APP;
+
+  return $parent.querySelectorAll(target);
+};
 
 const createElement = (tagName, nodeProperty = {}) => {
   const $create = document.createElement(tagName);
