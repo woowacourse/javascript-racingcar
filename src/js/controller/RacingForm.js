@@ -6,10 +6,6 @@ import { isLessNumber, isValidBlankInArray, isValidLengthInArray } from '../util
 export default class RacingForm {
   #RacingGame = new RacingGame();
 
-  constructor() {
-    this.bindEvents();
-  }
-
   bindEvents() {
     $(SELECTOR.CAR_NAMES_BUTTON).addEventListener('click', this.onSubmitCarNames.bind(this));
     $(SELECTOR.RACING_COUNT_BUTTON).addEventListener('click', this.onSubmitRacingCount.bind(this));

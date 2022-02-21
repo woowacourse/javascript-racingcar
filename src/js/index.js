@@ -1,3 +1,4 @@
-import RacingForm from './components/RacingForm.js';
+import RacingForm from './controller/RacingForm.js';
 
-new RacingForm();
+const racingForm = new RacingForm();
+racingForm.bindEvents();
