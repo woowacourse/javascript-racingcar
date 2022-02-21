@@ -11,9 +11,9 @@
       <h1 id="title">🏎️ 자동차 경주 게임🏁</h1>
       <section class="input-section">
         <section>
-          <p class="input-section__description">
+          <label class="input-section__description">
             5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.
-          </p>
+          </label>
           <form class="input-section__form">
             <input
               type="text"
@@ -24,7 +24,7 @@
           </form>
         </section>
         <section class="count-section count-section-display-none">
-          <p class="input-section__description">시도할 횟수를 입력해주세요.</p>
+          <label class="input-section__description">시도할 횟수를 입력해주세요.</label>
           <form class="input-section__form">
             <input
               type="number"
@@ -35,11 +35,9 @@
           </form>
         </section>
       </section>
-      <section class="result-section result-section-display-none">
-        <section class="step-sections"></section>
-        <p class="winner"></p>
-        <button class="reset-button">다시 시작하기</button>
-      </section>
+      <section class="step-sections step-sections-display-none"></section>
+      <p class="winner winner-display-none"></p>
+      <button class="reset-button reset-button-display-none">다시 시작하기</button>
     </div>
     <script src="./src/index.js" type="module"></script>
   </body>

@@ -1,5 +1,12 @@
-import { $, makeDOMDisplayNone, makeDOMDisplayNotNone } from './utils/common.js';
-import { SELECTOR, WINNER_SEPARATOR } from './utils/constants.js';
+import { $, $$, makeDOMDisplayNone, makeDOMDisplayNotNone, wait } from './utils/common.js';
+import {
+  ROUND_DELAY,
+  SELECTOR,
+  STEP_SIGN,
+  WINNER_MESSAGE,
+  WINNER_SEPARATOR,
+  WIN_ALERT_DELAY,
+} from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -14,7 +21,6 @@ export default class View {
     this.$nameButton = $(SELECTOR.INPUT_SECTION_NAME_BUTTON);
     this.$countButton = $(SELECTOR.INPUT_SECTION_COUNT_BUTTON);
     this.$countSection = $(SELECTOR.COUNT_SECTION);
-    this.$resultSection = $(SELECTOR.RESULT_SECTION);
     this.$stepSections = $(SELECTOR.STEP_SECTIONS);
     this.$winner = $(SELECTOR.WINNER);
     this.$resetButton = $(SELECTOR.RESET_BUTTON);
@@ -27,11 +33,39 @@ export default class View {
   }
 
   makeResultDisplayNotNone() {
-    makeDOMDisplayNotNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
+    this.makeStepSectionsDisplayNotNone();
+    this.makeWinnerDisplayNotNone();
+    this.makeResetButtonDisplayNotNone();
   }
 
   makeResultDisplayNone() {
-    makeDOMDisplayNone(this.$resultSection, SELECTOR.RESULT_SECTION_DISPLAY_NONE);
+    this.makeStepSectionsDisplayNone();
+    this.makeWinnerDisplayNone();
+    this.makeResetButtonDisplayNone();
+  }
+
+  makeStepSectionsDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$stepSections, SELECTOR.STEP_SECTIONS_DISPLAY_NONE);
+  }
+
+  makeStepSectionsDisplayNone() {
+    makeDOMDisplayNone(this.$stepSections, SELECTOR.STEP_SECTIONS_DISPLAY_NONE);
+  }
+
+  makeWinnerDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$winner, SELECTOR.WINNER_DISPLAY_NONE);
+  }
+
+  makeWinnerDisplayNone() {
+    makeDOMDisplayNone(this.$winner, SELECTOR.WINNER_DISPLAY_NONE);
+  }
+
+  makeResetButtonDisplayNotNone() {
+    makeDOMDisplayNotNone(this.$resetButton, SELECTOR.RESET_BUTTON_DISPLAY_NONE);
+  }
+
+  makeResetButtonDisplayNone() {
+    makeDOMDisplayNone(this.$resetButton, SELECTOR.RESET_BUTTON_DISPLAY_NONE);
   }
 
   makeCountFormDisplayNone() {
@@ -68,32 +102,71 @@ export default class View {
     this.$countInput.value = '';
   }
 
-  stepUpdate(carList) {
-    let template = '';
-    carList.forEach((car) => {
-      template += this.generateStepSectionDOM(car);
-    });
-    this.$stepSections.innerHTML = template;
-  }
-
-  generateStepSectionDOM(car) {
+  generateStepSection(car) {
     return `
     <section class="${SELECTOR.STEP_SECTION}">
       <span class="${SELECTOR.STEP_SECTION_NAME}">${car.name}</span>
       <ul class="${SELECTOR.STEP_SECTION_ARROWS}">
-        ${`<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`.repeat(car.step)}
+        <li class="${SELECTOR.STEP_SECTION_LOADING}"></li>
       </ul>
     </section>
   `;
   }
 
-  winnerUpdate(winnerList) {
+  generateStepSections(carList) {
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSection(car)).join('');
+    this.$stepSectionArrowsArray = Array.from($$(SELECTOR.STEP_SECTION_ARROWS));
+  }
+
+  async showAllResult(carList, winnerList) {
+    await this.showRacingProcess(carList);
+    this.showWinnerResult(winnerList);
+  }
+
+  async showRacingProcess(carList) {
+    this.makeWinnerDisplayNone();
+    this.makeResetButtonDisplayNone();
+    this.makeStepSectionsDisplayNotNone();
+    this.generateStepSections(carList);
+    await this.showStepSection(carList);
+    this.removeSpinner();
+  }
+
+  async showWinnerResult(winnerList) {
+    this.makeWinnerDisplayNotNone();
+    this.makeResetButtonDisplayNotNone();
+    this.showWinner(winnerList);
+    await wait(WIN_ALERT_DELAY);
+    this.showWinnerByAlert(winnerList);
+  }
+
+  async showStepSection(carList) {
+    const count = carList[0].stepByRound.length;
+    for (let i = 0; i < count; i++) {
+      await wait(ROUND_DELAY);
+      this.updateRound(carList, i);
+    }
+  }
+
+  updateRound(carList, i) {
+    const stepSectionArrowTemplate = `<li class="${SELECTOR.STEP_SECTION_ARROW}">⬇️️</li>`;
+    carList.map((car, j) => {
+      if (car.stepByRound[i] === STEP_SIGN.GO) {
+        this.$stepSectionArrowsArray[j].innerHTML += stepSectionArrowTemplate;
+      }
+    });
+  }
+
+  removeSpinner() {
+    const $stepSectionLoadings = Array.from($$(SELECTOR.STEP_SECTION_LOADING));
+    $stepSectionLoadings.forEach(($loading) => $loading.remove());
+  }
+
+  showWinner(winnerList) {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(`${WINNER_SEPARATOR} `)} 🏆`;
   }
 
-  showResult(carList, winnerList) {
-    this.stepUpdate(carList);
-    this.winnerUpdate(winnerList);
-    this.makeResultDisplayNotNone();
+  showWinnerByAlert(winnerList) {
+    alert(WINNER_MESSAGE(winnerList));
   }
 }

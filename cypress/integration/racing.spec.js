@@ -1,4 +1,9 @@
-import { ERROR, SELECTOR } from '../../src/utils/constants.js';
+import {
+  ERROR_MESSAGE,
+  ROUND_DELAY,
+  SELECTOR,
+  WIN_ALERT_DELAY,
+} from '../../src/utils/constants.js';
 
 describe('UI 조작 테스트', () => {
   beforeEach(() => {
@@ -10,7 +15,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.EMPTY_INPUT);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.EMPTY_INPUT);
       });
   });
 
@@ -20,7 +25,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('abcdefg,abc,ddd{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.LONG_LENGTH);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.LONG_LENGTH);
       });
   });
 
@@ -30,7 +35,7 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`)
       .type('a, a{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.DUPLICATE_NAME);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DUPLICATE_NAME);
       });
   });
 
@@ -41,13 +46,13 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .type('-3{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.UNDER_MIN_NUMBER);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.UNDER_MIN_NUMBER);
       });
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .clear()
       .type('0{enter}')
       .then(() => {
-        expect(alertStub).to.be.called;
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.UNDER_MIN_NUMBER);
       });
   });
 
@@ -58,8 +63,23 @@ describe('UI 조작 테스트', () => {
     cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`)
       .type('2.8{enter}')
       .then(() => {
-        expect(alertStub).to.be.calledWith(ERROR.DECIMAL);
+        expect(alertStub).to.be.calledWith(ERROR_MESSAGE.DECIMAL);
       });
+  });
+
+  it('자동차 경주 게임을 정상적으로 완료하고 2초 뒤에 축하 메시지를 확인할 수 있다.', () => {
+    const RACE_COUNT = 2;
+    const TOTAL_DELAY = ROUND_DELAY * RACE_COUNT + WIN_ALERT_DELAY;
+    const alertStub = cy.stub();
+    cy.on('window:alert', alertStub);
+
+    cy.get(`.${SELECTOR.INPUT_SECTION_NAME_INPUT}`).type('east,west,south,north{enter}');
+    cy.get(`.${SELECTOR.INPUT_SECTION_COUNT_INPUT}`).type(`${RACE_COUNT}{enter}`);
+
+    cy.wait(TOTAL_DELAY).then(() => {
+      const actualMessage = alertStub.getCall(0).lastArg;
+      expect(actualMessage).to.have.string('축하합니다.');
+    });
   });
 });
 
@@ -92,7 +112,12 @@ context('화면표시 테스트', () => {
       .should('have.text', 'north');
   });
 
-  it('자동차 이름과 횟수를 입력하면, 레이싱 경기 우승자가 표시된다.', () => {
+  it('n회 시도할 때, n-1초 후에는 우승자가 표시되지 않는다.', () => {
+    cy.wait(1000);
+    cy.get(`.${SELECTOR.WINNER}`).should('not.be.visible');
+  });
+
+  it('n회 시도하면, n초 이후 레이싱 경기 우승자가 표시된다.', () => {
     cy.get(`.${SELECTOR.WINNER}`).should((p) => {
       expect(p).to.contain('최종 우승자');
     });
