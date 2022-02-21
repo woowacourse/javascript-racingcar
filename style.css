@@ -10,7 +10,7 @@ main{
 }
 
 .count-form {
-  display: none;
+  display: block;
 }
 
 .name-form,
@@ -52,8 +52,12 @@ main{
 }
 
 .restart-container {
-  display: none;
+  display: flex;
   justify-content: center;
+}
+
+.d-none {
+  display: none;
 }
 
 .restart {
@@ -93,4 +97,28 @@ main{
   font-weight: 600;
   font-size: 20px;
   margin: 20px 0px;
+}
+
+.result-progress-wrapper {
+  text-align: center;
+}
+
+@keyframes spinCircle {
+  from {
+      transform: rotate(0);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width:20px;
+  height:20px;
+  border:10px solid rgb(0, 191, 216);
+  border-top:10px solid #fff;
+  border-radius:50em;
+  animation-name:spinCircle;
+  animation-duration:.8s;
+  animation-iteration-count:infinite;
 }
