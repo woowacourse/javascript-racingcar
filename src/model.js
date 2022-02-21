@@ -8,8 +8,8 @@ export default class Model {
     return this.carManager.carList;
   }
 
-  saveCarList(carList) {
-    this.carManager.saveCarList(carList);
+  createAndSaveCarList(carNamesArray) {
+    this.carManager.createAndSaveCarList(carNamesArray);
   }
 
   startRace(count) {

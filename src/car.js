@@ -1,4 +1,5 @@
 import { NUMBER } from './utils/constants.js';
+import { generateRandomNumber } from './utils/common.js';
 
 export default class Car {
   constructor(name) {
@@ -6,12 +7,8 @@ export default class Car {
     this.step = NUMBER.INITIAL_STEP;
   }
 
-  #generateRandomNumber() {
-    return MissionUtils.Random.pickNumberInRange(NUMBER.RANGE_START, NUMBER.RANGE_END);
-  }
-
   randomMove() {
-    const number = this.#generateRandomNumber();
+    const number = generateRandomNumber(NUMBER.RANGE_START, NUMBER.RANGE_END);
     if (number >= NUMBER.STEP_BASE_NUMBER) {
       this.step += NUMBER.STEP;
     }

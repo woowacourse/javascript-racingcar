@@ -13,3 +13,30 @@
 - 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
 - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
 - 사용자가 잘못된 입력 값을 작성한 경우 alert을 이용해 메시지를 보여주고, 다시 입력할 수 있게 한다.
+
+## 2단계
+
+- 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 진행한다.
+  > 1초의 텀동안 로딩 애니메이션을 보여준다.
+  > 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
+- 정상적으로 게임의 턴이 다 동작된 후에는 결과를 보여주고, 2초 후에 축하의 alert 메세지를 띄운다.
+
+**구현한 기능 동작 방식**
+template를 먼저 완성하고 display none을 제거하는 방식으로 각 레이스의 진행을 보여준다.
+
+view
+
+> 1. 1단계 구현 상황과 동일하게 template을 만들지만, 화살표 텍스트가 들어가지 않는 li에 display none이 들어간다.
+> 2. 각 자동차의 화살표 li가 들어가는 ul을 querySelectAll을 이용해 리스트로 가져온다.
+> 3. 각 ul을 돌면서 find로 display none 스타일 클래스를 가지고 있는 li를 찾는다.
+> 4. display none인 li을 display해주고, background로 loading이미지를 가지는 스타일 클래스를 추가한다.
+> 5. li는 requestAnimationFrame으로 interval의 시간만큼 회전 후 스타일 클래스를 제거한다.
+> 6. li의 text로 화살표를 추가한다.
+
+controller
+
+> 1. 1단계 구현 상황과 동일하게 템플릿들을 업데이트한다.
+> 2. - 각 레이스의 화살표 결과를 보여주는 view의 메소드를 1초간격으로 setInterval한다.
+>    - 모든 레이스가 완료되고 interval을 clear할 setTimeOut을 설정한다.
+>    - 레이스가 끝나고 우승자와 리셋버튼을 업데이트하는 setTimeOut을 설정한다.
+>    - 우승자를 업데이트하고 축하 메세지를 alert하는 setTimeOut을 설정한다.

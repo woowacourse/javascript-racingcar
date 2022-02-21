@@ -1,8 +1,9 @@
 import View from './view.js';
 import Model from './model.js';
-import Car from './car.js';
+
 import { validateNameInput, validateCountInput } from './utils/validator.js';
 import { trimInArray } from './utils/common.js';
+import { NUMBER } from './utils/constants.js';
 
 export default class Controller {
   constructor() {
@@ -22,14 +23,10 @@ export default class Controller {
       const carNamesArray = trimInArray(carNames.split(','));
       validateNameInput(carNamesArray);
       this.view.displayCountForm();
-      this.model.saveCarList(this.makeCars(carNamesArray));
+      this.model.createAndSaveCarList(carNamesArray);
     } catch (error) {
       alert(error.message);
     }
-  }
-
-  makeCars(carNamesArray) {
-    return carNamesArray.map((carName) => new Car(carName));
   }
 
   onSubmitCount(count) {
@@ -37,7 +34,8 @@ export default class Controller {
       const carList = this.model.getCarList();
       validateCountInput(count);
       this.model.startRace(count);
-      this.view.showResult(carList, this.makeWinner(carList));
+      this.view.updateResultDOM(carList, this.createWinnerNameList(carList));
+      this.showResult(carList);
     } catch (error) {
       alert(error.message);
     }
@@ -47,10 +45,56 @@ export default class Controller {
     this.model.resetCarList();
   }
 
-  makeWinner(carList) {
+  findMaxStep(carList) {
     const steps = carList.map((car) => car.step);
-    const maxStep = Math.max(...steps);
+    return Math.max(...steps);
+  }
+
+  createWinnerNameList(carList) {
+    const maxStep = this.findMaxStep(carList);
     const winnerCarList = carList.filter((car) => car.step === maxStep);
     return winnerCarList.map((car) => car.name);
+  }
+
+  showResult(carList) {
+    this.view.displayStepSection();
+    this.view.showEachArrowOneRace();
+    this.setShowResultTimer(carList);
+  }
+
+  setShowResultTimer(carList) {
+    const runningTime = this.findMaxStep(carList) * NUMBER.ARROW_INTERVAL_TIME;
+    const winnerAlertTime = runningTime + NUMBER.WINNER_ALERT_TIME;
+    this.setArrowInterval(runningTime);
+    this.setWinnerTimeOut(runningTime);
+    this.setWinnerAlertTimeOut(this.createWinnerNameList(carList), winnerAlertTime);
+  }
+
+  setArrowInterval(runningTime) {
+    const ArrowInterval = this.startArrowInterval();
+    const ArrowTimeOut = setTimeout(() => {
+      clearInterval(ArrowInterval);
+      clearTimeout(ArrowTimeOut);
+    }, runningTime);
+  }
+
+  startArrowInterval() {
+    return setInterval(() => {
+      this.view.showEachArrowOneRace();
+    }, NUMBER.ARROW_INTERVAL_TIME);
+  }
+
+  setWinnerTimeOut(afterTime) {
+    const winnerTimeOut = setTimeout(() => {
+      this.view.displayWinnerAndResetButton();
+      clearTimeout(winnerTimeOut);
+    }, afterTime);
+  }
+
+  setWinnerAlertTimeOut(winnerList, afterTime) {
+    const alertTimeOut = setTimeout(() => {
+      alert(`${winnerList.join(', ')}의 우승을 축하합니다!`);
+      clearTimeout(alertTimeOut);
+    }, afterTime);
   }
 }

@@ -1,5 +1,5 @@
-import { $, displayNoneDOM, displayDOM } from './utils/common.js';
-import { SELECTOR } from './utils/constants.js';
+import { $, $$, displayNoneDOM, displayDOM } from './utils/common.js';
+import { SELECTOR, NUMBER, CLASS_NAME, ARROW_TEXT } from './utils/constants.js';
 
 export default class View {
   constructor() {
@@ -25,8 +25,12 @@ export default class View {
     this.clearInput();
   }
 
-  displayResult() {
-    displayDOM([this.$winner, this.$resetButton, this.$stepSections]);
+  displayWinnerAndResetButton() {
+    displayDOM([this.$winner, this.$resetButton]);
+  }
+
+  displayStepSection() {
+    displayDOM([this.$stepSections]);
   }
 
   displayNoneResult() {
@@ -68,11 +72,7 @@ export default class View {
   }
 
   stepUpdate(carList) {
-    let template = '';
-    carList.forEach((car) => {
-      template += this.generateStepSectionDOM(car);
-    });
-    this.$stepSections.innerHTML = template;
+    this.$stepSections.innerHTML = carList.map((car) => this.generateStepSectionDOM(car)).join('');
   }
 
   generateStepSectionDOM(car) {
@@ -80,7 +80,7 @@ export default class View {
     <div class="step-section">
       <span class="step-section__name">${car.name}</span>
       <ul class="step-section__arrows">
-        ${'<li class="step-section__arrow">⬇️️</li>'.repeat(car.step)}
+        ${'<li class="step-section__arrow display-none"></li>'.repeat(car.step)}
       </ul>
     </div>
   `;
@@ -90,9 +90,52 @@ export default class View {
     this.$winner.innerText = `🏆 최종 우승자: ${winnerList.join(', ')} 🏆`;
   }
 
-  showResult(carList, winnerList) {
+  updateResultDOM(carList, winnerList) {
     this.stepUpdate(carList);
     this.winnerUpdate(winnerList);
-    this.displayResult();
+  }
+
+  showEachArrowOneRace() {
+    const arrowsList = [...$$(SELECTOR.STEP_SECTION_ARROWS)].map((section) => section.children);
+    arrowsList.forEach((arrows) => {
+      const displayNoneArrow = this.findDisplayNoneArrow([...arrows]);
+      this.showArrow(displayNoneArrow);
+    });
+  }
+
+  findDisplayNoneArrow(arrows) {
+    return arrows.find((arrow) => arrow.classList.contains(CLASS_NAME.DISPLAY_NONE));
+  }
+
+  async showArrow(arrow) {
+    if (arrow) {
+      displayDOM([arrow]);
+      await this.animateSpinning(arrow);
+      this.insertArrowText(arrow);
+    }
+  }
+
+  animateSpinning(arrow) {
+    return new Promise((resolve) => {
+      const startTime = new Date().getTime();
+      let angle = 0;
+      arrow.classList.add(CLASS_NAME.SPINNING_BACKGROUND);
+      const callback = () => {
+        const currentTime = new Date().getTime();
+        if (currentTime - NUMBER.ARROW_INTERVAL_TIME > startTime) {
+          arrow.style.transform = ``;
+          arrow.classList.remove(CLASS_NAME.SPINNING_BACKGROUND);
+          return resolve();
+        }
+        angle += 10;
+        arrow.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(callback);
+      };
+      requestAnimationFrame(callback);
+    });
+  }
+
+  insertArrowText(arrow) {
+    arrow.innerText = ARROW_TEXT;
   }
 }
