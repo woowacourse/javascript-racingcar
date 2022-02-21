@@ -1,6 +1,19 @@
-const template = {
+const racingGameTemplate = {
+    loader() {
+        return '<span class="car-step loader"></span>';
+    },
     step(step) {
         return '<span class="car-step">⬇️️</span>'.repeat(step);
+    },
+    emptyTrack(cars) {
+        return cars
+            .map(({ name }) => (
+                `<div class="car-track">
+                    <div class="car-name">${name}</div>
+                    <div class="car-steps">
+                    </div>
+                </div>`
+            )).join('');
     },
     track(cars) {
         return cars
@@ -15,4 +28,4 @@ const template = {
     },
 };
 
-export default template;
+export default racingGameTemplate;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8" />
@@ -11,31 +11,33 @@
   <div class="app" id="app">
     <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
-    <form class="game-form car-names">
-      <p class="form-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+    <section class="form-area">
+      <form id="car-name-form" class="game-form car-names" >
+        <label class="form-label" for="car-name-input">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
+        <div class="input-wrap">
+          <input id="car-name-input" class="form-input" type="text" placeholder="east, west, south, north, all" required>
+          <button id="car-name-submit-button" class="form-button blue-button" type="submit" >확인</button>
+        </div>
+      </form>
 
-      <div class="input-wrap">
-        <input class="form-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
-        <button class="form-button blue-button" type="button" id="car-name-submit-button">확인</button>
-      </div>
-    </form>
+      <form id="turn-count-form" class="game-form turn-count" >
+        <label class="form-label" for="turn-count-input">시도할 횟수를 입력해주세요.</label>
+        <div class="input-wrap">
+          <input id="turn-count-input" class="form-input" type="number" step="1" min="1" placeholder="10" required>
+          <button id="turn-count-submit-button" class="form-button blue-button" type="submit" >확인</button>
+        </div>
+      </form>
+    </section>
 
-    <form class="game-form try-count">
-      <p class="form-title">시도할 횟수를 입력해주세요.</p>
-
-      <div class="input-wrap">
-        <input class="form-input" type="number" placeholder="10" id="try-count-input">
-        <button class="form-button blue-button" type="button" id="try-count-submit-button">확인</button>
-      </div>
-    </form>
-
-    <div class="result-area">
-      <div class="track-area" id="track-area"></div>
-      <div class="last-area">
-        <h3 class="stage">🏆 최종 우승자: <span id="winners"></span> 🏆</h1>
-        <button class="restart-button blue-button" type="button" id="restart-button">다시 시작하기</button>
-      </div>
-    </div>
+    <section class="result-area">
+      <section id="progress-area">
+        <div id="car-track-area" class="car-track-area" ></div>
+      </section>
+      <section class="final-result-area">
+        <p class="stage">🏆 최종 우승자: <span id="winners"></span> 🏆</p>
+        <button id="restart-button" class="restart-button blue-button" type="button" >다시 시작하기</button>
+      </section>
+    </section>
   </div>
   <script type="module" src="src/index.js"></script>
 </body>

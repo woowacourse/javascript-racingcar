@@ -1,75 +1,87 @@
 import RacingCars from './RacingCars.js';
-import View from './View.js';
-import {
-    validationCarNames, validationTryCount,
-} from './utils/validation.js';
-import { $, userInputValue } from './utils/util.js';
-import { KEYCODE_ENTER } from './constants/constant.js';
-import SELECTOR from './constants/selectors.js';
+import View from './view/RacingGameView.js';
+import { validateCarNames, validateTurnCount } from './validation.js';
+
+import { $ } from './util/util.js';
+
+import SELECTOR from './constant/selectors.js';
 
 export default class RacingGame {
     constructor() {
         this.racingCars = new RacingCars();
         this.view = new View();
+        this.submitted = false;
     }
 
     initialize() {
-        this.setClickEvent();
-        this.setKeyDownEnterEvent();
+        this.setSubmitEvent();
     }
 
-    setClickEvent() {
-        $(SELECTOR.car_name_submit_button).addEventListener('click', () => { this.onSubmitCarName(); });
-        $(SELECTOR.try_count_submit_button).addEventListener('click', () => { this.onSubmitTryCount(); });
-        $(SELECTOR.restart_button).addEventListener('click', () => { this.onClickRestartButton(); });
+    setSubmitEvent() {
+        $(SELECTOR.CAR_NAME_FORM).addEventListener('submit', (e) => { this.onSubmitCarName(e); });
+        $(SELECTOR.TURN_COUNT_FORM).addEventListener('submit', (e) => { this.onSubmitTurnCount(e); });
+        $(SELECTOR.RESTART_BUTTON).addEventListener('click', () => { this.onClickRestartButton(); });
     }
 
-    setKeyDownEnterEvent() {
-        $(SELECTOR.car_name_input).addEventListener('keydown', (event) => {
-            if (event.keyCode === KEYCODE_ENTER) {
-                event.preventDefault();
-                this.onSubmitCarName();
-            }
-        });
-        $(SELECTOR.try_count_input).addEventListener('keydown', (event) => {
-            if (event.keyCode === KEYCODE_ENTER) {
-                event.preventDefault();
-                this.onSubmitTryCount();
-            }
-        });
-    }
-
-    onSubmitCarName() {
-        const carNames = userInputValue.carNames();
+    onSubmitCarName(e) {
+        e.preventDefault();
+        if (this.submitted) return;
+        const carNames = $(SELECTOR.CAR_NAME_INPUT).value.split(',').map((name) => name.trim());
         try {
-            validationCarNames(carNames);
+            validateCarNames(carNames);
         } catch (error) {
             alert(error.message);
+            return;
         }
         this.racingCars.reset();
-        this.racingCars.update(carNames);
-        this.view.showTryForm();
+        this.racingCars.initialize(carNames);
+        this.view.showTurnForm();
     }
 
-    onSubmitTryCount() {
-        const tryCount = userInputValue.tryCount();
+    onSubmitTurnCount(e) {
+        e.preventDefault();
+        if (this.submitted) return;
+        const turnCount = Number($(SELECTOR.TURN_COUNT_INPUT).value);
         try {
-            validationTryCount(tryCount);
+            validateTurnCount(turnCount);
         } catch (error) {
             alert(error.message);
+            return;
         }
-        this.runGame(tryCount);
-        this.racingCars.resetSteps();
+        this.playGame(turnCount);
+        this.submitted = true;
+        this.view.updateSubmitFormDisabled();
     }
 
     onClickRestartButton() {
         this.racingCars.reset();
         this.view.reset();
-        userInputValue.reset();
+        this.submitted = false;
     }
 
-    runGame(tryCount) {
-        this.racingCars.run(tryCount);
-        this.view.showResult(this.racingCars.getStatus(), this.racingCars.getWinners());
+    endGame() {
+        const winners = this.racingCars.getWinners();
+        setTimeout(() => { alert(`🎉 축하합니다! 우승자는 ${winners}! 🎉`); }, 2000);
+        this.view.showFinalResult(winners);
+    }
+
+    playTurns(turnCount) {
+        let currentTurnNumber = 0;
+        this.view.updateLoading();
+        const turnTimerID = setInterval(() => {
+            this.racingCars.playTurn();
+            this.view.updateProgress(this.racingCars.cars);
+            if (currentTurnNumber + 1 === turnCount) {
+                clearInterval(turnTimerID);
+                this.endGame();
+            }
+            if (currentTurnNumber + 1 < turnCount) this.view.updateLoading();
+            currentTurnNumber += 1;
+        }, 1000);
+    }
+
+    playGame(turnCount) {
+        this.view.showTrackSection(this.racingCars.cars);
+        this.playTurns(turnCount);
     }
 }
