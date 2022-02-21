@@ -11,7 +11,6 @@ export default class RacingCarModel {
   constructor() {
     this.cars = [];
     this.racingCount = GAME_NUMBERS.INIT_RACING_COUNT;
-    this.prevRaceResult = {};
   }
 
   setCars(carNames) {
@@ -25,18 +24,23 @@ export default class RacingCarModel {
     this.racingCount = count;
   }
 
-  getRacingCount = () => this.racingCount;
+  getRacingCount() {
+    return this.racingCount;
+  }
 
-  getCarsName = () => this.cars.map((car) => car.name);
+  getCarsName() {
+    return this.cars.map((car) => car.name);
+  }
 
-  getPrevRaceResult = () => ({ ...this.prevRaceResult });
+  getCarsCounts() {
+    return this.cars.reduce((acc, car) => {
+      acc[car.name] = car.forwardCount;
+      return acc;
+    }, {});
+  }
 
-  getCars = () => this.cars;
-
-  initPrevRaceResult() {
-    this.cars.forEach((car) => {
-      this.prevRaceResult[car.name] = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
-    });
+  getCars() {
+    return this.cars;
   }
 
   racePerSecond() {
@@ -64,7 +68,6 @@ export default class RacingCarModel {
   race(car) {
     if (generateRandomNumber() >= GAME_NUMBERS.FORWARD_STANDARD_NUMBER) {
       car.move();
-      this.prevRaceResult[car.name] += 1;
     }
   }
 

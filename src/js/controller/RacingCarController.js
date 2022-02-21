@@ -57,13 +57,12 @@ export default class RacingCarController {
   }
 
   async playGame() {
-    this.model.initPrevRaceResult();
     this.ResultView.renderCarNames(this.model.getCarsName());
     for (let i = 0; i < this.model.getRacingCount(); i += 1) {
-      const prevRaceResult = this.model.getPrevRaceResult();
+      const prevRacingResult = this.model.getCarsCounts();
       await this.model.racePerSecond();
       const currentRaceResult =
-        this.model.getCurrentRacingResult(prevRaceResult);
+        this.model.getCurrentRacingResult(prevRacingResult);
       this.ResultView.renderArrows(currentRaceResult);
     }
     this.endGame();
