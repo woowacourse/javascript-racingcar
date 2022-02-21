@@ -20,34 +20,30 @@ export default class RacingGameView {
   }
 
   setDisableForm($target, isDisable = true) {
-    $target
-      .closest('form')
-      .querySelectorAll('input, button')
-      .forEach(($element) => {
-        if (isDisable === false) {
-          $element.removeAttribute('disabled');
-          return;
-        }
+    $$($target.closest('form'), 'input, button').forEach(($element) => {
+      if (isDisable === false) {
+        $element.removeAttribute('disabled');
+        return;
+      }
 
-        $element.setAttribute('disabled', '');
-      });
+      $element.setAttribute('disabled', '');
+    });
   }
 
   setRenderProgress(isVisible) {
-    $(SELECTOR.RACE_CONTAINER)
-      .querySelectorAll(SELECTOR.RACE_CAR_STATE)
-      .forEach(($element) => {
-        if (isVisible === false) {
-          $element.querySelector(SELECTOR.PROGRESS_CONTAINER).remove();
-          this.#progressList.length = 0;
-          return;
-        }
+    const raceContainer = $(SELECTOR.RACE_CONTAINER);
+    $$(raceContainer, SELECTOR.RACE_CAR_STATE).forEach(($element) => {
+      if (isVisible === false) {
+        $($element, SELECTOR.PROGRESS_CONTAINER).remove();
+        this.#progressList.length = 0;
+        return;
+      }
 
-        const $progressContainer = templateProgress();
-        this.#progressList.push($progressContainer.querySelector(SELECTOR.PROGRESS));
+      const $progressContainer = templateProgress();
+      this.#progressList.push($($progressContainer, SELECTOR.PROGRESS));
 
-        $element.append($progressContainer);
-      });
+      $element.append($progressContainer);
+    });
   }
 
   setProgressPercent(percent) {
@@ -76,14 +72,14 @@ export default class RacingGameView {
       const { distance } = instance;
 
       const $carStateContainer = $(`${SELECTOR.RACE_CAR_STATE}[data-key="${index}"]`);
-      const $$advanceElements = $carStateContainer.querySelectorAll(SELECTOR.RACE_ADVANCE);
+      const $$advanceElements = $$($carStateContainer, SELECTOR.RACE_ADVANCE);
 
       if (isSameDistance($$advanceElements.length, distance)) {
         return;
       }
 
       const $advance = templateCarAdvance();
-      $carStateContainer.querySelector(SELECTOR.RACE_CAR_NAME_BOX).after($advance);
+      $($carStateContainer, SELECTOR.RACE_CAR_NAME_BOX).after($advance);
     });
   }
 
