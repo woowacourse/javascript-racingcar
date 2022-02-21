@@ -1,13 +1,13 @@
-import { NAME_MAX_LENGTH, NAME_MIN_LENGTH, MIN_COUNT } from './constants.js';
+import { MIN_TRY_COUNT, MAX_TRY_COUNT, MAX_NAME_LENGTH, MIN_NAME_LENGTH } from './constants.js';
 
-export function isValidNameLength(names) {
-  return names.every(name => name.length <= NAME_MAX_LENGTH && name.length >= NAME_MIN_LENGTH);
-}
+export const isValidNameLength = names => {
+  return names.every(name => name.length <= MAX_NAME_LENGTH && name.length >= MIN_NAME_LENGTH);
+};
 
-export function isDuplicatedName(names) {
+export const isDuplicatedName = names => {
   return new Set([...names]).size === names.length;
-}
+};
 
-export function isValidCount(count) {
-  return +count >= MIN_COUNT;
-}
+export const isValidCount = count => {
+  return count >= MIN_TRY_COUNT && count <= MAX_TRY_COUNT;
+};

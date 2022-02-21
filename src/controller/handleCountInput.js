@@ -1,15 +1,19 @@
+import { $ } from '../utils/selector.js';
 import { ERROR_MESSAGES } from '../utils/constants.js';
-import $ from '../utils/selector.js';
 import { isValidCount } from '../utils/valid.js';
-import playRace from './playRace.js';
+import { setDisabledAllForms } from '../view/setFormState.js';
+import handleRace from './handleRace.js';
 
-export default function handleCountInput() {
+const handleCountInput = () => {
   const { value } = $('.count-input');
 
-  if (!isValidCount(value)) {
+  if (!isValidCount(Number(value))) {
     alert(ERROR_MESSAGES.INVALID_COUNT);
     return;
   }
 
-  playRace(value);
-}
+  setDisabledAllForms();
+  handleRace(Number(value));
+};
+
+export default handleCountInput;

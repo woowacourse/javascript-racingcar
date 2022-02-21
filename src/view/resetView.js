@@ -1,9 +1,15 @@
-import $ from '../utils/selector.js';
+import { $ } from '../utils/selector.js';
+import { hideElement } from '../utils/handleElement.js';
+import { setEnabledAllForms } from './setFormState.js';
 
-export default function resetView() {
+const resetView = () => {
   $('.name-input').value = '';
   $('.count-input').value = '';
-  $('.game-result-container').innerHTML = '';
-  $('.count-form').classList.add('hidden');
-  $('.restart').classList.add('hidden');
-}
+  $('.race-container').replaceChildren();
+  $('.winner-container').replaceChildren();
+  hideElement($('.count-form'));
+  hideElement($('.restart'));
+  setEnabledAllForms();
+};
+
+export default resetView;
