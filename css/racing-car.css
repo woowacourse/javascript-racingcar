@@ -1,81 +1,89 @@
 body {
-    height: fit-content;
+  height: fit-content;
 }
 
 #app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    width: 100%;
-    height: fit-content;
+  width: 100%;
+  height: fit-content;
 }
 
 .container {
-    width: fit-content;
-    height: fit-content;
+  width: fit-content;
+  height: fit-content;
 
-    background: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    box-sizing: border-box;
-    border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
 .title {
-    width: 512px;
-    height: 36px;
-    text-align: center;
-    align-items: center;
-    margin: 36px 16px 32px;
+  width: 512px;
+  height: 36px;
+  text-align: center;
+  align-items: center;
+  margin: 36px 16px 32px;
 }
 
 /*
     input
 */
-.car-name-input-container{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 12px;
+.car-name-input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
 }
 
 .input-container {
-    display: flex;
+  display: flex;
 }
 
-.race-count-input-container{
-    display: none;
-    /* 활성화 되었을 때에 display가 flex 된다 display: flex; */
-    flex-direction: column;
-    margin-bottom: 12px;
+.race-count-input-container {
+  display: none;
+  /* 활성화 되었을 때에 display가 flex 된다 display: flex; */
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.race-count-input-container.is-active {
+  display: flex;
 }
 
 label {
-    width: 360px;
-    height: 24px;
+  width: 360px;
+  height: 24px;
 
-    display: block;
-    margin: 4px 0px;
+  display: block;
+  margin: 4px 0px;
 }
 .user-input-container {
-    width: 441.68px;
-    height: fit-content;
-    margin-left: 50px;
+  width: 441.68px;
+  height: fit-content;
+  margin-left: 50px;
 }
 
-.input-button{
-    width: 65.68px;
-    height: 36px;
-    background: #00BCD4;
-    border-radius: 4px;
-    border: none;
-    color: #FFFFFF;
-    margin-left: 16px;
+.input-button {
+  width: 65.68px;
+  height: 36px;
+  background: #00bcd4;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  margin-left: 16px;
 }
 
 input {
-    width: 360px;
-    margin: 4px 0px;
-    padding: 8px 8px 4px;
+  width: 360px;
+  margin: 4px 0px;
+  padding: 8px 8px 4px;
+}
+
+button:disabled {
+  background-color: lightslategrey;
 }
 
 /*
@@ -83,75 +91,95 @@ input {
 */
 
 .racing-content {
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    justify-content: center;
-    margin: 0 auto;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 .car {
-    display: flex;
-    flex-direction: column;
-    margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
 }
-.car:first-child{
-    margin-left: 8px;
+.car:first-child {
+  margin-left: 8px;
 }
 .car:last-child {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
-.car label{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 96px;
-    height: 36px;
-    background: #F5F5F5;
-    border-radius: 4px;
+.car label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 36px;
+  background: #f5f5f5;
+  border-radius: 4px;
 }
 
-.car div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.car div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.car div p {
-    width: 28px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 32px;
-    margin: 8px;
+.step-container p {
+  width: 28px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  margin: 8px;
+}
+
+/*스피너 애니메이션 */
+@keyframes spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.is-loading {
+  width: 32px;
+  height: 30px;
+  border: 6px solid #00bcd4;
+  border-right-color: #fff;
+  border-top-color: #fff;
+  border-radius: 100%;
+  animation: spinning 600ms infinite linear;
 }
 
 /*
     racing result
 */
-.racing-result{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.racing-result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .result-text {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.87);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
 
-    margin: 24px 0;
+  margin: 24px 0;
 }
 
 .restart-button {
-    margin-bottom: 32px;
-    width: 152px;
-    height: 36px;
-    background: #00BCD4;
-    border-radius: 4px;  
-    border-style: none;
-    color: #fff;
+  margin-bottom: 32px;
+  width: 152px;
+  height: 36px;
+  background: #00bcd4;
+  border-radius: 4px;
+  border-style: none;
+  color: #fff;
 }

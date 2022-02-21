@@ -48,6 +48,22 @@
 - [x] figma 시안을 기준으로 마크업 작성하기.
 - [x] figma 시안을 기준으로 스타일 구현하기.
 
+
+## 2단계 미션 요구사항들 
+
+- [x] 유저가 자동차 이름과 시도 횟수를 성공적으로 입력한 경우, 자동차 경주 게임의 턴이 진행 될 때마다 1초의 텀(progressive 재생)을 두고 화살표를 랜더링 한다 
+- [x] 1초의 텀동안 로딩 애니메이션을 보여준다.
+- [x] 애니메이션 구현을 위해 setInterval, setTimeout, requestAnimationFrame 을 활용한다.
+- [x] 사용자가 입력한 시도 횟수만큼 턴을 돌며 화살표를 모두 렌더링 하면 우승자를 렌더링 한다.
+- [x] 우승자를 렌더링 한 후에 2초 후에 축하의 alert 메세지를 보여준다
+
+#### 테스트 요구사항
+  
+- [x] 우승자가 렌더링 된 후 2초 후에 축하의 alert 메세지를 보여주는지 확인한다. 
+
+#### UI
+- [x] figma 시안을 기준으로 구현한다.
+
 ## ⚙️ Before Started
 
 #### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 static resources 변경 및 확인하는 방법

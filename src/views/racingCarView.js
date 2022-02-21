@@ -1,24 +1,54 @@
 import { $ } from "../dom/dom.js";
-export default class RacingCarView{
-    renderCarArrowResult(forwardCount) {
-        return '<p>⬇️</p>'.repeat(forwardCount);
+export default class RacingCarView {
+  renderRacingContent(racingGameInfo) {
+    racingGameInfo.carNameArray.forEach((name, index) => {
+      const carContainer = document.createElement("div");
+      carContainer.className = "car";
+
+      const carNameLabel = document.createElement("label");
+      carNameLabel.textContent = name;
+
+      const stepContainer = document.createElement("div");
+      stepContainer.classList.add("step-container");
+      stepContainer.classList.add(`car-${index}`);
+
+      carContainer.appendChild(carNameLabel);
+      this.renderStepContainer(stepContainer, index, racingGameInfo);
+      carContainer.appendChild(stepContainer);
+
+      $(".racing-content").appendChild(carContainer);
+    });
+  }
+
+  renderStepContainer(element, index, racingGameInfo) {
+    for (let i = 0; i < racingGameInfo.raceCount; i++) {
+      const step = document.createElement("p");
+      step.className = `step-${index}`;
+      element.appendChild(step);
     }
-    renderGameWinners(winners){
-        $('.racing-result').innerHTML = `
-        <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
-        <button class="restart-button">다시 시작하기</button>
-        `;
+  }
+  renderSpinningEvent(count, index) {
+    if (
+      document.querySelectorAll(`.step-${index}`)[count].textContent != "⬇️"
+    ) {
+      document
+        .querySelectorAll(`.step-${index}`)
+        [count].classList.add("is-loading");
     }
-    renderRacingContent(carArray){
-        $('.racing-content').innerHTML = carArray.map(car => {
-            return `<div class="car">
-                <label>${car.name}</label>
-                <div>${this.renderCarArrowResult(car.forwardCount)}</div>
-                </div>`
-        }).join('');
+  }
+  renderArrowContent(count, index) {
+    for (let i = 0; i < count; i++) {
+      document
+        .querySelectorAll(`.step-${index}`)
+        [count - 1].classList.remove("is-loading");
+      document.querySelectorAll(`.step-${index}`)[count - 1].textContent = "⬇️";
     }
-    renderRaceGameCountElement = () => {
-        $('.race-count-input-container').style.display = 'flex';
-        
-    };
+  }
+  renderGameWinners(winners) {
+    const winnerElement = `
+          <h2 class="result-text">🏆 최종 우승자: ${winners}🏆</h2>
+          <button class="restart-button">다시 시작하기</button>
+          `;
+    $(".racing-result").insertAdjacentHTML("afterbegin", winnerElement);
+  }
 }
