@@ -5,19 +5,21 @@ import Car from './Car.js';
 export default class RacingGame {
   #round;
 
+  #cars;
+
   constructor() {
-    this.cars = [];
+    this.#cars = [];
     this.#round = RACINGGAME.INIT_ROUND;
   }
 
   moveCars() {
-    this.cars.forEach((car) => {
+    this.#cars.forEach((car) => {
       car.move();
     });
   }
 
   get carNameList() {
-    return this.cars.map((car) => car.name);
+    return this.#cars.map((car) => car.name);
   }
 
   set initialRound(round) {
@@ -36,7 +38,7 @@ export default class RacingGame {
   }
 
   set players(names) {
-    this.cars = names.map((name) => new Car(name));
+    this.#cars = names.map((name) => new Car(name));
   }
 
   goToNextTurn() {
@@ -49,21 +51,21 @@ export default class RacingGame {
   }
 
   reset() {
-    this.cars = [];
+    this.#cars = [];
     this.#round = RACINGGAME.INIT_ROUND;
   }
 
   findMaxRecord() {
-    return Math.max(...this.cars.map((car) => car.position));
+    return Math.max(...this.#cars.map((car) => car.position));
   }
 
   findWinners() {
-    return this.cars
+    return this.#cars
       .filter((car) => car.position === this.findMaxRecord())
       .map((car) => car.name);
   }
 
   get movedCars() {
-    return this.cars.filter((car) => car.canMove).map((car) => car.name);
+    return this.#cars.filter((car) => car.canMove).map((car) => car.name);
   }
 }
