@@ -1,5 +1,14 @@
-import RacingGame from './RacingGame.js';
+import {
+    onSubmitCarNames,
+    onKeyUpCarNamesInput,
+    onSubmitTryCount,
+    onClickRestartButton,
+} from './eventListener.js';
+import { $, onSubmitAfterPreventDefault } from './util.js';
 
-const racingGame = new RacingGame();
+$('#input-form-name').addEventListener('submit', onSubmitAfterPreventDefault(onSubmitCarNames));
+$('#car-name-input').addEventListener('keyup', onKeyUpCarNamesInput);
 
-racingGame.initialize();
+$('#input-form-try').addEventListener('submit', onSubmitAfterPreventDefault(onSubmitTryCount));
+
+$('#restart-button').addEventListener('click', onClickRestartButton);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 
 <head>
   <meta charset="UTF-8" />
@@ -11,21 +11,21 @@
   <div class="app" id="app">
     <h1 class="game-title">🏎️ 자동차 경주 게임🏁</h1>
 
-    <form class="game-form name">
-      <p class="form-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</p>
+    <form class="input-form name" id="input-form-name">
+      <label class="section-title">5자 이하의 자동차 이름을 콤마로 구분하여 입력해주세요.</label>
 
       <div class="input-wrap">
-        <input class="form-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
-        <button class="form-button blue-button" type="button" id="car-name-submit-button">확인</button>
+        <input class="section-input" type="text" placeholder="east, west, south, north, all" id="car-name-input">
+        <button class="section-button blue-button" type="submit">확인</button>
       </div>
     </form>
 
-    <form class="game-form try">
-      <p class="form-title">시도할 횟수를 입력해주세요.</p>
+    <form class="input-form try" id="input-form-try">
+      <label class="section-title">시도할 횟수를 입력해주세요.</label>
 
       <div class="input-wrap">
-        <input class="form-input" type="number" placeholder="10" id="try-count-input">
-        <button class="form-button blue-button" type="button" id="try-count-submit-button">확인</button>
+        <input class="section-input" type="number" placeholder="10" id="try-count-input">
+        <button class="section-button blue-button" type="submit">확인</button>
       </div>
     </form>
 

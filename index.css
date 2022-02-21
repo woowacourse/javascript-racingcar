@@ -21,12 +21,12 @@ p {
     background-color: white;
 }
 
-.app .try,
+.app .input-form.try,
 .app .result-area {
     display: none;
 }
 
-.app.try .try,
+.app.try .input-form.try,
 .app.result .result-area {
     display: block;
 }
@@ -37,11 +37,11 @@ p {
     color: #000000;
 }
 
-.game-form {
+.input-form {
     width: 89%;
 }
 
-.game-form.name {
+.input-form.name {
     margin-bottom: 13px;
 }
 
@@ -50,17 +50,17 @@ p {
     align-items: center;
     justify-content: space-between;
     height: 36px;
+    margin-top: 4px;
 }
 
-.form-title {
-    margin-bottom: 4px;
+.section-title {
     font-size: 15px;
     line-height: 24px;
     letter-spacing: 0.5px;
     color: rgba(0, 0, 0, 0.87);
 }
 
-.form-input {
+.section-input {
     width: 80%;
     height: 100%;
     padding-left: 8px;
@@ -68,7 +68,7 @@ p {
     border-radius: 4px;
 }
 
-.form-button {
+.section-button {
     width: 65.68px;
     height: 100%;
 }
@@ -144,4 +144,23 @@ p {
 .restart-button {
     width: 152px;
     height: 36px;
+}
+
+.loading {
+    width: 32px;
+    height: 32px;
+    margin: 13px auto 0;
+    border: 16px solid #00bcd4;
+    border-top: 16px solid #f3f3f3;
+    border-radius: 100%;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

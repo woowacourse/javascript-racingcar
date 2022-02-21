@@ -1,28 +1,27 @@
-import { CAR_NAME_MAX_LENGTH, MSG } from './constant.js';
-
-const isEmpty = (value) => value === '';
+import { CAR_NAME_MAX_LENGTH, ERROR_MESSAGE } from './constant.js';
+import racingCars from './racingCars.js';
 
 const someCarNames = (checkFn) => (carNames) => carNames.some(checkFn);
 
-const haveEmpty = someCarNames(isEmpty);
+const haveEmpty = someCarNames((value) => value === '');
 const haveMiddleBlank = someCarNames((carName) => carName.match(/\s+/));
 const exceedMaxLength = someCarNames((carName) => carName.length > CAR_NAME_MAX_LENGTH);
 
 const isValidCarNames = (carNames) => {
-    if (haveEmpty(carNames)) return alert(MSG.empty_car_name);
-    if (haveMiddleBlank(carNames)) return alert(MSG.blank_car_name);
-    if (exceedMaxLength(carNames)) return alert(MSG.exceed_car_name);
+    if (haveEmpty(carNames)) throw new Error(ERROR_MESSAGE.EMPTY_CAR_NAME);
+    if (haveMiddleBlank(carNames)) throw new Error(ERROR_MESSAGE.BLANK_CAR_NAME);
+    if (exceedMaxLength(carNames)) throw new Error(ERROR_MESSAGE.EXCEED_CAR_NAME);
 
     return true;
 };
 
-const isPositive = (number) => number > 0;
+const isPositiveNumber = (number) => number > 0;
 
-const isValidTryCnt = (tryCnt) => {
-    if (!Number.isInteger(tryCnt)) return alert(MSG.natural_number);
-    if (!isPositive(tryCnt)) return alert(MSG.positive_number);
+const isValidTryCount = (tryCount) => {
+    if (racingCars.isEmpty()) throw new Error(ERROR_MESSAGE.FIRST_ENROLL_CAR);
+    if (!isPositiveNumber(tryCount)) throw new Error(ERROR_MESSAGE.NEGATIVE_TRY_COUNT);
 
     return true;
 };
 
-export { isValidCarNames, isValidTryCnt };
+export { isValidCarNames, isValidTryCount };
