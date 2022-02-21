@@ -22,8 +22,8 @@ const MESSAGE = {
 
 const NAME_LENGTH = {
   MIN: 1,
-  MAX: 5
-}
+  MAX: 5,
+};
 
 const MIN_RACING_COUNT = 1;
 
@@ -31,7 +31,14 @@ const MAX_RANDOM_NUMBER = 10;
 
 const INTERVAL = {
   LOADING: 1000,
-  ALERT: 2000
-}
+  ALERT: 2000,
+};
 
-export { ID, MESSAGE, NAME_LENGTH, MIN_RACING_COUNT, MAX_RANDOM_NUMBER, INTERVAL };
+export {
+  ID,
+  MESSAGE,
+  NAME_LENGTH,
+  MIN_RACING_COUNT,
+  MAX_RANDOM_NUMBER,
+  INTERVAL,
+};
