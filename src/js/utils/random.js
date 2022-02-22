@@ -1,5 +1,5 @@
-import { MAX_RANDOM_NUMBER } from "./constants.js";
+import { GAME_NUMBERS } from './constants.js';
 
-export const generateRandomNumber = () => {
-  return Math.floor(Math.random() * MAX_RANDOM_NUMBER);
-};
+const generateRandomNumber = () => Math.floor(Math.random() * GAME_NUMBERS.MAX_RANDOM_NUMBER);
+
+export default generateRandomNumber;

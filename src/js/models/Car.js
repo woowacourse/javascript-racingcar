@@ -1,12 +1,12 @@
-import { INIT_CAR_FORWARD } from "../utils/constants.js";
+import { GAME_NUMBERS } from '../utils/constants.js';
 
 export default class Car {
   constructor(name) {
     this.name = name;
-    this.forward = INIT_CAR_FORWARD;
+    this.forwardCount = GAME_NUMBERS.INIT_CAR_FORWARD_COUNT;
   }
 
   move = () => {
-    this.forward += 1;
+    this.forwardCount += 1;
   };
 }
