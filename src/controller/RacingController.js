@@ -14,8 +14,8 @@ class RacingController {
       const carArr = carNames.split(',');
       Validator.validateCarNames(carArr);
 
-      carArr.forEach((car) => {
-        this.#cars.append(new RacingCar(car));
+      carArr.forEach((carName) => {
+        this.#cars.append(new RacingCar(carName));
       });
     });
   }
