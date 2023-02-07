@@ -12,6 +12,8 @@ class Controller {
 
   carNameHandler(carName) {
     try {
+      const carNames = carName.split(',').map((name) => name.trim());
+      Validation.validateCarName(carNames);
     } catch (error) {
       this.inputCarNameHandler();
     }
