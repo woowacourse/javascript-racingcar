@@ -1,5 +1,6 @@
 const InputView = require('./view/InputView');
 const { Console } = require('@woowacourse/mission-utils');
+const Validation = require('./Validation');
 
 class App {
   play() {
@@ -7,10 +8,13 @@ class App {
   }
 
   getCarNames() {
-    InputView.readCarNames((carNames) => {
-      Console.print(carNames);
-    });
+    InputView.readCarNames(this.actionWithCarNames.bind(this));
+  }
+
+  actionWithCarNames(carNames) {
+    const cars = carNames.split(',').map((car) => car.trim());
+    Validation.validateCarNames(cars);
   }
 }
 
-new App().start();
+new App().play();
