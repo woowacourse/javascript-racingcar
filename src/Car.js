@@ -1,5 +1,3 @@
-const RandomNumberGenerator = require('./utils/RandomNumberGenerator');
-
 class Car {
   #name;
   #progressCount;
