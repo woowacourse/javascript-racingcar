@@ -24,3 +24,25 @@
 - [ ] feat: 자동차 경주 게임의 우승자 출력하기
     - 우승자가 여러명일 경우 ','를 이용하여 구분한다.
 
+
+## 파일 구조
+
+├── __test__
+│   ├── Car.test.js
+├── docs
+│   ├── REQUIREMENTS.md
+├── node_modules
+├── src
+│   ├── libs
+│   │   ├── Constant.js
+│   │   ├── MoveRandomNumberGenerator.js
+│   ├── model
+│   │   ├── Car.js 
+│   │   ├── ErrorHandler.js
+│   │   ├── Validation.js
+│   ├── view
+│   │   ├── InputView.js
+│   │   ├── OutputView.js
+│   ├── App.js
+└── README.md
+
