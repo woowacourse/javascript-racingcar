@@ -14,12 +14,28 @@ class InputView {
           const carMap = carNames.reduce((acc, cur) => {
             return acc.set(cur, 1);
           }, new Map());
+          this.readCount();
         } catch (err) {
           console.log(err);
-          inputView.readCarNames();
+          this.readCarNames();
         }
       }
     );
+  }
+
+  readCount() {
+    Console.readLine("시도할 회수는 몇회인가요?", (input) => {
+      try {
+        const trialCount = Number(input); //NaN
+
+        if (isNaN(trialCount)) {
+          throw new Error("숫자만 입력 가능합니다.");
+        }
+      } catch (err) {
+        console.log(err);
+        this.readCount();
+      }
+    });
   }
 }
 
