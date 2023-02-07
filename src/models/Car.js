@@ -8,4 +8,4 @@ class Car {
   }
 }
 
-export default Car;
+module.exports = Car;

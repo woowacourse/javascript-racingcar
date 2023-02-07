@@ -1,7 +1,6 @@
-import Car from '../models/Car';
-import RacingCarGame from '../models/RacingCarGame';
-import InputView from '../views/InputView';
-
+const Car = require('../models/Car');
+const RacingCarGame = require('../models/RacingCarGame');
+const InputView = require('../views/InputView');
 class RacingCarGameController {
   #game;
 
@@ -15,4 +14,4 @@ class RacingCarGameController {
   }
 }
 
-export default RacingCarGameController;
+module.exports = RacingCarGameController;

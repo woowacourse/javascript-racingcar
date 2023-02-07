@@ -6,4 +6,4 @@ class RacingCarGame {
   }
 }
 
-export default RacingCarGame;
+module.exports = RacingCarGame;

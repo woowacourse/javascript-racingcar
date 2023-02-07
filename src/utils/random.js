@@ -45,4 +45,4 @@ class Random {
   }
 }
 
-export default Random;
+module.exports = Random;

@@ -1,4 +1,4 @@
-import Console from '../utils/console';
+const Console = require('../utils/console');
 
 const InputView = {
   readCarName(callback) {
@@ -13,4 +13,4 @@ const InputView = {
   },
 };
 
-export default InputView;
+module.exports = InputView;
