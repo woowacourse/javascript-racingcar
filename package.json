@@ -44,5 +44,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "@woowacourse/mission-utils": "^1.0.6"
   }
 }
