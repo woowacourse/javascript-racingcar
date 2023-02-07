@@ -30,6 +30,25 @@ const Validation = {
       throw new Error();
     }
   },
+
+  validateTryCount(tryCount) {
+    this.validateNotANumber(tryCount);
+    this.validateRaceCount(tryCount);
+  },
+
+  validateNotANumber(tryCount) {
+    if (isNaN(tryCount)) {
+      Console.print('시도 횟수는 숫자를 입력해주세요.');
+      throw new Error();
+    }
+  },
+
+  validateRaceCount(tryCount) {
+    if (tryCount < 1) {
+      Console.print('시도 횟수는 1회 이상이어야 합니다.');
+      throw new Error();
+    }
+  },
 };
 
 module.exports = Validation;

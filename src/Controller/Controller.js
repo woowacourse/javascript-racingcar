@@ -26,6 +26,7 @@ class Controller {
 
   tryCountHandler(tryCount) {
     try {
+      Validation.validateTryCount(tryCount);
     } catch (error) {
       this.inputTryCountHandler();
     }
