@@ -13,4 +13,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;
