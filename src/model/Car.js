@@ -1,4 +1,4 @@
-import { StaticValue } from "../constants/constants";
+const { StaticValue } = require("../constants/Constants.js");
 
 class Car {
   #name;
@@ -10,6 +10,10 @@ class Car {
 
   move(randomNumber) {
     if (randomNumber >= StaticValue.MOVE_CONDITION) this.#distance += 1;
+  }
+
+  getName() {
+    return this.#name;
   }
 
   getCurrentDistance() {
