@@ -6,8 +6,13 @@ class Car{
         this.#state = 1;
     }
 
-    move(){}
-    getState(){}
+    move(randomNumber){
+        if(randomNumber >= 4) this.#state += 1;
+    }
+
+    getState() {
+        return this.#state;
+    }
 }
 
 module.exports = Car;
