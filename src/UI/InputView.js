@@ -8,7 +8,13 @@ const InputView = {
     Console.readLine(Messages.INPUT_CAR_NAMES, (answer) => {
       input = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
       if (Validator.invalidCarNames(input)) InputView.getCarNames();
-      return;
+      InputView.getAttempts();
+    });
+  },
+  getAttempts(racingGame) {
+    let attempts;
+    Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
+      attempts = parseInt(answer, 10);
     });
   },
 };
