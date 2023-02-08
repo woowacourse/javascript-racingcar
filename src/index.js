@@ -24,14 +24,22 @@ class App {
             let val2 = Number(answer);
             console.log(val2);
 
-            rl.close();
+            this.decideGoAndStop(val2);
         });
     }
 
-    getRandomNumber(maxNumber, minNumber) {
-        return Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
+    getRandomNumber() {
+        return Math.floor(Math.random() * (10 - 0) + 0);
     }
 
+    decideGoAndStop(number) {
+        for (let i = 0; i < number; i++) {
+            const moveNumber = this.getRandomNumber()
+            if (moveNumber >= 4) {
+
+            }
+        }
+    }
 }
 
 const app = new App();
