@@ -5,9 +5,9 @@ const OutputView = {
         console.log(CONSTANT.RESULT_TITLE)
     },
 
-    outputRoundResult(cars, scores) {
+    outputRoundResult(cars) {
         for (let i = 0; i < cars.length; i++) {
-            console.log(`${cars[i].getCarName()} : ${"-".repeat(scores[i])}`)
+            console.log(`${cars[i].getCarName()} : ${"-".repeat(cars[i].getScore())}`)
         }
         console.log("")
     },

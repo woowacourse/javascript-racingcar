@@ -7,7 +7,6 @@ const random = require("./Random");
 class Racing {
     constructor() {
         this.cars = [];
-        this.winner = []; 
     }
 
     play() {
@@ -27,21 +26,14 @@ class Racing {
             for (let i = 0; i < round; i++) {
                 this.getRoundResult()
             }
-            this.getWinner();
+            this.printFinalResult();
+            // this.getWinner();
         })
     }
 
     getRoundResult() {
         this.goStop()
-        OutputView.outputRoundResult(this.cars,this.getCarScores())
-    }
-
-    getCarScores() {
-        const scores = []
-        this.cars.forEach(eachCar => {
-            scores.push(eachCar.getScore())
-        });
-        return scores
+        OutputView.outputRoundResult(this.cars)
     }
 
     getCarNames() {
@@ -70,14 +62,21 @@ class Racing {
         })    
     }
 
+    printFinalResult() {
+        OutputView.outputRoundResult(this.cars)
+        OutputView.outputWinner(this.getWinner())
+    }
+
     getWinner() {
+        let winner = []
         let winnerScore = 0;
         this.cars.forEach(car => {
             if (car.getScore() > winnerScore) {
                 winnerScore = car.getScore();
-                this.winner = [car.getCarName()];
-            } else if (car.getScore() === winnerScore) this.winner.push(car.getCarName());
+                winner = [car.getCarName()];
+            } else if (car.getScore() === winnerScore) winner.push(car.getCarName());
         })
+        return winner
     }
 
 
