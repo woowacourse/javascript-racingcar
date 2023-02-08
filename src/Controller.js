@@ -1,3 +1,4 @@
+const { Service } = require("./Service");
 const { Validator } = require("./Validator");
 const { View } = require("./View");
 
@@ -18,7 +19,7 @@ class Controller {
   handleCarName(names) {
     try {
       Validator.validateName(names);
-      //this.#service = new Service(names.split(","));
+      this.#service = new Service(names.split(","));
     } catch ({ message }) {
       View.output("ERROR: " + message);
       return this.askCarName();
@@ -37,6 +38,20 @@ class Controller {
       View.output("ERROR: " + message);
       return this.askTryCnt();
     }
+    this.printResult(cnt);
+  }
+
+  printResult(cnt) {
+    View.output("실행 결과\n");
+    const movingLog = this.#service.getMovingLog(cnt);
+    const winner = this.#service.getWinner();
+    View.output();
+
+    this.exitGame();
+  }
+
+  exitGame() {
+    View.close();
   }
 }
 

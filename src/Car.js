@@ -7,7 +7,11 @@ class Car {
     this.#movingLog = 0;
   }
 
-  move() {}
+  move() {
+    console.log(this.#name);
+  }
 
   getCarInfo() {}
 }
+
+module.exports = { Car };

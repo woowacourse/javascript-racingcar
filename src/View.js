@@ -9,9 +9,11 @@ const View = {
   input: (question, callback) => {
     rl.question(question, callback);
   },
+
   output: (inputValue) => {
     console.log(inputValue);
   },
+
   close: () => {
     rl.close();
   },
