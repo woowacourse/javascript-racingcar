@@ -17,6 +17,20 @@ class RacingGame {
     this.attempts -= 1;
     this.carList.forEach((car) => car.move());
   }
+
+  findWinner() {
+    const maxPosition = this.#findMaxPosition();
+    const winners = this.carList.filter((car) => car.position === maxPosition);
+    return winners.map((car) => car.name);
+  }
+
+  #findMaxPosition() {
+    let maxPosition = 0;
+    this.carList.forEach((car) => {
+        if (car.position > maxPosition) maxPosition = car.position;
+    });
+    return maxPosition;
+  }
 }
 
 module.exports = RacingGame;
