@@ -1,9 +1,9 @@
-const { Console } = require('@woowacourse/mission-utils');
+const IO = require('../utils/IO.js');
 const { MESSAGE } = require('../data/constants.js');
 
 const InputView = {
   readCarName(callback) {
-    Console.readLine(MESSAGE.CAR_NAME_INPUT, callback);
+    IO.read(MESSAGE.CAR_NAME_INPUT, callback);
   },
 };
 
