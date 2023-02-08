@@ -11,6 +11,14 @@ class Car {
     if (number < 4) return;
     this.#currentPosition += 1;
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getCurrentPosition() {
+    return this.#currentPosition;
+  }
 }
 
 module.exports = Car;
