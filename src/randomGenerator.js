@@ -1,3 +1,3 @@
 const randomGenerator = () => {
-  return 0;
+  return Math.floor(Math.random() * 9);
 };
