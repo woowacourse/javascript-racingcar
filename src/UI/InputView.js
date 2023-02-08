@@ -18,8 +18,8 @@ const InputView = {
     let attempts;
     Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
       attempts = parseInt(answer, 10);
-      if (Validator.invalidAttempts(attempts))
-        InputView.getAttempts(racingGame);
+      if (Validator.invalidAttempts(attempts)) InputView.getAttempts(racingGame);
+      racingGame.setAttempts(attempts);
     });
   },
 };
