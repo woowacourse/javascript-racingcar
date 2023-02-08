@@ -1,4 +1,4 @@
-const readLine = require('../utils/readLine');
+const Console = require('../utils/Console');
 
 const REQUEST_MSG = {
   carNames: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
@@ -7,11 +7,11 @@ const REQUEST_MSG = {
 
 const InputView = {
   readCarNames(callback) {
-    readLine.question(REQUEST_MSG.carNames, callback);
+    Console.question(REQUEST_MSG.carNames, callback);
   },
 
   readRaceRound(callback) {
-    readLine.question(REQUEST_MSG.raceRound, callback);
+    Console.question(REQUEST_MSG.raceRound, callback);
   },
 };
 

@@ -1,8 +1,8 @@
 const rl = require('readline');
 
-const readLine = rl.createInterface({
+const Console = rl.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-module.exports = readLine;
+module.exports = Console;
