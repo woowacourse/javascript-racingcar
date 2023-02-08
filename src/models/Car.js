@@ -1,7 +1,9 @@
 class Car {
+  static #INIT_DISTANCE = 1;
+
   #name;
 
-  #distance = 1;
+  #distance = Car.#INIT_DISTANCE;
 
   constructor(name) {
     this.#name = name;

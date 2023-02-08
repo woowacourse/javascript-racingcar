@@ -1,19 +1,25 @@
 const Console = require('../utils/console');
-
+const { OUTPUT_MESSAGE } = require('../constants/message');
 const OutputView = {
   printResultTitle() {
-    Console.print('실행 결과');
+    Console.print(OUTPUT_MESSAGE.resultTitle);
   },
 
   printCars(cars) {
     cars.forEach((value, key) => {
-      Console.print(`${key} : ${'-'.repeat(value)}`);
+      Console.print(
+        `${key}${
+          OUTPUT_MESSAGE.resultSeparator
+        }${OUTPUT_MESSAGE.distance.repeat(value)}`
+      );
     });
     Console.print('');
   },
 
   printWinner(winner) {
-    Console.print(`${winner.join(', ')}가 최종 우승했습니다.`);
+    Console.print(
+      `${winner.join(OUTPUT_MESSAGE.winnerSeparator)}${OUTPUT_MESSAGE.winner}`
+    );
   },
 };
 
