@@ -19,6 +19,12 @@ class RacingController {
       });
     });
   }
+
+  inputTryCount() {
+    InputView.readTryCount((tryCount) => {
+      Validator.validateTryCount(tryCount);
+    });
+  }
 }
 
 const app = new RacingController();
