@@ -4,6 +4,9 @@
 
 ## 기능 목록
 
+### constant
+#### Constant
+- [x] 출력 문장의 상수화
 ### library
 #### ReadLine
 - [x] 입력 모듈 구현
