@@ -1571,11 +1571,6 @@
   "resolved" "https://registry.npmjs.org/@webpack-cli/serve/-/serve-2.0.1.tgz"
   "version" "2.0.1"
 
-"@woowacourse/mission-utils@^1.0.6":
-  "integrity" "sha512-wkuxUnmrYGtpFaaG1mJAmtSnr6HegV4eKVIkWTd7Jh9tsLSFv6IEAtrl+YT812hOz8H7niJpLR5i77nQuePoUA=="
-  "resolved" "https://registry.npmjs.org/@woowacourse/mission-utils/-/mission-utils-1.0.6.tgz"
-  "version" "1.0.6"
-
 "@xtuc/ieee754@^1.2.0":
   "integrity" "sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA=="
   "resolved" "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz"
