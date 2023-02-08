@@ -49,8 +49,13 @@ class CarGameController {
     }
 
     printResult(){
-        console.log(this.#carGame.getCarNames());
-        console.log(this.#carGame.getMoveDatas());
+        const carNames = this.#carGame.getCarNames();
+        const moveDatas = this.#carGame.getMoveDatas();
+
+        moveDatas.forEach((carMoves)=>{
+            OutputView.printMoveResult(carNames,carMoves);
+        })
+        
     }
 
 }
