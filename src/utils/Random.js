@@ -3,7 +3,7 @@ const Random = {
     const race = [];
     while (tryCount) {
       const randomNumber = Math.floor(Math.random() * 9);
-      randomNumber >= 4 ? race.push(1) : race.push(0);
+      randomNumber >= 4 ? race.push('-') : race.push('');
       tryCount -= 1;
     }
     return race;
