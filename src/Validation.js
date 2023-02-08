@@ -47,13 +47,17 @@ class Validation {
         name.length < GAME_NUMBER.minCarNameLength ||
         name.length > GAME_NUMBER.maxCarNameLength
       ) {
-        throw new Error(ERROR_MESSAGE.possibleCarCount);
+        throw new Error(ERROR_MESSAGE.possibleCarNameLength);
       }
     });
   }
 
   static duplicatedCarName(carNames) {
-    const isDulicate = new Set(carNames).size !== carNames.length;
+    const carNamesLowerCase = carNames.map((name) => {
+      return name.toLowerCase();
+    });
+    const isDulicate =
+      new Set(carNamesLowerCase).size !== carNamesLowerCase.length;
     if (isDulicate) {
       throw new Error(ERROR_MESSAGE.duplicatedCarName);
     }
