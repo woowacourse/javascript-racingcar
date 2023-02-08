@@ -1,4 +1,4 @@
-const { Console } = require('@woowacourse/mission-utils');
+const Console = require('../utils/Console');
 
 const InputView = {
   readCarNames(callback) {
