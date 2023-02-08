@@ -1,12 +1,20 @@
-class Car {
-  static #INIT_DISTANCE = 1;
+const CAR = require('../constants/car');
+const { ERROR_MESSAGE } = require('../constants/message');
 
+class Car {
   #name;
 
-  #distance = Car.#INIT_DISTANCE;
+  #distance = CAR.initDistance;
 
   constructor(name) {
+    Car.#validate(name);
     this.#name = name;
+  }
+
+  static #validate(name) {
+    if (name.length > CAR.maxLength) {
+      throw new Error(ERROR_MESSAGE.overNameLength);
+    }
   }
 
   move() {
