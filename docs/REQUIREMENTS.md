@@ -33,4 +33,4 @@
 - Model : Car.js(차 이름 필드, 차 위치 필드, 차 이동 메서드, 현재 위치 반환 메서드), CarGame.js(차 객체들 필드, 1등 계산 메서드)
 - Controller : CarGameController.js()
 - View : InputView, OutputView
-- utils : Validator(입력값 숫자 여부, 특정 범위, 이름 길이 여부, 이름 중복 여부), InputValidator(), parseCarList(문자열 ','기준 파싱, 공백제거), CarRandomNumberGenerator.js(랜덤값 구하는 기능), constants
+- utils : Validator(입력값 숫자 여부, 특정 범위, 이름 길이 여부, 이름 중복 여부), InputValidator(), parseCarList(문자열 ','기준 파싱, 공백제거), CarRandomNumberGenerator.js(랜덤값 구하는 기능), readLine.js(readline) ,constants (상수)
