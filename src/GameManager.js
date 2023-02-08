@@ -4,8 +4,17 @@ const Car = require('./Car');
 class GameManager {
   #cars = [];
   #tryCount = 0;
-  play() {
-    this.readCarNames();
+
+  moveCars() {
+    this.#cars.forEach((car) => {
+      car.move(0);
+    });
+  }
+
+  tryMoveCars() {
+    for (let i = 0; i < this.#tryCount; i++) {
+      this.moveCars();
+    }
   }
 
   handleTryCount(answer) {
@@ -37,6 +46,10 @@ class GameManager {
       '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
       this.handleCarNames.bind(this)
     );
+  }
+
+  play() {
+    this.readCarNames();
   }
 }
 

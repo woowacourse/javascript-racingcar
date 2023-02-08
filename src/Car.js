@@ -4,6 +4,7 @@ class Car {
   constructor(name) {
     this.#name = name;
   }
+  move(number) {}
 }
 
 module.exports = Car;
