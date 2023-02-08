@@ -1,5 +1,6 @@
 const RacingGame = require("./RacingGame");
-const { readCarNames, readTryCount, close } = require("./InputView");
+const InputView = require("./InputView");
+const OutputView = require("./OutputView");
 const Validation = require("./Validation");
 class App {
   #racingGame;
@@ -10,14 +11,14 @@ class App {
   }
 
   requestInputCarNames() {
-    readCarNames((names) => {
+    InputView.readCarNames((names) => {
       Validation.validateCarNames(names);
       this.requestInputTryCount(names);
     });
   }
 
   requestInputTryCount(names) {
-    readTryCount((tryCount) => {
+    InputView.readTryCount((tryCount) => {
       Validation.validateTryCount(tryCount);
       this.#racingGame = new RacingGame(names, tryCount);
     });
