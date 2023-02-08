@@ -1,12 +1,13 @@
 const readline = require("readline");
-const CONSTANT = require("./Constant");
+const validations = require("./validations");
 
 const inputView = {
+
     inputCarName(callback) {
         const rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout
-        });
+        })
         rl.on("line", (line) => {
             rl.close()
             callback(line)
@@ -14,15 +15,21 @@ const inputView = {
     },
 
     inputRound(callback) {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            })
         rl.on("line", (line) => {
-            callback(line)
-            rl.close();
-        });
-    }
+            try {
+                rl.close();
+                validations.validateRound(+line);
+                callback(+line)
+            } catch (e) {
+                console.log(e.message);
+                this.inputRound(callback);
+            }
+        })
+    },
 }
 
 
