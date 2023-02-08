@@ -46,11 +46,16 @@ class App {
 
   moveCar() {
     this.#cars.forEach((car) => {
-      car.move(thie.#tryCount);
+      car.move(this.#tryCount);
     });
+
+    this.printProcessResult();
   }
 
-  printProcessResult() {}
+  printProcessResult() {
+    const carsStatus = this.#cars.map((car) => car.getStatus());
+    OutputView.printProcessResult(carsStatus, this.#tryCount);
+  }
 }
 
 const app = new App();

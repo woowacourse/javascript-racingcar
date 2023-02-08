@@ -12,8 +12,12 @@ class Car {
     for (let sequence = 0; sequence < tryCount; sequence++) {
       const number = generateRandomNumber();
 
-      number <= 4 ? this.#position.push(1) : this.#position.push(0);
+      this.#position.push(number <= 4 ? 1 : 0);
     }
+  }
+
+  getStatus() {
+    return { name: this.#name, position: this.#position };
   }
 }
 
