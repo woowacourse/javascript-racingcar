@@ -17,6 +17,10 @@ class Car {
     this.#name = name;
   }
 
+  getName() {
+    return this.#name;
+  }
+
   getPosition() {
     return this.#position;
   }

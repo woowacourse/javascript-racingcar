@@ -1,14 +1,14 @@
 const INIT_POSITION = 0;
 const STEP = 1;
 const FORWARD_CONDITIONS_NUMBER = 4;
-const NAME = {
+const NAME = Object.freeze({
   MIN: 1,
   MAX: 5,
-};
-const TRY_COUNT = {
+});
+const TRY_COUNT = Object.freeze({
   MIN: 1,
   MAX: 10,
-};
+});
 
 module.exports = {
   INIT_POSITION,
