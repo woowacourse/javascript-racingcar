@@ -1,14 +1,16 @@
 const Console = require('./Console');
 const { Messages, Settings } = require('../Config');
 const Validator = require('../Validator');
+const RacingGame = require('../RacingGame');
 
 const InputView = {
   getCarNames(racingGame) {
     let input;
     Console.readLine(Messages.INPUT_CAR_NAMES, (answer) => {
       input = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
-      if (Validator.invalidCarNames(input)) InputView.getCarNames();
-      InputView.getAttempts();
+      if (Validator.invalidCarNames(input)) InputView.getCarNames(racingGame);
+      racingGame.setCarList(input);
+      InputView.getAttempts(racingGame);
     });
   },
 
@@ -16,7 +18,8 @@ const InputView = {
     let attempts;
     Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
       attempts = parseInt(answer, 10);
-      if (Validator.invalidAttempts(attempts)) InputView.getAttempts();
+      if (Validator.invalidAttempts(attempts))
+        InputView.getAttempts(racingGame);
     });
   },
 };
