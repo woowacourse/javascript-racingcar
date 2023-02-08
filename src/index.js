@@ -1,6 +1,10 @@
+const RaceController = require('./Controller/RaceController');
+
 class Index {
   init() {
-    
+    const raceController = new RaceController();
+
+    raceController.start();
   }
 };
 
