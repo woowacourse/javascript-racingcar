@@ -1,11 +1,19 @@
 const Console = require('./utils/Console');
+const { isValidCarNames } = require('./utils/Validation');
 
 class GameManager {
   play() {
     this.readCarNames();
   }
 
-  handleCarNames(answer) {}
+  handleCarNames(answer) {
+    const names = answer.split(',');
+    if (!isValidCarNames(names)) {
+      Console.print('다시');
+    } else {
+      Console.print('통과');
+    }
+  }
 
   readCarNames() {
     Console.read(
