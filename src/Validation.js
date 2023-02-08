@@ -14,6 +14,10 @@ class Validation {
     if (!Validation.#isCarNameLengthValid(names)) {
       throw new Error(ERROR_MESSAGE.invalidCarNameLength);
     }
+
+    if (!Validation.#isCarNameUnique(names)) {
+      throw new Error(ERROR_MESSAGE.duplicateCarName);
+    }
   }
 
   static #isCarQuantityValid(names) {
@@ -24,6 +28,12 @@ class Validation {
     return names.every((name) => {
       return minimumCarNameLength <= name.length && maximumCarNameLength >= name.length;
     });
+  }
+
+  static #isCarNameUnique(names) {
+    const duplicateCheck = new Set(names);
+
+    return names.length === duplicateCheck.size;
   }
 }
 const ERROR_MESSAGE = {
