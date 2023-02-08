@@ -17,6 +17,11 @@ const OutputView = {
   printMoveResult() {
     IO.print(MESSAGE.RESULT_OUTPUT);
   },
+
+  printWinner(winners) {
+    const winnersList = winners.join(SYMBOL.DIVIDE_WINNER);
+    IO.print(`${winnersList}${MESSAGE.WINNER_OUTPUT}`);
+  },
 };
 
 module.exports = OutputView;

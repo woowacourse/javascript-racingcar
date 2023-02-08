@@ -48,6 +48,22 @@ class RacingController {
     OutputView.printMoveProcess(this.#cars);
     for (let i = 0; i < this.#tryCount; i++) {
       this.assignRandom();
+      if (i === this.#tryCount - 1) {
+        const carsMoveResults = new Map();
+        this.#cars.forEach((car) => {
+          carsMoveResults.set(car.getCarName(), car.getMoveCount());
+        });
+
+        const maxValue = [...carsMoveResults.entries()].reduce((a, b) =>
+          a[1] > b[1] ? a : b
+        )[1];
+
+        const winnerList = [...carsMoveResults.entries()]
+          .filter((el) => el[1] === maxValue)
+          .map((el) => el[0]);
+
+        OutputView.printWinner(winnerList);
+      }
     }
   }
 }
