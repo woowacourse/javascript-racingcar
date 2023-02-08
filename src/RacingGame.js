@@ -24,7 +24,22 @@ class RacingGame {
   }
 
   getCarsResultOfOneTurn() {
-    return this.#cars.map((car) => ({ name: car.getName(), currentPosition: car.getCurrentPosition() }));
+    return this.#cars.map((car) => ({ name: car.getName(), currentDistance: car.getCurrentDistance() }));
+  }
+
+  getWinners() {
+    let winners = [];
+    let maxDistance = 0;
+    this.#cars.forEach((car) => {
+      if (car.getCurrentDistance() < maxDistance) return;
+      if (car.getCurrentDistance() === maxDistance) winners.push(car.getName());
+      if (car.getCurrentDistance() > maxDistance) {
+        winners = [];
+        winners.push(car.getName());
+        maxDistance = car.getCurrentDistance();
+      }
+    });
+    return winners;
   }
 }
 

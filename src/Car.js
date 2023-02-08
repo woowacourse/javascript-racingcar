@@ -1,23 +1,23 @@
 class Car {
   #name;
-  #currentPosition;
+  #currentDistance;
 
   constructor(name) {
     this.#name = name;
-    this.#currentPosition = 0;
+    this.#currentDistance = 0;
   }
 
   move(number) {
     if (number < 4) return;
-    this.#currentPosition += 1;
+    this.#currentDistance += 1;
   }
 
   getName() {
     return this.#name;
   }
 
-  getCurrentPosition() {
-    return this.#currentPosition;
+  getCurrentDistance() {
+    return this.#currentDistance;
   }
 }
 

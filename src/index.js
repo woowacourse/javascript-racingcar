@@ -31,7 +31,13 @@ class App {
       const carsResultOfOneTurn = this.#racingGame.getCarsResultOfOneTurn();
       OutputView.printOneTurnResult(carsResultOfOneTurn);
     }
-    console.log("끝");
+    this.finishGame();
+  }
+
+  finishGame() {
+    const winners = this.#racingGame.getWinners();
+    OutputView.printWinners(winners);
+    InputView.close();
   }
 }
 

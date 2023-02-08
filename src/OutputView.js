@@ -9,12 +9,12 @@ const OutputView = {
 
   printOneTurnResult(carsResultOfOneTurn) {
     carsResultOfOneTurn.forEach((carResult) =>
-      console.log(`${carResult.name} : ${this.numberToPath(carResult.currentPosition)}`)
+      console.log(`${carResult.name} : ${this.numberToPath(carResult.currentDistance)}`)
     );
     console.log();
   },
 
-  printWinner(winners) {
+  printWinners(winners) {
     console.log(`${winners.join(", ")}가 최종 우승했습니다.`);
   },
 };
