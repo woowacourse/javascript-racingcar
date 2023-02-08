@@ -5,6 +5,8 @@ const OutputView = require("./view/OutputView.js");
 
 class App {
   #cars = [];
+  #tryCount;
+
   play() {
     this.readCarName();
   }
@@ -34,12 +36,21 @@ class App {
   readTryCountCallback(tryCount) {
     try {
       Validator.tryCount(tryCount);
-      console.log("성공");
+      this.#tryCount = Number(tryCount);
+      this.moveCar();
     } catch (error) {
       OutputView.printErrorMessage(error);
       this.readTryCount();
     }
   }
+
+  moveCar() {
+    this.#cars.forEach((car) => {
+      car.move(thie.#tryCount);
+    });
+  }
+
+  printProcessResult() {}
 }
 
 const app = new App();

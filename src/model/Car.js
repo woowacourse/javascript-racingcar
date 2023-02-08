@@ -2,15 +2,18 @@ const generateRandomNumber = require("../lib/generateRandomNumber.js");
 
 class Car {
   #name;
-  #position = 0;
+  #position = [];
 
   constructor(carName) {
     this.#name = carName;
   }
 
-  move() {
-    const number = generateRandomNumber();
-    if (number <= 4) this.#position += 1;
+  move(tryCount) {
+    for (let sequence = 0; sequence < tryCount; sequence++) {
+      const number = generateRandomNumber();
+
+      number <= 4 ? this.#position.push(1) : this.#position.push(0);
+    }
   }
 }
 
