@@ -3,9 +3,21 @@ const Validator = require('../Utils/Validator');
 
 class RaceController {
   start() {
-    InputView.readCarName(input => {
-      const userInput = input.split(',');
-      userInput.forEach(el => Validator.validateCarName(el));
+    this.getCarName();
+  }
+
+  getCarName() {
+    InputView.readCarName(carName => {
+      const splitCarName = carName.split(',');
+      Validator.valdateNumOfCar(splitCarName.length);
+      splitCarName.forEach(el => Validator.validateCarName(el));
+      this.getTryCount();
+    });
+  }
+
+  getTryCount() {
+    InputView.readTryCount(count => {
+      Validator.valdateTryCount(count);
     });
   }
 }
