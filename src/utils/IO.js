@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 
 class IO {
   static read(message, callback) {
-    rl.on(message, callback);
+    rl.question(message, callback);
   }
 
   static print(message) {
