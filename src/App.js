@@ -16,16 +16,15 @@ class App {
   readCarNameCallback(carNames) {
     try {
       Validator.carName(carNames);
+      carNames.split(",").forEach((carName) => {
+        this.#cars.push(new Car(carName));
+      });
+
+      this.readTryCount();
     } catch (error) {
       OutputView.printErrorMessage(error);
       this.readCarName();
     }
-
-    carNames.split(",").forEach((carName) => {
-      this.#cars.push(new Car(carName));
-    });
-
-    this.readTryCount();
   }
 
   readTryCount() {
@@ -33,7 +32,13 @@ class App {
   }
 
   readTryCountCallback(tryCount) {
-    Validator.tryCount(tryCount);
+    try {
+      Validator.tryCount(tryCount);
+      console.log("성공");
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+      this.readTryCount();
+    }
   }
 }
 
