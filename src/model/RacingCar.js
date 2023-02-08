@@ -15,6 +15,10 @@ class RacingCar {
     this.#moveCount += 1;
   }
 
+  getCarName() {
+    return this.#name;
+  }
+
   getMoveCount() {
     return this.#moveCount;
   }

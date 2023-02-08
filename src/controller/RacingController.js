@@ -1,4 +1,5 @@
 const InputView = require('../view/InputView.js');
+const OutputView = require('../view/OutputView.js');
 const Validator = require('../utils/Validator.js');
 const RacingCar = require('../model/RacingCar.js');
 const Util = require('../utils/Util.js');
@@ -6,6 +7,7 @@ const { UTIL_NUMBER } = require('../data/constants.js');
 
 class RacingController {
   #cars;
+  #tryCount;
 
   constructor() {
     this.#cars = [];
@@ -26,7 +28,8 @@ class RacingController {
   inputTryCount() {
     InputView.readTryCount((tryCount) => {
       Validator.validateTryCount(tryCount);
-      this.assignRandom();
+      this.#tryCount = tryCount;
+      this.repeatProcess();
     });
   }
 
@@ -36,8 +39,16 @@ class RacingController {
       if (randomValue >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
         car.move();
       }
-      console.log(car.getMoveCount());
     });
+    OutputView.printMoveProcess(this.#cars);
+  }
+
+  repeatProcess() {
+    OutputView.printMoveResult();
+    OutputView.printMoveProcess(this.#cars);
+    for (let i = 0; i < this.#tryCount; i++) {
+      this.assignRandom();
+    }
   }
 }
 
