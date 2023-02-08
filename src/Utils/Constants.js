@@ -9,8 +9,23 @@ const GAME_MESSAGE = Object.freeze({
 });
 
 const LINE_BREAK = "\n";
+const MAXIMUM_CAR_NAME_LENGTH = 5;
+const MINIMUM_TRY_COUNT = 1;
+const MINIMUM_NUMBER_OF_CARS = 2;
+
+const ERROR_MESSAGE = Object.freeze({
+  NAME_LENGTH_LIMIT: "5글자 이하로 입력해 주세요.",
+  MINIMUM_CAR_COUNT: "자동차는 최소 2대 이상 등록해주셔야 합니다.",
+  NOT_POSITIVE_NUMBER: "양수를 입력해 주세요.",
+  INVALID_NAME: "유효한 이름을 입력해 주세요.",
+  NOT_BLANK: "공백없이 입력해 주세요.",
+});
 
 module.exports = {
   GAME_MESSAGE,
   LINE_BREAK,
+  ERROR_MESSAGE,
+  MAXIMUM_CAR_NAME_LENGTH,
+  MINIMUM_TRY_COUNT,
+  MINIMUM_NUMBER_OF_CARS,
 };
