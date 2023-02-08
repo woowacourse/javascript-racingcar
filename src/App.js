@@ -28,6 +28,7 @@ class App {
     } catch (error) {
       await this.inputCarNames();
     }
+    this.printWinners(this.#carManager.getWinners());
   }
 
   async inputTryCount() {
