@@ -56,8 +56,12 @@ class Controller {
         OutputView.print(`${car.name} : ${'-'.repeat(car.distance)}`);
       });
     });
+    this.showWinners();
   }
 
-  showWinners() {}
+  showWinners() {
+    const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
+    OutputView.print(`${winners.map((winner) => winner.getName()).join(',')}가 최종 우승했습니다.`);
+  }
 }
 module.exports = Controller;
