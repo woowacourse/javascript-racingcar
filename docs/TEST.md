@@ -10,8 +10,8 @@
     - [x] 0이하의 숫자 입력시 에러를 발생시키는지 확인
     - [x] 숫자가 아닌 문자 입력시 에러를 발생시키는지 확인
     - [x] 공백 또는 빈 문자열이 포함되어 있으면 에러를 발생시키는지 확인
-- [ ] RandomNumber.js
-  - [ ] 랜덤으로 생성된 숫자가 0과 9사이에 있는지 확인
+- [x] RandomNumber.js
+  - [x] 랜덤으로 생성된 숫자가 0과 9사이에 있는지 확인
 - [ ] OutputView.js
   - [ ] printMoveDistance
   - [ ] printWinner
