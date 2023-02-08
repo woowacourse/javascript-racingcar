@@ -6,7 +6,7 @@ const rl = readline.createInterface({
 });
 
 const Console = {
-  readline(query, callback) {
+  readLine(query, callback) {
     rl.question(query, callback);
   },
 
