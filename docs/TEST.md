@@ -12,3 +12,6 @@
     - [ ] 공백 또는 빈 문자열이 포함되어 있으면 에러를 발생시키는지 확인
 - [ ] RandomNumber.js
   - [ ] 랜덤으로 생성된 숫자가 0과 9사이에 있는지 확인
+- [ ] OutputView.js
+  - [ ] printMoveDistance
+  - [ ] printWinner
