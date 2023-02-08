@@ -7,6 +7,11 @@ const CONSTANT = {
     RANDOM_MAX: 9,
     GO_POINT: 4,
 
+    CAR_NAME_MIN: 0,
+    CAR_NAME_MAX: 4,
+
+    ROUND_MIN: 1,
+
     RESULT_TITLE: "\n실행 결과",
     RESULT_MASSEGE: "가 최종 우승했습니다.",
 }
