@@ -1,5 +1,10 @@
 {
-  "rules": {},
+  "rules": {
+		"max-depth": ["error", 2],
+    "max-lines-per-function": ["error", 10],
+    "max-params": ["error", 3],
+    "no-console" : "off"
+	},
   "env": {
     "es6": true,
     "node": true
