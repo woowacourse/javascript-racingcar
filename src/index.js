@@ -6,7 +6,8 @@ const random = require("./Random");
 
 class Racing {
     constructor() {
-        this.cars = []
+        this.cars = [];
+        this.winner = []; 
     }
 
     play() {
@@ -26,6 +27,7 @@ class Racing {
             for (let i = 0; i < round; i++) {
                 this.getRoundResult()
             }
+            this.getWinner();
         })
     }
 
@@ -68,7 +70,15 @@ class Racing {
         })    
     }
 
-    
+    getWinner() {
+        let winnerScore = 0;
+        this.cars.forEach(car => {
+            if (car.getScore() > winnerScore) {
+                winnerScore = car.getScore();
+                this.winner = [car.getCarName()];
+            } else if (car.getScore() === winnerScore) this.winner.push(car.getCarName());
+        })
+    }
 
 
     
