@@ -35,6 +35,16 @@ class Validation {
 
     return names.length === duplicateCheck.size;
   }
+
+  static validateRaceRound(raceRound) {
+    if (!Validation.#isRaceRoundValid(raceRound)) {
+      throw new Error(ERROR_MESSAGE.invalidGameRound);
+    }
+  }
+
+  static #isRaceRoundValid(raceRound) {
+    return Number(raceRound) >= minimumRaceRound;
+  }
 }
 const ERROR_MESSAGE = {
   invalidCarQuantity: `[ERROR] 2개 이상의 차이름을 입력하세요.`,

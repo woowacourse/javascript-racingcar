@@ -31,7 +31,14 @@ class App {
   }
 
   #requestRaceRound() {
-    InputView.readRaceRound((raceRoundInput) => {});
+    InputView.readRaceRound((raceRoundInput) => {
+      const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRoundInput);
+
+      if (!isValidInput) {
+        this.#requestRaceRound();
+        return;
+      }
+    });
   }
 }
 
