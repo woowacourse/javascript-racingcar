@@ -5,7 +5,7 @@ class Controller {
   constructor() {}
 
   play() {
-    InputView.readCarName((msg) => {
+    InputView.readAttempts((msg) => {
       console.log(msg);
     });
   }
