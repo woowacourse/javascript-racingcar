@@ -12,15 +12,31 @@ class Service {
   }
 
   getMovingLog(cnt) {
-    // const logOfEachRound = Array.from({ length: cnt }, () => );
+    let finalLogResult = "";
+    const movingLog = [];
     for (let round = 0; round < cnt; round++) {
+      const roundLog = {};
+
       this.#cars.forEach((car) => {
         const canMove = randomGenerator() >= 4;
         if (canMove) {
-          const { name, movingLog } = car.move();
+          car.move();
         }
+
+        const { name, movingLog } = car.getCarInfo();
+        roundLog[name] = movingLog;
       });
+      movingLog.push(roundLog);
     }
+
+    movingLog.forEach((round) => {
+      Object.entries(round).forEach(([key, value]) => {
+        finalLogResult += `${key} : ${value ? "-".repeat(value) : ""}\n`;
+      });
+      finalLogResult += "\n";
+    });
+
+    return finalLogResult;
   }
 }
 

@@ -9,10 +9,11 @@ class Car {
 
   move() {
     this.#movingLog++;
-    return { name: this.#name, movingLog: this.#movingLog };
   }
 
-  getCarInfo() {}
+  getCarInfo() {
+    return { name: this.#name, movingLog: this.#movingLog };
+  }
 }
 
 module.exports = { Car };

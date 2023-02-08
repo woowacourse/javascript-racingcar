@@ -28,7 +28,7 @@ class Controller {
   }
 
   askTryCnt() {
-    View.input("시도할 회수는 몇회인가요?\n", this.handleTryCnt.bind(this));
+    View.input("\n시도할 회수는 몇회인가요?\n", this.handleTryCnt.bind(this));
   }
 
   handleTryCnt(cnt) {
@@ -42,10 +42,11 @@ class Controller {
   }
 
   printResult(cnt) {
-    View.output("실행 결과\n");
+    View.output("\n실행 결과");
     const movingLog = this.#service.getMovingLog(cnt);
-    const winner = this.#service.getWinner();
-    View.output();
+    View.output(movingLog);
+    // const winner = this.#service.getWinner();
+    // View.output();
 
     this.exitGame();
   }
