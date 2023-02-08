@@ -1,4 +1,5 @@
 const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
 const Validation = require('./Validation');
 const inputErrorHandler = require('./utils/inputErrorHandler');
 const Car = require('./Car');
@@ -46,9 +47,11 @@ class App {
   }
 
   #playEveryRound(raceRound) {
+    OutputView.print('실행 결과');
+
     while (raceRound) {
       this.#playEachRound();
-
+      this.#printEachRoundResult();
       raceRound -= 1;
     }
   }
@@ -61,6 +64,16 @@ class App {
         car.move();
       }
     });
+  }
+
+  #printEachRoundResult() {
+    this.#cars.forEach((car) => {
+      const name = car.getName();
+      const position = car.getPosition();
+
+      OutputView.printRoundResult(name, position);
+    });
+    OutputView.print('');
   }
 }
 

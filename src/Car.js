@@ -9,6 +9,14 @@ class Car {
   move() {
     this.#position += 1;
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getPosition() {
+    return this.#position;
+  }
 }
 
 module.exports = Car;
