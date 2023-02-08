@@ -1,5 +1,9 @@
 const StaticValue = Object.freeze({
   MOVE_CONDITION: 4,
+  RANDOM_NUMBER_LIMIT: 10,
+  REGEX_WHITESPACE: /\s|^$/,
+  CAR_NAME_LIMIT: 5,
+  CAR_NAME_INPUT_SEPERATOR: ",",
 });
 
 const Readline = require("readline").createInterface({
@@ -11,6 +15,12 @@ const ConsoleMessage = Object.freeze({
   CAR_NAME:
     "경주할 자동차 이름을 입력하세요(이름을 쉼표(,)를 기준으로 구분).\n",
   MOVE_COUNT: "시도할 횟수는 몇회인가요?\n",
+  moveDistance(name, distance) {
+    return `${name} : ${distance}`;
+  },
+  result(winner) {
+    return `${winner}가 최종 우승했습니다.`;
+  },
 });
 
 const ErrorMessage = Object.freeze({

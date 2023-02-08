@@ -1,11 +1,15 @@
-const { ConsoleMessage, Readline } = require("../constants/Constants.js");
+const {
+  ConsoleMessage,
+  Readline,
+  StaticValue,
+} = require("../constants/Constants.js");
 const Exception = require("../utils/Exception.js");
 
 const InputView = {
   readCarNames(callback) {
     Readline.question(ConsoleMessage.CAR_NAME, (input) => {
       try {
-        const cars = input.split(",");
+        const cars = input.split(StaticValue.CAR_NAME_INPUT_SEPERATOR);
         Exception.checkCarInput(cars);
         callback(cars);
       } catch (e) {

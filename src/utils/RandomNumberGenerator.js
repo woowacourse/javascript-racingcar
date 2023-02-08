@@ -1,6 +1,8 @@
+const { StaticValue } = require("../constants/Constants");
+
 const RandomNumberGenerator = {
   generate() {
-    return Math.floor(Math.random() * 10);
+    return Math.floor(Math.random() * StaticValue.RANDOM_NUMBER_LIMIT);
   },
 };
 

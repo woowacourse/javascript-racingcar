@@ -1,8 +1,8 @@
-const { Readline } = require("../constants/Constants");
+const { Readline, ConsoleMessage } = require("../constants/Constants");
 
 const OutputView = {
   printMoveDistance(name, distance) {
-    console.log(name + " : " + "-".repeat(distance));
+    console.log(ConsoleMessage.moveDistance(name, "-".repeat(distance)));
   },
 
   printEmptyLine() {
@@ -10,7 +10,7 @@ const OutputView = {
   },
 
   printWinner(winners) {
-    console.log(`${winners.join(", ")}가 최종 우승했습니다.`);
+    console.log(ConsoleMessage.result(winners.join(", ")));
     Readline.close();
   },
 };
