@@ -1,6 +1,7 @@
 const Car = require("./Car");
 const inputView = require("./InputView");
 const OutputView = require("./OutputView");
+const random = require("./Random");
 
 
 class Racing {
@@ -9,6 +10,7 @@ class Racing {
     }
 
     play() {
+        OutputView.askCarName();
         inputView.inputCarName((input) => {
             const carNames = input.split(",");
 
@@ -23,7 +25,16 @@ class Racing {
         });
     }
 
+    checkRandomNum() {
+        const randomNum = random();
+        return (randomNum >= 4)
+    }
 
+    goStop() {
+        this.cars.forEach( car => {
+            if (this.checkRandomNum()) car.go();
+        })    
+    }
 
 
     
