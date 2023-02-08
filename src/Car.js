@@ -5,6 +5,10 @@ class Car {
   constructor(name) {
     this.#name = name;
   }
+
+  move() {
+    this.#position += 1;
+  }
 }
 
 module.exports = Car;

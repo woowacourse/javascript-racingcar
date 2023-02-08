@@ -43,7 +43,7 @@ class Validation {
   }
 
   static #isRaceRoundValid(raceRound) {
-    return Number(raceRound) >= minimumRaceRound;
+    return raceRound >= minimumRaceRound;
   }
 }
 const ERROR_MESSAGE = {

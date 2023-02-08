@@ -2,6 +2,7 @@ const InputView = require('./view/InputView');
 const Validation = require('./Validation');
 const inputErrorHandler = require('./utils/inputErrorHandler');
 const Car = require('./Car');
+const randomNumberGenerator = require('./utils/randomNumberGenerator');
 
 class App {
   #cars;
@@ -32,11 +33,32 @@ class App {
 
   #requestRaceRound() {
     InputView.readRaceRound((raceRoundInput) => {
-      const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRoundInput);
+      const raceRound = Number(raceRoundInput);
+      const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
 
       if (!isValidInput) {
         this.#requestRaceRound();
         return;
+      }
+
+      this.#playEveryRound(raceRound);
+    });
+  }
+
+  #playEveryRound(raceRound) {
+    while (raceRound) {
+      this.#playEachRound();
+
+      raceRound -= 1;
+    }
+  }
+
+  #playEachRound() {
+    this.#cars.forEach((car) => {
+      const randomNumber = randomNumberGenerator();
+
+      if (randomNumber >= 4) {
+        car.move();
       }
     });
   }
