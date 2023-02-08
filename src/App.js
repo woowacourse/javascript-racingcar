@@ -23,10 +23,15 @@ class App {
 
       this.printRaceProgress(this.#carManager.getCars());
     }
+    this.printWinners(this.#carManager.getWinners());
   }
 
   printRaceProgress(cars) {
     OutputView.printRaceProgress(cars);
+  }
+
+  printWinners(winners) {
+    OutputView.printWinners(winners);
   }
 }
 
