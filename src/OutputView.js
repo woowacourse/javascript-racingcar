@@ -13,6 +13,10 @@ const OutputView = {
     );
     console.log();
   },
+
+  printWinner(winners) {
+    console.log(`${winners.join(", ")}가 최종 우승했습니다.`);
+  },
 };
 
 module.exports = OutputView;
