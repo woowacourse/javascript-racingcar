@@ -5,16 +5,20 @@ const OutputView = {
     console.log(message);
   },
 
-  printRoundResult(name, position) {
-    const positionScore = scoreConverter(position);
+  printRoundResult(roundResult) {
+    const templates = roundResult.map(({ name, position }) => {
+      const positionScore = scoreConverter(position);
 
-    console.log(`${name} : ${positionScore}`);
+      return `${name} : ${positionScore}`;
+    });
+
+    console.log(`${templates.join('\n')}\n`);
   },
 
   printFinalResult(winners) {
     const winnersName = winners.join(', ');
 
-    console.log(`${winnersName}가 최종 우승했습니다.`);
+    console.log(`${winnersName}(이)가 최종 우승했습니다.`);
   },
 };
 

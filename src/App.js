@@ -2,12 +2,11 @@ const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 const Validation = require('./Validation');
 const inputErrorHandler = require('./utils/inputErrorHandler');
-const Car = require('./Car');
-const randomNumberGenerator = require('./utils/randomNumberGenerator');
 const Console = require('./utils/Console');
+const RacingGame = require('./RacingGame');
 
 class App {
-  #cars;
+  #racingGame;
 
   play() {
     this.#requestCarNames();
@@ -23,68 +22,42 @@ class App {
         return;
       }
 
-      this.#generateCars(carNames);
+      this.#requestRaceRound(carNames);
     });
   }
 
-  #generateCars(carNames) {
-    this.#cars = carNames.map((carName) => new Car(carName));
-
-    this.#requestRaceRound();
-  }
-
-  #requestRaceRound() {
+  #requestRaceRound(carNames) {
     InputView.readRaceRound((raceRoundInput) => {
       const raceRound = Number(raceRoundInput);
       const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
 
       if (!isValidInput) {
-        this.#requestRaceRound();
+        this.#requestRaceRound(carNames);
         return;
       }
 
-      this.#playEveryRound(raceRound);
+      this.#racingGame = new RacingGame(carNames, raceRound);
+
+      this.#raceCars();
     });
   }
 
-  #playEveryRound(raceRound) {
-    OutputView.print('실행 결과');
+  #raceCars() {
+    OutputView.print('\n실행 결과');
 
-    while (raceRound) {
-      this.#playEachRound();
-      this.#printEachRoundResult();
-      raceRound -= 1;
+    while (this.#racingGame.isPlaying()) {
+      this.#racingGame.race();
+
+      const roundResult = this.#racingGame.getRoundResult();
+
+      OutputView.printRoundResult(roundResult);
     }
-
     this.#findWinners();
   }
 
-  #playEachRound() {
-    this.#cars.forEach((car) => {
-      const randomNumber = randomNumberGenerator();
-
-      if (randomNumber >= 4) {
-        car.move();
-      }
-    });
-  }
-
-  #printEachRoundResult() {
-    this.#cars.forEach((car) => {
-      const name = car.getName();
-      const position = car.getPosition();
-
-      OutputView.printRoundResult(name, position);
-    });
-    OutputView.print('');
-  }
-
   #findWinners() {
-    const highestScore = Math.max(...this.#cars.map((car) => car.getPosition()));
-
-    const winners = this.#cars
-      .filter((car) => car.getPosition() === highestScore)
-      .map((car) => car.getName());
+    const highestScore = this.#racingGame.getHighestScore();
+    const winners = this.#racingGame.getWinners(highestScore);
 
     OutputView.printFinalResult(winners);
     Console.close();
