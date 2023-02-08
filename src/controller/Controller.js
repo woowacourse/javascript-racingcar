@@ -1,8 +1,10 @@
 const InputView = require('../view/inputView');
+const RacingCarGame = require('../model/RacingCarGame');
 
 class Controller {
   constructor() {
     this.inputView = new InputView();
+    this.RacingCarGame = new RacingCarGame();
   }
 
   async init() {

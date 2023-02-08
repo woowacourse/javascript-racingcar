@@ -1,18 +1,13 @@
 const readline = require('readline');
 
-// function goForward() {
-//   const GO_FORWARD = 4;
-//   return Math.floor(Math.random() * 10) >= GO_FORWARD;
-// }
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 class InputView {
   readCarNames() {
     return new Promise((resolve, reject) => {
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-
       rl.question(
         '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
         input => {
@@ -43,26 +38,17 @@ class InputView {
 
   readCount() {
     rl.question('시도할 회수는 몇회인가요?', input => {
-      try {
-        const trialCount = Number(input); //NaN
+      return new Promise((resolve, reject) => {
+        const trialCount = Number(input);
 
         if (isNaN(trialCount)) {
-          throw new Error('숫자만 입력 가능합니다.');
+          reject(new Error('숫자만 입력 가능합니다.'));
         }
-      } catch (err) {
-        console.log(err);
-        this.readCount();
-      }
+        resolve(trialCount);
+        console.log(trialCount);
+      });
     });
   }
 }
 
-const inputView = new InputView();
-inputView
-  .readCarNames()
-  .then(result => {
-    console.log(result);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+module.exports = InputView;
