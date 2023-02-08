@@ -13,7 +13,15 @@ const OutputView = {
 
     outputWinner(winners) {
         console.log(`${winners.join(", ")}${CONSTANT.RESULT_MASSEGE} `)
-    }
+    },
+
+    askCarName() {
+        console.log(CONSTANT.INPUT_CAR_MASSEGE);
+    },
+
+    askRound() {
+        console.log(CONSTANT.INPUT_ROUND_MASSEGE); 
+    },
 }
 
 module.exports = OutputView
