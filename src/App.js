@@ -1,5 +1,6 @@
 const InputView = require('./view/InputView');
 const Validation = require('./Validation');
+const inputErrorHandler = require('./utils/inputErrorHandler');
 
 class App {
   play() {
@@ -7,9 +8,14 @@ class App {
   }
 
   #requestCarNames() {
-    InputView.readCarNames((carNames) => {
-      const cars = carNames.split(',').map((carName) => carName.trim());
-      Validation.validateCarNames(cars);
+    InputView.readCarNames((carNamesInput) => {
+      const carNames = carNamesInput.split(',').map((carName) => carName.trim());
+      const isValidInput = inputErrorHandler(Validation.validateCarNames, carNames);
+
+      if (!isValidInput) {
+        this.#requestCarNames();
+        return;
+      }
     });
   }
 }
