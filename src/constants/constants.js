@@ -19,7 +19,7 @@ const ConsoleMessage = Object.freeze({
     return `${name} : ${distance}`;
   },
   result(winner) {
-    return `${winner}가 최종 우승했습니다.`;
+    return `${winner}(이)가 최종 우승했습니다.`;
   },
 });
 

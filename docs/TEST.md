@@ -13,5 +13,5 @@
 - [x] RandomNumber.js
   - [x] 랜덤으로 생성된 숫자가 0과 9사이에 있는지 확인
 - [ ] OutputView.js
-  - [ ] printMoveDistance
+  - [x] printMoveDistance
   - [ ] printWinner

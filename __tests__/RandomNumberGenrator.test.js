@@ -1,6 +1,6 @@
 const RandomNumberGenerator = require("../src/utils/RandomNumberGenerator");
 
-describe("RandomNumberGenerator.js 테스트", () => {
+describe("RandomNumberGenerator 객체 테스트", () => {
   test("랜덤으로 생성된 숫자가 0과 9사이에 있는지 확인 ", () => {
     for (let i = 0; i < 100; i += 1) {
       const randomNumber = RandomNumberGenerator.generate();
