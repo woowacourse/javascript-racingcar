@@ -6,6 +6,10 @@ class Car {
   constructor(name) {
     this.#name = name;
   }
+
+  move() {
+    this.#distance += 1;
+  }
 }
 
 module.exports = Car;
