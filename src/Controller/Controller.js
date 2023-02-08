@@ -1,7 +1,9 @@
 const InputView = require('../View/InputView');
 const Validation = require('../Validation');
+const Race = require('../Model/Race');
 
 class Controller {
+  #carNames;
   init() {
     this.inputCarNameHandler();
   }
@@ -14,6 +16,7 @@ class Controller {
     try {
       const carNames = carName.split(',').map((name) => name.trim());
       Validation.validateCarName(carNames);
+      this.#carNames = carNames;
       this.inputTryCountHandler();
     } catch (error) {
       this.inputCarNameHandler();
@@ -27,6 +30,8 @@ class Controller {
   tryCountHandler(tryCount) {
     try {
       Validation.validateTryCount(tryCount);
+      const race = new Race(this.#carNames, tryCount);
+      race.start();
     } catch (error) {
       this.inputTryCountHandler();
     }
