@@ -28,6 +28,9 @@ class App {
         });
     }
 
+    getRandomNumber(maxNumber, minNumber) {
+        return Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
+    }
 
 }
 
