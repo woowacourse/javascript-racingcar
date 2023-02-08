@@ -1,7 +1,8 @@
 const Console = require('./utils/Console');
 const { isValidCarNames } = require('./utils/Validation');
-
+const Car = require('./Car');
 class GameManager {
+  #cars = [];
   play() {
     this.readCarNames();
   }
@@ -12,6 +13,9 @@ class GameManager {
       Console.print('다시');
     } else {
       Console.print('통과');
+      names.forEach((name) => {
+        this.#cars.push(new Car(name));
+      });
     }
   }
 
