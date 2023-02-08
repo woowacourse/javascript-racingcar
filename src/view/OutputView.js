@@ -22,6 +22,10 @@ const OutputView = {
       Console.print(`${name} : ${"-".repeat(currentPosition)}`);
     });
   },
+
+  printWinner(winner) {
+    Console.print(`${winner.join(", ")}가 최종 우승했습니다.`);
+  },
 };
 
 module.exports = OutputView;

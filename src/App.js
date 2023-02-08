@@ -55,6 +55,14 @@ class App {
   printProcessResult() {
     const carsStatus = this.#cars.map((car) => car.getStatus());
     OutputView.printProcessResult(carsStatus, this.#tryCount);
+
+    this.printWinner(carsStatus);
+  }
+
+  printWinner(carsStatus) {
+    const winner = Car.getWinner(carsStatus);
+
+    OutputView.printWinner(winner);
   }
 }
 
