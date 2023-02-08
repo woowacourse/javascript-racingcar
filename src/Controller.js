@@ -1,6 +1,9 @@
+const { Validator } = require("./Validator");
 const { View } = require("./View");
 
 class Controller {
+  #service;
+
   startGame() {
     this.askCarName();
   }
@@ -13,7 +16,13 @@ class Controller {
   }
 
   handleCarName(names) {
-    console.log(names);
+    try {
+      Validator.validateName(names);
+      this.#service = new Service(names.split(","));
+    } catch ({ message }) {
+      View.output("ERROR: " + message);
+      return this.askCarName();
+    }
   }
 }
 
