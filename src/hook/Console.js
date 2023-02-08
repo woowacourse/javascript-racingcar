@@ -10,7 +10,9 @@ class Console {
     rl.question(string, callback);
   }
 
-  static print() {}
+  static print(string) {
+    console.log(string);
+  }
 }
 
 module.exports = Console;
