@@ -1,5 +1,4 @@
 const InputView = require('./view/InputView');
-const { Console } = require('@woowacourse/mission-utils');
 const Validation = require('./Validation');
 
 class App {
