@@ -13,6 +13,10 @@ class Console {
   static print(string) {
     console.log(string);
   }
+
+  static close() {
+    rl.close();
+  }
 }
 
 module.exports = Console;

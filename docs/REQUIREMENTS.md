@@ -4,7 +4,7 @@
 
 - [x] feat: readLine 구현
 - [x] feat: print 구현
-- [ ] feat: close 구현
+- [x] feat: close 구현
 
 #### 자동차 객체 생성
 
