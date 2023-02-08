@@ -1,3 +1,4 @@
+const Validator = require('../validator');
 const Random = require('../utils/Random');
 const {
   INIT_POSITION,
@@ -11,6 +12,8 @@ class Car {
   #position = INIT_POSITION;
 
   constructor(name) {
+    Validator.Car.checkName(name);
+
     this.#name = name;
   }
 
