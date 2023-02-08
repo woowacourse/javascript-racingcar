@@ -3,8 +3,17 @@ const { isValidCarNames } = require('./utils/Validation');
 const Car = require('./Car');
 class GameManager {
   #cars = [];
+  #tryCount = 0;
   play() {
     this.readCarNames();
+  }
+
+  handleTryCount(answer) {
+    this.#tryCount = answer;
+  }
+
+  readTryCount() {
+    Console.read('시도할 회수는 몇회인가요?', this.handleTryCount.bind(this));
   }
 
   handleCarNames(answer) {
@@ -12,10 +21,10 @@ class GameManager {
     if (!isValidCarNames(names)) {
       Console.print('다시');
     } else {
-      Console.print('통과');
       names.forEach((name) => {
         this.#cars.push(new Car(name));
       });
+      this.readTryCount();
     }
   }
 
