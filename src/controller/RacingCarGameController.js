@@ -24,6 +24,7 @@ class RacingCarGameController {
 
   #onMovingCountSubmit(movingCount) {
     try {
+      Validator.checkMovingCount(movingCount);
       OutputView.printResultTitle();
       OutputView.printCars(this.#game.getCarsInfo());
       for (let i = 0; i < movingCount; i += 1) {

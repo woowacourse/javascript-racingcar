@@ -7,6 +7,11 @@ class Validator {
     if (!character.test(carNames)) throw new Error(ERROR_MESSAGE.nameCharacter);
     if (!separator.test(carNames)) throw new Error(ERROR_MESSAGE.nameSeparator);
   }
+
+  static checkMovingCount(movingCount) {
+    const num = /^[1-9][0-9]*$/;
+    if (!num.test(movingCount)) throw new Error(ERROR_MESSAGE.movingCount);
+  }
 }
 
 module.exports = Validator;
