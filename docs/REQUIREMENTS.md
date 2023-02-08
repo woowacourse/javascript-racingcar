@@ -4,6 +4,9 @@
 
 ## 기능 목록
 
+### library
+#### ReadLine
+- [x] 입력 모듈 구현
 ### Domain
 
 #### CarRaceResultRandomGenerator
