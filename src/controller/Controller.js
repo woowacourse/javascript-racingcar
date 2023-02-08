@@ -5,10 +5,12 @@ const Car = require('../model/Car');
 class Controller {
   #cars;
   #winningDistance;
+  #histories;
 
   constructor() {
     this.#cars = [];
     this.#winningDistance = 0;
+    this.#histories = [];
   }
 
   play() {
@@ -38,15 +40,22 @@ class Controller {
 
   moveCars() {
     this.#cars.forEach((car) => car.move());
+    this.#histories.push(
+      this.#cars.map((car) => ({ name: car.getName(), distance: car.getDistance() })),
+    );
     if (!this.#cars.some((car) => car.isFinish(this.#winningDistance))) {
       this.moveCars();
       return;
     }
-    this.showResult();
+    this.#showResult();
   }
 
-  showResult() {
-    this.#cars.forEach((car) => OutputView.print(`${car.getHistories()}`));
+  #showResult() {
+    this.#histories.forEach((history) => {
+      history.forEach((car) => {
+        OutputView.print(`${car.name} : ${'-'.repeat(car.distance)}`);
+      });
+    });
   }
 
   showWinners() {}
