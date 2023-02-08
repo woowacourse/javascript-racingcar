@@ -8,6 +8,10 @@ class Validator {
   static validateCarNames(carArr) {
     carArr.forEach((car) => Validator.validateCarName(car));
   }
+
+  static validateTryCount(tryCount) {
+    if (isNaN(tryCount)) throw ERROR_MESSAGE.TRY_COUNT_TYPE_ERROR;
+  }
 }
 
 module.exports = Validator;
