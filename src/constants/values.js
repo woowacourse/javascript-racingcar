@@ -5,5 +5,15 @@ const NAME = {
   MIN: 1,
   MAX: 5,
 };
+const TRY_COUNT = {
+  MIN: 1,
+  MAX: 10,
+};
 
-module.exports = { INIT_POSITION, STEP, FORWARD_CONDITIONS_NUMBER, NAME };
+module.exports = {
+  INIT_POSITION,
+  STEP,
+  FORWARD_CONDITIONS_NUMBER,
+  NAME,
+  TRY_COUNT,
+};

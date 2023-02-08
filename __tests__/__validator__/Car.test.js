@@ -11,12 +11,12 @@ describe('자동차 예외 처리 테스트', () => {
     });
   });
 
-  test('자동차 이름은 쉼표를 기준으로 나눠져 있다.', () => {
-    const names = ['', '1', 'abcdef', 123, null, undefined];
+  test('입력 가능한 전진 시도 횟수는 1부터 10이하이다.', () => {
+    const tryCount = [0, 11, 100, 1000000, -1, null, undefined, ''];
 
-    names.forEach(name => {
+    tryCount.forEach(each => {
       expect(() => {
-        CarValidator.checkName(name);
+        CarValidator.checkTryCount(each);
       }).toThrow('[ERROR]');
     });
   });

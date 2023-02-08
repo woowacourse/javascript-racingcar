@@ -1,4 +1,4 @@
-const { NAME } = require('../constants/values');
+const { NAME, TRY_COUNT } = require('../constants/values');
 const Common = require('./Common');
 
 const Car = {
@@ -12,8 +12,9 @@ const Car = {
     Common.validateStringSize(name, NAME.MIN, NAME.MAX);
   },
 
-  checkNumber(number) {
+  checkTryCount(number) {
     Common.isNumber(number);
+    Common.validateNumberRange(number, TRY_COUNT.MIN, TRY_COUNT.MAX);
   },
 };
 
