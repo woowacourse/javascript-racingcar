@@ -17,7 +17,9 @@ class Controller {
     this.setWinningDistance();
   }
 
-  setWinningDistance() {}
+  async setWinningDistance() {
+    const winningDistance = await InputView.readline('시도할 회수는 몇회인가요?');
+  }
 
   showResult() {}
 
