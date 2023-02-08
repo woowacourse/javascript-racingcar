@@ -1,9 +1,21 @@
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
+
 class Controller {
-  constructor(service) {}
+  constructor() {}
 
-  play() {}
+  play() {
+    OutputView.print('자동차 경주 게임을 시작합니다.');
+    this.setCars();
+  }
 
-  setCars() {}
+  async setCars() {
+    const input = await InputView.readline(
+      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
+    );
+    const carNames = input.split(',');
+    this.setWinningDistance();
+  }
 
   setWinningDistance() {}
 
