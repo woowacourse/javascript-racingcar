@@ -1,6 +1,8 @@
 const CarGame = require('../models/CarGame');
 const CarNameParser = require('../utils/carNameParser');
+const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
+const OutputView = require('../views/OutputView');
 
 class CarGameController {
     #carGame;
@@ -14,12 +16,18 @@ class CarGameController {
 
     readCarNames(){
         InputView.readCarName().then((input)=>{
-            const parseResult = CarNameParser(input);
-            // 유효성검사
-            this.#carGame.initCarList(parseResult);
+            try {
+                const parseResult = CarNameParser(input);
+                Validator.validateLength(parseResult);
+                Validator.validateOverLap(parseResult);
+                Validator.validateInvalidInput(parseResult);
+                this.#carGame.initCarList(parseResult);
+            } catch(error){
+                OutputView.printError(error.message);
+                this.readCarNames();
+            }
         })
     }
-   
 }
 
 module.exports = CarGameController;
