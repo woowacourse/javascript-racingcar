@@ -1,18 +1,23 @@
-const InputView = require('../view/inputView');
+const InputView = require('../view/InputView');
 const RacingCarGame = require('../model/RacingCarGame');
+const OutputView = require('../view/OutputView');
 
 class Controller {
   constructor() {
     this.inputView = new InputView();
-    this.RacingCarGame = new RacingCarGame();
+    this.racingCarGame = new RacingCarGame();
+    this.outputView = new OutputView();
   }
 
   async init() {
     const carNames = await this.inputView.readCarNames();
     const trialCount = await this.inputView.readCount();
     const result = this.racingCarGame.getResult(carNames, trialCount);
-    await this.outputView.printResult(result);
+    this.outputView.printResult(result);
   }
 }
+
+const controller = new Controller();
+controller.init();
 
 module.exports = Controller;

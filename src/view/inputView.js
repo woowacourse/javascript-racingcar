@@ -37,15 +37,13 @@ class InputView {
   }
 
   readCount() {
-    rl.question('시도할 회수는 몇회인가요?', input => {
-      return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
+      rl.question('시도할 회수는 몇회인가요?\n', input => {
         const trialCount = Number(input);
-
         if (isNaN(trialCount)) {
           reject(new Error('숫자만 입력 가능합니다.'));
         }
         resolve(trialCount);
-        console.log(trialCount);
       });
     });
   }

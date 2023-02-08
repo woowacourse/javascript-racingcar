@@ -1,10 +1,7 @@
 class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
     let carCount = 0;
-    let carResult = '실행 결과\n';
-
-    //초기 설정
-    console.log(carNamesMap);
+    let carResult = '\n실행 결과\n';
 
     for (const carName of carNamesMap.keys()) {
       carResult += `${carName} : -\n`;
@@ -16,7 +13,7 @@ class RacingCarGame {
     while (carCount < totalTrialCount) {
       carNamesMap.forEach((_, carName) => {
         if (this.goForward()) {
-          carNamesMap.set(carName, get(carName) + 1);
+          carNamesMap.set(carName, carNamesMap.get(carName) + 1);
         }
       });
 
@@ -42,10 +39,11 @@ class RacingCarGame {
 
   getWinnerCar(carNamesMap) {
     const result = [];
-    const maxCarCount = Math.max([...carNamesMap.values()]);
+    const maxCarCount = Math.max(...carNamesMap.values());
 
     for (const car of carNamesMap.entries()) {
       const [carName, count] = car;
+
       if (maxCarCount === count) result.push(carName);
     }
 
