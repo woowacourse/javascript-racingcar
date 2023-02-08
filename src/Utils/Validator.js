@@ -1,4 +1,10 @@
 class Validator {
+  static validateNumbOfCar(number) {
+    if (number < 2) {
+      throw new Error('[ERROR] 자동차 이름은 두개 이상으로 입력해주세요.');
+    }
+  }
+  
   static validateCarName(name) {
     if (name.length < 1 || name.length > 5) {
       throw new Error('[ERROR] 자동차의 이름은 5글자 이하로 입력해주세요.');
