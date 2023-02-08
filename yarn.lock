@@ -1576,11 +1576,6 @@
   "resolved" "https://registry.npmjs.org/@webpack-cli/serve/-/serve-2.0.1.tgz"
   "version" "2.0.1"
 
-"@woowacourse/mission-utils@^1.0.6":
-  "integrity" "sha512-wkuxUnmrYGtpFaaG1mJAmtSnr6HegV4eKVIkWTd7Jh9tsLSFv6IEAtrl+YT812hOz8H7niJpLR5i77nQuePoUA=="
-  "resolved" "https://registry.npmjs.org/@woowacourse/mission-utils/-/mission-utils-1.0.6.tgz"
-  "version" "1.0.6"
-
 "@xtuc/ieee754@^1.2.0":
   "integrity" "sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA=="
   "resolved" "https://registry.npmjs.org/@xtuc/ieee754/-/ieee754-1.2.0.tgz"
@@ -2766,11 +2761,6 @@
   "integrity" "sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw=="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
-
-"fsevents@^2.3.2", "fsevents@~2.3.2":
-  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
-  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
-  "version" "2.3.2"
 
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
