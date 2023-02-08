@@ -10,8 +10,6 @@ class Controller {
 
   #attempt;
 
-  constructor() {}
-
   play() {
     this.askCarName();
   }
@@ -20,6 +18,7 @@ class Controller {
     InputView.readCarName((nameInput) => {
       const carNames = nameInput.split(',');
       Validation.carName(carNames);
+      
       console.log(carNames);
       carNames.forEach((name) => {
         const carModel = new Car(name);
