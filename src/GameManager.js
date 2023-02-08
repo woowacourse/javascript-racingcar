@@ -1,13 +1,14 @@
 const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
+const { pickRandomNumber } = require('./utils/RandomGenerator');
 class GameManager {
   #cars = [];
   #tryCount = 0;
 
   moveCars() {
     this.#cars.forEach((car) => {
-      car.move(0);
+      car.move(pickRandomNumber());
     });
   }
 
