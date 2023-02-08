@@ -1,8 +1,8 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -10,7 +10,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended",
     "airbnb-base/legacy"
-  ]
+  ],
+  "rules": {
+    "linebreak-style": "off",
+    "comma-dangle": "off",
+    "no-return-await": "off"
+  }
 }
