@@ -4,6 +4,7 @@ const Messages = {
   INPUT_ATTEMPTS: '시도할 회수는 몇회인가요?\n',
   ERROR_CAR_NAME: '[ERROR] 자동차 이름 길이 오류',
   ERROR_ATTRMPTS: '[ERROR] 시도할 횟수 입력 오류',
+  RESULT: '\n실행 결과',
 };
 
 const Settings = {

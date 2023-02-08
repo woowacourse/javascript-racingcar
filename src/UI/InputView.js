@@ -1,8 +1,6 @@
 const Console = require('./Console');
 const { Messages, Settings } = require('../Config');
 const Validator = require('../Validator');
-const RacingGame = require('../RacingGame');
-const OutputView = require('./OutputView');
 
 const InputView = {
   getCarNames(racingGame) {
@@ -21,7 +19,8 @@ const InputView = {
       attempts = parseInt(answer, 10);
       if (Validator.invalidAttempts(attempts)) InputView.getAttempts(racingGame);
       racingGame.setAttempts(attempts);
-      OutputView.printResult(racingGame);
+      racingGame.playGame();
+      Console.close();
     });
   },
 };

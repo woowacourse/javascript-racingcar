@@ -1,5 +1,5 @@
-const Console = require('./UI/Console');
 const Car = require('./Car');
+const OutputView = require('./UI/OutputView');
 
 class RacingGame {
   constructor() {}
@@ -30,6 +30,16 @@ class RacingGame {
         if (car.position > maxPosition) maxPosition = car.position;
     });
     return maxPosition;
+  }
+
+  playGame() {
+    OutputView.printResultMessage();
+    OutputView.printResult(this);
+    while (this.attempts > 0) {
+        this.moveAllCars();
+        OutputView.printResult(this);
+    }
+    OutputView.printWinners(this.findWinner());
   }
 }
 
