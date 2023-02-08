@@ -2,7 +2,9 @@ const InputView = require('../view/InputView');
 
 class Controller {
   // eslint-disable-next-line no-useless-constructor
-  constructor() {}
+  constructor() {
+    
+  }
 
   play() {
     InputView.readAttempts((msg) => {
