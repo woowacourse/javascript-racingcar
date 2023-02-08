@@ -12,7 +12,7 @@ class Car {
   }
 
   getProgress() {
-    return this.#progress.length;
+    return this.#progress;
   }
 
   getName() {
