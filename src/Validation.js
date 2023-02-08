@@ -1,12 +1,26 @@
+const {
+  minumcarNameLength,
+  minmumCarQuantity,
+  maximumCarNameLength,
+} = require('./constants/Constant');
+
 class Validation {
   static validateCarNames(names) {
     if (!Validation.#isCarNumberValid(names)) {
       throw new Error(ERROR_MESSAGE.invalidCarNumber);
     }
+
+    if (!Validation.#isCarNameLengthValid(names)) {
+      throw new Error(ERROR_MESSAGE.invalidCarNameLength);
+    }
   }
 
   static #isCarNumberValid(names) {
-    return names.length >= 2;
+    return names.length >= minmumCarQuantity;
+  }
+
+  static #isCarNameLengthValid(names) {
+    return names.every((name) => minumcarNameLength <= name && maximumCarNameLength >= name);
   }
 }
 const ERROR_MESSAGE = {
