@@ -14,11 +14,11 @@ const InputView = {
   },
 
   readCarName(callback) {
-    this.getUserInput(RaceMessage.INPUT_CAR_NAME, callback, this.readCarName);
+    this.getUserInput(RaceMessage.INPUT_CAR_NAME, callback, this.readCarName.bind(this));
   },
 
   readTryCount(callback) {
-    this.getUserInput(RaceMessage.INPUT_TRY_COUNT, callback, this.readTryCount);
+    this.getUserInput(RaceMessage.INPUT_TRY_COUNT, callback, this.readTryCount.bind(this));
   },
 };
 
