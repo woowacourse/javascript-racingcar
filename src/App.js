@@ -4,6 +4,7 @@ const Validation = require('./Validation');
 const inputErrorHandler = require('./utils/inputErrorHandler');
 const Car = require('./Car');
 const randomNumberGenerator = require('./utils/randomNumberGenerator');
+const Console = require('./utils/Console');
 
 class App {
   #cars;
@@ -54,6 +55,8 @@ class App {
       this.#printEachRoundResult();
       raceRound -= 1;
     }
+
+    this.#findWinners();
   }
 
   #playEachRound() {
@@ -74,6 +77,17 @@ class App {
       OutputView.printRoundResult(name, position);
     });
     OutputView.print('');
+  }
+
+  #findWinners() {
+    const highestScore = Math.max(...this.#cars.map((car) => car.getPosition()));
+
+    const winners = this.#cars
+      .filter((car) => car.getPosition() === highestScore)
+      .map((car) => car.getName());
+
+    OutputView.printFinalResult(winners);
+    Console.close();
   }
 }
 
