@@ -1,26 +1,20 @@
-// const readline = require("readline");
-const readline = require('readline');
-const Car = require("./Car")
+const Car = require("../model/Car")
+const InputView = require("../views/InputView")
+const OutputView = require("../views/OutputView")
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-class App {
+class Controller {
     #cars;
 
     constructor() {
         this.#cars = [];
     }
 
-    play() {
-        rl.question("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n", answer => {
+    start() {
+        InputView.inputCarName((answer) => {
             let val = answer.split(',');
-            console.log(val);
 
             this.makeCar(val);
-        });
+        })
     }
 
     makeCar(carNames) {
@@ -30,36 +24,23 @@ class App {
             this.#cars.push(car);
         }
 
-        this.inputNumber();
+        this.makeNumber()
     }
 
-    inputNumber() {
-        rl.question("시도할 회수는 몇회인가요?\n", answer => {
+    makeNumber() {
+        InputView.inputNumber((answer) => {
             let val2 = Number(answer);
             this.makeCarMove(val2);
-        });
-    }
-
-    outputCarNames() {
-        for (let car of this.#cars) {
-            console.log(car.getName());
-        }
+        })
     }
 
     makeCarMove(tryNumber) {
         for (let i = 0; i < tryNumber; i++) {
             this.moveCar()
-            this.printCarMove()
-            console.log()
+            OutputView.printCarMove(this.#cars)
         }
 
-        this.printWinners();
-    }
-
-    printCarMove() {
-        for (let car of this.#cars) {
-            console.log(car.getName() + " : " + "-".repeat(car.getPosition()))
-        }
+        OutputView.printWinners(this.whoIsWinners())
     }
 
     moveCar() {
@@ -90,13 +71,6 @@ class App {
 
         return winners;
     }
-
-    printWinners() {
-        const winners = this.whoIsWinners().join(", ");
-        console.log(`\n${winners}가 최종 우승했습니다.`);
-    }
 }
 
-const app = new App();
-app.play();
-module.exports = App
+module.exports = Controller
