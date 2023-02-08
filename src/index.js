@@ -13,10 +13,42 @@ class Racing {
         OutputView.askCarName();
         inputView.inputCarName((input) => {
             const carNames = input.split(",");
-
-            this.createCars(carNames)
-
+            this.createCars(carNames);
+            
+            this.getTotalRound();
         })
+    }
+    
+    getTotalRound() {
+        OutputView.askRound();
+        inputView.inputRound((round) => {
+            OutputView.outputResultTitle();
+            for (let i = 0; i < round; i++) {
+                this.getRoundResult()
+            }
+        })
+    }
+
+    getRoundResult() {
+        this.goStop()
+        OutputView.outputRoundResult(this.cars,this.getCarScores())
+    }
+
+    getCarScores() {
+        const scores = []
+        this.cars.forEach(eachCar => {
+            scores.push(eachCar.getScore())
+        });
+        return scores
+    }
+
+    getCarNames() {
+        const names = []
+        this.cars.forEach((eachCar) => {
+            names.push(eachCar.getCarName())
+        })
+
+        return names
     }
 
     createCars(names) {
@@ -35,6 +67,8 @@ class Racing {
             if (this.checkRandomNum()) car.go();
         })    
     }
+
+    
 
 
     
