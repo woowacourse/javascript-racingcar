@@ -36,3 +36,4 @@ require 받아오는 모듈은 외부 라이브러리인가
 - Car.js
 - View.js
 - randomGenerator.js
+- Service.js
