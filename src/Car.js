@@ -8,6 +8,10 @@ class Car {
 
     }
 
+    getCarName() {
+        return this.name
+    }
+
     getScore() {
         return this.#score
     }
