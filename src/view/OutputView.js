@@ -1,4 +1,4 @@
-const Console = require("../hook/Console");
+const Console = require("../lib/Console");
 
 const OutputView = {
   printErrorMessage(error) {

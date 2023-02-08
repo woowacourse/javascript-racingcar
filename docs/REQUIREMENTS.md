@@ -37,21 +37,23 @@
 
 ## 파일 구조
 
-├── **test**
+```bash
+├── __test__
 │ ├── Car.test.js
 ├── docs
 │ ├── REQUIREMENTS.md
-├── node_modules
 ├── src
 │ ├── libs
+│ │ ├── Console.js
 │ │ ├── Constant.js
-│ │ ├── MoveRandomNumberGenerator.js
+│ │ ├── generateRandomNumber.js
 │ ├── model
 │ │ ├── Car.js
 │ │ ├── ErrorHandler.js
-│ │ ├── Validation.js
+│ │ ├── Validator.js
 │ ├── view
 │ │ ├── InputView.js
 │ │ ├── OutputView.js
 │ ├── App.js
 └── README.md
+```

@@ -3,7 +3,7 @@ const OutputView = require("./view/OutputView.js");
 const Validator = require("./model/Validator.js");
 
 const Car = require("./model/Car.js");
-const Console = require("./hook/Console.js");
+const Console = require("./lib/Console.js");
 
 class App {
   #cars = [];

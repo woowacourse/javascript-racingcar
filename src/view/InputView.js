@@ -1,4 +1,4 @@
-const Console = require("../hook/Console.js");
+const Console = require("../lib/Console.js");
 
 const InputView = {
   readCarName(callback) {
