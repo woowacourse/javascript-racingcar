@@ -38,6 +38,7 @@ class RaceController {
       this.#race.start();
       OutputView.printRaceResult(this.#race.getResult());
     }
+    OutputView.printWinners(this.#race.getResult());
   }
 }
 
