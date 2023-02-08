@@ -1,5 +1,6 @@
 const Car = require('../models/Car');
 const RacingCarGame = require('../models/RacingCarGame');
+const Console = require('../utils/console');
 const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
@@ -25,17 +26,22 @@ class RacingCarGameController {
   #onMovingCountSubmit(movingCount) {
     try {
       Validator.checkMovingCount(movingCount);
-      OutputView.printResultTitle();
-      OutputView.printCars(this.#game.getCarsInfo());
-      for (let i = 0; i < movingCount; i += 1) {
-        this.#game.moveCars();
-        OutputView.printCars(this.#game.getCarsInfo());
-      }
-      OutputView.printWinner(this.#game.getWinner());
+      this.#printResult(movingCount);
+      Console.close();
     } catch (error) {
       OutputView.printError(error.message);
       InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
     }
+  }
+
+  #printResult(movingCount) {
+    OutputView.printResultTitle();
+    OutputView.printCars(this.#game.getCarsInfo());
+    for (let i = 0; i < movingCount; i += 1) {
+      this.#game.moveCars();
+      OutputView.printCars(this.#game.getCarsInfo());
+    }
+    OutputView.printWinner(this.#game.getWinner());
   }
 }
 
