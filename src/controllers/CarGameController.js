@@ -23,7 +23,7 @@ class CarGameController {
                 Validator.validateInvalidInput(parseResult);
                 this.#carGame.initCarList(parseResult);
                 return this.readTryCount();
-            } catch(error){
+            } catch(error) {
                 OutputView.printError(error.message);
                 this.readCarNames();
             }
@@ -35,12 +35,24 @@ class CarGameController {
             try{
                 Validator.validateNumericInput(input);
                 Validator.validatePositiveNumber(input);
-            }catch(error){
+                return this.requestMoveCars(Number(input));
+            } catch(error) {
                 OutputView.printError(error.message);
                 this.readTryCount();
             }
         })
     }
+
+    requestMoveCars(tryCount){
+        this.#carGame.moveCars(tryCount);
+        return this.printResult();
+    }
+
+    printResult(){
+        console.log(this.#carGame.getCarNames());
+        console.log(this.#carGame.getMoveDatas());
+    }
+
 }
 
 module.exports = CarGameController;
