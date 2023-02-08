@@ -20,7 +20,9 @@ class Validation {
   }
 
   static #isCarNameLengthValid(names) {
-    return names.every((name) => minumcarNameLength <= name && maximumCarNameLength >= name);
+    return names.every((name) => {
+      return minumcarNameLength <= name.length && maximumCarNameLength >= name.length;
+    });
   }
 }
 const ERROR_MESSAGE = {
