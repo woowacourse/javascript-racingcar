@@ -38,6 +38,15 @@ class Controller {
 
   moveCars() {
     this.#cars.forEach((car) => car.move());
+    if (!this.#cars.some((car) => car.isFinish(this.#winningDistance))) {
+      this.moveCars();
+      return;
+    }
+    this.showResult();
+  }
+
+  showResult() {
+    this.#cars.forEach((car) => OutputView.print(`${car.getHistories()}`));
   }
 
   showWinners() {}

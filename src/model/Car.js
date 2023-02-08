@@ -19,6 +19,22 @@ class Car {
     this.#distance += 1;
     this.addHistory();
   }
+
+  isFinish(winningDistance) {
+    return this.#distance >= winningDistance;
+  }
+
+  addHistory() {
+    this.#histories.push(this.#distance);
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getHistories() {
+    return this.#histories;
+  }
 }
 
 module.exports = Car;
