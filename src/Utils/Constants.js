@@ -7,3 +7,10 @@ const GAME_MESSAGE = Object.freeze({
   COLON: ":",
   GAME_RESULT: "(이)가 최종 우승했습니다.",
 });
+
+const LINE_BREAK = "\n";
+
+module.exports = {
+  GAME_MESSAGE,
+  LINE_BREAK,
+};
