@@ -11,6 +11,7 @@ class RacingCarGameController {
   #onCarNameSubmit(carNames) {
     const cars = carNames.split(',').map((carName) => new Car(carName));
     this.#game = new RacingCarGame(cars);
+    InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
   }
 }
 
