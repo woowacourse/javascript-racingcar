@@ -4,7 +4,6 @@ const OutputView = require("./OutputView");
 const Validation = require("./Validation");
 class App {
   #racingGame;
-  #tryCount;
 
   play() {
     this.requestInputCarNames();
@@ -21,7 +20,18 @@ class App {
     InputView.readTryCount((tryCount) => {
       Validation.validateTryCount(tryCount);
       this.#racingGame = new RacingGame(names, tryCount);
+      this.playRancingGame();
     });
+  }
+
+  playRancingGame() {
+    OutputView.printRacingStart();
+    while (!this.#racingGame.isGameComplete()) {
+      this.#racingGame.moveOneTurn();
+      const carsResultOfOneTurn = this.#racingGame.getCarsResultOfOneTurn();
+      OutputView.printOneTurnResult(carsResultOfOneTurn);
+    }
+    console.log("끝");
   }
 }
 

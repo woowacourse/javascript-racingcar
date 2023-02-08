@@ -1,16 +1,17 @@
 const OutputView = {
   printRacingStart() {
-    console.log("실행 결과");
+    console.log("\n실행 결과");
   },
 
   numberToPath(number) {
     return "-".repeat(Number(number));
   },
 
-  printOneTurnResult(playersResultOfOneTurn) {
-    playersResultOfOneTurn.forEach((playerResult) =>
-      console.log(`${playerResult.name} : ${this.numberToPath(playerResult.currentPosition)}`)
+  printOneTurnResult(carsResultOfOneTurn) {
+    carsResultOfOneTurn.forEach((carResult) =>
+      console.log(`${carResult.name} : ${this.numberToPath(carResult.currentPosition)}`)
     );
+    console.log();
   },
 };
 

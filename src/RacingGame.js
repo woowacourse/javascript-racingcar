@@ -23,21 +23,9 @@ class RacingGame {
     return this.#tryCount === 0;
   }
 
-  // test() {
-  //   for (let i = 0; i < this.#tryCount; i++) {
-  //     this.moveOneTurn();
-  //   }
-
-  //   this.#cars.forEach((car) => console.log(car.getName(), ":", car.getCurrentPosition()));
-  // }
-
-  // test() {
-  //   for (let i = 0; i < this.#tryCount; i++) {
-  //     this.moveOneTurn();
-  //   }
-
-  //   return this.#cars.map((car) => ({ name: car.getName(), currentPosition: car.getCurrentPosition() }));
-  // }
+  getCarsResultOfOneTurn() {
+    return this.#cars.map((car) => ({ name: car.getName(), currentPosition: car.getCurrentPosition() }));
+  }
 }
 
 module.exports = RacingGame;
