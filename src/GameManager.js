@@ -1,5 +1,5 @@
 const Console = require('./utils/Console');
-const { isValidCarNames } = require('./utils/Validation');
+const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
 class GameManager {
   #cars = [];
@@ -9,7 +9,11 @@ class GameManager {
   }
 
   handleTryCount(answer) {
-    this.#tryCount = answer;
+    if (!isValidTryCount(answer)) {
+      Console.print('다시');
+    } else {
+      this.#tryCount = +answer;
+    }
   }
 
   readTryCount() {
