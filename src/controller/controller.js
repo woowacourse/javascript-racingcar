@@ -48,13 +48,34 @@ class Controller {
       });
       this.showGameProgress();
     });
-    // this.showGameResult();
+    this.showGameResult();
   }
 
   showGameProgress() {
     this.#cars.forEach((item) => {
       OutputView.printGameProgress(item.getName(), item.getProgress());
     });
+  }
+
+  showGameResult() {
+    const winnerNames = [];
+    const winnerLength = this.calculateWinnerLength();
+    this.#cars.forEach((item) => {
+      if (item.getProgress().length === winnerLength) {
+        winnerNames.push(item.getName());
+      }
+    });
+    OutputView.printGameResult(winnerNames);
+  }
+
+  calculateWinnerLength() {
+    let winnerLength = 0;
+    this.#cars.forEach((item) => {
+      if (winnerLength < item.getProgress().length) {
+        winnerLength = item.getProgress().length;
+      }
+    });
+    return winnerLength;
   }
 }
 
