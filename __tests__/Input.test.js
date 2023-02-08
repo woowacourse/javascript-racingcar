@@ -1,7 +1,10 @@
 /* eslint-disable no-undef */
 const App = require('../src/index.js');
 const IO = require('../src/utils/IO.js');
-const { validateCarNames } = require('../src/utils/Validator.js');
+const {
+  validateCarNames,
+  validateTryCount,
+} = require('../src/utils/Validator.js');
 const { ERROR_MESSAGE } = require('../src/data/constants.js');
 
 const mockQuestions = (answers) => {
@@ -14,11 +17,12 @@ const mockQuestions = (answers) => {
 };
 
 describe('Input Test', () => {
-  test('Car name input test', () => {
+  const app = new App();
+
+  test('Input test', () => {
     expect(() => {
-      const app = new App();
       app.init();
-      mockQuestions(['pobi']);
+      mockQuestions(['pobi', '5']);
     }).not.toThrow();
   });
 
@@ -26,5 +30,11 @@ describe('Input Test', () => {
     expect(() => {
       validateCarNames(['pobisss', 'crongsss', 'honuxss']);
     }).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR);
+  });
+
+  test('Try count validation test', () => {
+    expect(() => {
+      validateTryCount('가');
+    }).toThrow(ERROR_MESSAGE.TRY_COUNT_TYPE_ERROR);
   });
 });

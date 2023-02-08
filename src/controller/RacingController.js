@@ -17,6 +17,7 @@ class RacingController {
       carArr.forEach((carName) => {
         this.#cars.append(new RacingCar(carName));
       });
+      this.inputTryCount();
     });
   }
 
