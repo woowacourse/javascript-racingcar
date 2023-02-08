@@ -1,8 +1,11 @@
 const InputView = require('./view/InputView');
 const Validation = require('./Validation');
 const inputErrorHandler = require('./utils/inputErrorHandler');
+const Car = require('./Car');
 
 class App {
+  #cars;
+
   play() {
     this.#requestCarNames();
   }
@@ -16,7 +19,13 @@ class App {
         this.#requestCarNames();
         return;
       }
+
+      this.#generateCars(carNames);
     });
+  }
+
+  #generateCars(carNames) {
+    this.#cars = carNames.map((carName) => new Car(carName));
   }
 }
 
