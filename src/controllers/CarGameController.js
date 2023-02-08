@@ -1,4 +1,5 @@
 const CarGame = require('../models/CarGame');
+const CarNameParser = require('../utils/carNameParser');
 const InputView = require('../views/InputView');
 
 class CarGameController {
@@ -13,7 +14,7 @@ class CarGameController {
 
     readCarNames(){
         InputView.readCarName().then((input)=>{
-            // 유틸함수 이용한 문자열 파싱
+            this.#carGame.initCarList(CarNameParser(input));
         })
     }
    
