@@ -7,8 +7,9 @@ const OutputView = {
 
     outputRoundResult(cars, scores) {
         for (let i = 0; i < cars.length; i++) {
-            console.log(`${cars[i]} : ${"-".repeat(scores[i])}`)
+            console.log(`${cars[i].getCarName()} : ${"-".repeat(scores[i])}`)
         }
+        console.log("")
     },
 
     outputWinner(winners) {
