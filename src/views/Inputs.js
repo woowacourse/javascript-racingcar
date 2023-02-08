@@ -3,19 +3,11 @@ const { QUERY } = require('../constants/messages');
 
 const Inputs = {
   readCarName() {
-    return new Promise(resolve => {
-      Console.readline(QUERY.CAR_NAME, carName => {
-        resolve(carName);
-      });
-    });
+    return Console.readline(QUERY.CAR_NAME);
   },
 
   readTryCount() {
-    return new Promise(resolve => {
-      Console.readline(QUERY.TRY_COUNT, tryCount => {
-        resolve(tryCount);
-      });
-    });
+    return Console.readline(QUERY.TRY_COUNT);
   },
 };
 
