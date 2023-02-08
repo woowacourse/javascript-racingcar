@@ -32,6 +32,7 @@ class Controller {
       Validation.validateTryCount(tryCount);
       const race = new Race(this.#carNames, tryCount);
       race.start();
+      const winner = race.makeResult();
     } catch (error) {
       this.inputTryCountHandler();
     }

@@ -16,6 +16,18 @@ class Race {
       if (this.#carNames.length === this.#currentRace.length) break;
     }
   }
+
+  makeResult() {
+    const distanceArray = this.#currentRace.map((race) => {
+      return race.filter((el) => el === 1).length;
+    });
+    const maxDistance = Math.max(...distanceArray);
+    const winner = distanceArray.reduce((arr, distance, index) => {
+      if (distance === maxDistance) arr.push(index);
+      return arr;
+    }, []);
+    return winner;
+  }
 }
 
 module.exports = Race;
