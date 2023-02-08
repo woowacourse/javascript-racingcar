@@ -18,7 +18,7 @@
 
 - method
 
-  - 이름이 5자 이하이고, 문자인지 검사.(validateName)
+  - 이름이 5자 이하이고, 문자인지 검사한다. (validateName)
   - 무작위 숫자가 4 이상이면 전진한다. (move)
 
 2. Race
