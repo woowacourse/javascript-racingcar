@@ -26,7 +26,9 @@ class App {
     InputView.readTryCount((tryCount) => this.readTryCountCallback(tryCount));
   }
 
-  readTryCountCallback() {}
+  readTryCountCallback(tryCount) {
+    Validator.tryCount(tryCount);
+  }
 }
 
 const app = new App();

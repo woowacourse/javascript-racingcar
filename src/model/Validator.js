@@ -12,6 +12,11 @@ const Validator = {
       throw new Error("[ERROR] 자동차 이름은 영소문자로 이루어져야 합니다.");
   },
 
+  tryCount(number) {
+    if (!this.isNumeric(number))
+      throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+  },
+
   isCarNameHasBlank(string) {
     return string.search(/\s/g) !== -1;
   },
@@ -26,6 +31,10 @@ const Validator = {
     return names.every((name) => {
       return name.search(/[^a-z]/g) === -1;
     });
+  },
+
+  isNumeric(number) {
+    return number.search(/[^0-9]/g) === -1;
   },
 };
 
