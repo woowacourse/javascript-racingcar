@@ -1,7 +1,8 @@
 const {
-  minumcarNameLength,
-  minmumCarQuantity,
   maximumCarNameLength,
+  minimumCarNameLength,
+  minimumCarQuantity,
+  minimumRaceRound,
 } = require('./constants/Constant');
 
 class Validation {
@@ -16,12 +17,12 @@ class Validation {
   }
 
   static #isCarNumberValid(names) {
-    return names.length >= minmumCarQuantity;
+    return names.length >= minimumCarQuantity;
   }
 
   static #isCarNameLengthValid(names) {
     return names.every((name) => {
-      return minumcarNameLength <= name.length && maximumCarNameLength >= name.length;
+      return minimumCarNameLength <= name.length && maximumCarNameLength >= name.length;
     });
   }
 }

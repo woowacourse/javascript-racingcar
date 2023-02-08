@@ -1,6 +1,6 @@
 const MAGIC_NUMBER = {
-  minmumCarQuantity: 2,
-  minumcarNameLength: 1,
+  minimumCarQuantity: 2,
+  minimumCarNameLength: 1,
   maximumCarNameLength: 5,
   minimumRaceRound: 1,
 };
