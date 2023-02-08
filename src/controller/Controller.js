@@ -1,8 +1,13 @@
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
+const Car = require('../model/Car');
 
 class Controller {
-  constructor() {}
+  #cars;
+
+  constructor() {
+    this.#cars = [];
+  }
 
   play() {
     OutputView.print('자동차 경주 게임을 시작합니다.');
@@ -14,6 +19,13 @@ class Controller {
       '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
     );
     const carNames = input.split(',');
+    this.makeCars(carNames);
+  }
+
+  async makeCars(carNames) {
+    carNames.forEach((carName) => {
+      this.#cars.push(new Car(carName));
+    });
     this.setWinningDistance();
   }
 
