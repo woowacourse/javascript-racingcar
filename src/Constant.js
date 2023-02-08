@@ -14,6 +14,11 @@ const CONSTANT = {
 
     RESULT_TITLE: "\n실행 결과",
     RESULT_MASSEGE: "가 최종 우승했습니다.",
+
+    ERROR_ROUND: "[ERROR] 0보다 큰 숫자를 입력해주세요.",
+
+    ERROR_CAR_LENGTH: "[ERROR] 자동차 이름은 5자를 넘을 수 없습니다.",
+    ERROR_CAR_NONAME:"[ERROR] 자동차 이름은 1자 이상이어야 합니다."
 }
 
 
