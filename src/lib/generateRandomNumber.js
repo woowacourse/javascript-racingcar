@@ -3,5 +3,3 @@ function generateRandomNumber() {
 }
 
 module.exports = generateRandomNumber;
-
-console.log(generateRandomNumber());

@@ -1,7 +1,9 @@
 const InputView = require("./view/InputView.js");
-const Validator = require("./model/Validator.js");
-const Car = require("./model/Car.js");
 const OutputView = require("./view/OutputView.js");
+const Validator = require("./model/Validator.js");
+
+const Car = require("./model/Car.js");
+const Console = require("./hook/Console.js");
 
 class App {
   #cars = [];
@@ -63,6 +65,11 @@ class App {
     const winner = Car.getWinner(carsStatus);
 
     OutputView.printWinner(winner);
+    this.quit();
+  }
+
+  quit() {
+    Console.close();
   }
 }
 
