@@ -11,6 +11,12 @@ class RacingGame {
   setAttempts(attempts) {
     this.attempts = attempts;
   }
+
+  moveAllCars() {
+    if (this.attempts === 0) return;
+    this.attempts -= 1;
+    this.carList.forEach((car) => car.move());
+  }
 }
 
 module.exports = RacingGame;
