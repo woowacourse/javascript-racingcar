@@ -18,6 +18,14 @@ class Car {
   canProgress() {
     return RandomNumberGenerator.generate() >= 4;
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getProgressCount() {
+    return this.#progressCount;
+  }
 }
 
 module.exports = Car;
