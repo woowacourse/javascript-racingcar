@@ -14,7 +14,6 @@ const Car = {
 
   checkNumber(number) {
     Common.isNumber(number);
-    Common.checkNumberRange();
   },
 };
 

@@ -13,7 +13,7 @@ describe('Car', () => {
   let car;
 
   beforeEach(() => {
-    car = new Car('noeyes');
+    car = new Car('sy');
   });
   test('무작위 값이 4 이상일 때 전진한다', () => {
     mockRandomGenerateNumber(4);

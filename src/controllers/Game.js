@@ -5,8 +5,6 @@ class Game {
   async play() {
     const name = await Inputs.readCarName();
     const count = await Inputs.readTryCount();
-
-    Car.checkName(name);
   }
 }
 

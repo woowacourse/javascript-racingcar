@@ -1,6 +1,5 @@
 const { CustomError, ERROR_CODE } = require('../utils/Errors');
 const { ONLY_ALPHA } = require('../constants/regularExpression');
-const { STRING_SIZE } = require('../constants/values');
 
 const Common = {
   isString(value) {
