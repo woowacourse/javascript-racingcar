@@ -32,12 +32,23 @@ class GameManager {
     }
   }
 
+  judgeWinners() {
+    const cars = [...this.#cars];
+    cars.sort((a, b) => b.getPosition() - a.getPosition());
+    const max = cars[0].getPosition();
+    const winners = cars
+      .filter((car) => car.getPosition() === max)
+      .map((car) => car.getName());
+    console.log(`${winners.join(', ')}가 최종 우승했습니다.`);
+  }
+
   handleTryCount(answer) {
     if (!isValidTryCount(answer)) {
       Console.print('다시');
     } else {
       this.#tryCount = +answer;
       this.tryMoveCars();
+      this.judgeWinners();
     }
   }
 
