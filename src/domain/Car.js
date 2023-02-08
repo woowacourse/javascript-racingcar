@@ -7,7 +7,7 @@ class Car {
 
   constructor(name) {
     this.#name = this.#validateName(name);
-    this.#position = 0;
+    this.#position = [1];
   }
 
   #validateName(name) {
@@ -18,6 +18,12 @@ class Car {
     }
 
     return this;
+  }
+
+  move(randomNumber) {
+    if (randomNumber > 3) {
+      this.#position.push(this.#position[this.#position.length - 1] + 1);
+    }
   }
 }
 
