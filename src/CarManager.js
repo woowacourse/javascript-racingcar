@@ -1,5 +1,7 @@
 const Car = require('./Car');
 
+const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
+
 class CarManager {
   #cars;
 
@@ -13,7 +15,7 @@ class CarManager {
 
   progress() {
     this.#cars.forEach((singleCar) => {
-      singleCar.tryProgress();
+      singleCar.tryProgress(RandomNumberGenerator.generate());
     });
   }
 

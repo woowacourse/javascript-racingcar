@@ -1,5 +1,3 @@
-const RandomNumberGenerator = require('./utils/RandomNumberGenerator');
-
 class Car {
   #name;
   #progressCount;
@@ -9,14 +7,14 @@ class Car {
     this.#progressCount = 0;
   }
 
-  tryProgress() {
-    if (this.canProgress()) {
+  tryProgress(randomNumber) {
+    if (this.canProgress(randomNumber)) {
       this.#progressCount++;
     }
   }
 
-  canProgress() {
-    return RandomNumberGenerator.generate() >= 4;
+  canProgress(randomNumber) {
+    return randomNumber >= 4;
   }
 
   getName() {
