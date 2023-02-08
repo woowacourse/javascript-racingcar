@@ -18,6 +18,29 @@ const Validator = {
         throw new Error(Messages.ERROR_CAR_NAME);
       }
     });
+  },
+
+  invalidAttempts(attempts) {
+    try {
+      Validator.notNumber(attempts);
+      Validator.bigNumber(attempts);
+      return false;
+    } catch (error) {
+      Console.print(error);
+      return true;
+    }
+  },
+
+  notNumber(attempts) {
+    if (attempts === NaN) {
+      throw new Error(Messages.ERROR_ATTRMPTS);
+    }
+  },
+
+  bigNumber(attempts) {
+    if (attempts > Settings.MAX_ATTEMPTS || attempts < Settings.MIN_ATTEMPTS) {
+      throw new Error(Messages.ERROR_ATTRMPTS);
+    }
   }
 };
 

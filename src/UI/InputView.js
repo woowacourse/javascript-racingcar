@@ -11,10 +11,12 @@ const InputView = {
       InputView.getAttempts();
     });
   },
+
   getAttempts(racingGame) {
     let attempts;
     Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
       attempts = parseInt(answer, 10);
+      if (Validator.invalidAttempts(attempts)) InputView.getAttempts();
     });
   },
 };
