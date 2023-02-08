@@ -1,5 +1,5 @@
 class Validator {
-  static validateNumbOfCar(number) {
+  static validateNumOfCar(number) {
     if (number < 2) {
       throw new Error('[ERROR] 자동차 이름은 두개 이상으로 입력해주세요.');
     }
