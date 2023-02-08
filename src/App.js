@@ -1,6 +1,7 @@
 const InputView = require("./view/InputView.js");
 const Validator = require("./model/Validator.js");
 const Car = require("./model/Car.js");
+const OutputView = require("./view/OutputView.js");
 
 class App {
   #cars = [];
@@ -13,7 +14,12 @@ class App {
   }
 
   readCarNameCallback(carNames) {
-    Validator.carName(carNames);
+    try {
+      Validator.carName(carNames);
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+      this.readCarName();
+    }
 
     carNames.split(",").forEach((carName) => {
       this.#cars.push(new Car(carName));
