@@ -52,6 +52,8 @@ class App {
             this.printCarMove()
             console.log()
         }
+
+        this.printWinners();
     }
 
     printCarMove() {
@@ -70,6 +72,29 @@ class App {
         return Math.floor(Math.random() * (10 - 0) + 0);
     }
 
+    whoIsWinners() {
+        let winners = [];
+        let maxPosition = 0;
+
+        for (let car of this.#cars) {
+            if (maxPosition === car.getPosition()) {
+                winners.push(car.getName());
+            }
+
+            if (maxPosition < car.getPosition()) {
+                maxPosition = car.getPosition();
+                winners = [];
+                winners.push(car.getName());
+            }
+        }
+
+        return winners;
+    }
+
+    printWinners() {
+        const winners = this.whoIsWinners().join(", ");
+        console.log(`\n${winners}가 최종 우승했습니다.`);
+    }
 }
 
 const app = new App();
