@@ -1,3 +1,16 @@
-const { View } = require("./View");
+const { Controller } = require("./Controller");
 
-class App {}
+class App {
+  #controller;
+
+  constructor() {
+    this.#controller = new Controller();
+  }
+
+  play() {
+    this.#controller.startGame();
+  }
+}
+
+const app = new App();
+app.play();
