@@ -2,19 +2,15 @@ const RandomNumGenerator = require('../Utils/RandomNumGenerator');
 
 class Race {
   #cars;
-  #tryCount;
 
-  constructor(cars, tryCount) {
+  constructor(cars) {
     this.#cars = cars;
-    this.#tryCount = tryCount;
   }
 
   start() {
-    for (let i = 0; i < this.#tryCount; i += 1) {
-      this.#cars.forEach(car => {
-        car.move(RandomNumGenerator.generateNumber());
-      });
-    }
+    this.#cars.forEach(car => {
+      car.move(RandomNumGenerator.generateNumber());
+    });
   }
 
   getResult() {
