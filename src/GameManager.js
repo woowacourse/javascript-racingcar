@@ -16,9 +16,19 @@ class GameManager {
     });
   }
 
+  printCars() {
+    this.#cars.forEach((car) => {
+      car.print();
+    });
+    Console.print('');
+  }
+
   tryMoveCars() {
+    Console.print('');
+    Console.print('실행 결과');
     for (let i = 0; i < this.#tryCount; i++) {
       this.moveCars();
+      this.printCars();
     }
   }
 
@@ -27,6 +37,7 @@ class GameManager {
       Console.print('다시');
     } else {
       this.#tryCount = +answer;
+      this.tryMoveCars();
     }
   }
 
