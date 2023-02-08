@@ -1,8 +1,11 @@
-const InputView = {
-    readCarName(callback) {
-        console.log('경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).', callback);
-    }
+// const Console  = require('./utils/readLine');
 
-};
+const GAME_MESSAGE = require('../constants');
+const Console = require('../utils/readLine');
 
+class InputView {
+  static readCarName(callback) {
+    Console.readLine(GAME_MESSAGE.askCarName, callback);
+  }
+}
 module.exports = InputView;
