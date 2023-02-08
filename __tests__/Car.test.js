@@ -7,4 +7,12 @@ describe('자동차 클래스 테스트', () => {
 
     expect(car instanceof Car).toEqual(true);
   });
+
+  test('무작위 값이 4 이상인 경우 자동차를 전진', () => {
+    const car = new Car('abc');
+
+    car.tryProgress(4);
+
+    expect(car.getProgressCount()).toEqual(1);
+  });
 });
