@@ -1,4 +1,5 @@
 const InputView = require('../View/InputView');
+const OutputView = require('../View/OutputView');
 const Validation = require('../Validation');
 const Race = require('../Model/Race');
 
@@ -31,11 +32,18 @@ class Controller {
     try {
       Validation.validateTryCount(tryCount);
       const race = new Race(this.#carNames, tryCount);
-      race.start();
-      const winner = race.makeResult();
+      this.drawHandler(race);
     } catch (error) {
       this.inputTryCountHandler();
     }
+  }
+
+  drawHandler(race) {
+    const currentRace = race.start();
+    const winner = race.makeResult();
+
+    OutputView.drawProgress(this.#carNames, currentRace);
+    OutputView.printResult(this.#carNames, winner);
   }
 }
 
