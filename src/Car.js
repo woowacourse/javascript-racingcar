@@ -8,7 +8,8 @@ class Car {
   }
 
   move() {
-    console.log(this.#name);
+    this.#movingLog++;
+    return { name: this.#name, movingLog: this.#movingLog };
   }
 
   getCarInfo() {}

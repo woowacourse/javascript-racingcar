@@ -13,13 +13,14 @@ class Service {
 
   getMovingLog(cnt) {
     // const logOfEachRound = Array.from({ length: cnt }, () => );
-    for (let i = 0; i < cnt; i++) {
+    for (let round = 0; round < cnt; round++) {
       this.#cars.forEach((car) => {
         const canMove = randomGenerator() >= 4;
-        if (canMove) car.move();
+        if (canMove) {
+          const { name, movingLog } = car.move();
+        }
       });
     }
-    const { name, movingLog } = this.#cars.getCarInfo();
   }
 }
 
