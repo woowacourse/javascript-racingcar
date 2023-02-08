@@ -1,8 +1,8 @@
-const Cars = require("./Cars");
+const RacingGame = require("./RacingGame");
 const { readCarNames, readTryCount, close } = require("./InputView");
 const Validation = require("./Validation");
 class App {
-  #cars;
+  #racingGame;
   #tryCount;
 
   play() {
@@ -12,15 +12,14 @@ class App {
   requestInputCarNames() {
     readCarNames((names) => {
       Validation.validateCarNames(names);
-      this.#cars = new Cars(names);
-      this.requestInputTryCount();
+      this.requestInputTryCount(names);
     });
   }
 
-  requestInputTryCount() {
+  requestInputTryCount(names) {
     readTryCount((tryCount) => {
       Validation.validateTryCount(tryCount);
-      this.#tryCount = tryCount;
+      this.#racingGame = new RacingGame(names, tryCount);
     });
   }
 }
