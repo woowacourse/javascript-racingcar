@@ -1,6 +1,7 @@
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
+const { GAME, INPUT, OUTPUT } = require('../utils/constants');
 
 class Controller {
   #cars;
@@ -14,15 +15,13 @@ class Controller {
   }
 
   play() {
-    OutputView.print('자동차 경주 게임을 시작합니다.');
+    OutputView.print(OUTPUT.startGame);
     this.setCars();
   }
 
   async setCars() {
-    const input = await InputView.readline(
-      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
-    );
-    const carNames = input.split(',');
+    const input = await InputView.readline(INPUT.carName);
+    const carNames = input.split(GAME.nameDivider);
     this.makeCars(carNames);
   }
 
@@ -34,7 +33,7 @@ class Controller {
   }
 
   async setWinningDistance() {
-    this.#winningDistance = await InputView.readline('시도할 회수는 몇회인가요?');
+    this.#winningDistance = await InputView.readline(INPUT.winningDistance);
     this.moveCars();
   }
 
@@ -53,7 +52,7 @@ class Controller {
   #showResult() {
     this.#histories.forEach((history) => {
       history.forEach((car) => {
-        OutputView.print(`${car.name} : ${'-'.repeat(car.distance)}`);
+        OutputView.print(OUTPUT.result(car));
       });
     });
     this.showWinners();
@@ -61,7 +60,7 @@ class Controller {
 
   showWinners() {
     const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
-    OutputView.print(`${winners.map((winner) => winner.getName()).join(',')}가 최종 우승했습니다.`);
+    OutputView.print(OUTPUT.winner(winners));
   }
 }
 module.exports = Controller;

@@ -1,3 +1,5 @@
+const { GAME } = require('../utils/constants');
+
 const RandomGenerator = require('./RandomGenerator');
 class Car {
   #name;
@@ -9,8 +11,11 @@ class Car {
   }
 
   move() {
-    const randomNumber = RandomGenerator.getBetween0And9();
-    if (randomNumber < 4) {
+    const randomNumber = RandomGenerator.getBetween(
+      GAME.MOVE_CONDITION.min,
+      GAME.MOVE_CONDITION.max,
+    );
+    if (randomNumber < GAME.MOVE_CONDITION.mid) {
       return;
     }
     this.#distance += 1;
