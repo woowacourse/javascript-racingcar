@@ -1,4 +1,4 @@
-const GAME_MESSAGE = require('../constants');
+const { GAME_MESSAGE } = require('../constants');
 const Console = require('../utils/Console');
 
 class InputView {
@@ -7,7 +7,7 @@ class InputView {
   }
 
   static readAttempts(callback) {
-    Console.readLine(GAME_MESSAGE.askTryCount, callback);
+    Console.readLine(GAME_MESSAGE.askAttempts, callback);
   }
 }
 module.exports = InputView;
