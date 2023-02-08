@@ -14,7 +14,9 @@ class CarGameController {
 
     readCarNames(){
         InputView.readCarName().then((input)=>{
-            this.#carGame.initCarList(CarNameParser(input));
+            const parseResult = CarNameParser(input);
+            // 유효성검사
+            this.#carGame.initCarList(parseResult);
         })
     }
    
