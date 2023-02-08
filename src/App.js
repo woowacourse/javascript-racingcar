@@ -1,4 +1,5 @@
 const InputView = require("./view/InputView.js");
+const Validator = require("./model/Validator.js");
 
 class App {
   play() {
@@ -10,7 +11,7 @@ class App {
   }
 
   readCarNameCallback(carName) {
-    console.log(carName);
+    Validator.carName(carName);
   }
 }
 
