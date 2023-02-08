@@ -26,6 +26,12 @@ class App {
 
   #generateCars(carNames) {
     this.#cars = carNames.map((carName) => new Car(carName));
+
+    this.#requestRaceRound();
+  }
+
+  #requestRaceRound() {
+    InputView.readRaceRound((raceRoundInput) => {});
   }
 }
 
