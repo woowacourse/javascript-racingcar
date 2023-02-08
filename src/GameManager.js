@@ -6,9 +6,13 @@ class GameManager {
   #cars = [];
   #tryCount = 0;
 
+  isForward() {
+    return pickRandomNumber() >= 4;
+  }
+
   moveCars() {
     this.#cars.forEach((car) => {
-      car.move(pickRandomNumber());
+      car.move(this.isForward());
     });
   }
 
