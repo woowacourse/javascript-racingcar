@@ -22,9 +22,22 @@ class CarGameController {
                 Validator.validateOverLap(parseResult);
                 Validator.validateInvalidInput(parseResult);
                 this.#carGame.initCarList(parseResult);
+                return this.readTryCount();
             } catch(error){
                 OutputView.printError(error.message);
                 this.readCarNames();
+            }
+        })
+    }
+
+    readTryCount(){
+        InputView.readTryCount().then((input)=>{
+            try{
+                Validator.validateNumericInput(input);
+                Validator.validatePositiveNumber(input);
+            }catch(error){
+                OutputView.printError(error.message);
+                this.readTryCount();
             }
         })
     }
