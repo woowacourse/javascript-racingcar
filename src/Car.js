@@ -2,16 +2,19 @@ class Car {
     #name;
     #position;
 
-    constructor(name) {
+    constructor() {
         this.#position = 0;
-        this.#name = name;
     }
 
     decideGoAndStop(randomNumber) {
         if (randomNumber >= 4) this.#position++;
     }
 
-    getPostion() {
+    inputName(name) {
+        this.#name = name;
+    }
+
+    getPosition() {
         return this.#position;
     }
 
@@ -19,3 +22,5 @@ class Car {
         return this.#name;
     }
 }
+
+module.exports = Car;
