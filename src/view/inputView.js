@@ -1,35 +1,53 @@
-const { Console } = require("@woowacourse/mission-utils");
+const readline = require('readline');
+
+// function goForward() {
+//   const GO_FORWARD = 4;
+//   return Math.floor(Math.random() * 10) >= GO_FORWARD;
+// }
 
 class InputView {
   readCarNames() {
-    Console.readLine(
-      "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
-      (input) => {
-        try {
-          const carNames = input.split(",");
-          for (const car of carNames) {
-            if (car.length > 5)
-              throw new Error("자동차 이름이 5글자가 넘어용 🥲");
+    return new Promise((resolve, reject) => {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
+      rl.question(
+        '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
+        input => {
+          const carNames = input.split(',');
+          if (!this.validateCarNames(carNames)) {
+            reject('다섯글자 이하의 자동차를 중복없이 입력해주세요.');
           }
+
           const carMap = carNames.reduce((acc, cur) => {
             return acc.set(cur, 1);
           }, new Map());
-          this.readCount();
-        } catch (err) {
-          console.log(err);
-          this.readCarNames();
+
+          resolve(carMap);
         }
-      }
-    );
+      );
+    });
+  }
+
+  validateCarNames(carNames) {
+    if ([...new Set(carNames)].length !== carNames.length) return false;
+
+    for (const car of carNames) {
+      if (car.length > 5 || car.length === 0) return false;
+    }
+
+    return true;
   }
 
   readCount() {
-    Console.readLine("시도할 회수는 몇회인가요?", (input) => {
+    rl.question('시도할 회수는 몇회인가요?', input => {
       try {
         const trialCount = Number(input); //NaN
 
         if (isNaN(trialCount)) {
-          throw new Error("숫자만 입력 가능합니다.");
+          throw new Error('숫자만 입력 가능합니다.');
         }
       } catch (err) {
         console.log(err);
@@ -40,4 +58,11 @@ class InputView {
 }
 
 const inputView = new InputView();
-inputView.readCarNames();
+inputView
+  .readCarNames()
+  .then(result => {
+    console.log(result);
+  })
+  .catch(err => {
+    console.log(err);
+  });
