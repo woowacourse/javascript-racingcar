@@ -2,7 +2,7 @@ const Validator = {
   carName(string) {
     const names = string.split(",");
 
-    if (this.isCarNameHasBlank)
+    if (this.isCarNameHasBlank(string))
       throw new Error("[ERROR] 자동차 이름에 공백이 포함되어서는 안됩니다.");
 
     if (!this.isCarNameLessThenFive(names))

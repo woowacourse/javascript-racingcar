@@ -18,7 +18,15 @@ class App {
     carNames.split(",").forEach((carName) => {
       this.#cars.push(new Car(carName));
     });
+
+    this.readTryCount();
   }
+
+  readTryCount() {
+    InputView.readTryCount((tryCount) => this.readTryCountCallback(tryCount));
+  }
+
+  readTryCountCallback() {}
 }
 
 const app = new App();

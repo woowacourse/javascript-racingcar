@@ -7,6 +7,10 @@ const InputView = {
       callback
     );
   },
+
+  readTryCount(callback) {
+    Console.readLine("시도할 회수는 몇회인가요?\n", callback);
+  },
 };
 
 module.exports = InputView;
