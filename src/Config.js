@@ -12,6 +12,9 @@ const Settings = {
   MAX_NAME_LENGTH: 5,
   MIN_ATTEMPTS: 1,
   MAX_ATTEMPTS: 1000,
+  MIN_RANDOM_VALUE: 0,
+  MAX_RANDOM_VALUE: 10,
+  MOVING_NUMBER: 4,
 };
 
 module.exports = { Messages, Settings };
