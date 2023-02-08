@@ -22,6 +22,9 @@ const InputView = {
 
     return tryCount;
   },
+  readTryCount(callback) {
+    readLine(INPUT_TRY_COUNT, callback);
+  },
 };
 
 module.exports = InputView;
