@@ -14,7 +14,6 @@ class Racing {
         inputView.inputCarName((input) => {
             const carNames = input.split(",");
             this.createCars(carNames);
-            
             this.getTotalRound();
         })
     }
@@ -76,11 +75,8 @@ class Racing {
                 winner = [car.getCarName()];
             } else if (car.getScore() === winnerScore) winner.push(car.getCarName());
         })
-        return winner
+        return winner 
     }
-
-
-    
 }
 
 module.exports = Racing
