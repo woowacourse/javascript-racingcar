@@ -4,9 +4,11 @@ const Car = require('../model/Car');
 
 class Controller {
   #cars;
+  #winningDistance;
 
   constructor() {
     this.#cars = [];
+    this.#winningDistance = 0;
   }
 
   play() {
@@ -30,10 +32,13 @@ class Controller {
   }
 
   async setWinningDistance() {
-    const winningDistance = await InputView.readline('시도할 회수는 몇회인가요?');
+    this.#winningDistance = await InputView.readline('시도할 회수는 몇회인가요?');
+    this.moveCars();
   }
 
-  showResult() {}
+  moveCars() {
+    this.#cars.forEach((car) => car.move());
+  }
 
   showWinners() {}
 }
