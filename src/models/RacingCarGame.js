@@ -18,6 +18,12 @@ class RacingCarGame {
       car.move();
     });
   }
+
+  getCarsInfo() {
+    return new Map(this.#cars.map((car) => car.getInfo()));
+  }
+
+  getResult() {}
 }
 
 module.exports = RacingCarGame;

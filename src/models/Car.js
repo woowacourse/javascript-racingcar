@@ -10,6 +10,10 @@ class Car {
   move() {
     this.#distance += 1;
   }
+
+  getInfo() {
+    return [this.#name, this.#distance];
+  }
 }
 
 module.exports = Car;
