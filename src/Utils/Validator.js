@@ -8,6 +8,12 @@ class Validator {
       throw new Error('[ERROR] 자동차의 이름을 다시 입력해주세요.');
     }
   }
+
+  static valdateTryCount(count) {
+    if (!/^[0-9]+$/.test(count)) {
+      throw new Error('[ERROR] 숫자를 입력해주세요.');
+    }
+  }
 }
 
 module.exports = Validator;
