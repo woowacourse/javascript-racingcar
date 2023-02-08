@@ -23,7 +23,14 @@ class RacingCarGame {
     return new Map(this.#cars.map((car) => car.getInfo()));
   }
 
-  getResult() {}
+  getWinner() {
+    const carsInfo = this.getCarsInfo();
+    const max = Math.max(...carsInfo.values());
+    const winners = [...carsInfo.entries()]
+      .filter((carInfo) => carInfo[1] === max)
+      .map((c) => c[0]);
+    return winners;
+  }
 }
 
 module.exports = RacingCarGame;

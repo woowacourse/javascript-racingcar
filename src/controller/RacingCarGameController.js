@@ -22,6 +22,7 @@ class RacingCarGameController {
       this.#game.moveCars();
       OutputView.printCars(this.#game.getCarsInfo());
     }
+    OutputView.printWinner(this.#game.getWinner());
   }
 }
 
