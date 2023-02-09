@@ -40,4 +40,10 @@ const ERROR_MESSAGE = Object.freeze({
   duplicatedCarName: `${ERROR_SUBJECT}자동차 이름 중 중복된 이름이 있습니다.`,
 });
 
-module.exports = { ERROR_MESSAGE, GAME_MESSAGE, GAME_NUMBER, GAME_STRING };
+module.exports = {
+  ERROR_MESSAGE,
+  ERROR_SUBJECT,
+  GAME_MESSAGE,
+  GAME_NUMBER,
+  GAME_STRING,
+};
