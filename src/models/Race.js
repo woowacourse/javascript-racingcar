@@ -2,7 +2,7 @@ import Random from '../utils/Random';
 import Car from './Car';
 
 class Race {
-  FREEZE_CHANCE = 4;
+  static FREEZE_CHANCE = 4;
 
   /** @type {Car[]} */
   #cars;
