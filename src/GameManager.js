@@ -1,7 +1,8 @@
 const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
-const { pickRandomNumber } = require('./utils/RandomGenerator');
+// const { pickRandomNumber } = require('./utils/RandomGenerator');
+const RandomGenerator = require('./utils/RandomGenerator');
 const {
   printResult,
   printWinners,
@@ -14,7 +15,7 @@ class GameManager {
   #cars = [];
 
   isForward() {
-    return pickRandomNumber() >= 4;
+    return RandomGenerator.pickRandomNumber() >= 4;
   }
 
   moveCars(cars) {
