@@ -1,6 +1,7 @@
 const CarGame = require('../models/CarGame');
 const CarNameParse = require('../utils/CarNameParse');
 const functionPipe = require('../utils/funcitonPipe');
+const getRandomNumber = require('../utils/getRandomNumber');
 const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
@@ -47,7 +48,7 @@ class CarGameController {
   }
 
   requestMoveCars(tryCount) {
-    this.#carGame.moveCars(tryCount);
+    this.#carGame.moveCars(tryCount, getRandomNumber);
     return this.printResult();
   }
 
@@ -58,6 +59,7 @@ class CarGameController {
     moveDatas.forEach((carMoves) => {
       OutputView.printMoveResult(carNames, carMoves);
     });
+
     return this.printWinners(carNames, moveDatas[moveDatas.length - 1]);
   }
 

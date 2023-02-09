@@ -1,4 +1,3 @@
-const getRandomNumber = require('../utils/getRandomNumber.js');
 const Car = require('./Car');
 
 class CarGame {
@@ -11,7 +10,7 @@ class CarGame {
     });
   }
 
-  moveCars(tryCount) {
+  moveCars(tryCount, getRandomNumber) {
     for (let count = 0; count < tryCount; count++) {
       const moveData = [];
       this.#carList.forEach((car) => {
