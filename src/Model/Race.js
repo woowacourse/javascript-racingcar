@@ -12,11 +12,20 @@ class Race {
 
   start() {
     while (true) {
-      const race = Random.makeRandomNumbers(this.#tryCount);
+      const race = this.convertResults(
+        Random.makeRandomNumbers(this.#tryCount)
+      );
       this.#currentRace.push(race);
       if (this.#carNames.length === this.#currentRace.length) break;
     }
     return this.#currentRace;
+  }
+
+  convertResults(race) {
+    const convertedRace = race.map((step) => {
+      return step >= 4 ? '-' : '';
+    });
+    return convertedRace;
   }
 
   makeResult() {
