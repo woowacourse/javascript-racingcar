@@ -4,75 +4,78 @@ const OutputView = require("../views/OutputView");
 const { RANDOM } = require("../utils/Constant");
 
 class Controller {
-    #cars;
-    #winners;
-    #maxPosition;
+  #cars;
+  #winners;
+  #maxPosition;
 
-    constructor() {
-        this.#cars = [];
-        this.#winners = [];
-        this.#maxPosition = 0;
+  constructor() {
+    this.#cars = [];
+    this.#winners = [];
+    this.#maxPosition = 0;
+  }
+
+  start() {
+    InputView.inputCarName((answer) => {
+      let nameOfCars = answer.split(",");
+
+      this.makeCar(nameOfCars);
+    });
+  }
+
+  makeCar(carNames) {
+    for (let len = 0; len < carNames.length; len++) {
+      let car = new Car();
+      car.inputName(carNames[len]);
+      this.#cars.push(car);
     }
 
-    start() {
-        InputView.inputCarName((answer) => {
-            let nameOfCars = answer.split(',');
+    this.makeNumber();
+  }
 
-            this.makeCar(nameOfCars);
-        })
+  makeNumber() {
+    InputView.inputNumber((answer) => {
+      let tryNumber = Number(answer);
+      this.makeCarMove(tryNumber);
+    });
+  }
+
+  makeCarMove(tryNumber) {
+    for (let num = 0; num < tryNumber; num++) {
+      this.moveCar();
+      OutputView.printCarMove(this.#cars);
     }
+    this.whoIsWinners();
+    OutputView.printWinners(this.#winners);
+  }
 
-    makeCar(carNames) {
-        for (let len = 0; len < carNames.length; len++) {
-            let car = new Car();
-            car.inputName(carNames[len]);
-            this.#cars.push(car);
-        }
-
-        this.makeNumber()
+  moveCar() {
+    for (let car of this.#cars) {
+      car.decideGoAndStop(this.getRandomNumber());
     }
+  }
 
-    makeNumber() {
-        InputView.inputNumber((answer) => {
-            let tryNumber = Number(answer);
-            this.makeCarMove(tryNumber);
-        })
+  getRandomNumber() {
+    return Math.floor(
+      Math.random() * (RANDOM.MAXNUMBER - RANDOM.MINNUMBER) + RANDOM.MINNUMBER
+    );
+  }
+
+  whoIsWinners() {
+    for (let car of this.#cars) {
+      this.comparedCars(car);
     }
+  }
 
-    makeCarMove(tryNumber) {
-        for (let num = 0; num < tryNumber; num++) {
-            this.moveCar()
-            OutputView.printCarMove(this.#cars)
-        }
-        this.whoIsWinners();
-        OutputView.printWinners(this.#winners)
+  comparedCars(car) {
+    if (this.#maxPosition === car.getPosition())
+      this.#winners.push(car.getName());
+
+    if (this.#maxPosition < car.getPosition()) {
+      this.#maxPosition = car.getPosition();
+      this.#winners = [];
+      this.#winners.push(car.getName());
     }
-
-    moveCar() {
-        for (let car of this.#cars) {
-            car.decideGoAndStop(this.getRandomNumber());
-        }
-    }
-
-    getRandomNumber() {
-        return Math.floor(Math.random() * (RANDOM.MAXNUMBER - RANDOM.MINNUMBER) + RANDOM.MINNUMBER);
-    }
-
-    whoIsWinners() {
-        for (let car of this.#cars) {
-            this.comparedCars(car)
-        }
-    }
-
-    comparedCars(car) {
-        if (this.#maxPosition === car.getPosition()) this.#winners.push(car.getName());
-
-        if (this.#maxPosition < car.getPosition()) {
-            this.#maxPosition = car.getPosition();
-            this.#winners = [];
-            this.#winners.push(car.getName())
-        }
-    }
+  }
 }
 
-module.exports = Controller
+module.exports = Controller;
