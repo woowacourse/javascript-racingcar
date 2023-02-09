@@ -1,9 +1,7 @@
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
-const Validation = require('./Validation');
-const inputErrorHandler = require('./utils/inputErrorHandler');
-const Console = require('./utils/Console');
 const RacingGame = require('./RacingGame');
+const Validation = require('./Validation');
+const { InputView, OutputView } = require('./view');
+const { inputErrorHandler, Console } = require('./utils');
 
 class App {
   #racingGame;
