@@ -10,6 +10,12 @@ class Validate {
       throw new Error('[ERROR] 문자만 입력해야 합니다.');
     }
   }
+
+  static checkTrial(trial) {
+    if (!REGEX.number.test(trial)) {
+      throw new Error('[ERROR] 숫자만 입력해야 합니다.');
+    }
+  }
 }
 
 module.exports = Validate;
