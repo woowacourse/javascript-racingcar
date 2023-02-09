@@ -15,7 +15,7 @@ const toInt = (string) => parseInt(string, 10);
 
 const randomGenerator = {
   getBetween(min, max) {
-    return min + Math.floor(Math.random() * max);
+    return min + Math.floor(Math.random() * (max - min));
   },
 };
 
