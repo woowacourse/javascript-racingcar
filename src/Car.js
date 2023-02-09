@@ -1,5 +1,4 @@
 const { printCar } = require('./OutputView');
-const Console = require('./utils/Console');
 
 class Car {
   #name;
