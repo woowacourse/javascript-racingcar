@@ -19,7 +19,7 @@
 - method
 
   - 무작위 숫자가 4 이상이면 전진한다. (move)
-  - 마지막 위치 결과를 반환한다. (getLast)
+  - 마지막 위치 결과를 반환한다. (getPosition)
 
 2. Race
 
