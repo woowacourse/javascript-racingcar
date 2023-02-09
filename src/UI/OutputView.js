@@ -1,6 +1,6 @@
 const { print } = require("../Utils/Utils");
 const { GAME_MESSAGE, LINE_BREAK } = require("../Utils/Constants");
-const { RUN_RESULT_MESSAGE, GAME_RESULT } = GAME_MESSAGE;
+const { RUN_RESULT_MESSAGE, GAME_RESULT, COLON, MOVEMENT_UNIT } = GAME_MESSAGE;
 
 const OutputView = {
   printResultMessage() {
@@ -8,8 +8,8 @@ const OutputView = {
   },
 
   printCarMovement(carStatus) {
-    for (const { name, count } of Object.entries(carStatus)) {
-      print(`${name} ${COLON} ${MOVEMENT_UNIT.repeat(count)}${LINE_BREAK}`);
+    for (const [name, count] of Object.entries(carStatus)) {
+      print(`${name} ${COLON} ${MOVEMENT_UNIT.repeat(count)}`);
     }
     print(LINE_BREAK);
   },
