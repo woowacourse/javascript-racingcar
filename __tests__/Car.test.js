@@ -1,6 +1,16 @@
 const Car = require('../src/models/Car');
+describe('Car 이동 테스트', () => {
+  test('차가 이동하면 distance가 1 증가한다.', () => {
+    const car = new Car('abcd');
 
-describe('자동차 클래스 유효성 테스트', () => {
+    car.move();
+    const result = car.getInfo()[1];
+
+    expect(result).toEqual(2);
+  });
+});
+
+describe('Car 유효성 테스트', () => {
   test('이름의 길이가 5 이하일 때', () => {
     expect(() => {
       new Car('abcd');
