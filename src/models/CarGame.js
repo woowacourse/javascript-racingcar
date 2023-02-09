@@ -15,8 +15,8 @@ class CarGame {
     for (let count = 0; count < tryCount; count++) {
       const moveData = [];
       this.#carList.forEach((car) => {
-        const moveResult = car.move(getRandomNumber());
-        moveData.push(moveResult);
+        const carState = car.move(getRandomNumber());
+        moveData.push(carState);
       });
       this.#moveList.push([...moveData]);
     }

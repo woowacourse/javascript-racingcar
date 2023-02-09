@@ -1,4 +1,4 @@
-function CarNameParser(str) {
+function CarNameParse(str) {
   let carNames = str.split(',');
   carNames = carNames.map((name) => {
     return name.trim();
@@ -6,4 +6,4 @@ function CarNameParser(str) {
   return carNames.slice();
 }
 
-module.exports = CarNameParser;
+module.exports = CarNameParse;

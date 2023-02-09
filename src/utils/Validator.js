@@ -3,8 +3,7 @@ const { ERROR_MESSAGE } = require('./constants');
 class Validator {
   static validateLength(names) {
     names.forEach((name) => {
-      if (name.length < 1 || name.length > 5)
-        throw new Error(ERROR_MESSAGE.NAME_LENGTH);
+      if (name.length < 1 || name.length > 5) throw new Error(ERROR_MESSAGE.NAME_LENGTH);
     });
   }
 
@@ -16,15 +15,13 @@ class Validator {
   static validateInvalidInput(names) {
     const ALPHA_REGEXP = /^[a-z|A-Z]+$/;
     names.forEach((name) => {
-      if (!ALPHA_REGEXP.test(name))
-        throw new Error(ERROR_MESSAGE.NAME_ONLY_ALPHABET);
+      if (!ALPHA_REGEXP.test(name)) throw new Error(ERROR_MESSAGE.NAME_ONLY_ALPHABET);
     });
   }
 
   static validateNumericInput(tryCount) {
     const NUMBER_REGEXP = /^[0-9]+$/;
-    if (!NUMBER_REGEXP.test(tryCount))
-      throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
+    if (!NUMBER_REGEXP.test(tryCount)) throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
   }
 
   static validatePositiveNumber(tryCount) {

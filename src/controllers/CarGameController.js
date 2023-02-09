@@ -1,5 +1,6 @@
 const CarGame = require('../models/CarGame');
-const CarNameParser = require('../utils/carNameParser');
+const CarNameParse = require('../utils/CarNameParse');
+const functionPipe = require('../utils/funcitonPipe');
 const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
@@ -17,17 +18,19 @@ class CarGameController {
   readCarNames() {
     InputView.readCarName().then((input) => {
       try {
-        const parseResult = CarNameParser(input);
-        Validator.validateLength(parseResult);
-        Validator.validateOverLap(parseResult);
-        Validator.validateInvalidInput(parseResult);
-        this.#carGame.initCarList(parseResult);
-        return this.readTryCount();
+        const parsedCarName = CarNameParse(input);
+        functionPipe(parsedCarName, Validator.validateLength, Validator.validateOverLap, Validator.validateInvalidInput);
+        return this.saveCarDatas(parsedCarName);
       } catch (error) {
         OutputView.printError(error.message);
         this.readCarNames();
       }
     });
+  }
+
+  saveCarDatas(parsedCarName) {
+    this.#carGame.initCarList(parsedCarName);
+    return this.readTryCount();
   }
 
   readTryCount() {

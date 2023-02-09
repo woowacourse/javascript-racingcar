@@ -8,15 +8,11 @@ const OutputView = {
   },
 
   printMoveResult(names, moveData) {
+    let resultStr = '';
     for (let index = 0; index < names.length; index++) {
-      console.log(
-        OUTPUT_MESSAGE.MOVE_RESULT(
-          names[index],
-          numberToDistanceString(moveData[index])
-        )
-      );
+      resultStr += OUTPUT_MESSAGE.MOVE_RESULT(names[index], numberToDistanceString(moveData[index])) + '\n';
     }
-    console.log();
+    console.log(resultStr);
   },
 
   printWinner(names) {

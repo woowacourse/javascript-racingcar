@@ -6,8 +6,8 @@ class Car {
     this.#state = 0;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= 4) this.#state += 1;
+  move(moveNumber) {
+    if (moveNumber >= 4) this.#state += 1;
     return this.#state;
   }
 
