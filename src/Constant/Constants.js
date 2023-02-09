@@ -8,6 +8,7 @@ const CONSTANTS = {
   colon: ':',
   dash: '-',
   commaBlank: ', ',
+  undefinedType: 'undefined',
 };
 
 module.exports = CONSTANTS;

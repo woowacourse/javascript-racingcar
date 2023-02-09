@@ -16,6 +16,10 @@ class Validator {
     if (!/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(name)) {
       throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
+
+    if ([CONSTANTS.empty, CONSTANTS.undefinedType].includes(name)) {
+      throw new Error(RACE_ERROR_MESSAGE.invalidInput);
+    }
   }
 
   static validateTryCount(count) {
