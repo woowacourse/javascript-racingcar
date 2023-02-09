@@ -46,7 +46,6 @@ class GameManager {
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
     printWinners(winners);
-    Console.close();
   }
 
   async handleTryCount() {
@@ -81,6 +80,7 @@ class GameManager {
     await this.handleTryCount();
     this.tryMoveCars();
     this.judgeWinners();
+    Console.close();
   }
 }
 
