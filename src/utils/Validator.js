@@ -1,25 +1,28 @@
-const Validator = {
-  VALID_CHARACTER_REGEX: /^[a-z|A-Z|가-힣|,]+$/g,
-  VALID_INTEGER_REGEX: /^[1-9]\d*$/,
+const {
+  VALID_CHARACTER_REGEX,
+  VALID_INTEGER_REGEX,
+  ERROR_MESSAGE,
+} = require('../constants/validation');
 
+const Validator = {
   validateNameInput(nameInput) {
     if (!this.hasValidCharacter(nameInput)) {
-      throw new Error('invalid character');
+      throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
     }
   },
 
   hasValidCharacter(nameInput) {
-    return this.VALID_CHARACTER_REGEX.test(nameInput);
+    return VALID_CHARACTER_REGEX.test(nameInput);
   },
 
   validateTryCountsInput(tryCountsInput) {
     if (!this.isTryCountsInputValid(tryCountsInput)) {
-      throw new Error('invalid tryCountsInput');
+      throw new Error(ERROR_MESSAGE.INVALID_TRY_COUNT);
     }
   },
 
   isTryCountsInputValid(tryCountsInput) {
-    return this.VALID_INTEGER_REGEX.test(tryCountsInput);
+    return VALID_INTEGER_REGEX.test(tryCountsInput);
   },
 };
 
