@@ -15,7 +15,7 @@ class RaceController {
   getCarName() {
     InputView.readCarName(carName => {
       const splitCarName = carName.split(CONSTANTS.comma);
-      Validator.validateNumOfCar(splitCarName.length);
+      Validator.validateNumOfCar(splitCarName);
       const cars = [];
       splitCarName.forEach(name => {
         Validator.validateCarName(name);
