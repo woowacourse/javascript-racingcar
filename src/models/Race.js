@@ -2,6 +2,8 @@ import Random from '../utils/Random';
 import Car from './Car';
 
 class Race {
+  FREEZE_CHANCE = 4;
+
   /** @type {Car[]} */
   #cars;
 
@@ -15,8 +17,9 @@ class Race {
   moveOnce() {
     this.#cars.forEach((car) => {
       const randomNumber = Random.randomNumberBetween(0, 10);
+      if (randomNumber < Race.FREEZE_CHANCE) return;
 
-      if (randomNumber >= 4) car.move();
+      car.move();
     });
   }
 
