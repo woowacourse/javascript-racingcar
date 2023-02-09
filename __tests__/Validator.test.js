@@ -1,28 +1,6 @@
 const Console = require('../src/UI/Console');
 const Validator = require('../src/Validator');
 
-const mockQuestions = (answers) => {
-  Console.readLine = jest.fn();
-  answers.reduce(
-    (acc, input) => acc.mockImplementationOnce((_, callback) => { callback(input); }),
-    Console.readLine,
-  );
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(Console, 'print');
-  logSpy.mockClear();
-  return logSpy;
-};
-
-const getOutput = (logSpy) => [...logSpy.mock.calls].join('');
-
-const expectLogContains = (received, logs) => {
-  logs.forEach((log) => {
-    expect(received).toEqual(expect.stringContaining(log));
-  });
-};
-
 describe('자동차 이름 검사', () => {
     test.each([[['참새','에이든']], [['참새']]])('정상', (carNames) => {
       expect(Validator.invalidCarNames(carNames)).toEqual(false);
