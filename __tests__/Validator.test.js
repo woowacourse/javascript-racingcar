@@ -10,6 +10,14 @@ describe('자동차 이름을 위한 입력값의 유효성 검사', () => {
       );
     },
   );
+
+  test('유효한 자동차 이름 길이가 아닌 경우 예외 처리', () => {
+    const carNamesInput = 'pobi,crongg,honux';
+
+    expect(() => Validator.validateNameInput(carNamesInput)).toThrow(
+      ERROR_MESSAGE.INVALID_NAME_LENGTH,
+    );
+  });
 });
 
 describe('시도할 횟수를 위한 입력값의 유효성 검사', () => {
