@@ -51,6 +51,21 @@ class CarGame {
 
     return [...winners];
   }
+
+  getWinners() {
+    let maxDistance = 0;
+    let winners = [];
+
+    this.#carList.forEach((car) => {
+      if (car.getState() === maxDistance) winners.push(car.getName());
+      if (car.getState() > maxDistance) {
+        winners = [car.getName()];
+        maxDistance = car.getState();
+      }
+    });
+
+    return [...winners];
+  }
 }
 
 module.exports = CarGame;
