@@ -33,11 +33,14 @@ class App {
         this.#requestRaceRound(carNames);
         return;
       }
-
-      this.#racingGame = new RacingGame(carNames, raceRound);
-
-      this.#raceCars();
     });
+    this.#playGame();
+  }
+
+  #playGame() {
+    this.#racingGame = new RacingGame(carNames, raceRound);
+
+    this.#raceCars();
   }
 
   #raceCars() {
