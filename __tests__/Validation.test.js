@@ -1,12 +1,13 @@
 const { isValidCarNames, isValidTryCount } = require('../src/utils/Validation');
 
 describe('Validation Test', () => {
-  test('이름이 1~5자 인가?', () => {
-    //given
-    const names = ['yunseong', 'gabriel'];
-    //when
-    expect(isValidCarNames(names)).toBeFalsy();
-    //then
+  test.each([
+    [['yunseong', 'gabriel'], false],
+    [['aa', 'bb', 'cc'], true],
+    [['aa', 'bb', ''], false],
+    // [['aa', 'bb', '윤생이😁😁'], true], => 고민할 부분(서로게이트 쌍)
+  ])('이름 유효성 검사(%s: %s)', (names, expected) => {
+    expect(isValidCarNames(names)).toBe(expected);
   });
 
   test('시도 횟수가 자연수인가?', () => {
