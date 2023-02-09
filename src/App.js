@@ -45,7 +45,7 @@ class App {
     this.#race.start();
 
     OutputView.printRaceResult(this.#race);
-    OutputView.printWinner(this.#race.getWinners());
+    OutputView.printWinners(this.#race.getWinners());
   }
 }
 
