@@ -50,8 +50,6 @@ class GameManager {
       if (!isValidTryCount(this.#tryCount)) {
         throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
       }
-      this.tryMoveCars();
-      this.judgeWinners();
     } catch (error) {
       Console.print(error.message);
       await this.handleTryCount();
@@ -76,6 +74,8 @@ class GameManager {
   async play() {
     await this.handleCarNames();
     await this.handleTryCount();
+    this.tryMoveCars();
+    this.judgeWinners();
   }
 }
 
