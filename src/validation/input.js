@@ -1,4 +1,5 @@
 const OutputView = require('../view/OutputView');
+const { GAME } = require('../utils/constants');
 
 const handleError = (errorMessage) => {
   try {
@@ -34,4 +35,22 @@ const validateCarNames = (carNames) => {
   return true;
 };
 
-module.exports = { validateCarNames };
+const checkIsBetweenValidRange = (winningDistance) => {
+  if (!(GAME.DISTANCE.min <= winningDistance && winningDistance < GAME.DISTANCE.max)) {
+    return handleError('시도 횟수는 3 이상 10 미만이여야 합니다.');
+  }
+};
+
+const checkIsInt = (winningDistance) => {
+  if (Number.isNaN(winningDistance)) {
+    return handleError('시도 횟수는 숫자로 입력해야 합니다.');
+  }
+};
+
+const validateWinningDistance = (winningDistance) => {
+  checkIsInt(winningDistance);
+  checkIsBetweenValidRange(winningDistance);
+  return true;
+};
+
+module.exports = { validateCarNames, validateWinningDistance };

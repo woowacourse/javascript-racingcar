@@ -2,8 +2,8 @@ const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
 const { GAME, INPUT, OUTPUT } = require('../utils/constants');
-const { validateCarNames } = require('../validation/input.js');
-
+const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
+const { toInt } = require('../utils/common');
 class Controller {
   #cars;
   #winningDistance;
@@ -35,7 +35,8 @@ class Controller {
   }
 
   async setWinningDistance() {
-    this.#winningDistance = await InputView.readline(INPUT.winningDistance);
+    this.#winningDistance = toInt(await InputView.readline(INPUT.winningDistance));
+    if (!validateWinningDistance(this.#winningDistance)) return this.setWinningDistance();
     this.moveCars();
   }
 
