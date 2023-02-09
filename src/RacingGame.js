@@ -27,17 +27,24 @@ class RacingGame {
     return this.#cars.map((car) => ({ name: car.getName(), currentDistance: car.getCurrentDistance() }));
   }
 
+  calculateWinners(car, winners, maxDistance) {
+    // if (car.getCurrentDistance() < maxDistance) return;
+    if (car.getCurrentDistance() === maxDistance) winners.push(car.getName());
+    if (car.getCurrentDistance() > maxDistance) {
+      winners = [];
+      winners.push(car.getName());
+      maxDistance = car.getCurrentDistance();
+    }
+    return { newWinners: winners, newMaxDistance: maxDistance };
+  }
+
   getWinners() {
     let winners = [];
     let maxDistance = 0;
     this.#cars.forEach((car) => {
-      if (car.getCurrentDistance() < maxDistance) return;
-      if (car.getCurrentDistance() === maxDistance) winners.push(car.getName());
-      if (car.getCurrentDistance() > maxDistance) {
-        winners = [];
-        winners.push(car.getName());
-        maxDistance = car.getCurrentDistance();
-      }
+      const { newWinners, newMaxDistance } = this.calculateWinners(car, winners, maxDistance);
+      winners = newWinners;
+      maxDistance = newMaxDistance;
     });
     return winners;
   }
