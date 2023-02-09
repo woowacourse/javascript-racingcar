@@ -1,5 +1,6 @@
-const { OUTPUT_MESSAGE, ERROR_MESSAGE } = require('../utils/constants');
+const { OUTPUT_MESSAGE } = require('../utils/constants');
 const numberToDistanceString = require('../utils/numberToDistanceString');
+const readLine = require('../utils/readLine');
 
 const OutputView = {
   printError(message) {
@@ -16,6 +17,15 @@ const OutputView = {
       );
     }
     console.log();
+  },
+
+  printWinner(names) {
+    let printNames = names.join(', ');
+    console.log(OUTPUT_MESSAGE.WINNERS(printNames));
+  },
+
+  closeConsole() {
+    readLine.close();
   },
 };
 

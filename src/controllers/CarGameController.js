@@ -55,6 +55,18 @@ class CarGameController {
     moveDatas.forEach((carMoves) => {
       OutputView.printMoveResult(carNames, carMoves);
     });
+    return this.printWinners(carNames, moveDatas[moveDatas.length - 1]);
+  }
+
+  printWinners(carNames, carMoves) {
+    const winnerList = this.#carGame.getWinners();
+    OutputView.printMoveResult(carNames, carMoves);
+    OutputView.printWinner(winnerList);
+    return this.gameEnd();
+  }
+
+  gameEnd() {
+    OutputView.closeConsole();
   }
 }
 

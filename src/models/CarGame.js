@@ -9,7 +9,6 @@ class CarGame {
     list.forEach((carName) => {
       this.#carList.push(new Car(carName));
     });
-    console.log(this.#carList);
   }
 
   moveCars(tryCount) {
