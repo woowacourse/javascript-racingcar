@@ -9,8 +9,7 @@ describe('Car', () => {
     car.move();
 
     // then
-    const { name, position } = car.getRaceState();
-    expect(name).toBe('Test');
-    expect(position).toBe(1);
+    expect(car.getName()).toBe('Test');
+    expect(car.getPosition()).toBe(1);
   });
 });

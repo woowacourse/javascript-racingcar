@@ -3,7 +3,7 @@ import Console from '../utils/Console';
 
 class OutputView {
   static printWinners(winnerCars) {
-    const winners = winnerCars.map((car) => car.getRaceState().name).join(', ');
+    const winners = winnerCars.map((car) => car.getName()).join(', ');
     Console.print(`${winners}${Messages.PRINT_WINNERS_SUFFIX}`);
   }
 
@@ -14,11 +14,9 @@ class OutputView {
 
   static printRaceState(cars) {
     const carResults = cars.map((car) => {
-      const { name, position } = car.getRaceState();
-      const progressBar = '-'.repeat(position);
-      return `${name} : ${progressBar}`;
+      const progressBar = '-'.repeat(car.getPosition());
+      return `${car.getName()} : ${progressBar}`;
     });
-
     carResults.forEach((result) => Console.print(result));
     Console.print('');
   }

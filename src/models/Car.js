@@ -13,11 +13,12 @@ class Car {
     this.#position = 0;
   }
 
-  getRaceState() {
-    const name = this.#name;
-    const position = this.#position;
+  getName() {
+    return this.#name;
+  }
 
-    return { name, position };
+  getPosition() {
+    return this.#position;
   }
 
   move() {

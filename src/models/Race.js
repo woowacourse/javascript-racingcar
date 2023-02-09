@@ -25,10 +25,10 @@ class Race {
   }
 
   getWinners() {
-    const positions = this.#cars.map((car) => car.getRaceState().position);
+    const positions = this.#cars.map((car) => car.getPosition());
     const maxPosition = Math.max(...positions);
 
-    return this.#cars.filter((car) => car.getRaceState().position === maxPosition);
+    return this.#cars.filter((car) => car.getPosition() === maxPosition);
   }
 }
 

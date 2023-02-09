@@ -20,7 +20,7 @@ describe('Race 클래스 테스트 입니다.', () => {
     race.moveOnce();
 
     // then
-    expect(race.getCars().map((car) => car.getRaceState().position)).toEqual([1, 0]);
+    expect(race.getCars().map((car) => car.getPosition())).toEqual([1, 0]);
   });
 
   test('우승자들을 반환해준다.', () => {
@@ -33,6 +33,6 @@ describe('Race 클래스 테스트 입니다.', () => {
     race.moveOnce();
 
     // then
-    expect(race.getWinners().map((car) => car.getRaceState().name)).toEqual(['pobi', 'conan']);
+    expect(race.getWinners().map((car) => car.getName())).toEqual(['pobi', 'conan']);
   });
 });
