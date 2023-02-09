@@ -21,12 +21,13 @@ const GAME = deepFreeze({
 });
 
 const INPUT = deepFreeze({
-  carName: `경주할 자동차 이름을 입력하세요(이름은 쉼표(${GAME.nameDivider})를 기준으로 구분).`,
-  winningDistance: '시도할 횟수는 몇회인가요?',
+  carName: `경주할 자동차 이름을 입력하세요(이름은 쉼표(${GAME.nameDivider})를 기준으로 구분).\n`,
+  winningDistance: '시도할 횟수는 몇회인가요?\n',
 });
 
 const OUTPUT = deepFreeze({
-  startGame: '자동차 경주 게임을 시작합니다.',
+  startGame: '자동차 경주 게임을 시작합니다.\n',
+  resultMent: '\n실행 결과',
   result: (car) => `${car.name} : ${GAME.progressMarker.repeat(car.distance)}`,
   winner: (winners) =>
     `${winners.map((winner) => winner.getName()).join(GAME.nameDivider)}가 최종 우승했습니다.`,
