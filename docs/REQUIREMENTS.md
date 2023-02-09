@@ -35,6 +35,35 @@
   - 우승자가 여러명일 경우 ', '를 이용하여 구분한다.
 - [x] feat: 게임 종료하기
 
+## 리팩터링
+
+- [ ] refactor: 매직 넘버 상수화하기
+
+## 테스트 코드
+
+- App.js에 대한 테스트 코드 작성
+  - readCarNameCallback 메서드에 대한 테스트 코드
+    - [ ] test: 자동차 객체 생성 테스트
+    - [ ] test: 자동차 객체 생성 이후 readTryCount 메서드 호출 테스트
+    - [ ] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
+    - [ ] test: 잘못된 값을 입력시 readCarName 메서드 호출 테스트
+    - [ ] test: readCarNameCallback 메서드 전체 호출 테스트
+  - readTryCountCallback 메서드에 대한 테스트 코드
+  - [ ] test: 올바른 값 입력시 moveCar 메서드 호출 테스트
+  - [ ] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
+  - [ ] test: 잘못된 값 입력시 readTryCount 메서드 호출 테스트
+  - [ ] test: readTryCountCallback 메서드 전체 호출 테스트
+- Car.js에 대한 테스트 코드 작성
+  - [ ] test: move, getStatus 메서드에 대한 테스트 코드
+  - [ ] test: getWinner 메서드에 대한 테스트 코드
+- Validator.js에 대한 테스트 코드 작성
+  - 자동차 이름 입력값에 대한 유효성 검사
+    - [ ] test: 자동차 이름에 공백이 있는 경우
+    - [ ] test: 자동차 이름 길이 유효성 검사
+    - [ ] test: 자동차 이름에 영대문자 유효성 검사
+  - 시도 횟수에 대한 유효성 검사
+    - [ ] test: 시도 횟수 타입 유효성 검사
+
 ## 파일 구조
 
 ```bash
