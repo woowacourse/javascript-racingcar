@@ -13,6 +13,7 @@ const OutputView = {
   printWinners(winners) {
     Console.print('');
     Console.print(`${winners.join(', ')}가 최종 우승했습니다.`);
+    Console.close();
   },
 
   printErrorMessage(errorMessage) {
