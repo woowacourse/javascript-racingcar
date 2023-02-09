@@ -1,6 +1,5 @@
 const Car = require('./Car');
 const { minimumMovableNumber } = require('./constants/Constant');
-const { randomNumberGenerator } = require('./utils');
 
 class RacingGame {
   #cars;
@@ -11,7 +10,7 @@ class RacingGame {
     this.#round = round;
   }
 
-  race() {
+  race(randomNumberGenerator) {
     this.#cars.forEach((car) => {
       const randomNumber = randomNumberGenerator();
 
