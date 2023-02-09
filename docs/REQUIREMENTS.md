@@ -14,7 +14,7 @@
 - field
 
   - 자동차의 이름을 가진다. (name)
-  - 지금 전진한 거리의 상태값을 가진다. (position)
+  - 이때까지 자동차가 전진한 거리를 추적한 값을 배열로 가진다. (trace)
 
 - method
 
@@ -29,6 +29,7 @@
   - 자동차가 이동하는 시도 횟수를 가진다. (trial)
 
 - method
+
   - 시도할 횟수만큼의 경주게임을 시작하고 진행한다. (start)
   - 우승자의 배열을 반환한다. (getWinners)
   - 가장 멀리 이동한 자동차의 위치를 반환한다.(getLongestPosition)
@@ -57,22 +58,22 @@
   - 경주 게임 시작에 필요한 자동차들과 시도 횟수를 준비한다. (prepareRace)
   - 경주 게임의 결과를 도출한다. (resultRace)
 
-4. utils
+### utils
 
-- Console
+1. Console
 
   - 입력 메서드
   - 출력 메서드
 
-- Random
+2. Random
 
   - 0 ~ 9까지 수 중에 무작위 수를 생성한다.
 
-- Validate
+3. Validate
 
   - 자동차의 이름이 5자 이하이고, 문자인지 확인한다. (checkCarName)
   - 시도할 횟수 입력이 숫자인지 확인한다. (checkTrial)
 
-- errorCheckFor
+4. errorCheckFor
 
   - 사용자가 잘못된 입력을 했을 때, 에러문을 출력하고 입력을 다시 받는다.
