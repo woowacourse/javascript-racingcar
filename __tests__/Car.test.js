@@ -1,12 +1,12 @@
 const Car = require('../src/model/Car');
-const RandomGenerator = require('../src/utils/common');
+const { randomGenerator } = require('../src/utils/common');
 const { GAME } = require('../src/utils/constants');
 
 const mockRandoms = (numbers) => {
-  RandomGenerator.getBetween = jest.fn();
+  randomGenerator.getBetween = jest.fn();
   numbers.reduce((acc, cur) => {
     return acc.mockReturnValueOnce(cur);
-  }, RandomGenerator.getBetween);
+  }, randomGenerator.getBetween);
 };
 
 describe('Car 클래스', () => {
