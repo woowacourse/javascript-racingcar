@@ -17,6 +17,23 @@ class Race {
   getTrial() {
     return this.#trial;
   }
+
+  setTrial(newTrial) {
+    this.#trial = newTrial;
+  }
+
+  addCar(newCar) {
+    this.#cars.push(newCar);
+  }
+
+  start() {
+    Array.from({ length: this.#trial }, () => 0).forEach(() => {
+      this.#cars.forEach((car) => {
+        const randomNumber = Random.pickNumberInRange(0, 9);
+        car.move(randomNumber);
+      });
+    });
+  }
 }
 
 module.exports = Race;
