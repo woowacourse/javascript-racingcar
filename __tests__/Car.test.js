@@ -23,4 +23,17 @@ describe("Car.js에 대한 테스트 코드", () => {
     // then
     expect(status).toEqual({ name: "pobi", position: expectedPosition });
   });
+
+  test("test: getWinner 메서드에 대한 테스트 코드", () => {
+    const carsStatus = [
+      { name: "pobi", position: [1, 0, 1, 1, 1, 0] },
+      { name: "noah", position: [1, 1, 1, 1, 1, 1] },
+      { name: "jun", position: [1, 0, 0, 1, 1, 0] },
+      { name: "jeremy", position: [1, 0, 0, 0, 0, 0] },
+    ];
+
+    const winner = Car.getWinner(carsStatus);
+
+    expect(winner).toEqual(["noah"]);
+  });
 });
