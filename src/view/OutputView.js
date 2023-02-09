@@ -9,7 +9,7 @@ const OutputView = {
   },
 
   printRaceResult(raceInstance) {
-    Console.print('\n실행결과');
+    Console.print('\n실행 결과');
     for (let i = 0; i <= raceInstance.getTrial(); i += 1) {
       this.printTrace(raceInstance, i);
       Console.print('');
@@ -17,7 +17,7 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    Console.print(`${winners.join(',')}가 최종 우승했습니다.`);
+    Console.print(`${winners.join(', ')}가 최종 우승했습니다.`);
     Console.quit();
   },
 };
