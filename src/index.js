@@ -33,7 +33,7 @@ class App {
   playRancingGame() {
     OutputView.printRacingStart();
     while (!this.#racingGame.isGameComplete()) {
-      this.#racingGame.moveOneTurn();
+      this.#racingGame.raceOneTurn();
       const carsResultOfOneTurn = this.#racingGame.getCarsResultOfOneTurn();
       OutputView.printOneTurnResult(carsResultOfOneTurn);
     }

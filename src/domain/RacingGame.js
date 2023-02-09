@@ -11,7 +11,7 @@ class RacingGame {
     this.#tryCount = tryCount;
   }
 
-  moveOneTurn() {
+  raceOneTurn() {
     this.#cars.forEach((car) => {
       const randomNumber = RandomNumberGenerator.generate();
       car.move(randomNumber);
