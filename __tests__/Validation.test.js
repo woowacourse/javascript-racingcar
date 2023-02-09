@@ -10,15 +10,17 @@ describe('Validation Test', () => {
     expect(isValidCarNames(names)).toBe(expected);
   });
 
-  test('시도 횟수가 자연수인가?', () => {
-    const tryCount = '-1';
-    const tryCount2 = '0';
-    const tryCount3 = 'dfgh34';
-    const tryCount4 = '5';
-
-    expect(isValidTryCount(tryCount)).toBeFalsy();
-    expect(isValidTryCount(tryCount2)).toBeFalsy();
-    expect(isValidTryCount(tryCount3)).toBeFalsy();
-    expect(isValidTryCount(tryCount4)).toBeTruthy();
+  test.each([
+    ['-1', false],
+    ['0', false],
+    ['5', true],
+    ['34.55', false],
+    ['10,000', false],
+    ['string134', false],
+    ['aa', false],
+    ['13n', false],
+    ['', false],
+  ])('시도 횟수가 자연수 인가?(%s : %s)', (tryCount, expected) => {
+    expect(isValidTryCount(tryCount)).toBe(expected);
   });
 });
