@@ -13,27 +13,36 @@ class App {
 
   inputCarNames() {
     InputView.readCarNames((carNamesInput) => {
-      try {
-        Validator.validateNameInput(carNamesInput);
+      if (this.isValidInput('carNames', carNamesInput, Validator)) {
         this.inputTryCount(carNamesInput);
-      } catch (error) {
-        OutputView.printErrorMessage(error.message);
-        this.inputCarNames();
+        return;
       }
+
+      this.inputCarNames();
     });
   }
 
   inputTryCount(carNamesInput) {
     InputView.readTryCount((tryCountsInput) => {
-      try {
-        Validator.validateTryCountsInput(tryCountsInput);
+      if (this.isValidInput('tryCounts', tryCountsInput, Validator)) {
         this.#carManager = new CarManager(carNamesInput.split(','));
         this.startRace(parseInt(tryCountsInput));
-      } catch (error) {
-        OutputView.printErrorMessage(error.message);
-        this.inputTryCount(carNamesInput);
+        return;
       }
+
+      this.inputTryCount(carNamesInput);
     });
+  }
+
+  isValidInput(type, inputValue, validator) {
+    try {
+      if (type === 'carNames') validator.validateNameInput(inputValue);
+      if (type === 'tryCounts') validator.validateTryCountsInput(inputValue);
+      return true;
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      return false;
+    }
   }
 
   startRace(tryCounts) {
