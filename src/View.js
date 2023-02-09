@@ -1,26 +1,27 @@
 import Console from './utils/Console.js';
+import { MESSAGE } from './constants';
 
 const View = {
   naming() {
-    Console.print('경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).');
+    Console.print(MESSAGE.naming);
   },
   tryCount() {
-    Console.print('시도할 회수는 몇회인가요?');
+    Console.print(MESSAGE.tryCount);
   },
-  result() {
-    Console.print('실행 결과');
+  resultTitle() {
+    Console.print(MESSAGE.resultTitle);
   },
-  carResult(cars) {
+  carProgress(cars) {
     cars.forEach((car) => {
-      Console.print(`${car.name} : ${Array.from({ length: car.distance }, () => '-').join('')}`);
+      Console.print(MESSAGE.carProgress(car));
     });
     View.newLine();
   },
-  winnerResult(winner) {
-    Console.print(`${winner.join(',')}가 최종 우승했습니다.`);
+  winner(winnerList) {
+    Console.print(MESSAGE.winner(winnerList));
   },
   newLine() {
-    Console.print('');
+    Console.print(MESSAGE.blank);
   },
   error(e) {
     Console.print(e.message);
