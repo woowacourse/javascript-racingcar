@@ -25,7 +25,6 @@ const Validator = {
 
   invalidAttempts(attempts) {
     try {
-      console.log((attempts))
       Validator.notNumber(attempts);
       Validator.bigNumber(Number(attempts));
       Validator.notInteger(Number(attempts));
