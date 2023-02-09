@@ -12,6 +12,13 @@ const GAME_NUMBER = Object.freeze({
 
 const ERROR_SUBJECT = '[ERROR] ';
 
+const GAME_STRING = Object.freeze({
+  progress: '-',
+  nameSplit: ',',
+  winnersJoin: ', ',
+  progressJoin: '',
+});
+
 const GAME_MESSAGE = Object.freeze({
   askCarName:
     '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
@@ -30,4 +37,4 @@ const ERROR_MESSAGE = Object.freeze({
   duplicatedCarName: `${ERROR_SUBJECT}자동차 이름 중 중복된 이름이 있습니다.`,
 });
 
-module.exports = { GAME_MESSAGE, ERROR_MESSAGE, GAME_NUMBER };
+module.exports = { GAME_MESSAGE, GAME_STRING, ERROR_MESSAGE, GAME_NUMBER };

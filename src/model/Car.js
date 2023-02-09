@@ -1,3 +1,5 @@
+const { GAME_STRING } = require('../constants');
+
 class Car {
   #name;
 
@@ -8,7 +10,7 @@ class Car {
   }
 
   setProgress() {
-    this.#progress.push('-');
+    this.#progress.push(GAME_STRING.progress);
   }
 
   getProgress() {

@@ -1,5 +1,5 @@
 const Console = require('../utils/Console');
-const { GAME_MESSAGE } = require('../constants');
+const { GAME_MESSAGE, GAME_STRING } = require('../constants');
 
 class OutputView {
   static printGameStartMsg() {
@@ -7,12 +7,12 @@ class OutputView {
   }
 
   static printGameProgress(name, progress) {
-    const result = `${name} : ${progress.join('')}`;
+    const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}`;
     Console.print(result);
   }
 
   static printGameResult(names) {
-    const winners = names.join(', ');
+    const winners = names.join(GAME_STRING.winnersJoin);
     Console.print(GAME_MESSAGE.getWinners(winners));
     Console.close();
   }
