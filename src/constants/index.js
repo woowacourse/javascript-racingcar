@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const GAME_NUMBER = Object.freeze({
+  minAttempt: 1,
   maxAttempt: 20,
   minCarCount: 2,
   maxCarCount: 20,
@@ -22,10 +23,10 @@ const GAME_MESSAGE = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
-  maxAttempt: `${ERROR_SUBJECT}시도 횟수는 ${GAME_NUMBER.maxAttempt}번 이하만 가능합니다.`,
+  attemptRange: `${ERROR_SUBJECT}시도 횟수는 ${GAME_NUMBER.minAttempt}번 이상 ${GAME_NUMBER.maxAttempt}번 이하만 가능합니다.`,
   onlyInt: `${ERROR_SUBJECT}자연수만 입력해주세요`,
-  possibleCarCount: `${ERROR_SUBJECT}자동차 개수는 ${GAME_NUMBER.minCarCount}개 이상 ${GAME_NUMBER.maxCarCount}개 이하만 가능합니다`,
-  possibleCarNameLength: `${ERROR_SUBJECT}자동차 이름 길이는 ${GAME_NUMBER.minCarNameLength}글자 이상 ${GAME_NUMBER.maxCarNameLength}글자 이하만 가능합니다`,
+  carCountRange: `${ERROR_SUBJECT}자동차 개수는 ${GAME_NUMBER.minCarCount}개 이상 ${GAME_NUMBER.maxCarCount}개 이하만 가능합니다`,
+  carNameLengthRange: `${ERROR_SUBJECT}자동차 이름 길이는 ${GAME_NUMBER.minCarNameLength}글자 이상 ${GAME_NUMBER.maxCarNameLength}글자 이하만 가능합니다`,
   duplicatedCarName: `${ERROR_SUBJECT}자동차 이름 중 중복된 이름이 있습니다.`,
 });
 
