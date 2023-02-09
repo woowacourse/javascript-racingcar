@@ -14,7 +14,7 @@ const Validator = {
 
   tryCount(number) {
     if (!this.isNumeric(number))
-      throw new Error("[ERROR] 시도 횟수는 숫자여야 합니다.");
+      throw new Error("[ERROR] 시도 횟수는 양의 정수이어야 합니다.");
   },
 
   isCarNameHasBlank(string) {
@@ -34,6 +34,8 @@ const Validator = {
   },
 
   isNumeric(number) {
+    if (number === "0") return false;
+
     return number.search(/[^0-9]/g) === -1;
   },
 };
