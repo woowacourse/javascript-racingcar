@@ -28,7 +28,8 @@ class Controller {
     while (count >= 1) {
       count -= 1;
       this.#cars.forEach((car) => {
-        if (randomNumberInRange(0, 9) >= 4) car.move();
+        const { randomMin, randomMax, threshold } = MOVE_NUMBER;
+        if (randomNumberInRange(randomMin, randomMax) >= threshold) car.move();
       });
 
       View.carResult(this.getCarInfoList());

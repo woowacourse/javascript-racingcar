@@ -6,3 +6,9 @@ export const MESSAGE = Object.freeze({
   winner: (winnerList) => `${winnerList.join(', ')}가 최종 우승했습니다.`,
   blank: '',
 });
+
+export const MOVE_NUMBER = Object.freeze({
+  randomMin: 0,
+  randomMax: 9,
+  threshold: 4,
+});
