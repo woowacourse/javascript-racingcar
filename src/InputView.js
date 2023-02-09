@@ -1,5 +1,5 @@
 const Console = require('./utils/Console');
-const { readLine } = require('./utils/Console');
+
 const InputView = {
   async readCarNames() {
     const input = await Console.read(
