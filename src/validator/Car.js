@@ -11,7 +11,6 @@ const Car = {
   },
 
   checkTryCount(number) {
-    Common.isNumber(number);
     Common.validateNumberRange(number, TRY_COUNT.MIN, TRY_COUNT.MAX);
   },
 };

@@ -7,8 +7,8 @@ class App {
     this.#game = new Game();
   }
 
-  play() {
-    this.#game.play();
+  async play() {
+    await this.#game.play();
   }
 }
 

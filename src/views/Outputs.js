@@ -1,5 +1,5 @@
 const Console = require('../utils/Console');
-const { getRacingSnapShot, getWinnersMessage } = require('../utils/output');
+const { getWinnersMessage } = require('../utils/output');
 
 const Outputs = {
   printGameResultMessage() {

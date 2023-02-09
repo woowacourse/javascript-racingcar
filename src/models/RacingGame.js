@@ -48,6 +48,10 @@ class RacingGame {
   getSnapShots() {
     return this.#snapShots;
   }
+
+  allFailed() {
+    return this.#cars.every(car => car.getPosition() === 0);
+  }
 }
 
 module.exports = RacingGame;

@@ -1,32 +1,6 @@
 const { CustomError, ERROR_CODE } = require('../utils/Errors');
-const { ONLY_ALPHA } = require('../constants/regularExpression');
 
 const Common = {
-  isString(value) {
-    if (typeof value !== 'string')
-      throw new CustomError({ code: ERROR_CODE.NOT_STRING }, value);
-
-    return true;
-  },
-
-  isNumber(value) {
-    if (typeof value !== 'number')
-      throw new CustomError({ code: ERROR_CODE.NOT_NUMBER }, value);
-
-    return true;
-  },
-
-  isAlpha(value) {
-    if (!ONLY_ALPHA.test(value))
-      throw new CustomError({ code: ERROR_CODE.NOT_ALPHA }, value);
-
-    return true;
-  },
-
-  isEveryAlpha(value) {
-    return value.split(',').every(each => Common.isAlpha(each));
-  },
-
   isUnique(values) {
     const set = new Set(values);
 
@@ -62,7 +36,6 @@ const Common = {
     if (!(regExp instanceof RegExp)) {
       throw new CustomError({ code: ERROR_CODE.WRONG_FORMAT }, value);
     }
-
     if (!regExp.test(value)) {
       throw new CustomError({ code: ERROR_CODE.WRONG_FORMAT }, value);
     }

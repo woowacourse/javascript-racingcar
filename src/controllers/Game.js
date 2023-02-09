@@ -24,6 +24,12 @@ class Game {
   start() {
     this.#RacingGame = new RacingGame(this.#names);
     this.#RacingGame.raceNTimes(this.#count);
+
+    if (this.#RacingGame.allFailed()) this.restart();
+  }
+
+  restart() {
+    this.start();
   }
 
   awards() {
