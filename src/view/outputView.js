@@ -13,8 +13,8 @@ class OutputView {
 
   static printGameResult(names) {
     const winners = names.join(', ');
-    console.log(winners);
     Console.print(GAME_MESSAGE.getWinners(winners));
+    Console.close();
   }
 }
 
