@@ -1,0 +1,28 @@
+const Car = require('../src/model/Car');
+const RandomGenerator = require('../src/model/RandomGenerator');
+const { GAME } = require('../src/utils/constants');
+
+const mockRandoms = (numbers) => {
+  RandomGenerator.getBetween = jest.fn();
+  numbers.reduce((acc, cur) => {
+    return acc.mockReturnValueOnce(cur);
+  }, RandomGenerator.getBetween);
+};
+
+describe('Car 클래스', () => {
+  it(`자동차가 전진하는 조건은 ${GAME.MOVE_CONDITION.min}에서 ${
+    GAME.MOVE_CONDITION.max - 1
+  } 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.`, () => {
+    const car = new Car('name');
+    const randomNumbers = [0, 1, 3, 5, 3, 2, 7, 9, 7];
+    const distanceResult = [];
+
+    mockRandoms(randomNumbers);
+    randomNumbers.forEach(() => {
+      car.move();
+      distanceResult.push(car.getDistance());
+    });
+
+    expect(distanceResult).toEqual([0, 0, 0, 1, 1, 1, 2, 3, 4]);
+  });
+});
