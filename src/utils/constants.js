@@ -18,6 +18,12 @@ const MIN_PARTICIPATE = 2;
 const MIN_TRYCOUNT = 1;
 
 const MOVE_FORWARD = '-';
+const NOT_MOVED = '';
+
+const FLAG = 4;
+
+const MIN_RANDOM = 0;
+const MAX_RANDOM = 9;
 
 module.exports = {
   MESSAGE,
@@ -27,4 +33,8 @@ module.exports = {
   MIN_PARTICIPATE,
   MIN_TRYCOUNT,
   MOVE_FORWARD,
+  NOT_MOVED,
+  FLAG,
+  MIN_RANDOM,
+  MAX_RANDOM,
 };

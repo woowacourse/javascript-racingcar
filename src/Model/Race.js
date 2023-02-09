@@ -1,5 +1,5 @@
 const Random = require('../utils/Random');
-const { MOVE_FORWARD } = require('../utils/constants');
+const { MOVE_FORWARD, FLAG, NOT_MOVED } = require('../utils/constants');
 
 class Race {
   #carNames;
@@ -23,7 +23,7 @@ class Race {
 
   convertResults(race) {
     const convertedRace = race.map((step) => {
-      return step >= 4 ? '-' : '';
+      return step >= FLAG ? MOVE_FORWARD : NOT_MOVED;
     });
     return convertedRace;
   }
