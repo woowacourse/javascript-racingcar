@@ -36,13 +36,11 @@ class App {
     for (let i = 0; i < this.#carRace.getRepeatNumber(); i++) {
       const temp = CarRaceGame.updateRace(this.#carRace.getCarDistances());
       this.#carRace.setCarDistances(temp);
-      console.log("CURRENT RESULT", this.#carRace.getCarDistances()); //현재 라운드 출력
+      OutputView.printRoundResult(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
     }
-
-    console.log("FINAL RESULT", this.#carRace.getCarDistances()); //여기에 우승자
+    const winners = CarRaceGame.judgeWinners(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
+    OutputView.printWinners(winners);
   }
 }
 
-const app = new App();
-app.play();
 module.exports = App;
