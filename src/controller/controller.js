@@ -33,32 +33,17 @@ class Controller {
   race() {
     const attemptsCount = this.#attempt.getAttemptsCount();
     OutputView.printGameStartMsg();
+    this.calculateProgress(attemptsCount);
+    this.showGameWinner();
+  }
+
+  calculateProgress(attemptsCount) {
     Array.from({ length: attemptsCount }).forEach(() => {
       this.#cars.forEach((car) => {
-        if (isMove()) {
-          car.setProgress();
-        }
+        if (isMove()) car.setProgress();
       });
       this.showGameProgress();
     });
-    this.showGameResult();
-  }
-
-  showGameProgress() {
-    this.#cars.forEach((item) => {
-      OutputView.printGameProgress(item.getName(), item.getProgress());
-    });
-  }
-
-  showGameResult() {
-    const winnerNames = [];
-    const winnerLength = this.calculateWinnerLength();
-    this.#cars.forEach((item) => {
-      if (item.getProgress().length === winnerLength) {
-        winnerNames.push(item.getName());
-      }
-    });
-    OutputView.printGameResult(winnerNames);
   }
 
   calculateWinnerLength() {
@@ -69,6 +54,28 @@ class Controller {
       }
     });
     return winnerLength;
+  }
+
+  calculateWinner(winnerLength) {
+    const winnerNames = [];
+    this.#cars.forEach((item) => {
+      if (item.getProgress().length === winnerLength) {
+        winnerNames.push(item.getName());
+      }
+    });
+    return winnerNames;
+  }
+
+  showGameProgress() {
+    this.#cars.forEach((item) => {
+      OutputView.printGameProgress(item.getName(), item.getProgress());
+    });
+  }
+
+  showGameWinner() {
+    const winnerLength = this.calculateWinnerLength();
+    const winnerNames = this.calculateWinner(winnerLength);
+    OutputView.printGameResult(winnerNames);
   }
 }
 
