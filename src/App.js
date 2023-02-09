@@ -16,14 +16,14 @@ class App {
   #readCarNamesCallback = (input) => {
     errorCheckFor(
       () => this.#prepareRace(input),
-      () => this.#readCarNamesCallback()
+      () => InputView.readCarNames(this.#readCarNamesCallback)
     );
   };
 
   #readTrialCallback = (input) => {
     errorCheckFor(
       () => this.#resultRace(input),
-      () => this.#readTrialCallback()
+      () => InputView.readTrial(this.#readTrialCallback)
     );
   };
 
