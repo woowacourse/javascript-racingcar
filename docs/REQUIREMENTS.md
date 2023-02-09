@@ -65,7 +65,7 @@
 - [x] refactor: 자동차 객체 생성 메서드 분리
 - [x] refactor: 난수생성함수를 난수생성객체로 수정
 - [x] refactor: 매직넘버 상수화
-- [ ] refactor: 테스트 코드 리팩터링
+- [x] refactor: 테스트 코드 리팩터링
 
 ## 파일 구조
 

@@ -2,28 +2,15 @@ const { MESSAGE } = require("../src/lib/Constant.js");
 const Validator = require("../src/model/Validator.js");
 
 describe("자동차 이름 입력값에 대한 유효성 검사", () => {
-  test("자동차 이름에 공백이 있는 경우 예외를 발생시킨다.", () => {
+  test.each([
+    ["aaa,b b,ccc", MESSAGE.error.blank],
+    ["aaa,bbbbbb,ccc", MESSAGE.error.nameLength],
+    ["aaa,bbb,Ccc", MESSAGE.error.lowerCase],
+    ["aaa,aaa,ccc", MESSAGE.error.duplicatedName],
+  ])("자동차 이름에 대한 유효성 검사 테스트", (carNames, errorMessage) => {
     expect(() => {
-      Validator.carName("aaa,b b,ccc");
-    }).toThrow(MESSAGE.error.blank);
-  });
-
-  test("자동차 이름 길이가 잘못된 경우 예외를 발생시킨다.", () => {
-    expect(() => {
-      Validator.carName("aaa,bbbbbb,ccc");
-    }).toThrow(MESSAGE.error.nameLength);
-  });
-
-  test("자동차 이름이 영소문자로만 이루어지지 않은 경우 예외를 발생시킨다.", () => {
-    expect(() => {
-      Validator.carName("aaa,bbb,Ccc");
-    }).toThrow(MESSAGE.error.lowerCase);
-  });
-
-  test("자동차 이름이 중복된 경우 예외를 발생시킨다.", () => {
-    expect(() => {
-      Validator.carName("aaa,aaa,ccc");
-    }).toThrow(MESSAGE.error.duplicatedName);
+      Validator.carName(carNames);
+    }).toThrow(errorMessage);
   });
 });
 
