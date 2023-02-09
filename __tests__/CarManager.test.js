@@ -46,7 +46,6 @@ describe('자동차를 관리하는 클래스 테스트', () => {
       carManager.progress();
 
       const winners = carManager.getWinners();
-      expect(winners.length).toBe(2);
       expect(winners).toEqual(['pobi', 'crong']);
     });
   });
