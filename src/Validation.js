@@ -46,6 +46,7 @@ class Validation {
     return raceRound >= minimumRaceRound;
   }
 }
+
 const ERROR_MESSAGE = {
   invalidCarQuantity: `[ERROR] 2개 이상의 차이름을 입력하세요.`,
   invalidCarNameLength: `[ERROR] 1자 이상, 5자 이하의 이름을 입력하세요.`,
