@@ -10,11 +10,22 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb-base/legacy"
+    "airbnb-base/legacy",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "linebreak-style": "off",
-    "comma-dangle": "off",
-    "no-return-await": "off"
-  }
+    "no-return-await": "off",
+    "max-lines-per-function": ["error", 10],
+    "max-depth": ["error", 2]
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.js"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "no-new": "off"
+      }
+    }
+  ]
 }
