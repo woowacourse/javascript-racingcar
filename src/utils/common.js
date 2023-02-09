@@ -13,4 +13,10 @@ const deepFreeze = (object) => {
 
 const toInt = (string) => parseInt(string, 10);
 
-module.exports = { deepClone, deepFreeze, toInt };
+const randomGenerator = {
+  getBetween(min, max) {
+    return min + Math.floor(Math.random() * max);
+  },
+};
+
+module.exports = { deepClone, deepFreeze, toInt, randomGenerator };

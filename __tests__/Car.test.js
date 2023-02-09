@@ -1,5 +1,5 @@
 const Car = require('../src/model/Car');
-const RandomGenerator = require('../src/model/RandomGenerator');
+const RandomGenerator = require('../src/utils/common');
 const { GAME } = require('../src/utils/constants');
 
 const mockRandoms = (numbers) => {

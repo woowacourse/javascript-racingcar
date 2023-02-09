@@ -1,6 +1,5 @@
 const { GAME } = require('../utils/constants');
-
-const RandomGenerator = require('./RandomGenerator');
+const RandomGenerator = require('../utils/common');
 class Car {
   #name;
   #distance;
