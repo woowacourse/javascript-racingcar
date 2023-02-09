@@ -19,7 +19,7 @@ describe('Car - move() 기능 테스트', () => {
 
     car.move(result);
 
-    expect(car.getLast()).toEqual(2);
+    expect(car.getPosition()).toEqual(2);
   });
 
   test('(전진하지 않는 경우)', () => {
@@ -32,6 +32,6 @@ describe('Car - move() 기능 테스트', () => {
     const result = Random.pickNumberInRange(0, 9);
     car.move(result);
 
-    expect(car.getLast()).toEqual(1);
+    expect(car.getPosition()).toEqual(1);
   });
 });

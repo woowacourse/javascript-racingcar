@@ -1,32 +1,32 @@
 class Car {
   #name;
 
-  #position;
+  #trace;
 
   constructor(name) {
     this.#name = name;
-    this.#position = [1];
+    this.#trace = [1];
   }
 
   getName() {
     return this.#name;
   }
 
-  getPosition() {
-    return this.#position;
+  getTrace() {
+    return this.#trace;
   }
 
-  getLast() {
-    return this.#position[this.#position.length - 1];
+  getPosition() {
+    return this.#trace[this.#trace.length - 1];
   }
 
   move(randomNumber) {
     if (randomNumber > 3) {
-      this.#position.push(this.#position[this.#position.length - 1] + 1);
+      this.#trace.push(this.#trace[this.#trace.length - 1] + 1);
       return;
     }
 
-    this.#position.push(this.#position[this.#position.length - 1]);
+    this.#trace.push(this.#trace[this.#trace.length - 1]);
   }
 }
 

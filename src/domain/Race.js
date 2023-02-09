@@ -39,16 +39,16 @@ class Race {
     const longestPosition = this.#getLongestPosition();
 
     return this.#cars
-      .filter((carInstance) => longestPosition === carInstance.getLast())
+      .filter((carInstance) => longestPosition === carInstance.getPosition())
       .map((carInstance) => carInstance.getName());
   }
 
   #getLongestPosition() {
     const result = this.#cars.sort(
-      (xCar, yCar) => yCar.getLast() - xCar.getLast()
+      (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 
-    return result[0].getLast();
+    return result[0].getPosition();
   }
 }
 
