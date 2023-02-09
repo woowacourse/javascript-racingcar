@@ -1,3 +1,4 @@
+import { MOVE_NUMBER } from './constants/index.js';
 import Car from './models/Car.js';
 import Console from './utils/Console.js';
 import randomNumberInRange from './utils/RandomNumberInRange.js';
@@ -42,7 +43,7 @@ class Controller {
       const input = await Console.read();
       Validator.checkName(input);
       Validator.checkDuplicate(input);
-      return input.split(' ').join('').split(',');
+      return input.split(',');
     } catch (e) {
       View.error(e);
       return await this.readNames();
