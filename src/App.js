@@ -7,6 +7,7 @@ class App {
   #racingGame;
 
   start() {
+    this.#racingGame = new RacingGame();
     this.#requestCarNames();
   }
 
@@ -19,28 +20,23 @@ class App {
         this.#requestCarNames();
         return;
       }
-
-      this.#requestRaceRound(carNames);
+      this.#racingGame.setCars(carNames);
+      this.#requestRaceRound();
     });
   }
 
-  #requestRaceRound(carNames) {
+  #requestRaceRound() {
     InputView.readRaceRound((raceRoundInput) => {
       const raceRound = Number(raceRoundInput);
       const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
 
       if (!isValidInput) {
-        this.#requestRaceRound(carNames);
+        this.#requestRaceRound();
         return;
       }
+      this.#racingGame.setRound(raceRound);
+      this.#raceCars();
     });
-    this.#playGame();
-  }
-
-  #playGame() {
-    this.#racingGame = new RacingGame(carNames, raceRound);
-
-    this.#raceCars();
   }
 
   #raceCars() {

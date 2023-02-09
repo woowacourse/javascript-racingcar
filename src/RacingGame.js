@@ -5,8 +5,11 @@ class RacingGame {
   #cars;
   #round;
 
-  constructor(carNames, round) {
+  setCars(carNames) {
     this.#cars = carNames.map((carName) => new Car(carName));
+  }
+
+  setRound(round) {
     this.#round = round;
   }
 
