@@ -14,7 +14,7 @@ class InputView {
   }
 
   static #validateCarNames(carNames) {
-    if (!carNames.every((carName) => carName.length <= 5)) {
+    if (carNames.some((carName) => carName.length > 5)) {
       throw new Error(ErrorMessages.CAR_NAME_LENGTH_LIMIT);
     }
   }
