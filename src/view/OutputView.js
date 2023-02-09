@@ -15,6 +15,11 @@ const OutputView = {
       Console.print('');
     }
   },
+
+  printWinners(winners) {
+    Console.print(`${winners.join(',')}가 최종 우승했습니다.`);
+    Console.quit();
+  },
 };
 
 module.exports = OutputView;
