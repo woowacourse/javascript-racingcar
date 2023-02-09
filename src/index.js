@@ -2,6 +2,7 @@ const RacingGame = require("./domain/RacingGame");
 const InputView = require("./view/InputView");
 const OutputView = require("./view/OutputView");
 const Validation = require("./domain/Validation");
+const handleError = require("./util/handleError");
 class App {
   #racingGame;
 
@@ -11,7 +12,7 @@ class App {
 
   requestInputCarNames() {
     InputView.readCarNames((names) => {
-      if (!this.handleError(Validation.validateCarNames.bind(Validation), names)) {
+      if (!handleError(Validation.validateCarNames.bind(Validation), names)) {
         this.requestInputCarNames();
         return;
       }
@@ -21,7 +22,7 @@ class App {
 
   requestInputTryCount(names) {
     InputView.readTryCount((tryCount) => {
-      if (!this.handleError(Validation.validateTryCount.bind(Validation), tryCount)) {
+      if (!handleError(Validation.validateTryCount.bind(Validation), tryCount)) {
         this.requestInputTryCount();
         return;
       }
@@ -44,16 +45,6 @@ class App {
     const winners = this.#racingGame.getWinners();
     OutputView.printWinners(winners);
     InputView.close();
-  }
-
-  handleError(validateFunction, input) {
-    try {
-      validateFunction(input);
-      return true;
-    } catch (error) {
-      OutputView.printErrorMessage(error);
-      return false;
-    }
   }
 }
 
