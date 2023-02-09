@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 const GAME_NUMBER = Object.freeze({
   minAttempt: 1,
   maxAttempt: 20,
@@ -41,4 +40,4 @@ const ERROR_MESSAGE = Object.freeze({
   duplicatedCarName: `${ERROR_SUBJECT}자동차 이름 중 중복된 이름이 있습니다.`,
 });
 
-module.exports = { GAME_MESSAGE, GAME_STRING, ERROR_MESSAGE, GAME_NUMBER };
+module.exports = { ERROR_MESSAGE, GAME_MESSAGE, GAME_NUMBER, GAME_STRING };

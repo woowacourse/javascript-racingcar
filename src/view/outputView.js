@@ -13,7 +13,7 @@ class OutputView {
     Console.print(result);
   }
 
-  static printGameResult(names) {
+  static printGameWinner(names) {
     const winners = names.join(GAME_STRING.winnersJoin);
     Console.print(GAME_MESSAGE.getWinners(winners));
     Console.close();

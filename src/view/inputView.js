@@ -1,6 +1,6 @@
-const { GAME_MESSAGE, GAME_STRING } = require('../constants');
-const { errorHandler } = require('../utils');
 const Console = require('../utils/Console');
+const { errorHandler } = require('../utils');
+const { GAME_MESSAGE, GAME_STRING } = require('../constants');
 const Validation = require('../Validation');
 
 class InputView {

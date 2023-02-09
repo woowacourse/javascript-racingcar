@@ -79,7 +79,7 @@ class Controller {
   showGameWinner() {
     const winnerLength = this.calculateWinnerLength();
     const winnerNames = this.calculateWinner(winnerLength);
-    OutputView.printGameResult(winnerNames);
+    OutputView.printGameWinner(winnerNames);
   }
 }
 

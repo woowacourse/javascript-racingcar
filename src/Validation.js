@@ -1,4 +1,4 @@
-const { GAME_NUMBER, ERROR_MESSAGE, GAME_STRING } = require('./constants');
+const { ERROR_MESSAGE, GAME_NUMBER, GAME_STRING } = require('./constants');
 
 class Validation {
   static carName(carNames) {
