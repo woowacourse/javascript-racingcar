@@ -3,12 +3,9 @@ class RacingCar {
 
   #moveCount;
 
-  #isWin;
-
   constructor(carName) {
     this.#name = carName;
     this.#moveCount = 1;
-    this.#isWin = false;
   }
 
   move() {
