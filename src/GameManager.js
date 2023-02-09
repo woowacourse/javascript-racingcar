@@ -43,12 +43,16 @@ class GameManager {
   }
 
   handleTryCount(answer) {
-    if (!isValidTryCount(answer)) {
-      Console.print('다시');
-    } else {
+    try {
+      if (!isValidTryCount(answer)) {
+        throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
+      }
       this.#tryCount = +answer;
       this.tryMoveCars();
       this.judgeWinners();
+    } catch (error) {
+      Console.print(error.message);
+      this.readTryCount();
     }
   }
 
