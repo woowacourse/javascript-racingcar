@@ -5,6 +5,8 @@ const GAME_NUMBER = Object.freeze({
   maxCarCount: 20,
   minCarNameLength: 2,
   maxCarNameLength: 5,
+  moveStandard: 4,
+  moveRange: 9,
 });
 
 const ERROR_SUBJECT = '[ERROR] ';
