@@ -44,7 +44,7 @@ class Controller {
       this.moveCar();
       OutputView.printCarMove(this.#cars);
     }
-    this.whoIsWinners();
+    this.whoIsWinners(this.#cars);
     OutputView.printWinners(this.#winners);
   }
 
@@ -60,8 +60,8 @@ class Controller {
     );
   }
 
-  whoIsWinners() {
-    for (let car of this.#cars) {
+  whoIsWinners(cars) {
+    for (let car of cars) {
       this.comparedCars(car);
     }
   }
@@ -75,6 +75,10 @@ class Controller {
       this.#winners = [];
       this.#winners.push(car.getName());
     }
+  }
+
+  getWinner() {
+    return this.#winners;
   }
 }
 

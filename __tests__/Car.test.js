@@ -1,4 +1,5 @@
 const Car = require("../src/model/Car");
+const Controller = require("../src/controller/Controller");
 
 describe("Car 모델 테스트", () => {
   test("Car 모델 전진 테스트", () => {
@@ -25,5 +26,19 @@ describe("Car 모델 테스트", () => {
     expect(name).toBe("patrick");
   });
 
-  test("Car 우승자 확인 테스트", () => {});
+  test("Car 우승자 확인 테스트", () => {
+    let controller = new Controller();
+
+    let car1 = new Car();
+    car1.inputName("patrick");
+    car1.decideGoAndStop(5);
+    car1.decideGoAndStop(7);
+    let car2 = new Car();
+    car2.inputName("dori");
+    car2.decideGoAndStop(3);
+    car2.decideGoAndStop(5);
+
+    controller.whoIsWinners([car1, car2]);
+    expect(controller.getWinner()).toEqual(["patrick"]);
+  });
 });
