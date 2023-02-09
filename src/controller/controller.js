@@ -1,9 +1,9 @@
 const Attempts = require('../model/Attempts');
 const Car = require('../model/Car');
-const isMove = require('../utils');
+const { isMove } = require('../utils');
 const Validation = require('../Validation');
 const InputView = require('../view/InputView');
-const OutputView = require('../view/outputView');
+const OutputView = require('../view/OutputView');
 
 class Controller {
   #cars = [];
@@ -15,11 +15,7 @@ class Controller {
   }
 
   askCarName() {
-    InputView.readCarName((nameInput) => {
-      const carNames = nameInput.split(',');
-      Validation.carName(carNames);
-      
-      console.log(carNames);
+    InputView.readCarName((carNames) => {
       carNames.forEach((name) => {
         const carModel = new Car(name);
         this.#cars.push(carModel);
@@ -30,7 +26,6 @@ class Controller {
 
   askAttempts() {
     InputView.readAttempts((attemptInput) => {
-      Validation.attempt(attemptInput);
       this.#attempt = new Attempts(attemptInput);
       this.race();
     });

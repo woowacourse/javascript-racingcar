@@ -3,18 +3,18 @@ const { GAME_NUMBER, ERROR_MESSAGE } = require('./constants');
 class Validation {
   static carName(carNames) {
     Validation.duplicatedCarName(carNames);
-    Validation.possibleCarNameLength(carNames);
-    Validation.possibleCarCount(carNames.length);
+    Validation.carNameLengthRange(carNames);
+    Validation.carCountRange(carNames.length);
   }
 
   static attempt(attempts) {
     Validation.onlyInt(attempts);
-    Validation.maxAttempt(attempts);
+    Validation.attemptRange(attempts);
   }
 
-  static maxAttempt(attempt) {
-    if (attempt > GAME_NUMBER.maxAttempt) {
-      throw new Error(ERROR_MESSAGE.maxAttempt);
+  static attemptRange(attempt) {
+    if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {
+      throw new Error(ERROR_MESSAGE.attemptRange);
     }
   }
 
@@ -23,7 +23,7 @@ class Validation {
   }
 
   static isNotInteger(attempt) {
-    return !Number.isInteger(attempt);
+    return !Number.isInteger(Number(attempt));
   }
 
   static onlyInt(attempt) {
@@ -32,22 +32,22 @@ class Validation {
     }
   }
 
-  static possibleCarCount(carCount) {
+  static carCountRange(carCount) {
     if (
       carCount < GAME_NUMBER.minCarCount ||
       carCount > GAME_NUMBER.maxCarCount
     ) {
-      throw new Error(ERROR_MESSAGE.possibleCarCount);
+      throw new Error(ERROR_MESSAGE.carCountRange);
     }
   }
 
-  static possibleCarNameLength(carNames) {
+  static carNameLengthRange(carNames) {
     carNames.forEach((name) => {
       if (
         name.length < GAME_NUMBER.minCarNameLength ||
         name.length > GAME_NUMBER.maxCarNameLength
       ) {
-        throw new Error(ERROR_MESSAGE.possibleCarNameLength);
+        throw new Error(ERROR_MESSAGE.carNameLengthRange);
       }
     });
   }
