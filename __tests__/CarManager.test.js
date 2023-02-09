@@ -40,6 +40,14 @@ describe('자동차를 관리하는 클래스 테스트', () => {
       expect(winners.length === 1 && winners[0] === 'pobi').toBe(true);
     });
 
-    test('우승자가 두 명 이상인 경우', () => {});
+    test('우승자가 두 명 이상인 경우', () => {
+      mockRandoms([6, 7, 2]);
+
+      carManager.progress();
+
+      const winners = carManager.getWinners();
+      expect(winners.length).toBe(2);
+      expect(winners).toEqual(['pobi', 'crong']);
+    });
   });
 });
