@@ -58,13 +58,17 @@ class GameManager {
 
   handleCarNames(answer) {
     const names = answer.split(',');
-    if (!isValidCarNames(names)) {
-      Console.print('다시');
-    } else {
+    try {
+      if (!isValidCarNames(names)) {
+        throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
+      }
       names.forEach((name) => {
         this.#cars.push(new Car(name));
       });
       this.readTryCount();
+    } catch (error) {
+      Console.print(error.message);
+      this.readCarNames();
     }
   }
 
