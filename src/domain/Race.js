@@ -34,6 +34,14 @@ class Race {
       });
     });
   }
+
+  getWinners() {
+    const longestPosition = this.#getLongestPosition();
+
+    return this.#cars
+      .filter((carInstance) => longestPosition === carInstance.getLast())
+      .map((carInstance) => carInstance.getName());
+  }
 }
 
 module.exports = Race;
