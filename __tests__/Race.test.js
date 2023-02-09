@@ -25,8 +25,8 @@ describe('Race 클래스 테스트 입니다.', () => {
 
   test('우승자들을 반환해준다.', () => {
     // given
-    const cars = ['pobi', 'crong', 'conan'].map((carName) => new Car(carName));
-    const race = new Race(cars);
+    const carNames = ['pobi', 'crong', 'conan'];
+    const race = new Race(carNames);
     mockRandom([8, 3, 9]);
 
     // when

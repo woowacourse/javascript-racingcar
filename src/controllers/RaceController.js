@@ -1,4 +1,3 @@
-import Car from '../models/Car';
 import Race from '../models/Race';
 import Console from '../utils/Console';
 import InputView from '../views/InputView';
@@ -11,14 +10,15 @@ class RaceController {
 
   async startSetup() {
     const carNames = await InputView.readCarNames();
-    const cars = carNames.map((carName) => new Car(carName));
-    this.#race = new Race(cars);
+    const raceStep = await InputView.readRaceStep();
 
-    this.#step = await InputView.readRaceStep();
+    this.#race = new Race(carNames);
+    this.#step = raceStep;
   }
 
   startRace() {
     OutputView.printRaceStateTitle();
+
     for (let i = 0; i < this.#step; i += 1) {
       this.#race.moveOnce();
       OutputView.printRaceState(this.#race.getCars());

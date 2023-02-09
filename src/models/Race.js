@@ -1,11 +1,12 @@
 import RandomNumber from '../constants/RandomNumber';
 import Random from '../utils/Random';
+import Car from './Car';
 
 class Race {
   #cars;
 
-  constructor(cars) {
-    this.#cars = cars;
+  constructor(carNames) {
+    this.#cars = carNames.map((name) => new Car(name));
   }
 
   moveOnce() {
