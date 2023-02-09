@@ -1,6 +1,6 @@
+const Console = require('../lib/console');
 const Car = require('../models/Car');
 const RacingCarGame = require('../models/RacingCarGame');
-const Console = require('../utils/console');
 const Validator = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');

@@ -1,5 +1,5 @@
 const { INPUT_MESSAGE } = require('../constants/message');
-const Console = require('../utils/console');
+const Console = require('../lib/console');
 
 const InputView = {
   readCarName(callback) {

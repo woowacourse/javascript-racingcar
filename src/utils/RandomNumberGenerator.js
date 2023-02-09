@@ -1,4 +1,4 @@
-const Random = require('../utils/random');
+const Random = require('../lib/random');
 
 const RandomNumberGenerator = {
   RANDOM_LOWER_INCLUSIVE: 0,

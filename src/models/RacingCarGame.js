@@ -9,12 +9,12 @@ class RacingCarGame {
   }
 
   moveCars() {
-    const d = MovingDecider.decide(
+    const isMovable = MovingDecider.decide(
       this.#cars.length,
       RandomNumberGenerator.generate
     );
-    this.#cars.forEach((car, i) => {
-      if (!d[i]) return;
+    this.#cars.forEach((car, index) => {
+      if (!isMovable[index]) return;
       car.move();
     });
   }
@@ -25,10 +25,10 @@ class RacingCarGame {
 
   getWinner() {
     const carsInfo = this.getCarsInfo();
-    const max = Math.max(...carsInfo.values());
+    const maxDistance = Math.max(...carsInfo.values());
     const winners = [...carsInfo.entries()]
-      .filter((carInfo) => carInfo[1] === max)
-      .map((c) => c[0]);
+      .filter(([, distance]) => distance === maxDistance)
+      .map(([name]) => name);
     return winners;
   }
 }

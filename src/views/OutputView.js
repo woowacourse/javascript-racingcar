@@ -1,4 +1,4 @@
-const Console = require('../utils/console');
+const Console = require('../lib/console');
 const { OUTPUT_MESSAGE } = require('../constants/message');
 
 const OutputView = {
@@ -7,24 +7,18 @@ const OutputView = {
   },
 
   printCars(cars) {
-    cars.forEach((value, key) => {
-      Console.print(
-        `${key}${
-          OUTPUT_MESSAGE.resultSeparator
-        }${OUTPUT_MESSAGE.distance.repeat(value)}`
-      );
+    cars.forEach((distance, name) => {
+      Console.print(OUTPUT_MESSAGE.result(name, distance));
     });
     Console.print('');
   },
 
   printWinner(winner) {
-    Console.print(
-      `${winner.join(OUTPUT_MESSAGE.winnerSeparator)}${OUTPUT_MESSAGE.winner}`
-    );
+    Console.print(OUTPUT_MESSAGE.winner(winner));
   },
 
-  printError(msg) {
-    Console.print(msg);
+  printError(errorMessage) {
+    Console.print(errorMessage);
   },
 };
 
