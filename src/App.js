@@ -8,7 +8,7 @@ const RacingGame = require('./RacingGame');
 class App {
   #racingGame;
 
-  play() {
+  start() {
     this.#requestCarNames();
   }
 
@@ -59,9 +59,13 @@ class App {
     const highestScore = this.#racingGame.getHighestScore();
     const winners = this.#racingGame.getWinners(highestScore);
 
+    this.#endGame(winners);
+  }
+
+  #endGame(winners) {
     OutputView.printFinalResult(winners);
     Console.close();
   }
 }
 
-new App().play();
+new App().start();
