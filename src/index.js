@@ -11,14 +11,20 @@ class App {
 
   requestInputCarNames() {
     InputView.readCarNames((names) => {
-      Validation.validateCarNames(names);
+      if (!this.handleError(Validation.validateCarNames.bind(Validation), names)) {
+        this.requestInputCarNames();
+        return;
+      }
       this.requestInputTryCount(names);
     });
   }
 
   requestInputTryCount(names) {
     InputView.readTryCount((tryCount) => {
-      Validation.validateTryCount(tryCount);
+      if (!this.handleError(Validation.validateTryCount.bind(Validation), tryCount)) {
+        this.requestInputTryCount();
+        return;
+      }
       this.#racingGame = new RacingGame(names, tryCount);
       this.playRancingGame();
     });
@@ -38,6 +44,16 @@ class App {
     const winners = this.#racingGame.getWinners();
     OutputView.printWinners(winners);
     InputView.close();
+  }
+
+  handleError(validateFunction, input) {
+    try {
+      validateFunction(input);
+      return true;
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+      return false;
+    }
   }
 }
 
