@@ -1,5 +1,4 @@
 const { Car } = require('./Car');
-const { randomGenerator } = require('./randomGenerator');
 
 class Service {
   #cars;
@@ -11,32 +10,16 @@ class Service {
     );
   }
 
-  getMovingLog(cnt) {
-    let finalLogResult = '';
-    const movingLog = [];
-    for (let round = 0; round < cnt; round++) {
-      const roundLog = {};
+  getMovingLog() {
+    const roundLog = {};
 
-      this.#cars.forEach((car) => {
-        const canMove = randomGenerator() >= 4;
-        if (canMove) {
-          car.move();
-        }
-
-        const { name, movingLog } = car.getCarInfo();
-        roundLog[name] = movingLog;
-      });
-      movingLog.push(roundLog);
-    }
-
-    movingLog.forEach((round) => {
-      Object.entries(round).forEach(([key, value]) => {
-        finalLogResult += `${key} : ${value ? '-'.repeat(value) : ''}\n`;
-      });
-      finalLogResult += '\n';
+    this.#cars.forEach((car) => {
+      car.move();
+      const { name, movingLog } = car.getCarInfo();
+      roundLog[name] = movingLog;
     });
 
-    return finalLogResult;
+    return roundLog;
   }
 
   getWinners() {
@@ -48,7 +31,8 @@ class Service {
     cars.forEach((car) => {
       if (car.movingLog === max) winner.push(car.name);
     });
-    return `${winner.join(', ')}가 최종 우승했습니다.`;
+
+    return winner;
   }
 }
 

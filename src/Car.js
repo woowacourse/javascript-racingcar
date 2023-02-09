@@ -1,3 +1,5 @@
+const { randomGenerator } = require('./randomGenerator');
+
 class Car {
   #name;
   #movingLog;
@@ -8,7 +10,8 @@ class Car {
   }
 
   move() {
-    this.#movingLog++;
+    const randomNumber = randomGenerator();
+    if (randomNumber >= 4) this.#movingLog++;
   }
 
   getCarInfo() {

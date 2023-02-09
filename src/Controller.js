@@ -1,6 +1,6 @@
 const { Service } = require('./Service');
-const { Validator } = require('./Validator');
 const { View } = require('./View');
+const { Validator } = require('./Validator');
 
 class Controller {
   #service;
@@ -25,6 +25,7 @@ class Controller {
       View.output('ERROR: ' + message);
       return this.askCarName();
     }
+
     this.askTryCnt();
   }
 
@@ -32,22 +33,27 @@ class Controller {
     View.input('\n시도할 회수는 몇회인가요?\n', this.handleTryCnt.bind(this));
   }
 
-  handleTryCnt(cnt) {
+  handleTryCnt(tryCount) {
     try {
-      Validator.validateTryCnt(cnt);
+      Validator.validateTryCnt(tryCount);
     } catch ({ message }) {
       View.output('ERROR: ' + message);
       return this.askTryCnt();
     }
-    this.printResult(cnt);
+
+    this.printResult(tryCount);
   }
 
-  printResult(cnt) {
+  printResult(tryCount) {
     View.output('\n실행 결과');
-    const movingLog = this.#service.getMovingLog(cnt);
-    View.output(movingLog);
+
+    for (let i = 0; i < tryCount; i++) {
+      const movingLog = this.#service.getMovingLog();
+      View.output(movingLog, 'movingLog');
+    }
+
     const winners = this.#service.getWinners();
-    View.output(winners);
+    View.output(winners, 'winner');
 
     this.exitGame();
   }
