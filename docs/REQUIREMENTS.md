@@ -43,7 +43,7 @@
 
 - App.js에 대한 테스트 코드 작성
   - readCarNameCallback 메서드에 대한 테스트 코드
-    - [ ] test: 자동차 객체 생성 테스트
+    - [x] test: 자동차 객체 생성 메서드 호출 테스트
     - [ ] test: 자동차 객체 생성 이후 readTryCount 메서드 호출 테스트
     - [ ] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
     - [ ] test: 잘못된 값을 입력시 readCarName 메서드 호출 테스트
