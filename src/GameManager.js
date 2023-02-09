@@ -12,7 +12,6 @@ const { readCarNames, readTryCount } = require('./InputView');
 const { ERROR } = require('./utils/constants');
 class GameManager {
   #cars = [];
-  #tryCount = 0;
 
   isForward() {
     return pickRandomNumber() >= 4;
@@ -31,9 +30,9 @@ class GameManager {
     printEmptyLine();
   }
 
-  tryMoveCars() {
+  tryMoveCars(tryCount) {
     printResult();
-    for (let i = 0; i < this.#tryCount; i++) {
+    for (let i = 0; i < tryCount; i++) {
       this.moveCars();
       this.printCars();
     }
@@ -50,19 +49,20 @@ class GameManager {
   }
 
   async handleTryCount() {
-    this.#tryCount = await InputView.readTryCount();
+    const tryCount = await readTryCount();
     try {
-      if (!isValidTryCount(this.#tryCount)) {
+      if (!isValidTryCount(tryCount)) {
         throw new Error(ERROR.tryCount);
       }
     } catch (error) {
       printError(error);
       await this.handleTryCount();
     }
+    return tryCount;
   }
 
   async handleCarNames() {
-    const names = await InputView.readCarNames();
+    const names = await readCarNames();
     try {
       if (!isValidCarNames(names)) {
         throw new Error(ERROR.carNames);
@@ -78,8 +78,8 @@ class GameManager {
 
   async play() {
     await this.handleCarNames();
-    await this.handleTryCount();
-    this.tryMoveCars();
+    const tryCount = await this.handleTryCount();
+    this.tryMoveCars(tryCount);
     this.judgeWinners();
     Console.close();
   }
