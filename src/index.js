@@ -33,15 +33,17 @@ class App {
     getTotalRound() {
         inputView.inputRound((round) => {
             OutputView.outputResultTitle(); 
-            for (let i = 0; i < round; i++) {
-                this.goStop()
-                OutputView.outputRoundResult(this.cars)
-            }
+            this.moveCar(round);
             this.printFinalResult();
         })
     }
 
-
+    moveCar(round) {
+        for (let i = 0; i < round; i++) {
+            this.goStop()
+            OutputView.outputRoundResult(this.cars)
+        }
+    }
 
     getCarNames() {
         const names = []
@@ -56,11 +58,6 @@ class App {
         names.forEach( carName => {
             this.cars.push(new Car(carName))
         });
-    }
-
-    checkRandomNum() {
-        const randomNum = random();
-        return (randomNum >= 4)
     }
 
     goStop() {
