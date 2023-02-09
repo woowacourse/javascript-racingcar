@@ -4,7 +4,7 @@ const Validation = {
   },
 
   isValidTryCount(tryCount) {
-    return Number.isInteger(+tryCount) && +tryCount > 0;
+    return Number.isInteger(tryCount) && tryCount > 0;
   },
 };
 module.exports = Validation;

@@ -45,12 +45,11 @@ class GameManager {
   }
 
   async handleTryCount() {
-    const answer = await InputView.readTryCount();
+    this.#tryCount = await InputView.readTryCount();
     try {
-      if (!isValidTryCount(answer)) {
+      if (!isValidTryCount(this.#tryCount)) {
         throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
       }
-      this.#tryCount = +answer;
       this.tryMoveCars();
       this.judgeWinners();
     } catch (error) {
@@ -60,8 +59,7 @@ class GameManager {
   }
 
   async handleCarNames() {
-    const answer = await InputView.readCarNames();
-    const names = answer.split(',');
+    const names = await InputView.readCarNames();
     try {
       if (!isValidCarNames(names)) {
         throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
