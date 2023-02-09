@@ -1,5 +1,5 @@
-const { Car } = require("./Car");
-const { randomGenerator } = require("./randomGenerator");
+const { Car } = require('./Car');
+const { randomGenerator } = require('./randomGenerator');
 
 class Service {
   #cars;
@@ -12,7 +12,7 @@ class Service {
   }
 
   getMovingLog(cnt) {
-    let finalLogResult = "";
+    let finalLogResult = '';
     const movingLog = [];
     for (let round = 0; round < cnt; round++) {
       const roundLog = {};
@@ -31,12 +31,24 @@ class Service {
 
     movingLog.forEach((round) => {
       Object.entries(round).forEach(([key, value]) => {
-        finalLogResult += `${key} : ${value ? "-".repeat(value) : ""}\n`;
+        finalLogResult += `${key} : ${value ? '-'.repeat(value) : ''}\n`;
       });
-      finalLogResult += "\n";
+      finalLogResult += '\n';
     });
 
     return finalLogResult;
+  }
+
+  getWinners() {
+    const cars = Array.from({ length: this.#cars.length }, (_, index) =>
+      this.#cars[index].getCarInfo()
+    );
+    const max = cars.sort((a, b) => b.movingLog - a.movingLog)[0].movingLog;
+    const winner = [];
+    cars.forEach((car) => {
+      if (car.movingLog === max) winner.push(car.name);
+    });
+    return `${winner.join(', ')}가 최종 우승했습니다.`;
   }
 }
 

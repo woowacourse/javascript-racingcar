@@ -22,12 +22,9 @@
 - 시도 횟수
   - 0이하인 경우
 
-require 받아오는 모듈은 외부 라이브러리인가
-
 ## Car Class
 
-프로퍼티: 이름, 이동 로그
-메서드: move, getCarInfo
+프로퍼티: 이름, 이동 로그메서드: move, getCarInfo
 
 ## 파일 구조
 
@@ -37,3 +34,10 @@ require 받아오는 모듈은 외부 라이브러리인가
 - View.js
 - randomGenerator.js
 - Service.js
+
+## ToDo
+
+- 자동차 이름 중복 처리
+- 자동차 , 사이에 공백 제거
+- 우승자를 반환하는 기능
+- 우승자 출력
