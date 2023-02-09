@@ -1,16 +1,18 @@
 const Console = require('./utils/Console');
+const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('./utils/constants');
 
 const OutputView = {
   printEmptyLine() {
-    Console.print('');
+    Console.print(EMPTY_LINE);
   },
 
   printResult() {
-    Console.print('\n실행 결과');
+    Console.print(EMPTY_LINE);
+    Console.print(RESULT_TITLE);
   },
 
   printWinners(winners) {
-    Console.print(`${winners.join(', ')}가 최종 우승했습니다.`);
+    Console.print(`${winners.join(', ')}${IS_WINNERS}`);
   },
 
   printError(error) {

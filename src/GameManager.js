@@ -9,6 +9,7 @@ const {
   printEmptyLine,
 } = require('./OutputView');
 const { readCarNames, readTryCount } = require('./InputView');
+const { ERROR } = require('./utils/constants');
 class GameManager {
   #cars = [];
   #tryCount = 0;
@@ -52,7 +53,7 @@ class GameManager {
     this.#tryCount = await InputView.readTryCount();
     try {
       if (!isValidTryCount(this.#tryCount)) {
-        throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
+        throw new Error(ERROR.tryCount);
       }
     } catch (error) {
       printError(error);
@@ -64,7 +65,7 @@ class GameManager {
     const names = await InputView.readCarNames();
     try {
       if (!isValidCarNames(names)) {
-        throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
+        throw new Error(ERROR.carNames);
       }
       names.forEach((name) => {
         this.#cars.push(new Car(name));
