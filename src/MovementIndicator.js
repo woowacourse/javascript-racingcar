@@ -11,8 +11,8 @@ const isOverFour = (number) => {
   return false;
 };
 
-const isMoving = () => {
-  return isOverFour(randomNumberMaker());
+const isMoving = (randomNumber) => {
+  return isOverFour(randomNumber);
 };
 
-module.exports = isMoving;
+module.exports = { isMoving, randomNumberMaker };

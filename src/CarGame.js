@@ -1,4 +1,4 @@
-const isMoving = require("./MovementIndicator");
+const { isMoving, randomNumberMaker } = require("./MovementIndicator");
 
 const { COMMA } = require("./Utils/Constants");
 
@@ -23,7 +23,8 @@ class CarGame {
 
   cycleCarStatus(carStatus) {
     for (const [name, count] of Object.entries(carStatus)) {
-      if (isMoving()) carStatus[name] = count + 1;
+      const randomNumber = randomNumberMaker();
+      if (isMoving(randomNumber)) carStatus[name] = count + 1;
     }
     this.setCarStatus(carStatus);
     return carStatus;
