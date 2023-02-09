@@ -1,4 +1,4 @@
-import { NAME_DELIMITER, MOVE_NUMBER } from './constants';
+import { NAME_DELIMITER, MOVE_NUMBER } from './constants/index.js';
 import Car from './models/Car.js';
 import Console from './utils/Console.js';
 import randomNumberInRange from './utils/RandomNumberInRange.js';
@@ -13,62 +13,76 @@ class Controller {
   }
 
   async play() {
-    View.naming();
-    const names = await this.readNames();
-    names.forEach((name) => {
-      this.#cars.push(new Car(name));
-    });
-
-    View.tryCount();
-    let count = await this.readTryCount();
-
-    View.newLine();
-    View.result();
-    View.carResult(this.getCarInfoList());
-    while (count >= 1) {
-      count -= 1;
-      this.#cars.forEach((car) => {
-        const { randomMin, randomMax, threshold } = MOVE_NUMBER;
-        if (randomNumberInRange(randomMin, randomMax) >= threshold) car.move();
-      });
-
-      View.carResult(this.getCarInfoList());
-    }
-
-    View.winnerResult(this.judgeWinner());
+    await this.#initCars();
+    const count = await this.#initCount();
+    this.#raceStart(count);
+    this.#presentWinner();
     Console.close();
   }
 
-  async readNames() {
-    try {
-      const input = await Console.read();
-      Validator.checkName(input);
-      Validator.checkDuplicate(input);
-      return input.split(NAME_DELIMITER);
-    } catch (e) {
-      View.error(e);
-      return await this.readNames();
+  async #initCars() {
+    View.naming();
+    const names = await this.#readNames();
+    names.forEach((name) => {
+      this.#cars.push(new Car(name));
+    });
+  }
+
+  async #initCount() {
+    View.tryCount();
+    const count = await this.#readTryCount();
+    View.newLine();
+
+    return count;
+  }
+
+  #raceStart(count) {
+    View.resultTitle();
+    View.carProgress(this.#getCarsData());
+    for (let i = 0; i < count; i += 1) {
+      this.#cars.forEach(this.#judgeMove);
+      View.carProgress(this.#getCarsData());
     }
   }
 
-  async readTryCount() {
+  #judgeMove(car) {
+    const { randomMin, randomMax, threshold } = MOVE_NUMBER;
+    if (randomNumberInRange(randomMin, randomMax) >= threshold) car.move();
+  }
+
+  #presentWinner() {
+    View.winner(this.#judgeWinner());
+  }
+
+  async #readNames() {
+    try {
+      const input = await Console.read();
+      Validator.checkName(input).checkDuplicate(input);
+      return input.split(NAME_DELIMITER);
+    } catch (e) {
+      View.error(e);
+      return await this.#readNames();
+    }
+  }
+
+  async #readTryCount() {
     try {
       const input = await Console.read();
       Validator.checkIntegerNumber(input);
       return Number(input);
     } catch (e) {
       View.error(e);
-      return await this.readTryCount();
+      return this.#readTryCount();
     }
   }
 
-  judgeWinner() {
-    const carInfoList = this.getCarInfoList();
-    const max = Math.max(...carInfoList.map((carInfo) => carInfo.distance));
-    return carInfoList.filter((carInfo) => carInfo.distance === max).map((carInfo) => carInfo.name);
+  #judgeWinner() {
+    const carsData = this.#getCarsData();
+    const max = Math.max(...carsData.map((car) => car.distance));
+    return carsData.filter((car) => car.distance === max).map((car) => car.name);
   }
 
-  getCarInfoList() {
+  #getCarsData() {
     return this.#cars.map((car) => {
       return { name: car.getName(), distance: car.getDistance() };
     });

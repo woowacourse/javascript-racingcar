@@ -1,4 +1,4 @@
-import { NAME_DELIMITER, ERROR_MESSAGE, VALIDATOR } from '../constants';
+import { NAME_DELIMITER, ERROR_MESSAGE, VALIDATOR } from '../constants/index.js';
 
 const Validator = {
   checkName(input) {
@@ -8,12 +8,15 @@ const Validator = {
     if (input[input.length - 1] === NAME_DELIMITER) {
       throw new Error(ERROR_MESSAGE.lastComma);
     }
+    return this;
   },
   checkDuplicate(input) {
     const value = input.split(NAME_DELIMITER);
     if (new Set(value).size !== value.length) {
       throw new Error(ERROR_MESSAGE.duplicate);
     }
+
+    return this;
   },
   checkIntegerNumber(input) {
     input.split('').forEach((char) => {
@@ -21,6 +24,7 @@ const Validator = {
         throw new Error(ERROR_MESSAGE.notInteger);
       }
     });
+    return this;
   },
 };
 
