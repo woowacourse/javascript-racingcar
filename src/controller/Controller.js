@@ -12,14 +12,14 @@ class Controller {
 
     start() {
         InputView.inputCarName((answer) => {
-            let val = answer.split(',');
+            let nameOfCars = answer.split(',');
 
-            this.makeCar(val);
+            this.makeCar(nameOfCars);
         })
     }
 
     makeCar(carNames) {
-        for (let i = 0; i < carNames.length; i++) {
+        for (let len = 0; len < carNames.length; len++) {
             let car = new Car();
             car.inputName(carNames[i]);
             this.#cars.push(car);
@@ -30,13 +30,13 @@ class Controller {
 
     makeNumber() {
         InputView.inputNumber((answer) => {
-            let val2 = Number(answer);
-            this.makeCarMove(val2);
+            let tryNumber = Number(answer);
+            this.makeCarMove(tryNumber);
         })
     }
 
     makeCarMove(tryNumber) {
-        for (let i = 0; i < tryNumber; i++) {
+        for (let num = 0; num < tryNumber; num++) {
             this.moveCar()
             OutputView.printCarMove(this.#cars)
         }
