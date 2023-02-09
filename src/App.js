@@ -20,15 +20,18 @@ class App {
   readCarNameCallback(carNames) {
     try {
       Validator.carName(carNames);
-      carNames.split(",").forEach((carName) => {
-        this.#cars.push(new Car(carName));
-      });
-
+      this.createCarObject(carNames);
       this.readTryCount();
     } catch (error) {
       OutputView.printErrorMessage(error);
       this.readCarName();
     }
+  }
+
+  createCarObject(carNames) {
+    carNames.split(",").forEach((carName) => {
+      this.#cars.push(new Car(carName));
+    });
   }
 
   readTryCount() {
@@ -75,3 +78,5 @@ class App {
 
 const app = new App();
 app.play();
+
+module.exports = App;
