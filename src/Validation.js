@@ -47,7 +47,7 @@ const Validation = {
   },
 
   validateNotANumber(tryCount) {
-    if (isNaN(tryCount)) {
+    if (!/\d/g.test(tryCount)) {
       Console.print(ERROR.TRYCOUNT_NOT_A_NUMBER);
       throw new Error();
     }
