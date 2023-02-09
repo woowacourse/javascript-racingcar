@@ -1,10 +1,11 @@
-const { GAME_NUMBER, ERROR_MESSAGE } = require('./constants');
+const { GAME_NUMBER, ERROR_MESSAGE, GAME_STRING } = require('./constants');
 
 class Validation {
   static carName(carNames) {
     Validation.duplicatedCarName(carNames);
     Validation.carNameLengthRange(carNames);
     Validation.carCountRange(carNames.length);
+    Validation.onlyAlphabet(carNames);
   }
 
   static attempt(attempts) {
@@ -61,6 +62,13 @@ class Validation {
     if (isDulicate) {
       throw new Error(ERROR_MESSAGE.duplicatedCarName);
     }
+  }
+
+  static onlyAlphabet(carNames) {
+    const regex = GAME_STRING.alphabetExpression;
+    carNames.forEach((name) => {
+      if (regex.test(name)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
+    });
   }
 }
 

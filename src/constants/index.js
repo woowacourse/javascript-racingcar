@@ -19,6 +19,7 @@ const GAME_STRING = Object.freeze({
   progressJoin: '',
   space: '\n',
   empty: '',
+  alphabetExpression: /[^a-zA-Z]/,
 });
 
 const GAME_MESSAGE = Object.freeze({
@@ -32,6 +33,7 @@ const GAME_MESSAGE = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
+  onlyAlphabet: `${ERROR_SUBJECT}영문자만 입력해주세요`,
   attemptRange: `${ERROR_SUBJECT}시도 횟수는 ${GAME_NUMBER.minAttempt}번 이상 ${GAME_NUMBER.maxAttempt}번 이하만 가능합니다.`,
   onlyInt: `${ERROR_SUBJECT}자연수만 입력해주세요`,
   carCountRange: `${ERROR_SUBJECT}자동차 개수는 ${GAME_NUMBER.minCarCount}개 이상 ${GAME_NUMBER.maxCarCount}개 이하만 가능합니다`,
