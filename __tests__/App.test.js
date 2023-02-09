@@ -63,4 +63,16 @@ describe("readTryCountCallback 메서드 전체 호출 테스트", () => {
     // then
     expect(moveCarSpy).toHaveBeenCalledTimes(1);
   });
+
+  test("잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트", () => {
+    // given
+    const printErrorMessageSpy = jest.spyOn(OutputView, "printErrorMessage");
+    printErrorMessageSpy.mockClear();
+
+    // when
+    app.readTryCountCallback("1a");
+
+    // then
+    expect(printErrorMessageSpy).toHaveBeenCalledTimes(1);
+  });
 });

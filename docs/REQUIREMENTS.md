@@ -50,7 +50,7 @@
     - [ ] test: readCarNameCallback 메서드 전체 호출 테스트
   - readTryCountCallback 메서드에 대한 테스트 코드
   - [x] test: 올바른 값 입력시 moveCar 메서드 호출 테스트
-  - [ ] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
+  - [x] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
   - [ ] test: 잘못된 값 입력시 readTryCount 메서드 호출 테스트
   - [ ] test: readTryCountCallback 메서드 전체 호출 테스트
 - Car.js에 대한 테스트 코드 작성
