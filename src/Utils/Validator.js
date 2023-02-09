@@ -2,7 +2,7 @@ const CONSTANTS = require('../Constant/Constants');
 const { RACE_ERROR_MESSAGE } = require('../Constant/ErrorMessage');
 
 class Validator {
-  static validateCarNames(names) {
+  static validateNamesOfCars(names) {
     if (new Set(names).size !== names.length) {
       throw new Error(RACE_ERROR_MESSAGE.numberOfNames);
     }

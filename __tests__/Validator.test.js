@@ -6,7 +6,7 @@ describe('Validator 테스트', () => {
     '자동차 이름이 한개 이하거나 중복될 경우 예외처리한다.',
     input => {
       expect(() => {
-        Validator.validateCarNames(input);
+        Validator.validateNamesOfCars(input);
       }).toThrow(RACE_ERROR_MESSAGE.numberOfNames);
     },
   );
