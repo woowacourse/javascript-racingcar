@@ -37,4 +37,15 @@ describe("readCarNameCallback 메서드에 대한 테스트 코드", () => {
     // then
     expect(printErrorMessageSpy).toHaveBeenCalledTimes(1);
   });
+
+  test("test: 잘못된 값을 입력시 readCarName 메서드 호출 테스트", () => {
+    // given
+    const readCarNameSpy = jest.spyOn(app, "readCarName");
+
+    // when
+    app.readCarNameCallback("pobi,jun,noahhhh");
+
+    // then
+    expect(readCarNameSpy).toHaveBeenCalledTimes(1);
+  });
 });
