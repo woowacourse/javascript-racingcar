@@ -2,6 +2,10 @@ const IO = require('../utils/IO.js');
 const { MESSAGE, SYMBOL } = require('../data/constants.js');
 
 const OutputView = {
+  printWhiteSpace() {
+    IO.print('');
+  },
+
   printMoveProcess(cars) {
     cars.forEach((car) => {
       const moveCount = car.getMoveCount();
