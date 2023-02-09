@@ -9,10 +9,7 @@ class Validator {
   }
 
   static validateCarName(name) {
-    if (
-      name.length < CONSTANTS.minNameLength ||
-      name.length > CONSTANTS.maxNameLength
-    ) {
+    if (name.length > CONSTANTS.maxNameLength) {
       throw new Error(RACE_ERROR_MESSAGE.lengthOfName);
     }
 
@@ -21,9 +18,13 @@ class Validator {
     }
   }
 
-  static valdateTryCount(count) {
+  static validateTryCount(count) {
+    if (count < 1) {
+      throw new Error(RACE_ERROR_MESSAGE.rangeOfTryCount);
+    }
+
     if (!/^[0-9]+$/.test(count)) {
-      throw new Error(RACE_ERROR_MESSAGE.isNotNumber);
+      throw new Error(RACE_ERROR_MESSAGE.rangeOfTryCount);
     }
   }
 }

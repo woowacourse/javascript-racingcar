@@ -27,7 +27,7 @@ class RaceController {
 
   getTryCount(cars) {
     InputView.readTryCount(count => {
-      Validator.valdateTryCount(count);
+      Validator.validateTryCount(count);
       this.#race = new Race(cars);
       this.handleRace(count);
     });
