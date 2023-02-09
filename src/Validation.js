@@ -23,7 +23,7 @@ class Validation {
   }
 
   static isNotInteger(attempt) {
-    return !Number.isInteger(Number(attempt));
+    return !Number.isInteger(attempt);
   }
 
   static onlyInt(attempt) {
