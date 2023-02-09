@@ -1,3 +1,4 @@
+const CAR_RULE = require('../constants/carRule');
 const Console = require('../lib/console');
 const Car = require('../models/Car');
 const RacingCarGame = require('../models/RacingCarGame');
@@ -14,7 +15,9 @@ class RacingCarGameController {
   #onCarNameSubmit(carNames) {
     try {
       Validator.checkCarName(carNames);
-      const cars = carNames.split(',').map((carName) => new Car(carName));
+      const cars = carNames
+        .split(CAR_RULE.separator)
+        .map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
       InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
     } catch (error) {
