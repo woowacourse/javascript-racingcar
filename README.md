@@ -11,14 +11,22 @@
 1. 도메인 로직과 UI 로직 분리
    - 도메인 로직은 App, Car, CarManager에서 담당
    - UI 로직은 InputView, OutputView에서 담당
+   - 유효성 검사 기능을 Validator 에서 담당
 2. 도메인 로직에 대한 단위 테스트 구현
    - 모든 도메인 로직에 대해 단위 테스트 구현 완료
    - 테스트하기 용이하도록 코드 리팩토링
+   - 유효성 검사 테스트 코드 작성 
+
+### 추후 개선 사항 
+
+1. 코드리뷰 반영  
+2. 도메인 로직 코드 리팩토링
+3. 테스트 케이스 보강 
 
 ### 실행 방법
 ```bash
 // 저장소 클론
-git clone https://github.com/sh981013s/javascript-racingcar.git
+git clone -b sh981013s --single-branch https://github.com/sh981013s/javascript-racingcar.git
 
 // 패키지 의존성 설치
 npm i
