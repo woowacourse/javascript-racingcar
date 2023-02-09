@@ -1,16 +1,35 @@
-const RacingGame = require('../models/RacingGame');
 const Inputs = require('../views/Inputs');
-const Car = require('../validator/Car');
+const Outputs = require('../views/Outputs');
+const RacingGame = require('../models/RacingGame');
 
 class Game {
-  async play() {
-    // const name = await Inputs.readCarName();
-    // const count = await Inputs.readTryCount();
-    const r = new RacingGame(['sy', 'hi'], 5);
-    const winners = r.getWinners();
+  #RacingGame;
+  #count;
+  #names = [];
 
-    const a = winners.map(winner => winner.getName());
-    console.log(a);
+  async play() {
+    await this.setGame();
+
+    this.start();
+  }
+
+  async setGame() {
+    this.#names = await Inputs.readCarName();
+    this.#count = await Inputs.readTryCount();
+  }
+
+  start() {
+    this.#RacingGame = new RacingGame(this.#names);
+
+    Outputs.printGameResultMessage();
+    Array(this.#count)
+      .fill()
+      .forEach(() => {
+        this.#RacingGame.race();
+        Outputs.printRacingSnapShot(this.#RacingGame.getCars());
+      });
+
+    Outputs.printWinners(this.#RacingGame.getWinners());
   }
 }
 

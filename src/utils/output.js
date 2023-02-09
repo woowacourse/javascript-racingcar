@@ -8,9 +8,9 @@ const getPositionLine = position => {
 };
 
 const getRacingSnapShot = car => {
-  const positionLine = getPositionLine(car.position);
+  const positionLine = getPositionLine(car.getPosition());
 
-  return `${car.name} : ${positionLine}`;
+  return `${car.getName()} : ${positionLine}`;
 };
 
 const getWinnersMessage = winnerSet => {

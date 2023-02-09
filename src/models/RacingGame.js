@@ -3,24 +3,27 @@ const Car = require('./Car');
 class RacingGame {
   #cars = [];
 
-  constructor(names, tryCount) {
+  constructor(names) {
     this.#cars = names.map(name => new Car(name));
-
-    this.race(tryCount);
   }
 
-  race(tryCount) {
-    for (let i = 0; i < tryCount; i++) this.moveAll();
-  }
-
-  moveAll() {
+  #moveAll() {
     this.#cars.forEach(car => car.move());
   }
 
+  race() {
+    this.#moveAll();
+  }
+
+  getCars() {
+    return this.#cars;
+  }
+
   getWinners() {
+    const max = Math.max(...this.#cars.map(car => car.getPosition()));
     const winners = this.#cars
-      .sort((a, b) => (a.position > b.position ? -1 : 1))
-      .filter(car => this.#cars.position === car.position);
+      .filter(car => car.getPosition() === max)
+      .map(car => car.getName());
 
     return winners;
   }

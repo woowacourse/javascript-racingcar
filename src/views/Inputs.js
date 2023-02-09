@@ -2,12 +2,14 @@ const Console = require('../utils/Console');
 const { QUERY } = require('../constants/messages');
 
 const Inputs = {
-  readCarName() {
-    return Console.readline(QUERY.CAR_NAME);
+  async readCarName() {
+    const names = await Console.readline(QUERY.CAR_NAME);
+
+    return names.split(',');
   },
 
-  readTryCount() {
-    return Console.readline(QUERY.TRY_COUNT);
+  async readTryCount() {
+    return Number(await Console.readline(QUERY.TRY_COUNT));
   },
 };
 
