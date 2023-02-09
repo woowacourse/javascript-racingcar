@@ -1,3 +1,4 @@
+const Random = require("./Random");
 const random = require("./Random");
 
 class Racing {
@@ -7,7 +8,7 @@ class Racing {
     }
 
     checkRandomNumberOverFour() {
-        const randomNumber = random()
+        const randomNumber = Random.getRandomNumber()
         return randomNumber >= 4
     }
 
