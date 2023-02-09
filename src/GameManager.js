@@ -17,29 +17,28 @@ class GameManager {
     return pickRandomNumber() >= 4;
   }
 
-  moveCars() {
-    this.#cars.forEach((car) => {
+  moveCars(cars) {
+    cars.forEach((car) => {
       car.move(this.isForward());
     });
   }
 
-  printCars() {
-    this.#cars.forEach((car) => {
+  printCars(cars) {
+    cars.forEach((car) => {
       car.print();
     });
     printEmptyLine();
   }
 
-  tryMoveCars(tryCount) {
+  tryMoveCars(tryCount, cars) {
     printResult();
     for (let i = 0; i < tryCount; i++) {
-      this.moveCars();
-      this.printCars();
+      this.moveCars(cars);
+      this.printCars(cars);
     }
   }
 
-  judgeWinners() {
-    const cars = [...this.#cars];
+  judgeWinners(cars) {
     cars.sort((a, b) => b.getPosition() - a.getPosition());
     const max = cars[0].getPosition();
     const winners = cars
@@ -48,12 +47,16 @@ class GameManager {
     return winners;
   }
 
+  checkTryCount(tryCount) {
+    if (!isValidTryCount(tryCount)) {
+      throw new Error(ERROR.tryCount);
+    }
+  }
+
   async handleTryCount() {
     const tryCount = await readTryCount();
     try {
-      if (!isValidTryCount(tryCount)) {
-        throw new Error(ERROR.tryCount);
-      }
+      this.checkTryCount(tryCount);
     } catch (error) {
       printError(error);
       await this.handleTryCount();
@@ -65,12 +68,16 @@ class GameManager {
     return names.map((name) => new Car(name));
   }
 
+  checkCarNames(names) {
+    if (!isValidCarNames(names)) {
+      throw new Error(ERROR.carNames);
+    }
+  }
+
   async handleCarNames() {
     const names = await readCarNames();
     try {
-      if (!isValidCarNames(names)) {
-        throw new Error(ERROR.carNames);
-      }
+      this.checkCarNames(names);
       this.#cars = this.generateCars(names);
     } catch (error) {
       printError(error);
@@ -81,8 +88,8 @@ class GameManager {
   async play() {
     await this.handleCarNames();
     const tryCount = await this.handleTryCount();
-    this.tryMoveCars(tryCount);
-    const winners = this.judgeWinners();
+    this.tryMoveCars(tryCount, this.#cars);
+    const winners = this.judgeWinners([...this.#cars]);
     printWinners(winners);
     Console.close();
   }
