@@ -37,6 +37,16 @@ class App {
 
     InputView.readTrial(this.#readTrialCallback);
   }
+
+  #resultRace(input) {
+    Validate.checkTrial(input);
+
+    this.#race.setTrial(input);
+    this.#race.start();
+
+    OutputView.printRaceResult(this.#race);
+    OutputView.printWinner(this.#race.getWinners());
+  }
 }
 
 module.exports = App;
