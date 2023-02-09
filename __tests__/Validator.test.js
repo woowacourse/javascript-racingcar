@@ -19,6 +19,12 @@ describe("자동차 이름 입력값에 대한 유효성 검사", () => {
       Validator.carName("aaa,bbb,Ccc");
     }).toThrow(MESSAGE.error.lowerCase);
   });
+
+  test("자동차 이름이 중복된 경우 예외를 발생시킨다.", () => {
+    expect(() => {
+      Validator.carName("aaa,aaa,ccc");
+    }).toThrow(MESSAGE.error.duplicatedName);
+  });
 });
 
 describe("시도 횟수에 대한 유효성 검사", () => {
