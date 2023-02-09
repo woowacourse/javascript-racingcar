@@ -1,6 +1,5 @@
 const INPUT_MESSAGE = Object.freeze({
-  ENTER_CAR_NAME:
-    '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
+  ENTER_CAR_NAME: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
   ENTER_TRY_COUNT: '시도할 회수는 몇회인가요?\n',
 });
 
@@ -19,8 +18,11 @@ const ERROR_MESSAGE = Object.freeze({
   INVALID_TRY_COUNT: '[ERROR] 입력값은 1이상인 자연수여야 합니다.',
 });
 
+const MOVE_CHECK_NUMBER = 4;
+
 module.exports = {
   INPUT_MESSAGE,
   OUTPUT_MESSAGE,
   ERROR_MESSAGE,
+  MOVE_CHECK_NUMBER,
 };
