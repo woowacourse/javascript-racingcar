@@ -1,7 +1,7 @@
-const generateRandomNumber = {
+const GenerateRandomNumber = {
   generator() {
     return Math.floor(Math.random() * 10);
   },
 };
 
-module.exports = generateRandomNumber;
+module.exports = GenerateRandomNumber;

@@ -1,4 +1,4 @@
-const generateRandomNumber = require("../lib/generateRandomNumber.js");
+const GenerateRandomNumber = require("../lib/GenerateRandomNumber.js");
 
 class Car {
   #name;
@@ -10,7 +10,7 @@ class Car {
 
   move(tryCount) {
     for (let sequence = 0; sequence < tryCount; sequence++) {
-      const number = generateRandomNumber.generator();
+      const number = GenerateRandomNumber.generator();
 
       this.#position.push(number <= 4 ? 1 : 0);
     }

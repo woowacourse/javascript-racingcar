@@ -68,17 +68,18 @@
 
 ```bash
 ├── __test__
+│ ├── App.test.js
 │ ├── Car.test.js
+│ ├── Validator.test.js
 ├── docs
 │ ├── REQUIREMENTS.md
 ├── src
 │ ├── libs
 │ │ ├── Console.js
 │ │ ├── Constant.js
-│ │ ├── generateRandomNumber.js
+│ │ ├── GenerateRandomNumber.js
 │ ├── model
 │ │ ├── Car.js
-│ │ ├── ErrorHandler.js
 │ │ ├── Validator.js
 │ ├── view
 │ │ ├── InputView.js
