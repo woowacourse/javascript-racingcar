@@ -25,13 +25,17 @@ class App {
     readCarName(this.inputCarNameCallback);
   }
 
+  splitCarNames = (names) => {
+    return names.split(COMMA).map((name) => name.trim());
+  };
+
   inputCarNameCallback = (names) => {
-    const cars = names.split(COMMA).map((name) => name.trim());
+    const cars = this.splitCarNames(names);
+
     const isValidated = hasError(
       () => inputCarNameValidator(cars),
       () => readCarName(this.inputCarNameCallback)
     );
-
     if (isValidated) return;
 
     this.#games.initializeCarStatus(cars);
@@ -43,7 +47,6 @@ class App {
       () => tryCountValidator(count),
       () => readTryCount(this.readTryCountCallback)
     );
-
     if (isValidated) return;
 
     this.#round = count;
