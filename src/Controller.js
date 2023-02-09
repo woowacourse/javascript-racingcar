@@ -57,7 +57,7 @@ class Controller {
   async #readNames() {
     try {
       const input = await Console.read();
-      Validator.checkName(input).checkDuplicate(input);
+      Validator.checkNames(input);
       return input.split(NAME_DELIMITER);
     } catch (e) {
       View.error(e);
