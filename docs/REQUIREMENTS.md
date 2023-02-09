@@ -54,7 +54,7 @@
   - [x] test: 잘못된 값 입력시 readTryCount 메서드 호출 테스트
   - [ ] test: readTryCountCallback 메서드 전체 호출 테스트
 - Car.js에 대한 테스트 코드 작성
-  - [ ] test: move, getStatus 메서드에 대한 테스트 코드
+  - [x] test: move, getStatus 메서드에 대한 테스트 코드
   - [ ] test: getWinner 메서드에 대한 테스트 코드
 - Validator.js에 대한 테스트 코드 작성
   - 자동차 이름 입력값에 대한 유효성 검사
