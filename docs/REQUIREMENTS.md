@@ -13,6 +13,7 @@
   - [x] feat: 자동차 이름이 5자 이하가 아닐 경우 예외처리
   - [x] feat: 자동차 이름이 영소문자가 아닐 경우 예외처리
   - [x] feat: 자동차 이름에 공백이 포함되면 예외처리
+  - [ ] feat: 자동차 이름이 중복될 경우 예외처리
 - [x] feat: 예외 발생 시 자동차 이름 재입력받기
 - [x] feat: 입력 받은 자동차 객체 생성
 
@@ -35,10 +36,6 @@
   - 우승자가 여러명일 경우 ', '를 이용하여 구분한다.
 - [x] feat: 게임 종료하기
 
-## 리팩터링
-
-- [ ] refactor: 매직 넘버 상수화하기
-
 ## 테스트 코드
 
 - App.js에 대한 테스트 코드 작성
@@ -47,12 +44,10 @@
     - [x] test: 자동차 객체 생성 이후 readTryCount 메서드 호출 테스트
     - [x] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
     - [x] test: 잘못된 값을 입력시 readCarName 메서드 호출 테스트
-    - [ ] test: readCarNameCallback 메서드 전체 호출 테스트
   - readTryCountCallback 메서드에 대한 테스트 코드
   - [x] test: 올바른 값 입력시 moveCar 메서드 호출 테스트
   - [x] test: 잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트
   - [x] test: 잘못된 값 입력시 readTryCount 메서드 호출 테스트
-  - [ ] test: readTryCountCallback 메서드 전체 호출 테스트
 - Car.js에 대한 테스트 코드 작성
   - [x] test: move, getStatus 메서드에 대한 테스트 코드
   - [x] test: getWinner 메서드에 대한 테스트 코드
@@ -63,6 +58,13 @@
     - [x] test: 자동차 이름이 영소문자로만 이루어지지 않은 경우
   - 시도 횟수에 대한 유효성 검사
     - [x] test: 시도 횟수 타입 유효성 검사
+
+## 리팩터링
+
+- [x] refactor: 자동차 객체 생성 메서드 분리
+- [x] refactor: 난수생성함수를 난수생성객체로 수정
+- [ ] refactor: 매직넘버 상수화
+- [ ] refactor: 테스트 코드 리팩터링
 
 ## 파일 구조
 
