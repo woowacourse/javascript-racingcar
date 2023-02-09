@@ -1,5 +1,7 @@
-function generateRandomNumber() {
-  return Math.floor(Math.random() * 10);
-}
+const generateRandomNumber = {
+  generator() {
+    return Math.floor(Math.random() * 10);
+  },
+};
 
 module.exports = generateRandomNumber;

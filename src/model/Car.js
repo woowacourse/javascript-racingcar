@@ -10,7 +10,7 @@ class Car {
 
   move(tryCount) {
     for (let sequence = 0; sequence < tryCount; sequence++) {
-      const number = generateRandomNumber();
+      const number = generateRandomNumber.generator();
 
       this.#position.push(number <= 4 ? 1 : 0);
     }
