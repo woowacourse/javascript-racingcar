@@ -2,18 +2,25 @@ const CarManager = require('./CarManager');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
+const Validator = require('./utils/Validator');
 
 class App {
   #carManager;
 
   play() {
+    this.inputCarNames();
+  }
+
+  inputCarNames() {
     InputView.readCarNames((carNamesInput) => {
-      // todo: validate
-      InputView.readTryCount((tryCountsInput) => {
-        const carNames = carNamesInput.split(',');
-        this.#carManager = new CarManager(carNames);
-        this.startRace(parseInt(tryCountsInput));
-      });
+      try {
+        Validator.validateNameInput(carNamesInput);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+        this.inputCarNames();
+      }
+    });
+  }
     });
   }
 
