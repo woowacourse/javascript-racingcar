@@ -1,17 +1,17 @@
 const Console = require('../utils/Console');
 
 const OutputView = {
-  printTrace(raceInstance, i) {
+  printTrace(raceInstance, index) {
     raceInstance.getCars().forEach((carInstance) => {
-      const trace = new Array(carInstance.getTrace()[i]).fill('-').join('');
+      const trace = new Array(carInstance.getTrace()[index]).fill('-').join('');
       Console.print(`${carInstance.getName()}: ${trace}`);
     });
   },
 
   printRaceResult(raceInstance) {
     Console.print('\n실행 결과');
-    for (let i = 0; i <= raceInstance.getTrial(); i += 1) {
-      this.printTrace(raceInstance, i);
+    for (let index = 0; index <= raceInstance.getTrial(); index += 1) {
+      this.printTrace(raceInstance, index);
       Console.print('');
     }
   },
