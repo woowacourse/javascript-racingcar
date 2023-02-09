@@ -1,3 +1,4 @@
+const { MOVE_SETTING } = require("../lib/Constant.js");
 const GenerateRandomNumber = require("../lib/GenerateRandomNumber.js");
 
 class Car {
@@ -12,7 +13,11 @@ class Car {
     for (let sequence = 0; sequence < tryCount; sequence++) {
       const number = GenerateRandomNumber.generator();
 
-      this.#position.push(number <= 4 ? 1 : 0);
+      this.#position.push(
+        number <= MOVE_SETTING.advanceBoundary
+          ? MOVE_SETTING.advance
+          : MOVE_SETTING.stop
+      );
     }
   }
 

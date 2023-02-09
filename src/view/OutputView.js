@@ -1,4 +1,5 @@
 const Console = require("../lib/Console");
+const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require("../lib/Constant");
 
 const OutputView = {
   printErrorMessage(error) {
@@ -6,7 +7,7 @@ const OutputView = {
   },
 
   printProcessResult(carStatus, tryCount) {
-    Console.print("\n실행 결과");
+    Console.print(MESSAGE.output.processResultHeader);
     for (let sequence = 0; sequence < tryCount; sequence++) {
       this.printCarStatus(carStatus, sequence);
       Console.print("");
@@ -19,12 +20,12 @@ const OutputView = {
         .slice(0, sequence + 1)
         .reduce((acc, cur) => acc + cur, 0);
 
-      Console.print(`${name} : ${"-".repeat(currentPosition)}`);
+      Console.print(`${name} : ${POSITION_UNIT.repeat(currentPosition)}`);
     });
   },
 
   printWinner(winner) {
-    Console.print(`${winner.join(", ")}가 최종 우승했습니다.`);
+    Console.print(`${winner.join(WINNER_DIVIDER)}가 최종 우승했습니다.`);
   },
 };
 
