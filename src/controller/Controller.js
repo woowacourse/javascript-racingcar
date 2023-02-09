@@ -2,6 +2,7 @@ const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
 const { GAME, INPUT, OUTPUT } = require('../utils/constants');
+const { validateCarNames } = require('../validation/input.js');
 
 class Controller {
   #cars;
@@ -22,6 +23,7 @@ class Controller {
   async setCars() {
     const input = await InputView.readline(INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
+    if (!validateCarNames(carNames)) return this.setCars();
     this.makeCars(carNames);
   }
 
