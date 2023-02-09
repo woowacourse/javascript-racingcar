@@ -39,12 +39,12 @@ class Controller {
   handleCarsMovement() {
     for (let i = 0; i < this.#cars.length; i++) {
       const randomNumber = RandomNumberGenerator.generate();
-      const currentcar = this.#cars[i];
+      const currentCar = this.#cars[i];
 
-      currentcar.move(randomNumber);
+      currentCar.move(randomNumber);
       OutputView.printMoveDistance(
-        currentcar.getName(),
-        currentcar.getCurrentDistance()
+        currentCar.getName(),
+        currentCar.getCurrentDistance()
       );
     }
   }
