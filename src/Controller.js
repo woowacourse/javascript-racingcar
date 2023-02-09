@@ -1,4 +1,4 @@
-import { MOVE_NUMBER } from './constants/index.js';
+import { NAME_DELIMITER, MOVE_NUMBER } from './constants';
 import Car from './models/Car.js';
 import Console from './utils/Console.js';
 import randomNumberInRange from './utils/RandomNumberInRange.js';
@@ -44,7 +44,7 @@ class Controller {
       const input = await Console.read();
       Validator.checkName(input);
       Validator.checkDuplicate(input);
-      return input.split(',');
+      return input.split(NAME_DELIMITER);
     } catch (e) {
       View.error(e);
       return await this.readNames();
