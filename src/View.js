@@ -1,4 +1,5 @@
 const readline = require('readline');
+const { MESSAGE, RESULT_TYPE } = require('./constants');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -13,15 +14,15 @@ const View = {
   output: (data, type = '') => {
     if (!type) return console.log(data);
 
-    if (type === 'movingLog') {
+    if (type === RESULT_TYPE.MOVING_LOG) {
       Object.entries(data).forEach(([key, value]) => {
-        console.log(`${key} : ${value ? '-'.repeat(value) : ''}`);
+        console.log(MESSAGE.MOVING_LOG([key, value]));
       });
       return console.log();
     }
 
-    if (type === 'winner') {
-      return console.log(`${data.join(', ')}가 최종 우승했습니다.`);
+    if (type === RESULT_TYPE.WINNERS) {
+      return console.log(MESSAGE.WINNERS(data));
     }
   },
 

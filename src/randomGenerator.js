@@ -1,7 +1,7 @@
-const MAX_RANGE = 9;
+const { GAME_VALUE } = require('./constants');
 
 const randomGenerator = () => {
-  return Math.floor(Math.random() * MAX_RANGE);
+  return Math.floor(Math.random() * GAME_VALUE.MAX_RANGE);
 };
 
 module.exports = { randomGenerator };
