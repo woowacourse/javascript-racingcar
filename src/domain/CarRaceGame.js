@@ -8,6 +8,17 @@ const CarRaceGame = {
     }
     return carDistances;
   },
+
+  judgeWinners(carNames, carDistances) {
+    const winners = [];
+    const maxDistance = Math.max(...carDistances);
+    for(let i = 0; i < carDistances.length; i++) {
+      if(carDistances[i] === maxDistance) {
+        winners.push(carNames[i]);
+      }
+    }
+    return winners.join(', ');
+  }
 };
 
 module.exports = CarRaceGame;
