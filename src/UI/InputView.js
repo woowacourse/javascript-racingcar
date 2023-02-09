@@ -23,7 +23,7 @@ const InputView = {
     return tryCount;
   },
   readTryCount(callback) {
-    readLine(INPUT_TRY_COUNT, callback);
+    Utils.readLine(INPUT_TRY_COUNT, callback);
   },
 };
 
