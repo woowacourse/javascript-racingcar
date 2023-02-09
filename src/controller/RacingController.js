@@ -4,6 +4,7 @@ const Validator = require('../utils/Validator.js');
 const RacingCar = require('../model/RacingCar.js');
 const Util = require('../utils/Util.js');
 const { UTIL_NUMBER } = require('../data/constants.js');
+const IO = require('../utils/IO.js');
 
 class RacingController {
   #cars;
@@ -29,6 +30,7 @@ class RacingController {
     InputView.readTryCount((tryCount) => {
       Validator.validateTryCount(tryCount);
       this.#tryCount = tryCount;
+      OutputView.printWhiteSpace();
       this.repeatProcess();
     });
   }
@@ -65,6 +67,11 @@ class RacingController {
         OutputView.printWinner(winnerList);
       }
     }
+    this.quitGame();
+  }
+
+  quitGame() {
+    IO.close();
   }
 }
 
