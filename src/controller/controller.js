@@ -67,8 +67,12 @@ class Controller {
   }
 
   showGameProgress() {
-    this.#cars.forEach((item) => {
-      OutputView.printGameProgress(item.getName(), item.getProgress());
+    this.#cars.forEach((item, index) => {
+      OutputView.printGameProgress(
+        item.getName(),
+        item.getProgress(),
+        index === this.#cars.length - 1
+      );
     });
   }
 

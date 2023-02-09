@@ -6,8 +6,10 @@ class OutputView {
     Console.print(GAME_MESSAGE.progressResult);
   }
 
-  static printGameProgress(name, progress) {
-    const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}`;
+  static printGameProgress(name, progress, isLast) {
+    const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}${
+      isLast ? GAME_STRING.space : GAME_STRING.empty
+    }`;
     Console.print(result);
   }
 
