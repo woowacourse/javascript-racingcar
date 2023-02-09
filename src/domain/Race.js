@@ -42,6 +42,14 @@ class Race {
       .filter((carInstance) => longestPosition === carInstance.getLast())
       .map((carInstance) => carInstance.getName());
   }
+
+  #getLongestPosition() {
+    const result = this.#cars.sort(
+      (xCar, yCar) => yCar.getLast() - xCar.getLast()
+    );
+
+    return result[0].getLast();
+  }
 }
 
 module.exports = Race;
