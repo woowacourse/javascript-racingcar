@@ -15,7 +15,7 @@ describe('MovingDecider 테스트', () => {
       [true, true, true],
     ],
   ])(
-    '랜덤 숫자가 4 이상이면 true, 4 미만이면 false의 배열을 반환한다.',
+    '랜덤 숫자가 4 이상이면 true, 4 미만이면 false를 반환한다.',
     (testCase, expected) => {
       const mockGenerator = testCase.reduce(
         (acc, number) => acc.mockReturnValueOnce(number),
