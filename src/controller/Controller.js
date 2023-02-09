@@ -1,6 +1,7 @@
-const Car = require("../model/Car")
-const InputView = require("../views/InputView")
-const OutputView = require("../views/OutputView")
+const Car = require("../model/Car");
+const InputView = require("../views/InputView");
+const OutputView = require("../views/OutputView");
+const { RANDOM } = require("../utils/Constant");
 
 class Controller {
     #cars;
@@ -50,7 +51,7 @@ class Controller {
     }
 
     getRandomNumber() {
-        return Math.floor(Math.random() * (10 - 0) + 0);
+        return Math.floor(Math.random() * (RANDOM.MAXNUMBER - RANDOM.MINNUMBER) + RANDOM.MINNUMBER);
     }
 
     whoIsWinners() {

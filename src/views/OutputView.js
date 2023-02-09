@@ -1,3 +1,5 @@
+const { MESSAGE } = require("../utils/Constant");
+
 const OutputView = {
     printCarMove(cars) {
         console.log()
@@ -8,8 +10,9 @@ const OutputView = {
 
     printWinners(users) {
         const winners = users.join(", ");
-        console.log(`\n${winners}가 최종 우승했습니다.`);
-    }
+        console.log(`\n${winners}` + MESSAGE.OUTPUT_WINNER);
+
+    },
 }
 
 module.exports = OutputView
