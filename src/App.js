@@ -11,6 +11,7 @@ const {
   inputCarNameValidator,
   tryCountValidator,
 } = require("./Utils/Validator");
+const { hasError } = require("./Utils/ErrorHandler");
 
 class App {
   #carStatus;
@@ -20,25 +21,14 @@ class App {
     readCarName(this.inputCarNameCallback);
   }
 
-  tryCatch(validator, callback) {
-    try {
-      validator();
-    } catch (error) {
-      Utils.print(error);
-      callback();
-      return false;
-    }
-    return true;
-  }
-
   inputCarNameCallback = (names) => {
     const cars = names.split(COMMA).map((name) => name.trim());
-    const isValidate = this.tryCatch(
+    const isValidated = hasError(
       () => inputCarNameValidator(cars),
       () => readCarName(this.inputCarNameCallback)
     );
 
-    if (!isValidate) return;
+    if (isValidated) return;
 
     this.#carStatus = this.initializeCarStatus(cars);
     readTryCount(this.readTryCountCallback);
@@ -52,12 +42,12 @@ class App {
   };
 
   readTryCountCallback = (count) => {
-    const isValidate = this.tryCatch(
+    const isValidated = hasError(
       () => tryCountValidator(count),
       () => readTryCount(this.readTryCountCallback)
     );
 
-    if (!isValidate) return;
+    if (isValidated) return;
 
     this.#round = count;
     this.showGameResult();
