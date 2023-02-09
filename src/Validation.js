@@ -1,4 +1,11 @@
 const Console = require('./utils/Console');
+const {
+  ERROR,
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  MIN_PARTICIPATE,
+  MIN_TRYCOUNT,
+} = require('./utils/constants');
 
 const Validation = {
   validateCarName(carNames) {
@@ -9,8 +16,11 @@ const Validation = {
 
   validateCarNameLength(carNames) {
     carNames.forEach((carName) => {
-      if (carName.length <= 0 || carName.length > 5) {
-        Console.print('자동차 이름은 1글자 이상 5글자 이하입니다.');
+      if (
+        carName.length <= NAME_MIN_LENGTH ||
+        carName.length > NAME_MAX_LENGTH
+      ) {
+        Console.print(ERROR.CAR_NAME_LENGTH);
         throw new Error();
       }
     });
@@ -19,14 +29,14 @@ const Validation = {
   validateCarNameDuplicated(carNames) {
     const carSet = new Set(carNames);
     if (carNames.length !== carSet.size) {
-      Console.print('자동차 이름은 중복되지 않아야 합니다.');
+      Console.print(ERROR.CAR_NAME_DUPLICATED);
       throw new Error();
     }
   },
 
   validateIsRace(carNames) {
-    if (carNames.length < 2) {
-      Console.print('2대 이상의 자동차 이름을 입력해주세요.');
+    if (carNames.length < MIN_PARTICIPATE) {
+      Console.print(ERROR.NOT_A_RACE);
       throw new Error();
     }
   },
@@ -38,14 +48,14 @@ const Validation = {
 
   validateNotANumber(tryCount) {
     if (isNaN(tryCount)) {
-      Console.print('시도 횟수는 숫자를 입력해주세요.');
+      Console.print(ERROR.TRYCOUNT_NOT_A_NUMBER);
       throw new Error();
     }
   },
 
   validateRaceCount(tryCount) {
-    if (tryCount < 1) {
-      Console.print('시도 횟수는 1회 이상이어야 합니다.');
+    if (tryCount < MIN_TRYCOUNT) {
+      Console.print(ERROR.TRYCOUNT_UNDER_ONE);
       throw new Error();
     }
   },

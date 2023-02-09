@@ -1,4 +1,5 @@
 const Random = require('../utils/Random');
+const { MOVE_FORWARD } = require('../utils/constants');
 
 class Race {
   #carNames;
@@ -20,7 +21,7 @@ class Race {
 
   makeResult() {
     const distanceArray = this.#currentRace.map((race) => {
-      return race.filter((el) => el === '-').length;
+      return race.filter((el) => el === MOVE_FORWARD).length;
     });
     const maxDistance = Math.max(...distanceArray);
     const winner = distanceArray.reduce((arr, distance, index) => {
