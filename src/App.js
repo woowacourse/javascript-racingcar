@@ -6,16 +6,20 @@ const {
 } = require("./UI/OutputView");
 const { COMMA } = require("./Utils/Constants");
 const Utils = require("./Utils/Utils");
-const isMoving = require("./MovementIndicator");
 const {
   inputCarNameValidator,
   tryCountValidator,
-} = require("./Utils/Validator");
-const { hasError } = require("./Utils/ErrorHandler");
+} = require("./Validator/Validator");
+const { hasError } = require("./Validator/ErrorHandler");
 
 class App {
-  #carStatus;
+  #games;
   #round;
+
+  constructor(game) {
+    this.#games = game;
+    this.#round = 0;
+  }
 
   play() {
     readCarName(this.inputCarNameCallback);
@@ -30,15 +34,8 @@ class App {
 
     if (isValidated) return;
 
-    this.#carStatus = this.initializeCarStatus(cars);
+    this.#games.initializeCarStatus(cars);
     readTryCount(this.readTryCountCallback);
-  };
-
-  initializeCarStatus = (cars) => {
-    const carStatus = {};
-    cars.forEach((car) => (carStatus[car] = 0));
-
-    return carStatus;
   };
 
   readTryCountCallback = (count) => {
@@ -55,31 +52,20 @@ class App {
 
   showGameResult = () => {
     printResultMessage();
-
-    for (let idx = 0; idx < this.#round; idx++) {
-      this.#carStatus = this.cycleCarStatus(this.#carStatus);
-      printCarMovement(this.#carStatus);
-    }
-
-    printWinner(this.findWinner(this.#carStatus));
+    this.showGameRound();
+    printWinner(this.#games.findWinner(this.#games.getCarStatus()));
     Utils.close();
   };
 
-  cycleCarStatus(carStatus) {
-    for (const [name, count] of Object.entries(carStatus)) {
-      if (isMoving()) carStatus[name] = count + 1;
+  showGameRound = () => {
+    for (let idx = 0; idx < this.#round; idx++) {
+      const currentCarStatus = this.#games.cycleCarStatus(
+        this.#games.getCarStatus()
+      );
+
+      printCarMovement(currentCarStatus);
     }
-    return carStatus;
-  }
-
-  findWinner(carStatus) {
-    const max = Math.max(...Object.values(carStatus));
-    const winnerInfo = Object.entries(carStatus).filter(
-      ([_, count]) => count === max
-    );
-
-    return winnerInfo.map(([name]) => name).join(COMMA);
-  }
+  };
 }
 
 module.exports = App;
