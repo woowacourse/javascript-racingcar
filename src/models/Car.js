@@ -1,14 +1,12 @@
+import { CAR } from '../constants';
+
 class Car {
   #name;
   #distance;
 
   constructor(name) {
     this.#name = name;
-    this.#distance = 1;
-  }
-
-  move() {
-    this.#distance += 1;
+    this.#distance = CAR.initialDistance;
   }
 
   getName() {
@@ -17,6 +15,10 @@ class Car {
 
   getDistance() {
     return this.#distance;
+  }
+
+  move() {
+    this.#distance += CAR.moveUnit;
   }
 }
 

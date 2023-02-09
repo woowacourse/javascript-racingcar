@@ -25,3 +25,8 @@ export const MOVE_NUMBER = Object.freeze({
 export const VALIDATOR = Object.freeze({
   integerString: '0123456789',
 });
+
+export const CAR = Object.freeze({
+  initialDistance: 1,
+  moveUnit: 1,
+});
