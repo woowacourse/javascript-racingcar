@@ -14,8 +14,7 @@ class Controller {
 
   async play() {
     await this.#initCars();
-    const count = await this.#initCount();
-    this.#raceStart(count);
+    this.#raceStart(await this.#initCount());
     this.#presentWinner();
     Console.close();
   }
@@ -54,6 +53,18 @@ class Controller {
     View.winner(this.#judgeWinner());
   }
 
+  #judgeWinner() {
+    const carsData = this.#getCarsData();
+    const max = Math.max(...carsData.map((car) => car.distance));
+    return carsData.filter((car) => car.distance === max).map((car) => car.name);
+  }
+
+  #getCarsData() {
+    return this.#cars.map((car) => {
+      return { name: car.getName(), distance: car.getDistance() };
+    });
+  }
+
   async #readNames() {
     try {
       const input = await Console.read();
@@ -61,7 +72,7 @@ class Controller {
       return input.split(NAME_DELIMITER);
     } catch (e) {
       View.error(e);
-      return await this.#readNames();
+      return this.#readNames();
     }
   }
 
@@ -74,18 +85,6 @@ class Controller {
       View.error(e);
       return this.#readTryCount();
     }
-  }
-
-  #judgeWinner() {
-    const carsData = this.#getCarsData();
-    const max = Math.max(...carsData.map((car) => car.distance));
-    return carsData.filter((car) => car.distance === max).map((car) => car.name);
-  }
-
-  #getCarsData() {
-    return this.#cars.map((car) => {
-      return { name: car.getName(), distance: car.getDistance() };
-    });
   }
 }
 
