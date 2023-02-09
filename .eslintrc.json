@@ -8,8 +8,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "plugins": [
+    "jsdoc"
+  ],
   "extends": [
     "eslint:recommended",
+    "plugin:jsdoc/recommended",
     "airbnb-base/legacy",
     "plugin:prettier/recommended"
   ],

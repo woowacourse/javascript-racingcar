@@ -5,8 +5,10 @@ import InputView from '../views/InputView';
 import OutputView from '../views/OutputView';
 
 class RaceController {
+  /** @type {Race} */
   #race;
 
+  /** @type {number} */
   #step;
 
   async startSetup() {

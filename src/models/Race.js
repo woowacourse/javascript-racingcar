@@ -1,8 +1,13 @@
 import Random from '../utils/Random';
+import Car from './Car';
 
 class Race {
+  /** @type {Car[]} */
   #cars;
 
+  /**
+   * @param {Car[]} cars
+   */
   constructor(cars) {
     this.#cars = cars;
   }

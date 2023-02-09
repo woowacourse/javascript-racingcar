@@ -48,5 +48,8 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "eslint-plugin-jsdoc": "^39.8.0"
   }
 }
