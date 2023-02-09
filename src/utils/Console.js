@@ -6,8 +6,10 @@ const rl = readline.createInterface({
 });
 
 const Console = {
-  read(query, callback) {
-    rl.question(query, callback);
+  read(query) {
+    return new Promise((resolve) => {
+      rl.question(query, (input) => resolve(input));
+    });
   },
   print(text) {
     console.log(text);

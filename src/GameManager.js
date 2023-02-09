@@ -2,6 +2,7 @@ const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
 const { pickRandomNumber } = require('./utils/RandomGenerator');
+const InputView = require('./InputView');
 class GameManager {
   #cars = [];
   #tryCount = 0;
@@ -43,7 +44,8 @@ class GameManager {
     Console.close();
   }
 
-  handleTryCount(answer) {
+  async handleTryCount() {
+    const answer = await InputView.readTryCount();
     try {
       if (!isValidTryCount(answer)) {
         throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
@@ -53,15 +55,12 @@ class GameManager {
       this.judgeWinners();
     } catch (error) {
       Console.print(error.message);
-      this.readTryCount();
+      await this.handleTryCount();
     }
   }
 
-  readTryCount() {
-    Console.read('시도할 회수는 몇회인가요?', this.handleTryCount.bind(this));
-  }
-
-  handleCarNames(answer) {
+  async handleCarNames() {
+    const answer = await InputView.readCarNames();
     const names = answer.split(',');
     try {
       if (!isValidCarNames(names)) {
@@ -70,22 +69,15 @@ class GameManager {
       names.forEach((name) => {
         this.#cars.push(new Car(name));
       });
-      this.readTryCount();
     } catch (error) {
       Console.print(error.message);
-      this.readCarNames();
+      await this.handleCarNames();
     }
   }
 
-  readCarNames() {
-    Console.read(
-      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
-      this.handleCarNames.bind(this)
-    );
-  }
-
-  play() {
-    this.readCarNames();
+  async play() {
+    await this.handleCarNames();
+    await this.handleTryCount();
   }
 }
 
