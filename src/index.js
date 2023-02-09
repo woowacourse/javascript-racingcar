@@ -6,7 +6,7 @@ class Index {
 
     raceController.start();
   }
-};
+}
 
 const index = new Index();
 index.init();

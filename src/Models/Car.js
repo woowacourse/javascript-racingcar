@@ -1,10 +1,12 @@
+const CONSTANTS = require('../Constant/Constants');
+
 class Car {
   #name;
   #position;
 
-  constructor (name) {
+  constructor(name) {
     this.#name = name;
-    this.#position = 0;   
+    this.#position = CONSTANTS.defaultPostion;
   }
 
   getName() {
@@ -16,10 +18,10 @@ class Car {
   }
 
   move(number) {
-    if (number >= 4) {
+    if (number >= CONSTANTS.minNumberOfMoving) {
       this.#position += 1;
     }
   }
-};
+}
 
 module.exports = Car;

@@ -1,23 +1,29 @@
+const CONSTANTS = require('../Constant/Constants');
+const RACE_MESSAGE = require('../Constant/RaceMessage');
 const Console = require('../Utils/Console');
 const DataParseUtils = require('../Utils/DataParseUtils');
 
 const OutputView = {
   printResultMessage() {
-    Console.print('\n실행 결과');
+    Console.print(RACE_MESSAGE.raceResult);
   },
-  
+
   printRaceResult(result) {
     result.forEach((value, key) => {
-      Console.print(`${key} : ${'-'.repeat(value)}`);
+      Console.print(
+        `${key} ${CONSTANTS.colon} ${CONSTANTS.dash.repeat(value)}`,
+      );
     });
-    Console.print('');
+    Console.print(CONSTANTS.empty);
   },
 
   printWinners(result) {
     const winners = DataParseUtils.parseWinner(result);
-    Console.print(`${winners.join(', ')}가 최종 우승했습니다.`);
+    Console.print(
+      `${winners.join(CONSTANTS.commaBlank)}${RACE_MESSAGE.winnerResult}`,
+    );
     Console.close();
-  }
+  },
 };
 
 module.exports = OutputView;

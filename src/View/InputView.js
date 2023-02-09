@@ -1,5 +1,5 @@
 const Console = require('../Utils/Console');
-const RaceMessage = require('../Constant/RaceMessage');
+const RACE_MESSAGE = require('../Constant/RaceMessage');
 
 const InputView = {
   getUserInput(question, callback, redirect) {
@@ -14,11 +14,19 @@ const InputView = {
   },
 
   readCarName(callback) {
-    this.getUserInput(RaceMessage.INPUT_CAR_NAME, callback, this.readCarName.bind(this));
+    this.getUserInput(
+      RACE_MESSAGE.inputCarName,
+      callback,
+      this.readCarName.bind(this),
+    );
   },
 
   readTryCount(callback) {
-    this.getUserInput(RaceMessage.INPUT_TRY_COUNT, callback, this.readTryCount.bind(this));
+    this.getUserInput(
+      RACE_MESSAGE.inputTryCount,
+      callback,
+      this.readTryCount.bind(this),
+    );
   },
 };
 

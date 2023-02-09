@@ -1,19 +1,20 @@
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
+const CONSTANTS = require('../Constant/Constants');
 const Validator = require('../Utils/Validator');
 const Car = require('../Models/Car');
 const Race = require('../Models/Race');
 
 class RaceController {
   #race;
-  
+
   start() {
     this.getCarName();
   }
 
   getCarName() {
     InputView.readCarName(carName => {
-      const splitCarName = carName.split(',');
+      const splitCarName = carName.split(CONSTANTS.comma);
       Validator.validateNumOfCar(splitCarName.length);
       const cars = [];
       splitCarName.forEach(name => {
@@ -31,7 +32,7 @@ class RaceController {
       this.showRaceResult(count);
     });
   }
-  
+
   showRaceResult(count) {
     OutputView.printResultMessage();
     for (let i = 0; i < count; i += 1) {

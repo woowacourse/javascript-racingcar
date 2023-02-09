@@ -1,23 +1,29 @@
+const CONSTANTS = require('../Constant/Constants');
+const { RACE_ERROR_MESSAGE } = require('../Constant/ErrorMessage');
+
 class Validator {
   static validateNumOfCar(number) {
-    if (number < 2) {
-      throw new Error('[ERROR] 자동차 이름은 두개 이상으로 입력해주세요.');
+    if (number < CONSTANTS.minNumberOfNames) {
+      throw new Error(RACE_ERROR_MESSAGE.numberOfNames);
     }
   }
-  
+
   static validateCarName(name) {
-    if (name.length < 1 || name.length > 5) {
-      throw new Error('[ERROR] 자동차의 이름은 5글자 이하로 입력해주세요.');
+    if (
+      name.length < CONSTANTS.minNameLength ||
+      name.length > CONSTANTS.maxNameLength
+    ) {
+      throw new Error(RACE_ERROR_MESSAGE.lengthOfName);
     }
 
     if (!/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(name)) {
-      throw new Error('[ERROR] 자동차의 이름을 다시 입력해주세요.');
+      throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
   }
 
   static valdateTryCount(count) {
     if (!/^[0-9]+$/.test(count)) {
-      throw new Error('[ERROR] 숫자를 입력해주세요.');
+      throw new Error(RACE_ERROR_MESSAGE.isNotNumber);
     }
   }
 }
