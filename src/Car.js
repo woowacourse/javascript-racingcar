@@ -11,7 +11,7 @@ class Car {
   }
 
   move() {
-    const randomNumber = randomGenerator();
+    const randomNumber = randomGenerator.generateNumber();
     if (randomNumber >= GAME_VALUE.MOVING_BOUNDARY_VALUE) this.#movingLog++;
   }
 
