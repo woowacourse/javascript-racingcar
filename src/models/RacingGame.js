@@ -1,7 +1,9 @@
+const { getRacingSnapShot } = require('../utils/output');
 const Car = require('./Car');
 
 class RacingGame {
   #cars = [];
+  #snapShots = [];
 
   constructor(names) {
     this.#cars = names.map(name => new Car(name));
@@ -11,8 +13,21 @@ class RacingGame {
     this.#cars.forEach(car => car.move());
   }
 
+  #takeSnapShots() {
+    this.#snapShots.push(
+      this.#cars.map(car => getRacingSnapShot(car)).join('\n')
+    );
+  }
+
+  raceNTimes(n) {
+    Array(n)
+      .fill()
+      .forEach(() => this.race());
+  }
+
   race() {
     this.#moveAll();
+    this.#takeSnapShots();
   }
 
   getCars() {
@@ -26,6 +41,10 @@ class RacingGame {
       .map(car => car.getName());
 
     return winners;
+  }
+
+  getSnapShots() {
+    return this.#snapShots;
   }
 }
 

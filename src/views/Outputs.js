@@ -6,9 +6,8 @@ const Outputs = {
     Console.print('\n실행 결과');
   },
 
-  printRacingSnapShot(cars) {
-    cars.forEach(car => Console.print(getRacingSnapShot(car)));
-    Console.print('\n');
+  printRacingSnapShot(snapShots) {
+    snapShots.forEach(snapShot => Console.print(`${snapShot}\n`));
   },
 
   printWinners(winners) {

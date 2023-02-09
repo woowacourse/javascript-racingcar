@@ -1,3 +1,4 @@
+const Console = require('../utils/Console');
 const Inputs = require('../views/Inputs');
 const Outputs = require('../views/Outputs');
 const RacingGame = require('../models/RacingGame');
@@ -19,17 +20,20 @@ class Game {
   }
 
   start() {
+    if (!(this.#names && this.#count)) return;
+
     this.#RacingGame = new RacingGame(this.#names);
+    this.#RacingGame.raceNTimes(this.#count);
 
     Outputs.printGameResultMessage();
-    Array(this.#count)
-      .fill()
-      .forEach(() => {
-        this.#RacingGame.race();
-        Outputs.printRacingSnapShot(this.#RacingGame.getCars());
-      });
-
+    Outputs.printRacingSnapShot(this.#RacingGame.getSnapShots());
     Outputs.printWinners(this.#RacingGame.getWinners());
+
+    this.exit();
+  }
+
+  exit() {
+    Console.close();
   }
 }
 
