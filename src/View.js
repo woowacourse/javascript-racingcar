@@ -1,27 +1,27 @@
 import Console from './utils/Console.js';
-import { MESSAGE } from './constants';
+import { VIEW_MESSAGE } from './constants/index.js';
 
 const View = {
   naming() {
-    Console.print(MESSAGE.naming);
+    Console.print(VIEW_MESSAGE.naming);
   },
   tryCount() {
-    Console.print(MESSAGE.tryCount);
+    Console.print(VIEW_MESSAGE.tryCount);
   },
   resultTitle() {
-    Console.print(MESSAGE.resultTitle);
+    Console.print(VIEW_MESSAGE.resultTitle);
   },
   carProgress(cars) {
     cars.forEach((car) => {
-      Console.print(MESSAGE.carProgress(car));
+      Console.print(VIEW_MESSAGE.carProgress(car));
     });
     View.newLine();
   },
   winner(winnerList) {
-    Console.print(MESSAGE.winner(winnerList));
+    Console.print(VIEW_MESSAGE.winner(winnerList));
   },
   newLine() {
-    Console.print(MESSAGE.blank);
+    Console.print(VIEW_MESSAGE.blank);
   },
   error(e) {
     Console.print(e.message);
