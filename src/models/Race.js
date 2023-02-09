@@ -1,3 +1,4 @@
+import RandomNumber from '../constants/RandomNumber';
 import Random from '../utils/Random';
 
 class Race {
@@ -9,9 +10,12 @@ class Race {
 
   moveOnce() {
     this.#cars.forEach((car) => {
-      const randomNumber = Random.randomNumberBetween(0, 10);
+      const randomNumber = Random.randomNumberBetween(
+        RandomNumber.INCLUSIVE,
+        RandomNumber.EXCLUSIVE,
+      );
 
-      if (randomNumber >= 4) car.move();
+      if (randomNumber >= RandomNumber.MOVE_CONDITION) car.move();
     });
   }
 
