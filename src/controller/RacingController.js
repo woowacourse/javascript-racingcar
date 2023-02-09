@@ -55,7 +55,7 @@ class RacingController {
     for (let i = 0; i < this.#tryCount; i++) {
       this.assignRandom();
     }
-    this.selectWinner();
+    this.printWinner();
   }
 
   selectWinner() {
@@ -65,11 +65,11 @@ class RacingController {
     });
 
     const winners = Util.filterMaxObjects(carsMoveResults).map((obj) => obj[0]);
-    this.printWinner(winners);
+    return winners;
   }
 
-  printWinner(winners) {
-    OutputView.printWinner(winners);
+  printWinner() {
+    OutputView.printWinner(this.selectWinner());
     this.quitGame();
   }
 
