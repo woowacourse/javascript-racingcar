@@ -12,6 +12,8 @@ class Game {
     await this.setGame();
 
     this.start();
+    this.awards();
+    this.exit();
   }
 
   async setGame() {
@@ -20,16 +22,14 @@ class Game {
   }
 
   start() {
-    if (!(this.#names && this.#count)) return;
-
     this.#RacingGame = new RacingGame(this.#names);
     this.#RacingGame.raceNTimes(this.#count);
+  }
 
+  awards() {
     Outputs.printGameResultMessage();
     Outputs.printRacingSnapShot(this.#RacingGame.getSnapShots());
     Outputs.printWinners(this.#RacingGame.getWinners());
-
-    this.exit();
   }
 
   exit() {

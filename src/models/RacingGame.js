@@ -1,4 +1,5 @@
 const { getRacingSnapShot } = require('../utils/output');
+const Validator = require('../validator');
 const Car = require('./Car');
 
 class RacingGame {
@@ -6,6 +7,7 @@ class RacingGame {
   #snapShots = [];
 
   constructor(names) {
+    Validator.Car.checkNames(names);
     this.#cars = names.map(name => new Car(name));
   }
 

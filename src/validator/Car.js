@@ -3,12 +3,10 @@ const Common = require('./Common');
 
 const Car = {
   checkNames(names) {
-    Common.isString(names);
+    Common.isUnique(names);
   },
 
   checkName(name) {
-    Common.isString(name);
-    Common.isEveryAlpha(name);
     Common.validateStringSize(name, NAME.MIN, NAME.MAX);
   },
 
