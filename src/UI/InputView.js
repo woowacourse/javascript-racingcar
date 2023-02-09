@@ -16,7 +16,7 @@ const InputView = {
   getAttempts(racingGame) {
     let attempts;
     Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
-      attempts = parseInt(answer, 10);
+      attempts = answer.trim();
       if (Validator.invalidAttempts(attempts)) InputView.getAttempts(racingGame);
       racingGame.setAttempts(attempts);
       racingGame.playGame();
