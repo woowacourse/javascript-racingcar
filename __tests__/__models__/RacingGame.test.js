@@ -32,4 +32,31 @@ describe('RacingGame', () => {
     manipulatedRace([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     expect(moveSpy).toHaveBeenCalledTimes(CAR_NAMES.length * TRY_COUNT);
   });
+
+  test('우승자는 aker다.', () => {
+    manipulatedRace([3, 4, 3, 4, 3, 4, 3, 4, 3, 4]);
+
+    const WINNERS = ['aker'];
+    const winners = racingGame.getWinners();
+
+    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+  });
+
+  test('우승자는 sy이다.', () => {
+    manipulatedRace([4, 3, 4, 3, 4, 3, 4, 3, 4, 3]);
+
+    const WINNERS = ['sy'];
+    const winners = racingGame.getWinners();
+
+    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+  });
+
+  test('우승자는 sy, aker다.', () => {
+    manipulatedRace([4, 4, 4, 4, 4, 4, 4, 4, 4, 4]);
+
+    const WINNERS = ['sy', 'aker'];
+    const winners = racingGame.getWinners();
+
+    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+  });
 });
