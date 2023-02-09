@@ -1,8 +1,6 @@
 class Random {
   static pickNumberInRange(start, end) {
-    const startNumber = Math.ceil(start);
-
-    return Math.floor(Math.random() * (end + 1 - startNumber)) + startNumber;
+    return Math.floor(Math.random() * (end + 1 - Math.ceil(start))) + Math.ceil(start);
   }
 }
 
