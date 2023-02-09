@@ -1,4 +1,4 @@
-import { CAR } from '../constants';
+import { CAR } from '../constants/index.js';
 
 class Car {
   #name;

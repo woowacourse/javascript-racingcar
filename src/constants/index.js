@@ -11,7 +11,7 @@ export const VIEW_MESSAGE = Object.freeze({
 
 export const ERROR_MESSAGE = Object.freeze({
   blank: '입력값에 공백이 포함되어 있습니다.',
-  lastComma: '입력값에 공백이 포함되어 있습니다.',
+  lastComma: '입력값 마지막에 쉼표가 포함되어 있습니다.',
   duplicate: '입력값에 중복되는 값이 존재합니다.',
   notInteger: '입력값이 정수가 아닙니다.',
 });
