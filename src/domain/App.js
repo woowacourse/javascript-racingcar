@@ -33,7 +33,7 @@ class App {
 
   #playGame() {
     OutputView.printMessage(MESSAGES.resultTitle);
-    for (let i = 0; i < this.#carRace.getRepeatNumber(); i++) {
+    for (let i = 0; i < this.#carRace.getRepeatNumber(); i += 1) {
       const temp = CarRaceGame.updateRace(this.#carRace.getCarDistances());
       this.#carRace.setCarDistances(temp);
       OutputView.printRoundResult(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
@@ -43,4 +43,6 @@ class App {
   }
 }
 
+const app = new App();
+app.play();
 module.exports = App;

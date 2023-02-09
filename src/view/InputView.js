@@ -10,7 +10,6 @@ const InputView = {
       });
     });
   },
-
   readRepeatNumber(messages) {
     return new Promise(function(resolve, reject) {
       rl.question(messages, (repeatNumber) => {

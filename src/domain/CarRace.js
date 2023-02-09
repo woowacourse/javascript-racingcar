@@ -1,5 +1,3 @@
-const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
-
 class CarRace {
   #carNames;
 
@@ -15,6 +13,7 @@ class CarRace {
   setRepeatNumber(repeatNumber) {
     this.#repeatNumber = repeatNumber;
   }
+
   setCarDistances(carDistances) {
     this.#carDistances = carDistances;
   }
