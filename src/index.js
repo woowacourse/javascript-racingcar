@@ -1,7 +1,7 @@
-const RacingGame = require("./RacingGame");
-const InputView = require("./InputView");
-const OutputView = require("./OutputView");
-const Validation = require("./Validation");
+const RacingGame = require("./domain/RacingGame");
+const InputView = require("./view/InputView");
+const OutputView = require("./view/OutputView");
+const Validation = require("./domain/Validation");
 class App {
   #racingGame;
 

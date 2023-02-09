@@ -1,5 +1,5 @@
 const Car = require("./Car");
-const RandomNumberGenerator = require("./RandomNumberGenerator");
+const RandomNumberGenerator = require("../util/RandomNumberGenerator");
 
 class RacingGame {
   #cars;
