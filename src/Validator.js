@@ -7,7 +7,7 @@ const Validator = {
       Validator.carNameLength(input);
       return false;
     } catch (error) {
-      Console.print(error);
+      Console.print(error.message);
       return true;
     }
   },
@@ -26,7 +26,7 @@ const Validator = {
       Validator.bigNumber(attempts);
       return false;
     } catch (error) {
-      Console.print(error);
+      Console.print(error.message);
       return true;
     }
   },
