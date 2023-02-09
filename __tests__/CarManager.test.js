@@ -29,4 +29,17 @@ describe('자동차를 관리하는 클래스 테스트', () => {
       [1, 0, 0],
     );
   });
+
+  describe('경주 우승자를 도출한다.', () => {
+    test('우승자가 한 명인 경우', () => {
+      mockRandoms([5, 2, 1]);
+
+      carManager.progress();
+
+      const winners = carManager.getWinners();
+      expect(winners.length === 1 && winners[0] === 'pobi').toBe(true);
+    });
+
+    test('우승자가 두 명 이상인 경우', () => {});
+  });
 });
