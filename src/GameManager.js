@@ -40,6 +40,7 @@ class GameManager {
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
     console.log(`${winners.join(', ')}가 최종 우승했습니다.`);
+    Console.close();
   }
 
   handleTryCount(answer) {
