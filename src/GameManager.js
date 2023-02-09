@@ -2,6 +2,12 @@ const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
 const { pickRandomNumber } = require('./utils/RandomGenerator');
+const {
+  printResult,
+  printWinners,
+  printError,
+  printEmptyLine,
+} = require('./OutputView');
 const InputView = require('./InputView');
 class GameManager {
   #cars = [];
@@ -21,12 +27,11 @@ class GameManager {
     this.#cars.forEach((car) => {
       car.print();
     });
-    Console.print('');
+    printEmptyLine();
   }
 
   tryMoveCars() {
-    Console.print('');
-    Console.print('실행 결과');
+    printResult();
     for (let i = 0; i < this.#tryCount; i++) {
       this.moveCars();
       this.printCars();
@@ -40,7 +45,7 @@ class GameManager {
     const winners = cars
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
-    console.log(`${winners.join(', ')}가 최종 우승했습니다.`);
+    printWinners(winners);
     Console.close();
   }
 
@@ -51,7 +56,7 @@ class GameManager {
         throw new Error('[ERROR] 잘못 된 값을 입력했습니다.');
       }
     } catch (error) {
-      Console.print(error.message);
+      printError(error);
       await this.handleTryCount();
     }
   }
@@ -66,7 +71,7 @@ class GameManager {
         this.#cars.push(new Car(name));
       });
     } catch (error) {
-      Console.print(error.message);
+      printError(error);
       await this.handleCarNames();
     }
   }

@@ -1,3 +1,4 @@
+const { printCar } = require('./OutputView');
 const Console = require('./utils/Console');
 
 class Car {
@@ -23,9 +24,7 @@ class Car {
   }
 
   print() {
-    let result = `${this.#name} : `;
-    result += new Array(this.#position).fill('-').join('');
-    Console.print(result);
+    printCar(this.#name, this.#position);
   }
 }
 
