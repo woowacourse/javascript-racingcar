@@ -1,6 +1,6 @@
 const CarGame = require("../src/CarGame");
 
-describe("자동차 게임 테스트", () => {
+describe("자동차 게임 기능 단위 테스트", () => {
   const game = new CarGame();
   test("자동차 상태 초기화 테스트", () => {
     const carNames = ["야미", "클린", "레고"];
