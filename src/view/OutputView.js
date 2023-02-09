@@ -1,4 +1,4 @@
-const scoreConverter = require('../utils/scoreConverter');
+const { Converter } = require('../utils');
 
 const OutputView = {
   print(message) {
@@ -7,16 +7,18 @@ const OutputView = {
 
   printRoundResult(roundResult) {
     const templates = roundResult.map(({ name, position }) => {
-      const positionScore = scoreConverter(position);
+      const positionScore = Converter.numberToDash(position);
 
       return `${name} : ${positionScore}`;
     });
 
-    console.log(`${templates.join('\n')}\n`);
+    const result = Converter.arrayToString(templates, '\n');
+
+    console.log(`${result}\n`);
   },
 
   printFinalResult(winners) {
-    const winnersName = winners.join(', ');
+    const winnersName = Converter.arrayToString(winners, ', ');
 
     console.log(`${winnersName}(이)가 최종 우승했습니다.`);
   },
