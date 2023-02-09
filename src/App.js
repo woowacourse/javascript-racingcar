@@ -41,7 +41,7 @@ class App {
   }
 
   #raceCars() {
-    OutputView.print('\n실행 결과');
+    OutputView.printResultMessage();
 
     while (this.#racingGame.isPlaying()) {
       this.#racingGame.race();

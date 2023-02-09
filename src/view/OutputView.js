@@ -1,8 +1,8 @@
 const { Converter } = require('../utils');
 
 const OutputView = {
-  print(message) {
-    console.log(message);
+  printResultMessage() {
+    console.log(RESULT_MESSAGE.opening);
   },
 
   printRoundResult(roundResult) {
@@ -20,8 +20,13 @@ const OutputView = {
   printFinalResult(winners) {
     const winnersName = Converter.arrayToString(winners, ', ');
 
-    console.log(`${winnersName}(이)가 최종 우승했습니다.`);
+    console.log(`${winnersName}${RESULT_MESSAGE.ending}`);
   },
+};
+
+const RESULT_MESSAGE = {
+  opening: '\n실행 결과',
+  ending: '(이)가 최종 우승했습니다.',
 };
 
 module.exports = OutputView;
