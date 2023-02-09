@@ -7,7 +7,7 @@ class Race {
     this.#cars = cars;
   }
 
-  start() {
+  go() {
     this.#cars.forEach(car => {
       car.move(RandomNumGenerator.generateNumber());
     });

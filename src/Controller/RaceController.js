@@ -29,14 +29,14 @@ class RaceController {
     InputView.readTryCount(count => {
       Validator.valdateTryCount(count);
       this.#race = new Race(cars);
-      this.showRaceResult(count);
+      this.handleRace(count);
     });
   }
 
-  showRaceResult(count) {
+  handleRace(count) {
     OutputView.printResultMessage();
     for (let i = 0; i < count; i += 1) {
-      this.#race.start();
+      this.#race.go();
       OutputView.printRaceResult(this.#race.getResult());
     }
     OutputView.printWinners(this.#race.getResult());
