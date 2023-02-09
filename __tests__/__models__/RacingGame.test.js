@@ -33,6 +33,20 @@ describe('RacingGame', () => {
     expect(moveSpy).toHaveBeenCalledTimes(CAR_NAMES.length * TRY_COUNT);
   });
 
+  test('스냅샷이 올바르게 저장되어야 한다.', () => {
+    const SNAP_SHOTS = [
+      'sy : -\naker : ',
+      'sy : -\naker : -',
+      'sy : --\naker : --',
+      'sy : ---\naker : ---',
+      'sy : ----\naker : ----',
+    ];
+    manipulatedRace([4, 0, 0, 4, 4, 4, 4, 4, 4, 4]);
+    const snapShots = racingGame.getSnapShots();
+
+    expect(snapShots).toEqual(SNAP_SHOTS);
+  });
+
   test('우승자는 aker다.', () => {
     manipulatedRace([3, 4, 3, 4, 3, 4, 3, 4, 3, 4]);
 
