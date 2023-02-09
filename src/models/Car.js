@@ -15,6 +15,9 @@ class Car {
     if (name.length > CAR.maxLength) {
       throw new Error(ERROR_MESSAGE.overNameLength);
     }
+    if (name.trim().length === 0) {
+      throw new Error(ERROR_MESSAGE.emptyName);
+    }
   }
 
   move() {

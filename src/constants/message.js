@@ -15,6 +15,7 @@ const OUTPUT_MESSAGE = Object.freeze({
 
 const ERROR_MESSAGE = Object.freeze({
   overNameLength: `자동차 이름은 ${CAR.maxLength}자 이하만 가능합니다.`,
+  emptyName: '자동차 이름은 1자 이상 입력해야합니다.',
   nameCharacter: '자동차 이름은 알파벳 또는 한글로 입력해야합니다.',
   nameSeparator: '자동차 이름은 쉼표로 구분해야합니다.',
   movingCount: '이동 횟수는 자연수를 입력해야합니다.',
