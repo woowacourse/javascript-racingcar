@@ -1,7 +1,6 @@
 const App = require('../src/App');
-const { Random } = require('../src/utils');
-
 const Console = require('../src/utils/Console');
+const { Random } = require('../src/utils');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
@@ -50,15 +49,19 @@ describe('자동차 경주 게임 테스트', () => {
       'eus : -',
       'zero : -',
       'pobi : -',
+
       'eus : --',
       'zero : --',
       'pobi : -',
+
       'eus : ---',
       'zero : ---',
       'pobi : --',
+
       'eus : ---',
       'zero : ---',
       'pobi : --',
+
       'eus, zero가 최종 우승했습니다.',
     ]);
   });
@@ -97,6 +100,7 @@ describe('자동차 경주 게임 테스트', () => {
       'pobi : -----',
       'crong : ----',
       'honux : -----',
+
       'pobi, honux가 최종 우승했습니다.',
     ]);
   });

@@ -2,8 +2,6 @@ const { ERROR_SUBJECT } = require('../src/constants');
 const Validation = require('../src/Validation');
 
 describe('Validation 테스트', () => {
-  const validation = new Validation();
-
   test.each([
     [['eus', 'eus']],
     [['eus', 'EUS']],
