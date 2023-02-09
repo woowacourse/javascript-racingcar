@@ -8,3 +8,14 @@ describe('자동차 이름을 위한 입력값의 유효성 검사', () => {
     },
   );
 });
+
+describe('시도할 횟수를 위한 입력값의 유효성 검사', () => {
+  test.each([['0'], ['-1'], ['abcd'], ['a0'], ['0a']])(
+    '입력값이 양의 정수가 아닌 경우 예외 처리',
+    (input) => {
+      expect(() => Validator.validateTryCountsInput(input)).toThrow(
+        'invalid tryCountsInput',
+      );
+    },
+  );
+});
