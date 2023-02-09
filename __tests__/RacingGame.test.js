@@ -1,9 +1,11 @@
 const RacingGame = require('../src/RacingGame');
 
 describe('RacingGame 메소드들이 예상 값을 반환하는 지 테스트', () => {
+  const racingGame = new RacingGame();
   const names = ['a', 'b'];
   const round = 3;
-  const racingGame = new RacingGame(names, round);
+  racingGame.setCars(names);
+  racingGame.setRound(round);
 
   const mockFunc = jest.fn();
   const randoms = [1, 5, 2, 6, 3, 7];
