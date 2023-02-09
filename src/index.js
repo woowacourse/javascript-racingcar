@@ -3,21 +3,20 @@ const inputView = require("./InputView");
 const OutputView = require("./OutputView");
 const random = require("./Random");
 const validations = require("./validations");
+const Racing = require("./Racing")
 
 
-class Racing {
+class App {
     constructor() {
         this.cars = [];
     }
 
     play() {
-        OutputView.askCarName();
         this.startRace()
     }
     
     startRace() {
         inputView.inputCarName((input) => {
-            console.log("fuck")
             const carNames = input.split(",");
             try {
                 validations.validateCarNameLength(carNames);
@@ -26,35 +25,28 @@ class Racing {
                 this.getTotalRound();
             } catch (e) {
                 console.log(e.message);
-                OutputView.askCarName();
-                // inputView.inputCarName();
                 this.startRace();
             }
         })
     }
     
     getTotalRound() {
-        OutputView.askRound();
         inputView.inputRound((round) => {
             OutputView.outputResultTitle(); 
             for (let i = 0; i < round; i++) {
-                this.getRoundResult()
+                this.goStop()
+                OutputView.outputRoundResult(this.cars)
             }
             this.printFinalResult();
         })
     }
 
-    getRoundResult() {
-        this.goStop()
-        OutputView.outputRoundResult(this.cars)
-    }
+
 
     getCarNames() {
         const names = []
         this.cars.forEach((eachCar) => {
-            
             names.push(eachCar.getCarName());
-            
         })
 
         return names
@@ -73,7 +65,9 @@ class Racing {
 
     goStop() {
         this.cars.forEach( car => {
-            if (this.checkRandomNum()) car.go();
+            const racing = new Racing(car)
+            racing.raceEachCar()
+
         })    
     }
 
@@ -95,7 +89,7 @@ class Racing {
     }
 }
 
-module.exports = Racing
+module.exports = App
 
-const racing = new Racing()
-racing.play()
+const app = new App()
+app.play()
