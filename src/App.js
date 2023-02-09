@@ -3,12 +3,13 @@ import RaceController from './controllers/RaceController';
 class App {
   #controller;
 
-  async play() {
+  play() {
     this.#controller = new RaceController();
 
-    await this.#controller.startSetup();
-    this.#controller.startRace();
-    this.#controller.endRace();
+    this.#controller.startSetup().then(() => {
+      this.#controller.startRace();
+      this.#controller.endRace();
+    });
   }
 }
 
