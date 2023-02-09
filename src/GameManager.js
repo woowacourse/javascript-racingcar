@@ -45,7 +45,7 @@ class GameManager {
     const winners = cars
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
-    printWinners(winners);
+    return winners;
   }
 
   async handleTryCount() {
@@ -61,15 +61,17 @@ class GameManager {
     return tryCount;
   }
 
+  generateCars(names) {
+    return names.map((name) => new Car(name));
+  }
+
   async handleCarNames() {
     const names = await readCarNames();
     try {
       if (!isValidCarNames(names)) {
         throw new Error(ERROR.carNames);
       }
-      names.forEach((name) => {
-        this.#cars.push(new Car(name));
-      });
+      this.#cars = this.generateCars(names);
     } catch (error) {
       printError(error);
       await this.handleCarNames();
@@ -80,7 +82,8 @@ class GameManager {
     await this.handleCarNames();
     const tryCount = await this.handleTryCount();
     this.tryMoveCars(tryCount);
-    this.judgeWinners();
+    const winners = this.judgeWinners();
+    printWinners(winners);
     Console.close();
   }
 }
