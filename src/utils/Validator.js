@@ -5,7 +5,7 @@ const Validator = {
     }
   },
   checkDuplicate(input) {
-    const names = input.split(',');
+    const names = input.split(' ').join('').split(',');
     if (new Set(names).size !== names.length) {
       throw new Error('입력값에 중복되는 이름이 존재합니다.');
     }
