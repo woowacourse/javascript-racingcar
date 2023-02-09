@@ -4,6 +4,7 @@ const Car = require('../model/Car');
 const { GAME, INPUT, OUTPUT } = require('../utils/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
+
 class Controller {
   #cars;
   #winningDistance;
@@ -53,10 +54,12 @@ class Controller {
   }
 
   #showResult() {
+    OutputView.print(OUTPUT.resultMent);
     this.#histories.forEach((history) => {
       history.forEach((car) => {
         OutputView.print(OUTPUT.result(car));
       });
+      OutputView.print('');
     });
     this.showWinners();
   }
