@@ -1,3 +1,5 @@
+const readline = require("readline");
+
 const StaticValue = Object.freeze({
   MOVE_CONDITION: 4,
   RANDOM_NUMBER_LIMIT: 10,
@@ -6,7 +8,7 @@ const StaticValue = Object.freeze({
   CAR_NAME_INPUT_SEPERATOR: ",",
 });
 
-const Readline = require("readline").createInterface({
+const RL = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
@@ -29,4 +31,9 @@ const ErrorMessage = Object.freeze({
   MOVE_INPUT: "1 이상의 숫자를 입력해주세요.",
 });
 
-module.exports = { StaticValue, Readline, ConsoleMessage, ErrorMessage };
+module.exports = {
+  StaticValue,
+  RL,
+  ConsoleMessage,
+  ErrorMessage,
+};

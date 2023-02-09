@@ -1,12 +1,10 @@
-const Car = require("../model/Car.js");
-const RandomNumberGenerator = require("../utils/RandomNumberGenerator.js");
-const InputView = require("../view/InputView.js");
-const OutputView = require("../view/OutputView.js");
+const Car = require("../model/Car");
+const RandomNumberGenerator = require("../utils/RandomNumberGenerator");
+const InputView = require("../view/InputView");
+const OutputView = require("../view/OutputView");
 
 class Controller {
   #cars = [];
-
-  constructor() {}
 
   playGame() {
     this.inputCarNames();
@@ -26,9 +24,9 @@ class Controller {
   }
 
   handleMovementLog(moveCount) {
-    const count = Number(moveCount);
+    const COUNT = Number(moveCount);
 
-    for (let i = 0; i < count; i += 1) {
+    for (let i = 0; i < COUNT; i += 1) {
       this.handleCarsMovement();
       OutputView.printEmptyLine();
     }
@@ -37,26 +35,22 @@ class Controller {
   }
 
   handleCarsMovement() {
-    for (let i = 0; i < this.#cars.length; i++) {
-      const randomNumber = RandomNumberGenerator.generate();
-      const currentCar = this.#cars[i];
+    this.#cars.forEach((car) => {
+      const RANDOM_NUMBER = RandomNumberGenerator.generate();
 
-      currentCar.move(randomNumber);
-      OutputView.printMoveDistance(
-        currentCar.getName(),
-        currentCar.getCurrentDistance()
-      );
-    }
+      car.move(RANDOM_NUMBER);
+      OutputView.printMoveDistance(car.getName(), car.getCurrentDistance());
+    });
   }
 
   handleWinners() {
-    const carsDistance = this.#cars.map((car) => car.getCurrentDistance());
-    const maxDistance = Math.max(...carsDistance);
-    const winners = this.#cars
-      .filter((car) => car.getCurrentDistance() === maxDistance)
+    const CARS_DISTANCE = this.#cars.map((car) => car.getCurrentDistance());
+    const MAX_DISTANCE = Math.max(...CARS_DISTANCE);
+    const WINNERS = this.#cars
+      .filter((car) => car.getCurrentDistance() === MAX_DISTANCE)
       .map((car) => car.getName());
 
-    OutputView.printWinner(winners);
+    OutputView.printWinner(WINNERS);
   }
 }
 

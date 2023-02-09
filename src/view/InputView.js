@@ -2,16 +2,16 @@ const {
   ConsoleMessage,
   Readline,
   StaticValue,
-} = require("../constants/Constants.js");
-const Exception = require("../utils/Exception.js");
+} = require("../constants/Constants");
+const Exception = require("../utils/Exception");
 
 const InputView = {
   readCarNames(callback) {
     Readline.question(ConsoleMessage.CAR_NAME, (input) => {
       try {
-        const cars = input.split(StaticValue.CAR_NAME_INPUT_SEPERATOR);
-        Exception.checkCarInput(cars);
-        callback(cars);
+        const CARS = input.split(StaticValue.CAR_NAME_INPUT_SEPERATOR);
+        Exception.checkCarInput(CARS);
+        callback(CARS);
       } catch (e) {
         console.log(e.message);
         this.readCarNames(callback.bind(this));

@@ -1,9 +1,7 @@
-const Controller = require("./controller/controller.js");
+const Controller = require("./controller/Controller");
 
 class App {
   #controller = new Controller();
-
-  constructor() {}
 
   play() {
     this.#controller.playGame();
