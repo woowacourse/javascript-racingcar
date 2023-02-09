@@ -10,6 +10,9 @@ const Validator = {
 
     if (!this.isCarNameLowerCase(names))
       throw new Error("[ERROR] 자동차 이름은 영소문자로 이루어져야 합니다.");
+
+    if (this.isDuplicated(names))
+      throw new Error("[ERROR] 자동차 이름이 중복되었습니다.");
   },
 
   tryCount(number) {
@@ -31,6 +34,10 @@ const Validator = {
     return names.every((name) => {
       return name.search(/[^a-z]/g) === -1;
     });
+  },
+
+  isDuplicated(names) {
+    if (names.length !== new Set(names).size) return true;
   },
 
   isNumeric(number) {
