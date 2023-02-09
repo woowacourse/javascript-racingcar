@@ -26,21 +26,21 @@ class App {
         return;
       }
       this.#racingGame = new RacingGame(names, tryCount);
-      this.playRancingGame();
+      this.race();
     });
   }
 
-  playRancingGame() {
+  race() {
     OutputView.printRacingStart();
     while (!this.#racingGame.isGameComplete()) {
       this.#racingGame.raceOneTurn();
       const carsResultOfOneTurn = this.#racingGame.getCarsResultOfOneTurn();
       OutputView.printOneTurnResult(carsResultOfOneTurn);
     }
-    this.finishGame();
+    this.finishRace();
   }
 
-  finishGame() {
+  finishRace() {
     const winners = this.#racingGame.getWinners();
     OutputView.printWinners(winners);
     InputView.close();
