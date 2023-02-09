@@ -75,4 +75,15 @@ describe("readTryCountCallback 메서드 전체 호출 테스트", () => {
     // then
     expect(printErrorMessageSpy).toHaveBeenCalledTimes(1);
   });
+
+  test("잘못된 값 입력시 readTryCount 메서드 호출 테스트", () => {
+    // given
+    const readTryCountSpy = jest.spyOn(app, "readTryCount");
+
+    // when
+    app.readTryCountCallback("1a");
+
+    // then
+    expect(readTryCountSpy).toHaveBeenCalledTimes(1);
+  });
 });
