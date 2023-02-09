@@ -49,3 +49,18 @@ describe("readCarNameCallback 메서드에 대한 테스트 코드", () => {
     expect(readCarNameSpy).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("readTryCountCallback 메서드 전체 호출 테스트", () => {
+  //given
+  const app = new App();
+  test("올바른 값 입력시 moveCar 메서드 호출 테스트", () => {
+    // given
+    const moveCarSpy = jest.spyOn(app, "moveCar");
+
+    // when
+    app.readTryCountCallback("12");
+
+    // then
+    expect(moveCarSpy).toHaveBeenCalledTimes(1);
+  });
+});
