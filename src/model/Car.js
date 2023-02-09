@@ -1,5 +1,5 @@
 const { GAME } = require('../utils/constants');
-const RandomGenerator = require('../utils/common');
+const { randomGenerator } = require('../utils/common');
 class Car {
   #name;
   #distance;
@@ -10,7 +10,7 @@ class Car {
   }
 
   move() {
-    const randomNumber = RandomGenerator.getBetween(
+    const randomNumber = randomGenerator.getBetween(
       GAME.MOVE_CONDITION.min,
       GAME.MOVE_CONDITION.max,
     );
