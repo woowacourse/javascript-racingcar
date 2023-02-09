@@ -6,7 +6,7 @@ const validations = {
         carNames.forEach(name => {
             if (name.length > CONSTANT.CAR_NAME_MAX) {
                 throw new Error(CONSTANT.ERROR_CAR_LENGTH)
-            }
+            } 
         });
     },
 
