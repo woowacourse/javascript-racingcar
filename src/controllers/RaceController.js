@@ -21,10 +21,10 @@ class RaceController {
 
   startRace() {
     OutputView.printRaceStateTitle();
-    for (let i = 0; i < this.#step; i += 1) {
+    Array.from({ length: this.#step }).forEach(() => {
       this.#race.moveOnce();
       OutputView.printRaceState(this.#race.getCars());
-    }
+    });
   }
 
   endRace() {
