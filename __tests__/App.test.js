@@ -1,5 +1,6 @@
 const { describe, expect, test } = require("@jest/globals");
 const App = require("../src/App.js");
+const OutputView = require("../src/view/OutputView.js");
 
 describe("readCarNameCallback 메서드에 대한 테스트 코드", () => {
   // given
@@ -24,5 +25,16 @@ describe("readCarNameCallback 메서드에 대한 테스트 코드", () => {
 
     // then
     expect(readTryCountSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test("잘못된 값 입력시 OutputView.printErrorMessage 메서드 호출 테스트", () => {
+    // given
+    const printErrorMessageSpy = jest.spyOn(OutputView, "printErrorMessage");
+
+    // when
+    app.readCarNameCallback("pobi,jun,noahhhh");
+
+    // then
+    expect(printErrorMessageSpy).toHaveBeenCalledTimes(1);
   });
 });
