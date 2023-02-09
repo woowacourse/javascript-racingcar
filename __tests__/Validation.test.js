@@ -1,3 +1,5 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable no-undef */
 const { isValidCarNames, isValidTryCount } = require('../src/utils/Validation');
 
 describe('Validation Test', () => {
@@ -21,6 +23,6 @@ describe('Validation Test', () => {
     ['13n', false],
     ['', false],
   ])('시도 횟수가 자연수 인가?(%s : %s)', (tryCount, expected) => {
-    expect(isValidTryCount(tryCount)).toBe(expected);
+    expect(isValidTryCount(+tryCount)).toBe(expected);
   });
 });
