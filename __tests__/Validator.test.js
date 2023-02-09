@@ -1,5 +1,4 @@
 const Console = require('../src/UI/Console');
-const Car = require('../src/Car');
 const Validator = require('../src/Validator');
 
 const mockQuestions = (answers) => {
@@ -17,16 +16,6 @@ const getLogSpy = () => {
 };
 
 const getOutput = (logSpy) => [...logSpy.mock.calls].join('');
-
-const runException = (inputs) => {
-  mockQuestions(inputs);
-  const logSpy = getLogSpy();
-  const app = new App();
-
-  app.play();
-
-  expectLogContains(getOutput(logSpy), ['[ERROR]']);
-};
 
 const expectLogContains = (received, logs) => {
   logs.forEach((log) => {
