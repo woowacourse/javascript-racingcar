@@ -5,9 +5,13 @@ const { RANDOM } = require("../utils/Constant");
 
 class Controller {
     #cars;
+    #winners;
+    #maxPosition;
 
     constructor() {
         this.#cars = [];
+        this.#winners = [];
+        this.#maxPosition = 0;
     }
 
     start() {
@@ -21,7 +25,7 @@ class Controller {
     makeCar(carNames) {
         for (let len = 0; len < carNames.length; len++) {
             let car = new Car();
-            car.inputName(carNames[i]);
+            car.inputName(carNames[len]);
             this.#cars.push(car);
         }
 
@@ -40,8 +44,8 @@ class Controller {
             this.moveCar()
             OutputView.printCarMove(this.#cars)
         }
-
-        OutputView.printWinners(this.whoIsWinners())
+        this.whoIsWinners();
+        OutputView.printWinners(this.#winners)
     }
 
     moveCar() {
@@ -55,22 +59,19 @@ class Controller {
     }
 
     whoIsWinners() {
-        let winners = [];
-        let maxPosition = 0;
-
         for (let car of this.#cars) {
-            if (maxPosition === car.getPosition()) {
-                winners.push(car.getName());
-            }
-
-            if (maxPosition < car.getPosition()) {
-                maxPosition = car.getPosition();
-                winners = [];
-                winners.push(car.getName());
-            }
+            this.comparedCars(car)
         }
+    }
 
-        return winners;
+    comparedCars(car) {
+        if (this.#maxPosition === car.getPosition()) this.#winners.push(car.getName());
+
+        if (this.#maxPosition < car.getPosition()) {
+            this.#maxPosition = car.getPosition();
+            this.#winners = [];
+            this.#winners.push(car.getName())
+        }
     }
 }
 
