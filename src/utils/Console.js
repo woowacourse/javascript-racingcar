@@ -6,8 +6,6 @@ const rl = readline.createInterface({
 });
 
 class Console {
-  constructor() {}
-
   static readLine(query, callback) {
     rl.question(query, callback);
   }

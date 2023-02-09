@@ -1,7 +1,6 @@
 const Attempts = require('../model/Attempts');
 const Car = require('../model/Car');
 const { isMove } = require('../utils');
-const Validation = require('../Validation');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
