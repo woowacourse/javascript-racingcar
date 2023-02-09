@@ -1,8 +1,12 @@
-const { GAME_NUMBER } = require('../constants');
 const Console = require('./Console');
+const { GAME_NUMBER } = require('../constants');
 
-const isMove = () => {
-  return Math.random() * GAME_NUMBER.moveRange >= GAME_NUMBER.moveStandard;
+const isMove = (number) => {
+  return number >= GAME_NUMBER.moveStandard;
+};
+
+const calculateRandomNumber = () => {
+  return Math.random() * GAME_NUMBER.moveRange;
 };
 
 const errorHandler = (validate, input) => {
@@ -15,4 +19,4 @@ const errorHandler = (validate, input) => {
   }
 };
 
-module.exports = { isMove, errorHandler };
+module.exports = { calculateRandomNumber, errorHandler, isMove };
