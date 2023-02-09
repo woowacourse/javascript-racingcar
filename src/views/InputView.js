@@ -3,11 +3,11 @@ const Console = require('../lib/console');
 
 const InputView = {
   readCarName(callback) {
-    Console.readLine(INPUT_MESSAGE.carName, callback);
+    Console.read(INPUT_MESSAGE.carName, callback);
   },
 
   readMovingCount(callback) {
-    Console.readLine(INPUT_MESSAGE.movingCount, callback);
+    Console.read(INPUT_MESSAGE.movingCount, callback);
   },
 };
 
