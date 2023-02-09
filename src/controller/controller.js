@@ -48,9 +48,9 @@ class Controller {
 
   calculateWinnerLength() {
     let winnerLength = 0;
-    this.#cars.forEach((item) => {
-      if (winnerLength < item.getProgress().length) {
-        winnerLength = item.getProgress().length;
+    this.#cars.forEach((car) => {
+      if (winnerLength < car.getProgress().length) {
+        winnerLength = car.getProgress().length;
       }
     });
     return winnerLength;
@@ -58,19 +58,19 @@ class Controller {
 
   calculateWinner(winnerLength) {
     const winnerNames = [];
-    this.#cars.forEach((item) => {
-      if (item.getProgress().length === winnerLength) {
-        winnerNames.push(item.getName());
+    this.#cars.forEach((car) => {
+      if (car.getProgress().length === winnerLength) {
+        winnerNames.push(car.getName());
       }
     });
     return winnerNames;
   }
 
   showGameProgress() {
-    this.#cars.forEach((item, index) => {
+    this.#cars.forEach((car, index) => {
       OutputView.printGameProgress(
-        item.getName(),
-        item.getProgress(),
+        car.getName(),
+        car.getProgress(),
         index === this.#cars.length - 1
       );
     });
