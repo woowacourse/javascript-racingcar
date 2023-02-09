@@ -1,10 +1,10 @@
 class RacingCar {
-  #name;
+  #carName;
 
   #moveCount;
 
   constructor(carName) {
-    this.#name = carName;
+    this.#carName = carName;
     this.#moveCount = 1;
   }
 
@@ -13,7 +13,7 @@ class RacingCar {
   }
 
   getCarName() {
-    return this.#name;
+    return this.#carName;
   }
 
   getMoveCount() {
