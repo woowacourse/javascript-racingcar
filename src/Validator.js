@@ -1,42 +1,27 @@
 const { Settings, Messages } = require('./Config');
 
 const Validator = {
-  invalidCarNames(input) {
-    Validator.carNameLength(input);
-  },
-
-  carNameLength(input) {
-    input.forEach((carName) => {
-      if (
-        carName.length < Settings.MIN_NAME_LENGTH
-        || carName.length > Settings.MAX_NAME_LENGTH
-      ) {
-        throw new Error(Messages.ERROR_CAR_NAME);
-      }
+  validateCarNames(carNameList) {
+    carNameList.forEach((carName) => {
+      this.numberInRange(carName.length, Settings.MIN_NAME_LENGTH, Settings.MAX_NAME_LENGTH);
     });
   },
 
-  invalidAttempts(attempts) {
-    Validator.notNumber(attempts);
-    Validator.bigNumber(Number(attempts));
-    Validator.notInteger(Number(attempts));
+  validateAttempts(value) {
+    this.isNumber(value);
+    this.numberInRange(Number(value), Settings.MIN_ATTEMPTS, Settings.MAX_ATTEMPTS);
   },
 
-  notNumber(attempts) {
-    if (!/^\d+$/g.test(attempts)) {
-      throw new Error(Messages.ERROR_ATTRMPTS);
+  isNumber(value) {
+    const positiveIntegerFormat = /^\+?\d+$/;
+    if (!positiveIntegerFormat.test(value)) {
+      throw new Error(Messages.ERROR_NUMBER);
     }
   },
 
-  bigNumber(attempts) {
-    if (attempts > Settings.MAX_ATTEMPTS || attempts < Settings.MIN_ATTEMPTS) {
-      throw new Error(Messages.ERROR_ATTRMPTS);
-    }
-  },
-
-  notInteger(attempts) {
-    if (attempts % 1 !== 0) {
-      throw new Error(Messages.ERROR_ATTRMPTS);
+  numberInRange(value, min, max) {
+    if (value < min || value > max) {
+      throw new Error(Messages.ERROR_RANGE);
     }
   },
 };

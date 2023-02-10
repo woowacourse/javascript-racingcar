@@ -6,13 +6,13 @@ const InputView = {
   async getCarNames() {
     const answer = await Console.readLine(Messages.INPUT_CAR_NAMES);
     const carNames = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
-    Validator.invalidCarNames(carNames);
+    Validator.validateCarNames(carNames);
     return carNames;
   },
 
   async getAttempts() {
     const answer = await Console.readLine(Messages.INPUT_ATTEMPTS);
-    Validator.invalidAttempts(answer.trim());
+    Validator.validateAttempts(answer);
     return Number(answer);
   },
 
@@ -23,6 +23,7 @@ const InputView = {
       return input;
     } catch (error) {
       Console.print(error.message);
+      Console.print('');
       return this.repeatInput(inputFunction, recursionDepth + 1);
     }
   },
