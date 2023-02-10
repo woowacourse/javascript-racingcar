@@ -4,13 +4,14 @@ const CarRaceGame = {
   updateRace(carDistances) {
     const newDistances = carDistances;
     const roundRaceResult = CarRaceResultRandomGenerator.generate(carDistances.length);
+
     for (let i = 0; i < carDistances.length; i += 1) {
       newDistances[i] += roundRaceResult[i];
     }
     return newDistances;
   },
 
-  judgeWinners(carNames, carDistances) {
+  getWinners(carNames, carDistances) {
     const winners = [];
     const maxDistance = Math.max(...carDistances);
     for (let i = 0; i < carDistances.length; i += 1) {
@@ -18,7 +19,7 @@ const CarRaceGame = {
         winners.push(carNames[i]);
       }
     }
-    return winners.join(", ");
+    return winners;
   },
 };
 
