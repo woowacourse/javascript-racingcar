@@ -1,15 +1,15 @@
 class RacingCar {
   #carName;
 
-  #moveCount;
+  #movePosition;
 
   constructor(carName) {
     this.#carName = carName;
-    this.#moveCount = 1;
+    this.#movePosition = 1;
   }
 
   moveForward() {
-    this.#moveCount += 1;
+    this.#movePosition += 1;
   }
 
   getCarName() {
@@ -17,7 +17,7 @@ class RacingCar {
   }
 
   getMoveCount() {
-    return this.#moveCount;
+    return this.#movePosition;
   }
 }
 
