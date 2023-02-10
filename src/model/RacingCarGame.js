@@ -41,13 +41,12 @@ class RacingCarGame {
     const result = [];
     const maxCarCount = Math.max(...carNamesMap.values());
 
-    for (const car of carNamesMap.entries()) {
+    for (const car of carNamesMap) {
       const [carName, count] = car;
 
       if (maxCarCount === count) result.push(carName);
     }
 
-    //pobi, honux가 최종 우승했습니다.
     //결과 문자열 만들기
     return result.join(', ') + '이(가) 최종 우승했습니다.';
   }
