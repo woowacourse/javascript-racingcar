@@ -8,9 +8,7 @@ class Util {
   }
 
   static maxValueInMap(map) {
-    return [...map.entries()].reduce((prev, next) =>
-      prev[1] > next[1] ? prev : next
-    )[1];
+    return Math.max(...map.values());
   }
 
   static filterMaxObjects(map) {
