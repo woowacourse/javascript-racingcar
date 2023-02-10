@@ -9,6 +9,8 @@ const Validator = {
     if (!this.isCarNameLessThenFive(names))
       throw new Error(MESSAGE.error.nameLength);
 
+    if (!this.isCarNameNull(names)) throw new Error(MESSAGE.error.null);
+
     if (!this.isCarNameLowerCase(names))
       throw new Error(MESSAGE.error.lowerCase);
 
@@ -33,6 +35,10 @@ const Validator = {
     return names.every((name) => {
       return name.search(/[^a-z]/g) === -1;
     });
+  },
+
+  isCarNameNull(names) {
+    return names.every((name) => name !== "");
   },
 
   isDuplicated(names) {

@@ -4,6 +4,7 @@ const MESSAGE = {
     nameLength: "[ERROR] 자동차 이름은 5자 이하이어야 합니다.",
     lowerCase: "[ERROR] 자동차 이름은 영소문자로 이루어져야 합니다.",
     duplicatedName: "[ERROR] 자동차 이름이 중복되었습니다.",
+    null: "[ERROR] 자동차 이름이 공백일 수 없습니다.",
     numeric: "[ERROR] 시도 횟수는 양의 정수이어야 합니다.",
   },
 
