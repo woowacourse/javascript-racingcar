@@ -71,10 +71,7 @@
 
 1차 피드백 이후 리팩터링
 
-- [ ] refactor: 유효성 검사 실패/성공 이후 함수 실행여부 테스트 수정
-- [ ] refactor: App.test의 테스트 코드 Validator.test로 이동
 - [x] refactor: move, getStatus 함수 리팩터링 및 테스트코드 수정
-- [ ] refactor: GenerateRandomNumber.generator 테스트코드 수정
 - [x] refactor: winner를 구하는 함수에 대한 클래스 생성 및 수정
 - [x] refactor: every를 사용하는 유효성 검사 수정
 - [x] refactor: 정규 표현식 상수화

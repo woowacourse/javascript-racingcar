@@ -1,5 +1,3 @@
-const GenerateRandomNumber = require("../src/lib/GenerateRandomNumber.js");
-
 const Car = require("../src/model/Car.js");
 const GameManager = require("../src/model/GameManager.js");
 
