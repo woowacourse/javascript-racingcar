@@ -17,7 +17,4 @@ class Controller {
   }
 }
 
-const controller = new Controller();
-controller.init();
-
 module.exports = Controller;
