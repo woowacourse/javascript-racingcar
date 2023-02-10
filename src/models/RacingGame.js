@@ -16,8 +16,12 @@ class RacingGame {
     this.#cars = names.map((name) => new Car(name));
   }
 
-  #moveAll() {
-    this.#cars.forEach((car) => car.move());
+  #moveAllRandomly() {
+    this.#cars.forEach((car) => {
+      const randomNumber = Random.generateNumber();
+
+      if (randomNumber >= FORWARD_CONDITIONS_NUMBER) car.move();
+    });
   }
 
   #takeSnapShots() {
@@ -26,19 +30,13 @@ class RacingGame {
     );
   }
 
-  #raceRandomly() {
-    const randomNumber = Random.generateNumber();
-
-    if (randomNumber >= FORWARD_CONDITIONS_NUMBER) this.#race();
-  }
-
   #race() {
-    this.#moveAll();
+    this.#moveAllRandomly();
     this.#takeSnapShots();
   }
 
   raceNTimes(n) {
-    Array(n).fill().forEach(this.#raceRandomly.bind(this));
+    Array(n).fill().forEach(this.#race.bind(this));
   }
 
   getCars() {
