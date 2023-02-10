@@ -2,19 +2,21 @@ class Car {
   #name;
   #progressCount;
 
+  static PROGRESS_CONDITION_NUMBER = 4;
+
   constructor(name) {
     this.#name = name;
     this.#progressCount = 0;
   }
 
-  tryProgress(randomNumber) {
-    if (this.canProgress(randomNumber)) {
+  tryProgress(conditionNumber) {
+    if (this.canProgress(conditionNumber)) {
       this.#progressCount++;
     }
   }
 
-  canProgress(randomNumber) {
-    return randomNumber >= 4;
+  canProgress(conditionNumber) {
+    return conditionNumber >= Car.PROGRESS_CONDITION_NUMBER;
   }
 
   getName() {
