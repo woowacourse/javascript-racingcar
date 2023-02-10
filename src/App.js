@@ -2,20 +2,23 @@ const RacingGame = require('./RacingGame');
 const Validation = require('./Validation');
 const OutputView = require('./view/OutputView');
 const { Console } = require('./utils');
-const { REQUEST_MESSAGE } = require('./constants/Constant');
+const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('./constants/Constant');
 
 class App {
   #racingGame;
 
   async play() {
+    await this.createRacingGame();
+    this.#raceCars();
+    const winners = this.#findWinners();
+    this.#showWinners(winners);
+  }
+
+  async createRacingGame() {
     const carNames = await this.#requestCarNames();
     const round = await this.#requestRaceRound();
 
     this.#racingGame = new RacingGame(carNames, round);
-
-    this.#raceCars();
-    const winners = this.#findWinners();
-    this.#endGame(winners);
   }
 
   async #requestCarNames() {
@@ -43,13 +46,12 @@ class App {
   }
 
   #raceCars() {
-    OutputView.printResultMessage();
+    OutputView.print(RESULT_MESSAGE.opening);
 
     while (this.#racingGame.isPlaying()) {
       this.#racingGame.race();
 
       const roundResult = this.#racingGame.getRoundResult();
-
       OutputView.printRoundResult(roundResult);
     }
   }
@@ -61,7 +63,7 @@ class App {
     return winners;
   }
 
-  #endGame(winners) {
+  #showWinners(winners) {
     OutputView.printFinalResult(winners);
     Console.close();
   }
