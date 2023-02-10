@@ -8,7 +8,7 @@ const CarRaceResultRandomGenerator = {
   },
 
   getSingleRandomNumber() {
-    const MAXIMUM_RANDOM_NUMBER = 9;
+    const MAXIMUM_RANDOM_NUMBER = 10;
     return Math.floor(Math.random() * MAXIMUM_RANDOM_NUMBER);
   },
 };
