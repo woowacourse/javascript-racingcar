@@ -3,10 +3,8 @@ const Console = require('../utils/Console');
 const OutputView = {
   printRaceProgress(cars) {
     Console.print('');
-    cars.forEach((singleCar) => {
-      Console.print(
-        `${singleCar.getName()} : ${'-'.repeat(singleCar.getProgressCount())}`,
-      );
+    cars.forEach((car) => {
+      Console.print(`${car.getName()} : ${'-'.repeat(car.getProgressCount())}`);
     });
   },
 

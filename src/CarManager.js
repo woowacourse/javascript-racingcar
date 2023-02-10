@@ -10,8 +10,8 @@ class CarManager {
   }
 
   progress() {
-    this.#cars.forEach((singleCar) => {
-      singleCar.tryProgress(RandomNumberGenerator.generate());
+    this.#cars.forEach((car) => {
+      car.tryProgress(RandomNumberGenerator.generate());
     });
   }
 
@@ -20,12 +20,10 @@ class CarManager {
   }
 
   getWinners() {
-    const maxProgressCount = Math.max(
-      ...this.#cars.map((singleCar) => singleCar.getProgressCount()),
-    );
+    const maxProgressCount = Math.max(...this.#cars.map((car) => car.getProgressCount()));
 
     return this.#cars
-      .filter((singleCar) => singleCar.getProgressCount() === maxProgressCount)
+      .filter((car) => car.getProgressCount() === maxProgressCount)
       .map((winner) => winner.getName());
   }
 }
