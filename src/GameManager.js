@@ -15,7 +15,7 @@ class GameManager {
 
   moveCars(cars) {
     cars.forEach((car) => {
-      car.move(this.isForward());
+      car.judgeMove(this.isForward());
     });
   }
 
