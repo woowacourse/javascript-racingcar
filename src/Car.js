@@ -1,6 +1,3 @@
-const { randomGenerator } = require('./randomGenerator');
-const { GAME_VALUE } = require('./constants');
-
 class Car {
   #name;
   #movingLog;
@@ -11,8 +8,7 @@ class Car {
   }
 
   move() {
-    const randomNumber = randomGenerator.generateNumber();
-    if (randomNumber >= GAME_VALUE.MOVING_BOUNDARY_VALUE) this.#movingLog++;
+    this.#movingLog++;
   }
 
   getCarInfo() {
