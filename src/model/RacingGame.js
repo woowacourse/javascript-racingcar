@@ -24,7 +24,7 @@ class RacingGame {
 
   judgeMove(randomNumber, car) {
     if (randomNumber >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
-      car.move();
+      car.moveForward();
     }
   }
 

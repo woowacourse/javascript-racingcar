@@ -8,7 +8,7 @@ class RacingCar {
     this.#moveCount = 1;
   }
 
-  move() {
+  moveForward() {
     this.#moveCount += 1;
   }
 
