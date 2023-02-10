@@ -1,4 +1,4 @@
-const Controller = require("./controller/Controller");
+const Controller = require('./controller/Controller');
 
 class App {
   #controller = new Controller();

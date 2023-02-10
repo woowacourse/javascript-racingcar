@@ -1,5 +1,5 @@
-const { ConsoleMessage, RL, StaticValue } = require("../constants/Constants");
-const Exception = require("../utils/Exception");
+const { ConsoleMessage, RL, StaticValue } = require('../constants/constants');
+const Exception = require('../utils/Exception');
 
 const InputView = {
   readCarNames(callback) {

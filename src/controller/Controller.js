@@ -1,7 +1,7 @@
-const Car = require("../model/Car");
-const RandomNumberGenerator = require("../utils/RandomNumberGenerator");
-const InputView = require("../view/InputView");
-const OutputView = require("../view/OutputView");
+const Car = require('../model/Car');
+const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
 
 class Controller {
   #cars = [];

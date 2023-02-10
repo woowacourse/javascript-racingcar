@@ -1,4 +1,4 @@
-const { ErrorMessage, StaticValue } = require("../constants/Constants");
+const { ErrorMessage, StaticValue } = require('../constants/constants');
 
 const Exception = {
   checkCarInput(input) {
@@ -12,10 +12,7 @@ const Exception = {
 
   checkInputLength(input) {
     input.forEach((name) => {
-      if (
-        name.length > StaticValue.CAR_NAME_LIMIT ||
-        this.checkWhiteSpace(name)
-      ) {
+      if (name.length > StaticValue.CAR_NAME_LIMIT || this.checkWhiteSpace(name)) {
         throw new Error(ErrorMessage.NAME_INPUT);
       }
     });

@@ -1,8 +1,8 @@
-const { RL, ConsoleMessage } = require("../constants/Constants");
+const { RL, ConsoleMessage } = require('../constants/constants');
 
 const OutputView = {
   printMoveDistance(name, distance) {
-    console.log(ConsoleMessage.moveDistance(name, "-".repeat(distance)));
+    console.log(ConsoleMessage.moveDistance(name, '-'.repeat(distance)));
   },
 
   printEmptyLine() {
@@ -10,7 +10,7 @@ const OutputView = {
   },
 
   printWinner(winners) {
-    console.log(ConsoleMessage.result(winners.join(", ")));
+    console.log(ConsoleMessage.result(winners.join(', ')));
     RL.close();
   },
 };

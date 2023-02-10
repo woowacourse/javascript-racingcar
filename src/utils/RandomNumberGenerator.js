@@ -1,4 +1,4 @@
-const { StaticValue } = require("../constants/Constants");
+const { StaticValue } = require('../constants/constants');
 
 const RandomNumberGenerator = {
   generate() {

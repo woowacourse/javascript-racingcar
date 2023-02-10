@@ -1,5 +1,5 @@
 /* eslint-disable lines-between-class-members */
-const { StaticValue } = require("../constants/Constants");
+const { StaticValue } = require('../constants/constants');
 
 class Car {
   #name;
