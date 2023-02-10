@@ -1,28 +1,25 @@
-const CONSTANT = require("./Constant")
+const { MESSAGE } = require("./Constant")
+const RL = require("./Readline")
 
 const OutputView = {
-    outputResultTitle() {
-        console.log(CONSTANT.RESULT_TITLE)
+    resultTitle() {
+        console.log(MESSAGE.RESULT_TITLE)
     },
 
-    outputRoundResult(cars) {
-        for (let i = 0; i < cars.length; i++) {
-            console.log(`${cars[i].getCarName()} : ${"-".repeat(cars[i].getScore())}`)
-        }
-        console.log("")
+    roundResult([carName, carScore]) {
+        console.log(`${carName} : ${"-".repeat(carScore)}`)
     },
 
-    outputWinner(winners) {
-        console.log(`${winners.join(", ")}${CONSTANT.RESULT_MASSEGE} `)
+    totalResult(winners) {
+        console.log(`${winners.join(", ")}${MESSAGE.RESULT_WINNER} `)
+        RL.close();
     },
 
-    askCarName() {
-        console.log(CONSTANT.INPUT_CAR_MASSEGE);
-    },
+    noneWinnerResult() {
+        console.log(MESSAGE.NONE_WINNER);
+        RL.close();
+    }
 
-    askRound() {
-        console.log(CONSTANT.INPUT_ROUND_MASSEGE); 
-    },
 }
 
-module.exports = OutputView
+module.exports = OutputView;

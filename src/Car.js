@@ -1,23 +1,19 @@
 class Car {
-
     #score
+    #name
 
     constructor(name) {
-        this.name = name;
+        this.#name = name;
         this.#score = 0;
 
     }
 
-    getCarName() {
-        return this.name
-    }
-
-    getScore() {
-        return this.#score
-    }
-
     go() {
         this.#score++;
+    }
+
+    exportNameScore() {
+        return [this.#name, this.#score];
     }
 
 }

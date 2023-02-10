@@ -1,9 +1,8 @@
 
 const Random = {
-    getRandomNumber() {
-        return Math.floor(Math.random() * 10);
+    getRandomNumber(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
     }
 }
-
 
 module.exports = Random;

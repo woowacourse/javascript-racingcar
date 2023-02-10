@@ -1,29 +1,33 @@
-const CONSTANT = require("./Constant");
+const { DOMAIN, MESSAGE } = require("./Constant");
 
-const validations = {
+const Validations = {
 
-    validateCarNameLength(carNames) {
+    carNameLengthMax(carNames) {
         carNames.forEach(name => {
-            if (name.length > CONSTANT.CAR_NAME_MAX) {
-                throw new Error(CONSTANT.ERROR_CAR_LENGTH)
-            } 
-        });
-    },
-
-    validateIsCarName(carNames) {
-        carNames.forEach(name => {
-            if (name.length <= CONSTANT.CAR_NAME_MIN) {
-                throw new Error(CONSTANT.ERROR_CAR_NONAME)
+            if (name.length > DOMAIN.CAR_NAME_MAX) {
+                throw new Error(MESSAGE.ERROR_CAR_LENGTH)
             }
         });
     },
 
-    validateRound(num) {
-        if (!Number.isInteger(num) || num <= 0) {
-            throw new Error(CONSTANT.ERROR_ROUND);
+    carNameLengthMin(carNames) {
+        carNames.forEach(name => {
+            if (name.length <= DOMAIN.CAR_NAME_MIN) {
+                throw new Error(MESSAGE.ERROR_CAR_NONAME)
+            }
+        });
+    },
+
+    roundRange(num) {
+        if (!Number.isInteger(num) || num < DOMAIN.ROUND_MIN) {
+            throw new Error(MESSAGE.ERROR_ROUND);
         }
-    }
+    },
+
 }
 
 
-module.exports = validations;
+
+
+
+module.exports = Validations;

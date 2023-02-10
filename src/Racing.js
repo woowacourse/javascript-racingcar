@@ -1,21 +1,16 @@
-const Random = require("./Random");
-const random = require("./Random");
+const { DOMAIN } = require("./CONSTANT");
 
-class Racing {
+const Run = {
 
-    constructor(car) {
-        this.car = car;
-    }
+    isCarGo(car, makeRandomFunction) {
+        const randomNum = makeRandomFunction(DOMAIN.RANDOM_MIN, DOMAIN.RANDOM_MAX);
+        if (this.goStop(randomNum)) car.go();
+    },
 
-    checkRandomNumberOverFour() {
-        const randomNumber = Random.getRandomNumber()
-        return randomNumber >= 4
-    }
-
-    raceEachCar() {
-        this.checkRandomNumberOverFour() && this.car.go()
-    }
+    goStop(num) {
+        return (num >= DOMAIN.GO_POINT)
+    },
 
 }
 
-module.exports = Racing
+module.exports = Run

@@ -1,34 +1,35 @@
-const readline = require("readline");
-const validations = require("./validations");
-const CONSTANT = require("./Constant");
+const validations = require("./Validations");
+const { MESSAGE } = require("./Constant");
+const RL = require("./Readline");
 
-const inputView = {
-
+const InputView = {
     inputCarName(callback) {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        })
-        rl.question(CONSTANT.INPUT_CAR_MASSEGE, (line) => {
-            rl.close()
-            callback(line)
-        }) ;
+        RL.question(MESSAGE.INPUT_CAR_NAME, (input) => {
+            const carNames = input.split(",");
+            this.tryCatchCarName(carNames, callback);
+        });
+    },
+
+    tryCatchCarName(carNames, callback) {
+        try {
+            validations.carNameLengthMax(carNames);
+            validations.carNameLengthMin(carNames);
+            callback(carNames)
+        } catch (e) {
+            console.log(e.message);
+            this.inputCarName(callback);
+        }
     },
 
     inputRound(callback) {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        })
-        rl.question(CONSTANT.INPUT_ROUND_MASSEGE, (round) => {
-            this.tryCatchRound(rl, round,callback)
+        RL.question(MESSAGE.INPUT_ROUND_COUNT, (round) => {
+            this.tryCatchRound(round, callback)
         })
     },
 
-    tryCatchRound(rl, round, callback) {
+    tryCatchRound(round, callback) {
         try {
-            rl.close();
-            validations.validateRound(+round);
+            validations.roundRange(+round);
             callback(+round)
         } catch (e) {
             console.log(e.message);
@@ -41,4 +42,4 @@ const inputView = {
 
 
 
-module.exports = inputView
+module.exports = InputView

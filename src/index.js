@@ -1,88 +1,87 @@
 const Car = require("./Car");
-const inputView = require("./InputView");
+const InputView = require("./InputView");
 const OutputView = require("./OutputView");
-const random = require("./Random");
-const validations = require("./validations");
-const Racing = require("./Racing")
+const Run = require("./Racing");
+const Random = require("./Random");
 
 
 class App {
+    #cars
+
     constructor() {
-        this.cars = [];
+        this.#cars = [];
     }
 
     play() {
         this.startRace()
     }
-    
+
     startRace() {
-        inputView.inputCarName((input) => {
-            const carNames = input.split(",");
-            try {
-                validations.validateCarNameLength(carNames);
-                validations.validateIsCarName(carNames)
-                this.createCars(carNames);
-                this.getTotalRound();
-            } catch (e) {
-                console.log(e.message);
-                this.startRace();
-            }
+        InputView.inputCarName((carNames) => {
+            this.createCars(carNames);
+            this.racing();
         })
-    }
-    
-    getTotalRound() {
-        inputView.inputRound((round) => {
-            OutputView.outputResultTitle(); 
-            this.moveCar(round);
-            this.printFinalResult();
-        })
-    }
-
-    moveCar(round) {
-        for (let i = 0; i < round; i++) {
-            this.goStop()
-            OutputView.outputRoundResult(this.cars)
-        }
-    }
-
-    getCarNames() {
-        const names = []
-        this.cars.forEach((eachCar) => {
-            names.push(eachCar.getCarName());
-        })
-
-        return names
     }
 
     createCars(names) {
-        names.forEach( carName => {
-            this.cars.push(new Car(carName))
+        names.forEach(carName => {
+            this.#cars.push(new Car(carName))
         });
     }
 
-    goStop() {
-        this.cars.forEach( car => {
-            const racing = new Racing(car)
-            racing.raceEachCar()
 
-        })    
+    racing() {
+        InputView.inputRound((roundCount) => {
+            OutputView.resultTitle();
+            this.totalRoundRun(roundCount);
+            this.printTotalRoundResult();
+        })
     }
 
-    printFinalResult() {
-        OutputView.outputRoundResult(this.cars)
-        OutputView.outputWinner(this.getWinner())
+    totalRoundRun(round) {
+        for (let i = 0; i < round; i++) {
+            this.eachRoundRun();
+            this.printEachRoundResult();
+            console.log("");
+        }
+    }
+
+    eachRoundRun() {
+        this.#cars.forEach(car => {
+            Run.isCarGo(car, Random.getRandomNumber)
+        })
+    }
+
+    printEachRoundResult() {
+        this.#cars.forEach(car => {
+            OutputView.roundResult(car.exportNameScore());
+        })
+    }
+
+
+    printTotalRoundResult() {
+        this.printEachRoundResult();
+        const winner = this.getWinner();
+        console.log("");
+        if (this.checkWinnerNone(winner)) return OutputView.totalResult(winner);
+        return OutputView.noneWinnerResult();
     }
 
     getWinner() {
         let winner = []
         let winnerScore = 0;
-        this.cars.forEach(car => {
-            if (car.getScore() > winnerScore) {
-                winnerScore = car.getScore();
-                winner = [car.getCarName()];
-            } else if (car.getScore() === winnerScore) winner.push(car.getCarName());
+        this.#cars.forEach(car => {
+            const [name, score] = car.exportNameScore();
+            if (score > winnerScore) {
+                winnerScore = score;
+                winner = [name];
+            } else if (score === winnerScore) winner.push(name);
         })
-        return winner 
+        return winner
+    }
+
+    checkWinnerNone(winner) {
+        return (winner.length !== 0)
     }
 }
 
