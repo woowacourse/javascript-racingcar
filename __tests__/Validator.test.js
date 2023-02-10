@@ -1,4 +1,3 @@
-const Console = require('../src/UI/Console');
 const Validator = require('../src/Validator');
 
 describe('자동차 이름 검사', () => {
