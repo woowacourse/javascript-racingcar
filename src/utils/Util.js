@@ -9,7 +9,9 @@ class Util {
 
   static filterMaxObjects(map) {
     const maxValue = Util.maxValueInMap(map);
-    const maxObjects = [...map.entries()].filter((obj) => obj[1] === maxValue);
+    const maxObjects = [...map.entries()].filter(
+      ([_, value]) => value === maxValue
+    );
 
     return maxObjects;
   }
