@@ -13,12 +13,17 @@ class Car {
     for (let sequence = 0; sequence < tryCount; sequence++) {
       const number = GenerateRandomNumber.generator();
 
-      this.#position.push(
-        number <= MOVE_SETTING.advanceBoundary
-          ? MOVE_SETTING.advance
-          : MOVE_SETTING.stop
-      );
+      this.#position.push(this.makeNumberMove(number));
     }
+  }
+
+  makeNumberMove(number) {
+    const move =
+      number >= MOVE_SETTING.advanceBoundary
+        ? MOVE_SETTING.advance
+        : MOVE_SETTING.stop;
+
+    return move;
   }
 
   getStatus() {

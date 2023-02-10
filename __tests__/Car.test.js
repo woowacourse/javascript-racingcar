@@ -1,27 +1,26 @@
 const GenerateRandomNumber = require("../src/lib/GenerateRandomNumber.js");
 
 const Car = require("../src/model/Car.js");
+const GameManager = require("../src/model/GameManager.js");
 
 describe("Car.js에 대한 테스트 코드", () => {
-  test("move, getStatus 메서드에 대한 테스트 코드", () => {
+  test.each([
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [3, 0],
+    [4, 1],
+    [5, 1],
+    [6, 1],
+    [7, 1],
+    [8, 1],
+    [9, 1],
+  ])("makeNumberMove 메서드에 대한 테스트 코드", (number, move) => {
     // given
     const car = new Car("pobi");
-    const GenerateRandomNumberSpy = jest.spyOn(
-      GenerateRandomNumber,
-      "generator"
-    );
-
-    // when
-    car.move(4);
-    const expectedPosition = GenerateRandomNumberSpy.mock.results.map(
-      ({ value }) => {
-        return value <= 4 ? 1 : 0;
-      }
-    );
-    const status = car.getStatus();
 
     // then
-    expect(status).toEqual({ name: "pobi", position: expectedPosition });
+    expect(car.makeNumberMove(number)).toEqual(move);
   });
 
   test("getWinner 메서드에 대한 테스트 코드", () => {
@@ -34,7 +33,8 @@ describe("Car.js에 대한 테스트 코드", () => {
     ];
 
     //when
-    const winner = Car.getWinner(carsStatus);
+    const gameManager = new GameManager(carsStatus);
+    const winner = gameManager.winner;
 
     //then
     expect(winner).toEqual(["noah"]);
