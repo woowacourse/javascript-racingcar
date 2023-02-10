@@ -1,5 +1,5 @@
 const OutputView = require('../view/OutputView');
-const { GAME, ERROR } = require('../utils/constants');
+const { GAME, ERROR } = require('../constant/constants');
 
 const handleError = (errorMessage) => {
   try {

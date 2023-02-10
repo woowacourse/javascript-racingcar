@@ -1,4 +1,4 @@
-const { GAME } = require('../utils/constants');
+const { GAME } = require('../constant/constants');
 const { randomGenerator } = require('../utils/common');
 class Car {
   #name;

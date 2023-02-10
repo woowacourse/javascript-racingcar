@@ -1,6 +1,6 @@
 const Car = require('../src/model/Car');
 const { randomGenerator } = require('../src/utils/common');
-const { GAME } = require('../src/utils/constants');
+const { GAME } = require('../src/constant/constants');
 
 const mockRandoms = (numbers) => {
   randomGenerator.getBetween = jest.fn();

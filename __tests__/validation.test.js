@@ -1,5 +1,5 @@
 const { validateCarNames, validateWinningDistance } = require('../src/validation/input');
-const { GAME, ERROR } = require('../src/utils/constants');
+const { GAME, ERROR } = require('../src/constant/constants');
 const OutputView = require('../src/view/OutputView');
 const { toInt } = require('../src/utils/common');
 

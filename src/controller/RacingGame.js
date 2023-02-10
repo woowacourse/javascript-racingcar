@@ -1,7 +1,7 @@
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
-const { GAME, INPUT, OUTPUT } = require('../utils/constants');
+const { GAME, INPUT, OUTPUT } = require('../constant/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
 

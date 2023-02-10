@@ -1,4 +1,4 @@
-const { deepFreeze } = require('./common');
+const { deepFreeze } = require('../utils/common');
 
 const GAME = deepFreeze({
   DISTANCE: {
