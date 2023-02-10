@@ -27,10 +27,18 @@ const INPUT = Object.freeze({
 const OUTPUT = deepFreeze({
   startGame: '자동차 경주 게임을 시작합니다.\n',
   resultMent: '\n실행 결과',
-  result: (car) => `${car.name} : ${GAME.progressMarker.repeat(car.distance)}`,
-  winner: (winners) =>
-    `${winners.map((winner) => winner.getName()).join(GAME.nameDivider)}가 최종 우승했습니다.`,
 });
+
+/**
+ * @param {Object} 프로퍼티로 자동차의 이름과 전진한 거리를 갖는 객체
+ */
+const OUTPUT_RESULT = (car) => `${car.name} : ${GAME.progressMarker.repeat(car.distance)}`;
+
+/**
+ * @param {Array} 우승한 자동차의 이름을 갖는 배열
+ */
+const OUTPUT_WINNER = (winners) =>
+  `${winners.map((winner) => winner.getName()).join(GAME.nameDivider)}가 최종 우승했습니다.`;
 
 const ERROR = deepFreeze({
   carNameLength: `자동차 이름은 ${GAME.CAR_NAME.min}~${GAME.CAR_NAME.max}글자 사이여야 합니다.`,
@@ -40,4 +48,4 @@ const ERROR = deepFreeze({
   invalidWinningDistanceType: '시도 횟수는 숫자로 입력해야 합니다.',
 });
 
-module.exports = { GAME, INPUT, OUTPUT, ERROR };
+module.exports = { GAME, INPUT, OUTPUT, OUTPUT_RESULT, OUTPUT_WINNER, ERROR };
