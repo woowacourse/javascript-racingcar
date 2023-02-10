@@ -11,25 +11,21 @@ class Controller {
   }
 
   inputCarNames() {
-    InputView.readCarNames(this.setCars.bind(this));
+    InputView.readCarNames((cars) => {
+      this.#cars = cars.map((car) => new Car(car));
+      this.inputMoveCount();
+    });
   }
 
   inputMoveCount() {
-    InputView.readMoveCount(this.handleMovementLog.bind(this));
-  }
+    InputView.readMoveCount((moveCount) => {
+      for (let i = 0; i < moveCount; i += 1) {
+        this.handleCarsMovement();
+        OutputView.printEmptyLine();
+      }
 
-  setCars(cars) {
-    this.#cars = cars.map((car) => new Car(car));
-    this.inputMoveCount();
-  }
-
-  handleMovementLog(moveCount) {
-    for (let i = 0; i < moveCount; i += 1) {
-      this.handleCarsMovement();
-      OutputView.printEmptyLine();
-    }
-
-    this.handleWinners();
+      this.handleWinners();
+    });
   }
 
   handleCarsMovement() {
