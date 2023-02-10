@@ -12,9 +12,10 @@ const OutputView = {
     }
   },
 
-  printResult(carNames, winner) {
+  printResult(winner) {
     Console.print('실행 결과');
     Console.print(winner.join(',') + ' 우승!');
+    Console.close();
   },
 };
 

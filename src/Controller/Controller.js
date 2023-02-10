@@ -43,7 +43,7 @@ class Controller {
     const winner = race.makeResult();
 
     OutputView.drawProgress(this.#carNames, currentRace);
-    OutputView.printResult(this.#carNames, winner);
+    OutputView.printResult(winner);
   }
 }
 
