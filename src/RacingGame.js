@@ -1,45 +1,43 @@
 const Car = require('./Car');
-const OutputView = require('./UI/OutputView');
+const { Settings } = require('./Config');
+const generateRandomInteger = require('./util/generateRandomInteger');
 
 class RacingGame {
-  constructor() {}
+  #carList = [];
 
-  setCarList(carNames) {
-    this.carList = carNames.map((carName) => new Car(carName));
+  #attempts = 0;
+
+  constructor(carNames, attempts) {
+    this.#carList = carNames.map((carName) => new Car(carName));
+    this.#attempts = attempts;
   }
 
-  setAttempts(attempts) {
-    this.attempts = attempts;
+  canMove() {
+    return this.#attempts > 0;
   }
 
   moveAllCars() {
-    if (this.attempts === 0) return;
-    this.attempts -= 1;
-    this.carList.forEach((car) => car.move());
+    if (this.#attempts === 0) return;
+    this.#attempts -= 1;
+    this.#carList.forEach((car) => (
+      car.move(generateRandomInteger(Settings.MIN_RANDOM_VALUE, Settings.MAX_RANDOM_VALUE))
+    ));
   }
 
   findWinner() {
     const maxPosition = this.#findMaxPosition();
-    const winners = this.carList.filter((car) => car.position === maxPosition);
-    return winners.map((car) => car.name);
+    const winners = this.#carList.filter((car) => car.getPosition() === maxPosition);
+    return winners.map((car) => car.getName());
+  }
+
+  getGameStatus() {
+    const status = {};
+    this.#carList.forEach((car) => { status[car.getName()] = car.getPosition(); });
+    return status;
   }
 
   #findMaxPosition() {
-    let maxPosition = 0;
-    this.carList.forEach((car) => {
-        if (car.position > maxPosition) maxPosition = car.position;
-    });
-    return maxPosition;
-  }
-
-  playGame() {
-    OutputView.printResultMessage();
-    OutputView.printResult(this);
-    while (this.attempts > 0) {
-        this.moveAllCars();
-        OutputView.printResult(this);
-    }
-    OutputView.printWinners(this.findWinner());
+    return this.#carList.reduce((prev, car) => Math.max(prev, car.getPosition()), 0);
   }
 }
 
