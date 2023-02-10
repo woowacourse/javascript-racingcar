@@ -1,4 +1,4 @@
-const CarManager = require('./CarManager');
+const CarManager = require('./RacingGame');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
@@ -48,7 +48,6 @@ class App {
   startRace(tryCounts) {
     for (let i = 0; i < tryCounts; i++) {
       this.#carManager.progress();
-
       this.printRaceProgress(this.#carManager.getCars());
     }
     this.printWinners(this.#carManager.getWinners());
