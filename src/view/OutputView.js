@@ -10,9 +10,7 @@ const OutputView = {
     cars.forEach((car) => {
       const moveCount = car.getMoveCount();
       IO.print(
-        `${car.getCarName()} ${SYMBOL.ASSIGNMENT} ${SYMBOL.MOVE_SYMBOL.repeat(
-          moveCount
-        )}`
+        `${car.getCarName()} ${':'} ${SYMBOL.MOVE_SYMBOL.repeat(moveCount)}`
       );
     });
     IO.print('');
@@ -23,7 +21,7 @@ const OutputView = {
   },
 
   printWinner(winners) {
-    const winnersList = winners.join(SYMBOL.DIVIDE_WINNER);
+    const winnersList = winners.join(', ');
     IO.print(`${winnersList}${MESSAGE.WINNER_OUTPUT}`);
   },
 };

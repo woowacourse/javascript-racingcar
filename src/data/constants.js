@@ -7,9 +7,7 @@ const MESSAGE = Object.freeze({
 });
 
 const SYMBOL = Object.freeze({
-  ASSIGNMENT: ':',
   MOVE_SYMBOL: '-',
-  DIVIDE_WINNER: ', ',
 });
 
 const ERROR_MESSAGE = Object.freeze({
