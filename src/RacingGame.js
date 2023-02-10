@@ -46,7 +46,7 @@ class RacingGame {
   }
 
   isPlaying() {
-    return this.#round;
+    return Boolean(this.#round);
   }
 }
 
