@@ -4,7 +4,7 @@ const randomNumberMaker = () => {
   return Math.floor(Math.random() * 10);
 };
 
-const isOverFour = (number) => {
+const isEqualOrGreaterThanStandardNumber = (number) => {
   if (number >= MOVEMENT_STANDARD_NUMBER) {
     return true;
   }
@@ -12,7 +12,7 @@ const isOverFour = (number) => {
 };
 
 const isMoving = (randomNumber) => {
-  return isOverFour(randomNumber);
+  return isEqualOrGreaterThanStandardNumber(randomNumber);
 };
 
 module.exports = { isMoving, randomNumberMaker };
