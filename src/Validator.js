@@ -1,5 +1,5 @@
 const { Settings, Messages } = require('./Config');
-const Console = require('./UI/Console');
+const Console = require('./utils/Console');
 
 const Validator = {
   isValidCarNames(input) {

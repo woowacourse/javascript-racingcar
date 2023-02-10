@@ -1,4 +1,4 @@
-const Console = require('./Console');
+const Console = require('../utils/Console');
 const { Messages, Settings } = require('../Config');
 const Validator = require('../Validator');
 

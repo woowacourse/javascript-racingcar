@@ -1,4 +1,4 @@
-const Console = require('./Console');
+const Console = require('../utils/Console');
 const { Messages } = require('../Config');
 
 const OutputView = {
