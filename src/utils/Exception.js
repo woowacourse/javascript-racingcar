@@ -1,4 +1,5 @@
 const { ErrorMessage, StaticValue } = require('../constants/constants');
+const Utils = require('./Utils');
 
 const Exception = {
   checkCarInput(input) {
@@ -6,13 +7,9 @@ const Exception = {
     this.checkDuplicateInput(input);
   },
 
-  checkWhiteSpace(input) {
-    return StaticValue.REGEX_WHITESPACE.test(input);
-  },
-
   checkInputLength(input) {
     input.forEach((name) => {
-      if (name.length > StaticValue.CAR_NAME_LIMIT || this.checkWhiteSpace(name)) {
+      if (name.length > StaticValue.CAR_NAME_LIMIT || Utils.haskWhiteSpace(name)) {
         throw new Error(ErrorMessage.NAME_INPUT);
       }
     });
@@ -25,7 +22,7 @@ const Exception = {
   },
 
   checkMoveCountInput(input) {
-    if (isNaN(input) || Number(input) <= 0 || this.checkWhiteSpace(input)) {
+    if (isNaN(input) || Number(input) <= 0 || Utils.haskWhiteSpace(input)) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
   },
