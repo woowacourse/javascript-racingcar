@@ -1,5 +1,4 @@
 const CONSTANTS = {
-  comma: ',',
   defaultPostion: 0,
   minNumberOfMoving: 4,
   minNumberOfNames: 2,
@@ -7,7 +6,6 @@ const CONSTANTS = {
   empty: '',
   colon: ':',
   dash: '-',
-  commaBlank: ', ',
   undefinedType: 'undefined',
 };
 

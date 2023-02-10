@@ -1,6 +1,5 @@
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
-const CONSTANTS = require('../Constant/Constants');
 const Validator = require('../Utils/Validator');
 const Car = require('../Models/Car');
 const Race = require('../Models/Race');
@@ -14,7 +13,7 @@ class RaceController {
 
   getCarName() {
     InputView.readCarName(carName => {
-      const splitCarName = carName.split(CONSTANTS.comma);
+      const splitCarName = carName.split(',');
       Validator.validateNamesOfCars(splitCarName);
       const cars = [];
       splitCarName.forEach(name => {

@@ -20,7 +20,7 @@ const OutputView = {
   printWinners(result) {
     const winners = DataParseUtils.parseWinner(result);
     Console.print(
-      `${winners.join(CONSTANTS.commaBlank)}${RACE_MESSAGE.winnerResult}`,
+      `${winners.join(', ')}${RACE_MESSAGE.winnerResult}`,
     );
     Console.close();
   },
