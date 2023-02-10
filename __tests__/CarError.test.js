@@ -1,4 +1,4 @@
-const readLine = require("../src/library/ReadLine");
+const readLine = require("../src/util/readlineInterface");
 const InputView = require("../src/view/InputView");
 const MESSAGES = require("../src/constant/Constant");
 const mockQuestions = (answers) => {
@@ -11,7 +11,7 @@ const mockQuestions = (answers) => {
 };
 
 describe("자동차 입력 예외 처리 테스트", () => {
-  test("자동차 이름 입력이 없으면 예외가 발생한다.", async () => {
+  test("자동차 이름 입력은 비어 있어서는 안 된다.", async () => {
     mockQuestions([""]);
     return expect(InputView.readCarNames(MESSAGES.carText)).rejects.toThrow();
   });
@@ -42,20 +42,20 @@ describe("자동차 입력 예외 처리 테스트", () => {
   });
 });
 
-describe("자동차 이름 입력 정확히.", () => {
-  test("", async () => {
+describe("자동차 이름이 올바르다면, 콤마 단위로 쪼갠 배열이 정상적으로 반환되어야 한다.", () => {
+  test("입력이 a,b,c 로 주어지는 경우", async () => {
     const answer = ["a", "b", "c"];
     mockQuestions(["a,b,c"]);
     return expect(InputView.readCarNames(MESSAGES.carText)).resolves.toEqual(answer);
   });
 
-  test("", async () => {
-    const answer = ["aBC", "DeF1", "G0X", "MxVd", "3K", "9PwQZ", "xIl", "VheiJ"];
+  test("입력에 다양한 종류의 알파벳이 사용된 문자열이 주어지는 경우", async () => {
+    const answer = ["aBC", "DeF1", "G0X", "MxVd", "3K", "9PwQZ", "xIl", "VheiJ", "V"];
     mockQuestions(["aBC,DeF1,G0X,MxVd,3K,9PwQZ,xIl,VheiJ"]);
     return expect(InputView.readCarNames(MESSAGES.carText)).resolves.toEqual(answer);
   });
 
-  test("", async () => {
+  test("입력에 하나의 차 이름만 주어지는 경우", async () => {
     const answer = ["Solo"];
     mockQuestions(["Solo"]);
     return expect(InputView.readCarNames(MESSAGES.carText)).resolves.toEqual(answer);
