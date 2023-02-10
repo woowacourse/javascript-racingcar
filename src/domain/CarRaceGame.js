@@ -18,8 +18,8 @@ const CarRaceGame = {
         winners.push(carNames[i]);
       }
     }
-    return winners.join(', ');
-  }
+    return winners.join(", ");
+  },
 };
 
 module.exports = CarRaceGame;
