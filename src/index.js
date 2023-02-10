@@ -3,7 +3,8 @@ const inputView = require("./InputView");
 const OutputView = require("./OutputView");
 const random = require("./Random");
 const validations = require("./validations");
-const Racing = require("./Racing")
+const Racing = require("./Racing");
+const CONSTANT = require("./Constant");
 
 
 class App {
@@ -16,26 +17,19 @@ class App {
     }
     
     startRace() {
-        inputView.inputCarName((input) => {
+        inputView.readUserInput((input) => {
             const carNames = input.split(",");
-            try {
-                validations.validateCarNameLength(carNames);
-                validations.validateIsCarName(carNames)
-                this.createCars(carNames);
-                this.getTotalRound();
-            } catch (e) {
-                console.log(e.message);
-                this.startRace();
-            }
-        })
+            this.createCars(carNames);
+            this.getTotalRound()
+        }, CONSTANT.INPUT_CAR_MASSEGE)
     }
     
     getTotalRound() {
-        inputView.inputRound((round) => {
-            OutputView.outputResultTitle(); 
+        inputView.readUserInput((round => {
+            OutputView.outputResultTitle();
             this.moveCar(round);
             this.printFinalResult();
-        })
+        }),CONSTANT.INPUT_ROUND_MASSEGE)
     }
 
     moveCar(round) {
@@ -55,13 +49,13 @@ class App {
     }
 
     createCars(names) {
-        names.forEach( carName => {
+        names.forEach(carName => {
             this.cars.push(new Car(carName))
         });
     }
 
     goStop() {
-        this.cars.forEach( car => {
+        this.cars.forEach(car => {
             const racing = new Racing(car)
             racing.raceEachCar()
 
@@ -74,15 +68,25 @@ class App {
     }
 
     getWinner() {
-        let winner = []
-        let winnerScore = 0;
-        this.cars.forEach(car => {
-            if (car.getScore() > winnerScore) {
-                winnerScore = car.getScore();
-                winner = [car.getCarName()];
-            } else if (car.getScore() === winnerScore) winner.push(car.getCarName());
+        const winnerScore = this.getWinnerScore()
+        const winners = this.cars.filter(car => car.getScore() === winnerScore).map(car => {
+            if (car.getScore() === winnerScore) {
+                winnerScore = car.getScore()
+
+                return car.getCarName()
+            }
         })
-        return winner 
+
+        return winners
+    }
+
+    getWinnerScore() {
+        let winnerScore = 0
+        this.cars.forEach(car => {
+            winnerScore = Math.max(winnerScore, car.getScore())
+        })
+
+        return winnerScore
     }
 }
 
