@@ -31,7 +31,6 @@ describe('getWinnerCar 테스트', () => {
     carNamesMap.set('pobi', 5);
     carNamesMap.set('ukko', 5);
     carNamesMap.set('gonni', 5);
-    console.log(carNamesMap);
     expect(racingCarGame.getWinnerCar(carNamesMap)).toBe(
       'pobi, ukko, gonni이(가) 최종 우승했습니다.'
     );
