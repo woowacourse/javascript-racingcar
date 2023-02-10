@@ -4,7 +4,7 @@ describe('getWinnerCar 테스트', () => {
   const racingCarGame = new RacingCarGame();
   test('pobi 1칸 전진, ukko 2칸 전진, gonni 3칸 전진 -> gonni 우승', () => {
     const carNamesMap = ['pobi', 'ukko', 'gonni'].reduce((acc, cur, index) => {
-      return acc.set(cur, index + 1);
+      return acc.set(cur, index + 2);
     }, new Map());
 
     expect(racingCarGame.getWinnerCar(carNamesMap)).toBe(
