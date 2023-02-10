@@ -1,3 +1,4 @@
+const { StaticValue } = require("../src/constants/Constants");
 const Car = require("../src/model/Car");
 
 describe("Car 클래스 테스트", () => {
@@ -16,7 +17,8 @@ describe("Car 클래스 테스트", () => {
     const EXPECTED_DISTANCES = [0, 0, 0, 0, 1, 2, 3, 4, 5, 6];
 
     RANDOM_NUMBERS.forEach((number, index) => {
-      CAR.move(number);
+      if (number >= StaticValue.MOVE_CONDITION) CAR.move();
+
       expect(CAR.getCurrentDistance()).toEqual(EXPECTED_DISTANCES[index]);
     });
   });
