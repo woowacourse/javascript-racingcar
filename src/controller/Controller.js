@@ -1,5 +1,5 @@
 const Car = require('../model/Car');
-const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const Utils = require('../utils/Utils');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
@@ -34,7 +34,7 @@ class Controller {
 
   handleCarsMovement() {
     this.#cars.forEach((car) => {
-      const RANDOM_NUMBER = RandomNumberGenerator.generate();
+      const RANDOM_NUMBER = Utils.generateRandomNumber();
 
       car.move(RANDOM_NUMBER);
       OutputView.printMoveDistance(car.getName(), car.getCurrentDistance());
