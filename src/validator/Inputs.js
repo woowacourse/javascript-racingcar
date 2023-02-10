@@ -30,7 +30,9 @@ const Inputs = {
 
     Common.testRegExp(names, ALPHA_WITH_COMMA);
     Common.isUnique(carNames);
-    carNames.forEach(Common.validateStringSize.bind(this, NAME.MIN, NAME.MAX));
+    carNames.forEach((name) =>
+      Common.validateStringSize(name, NAME.MIN, NAME.MAX)
+    );
 
     return carNames;
   },
