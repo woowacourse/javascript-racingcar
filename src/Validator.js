@@ -15,8 +15,8 @@ const Validator = {
   carNameLength(input) {
     input.forEach((carName) => {
       if (
-        carName.length < Settings.MIN_NAME_LENGTH ||
-        carName.length > Settings.MAX_NAME_LENGTH
+        carName.length < Settings.MIN_NAME_LENGTH
+        || carName.length > Settings.MAX_NAME_LENGTH
       ) {
         throw new Error(Messages.ERROR_CAR_NAME);
       }
@@ -46,8 +46,9 @@ const Validator = {
       throw new Error(Messages.ERROR_ATTRMPTS);
     }
   },
+
   notInteger(attempts) {
-    if (attempts%1 !== 0) {
+    if (attempts % 1 !== 0) {
       throw new Error(Messages.ERROR_ATTRMPTS);
     }
   },
