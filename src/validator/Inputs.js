@@ -1,15 +1,17 @@
+const Common = require('./Common');
+const Console = require('../utils/Console');
 const { NAME, TRY_COUNT } = require('../constants/values');
 const {
   ALPHA_WITH_COMMA,
   ONLY_NUMBER,
 } = require('../constants/regularExpression');
-const Common = require('./Common');
 
 const Inputs = {
   async readCarName(names, { onError: errorCallback }) {
     try {
       return this.checkCarName(names);
     } catch (error) {
+      Console.print(error.message);
       return await errorCallback({ onError: errorCallback });
     }
   },
@@ -21,6 +23,7 @@ const Inputs = {
 
       return parseInt(count);
     } catch (error) {
+      Console.print(error.message);
       return await errorCallback({ onError: errorCallback });
     }
   },
