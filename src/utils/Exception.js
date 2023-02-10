@@ -22,7 +22,7 @@ const Exception = {
   },
 
   checkMoveCountInput(input) {
-    if (isNaN(input) || input <= 0 || Utils.haskWhiteSpace(input)) {
+    if (isNaN(input) || input <= 0) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
   },
