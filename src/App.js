@@ -1,6 +1,6 @@
 const RacingGame = require('./RacingGame');
 const Validation = require('./Validation');
-const OutputView = require('./view');
+const OutputView = require('./view/OutputView');
 const { Console } = require('./utils');
 const { REQUEST_MESSAGE } = require('./constants/Constant');
 
@@ -23,7 +23,7 @@ class App {
     const carNames = carNamesInput.split(',').map((carName) => carName.trim());
     try {
       Validation.validateCarNames(carNames);
-      this.#racingGame.setCars(carNames);
+      return carNames;
     } catch (e) {
       OutputView.print(e.message);
       await this.#requestCarNames();
@@ -35,7 +35,7 @@ class App {
     const raceRound = Number(raceRoundInput);
     try {
       Validation.validateRaceRound(raceRound);
-      this.#racingGame.setRound(raceRound);
+      return raceRound;
     } catch (e) {
       OutputView.print(e.message);
       await this.#requestRaceRound();
