@@ -1,64 +1,44 @@
-const CarManager = require('./RacingGame');
+const RacingGame = require('./RacingGame');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
-const Validator = require('./utils/Validator');
-
 class App {
-  #carManager;
+  #racingGame;
+  #tryCount;
 
-  play() {
-    this.inputCarNames();
+  async play() {
+    await this.inputCarNames();
+    await this.inputTryCount();
+
+    this.race(this.#tryCount);
+    this.showRaceWinners(this.#racingGame.getWinners());
   }
 
-  inputCarNames() {
-    InputView.readCarNames((carNamesInput) => {
-      if (this.isValidInput('carNames', carNamesInput, Validator)) {
-        this.inputTryCount(carNamesInput);
-        return;
-      }
+  async inputCarNames() {
+    const carNamesInput = await InputView.readCarNames();
+    // TODO: validate
+    this.#racingGame = new RacingGame(carNamesInput.split(','));
+  }
 
-      this.inputCarNames();
+  async inputTryCount() {
+    const tryCountInput = await InputView.readTryCount();
+    // TODO: validate
+    this.#tryCount = parseInt(tryCountInput);
+  }
+
+  race(tryCount) {
+    Array.from({ length: tryCount }, () => {
+      this.#racingGame.progressAllCars();
+      this.showRaceProgress(this.#racingGame.getCars());
     });
   }
 
-  inputTryCount(carNamesInput) {
-    InputView.readTryCount((tryCountsInput) => {
-      if (this.isValidInput('tryCounts', tryCountsInput, Validator)) {
-        this.#carManager = new CarManager(carNamesInput.split(','));
-        this.startRace(parseInt(tryCountsInput));
-        return;
-      }
-
-      this.inputTryCount(carNamesInput);
-    });
-  }
-
-  isValidInput(type, inputValue, validator) {
-    try {
-      if (type === 'carNames') validator.validateNameInput(inputValue);
-      if (type === 'tryCounts') validator.validateTryCountsInput(inputValue);
-      return true;
-    } catch (error) {
-      OutputView.printErrorMessage(error.message);
-      return false;
-    }
-  }
-
-  startRace(tryCounts) {
-    for (let i = 0; i < tryCounts; i++) {
-      this.#carManager.progress();
-      this.printRaceProgress(this.#carManager.getCars());
-    }
-    this.printWinners(this.#carManager.getWinners());
-  }
-
-  printRaceProgress(cars) {
+  showRaceProgress(cars) {
     OutputView.printRaceProgress(cars);
   }
 
-  printWinners(winners) {
+  showRaceWinners(winners) {
     OutputView.printWinners(winners);
   }
 }
