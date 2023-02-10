@@ -1,3 +1,4 @@
+const { ERROR_MESSAGE } = require('../src/constants/Constant');
 const Validation = require('../src/Validation');
 
 describe('Validation.validateCarNames', () => {
@@ -6,7 +7,7 @@ describe('Validation.validateCarNames', () => {
 
     expect(() => {
       Validation.validateCarNames(names);
-    }).toThrow();
+    }).toThrow(ERROR_MESSAGE.invalidCarQuantity);
   });
 
   test('자동차 이름 최대, 최소 조건을 만족하지 않는 경우 에러가 발생한다.', () => {
@@ -14,7 +15,7 @@ describe('Validation.validateCarNames', () => {
 
     expect(() => {
       Validation.validateCarNames(names);
-    }).toThrow();
+    }).toThrow(ERROR_MESSAGE.invalidCarNameLength);
   });
 
   test('자동차 이름이 중복되는 경우 에러가 발생한다.', () => {
@@ -22,7 +23,7 @@ describe('Validation.validateCarNames', () => {
 
     expect(() => {
       Validation.validateCarNames(names);
-    }).toThrow();
+    }).toThrow(ERROR_MESSAGE.duplicateCarName);
   });
 });
 
@@ -32,7 +33,7 @@ describe('Validation.validateRaceRound', () => {
 
     expect(() => {
       Validation.validateRaceRound(round);
-    }).toThrow();
+    }).toThrow(ERROR_MESSAGE.invalidGameRound);
   });
 
   test('레이스 라운드가 0일 때 에러가 발생한다.', () => {
@@ -40,6 +41,6 @@ describe('Validation.validateRaceRound', () => {
 
     expect(() => {
       Validation.validateRaceRound(round);
-    }).toThrow();
+    }).toThrow(ERROR_MESSAGE.invalidGameRound);
   });
 });
