@@ -6,6 +6,7 @@ const Messages = {
   MOVING_TRACE: '-',
   ERROR_CAR_NAME: '[ERROR] 자동차 이름 길이 오류',
   ERROR_ATTRMPTS: '[ERROR] 시도할 횟수 입력 오류',
+  ERROR_TOO_MANY: '[ERROR] 연속된 오입력이 감지되어 강제 종료합니다.',
   RESULT: '\n실행 결과',
   WINNER_SEPARATOR: ', ',
 };
@@ -19,6 +20,7 @@ const Settings = {
   MIN_RANDOM_VALUE: 0,
   MAX_RANDOM_VALUE: 10,
   MOVING_NUMBER: 4,
+  WRONG_INPUT_PATIENCE: 100,
 };
 
 module.exports = { Messages, Settings };

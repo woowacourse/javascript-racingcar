@@ -3,25 +3,28 @@ const { Messages, Settings } = require('../Config');
 const Validator = require('../Validator');
 
 const InputView = {
-  getCarNames(racingGame) {
-    let input;
-    Console.readLine(Messages.INPUT_CAR_NAMES, (answer) => {
-      input = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
-      if (Validator.invalidCarNames(input)) InputView.getCarNames(racingGame);
-      racingGame.setCarList(input);
-      InputView.getAttempts(racingGame);
-    });
+  async getCarNames() {
+    const answer = await Console.readLine(Messages.INPUT_CAR_NAMES);
+    const carNames = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
+    Validator.invalidCarNames(carNames);
+    return carNames;
   },
 
-  getAttempts(racingGame) {
-    let attempts;
-    Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
-      attempts = answer.trim();
-      if (Validator.invalidAttempts(attempts)) InputView.getAttempts(racingGame);
-      racingGame.setAttempts(attempts);
-      racingGame.playGame();
-      Console.close();
-    });
+  async getAttempts() {
+    const answer = await Console.readLine(Messages.INPUT_ATTEMPTS);
+    Validator.invalidAttempts(answer.trim());
+    return Number(answer);
+  },
+
+  async repeatInput(inputFunction, recursionDepth = 0) {
+    if (recursionDepth > Settings.WRONG_INPUT_PATIENCE) throw new Error(Messages.ERROR_TOO_MANY);
+    try {
+      const input = await inputFunction();
+      return input;
+    } catch (error) {
+      Console.print(error.message);
+      return this.repeatInput(inputFunction, recursionDepth + 1);
+    }
   },
 };
 
