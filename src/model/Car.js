@@ -24,24 +24,6 @@ class Car {
   getStatus() {
     return { name: this.#name, position: this.#position };
   }
-
-  static getWinner(carsStatus) {
-    carsStatus = carsStatus.map(({ name, position }) => {
-      return { name, position: position.reduce((acc, cur) => acc + cur, 0) };
-    });
-
-    const carsPostion = carsStatus.map(({ position }) => position);
-    const maxPosition = Math.max(...carsPostion);
-    const winner = this.findWinner(carsStatus, maxPosition);
-
-    return winner;
-  }
-
-  static findWinner(carsStatus, maxPosition) {
-    return carsStatus
-      .filter(({ position }) => position === maxPosition)
-      .map(({ name }) => name);
-  }
 }
 
 module.exports = Car;

@@ -4,8 +4,10 @@ const Validator = require("./model/Validator.js");
 
 const Car = require("./model/Car.js");
 const Console = require("./lib/Console.js");
+const GameManager = require("./model/GameManager.js");
 
 class App {
+  #gameManager;
   #cars = [];
   #tryCount;
 
@@ -65,7 +67,8 @@ class App {
   }
 
   printWinner(carsStatus) {
-    const winner = Car.getWinner(carsStatus);
+    this.#gameManager = new GameManager(carsStatus);
+    const winner = this.#gameManager.winner;
 
     OutputView.printWinner(winner);
     this.quit();
