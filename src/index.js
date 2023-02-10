@@ -7,4 +7,7 @@ class App {
   }
 }
 
+const app = new App();
+app.init();
+
 module.exports = App;
