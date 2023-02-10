@@ -5,5 +5,4 @@ const Random = {
     }
 }
 
-
 module.exports = Random;
