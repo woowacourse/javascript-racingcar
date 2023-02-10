@@ -4,9 +4,11 @@ describe('getWinnerCar 테스트', () => {
   const racingCarGame = new RacingCarGame();
 
   test('입력 받은 자동차 중 하나만 우승한 경우', () => {
-    const carNamesMap = ['pobi', 'ukko', 'gonni'].reduce((acc, cur, index) => {
+    const carNamesMap = new Map();
+
+    ['pobi', 'ukko', 'gonni'].reduce((acc, cur, index) => {
       return acc.set(cur, index + 1);
-    }, new Map());
+    }, carNamesMap);
 
     expect(racingCarGame.getWinnerCar(carNamesMap)).toBe(
       'gonni이(가) 최종 우승했습니다.'

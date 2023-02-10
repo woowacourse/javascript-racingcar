@@ -15,12 +15,12 @@ class InputView {
           if (!this.validateCarNames(carNames)) {
             reject('다섯글자 이하의 자동차를 중복없이 입력해주세요.');
           }
-
-          const carMap = carNames.reduce((acc, cur) => {
+          const carMap = new Map();
+          const carInitialValue = carNames.reduce((acc, cur) => {
             return acc.set(cur, 1);
-          }, new Map());
+          }, carMap);
 
-          resolve(carMap);
+          resolve(carInitialValue);
         }
       );
     });
