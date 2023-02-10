@@ -5,7 +5,7 @@ const { GAME, INPUT, OUTPUT } = require('../utils/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
 
-class Controller {
+class RacingGame {
   #cars;
   #winningDistance;
   #histories;
@@ -69,4 +69,4 @@ class Controller {
     OutputView.print(OUTPUT.winner(winners));
   }
 }
-module.exports = Controller;
+module.exports = RacingGame;
