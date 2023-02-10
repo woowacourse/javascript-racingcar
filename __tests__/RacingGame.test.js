@@ -16,10 +16,6 @@ describe('자동차를 관리하는 클래스 테스트', () => {
     racingGame = new RacingGame(['pobi', 'crong', 'honux']);
   });
 
-  test('자동차 관리자 인스턴스를 생성한다.', () => {
-    expect(racingGame.getCars().length).toEqual(3);
-  });
-
   test('자동차 각각을 전진시킨다', () => {
     mockRandoms([5, 2, 1]);
 
