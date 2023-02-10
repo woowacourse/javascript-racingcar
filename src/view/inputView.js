@@ -27,8 +27,6 @@ class InputView {
   }
 
   isValidateCarNames(carNames) {
-    if ([...new Set(carNames)].length !== carNames.length) return false;
-
     for (const car of carNames) {
       if (car.length > 5 || car.length === 0) return false;
     }
