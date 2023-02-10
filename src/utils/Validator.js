@@ -6,7 +6,7 @@ class Validator {
   }
 
   static validateCarNames(carArr) {
-    carArr.forEach((car) => Validator.validateCarName(car));
+    carArr.forEach(Validator.validateCarName);
   }
 
   static validateTryCount(tryCount) {
