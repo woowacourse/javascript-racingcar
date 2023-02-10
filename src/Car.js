@@ -6,16 +6,8 @@ class Car {
     this.position = 1;
   }
 
-  static generateRandomNumber() {
-    return (
-      Math.floor(
-        Math.random() * (Settings.MAX_RANDOM_VALUE - Settings.MIN_RANDOM_VALUE)
-      ) + Settings.MIN_RANDOM_VALUE
-    );
-  }
-
-  move() {
-    if (Car.generateRandomNumber() >= Settings.MOVING_NUMBER) {
+  move(power) {
+    if (power >= Settings.MOVING_POWER) {
       this.position += 1;
     }
   }
