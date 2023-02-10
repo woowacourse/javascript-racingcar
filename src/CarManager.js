@@ -3,14 +3,10 @@ const Car = require('./Car');
 const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
 
 class CarManager {
-  #cars;
+  #cars = [];
 
   constructor(carNames) {
-    this.#cars = [];
-
-    carNames.forEach((singleCarName) => {
-      this.#cars.push(new Car(singleCarName));
-    });
+    this.#cars = carNames.map((carName) => new Car(carName));
   }
 
   progress() {
