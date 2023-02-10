@@ -11,12 +11,12 @@ const mockQuestions = (answers) => {
 };
 
 const mockRandoms = (numbers) => {
-    Car.generateRandomNumber = jest.fn();
-    numbers.reduce(
-      (acc, number) => acc.mockReturnValueOnce(number),
-      Car.generateRandomNumber
-    );
-  };
+  Car.generateRandomNumber = jest.fn();
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    Car.generateRandomNumber
+  );
+};
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');
@@ -25,7 +25,6 @@ const getLogSpy = () => {
 };
 
 const getOutput = (logSpy) => [...logSpy.mock.calls].join('');
-
 
 const expectLogContains = (received, logs) => {
   logs.forEach((log) => {
