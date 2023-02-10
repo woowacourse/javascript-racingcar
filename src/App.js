@@ -8,17 +8,17 @@ class App {
   #carManager;
 
   play() {
-    this.inputCarNames();
+    this.startWithInitialInputs();
   }
 
-  inputCarNames() {
+  startWithInitialInputs() {
     InputView.readCarNames((carNamesInput) => {
       if (this.isValidInput('carNames', carNamesInput, Validator)) {
         this.inputTryCount(carNamesInput);
         return;
       }
 
-      this.inputCarNames();
+      this.startWithInitialInputs();
     });
   }
 
