@@ -1,4 +1,5 @@
 import Car from '../src/models/Car';
+import { CAR } from '../src/Template/index.js';
 import randomNumberInRange from '../src/utils/RandomNumberInRange';
 import Validator from '../src/utils/Validator';
 
@@ -7,7 +8,7 @@ beforeEach(() => {
 });
 
 describe('Model 테스트', () => {
-  test('거리가 1일 때 2번 움직이면 3이 된다.', () => {
+  test(`거리가 ${CAR.initialDistance}일 때 2번 움직이면 ${CAR.initialDistance + 2}이 된다.`, () => {
     const car = new Car('car');
 
     car.move();
@@ -36,7 +37,7 @@ describe('utils 테스트', () => {
     });
 
     test('정수가 아니면 에러가 발생한다.', () => {
-      expect(() => Validator.checkIntegerNumber('5.0')).toThrow();
+      expect(() => Validator.checkIntegerNumber('2.4')).toThrow();
     });
   });
 
