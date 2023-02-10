@@ -26,15 +26,11 @@ const Validator = {
   },
 
   isCarNameLessThenFive(names) {
-    return names.every((name) => {
-      return name.length <= 5;
-    });
+    return names.every((name) => name.length <= 5);
   },
 
   isCarNameLowerCase(names) {
-    return names.every((name) => {
-      return name.search(/[^a-z]/g) === -1;
-    });
+    return names.every((name) => name.search(/[^a-z]/g) === -1);
   },
 
   isCarNameNull(names) {
