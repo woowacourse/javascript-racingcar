@@ -1,3 +1,4 @@
+const { StaticValue } = require('../src/constants/constants');
 const Exception = require('../src/utils/Exception');
 
 describe('Exception 객체 테스트', () => {
@@ -9,8 +10,8 @@ describe('Exception 객체 테스트', () => {
     }).toThrow();
   });
 
-  test('이름이 5글자 이상인 경우 에러를 발생시키는지 확인', () => {
-    const NAME_INPUTS = ['안녕하세요', '배달의민족입니다', '우형', '배민입니다요'];
+    test(`이름이 ${StaticValue.CAR_NAME_LIMIT}글자 이상인 경우 에러를 발생시키는지 확인`, () => {
+      const NAME_INPUTS = ['안녕하세요', '배달의민족입니다', '우형', '배민입니다요'];
 
     expect(() => {
       Exception.checkCarInput(NAME_INPUTS);
