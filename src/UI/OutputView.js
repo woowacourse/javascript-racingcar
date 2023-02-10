@@ -5,7 +5,7 @@ const OutputView = {
   printResult(racingGame) {
     racingGame.carList.forEach((car) => {
       Console.print(
-        `${car.name} : ${new Array(car.position).fill(Messages.MOVING_TRACE).join('')}`
+        `${car.name} : ${new Array(car.position).fill(Messages.MOVING_TRACE).join('')}`,
       );
     });
     Console.print('');
