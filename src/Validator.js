@@ -2,7 +2,7 @@ const { Settings, Messages } = require('./Config');
 const Console = require('./UI/Console');
 
 const Validator = {
-  invalidCarNames(input) {
+  isValidCarNames(input) {
     try {
       Validator.carNameLength(input);
       return false;
@@ -23,7 +23,7 @@ const Validator = {
     });
   },
 
-  invalidAttempts(attempts) {
+  isValidAttempts(attempts) {
     try {
       Validator.notNumber(attempts);
       Validator.bigNumber(Number(attempts));
@@ -47,7 +47,7 @@ const Validator = {
     }
   },
   notInteger(attempts) {
-    if (attempts%1 !== 0) {
+    if (attempts % 1 !== 0) {
       throw new Error(Messages.ERROR_ATTRMPTS);
     }
   },
