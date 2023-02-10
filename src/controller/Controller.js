@@ -24,9 +24,7 @@ class Controller {
   }
 
   handleMovementLog(moveCount) {
-    const COUNT = Number(moveCount);
-
-    for (let i = 0; i < COUNT; i += 1) {
+    for (let i = 0; i < moveCount; i += 1) {
       this.handleCarsMovement();
       OutputView.printEmptyLine();
     }
