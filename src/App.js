@@ -8,9 +8,11 @@ class App {
   #racingGame;
 
   async play() {
-    this.#racingGame = new RacingGame();
-    await this.#requestCarNames();
-    await this.#requestRaceRound();
+    const carNames = await this.#requestCarNames();
+    const round = await this.#requestRaceRound();
+
+    this.#racingGame = new RacingGame(carNames, round);
+
     this.#raceCars();
     const winners = this.#findWinners();
     this.#endGame(winners);
