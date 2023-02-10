@@ -5,7 +5,7 @@ describe('자동차 클래스 테스트', () => {
     const carName = 'test';
     const car = new Car(carName);
 
-    expect(car instanceof Car).toEqual(true);
+    expect(car instanceof Car).toBe(true);
   });
 
   test('무작위 값이 4 이상인 경우 자동차를 전진', () => {
