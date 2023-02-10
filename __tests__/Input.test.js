@@ -4,7 +4,7 @@ const IO = require('../src/utils/IO.js');
 const {
   validateCarNames,
   validateTryCount,
-} = require('../src/utils/Validator.js');
+} = require('../src/utils/InputValidator.js');
 const { ERROR_MESSAGE } = require('../src/data/constants.js');
 
 const mockQuestions = (answers) => {
