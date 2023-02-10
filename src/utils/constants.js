@@ -6,7 +6,6 @@ const GAME = deepFreeze({
     max: 10,
   },
   MOVE_CONDITION: {
-    // 랜덤 생성된 값 x가 mid <= x < max 인 경우에 전진
     min: 0,
     satisfaction: 4,
     max: 10,
