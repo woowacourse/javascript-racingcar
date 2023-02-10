@@ -1,7 +1,8 @@
 const RacingGame = require('./RacingGame');
 const Validation = require('./Validation');
 const { InputView, OutputView } = require('./view');
-const { Console, randomNumberGenerator } = require('./utils');
+const { Console } = require('./utils');
+const generateRandomNumber = require('./utils/randomNumberGenerator');
 
 class App {
   #racingGame;
@@ -43,7 +44,7 @@ class App {
     OutputView.printResultMessage();
 
     while (this.#racingGame.isPlaying()) {
-      this.#racingGame.race(randomNumberGenerator);
+      this.#racingGame.race(generateRandomNumber);
 
       const roundResult = this.#racingGame.getRoundResult();
 

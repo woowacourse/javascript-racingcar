@@ -13,9 +13,9 @@ class RacingGame {
     this.#round = round;
   }
 
-  race(randomNumberGenerator) {
+  race(generateRandomNumber) {
     this.#cars.forEach((car) => {
-      const randomNumber = randomNumberGenerator();
+      const randomNumber = generateRandomNumber();
 
       if (randomNumber >= RacingGame.MOVE_CONDITION) {
         car.move();

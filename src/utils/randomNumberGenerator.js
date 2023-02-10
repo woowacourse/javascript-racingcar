@@ -1,5 +1,5 @@
-const randomNumberGenerator = () => {
+const generateRandomNumber = () => {
   return Math.floor(Math.random() * 10);
 };
 
-module.exports = randomNumberGenerator;
+module.exports = generateRandomNumber;
