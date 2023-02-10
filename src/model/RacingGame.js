@@ -22,16 +22,18 @@ class RacingGame {
     this.#tryCount = tryCount;
   }
 
-  judgeMove(randomValue, car) {
-    if (randomValue >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
+  judgeMove(randomNumber, car) {
+    if (randomNumber >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
       car.move();
     }
   }
 
   assignRandom() {
     this.#cars.forEach((car) => {
-      const randomValue = Util.randomValue();
-      this.judgeMove(randomValue, car);
+      const randomNumber = Util.generateRandomNumber(
+        UTIL_NUMBER.CAR_RANDOM_MAXIMUM_NUMBER
+      );
+      this.judgeMove(randomNumber, car);
     });
 
     OutputView.printMoveProcess(this.#cars);
