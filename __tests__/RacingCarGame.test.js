@@ -4,15 +4,13 @@ const Random = require('../src/lib/random');
 
 const mockRandoms = (numbers) => {
   Random.pickNumberInRange = jest.fn();
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    Random.pickNumberInRange
-  );
+  numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), Random.pickNumberInRange);
 };
 
 describe('RacingCarGame 테스트', () => {
   const cars = ['pobi', 'fine', 'hp'].map((name) => new Car(name));
   const racingCarGame = new RacingCarGame(cars);
+
   test('무작위 값이 4 이상인 경우에만 자동차가 이동한다.', () => {
     mockRandoms([4, 1, 5]);
 

@@ -6,7 +6,7 @@ const RandomNumberGenerator = {
   generate() {
     return Random.pickNumberInRange(
       RandomNumberGenerator.RANDOM_LOWER_INCLUSIVE,
-      RandomNumberGenerator.RANDOM_UPPER_INCLUSIVE
+      RandomNumberGenerator.RANDOM_UPPER_INCLUSIVE,
     );
   },
 };

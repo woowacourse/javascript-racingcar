@@ -23,7 +23,7 @@ describe('Validator 테스트', () => {
       expect(() => {
         Validator.checkCarName(carNames);
       }).not.toThrow();
-    }
+    },
   );
 
   test('자동차 이름이 알파벳이나 한글이 아닌 문자가 포함됐을 경우 에러가 발생한다.', () => {
@@ -50,14 +50,11 @@ describe('Validator 테스트', () => {
     }).toThrow();
   });
 
-  test.each([[['1'], ['101']]])(
-    '이동 횟수가 자연수인 경우 정상적으로 작동한다.',
-    (movingCount) => {
-      expect(() => {
-        Validator.checkMovingCount(movingCount);
-      }).not.toThrow();
-    }
-  );
+  test.each([[['1'], ['101']]])('이동 횟수가 자연수인 경우 정상적으로 작동한다.', (movingCount) => {
+    expect(() => {
+      Validator.checkMovingCount(movingCount);
+    }).not.toThrow();
+  });
 
   test.each([[['0'], ['a'], ['01'], ['-1'], [' 1']]])(
     '이동 횟수가 자연수가 아닌 경우 에러가 발생한다.',
@@ -65,6 +62,6 @@ describe('Validator 테스트', () => {
       expect(() => {
         Validator.checkMovingCount(movingCount);
       }).toThrow();
-    }
+    },
   );
 });
