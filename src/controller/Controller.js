@@ -9,16 +9,13 @@ class Controller {
     this.outputView = new OutputView();
   }
 
-  //TODO: controller.init (), App.play() 
-  async init() {
+  //TODO: controller.execute (), App.play() 
+  async execute() {
     const carNames = await this.inputView.readCarNames();
     const trialCount = await this.inputView.readCount();
     const result = this.racingCarGame.getResult(carNames, trialCount);
     this.outputView.printResult(result);
   }
 }
-
-const controller = new Controller();
-controller.init();
 
 module.exports = Controller;

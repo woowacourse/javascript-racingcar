@@ -5,7 +5,7 @@ class App {
     this.controller = new Controller();
   }
   play() {
-    this.controller.init();
+    this.controller.execute();
   }
 }
 
