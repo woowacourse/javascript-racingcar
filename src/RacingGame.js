@@ -1,4 +1,5 @@
 const Car = require('./Car');
+const generateRandomNumber = require('./utils/randomNumberGenerator');
 
 class RacingGame {
   static MOVE_CONDITION = 4;
@@ -13,7 +14,7 @@ class RacingGame {
     this.#round = round;
   }
 
-  race(generateRandomNumber) {
+  race() {
     this.#cars.forEach((car) => {
       const randomNumber = generateRandomNumber();
 
