@@ -5,7 +5,6 @@ describe('자동차 이름 유효성 검사', () => {
     '자동차 이름 길이 케이스 %#',
     (testCase) => {
       expect(() => {
-        console.log(testCase);
         Validation.validateCarNameLength(testCase);
       }).toThrow();
     }
