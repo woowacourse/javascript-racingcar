@@ -2,11 +2,11 @@ const Console = require('../src/UI/Console');
 const Validator = require('../src/Validator');
 
 describe('자동차 이름 검사', () => {
-  test.each([[['참새','에이든']], [['참새']]])('정상', (carNames) => {
+  test.each([[['참새', '에이든']], [['참새']]])('정상', (carNames) => {
     expect(Validator.invalidCarNames(carNames)).toEqual(false);
   });
 
-  test.each([[['참새','에이든', '']], [['참새', '에이든에이든']]])('이름 길이 오류', (carNames) => {
+  test.each([[['참새', '에이든', '']], [['참새', '에이든에이든']]])('이름 길이 오류', (carNames) => {
     expect(Validator.invalidCarNames(carNames)).toEqual(true);
   });
 });
