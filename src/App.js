@@ -1,42 +1,43 @@
 const RacingGame = require('./RacingGame');
 const Validation = require('./Validation');
-const { InputView, OutputView } = require('./view');
+const OutputView = require('./view');
 const { Console } = require('./utils');
+const { REQUEST_MESSAGE } = require('./constants/Constant');
 
 class App {
   #racingGame;
 
-  start() {
+  async play() {
     this.#racingGame = new RacingGame();
-    this.#requestCarNames();
+    await this.#requestCarNames();
+    await this.#requestRaceRound();
+    this.#raceCars();
+    const winners = this.#findWinners();
+    this.#endGame(winners);
   }
 
-  #requestCarNames() {
-    InputView.readCarNames((carNamesInput) => {
-      const carNames = carNamesInput.split(',').map((carName) => carName.trim());
-      try {
-        Validation.validateCarNames(carNames);
-        this.#racingGame.setCars(carNames);
-        this.#requestRaceRound();
-      } catch (e) {
-        OutputView.print(e.message);
-        this.#requestCarNames();
-      }
-    });
+  async #requestCarNames() {
+    const carNamesInput = await Console.read(REQUEST_MESSAGE.carNames);
+    const carNames = carNamesInput.split(',').map((carName) => carName.trim());
+    try {
+      Validation.validateCarNames(carNames);
+      this.#racingGame.setCars(carNames);
+    } catch (e) {
+      OutputView.print(e.message);
+      await this.#requestCarNames();
+    }
   }
 
-  #requestRaceRound() {
-    InputView.readRaceRound((raceRoundInput) => {
-      const raceRound = Number(raceRoundInput);
-      try {
-        Validation.validateRaceRound(raceRound);
-        this.#racingGame.setRound(raceRound);
-        this.#raceCars();
-      } catch (e) {
-        OutputView.print(e.message);
-        this.#requestRaceRound();
-      }
-    });
+  async #requestRaceRound() {
+    const raceRoundInput = await Console.read(REQUEST_MESSAGE.raceRound);
+    const raceRound = Number(raceRoundInput);
+    try {
+      Validation.validateRaceRound(raceRound);
+      this.#racingGame.setRound(raceRound);
+    } catch (e) {
+      OutputView.print(e.message);
+      await this.#requestRaceRound();
+    }
   }
 
   #raceCars() {
@@ -49,14 +50,13 @@ class App {
 
       OutputView.printRoundResult(roundResult);
     }
-    this.#findWinners();
   }
 
   #findWinners() {
     const highestScore = this.#racingGame.getHighestScore();
     const winners = this.#racingGame.getWinners(highestScore);
 
-    this.#endGame(winners);
+    return winners;
   }
 
   #endGame(winners) {
@@ -65,4 +65,4 @@ class App {
   }
 }
 
-new App().start();
+new App().play();
