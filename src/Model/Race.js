@@ -1,19 +1,19 @@
-const Random = require('../utils/Random');
-const { MOVE_FORWARD, FLAG, NOT_MOVED } = require('../utils/constants');
+const Random = require("../utils/Random");
+const { MOVE_FORWARD, FLAG, NOT_MOVED } = require("../utils/constants");
 
 class Race {
   #carNames;
-  #tryCount;
+  #numberOfTrial;
   #currentRace = [];
-  constructor(carNames, tryCount) {
+  constructor(carNames, numberOfTrial) {
     this.#carNames = carNames;
-    this.#tryCount = tryCount;
+    this.#numberOfTrial = numberOfTrial;
   }
 
   start() {
     while (true) {
       const race = this.convertResults(
-        Random.makeRandomNumbers(this.#tryCount)
+        Random.makeRandomNumbers(this.#numberOfTrial)
       );
       this.#currentRace.push(race);
       if (this.#carNames.length === this.#currentRace.length) break;

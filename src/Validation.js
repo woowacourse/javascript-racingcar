@@ -4,7 +4,7 @@ const {
   NAME_MAX_LENGTH,
   NAME_MIN_LENGTH,
   MIN_PARTICIPATE,
-  MIN_TRYCOUNT,
+  MIN_COUNT_OF_TRIAL,
 } = require("./utils/constants");
 
 const Validation = {
@@ -41,21 +41,21 @@ const Validation = {
     }
   },
 
-  validateTryCount(tryCount) {
-    this.validateNotANumber(tryCount);
-    this.validateRaceCount(tryCount);
+  validateNumberOfTrial(numberOfTrial) {
+    this.validateNotANumber(numberOfTrial);
+    this.validateRaceCount(numberOfTrial);
   },
 
-  validateNotANumber(tryCount) {
-    if (!/\d/g.test(tryCount)) {
-      Console.print(ERROR.TRYCOUNT_NOT_A_NUMBER);
+  validateNotANumber(numberOfTrial) {
+    if (!/\d/g.test(numberOfTrial)) {
+      Console.print(ERROR.COUNT_OF_TRIAL_NOT_A_NUMBER);
       throw new Error();
     }
   },
 
-  validateRaceCount(tryCount) {
-    if (tryCount < MIN_TRYCOUNT) {
-      Console.print(ERROR.TRYCOUNT_UNDER_ONE);
+  validateRaceCount(numberOfTrial) {
+    if (numberOfTrial < MIN_COUNT_OF_TRIAL) {
+      Console.print(ERROR.COUNT_OF_TRIAL_UNDER_ONE);
       throw new Error();
     }
   },

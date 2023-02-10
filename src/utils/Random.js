@@ -1,14 +1,14 @@
-const { MIN_RANDOM, MAX_RANDOM } = require('../constants');
+const { MIN_RANDOM, MAX_RANDOM } = require("./constants");
 
 const Random = {
-  makeRandomNumbers(tryCount) {
+  makeRandomNumbers(numberOfTrial) {
     const race = [];
-    while (tryCount) {
+    while (numberOfTrial) {
       const randomNumber = Math.floor(
         Math.random() * (MAX_RANDOM - MIN_RANDOM) + MIN_RANDOM
       );
       race.push(randomNumber);
-      tryCount -= 1;
+      numberOfTrial -= 1;
     }
     return race;
   },
