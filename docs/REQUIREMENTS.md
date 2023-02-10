@@ -14,6 +14,7 @@
   - [x] feat: 자동차 이름이 영소문자가 아닐 경우 예외처리
   - [x] feat: 자동차 이름에 공백이 포함되면 예외처리
   - [x] feat: 자동차 이름이 중복될 경우 예외처리
+  - [ ] feat: 자동차 이름이 빈 값인 경우 예외처리
 - [x] feat: 예외 발생 시 자동차 이름 재입력받기
 - [x] feat: 입력 받은 자동차 객체 생성
 
@@ -57,6 +58,7 @@
     - [x] test: 자동차 이름 길이 유효성 검사
     - [x] test: 자동차 이름이 영소문자로만 이루어지지 않은 경우
     - [x] test: 자동차 이름이 중복된 경우
+    - [ ] test: 빈 값을 입력한 경우
   - 시도 횟수에 대한 유효성 검사
     - [x] test: 시도 횟수 타입 유효성 검사
 
@@ -66,6 +68,16 @@
 - [x] refactor: 난수생성함수를 난수생성객체로 수정
 - [x] refactor: 매직넘버 상수화
 - [x] refactor: 테스트 코드 리팩터링
+
+1차 피드백 이후 리팩터링
+
+- [ ] refactor: 유효성 검사 실패/성공 이후 함수 실행여부 테스트 수정
+- [ ] refactor: App.test의 테스트 코드 Validator.test로 이동
+- [ ] refactor: move, getStatus 함수 리팩터링 및 테스트코드 수정
+- [ ] refactor: GenerateRandomNumber.generator 테스트코드 수정
+- [ ] refactor: winner를 구하는 함수에 대한 클래스 생성 및 수정
+- [ ] refactor: every를 사용하는 유효성 검사 수정
+- [ ] refactor: 정규 표현식 상수화
 
 ## 파일 구조
 

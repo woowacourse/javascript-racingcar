@@ -1,4 +1,3 @@
-const { describe, expect, test } = require("@jest/globals");
 const App = require("../src/App.js");
 const OutputView = require("../src/view/OutputView.js");
 
