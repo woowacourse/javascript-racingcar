@@ -1,19 +1,16 @@
-const Car = require("../src/Car")
+const Car = require("../src/Car");
 
-describe("car_test", () => {
-    const car = new Car("val");    
+describe("자동차 객체 테스트", () => {
+    const car = new Car("sua");
 
-    test("차 이름 얻는 함수_getCarName()", () => {
-        expect(car.getCarName()).toEqual("val") ;
-    })
+    test("자동차 score가 오르는면 통과", () => {
+        car.go();
+        car.go();
+        car.go();
+        expect(car.exportNameScore()[1]).toEqual(3);
+    });
 
-    test("차 전진횟수 얻는 함수_getScore()", () => {
-        expect(car.getScore()).toEqual(0);
-    })
-
-    test("차 전진횟수 얻는 함수_getScore()", () => {
-        car.go()
-        expect(car.getScore()).toEqual(1);
-    })    
-
-})
+    test("자동차 객체의 이름과 스코어가 return되면 통과", () => {
+        expect(car.exportNameScore()).toEqual(["sua", 3]);
+    });
+});
