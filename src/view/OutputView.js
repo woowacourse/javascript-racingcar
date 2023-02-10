@@ -1,4 +1,5 @@
 const { Converter } = require('../utils');
+const { RESULT_MESSAGE } = require('../constants/Constant');
 
 const OutputView = {
   printResultMessage() {
@@ -22,11 +23,6 @@ const OutputView = {
 
     console.log(`${winnersName}${RESULT_MESSAGE.ending}`);
   },
-};
-
-const RESULT_MESSAGE = {
-  opening: '\n실행 결과',
-  ending: '(이)가 최종 우승했습니다.',
 };
 
 module.exports = OutputView;

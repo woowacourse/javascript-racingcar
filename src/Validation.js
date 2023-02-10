@@ -1,9 +1,4 @@
-const {
-  maximumCarNameLength,
-  minimumCarNameLength,
-  minimumCarQuantity,
-  minimumRaceRound,
-} = require('./constants/Constant');
+const { INPUT_CONDITION, ERROR_MESSAGE } = require('./constants/Constant');
 
 class Validation {
   static validateCarNames(names) {
@@ -21,12 +16,15 @@ class Validation {
   }
 
   static #isCarQuantityValid(names) {
-    return names.length >= minimumCarQuantity;
+    return names.length >= INPUT_CONDITION.minimumCarQuantity;
   }
 
   static #isCarNameLengthValid(names) {
     return names.every((name) => {
-      return minimumCarNameLength <= name.length && maximumCarNameLength >= name.length;
+      return (
+        INPUT_CONDITION.minimumCarNameLength <= name.length &&
+        INPUT_CONDITION.maximumCarNameLength >= name.length
+      );
     });
   }
 
@@ -43,15 +41,8 @@ class Validation {
   }
 
   static #isRaceRoundValid(raceRound) {
-    return raceRound >= minimumRaceRound;
+    return raceRound >= INPUT_CONDITION.minimumRaceRound;
   }
 }
-
-const ERROR_MESSAGE = {
-  invalidCarQuantity: `[ERROR] 2개 이상의 차이름을 입력하세요.`,
-  invalidCarNameLength: `[ERROR] 1자 이상, 5자 이하의 이름을 입력하세요.`,
-  duplicateCarName: `[ERROR] 중복되는 차 이름이 존재합니다.`,
-  invalidGameRound: `[ERROR] 1 이상의 숫자를 입력하세요.`,
-};
 
 module.exports = Validation;
