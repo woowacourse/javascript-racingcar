@@ -1,8 +1,8 @@
 const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
-// const { pickRandomNumber } = require('./utils/RandomGenerator');
 const RandomGenerator = require('./utils/RandomGenerator');
+
 const {
   printResult,
   printWinners,
