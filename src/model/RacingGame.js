@@ -12,8 +12,8 @@ class RacingGame {
     this.#cars = [];
   }
 
-  setCarsName(cars) {
-    cars.forEach((carName) => {
+  setCars(carsName) {
+    carsName.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
   }

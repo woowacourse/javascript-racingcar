@@ -16,7 +16,7 @@ class RacingController {
     InputView.readCarName((carNames) => {
       const carArr = carNames.split(',');
       Validator.validateCarNames(carArr);
-      this.#racingGame.setCarsName(carArr);
+      this.#racingGame.setCars(carArr);
 
       this.inputTryCount();
     });
