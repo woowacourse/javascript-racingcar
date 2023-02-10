@@ -2,7 +2,10 @@ const Random = require('../utils/Random');
 const Validator = require('../validator');
 const Car = require('./Car');
 const { getRacingSnapShot } = require('../utils/output');
-const { FORWARD_CONDITIONS_NUMBER } = require('../constants/values');
+const {
+  FORWARD_CONDITIONS_NUMBER,
+  INITIAL_POSITION,
+} = require('../constants/values');
 
 class RacingGame {
   #cars = [];
@@ -56,7 +59,7 @@ class RacingGame {
   }
 
   allFailed() {
-    return this.#cars.every((car) => car.getPosition() === 0);
+    return this.#cars.every((car) => car.getPosition() === INITIAL_POSITION);
   }
 }
 

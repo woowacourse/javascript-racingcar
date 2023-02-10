@@ -1,4 +1,4 @@
-const INIT_POSITION = 0;
+const INITIAL_POSITION = 0;
 const STEP = 1;
 const FORWARD_CONDITIONS_NUMBER = 4;
 const NAME = Object.freeze({
@@ -11,7 +11,7 @@ const TRY_COUNT = Object.freeze({
 });
 
 module.exports = {
-  INIT_POSITION,
+  INITIAL_POSITION,
   STEP,
   FORWARD_CONDITIONS_NUMBER,
   NAME,

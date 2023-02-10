@@ -1,10 +1,10 @@
 const Validator = require('../validator');
-const { INIT_POSITION, STEP } = require('../constants/values');
+const { INITIAL_POSITION, STEP } = require('../constants/values');
 
 class Car {
   #name;
 
-  #position = INIT_POSITION;
+  #position = INITIAL_POSITION;
 
   constructor(name) {
     Validator.Car.checkName(name);
