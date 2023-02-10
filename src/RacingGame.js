@@ -19,25 +19,17 @@ class RacingGame {
   }
 
   findWinner() {
-    const maxPosition = this.#findMaxPosition();
+    const maxPosition = Math.max(...this.carList.map((car) => car.position));
     const winners = this.carList.filter((car) => car.position === maxPosition);
     return winners.map((car) => car.name);
-  }
-
-  #findMaxPosition() {
-    let maxPosition = 0;
-    this.carList.forEach((car) => {
-        if (car.position > maxPosition) maxPosition = car.position;
-    });
-    return maxPosition;
   }
 
   playGame() {
     OutputView.printResultMessage();
     OutputView.printResult(this);
     while (this.attempts > 0) {
-        this.moveAllCars();
-        OutputView.printResult(this);
+      this.moveAllCars();
+      OutputView.printResult(this);
     }
     OutputView.printWinners(this.findWinner());
   }
