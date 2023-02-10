@@ -3,7 +3,6 @@ const INPUT_CONDITION = {
   minimumCarNameLength: 1,
   maximumCarNameLength: 5,
   minimumRaceRound: 1,
-  minimumMovableNumber: 4,
 };
 
 const RESULT_MESSAGE = {

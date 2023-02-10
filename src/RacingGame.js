@@ -1,7 +1,7 @@
 const Car = require('./Car');
-const { minimumMovableNumber } = require('./constants/Constant');
 
 class RacingGame {
+  static MOVE_CONDITION = 4;
   #cars;
   #round;
 
@@ -17,7 +17,7 @@ class RacingGame {
     this.#cars.forEach((car) => {
       const randomNumber = randomNumberGenerator();
 
-      if (randomNumber >= minimumMovableNumber) {
+      if (randomNumber >= RacingGame.MOVE_CONDITION) {
         car.move();
       }
     });
