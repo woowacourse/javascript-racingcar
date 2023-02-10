@@ -18,10 +18,6 @@ class Car {
     if (randomNumber >= GAME.MOVE_CONDITION.satisfaction) this.#distance += 1;
   }
 
-  isFinish(winningDistance) {
-    return this.#distance >= winningDistance;
-  }
-
   getName() {
     return this.#name;
   }

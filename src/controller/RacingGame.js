@@ -46,7 +46,7 @@ class RacingGame {
     this.#histories.push(
       this.#cars.map((car) => ({ name: car.getName(), distance: car.getDistance() })),
     );
-    if (!this.#cars.some((car) => car.isFinish(this.#winningDistance))) {
+    if (!this.#cars.some((car) => car.getDistance() >= this.#winningDistance)) {
       this.moveCars();
       return;
     }
