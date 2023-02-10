@@ -12,7 +12,7 @@ describe('Util test', () => {
     newMap.set(car.name, car.moveCount);
   });
   test('max value in map test', () => {
-    expect(Util.maxValueInMap(newMap)).toEqual(4);
+    expect(Util.maxValueInMap(newMap)).toBe(4);
   });
 
   test('filter max value in objects test', () => {
