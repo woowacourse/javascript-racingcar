@@ -42,7 +42,8 @@ class CarGame {
     this.#carList.forEach((car) => {
       if (car.getState() === maxDistance) winners.push(car.getName());
       if (car.getState() > maxDistance) {
-        winners = [car.getName()];
+        winners = [];
+        winners.push(car.getName());
         maxDistance = car.getState();
       }
     });

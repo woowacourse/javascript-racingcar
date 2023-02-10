@@ -12,11 +12,19 @@ const OUTPUT_MESSAGE = Object.freeze({
 });
 
 const ERROR_MESSAGE = Object.freeze({
-  NAME_LENGTH: '[ERROR] 자동차 이름은 1~5글자여야 합니다.',
   NAME_OVERLAP: '[ERROR] 중복된 자동차 이름이 있습니다.',
   NAME_ONLY_ALPHABET: '[ERROR] 자동차 이름은 영문만 사용 가능합니다.',
   INVALID_TRY_COUNT: '[ERROR] 입력값은 1이상인 자연수여야 합니다.',
+  NAME_LENGTH: (min, max) => `[ERROR] 자동차 이름은 ${min}~${max}글자여야 합니다.`,
 });
+
+const REGEXP = Object.freeze({
+  ALPHA_REGEXP: /^[a-z|A-Z]+$/,
+  NUMBER_REGEXP: /^[0-9]+$/,
+});
+
+const WORD_MIN_LENGTH = 1;
+const WORD_MAX_LENGTH = 5;
 
 const MOVE_CHECK_NUMBER = 4;
 
@@ -25,4 +33,7 @@ module.exports = {
   OUTPUT_MESSAGE,
   ERROR_MESSAGE,
   MOVE_CHECK_NUMBER,
+  REGEXP,
+  WORD_MIN_LENGTH,
+  WORD_MAX_LENGTH,
 };

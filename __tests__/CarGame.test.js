@@ -12,12 +12,9 @@ describe('CarGame 테스트', () => {
 
     const getRandomNumber = jest.fn();
 
-    getRandomNumber.mockReturnValueOnce(1);
-    getRandomNumber.mockReturnValueOnce(6);
-    getRandomNumber.mockReturnValueOnce(7);
-    getRandomNumber.mockReturnValueOnce(8);
-    getRandomNumber.mockReturnValueOnce(3);
-    getRandomNumber.mockReturnValueOnce(5);
+    [1, 6, 7, 8, 3, 5].forEach((value) => {
+      getRandomNumber.mockReturnValueOnce(value);
+    });
 
     carGame.initCarList(['pobi', 'crong', 'jun']);
     carGame.moveCars(2, getRandomNumber);
