@@ -13,7 +13,7 @@ const Exception = {
   checkInputLength(input) {
     if (
       !this.isNameLengthSmallerThanLimit(input) ||
-      !this.isNameIncludesSpace(input)
+      this.isNameIncludesSpace(input)
     ) {
       throw new Error(ErrorMessage.NAME_INPUT);
     }
@@ -32,7 +32,7 @@ const Exception = {
   },
 
   isNameLengthSmallerThanLimit(input) {
-    return input.every((name) => name.length > StaticValue.CAR_NAME_LIMIT);
+    return input.every((name) => name.length <= StaticValue.CAR_NAME_LIMIT);
   },
 
   isNameIncludesSpace(input) {
