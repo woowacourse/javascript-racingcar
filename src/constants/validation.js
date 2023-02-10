@@ -1,4 +1,4 @@
-const VALID_CHARACTER_REGEX = /^[a-z|A-Z|가-힣|,]+$/g;
+const VALID_CHARACTER_REGEX = /^[a-zA-Z가-힣,]+$/g;
 const VALID_INTEGER_REGEX = /^[1-9]\d*$/;
 
 const MAX_CARNAME_LENGTH = 5;
