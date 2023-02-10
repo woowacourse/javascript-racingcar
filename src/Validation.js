@@ -1,11 +1,11 @@
-const Console = require('./utils/Console');
+const Console = require("./utils/Console");
 const {
   ERROR,
   NAME_MAX_LENGTH,
   NAME_MIN_LENGTH,
   MIN_PARTICIPATE,
   MIN_TRYCOUNT,
-} = require('./utils/constants');
+} = require("./utils/constants");
 
 const Validation = {
   validateCarName(carNames) {
@@ -18,7 +18,7 @@ const Validation = {
     carNames.forEach((carName) => {
       if (
         carName.length <= NAME_MIN_LENGTH ||
-        carName.length > NAME_MAX_LENGTH
+        carName.length >= NAME_MAX_LENGTH
       ) {
         Console.print(ERROR.CAR_NAME_LENGTH);
         throw new Error();
