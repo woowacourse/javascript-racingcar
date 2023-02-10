@@ -29,18 +29,19 @@ class Controller {
 
   async #initCount() {
     View.tryCount();
-    const count = await this.#readTryCount();
+    const moveCount = await this.#readTryCount();
+    const viewCount = moveCount + 1;
     View.newLine();
 
-    return count;
+    return { moveCount, viewCount };
   }
 
-  #raceStart(count) {
+  #raceStart({ moveCount, viewCount }) {
     View.resultTitle();
-    View.carProgress(this.#getCarsData());
-    for (let i = 0; i < count; i += 1) {
-      this.#cars.forEach(this.#judgeMove);
+    for (let count = 0; count < viewCount; count++) {
       View.carProgress(this.#getCarsData());
+      if (count === moveCount) break;
+      this.#cars.forEach(this.#judgeMove);
     }
   }
 
