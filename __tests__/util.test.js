@@ -1,4 +1,4 @@
-const { deepFreeze, randomGenerator } = require('../src/utils/common');
+const { deepFreeze, generateRandomNumberInRange } = require('../src/utils/common');
 
 describe('유틸 함수 테스트', () => {
   test('deepFreeze(object): 객체 object를 변경할 수 없게 동결한다.', () => {
@@ -17,14 +17,14 @@ describe('유틸 함수 테스트', () => {
     expect(() => freezeObject()).toThrowError(TypeError);
   });
 
-  describe('randomGenerator', () => {
+  describe('generateRandomNumberInRange', () => {
     test.each([
       [3, 10],
       [-1, 10],
       [0, 1],
       [-30, -2],
     ])('getBetween($min, $max): $min 이상 $max 미만인 랜덤 숫자를 반환한다.', (min, max) => {
-      const randomNumber = randomGenerator.getBetween(min, max);
+      const randomNumber = generateRandomNumberInRange(min, max);
 
       expect(randomNumber).toBeGreaterThanOrEqual(min);
       expect(randomNumber).toBeLessThan(max);
