@@ -2,11 +2,9 @@ const Console = require('./Console');
 const { Messages } = require('../Config');
 
 const OutputView = {
-  printResult(racingGame) {
-    racingGame.carList.forEach((car) => {
-      Console.print(
-        `${car.name} : ${new Array(car.position).fill(Messages.MOVING_TRACE).join('')}`,
-      );
+  printResult(gameStatus) {
+    Object.entries(gameStatus).forEach(([carName, position]) => {
+      Console.print(`${carName} : ${new Array(position).fill(Messages.MOVING_TRACE).join('')}`);
     });
     Console.print('');
   },
