@@ -21,9 +21,7 @@ describe('자동차를 관리하는 클래스 테스트', () => {
 
     racingGame.progressAllCars();
 
-    expect(racingGame.getCars().map((singleCar) => singleCar.getProgressCount())).toEqual(
-      [1, 0, 0],
-    );
+    expect(racingGame.getCars().map((car) => car.getProgressCount())).toEqual([1, 0, 0]);
   });
 
   describe('경주 우승자를 도출하는 기능 테스트', () => {
