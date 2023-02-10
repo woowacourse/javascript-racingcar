@@ -1,4 +1,3 @@
-const CONSTANTS = require('../Constant/Constants');
 const RACE_MESSAGE = require('../Constant/RaceMessage');
 const Console = require('../Utils/Console');
 const DataParseUtils = require('../Utils/DataParseUtils');
@@ -11,10 +10,10 @@ const OutputView = {
   printRaceResult(result) {
     result.forEach((value, key) => {
       Console.print(
-        `${key} ${CONSTANTS.colon} ${CONSTANTS.dash.repeat(value)}`,
+        `${key} : ${'-'.repeat(value)}`,
       );
     });
-    Console.print(CONSTANTS.empty);
+    Console.print('');
   },
 
   printWinners(result) {

@@ -3,9 +3,6 @@ const CONSTANTS = {
   minNumberOfMoving: 4,
   minNumberOfNames: 2,
   maxNameLength: 5,
-  empty: '',
-  colon: ':',
-  dash: '-',
   undefinedType: 'undefined',
 };
 

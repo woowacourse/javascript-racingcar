@@ -24,7 +24,7 @@ class Validator {
       throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
 
-    if ([CONSTANTS.empty, CONSTANTS.undefinedType].includes(name)) {
+    if (['', CONSTANTS.undefinedType].includes(name)) {
       throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
   }
