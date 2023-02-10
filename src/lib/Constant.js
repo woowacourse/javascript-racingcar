@@ -29,6 +29,12 @@ const MOVE_SETTING = {
   advanceBoundary: 4,
 };
 
+const REGEXR = {
+  noBlank: /\s/g,
+  lowerCase: /[^a-z]/g,
+  numeric: /[^0-9]/g,
+};
+
 const RANDOM_NUMBER_RANGE = 10;
 
 module.exports = {
@@ -37,4 +43,5 @@ module.exports = {
   WINNER_DIVIDER,
   MOVE_SETTING,
   RANDOM_NUMBER_RANGE,
+  REGEXR,
 };

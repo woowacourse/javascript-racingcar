@@ -1,4 +1,4 @@
-const { MESSAGE } = require("../lib/Constant");
+const { MESSAGE, REGEXR } = require("../lib/Constant");
 
 const Validator = {
   carName(string) {
@@ -22,19 +22,19 @@ const Validator = {
   },
 
   isCarNameHasBlank(string) {
-    return string.search(/\s/g) !== -1;
+    return string.search(REGEXR.noBlank) !== -1;
   },
 
   isCarNameLessThenFive(names) {
     return names.every((name) => name.length <= 5);
   },
 
-  isCarNameLowerCase(names) {
-    return names.every((name) => name.search(/[^a-z]/g) === -1);
-  },
-
   isCarNameNull(names) {
     return names.every((name) => name !== "");
+  },
+
+  isCarNameLowerCase(names) {
+    return names.every((name) => name.search(REGEXR.lowerCase) === -1);
   },
 
   isDuplicated(names) {
@@ -44,7 +44,7 @@ const Validator = {
   isNumeric(number) {
     if (number === "0") return false;
 
-    return number.search(/[^0-9]/g) === -1;
+    return number.search(REGEXR.numeric) === -1;
   },
 };
 

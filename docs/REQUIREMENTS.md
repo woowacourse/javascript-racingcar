@@ -77,7 +77,7 @@
 - [ ] refactor: GenerateRandomNumber.generator 테스트코드 수정
 - [ ] refactor: winner를 구하는 함수에 대한 클래스 생성 및 수정
 - [x] refactor: every를 사용하는 유효성 검사 수정
-- [ ] refactor: 정규 표현식 상수화
+- [x] refactor: 정규 표현식 상수화
 
 ## 파일 구조
 
