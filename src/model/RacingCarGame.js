@@ -33,8 +33,7 @@ class RacingCarGame {
   }
 
   goForward() {
-    const GO_FORWARD = 4;
-    return Math.floor(Math.random() * 10) >= GO_FORWARD;
+    return Math.floor(Math.random() * 10) >= 4;
   }
 
   getWinnerCar(carNamesMap) {
