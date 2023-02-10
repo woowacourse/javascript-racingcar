@@ -1,15 +1,8 @@
 const { Settings, Messages } = require('./Config');
-const Console = require('./UI/Console');
 
 const Validator = {
   invalidCarNames(input) {
-    try {
-      Validator.carNameLength(input);
-      return false;
-    } catch (error) {
-      Console.print(error.message);
-      return true;
-    }
+    Validator.carNameLength(input);
   },
 
   carNameLength(input) {
@@ -24,15 +17,9 @@ const Validator = {
   },
 
   invalidAttempts(attempts) {
-    try {
-      Validator.notNumber(attempts);
-      Validator.bigNumber(Number(attempts));
-      Validator.notInteger(Number(attempts));
-      return false;
-    } catch (error) {
-      Console.print(error.message);
-      return true;
-    }
+    Validator.notNumber(attempts);
+    Validator.bigNumber(Number(attempts));
+    Validator.notInteger(Number(attempts));
   },
 
   notNumber(attempts) {
