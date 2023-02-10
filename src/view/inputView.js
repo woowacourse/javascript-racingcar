@@ -40,7 +40,7 @@ class InputView {
     return new Promise((resolve, reject) => {
       rl.question('시도할 회수는 몇회인가요?\n', input => {
         const trialCount = Number(input);
-        if (isNaN(trialCount)) {
+        if (Number.isNaN(trialCount)) {
           reject(new Error('숫자만 입력 가능합니다.'));
         }
         resolve(trialCount);
