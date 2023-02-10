@@ -11,14 +11,12 @@ const Exception = {
   },
 
   checkInputLength(input) {
-    input.forEach((name) => {
-      if (
-        name.length > StaticValue.CAR_NAME_LIMIT ||
-        this.checkWhiteSpace(name)
-      ) {
-        throw new Error(ErrorMessage.NAME_INPUT);
-      }
-    });
+    if (
+      !this.isNameLengthSmallerThanLimit(input) ||
+      !this.isNameIncludesSpace(input)
+    ) {
+      throw new Error(ErrorMessage.NAME_INPUT);
+    }
   },
 
   checkDuplicateInput(input) {
@@ -31,6 +29,14 @@ const Exception = {
     if (isNaN(input) || Number(input) <= 0 || this.checkWhiteSpace(input)) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
+  },
+
+  isNameLengthSmallerThanLimit(input) {
+    return input.every((name) => name.length > StaticValue.CAR_NAME_LIMIT);
+  },
+
+  isNameIncludesSpace(input) {
+    return input.every((name) => this.checkWhiteSpace(name));
   },
 };
 
