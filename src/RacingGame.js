@@ -1,6 +1,6 @@
 const Car = require('./Car');
 const { Settings } = require('./Config');
-const generateRandomInteger = require('./util/generateRandomInteger');
+const Random = require('./util/Random');
 
 class RacingGame {
   #carList = [];
@@ -19,9 +19,13 @@ class RacingGame {
   moveAllCars() {
     if (this.#attempts === 0) return;
     this.#attempts -= 1;
-    this.#carList.forEach((car) => (
-      car.move(generateRandomInteger(Settings.MIN_RANDOM_VALUE, Settings.MAX_RANDOM_VALUE))
-    ));
+    this.#carList.forEach((car) => {
+      const power = Random.generateRandomInteger(
+        Settings.MIN_RANDOM_VALUE,
+        Settings.MAX_RANDOM_VALUE,
+      );
+      car.move(power);
+    });
   }
 
   findWinner() {
