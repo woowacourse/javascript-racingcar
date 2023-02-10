@@ -1,4 +1,4 @@
-import { NAME_DELIMITER, MOVE_NUMBER } from './constants/index.js';
+import { NAME_DELIMITER, MOVE_NUMBER } from './Template/index.js';
 import Car from './models/Car.js';
 import Console from './utils/Console.js';
 import randomNumberInRange from './utils/RandomNumberInRange.js';

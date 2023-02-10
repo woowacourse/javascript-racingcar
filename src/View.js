@@ -1,5 +1,5 @@
 import Console from './utils/Console.js';
-import { VIEW_MESSAGE } from './constants/index.js';
+import { VIEW_MESSAGE } from './Template/index.js';
 
 const View = {
   naming() {
