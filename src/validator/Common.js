@@ -13,20 +13,14 @@ const Common = {
 
   validateStringSize(value, min, max) {
     if (value.length < min || value.length > max)
-      throw new CustomError(
-        { code: ERROR_CODE.INVALID_STRING_SIZE, payload: { min, max } },
-        value
-      );
+      throw new CustomError({ code: ERROR_CODE.INVALID_STRING_SIZE, payload: { min, max } }, value);
 
     return true;
   },
 
   validateNumberRange(value, min, max) {
     if (value < min || value > max) {
-      throw new CustomError(
-        { code: ERROR_CODE.INVALID_STRING_SIZE, payload: { min, max } },
-        value
-      );
+      throw new CustomError({ code: ERROR_CODE.INVALID_STRING_SIZE, payload: { min, max } }, value);
     }
 
     return true;

@@ -7,7 +7,7 @@ const Outputs = {
   },
 
   printRacingSnapShot(snapShots) {
-    snapShots.forEach(snapShot => Console.print(`${snapShot}\n`));
+    snapShots.forEach((snapShot) => Console.print(`${snapShot}\n`));
   },
 
   printWinners(winners) {

@@ -1,10 +1,7 @@
 const Common = require('./Common');
 const Console = require('../utils/Console');
 const { NAME, TRY_COUNT } = require('../constants/values');
-const {
-  ALPHA_WITH_COMMA,
-  ONLY_NUMBER,
-} = require('../constants/regularExpression');
+const { ALPHA_WITH_COMMA, ONLY_NUMBER } = require('../constants/regularExpression');
 
 const Inputs = {
   async readCarName(names, { onError: errorCallback }) {
@@ -33,9 +30,7 @@ const Inputs = {
 
     Common.testRegExp(names, ALPHA_WITH_COMMA);
     Common.isUnique(carNames);
-    carNames.forEach((name) =>
-      Common.validateStringSize(name, NAME.MIN, NAME.MAX)
-    );
+    carNames.forEach((name) => Common.validateStringSize(name, NAME.MIN, NAME.MAX));
 
     return carNames;
   },

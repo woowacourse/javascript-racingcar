@@ -2,10 +2,7 @@ const Random = require('../utils/Random');
 const Validator = require('../validator');
 const Car = require('./Car');
 const { getRacingSnapShot } = require('../utils/output');
-const {
-  FORWARD_CONDITIONS_NUMBER,
-  INITIAL_POSITION,
-} = require('../constants/values');
+const { FORWARD_CONDITIONS_NUMBER, INITIAL_POSITION } = require('../constants/values');
 
 class RacingGame {
   #cars = [];
@@ -25,9 +22,7 @@ class RacingGame {
   }
 
   #takeSnapShots() {
-    this.#snapShots.push(
-      this.#cars.map((car) => getRacingSnapShot(car)).join('\n')
-    );
+    this.#snapShots.push(this.#cars.map((car) => getRacingSnapShot(car)).join('\n'));
   }
 
   #race() {
