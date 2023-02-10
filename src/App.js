@@ -1,7 +1,7 @@
 const RacingGame = require('./RacingGame');
 const Validation = require('./Validation');
 const { InputView, OutputView } = require('./view');
-const { inputErrorHandler, Console, randomNumberGenerator } = require('./utils');
+const { Console, randomNumberGenerator } = require('./utils');
 
 class App {
   #racingGame;
@@ -14,28 +14,28 @@ class App {
   #requestCarNames() {
     InputView.readCarNames((carNamesInput) => {
       const carNames = carNamesInput.split(',').map((carName) => carName.trim());
-      const isValidInput = inputErrorHandler(Validation.validateCarNames, carNames);
-
-      if (!isValidInput) {
+      try {
+        Validation.validateCarNames(carNames);
+        this.#racingGame.setCars(carNames);
+        this.#requestRaceRound();
+      } catch (e) {
+        OutputView.print(e.message);
         this.#requestCarNames();
-        return;
       }
-      this.#racingGame.setCars(carNames);
-      this.#requestRaceRound();
     });
   }
 
   #requestRaceRound() {
     InputView.readRaceRound((raceRoundInput) => {
       const raceRound = Number(raceRoundInput);
-      const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
-
-      if (!isValidInput) {
+      try {
+        Validation.validateRaceRound(raceRound);
+        this.#racingGame.setRound(raceRound);
+        this.#raceCars();
+      } catch (e) {
+        OutputView.print(e.message);
         this.#requestRaceRound();
-        return;
       }
-      this.#racingGame.setRound(raceRound);
-      this.#raceCars();
     });
   }
 

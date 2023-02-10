@@ -2,6 +2,10 @@ const { Converter } = require('../utils');
 const { RESULT_MESSAGE } = require('../constants/Constant');
 
 const OutputView = {
+  print(message) {
+    console.log(message);
+  },
+
   printResultMessage() {
     console.log(RESULT_MESSAGE.opening);
   },
