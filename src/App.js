@@ -2,6 +2,7 @@ const RacingGame = require('./RacingGame');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
+
 const Validator = require('./utils/Validator');
 
 const CarNamesInputValidator = require('./validators/CarNamesInputValidator');
