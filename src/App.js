@@ -7,13 +7,15 @@ const CarNamesInputValidator = require('./CarNamesInputValidator');
 const TryCountInputValidator = require('./TryCountInputValidator');
 
 class App {
-  #racingGame;
+  #carNames;
   #tryCount;
+  #racingGame;
 
   async play() {
     await this.inputCarNames();
     await this.inputTryCount();
 
+    this.#racingGame = new RacingGame(this.#carNames);
     this.race(this.#tryCount);
     this.showRaceWinners(this.#racingGame.getWinners());
   }
