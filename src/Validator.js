@@ -4,18 +4,22 @@ const REGEX = {
 };
 
 const ERROR_MESSAGE = {
-  INVALID_NAME: '5자 이하 영어,한글,숫자의 조합을 입력하세요',
-  DUPLICATE_NAME: '중복된 이름의 자동차가 있습니다',
-  INVALID_NUMBER: '1이상의 양의 정수를 입력하세요',
+  INVALID_NAME: "5자 이하 영어,한글,숫자의 조합을 입력하세요",
+  DUPLICATE_NAME: "중복된 이름의 자동차가 있습니다",
+  INVALID_NUMBER: "1이상의 양의 정수를 입력하세요",
 };
 
 const Validator = {
   validateName: (names) => {
-    names.forEach((name) => {
-      if (!REGEX.CAR_NAME.test(name)) {
-        throw new Error(ERROR_MESSAGE.INVALID_NAME);
-      }
-    });
+    // names.forEach((name) => {
+    //   if (!REGEX.CAR_NAME.test(name)) {
+    //     throw new Error(ERROR_MESSAGE.INVALID_NAME);
+    //   }
+    // });
+    const isCarNameError = names.every((name) => REGEX.CAR_NAME.test(name));
+    if (!isCarNameError) {
+      throw new Error(ERROR_MESSAGE.INVALID_NAME);
+    }
     if (names.length !== [...new Set(names)].length) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
     }
