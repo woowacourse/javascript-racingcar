@@ -1,18 +1,25 @@
 const Car = require('../src/Car');
 
 describe('자동차 클래스 테스트', () => {
-  test('자동차 인스턴스를 생성한다.', () => {
-    const carName = 'test';
-    const car = new Car(carName);
+  test.each([4, 5, 6, 7, 8, 9])(
+    `무작위 값이 ${Car.PROGRESS_CONDITION_NUMBER} 이상인 경우 자동차는 전진한다.`,
+    (conditionNumber) => {
+      const car = new Car('유스');
 
-    expect(car instanceof Car).toEqual(true);
-  });
+      car.tryProgress(conditionNumber);
 
-  test('무작위 값이 4 이상인 경우 자동차를 전진', () => {
-    const car = new Car('abc');
+      expect(car.getProgressCount()).toBe(1);
+    },
+  );
 
-    car.tryProgress(4);
+  test.each([0, 1, 2, 3])(
+    `무작위 값이 ${Car.PROGRESS_CONDITION_NUMBER} 미만인 경우 자동차는 전진하지 않는다.`,
+    (conditionNumber) => {
+      const car = new Car('유스');
 
-    expect(car.getProgressCount()).toEqual(1);
-  });
+      car.tryProgress(conditionNumber);
+
+      expect(car.getProgressCount()).toBe(0);
+    },
+  );
 });
