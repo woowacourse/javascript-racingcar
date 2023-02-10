@@ -1,19 +1,18 @@
 const { DOMAIN, MESSAGE } = require("./Constant");
 
 const Validations = {
-
     carNameLengthMax(carNames) {
-        carNames.forEach(name => {
+        carNames.forEach((name) => {
             if (name.length > DOMAIN.CAR_NAME_MAX) {
-                throw new Error(MESSAGE.ERROR_CAR_LENGTH)
+                throw new Error(MESSAGE.ERROR_CAR_LENGTH);
             }
         });
     },
 
     carNameLengthMin(carNames) {
-        carNames.forEach(name => {
+        carNames.forEach((name) => {
             if (name.length <= DOMAIN.CAR_NAME_MIN) {
-                throw new Error(MESSAGE.ERROR_CAR_NONAME)
+                throw new Error(MESSAGE.ERROR_CAR_NONAME);
             }
         });
     },
@@ -23,11 +22,6 @@ const Validations = {
             throw new Error(MESSAGE.ERROR_ROUND);
         }
     },
-
-}
-
-
-
-
+};
 
 module.exports = Validations;
