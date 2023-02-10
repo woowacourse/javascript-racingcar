@@ -1,24 +1,23 @@
 const readline = require('readline');
 
-const rl = readline.createInterface({
+const makeNewReadlineInterface = () => readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-class Console {
-  constructor() {}
-
-  static readLine(query, callback) {
-    rl.question(query, callback);
-  }
-
-  static close() {
+const Console = {
+  async readLine(query) {
+    const rl = makeNewReadlineInterface();
+    const answer = await new Promise((resolve) => {
+      rl.question(query, resolve);
+    });
     rl.close();
-  }
+    return answer;
+  },
 
-  static print(message) {
+  print(message) {
     console.log(message);
-  }
-}
+  },
+};
 
 module.exports = Console;
