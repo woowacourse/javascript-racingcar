@@ -22,9 +22,7 @@ class Controller {
   async #initCars() {
     View.naming();
     const names = await this.#readNames();
-    names.forEach((name) => {
-      this.#cars.push(new Car(name));
-    });
+    this.#cars = names.map((name) => new Car(name));
   }
 
   async #initCount() {
