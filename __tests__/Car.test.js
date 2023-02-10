@@ -10,7 +10,7 @@ const mockRandoms = (numbers) => {
 };
 
 describe('Car 클래스', () => {
-  it(`자동차는 ${GAME.MOVE_CONDITION.min}와 ${GAME.MOVE_CONDITION.max - 1} 사이에서 무작위 값이 ${
+  test(`자동차는 ${GAME.MOVE_CONDITION.min}와 ${GAME.MOVE_CONDITION.max - 1} 사이에서 무작위 값이 ${
     GAME.MOVE_CONDITION.satisfaction
   } 이상일 경우 전진한다.`, () => {
     const car = new Car('name');
@@ -24,7 +24,7 @@ describe('Car 클래스', () => {
     expect(car.getDistance()).toBe(2);
   });
 
-  it(`자동차는 ${GAME.MOVE_CONDITION.min}와 ${GAME.MOVE_CONDITION.max - 1} 사이에서 무작위 값이 ${
+  test(`자동차는 ${GAME.MOVE_CONDITION.min}와 ${GAME.MOVE_CONDITION.max - 1} 사이에서 무작위 값이 ${
     GAME.MOVE_CONDITION.satisfaction
   } 미만일 경우 멈춘다.`, () => {
     const car = new Car('name');
@@ -38,7 +38,7 @@ describe('Car 클래스', () => {
     expect(car.getDistance()).toBe(0);
   });
 
-  it.each([
+  test.each([
     [3, true],
     [4, false],
     [5, false],
