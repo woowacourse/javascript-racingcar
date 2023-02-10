@@ -14,6 +14,7 @@ class Controller {
     const trialCount = await this.inputView.readCount();
     const result = this.racingCarGame.getResult(carNames, trialCount);
     this.outputView.printResult(result);
+    process.exit();
   }
 }
 
