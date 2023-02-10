@@ -10,7 +10,7 @@ describe("Exception 객체 테스트", () => {
   });
 
   test("이름이 5글자 이상인 경우 에러를 발생시키는지 확인", () => {
-    const NAME_INPUTS = ["안녕하세요", "배달의민족", "우형, 배민"];
+    const NAME_INPUTS = ["안녕하세요", "배달의민족", "우형배달의민족"];
 
     expect(() => {
       Exception.checkCarInput(NAME_INPUTS);
@@ -18,7 +18,7 @@ describe("Exception 객체 테스트", () => {
   });
 
   test("중복된 이름 입력시 에러를 발생시키는지 확인", () => {
-    const NAME_INPUTS = ["안녕하세요", "배달의민족", "우형, 배달의민족"];
+    const NAME_INPUTS = ["안녕하세요", "배달의민족", "배달의민족"];
 
     expect(() => {
       Exception.checkCarInput(NAME_INPUTS);
