@@ -9,7 +9,7 @@ class RacingCarGame {
 
     carResult += '\n';
 
-    //게임 진행
+    //TODO: 함수 분리
     while (carCount < totalTrialCount) {
       carNamesMap.forEach((_, carName) => {
         if (this.goForward()) {
@@ -17,7 +17,6 @@ class RacingCarGame {
         }
       });
 
-      //마지막
       for (const carName of carNamesMap.keys()) {
         const forwardCount = carNamesMap.get(carName);
         carResult += `${carName} : ${'-'.repeat(forwardCount)}\n`;
