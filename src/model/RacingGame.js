@@ -1,6 +1,6 @@
 const RacingCar = require('./RacingCar.js');
 const Util = require('../utils/Util.js');
-const { UTIL_NUMBER } = require('../data/constants.js');
+const { NUMBERS } = require('../data/constants.js');
 const OutputView = require('../view/OutputView.js');
 
 class RacingGame {
@@ -23,7 +23,7 @@ class RacingGame {
   }
 
   judgeMove(randomNumber, car) {
-    if (randomNumber >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
+    if (randomNumber >= NUMBERS.CAR_MOVE_MINIMUM_NUMBER) {
       car.moveForward();
     }
   }
@@ -31,7 +31,7 @@ class RacingGame {
   assignRandom() {
     this.#cars.forEach((car) => {
       const randomNumber = Util.generateRandomNumber(
-        UTIL_NUMBER.CAR_RANDOM_MAXIMUM_NUMBER
+        NUMBERS.CAR_RANDOM_MAXIMUM_NUMBER
       );
       this.judgeMove(randomNumber, car);
     });
