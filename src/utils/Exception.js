@@ -9,7 +9,7 @@ const Exception = {
 
   checkInputLength(input) {
     input.forEach((name) => {
-      if (name.length > StaticValue.CAR_NAME_LIMIT || Utils.haskWhiteSpace(name)) {
+      if (name.length > StaticValue.CAR_NAME_LIMIT || Utils.hasWhiteSpace(name)) {
         throw new Error(ErrorMessage.NAME_INPUT);
       }
     });
