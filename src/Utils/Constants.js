@@ -11,12 +11,13 @@ const GAME_MESSAGE = Object.freeze({
 });
 
 const MAXIMUM_CAR_NAME_LENGTH = 5;
+const MINIMUM_CAR_NAME_LENGTH = 1;
 const MINIMUM_TRY_COUNT = 1;
 const MINIMUM_NUMBER_OF_CARS = 2;
 const MOVEMENT_STANDARD_NUMBER = 4;
 
 const ERROR_MESSAGE = Object.freeze({
-  NAME_LENGTH_LIMIT: "5글자 이하로 입력해 주세요.",
+  NAME_LENGTH_LIMIT: "1글자 이상 5글자 이하로 입력해 주세요.",
   MINIMUM_CAR_COUNT: "자동차는 최소 2대 이상 등록해주셔야 합니다.",
   NOT_POSITIVE_NUMBER: "양수를 입력해 주세요.",
   INVALID_NAME: "유효한 이름을 입력해 주세요.",
@@ -33,4 +34,5 @@ module.exports = {
   MINIMUM_NUMBER_OF_CARS,
   COMMA,
   MOVEMENT_STANDARD_NUMBER,
+  MINIMUM_CAR_NAME_LENGTH,
 };

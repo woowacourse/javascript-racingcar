@@ -3,6 +3,7 @@ const {
   MAXIMUM_CAR_NAME_LENGTH,
   MINIMUM_TRY_COUNT,
   MINIMUM_NUMBER_OF_CARS,
+  MINIMUM_CAR_NAME_LENGTH,
 } = require("../Utils/Constants");
 const {
   NAME_LENGTH_LIMIT,
@@ -15,7 +16,10 @@ const {
 
 class Validator {
   carName(name) {
-    if (name.length > MAXIMUM_CAR_NAME_LENGTH) {
+    if (
+      name.length > MAXIMUM_CAR_NAME_LENGTH ||
+      name.length < MINIMUM_CAR_NAME_LENGTH
+    ) {
       throw new Error(NAME_LENGTH_LIMIT);
     }
     if (/[^a-zA-Z0-9가-힣]/.test(name)) {
