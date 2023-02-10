@@ -14,7 +14,7 @@ class Car {
       GAME.MOVE_CONDITION.min,
       GAME.MOVE_CONDITION.max,
     );
-    if (randomNumber < GAME.MOVE_CONDITION.mid) {
+    if (randomNumber < GAME.MOVE_CONDITION.satisfaction) {
       return;
     }
     this.#distance += 1;
