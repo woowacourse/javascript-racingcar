@@ -7,6 +7,7 @@ describe("자동차 이름 입력값에 대한 유효성 검사", () => {
     ["aaa,bbbbbb,ccc", MESSAGE.error.nameLength],
     ["aaa,bbb,Ccc", MESSAGE.error.lowerCase],
     ["aaa,aaa,ccc", MESSAGE.error.duplicatedName],
+    ["aaa,,ccc", MESSAGE.error.null],
   ])("자동차 이름에 대한 유효성 검사 테스트", (carNames, errorMessage) => {
     expect(() => {
       Validator.carName(carNames);
