@@ -1,12 +1,12 @@
-const { MESSAGE } = require("../lib/Constant");
+const { MESSAGE } = require('../lib/Constant');
 
 const Validator = {
   carName(string) {
-    const names = string.split(",");
+    const names = string.split(',');
 
     if (this.isCarNameHasBlank(string)) throw new Error(MESSAGE.error.blank);
 
-    if (!this.isCarNameLessThenFive(names))
+    if (this.isCarNameGreaterThanFive(names))
       throw new Error(MESSAGE.error.nameLength);
 
     if (!this.isCarNameLowerCase(names))
@@ -23,10 +23,8 @@ const Validator = {
     return string.search(/\s/g) !== -1;
   },
 
-  isCarNameLessThenFive(names) {
-    return names.every((name) => {
-      return name.length <= 5;
-    });
+  isCarNameGreaterThanFive(names) {
+    return names.some((name) => name.length > 5);
   },
 
   isCarNameLowerCase(names) {
@@ -40,7 +38,7 @@ const Validator = {
   },
 
   isNumeric(number) {
-    if (number === "0") return false;
+    if (number === '0') return false;
 
     return number.search(/[^0-9]/g) === -1;
   },
