@@ -26,7 +26,7 @@ const getLogSpy = () => {
 };
 
 describe('RacingController test', () => {
-  test('', () => {
+  test('Total process test', () => {
     mockRandoms([5, 3, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3]);
     mockQuestions(['pobi,crong,honux', 5]);
     const logs = [
