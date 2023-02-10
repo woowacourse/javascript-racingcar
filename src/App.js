@@ -1,9 +1,9 @@
-const InputView = require("./view/InputView.js");
-const OutputView = require("./view/OutputView.js");
-const Validator = require("./model/Validator.js");
+const InputView = require('./view/InputView.js');
+const OutputView = require('./view/OutputView.js');
+const Validator = require('./model/Validator.js');
 
-const Car = require("./model/Car.js");
-const Console = require("./lib/Console.js");
+const Car = require('./model/Car.js');
+const Console = require('./lib/Console.js');
 
 class App {
   #cars = [];
@@ -13,39 +13,31 @@ class App {
     this.readCarName();
   }
 
-  readCarName() {
-    InputView.readCarName((carName) => this.readCarNameCallback(carName));
-  }
-
-  readCarNameCallback(carNames) {
+  async readCarName() {
+    const carNames = await InputView.readCarName();
     try {
       Validator.carName(carNames);
       this.createCarObject(carNames);
       this.readTryCount();
     } catch (error) {
       OutputView.printErrorMessage(error);
-      this.readCarName();
     }
   }
 
   createCarObject(carNames) {
-    carNames.split(",").forEach((carName) => {
+    carNames.split(',').forEach((carName) => {
       this.#cars.push(new Car(carName));
     });
   }
 
-  readTryCount() {
-    InputView.readTryCount((tryCount) => this.readTryCountCallback(tryCount));
-  }
-
-  readTryCountCallback(tryCount) {
+  async readTryCount() {
+    const tryCount = await InputView.readTryCount();
     try {
       Validator.tryCount(tryCount);
       this.#tryCount = Number(tryCount);
       this.moveCar();
     } catch (error) {
       OutputView.printErrorMessage(error);
-      this.readTryCount();
     }
   }
 
@@ -68,6 +60,7 @@ class App {
     const winner = Car.getWinner(carsStatus);
 
     OutputView.printWinner(winner);
+
     this.quit();
   }
 

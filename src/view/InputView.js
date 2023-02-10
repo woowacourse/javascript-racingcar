@@ -1,13 +1,21 @@
-const Console = require("../lib/Console.js");
-const { MESSAGE } = require("../lib/Constant.js");
+const Console = require('../lib/Console.js');
+const { MESSAGE } = require('../lib/Constant.js');
 
 const InputView = {
-  readCarName(callback) {
-    Console.readLine(MESSAGE.input.carName, callback);
+  readCarName() {
+    return new Promise((resolve) => {
+      Console.readLine(MESSAGE.input.carName, (carNames) => {
+        resolve(carNames);
+      });
+    });
   },
 
-  readTryCount(callback) {
-    Console.readLine(MESSAGE.input.tryCount, callback);
+  async readTryCount(callback) {
+    return new Promise((resolve) => {
+      Console.readLine(MESSAGE.input.tryCount, (tryCount) => {
+        resolve(tryCount);
+      });
+    });
   },
 };
 
