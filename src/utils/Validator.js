@@ -29,11 +29,9 @@ const Validator = {
     this.checkInputDuplicate(input);
   },
   checkIntegerNumber(number) {
-    number.split('').forEach((char) => {
-      if (!VALIDATOR.integerString.includes(char)) {
-        throw new Error(ERROR_MESSAGE.notInteger);
-      }
-    });
+    if (!Number.isInteger(Number(number))) {
+      throw new Error(ERROR_MESSAGE.notInteger);
+    }
   },
 };
 
