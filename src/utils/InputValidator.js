@@ -1,13 +1,13 @@
 const { ERROR_MESSAGE, UTIL_NUMBER } = require('../data/constants.js');
 
-class Validator {
+class InputValidator {
   static validateCarName(carName) {
     if (carName.length > UTIL_NUMBER.CAR_NAME_LENGTH_LIMIT)
       throw ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR;
   }
 
   static validateCarNames(carArr) {
-    carArr.forEach(Validator.validateCarName);
+    carArr.forEach(InputValidator.validateCarName);
   }
 
   static validateTryCount(tryCount) {
@@ -15,4 +15,4 @@ class Validator {
   }
 }
 
-module.exports = Validator;
+module.exports = InputValidator;
