@@ -19,20 +19,32 @@ const ERROR_MESSAGE = Object.freeze({
     `[ERROR] ${min}이상 ${max}이하의 문자열만 입력해 주세요.`,
 });
 
-const createParams = ({ code, payload = null }, value) => {
-  if (!ERROR_MESSAGE[code]) {
-    return [
-      ERROR_MESSAGE[ERROR_CODE.WRONG_ERROR_CODE](),
-      { cause: { code: ERROR_CODE.WRONG_ERROR_CODE, value: code } },
-    ];
-  }
+const isValidErrorCode = (code) => code in ERROR_CODE;
 
-  return [ERROR_MESSAGE[code](payload), { cause: { code, value } }];
+const errorMessageGenerator = (code, payload) =>
+  !isValidErrorCode(code)
+    ? ERROR_MESSAGE.WRONG_ERROR_CODE()
+    : ERROR_MESSAGE[code](payload);
+
+const errorOptionsGenerator = (code, value) =>
+  !isValidErrorCode(code)
+    ? { cause: { code: ERROR_CODE.WRONG_ERROR_CODE, value: code } }
+    : { cause: { code, value } };
+
+const createErrorParams = ({ code, payload = null }, value) => {
+  const message = errorMessageGenerator(code, payload);
+  const options = errorOptionsGenerator(code, value);
+
+  return [message, options];
 };
 
 class CustomError extends Error {
   constructor(about, value = null) {
-    super(...createParams(about, value));
+    super(...createErrorParams(about, value));
+
+    this.name = isValidErrorCode(about.code)
+      ? about.code
+      : ERROR_CODE.WRONG_ERROR_CODE;
   }
 }
 
