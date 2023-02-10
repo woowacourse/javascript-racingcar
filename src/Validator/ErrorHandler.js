@@ -1,8 +1,10 @@
+const utils = require("../Utils/Utils");
+
 const hasError = (validator, callback) => {
   try {
     validator();
   } catch (error) {
-    Utils.print(error);
+    utils.print(error);
     callback();
     return true;
   }
