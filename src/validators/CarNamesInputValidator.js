@@ -1,5 +1,5 @@
 const CarNamesInputValidator = {
-  VALID_CHARACTER_REGEX: /^[a-zA-Z가-힣,]+$/g,
+  VALID_CHARACTER_REGEX: /^[a-zA-Z가-힣,]+$/,
   MAX_CARNAME_LENGTH: 5,
 
   validate(carNamesInput) {
