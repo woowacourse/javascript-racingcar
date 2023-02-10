@@ -3,8 +3,8 @@ const RacingGame = require('./RacingGame');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
-const CarNamesInputValidator = require('./CarNamesInputValidator');
-const TryCountInputValidator = require('./TryCountInputValidator');
+const CarNamesInputValidator = require('./validators/CarNamesInputValidator');
+const TryCountInputValidator = require('./validators/TryCountInputValidator');
 
 class App {
   #carNames;
