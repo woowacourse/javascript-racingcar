@@ -37,7 +37,10 @@ class Controller {
 
   handleCarsMovement() {
     this.#cars.forEach((car) => {
-      const RANDOM_NUMBER = RandomNumberGenerator.generate();
+      const RANDOM_NUMBER = RandomNumberGenerator.generate(
+        StaticValue.RANDOM_NUMBER_MIN,
+        StaticValue.RANDOM_NUMBER_MAX
+      );
 
       if (RANDOM_NUMBER >= StaticValue.MOVE_CONDITION) car.move();
 

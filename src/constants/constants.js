@@ -2,10 +2,11 @@ const readline = require("readline");
 
 const StaticValue = Object.freeze({
   MOVE_CONDITION: 4,
-  RANDOM_NUMBER_LIMIT: 10,
   REGEX_WHITESPACE: /\s|^$/,
   CAR_NAME_LIMIT: 5,
   CAR_NAME_INPUT_SEPERATOR: ",",
+  RANDOM_NUMBER_MIN: 0,
+  RANDOM_NUMBER_MAX: 9,
 });
 
 const RL = readline.createInterface({

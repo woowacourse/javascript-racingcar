@@ -1,8 +1,13 @@
-const { StaticValue } = require("../constants/Constants");
-
 const RandomNumberGenerator = {
-  generate() {
-    return Math.floor(Math.random() * StaticValue.RANDOM_NUMBER_LIMIT);
+  generate(min, max) {
+    const RANDOM_NUMBER_ARRAY_SIZE = max - min + 1;
+    const NUMBERS = new Array(RANDOM_NUMBER_ARRAY_SIZE)
+      .fill(0)
+      .map((_, i) => min + i);
+
+    NUMBERS.sort(() => Math.random() - 0.5);
+
+    return NUMBERS.pop();
   },
 };
 
