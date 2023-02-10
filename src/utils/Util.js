@@ -1,10 +1,8 @@
 const { UTIL_NUMBER } = require('../data/constants.js');
 
 const Util = {
-  randomValue() {
-    return Math.floor(
-      Math.random() * (UTIL_NUMBER.CAR_RANDOM_MAXIMUM_NUMBER + 1)
-    );
+  generateRandomNumber(minNumber, maxNumber) {
+    return Math.floor(Math.random() * (maxNumber + 1 - minNumber) - minNumber);
   },
 
   maxValueInMap(map) {

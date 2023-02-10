@@ -30,7 +30,10 @@ class RacingGame {
 
   assignRandom() {
     this.#cars.forEach((car) => {
-      const randomValue = Util.randomValue();
+      const randomValue = Util.generateRandomNumber(
+        UTIL_NUMBER.CAR_RANDOM_MINIMUM_NUMBER,
+        UTIL_NUMBER.CAR_RANDOM_MAXIMUM_NUMBER
+      );
       this.judgeMove(randomValue, car);
     });
 
