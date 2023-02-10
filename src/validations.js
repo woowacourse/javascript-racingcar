@@ -1,8 +1,8 @@
 const CONSTANT = require("./Constant");
 
-const validations = {
+const Validations = {
 
-    validateCarNameLength(carNames) {
+    checkCarMaxName(carNames) {
         carNames.forEach(name => {
             if (name.length > CONSTANT.CAR_NAME_MAX) {
                 throw new Error(CONSTANT.ERROR_CAR_LENGTH)
@@ -10,7 +10,7 @@ const validations = {
         });
     },
 
-    validateIsCarName(carNames) {
+    checkCarMinName(carNames) {
         carNames.forEach(name => {
             if (name.length <= CONSTANT.CAR_NAME_MIN) {
                 throw new Error(CONSTANT.ERROR_CAR_NONAME)
@@ -18,7 +18,7 @@ const validations = {
         });
     },
 
-    validateRound(num) {
+    checkRound(num) {
         if (!Number.isInteger(num) || num <= 0) {
             throw new Error(CONSTANT.ERROR_ROUND);
         }
@@ -26,4 +26,4 @@ const validations = {
 }
 
 
-module.exports = validations;
+module.exports = Validations;
