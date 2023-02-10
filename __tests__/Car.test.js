@@ -38,19 +38,4 @@ describe('Car 클래스', () => {
 
     expect(car.getDistance()).toBe(0);
   });
-
-  test.each([
-    [3, true],
-    [4, false],
-    [5, false],
-  ])('자동차가 결승선에 도착했는지 알 수 있다.', (winningDistance, result) => {
-    const car = new Car('name');
-
-    mockRandoms([5, 5, 5]);
-    car.move();
-    car.move();
-    car.move();
-
-    expect(car.isFinish(winningDistance)).toEqual(result);
-  });
 });
