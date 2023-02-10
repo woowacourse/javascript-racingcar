@@ -9,8 +9,17 @@ class App {
   #cars = [];
   #tryCount;
 
-  play() {
-    this.readCarName();
+  async play() {
+    await this.readCarName();
+    await this.readTryCount();
+
+    this.moveCar();
+
+    const carsStatus = this.#cars.map((car) => car.getStatus());
+    this.printProcessResult(carsStatus);
+    this.printWinner(carsStatus);
+
+    this.quit();
   }
 
   async readCarName() {
@@ -18,9 +27,9 @@ class App {
     try {
       Validator.carName(carNames);
       this.createCarObject(carNames);
-      this.readTryCount();
     } catch (error) {
       OutputView.printErrorMessage(error);
+      await this.readCarName();
     }
   }
 
@@ -35,9 +44,9 @@ class App {
     try {
       Validator.tryCount(tryCount);
       this.#tryCount = Number(tryCount);
-      this.moveCar();
     } catch (error) {
       OutputView.printErrorMessage(error);
+      await this.readTryCount();
     }
   }
 
@@ -45,23 +54,16 @@ class App {
     this.#cars.forEach((car) => {
       car.move(this.#tryCount);
     });
-
-    this.printProcessResult();
   }
 
   printProcessResult() {
-    const carsStatus = this.#cars.map((car) => car.getStatus());
     OutputView.printProcessResult(carsStatus, this.#tryCount);
-
-    this.printWinner(carsStatus);
   }
 
   printWinner(carsStatus) {
     const winner = Car.getWinner(carsStatus);
 
     OutputView.printWinner(winner);
-
-    this.quit();
   }
 
   quit() {
