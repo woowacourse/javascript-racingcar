@@ -12,28 +12,41 @@ class RacingController {
     this.#racingGame = new RacingGame();
   }
 
-  inputCarName() {
+  inputCarNames() {
     InputView.readCarName((carNames) => {
       const carArr = carNames.split(',');
-      InputValidator.validateCarNames(carArr);
-      this.#racingGame.setCars(carArr);
-
-      this.inputTryCount();
+      this.setCarNames(carArr);
     });
+  }
+
+  setCarNames(carArr) {
+    InputValidator.handleException(
+      () => InputValidator.validateCarNames(carArr),
+      () => {
+        this.#racingGame.setCars(carArr);
+        this.inputTryCount();
+      },
+      () => this.inputCarNames()
+    );
   }
 
   inputTryCount() {
     InputView.readTryCount((tryCount) => {
-      InputValidator.validateTryCount(tryCount);
-      this.#racingGame.setTryCount(tryCount);
-
-      OutputView.printWhiteSpace();
-
-      this.conductProcess();
+      InputValidator.handleException(
+        () => InputValidator.validateTryCount(tryCount),
+        () => this.setInputTryCount(tryCount),
+        () => this.inputTryCount()
+      );
     });
   }
 
+  setInputTryCount(tryCount) {
+    this.#racingGame.setTryCount(tryCount);
+    this.conductProcess();
+  }
+
   conductProcess() {
+    OutputView.printWhiteSpace();
     this.#racingGame.repeatProcess();
     this.#racingGame.printWinner();
     this.quitGame();

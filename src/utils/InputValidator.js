@@ -1,4 +1,5 @@
 const { ERROR_MESSAGE } = require('../data/constants.js');
+const IO = require('../utils/IO.js');
 
 const InputValidator = {
   validateCarName(carName) {
@@ -11,6 +12,20 @@ const InputValidator = {
 
   validateTryCount(tryCount) {
     if (isNaN(tryCount)) throw ERROR_MESSAGE.TRY_COUNT_TYPE_ERROR;
+  },
+
+  handleException(validateFunction, innerProcessFunction, errorHandleFunction) {
+    try {
+      validateFunction();
+      innerProcessFunction();
+    } catch (error) {
+      InputValidator.handleError(error, errorHandleFunction);
+    }
+  },
+
+  handleError(error, errorHandleFunction) {
+    IO.print(error);
+    errorHandleFunction();
   },
 };
 
