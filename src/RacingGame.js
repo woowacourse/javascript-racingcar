@@ -12,7 +12,7 @@ class RacingGame {
     this.#cars = carNames.map((carName) => new Car(carName));
   }
 
-  progress() {
+  progressAllCars() {
     this.#cars.forEach((car) => {
       car.tryProgress(
         RandomNumberGenerator.generate(

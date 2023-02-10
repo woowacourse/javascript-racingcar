@@ -19,7 +19,7 @@ describe('자동차를 관리하는 클래스 테스트', () => {
   test('자동차 각각을 전진시킨다', () => {
     mockRandoms([5, 2, 1]);
 
-    racingGame.progress();
+    racingGame.progressAllCars();
 
     expect(racingGame.getCars().map((singleCar) => singleCar.getProgressCount())).toEqual(
       [1, 0, 0],
@@ -30,7 +30,7 @@ describe('자동차를 관리하는 클래스 테스트', () => {
     test('우승자가 한 명인 경우 우승자 한 명의 이름이 담긴 배열을 반환한다.', () => {
       mockRandoms([5, 2, 1]);
 
-      racingGame.progress();
+      racingGame.progressAllCars();
 
       const winners = racingGame.getWinners();
       expect(winners).toEqual(['pobi']);
@@ -39,7 +39,7 @@ describe('자동차를 관리하는 클래스 테스트', () => {
     test('우승자가 두 명 이상인 경우 모든 우승자의 이름이 담긴 배열을 반환한다.', () => {
       mockRandoms([6, 7, 2]);
 
-      racingGame.progress();
+      racingGame.progressAllCars();
 
       const winners = racingGame.getWinners();
       expect(winners).toEqual(['pobi', 'crong']);
