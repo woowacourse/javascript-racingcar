@@ -17,7 +17,10 @@ class Validator {
       throw new Error(RACE_ERROR_MESSAGE.lengthOfName);
     }
 
-    if (!/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(name)) {
+    if (
+      /^[0-9]+$/.test(name) ||
+      !/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]*$/.test(name)
+    ) {
       throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
 
