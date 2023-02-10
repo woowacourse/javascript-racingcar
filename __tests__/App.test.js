@@ -1,20 +1,20 @@
 const Console = require('../src/UI/Console');
-const Car = require('../src/Car');
 const App = require('../src/App');
+const Random = require('../src/util/Random');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
   answers.reduce(
-    (acc, input) => acc.mockImplementationOnce((_, callback) => { callback(input); }),
+    (acc, input) => acc.mockResolvedValueOnce(input),
     Console.readLine,
   );
 };
 
 const mockRandoms = (numbers) => {
-  Car.generateRandomNumber = jest.fn();
+  Random.generateRandomInteger = jest.fn();
   numbers.reduce(
     (acc, number) => acc.mockReturnValueOnce(number),
-    Car.generateRandomNumber,
+    Random.generateRandomInteger,
   );
 };
 
@@ -42,13 +42,13 @@ describe('최종 동작 테스트', () => {
         '[ERROR]',
       ],
     ],
-  ])('정상', (questions, randoms, result) => {
+  ])('정상', async (questions, randoms, result) => {
     mockQuestions(questions);
     mockRandoms(randoms);
     const logSpy = getLogSpy();
 
     const app = new App();
-    app.play();
+    await app.play();
 
     const log = getOutput(logSpy);
     expectLogContains(log, result);
