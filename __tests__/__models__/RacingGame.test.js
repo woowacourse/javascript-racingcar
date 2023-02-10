@@ -15,21 +15,27 @@ function mockRandom(numbers) {
 
 describe('RacingGame', () => {
   let racingGame;
-  let moveSpy;
 
-  const manipulatedRace = numbers => {
+  const manipulatedRace = (numbers) => {
     mockRandom(numbers);
-    for (let i = 0; i < TRY_COUNT; i++) racingGame.race();
+    racingGame.raceNTimes(TRY_COUNT);
+  };
+
+  const expectWinners = (expectedWinners) => {
+    const winners = racingGame.getWinners();
+
+    winners.forEach((winner, i) => expect(winner).toBe(expectedWinners[i]));
   };
 
   beforeEach(() => {
-    moveSpy = jest.spyOn(Car.prototype, 'move');
-
-    racingGame = new RacingGame(CAR_NAMES, TRY_COUNT);
+    racingGame = new RacingGame(CAR_NAMES);
   });
 
   test('각 시도마다 모든 자동차가 전진을 시도한다', () => {
-    manipulatedRace([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+    const moveSpy = jest.spyOn(Car.prototype, 'move');
+
+    manipulatedRace([5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
+
     expect(moveSpy).toHaveBeenCalledTimes(CAR_NAMES.length * TRY_COUNT);
   });
 
@@ -49,28 +55,16 @@ describe('RacingGame', () => {
 
   test('우승자는 aker다.', () => {
     manipulatedRace([3, 4, 3, 4, 3, 4, 3, 4, 3, 4]);
-
-    const WINNERS = ['aker'];
-    const winners = racingGame.getWinners();
-
-    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+    expectWinners(['aker']);
   });
 
   test('우승자는 sy이다.', () => {
     manipulatedRace([4, 3, 4, 3, 4, 3, 4, 3, 4, 3]);
-
-    const WINNERS = ['sy'];
-    const winners = racingGame.getWinners();
-
-    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+    expectWinners(['sy']);
   });
 
   test('우승자는 sy, aker다.', () => {
     manipulatedRace([4, 4, 4, 4, 4, 4, 4, 4, 4, 4]);
-
-    const WINNERS = ['sy', 'aker'];
-    const winners = racingGame.getWinners();
-
-    winners.forEach((winner, i) => expect(winner).toBe(WINNERS[i]));
+    expectWinners(['sy', 'aker']);
   });
 });
