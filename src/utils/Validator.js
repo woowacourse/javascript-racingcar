@@ -1,8 +1,9 @@
-const { ERROR_MESSAGE } = require('../data/constants.js');
+const { ERROR_MESSAGE, UTIL_NUMBER } = require('../data/constants.js');
 
 class Validator {
   static validateCarName(carName) {
-    if (carName.length > 5) throw ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR;
+    if (carName.length > UTIL_NUMBER.CAR_NAME_LENGTH_LIMIT)
+      throw ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR;
   }
 
   static validateCarNames(carArr) {

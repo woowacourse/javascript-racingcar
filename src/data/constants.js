@@ -20,6 +20,7 @@ const ERROR_MESSAGE = Object.freeze({
 const UTIL_NUMBER = Object.freeze({
   CAR_MOVE_MINIMUM_NUMBER: 4,
   CAR_RANDOM_MAXIMUM_NUMBER: 9,
+  CAR_NAME_LENGTH_LIMIT: 5,
 });
 
 module.exports = {
