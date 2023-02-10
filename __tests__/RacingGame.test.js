@@ -9,7 +9,7 @@ const mockRandoms = (numbers) => {
   }, RandomNumberGenerator.generate);
 };
 
-describe('자동차를 관리하는 클래스 테스트', () => {
+describe('자동차 경주 게임을 진행하는 클래스 테스트', () => {
   let racingGame;
 
   beforeEach(() => {
