@@ -3,6 +3,9 @@ const RacingGame = require('./RacingGame');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
+const CarNamesInputValidator = require('./CarNamesInputValidator');
+const TryCountInputValidator = require('./TryCountInputValidator');
+
 class App {
   #racingGame;
   #tryCount;
@@ -16,15 +19,32 @@ class App {
   }
 
   async inputCarNames() {
-    const carNamesInput = await InputView.readCarNames();
-    // TODO: validate
-    this.#racingGame = new RacingGame(carNamesInput.split(','));
+    try {
+      const carNamesInput = await InputView.readCarNames();
+      this.validateInput(carNamesInput, CarNamesInputValidator);
+      this.#carNames = carNamesInput.split(',');
+    } catch (error) {
+      await this.inputCarNames();
+    }
   }
 
   async inputTryCount() {
-    const tryCountInput = await InputView.readTryCount();
-    // TODO: validate
-    this.#tryCount = parseInt(tryCountInput);
+    try {
+      const tryCountInput = await InputView.readTryCount();
+      this.validateInput(tryCountInput, TryCountInputValidator);
+      this.#tryCount = parseInt(tryCountInput);
+    } catch (error) {
+      await this.inputTryCount();
+    }
+  }
+
+  validateInput(inputValue, validator) {
+    try {
+      validator.validate(inputValue);
+    } catch (error) {
+      OutputView.printErrorMessage(error.message);
+      throw error;
+    }
   }
 
   race(tryCount) {
