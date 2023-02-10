@@ -5,9 +5,9 @@ describe('Car 이동 테스트', () => {
     const car = new Car('abcd');
 
     car.move();
-    const result = car.getInfo()[1];
+    const [, distance] = car.getInfo();
 
-    expect(result).toEqual(2);
+    expect(distance).toEqual(2);
   });
 });
 
