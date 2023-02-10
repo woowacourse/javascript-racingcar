@@ -7,4 +7,4 @@ const Validation = {
     return Number.isInteger(tryCount) && tryCount > 0;
   },
 };
-module.exports = Validation;
+export default Validation;

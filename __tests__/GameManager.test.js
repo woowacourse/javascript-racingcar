@@ -1,8 +1,8 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 // const Car = require('../src/Car');
-const GameManager = require('../src/GameManager');
-const RandomGenerator = require('../src/utils/RandomGenerator');
+import GameManager from '../src/GameManager';
+import RandomGenerator from '../src/utils/RandomGenerator';
 
 const mockRandom = (number) => {
   RandomGenerator.pickRandomNumber = jest.fn();

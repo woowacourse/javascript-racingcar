@@ -1,18 +1,18 @@
-const Console = require('./utils/Console');
-const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('./utils/constants');
+import Console from './utils/Console.js';
+import constants from './utils/constants.js';
 
 const OutputView = {
   printEmptyLine() {
-    Console.print(EMPTY_LINE);
+    Console.print(constants.EMPTY_LINE);
   },
 
   printResult() {
-    Console.print(EMPTY_LINE);
-    Console.print(RESULT_TITLE);
+    Console.print(constants.EMPTY_LINE);
+    Console.print(constants.RESULT_TITLE);
   },
 
   printWinners(winners) {
-    Console.print(`${winners.join(', ')}${IS_WINNERS}`);
+    Console.print(`${winners.join(', ')}${constants.IS_WINNERS}`);
   },
 
   printError(error) {
@@ -26,4 +26,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

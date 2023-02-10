@@ -1,4 +1,4 @@
-const Console = require('./utils/Console');
+import Console from './utils/Console.js';
 
 const InputView = {
   async readCarNames() {
@@ -14,4 +14,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

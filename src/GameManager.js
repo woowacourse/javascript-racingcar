@@ -1,16 +1,11 @@
-const Console = require('./utils/Console');
-const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
-const Car = require('./Car');
-const RandomGenerator = require('./utils/RandomGenerator');
+import Console from './utils/Console.js';
+import Validation from './utils/Validation.js';
+import Car from './Car.js';
+import RandomGenerator from './utils/RandomGenerator.js';
+import OutputView from './OutputView.js';
+import InputView from './InputView.js';
+import constants from './utils/constants.js';
 
-const {
-  printResult,
-  printWinners,
-  printError,
-  printEmptyLine,
-} = require('./OutputView');
-const { readCarNames, readTryCount } = require('./InputView');
-const { ERROR } = require('./utils/constants');
 class GameManager {
   #cars = [];
 
@@ -28,11 +23,11 @@ class GameManager {
     cars.forEach((car) => {
       car.print();
     });
-    printEmptyLine();
+    OutputView.printEmptyLine();
   }
 
   tryMoveCars(tryCount, cars) {
-    printResult();
+    OutputView.printResult();
     for (let i = 0; i < tryCount; i++) {
       this.moveCars(cars);
       this.printCars(cars);
@@ -49,17 +44,17 @@ class GameManager {
   }
 
   checkTryCount(tryCount) {
-    if (!isValidTryCount(tryCount)) {
-      throw new Error(ERROR.tryCount);
+    if (!Validation.isValidTryCount(tryCount)) {
+      throw new Error(constants.ERROR.tryCount);
     }
   }
 
   async handleTryCount() {
-    const tryCount = await readTryCount();
+    const tryCount = await InputView.readTryCount();
     try {
       this.checkTryCount(tryCount);
     } catch (error) {
-      printError(error);
+      OutputView.printError(error);
       await this.handleTryCount();
     }
     return tryCount;
@@ -70,18 +65,18 @@ class GameManager {
   }
 
   checkCarNames(names) {
-    if (!isValidCarNames(names)) {
-      throw new Error(ERROR.carNames);
+    if (!Validation.isValidCarNames(names)) {
+      throw new Error(constants.ERROR.carNames);
     }
   }
 
   async handleCarNames() {
-    const names = await readCarNames();
+    const names = await InputView.readCarNames();
     try {
       this.checkCarNames(names);
       this.#cars = this.generateCars(names);
     } catch (error) {
-      printError(error);
+      OutputView.printError(error);
       await this.handleCarNames();
     }
   }
@@ -91,9 +86,9 @@ class GameManager {
     const tryCount = await this.handleTryCount();
     this.tryMoveCars(tryCount, this.#cars);
     const winners = this.judgeWinners([...this.#cars]);
-    printWinners(winners);
+    OutputView.printWinners(winners);
     Console.close();
   }
 }
 
-module.exports = GameManager;
+export default GameManager;

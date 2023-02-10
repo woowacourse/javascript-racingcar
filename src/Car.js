@@ -1,4 +1,4 @@
-const { printCar } = require('./OutputView');
+import OutputView from './OutputView.js';
 
 class Car {
   #name;
@@ -23,8 +23,8 @@ class Car {
   }
 
   print() {
-    printCar(this.#name, this.#position);
+    OutputView.printCar(this.#name, this.#position);
   }
 }
 
-module.exports = Car;
+export default Car;
