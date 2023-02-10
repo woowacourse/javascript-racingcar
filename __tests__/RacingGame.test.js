@@ -16,7 +16,7 @@ describe('자동차 경주 게임을 진행하는 클래스 테스트', () => {
     racingGame = new RacingGame(['pobi', 'crong', 'honux']);
   });
 
-  test('자동차 각각을 전진시킨다', () => {
+  test('각 자동차는 무작위 값이 4 이상이면 전진하고, 그렇지 않으면 전진하지 않는다.', () => {
     mockRandoms([5, 2, 1]);
 
     racingGame.progressAllCars();
