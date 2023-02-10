@@ -18,7 +18,7 @@ class Validator {
     if (name.length > MAXIMUM_CAR_NAME_LENGTH) {
       throw new Error(NAME_LENGTH_LIMIT);
     }
-    if (/[^a-z|A-Z|0-9|가-힣]/g.test(name)) {
+    if (/[^a-zA-Z0-9가-힣]/.test(name)) {
       throw new Error(INVALID_NAME);
     }
   }
@@ -30,7 +30,7 @@ class Validator {
   }
 
   hasBlank(string) {
-    if (/ /g.test(string)) {
+    if (/ /.test(string)) {
       throw new Error(NOT_BLANK);
     }
   }
