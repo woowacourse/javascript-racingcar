@@ -1,5 +1,4 @@
 /* eslint-disable lines-between-class-members */
-const { StaticValue } = require("../constants/Constants");
 
 class Car {
   #name;
@@ -9,8 +8,8 @@ class Car {
     this.#name = name;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= StaticValue.MOVE_CONDITION) this.#distance += 1;
+  move() {
+    this.#distance += 1;
   }
 
   getName() {
