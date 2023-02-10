@@ -4,7 +4,7 @@ const Outputs = require('../views/Outputs');
 const RacingGame = require('../models/RacingGame');
 
 class Game {
-  #RacingGame;
+  #racingGame;
   #count;
   #names = [];
 
@@ -22,10 +22,10 @@ class Game {
   }
 
   start() {
-    this.#RacingGame = new RacingGame(this.#names);
-    this.#RacingGame.raceNTimes(this.#count);
+    this.#racingGame = new RacingGame(this.#names);
+    this.#racingGame.raceNTimes(this.#count);
 
-    if (this.#RacingGame.allFailed()) this.restart();
+    if (this.#racingGame.allFailed()) this.restart();
   }
 
   restart() {
@@ -34,8 +34,8 @@ class Game {
 
   awards() {
     Outputs.printGameResultMessage();
-    Outputs.printRacingSnapShot(this.#RacingGame.getSnapShots());
-    Outputs.printWinners(this.#RacingGame.getWinners());
+    Outputs.printRacingSnapShot(this.#racingGame.getSnapShots());
+    Outputs.printWinners(this.#racingGame.getWinners());
   }
 
   exit() {
