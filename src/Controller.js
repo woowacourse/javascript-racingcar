@@ -1,7 +1,7 @@
-const { Service } = require('./Service');
-const { View } = require('./View');
-const { Validator } = require('./Validator');
-const { RESULT_TYPE, MESSAGE } = require('./constants');
+const { Service } = require("./Service");
+const { View } = require("./View");
+const { Validator } = require("./Validator");
+const { RESULT_TYPE, MESSAGE } = require("./constants");
 
 class Controller {
   #service;
@@ -16,7 +16,7 @@ class Controller {
 
   handleCarName(inputValue) {
     try {
-      const names = inputValue.replace(/ /g, '').split(',');
+      const names = inputValue.replace(/ /g, "").split(",");
       Validator.validateName(names);
       this.#service = new Service(names);
     } catch ({ message }) {
@@ -46,8 +46,8 @@ class Controller {
     View.output(MESSAGE.RESULT);
 
     for (let i = 0; i < tryCount; i++) {
-      const movingLog = this.#service.getMovingLog();
-      View.output(movingLog, RESULT_TYPE.MOVING_LOG);
+      const moveCnt = this.#service.getmoveCnt();
+      View.output(moveCnt, RESULT_TYPE.MOVE_CNT);
     }
 
     const winners = this.#service.getWinners();

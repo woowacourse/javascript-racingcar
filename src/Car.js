@@ -1,18 +1,18 @@
 class Car {
   #name;
-  #movingLog;
+  #moveCnt;
 
   constructor(name) {
     this.#name = name;
-    this.#movingLog = 0;
+    this.#moveCnt = 0;
   }
 
   move() {
-    this.#movingLog++;
+    this.#moveCnt++;
   }
 
   getCarInfo() {
-    return { name: this.#name, movingLog: this.#movingLog };
+    return { name: this.#name, moveCnt: this.#moveCnt };
   }
 }
 

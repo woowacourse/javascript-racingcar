@@ -9,26 +9,28 @@ class Service {
     this.#cars = names.map((name) => new Car(name));
   }
 
-  getMovingLog() {
+  getmoveCnt() {
     const roundLog = {};
 
     this.#cars.forEach((car) => {
       this.decideMove(car);
-      const { name, movingLog } = car.getCarInfo();
-      roundLog[name] = movingLog;
+      const { name, moveCnt } = car.getCarInfo();
+      roundLog[name] = moveCnt;
     });
 
     return roundLog;
   }
+
   decideMove(car) {
     const randomNumber = randomGenerator.generateNumber();
     if (randomNumber >= GAME_VALUE.MOVING_BOUNDARY_VALUE) return car.move();
   }
+
   getWinners() {
     const cars = this.#cars.map((car) => car.getCarInfo());
-    const max = cars.sort((a, b) => b.movingLog - a.movingLog)[0].movingLog;
+    const max = cars.sort((a, b) => b.moveCnt - a.moveCnt)[0].moveCnt;
     const winner = cars
-      .filter((car) => car.movingLog === max)
+      .filter((car) => car.moveCnt === max)
       .map((car) => car.name);
     return winner;
   }

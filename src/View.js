@@ -1,5 +1,5 @@
-const readline = require('readline');
-const { MESSAGE, RESULT_TYPE } = require('./constants');
+const readline = require("readline");
+const { MESSAGE, RESULT_TYPE } = require("./constants");
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -11,12 +11,12 @@ const View = {
     rl.question(question, callback);
   },
 
-  output: (data, type = '') => {
+  output: (data, type = "") => {
     if (!type) return console.log(data);
 
-    if (type === RESULT_TYPE.MOVING_LOG) {
+    if (type === RESULT_TYPE.MOVE_CNT) {
       Object.entries(data).forEach(([key, value]) => {
-        console.log(MESSAGE.MOVING_LOG([key, value]));
+        console.log(MESSAGE.MOVE_CNT([key, value]));
       });
       return console.log();
     }

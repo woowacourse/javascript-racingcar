@@ -11,11 +11,6 @@ const ERROR_MESSAGE = {
 
 const Validator = {
   validateName: (names) => {
-    // names.forEach((name) => {
-    //   if (!REGEX.CAR_NAME.test(name)) {
-    //     throw new Error(ERROR_MESSAGE.INVALID_NAME);
-    //   }
-    // });
     const isCarNameError = names.every((name) => REGEX.CAR_NAME.test(name));
     if (!isCarNameError) {
       throw new Error(ERROR_MESSAGE.INVALID_NAME);
