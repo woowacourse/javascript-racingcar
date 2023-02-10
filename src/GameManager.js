@@ -10,7 +10,7 @@ class GameManager {
   #cars = [];
 
   isForward() {
-    return RandomGenerator.pickRandomNumber() >= 4;
+    return RandomGenerator.pickRandomNumber() >= constants.FORWARD_LIMIT;
   }
 
   moveCars(cars) {
