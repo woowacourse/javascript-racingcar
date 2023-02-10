@@ -1,35 +1,35 @@
-import { NAME_DELIMITER, ERROR_MESSAGE, VALIDATOR } from '../constants/index.js';
+import { NAME_DELIMITER, ERROR_MESSAGE, VALIDATOR } from '../Template/index.js';
 
 const Validator = {
-  checkBlank(input) {
+  checkInputHasBlank(input) {
     if (input.includes(' ')) {
       throw new Error(ERROR_MESSAGE.blank);
     }
   },
-  checkLastComma(input) {
+  checkInputHasLastComma(input) {
     if (input[input.length - 1] === NAME_DELIMITER) {
       throw new Error(ERROR_MESSAGE.lastComma);
     }
   },
-  checkNameLength(input) {
+  checkInputNameLength(input) {
     if (input.split(NAME_DELIMITER).some((name) => name.length === 0)) {
       throw new Error(ERROR_MESSAGE.nameLength);
     }
   },
-  checkDuplicate(input) {
+  checkInputDuplicate(input) {
     const value = input.split(NAME_DELIMITER);
     if (new Set(value).size !== value.length) {
       throw new Error(ERROR_MESSAGE.duplicate);
     }
   },
   checkNames(input) {
-    this.checkBlank(input);
-    this.checkLastComma(input);
-    this.checkNameLength(input);
-    this.checkDuplicate(input);
+    this.checkInputHasBlank(input);
+    this.checkInputHasLastComma(input);
+    this.checkInputNameLength(input);
+    this.checkInputDuplicate(input);
   },
-  checkIntegerNumber(input) {
-    input.split('').forEach((char) => {
+  checkIntegerNumber(number) {
+    number.split('').forEach((char) => {
       if (!VALIDATOR.integerString.includes(char)) {
         throw new Error(ERROR_MESSAGE.notInteger);
       }
