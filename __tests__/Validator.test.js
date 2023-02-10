@@ -36,7 +36,7 @@ describe('Validator 테스트', () => {
   });
 
   test.each([['aa'], [' '], ['한']])(
-    '시도 횟수가 1이상이 아니면 예외처리한다',
+    '숫자가 아니라면 예외처리를 한다',
     input => {
       expect(() => {
         Validator.validateTryCount(input);
