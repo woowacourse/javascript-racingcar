@@ -2,8 +2,8 @@ const {
   VALID_CHARACTER_REGEX,
   VALID_INTEGER_REGEX,
   ERROR_MESSAGE,
-  MAX_CARNAME_LENGTH,
 } = require('../constants/validation');
+const { MAX_CARNAME_LENGTH } = require('../constants/numbers');
 
 const Validator = {
   validateNameInput(nameInput) {
