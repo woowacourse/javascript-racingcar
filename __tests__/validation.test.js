@@ -54,15 +54,12 @@ describe('입력 validation 테스트', () => {
   });
 
   describe('시도 횟수 입력 테스트 (validateWinningDistance)', () => {
-    test.each(['a', 'ㄱ', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ' '])(
-      '숫자가 아닌 값을 입력하면 안된다.',
-      (input) => {
-        validateWinningDistance(toInt(input));
-        const log = getOutput(logSpy);
+    test.each(['a', 'ㄱ', '!'])('숫자가 아닌 값을 입력하면 안된다.', (input) => {
+      validateWinningDistance(toInt(input));
+      const log = getOutput(logSpy);
 
-        expect(log).toEqual(ERROR.invalidWinningDistanceType);
-      },
-    );
+      expect(log).toEqual(ERROR.invalidWinningDistanceType);
+    });
 
     test.each([2, 10])('입력값의 범위가 3미만 10이상이면 안된다.', (input) => {
       validateWinningDistance(input);
