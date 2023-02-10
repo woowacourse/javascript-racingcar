@@ -14,7 +14,7 @@ const mockRandoms = (numbers) => {
   Car.generateRandomNumber = jest.fn();
   numbers.reduce(
     (acc, number) => acc.mockReturnValueOnce(number),
-    Car.generateRandomNumber
+    Car.generateRandomNumber,
   );
 };
 
@@ -33,24 +33,24 @@ const expectLogContains = (received, logs) => {
 };
 
 describe('최종 동작 테스트', () => {
-    test.each([
-        [
-            ['pobi,crong,honux', '-10', '5'],
-            [4, 3, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 1, 1, 1],
-            [
-                'pobi, honux가 최종 우승했습니다.',
-                '[ERROR]'
-            ],
-        ],
-    ])('정상', (questions, randoms, result) => {
-        mockQuestions(questions);
-        mockRandoms(randoms);
-        const logSpy = getLogSpy();
+  test.each([
+    [
+      ['pobi,crong,honux', '-10', '5'],
+      [4, 3, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 1, 1, 1],
+      [
+        'pobi, honux가 최종 우승했습니다.',
+        '[ERROR]',
+      ],
+    ],
+  ])('정상', (questions, randoms, result) => {
+    mockQuestions(questions);
+    mockRandoms(randoms);
+    const logSpy = getLogSpy();
 
-        const app = new App();
-        app.play();
+    const app = new App();
+    app.play();
 
-        const log = getOutput(logSpy);
-        expectLogContains(log, result);
-    });
+    const log = getOutput(logSpy);
+    expectLogContains(log, result);
+  });
 });

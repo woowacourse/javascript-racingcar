@@ -4,7 +4,7 @@ const mockRandoms = (numbers) => {
   Car.generateRandomNumber = jest.fn();
   numbers.reduce(
     (acc, number) => acc.mockReturnValueOnce(number),
-    Car.generateRandomNumber
+    Car.generateRandomNumber,
   );
 };
 
