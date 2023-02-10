@@ -1,13 +1,11 @@
-const readline = require('readline');
+const readline = require('node:readline/promises');
+const { stdin: input, stdout: output } = require('node:process');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const rl = readline.createInterface({ input, output });
 
 const Console = {
-  readLine(query, callback) {
-    rl.question(query, callback);
+  readLine(query) {
+    return rl.question(query);
   },
 
   close() {
