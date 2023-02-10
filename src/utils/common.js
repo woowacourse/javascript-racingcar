@@ -11,7 +11,7 @@ const deepFreeze = (object) => {
   return Object.freeze(object);
 };
 
-const toInt = (string) => parseInt(string, 10);
+const toInt = (string) => Math.floor(Number(string));
 
 const randomGenerator = {
   getBetween(min, max) {
