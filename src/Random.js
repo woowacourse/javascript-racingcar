@@ -1,6 +1,6 @@
 
 const Random = {
-    getRandomNumber() {
+    generateRandomNumber() {
         return Math.floor(Math.random() * 10);
     }
 }
