@@ -8,13 +8,13 @@ const OutputView = {
 
   printCars(cars) {
     cars.forEach((distance, name) => {
-      Console.print(OUTPUT_MESSAGE.result(name, distance));
+      Console.print(`${name} : ${OUTPUT_MESSAGE.distance.repeat(distance)}`);
     });
     Console.print('');
   },
 
   printWinner(winner) {
-    Console.print(OUTPUT_MESSAGE.winner(winner));
+    Console.print(`${winner.join(', ')}${OUTPUT_MESSAGE.winner}`);
   },
 
   printError(errorMessage) {

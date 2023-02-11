@@ -8,8 +8,7 @@ const INPUT_MESSAGE = Object.freeze({
 const OUTPUT_MESSAGE = Object.freeze({
   resultTitle: '\n실행 결과',
   distance: '-',
-  result: (name, distance) => `${name} : ${OUTPUT_MESSAGE.distance.repeat(distance)}`,
-  winner: (winner) => `${winner.join(', ')}가 최종 우승했습니다.`,
+  winner: '가 최종 우승했습니다.',
 });
 
 const ERROR_MESSAGE = Object.freeze({
