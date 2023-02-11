@@ -27,7 +27,6 @@ class GameManager {
   }
 
   tryMoveCars(tryCount, cars) {
-    OutputView.printResult();
     for (let i = 0; i < tryCount; i++) {
       this.moveCars(cars);
       this.printCars(cars);
@@ -84,6 +83,7 @@ class GameManager {
   async play() {
     await this.handleCarNames();
     const tryCount = await this.handleTryCount();
+    OutputView.printResult();
     this.tryMoveCars(tryCount, this.#cars);
     const winners = this.judgeWinners([...this.#cars]);
     OutputView.printWinners(winners);
