@@ -1,5 +1,5 @@
 
-const CONSTANT = {
+const Constants = {
     INPUT_CAR_MASSEGE: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
     INPUT_ROUND_MASSEGE: "시도할 회수는 몇회인가요?\n",
     
@@ -18,8 +18,11 @@ const CONSTANT = {
     ERROR_ROUND: "[ERROR] 0보다 큰 숫자를 입력해주세요.",
 
     ERROR_CAR_LENGTH: "[ERROR] 자동차 이름은 5자를 넘을 수 없습니다.",
-    ERROR_CAR_NONAME:"[ERROR] 자동차 이름은 1자 이상이어야 합니다."
+    ERROR_CAR_NONAME: "[ERROR] 자동차 이름은 1자 이상이어야 합니다.",
+    
+    BLANK: "",
+    POSITION_BAR: "-"
 }
 
 
-module.exports = CONSTANT;
+module.exports = Constants;
