@@ -23,8 +23,8 @@
 - [x] Application Test 시 mock 함수를 이용하여 숫자를 넣었던 것을 모르는 사람이 읽어도 이해할 수 있도록 상수화 한다.
 - [ ] Car Test 시 2개 함수를 이용하여 테스트 설정이라면 beforeEach를 사용하여 테스트 한다. X (비동기 함수가 아니기 때문에)
 - [x] Car Test 시 Array.prototype을 사용했던 것을 2개 함수를 실행하여 테스트 설정으로 변경한다.
-- [ ] Validation Test 시 어떤 상황에서 어떤 에러 문구가 나오는 지 세부적으로 테스트 한다.
-- [ ] App.js와 Controller의 play()가 중첩되는 상황을 변경한다.
+- [x] Validation Test 시 어떤 상황에서 어떤 에러 문구가 나오는 지 세부적으로 테스트 한다.
+- [x] App.js와 Controller의 play()가 중첩되는 상황을 변경한다.
 - [ ] isNotNumber 를 긍정문으로 변경한다.
 - [ ] isNotNumber 의 암묵적 형변환을 예상하여 방어 로직을 작성한다.
 - [ ] GAME_STRING.alphabetExpression 을 REG_EXP.onlyAlphabet으로 변경한다.

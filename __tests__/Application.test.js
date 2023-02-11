@@ -1,5 +1,5 @@
-const App = require('../src/App');
 const Console = require('../src/utils/Console');
+const Controller = require('../src/controller/Controller');
 const { Random } = require('../src/utils');
 const { GAME_NUMBER } = require('../src/constants');
 
@@ -45,8 +45,7 @@ describe('자동차 경주 게임 테스트', () => {
     mockRandoms([GO, GO, GO, GO, GO, STAY, GO, GO, GO]);
     mockQuestions(['eus,zero,pobi', '3']);
 
-    const app = new App();
-    app.play();
+    new Controller().play();
 
     const log = getOutput(logSpy);
     expectLogContains(log, [
@@ -76,8 +75,7 @@ describe('자동차 경주 게임 테스트', () => {
     mockRandoms([GO, GO, GO, GO, STAY, GO, GO, GO, GO, GO, GO, GO, GO, GO, GO]);
     mockQuestions(['pobi,crong,honux', '5']);
 
-    const app = new App();
-    app.play();
+    new Controller().play();
 
     const log = getOutput(logSpy);
     expectLogContains(log, [
