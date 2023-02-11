@@ -12,24 +12,17 @@ class App {
 
   play() {
     this.#race = new Race();
-    InputView.readCarNames(this.#readCarNamesCallback);
+    InputView.readCarNames(this.#readCarNamesEvent);
   }
 
-  #readCarNamesCallback = (input) => {
+  #readCarNamesEvent = (input) => {
     errorCheckFor(
-      () => this.#prepareRace(input),
-      () => InputView.readCarNames(this.#readCarNamesCallback)
+      () => this.#successReadCarNamesEvent(input),
+      () => InputView.readCarNames(this.#readCarNamesEvent)
     );
   };
 
-  #readTrialCallback = (input) => {
-    errorCheckFor(
-      () => this.#resultRace(input),
-      () => InputView.readTrial(this.#readTrialCallback)
-    );
-  };
-
-  #prepareRace(input) {
+  #successReadCarNamesEvent(input) {
     const carNames = input.split(',');
 
     carNames.forEach((name) => {
@@ -37,10 +30,17 @@ class App {
       this.#race.addCar(new Car(name));
     });
 
-    InputView.readTrial(this.#readTrialCallback);
+    InputView.readTrial(this.#readTrialEvent);
   }
 
-  #resultRace(input) {
+  #readTrialEvent = (input) => {
+    errorCheckFor(
+      () => this.#successReadTrialEvent(input),
+      () => InputView.readTrial(this.#readTrialEvent)
+    );
+  };
+
+  #successReadTrialEvent(input) {
     InputException.validateRaceTrial(input);
 
     this.#race.setTrial(input);
