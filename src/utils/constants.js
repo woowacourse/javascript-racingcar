@@ -25,6 +25,8 @@ const FLAG = 4;
 const MIN_RANDOM = 0;
 const MAX_RANDOM = 9;
 
+const NUMBER_REGEX = /\d/;
+
 module.exports = {
   MESSAGE,
   ERROR,
@@ -37,4 +39,5 @@ module.exports = {
   FLAG,
   MIN_RANDOM,
   MAX_RANDOM,
+  NUMBER_REGEX,
 };

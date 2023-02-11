@@ -4,6 +4,7 @@ const {
   NAME_MIN_LENGTH,
   MIN_PARTICIPATE,
   MIN_TRYCOUNT,
+  NUMBER_REGEX,
 } = require('./utils/constants');
 
 const Validation = {
@@ -43,7 +44,7 @@ const Validation = {
   },
 
   validateNotANumber(tryCount) {
-    if (/\d/g.test(tryCount)) return;
+    if (NUMBER_REGEX.test(tryCount)) return;
     throw new Error(ERROR.TRYCOUNT_NOT_A_NUMBER);
   },
 
