@@ -2,18 +2,21 @@ const Validation = require('../src/Validation.js');
 
 describe('자동차 이름 유효성 검사', () => {
   test.each([[['', 'a']], [['abcdef', 'a']]])(
-    '자동차 이름 길이 케이스 %#',
+    '자동차 이름 길이는 1~5글자 사이어야 한다. %#',
     (testCase) => {
       expect(() => {
         Validation.validateCarNameLength(testCase);
       }).toThrow();
     }
   );
-  test.each([[['a', 'a']]])('자동차 이름 중복 케이스 %#', (testCase) => {
-    expect(() => {
-      Validation.validateCarNameDuplicated(testCase);
-    }).toThrow();
-  });
+  test.each([[['a', 'a']]])(
+    '자동차 이름은 중복되지 않아야 한다.',
+    (testCase) => {
+      expect(() => {
+        Validation.validateCarNameDuplicated(testCase);
+      }).toThrow();
+    }
+  );
 });
 
 describe('자동차 경주 유효성 검사', () => {
