@@ -22,8 +22,16 @@ const InputView = {
 
     return tryCount;
   },
-  readTryCount(callback) {
-    Utils.readLine(INPUT_TRY_COUNT, callback);
+  async readTryCount() {
+    const tryCount = await Utils.readLine(INPUT_TRY_COUNT);
+
+    const isValidated = hasError(
+      () => tryCountValidator(tryCount),
+      InputView.readTryCount,
+    );
+    if (isValidated) return;
+
+    return tryCount;
   },
 };
 
