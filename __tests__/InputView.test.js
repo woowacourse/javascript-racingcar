@@ -15,7 +15,7 @@ describe('InputView 테스트 입니다.', () => {
     const carNames = await InputView.readCarNames();
 
     // then
-    expect(carnames).toEqual(['pobi', 'crong']);
+    expect(carNames).toEqual(['pobi', 'crong']);
   });
 
   test('readRaceStep 메서드는 횟수를 입력받아 숫자 타입으로 반환해야합니다.', async () => {
