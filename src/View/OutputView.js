@@ -2,10 +2,11 @@ const Console = require('../utils/Console');
 
 const OutputView = {
   drawProgress(carNames, currentRace) {
-    for (const tryCount in currentRace) {
+    const tryCount = currentRace[0];
+    for (const count in tryCount) {
       carNames.map((val, idx) =>
         Console.print(
-          val + ' : ' + currentRace[idx].slice(0, tryCount + 1).join('')
+          val + ' : ' + currentRace[idx].slice(0, count + 1).join('')
         )
       );
       Console.print('');
