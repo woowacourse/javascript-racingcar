@@ -45,9 +45,11 @@ class CarGame {
 
   showGameResult = () => {
     const statusValues = [...this.#carStatus.values()];
+
     printResultMessage();
 
     this.showGameRound();
+
     printWinner(this.findWinner(statusValues));
 
     Utils.close();
