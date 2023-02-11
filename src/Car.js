@@ -3,20 +3,19 @@ const { GAME_VALUE } = require('./constants');
 
 class Car {
   #name;
-  #movingLog;
+  #distance;
 
   constructor(name) {
     this.#name = name;
-    this.#movingLog = 0;
+    this.#distance = 0;
   }
 
-  move() {
-    const randomNumber = randomGenerator.generateNumber();
-    if (randomNumber >= GAME_VALUE.MOVING_BOUNDARY_VALUE) this.#movingLog++;
+  move(randomNumber) {
+    if (randomNumber >= GAME_VALUE.MOVING_BOUNDARY_VALUE) this.#distance++;
   }
 
   getCarInfo() {
-    return { name: this.#name, movingLog: this.#movingLog };
+    return { name: this.#name, distance: this.#distance };
   }
 }
 

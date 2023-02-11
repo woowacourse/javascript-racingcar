@@ -1,4 +1,5 @@
 const { Car } = require('./Car');
+const { randomGenerator } = require('./randomGenerator');
 
 class Service {
   #cars;
@@ -14,9 +15,10 @@ class Service {
     const roundLog = {};
 
     this.#cars.forEach((car) => {
-      car.move();
-      const { name, movingLog } = car.getCarInfo();
-      roundLog[name] = movingLog;
+      const randomNumber = randomGenerator();
+      car.move(randomNumber);
+      const { name, distance } = car.getCarInfo();
+      roundLog[name] = distance;
     });
 
     return roundLog;
@@ -26,11 +28,10 @@ class Service {
     const cars = Array.from({ length: this.#cars.length }, (_, index) =>
       this.#cars[index].getCarInfo()
     );
-    const max = cars.sort((a, b) => b.movingLog - a.movingLog)[0].movingLog;
-    const winner = [];
-    cars.forEach((car) => {
-      if (car.movingLog === max) winner.push(car.name);
-    });
+    const max = cars.sort((a, b) => b.distance - a.distance)[0].distance;
+    const winner = cars
+      .filter((car) => car.distance === max)
+      .map(({ name }) => name);
 
     return winner;
   }
