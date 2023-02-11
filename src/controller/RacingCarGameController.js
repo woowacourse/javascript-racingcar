@@ -2,10 +2,9 @@ const { CAR_RULE } = require('../constants/rule');
 const Console = require('../utils/console');
 const Car = require('../models/Car');
 const RacingCarGame = require('../models/RacingCarGame');
-const { CharacterValidator, ArrayValidator, NumberValidator } = require('../utils/Validator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
-const { ERROR_MESSAGE } = require('../constants/message');
+const { validateCarNames, validateMovingCount } = require('../validators');
 
 class RacingCarGameController {
   #game;
@@ -16,7 +15,7 @@ class RacingCarGameController {
 
   #onCarNameSubmit(carNames) {
     try {
-      this.#validateCarNames(carNames);
+      validateCarNames(carNames);
       const cars = carNames.split(CAR_RULE.separator).map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
       InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
@@ -26,45 +25,14 @@ class RacingCarGameController {
     }
   }
 
-  #validateCarNames(carNames) {
-    const cars = carNames.split(CAR_RULE.separator);
-    if (!this.#isAllowedCarNames(cars)) {
-      throw new Error(ERROR_MESSAGE.nameCharacter);
-    }
-    if (!ArrayValidator.isLengthMoreThanOne(cars)) {
-      throw new Error(ERROR_MESSAGE.nameSeparator);
-    }
-    if (ArrayValidator.isDuplicated(cars)) {
-      throw new Error(ERROR_MESSAGE.duplicatedCarName);
-    }
-  }
-
-  #isAllowedCarNames(carNames) {
-    return carNames.every((carName) => this.#isAllowedCharacter(carName));
-  }
-
-  #isAllowedCharacter(carName) {
-    return (
-      CharacterValidator.isOnlyAlphabet(carName) ||
-      CharacterValidator.isOnlyKorean(carName) ||
-      CharacterValidator.isAlphabetOrKorean(carName)
-    );
-  }
-
   #onMovingCountSubmit(movingCount) {
     try {
-      this.#validateMovingCount(movingCount);
+      validateMovingCount(movingCount);
       this.#printResult(movingCount);
       Console.close();
     } catch (error) {
       OutputView.printError(error.message);
       InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
-    }
-  }
-
-  #validateMovingCount(movingCount) {
-    if (!NumberValidator.isNaturalNumber(movingCount)) {
-      throw new Error(ERROR_MESSAGE.movingCount);
     }
   }
 
