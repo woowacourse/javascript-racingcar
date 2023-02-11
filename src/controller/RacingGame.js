@@ -4,7 +4,7 @@ const { Random } = require('../utils');
 const inputView = require('../view/inputView');
 const outputView = require('../view/outputView');
 
-class Controller {
+class RacingGame {
   #cars;
 
   #attempt;
@@ -79,4 +79,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = RacingGame;

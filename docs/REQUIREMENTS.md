@@ -32,4 +32,4 @@
 - [x] utils 함수에서 isMove 함수를 Car Model로 이동한다. (자동차 이동 관련 로직이기 때문에)
 - [x] printGameProgress의 인자를 3개에서 2개로 변경하고 공백을 출력하는 기능을 분리한다.
 - [x] Random getNumber 메서드를 getCarGameNumber 메서드로 이름 변경
-<!-- - [ ] Car Test 시 2개 함수를 이용하여 테스트 설정이라면 beforeEach를 사용하여 테스트 한다. X (비동기 함수가 아니기 때문에) -->
+- [x] Controller를 RacingGame으로 변경

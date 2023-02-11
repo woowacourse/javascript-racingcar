@@ -1,3 +1,3 @@
-const Controller = require('./controller/Controller');
+const RacingGame = require('./controller/RacingGame');
 
-new Controller().play();
+new RacingGame().play();

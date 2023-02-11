@@ -1,4 +1,4 @@
-const { ERROR_SUBJECT, ERROR_MESSAGE } = require('../src/constants');
+const { ERROR_MESSAGE } = require('../src/constants');
 const validation = require('../src/validation');
 
 describe('Validation 테스트', () => {
