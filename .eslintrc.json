@@ -21,7 +21,8 @@
     "linebreak-style": "off",
     "no-return-await": "off",
     "max-lines-per-function": ["error", 10],
-    "max-depth": ["error", 2]
+    "max-depth": ["error", 2],
+    "jsdoc/require-param-description": "off"
   },
   "overrides": [
     {
