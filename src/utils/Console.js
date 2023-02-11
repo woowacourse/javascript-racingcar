@@ -14,6 +14,7 @@ class Console {
   }
 
   static print(message) {
+    // eslint-disable-next-line no-console
     console.log(message);
   }
 }
