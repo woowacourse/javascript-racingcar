@@ -1,4 +1,4 @@
-const CAR_RULE = require('./carRule');
+const { CAR_RULE } = require('./rule');
 
 const INPUT_MESSAGE = Object.freeze({
   carName: `경주할 자동차 이름을 입력하세요(이름은 쉼표(${CAR_RULE.separator})를 기준으로 구분).\n`,

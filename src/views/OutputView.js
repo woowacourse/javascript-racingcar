@@ -1,4 +1,4 @@
-const Console = require('../lib/console');
+const Console = require('../utils/console');
 const { OUTPUT_MESSAGE } = require('../constants/message');
 
 const OutputView = {
