@@ -1,7 +1,8 @@
-const readline = require("node:readline");
-const { stdin: input, stdout: output } = require("node:process");
-
-const rl = readline.createInterface({ input, output });
+const readlinePromises = require("node:readline/promises");
+const rl = readlinePromises.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 const utils = {
   print(message) {
@@ -9,7 +10,7 @@ const utils = {
   },
 
   readLine(query, callback) {
-    rl.question(query, callback);
+    return rl.question(query, callback);
   },
 
   close() {
