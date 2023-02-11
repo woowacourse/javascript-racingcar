@@ -24,7 +24,7 @@ class CarGameController {
         functionPipe(
           parsedCarName,
           Validator.validateLength,
-          Validator.validateOverLap,
+          Validator.validateOverlap,
           Validator.validateInvalidInput,
         );
         return this.saveCarDatas(parsedCarName);
