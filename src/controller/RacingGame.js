@@ -15,6 +15,10 @@ class RacingGame {
   }
 
   start() {
+    this.inputName();
+  }
+
+  inputName(){
     InputView.readCarName((answer) => {
       const nameOfCars = answer.split(",");
 
