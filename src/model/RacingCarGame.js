@@ -12,8 +12,7 @@ class RacingCarGame {
         if (this.goForward()) {
           carNamesMap.set(car, carNamesMap.get(car) + 1);
         }
-        const forwardCount = carNamesMap.get(car);
-        carResult += `${car} : ${'-'.repeat(forwardCount)}\n`;
+        carResult += `${car} : ${'-'.repeat(carNamesMap.get(car))}\n`;
       });
       carResult += '\n';
       carCount += 1;
