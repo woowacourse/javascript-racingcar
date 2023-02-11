@@ -13,7 +13,7 @@ class InputView {
         input => {
           const carNames = input.split(',');
           if (!this.validateCarNames(carNames)) {
-            reject('다섯글자 이하의 자동차를 중복없이 입력해주세요.');
+            reject(new Error('[ERROR] 다섯글자 이하의 자동차를 중복없이 입력해주세요.\n'));
           }
 
           const carMap = carNames.reduce((acc, cur) => {
@@ -41,7 +41,7 @@ class InputView {
       rl.question('시도할 회수는 몇회인가요?\n', input => {
         const trialCount = Number(input);
         if (isNaN(trialCount)) {
-          reject(new Error('숫자만 입력 가능합니다.'));
+          reject(new Error('[ERROR] 숫자만 입력 가능합니다.'));
         }
         resolve(trialCount);
       });
