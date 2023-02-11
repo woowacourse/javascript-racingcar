@@ -1,3 +1,4 @@
+const CONSTANTS = require('../Constant/Constants');
 const RandomNumGenerator = require('../Utils/RandomNumGenerator');
 
 class CarRace {
@@ -9,7 +10,12 @@ class CarRace {
 
   runOnce() {
     this.#cars.forEach(car => {
-      car.move(RandomNumGenerator.generateNumberInRange(0, 10));
+      car.move(
+        RandomNumGenerator.generateNumberInRange(
+          CONSTANTS.lowerNumber,
+          CONSTANTS.upperNumber,
+        ),
+      );
     });
   }
 
