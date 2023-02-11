@@ -8,8 +8,9 @@ const OutputView = {
   },
 
   printCarMovement(carStatus) {
-    for (const [name, count] of Object.entries(carStatus)) {
-      print(`${name} ${COLON} ${MOVEMENT_UNIT.repeat(count)}`);
+    for (const car of carStatus) {
+      const { name, position } = car.getCarStatus();
+      print(`${name} ${COLON} ${MOVEMENT_UNIT.repeat(position)}`);
     }
     print(LINE_BREAK);
   },
