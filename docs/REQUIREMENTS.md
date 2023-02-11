@@ -29,5 +29,5 @@
 - [x] GAME_STRING.alphabetExpression 을 REG_EXP.onlyAlphabet으로 변경한다.
 - [x] 자동차 이름을 받아 모델을 생성할 때 forEach에서 map으로 변경한다.
 - [x] 가장 멀리 진행된 자동차를 Math.max 메서드를 이용해 계산한다.
-- [ ] 우승자를 계산할 때 forEach에서 filter로 변경한다.
+- [x] 우승자를 계산할 때 forEach에서 reduce로 변경한다.
 - [ ] utils 함수에서 isMove 함수를 Controller로 변경한다.(자동차 관련 로직이기 때문에)

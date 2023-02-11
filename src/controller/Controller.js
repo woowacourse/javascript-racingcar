@@ -48,15 +48,21 @@ class Controller {
   }
 
   calculateWinner() {
-    const winnerNames = [];
     const winnerProgress = Math.max(
       ...this.#cars.map((car) => car.getProgress().length)
     );
-    this.#cars.forEach((car) => {
+
+    return this.getWinnerNames(winnerProgress);
+  }
+
+  getWinnerNames(winnerProgress) {
+    const winnerNames = this.#cars.reduce((accumulator, car) => {
       if (car.getProgress().length === winnerProgress) {
-        winnerNames.push(car.getName());
+        return [...accumulator, car.getName()];
       }
-    });
+      return accumulator;
+    }, []);
+
     return winnerNames;
   }
 
