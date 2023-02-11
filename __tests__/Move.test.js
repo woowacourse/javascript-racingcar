@@ -1,4 +1,5 @@
-const { isMove, Random } = require('../src/utils');
+const { isMove } = require('../src/model/Car');
+const { Random } = require('../src/utils');
 
 describe('utils 테스트', () => {
   test.each([
@@ -10,7 +11,7 @@ describe('utils 테스트', () => {
     expect(isMove(number)).toBe(expected);
   });
 
-  test('calculateRandomNumber 함수 테스트', () => {
+  test('Random.getNumber 함수 테스트', () => {
     Array.from({ length: 10 }).forEach(() => {
       const randomNumber = Random.getNumber();
 

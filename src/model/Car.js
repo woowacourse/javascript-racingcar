@@ -1,4 +1,4 @@
-const { GAME_STRING } = require('../constants');
+const { GAME_STRING, GAME_NUMBER } = require('../constants');
 
 class Car {
   #name;
@@ -19,6 +19,10 @@ class Car {
 
   getName() {
     return this.#name;
+  }
+
+  static isMove(number) {
+    return number >= GAME_NUMBER.moveStandard;
   }
 }
 module.exports = Car;
