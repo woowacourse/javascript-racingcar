@@ -13,9 +13,10 @@ const mockQuestions = (answers) => {
 
 const mockRandoms = (numbers) => {
   Random.makeRandomNumbers = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.makeRandomNumbers);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    Random.makeRandomNumbers
+  );
 };
 
 const getLogSpy = () => {
@@ -31,13 +32,16 @@ describe('자동차 경주 테스트', () => {
   describe('전체 기능 테스트', () => {
     test('우승자 1명인 경우', () => {
       const logSpy = getLogSpy();
-
-      mockRandoms([
+      const raceResult = [
         [0, 1, 2],
         [4, 5, 6],
         [7, 8, 9],
-      ]);
-      mockQuestions(['aa,bb,cc', '3']);
+      ];
+      const carNames = 'aa,bb,cc';
+      const tryCount = '3';
+
+      mockRandoms(raceResult);
+      mockQuestions([carNames, tryCount]);
       const logs = [
         'aa : ',
         'bb : -',
@@ -61,12 +65,15 @@ describe('자동차 경주 테스트', () => {
 
     test('우승자 1명인 경우', () => {
       const logSpy = getLogSpy();
-
-      mockRandoms([
+      const raceResult = [
         [0, 1, 2],
         [4, 5, 6],
-      ]);
-      mockQuestions(['aa,bb', '3']);
+      ];
+      const carNames = 'aa,bb';
+      const tryCount = '3';
+
+      mockRandoms(raceResult);
+      mockQuestions([carNames, tryCount]);
       const logs = [
         'aa : ',
         'bb : -',
