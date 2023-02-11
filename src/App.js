@@ -6,7 +6,6 @@ const OutputView = require("./OutputView");
 const CONSTANT = require("./Constants");
 const Random = require("./Random");
 
-
 class App {
 
     play() {

@@ -24,5 +24,4 @@ const Constants = {
     POSITION_BAR: "-"
 }
 
-
 module.exports = Constants;
