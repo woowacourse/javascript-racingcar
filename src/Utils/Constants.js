@@ -15,6 +15,7 @@ const MINIMUM_CAR_NAME_LENGTH = 1;
 const MINIMUM_TRY_COUNT = 1;
 const MINIMUM_NUMBER_OF_CARS = 2;
 const MOVEMENT_STANDARD_NUMBER = 4;
+const FORWARD_VALUE = 1;
 
 const ERROR_MESSAGE = Object.freeze({
   NAME_LENGTH_LIMIT: "1글자 이상 5글자 이하로 입력해 주세요.",
@@ -35,4 +36,5 @@ module.exports = {
   COMMA,
   MOVEMENT_STANDARD_NUMBER,
   MINIMUM_CAR_NAME_LENGTH,
+  FORWARD_VALUE,
 };
