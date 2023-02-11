@@ -1,4 +1,4 @@
-const deepClone = (obj) => JSON.parse(JSON.stringify(obj));
+const deepClone = (obj) => structuredClone(obj);
 
 const deepFreeze = (object) => {
   // 객체에 정의된 속성명을 추출
