@@ -5,7 +5,7 @@ const {
   MIN_PARTICIPATE,
   MIN_TRYCOUNT,
   NUMBER_REGEX,
-} = require('./utils/constants');
+} = require('./constants');
 
 const Validation = {
   validateCarName(carNames) {

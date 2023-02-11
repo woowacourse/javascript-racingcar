@@ -1,5 +1,5 @@
 const Random = require('../utils/Random');
-const { MOVE_FORWARD, FLAG, NOT_MOVED } = require('../utils/constants');
+const { MOVE_FORWARD, FLAG, NOT_MOVED } = require('../constants');
 
 class Race {
   #carNames;
