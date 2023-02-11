@@ -1,6 +1,3 @@
-const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
-const CarRace = require("./CarRace");
-
 class CarRaceGame {
   #carNames;
 
@@ -15,10 +12,9 @@ class CarRaceGame {
     return this.#carNames;
   }
 
-  updateRace() {
+  updateRace(carRaceResult) {
     const newDistances = this.#carDistances;
-    const carRaceResult = CarRaceResultRandomGenerator.generate(carDistances.length);
-    for (let i = 0; i < carDistances.length; i += 1) {
+    for (let i = 0; i < this.#carDistances.length; i += 1) {
       newDistances[i] += carRaceResult[i];
     }
     return newDistances;

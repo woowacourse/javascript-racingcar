@@ -2,7 +2,8 @@ const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
 const MESSAGES = require("../constant/Constant");
 const CarRaceGame = require("./CarRaceGame");
-const ErrorHandler = require("./ErrorHandler");
+const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
+
 
 class App {
   #carRace = new CarRaceGame();
@@ -14,7 +15,6 @@ class App {
   async #start() {
     try {
       const carNames = await InputView.readCarNames(MESSAGES.carText);
-      ErrorHandler.checkCarNames(carNames);
       this.#carRace.setCarNames(carNames.split(","));
       this.#repeat();
     } catch (e) {
@@ -26,7 +26,6 @@ class App {
   async #repeat() {
     try {
       const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber);
-      ErrorHandler.checkRepeatNumber(repeatNumber);
       this.#playGame(repeatNumber);
     } catch (e) {
       OutputView.printMessage(MESSAGES.repeatRangeError);
@@ -36,8 +35,9 @@ class App {
 
   #playGame(repeatNumber) {
     OutputView.printMessage(MESSAGES.resultTitle);
+    const carCount = this.#carRace.getCarNames().length;
     for (let i = 0; i < repeatNumber; i += 1) {
-      const carDistances = this.#carRace.updateRace();
+      const carDistances = this.#carRace.updateRace(CarRaceResultRandomGenerator.generate(carCount));
       OutputView.printRaceResult(this.#carRace.getCarNames(), carDistances);
     }
     const winners = this.#carRace.judgeWinners();
@@ -45,4 +45,6 @@ class App {
   }
 }
 
+const app = new App();
+app.play();
 module.exports = App;
