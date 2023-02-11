@@ -1,5 +1,5 @@
 const Utils = require("../Utils/Utils");
-const { GAME_MESSAGE } = require("../Constants");
+const { GAME_MESSAGE } = require("../Constants/Constants");
 const { INPUT_CAR_NAME, INPUT_TRY_COUNT } = GAME_MESSAGE;
 
 const InputView = {
