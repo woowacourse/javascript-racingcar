@@ -1,5 +1,5 @@
 const readline = require('readline');
-const { MESSAGE, RESULT_TYPE } = require('./constants');
+const { FORMATTING_TYPE, FORMAT } = require('./constants');
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -11,18 +11,22 @@ const View = {
     rl.question(question, callback);
   },
 
-  output: (data, type = '') => {
-    if (!type) return console.log(data);
+  output: (data, formattingType = '') => {
+    if (!formattingType) return console.log(data);
 
-    if (type === RESULT_TYPE.MOVING_LOG) {
+    if (formattingType === FORMATTING_TYPE.ERROR) {
+      return console.log(`${FORMAT.ERROR}${data}`);
+    }
+
+    if (formattingType === FORMATTING_TYPE.MOVING_LOG) {
       Object.entries(data).forEach(([key, value]) => {
-        console.log(MESSAGE.MOVING_LOG([key, value]));
+        console.log(`${key} : ${value ? FORMAT.DISTANCE.repeat(value) : ''}`);
       });
       return console.log();
     }
 
-    if (type === RESULT_TYPE.WINNERS) {
-      return console.log(MESSAGE.WINNERS(data));
+    if (formattingType === FORMATTING_TYPE.WINNERS) {
+      return console.log(`${data}${FORMAT.WINNERS}`);
     }
   },
 

@@ -1,7 +1,7 @@
 const { Service } = require('./Service');
-const { View } = require('./View');
 const { Validator } = require('./Validator');
-const { RESULT_TYPE, MESSAGE } = require('./constants');
+const { View } = require('./View');
+const { MESSAGE, FORMATTING_TYPE } = require('./constants');
 
 class Controller {
   #service;
@@ -20,7 +20,7 @@ class Controller {
       Validator.validateName(names);
       this.#service = new Service(names);
     } catch ({ message }) {
-      View.output(MESSAGE.ERROR(message));
+      View.output(message, FORMATTING_TYPE.ERROR);
       return this.askCarName();
     }
 
@@ -47,11 +47,11 @@ class Controller {
 
     for (let i = 0; i < tryCount; i++) {
       const movingLog = this.#service.getMovingLog();
-      View.output(movingLog, RESULT_TYPE.MOVING_LOG);
+      View.output(movingLog, FORMATTING_TYPE.MOVING_LOG);
     }
 
     const winners = this.#service.getWinners();
-    View.output(winners, RESULT_TYPE.WINNERS);
+    View.output(winners, FORMATTING_TYPE.WINNERS);
 
     this.exitGame();
   }
