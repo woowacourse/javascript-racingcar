@@ -1,6 +1,6 @@
 class RandomNumGenerator {
-  static generateNumber() {
-    return Math.floor(Math.random() * 10);
+  static generateNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 }
 

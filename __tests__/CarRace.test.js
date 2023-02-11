@@ -3,10 +3,10 @@ const CarRace = require('../src/Models/CarRace');
 const RandomNumGenerator = require('../src/Utils/RandomNumGenerator');
 
 const mockRandoms = numbers => {
-  RandomNumGenerator.generateNumber = jest.fn();
+  RandomNumGenerator.generateNumberInRange = jest.fn();
   numbers.reduce(
     (acc, number) => acc.mockReturnValueOnce(number),
-    RandomNumGenerator.generateNumber,
+    RandomNumGenerator.generateNumberInRange,
   );
 };
 

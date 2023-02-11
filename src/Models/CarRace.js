@@ -9,7 +9,7 @@ class CarRace {
 
   runOnce() {
     this.#cars.forEach(car => {
-      car.move(RandomNumGenerator.generateNumber());
+      car.move(RandomNumGenerator.generateNumberInRange(0, 10));
     });
   }
 
