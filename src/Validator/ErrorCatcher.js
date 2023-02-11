@@ -1,3 +1,5 @@
+const Utils = require("../Utils/Utils");
+
 const errorCatcher = (validator, callback) => {
   try {
     validator();
