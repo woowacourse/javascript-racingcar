@@ -3,7 +3,7 @@ const Car = require('./Car');
 const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
 const { RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE } = require('./constants/numbers');
 
-class CarManager {
+class OverallRacingGameManager {
   #cars;
 
   constructor(carNames) {
@@ -37,4 +37,4 @@ class CarManager {
   }
 }
 
-module.exports = CarManager;
+module.exports = OverallRacingGameManager;
