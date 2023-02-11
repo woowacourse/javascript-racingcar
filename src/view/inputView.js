@@ -14,9 +14,8 @@ const inputView = {
   },
   readAttempts: (callback) => {
     Console.readLine(GAME_MESSAGE.askAttempts, (attemptInput) => {
-      const attempt = Number(attemptInput);
-      const isNormal = errorHandler(validation.attempt, attempt);
-      if (isNormal) return callback(attempt);
+      const isNormal = errorHandler(validation.attempt, attemptInput);
+      if (isNormal) return callback(attemptInput);
       return inputView.readAttempts(callback);
     });
   },

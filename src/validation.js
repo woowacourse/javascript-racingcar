@@ -8,8 +8,8 @@ const validation = {
     validation.onlyAlphabet(carNames);
   },
   attempt: (attempts) => {
-    validation.onlyInt(Number(attempts));
-    validation.attemptRange(Number(attempts));
+    validation.onlyInt(attempts);
+    validation.attemptRange(attempts);
   },
   attemptRange: (attempt) => {
     if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {
@@ -17,10 +17,13 @@ const validation = {
     }
   },
   isNotNumber: (attempt) => {
+    if (typeof attempt !== 'number' && typeof attempt !== 'string') {
+      return true;
+    }
     return Number.isNaN(attempt);
   },
   isNotInteger: (attempt) => {
-    return !Number.isInteger(attempt);
+    return !Number.isInteger(Number(attempt));
   },
   onlyInt: (attempt) => {
     if (validation.isNotNumber(attempt) || validation.isNotInteger(attempt)) {

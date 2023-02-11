@@ -47,14 +47,15 @@ describe('Validation 테스트', () => {
   );
 
   test.each([
-    [[1.1], ERROR_MESSAGE.onlyInt],
-    [[2.2], ERROR_MESSAGE.onlyInt],
-    [[-1], ERROR_MESSAGE.attemptRange],
-    [[0], ERROR_MESSAGE.attemptRange],
-    [['제로'], ERROR_MESSAGE.onlyInt],
-    [['eus'], ERROR_MESSAGE.onlyInt],
-    [[21], ERROR_MESSAGE.attemptRange],
-    [[150], ERROR_MESSAGE.attemptRange],
+    [1.1, ERROR_MESSAGE.onlyInt],
+    [2.2, ERROR_MESSAGE.onlyInt],
+    [-1, ERROR_MESSAGE.attemptRange],
+    [0, ERROR_MESSAGE.attemptRange],
+    ['제로', ERROR_MESSAGE.onlyInt],
+    ['eus', ERROR_MESSAGE.onlyInt],
+    [21, ERROR_MESSAGE.attemptRange],
+    [150, ERROR_MESSAGE.attemptRange],
+    ['-1', ERROR_MESSAGE.attemptRange],
   ])(
     '시도 횟수 예외 상황 테스트: %i일 때 에러 %s 반환',
     (attemptCount, errorMessage) => {
