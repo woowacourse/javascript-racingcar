@@ -12,7 +12,7 @@ class RacingGame {
     this.#cars = [];
   }
 
-  setCarsName(cars) {
+  makeCarNameList(cars) {
     cars.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
