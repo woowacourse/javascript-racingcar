@@ -1,17 +1,17 @@
 const Car = require("../src/Car")
 
-describe("car_test", () => {
-    const car = new Car("val");    
+describe("Car객체 단위 테스트", () => {
+    const car = new Car("nave");    
 
-    test("차 이름 얻는 함수_getCarName()", () => {
-        expect(car.getCarName()).toEqual("val") ;
+    test("car 이름을 얻는 함수 테스트", () => {
+        expect(car.getCarName()).toEqual("nave") ;
     })
 
-    test("차 전진횟수 얻는 함수_getScore()", () => {
+    test("car의 현재 전진상태를 얻는 함수 테스트", () => {
         expect(car.getScore()).toEqual(0);
     })
 
-    test("차 전진횟수 얻는 함수_getScore()", () => {
+    test("car가 전진했을 때 전진횟수 증가시키는 함수 테스트", () => {
         car.go()
         expect(car.getScore()).toEqual(1);
     })    
