@@ -9,8 +9,8 @@ const utils = {
     console.log(message);
   },
 
-  readLine(query, callback) {
-    return rl.question(query, callback);
+  readLine(query) {
+    return rl.question(query);
   },
 
   close() {
