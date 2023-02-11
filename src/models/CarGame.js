@@ -4,8 +4,8 @@ class CarGame {
   #carList = [];
   #moveList = [];
 
-  initCarList(list) {
-    list.forEach((carName) => {
+  initCarList(carNames) {
+    carNames.forEach((carName) => {
       this.#carList.push(new Car(carName));
     });
   }

@@ -18,16 +18,16 @@ class CarGameController {
   }
 
   readCarNames() {
-    InputView.readCarName().then((input) => {
+    InputView.readCarNames().then((input) => {
       try {
-        const parsedCarName = CarNameParse(input);
+        const parsedCarNames = CarNameParse(input);
         functionPipe(
-          parsedCarName,
+          parsedCarNames,
           Validator.validateLength,
           Validator.validateOverlap,
           Validator.validateInvalidInput,
         );
-        return this.saveCarDatas(parsedCarName);
+        return this.saveCarDatas(parsedCarNames);
       } catch (error) {
         OutputView.printError(error.message);
         this.readCarNames();
@@ -35,8 +35,8 @@ class CarGameController {
     });
   }
 
-  saveCarDatas(parsedCarName) {
-    this.#carGame.initCarList(parsedCarName);
+  saveCarDatas(parsedCarNames) {
+    this.#carGame.initCarList(parsedCarNames);
     this.readTryCount();
   }
 
