@@ -14,6 +14,7 @@ module.exports = {
     'no-undef': 'off',
     'no-new': 'off',
     'lines-between-class-members': 'off',
+    'no-console': 'off',
   },
   parserOptions: {
     ecmaVersion: 13,
