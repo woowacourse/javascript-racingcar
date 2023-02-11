@@ -3,12 +3,12 @@ const CarRaceResultRandomGenerator = {
     const randomNumbers = Array(carCount)
       .fill("")
       .map(() => this.getSingleRandomNumber());
-    const raceRoundResults = randomNumbers.map((randomNumber) => (randomNumber >= 4 ? 1 : 0));
-    return raceRoundResults;
+    const raceResults = randomNumbers.map((randomNumber) => (randomNumber >= 4 ? 1 : 0));
+    return raceResults;
   },
 
   getSingleRandomNumber() {
-    const MAXIMUM_RANDOM_NUMBER = 9;
+    const MAXIMUM_RANDOM_NUMBER = 10;
     return Math.floor(Math.random() * MAXIMUM_RANDOM_NUMBER);
   },
 };

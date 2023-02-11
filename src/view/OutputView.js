@@ -3,7 +3,7 @@ const OutputView = {
     console.log(message);
   },
 
-  printRoundResult(carNames, carDistances) {
+  printRaceResult(carNames, carDistances) {
     for (let i = 0; i < carNames.length; i += 1) {
       console.log(`${carNames[i]} : ${"-".repeat(carDistances[i])}`);
     }
