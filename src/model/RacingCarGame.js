@@ -2,11 +2,9 @@ class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
     let carCount = 0;
     let carResult = '\n실행 결과\n';
-
-    for (const carName of carNamesMap.keys()) {
-      carResult += `${carName} : -\n`;
-    }
-
+    let defaultCarValue = [...carNamesMap.keys()].map(
+      carName => (carResult += `${carName} : -\n`)
+    );
     carResult += '\n';
 
     //게임 진행
