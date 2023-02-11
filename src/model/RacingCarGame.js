@@ -3,30 +3,18 @@ class RacingCarGame {
     let carCount = 0;
     let carResult = '\n실행 결과\n';
 
-    for (const carName of carNamesMap.keys()) {
-      carResult += `${carName} : -\n`;
-    }
-
-    carResult += '\n';
-
-    //TODO: 함수 분리
     while (carCount < totalTrialCount) {
-      carNamesMap.forEach((_, carName) => {
+      carNamesMap.forEach((position, carName) => {
         if (this.goForward()) {
-          carNamesMap.set(carName, carNamesMap.get(carName) + 1);
+          carNamesMap.set(carName, position + 1);
         }
+        carResult += `${carName} : ${'-'.repeat(position)}\n`
       });
 
-      for (const carName of carNamesMap.keys()) {
-        const forwardCount = carNamesMap.get(carName);
-        carResult += `${carName} : ${'-'.repeat(forwardCount)}\n`;
-      }
       carResult += '\n';
-
       carCount += 1;
     }
 
-    // 우승자 더하기
     carResult += this.getWinnerCar(carNamesMap);
     return carResult;
   }
@@ -46,8 +34,6 @@ class RacingCarGame {
       if (maxCarCount === count) result.push(carName);
     }
 
-    //pobi, honux가 최종 우승했습니다.
-    //결과 문자열 만들기
     return result.join(', ') + '이(가) 최종 우승했습니다.';
   }
 }

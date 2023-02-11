@@ -9,7 +9,6 @@ class Controller {
     this.outputView = new OutputView();
   }
 
-  //TODO: controller.execute (), App.play() 
   async execute() {
     const carNames = await this.inputView.readCarNames();
     const trialCount = await this.inputView.readCount();
