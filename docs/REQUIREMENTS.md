@@ -19,7 +19,7 @@
 # 리팩토링(피드백 반영) 목록
 
 - [x] 필드값이 존재하지 않는 class 인스턴스를 오브젝트로 변경한다.
-- [ ] Application Test 시 상황을 좀 더 상세히 저술한다.
+- [x] Application Test 시 상황을 좀 더 상세히 저술한다.
 - [x] Application Test 시 mock 함수를 이용하여 숫자를 넣었던 것을 모르는 사람이 읽어도 이해할 수 있도록 상수화 한다.
 - [ ] Application Test 시 given,when,then(준비,실행,단언)과 같이 세 개의 섹션으로 구분한다.
 - [ ] Car Test 시 2개 함수를 이용하여 테스트 설정이라면 beforeEach를 사용하여 테스트 한다.
