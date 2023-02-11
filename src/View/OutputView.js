@@ -22,7 +22,6 @@ const OutputView = {
     Console.print(
       `${winners.join(CONSTANTS.delimiter)}${RACE_MESSAGE.winnerResult}`,
     );
-    Console.close();
   },
 };
 

@@ -4,6 +4,7 @@ const CONSTANTS = require('../Constant/Constants');
 const Validator = require('../Utils/Validator');
 const Car = require('../Models/Car');
 const CarRace = require('../Models/CarRace');
+const Console = require('../Utils/Console');
 
 class CarRaceController {
   #carRace;
@@ -48,6 +49,7 @@ class CarRaceController {
 
   finishCarRace() {
     OutputView.printWinners(this.#carRace.getResult());
+    Console.close();
   }
 }
 
