@@ -4,9 +4,11 @@ const OutputView = {
   drawProgress(carNames, currentRace) {
     const tryCount = currentRace[0];
     for (const count in tryCount) {
-      carNames.map((val, idx) =>
+      carNames.map((carName, idx) =>
         Console.print(
-          val + ' : ' + currentRace[idx].slice(0, count + 1).join('')
+          `${carName} : ${currentRace[idx]
+            .slice(0, Number(count) + 1)
+            .join('')}`
         )
       );
       Console.print('');
