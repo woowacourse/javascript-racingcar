@@ -1,5 +1,4 @@
-
-
+const rl = require("./Readline");
 class OutputView {
   printResult(result) {
     console.log(result);
@@ -7,6 +6,10 @@ class OutputView {
 
   printError(error) {
     console.log(error.message)
+  }
+
+  close() {
+    rl.close();
   }
 }
 
