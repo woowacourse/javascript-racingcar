@@ -1,8 +1,8 @@
 const CONSOLE_ERROR_MESSAGE = {
-  numberOfArguments: 'arguments must be 2.',
-  isNotString: 'query must be string',
-  typeOfCallback: 'callback must be function',
-  callbackArguments: 'callback must have 1 argument',
+  numberOfArguments: '[ERROR] 인자는 두개만 가능합니다.',
+  isNotString: '[ERROR] 출력메세지는 문자열이어야만 합니다.',
+  typeOfCallback: '[ERROR] 콜백 타입은 함수 타입이어야만 합니다.',
+  callbackArguments: '[ERROR] 콜백인자는 하나어야만 합니다.',
 };
 
 const RACE_ERROR_MESSAGE = {
