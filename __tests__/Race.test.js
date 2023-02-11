@@ -1,4 +1,3 @@
-import Car from '../src/models/Car';
 import Race from '../src/models/Race';
 import Random from '../src/utils/Random';
 
@@ -12,7 +11,7 @@ const mockRandom = (randomValues) => {
 describe('Race 클래스 테스트 입니다.', () => {
   test('경주를 1회 진행하면 자동차들이 랜덤 값에 따라 움직이거나 멈춰있어야 한다.', () => {
     // given
-    const cars = ['pobi', 'crong'].map((carName) => new Car(carName));
+    const cars = ['pobi', 'crong'];
     const race = new Race(cars);
     mockRandom([8, 3]);
 
