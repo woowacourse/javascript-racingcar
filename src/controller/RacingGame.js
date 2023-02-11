@@ -44,10 +44,10 @@ class RacingGame {
   }
 
   makeCarMove(tryNumber) {
-    for (let num = 0; num < tryNumber; num++) {
+    Array.from({length:tryNumber}, ()=>{
       this.moveCar();
       OutputView.printCarMove(this.#cars);
-    }
+    })
     this.whoIsWinners(this.#cars);
     OutputView.printWinners(this.#winners);
   }
