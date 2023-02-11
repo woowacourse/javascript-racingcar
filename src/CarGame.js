@@ -1,43 +1,62 @@
 const { isMoving, randomNumberMaker } = require("./MovementIndicator");
-
 const { COMMA } = require("./Utils/Constants");
+const Car = require("./Car");
+const {
+  printResultMessage,
+  printCarMovement,
+  printWinner,
+} = require("./UI/OutputView");
+const Utils = require("./Utils/Utils");
 
 class CarGame {
   #carStatus;
-
+  #round;
   constructor() {
-    this.#carStatus = {};
+    this.#carStatus = new Map();
   }
 
-  getCarStatus() {
-    return this.#carStatus;
-  }
-
-  setCarStatus(carStatus) {
-    this.#carStatus = carStatus;
-  }
-
-  initializeCarStatus = (cars) => {
-    cars.forEach((car) => (this.#carStatus[car] = 0));
+  initializeGameStatus = (cars, round) => {
+    cars.forEach((car) => this.#carStatus.set(car, new Car(car)));
+    this.#round = round;
   };
 
-  cycleCarStatus(carStatus) {
-    for (const [name, count] of Object.entries(carStatus)) {
+  cycleCarStatus() {
+    for (const conostructor of this.#carStatus.values()) {
       const randomNumber = randomNumberMaker();
-      if (isMoving(randomNumber)) carStatus[name] = count + 1;
+      if (isMoving(randomNumber)) conostructor.move(1);
     }
-    this.setCarStatus(carStatus);
-    return carStatus;
+
+    return this.#carStatus.values();
   }
 
-  findWinner(carStatus) {
-    const max = Math.max(...Object.values(carStatus));
-    const winnerInfo = Object.entries(carStatus).filter(
-      ([_, count]) => count === max
+  findWinner() {
+    const max = Math.max(
+      ...[...this.#carStatus.values()].map(
+        (state) => state.getCarStatus()["position"],
+      ),
+    );
+    const winnerInfo = [...this.#carStatus.values()].filter(
+      (state) => state.getCarStatus()["position"] === max,
     );
 
-    return winnerInfo.map(([name]) => name).join(COMMA);
+    return [...winnerInfo]
+      .map((constructor) => constructor.getCarStatus()["name"])
+      .join(COMMA);
   }
+
+  showGameResult = () => {
+    printResultMessage();
+    this.showGameRound();
+    printWinner(this.findWinner());
+    Utils.close();
+  };
+
+  showGameRound = () => {
+    for (let idx = 0; idx < this.#round; idx++) {
+      const currentCarStatus = this.cycleCarStatus();
+      printCarMovement(currentCarStatus);
+    }
+  };
 }
 
 module.exports = CarGame;
