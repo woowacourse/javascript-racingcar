@@ -1,5 +1,4 @@
 const Random = require("./Random");
-const random = require("./Random");
 
 class Racing {
 
@@ -7,13 +6,12 @@ class Racing {
         this.car = car;
     }
 
-    checkRandomNumberOverFour() {
-        const randomNumber = Random.getRandomNumber()
+    checkRandomNumber(randomNumber) {
         return randomNumber >= 4
     }
 
-    raceEachCar() {
-        this.checkRandomNumberOverFour() && this.car.go()
+    raceEachCar(randomNumber) {
+        this.checkRandomNumber(randomNumber) && this.car.go()
     }
 
 }
