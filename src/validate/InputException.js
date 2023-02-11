@@ -2,7 +2,7 @@ const {
   isInLengthLimit,
   isValidString,
   isNumber,
-} = require('../utils/checkFor');
+} = require('../utils/checkForString');
 
 const InputException = {
   validateCarName: (carName) => {
