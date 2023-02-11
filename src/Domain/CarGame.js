@@ -3,36 +3,23 @@ const makeRandomNumber = require("../Utils/RandomNumberMaker");
 const { COMMA } = require("../Constants/Constants");
 
 class CarGame {
-  #carStatus;
+  #carStatus = new Map([]);
 
-  constructor() {
-    this.#carStatus = {};
-  }
+  initializeCarStatus = (carNames) => {
+    carNames.forEach((name) => this.#carStatus.set(name, 0));
+  };
 
-  getCarStatus() {
+  moveCar() {
+    [...this.#carStatus.entries()].forEach(([name, count]) => {
+      this.#carStatus.set(name, count + movingDistance(makeRandomNumber()));
+    });
+
     return this.#carStatus;
   }
 
-  setCarStatus(carStatus) {
-    this.#carStatus = carStatus;
-  }
-
-  initializeCarStatus = (cars) => {
-    cars.forEach((car) => (this.#carStatus[car] = 0));
-  };
-
-  moveCar(carStatus) {
-    for (const [name, count] of Object.entries(carStatus)) {
-      const randomNumber = makeRandomNumber();
-      carStatus[name] = count + movingDistance(randomNumber);
-    }
-    this.setCarStatus(carStatus);
-    return carStatus;
-  }
-
-  findWinner(carStatus) {
-    const farthestDistance = Math.max(...Object.values(carStatus));
-    const winnerInfo = Object.entries(carStatus).filter(
+  findWinner() {
+    const farthestDistance = Math.max(...this.#carStatus.values());
+    const winnerInfo = [...this.#carStatus].filter(
       ([_, count]) => count === farthestDistance
     );
 

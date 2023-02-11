@@ -52,9 +52,7 @@ class App {
 
   playRounds = () => {
     for (let idx = 0; idx < this.#round; idx++) {
-      const currentCarStatus = this.#games.cycleCarStatus(
-        this.#games.getCarStatus()
-      );
+      const currentCarStatus = this.#game.moveCar();
 
       printCarMovement(currentCarStatus);
     }
@@ -63,7 +61,7 @@ class App {
   showGameResult = () => {
     printResultMessage();
     this.playRounds();
-    printWinner(this.#games.findWinner(this.#games.getCarStatus()));
+    printWinner(this.#game.findWinner());
 
     Utils.close();
   };
