@@ -17,7 +17,7 @@ class Controller {
       carNames = await this.inputView.readCarNames();
     } catch(err) {
       this.outputView.printError(err);
-      this.execute();
+      return this.execute();
     }
 
     try {
@@ -26,9 +26,8 @@ class Controller {
       this.outputView.printError(err);
       trialCount = await this.inputView.readCount();
       const result = this.racingCarGame.getResult(carNames, trialCount);
-      this.outputView.printResult(result);
+      return this.outputView.printResult(result);
     }
-
     const result = this.racingCarGame.getResult(carNames, trialCount);
     this.outputView.printResult(result);
   }

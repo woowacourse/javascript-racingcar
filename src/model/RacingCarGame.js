@@ -33,7 +33,6 @@ class RacingCarGame {
 
   getWinnerCar(carNamesMap) {
     const result = [];
-    console.log('>>> carNamesMap:', carNamesMap);
     const maxCarCount = Math.max(...carNamesMap.values());
 
     for (const [carName, count] of carNamesMap.entries()) {
