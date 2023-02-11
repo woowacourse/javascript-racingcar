@@ -1,8 +1,8 @@
-const Controller = require('./controller/Controller.js')
+const RacingGame = require('./controller/Controller.js')
 class App {
     play() {
-        const controller = new Controller();
-        controller.start();
+        const racingGame = new RacingGame();
+        racingGame.start();
     }
 }
 

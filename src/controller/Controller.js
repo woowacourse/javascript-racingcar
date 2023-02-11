@@ -3,7 +3,7 @@ const InputView = require("../views/InputView");
 const OutputView = require("../views/OutputView");
 const { RANDOM } = require("../utils/Constant");
 
-class Controller {
+class RacingGame {
   #cars;
   #winners;
   #maxPosition;
@@ -82,4 +82,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = RacingGame;
