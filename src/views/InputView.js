@@ -34,7 +34,7 @@ class InputView {
     if (!Number.isInteger(raceStep)) {
       throw new Error(ErrorMessages.RACE_STEP_NOT_INTEGER);
     }
-    if (raceStep < 1) {
+    if (raceStep <= 0) {
       throw new Error(ErrorMessages.RACE_STEP_NOT_POSITIVE);
     }
   }
