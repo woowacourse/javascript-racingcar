@@ -12,28 +12,25 @@ class Service {
   }
 
   getMovingLog() {
-    const roundLog = {};
-
-    this.#cars.forEach((car) => {
+    return this.#cars.reduce((roundLog, car) => {
       const randomNumber = randomGenerator();
       car.move(randomNumber);
       const { name, distance } = car.getCarInfo();
       roundLog[name] = distance;
-    });
 
-    return roundLog;
+      return roundLog;
+    }, {});
   }
 
   getWinners() {
-    const cars = Array.from({ length: this.#cars.length }, (_, index) =>
+    const carsInfo = Array.from({ length: this.#cars.length }, (_, index) =>
       this.#cars[index].getCarInfo()
     );
-    const max = cars.sort((a, b) => b.distance - a.distance)[0].distance;
-    const winner = cars
+    const max = Math.max(...carsInfo.map((carInfo) => carInfo.distance));
+
+    return carsInfo
       .filter((car) => car.distance === max)
       .map(({ name }) => name);
-
-    return winner;
   }
 }
 

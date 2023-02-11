@@ -7,49 +7,47 @@ class Controller {
   #service;
 
   startGame() {
-    this.askCarName();
+    this.inputCarName();
   }
 
-  askCarName() {
-    View.input(MESSAGE.ASK_CAR_NAME, this.handleCarName.bind(this));
+  inputCarName() {
+    View.input(MESSAGE.ASK_CAR_NAME, this.onInputCarName.bind(this));
   }
 
-  handleCarName(inputValue) {
+  onInputCarName(inputValue) {
     try {
       const names = inputValue.replace(/ /g, '').split(',');
       Validator.validateName(names);
       this.#service = new Service(names);
     } catch ({ message }) {
       View.output(message, FORMATTING_TYPE.ERROR);
-      return this.askCarName();
+      return this.inputCarName();
     }
 
-    this.askTryCnt();
+    this.inputTryCount();
   }
 
-  askTryCnt() {
-    View.input(MESSAGE.ASK_TRY_COUNT, this.handleTryCnt.bind(this));
+  inputTryCount() {
+    View.input(MESSAGE.ASK_TRY_COUNT, this.onInputTryCount.bind(this));
   }
 
-  handleTryCnt(tryCount) {
+  onInputTryCount(inputValue) {
     try {
-      Validator.validateTryCnt(tryCount);
+      Validator.validateTryCnt(inputValue);
     } catch ({ message }) {
       View.output(MESSAGE.ERROR(message));
-      return this.askTryCnt();
+      return this.inputTryCount();
     }
 
-    this.printResult(tryCount);
+    this.printResult(inputValue);
   }
 
   printResult(tryCount) {
     View.output(MESSAGE.RESULT);
-
     for (let i = 0; i < tryCount; i++) {
       const movingLog = this.#service.getMovingLog();
       View.output(movingLog, FORMATTING_TYPE.MOVING_LOG);
     }
-
     const winners = this.#service.getWinners();
     View.output(winners, FORMATTING_TYPE.WINNERS);
 
