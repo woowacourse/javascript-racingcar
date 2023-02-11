@@ -13,7 +13,8 @@ class App {
 
   async #start() {
     try {
-      this.#carRace.setCarNames(await InputView.readCarNames(MESSAGES.carText));
+      const carNames = await InputView.readCarNames(MESSAGES.carText)
+      this.#carRace.setCarNames(carNames);
       this.#repeat();
     } catch (e) {
       OutputView.printMessage(MESSAGES.carTextError);
@@ -23,7 +24,8 @@ class App {
 
   async #repeat() {
     try {
-      this.#carRace.setRepeatNumber(await InputView.readRepeatNumber(MESSAGES.repeatNumber));
+      const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber)
+      this.#carRace.setRepeatNumber(repeatNumber);
       this.#playGame();
     } catch (e) {
       OutputView.printMessage(MESSAGES.repeatRangeError);
@@ -34,8 +36,8 @@ class App {
   #playGame() {
     OutputView.printMessage(MESSAGES.resultTitle);
     for (let i = 0; i < this.#carRace.getRepeatNumber(); i += 1) {
-      const temp = CarRaceGame.updateRace(this.#carRace.getCarDistances());
-      this.#carRace.setCarDistances(temp);
+      const carDistances = CarRaceGame.updateRace(this.#carRace.getCarDistances());
+      this.#carRace.setCarDistances(carDistances);
       OutputView.printRoundResult(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
     }
     const winners = CarRaceGame.judgeWinners(this.#carRace.getCarNames(), this.#carRace.getCarDistances());

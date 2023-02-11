@@ -1,6 +1,7 @@
 const readLine = require("../src/library/ReadLine");
 const InputView = require("../src/view/InputView");
 const MESSAGES = require("../src/constant/Constant");
+
 const mockQuestions = (answers) => {
   readLine.question = jest.fn();
   answers.reduce((acc, input) => {
