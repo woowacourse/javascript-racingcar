@@ -8,7 +8,7 @@ const { MESSAGE } = require("../utils/Constant");
  });
 
  const InputView = {
-   inputCarName(carsName) {
+   readCarName(carsName) {
      rl.question(MESSAGE.INPUT_CARNAME, (answer) => {
        if (!Validation.carNameValidate(answer))
          return this.inputCarName(carsName);
@@ -17,7 +17,7 @@ const { MESSAGE } = require("../utils/Constant");
      });
    },
 
-   inputNumber(tryNumber) {
+   readNumber(tryNumber) {
      rl.question(MESSAGE.INPUT_TRYNUMBER, (answer) => {
        if (!Validation.tryNumberValidate(answer))
          return this.inputNumber(tryNumber);

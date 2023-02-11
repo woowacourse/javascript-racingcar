@@ -15,25 +15,25 @@ class RacingGame {
   }
 
   start() {
-    InputView.inputCarName((answer) => {
+    InputView.readCarName((answer) => {
       const nameOfCars = answer.split(",");
 
-      this.makeCar(nameOfCars);
+      this.setCar(nameOfCars);
     });
   }
 
-  makeCar(carName) {
+  setCar(carName) {
     for (let len = 0; len < carName.length; len++) {
       let car = new Car();
       car.inputName(carName[len]);
       this.#cars.push(car);
     }
 
-    this.makeNumber();
+    this.inputNumber();
   }
 
-  makeNumber() {
-    InputView.inputNumber((answer) => {
+  inputNumber() {
+    InputView.readNumber((answer) => {
       let tryNumber = Number(answer);
       this.makeCarMove(tryNumber);
     });
