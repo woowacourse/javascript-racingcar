@@ -1,11 +1,6 @@
-const {
-  maximumCarNameLength,
-  minimumCarNameLength,
-  minimumCarQuantity,
-  minimumRaceRound,
-} = require('./constants/Constant');
+import { MAGIC_NUMBER } from './constants/Constant.js';
 
-class Validation {
+export default class Validation {
   static validateCarNames(names) {
     if (!Validation.#isCarQuantityValid(names)) {
       throw new Error(ERROR_MESSAGE.invalidCarQuantity);
@@ -21,12 +16,15 @@ class Validation {
   }
 
   static #isCarQuantityValid(names) {
-    return names.length >= minimumCarQuantity;
+    return names.length >= MAGIC_NUMBER.minimumCarQuantity;
   }
 
   static #isCarNameLengthValid(names) {
     return names.every((name) => {
-      return minimumCarNameLength <= name.length && maximumCarNameLength >= name.length;
+      return (
+        MAGIC_NUMBER.minimumCarNameLength <= name.length &&
+        MAGIC_NUMBER.maximumCarNameLength >= name.length
+      );
     });
   }
 
@@ -43,7 +41,7 @@ class Validation {
   }
 
   static #isRaceRoundValid(raceRound) {
-    return raceRound >= minimumRaceRound;
+    return raceRound >= MAGIC_NUMBER.minimumRaceRound;
   }
 }
 
@@ -53,5 +51,3 @@ const ERROR_MESSAGE = {
   duplicateCarName: `[ERROR] 중복되는 차 이름이 존재합니다.`,
   invalidGameRound: `[ERROR] 1 이상의 숫자를 입력하세요.`,
 };
-
-module.exports = Validation;

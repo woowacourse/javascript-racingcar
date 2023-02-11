@@ -1,7 +1,2 @@
-const InputView = require('./InputView');
-const OutputView = require('./OutputView');
-
-module.exports = {
-  InputView,
-  OutputView,
-};
+export { default as InputView } from './InputView.js';
+export { default as OutputView } from './OutputView.js';

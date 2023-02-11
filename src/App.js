@@ -1,7 +1,7 @@
-const RacingGame = require('./RacingGame');
-const Validation = require('./Validation');
-const { InputView, OutputView } = require('./view');
-const { inputErrorHandler, Console, randomNumberGenerator } = require('./utils');
+import RacingGame from './domain/RacingGame.js';
+import Validation from './Validation.js';
+import { InputView, OutputView } from './view/index.js';
+import { inputErrorHandler, Console, randomNumberGenerator } from './utils/index.js';
 
 class App {
   #racingGame;

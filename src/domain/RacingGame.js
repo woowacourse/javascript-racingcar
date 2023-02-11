@@ -1,7 +1,7 @@
-const Car = require('./Car');
-const { minimumMovableNumber } = require('./constants/Constant');
+import Car from './Car.js';
+import { MAGIC_NUMBER } from '../constants/Constant.js';
 
-class RacingGame {
+export default class RacingGame {
   #cars;
   #round;
 
@@ -14,7 +14,7 @@ class RacingGame {
     this.#cars.forEach((car) => {
       const randomNumber = randomNumberGenerator();
 
-      if (randomNumber >= minimumMovableNumber) {
+      if (randomNumber >= MAGIC_NUMBER.minimumMovableNumber) {
         car.move();
       }
     });
@@ -45,5 +45,3 @@ class RacingGame {
     return this.#round;
   }
 }
-
-module.exports = RacingGame;

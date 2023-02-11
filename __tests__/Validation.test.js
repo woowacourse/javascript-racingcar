@@ -1,4 +1,4 @@
-const Validation = require('../src/Validation');
+import Validation from '../src/Validation.js';
 
 describe('Validation.validateCarNames', () => {
   test('최소 자동차 수 조건을 만족하지 않는 경우, 에러가 발생한다.', () => {

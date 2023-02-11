@@ -8,4 +8,4 @@ const Converter = {
   },
 };
 
-module.exports = Converter;
+export default Converter;

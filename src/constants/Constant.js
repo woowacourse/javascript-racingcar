@@ -6,4 +6,4 @@ const MAGIC_NUMBER = {
   minimumMovableNumber: 4,
 };
 
-module.exports = MAGIC_NUMBER;
+export { MAGIC_NUMBER };
