@@ -16,11 +16,11 @@ class RacingController {
       const carArr = carNames.split(',');
 
       this.#racingGame.makeCarNameList(carArr);
-      this.checkValidateCarNames(carArr);
+      this.judgeCarNamesProgress(carArr);
     });
   }
 
-  checkValidateCarNames(carArr) {
+  judgeCarNamesProgress(carArr) {
     try {
       InputValidator.validateCarNames(carArr);
       this.inputTryCount();
@@ -35,11 +35,11 @@ class RacingController {
       this.#racingGame.setTryCount(tryCount);
 
       OutputView.printWhiteSpace();
-      this.checkValidateTryCount(tryCount);
+      this.judgeTryCountProgress(tryCount);
     });
   }
 
-  checkValidateTryCount(tryCount) {
+  judgeTryCountProgress(tryCount) {
     try {
       InputValidator.validateTryCount(tryCount);
       this.conductProcess();
