@@ -9,11 +9,11 @@ class Car {
     this.#position = CONSTANTS.defaultPostion;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getPosition() {
+  get position() {
     return this.#position;
   }
 

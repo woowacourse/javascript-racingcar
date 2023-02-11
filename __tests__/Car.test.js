@@ -12,5 +12,5 @@ test('Car Class 테스트', () => {
   });
 
   // then
-  expect(car.getPosition()).toEqual(resultPosition);
+  expect(car.position).toEqual(resultPosition);
 });

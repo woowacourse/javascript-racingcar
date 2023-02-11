@@ -16,7 +16,7 @@ class CarRace {
   getResult() {
     const result = new Map();
     this.#cars.forEach(car => {
-      result.set(car.getName(), car.getPosition());
+      result.set(car.name, car.position);
     });
 
     return result;
