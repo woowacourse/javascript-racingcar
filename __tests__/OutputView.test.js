@@ -32,7 +32,7 @@ describe('OutputView 테스트 입니다.', () => {
     expectLogContains(outputs, ['pobi, conan가 최종 우승했습니다.']);
   });
 
-  test('', () => {
+  test('경주 진행 중 출력되는 자동차들의 위치가 잘 출력되는지', () => {
     // given
     const logSpy = getLogSpy();
     const cars = ['pobi', 'conan'].map((carName) => new Car(carName));
