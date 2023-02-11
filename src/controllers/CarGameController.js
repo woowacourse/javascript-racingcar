@@ -37,7 +37,7 @@ class CarGameController {
 
   saveCarDatas(parsedCarName) {
     this.#carGame.initCarList(parsedCarName);
-    return this.readTryCount();
+    this.readTryCount();
   }
 
   readTryCount() {
@@ -55,7 +55,7 @@ class CarGameController {
 
   requestMoveCars(tryCount) {
     this.#carGame.moveCars(tryCount, getRandomNumber);
-    return this.printResult();
+    this.printResult();
   }
 
   printResult() {
@@ -66,7 +66,7 @@ class CarGameController {
       OutputView.printMoveResult(carNames, carMoves);
     });
 
-    return this.printWinners(carNames, moveDatas[moveDatas.length - 1]);
+    this.printWinners(carNames, moveDatas[moveDatas.length - 1]);
   }
 
   printWinners(carNames, carMoves) {
@@ -75,7 +75,7 @@ class CarGameController {
     OutputView.printMoveResult(carNames, carMoves);
     OutputView.printWinner(winnerList);
 
-    return this.gameEnd();
+    this.gameEnd();
   }
 
   gameEnd() {
