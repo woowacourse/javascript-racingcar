@@ -39,7 +39,7 @@ class CarRaceController {
   startCarRace(count) {
     OutputView.printResultMessage();
     Array.from({ length: count }).forEach(() => {
-      this.#carRace.go();
+      this.#carRace.runOnce();
       OutputView.printRaceResult(this.#carRace.getResult());
     });
 

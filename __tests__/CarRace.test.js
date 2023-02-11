@@ -22,7 +22,7 @@ test('CarRace Class 테스트', () => {
 
   // when
   for (let i = 0; i < tryCount; i += 1) {
-    carRace.go();
+    carRace.runOnce();
   }
 
   // then
