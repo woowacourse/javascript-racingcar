@@ -1,24 +1,22 @@
 const { Car } = require('../src/Car');
-const { randomGenerator } = require('../src/randomGenerator');
 
-const mockRandoms = (numbers) => {
-  randomGenerator.generateNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, randomGenerator.generateNumber);
-};
+describe('Car 모델의 move 메서드 테스트', () => {
+  let car;
+  beforeEach(() => {
+    car = new Car('testCar');
+  });
 
-test('Car 모델 테스트', () => {
-  const randomNumbers = [3, 7];
-  const results = [0, 1];
-  mockRandoms(randomNumbers);
+  test.each([4, 9])('4 이상의 값에서 이동하다', (randomNumber) => {
+    car.move(randomNumber);
+    const carPosition = car.getCarInfo().position;
 
-  randomNumbers.forEach((_, index) => {
-    const car = new Car('testCar');
-    car.move();
+    expect(carPosition).toBe(1);
+  });
 
-    const carInfo = car.getCarInfo();
-    expect(carInfo.name).toEqual('testCar');
-    expect(carInfo.movingLog).toBe(results[index]);
+  test.each([0, 3])('3 이하의 값에서 이동하지 않는다', (randomNumber) => {
+    car.move(randomNumber);
+    const carPosition = car.getCarInfo().position;
+
+    expect(carPosition).toBe(0);
   });
 });

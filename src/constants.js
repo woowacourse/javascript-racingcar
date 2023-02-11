@@ -11,9 +11,20 @@ const MESSAGE = {
   RESULT: '\n실행 결과',
 };
 
+const REGEX = {
+  CAR_NAME: /^[a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣0-9]{1,5}$/,
+  TRY_CNT: /^[1-9][0-9]*$/,
+};
+
+const ERROR_MESSAGE = {
+  INVALID_NAME: '5자 이하 영어,한글,숫자의 조합을 입력하세요',
+  DUPLICATE_NAME: '중복된 이름의 자동차가 있습니다',
+  INVALID_NUMBER: '1이상의 양의 정수를 입력하세요',
+};
+
 const FORMAT = {
   ERROR: 'ERROR: ',
-  DISTANCE: '-',
+  POSITION: '-',
   WINNERS: '가 최종 우승했습니다.',
 };
 
@@ -27,4 +38,6 @@ module.exports = {
   MESSAGE,
   FORMAT,
   GAME_VALUE,
+  REGEX,
+  ERROR_MESSAGE,
 };

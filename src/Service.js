@@ -15,9 +15,9 @@ class Service {
     return this.#cars.reduce((roundLog, car) => {
       const randomNumber = randomGenerator();
       car.move(randomNumber);
-      const { name, distance } = car.getCarInfo();
-      roundLog[name] = distance;
 
+      const { name, position } = car.getCarInfo();
+      roundLog[name] = position;
       return roundLog;
     }, {});
   }
@@ -26,10 +26,10 @@ class Service {
     const carsInfo = Array.from({ length: this.#cars.length }, (_, index) =>
       this.#cars[index].getCarInfo()
     );
-    const max = Math.max(...carsInfo.map((carInfo) => carInfo.distance));
+    const max = Math.max(...carsInfo.map((carInfo) => carInfo.position));
 
     return carsInfo
-      .filter((car) => car.distance === max)
+      .filter((car) => car.position === max)
       .map(({ name }) => name);
   }
 }

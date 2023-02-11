@@ -20,7 +20,7 @@ const View = {
 
     if (formattingType === FORMATTING_TYPE.MOVING_LOG) {
       Object.entries(data).forEach(([key, value]) => {
-        console.log(`${key} : ${value ? FORMAT.DISTANCE.repeat(value) : ''}`);
+        console.log(`${key} : ${value ? FORMAT.POSITION.repeat(value) : ''}`);
       });
       return console.log();
     }
