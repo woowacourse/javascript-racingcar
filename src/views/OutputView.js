@@ -4,7 +4,7 @@ import Console from '../utils/Console';
 class OutputView {
   static printWinners(winnerCars) {
     const winners = winnerCars.map((car) => car.getName()).join(', ');
-    Console.print(`${winners}${Messages.PRINT_WINNERS_SUFFIX}`);
+    Console.printf(Messages.PRINT_WINNERS, winners);
   }
 
   static printRaceStateTitle() {

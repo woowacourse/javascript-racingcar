@@ -1,4 +1,5 @@
 import { ErrorMessages, Messages } from '../constants/Messages';
+import AppError from '../errors/AppError';
 import Console from '../utils/Console';
 import OutputView from './OutputView';
 
@@ -14,8 +15,7 @@ class InputView {
   }
 
   static #validateCarNames(carNames) {
-    if (!carNames.every((carName) => carName.length <= 5)) {
-      throw new Error(ErrorMessages.CAR_NAME_LENGTH_LIMIT);
+      throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
     }
   }
 
@@ -32,10 +32,10 @@ class InputView {
 
   static #validateRaceStep(raceStep) {
     if (!Number.isInteger(raceStep)) {
-      throw new Error(ErrorMessages.RACE_STEP_NOT_INTEGER);
+      throw new AppError(ErrorMessages.RACE_STEP_NOT_INTEGER);
     }
     if (raceStep <= 0) {
-      throw new Error(ErrorMessages.RACE_STEP_NOT_POSITIVE);
+      throw new AppError(ErrorMessages.RACE_STEP_NOT_POSITIVE);
     }
   }
 
