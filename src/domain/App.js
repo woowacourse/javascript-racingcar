@@ -2,6 +2,7 @@ const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
 const MESSAGES = require("../constant/Constant");
 const CarRaceGame = require("./CarRaceGame");
+const ErrorHandler = require("./ErrorHandler");
 
 class App {
   #carRace = new CarRaceGame();
@@ -12,8 +13,9 @@ class App {
 
   async #start() {
     try {
-      const carNames = await InputView.readCarNames(MESSAGES.carText)
-      this.#carRace.setCarNames(carNames);
+      const carNames = await InputView.readCarNames(MESSAGES.carText);
+      ErrorHandler.checkCarNames(carNames);
+      this.#carRace.setCarNames(carNames.split(","));
       this.#repeat();
     } catch (e) {
       OutputView.printMessage(MESSAGES.carTextError);
@@ -23,7 +25,8 @@ class App {
 
   async #repeat() {
     try {
-      const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber)
+      const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber);
+      ErrorHandler.checkRepeatNumber(repeatNumber);
       this.#playGame(repeatNumber);
     } catch (e) {
       OutputView.printMessage(MESSAGES.repeatRangeError);
