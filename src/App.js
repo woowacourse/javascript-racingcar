@@ -10,7 +10,7 @@ const {
   inputCarNameValidator,
   tryCountValidator,
 } = require("./Validator/Validator");
-const { hasError } = require("./Validator/ErrorHandler");
+const { errorCatcher } = require("./Validator/ErrorCatcher");
 
 class App {
   #games;
@@ -32,7 +32,7 @@ class App {
   inputCarNameCallback = (names) => {
     const cars = this.splitCarNames(names);
 
-    const isValidated = hasError(
+    const isValidated = errorCatcher(
       () => inputCarNameValidator(cars),
       () => readCarName(this.inputCarNameCallback)
     );
@@ -43,7 +43,7 @@ class App {
   };
 
   readTryCountCallback = (count) => {
-    const isValidated = hasError(
+    const isValidated = errorCatcher(
       () => tryCountValidator(count),
       () => readTryCount(this.readTryCountCallback)
     );

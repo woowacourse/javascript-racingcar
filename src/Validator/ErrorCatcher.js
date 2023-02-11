@@ -1,4 +1,4 @@
-const hasError = (validator, callback) => {
+const errorCatcher = (validator, callback) => {
   try {
     validator();
   } catch (error) {
@@ -9,4 +9,4 @@ const hasError = (validator, callback) => {
   return false;
 };
 
-module.exports = { hasError };
+module.exports = { errorCatcher };
