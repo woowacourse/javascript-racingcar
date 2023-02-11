@@ -86,11 +86,11 @@
 ├── docs
 │ ├── REQUIREMENTS.md
 ├── src
-│ ├── libs
+│ ├── util
 │ │ ├── Console.js
 │ │ ├── Constant.js
 │ │ ├── GenerateRandomNumber.js
-│ ├── model
+│ ├── domain
 │ │ ├── Car.js
 │ │ ├── Validator.js
 │ │ ├── GameManager.js

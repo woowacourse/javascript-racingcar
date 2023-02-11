@@ -1,5 +1,5 @@
-const Console = require("../lib/Console");
-const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require("../lib/Constant");
+const Console = require("../util/Console");
+const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require("../util/Constant");
 
 const OutputView = {
   printErrorMessage(error) {

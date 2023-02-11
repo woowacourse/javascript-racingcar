@@ -1,4 +1,4 @@
-const { MESSAGE, REGEXR } = require("../lib/Constant");
+const { MESSAGE, REGEXR } = require("../util/Constant");
 
 const Validator = {
   carName(string) {

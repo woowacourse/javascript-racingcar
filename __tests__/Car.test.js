@@ -1,5 +1,5 @@
-const Car = require("../src/model/Car.js");
-const GameManager = require("../src/model/GameManager.js");
+const Car = require("../src/domain/Car.js");
+const GameManager = require("../src/domain/GameManager.js");
 
 describe("Car.js에 대한 테스트 코드", () => {
   test.each([

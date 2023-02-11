@@ -1,5 +1,5 @@
-const { MESSAGE } = require("../src/lib/Constant.js");
-const Validator = require("../src/model/Validator.js");
+const { MESSAGE } = require("../src/util/Constant.js");
+const Validator = require("../src/domain/Validator.js");
 
 describe("자동차 이름 입력값에 대한 유효성 검사", () => {
   test.each([
