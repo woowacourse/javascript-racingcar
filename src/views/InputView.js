@@ -15,6 +15,8 @@ class InputView {
   }
 
   static #validateCarNames(carNames) {
+    const isEveryCarNameValid = carNames.every((carName) => carName.length <= 5);
+    if (!isEveryCarNameValid) {
       throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
     }
   }
