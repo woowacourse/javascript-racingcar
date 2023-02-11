@@ -5,9 +5,8 @@ const rl = readlinePromises.createInterface({
 });
 
 const InputView = {
-  async readline(text) {
-    const input = await rl.question(text);
-    return input;
+  readline(text) {
+    return rl.question(text);
   },
 };
 
