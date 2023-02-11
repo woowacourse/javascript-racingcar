@@ -1,23 +1,28 @@
 class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
-    let carCount = 0;
     let carResult = '\n실행 결과\n';
-    let defaultCarValue = [...carNamesMap.keys()];
-    defaultCarValue.map(carName => (carResult += `${carName} : -\n`));
-    carResult += '\n';
+    carResult += this.defaultRacingCarGame(carNamesMap);
+    carResult += this.generateRacingCarGame(carNamesMap, totalTrialCount);
+    carResult += this.getWinnerCar(carNamesMap);
+    return carResult;
+  }
 
-    while (carCount < totalTrialCount) {
-      defaultCarValue.map(carName => {
-        if (this.goForward()) {
-          carNamesMap.set(carName, carNamesMap.get(carName) + 1);
-        }
-        carResult += `${carName} : ${'-'.repeat(carNamesMap.get(carName))}\n`;
+  generateRacingCarGame(carNamesMap, totalTrialCount) {
+    let generateCars = '';
+    for (let count = 0; count < totalTrialCount; count++) {
+      [...carNamesMap.keys()].map(carName => {
+        if (this.goForward()) carNamesMap.set(carName, carNamesMap.get(carName) + 1);
+        generateCars += `${carName} : ${'-'.repeat(carNamesMap.get(carName))}\n`;
       });
-      carResult += '\n';
-      carCount++;
+      generateCars += '\n';
     }
+    return generateCars;
+  }
 
-    return (carResult += this.getWinnerCar(carNamesMap));
+  defaultRacingCarGame(carNamesMap) {
+    let defaultCars = '';
+    [...carNamesMap.keys()].map(carName => (defaultCars += `${carName} : -\n`));
+    return `${defaultCars}\n`;
   }
 
   goForward() {
@@ -27,13 +32,10 @@ class RacingCarGame {
   getWinnerCar(carNamesMap) {
     const result = [];
     const maxCarCount = Math.max(...carNamesMap.values());
-
     for (const car of carNamesMap) {
       const [carName, count] = car;
-
       if (maxCarCount === count) result.push(carName);
     }
-
     return result.join(', ') + '이(가) 최종 우승했습니다.';
   }
 }
