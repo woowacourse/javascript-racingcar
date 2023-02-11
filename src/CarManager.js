@@ -4,11 +4,9 @@ const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
 const { RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE } = require('./constants/numbers');
 
 class OverallRacingGameManager {
-  #cars;
+  #cars = [];
 
   constructor(carNames) {
-    this.#cars = [];
-
     carNames.forEach((singleCarName) => {
       this.#cars.push(new Car(singleCarName));
     });
