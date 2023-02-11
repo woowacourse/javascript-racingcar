@@ -1,25 +1,39 @@
 const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
+const CarRace = require("./CarRace");
 
-const CarRaceGame = {
-  updateRace(carDistances) {
-    const newDistances = carDistances;
-    const roundRaceResult = CarRaceResultRandomGenerator.generate(carDistances.length);
+class CarRaceGame {
+  #carNames;
+
+  #carDistances;
+
+  setCarNames(carNames) {
+    this.#carNames = carNames;
+    this.#carDistances = Array(this.#carNames.length).fill(0);
+  }
+
+  getCarNames() {
+    return this.#carNames;
+  }
+
+  updateRace() {
+    const newDistances = this.#carDistances;
+    const carRaceResult = CarRaceResultRandomGenerator.generate(carDistances.length);
     for (let i = 0; i < carDistances.length; i += 1) {
-      newDistances[i] += roundRaceResult[i];
+      newDistances[i] += carRaceResult[i];
     }
     return newDistances;
-  },
+  }
 
-  judgeWinners(carNames, carDistances) {
+  judgeWinners() {
     const winners = [];
-    const maxDistance = Math.max(...carDistances);
-    for (let i = 0; i < carDistances.length; i += 1) {
-      if (carDistances[i] === maxDistance) {
-        winners.push(carNames[i]);
+    const maxDistance = Math.max(...this.#carDistances);
+    for (let i = 0; i < this.#carDistances.length; i += 1) {
+      if (this.#carDistances[i] === maxDistance) {
+        winners.push(this.#carNames[i]);
       }
     }
-    return winners.join(', ');
+    return winners.join(", ");
   }
-};
+}
 
 module.exports = CarRaceGame;
