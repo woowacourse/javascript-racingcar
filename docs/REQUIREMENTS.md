@@ -21,7 +21,6 @@
 - [x] 필드값이 존재하지 않는 class 인스턴스를 오브젝트로 변경한다.
 - [x] Application Test 시 상황을 좀 더 상세히 저술한다.
 - [x] Application Test 시 mock 함수를 이용하여 숫자를 넣었던 것을 모르는 사람이 읽어도 이해할 수 있도록 상수화 한다.
-- [ ] Car Test 시 2개 함수를 이용하여 테스트 설정이라면 beforeEach를 사용하여 테스트 한다. X (비동기 함수가 아니기 때문에)
 - [x] Car Test 시 Array.prototype을 사용했던 것을 2개 함수를 실행하여 테스트 설정으로 변경한다.
 - [x] Validation Test 시 어떤 상황에서 어떤 에러 문구가 나오는 지 세부적으로 테스트 한다.
 - [x] App.js와 Controller의 play()가 중첩되는 상황을 변경한다.
@@ -30,4 +29,6 @@
 - [x] 자동차 이름을 받아 모델을 생성할 때 forEach에서 map으로 변경한다.
 - [x] 가장 멀리 진행된 자동차를 Math.max 메서드를 이용해 계산한다.
 - [x] 우승자를 계산할 때 forEach에서 reduce로 변경한다.
-- [x] utils 함수에서 isMove 함수를 Car Model로 이동한다. (자동차 관련 로직이기 때문에)
+- [x] utils 함수에서 isMove 함수를 Car Model로 이동한다. (자동차 이동 관련 로직이기 때문에)
+- [x] printGameProgress의 인자를 3개에서 2개로 변경하고 공백을 출력하는 기능을 분리한다.
+<!-- - [ ] Car Test 시 2개 함수를 이용하여 테스트 설정이라면 beforeEach를 사용하여 테스트 한다. X (비동기 함수가 아니기 때문에) -->
