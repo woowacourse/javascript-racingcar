@@ -15,32 +15,32 @@ const { errorCatcher } = require("./Validator/ErrorCatcher");
 const CarGame = require("./Domain/CarGame");
 
 class App {
-  #games = new CarGame();
+  #game = new CarGame();
   #round = 0;
 
   play() {
-    readCarName(this.inputCarNameCallback);
+    readCarName(this.acceptCarNames);
   }
 
-  inputCarNameCallback = (names) => {
-    const cars = splitAndTrimString(names);
+  acceptCarNames = (names) => {
+    const carNames = splitAndTrimString(names);
 
     errorCatcher(
-      () => inputCarNameValidator(cars),
-      () => readCarName(this.inputCarNameCallback),
-      () => this.acceptValidCarNames(cars)
+      () => inputCarNameValidator(carNames),
+      () => readCarName(this.acceptCarNames),
+      () => this.acceptValidCarNames(carNames)
     );
   };
 
-  acceptValidCarNames(cars) {
-    this.#game.initializeCarStatus(cars);
+  acceptValidCarNames(carNames) {
+    this.#game.initializeCarStatus(carNames);
     readTryCount(this.acceptTryCount);
   }
 
-  readTryCountCallback = (count) => {
+  acceptTryCount = (count) => {
     errorCatcher(
       () => tryCountValidator(count),
-      () => readTryCount(this.readTryCountCallback),
+      () => readTryCount(this.acceptTryCount),
       () => this.acceptValidTryCount(count)
     );
   };
@@ -50,14 +50,7 @@ class App {
     this.showGameResult(count);
   }
 
-  showGameResult = () => {
-    printResultMessage();
-    this.showGameRound();
-    printWinner(this.#games.findWinner(this.#games.getCarStatus()));
-    Utils.close();
-  };
-
-  showGameRound = () => {
+  playRounds = () => {
     for (let idx = 0; idx < this.#round; idx++) {
       const currentCarStatus = this.#games.cycleCarStatus(
         this.#games.getCarStatus()
@@ -65,6 +58,14 @@ class App {
 
       printCarMovement(currentCarStatus);
     }
+  };
+
+  showGameResult = () => {
+    printResultMessage();
+    this.playRounds();
+    printWinner(this.#games.findWinner(this.#games.getCarStatus()));
+
+    Utils.close();
   };
 }
 
