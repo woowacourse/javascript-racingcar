@@ -11,7 +11,7 @@ class RacingController {
     this.#racingGame = new RacingGame();
   }
 
-  inputCarName() {
+  setCarName() {
     InputView.readCarName((carNames) => {
       const carArr = carNames.split(',');
 
@@ -23,16 +23,16 @@ class RacingController {
   judgeCarNamesProgress(carArr) {
     try {
       InputValidator.validateCarNames(carArr);
-      this.inputTryCount();
+      this.setTryCount();
     } catch (error) {
       IO.print(error);
-      this.inputCarName();
+      this.setCarName();
     }
   }
 
-  inputTryCount() {
+  setTryCount() {
     InputView.readTryCount((tryCount) => {
-      this.#racingGame.setTryCount(tryCount);
+      this.#racingGame.getTryCount(tryCount);
 
       OutputView.printWhiteSpace();
       this.judgeTryCountProgress(tryCount);
@@ -45,7 +45,7 @@ class RacingController {
       this.conductProcess();
     } catch (error) {
       IO.print(error);
-      this.inputTryCount();
+      this.setTryCount();
     }
   }
 

@@ -18,8 +18,8 @@ class RacingGame {
     });
   }
 
-  setTryCount(tryCount) {
-    this.#tryCount = tryCount;
+  getTryCount(tryCount) {
+    return (this.#tryCount = tryCount);
   }
 
   judgeMove(randomNumber, car) {
