@@ -14,25 +14,25 @@ class CarRaceController {
   }
 
   getCarName() {
-    InputView.readCarName(carName => {
-      const splitCarName = carName.split(CONSTANTS.comma);
+    InputView.readCarName(carNameString => {
+      const splitCarName = carNameString.split(CONSTANTS.comma);
       CarRaceValidator.validateNamesOfCars(splitCarName);
+      splitCarName.forEach(name => {
+        CarRaceValidator.validateCarName(name);
+      });
       this.createCar(splitCarName);
     });
   }
 
   createCar(carNames) {
-    const cars = carNames.map(name => {
-      CarRaceValidator.validateCarName(name);
-      return new Car(name);
-    });
-    this.getTryCount(cars);
+    const cars = carNames.map(name => new Car(name));
+    this.#carRace = new CarRace(cars);
+    this.getTryCount();
   }
 
-  getTryCount(cars) {
+  getTryCount() {
     InputView.readTryCount(count => {
       CarRaceValidator.validateTryCount(count);
-      this.#carRace = new CarRace(cars);
       this.startCarRace(count);
     });
   }
