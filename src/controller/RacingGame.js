@@ -39,20 +39,19 @@ class RacingGame {
   inputNumber() {
     InputView.readNumber((answer) => {
       let tryNumber = Number(answer);
-      this.makeCarMove(tryNumber);
+      this.race(tryNumber);
     });
   }
 
-  makeCarMove(tryNumber) {
+  race(tryNumber) {
     Array.from({length:tryNumber}, ()=>{
-      this.moveCar();
+      this.runCar();
       OutputView.printCarMove(this.#cars);
     })
-    this.whoIsWinners(this.#cars);
-    OutputView.printWinners(this.#winners);
+    this.whoIsWinners();
   }
 
-  moveCar() {
+  runCar() {
     for (let car of this.#cars) {
       car.decideGoAndStop(this.getRandomNumber());
     }
@@ -64,10 +63,15 @@ class RacingGame {
     );
   }
 
-  whoIsWinners(cars) {
-    for (let car of cars) {
+  whoIsWinners() {
+    for (let car of this.#cars) {
       this.comparedCars(car);
     }
+    this.showWinners(this.#winners)
+  }
+
+  showWinners(winner){
+    OutputView.printWinners(winner);
   }
 
   comparedCars(car) {
