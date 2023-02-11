@@ -1,7 +1,7 @@
 const Car = require("../model/Car");
-const InputView = require("../views/InputView");
 const OutputView = require("../views/OutputView");
 const { RANDOM } = require("../utils/Constant");
+const InputView = require("../views/InputView");
 
 class Controller {
   #cars;
@@ -14,43 +14,17 @@ class Controller {
     this.#maxPosition = 0;
   }
 
-  start() {
-    InputView.inputCarName((answer) => {
-      const nameOfCars = answer.split(",");
-
-      this.makeCar(nameOfCars);
-    });
-  }
-
-  makeCar(carNames) {
-    for (let len = 0; len < carNames.length; len++) {
-      let car = new Car();
-      car.inputName(carNames[len]);
+  makeCars(carNames) {
+    carNames.forEach((name) => {
+      let car = new Car(name);
       this.#cars.push(car);
-    }
-
-    this.makeNumber();
-  }
-
-  makeNumber() {
-    InputView.inputNumber((answer) => {
-      const tryNumber = Number(answer);
-      this.makeCarMove(tryNumber);
     });
   }
 
-  makeCarMove(tryNumber) {
+  moveCars(tryNumber) {
     for (let num = 0; num < tryNumber; num++) {
-      this.moveCar();
-      OutputView.printCarMove(this.#cars);
-    }
-    this.whoIsWinners(this.#cars);
-    OutputView.printWinners(this.#winners);
-  }
-
-  moveCar() {
-    for (let car of this.#cars) {
-      car.decideGoAndStop(this.getRandomNumber());
+      this.#cars.forEach((car) => car.decideGoAndStop(this.getRandomNumber()));
+      this.printCarsMove();
     }
   }
 
@@ -60,10 +34,8 @@ class Controller {
     );
   }
 
-  whoIsWinners(cars) {
-    for (let car of cars) {
-      this.comparedCars(car);
-    }
+  whoIsWinners() {
+    this.#cars.forEach((car) => this.comparedCars(car));
   }
 
   comparedCars(car) {
@@ -77,7 +49,19 @@ class Controller {
     }
   }
 
-  getWinner() {
+  printCarsMove() {
+    OutputView.printCarMove(this.#cars);
+  }
+
+  printWinners() {
+    OutputView.printWinners(this.#winners);
+  }
+
+  quit() {
+    InputView.close();
+  }
+
+  get winners() {
     return this.#winners;
   }
 }

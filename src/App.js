@@ -1,8 +1,14 @@
 const Controller = require("./controller/Controller.js");
+const InputView = require("./views/InputView");
 class App {
-  play() {
+  async play() {
     const controller = new Controller();
-    controller.start();
+
+    controller.makeCars(await InputView.inputCarNames());
+    controller.moveCars(await InputView.inputTryNumber());
+    controller.whoIsWinners();
+    controller.printWinners();
+    controller.quit();
   }
 }
 

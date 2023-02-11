@@ -4,16 +4,13 @@ class Car {
   #name;
   #position;
 
-  constructor() {
+  constructor(name) {
+    this.#name = name;
     this.#position = 0;
   }
 
   decideGoAndStop(randomNumber) {
     if (randomNumber >= RANDOM.OVER_LIMIT) this.#position++;
-  }
-
-  inputName(name) {
-    this.#name = name;
   }
 
   getPosition() {
