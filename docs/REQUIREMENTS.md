@@ -26,7 +26,7 @@
 - [x] Validation Test 시 어떤 상황에서 어떤 에러 문구가 나오는 지 세부적으로 테스트 한다.
 - [x] App.js와 Controller의 play()가 중첩되는 상황을 변경한다.
 - [x] isNotNumber 의 암묵적 형변환을 예상하여 방어 로직을 작성한다.
-- [ ] GAME_STRING.alphabetExpression 을 REG_EXP.onlyAlphabet으로 변경한다.
+- [x] GAME_STRING.alphabetExpression 을 REG_EXP.onlyAlphabet으로 변경한다.
 - [ ] 자동차 이름을 받을 때 forEach에서 map으로 변경한다.
 - [ ] 가장 멀리 진행된 자동차를 Math.max 메서드를 이용해 계산한다.
 - [ ] 우승자를 계산할 때 forEach에서 filter로 변경한다.

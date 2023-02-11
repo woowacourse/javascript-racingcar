@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE, GAME_NUMBER, GAME_STRING } = require('./constants');
+const { ERROR_MESSAGE, GAME_NUMBER, REG_EXP } = require('./constants');
 
 const validation = {
   carName: (carNames) => {
@@ -59,9 +59,9 @@ const validation = {
     }
   },
   onlyAlphabet: (carNames) => {
-    const regex = GAME_STRING.alphabetExpression;
     carNames.forEach((name) => {
-      if (regex.test(name)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
+      if (REG_EXP.onlyAlphabet.test(name))
+        throw new Error(ERROR_MESSAGE.onlyAlphabet);
     });
   },
 };

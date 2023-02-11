@@ -18,7 +18,10 @@ const GAME_STRING = Object.freeze({
   progressJoin: '',
   space: '\n',
   empty: '',
-  alphabetExpression: /[^a-zA-Z]/,
+});
+
+const REG_EXP = Object.freeze({
+  onlyAlphabet: /[^a-zA-Z]/,
 });
 
 const GAME_MESSAGE = Object.freeze({
@@ -46,4 +49,5 @@ module.exports = {
   GAME_MESSAGE,
   GAME_NUMBER,
   GAME_STRING,
+  REG_EXP,
 };
