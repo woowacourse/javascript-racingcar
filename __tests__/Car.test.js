@@ -11,6 +11,6 @@ describe('Car Test', () => {
     for (let i = 0; i < go; i++) {
       car.move(true);
     }
-    expect(car.getPosition() === position).toBe(expected);
+    expect(car.position === position).toBe(expected);
   });
 });

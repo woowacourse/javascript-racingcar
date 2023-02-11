@@ -21,7 +21,7 @@ class GameManager {
 
   printCars(cars) {
     cars.forEach((car) => {
-      OutputView.printCar(car.getName(), car.getPosition());
+      OutputView.printCar(car.name, car.position);
     });
     OutputView.printEmptyLine();
   }
@@ -35,11 +35,11 @@ class GameManager {
   }
 
   judgeWinners(cars) {
-    cars.sort((a, b) => b.getPosition() - a.getPosition());
-    const max = cars[0].getPosition();
+    cars.sort((a, b) => b.position - a.position);
+    const max = cars[0].position;
     const winners = cars
-      .filter((car) => car.getPosition() === max)
-      .map((car) => car.getName());
+      .filter((car) => car.position === max)
+      .map((car) => car.name);
     return winners;
   }
 
