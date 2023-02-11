@@ -1,7 +1,6 @@
 const RacingCar = require('./RacingCar.js');
 const Util = require('../utils/Util.js');
 const { NUMBERS } = require('../data/constants.js');
-const OutputView = require('../view/OutputView.js');
 
 class RacingGame {
   #cars;
@@ -16,6 +15,10 @@ class RacingGame {
     cars.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
+  }
+
+  getCarName() {
+    return this.#cars;
   }
 
   getTryCount(tryCount) {
@@ -35,13 +38,9 @@ class RacingGame {
       );
       this.judgeMove(randomNumber, car);
     });
-
-    OutputView.printMoveProcess(this.#cars);
   }
 
   repeatProcess() {
-    OutputView.printMoveResult();
-    OutputView.printMoveProcess(this.#cars);
     for (let i = 0; i < this.#tryCount; i++) {
       this.assignRandom();
     }
@@ -55,10 +54,6 @@ class RacingGame {
 
     const winners = Util.filterMaxObjects(carsMoveResults).map((obj) => obj[0]);
     return winners;
-  }
-
-  printWinner() {
-    OutputView.printWinner(this.findWinner());
   }
 }
 

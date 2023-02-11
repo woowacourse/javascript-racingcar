@@ -49,9 +49,20 @@ class RacingController {
     }
   }
 
-  conductProcess() {
+  showMoveResult() {
+    OutputView.printMoveResult();
+    OutputView.printMoveProcess(this.#racingGame.getCarName());
     this.#racingGame.repeatProcess();
-    this.#racingGame.printWinner();
+    OutputView.printMoveProcess(this.#racingGame.getCarName());
+  }
+
+  showWinner() {
+    OutputView.printWinner(this.#racingGame.findWinner());
+  }
+
+  conductProcess() {
+    this.showMoveResult();
+    this.showWinner();
     this.quitGame();
   }
 
