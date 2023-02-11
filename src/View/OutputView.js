@@ -1,20 +1,28 @@
 const Console = require("../utils/Console");
 
 const OutputView = {
+  printError(errorMessage) {
+    Console.print(errorMessage);
+  },
+
   drawProgress(carNames, currentRace) {
-    for (const numberOfTrial in currentRace) {
-      carNames.map((val, idx) =>
+    const countOfTrial = currentRace[0];
+    for (const trial in countOfTrial) {
+      carNames.map((carName, idx) => {
         Console.print(
-          val + " : " + currentRace[idx].slice(0, numberOfTrial + 1).join("")
-        )
-      );
+          carName +
+            " : " +
+            currentRace[idx].slice(0, Number(trial) + 1).join("")
+        );
+      });
       Console.print("");
     }
   },
 
-  printResult(winner) {
+  printResult(winners) {
     Console.print("실행 결과");
-    Console.print(winner.join(",") + " 우승!");
+    Console.print(winners.join(",") + " 우승!");
+    Console.close();
   },
 };
 

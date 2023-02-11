@@ -1,40 +1,41 @@
-const Validation = require('../src/Validation.js');
+const ValidateCarName = require("../src/ValidateCarName");
+const ValidateCountOfTrial = require("../src/ValidateCountOfTrial");
 
-describe('자동차 이름 유효성 검사', () => {
-  test.each([[['', 'a']], [['abcdef', 'a']]])(
-    '자동차 이름 길이 케이스 %#',
+describe("자동차 이름 유효성 검사", () => {
+  test.each([[["", "a"]], [["abcdef", "a"]]])(
+    "자동차 이름 길이 케이스 %#",
     (testCase) => {
       expect(() => {
         console.log(testCase);
-        Validation.validateCarNameLength(testCase);
+        ValidateCarName.validateCarNameLength(testCase);
       }).toThrow();
     }
   );
-  test.each([[['a', 'a']]])('자동차 이름 중복 케이스 %#', (testCase) => {
+  test.each([[["a", "a"]]])("자동차 이름 중복 케이스 %#", (testCase) => {
     expect(() => {
-      Validation.validateCarNameDuplicated(testCase);
+      ValidateCarName.validateCarNameDuplicated(testCase);
     }).toThrow();
   });
 });
 
-describe('자동차 경주 유효성 검사', () => {
-  test('자동차 경주는 1대 이상 참여해야 한다.', () => {
-    const carNames = ['a'];
+describe("자동차 경주 유효성 검사", () => {
+  test("자동차 경주는 1대 이상 참여해야 한다.", () => {
+    const carNames = ["a"];
     expect(() => {
-      Validation.validateIsRace(carNames);
+      ValidateCarName.validateIsRace(carNames);
     }).toThrow();
   });
 });
 
-describe('시도 횟수 유효성 검사', () => {
-  test.each([' ', '.'])('시도 횟수는 정수여야 합니다.', (testCase) => {
+describe("시도 횟수 유효성 검사", () => {
+  test.each([" ", "."])("시도 횟수는 정수여야 합니다.", (testCase) => {
     expect(() => {
-      Validation.validateNotANumber(testCase);
+      ValidateCountOfTrial.validateNotANumber(testCase);
     }).toThrow();
   });
-  test('시도 횟수는 1이상 이어야 합니다.', () => {
+  test("시도 횟수는 1이상 이어야 합니다.", () => {
     expect(() => {
-      Validation.validateRaceCount(0);
+      ValidateCountOfTrial.validateRaceCount(0);
     }).toThrow();
   });
 });

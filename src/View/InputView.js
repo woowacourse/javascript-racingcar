@@ -1,13 +1,13 @@
 const Console = require("../utils/Console");
-const { MESSAGE } = require("../utils/constants");
+const { MESSAGE } = require("../constants");
 
 const InputView = {
   readCarName(callback) {
     Console.readLine(MESSAGE.GET_CAR_NAME, callback);
   },
 
-  readNumberOfTrial(callback) {
-    Console.readLine(MESSAGE.GET_TRY_COUNT, callback);
+  readCountOfTrial(callback) {
+    Console.readLine(MESSAGE.GET_COUNT_OF_TRIAL, callback);
   },
 };
 

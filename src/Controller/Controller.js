@@ -1,6 +1,7 @@
 const InputView = require("../View/InputView");
 const OutputView = require("../View/OutputView");
-const Validation = require("../Validation");
+const ValidateCarName = require("../ValidateCarName");
+const ValidateCountOfTrial = require("../ValidateCountOfTrial");
 const Race = require("../Model/Race");
 
 class Controller {
@@ -16,34 +17,36 @@ class Controller {
   carNameHandler(carName) {
     try {
       const carNames = carName.split(",").map((name) => name.trim());
-      Validation.validateCarName(carNames);
+      ValidateCarName.validate(carNames);
       this.#carNames = carNames;
-      this.inputNumberOfTrialHandler();
+      this.inputCountOfTrialHandler();
     } catch (error) {
+      OutputView.printError(error);
       this.inputCarNameHandler();
     }
   }
 
-  inputNumberOfTrialHandler() {
-    InputView.readNumberOfTrial(this.numberOfTrialHandler.bind(this));
+  inputCountOfTrialHandler() {
+    InputView.readCountOfTrial(this.countOfTrialHandler.bind(this));
   }
 
-  numberOfTrialHandler(numberOfTrial) {
+  countOfTrialHandler(countOfTrial) {
     try {
-      Validation.validateNumberOfTrial(numberOfTrial);
-      const race = new Race(this.#carNames, numberOfTrial);
+      ValidateCountOfTrial.validate(countOfTrial);
+      const race = new Race(this.#carNames, countOfTrial);
       this.drawHandler(race);
     } catch (error) {
-      this.inputNumberOfTrialHandler();
+      OutputView.printError(error);
+      this.inputCountOfTrialHandler();
     }
   }
 
   drawHandler(race) {
     const currentRace = race.start();
-    const winner = race.makeResult();
+    const winners = race.makeResult();
 
     OutputView.drawProgress(this.#carNames, currentRace);
-    OutputView.printResult(winner);
+    OutputView.printResult(winners);
   }
 }
 
