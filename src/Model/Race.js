@@ -13,7 +13,7 @@ class Race {
   start() {
     this.#currentRace = this.#carNames.map(() => {
       const race = this.convertResults(
-        Random.makeRandomNumbers(this.#tryCount)
+        Random.generateRandomNumbers(this.#tryCount)
       );
       return race;
     });

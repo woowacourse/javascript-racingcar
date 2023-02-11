@@ -12,10 +12,10 @@ const mockQuestions = (answers) => {
 };
 
 const mockRandoms = (numbers) => {
-  Random.makeRandomNumbers = jest.fn();
+  Random.generateRandomNumbers = jest.fn();
   numbers.reduce(
     (acc, number) => acc.mockReturnValueOnce(number),
-    Random.makeRandomNumbers
+    Random.generateRandomNumbers
   );
 };
 

@@ -1,11 +1,15 @@
 const { MIN_RANDOM, MAX_RANDOM } = require('./constants');
 
 const Random = {
-  makeRandomNumbers(tryCount) {
-    const race = Array.from({ length: tryCount }, () =>
-      Math.floor(Math.random() * (MAX_RANDOM - MIN_RANDOM) + MIN_RANDOM)
+  generateRandomNumbers(length) {
+    const arr = Array.from({ length: length }, () =>
+      this.generateRandomNumber(MAX_RANDOM, MIN_RANDOM)
     );
-    return race;
+    return arr;
+  },
+
+  generateRandomNumber(maxNumber, minNumber) {
+    return Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
   },
 };
 
