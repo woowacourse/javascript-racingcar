@@ -47,20 +47,13 @@ class Controller {
     });
   }
 
-  calculateWinnerLength() {
-    let winnerLength = 0;
-    this.#cars.forEach((car) => {
-      if (winnerLength < car.getProgress().length) {
-        winnerLength = car.getProgress().length;
-      }
-    });
-    return winnerLength;
-  }
-
-  calculateWinner(winnerLength) {
+  calculateWinner() {
     const winnerNames = [];
+    const winnerProgress = Math.max(
+      ...this.#cars.map((car) => car.getProgress().length)
+    );
     this.#cars.forEach((car) => {
-      if (car.getProgress().length === winnerLength) {
+      if (car.getProgress().length === winnerProgress) {
         winnerNames.push(car.getName());
       }
     });
@@ -78,8 +71,7 @@ class Controller {
   }
 
   showGameWinner() {
-    const winnerLength = this.calculateWinnerLength();
-    const winnerNames = this.calculateWinner(winnerLength);
+    const winnerNames = this.calculateWinner();
     outputView.printGameWinner(winnerNames);
   }
 }
