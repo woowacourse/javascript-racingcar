@@ -1,37 +1,39 @@
-/* eslint-disable */
-
 const CarRaceGame = require("../src/domain/CarRaceGame");
-const CarRaceResultRandomGenerator = require("../src/domain/CarRaceResultRandomGenerator");
-const mockedFunction = CarRaceResultRandomGenerator.generate;
-jest.mock("../src/domain/CarRaceResultRandomGenerator");
 
-describe("[CarRaceGame - updateRace] 현재 자동차의 이동 거리가 주어지면, 시뮬레이션 이후 올바른 이동 거리를 반환하여야 한다.", () => {
-  test("라운드 진행 시 거리 업데이트 테스트", () => {
-    mockedFunction.mockReturnValueOnce([1, 1, 1, 0, 0]);
-    expect(CarRaceGame.updateRace([3, 4, 5, 6, 7])).toEqual([4, 5, 6, 6, 7]);
+describe("자동차 경주 기능 테스트", () => {
+  test("라운드 첫 시작 시 거리 초기화 테스트", () => {
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu","24"]);
+    expect(car.updateRace([0,0])).toEqual([0,0]);
   });
-
-  test("라운드 첫 시작 시 거리 업데이트 테스트", () => {
-    mockedFunction.mockReturnValueOnce([1, 0, 1, 0, 1, 0, 1]);
-    expect(CarRaceGame.updateRace([0, 0, 0, 0, 0, 0, 0])).toEqual([1, 0, 1, 0, 1, 0, 1]);
+  test("라운드 이어서 진행시 거리 업데이트 테스트", () => {
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu","24"]);
+    car.updateRace([0,1]);
+    car.updateRace([1,1]);
+    expect(car.updateRace([1,0])).toEqual([2,2]);
   });
 
   test("큰 숫자의 라운드 진행 시 거리 업데이트 테스트", () => {
-    mockedFunction.mockReturnValueOnce([1]);
-    expect(CarRaceGame.updateRace([1234567])).toEqual([1234568]);
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu","24"]);
+    car.updateRace([11111111111110,11111111111111]);
+    expect(car.updateRace([0,1])).toEqual([11111111111110,11111111111112]);
   });
 });
 
-describe("[CarRaceGame - judgeWinners] 자동차의 이름과 거리에 대한 정보가 주어지면, 우승자를 올바르게 반환하여야 한다.", () => {
+describe("우승자 반환 테스트", () => {
   test("경기 종료 후 우승자 반환 테스트", () => {
-    const carNames = ["carA", "carB", "carC"];
-    const carDistances = [4, 5, 3];
-    expect(CarRaceGame.judgeWinners(carNames, carDistances)).toEqual("carB");
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu","24","cute"]);
+    car.updateRace([0,0,1]);
+    expect(car.judgeWinners()).toEqual("cute");
   });
 
   test("공동 우승자 반환 테스트", () => {
-    const carNames = ["carA", "carB", "carC"];
-    const carDistances = [5, 3, 5];
-    expect(CarRaceGame.judgeWinners(carNames, carDistances)).toEqual("carA, carC");
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu","24","cute"]);
+    car.updateRace([3,1,3]);
+    expect(car.judgeWinners()).toEqual("Rulu, cute");
   });
 });
