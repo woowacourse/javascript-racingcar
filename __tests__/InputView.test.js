@@ -12,7 +12,7 @@ describe('InputView 테스트 입니다.', () => {
     mockQuestion('pobi,crong');
 
     // when
-    const carnames = await InputView.readCarNames();
+    const carNames = await InputView.readCarNames();
 
     // then
     expect(carnames).toEqual(['pobi', 'crong']);
