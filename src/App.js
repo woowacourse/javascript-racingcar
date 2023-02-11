@@ -27,7 +27,6 @@ class App {
     try {
       Validator.carName(carNames);
       carNames.split(',').forEach((carName) => this.createCarObject(carName));
-      this.createCarObject(carNames);
     } catch (error) {
       OutputView.printErrorMessage(error);
       await this.readCarName();
@@ -55,7 +54,7 @@ class App {
     });
   }
 
-  printProcessResult() {
+  printProcessResult(carsStatus) {
     OutputView.printProcessResult(carsStatus, this.#tryCount);
   }
 
