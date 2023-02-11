@@ -41,7 +41,7 @@ class Controller {
   calculateProgress(attemptsCount) {
     Array.from({ length: attemptsCount }).forEach(() => {
       this.#cars.forEach((car) => {
-        const randomNumber = Random.calculateRandomNumber();
+        const randomNumber = Random.getNumber();
         if (isMove(randomNumber)) car.setProgress();
       });
       this.showGameProgress();
