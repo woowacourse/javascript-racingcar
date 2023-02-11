@@ -1,11 +1,11 @@
+const Utils = require("./Utils/Utils");
+const splitAndTrimString = require("./Utils/SplitAndTrimString");
 const { readCarName, readTryCount } = require("./UI/InputView");
 const {
   printResultMessage,
   printCarMovement,
   printWinner,
 } = require("./UI/OutputView");
-const { COMMA } = require("./Utils/Constants");
-const Utils = require("./Utils/Utils");
 const {
   inputCarNameValidator,
   tryCountValidator,
@@ -25,12 +25,8 @@ class App {
     readCarName(this.inputCarNameCallback);
   }
 
-  splitCarNames = (names) => {
-    return names.split(COMMA).map((name) => name.trim());
-  };
-
   inputCarNameCallback = (names) => {
-    const cars = this.splitCarNames(names);
+    const cars = splitAndTrimString(names);
 
     const isValidated = errorCatcher(
       () => inputCarNameValidator(cars),
