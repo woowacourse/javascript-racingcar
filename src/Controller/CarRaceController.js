@@ -32,16 +32,20 @@ class CarRaceController {
     InputView.readTryCount(count => {
       Validator.validateTryCount(count);
       this.#carRace = new CarRace(cars);
-      this.handleRace(count);
+      this.startCarRace(count);
     });
   }
 
-  handleRace(count) {
+  startCarRace(count) {
     OutputView.printResultMessage();
     for (let i = 0; i < count; i += 1) {
       this.#carRace.go();
       OutputView.printRaceResult(this.#carRace.getResult());
     }
+    this.finishCarRace();
+  }
+
+  finishCarRace() {
     OutputView.printWinners(this.#carRace.getResult());
   }
 }
