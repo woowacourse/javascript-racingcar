@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
 // const Car = require('../src/Car');
-import GameManager from '../src/GameManager';
+import GameManager from '../src/domain/GameManager';
 import RandomGenerator from '../src/utils/RandomGenerator';
 
 const mockRandom = (number) => {

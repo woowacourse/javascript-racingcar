@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-import Car from '../src/Car';
+import Car from '../src/domain/Car';
 
 describe('Car Test', () => {
   test.each([
