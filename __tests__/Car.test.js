@@ -13,6 +13,6 @@ describe('자동차 클래스 테스트', () => {
 
     car.tryProgress(4);
 
-    expect(car.getProgressCount()).toEqual(1);
+    expect(car.progressCount).toEqual(1);
   });
 });

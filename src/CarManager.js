@@ -28,12 +28,12 @@ class CarManager {
 
   getWinners() {
     const maxProgressCount = Math.max(
-      ...this.#cars.map((singleCar) => singleCar.getProgressCount()),
+      ...this.#cars.map((singleCar) => singleCar.progressCount),
     );
 
     return this.#cars
-      .filter((singleCar) => singleCar.getProgressCount() === maxProgressCount)
-      .map((winner) => winner.getName());
+      .filter((singleCar) => singleCar.progressCount === maxProgressCount)
+      .map((winner) => winner.name);
   }
 }
 

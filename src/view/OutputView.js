@@ -4,9 +4,7 @@ const OutputView = {
   printRaceProgress(cars) {
     Console.print('');
     cars.forEach((singleCar) => {
-      Console.print(
-        `${singleCar.getName()} : ${'-'.repeat(singleCar.getProgressCount())}`,
-      );
+      Console.print(`${singleCar.name} : ${'-'.repeat(singleCar.progressCount)}`);
     });
   },
 

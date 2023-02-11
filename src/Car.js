@@ -19,11 +19,11 @@ class Car {
     return randomNumber >= MINIMUM_RANDOM_NUMBER_TO_MOVE;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getProgressCount() {
+  get progressCount() {
     return this.#progressCount;
   }
 }

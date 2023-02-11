@@ -25,9 +25,9 @@ describe('자동차를 관리하는 클래스 테스트', () => {
 
     carManager.progress();
 
-    expect(carManager.getCars().map((singleCar) => singleCar.getProgressCount())).toEqual(
-      [1, 0, 0],
-    );
+    expect(carManager.getCars().map((singleCar) => singleCar.progressCount)).toEqual([
+      1, 0, 0,
+    ]);
   });
 
   describe('경주 우승자를 도출한다.', () => {
