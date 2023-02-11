@@ -9,12 +9,10 @@ const Validation = {
     },
 
     tryNumberValidate(tryNumber) {
-        if (isNaN(tryNumber) || tryNumber <= 0) {
-            console.log(ERROR.INPUT_TRYNUMBER);
-            return false;
-        }
+        const isNumberValidation = !(isNaN(tryNumber) || tryNumber <= 0)
+        if (!isNumberValidation) console.log(ERROR.INPUT_TRYNUMBER);
 
-        return true;
+        return isNumberValidation
     },
 }
 
