@@ -1,10 +1,10 @@
-import Console from './utils/Console.js';
-import Validation from './utils/Validation.js';
+import Console from '../utils/Console.js';
+import Validation from '../utils/Validation.js';
 import Car from './Car.js';
-import RandomGenerator from './utils/RandomGenerator.js';
-import OutputView from './OutputView.js';
-import InputView from './InputView.js';
-import constants from './utils/constants.js';
+import RandomGenerator from '../utils/RandomGenerator.js';
+import OutputView from '../view/OutputView.js';
+import InputView from '../view/InputView.js';
+import constants from '../utils/constants.js';
 
 class GameManager {
   #cars = [];

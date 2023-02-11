@@ -1,5 +1,5 @@
-import Console from './utils/Console.js';
-import constants from './utils/constants.js';
+import Console from '../utils/Console.js';
+import constants from '../utils/constants.js';
 
 const OutputView = {
   printEmptyLine() {
