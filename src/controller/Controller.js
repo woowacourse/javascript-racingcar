@@ -16,7 +16,7 @@ class Controller {
 
   start() {
     InputView.inputCarName((answer) => {
-      let nameOfCars = answer.split(",");
+      const nameOfCars = answer.split(",");
 
       this.makeCar(nameOfCars);
     });
@@ -34,7 +34,7 @@ class Controller {
 
   makeNumber() {
     InputView.inputNumber((answer) => {
-      let tryNumber = Number(answer);
+      const tryNumber = Number(answer);
       this.makeCarMove(tryNumber);
     });
   }
