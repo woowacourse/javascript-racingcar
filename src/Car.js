@@ -1,6 +1,6 @@
 class Car {
 
-    #score
+    #score;
 
     constructor(name) {
         this.name = name;
@@ -8,11 +8,11 @@ class Car {
     }
 
     getCarName() {
-        return this.name
+        return this.name;
     }
 
     getScore() {
-        return this.#score
+        return this.#score;
     }
 
     go() {
@@ -21,4 +21,4 @@ class Car {
 
 }
 
-module.exports = Car
+module.exports = Car;

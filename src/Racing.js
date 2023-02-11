@@ -7,13 +7,13 @@ class Racing {
     }
 
     checkRandomNumber(randomNumber) {
-        return randomNumber >= Constants.GO_POINT
+        return randomNumber >= Constants.GO_POINT;
     }
 
     raceEachCar(randomNumber) {
-        this.checkRandomNumber(randomNumber) && this.car.go()
+        this.checkRandomNumber(randomNumber) && this.car.go();
     }
 
 }
 
-module.exports = Racing
+module.exports = Racing;

@@ -8,10 +8,10 @@ const InputView = {
 
     readUserInput(callback, inputMessage) {
         rl.question(inputMessage, (input) => {
-            callback(input)
-        })
+            callback(input);
+        });
     }
 
 }
 
-module.exports = InputView
+module.exports = InputView;
