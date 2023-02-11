@@ -7,7 +7,7 @@ const InputView = {
     let input;
     Console.readLine(Messages.INPUT_CAR_NAMES, (answer) => {
       input = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
-      if (Validator.isValidCarNames(input)) InputView.getCarNames(racingGame);
+      if (Validator.isValidCarNames(input)) return InputView.getCarNames(racingGame);
       racingGame.setCarList(input);
       InputView.getAttempts(racingGame);
     });
@@ -17,7 +17,7 @@ const InputView = {
     let attempts;
     Console.readLine(Messages.INPUT_ATTEMPTS, (answer) => {
       attempts = answer.trim();
-      if (Validator.isValidAttempts(attempts)) InputView.getAttempts(racingGame);
+      if (Validator.isValidAttempts(attempts)) return InputView.getAttempts(racingGame);
       racingGame.setAttempts(attempts);
       racingGame.playGame();
       Console.close();
