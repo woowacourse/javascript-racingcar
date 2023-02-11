@@ -1,12 +1,9 @@
 class DataParseUtils {
   static parseWinner(result) {
-    const winners = [];
     const max = Math.max(...result.values());
-    result.forEach((value, key) => {
-      if (value === max) {
-        winners.push(key);
-      }
-    });
+    const winners = Array.from(result.keys()).filter(
+      name => result.get(name) === max,
+    );
 
     return winners;
   }
