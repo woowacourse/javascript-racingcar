@@ -1,6 +1,7 @@
 const App = require('../src/App');
 const Console = require('../src/utils/Console');
 const { Random } = require('../src/utils');
+const { GAME_NUMBER } = require('../src/constants');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();
@@ -35,10 +36,13 @@ const expectLogContains = (received, logs) => {
   });
 };
 
+const GO = GAME_NUMBER.moveStandard;
+const STAY = GAME_NUMBER.moveStandard - 1;
+
 describe('자동차 경주 게임 테스트', () => {
-  test('기능 테스트', () => {
+  test('3개의 자동차를 3번의 시도 횟수를 했을 경우 원하는 출력과 결과가나오는 지 테스트', () => {
     const logSpy = getLogSpy();
-    mockRandoms([4, 4, 4, 4, 4, 2, 4, 4, 4]);
+    mockRandoms([GO, GO, GO, GO, GO, STAY, GO, GO, GO]);
     mockQuestions(['eus,zero,pobi', '3']);
 
     const app = new App();
@@ -69,7 +73,7 @@ describe('자동차 경주 게임 테스트', () => {
 
   test('기능 테스트2', () => {
     const logSpy = getLogSpy();
-    mockRandoms([4, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]);
+    mockRandoms([GO, GO, GO, GO, STAY, GO, GO, GO, GO, GO, GO, GO, GO, GO, GO]);
     mockQuestions(['pobi,crong,honux', '5']);
 
     const app = new App();
