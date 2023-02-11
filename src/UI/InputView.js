@@ -1,6 +1,5 @@
 const { GAME_MESSAGE, COMMA } = require("../Utils/Constants");
 const Utils = require("../Utils/Utils");
-const { hasError } = require("../Validator/ErrorHandler");
 const {
   inputCarNameValidator,
   tryCountValidator,
@@ -12,22 +11,14 @@ const InputView = {
     const carNames = await Utils.readLine(INPUT_CAR_NAME);
     const cars = carNames.split(COMMA).map((name) => name.trim());
 
-    const isValidated = hasError(
-      () => inputCarNameValidator(cars),
-      InputView.readCarName,
-    );
-    if (isValidated) return;
+    inputCarNameValidator(cars);
 
     return cars;
   },
   async readTryCount() {
     const tryCount = await Utils.readLine(INPUT_TRY_COUNT);
 
-    const isValidated = hasError(
-      () => tryCountValidator(tryCount),
-      InputView.readTryCount,
-    );
-    if (isValidated) return;
+    tryCountValidator(tryCount);
 
     return tryCount;
   },
