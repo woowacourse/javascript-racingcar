@@ -47,7 +47,7 @@ class Controller {
 
     for (let i = 0; i < tryCount; i++) {
       const moveCnt = this.#service.getmoveCnt();
-      View.output(moveCnt, RESULT_TYPE.MOVE_CNT);
+      View.output(moveCnt, RESULT_TYPE.MOVE_CNT);
     }
 
     const winners = this.#service.getWinners();
