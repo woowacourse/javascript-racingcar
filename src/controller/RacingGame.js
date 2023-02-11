@@ -22,10 +22,10 @@ class RacingGame {
     });
   }
 
-  makeCar(carNames) {
-    for (let len = 0; len < carNames.length; len++) {
+  makeCar(carName) {
+    for (let len = 0; len < carName.length; len++) {
       let car = new Car();
-      car.inputName(carNames[len]);
+      car.inputName(carName[len]);
       this.#cars.push(car);
     }
 
