@@ -9,7 +9,7 @@ const CONSTANTS = {
   empty: '',
   colon: ':',
   dash: '-',
-  commaBlank: ', ',
+  delimiter: ', ',
   undefinedType: 'undefined',
 };
 
