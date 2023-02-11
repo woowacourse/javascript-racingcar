@@ -12,14 +12,11 @@ const {
 } = require("./Validator/Validator");
 const { errorCatcher } = require("./Validator/ErrorCatcher");
 
-class App {
-  #games;
-  #round;
+const CarGame = require("./Domain/CarGame");
 
-  constructor(game) {
-    this.#games = game;
-    this.#round = 0;
-  }
+class App {
+  #games = new CarGame();
+  #round = 0;
 
   play() {
     readCarName(this.inputCarNameCallback);
