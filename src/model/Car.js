@@ -8,8 +8,8 @@ class Car {
         this.#position = 0;
     }
 
-    decideGoAndStop(randomNumber) {
-        if (randomNumber >= RANDOM.OVER_LIMIT) this.#position++;
+    decideGoAndStop(number) {
+        if (number >= RANDOM.OVER_LIMIT) this.#position++;
     }
 
     inputName(name) {
