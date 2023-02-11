@@ -1,8 +1,8 @@
-const { ERROR } = require("../utils/Constant");
+const { ERROR, NUMBER } = require("../utils/Constant");
 
 const Validation = {
     carNameValidate(names) {
-        const isValidation = names.split(',').every(name => name.length <= ERROR.MAX_NAME_LENGTH);
+        const isValidation = names.split(',').every(name => name.length <= NUMBER.NAME_LENGTH);
         if (!isValidation) this.errorPrint(ERROR.INPUT_NAME);
 
         return isValidation;

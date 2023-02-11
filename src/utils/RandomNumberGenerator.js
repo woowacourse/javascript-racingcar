@@ -1,9 +1,9 @@
-const { RANDOM } = require("../utils/Constant");
+const { NUMBER } = require("../utils/Constant");
 
 const RandomNumberGenerator = {
     makeRandomNumber(){
         return Math.floor(
-            Math.random() * (RANDOM.MAXNUMBER - RANDOM.MINNUMBER) + RANDOM.MINNUMBER
+            Math.random() * (NUMBER.MAX_RANDOM - NUMBER.MIN_RANDOM) + NUMBER.MIN_RANDOM
           );
     }
 }

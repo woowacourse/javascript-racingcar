@@ -1,4 +1,4 @@
-const { RANDOM } = require("../utils/Constant");
+const { NUMBER } = require("../utils/Constant");
 
 class Car {
     name;
@@ -9,7 +9,7 @@ class Car {
     }
 
     decideGoAndStop(number) {
-        if (number >= RANDOM.OVER_LIMIT) this.#position++;
+        if (number >= NUMBER.OVER_LIMIT) this.#position++;
     }
 
     inputName(name) {

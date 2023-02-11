@@ -11,7 +11,7 @@ const { MESSAGE } = require("../utils/Constant");
    readCarName(carsName) {
      rl.question(MESSAGE.INPUT_CARNAME, (answer) => {
        if (!Validation.carNameValidate(answer))
-         return this.inputCarName(carsName);
+         return this.readCarName(carsName);
 
        carsName(answer);
      });
@@ -20,7 +20,7 @@ const { MESSAGE } = require("../utils/Constant");
    readNumber(tryNumber) {
      rl.question(MESSAGE.INPUT_TRYNUMBER, (answer) => {
        if (!Validation.tryNumberValidate(answer))
-         return this.inputNumber(tryNumber);
+         return this.readNumber(tryNumber);
 
        tryNumber(answer);
        rl.close();

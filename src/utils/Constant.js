@@ -1,5 +1,4 @@
 const ERROR = {
-    MAX_NAME_LENGTH: 5,
     INPUT_NAME: "[ERROR] 이름은 5자 이하만 가능합니다. ",
     INPUT_TRYNUMBER: "[ERROR] 시도 횟수는 1회 이상의 정수만 가능합니다.",
 };
@@ -10,10 +9,11 @@ const MESSAGE = {
     OUTPUT_WINNER: "가 최종 우승했습니다.",
 };
 
-const RANDOM = {
-    MAXNUMBER: 10,
-    MINNUMBER: 0,
+const NUMBER = {
+    MAX_RANDOM: 10,
+    MIN_RANDOM: 0,
     OVER_LIMIT: 4,
+    NAME_LENGTH: 5,
 };
 
-module.exports = { ERROR, MESSAGE, RANDOM };
+module.exports = { ERROR, MESSAGE, NUMBER};
