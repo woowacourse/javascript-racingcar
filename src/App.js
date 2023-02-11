@@ -4,10 +4,10 @@ class App {
   constructor() {
     this.controller = new Controller();
   }
-  play() {
+  playRacingCarGame() {
     this.controller.execute();
   }
 }
 
 const app = new App();
-app.play();
+app.playRacingCarGame();
