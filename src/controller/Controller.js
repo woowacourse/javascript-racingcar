@@ -1,7 +1,8 @@
 const Car = require("../model/Car");
+const RandomMaker = require("../utils/RandomMaker");
+const InputView = require("../views/InputView");
 const OutputView = require("../views/OutputView");
 const { RANDOM } = require("../utils/Constant");
-const InputView = require("../views/InputView");
 
 class Controller {
   #cars;
@@ -23,15 +24,13 @@ class Controller {
 
   moveCars(tryNumber) {
     for (let num = 0; num < tryNumber; num++) {
-      this.#cars.forEach((car) => car.decideGoAndStop(this.getRandomNumber()));
+      this.#cars.forEach((car) =>
+        car.decideGoAndStop(
+          RandomMaker.RandomMinMax(RANDOM.MAXNUMBER, RANDOM.MINNUMBER)
+        )
+      );
       this.printCarsMove();
     }
-  }
-
-  getRandomNumber() {
-    return Math.floor(
-      Math.random() * (RANDOM.MAXNUMBER - RANDOM.MINNUMBER) + RANDOM.MINNUMBER
-    );
   }
 
   whoIsWinners() {
