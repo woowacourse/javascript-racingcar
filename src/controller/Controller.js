@@ -5,7 +5,7 @@ const inputView = require('../view/inputView');
 const outputView = require('../view/outputView');
 
 class Controller {
-  #cars = [];
+  #cars;
 
   #attempt;
 
@@ -15,9 +15,8 @@ class Controller {
 
   askCarName() {
     inputView.readCarName((carNames) => {
-      carNames.forEach((name) => {
-        const carModel = new Car(name);
-        this.#cars.push(carModel);
+      this.#cars = carNames.map((name) => {
+        return new Car(name);
       });
       this.askAttempts();
     });
