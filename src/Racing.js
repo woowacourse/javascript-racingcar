@@ -1,5 +1,3 @@
-const Random = require("./Random");
-
 class Racing {
 
     constructor(car) {
