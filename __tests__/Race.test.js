@@ -11,11 +11,7 @@ const mockRandoms = numbers => {
 };
 
 test('Race Class 테스트', () => {
-  // given
-  const cars = [];
-  ['garam', 'yeop'].forEach(name => {
-    cars.push(new Car(name));
-  });
+  const cars = ['garam', 'yeop'].map(name => new Car(name));
   const race = new Race(cars);
   const tryCount = 3;
   mockRandoms([1, 2, 3, 4, 5, 6]);
