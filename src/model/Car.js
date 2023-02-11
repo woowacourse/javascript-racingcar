@@ -1,7 +1,7 @@
 const { RANDOM } = require("../utils/Constant");
 
 class Car {
-    #name;
+    name;
     #position;
 
     constructor() {
@@ -13,7 +13,7 @@ class Car {
     }
 
     inputName(name) {
-        this.#name = name;
+        this.name = name;
     }
 
     getPosition() {
@@ -21,7 +21,7 @@ class Car {
     }
 
     getName() {
-        return this.#name;
+        return this.name;
     }
 }
 
