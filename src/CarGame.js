@@ -11,6 +11,7 @@ const Utils = require("./Utils/Utils");
 class CarGame {
   #carStatus;
   #round;
+
   constructor() {
     this.#carStatus = new Map();
   }
@@ -29,13 +30,11 @@ class CarGame {
     return this.#carStatus.values();
   }
 
-  findWinner() {
+  findWinner(statusValues) {
     const max = Math.max(
-      ...[...this.#carStatus.values()].map(
-        (state) => state.getCarStatus()["position"],
-      ),
+      ...statusValues.map((state) => state.getCarStatus()["position"]),
     );
-    const winnerInfo = [...this.#carStatus.values()].filter(
+    const winnerInfo = statusValues.filter(
       (state) => state.getCarStatus()["position"] === max,
     );
 
@@ -45,9 +44,11 @@ class CarGame {
   }
 
   showGameResult = () => {
+    const statusValues = [...this.#carStatus.values()];
     printResultMessage();
     this.showGameRound();
-    printWinner(this.findWinner());
+    printWinner(this.findWinner(statusValues));
+
     Utils.close();
   };
 
