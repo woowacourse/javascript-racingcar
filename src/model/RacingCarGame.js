@@ -15,7 +15,7 @@ class RacingCarGame {
           carNamesMap.set(carName, position + 1);
         }
 
-        carResult += `${carName} : ${'-'.repeat(carNamesMap.get(carName))}\n`
+        carResult += `${carName} : ${'-'.repeat(carNamesMap.get(carName) + 1)}\n`
       });
 
       carResult += '\n';

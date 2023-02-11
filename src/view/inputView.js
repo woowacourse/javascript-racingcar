@@ -17,7 +17,7 @@ class InputView {
           }
 
           const carMap = carNames.reduce((acc, cur) => {
-            return acc.set(cur, 1);
+            return acc.set(cur, 0);
           }, new Map());
 
           resolve(carMap);
