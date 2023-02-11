@@ -58,7 +58,7 @@ class RacingGame {
 
   whoIsWinners() {
     for (let car of this.#cars) {
-      this.comparedCars(car);
+      this.findWinners(car);
     }
     this.showWinners(this.#winners)
   }
@@ -67,7 +67,7 @@ class RacingGame {
     OutputView.printWinners(winner);
   }
 
-  comparedCars(car) {
+  findWinners(car) {
     if (this.#maxPosition === car.getPosition())
       this.#winners.push(car.getName());
 
