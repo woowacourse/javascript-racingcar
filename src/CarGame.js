@@ -11,7 +11,6 @@ const Utils = require("./Utils/Utils");
 class CarGame {
   #carStatus;
   #round;
-
   constructor() {
     this.#carStatus = new Map();
   }
