@@ -2,26 +2,20 @@ class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
     let carCount = 0;
     let carResult = '\n실행 결과\n';
-    let defaultCarValue = [...carNamesMap.keys()].map(
-      carName => (carResult += `${carName} : -\n`)
-    );
+    let defaultCarValue = [...carNamesMap.keys()];
+    defaultCarValue.map(carName => (carResult += `${carName} : -\n`));
     carResult += '\n';
 
     //게임 진행
     while (carCount < totalTrialCount) {
-      carNamesMap.forEach((_, carName) => {
+      defaultCarValue.map(car => {
         if (this.goForward()) {
-          carNamesMap.set(carName, carNamesMap.get(carName) + 1);
+          carNamesMap.set(car, carNamesMap.get(car) + 1);
         }
+        const forwardCount = carNamesMap.get(car);
+        carResult += `${car} : ${'-'.repeat(forwardCount)}\n`;
       });
-
-      //마지막
-      for (const carName of carNamesMap.keys()) {
-        const forwardCount = carNamesMap.get(carName);
-        carResult += `${carName} : ${'-'.repeat(forwardCount)}\n`;
-      }
       carResult += '\n';
-
       carCount += 1;
     }
 
