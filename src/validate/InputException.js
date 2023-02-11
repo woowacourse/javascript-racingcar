@@ -8,7 +8,7 @@ const InputException = {
   validateCarName: (carName) => {
     if (!(isInLengthLimit(carName, 5) && isValidString(carName))) {
       throw new Error(
-        '[ERROR] 자동차 이름들은 각 각 6자 이상, 자동차 이름들은 쉼표(,)로 구분 지으나 특수문자(공백 포함)은 사용하실 수 없습니다.'
+        '[ERROR] 자동차 이름들은 각각 1~5자만 입력가능하고 자동차 이름들은 쉼표(,)로 구분지으세요. 예시) pobi,crong,honux\n'
       );
     }
   },
