@@ -55,12 +55,11 @@ class Controller {
 
   #showResult() {
     OutputView.print(OUTPUT.resultMent);
+    let result = [];
     this.#histories.forEach((history) => {
-      history.forEach((car) => {
-        OutputView.print(OUTPUT.result(car));
-      });
-      OutputView.print('');
+      result.push(Array.from(history, OUTPUT.result).join(''));
     });
+    OutputView.print(result.join('\n'));
     this.showWinners();
   }
 
