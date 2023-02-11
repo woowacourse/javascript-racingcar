@@ -14,14 +14,14 @@ describe("자동차 경주 예외 처리 테스트", () => {
   });
 
   test("자동차 이름 목록에 콤마가 연속으로 입력되면 예외가 발생한다.", () => {
-    -expect(ErrorHandler.checkCarNames("Rulu,,want,go,home")).toEqual(0)
+    -expect(ErrorHandler.checkCarNames("Rulu,,want,go,home")).toEqual(0);
   });
 
   test("자동차 이름 목록은 콤마로 시작해서는 안 된다.", () => {
     -expect(ErrorHandler.checkCarNames(",Rulu")).toEqual(0);
   });
 
-  test("자동차 이름 목록은 콤마로 끝나서는 안 된다.", () => {;
+  test("자동차 이름 목록은 콤마로 끝나서는 안 된다.", () => {
     -expect(ErrorHandler.checkCarNames("Rulu,")).toEqual(0);
   });
 });

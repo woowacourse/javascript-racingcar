@@ -12,7 +12,7 @@ const OutputView = {
 
   printWinners(winners) {
     console.log(`${winners}가 최종 우승했습니다.`);
-  }
+  },
 };
 
 module.exports = OutputView;

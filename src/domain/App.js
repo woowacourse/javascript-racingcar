@@ -4,7 +4,6 @@ const MESSAGES = require("../constant/Constant");
 const CarRaceGame = require("./CarRaceGame");
 const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
 
-
 class App {
   #carRace = new CarRaceGame();
 
@@ -37,7 +36,9 @@ class App {
     OutputView.printMessage(MESSAGES.resultTitle);
     const carCount = this.#carRace.getCarNames().length;
     for (let i = 0; i < repeatNumber; i += 1) {
-      const carDistances = this.#carRace.updateRace(CarRaceResultRandomGenerator.generate(carCount));
+      const carDistances = this.#carRace.updateRace(
+        CarRaceResultRandomGenerator.generate(carCount)
+      );
       OutputView.printRaceResult(this.#carRace.getCarNames(), carDistances);
     }
     const winners = this.#carRace.judgeWinners();
