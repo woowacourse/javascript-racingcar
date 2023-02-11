@@ -5,10 +5,8 @@ const INPUT_MESSAGE = Object.freeze({
 
 const OUTPUT_MESSAGE = Object.freeze({
   EXECUTE_RESULT: '실행 결과',
-  DISTANCE: '-',
-  START_POINT: ':',
   MOVE_RESULT: (name, distance) => `${name} : ${distance}`,
-  WINNERS: (winners) => `${winners}가 최종 우승했습니다.`,
+  WINNERS: (winners) => `${winners}(이)가 최종 우승했습니다.`,
 });
 
 const ERROR_MESSAGE = Object.freeze({
