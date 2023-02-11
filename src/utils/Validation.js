@@ -1,18 +1,18 @@
-const { ERROR } = require("../utils/Constant");
+const { ERROR, CAR_MAX_NAME_LENGTH } = require("../utils/Constant");
 
 const Validation = {
   carNameValidate(names) {
     const isValidation = names
       .split(",")
-      .every((name) => name.length <= ERROR.MAX_NAME_LENGTH);
-    if (!isValidation) this.errorPrint(ERROR.INPUT_NAME);
+      .every((name) => name.length <= CAR_MAX_NAME_LENGTH);
+    if (!isValidation) this.errorPrint(ERROR.CARNAME_OVER_MAX);
 
     return isValidation;
   },
 
   tryNumberValidate(tryNumber) {
     if (isNaN(tryNumber) || tryNumber <= 0) {
-      this.errorPrint(ERROR.INPUT_TRYNUMBER);
+      this.errorPrint(ERROR.TRYNUMBER_UNDER_MIN);
       return false;
     }
 
@@ -20,11 +20,7 @@ const Validation = {
   },
 
   errorPrint(message) {
-    try {
-      throw new Error(message);
-    } catch (message) {
-      console.log(message);
-    }
+    console.log(message);
   },
 };
 

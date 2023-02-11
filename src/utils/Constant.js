@@ -1,7 +1,6 @@
 const ERROR = {
-  MAX_NAME_LENGTH: 5,
-  INPUT_NAME: "[ERROR] 이름은 5자 이하만 가능합니다. ",
-  INPUT_TRYNUMBER: "[ERROR] 시도 횟수는 1회 이상의 정수만 가능합니다.",
+  CARNAME_OVER_MAX: "[ERROR] 이름은 5자 이하만 가능합니다. ",
+  TRYNUMBER_UNDER_MIN: "[ERROR] 시도 횟수는 1회 이상의 정수만 가능합니다.",
 };
 
 const MESSAGE = {
@@ -17,4 +16,6 @@ const RANDOM = {
   OVER_LIMIT: 4,
 };
 
-module.exports = { ERROR, MESSAGE, RANDOM };
+const CAR_MAX_NAME_LENGTH = 5;
+
+module.exports = { ERROR, MESSAGE, RANDOM, CAR_MAX_NAME_LENGTH };
