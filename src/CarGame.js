@@ -11,6 +11,7 @@ const Utils = require("./Utils/Utils");
 class CarGame {
   #carStatus;
   #round;
+
   constructor() {
     this.#carStatus = new Map();
   }
@@ -44,11 +45,9 @@ class CarGame {
 
   showGameResult = () => {
     const statusValues = [...this.#carStatus.values()];
-
     printResultMessage();
 
     this.showGameRound();
-
     printWinner(this.findWinner(statusValues));
 
     Utils.close();
