@@ -15,15 +15,15 @@ const isAllowedCarNames = (carNames) => {
 };
 
 const validateCarNames = (cars) => {
-  const carNames = cars.split(CAR_RULE.separator);
+  const carNames = cars.split(CAR_RULE.NAME_SEPARATOR);
   if (!isAllowedCarNames(carNames)) {
-    throw new Error(ERROR_MESSAGE.nameCharacter);
+    throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
   }
   if (!ArrayValidator.isLengthMoreThanOne(carNames)) {
-    throw new Error(ERROR_MESSAGE.nameSeparator);
+    throw new Error(ERROR_MESSAGE.INVALID_CAR_COUNT);
   }
   if (ArrayValidator.isDuplicated(carNames)) {
-    throw new Error(ERROR_MESSAGE.duplicatedCarName);
+    throw new Error(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
   }
 };
 

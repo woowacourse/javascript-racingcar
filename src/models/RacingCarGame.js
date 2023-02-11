@@ -22,8 +22,8 @@ class RacingCarGame {
 
   #isCarMove() {
     return (
-      pickNumberInRange(GAME_RULE.randomNumberRangeStart, GAME_RULE.randomNumberRangeEnd) >=
-      GAME_RULE.movingCondition
+      pickNumberInRange(GAME_RULE.RANDOM_NUMBER_RANGE_START, GAME_RULE.RANDOM_NUMBER_RANGE_END) >=
+      GAME_RULE.MOVING_CONDITION
     );
   }
 

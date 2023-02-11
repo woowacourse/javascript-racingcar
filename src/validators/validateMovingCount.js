@@ -3,7 +3,7 @@ const { NumberValidator } = require('../utils/Validator');
 
 const validateMovingCount = (movingCount) => {
   if (!NumberValidator.isNaturalNumber(movingCount)) {
-    throw new Error(ERROR_MESSAGE.movingCount);
+    throw new Error(ERROR_MESSAGE.INVALID_MOVING_COUNT);
   }
 };
 
