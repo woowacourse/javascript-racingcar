@@ -14,7 +14,7 @@ const OUTPUT_MESSAGE = Object.freeze({
 const ERROR_MESSAGE = Object.freeze({
   NAME_LENGTH: '[ERROR] 자동차 이름은 1~5글자여야 합니다.',
   NAME_OVERLAP: '[ERROR] 중복된 자동차 이름이 있습니다.',
-  NAME_ONLY_ALPHABET: '[ERROR] 자동차 이름은 영문만 사용 가능합니다.',
+  NAME_ONLY_KOR_ENG_NUM: '[ERROR] 자동차 이름은 한글(음절단위), 영어, 숫자만 사용 가능합니다.',
   INVALID_TRY_COUNT: '[ERROR] 입력값은 1이상인 자연수여야 합니다.',
 });
 

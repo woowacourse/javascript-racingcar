@@ -9,8 +9,8 @@ describe('유효성 검사 테스트', () => {
     expect(() => Validator.validateOverLap(['qqq', 'qqq'])).toThrow('[ERROR]');
   });
 
-  test('이름이 알파벳이 아니라면 오류를 발생시킨다.', () => {
-    expect(() => Validator.validateInvalidInput(['1q'])).toThrow('[ERROR]');
+  test('이름이 한글(음절단위) 또는 영어 또는 숫자가 아니라면 오류를 발생시킨다.', () => {
+    expect(() => Validator.validateInvalidInput(['ㅎ1'])).toThrow('[ERROR]');
   });
 
   test('시도 횟수가 숫자가 아니라면 오류를 발생시킨다.', () => {
