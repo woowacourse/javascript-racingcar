@@ -5,7 +5,7 @@ const Race = require('../Model/Race');
 
 class Controller {
   #carNames;
-  init() {
+  constructor() {
     this.inputCarNameHandler();
   }
 

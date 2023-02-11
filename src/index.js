@@ -2,8 +2,7 @@ const Controller = require('./Controller/Controller');
 
 class App {
   play() {
-    const controller = new Controller();
-    controller.init();
+    new Controller();
   }
 }
 
