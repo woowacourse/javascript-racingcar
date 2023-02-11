@@ -1,10 +1,10 @@
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
 const CONSTANTS = require('../Constant/Constants');
-const Validator = require('../Utils/Validator');
 const Car = require('../Models/Car');
 const CarRace = require('../Models/CarRace');
 const Console = require('../Utils/Console');
+const CarRaceValidator = require('../Models/CarRaceValidator');
 
 class CarRaceController {
   #carRace;
@@ -16,14 +16,14 @@ class CarRaceController {
   getCarName() {
     InputView.readCarName(carName => {
       const splitCarName = carName.split(CONSTANTS.comma);
-      Validator.validateNamesOfCars(splitCarName);
+      CarRaceValidator.validateNamesOfCars(splitCarName);
       this.createCar(splitCarName);
     });
   }
 
   createCar(carNames) {
     const cars = carNames.map(name => {
-      Validator.validateCarName(name);
+      CarRaceValidator.validateCarName(name);
       return new Car(name);
     });
     this.getTryCount(cars);
@@ -31,7 +31,7 @@ class CarRaceController {
 
   getTryCount(cars) {
     InputView.readTryCount(count => {
-      Validator.validateTryCount(count);
+      CarRaceValidator.validateTryCount(count);
       this.#carRace = new CarRace(cars);
       this.startCarRace(count);
     });
