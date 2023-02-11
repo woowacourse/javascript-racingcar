@@ -3,19 +3,19 @@ import * as readline from 'node:readline/promises';
 
 const rl = readline.createInterface({ input, output });
 
-class Console {
-  static readline(query) {
+const Console = {
+  print(message) {
+    console.log(message);
+  },
+
+  readline(query) {
     this.print(query);
     return rl.question('');
-  }
+  },
 
-  static close() {
+  close() {
     rl.close();
-  }
-
-  static print(message) {
-    console.log(message);
-  }
-}
+  },
+};
 
 export default Console;
