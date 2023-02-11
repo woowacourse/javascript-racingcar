@@ -1,4 +1,5 @@
-import constants from './constants';
+import constants from './constants.js';
+
 const RandomGenerator = {
   pickRandomNumber() {
     return Math.floor(Math.random() * constants.RANDOM_RANGE);
