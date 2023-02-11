@@ -7,18 +7,17 @@ class RacingCarGame {
     carResult += '\n';
 
     while (carCount < totalTrialCount) {
-      defaultCarValue.map(car => {
+      defaultCarValue.map(carName => {
         if (this.goForward()) {
-          carNamesMap.set(car, carNamesMap.get(car) + 1);
+          carNamesMap.set(carName, carNamesMap.get(carName) + 1);
         }
-        carResult += `${car} : ${'-'.repeat(carNamesMap.get(car))}\n`;
+        carResult += `${carName} : ${'-'.repeat(carNamesMap.get(carName))}\n`;
       });
       carResult += '\n';
       carCount++;
     }
 
-    carResult += this.getWinnerCar(carNamesMap);
-    return carResult;
+    return (carResult += this.getWinnerCar(carNamesMap));
   }
 
   goForward() {
