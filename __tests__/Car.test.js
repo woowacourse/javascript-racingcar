@@ -8,7 +8,7 @@ const mockMathRandoms = (number) => {
 };
 
 describe('Car - move() 기능 테스트', () => {
-  test('(전진 경우)', () => {
+  test('(랜덤함수에 의해 4이상의 숫자가 나와서 전진하는 경우)', () => {
     jest.useFakeTimers();
     const name = 'test';
     const car = new Car(name);
@@ -22,7 +22,7 @@ describe('Car - move() 기능 테스트', () => {
     expect(car.getPosition()).toEqual(2);
   });
 
-  test('(전진하지 않는 경우)', () => {
+  test('(랜덤함수에 의해 4미만의 숫자가 나와 전진하지 않는 경우)', () => {
     jest.useFakeTimers();
     const name = 'test';
     const car = new Car(name);

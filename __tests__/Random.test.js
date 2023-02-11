@@ -7,7 +7,7 @@ const mockMathRandoms = (number) => {
 };
 
 describe('Random - 랜덤함수 테스트', () => {
-  test('(실패 경우)', () => {
+  test('(무작위 숫자가 0.4미만의 숫자일 때 실패하는 경우)', () => {
     jest.useFakeTimers();
     mockMathRandoms(0.223);
 
