@@ -11,23 +11,19 @@ const Validator = {
       throw new Error(ERROR_MESSAGE.INVALID_CHARACTER);
     }
 
-    if (!this.isValidCarNameLength(nameInput)) {
-      throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
-    }
+    nameInput.split(',').forEach((name) => {
+      if (!this.isValidCarNameLength(name)) {
+        throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
+      }
+    });
   },
 
   hasValidCharacter(nameInput) {
     return VALID_CHARACTER_REGEX.test(nameInput);
   },
 
-  isValidCarNameLength(nameInput) {
-    const splittedNames = nameInput.split(',');
-
-    for (let singleName of splittedNames) {
-      if (singleName.length > MAX_CARNAME_LENGTH || singleName.length <= 0) return false;
-    }
-
-    return true;
+  isValidCarNameLength(name) {
+    return name.length <= MAX_CARNAME_LENGTH && name.length > 0;
   },
 
   validateTryCountsInput(tryCountsInput) {
