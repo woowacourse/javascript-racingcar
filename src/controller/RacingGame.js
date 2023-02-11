@@ -16,7 +16,7 @@ class RacingGame {
 
   start() {
     InputView.inputCarName((answer) => {
-      let nameOfCars = answer.split(",");
+      const nameOfCars = answer.split(",");
 
       this.makeCar(nameOfCars);
     });
