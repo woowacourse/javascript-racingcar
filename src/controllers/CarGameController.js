@@ -8,6 +8,7 @@ const OutputView = require('../views/OutputView');
 
 class CarGameController {
   #carGame;
+
   constructor() {
     this.#carGame = new CarGame();
   }
@@ -20,7 +21,12 @@ class CarGameController {
     InputView.readCarName().then((input) => {
       try {
         const parsedCarName = CarNameParse(input);
-        functionPipe(parsedCarName, Validator.validateLength, Validator.validateOverLap, Validator.validateInvalidInput);
+        functionPipe(
+          parsedCarName,
+          Validator.validateLength,
+          Validator.validateOverLap,
+          Validator.validateInvalidInput,
+        );
         return this.saveCarDatas(parsedCarName);
       } catch (error) {
         OutputView.printError(error.message);
@@ -65,8 +71,10 @@ class CarGameController {
 
   printWinners(carNames, carMoves) {
     const winnerList = this.#carGame.getWinners();
+
     OutputView.printMoveResult(carNames, carMoves);
     OutputView.printWinner(winnerList);
+
     return this.gameEnd();
   }
 

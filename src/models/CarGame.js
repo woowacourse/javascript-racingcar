@@ -13,19 +13,23 @@ class CarGame {
   moveCars(tryCount, getRandomNumber) {
     for (let count = 0; count < tryCount; count++) {
       const moveData = [];
+
       this.#carList.forEach((car) => {
         const carState = car.move(getRandomNumber());
         moveData.push(carState);
       });
+
       this.#moveList.push([...moveData]);
     }
   }
 
   getCarNames() {
     const carNames = [];
+
     this.#carList.forEach((car) => {
       carNames.push(car.getName());
     });
+
     return carNames;
   }
 

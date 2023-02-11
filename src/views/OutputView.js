@@ -9,14 +9,18 @@ const OutputView = {
 
   printMoveResult(names, moveData) {
     let resultStr = '';
+
     for (let index = 0; index < names.length; index++) {
-      resultStr += OUTPUT_MESSAGE.MOVE_RESULT(names[index], numberToDistanceString(moveData[index])) + '\n';
+      resultStr +=
+        OUTPUT_MESSAGE.MOVE_RESULT(names[index], numberToDistanceString(moveData[index])) + '\n';
     }
+
     console.log(resultStr);
   },
 
   printWinner(names) {
     let printNames = names.join(', ');
+
     console.log(OUTPUT_MESSAGE.WINNERS(printNames));
   },
 
