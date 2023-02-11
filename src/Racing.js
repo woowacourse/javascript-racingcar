@@ -1,3 +1,5 @@
+const Constants = require("./Constants");
+
 class Racing {
 
     constructor(car) {
@@ -5,7 +7,7 @@ class Racing {
     }
 
     checkRandomNumber(randomNumber) {
-        return randomNumber >= 4
+        return randomNumber >= Constants.GO_POINT
     }
 
     raceEachCar(randomNumber) {
