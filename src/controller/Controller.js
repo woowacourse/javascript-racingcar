@@ -10,8 +10,25 @@ class Controller {
   }
 
   async execute() {
-    const carNames = await this.inputView.readCarNames();
-    const trialCount = await this.inputView.readCount();
+    let carNames;
+    let trialCount;
+
+    try {
+      carNames = await this.inputView.readCarNames();
+    } catch(err) {
+      console.log(err.name);
+      this.execute();
+    }
+
+    try {
+      trialCount = await this.inputView.readCount(); 
+    } catch(err) {
+      console.log(err.name);
+      trialCount = await this.inputView.readCount();
+      const result = this.racingCarGame.getResult(carNames, trialCount);
+      this.outputView.printResult(result);
+    }
+
     const result = this.racingCarGame.getResult(carNames, trialCount);
     this.outputView.printResult(result);
   }
