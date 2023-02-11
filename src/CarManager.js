@@ -15,8 +15,8 @@ class OverallRacingGameManager {
   }
 
   progress() {
-    this.#cars.forEach((singleCar) => {
-      singleCar.tryProgress(
+    this.#cars.forEach((car) => {
+      car.tryProgress(
         RandomNumberGenerator.generate(RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE),
       );
     });
@@ -27,9 +27,7 @@ class OverallRacingGameManager {
   }
 
   getWinners() {
-    const maxProgressCount = Math.max(
-      ...this.#cars.map((singleCar) => singleCar.progressCount),
-    );
+    const maxProgressCount = Math.max(...this.#cars.map((car) => car.progressCount));
 
     return this.#cars
       .filter((singleCar) => singleCar.progressCount === maxProgressCount)
