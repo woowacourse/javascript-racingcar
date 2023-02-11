@@ -1,5 +1,5 @@
 const { isMoving, randomNumberMaker } = require("./MovementIndicator");
-const { COMMA } = require("./Utils/Constants");
+const { COMMA, FORWARD_VALUE } = require("./Utils/Constants");
 const Car = require("./Car");
 const {
   printResultMessage,
@@ -24,7 +24,8 @@ class CarGame {
   cycleCarStatus() {
     for (const conostructor of this.#carStatus.values()) {
       const randomNumber = randomNumberMaker();
-      if (isMoving(randomNumber)) conostructor.move(1);
+
+      if (isMoving(randomNumber)) conostructor.move(FORWARD_VALUE);
     }
 
     return this.#carStatus.values();
@@ -34,19 +35,21 @@ class CarGame {
     const max = Math.max(
       ...statusValues.map((state) => state.getCarStatus()["position"]),
     );
-    const winnerInfo = statusValues.filter(
-      (state) => state.getCarStatus()["position"] === max,
-    );
 
-    return [...winnerInfo]
-      .map((constructor) => constructor.getCarStatus()["name"])
-      .join(COMMA);
+    const winnerNames = statusValues
+      .filter((state) => state.getCarStatus()["position"] === max)
+      .map((constructor) => constructor.getCarStatus()["name"]);
+
+    return [...winnerNames].join(COMMA);
   }
 
   showGameResult = () => {
     const statusValues = [...this.#carStatus.values()];
+
     printResultMessage();
+
     this.showGameRound();
+
     printWinner(this.findWinner(statusValues));
 
     Utils.close();
