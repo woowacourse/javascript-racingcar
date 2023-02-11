@@ -16,13 +16,16 @@ class RaceController {
     InputView.readCarName(carName => {
       const splitCarName = carName.split(CONSTANTS.comma);
       Validator.validateNamesOfCars(splitCarName);
-      const cars = [];
-      splitCarName.forEach(name => {
-        Validator.validateCarName(name);
-        cars.push(new Car(name));
-      });
-      this.getTryCount(cars);
+      this.createCar(splitCarName);
     });
+  }
+
+  createCar(carNames) {
+    const cars = carNames.map(name => {
+      Validator.validateCarName(name);
+      return new Car(name);
+    });
+    this.getTryCount(cars);
   }
 
   getTryCount(cars) {
