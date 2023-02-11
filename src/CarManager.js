@@ -7,9 +7,11 @@ class OverallRacingGameManager {
   #cars = [];
 
   constructor(carNames) {
-    carNames.forEach((singleCarName) => {
-      this.#cars.push(new Car(singleCarName));
-    });
+    this.#cars = this.createInitialCars(carNames);
+  }
+
+  createInitialCars(carNames) {
+    return (this.#cars = carNames.map((carName) => new Car(carName)));
   }
 
   progress() {
