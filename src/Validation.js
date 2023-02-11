@@ -1,4 +1,3 @@
-const Console = require('./utils/Console');
 const {
   ERROR,
   NAME_MAX_LENGTH,
@@ -14,31 +13,28 @@ const Validation = {
     this.validateIsRace(carNames);
   },
 
+  isInRange(value, min, max) {
+    if (value > min && value <= max) return true;
+    return false;
+  },
+
   validateCarNameLength(carNames) {
     carNames.forEach((carName) => {
-      if (
-        carName.length <= NAME_MIN_LENGTH ||
-        carName.length > NAME_MAX_LENGTH
-      ) {
-        Console.print(ERROR.CAR_NAME_LENGTH);
-        throw new Error();
+      if (!this.isInRange(carName.length, NAME_MIN_LENGTH, NAME_MAX_LENGTH)) {
+        throw new Error(ERROR.CAR_NAME_LENGTH);
       }
     });
   },
 
   validateCarNameDuplicated(carNames) {
     const carSet = new Set(carNames);
-    if (carNames.length !== carSet.size) {
-      Console.print(ERROR.CAR_NAME_DUPLICATED);
-      throw new Error();
-    }
+    if (carNames.length === carSet.size) return;
+    throw new Error(ERROR.CAR_NAME_DUPLICATED);
   },
 
   validateIsRace(carNames) {
-    if (carNames.length < MIN_PARTICIPATE) {
-      Console.print(ERROR.NOT_A_RACE);
-      throw new Error();
-    }
+    if (carNames.length >= MIN_PARTICIPATE) return;
+    throw new Error(ERROR.NOT_A_RACE);
   },
 
   validateTryCount(tryCount) {
@@ -47,17 +43,13 @@ const Validation = {
   },
 
   validateNotANumber(tryCount) {
-    if (!/\d/g.test(tryCount)) {
-      Console.print(ERROR.TRYCOUNT_NOT_A_NUMBER);
-      throw new Error();
-    }
+    if (/\d/g.test(tryCount)) return;
+    throw new Error(ERROR.TRYCOUNT_NOT_A_NUMBER);
   },
 
   validateRaceCount(tryCount) {
-    if (tryCount < MIN_TRYCOUNT) {
-      Console.print(ERROR.TRYCOUNT_UNDER_ONE);
-      throw new Error();
-    }
+    if (tryCount >= MIN_TRYCOUNT) return;
+    throw new Error(ERROR.TRYCOUNT_UNDER_ONE);
   },
 };
 
