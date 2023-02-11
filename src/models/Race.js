@@ -14,10 +14,16 @@ class Race {
     this.#cars = cars;
   }
 
+  canCarMove(car) {
+    const randomNumber = Random.randomNumberBetween(0, 10);
+    if (randomNumber < Race.FREEZE_CHANCE) return false;
+
+    return true;
+  }
+
   moveOnce() {
     this.#cars.forEach((car) => {
-      const randomNumber = Random.randomNumberBetween(0, 10);
-      if (randomNumber < Race.FREEZE_CHANCE) return;
+      if (!this.canCarMove(car)) return;
 
       car.move();
     });
