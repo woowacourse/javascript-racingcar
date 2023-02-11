@@ -8,8 +8,8 @@ const validation = {
     validation.onlyAlphabet(carNames);
   },
   attempt: (attempts) => {
-    validation.onlyInt(attempts);
-    validation.attemptRange(attempts);
+    validation.onlyInt(Number(attempts));
+    validation.attemptRange(Number(attempts));
   },
   attemptRange: (attempt) => {
     if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {

@@ -1,13 +1,13 @@
-const { ERROR_SUBJECT } = require('../src/constants');
+const { ERROR_SUBJECT, ERROR_MESSAGE } = require('../src/constants');
 const validation = require('../src/validation');
 
 describe('Validation 테스트', () => {
   test.each([
-    [['eus', 'eus']],
-    [['eus', 'EUS']],
-    [['a', 'eus']],
-    [['abcdef', 'eus']],
-    [['zero']],
+    [['eus', 'eus'], ERROR_MESSAGE.duplicatedCarName],
+    [['eus', 'EUS'], ERROR_MESSAGE.duplicatedCarName],
+    [['a', 'eus'], ERROR_MESSAGE.carNameLengthRange],
+    [['abcdef', 'eus'], ERROR_MESSAGE.carNameLengthRange],
+    [['zero'], ERROR_MESSAGE.carCountRange],
     [
       [
         'as',
@@ -32,22 +32,35 @@ describe('Validation 테스트', () => {
         'wqee',
         'wqeeq',
       ],
+      ERROR_MESSAGE.carCountRange,
     ],
-    [['123', 'zero']],
-    [['제로', 'zero']],
-    [['eus!', 'zero']],
-  ])('자동차 이름 예외 상황 테스트: %s일 때 에러 반환', (carNames) => {
-    expect(() => {
-      validation.carName(carNames);
-    }).toThrow(ERROR_SUBJECT);
-  });
+    [['123', 'zero'], ERROR_MESSAGE.onlyAlphabet],
+    [['제로', 'zero'], ERROR_MESSAGE.onlyAlphabet],
+    [['eus!', 'zero'], ERROR_MESSAGE.onlyAlphabet],
+  ])(
+    '자동차 이름 예외 상황 테스트: %o일 때 에러 %s 반환',
+    (carNames, errorMessage) => {
+      expect(() => {
+        validation.carName(carNames);
+      }).toThrow(errorMessage);
+    }
+  );
 
-  test.each([[1.1], [2.2], [-1], [0], ['제로'], ['eus'], [21], [150]])(
-    '시도 횟수 예외 상황 테스트: %s일 때 에러 반환',
-    (attemptCount) => {
+  test.each([
+    [[1.1], ERROR_MESSAGE.onlyInt],
+    [[2.2], ERROR_MESSAGE.onlyInt],
+    [[-1], ERROR_MESSAGE.attemptRange],
+    [[0], ERROR_MESSAGE.attemptRange],
+    [['제로'], ERROR_MESSAGE.onlyInt],
+    [['eus'], ERROR_MESSAGE.onlyInt],
+    [[21], ERROR_MESSAGE.attemptRange],
+    [[150], ERROR_MESSAGE.attemptRange],
+  ])(
+    '시도 횟수 예외 상황 테스트: %i일 때 에러 %s 반환',
+    (attemptCount, errorMessage) => {
       expect(() => {
         validation.attempt(attemptCount);
-      }).toThrow(ERROR_SUBJECT);
+      }).toThrow(errorMessage);
     }
   );
 });
