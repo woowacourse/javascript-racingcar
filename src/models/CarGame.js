@@ -34,9 +34,7 @@ class CarGame {
   }
 
   getMoveDatas() {
-    return this.#moveList.map((datas) => {
-      return [...datas];
-    });
+    return this.#moveList.map((datas) => [...datas]);
   }
 
   getWinners() {
