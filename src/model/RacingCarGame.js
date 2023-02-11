@@ -14,7 +14,7 @@ class RacingCarGame {
         carResult += `${car} : ${'-'.repeat(carNamesMap.get(car))}\n`;
       });
       carResult += '\n';
-      carCount += 1;
+      carCount++;
     }
 
     carResult += this.getWinnerCar(carNamesMap);
