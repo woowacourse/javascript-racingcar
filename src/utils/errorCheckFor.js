@@ -1,11 +1,11 @@
 const Console = require('./Console');
 
-const errorCheckFor = (tryFn, catchFn) => {
+const errorCheckFor = (resolve, reject) => {
   try {
-    tryFn();
+    resolve();
   } catch (error) {
     Console.print(error.message);
-    catchFn();
+    reject();
   }
 };
 
