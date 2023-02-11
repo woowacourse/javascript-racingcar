@@ -14,10 +14,10 @@ const mockQuestions = (answers) => {
 
 const mockRandoms = (moves) => {
   // Random.calculateRandomNumber = jest.fn();
-  Random.getNumber = jest.fn();
+  Random.getCarGameNumber = jest.fn();
   moves.reduce((acc, move) => {
     return acc.mockReturnValueOnce(move);
-  }, Random.getNumber);
+  }, Random.getCarGameNumber);
 };
 
 const getLogSpy = () => {

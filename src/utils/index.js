@@ -2,7 +2,7 @@ const Console = require('./Console');
 const { GAME_NUMBER } = require('../constants');
 
 class Random {
-  static getNumber = () => {
+  static getCarGameNumber = () => {
     return Math.random() * GAME_NUMBER.moveRange;
   };
 }
