@@ -1,14 +1,18 @@
-const { isMoving } = require("../src/MovementIndicator");
+const { movingDistance } = require("../src/Domain/MovementIndicator");
+const { MOVEMENT } = require("../src/Constants/Constants");
+const { FORWARD_DISTANCE } = MOVEMENT;
 
-test("생성된 난수가 4이상일 경우 true 반환 ", () => {
-  expect([1, 3, 5, 2, 6, 7, 8, 9].map((number) => isMoving(number))).toEqual([
-    false,
-    false,
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-  ]);
+test.each([
+  [0, 0],
+  [1, 0],
+  [2, 0],
+  [3, 0],
+  [4, FORWARD_DISTANCE],
+  [5, FORWARD_DISTANCE],
+  [6, FORWARD_DISTANCE],
+  [7, FORWARD_DISTANCE],
+  [8, FORWARD_DISTANCE],
+  [9, FORWARD_DISTANCE],
+])("생성된 난수가 4 이상일 경우 한 칸 전진", (randomNumber, expected) => {
+  expect(movingDistance(randomNumber)).toBe(expected);
 });
