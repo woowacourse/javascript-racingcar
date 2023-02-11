@@ -6,8 +6,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-class Console {
-  static readLine(query, callback) {
+const Console = {
+  readLine(query, callback) {
     if (arguments.length !== 2) {
       throw new Error(CONSOLE_ERROR_MESSAGE.numberOfArguments);
     }
@@ -25,15 +25,15 @@ class Console {
     }
 
     rl.question(query, callback);
-  }
+  },
 
-  static close() {
+  close() {
     rl.close();
-  }
+  },
 
-  static print(message) {
+  print(message) {
     console.log(message);
-  }
-}
+  },
+};
 
 module.exports = Console;
