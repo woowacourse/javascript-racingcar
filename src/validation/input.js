@@ -51,7 +51,7 @@ const checkIsBetweenValidRange = (winningDistance) => {
 };
 
 const checkIsInt = (winningDistance) => {
-  if (Number.isNaN(winningDistance)) {
+  if (!Number.isInteger(winningDistance)) {
     return handleError(ERROR.invalidWinningDistanceType);
   }
   return true;
