@@ -10,7 +10,7 @@ const mockRandoms = (numbers) => {
 };
 
 describe('Car 클래스', () => {
-  it(`자동차가 전진하는 조건은 ${GAME.MOVE_CONDITION.min}에서 ${
+  test(`자동차가 전진하는 조건은 ${GAME.MOVE_CONDITION.min}에서 ${
     GAME.MOVE_CONDITION.max - 1
   } 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.`, () => {
     const car = new Car('name');
@@ -26,7 +26,7 @@ describe('Car 클래스', () => {
     expect(distanceResult).toEqual([0, 0, 0, 1, 1, 1, 2, 3, 4]);
   });
 
-  it.each([
+  test.each([
     [3, true],
     [4, false],
     [5, false],

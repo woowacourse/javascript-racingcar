@@ -20,7 +20,7 @@ describe('입력 validation 테스트', () => {
   });
 
   describe('자동차 이름 입력 테스트 (validateCarNames)', () => {
-    it.each([
+    test.each([
       [['a'.repeat(GAME.CAR_NAME.min)], ''],
       [['a'.repeat(GAME.CAR_NAME.max)], ''],
       [['a'.repeat(GAME.CAR_NAME.max + 1)], ERROR.carNameLength],
@@ -34,7 +34,7 @@ describe('입력 validation 테스트', () => {
       },
     );
 
-    it('중복된 자동차 이름이 들어오면 안된다.', () => {
+    test('중복된 자동차 이름이 들어오면 안된다.', () => {
       const carNames = ['pobi', 'pobi'];
 
       validateCarNames(carNames);
@@ -43,7 +43,7 @@ describe('입력 validation 테스트', () => {
       expect(log).toEqual(ERROR.duplicatedCarName);
     });
 
-    it('자동차 이름에 공백이 있으면 안된다.', () => {
+    test('자동차 이름에 공백이 있으면 안된다.', () => {
       const carNames = ['a b', 'cr on', ' ', ' hey', 'hey '];
 
       validateCarNames(carNames);
@@ -54,7 +54,7 @@ describe('입력 validation 테스트', () => {
   });
 
   describe('시도 횟수 입력 테스트 (validateWinningDistance)', () => {
-    it.each(['a', 'ㄱ', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ' '])(
+    test.each(['a', 'ㄱ', '!', '~', '@', '#', '$', '%', '^', '&', '*', '(', ' '])(
       '숫자가 아닌 값을 입력하면 안된다.',
       (input) => {
         validateWinningDistance(toInt(input));
@@ -64,7 +64,7 @@ describe('입력 validation 테스트', () => {
       },
     );
 
-    it.each([2, 10])('입력값의 범위가 3미만 10이상이면 안된다.', (input) => {
+    test.each([2, 10])('입력값의 범위가 3미만 10이상이면 안된다.', (input) => {
       validateWinningDistance(input);
       const log = getOutput(logSpy);
 
