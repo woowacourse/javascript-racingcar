@@ -10,10 +10,10 @@ class Controller {
   }
 
   inputCarNameHandler() {
-    InputView.readCarName(this.carNameHandler.bind(this));
+    InputView.readCarName(this.carNameHandler);
   }
 
-  carNameHandler(carName) {
+  carNameHandler = (carName) => {
     try {
       const carNames = carName.split(',').map((name) => name.trim());
       Validation.validateCarName(carNames);
@@ -22,13 +22,13 @@ class Controller {
     } catch (error) {
       this.inputCarNameHandler();
     }
-  }
+  };
 
   inputTryCountHandler() {
-    InputView.readTryCount(this.tryCountHandler.bind(this));
+    InputView.readTryCount(this.tryCountHandler);
   }
 
-  tryCountHandler(tryCount) {
+  tryCountHandler = (tryCount) => {
     try {
       Validation.validateTryCount(tryCount);
       const race = new Race(this.#carNames, tryCount);
@@ -36,7 +36,7 @@ class Controller {
     } catch (error) {
       this.inputTryCountHandler();
     }
-  }
+  };
 
   drawHandler(race) {
     const currentRace = race.start();
