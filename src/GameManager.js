@@ -21,7 +21,7 @@ class GameManager {
 
   printCars(cars) {
     cars.forEach((car) => {
-      car.print();
+      OutputView.printCar(car.getName(), car.getPosition());
     });
     OutputView.printEmptyLine();
   }
