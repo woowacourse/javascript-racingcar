@@ -20,6 +20,7 @@ describe("예외 테스트", () => {
       ["0.3", "0.2"],
       [0.3, 0.2],
       [" ", "가나"],
+      ["야미", "클린", ","],
     ];
     checkException(carNames, inputCarNameValidator);
   });
