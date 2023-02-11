@@ -1,14 +1,13 @@
 const Utils = require("../Utils/Utils");
 
-const errorCatcher = (validator, callback) => {
+const errorCatcher = (validator, readInput, acceptValidInput) => {
   try {
     validator();
+    acceptValidInput();
   } catch (error) {
     Utils.print(error);
-    callback();
-    return true;
+    readInput();
   }
-  return false;
 };
 
 module.exports = { errorCatcher };

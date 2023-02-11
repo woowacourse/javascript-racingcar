@@ -25,26 +25,30 @@ class App {
   inputCarNameCallback = (names) => {
     const cars = splitAndTrimString(names);
 
-    const isValidated = errorCatcher(
+    errorCatcher(
       () => inputCarNameValidator(cars),
-      () => readCarName(this.inputCarNameCallback)
+      () => readCarName(this.inputCarNameCallback),
+      () => this.acceptValidCarNames(cars)
     );
-    if (isValidated) return;
-
-    this.#games.initializeCarStatus(cars);
-    readTryCount(this.readTryCountCallback);
   };
+
+  acceptValidCarNames(cars) {
+    this.#game.initializeCarStatus(cars);
+    readTryCount(this.acceptTryCount);
+  }
 
   readTryCountCallback = (count) => {
-    const isValidated = errorCatcher(
+    errorCatcher(
       () => tryCountValidator(count),
-      () => readTryCount(this.readTryCountCallback)
+      () => readTryCount(this.readTryCountCallback),
+      () => this.acceptValidTryCount(count)
     );
-    if (isValidated) return;
-
-    this.#round = count;
-    this.showGameResult();
   };
+
+  acceptValidTryCount(count) {
+    this.#round = count;
+    this.showGameResult(count);
+  }
 
   showGameResult = () => {
     printResultMessage();
