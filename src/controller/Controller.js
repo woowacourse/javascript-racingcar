@@ -28,10 +28,14 @@ class Controller {
       this.outputView.printError(err);
       trialCount = await this.inputView.readCount();
       const result = this.racingCarGame.getResult(carNames, trialCount);
+<<<<<<< HEAD
       this.outputView.printResult(result);
       this.outputView.close();
 
       return;
+=======
+      return this.outputView.printResult(result);
+>>>>>>> 4e22939 (fix: not execute rest code after handling invalid input)
     }
     const result = this.racingCarGame.getResult(carNames, trialCount);
     this.outputView.printResult(result);
