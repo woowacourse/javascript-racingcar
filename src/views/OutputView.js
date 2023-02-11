@@ -5,6 +5,7 @@ const OutputView = {
   printWinners(winnerCars) {
     const winners = winnerCars.map((car) => car.getRaceState().name).join(', ');
     Console.print(`${winners}${Messages.PRINT_WINNERS_SUFFIX}`);
+    Console.close();
   },
 
   printRaceStateTitle() {
