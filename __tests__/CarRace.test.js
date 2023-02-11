@@ -1,5 +1,5 @@
 const Car = require('../src/Models/Car');
-const Race = require('../src/Models/Race');
+const CarRace = require('../src/Models/CarRace');
 const RandomNumGenerator = require('../src/Utils/RandomNumGenerator');
 
 const mockRandoms = numbers => {
@@ -10,9 +10,9 @@ const mockRandoms = numbers => {
   );
 };
 
-test('Race Class 테스트', () => {
+test('CarRace Class 테스트', () => {
   const cars = ['garam', 'yeop'].map(name => new Car(name));
-  const race = new Race(cars);
+  const carRace = new CarRace(cars);
   const tryCount = 3;
   mockRandoms([1, 2, 3, 4, 5, 6]);
   const result = new Map([
@@ -22,9 +22,9 @@ test('Race Class 테스트', () => {
 
   // when
   for (let i = 0; i < tryCount; i += 1) {
-    race.go();
+    carRace.go();
   }
 
   // then
-  expect(race.getResult()).toEqual(result);
+  expect(carRace.getResult()).toEqual(result);
 });

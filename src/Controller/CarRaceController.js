@@ -3,10 +3,10 @@ const OutputView = require('../View/OutputView');
 const CONSTANTS = require('../Constant/Constants');
 const Validator = require('../Utils/Validator');
 const Car = require('../Models/Car');
-const Race = require('../Models/Race');
+const CarRace = require('../Models/CarRace');
 
-class RaceController {
-  #race;
+class CarRaceController {
+  #carRace;
 
   start() {
     this.getCarName();
@@ -31,7 +31,7 @@ class RaceController {
   getTryCount(cars) {
     InputView.readTryCount(count => {
       Validator.validateTryCount(count);
-      this.#race = new Race(cars);
+      this.#carRace = new CarRace(cars);
       this.handleRace(count);
     });
   }
@@ -39,11 +39,11 @@ class RaceController {
   handleRace(count) {
     OutputView.printResultMessage();
     for (let i = 0; i < count; i += 1) {
-      this.#race.go();
-      OutputView.printRaceResult(this.#race.getResult());
+      this.#carRace.go();
+      OutputView.printRaceResult(this.#carRace.getResult());
     }
-    OutputView.printWinners(this.#race.getResult());
+    OutputView.printWinners(this.#carRace.getResult());
   }
 }
 
-module.exports = RaceController;
+module.exports = CarRaceController;

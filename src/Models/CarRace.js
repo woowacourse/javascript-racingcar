@@ -1,6 +1,6 @@
 const RandomNumGenerator = require('../Utils/RandomNumGenerator');
 
-class Race {
+class CarRace {
   #cars;
 
   constructor(cars) {
@@ -23,4 +23,4 @@ class Race {
   }
 }
 
-module.exports = Race;
+module.exports = CarRace;

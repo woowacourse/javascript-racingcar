@@ -1,10 +1,10 @@
-const RaceController = require('./Controller/RaceController');
+const CarRaceController = require('./Controller/CarRaceController');
 
 class Index {
   init() {
-    const raceController = new RaceController();
+    const carRaceController = new CarRaceController();
 
-    raceController.start();
+    carRaceController.start();
   }
 }
 
