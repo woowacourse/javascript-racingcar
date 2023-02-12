@@ -1,6 +1,6 @@
 const RacingGame = require('./RacingGame');
-const InputView = require('./UI/InputView');
-const OutputView = require('./UI/OutputView');
+const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
 
 class App {
   #racingGame;
