@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const App = require('../src/index.js');
-const IO = require('../src/utils/IO.js');
 const {
   validateCarNames,
   validateTryCount,
@@ -8,8 +7,6 @@ const {
 const { ERROR_MESSAGE } = require('../src/data/constants.js');
 
 describe('Input Test', () => {
-  const app = new App();
-
   test('Car name length validation test', () => {
     expect(() => {
       validateCarNames(['pobisss', 'crongsss', 'honuxss']);
