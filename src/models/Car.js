@@ -7,11 +7,11 @@ class Car {
   #distance = CAR_RULE.INIT_DISTANCE;
 
   constructor(name) {
-    Car.#validate(name);
+    this.#validate(name);
     this.#name = name;
   }
 
-  static #validate(name) {
+  #validate(name) {
     if (name.length > CAR_RULE.MAX_LENGTH) {
       throw new Error(ERROR_MESSAGE.OVER_NAME_LENGTH);
     }
