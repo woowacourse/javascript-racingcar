@@ -29,6 +29,4 @@ const Console = {
   }
 }
 
-Console.question("happy");
-
-module.exports = rl;
+module.exports = Console;

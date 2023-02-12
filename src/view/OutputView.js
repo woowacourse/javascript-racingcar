@@ -1,4 +1,4 @@
-const rl = require("./Readline");
+const Console = require("./utils/Console");
 class OutputView {
   printResult(result) {
     console.log(result);
@@ -9,7 +9,7 @@ class OutputView {
   }
 
   close() {
-    rl.close();
+    Console.close();
   }
 }
 
