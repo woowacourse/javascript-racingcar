@@ -1,14 +1,16 @@
+const { ERROR_MESSAGE } = require("./constants/message");
+
 const inputValidator = {
   MIN_CAR_NAME_LENGTH: 1,
   MAX_CAR_NAME_LENGTH: 5,
 
   validateCarNameList(carNameList) {
     if (!this.isCarNameListInRange(carNameList)) {
-      throw new Error(`[ERROR] 자동차 이름은 1글자부터 5글자 사이여야 합니다.`)
+      throw new Error(ERROR_MESSAGE.carNameListInRange);
     }
     
     if (!this.isCarNameListNotDuplicated(carNameList)) {
-      throw new Error(`[ERROR] 자동차 이름 중에 중복이 있습니다. \n`)
+      throw new Error(ERROR_MESSAGE.carNameListDuplicated);
     }
   },
 
@@ -22,3 +24,5 @@ const inputValidator = {
     return new Set(carNameList).size === carNameList.length;
   }
 }
+
+module.exports = inputValidator;
