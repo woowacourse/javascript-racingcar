@@ -1,4 +1,3 @@
-const Car = require('../src/Models/Car');
 const Cars = require('../src/Models/Cars');
 const RandomNumGenerator = require('../src/Utils/RandomNumGenerator');
 
@@ -7,13 +6,11 @@ const mockRandoms = numbers => {
   numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), RandomNumGenerator.generateNumber);
 };
 
-test('Race Class 테스트', () => {
+const carNames = ['garam', 'yeop'];
+const cars = new Cars(carNames);
+
+test('race 후 결과를 확인하는 Test', () => {
   // given
-  const tempCars = [];
-  ['garam', 'yeop'].forEach(name => {
-    tempCars.push(new Car(name));
-  });
-  const cars = new Cars(tempCars);
   const tryCount = 3;
   mockRandoms([1, 2, 3, 4, 5, 6]);
   const result = new Map([
