@@ -1,14 +1,5 @@
 const RacingGame = require('../src/RacingGame');
 
-const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
-
-const mockRandoms = (numbers) => {
-  RandomNumberGenerator.generate = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomNumberGenerator.generate);
-};
-
 describe('자동차 경주 게임을 진행하는 클래스 테스트', () => {
   let racingGame;
 
