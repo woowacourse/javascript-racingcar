@@ -1,4 +1,4 @@
-const { isMove, calculateRandomNumber } = require('../src/utils');
+const { isMove, Random } = require('../src/utils');
 
 describe('utils 테스트', () => {
   test.each([
@@ -10,10 +10,10 @@ describe('utils 테스트', () => {
     expect(isMove(number)).toBe(expected);
   });
 
-  test('calculateRandomNumber 함수 테스트', () => {
+  test('자동차 전진 여부와 관련된 랜덤 값을 반환하는 기능(calculateRandomNumber) 테스트', () => {
     Array.from({ length: 10 }).forEach(() => {
-      expect(calculateRandomNumber()).toBeGreaterThanOrEqual(0);
-      expect(calculateRandomNumber()).toBeLessThanOrEqual(9);
+      expect(Random.calculateRandomNumber()).toBeGreaterThanOrEqual(0);
+      expect(Random.calculateRandomNumber()).toBeLessThanOrEqual(9);
     });
   });
 });
