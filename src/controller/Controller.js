@@ -1,7 +1,7 @@
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
-const { GAME, INPUT, OUTPUT } = require('../utils/constants');
+const { GAME, MESSAGE } = require('../utils/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
 
@@ -17,12 +17,12 @@ class Controller {
   }
 
   play() {
-    OutputView.print(OUTPUT.startGame);
+    OutputView.print(MESSAGE.OUTPUT.startGame);
     this.#setCars();
   }
 
   async #setCars() {
-    const input = await InputView.readline(INPUT.carName);
+    const input = await InputView.readline(MESSAGE.INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
     if (!validateCarNames(carNames)) return this.#setCars();
     this.#makeCars(carNames);
@@ -36,7 +36,7 @@ class Controller {
   }
 
   async setWinningDistance() {
-    this.#winningDistance = toInt(await InputView.readline(INPUT.winningDistance));
+    this.#winningDistance = toInt(await InputView.readline(MESSAGE.INPUT.winningDistance));
     if (!validateWinningDistance(this.#winningDistance)) return this.setWinningDistance();
     this.#moveCars();
   }
@@ -54,10 +54,10 @@ class Controller {
   }
 
   #showResult() {
-    OutputView.print(OUTPUT.resultMent);
+    OutputView.print(MESSAGE.OUTPUT.resultMent);
     let result = [];
     this.#histories.forEach((history) => {
-      result.push(Array.from(history, OUTPUT.result).join(''));
+      result.push(Array.from(history, MESSAGE.OUTPUT.result).join(''));
     });
     OutputView.print(result.join('\n'));
     this.#showWinners();
@@ -65,7 +65,7 @@ class Controller {
 
   #showWinners() {
     const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
-    OutputView.print(OUTPUT.winner(winners));
+    OutputView.print(MESSAGE.OUTPUT.winner(winners));
   }
 }
 module.exports = Controller;
