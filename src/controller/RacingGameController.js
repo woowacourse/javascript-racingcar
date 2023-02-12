@@ -1,5 +1,5 @@
 const { GAME, INPUT, OUTPUT, OUTPUT_RESULT, OUTPUT_WINNER } = require('../constant/constants');
-const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
+const { validateCarNames, validateWinningDistance } = require('../validation/inputValidator.js');
 const common = require('../utils/common');
 
 class RacingGameController {
