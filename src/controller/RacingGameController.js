@@ -1,10 +1,11 @@
+/* eslint-disable array-callback-return */
 const { StaticValue, ConsoleMessage } = require('../constants/constants');
 const RacingGame = require('../domain/RacingGame');
 const Exception = require('../utils/Exception');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
-class Controller {
+class RacingGameController {
   #racingGame;
 
   playGame() {
@@ -59,4 +60,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = RacingGameController;
