@@ -4,7 +4,7 @@ const { ERROR_MESSAGE } = require('../constants/message');
 class Car {
   #name;
 
-  #distance = CAR_RULE.initDistance;
+  #distance = CAR_RULE.INIT_DISTANCE;
 
   constructor(name) {
     Car.#validate(name);
@@ -12,11 +12,11 @@ class Car {
   }
 
   static #validate(name) {
-    if (name.length > CAR_RULE.maxLength) {
-      throw new Error(ERROR_MESSAGE.overNameLength);
+    if (name.length > CAR_RULE.MAX_LENGTH) {
+      throw new Error(ERROR_MESSAGE.OVER_NAME_LENGTH);
     }
     if (name.trim().length === 0) {
-      throw new Error(ERROR_MESSAGE.emptyName);
+      throw new Error(ERROR_MESSAGE.EMPTY_NAME);
     }
   }
 

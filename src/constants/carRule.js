@@ -1,7 +1,7 @@
-const CAR_RULE = Object.freeze({
-  initDistance: 1,
-  maxLength: 5,
-  separator: ',',
-});
+const CAR_RULE = {
+  INIT_DISTANCE: 1,
+  MAX_LENGTH: 5,
+  SEPARATOR: ',',
+};
 
 module.exports = CAR_RULE;

@@ -16,7 +16,7 @@ class RacingCarGameController {
   #onSubmitCarName(carNames) {
     try {
       Validator.checkCarName(carNames);
-      const cars = carNames.split(CAR_RULE.separator).map((carName) => new Car(carName));
+      const cars = carNames.split(CAR_RULE.SEPARATOR).map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
       InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
     } catch (error) {

@@ -4,20 +4,20 @@ const { ERROR_MESSAGE } = require('../constants/message');
 class Validator {
   static checkCarName(carNames) {
     if (!Validator.#isAllowedCharacter(carNames)) {
-      throw new Error(ERROR_MESSAGE.nameCharacter);
+      throw new Error(ERROR_MESSAGE.NAME_CHARACTER);
     }
     if (!Validator.#isAllowedSeparator(carNames)) {
-      throw new Error(ERROR_MESSAGE.nameSeparator);
+      throw new Error(ERROR_MESSAGE.NAME_SEPARATOR);
     }
     if (Validator.#isDuplicatedCarName(carNames)) {
-      throw new Error(ERROR_MESSAGE.duplicatedCarName);
+      throw new Error(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
     }
   }
 
   static checkMovingCount(movingCount) {
     const numberReg = /^[1-9][0-9]*$/;
     if (!numberReg.test(movingCount)) {
-      throw new Error(ERROR_MESSAGE.movingCount);
+      throw new Error(ERROR_MESSAGE.MOVING_COUNT);
     }
   }
 
@@ -32,7 +32,7 @@ class Validator {
   }
 
   static #isDuplicatedCarName(carNames) {
-    const cars = carNames.split(CAR_RULE.separator);
+    const cars = carNames.split(CAR_RULE.SEPARATOR);
     return cars.length !== new Set(cars).size;
   }
 }
