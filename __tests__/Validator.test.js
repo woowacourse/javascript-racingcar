@@ -15,15 +15,15 @@ describe('자동차 이름 검사', () => {
 });
 
 describe('시도할 횟수 검사', () => {
-  test.each([['10'], ['+3']])('정상', (value) => {
+  test.each(['10', '+3'])('정상', (value) => {
     expect(() => Validator.validateAttempts(value)).not.toThrow();
   });
 
-  test.each([['12.34'], ['-3'], ['0']])('오류: 자연수가 아닌 경우', (value) => {
+  test.each(['12.34', '-3', '0'])('오류: 자연수가 아닌 경우', (value) => {
     expect(() => Validator.validateAttempts(value)).toThrow('[ERROR]');
   });
 
-  test.each([['참새'], ['0x12'], ['0b101']])('오류: 숫자가 아닌 경우', (value) => {
+  test.each(['참새', '0x12', '0b101'])('오류: 숫자가 아닌 경우', (value) => {
     expect(() => Validator.validateAttempts(value)).toThrow('[ERROR]');
   });
 });
