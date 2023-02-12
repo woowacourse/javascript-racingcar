@@ -34,6 +34,20 @@ class Car {
   move() {
     this.#position += 1;
   }
+
+  compareTo(other) {
+    if (this.#position > other.#position) return this;
+
+    return other;
+  }
+
+  isSamePosition(other) {
+    return this.#position === other.#position;
+  }
+
+  getName() {
+    return this.#name;
+  }
 }
 
 export default Car;

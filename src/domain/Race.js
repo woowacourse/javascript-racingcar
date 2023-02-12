@@ -42,15 +42,18 @@ class Race {
     this.#raceStep -= 1;
   }
 
-  getCars() {
-    return this.#cars;
+  #findWinners() {
+    const winnerCar = this.#cars.reduce((maxPositionCar, currentCar) =>
+      maxPositionCar.compareTo(currentCar),
+    );
+
+    return this.#cars.filter((car) => car.isSamePosition(winnerCar));
   }
 
-  getWinners() {
-    const positions = this.#cars.map((car) => car.getRaceState().position);
-    const maxPosition = Math.max(...positions);
+  findWinnerNames() {
+    const winnerCars = this.#findWinners();
 
-    return this.#cars.filter((car) => car.getRaceState().position === maxPosition);
+    return winnerCars.map((winnerCar) => winnerCar.getName());
   }
 }
 
