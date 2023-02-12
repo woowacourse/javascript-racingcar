@@ -27,10 +27,10 @@ class RacingGameService {
         common.generateRandomNumberInRange(GAME.MOVE_CONDITION.min, GAME.MOVE_CONDITION.max),
       ),
     );
-    this.recordCarsMove();
+    this.getCarsMoveRecord();
   }
 
-  recordCarsMove() {
+  getCarsMoveRecord() {
     this.#carsMoveHistories.push(
       this.#cars.map((car) => ({
         name: car.getName(),
