@@ -46,6 +46,17 @@ const validation = {
     });
   },
 
+  attempt(attempts) {
+    validation.isIntegerNumber(attempts);
+    validation.attemptRange(attempts);
+  },
+
+  isIntegerNumber(attempt) {
+    if (!this.isNumber(attempt) || !this.isInteger(attempt)) {
+      throw new Error(ERROR_MESSAGE.onlyInt);
+    }
+  },
+
   isNumber(attempt) {
     const regex = INPUT_REGEX.onlyNumberRegex;
     return regex.test(attempt);
@@ -55,21 +66,10 @@ const validation = {
     return Number.isInteger(attempt);
   },
 
-  isIntegerNumber(attempt) {
-    if (this.isNumber(attempt) || !this.isInteger(attempt)) {
-      throw new Error(ERROR_MESSAGE.onlyInt);
-    }
-  },
-
   attemptRange(attempt) {
     if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {
       throw new Error(ERROR_MESSAGE.attemptRange);
     }
-  },
-
-  attempt(attempts) {
-    this.isIntegerNumber(attempts);
-    this.attemptRange(attempts);
   },
 };
 module.exports = validation;
