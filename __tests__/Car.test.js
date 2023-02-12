@@ -1,4 +1,3 @@
-const Random = require('../src/utils/Random');
 const Car = require('../src/domain/Car');
 
 describe('Car - move() 기능 테스트', () => {
