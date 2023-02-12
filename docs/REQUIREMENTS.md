@@ -51,7 +51,7 @@
 - [x] OutputView에 printError 함수 추가하여 Controller 내부의 try ~ catch문에서 throw하는 error를 출력하도록 함.
 - [x] Random 내부의 랜덤 숫자 생성 함수를 객체로 분리.
 - [x] Controller의 init()을 constructor로 변경.
-- [x] push, pop, shift, unshift, splice 등의 원본 배열을 변경하는 함수는 최대한 지양 […arr, el]을 이용하기.
+- [x] push, pop, shift, unshift, splice 등의 원본 배열을 변경하는 함수는 지양.
 - [x] 조건문이 길어지면 함수로 따로 분리
 - [x] early return
-- [ ] 정규식은 상수화
+- [x] 정규식 상수화

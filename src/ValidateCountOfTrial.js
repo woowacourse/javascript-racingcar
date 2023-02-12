@@ -1,4 +1,4 @@
-const { ERROR, MIN_COUNT_OF_TRIAL } = require("./constants");
+const { ERROR, MIN_COUNT_OF_TRIAL, REGEX_NUMBER } = require("./constants");
 
 const ValidateCountOfTrial = {
   validate(countOfTrial) {
@@ -12,7 +12,7 @@ const ValidateCountOfTrial = {
   },
 
   countOfTrialIsNaN(countOfTrial) {
-    return /\d/g.test(countOfTrial);
+    return REGEX_NUMBER.test(countOfTrial);
   },
 
   validateRaceCount(countOfTrial) {

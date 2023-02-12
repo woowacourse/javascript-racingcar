@@ -14,6 +14,8 @@ const ERROR = {
   COUNT_OF_TRIAL_UNDER_ONE: "시도 횟수는 1회 이상이어야 합니다.",
 };
 
+const REGEX_NUMBER = /\d/g;
+
 const MIN_PARTICIPATE = 2;
 const MIN_COUNT_OF_TRIAL = 1;
 
@@ -37,4 +39,5 @@ module.exports = {
   FLAG,
   MIN_RANDOM,
   MAX_RANDOM,
+  REGEX_NUMBER,
 };
