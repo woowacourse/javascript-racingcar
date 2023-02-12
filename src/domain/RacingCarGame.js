@@ -1,6 +1,3 @@
-const { GAME_RULE } = require('./constants/rule');
-const pickNumberInRange = require('../utils/pickNumberInRange');
-
 class RacingCarGame {
   #cars;
 
@@ -8,23 +5,16 @@ class RacingCarGame {
     this.#cars = cars;
   }
 
-  moveCars() {
-    const isMovable = this.#getCarMoveSuccesses();
+  getCarCount() {
+    return this.#cars.length;
+  }
+
+  moveCars(carMoveSuccesses) {
     this.#cars.forEach((car, index) => {
-      if (!isMovable[index]) return;
-      car.move();
+      if (carMoveSuccesses[index]) {
+        car.move();
+      }
     });
-  }
-
-  #getCarMoveSuccesses() {
-    return Array.from({ length: this.#cars.length }, () => this.#isCarMove());
-  }
-
-  #isCarMove() {
-    return (
-      pickNumberInRange(GAME_RULE.RANDOM_NUMBER_RANGE_START, GAME_RULE.RANDOM_NUMBER_RANGE_END) >=
-      GAME_RULE.MOVING_CONDITION
-    );
   }
 
   getCarsInfo() {
@@ -34,10 +24,9 @@ class RacingCarGame {
   getWinner() {
     const carsInfo = this.getCarsInfo();
     const maxDistance = Math.max(...carsInfo.values());
-    const winners = [...carsInfo.entries()]
+    return [...carsInfo.entries()]
       .filter(([, distance]) => distance === maxDistance)
       .map(([name]) => name);
-    return winners;
   }
 }
 

@@ -1,5 +1,6 @@
 const Car = require('./domain/Car');
 const { CAR_RULE } = require('./domain/constants/rule');
+const MoveDecider = require('./domain/MoveDecider');
 const RacingCarGame = require('./domain/RacingCarGame');
 const { validateCarNames, validateMovingCount } = require('./domain/validators');
 const Console = require('./utils/console');
@@ -40,7 +41,8 @@ class App {
     OutputView.printResultTitle();
     OutputView.printCars(this.#game.getCarsInfo());
     for (let i = 0; i < movingCount; i += 1) {
-      this.#game.moveCars();
+      const carMoveSuccesses = MoveDecider.getCarMoveSuccesses(this.#game.getCarCount());
+      this.#game.moveCars(carMoveSuccesses);
       OutputView.printCars(this.#game.getCarsInfo());
     }
     OutputView.printWinner(this.#game.getWinner());
