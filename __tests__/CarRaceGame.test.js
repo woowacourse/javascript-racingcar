@@ -14,11 +14,20 @@ describe("자동차 경주 기능 테스트", () => {
     expect(car.updateRace([1, 0])).toEqual([2, 2]);
   });
 
-  test("큰 숫자의 라운드 진행 시 거리 업데이트 테스트", () => {
+  test("큰 거리에서의 업데이트 테스트", () => {
     const car = new CarRaceGame();
     car.setCarNames(["Rulu", "24"]);
     car.updateRace([11111111111110, 11111111111111]);
     expect(car.updateRace([0, 1])).toEqual([11111111111110, 11111111111112]);
+  });
+
+  test("큰 숫자의 라운드 진행 시 거리 업데이트 테스트", () => {
+    const car = new CarRaceGame();
+    car.setCarNames(["Rulu", "24"]);
+    for(let i = 0; i < 99999; i++){
+      car.updateRace([1,1]);
+    }
+    expect(car.updateRace([0, 1])).toEqual([99999, 100000]);
   });
 });
 
