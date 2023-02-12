@@ -1,4 +1,4 @@
-const App = require('../src/App');
+const RaceingCarGame = require('../src/RaceingCarGame');
 const Console = require('../src/utils/Console');
 const Random = require('../src/utils/Random');
 
@@ -46,7 +46,7 @@ describe('자동차 경주 테스트', () => {
     mockRandoms(randomNumbers);
     mockQuestions(['pobi,crong,honux', '5']);
 
-    const app = new App();
+    const app = new RaceingCarGame();
     app.play();
 
     const log = getOutput(logSpy);

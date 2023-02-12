@@ -7,7 +7,7 @@ const InputException = require('./validate/InputException');
 
 const { errorCheckFor } = require('./utils/errorCheckFor');
 
-class App {
+class RacingCarGame {
   #race;
 
   play() {
@@ -51,4 +51,4 @@ class App {
   }
 }
 
-module.exports = App;
+module.exports = RacingCarGame;
