@@ -1,10 +1,10 @@
-const RacingGame = require('./domain/RacingGame');
-const Validation = require('./utils/Validation');
-const OutputView = require('./view/OutputView');
-const { Console } = require('./utils');
-const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('./constants/Constant');
+const RacingGame = require('./RacingGame');
+const Validation = require('../utils/Validation');
+const OutputView = require('../view/OutputView');
+const { Console } = require('../utils');
+const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('../constants/Constant');
 
-class App {
+class GameController {
   #racingGame;
 
   async play() {
@@ -69,4 +69,4 @@ class App {
   }
 }
 
-new App().play();
+module.exports = GameController;
