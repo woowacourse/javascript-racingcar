@@ -15,9 +15,10 @@ class Car {
       GAME.MOVE_CONDITION.max,
     );
     if (randomNumber < GAME.MOVE_CONDITION.mid) {
-      return;
+      return false;
     }
     this.#distance += 1;
+    return true;
   }
 
   isFinish(winningDistance) {
