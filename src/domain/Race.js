@@ -1,8 +1,11 @@
-import RandomNumber from '../constants/RandomNumber';
 import Random from '../utils/Random';
 import Car from './Car';
 
 class Race {
+  static RANDOM_NUMBER_MIN = 0;
+  static RANDOM_NUMBER_MAX = 9;
+  static MOVE_CONDITION = 4;
+
   #cars;
 
   constructor(carNames) {
@@ -12,11 +15,11 @@ class Race {
   moveOnce() {
     this.#cars.forEach((car) => {
       const randomNumber = Random.randomNumberBetween(
-        RandomNumber.INCLUSIVE,
-        RandomNumber.EXCLUSIVE,
+        Race.RANDOM_NUMBER_MIN,
+        Race.RANDOM_NUMBER_MAX,
       );
 
-      if (randomNumber >= RandomNumber.MOVE_CONDITION) car.move();
+      if (randomNumber >= Race.MOVE_CONDITION) car.move();
     });
   }
 
