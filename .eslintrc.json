@@ -1,15 +1,36 @@
 {
-  "rules": {},
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "plugins": [
+    "jsdoc"
+  ],
   "extends": [
     "eslint:recommended",
+    "plugin:jsdoc/recommended",
+    "airbnb-base/legacy",
     "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "linebreak-style": "off",
+    "no-return-await": "off",
+    "max-lines-per-function": ["error", 10],
+    "max-depth": ["error", 2],
+    "jsdoc/require-param-description": "off"
+  },
+  "overrides": [
+    {
+      "files": ["__tests__/**/*.js"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "no-new": "off"
+      }
+    }
   ]
 }
