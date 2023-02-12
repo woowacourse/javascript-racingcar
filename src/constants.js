@@ -10,7 +10,7 @@ const ERROR = {
   CAR_NAME_LENGTH: `자동차 이름은 ${NAME_MIN_LENGTH}글자 이상 ${NAME_MAX_LENGTH}글자 이하입니다.`,
   CAR_NAME_DUPLICATED: "자동차 이름은 중복되지 않아야 합니다.",
   NOT_A_RACE: "2대 이상의 자동차 이름을 입력해주세요.",
-  COUNT_OF_TRIAL_SHOULD_BE_NUMBER: "시도 횟수는 숫자를 입력해주세요.",
+  COUNT_OF_TRIAL_IS_ONLY_NUMBER: "시도 횟수는 숫자를 입력해주세요.",
   COUNT_OF_TRIAL_UNDER_ONE: "시도 횟수는 1회 이상이어야 합니다.",
 };
 
