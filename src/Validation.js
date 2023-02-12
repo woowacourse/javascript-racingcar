@@ -2,8 +2,8 @@ const { ERROR_MESSAGE, GAME_NUMBER, GAME_STRING } = require('./constants');
 
 const Validation = {
   duplicatedCarName(carNames) {
-    const carNamesLowerCase = carNames.map((name) => {
-      return name.toLowerCase();
+    const carNamesLowerCase = carNames.map((carName) => {
+      return carName.toLowerCase();
     });
     const isDulicate =
       new Set(carNamesLowerCase).size !== carNamesLowerCase.length;
@@ -13,10 +13,10 @@ const Validation = {
   },
 
   carNameLengthRange(carNames) {
-    carNames.forEach((name) => {
+    carNames.forEach((carName) => {
       if (
-        name.length < GAME_NUMBER.minCarNameLength ||
-        name.length > GAME_NUMBER.maxCarNameLength
+        carName.length < GAME_NUMBER.minCarNameLength ||
+        carName.length > GAME_NUMBER.maxCarNameLength
       ) {
         throw new Error(ERROR_MESSAGE.carNameLengthRange);
       }
@@ -32,8 +32,8 @@ const Validation = {
   },
   onlyAlphabet(carNames) {
     const regex = GAME_STRING.alphabetExpression;
-    carNames.forEach((name) => {
-      if (regex.test(name)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
+    carNames.forEach((carName) => {
+      if (regex.test(carName)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
     });
   },
 
