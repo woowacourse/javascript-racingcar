@@ -1,7 +1,7 @@
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 const Car = require('../domain/Car');
-const { GAME, INPUT, OUTPUT } = require('../constant/constants');
+const { GAME, INPUT, OUTPUT, OUTPUT_RESULT, OUTPUT_WINNER } = require('../constant/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
 
@@ -57,7 +57,7 @@ class RacingGame {
     OutputView.print(OUTPUT.resultMent);
     this.#histories.forEach((history) => {
       history.forEach((car) => {
-        OutputView.print(OUTPUT.result(car));
+        OutputView.print(OUTPUT_RESULT(car));
       });
       OutputView.print('');
     });
@@ -66,7 +66,7 @@ class RacingGame {
 
   showWinners() {
     const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
-    OutputView.print(OUTPUT.winner(winners));
+    OutputView.print(OUTPUT_WINNER(winners));
   }
 }
 module.exports = RacingGame;
