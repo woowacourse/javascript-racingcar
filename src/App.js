@@ -13,13 +13,29 @@ class App {
 
   async play() {
     await this.setup();
+    this.playRacingGame();
+    this.showWinners();
+  }
+
+  playRacingGame() {
+    if (!this.#racingGame) return;
+
     OutputView.printResultMessage();
     OutputView.printResult(this.#racingGame.getGameStatus());
+
     while (this.#racingGame.canMove()) {
       this.#racingGame.moveAllCars();
       OutputView.printResult(this.#racingGame.getGameStatus());
     }
-    OutputView.printWinners(this.#racingGame.findWinner());
+  }
+
+  showWinners() {
+    if (!this.#racingGame) return;
+
+    const maxPosition = this.#racingGame.findMaxPosition();
+    const winners = this.#racingGame.findCarsAtPosition(maxPosition);
+
+    OutputView.printWinners(winners);
   }
 }
 
