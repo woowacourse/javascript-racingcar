@@ -26,14 +26,6 @@ class Car {
   getProgressCount() {
     return this.#progressCount;
   }
-
-  getName() {
-    return this.#name;
-  }
-
-  getProgressCount() {
-    return this.#progressCount;
-  }
 }
 
 module.exports = Car;
