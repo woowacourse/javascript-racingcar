@@ -1,15 +1,14 @@
-const CarRaceResultRandomGenerator = {
-  generate(carCount) {
-    const randomNumbers = Array(carCount)
-      .fill("")
-      .map(() => this.getSingleRandomNumber());
-    const raceRoundResults = randomNumbers.map((randomNumber) => (randomNumber >= 4 ? 1 : 0));
-    return raceRoundResults;
-  },
+const randomNumbersGenerator = require("../util/randomNumbersGenerator");
+const { RANDOMS, RESULT } = require("../constant/Constant");
 
-  getSingleRandomNumber() {
-    const MAXIMUM_RANDOM_NUMBER = 10;
-    return Math.floor(Math.random() * MAXIMUM_RANDOM_NUMBER);
+const CarRaceResultRandomGenerator = {
+  getCarRaceRoundResult(carCount) {
+    const randomNumbers = randomNumbersGenerator.getRandomNumbers(carCount, RANDOMS.maximumNumber);
+    const raceRoundResult = randomNumbers.map((randomNumber) =>
+      randomNumber >= RANDOMS.minimumRunNumber ? RESULT.run : RESULT.stay
+    );
+
+    return raceRoundResult;
   },
 };
 
