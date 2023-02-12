@@ -12,7 +12,7 @@ class RacingGameController {
     this.#service = service;
   }
 
-  async play() {
+  async playGame() {
     OutputView.print(OUTPUT.startGame);
     await this.setCars();
     await this.setWinningDistance();

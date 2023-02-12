@@ -3,7 +3,7 @@ const RacingGameService = require('./service/RacingGameService');
 
 class App {
   start() {
-    new RacingGameController(new RacingGameService()).play();
+    new RacingGameController(new RacingGameService()).playGame();
   }
 }
 
