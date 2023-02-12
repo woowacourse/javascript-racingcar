@@ -21,11 +21,11 @@ class RacingGame {
     return this.#cars;
   }
 
-  get TryCount() {
+  get tryCount() {
     return this.#tryCount;
   }
 
-  set TryCount(tryCount) {
+  set tryCount(tryCount) {
     this.#tryCount = tryCount;
   }
 
@@ -42,12 +42,6 @@ class RacingGame {
       );
       this.judgeMove(randomNumber, car);
     });
-  }
-
-  repeatProcess() {
-    for (let i = 0; i < this.#tryCount; i++) {
-      this.assignRandom();
-    }
   }
 
   findWinner() {

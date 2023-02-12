@@ -32,7 +32,7 @@ class RacingController {
 
   setTryCount() {
     InputView.readTryCount((tryCount) => {
-      this.#racingGame.TryCount = tryCount;
+      this.#racingGame.tryCount = tryCount;
 
       OutputView.printWhiteSpace();
       this.judgeTryCountProgress(tryCount);
@@ -49,11 +49,17 @@ class RacingController {
     }
   }
 
+  repeatMoveProcess() {
+    for (let i = 0; i < this.#racingGame.tryCount; i++) {
+      this.#racingGame.assignRandom();
+      OutputView.printMoveProcess(this.#racingGame.carsNameList);
+    }
+  }
+
   showMoveResult() {
     OutputView.printMoveResult();
     OutputView.printMoveProcess(this.#racingGame.carsNameList);
-    this.#racingGame.repeatProcess();
-    OutputView.printMoveProcess(this.#racingGame.carsNameList);
+    this.repeatMoveProcess();
   }
 
   showWinner() {
