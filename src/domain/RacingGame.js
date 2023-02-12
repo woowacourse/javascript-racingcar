@@ -3,12 +3,12 @@ import RandomNumberGenerator from "../util/RandomNumberGenerator.js";
 
 class RacingGame {
   #cars;
-  #tryCount;
+  #leftTryCount;
 
-  constructor(carNames, tryCount) {
+  constructor(carNames, leftTryCount) {
     const carNamesArray = carNames.split(",");
     this.#cars = carNamesArray.map((name) => new Car(name));
-    this.#tryCount = tryCount;
+    this.#leftTryCount = leftTryCount;
   }
 
   raceOneTurn() {
@@ -16,11 +16,11 @@ class RacingGame {
       const randomNumber = RandomNumberGenerator.generate();
       car.move(randomNumber);
     });
-    this.#tryCount -= 1;
+    this.#leftTryCount -= 1;
   }
 
   isGameComplete() {
-    return this.#tryCount === 0;
+    return this.#leftTryCount === 0;
   }
 
   getCarsResultOfOneTurn() {
