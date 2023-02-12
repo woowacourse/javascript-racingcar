@@ -34,6 +34,12 @@ class RacingGame {
     return winners.map((car) => car.getName());
   }
 
+  findCarsAtPosition(position) {
+    return this.#carList
+      .filter((car) => car.getPosition() === position)
+      .map((car) => car.getName());
+  }
+
   getGameStatus() {
     const status = {};
     this.#carList.forEach((car) => { status[car.getName()] = car.getPosition(); });
