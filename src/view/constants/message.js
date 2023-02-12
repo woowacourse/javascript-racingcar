@@ -4,7 +4,7 @@ const INPUT_MESSAGE = {
 }
 
 const OUTPUT_MESSAGE = {
-  result: '실행 결과',
+  result: '\n실행 결과',
   winner: '가 최종 우승했습니다.'
 }
 

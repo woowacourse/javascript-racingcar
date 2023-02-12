@@ -9,13 +9,19 @@ class Controller {
 
   constructor() {
     this.#inputView = InputView;
-    this.#outputView = OutputView;
-    this.#racingCarGame 
-      = new RacingCarGame(this.#inputView.readCarNameList(), this.#inputView.readNumberOfTrials());
+    this.#outputView = new OutputView ();
+  }
+
+  async createRacingCarGame() {
+    const carNameList = await this.#inputView.readCarNameList();
+    const numberOfTrials = await this.#inputView.readNumberOfTrials();
+    this.#racingCarGame = new RacingCarGame(carNameList, numberOfTrials)
   }
 
   executeRacingCarGame() {
-    this.#outputView.printResult(this.#racingCarGame.getResult());
+    this.#racingCarGame.play();
+    
+    this.#outputView.printResult(this.#racingCarGame.getGameResult());
     this.#outputView.close();
   }
 }
