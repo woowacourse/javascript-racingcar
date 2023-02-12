@@ -36,19 +36,21 @@ class Race {
   }
 
   getWinners() {
-    const longestPosition = this.#getLongestPosition();
+    const winnerPosition = this.#getWinnerPosition();
 
-    return this.#cars
-      .filter((carInstance) => longestPosition === carInstance.getPosition())
+    const winners = this.#cars
+      .filter((carInstance) => winnerPosition === carInstance.getPosition())
       .map((carInstance) => carInstance.getName());
+
+    return winners;
   }
 
-  #getLongestPosition() {
-    const result = this.#cars.sort(
+  #getWinnerPosition() {
+    const [ winner ] = this.#cars.sort(
       (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 
-    return result[MAGIC_NUMBER.FIRST_INDEX].getPosition();
+    return winner.getPosition();
   }
 }
 
