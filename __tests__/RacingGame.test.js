@@ -1,4 +1,4 @@
-const RacingGame = require('../src/RacingGame');
+const RacingGame = require('../src/domain/RacingGame');
 
 describe('자동차 경주 게임을 진행하는 클래스 테스트', () => {
   let racingGame;

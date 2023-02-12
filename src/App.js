@@ -1,13 +1,12 @@
-const RacingGame = require('./RacingGame');
+const RacingGame = require('./domain/RacingGame');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
-const CarNamesInputValidator = require('./validators/CarNamesInputValidator');
-const TryCountInputValidator = require('./validators/TryCountInputValidator');
+const CarNamesInputValidator = require('./domain/validators/CarNamesInputValidator');
+const TryCountInputValidator = require('./domain/validators/TryCountInputValidator');
 
 class App {
-  #carManager;
   #carNames;
   #tryCount;
   #racingGame;
@@ -29,7 +28,6 @@ class App {
     } catch (error) {
       await this.inputCarNames();
     }
-    this.printWinners(this.#carManager.getWinners());
   }
 
   async inputTryCount() {

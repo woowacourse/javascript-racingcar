@@ -1,4 +1,4 @@
-const TryCountInputValidator = require('../src/validators/TryCountInputValidator');
+const TryCountInputValidator = require('../src/domain/validators/TryCountInputValidator');
 
 describe('자동차의 전진 시도 횟수를 위한 입력값의 유효성 검사', () => {
   test.each(['0', '-1', 'abcd', 'a0', '0a', '1.0'])(
