@@ -2,6 +2,7 @@
 const IO = require('../src/utils/IO.js');
 const Util = require('../src/utils/Util.js');
 const App = require('../src/index.js');
+const RacingGame = require('../src/model/RacingGame.js');
 
 const mockQuestions = (answers) => {
   IO.read = jest.fn();
@@ -24,6 +25,24 @@ const getLogSpy = () => {
   logSpy.mockClear();
   return logSpy;
 };
+
+describe('RacingGame test', () => {
+  const game = new RacingGame();
+  game.cars = ['eddie', 'pobi', 'crong', 'honux'];
+  test('judge move test', () => {
+    const inputRandomNumber = [0, 3, 4, 9];
+    const resultMoveCount = [1, 1, 2, 2];
+
+    game.cars.forEach((car, index) => {
+      game.judgeMove(inputRandomNumber[index], car);
+      expect(car.moveCount).toBe(resultMoveCount[index]);
+    });
+  });
+
+  test('find winner test', () => {
+    expect(game.findWinner()).toEqual(['crong', 'honux']);
+  });
+});
 
 describe('RacingController test', () => {
   test('Total process test', () => {
