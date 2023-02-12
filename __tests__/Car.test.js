@@ -16,7 +16,6 @@ describe('Car 클래스', () => {
     const car = new Car('name');
     const randomNumbers = [4, 5];
 
-    console.log('hh' + mockRandoms);
     mockRandoms(randomNumbers);
     randomNumbers.forEach(() => {
       car.move();
