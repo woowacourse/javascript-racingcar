@@ -6,6 +6,7 @@ const StaticValue = Object.freeze({
   REGEX_WHITESPACE: /\s|^$/,
   CAR_NAME_LIMIT: 5,
   CAR_NAME_INPUT_SEPERATOR: ',',
+  CAR_MOVEMENT_SYMBOL: '-',
 });
 
 const RL = readline.createInterface({

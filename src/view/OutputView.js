@@ -1,8 +1,13 @@
-const { RL, ConsoleMessage } = require('../constants/constants');
+const { StaticValue, RL, ConsoleMessage } = require('../constants/constants');
 
 const OutputView = {
   printMoveDistance(name, distance) {
-    console.log(ConsoleMessage.moveDistance(name, '-'.repeat(distance)));
+    console.log(
+      ConsoleMessage.moveDistance(
+        name,
+        StaticValue.CAR_MOVEMENT_SYMBOL.repeat(distance),
+      ),
+    );
   },
 
   printEmptyLine() {
