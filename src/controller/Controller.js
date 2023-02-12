@@ -1,4 +1,4 @@
-const RacingGame = require('../model/RacingGame');
+const RacingGame = require('../domain/RacingGame');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
