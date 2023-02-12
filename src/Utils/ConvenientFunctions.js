@@ -8,6 +8,7 @@ const isEqualOrGreaterThanStandardNumber = (number) => {
   if (number >= MOVEMENT_STANDARD_NUMBER) {
     return true;
   }
+
   return false;
 };
 

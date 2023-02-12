@@ -64,7 +64,7 @@ class Validator {
   tryCount(count) {
     this.isNumber(count);
     this.isNotInteger(count);
-    console.log(count, typeof count, "tryCouny@@");
+
     if (count < MINIMUM_TRY_COUNT || count > MAXIMIM_TRY_COUNT) {
       throw new Error(TRY_COUNT_ARRANGE);
     }

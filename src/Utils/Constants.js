@@ -2,7 +2,7 @@ const COMMA = ",";
 const LINE_BREAK = "\n";
 
 const GAME_MESSAGE = Object.freeze({
-  INPUT_CAR_NAME: `경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).${LINE_BREAK}`,
+  INPUT_CAR_NAME: `경주할 자동차 이름을 입력하세요(이름은 쉼표(${COMMA})를 기준으로 구분).${LINE_BREAK}`,
   INPUT_TRY_COUNT: `시도할 횟수는 몇 회인가요?${LINE_BREAK}`,
   RUN_RESULT_MESSAGE: `${LINE_BREAK}실행 결과`,
   MOVEMENT_UNIT: "-",

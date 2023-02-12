@@ -13,6 +13,7 @@ const OutputView = {
       const { name, position } = car.getCarStatus();
       utils.print(`${name} ${COLON} ${MOVEMENT_UNIT.repeat(position)}`);
     }
+
     utils.print(LINE_BREAK);
   },
 
