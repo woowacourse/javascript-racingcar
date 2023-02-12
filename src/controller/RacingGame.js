@@ -72,10 +72,6 @@ class RacingGame {
       this.#winners.push(car.getName());
     }
   }
-
-  getWinner() {
-    return this.#winners;
-  }
 }
 
 module.exports = RacingGame;
