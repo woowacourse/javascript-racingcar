@@ -5,7 +5,7 @@ const { validateCarNames, validateWinningDistance } = require('../validation/inp
 const { toInt } = require('../utils/common');
 const { printStartGame, printResult, printWinners } = require('../view/OutputView');
 
-class Controller {
+class CarGame {
   #cars;
   #winningDistance;
   #histories;
@@ -65,4 +65,4 @@ class Controller {
     printWinners(winnerNames);
   }
 }
-module.exports = Controller;
+module.exports = CarGame;
