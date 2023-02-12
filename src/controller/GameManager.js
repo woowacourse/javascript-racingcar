@@ -39,10 +39,8 @@ class GameManager {
   }
 
   judgeWinners() {
-    const cars = [...this.#cars];
-    cars.sort((a, b) => b.getPosition() - a.getPosition());
-    const max = cars[0].getPosition();
-    const winners = cars
+    const max = Math.max(...this.#cars.map((car) => car.getPosition()));
+    const winners = [...this.#cars]
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
     return winners;
