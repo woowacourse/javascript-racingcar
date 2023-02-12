@@ -23,7 +23,7 @@ class RacingController {
     InputValidator.handleException(
       () => InputValidator.validateCarNames(carArr),
       () => {
-        this.#racingGame.setCars(carArr);
+        this.#racingGame.cars = carArr;
         this.inputTryCount();
       },
       () => this.inputCarNames()
@@ -41,15 +41,29 @@ class RacingController {
   }
 
   setInputTryCount(tryCount) {
-    this.#racingGame.setTryCount(tryCount);
+    this.#racingGame.tryCount = tryCount;
     this.conductProcess();
   }
 
   conductProcess() {
     OutputView.printWhiteSpace();
-    this.#racingGame.repeatProcess();
-    this.#racingGame.printWinner();
+    OutputView.printMoveResult();
+    this.printProcess();
+    this.printWinner();
     this.quitGame();
+  }
+
+  printProcess() {
+    OutputView.printMoveProcess(this.#racingGame.cars);
+
+    for (let i = 0; i < this.#racingGame.tryCount; i++) {
+      this.#racingGame.assignRandom();
+      OutputView.printMoveProcess(this.#racingGame.cars);
+    }
+  }
+
+  printWinner() {
+    OutputView.printWinner(this.#racingGame.findWinner());
   }
 
   quitGame() {
