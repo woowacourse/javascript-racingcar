@@ -1,7 +1,3 @@
-const Random = {
-  randomNumberBetween(inclusiveStart, exclusiveEnd) {
-    return inclusiveStart + Math.floor(Math.random() * exclusiveEnd);
-  },
+export const randomNumberBetween = (min, max) => {
+  return min + Math.floor(Math.random() * max);
 };
-
-export default Random;
