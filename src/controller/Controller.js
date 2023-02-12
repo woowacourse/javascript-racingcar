@@ -1,11 +1,9 @@
-const Car = require('../model/Car');
-const Utils = require('../utils/Utils');
+const RacingGame = require('../model/RacingGame');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
-const { StaticValue } = require('../constants/constants');
 
 class Controller {
-  #cars = [];
+  #racingGame;
 
   playGame() {
     this.inputCarNames();
@@ -13,7 +11,7 @@ class Controller {
 
   inputCarNames() {
     InputView.readCarNames((cars) => {
-      this.#cars = cars.map((car) => new Car(car));
+      this.#racingGame = new RacingGame(cars);
       this.inputMoveCount();
     });
   }
@@ -30,23 +28,15 @@ class Controller {
   }
 
   handleCarsMovement() {
-    this.#cars.forEach((car) => {
-      const RANDOM_NUMBER = Utils.generateRandomNumber();
+    const CAR_MOVEMENT = this.#racingGame.getCarsMovement();
 
-      if (RANDOM_NUMBER >= StaticValue.MOVE_CONDITION) car.move();
-
-      OutputView.printMoveDistance(car.getName(), car.getCurrentDistance());
+    CAR_MOVEMENT.forEach(([name, distance]) => {
+      OutputView.printMoveDistance(name, distance);
     });
   }
 
   handleWinners() {
-    const CARS_DISTANCE = this.#cars.map((car) => car.getCurrentDistance());
-    const MAX_DISTANCE = Math.max(...CARS_DISTANCE);
-    const WINNERS = this.#cars
-      .filter((car) => car.getCurrentDistance() === MAX_DISTANCE)
-      .map((car) => car.getName());
-
-    OutputView.printWinner(WINNERS);
+    OutputView.printWinner(this.#racingGame.getWinners());
   }
 }
 
