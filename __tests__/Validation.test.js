@@ -1,5 +1,5 @@
-const ValidateCarName = require("../src/ValidateCarName");
-const ValidateCountOfTrial = require("../src/ValidateCountOfTrial");
+const ValidateCarName = require("../src/utils/ValidateCarName");
+const ValidateCountOfTrial = require("../src/utils/ValidateCountOfTrial");
 
 describe("자동차 이름 유효성 검사", () => {
   test.each([[["", "a"]], [["abcdef", "a"]]])(

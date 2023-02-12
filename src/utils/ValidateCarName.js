@@ -1,10 +1,10 @@
-const Console = require("./utils/Console");
+const Console = require("./Console");
 const {
   ERROR,
   NAME_MAX_LENGTH,
   NAME_MIN_LENGTH,
   MIN_PARTICIPATE,
-} = require("./constants");
+} = require("../constants");
 
 const ValidateCarName = {
   validate(carNames) {
