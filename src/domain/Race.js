@@ -55,6 +55,14 @@ class Race {
 
     return winnerCars.map((winnerCar) => winnerCar.getName());
   }
+
+  getRaceStates() {
+    return this.#cars.map((car) => car.getRaceState());
+  }
+
+  isRaceEnd() {
+    return this.#raceStep === 0;
+  }
 }
 
 export default Race;
