@@ -1,3 +1,4 @@
+const { MAGIC_NUMBER } = require('../constant/magicNumber');
 const Random = require('../utils/Random');
 
 class Race {
@@ -29,7 +30,7 @@ class Race {
   start() {
     Array.from({ length: this.#trial }, () => 0).forEach(() => {
       this.#cars.forEach((car) => {
-        const randomNumber = Random.pickNumberInRange(0, 9);
+        const randomNumber = Random.pickNumberInRange(MAGIC_NUMBER.RANGE_START, MAGIC_NUMBER.RANGE_END);
         car.move(randomNumber);
       });
     });
@@ -48,7 +49,7 @@ class Race {
       (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 
-    return result[0].getPosition();
+    return result[MAGIC_NUMBER.FIRST_INDEX].getPosition();
   }
 }
 
