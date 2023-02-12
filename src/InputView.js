@@ -1,15 +1,14 @@
+const { READ_CAR_NAMES, READ_TRY_COUNT } = require('./constants/message');
 const Console = require('./utils/Console');
 
 const InputView = {
   async readCarNames() {
-    const input = await Console.read(
-      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).'
-    );
+    const input = await Console.read(READ_CAR_NAMES);
     return input.split(',');
   },
 
   async readTryCount() {
-    const input = await Console.read('시도할 회수는 몇회인가요?');
+    const input = await Console.read(READ_TRY_COUNT);
     return +input;
   },
 };
