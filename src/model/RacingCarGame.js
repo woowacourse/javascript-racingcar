@@ -1,5 +1,4 @@
 const RacingScoreMap = require("./RacingScoreMap");
-const RandomNumberGenerator = require("./utils/Random");
 
 class RacingCarGame {
   #numberOfTrial;
@@ -10,7 +9,7 @@ class RacingCarGame {
       throw new Error(`TypeError`)
     }
 
-    this.#RacingCarMap = new RacingScoreMap(carList);
+    this.#racingCarMap = new RacingScoreMap(carList);
     this.totalTrial = totalTrial;
   }
 
