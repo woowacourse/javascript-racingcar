@@ -11,18 +11,22 @@ class RacingGame {
     this.#cars = [];
   }
 
-  makeCarNameList(cars) {
+  makeCarsNameList(cars) {
     cars.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
   }
 
-  getCarName() {
+  get carsNameList() {
     return this.#cars;
   }
 
-  getTryCount(tryCount) {
-    return (this.#tryCount = tryCount);
+  get TryCount() {
+    return this.#tryCount;
+  }
+
+  set TryCount(tryCount) {
+    this.#tryCount = tryCount;
   }
 
   judgeMove(randomNumber, car) {
@@ -49,7 +53,7 @@ class RacingGame {
   findWinner() {
     const carsMoveResults = new Map();
     this.#cars.forEach((car) => {
-      carsMoveResults.set(car.getCarName(), car.getMoveCount());
+      carsMoveResults.set(car.carName, car.moveCount);
     });
 
     const winners = Util.filterMaxObjects(carsMoveResults).map((obj) => obj[0]);
