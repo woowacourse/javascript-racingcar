@@ -15,26 +15,21 @@ const ValidateCarName = {
 
   validateCarNameLength(carNames) {
     carNames.forEach((carName) => {
-      if (
-        carName.length < NAME_MIN_LENGTH ||
-        carName.length > NAME_MAX_LENGTH
-      ) {
-        throw ERROR.CAR_NAME_LENGTH;
-      }
+      if (carName.length < NAME_MIN_LENGTH || carName.length > NAME_MAX_LENGTH)
+        return;
+      throw ERROR.CAR_NAME_LENGTH;
     });
   },
 
   validateCarNameDuplicated(carNames) {
     const carSet = new Set(carNames);
-    if (carNames.length !== carSet.size) {
-      throw ERROR.CAR_NAME_DUPLICATED;
-    }
+    if (carNames.length === carSet.size) return;
+    throw ERROR.CAR_NAME_DUPLICATED;
   },
 
   validateIsRace(carNames) {
-    if (carNames.length < MIN_PARTICIPATE) {
-      throw ERROR.NOT_A_RACE;
-    }
+    if (carNames.length >= MIN_PARTICIPATE) return;
+    throw ERROR.NOT_A_RACE;
   },
 };
 
