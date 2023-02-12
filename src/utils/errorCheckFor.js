@@ -9,6 +9,5 @@ const errorCheckFor = (tryFn, catchFn) => {
   }
 };
 
-module.exports = {
-  errorCheckFor,
-};
+module.exports = errorCheckFor;
+
