@@ -21,22 +21,26 @@ const readLine = async (query) => {
 const InputView = {
   async getCarNames() {
     const answer = await readLine(Messages.INPUT_CAR_NAMES);
+
     const carNames = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
     Validator.validateCarNames(carNames);
+
     return carNames;
   },
 
   async getAttempts() {
     const answer = await readLine(Messages.INPUT_ATTEMPTS);
+
     Validator.validateAttempts(answer);
+
     return Number(answer);
   },
 
   async repeatInput(inputFunction, recursionDepth = 0) {
     if (recursionDepth > Settings.WRONG_INPUT_PATIENCE) throw new Error(Messages.ERROR_TOO_MANY);
+
     try {
-      const input = await inputFunction();
-      return input;
+      return await inputFunction();
     } catch (error) {
       console.log(`${error.message}\n`);
       return this.repeatInput(inputFunction, recursionDepth + 1);
