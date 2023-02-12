@@ -1,4 +1,4 @@
-import RaceController from './controllers/RaceController';
+import RaceController from './controller/RaceController';
 
 class App {
   #raceController;
