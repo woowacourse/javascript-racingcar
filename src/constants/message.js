@@ -16,6 +16,7 @@ const OUTPUT_MESSAGE_METHOD = {
 };
 
 const ERROR_MESSAGE = {
+  PREFIX: '[ERROR]',
   FRONT_AND_BACK_SPACES: `앞 또는 뒤에 공백을 포함해 입력했습니다.`,
   OVER_CAR_NAME_LENGTH: `자동차 이름은 ${CAR_RULE.MIN_NAME_LENGTH}자 이상 ${CAR_RULE.MAX_NAME_LENGTH}자 이하만 가능합니다.`,
   INVALID_CHARACTER: '자동차 이름은 알파벳 또는 한글로 입력해야합니다.',

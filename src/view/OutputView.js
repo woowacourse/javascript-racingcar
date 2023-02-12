@@ -1,4 +1,4 @@
-const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../constants');
+const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD, ERROR_MESSAGE } = require('../constants');
 const { Console } = require('../utils');
 
 const OutputView = {
@@ -18,7 +18,7 @@ const OutputView = {
   },
 
   printError(errorMessage) {
-    Console.print(errorMessage);
+    Console.print(ERROR_MESSAGE.PREFIX + errorMessage);
   },
 };
 
