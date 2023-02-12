@@ -4,7 +4,7 @@ const {
   CAR_NAME_LENGTH,
   REGEX,
   MINIMUM_TRY_COUNT,
-} = require("../Constants/Constants");
+} = require("../constant/Constants");
 const {
   MINIMUM_CAR_COUNT,
   NAME_DUPLICATE,

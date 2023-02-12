@@ -1,5 +1,5 @@
-const { print } = require("../Utils/Utils");
-const { GAME_MESSAGE, LINE_BREAK } = require("../Constants/Constants");
+const { print } = require("../util/Utils");
+const { GAME_MESSAGE, LINE_BREAK } = require("../constant/Constants");
 const { RUN_RESULT_MESSAGE, GAME_RESULT, COLON, MOVEMENT_UNIT } = GAME_MESSAGE;
 
 const OutputView = {

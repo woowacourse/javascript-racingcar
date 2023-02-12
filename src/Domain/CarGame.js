@@ -1,6 +1,6 @@
 const { movingDistance } = require("./MovementIndicator");
-const makeRandomNumber = require("../Utils/RandomNumberMaker");
-const { COMMA } = require("../Constants/Constants");
+const makeRandomNumber = require("../util/RandomNumberMaker");
+const { COMMA } = require("../constant/Constants");
 
 class CarGame {
   #carStatus = new Map([]);

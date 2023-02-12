@@ -1,18 +1,18 @@
-const Utils = require("./Utils/Utils");
-const splitAndTrimString = require("./Utils/SplitAndTrimString");
-const { readCarName, readTryCount } = require("./UI/InputView");
+const Utils = require("./util/Utils");
+const splitAndTrimString = require("./util/SplitAndTrimString");
+const { readCarName, readTryCount } = require("./view/InputView");
 const {
   printResultMessage,
   printCarMovement,
   printWinner,
-} = require("./UI/OutputView");
+} = require("./view/OutputView");
 const {
   inputCarNameValidator,
   tryCountValidator,
-} = require("./Validator/Validator");
-const { errorCatcher } = require("./Validator/ErrorCatcher");
+} = require("./validator/Validator");
+const { errorCatcher } = require("./validator/ErrorCatcher");
 
-const CarGame = require("./Domain/CarGame");
+const CarGame = require("./domain/CarGame");
 
 class App {
   #game = new CarGame();

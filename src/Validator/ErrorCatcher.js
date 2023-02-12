@@ -1,4 +1,4 @@
-const Utils = require("../Utils/Utils");
+const Utils = require("../util/Utils");
 
 const errorCatcher = (validator, readInput, acceptValidInput) => {
   try {

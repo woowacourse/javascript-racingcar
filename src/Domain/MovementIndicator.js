@@ -1,4 +1,4 @@
-const { MOVEMENT } = require("../Constants/Constants");
+const { MOVEMENT } = require("../constant/Constants");
 const { FORWARD_CONDITION_NUMBER, FORWARD_DISTANCE } = MOVEMENT;
 
 const movingDistance = (randomNumber) => {
