@@ -3,7 +3,7 @@ const OutputView = require('../view/OutputView');
 const Car = require('../domain/Car');
 const { GAME, INPUT, OUTPUT, OUTPUT_RESULT, OUTPUT_WINNER } = require('../constant/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
-const { toInt } = require('../utils/common');
+const common = require('../utils/common');
 
 class RacingGame {
   #cars;
@@ -36,13 +36,17 @@ class RacingGame {
   }
 
   async setWinningDistance() {
-    this.#winningDistance = toInt(await InputView.readline(INPUT.winningDistance));
+    this.#winningDistance = common.toInt(await InputView.readline(INPUT.winningDistance));
     if (!validateWinningDistance(this.#winningDistance)) return this.setWinningDistance();
     this.moveCars();
   }
 
   moveCars() {
-    this.#cars.forEach((car) => car.move());
+    this.#cars.forEach((car) =>
+      car.move(
+        common.generateRandomNumberInRange(GAME.MOVE_CONDITION.min, GAME.MOVE_CONDITION.max),
+      ),
+    );
     this.#histories.push(
       this.#cars.map((car) => ({ name: car.getName(), distance: car.getDistance() })),
     );

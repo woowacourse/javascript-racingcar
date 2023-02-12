@@ -1,5 +1,4 @@
 const { GAME } = require('../constant/constants');
-const common = require('../utils/common');
 
 class Car {
   #name;
@@ -10,11 +9,7 @@ class Car {
     this.#distance = 0;
   }
 
-  move() {
-    const randomNumber = common.generateRandomNumberInRange(
-      GAME.MOVE_CONDITION.min,
-      GAME.MOVE_CONDITION.max,
-    );
+  move(randomNumber) {
     if (randomNumber >= GAME.MOVE_CONDITION.satisfaction) this.#distance += 1;
   }
 
