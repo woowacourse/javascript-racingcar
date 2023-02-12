@@ -32,15 +32,16 @@ class GameManager {
     printEmptyLine();
   }
 
-  raceCars(tryCount, cars) {
+  raceCars(tryCount) {
     printResult();
     Array(tryCount).fill().forEach(() => {
-      this.moveCars(cars);
-      this.printCars(cars);
+      this.moveCars(this.#cars);
+      this.printCars(this.#cars);
     })
   }
 
-  judgeWinners(cars) {
+  judgeWinners() {
+    const cars = [...this.#cars];
     cars.sort((a, b) => b.getPosition() - a.getPosition());
     const max = cars[0].getPosition();
     const winners = cars
@@ -90,8 +91,8 @@ class GameManager {
   async play() {
     await this.handleCarNames();
     const tryCount = await this.handleTryCount();
-    this.raceCars(tryCount, this.#cars);
-    const winners = this.judgeWinners([...this.#cars]);
+    this.raceCars(tryCount);
+    const winners = this.judgeWinners();
     printWinners(winners);
     Console.close();
   }
