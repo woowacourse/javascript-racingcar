@@ -4,6 +4,7 @@ const StaticValue = Object.freeze({
   MOVE_CONDITION: 4,
   RANDOM_NUMBER_LIMIT: 10,
   REGEX_WHITESPACE: /\s|^$/,
+  REGEX_NON_DIGIT: /\D/,
   CAR_NAME_LIMIT: 5,
   CAR_NAME_INPUT_SEPERATOR: ',',
   CAR_MOVEMENT_SYMBOL: '-',
