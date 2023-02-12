@@ -23,7 +23,7 @@ const InputView = {
         }
 
         readlineInterface.close();
-        resolve(repeatNumber);
+        resolve(Number(repeatNumber));
       });
     });
   },
