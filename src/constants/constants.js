@@ -8,6 +8,7 @@ const StaticValue = Object.freeze({
   CAR_NAME_LIMIT: 5,
   CAR_NAME_INPUT_SEPERATOR: ',',
   CAR_MOVEMENT_SYMBOL: '-',
+  WINNER_RESULT_SEPARATOR: ', ',
 });
 
 const RL = readline.createInterface({

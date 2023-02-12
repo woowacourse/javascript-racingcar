@@ -15,7 +15,11 @@ const OutputView = {
   },
 
   printWinner(winners) {
-    console.log(ConsoleMessage.result(winners.join(', ')));
+    console.log(
+      ConsoleMessage.result(
+        winners.join(StaticValue.WINNER_RESULT_SEPARATOR),
+      ),
+    );
     RL.close();
   },
 };
