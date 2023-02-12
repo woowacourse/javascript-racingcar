@@ -1,5 +1,5 @@
 const Console = require('../utils/console');
-const { OUTPUT_MESSAGE } = require('../domain/constants/message');
+const { OUTPUT_MESSAGE, OUTPUT_MESSAGE_METHOD } = require('../domain/constants/message');
 
 const OutputView = {
   printResultTitle() {
@@ -8,13 +8,13 @@ const OutputView = {
 
   printCars(cars) {
     cars.forEach((distance, name) => {
-      Console.print(`${name} : ${OUTPUT_MESSAGE.DISTANCE.repeat(distance)}`);
+      Console.print(OUTPUT_MESSAGE_METHOD.CAR_RESULT(name, distance));
     });
     Console.print('');
   },
 
   printWinner(winner) {
-    Console.print(`${winner.join(', ')}${OUTPUT_MESSAGE.WINNER}`);
+    Console.print(OUTPUT_MESSAGE_METHOD.WINNER(winner));
   },
 
   printError(errorMessage) {
