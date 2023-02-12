@@ -1,4 +1,3 @@
-const MakeRandomNumber = require("./MakeRandomNumber");
 const { MIN_RANDOM, MAX_RANDOM } = require("../constants");
 
 const Random = {
