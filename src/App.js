@@ -1,10 +1,12 @@
 import InputView from "./View/InputView.js";
+import OutputView from "./View/OutputView.js";
 import { ErrorHandler } from "./Validator/ErrorHandler.js";
 import {
   inputCarNameValidator,
   tryCountValidator,
 } from "./Validator/Validator.js";
 import CarGame from "./Domain/CarGame.js";
+import { utils } from "./Utils/Utils.js";
 
 class App {
   #games;
@@ -42,7 +44,28 @@ class App {
 
   startPlay(cars, round) {
     this.#games.initializeGameStatus(cars, round);
-    this.#games.showGameResult();
+
+    OutputView.printResultMessage();
+
+    this.showEachGameRound();
+
+    this.endPlay();
+  }
+
+  showEachGameRound() {
+    const roundResult = this.#games.getEachGameRoundResult();
+
+    for (const result of roundResult) {
+      OutputView.printCarMovement(result);
+    }
+  }
+
+  endPlay() {
+    const gameStatus = this.#games.getStatusValuesArray();
+
+    OutputView.printWinner(this.#games.findWinner(gameStatus));
+
+    utils.close();
   }
 }
 

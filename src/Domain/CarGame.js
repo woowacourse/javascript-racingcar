@@ -1,8 +1,6 @@
 import { isMoving, randomNumberMaker } from "../Utils/ConvenientFunctions.js";
 import { COMMA, FORWARD_VALUE } from "../Utils/Constants.js";
 import Car from "./Car.js";
-import OutputView from "../View/OutputView.js";
-import { utils } from "../Utils/Utils.js";
 
 class CarGame {
   #carStatus;
@@ -27,35 +25,39 @@ class CarGame {
     return this.#carStatus.values();
   }
 
-  findWinner(statusValues) {
-    const max = Math.max(
+  getMaxPosition(statusValues) {
+    return Math.max(
       ...statusValues.map((state) => state.getCarStatus()["position"]),
     );
+  }
 
-    const winnerNames = statusValues
-      .filter((state) => state.getCarStatus()["position"] === max)
+  getWinnerNames(statusValues, maxPosition) {
+    return statusValues
+      .filter((state) => state.getCarStatus()["position"] === maxPosition)
       .map((constructor) => constructor.getCarStatus()["name"]);
+  }
+
+  findWinner(statusValues) {
+    const maxPosition = this.getMaxPosition(statusValues);
+
+    const winnerNames = this.getWinnerNames(statusValues, maxPosition);
 
     return [...winnerNames].join(COMMA);
   }
 
-  showGameResult = () => {
-    const statusValues = [...this.#carStatus.values()];
-
-    OutputView.printResultMessage();
-
-    this.showGameRound();
-
-    OutputView.printWinner(this.findWinner(statusValues));
-
-    utils.close();
+  getStatusValuesArray = () => {
+    return [...this.#carStatus.values()];
   };
 
-  showGameRound = () => {
+  getEachGameRoundResult = () => {
+    let roundResult = [];
+
     for (let idx = 0; idx < this.#round; idx++) {
       const currentCarStatus = this.cycleCarStatus();
-      OutputView.printCarMovement(currentCarStatus);
+      roundResult = [...roundResult, currentCarStatus];
     }
+
+    return roundResult;
   };
 }
 
