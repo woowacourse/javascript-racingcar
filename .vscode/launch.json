@@ -12,7 +12,7 @@
       "sourceMaps": true,
       "localRoot": "${workspaceFolder}/dist",
       "preLaunchTask": "build",
-      "type": "node"
+      "type": "node" 
     },
   ]
 }
