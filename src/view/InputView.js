@@ -6,7 +6,8 @@ const InputView = {
 
   async readCarNames() {
     const answer = await Console.readline(InputView.CAR_NAMES_QUESTION);
-    const carNames = answer.split(',');
+    const whiteSpaceRegExp = /\s/g;
+    const carNames = answer.replace(whiteSpaceRegExp, '').split(',');
 
     return carNames;
   },
