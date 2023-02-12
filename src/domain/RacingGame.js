@@ -41,9 +41,13 @@ class RacingGame {
   }
 
   getGameStatus() {
-    const status = {};
-    this.#carList.forEach((car) => { status[car.getName()] = car.getPosition(); });
-    return status;
+    return this.#carList.reduce(
+      (status, car) => {
+        status[car.getName()] = car.getPosition();
+        return status;
+      },
+      {},
+    );
   }
 
   #findMaxPosition() {
