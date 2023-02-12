@@ -1,12 +1,3 @@
-const Controller = require('./Controller/Controller');
+const RaceController = require('./RaceController');
 
-class App {
-  play() {
-    new Controller();
-  }
-}
-
-const app = new App();
-app.play();
-
-module.exports = App;
+const raceController = new RaceController();

@@ -1,4 +1,4 @@
-const App = require('../src/index');
+const RaceController = require('../src/RaceController');
 const Console = require('../src/utils/Console');
 const Random = require('../src/utils/Random');
 
@@ -55,8 +55,8 @@ describe('자동차 경주 테스트', () => {
         'bb,cc 우승!',
       ];
 
-      const app = new App();
-      app.play();
+      const raceController = new RaceController();
+      //app.play();
 
       logs.forEach((log) => {
         expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
@@ -84,8 +84,7 @@ describe('자동차 경주 테스트', () => {
         'bb 우승!',
       ];
 
-      const app = new App();
-      app.play();
+      const raceController = new RaceController();
 
       logs.forEach((log) => {
         expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
