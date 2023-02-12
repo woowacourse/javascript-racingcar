@@ -31,12 +31,12 @@ class CarGame {
     carNames.forEach((carName) => {
       this.#cars.push(new Car(carName));
     });
-    this.setWinningDistance();
+    this.#setWinningDistance();
   }
 
-  async setWinningDistance() {
+  async #setWinningDistance() {
     this.#winningDistance = toInt(await this.view.input.readline(MESSAGE.INPUT.winningDistance));
-    if (!validateWinningDistance(this.#winningDistance)) return this.setWinningDistance();
+    if (!validateWinningDistance(this.#winningDistance)) return this.#setWinningDistance();
     this.#moveCars();
   }
 
