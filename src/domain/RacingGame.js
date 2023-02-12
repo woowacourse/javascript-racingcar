@@ -36,17 +36,11 @@ class RacingGame {
   }
 
   getGameStatus() {
-    return this.#carList.reduce(
-      (status, car) => {
-        status[car.getName()] = car.getPosition();
-        return status;
-      },
-      {},
-    );
+    return Object.fromEntries(this.#carList.map((car) => [car.getName(), car.getPosition()]));
   }
 
   findMaxPosition() {
-    return this.#carList.reduce((prev, car) => Math.max(prev, car.getPosition()), 0);
+    return Math.max(...this.#carList.map((car) => car.getPosition()));
   }
 }
 
