@@ -1,5 +1,5 @@
 const Car = require('./Car');
-const generateRandomNumber = require('./utils/randomNumberGenerator');
+const generateRandomNumber = require('../utils/randomNumberGenerator');
 
 class RacingGame {
   static MOVE_CONDITION = 4;

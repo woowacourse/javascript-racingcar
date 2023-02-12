@@ -1,4 +1,4 @@
-const RacingGame = require('../src/RacingGame');
+const RacingGame = require('../src/domain/RacingGame');
 
 describe('RacingGame 메소드들이 예상 값을 반환하는 지 테스트', () => {
   const names = ['a', 'b'];

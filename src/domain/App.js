@@ -1,5 +1,5 @@
-const RacingGame = require('./RacingGame');
-const Validation = require('./Validation');
+const RacingGame = require('./domain/RacingGame');
+const Validation = require('./utils/Validation');
 const OutputView = require('./view/OutputView');
 const { Console } = require('./utils');
 const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('./constants/Constant');

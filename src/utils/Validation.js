@@ -1,4 +1,4 @@
-const { INPUT_CONDITION, ERROR_MESSAGE } = require('./constants/Constant');
+const { INPUT_CONDITION, ERROR_MESSAGE } = require('../constants/Constant');
 
 class Validation {
   static validateCarNames(names) {
