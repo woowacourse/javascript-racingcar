@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require('../constants/message');
+const { ERROR_MESSAGE } = require('../../constants');
 const { NumberValidator } = require('../../utils/validator');
 
 const validateMovingCount = (movingCount) => {

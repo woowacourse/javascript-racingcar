@@ -1,5 +1,4 @@
-const { CAR_RULE } = require('./constants/rule');
-const { ERROR_MESSAGE } = require('./constants/message');
+const { CAR_RULE, ERROR_MESSAGE } = require('../constants');
 
 class Car {
   #name;

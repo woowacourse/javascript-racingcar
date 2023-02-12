@@ -1,4 +1,4 @@
-const { INPUT_MESSAGE } = require('../domain/constants/message');
+const { INPUT_MESSAGE } = require('../constants');
 const Console = require('../utils/console');
 
 const InputView = {

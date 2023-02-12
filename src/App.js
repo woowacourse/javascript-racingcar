@@ -1,5 +1,5 @@
 const Car = require('./domain/Car');
-const { CAR_RULE } = require('./domain/constants/rule');
+const { CAR_RULE } = require('./constants');
 const MoveDecider = require('./domain/MoveDecider');
 const RacingCarGame = require('./domain/RacingCarGame');
 const { validateCarNames, validateMovingCount } = require('./domain/validators');

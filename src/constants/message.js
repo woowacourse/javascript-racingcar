@@ -17,9 +17,9 @@ const OUTPUT_MESSAGE_METHOD = {
 
 const ERROR_MESSAGE = {
   OVER_CAR_NAME_LENGTH: `자동차 이름은 ${CAR_RULE.MAX_NAME_LENGTH}자 이하만 가능합니다.`,
-  EMPTY_CAR_NAME: '자동차 이름은 1자 이상 입력해야합니다.',
+  EMPTY_CAR_NAME: `자동차 이름은 ${CAR_RULE.MIN_NAME_LENGTH}자 이상 입력해야합니다.`,
   INVALID_CHARACTER: '자동차 이름은 알파벳 또는 한글로 입력해야합니다.',
-  INVALID_CAR_COUNT: '자동차 이름은 쉼표로 구분해 한 개이상 입력해야합니다.',
+  INVALID_CAR_COUNT: '자동차 이름은 쉼표로 구분해 두 개이상 입력해야합니다.',
   INVALID_MOVING_COUNT: '이동 횟수는 자연수를 입력해야합니다.',
   DUPLICATED_CAR_NAME: '중복된 자동차 이름이 있습니다.',
 };

@@ -1,5 +1,4 @@
-const { ERROR_MESSAGE } = require('../constants/message');
-const { CAR_RULE } = require('../constants/rule');
+const { CAR_RULE, ERROR_MESSAGE } = require('../../constants');
 const { CharacterValidator, ArrayValidator } = require('../../utils/validator');
 
 const isAllowedCharacter = (carName) => {

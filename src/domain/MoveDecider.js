@@ -1,5 +1,5 @@
 const pickNumberInRange = require('../utils/pickNumberInRange');
-const { GAME_RULE } = require('./constants/rule');
+const { GAME_RULE } = require('../constants');
 
 const MoveDecider = {
   getCarMoveSuccesses(carCount) {
