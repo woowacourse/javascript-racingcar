@@ -1,15 +1,15 @@
-const Console = require('./utils/Console');
-const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
-const Car = require('./domain/Car');
-const RandomGenerator = require('./utils/RandomGenerator');
+const Console = require('../utils/Console');
+const { isValidCarNames, isValidTryCount } = require('../utils/Validation');
+const Car = require('../domain/Car');
+const RandomGenerator = require('../utils/RandomGenerator');
 const {
   printResult,
   printWinners,
   printError,
   printEmptyLine,
-} = require('./view/OutputView');
-const { readCarNames, readTryCount } = require('./view/InputView');
-const { ERROR } = require('./constants/message');
+} = require('../view/OutputView');
+const { readCarNames, readTryCount } = require('../view/InputView');
+const { ERROR } = require('../constants/message');
 class GameManager {
   #cars = [];
 
