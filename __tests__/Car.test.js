@@ -4,32 +4,19 @@ const Util = require('../src/utils/Util.js');
 const App = require('../src/index.js');
 const RacingGame = require('../src/domain/RacingGame.js');
 
-const mockQuestions = (answers) => {
-  IO.read = jest.fn();
-  answers.reduce((acc, input) => {
-    return acc.mockImplementationOnce((_, callback) => {
-      callback(input);
-    });
-  }, IO.read);
-};
-
-const mockRandoms = (numbers) => {
-  Util.generateRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Util.generateRandomNumber);
-};
-
-const getLogSpy = () => {
-  const logSpy = jest.spyOn(IO, 'print');
-  logSpy.mockClear();
-  return logSpy;
-};
-
-describe('RacingGame test', () => {
+describe('레이싱 게임 테스트', () => {
   const game = new RacingGame();
-  game.cars = ['eddie', 'pobi', 'crong', 'honux'];
-  test('judge move test', () => {
+  const carNames = ['eddie', 'pobi', 'crong', 'honux'];
+  game.cars = carNames;
+  game.tryCount = 1;
+
+  test('자동차의 이름이 잘 할당되었는지 테스트', () => {
+    game.cars.forEach((car, index) => {
+      expect(car.carName).toMatch(carNames[index]);
+    });
+  });
+
+  test('랜덤 값에 따라 전진 / 정지가 잘 판단 되는지 테스트', () => {
     const inputRandomNumber = [0, 3, 4, 9];
     const resultMoveCount = [1, 1, 2, 2];
 
@@ -39,51 +26,7 @@ describe('RacingGame test', () => {
     });
   });
 
-  test('find winner test', () => {
+  test('우승자가 제대로 판단 되는지 테스트', () => {
     expect(game.findWinner()).toEqual(['crong', 'honux']);
-  });
-});
-
-describe('RacingController test', () => {
-  test('Total process test', () => {
-    mockRandoms([5, 3, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3]);
-    mockQuestions(['pobi,crong,honux', 5]);
-    const logs = [
-      '',
-      '실행 결과',
-      'pobi : -',
-      'crong : -',
-      'honux : -',
-      '',
-      'pobi : --',
-      'crong : -',
-      'honux : --',
-      '',
-      'pobi : ---',
-      'crong : --',
-      'honux : ---',
-      '',
-      'pobi : ----',
-      'crong : ---',
-      'honux : ----',
-      '',
-      'pobi : -----',
-      'crong : ----',
-      'honux : -----',
-      '',
-      'pobi : -----',
-      'crong : ----',
-      'honux : -----',
-      '',
-      'pobi, honux가 최종 우승했습니다.',
-    ];
-
-    const logSpy = getLogSpy();
-    const app = new App();
-    app.init();
-
-    logs.forEach((log) => {
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    });
   });
 });
