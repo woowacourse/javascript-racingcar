@@ -19,7 +19,7 @@ class Race {
   }
 
   setTrial(newTrial) {
-    this.#trial = newTrial;
+    this.#trial = Number(newTrial);
   }
 
   addCar(newCar) {

@@ -12,7 +12,7 @@ const OutputView = {
   printRaceResult(raceInstance) {
     Console.print('\n실행 결과');
 
-    Array.from({ length: raceInstance.getTrial() }).forEach((_, index) => {
+    Array.from({ length: raceInstance.getTrial() + 1 }).forEach((_, index) => {
       this.printTrace(raceInstance, index);
       Console.print('');
     });
