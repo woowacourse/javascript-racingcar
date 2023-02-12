@@ -51,7 +51,8 @@ const Validation = {
   },
 
   isNumber(attempt) {
-    return !Number.isNaN(attempt);
+    const regex = GAME_STRING.numberExpression;
+    return regex.test(attempt);
   },
 
   isInteger(attempt) {
@@ -59,7 +60,7 @@ const Validation = {
   },
 
   onlyInt(attempt) {
-    if (!Validation.isNumber(attempt) || !Validation.isInteger(attempt)) {
+    if (this.isNumber(attempt) || !this.isInteger(attempt)) {
       throw new Error(ERROR_MESSAGE.onlyInt);
     }
   },

@@ -19,6 +19,7 @@ const GAME_STRING = Object.freeze({
   space: '\n',
   empty: '',
   alphabetExpression: /[^a-zA-Z]/,
+  numberExpression: /^[0-9]+$/,
 });
 
 const GAME_MESSAGE = Object.freeze({
