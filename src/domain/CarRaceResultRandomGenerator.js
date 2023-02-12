@@ -2,7 +2,7 @@ const randomNumbersGenerator = require("../util/randomNumbersGenerator");
 const { RANDOMS, RESULT } = require("../constant/Constant");
 
 const CarRaceResultRandomGenerator = {
-  getCarRaceRoundResult(carCount) {
+  generate(carCount) {
     const randomNumbers = randomNumbersGenerator.getRandomNumbers(carCount, RANDOMS.maximumNumber);
     const raceRoundResult = randomNumbers.map((randomNumber) =>
       randomNumber >= RANDOMS.minimumRunNumber ? RESULT.run : RESULT.stay
