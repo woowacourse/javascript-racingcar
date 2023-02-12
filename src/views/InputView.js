@@ -1,30 +1,18 @@
 const { MESSAGE } = require("../utils/Constant");
  const Validation = require("../utils/Validation");
- const readline = require("readline");
-
- const rl = readline.createInterface({
-   input: process.stdin,
-   output: process.stdout,
- });
+ const Console = require("../utils/Console")
 
  const InputView = {
-   readCarName(carsName) {
-     rl.question(MESSAGE.INPUT_CARNAME, (answer) => {
-       if (!Validation.carNameValidate(answer))
-         return this.readCarName(carsName);
-
-       carsName(answer);
-     });
+   async readCarName() {
+    const carName = await Console.readline(MESSAGE.INPUT_CARNAME)
+    if (!Validation.carNameValidate(carName)) return this.readCarName()
+    return carName.split(',')
    },
 
-   readNumber(tryNumber) {
-     rl.question(MESSAGE.INPUT_TRYNUMBER, (answer) => {
-       if (!Validation.tryNumberValidate(answer))
-         return this.readNumber(tryNumber);
-
-       tryNumber(answer);
-       rl.close();
-     });
+   async readNumber() {
+    const tryNumber = await Console.readline(MESSAGE.INPUT_TRYNUMBER)
+    if (!Validation.tryNumberValidate(tryNumber)) return this.readNumber(tryNumber);
+    return tryNumber
    },
  };
 

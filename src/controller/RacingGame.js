@@ -17,12 +17,9 @@ class RacingGame {
     this.inputName();
   }
 
-  inputName(){
-    InputView.readCarName((answer) => {
-      const nameOfCars = answer.split(",");
-
-      this.setCar(nameOfCars);
-    });
+  async inputName(){
+    const nameOfCars = await InputView.readCarName();
+    this.setCar(nameOfCars);
   }
 
   setCar(carName) {
@@ -35,11 +32,9 @@ class RacingGame {
     this.inputNumber();
   }
 
-  inputNumber() {
-    InputView.readNumber((answer) => {
-      let tryNumber = Number(answer);
-      this.race(tryNumber);
-    });
+  async inputNumber() {
+    const tryNumber = Number (await InputView.readNumber());
+    this.race(tryNumber)
   }
 
   race(tryNumber) {

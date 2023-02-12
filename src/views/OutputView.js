@@ -1,16 +1,18 @@
 const { MESSAGE } = require("../utils/Constant");
+const Console = require("../utils/Console")
 
 const OutputView = {
   printCarMove(cars) {
-    console.log();
+    Console.print('')
     for (let car of cars) {
-      console.log(car.getName() + " : " + "-".repeat(car.getPosition()));
+      Console.print(car.getName() + " : " + "-".repeat(car.getPosition()));
     }
   },
 
   printWinners(users) {
     const winners = users.join(", ");
-    console.log(`\n${winners}` + MESSAGE.OUTPUT_WINNER);
+    Console.print(`\n${winners}` + MESSAGE.OUTPUT_WINNER);
+    Console.close()
   },
 };
 
