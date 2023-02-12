@@ -27,12 +27,14 @@ class Race {
   }
 
   start() {
-    Array.from({ length: this.#trial }, () => 0).forEach(() => {
-      this.#cars.forEach((car) => {
-        const randomNumber = Random.pickNumberInRange(0, 9);
-        car.move(randomNumber);
+    Array(this.#trial)
+      .fill(0)
+      .forEach(() => {
+        this.#cars.forEach((car) => {
+          const randomNumber = Random.pickNumberInRange(0, 9);
+          car.move(randomNumber);
+        });
       });
-    });
   }
 
   getWinners() {
