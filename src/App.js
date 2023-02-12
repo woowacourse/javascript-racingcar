@@ -6,37 +6,39 @@ import { inputErrorHandler, Console, randomNumberGenerator } from './utils/index
 class App {
   #racingGame;
 
-  start() {
-    this.#requestCarNames();
+  async start() {
+    const carNames = await this.#requestCarNames();
+    const raceRound = await this.#requestRaceRound();
+
+    this.#racingGame = new RacingGame(carNames, raceRound);
+
+    this.#raceCars();
+    this.#findWinners();
+    this.#endGame();
   }
 
-  #requestCarNames() {
-    InputView.readCarNames((carNamesInput) => {
-      const carNames = carNamesInput.split(',').map((carName) => carName.trim());
-      const isValidInput = inputErrorHandler(Validation.validateCarNames, carNames);
+  async #requestCarNames() {
+    const carNamesInput = await InputView.readCarNames();
+    const carNames = carNamesInput.split(',').map((carName) => carName.trim());
 
-      if (!isValidInput) {
-        this.#requestCarNames();
-        return;
-      }
+    const isValidInput = inputErrorHandler(Validation.validateCarNames, carNames);
+    if (!isValidInput) {
+      return this.#requestCarNames();
+    }
 
-      this.#requestRaceRound(carNames);
-    });
+    return carNames;
   }
 
-  #requestRaceRound(carNames) {
-    InputView.readRaceRound((raceRoundInput) => {
-      const raceRound = Number(raceRoundInput);
-      const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
+  async #requestRaceRound() {
+    const raceRoundInput = await InputView.readRaceRound();
+    const raceRound = Number(raceRoundInput);
 
-      if (!isValidInput) {
-        this.#requestRaceRound(carNames);
-        return;
-      }
-      this.#racingGame = new RacingGame(carNames, raceRound);
+    const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
+    if (!isValidInput) {
+      return this.#requestRaceRound();
+    }
 
-      this.#raceCars();
-    });
+    return raceRound;
   }
 
   #raceCars() {
@@ -49,19 +51,16 @@ class App {
 
       OutputView.printRoundResult(roundResult);
     }
-
-    this.#findWinners();
   }
 
   #findWinners() {
     const highestScore = this.#racingGame.getHighestScore();
     const winners = this.#racingGame.getWinners(highestScore);
 
-    this.#endGame(winners);
+    OutputView.printFinalResult(winners);
   }
 
-  #endGame(winners) {
-    OutputView.printFinalResult(winners);
+  #endGame() {
     Console.close();
   }
 }
