@@ -11,8 +11,7 @@ class RacingCarGame {
   moveCars() {
     const carsMovingSuccesses = this.getCarsMovingSuccesses();
     this.#cars.forEach((car, index) => {
-      if (!carsMovingSuccesses[index]) return;
-      car.move();
+      if (carsMovingSuccesses[index]) car.move();
     });
   }
 
