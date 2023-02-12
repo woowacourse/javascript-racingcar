@@ -30,8 +30,7 @@ const MESSAGE = deepFreeze({
     startGame: '자동차 경주 게임을 시작합니다.\n',
     resultMent: '\n실행 결과',
     result: (car) => `${car.name} : ${GAME.progressMarker.repeat(car.distance)}\n`,
-    winner: (winners) =>
-      `${winners.map((winner) => winner.getName()).join(GAME.nameDivider)}가 최종 우승했습니다.`,
+    winner: (winnerNames) => `${winnerNames.join(GAME.nameDivider)}가 최종 우승했습니다.`,
   },
 });
 

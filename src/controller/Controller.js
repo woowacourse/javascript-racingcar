@@ -64,8 +64,10 @@ class Controller {
   }
 
   #showWinners() {
-    const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
-    OutputView.print(MESSAGE.OUTPUT.winner(winners));
+    const winnerNames = this.#cars
+      .filter((car) => car.isFinish(this.#winningDistance))
+      .map((winner) => winner.getName());
+    OutputView.print(MESSAGE.OUTPUT.winner(winnerNames));
   }
 }
 module.exports = Controller;
