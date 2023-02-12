@@ -1,6 +1,5 @@
 const CarGame = require('../domain/CarGame');
 const parseCarName = require('../domain/parseCarName');
-const functionPipe = require('../utils/funcitonPipe');
 const getRandomNumber = require('../utils/getRandomNumber');
 const validator = require('../utils/validator');
 const InputView = require('../view/InputView');
@@ -21,12 +20,11 @@ class CarGameController {
     InputView.readCarNames().then((input) => {
       try {
         const parsedCarNames = parseCarName(input);
-        functionPipe(
-          parsedCarNames,
-          validator.validateLength,
-          validator.validateOverlap,
-          validator.validateKorEngNum,
-        );
+        parsedCarNames.forEach((carName) => {
+          validator.validateLength(carName);
+          validator.validateKorEngNum(carName);
+        });
+        validator.validateOverlap(parsedCarNames);
         return this.saveCarDatas(parsedCarNames);
       } catch (error) {
         OutputView.printError(error.message);
