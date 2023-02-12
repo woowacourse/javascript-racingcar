@@ -50,16 +50,16 @@ const Validation = {
     }
   },
 
-  isNotNumber(attempt) {
-    return Number.isNaN(attempt);
+  isNumber(attempt) {
+    return !Number.isNaN(attempt);
   },
 
-  isNotInteger(attempt) {
-    return !Number.isInteger(attempt);
+  isInteger(attempt) {
+    return Number.isInteger(attempt);
   },
 
   onlyInt(attempt) {
-    if (Validation.isNotNumber(attempt) || Validation.isNotInteger(attempt)) {
+    if (!Validation.isNumber(attempt) || !Validation.isInteger(attempt)) {
       throw new Error(ERROR_MESSAGE.onlyInt);
     }
   },
