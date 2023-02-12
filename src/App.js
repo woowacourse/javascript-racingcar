@@ -39,11 +39,11 @@ class App {
   #printResult(movingCount, carCount) {
     OutputView.printResultTitle();
     OutputView.printCars(this.#game.getCarsInfo());
-    for (let i = 0; i < movingCount; i += 1) {
+    Array.from({ length: movingCount }).forEach(() => {
       const carMoveSuccesses = MoveDecider.getCarMoveSuccesses(carCount);
       this.#game.moveCars(carMoveSuccesses);
       OutputView.printCars(this.#game.getCarsInfo());
-    }
+    });
     OutputView.printWinner(this.#game.getWinner());
   }
 }
