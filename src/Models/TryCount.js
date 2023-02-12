@@ -1,4 +1,5 @@
 const RACE_ERROR_MESSAGE = require('../Constant/ErrorMessage');
+const ValidatorConditions = require('../Utils/ValidatorConditions');
 
 class TryCount {
   #tryCount;
@@ -9,11 +10,11 @@ class TryCount {
   }
 
   validate(count) {
-    if (count < 1) {
+    if (ValidatorConditions.isTryCountSmallerThanOne(count)) {
       throw new Error(RACE_ERROR_MESSAGE.rangeOfTryCount);
     }
 
-    if (!/^[0-9]+$/.test(count)) {
+    if (ValidatorConditions.isNotNumber(count)) {
       throw new Error(RACE_ERROR_MESSAGE.rangeOfTryCount);
     }
   }
