@@ -7,8 +7,8 @@ const {
   printWinners,
   printError,
   printEmptyLine,
-} = require('./OutputView');
-const { readCarNames, readTryCount } = require('./InputView');
+} = require('./view/OutputView');
+const { readCarNames, readTryCount } = require('./view/InputView');
 const { ERROR } = require('./constants/message');
 class GameManager {
   #cars = [];

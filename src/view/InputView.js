@@ -1,5 +1,5 @@
-const { READ_CAR_NAMES, READ_TRY_COUNT } = require('./constants/message');
-const Console = require('./utils/Console');
+const { READ_CAR_NAMES, READ_TRY_COUNT } = require('../constants/message');
+const Console = require('../utils/Console');
 
 const InputView = {
   async readCarNames() {

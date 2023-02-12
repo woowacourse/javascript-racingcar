@@ -1,4 +1,4 @@
-const { printCar } = require('./OutputView');
+const { printCar } = require('./view/OutputView');
 
 class Car {
   #name;
