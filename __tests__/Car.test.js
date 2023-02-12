@@ -2,7 +2,7 @@
 const IO = require('../src/utils/IO.js');
 const Util = require('../src/utils/Util.js');
 const App = require('../src/index.js');
-const RacingGame = require('../src/model/RacingGame.js');
+const RacingGame = require('../src/domain/RacingGame.js');
 
 const mockQuestions = (answers) => {
   IO.read = jest.fn();
