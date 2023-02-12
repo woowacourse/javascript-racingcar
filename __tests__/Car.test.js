@@ -1,12 +1,13 @@
 const Car = require('../src/models/Car');
+
 describe('Car 이동 테스트', () => {
   test('자동차가 이동하면 distance가 1 증가한다.', () => {
     const car = new Car('abcd');
 
     car.move();
-    const result = car.getInfo()[1];
+    const [, distance] = car.getInfo();
 
-    expect(result).toEqual(2);
+    expect(distance).toEqual(2);
   });
 });
 
