@@ -20,7 +20,7 @@ describe('GameManager Test', () => {
       [[0, 0], [5, 5], [0, 0], [9, 9]],
       ['aa', 'bb'],
     ],
-  ])('승자를 판별하는 테스트 (%#)', (carNames, moves, winners) => {
+  ])('가장 많이 전진 한 사람들을 승자로 판단하는 테스트 (%#)', (carNames, moves, winners) => {
     const gameManager = new GameManager();
     const cars = gameManager.generateCars(carNames);
     gameManager.setCars(cars);
