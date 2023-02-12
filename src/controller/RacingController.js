@@ -48,22 +48,22 @@ class RacingController {
   conductProcess() {
     OutputView.printWhiteSpace();
     OutputView.printMoveResult();
-    this.printProcess();
-    this.printWinner();
+    this.printProcess(this.#racingGame.cars);
+    this.printWinner(this.#racingGame.findWinner());
     this.quitGame();
   }
 
-  printProcess() {
-    OutputView.printMoveProcess(this.#racingGame.cars);
+  printProcess(cars) {
+    OutputView.printMoveProcess(cars);
 
     for (let i = 0; i < this.#racingGame.tryCount; i++) {
       this.#racingGame.assignRandom();
-      OutputView.printMoveProcess(this.#racingGame.cars);
+      OutputView.printMoveProcess(cars);
     }
   }
 
-  printWinner() {
-    OutputView.printWinner(this.#racingGame.findWinner());
+  printWinner(winner) {
+    OutputView.printWinner(winner);
   }
 
   quitGame() {
