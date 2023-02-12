@@ -1,13 +1,8 @@
 const OutputView = require('../view/OutputView');
 const { GAME, ERROR } = require('../utils/constants');
 
-const handleError = (errorMessage) => {
-  try {
-    throw new Error(errorMessage);
-  } catch (error) {
-    OutputView.print(error.message);
-  }
-  return false;
+const handleError = (error) => {
+  OutputView.print(error.message);
 };
 
 const checkCarNameLength = (carNames) => {
@@ -16,49 +11,55 @@ const checkCarNameLength = (carNames) => {
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
     )
   ) {
-    return handleError(ERROR.carNameLength);
+    throw new Error(ERROR.carNameLength);
   }
-  return true;
 };
 
 const checkDuplicatedCarName = (carNames) => {
   if (carNames.length !== new Set(carNames).size) {
-    return handleError(ERROR.duplicatedCarName);
+    throw new Error(ERROR.duplicatedCarName);
   }
-  return true;
 };
 
 const checkBlankInCarName = (carNames) => {
   if (carNames.some((carName) => carName.includes(GAME.blank))) {
-    return handleError(ERROR.blankInCarName);
+    throw new Error(ERROR.blankInCarName);
   }
-  return true;
 };
 
 const validateCarNames = (carNames) => {
-  return (
-    checkCarNameLength(carNames) &&
-    checkDuplicatedCarName(carNames) &&
-    checkBlankInCarName(carNames)
-  );
+  try {
+    checkCarNameLength(carNames);
+    checkDuplicatedCarName(carNames);
+    checkBlankInCarName(carNames);
+  } catch (error) {
+    handleError(error);
+    return false;
+  }
+  return true;
 };
 
 const checkIsBetweenValidRange = (winningDistance) => {
   if (!(GAME.DISTANCE.min <= winningDistance && winningDistance < GAME.DISTANCE.max)) {
-    return handleError(ERROR.invalidWinningDistanceRange);
+    throw new Error(ERROR.invalidWinningDistanceRange);
   }
-  return true;
 };
 
 const checkIsInt = (winningDistance) => {
   if (!Number.isInteger(winningDistance)) {
-    return handleError(ERROR.invalidWinningDistanceType);
+    throw new Error(ERROR.invalidWinningDistanceType);
   }
-  return true;
 };
 
 const validateWinningDistance = (winningDistance) => {
-  return checkIsInt(winningDistance) && checkIsBetweenValidRange(winningDistance);
+  try {
+    checkIsInt(winningDistance);
+    checkIsBetweenValidRange(winningDistance);
+  } catch (error) {
+    handleError(error);
+    return false;
+  }
+  return true;
 };
 
 module.exports = { validateCarNames, validateWinningDistance };
