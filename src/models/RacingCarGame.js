@@ -9,10 +9,7 @@ class RacingCarGame {
   }
 
   moveCars() {
-    const isMovable = MovingDecider.decide(
-      this.#cars.length,
-      RandomNumberGenerator.generate
-    );
+    const isMovable = MovingDecider.decide(this.#cars.length, RandomNumberGenerator.generate);
     this.#cars.forEach((car, index) => {
       if (!isMovable[index]) return;
       car.move();

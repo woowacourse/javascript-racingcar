@@ -4,10 +4,7 @@ const Random = require('../src/lib/random');
 
 const mockRandoms = (numbers) => {
   Random.pickNumberInRange = jest.fn();
-  numbers.reduce(
-    (acc, number) => acc.mockReturnValueOnce(number),
-    Random.pickNumberInRange
-  );
+  numbers.reduce((acc, number) => acc.mockReturnValueOnce(number), Random.pickNumberInRange);
 };
 
 describe('RacingCarGame 테스트', () => {

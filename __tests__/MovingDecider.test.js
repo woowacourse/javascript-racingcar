@@ -14,16 +14,13 @@ describe('MovingDecider 테스트', () => {
       [6, 7, 8],
       [true, true, true],
     ],
-  ])(
-    '랜덤 숫자가 4 이상이면 true, 4 미만이면 false를 반환한다.',
-    (testCase, expected) => {
-      const mockGenerator = testCase.reduce(
-        (acc, number) => acc.mockReturnValueOnce(number),
-        jest.fn()
-      );
+  ])('랜덤 숫자가 4 이상이면 true, 4 미만이면 false를 반환한다.', (testCase, expected) => {
+    const mockGenerator = testCase.reduce(
+      (acc, number) => acc.mockReturnValueOnce(number),
+      jest.fn(),
+    );
 
-      const result = MovingDecider.decide(3, mockGenerator);
-      expect(result).toStrictEqual(expected);
-    }
-  );
+    const result = MovingDecider.decide(3, mockGenerator);
+    expect(result).toStrictEqual(expected);
+  });
 });
