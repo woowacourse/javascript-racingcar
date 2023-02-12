@@ -2,28 +2,28 @@ const Race = require('./domain/Race');
 const Car = require('./domain/Car');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
-const InputValidator = require('./utils/InputValidator');
-const { errorCheckFor } = require('./utils/errorCheckFor');
+const { errorCheckFor, InputValidator } = require('./utils');
+const { COMMENT } = require('./constant');
 
 class App {
   #race;
 
   play() {
     this.#race = new Race();
-    InputView.readCarNames(this.#afterReadCarNames);
+    InputView.readInput(this.#afterReadCarNames, COMMENT.CARNAMES_PRECOMMENT);
   }
 
   #afterReadCarNames = (input) => {
     errorCheckFor(
       () => this.#prepareRace(input),
-      () => InputView.readCarNames(this.#afterReadCarNames)
+      () => InputView.readInput(this.#afterReadCarNames, COMMENT.CARNAMES_PRECOMMENT)
     );
   };
 
   #afterReadTrial = (input) => {
     errorCheckFor(
       () => this.#resultRace(input),
-      () => InputView.readTrial(this.#afterReadTrial)
+      () => InputView.readInput(this.#afterReadTrial, COMMENT.TRIAL_PRECOMMENT)
     );
   };
 
@@ -35,7 +35,7 @@ class App {
       this.#race.addCar(new Car(name));
     });
 
-    InputView.readTrial(this.#afterReadTrial);
+    InputView.readInput(this.#afterReadTrial, COMMENT.TRIAL_PRECOMMENT);
   }
 
   #resultRace(input) {
