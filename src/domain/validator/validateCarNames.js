@@ -1,16 +1,8 @@
 const { CAR_RULE, ERROR_MESSAGE } = require('../../constants');
-const { CharacterValidator, ArrayValidator } = require('../../utils/validator');
-
-const isAllowedCharacter = (carName) => {
-  return (
-    CharacterValidator.isOnlyAlphabet(carName) ||
-    CharacterValidator.isOnlyKorean(carName) ||
-    CharacterValidator.isAlphabetOrKorean(carName)
-  );
-};
+const { StringValidator, ArrayValidator } = require('../../utils/validator');
 
 const isAllowedCarNames = (carNames) => {
-  return carNames.every((carName) => isAllowedCharacter(carName));
+  return carNames.every((carName) => StringValidator.isAlphabetOrKorean(carName));
 };
 
 const validateCarNames = (cars) => {
@@ -21,7 +13,7 @@ const validateCarNames = (cars) => {
   if (!ArrayValidator.isLengthMoreThanOne(carNames)) {
     throw new Error(ERROR_MESSAGE.INVALID_CAR_COUNT);
   }
-  if (ArrayValidator.isDuplicated(carNames)) {
+  if (ArrayValidator.hasDuplicatedElement(carNames)) {
     throw new Error(ERROR_MESSAGE.DUPLICATED_CAR_NAME);
   }
 };

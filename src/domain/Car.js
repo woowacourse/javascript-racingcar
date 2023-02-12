@@ -1,4 +1,5 @@
 const { CAR_RULE, ERROR_MESSAGE } = require('../constants');
+const { StringValidator } = require('../utils/validator');
 
 class Car {
   #name;
@@ -6,17 +7,21 @@ class Car {
   #distance = CAR_RULE.INIT_DISTANCE;
 
   constructor(name) {
-    Car.#validate(name);
+    this.#validate(name);
     this.#name = name;
   }
 
-  static #validate(name) {
-    if (name.length > CAR_RULE.MAX_NAME_LENGTH) {
+  #validate(name) {
+    if (StringValidator.hasFrontAndBackSpaces(name)) {
+      throw new Error(ERROR_MESSAGE.FRONT_AND_BACK_SPACES);
+    }
+    if (!this.#isValidNameLength(name)) {
       throw new Error(ERROR_MESSAGE.OVER_CAR_NAME_LENGTH);
     }
-    if (name.trim().length === 0) {
-      throw new Error(ERROR_MESSAGE.EMPTY_CAR_NAME);
-    }
+  }
+
+  #isValidNameLength(name) {
+    return name.length >= CAR_RULE.MIN_NAME_LENGTH && name.length <= CAR_RULE.MAX_NAME_LENGTH;
   }
 
   move() {
