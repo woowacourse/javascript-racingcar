@@ -1,5 +1,5 @@
 const { CAR_RULE, ERROR_MESSAGE } = require('../constants');
-const { StringValidator } = require('../utils/validator');
+const { StringValidator } = require('../utils');
 
 class Car {
   #name;

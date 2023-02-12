@@ -1,5 +1,5 @@
 const { CAR_RULE, ERROR_MESSAGE } = require('../../constants');
-const { StringValidator, ArrayValidator } = require('../../utils/validator');
+const { StringValidator, ArrayValidator } = require('../../utils');
 
 const isAllowedCarNames = (carNames) => {
   return carNames.every((carName) => StringValidator.isAlphabetOrKorean(carName));

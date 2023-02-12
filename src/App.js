@@ -1,11 +1,9 @@
-const Car = require('./domain/Car');
-const { CAR_RULE } = require('./constants');
-const MoveDecider = require('./domain/MoveDecider');
-const RacingCarGame = require('./domain/RacingCarGame');
+const { Car, MoveDecider, RacingCarGame } = require('./domain');
 const { validateCarNames, validateMovingCount } = require('./domain/validator');
-const Console = require('./utils/console');
-const InputView = require('./view/InputView');
-const OutputView = require('./view/OutputView');
+const { InputView, OutputView } = require('./view');
+
+const { CAR_RULE } = require('./constants');
+const { Console } = require('./utils');
 
 class App {
   #game;

@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('../../constants');
-const { StringValidator } = require('../../utils/validator');
+const { StringValidator } = require('../../utils');
 
 const isValidMovingCount = (movingCount) => {
   return movingCount >= 1;
