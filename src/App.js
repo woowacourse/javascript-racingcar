@@ -10,7 +10,7 @@ const {
   inputCarNameValidator,
   tryCountValidator,
 } = require("./validator/Validator");
-const { errorCatcher } = require("./validator/ErrorCatcher");
+const errorCatcher = require("./validator/ErrorCatcher");
 
 const CarGame = require("./domain/CarGame");
 
@@ -47,7 +47,7 @@ class App {
 
   acceptValidTryCount(count) {
     this.#round = count;
-    this.showGameResult(count);
+    this.showGameResult();
   }
 
   playRounds = () => {

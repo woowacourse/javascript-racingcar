@@ -1,4 +1,4 @@
-const { movingDistance } = require("../src/domain/MovementIndicator");
+const movingDistance = require("../src/domain/MovementIndicator");
 const { MOVEMENT } = require("../src/constant/Constants");
 const { FORWARD_DISTANCE } = MOVEMENT;
 

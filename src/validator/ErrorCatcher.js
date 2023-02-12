@@ -10,4 +10,4 @@ const errorCatcher = (validator, readInput, acceptValidInput) => {
   }
 };
 
-module.exports = { errorCatcher };
+module.exports = errorCatcher;

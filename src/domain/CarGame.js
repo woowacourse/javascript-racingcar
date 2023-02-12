@@ -1,4 +1,4 @@
-const { movingDistance } = require("./MovementIndicator");
+const movingDistance = require("./MovementIndicator");
 const randomNumberBetween = require("../util/RandomNumberMaker");
 const { COMMA, RANDOM_NUMBER_RANGE } = require("../constant/Constants");
 const { MIN, MAX } = RANDOM_NUMBER_RANGE;
