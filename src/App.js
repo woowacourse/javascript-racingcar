@@ -9,22 +9,22 @@ class App {
   #game;
 
   play() {
-    InputView.readCarName(this.#onCarNameSubmit.bind(this));
+    InputView.readCarName(this.#onSubmitCarNames.bind(this));
   }
 
-  #onCarNameSubmit(carNames) {
+  #onSubmitCarNames(carNames) {
     try {
       validateCarNames(carNames);
       const cars = carNames.split(CAR_RULE.NAME_SEPARATOR).map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
-      InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
+      InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
     } catch (error) {
       OutputView.printError(error.message);
-      InputView.readCarName(this.#onCarNameSubmit.bind(this));
+      InputView.readCarName(this.#onSubmitCarNames.bind(this));
     }
   }
 
-  #onMovingCountSubmit(movingCount) {
+  #onSubmitMovingCount(movingCount) {
     try {
       validateMovingCount(movingCount);
       const carCount = this.#game.getCarCount();
@@ -32,7 +32,7 @@ class App {
       Console.close();
     } catch (error) {
       OutputView.printError(error.message);
-      InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
+      InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
     }
   }
 
