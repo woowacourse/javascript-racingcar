@@ -1,6 +1,7 @@
 const { movingDistance } = require("./MovementIndicator");
-const makeRandomNumber = require("../util/RandomNumberMaker");
-const { COMMA } = require("../constant/Constants");
+const randomNumberBetween = require("../util/RandomNumberMaker");
+const { COMMA, RANDOM_NUMBER_RANGE } = require("../constant/Constants");
+const { MIN, MAX } = RANDOM_NUMBER_RANGE;
 
 class CarGame {
   #carStatus = new Map([]);
@@ -11,7 +12,10 @@ class CarGame {
 
   moveCar() {
     [...this.#carStatus.entries()].forEach(([name, count]) => {
-      this.#carStatus.set(name, count + movingDistance(makeRandomNumber()));
+      this.#carStatus.set(
+        name,
+        count + movingDistance(randomNumberBetween(MIN, MAX))
+      );
     });
 
     return this.#carStatus;
