@@ -2,6 +2,7 @@ const Car = require('../model/Car');
 const Utils = require('../utils/Utils');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
+const { StaticValue } = require('../constants/constants');
 
 class Controller {
   #cars = [];
@@ -32,7 +33,8 @@ class Controller {
     this.#cars.forEach((car) => {
       const RANDOM_NUMBER = Utils.generateRandomNumber();
 
-      car.move(RANDOM_NUMBER);
+      if (RANDOM_NUMBER >= StaticValue.MOVE_CONDITION) car.move();
+
       OutputView.printMoveDistance(car.getName(), car.getCurrentDistance());
     });
   }
