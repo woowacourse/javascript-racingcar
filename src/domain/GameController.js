@@ -8,13 +8,13 @@ class GameController {
   #racingGame;
 
   async play() {
-    await this.createRacingGame();
+    await this.#createRacingGame();
     this.#raceCars();
     const winners = this.#findWinners();
     this.#showWinners(winners);
   }
 
-  async createRacingGame() {
+  async #createRacingGame() {
     const carNames = await this.#requestCarNames();
     const round = await this.#requestRaceRound();
 
