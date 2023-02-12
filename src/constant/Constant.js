@@ -17,8 +17,14 @@ const RESULT = {
   stay: 0,
 };
 
+const CONDITION = {
+  carNames: /^([^,]{1,5},)*[^,]{1,5}$/,
+  repeatNumber: /^[1-9]\d*$/,
+};
+
 module.exports = {
   MESSAGES,
   RANDOMS,
   RESULT,
+  CONDITION,
 };
