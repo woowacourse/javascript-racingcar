@@ -15,8 +15,8 @@ class Controller {
   }
 
   executeRacingCarGame() {
-    this.outputView.printResult(this.#racingCarGame.getResult());
-    this.outputView.close();
+    this.#outputView.printResult(this.#racingCarGame.getResult());
+    this.#outputView.close();
   }
 }
 
