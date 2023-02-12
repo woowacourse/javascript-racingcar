@@ -22,7 +22,9 @@ const Exception = {
   },
 
   checkMoveCountInput(input) {
-    if (isNaN(input) || input <= 0) {
+    const MOVE_COUNT = input.trim();
+
+    if (Utils.hasNonDigit(MOVE_COUNT) || MOVE_COUNT <= 0) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
   },

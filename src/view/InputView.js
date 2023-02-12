@@ -18,9 +18,8 @@ const InputView = {
   readMoveCount(callback) {
     RL.question(ConsoleMessage.MOVE_COUNT, (input) => {
       try {
-        const MOVE_COUNT = parseInt(input, 10);
-        Exception.checkMoveCountInput(MOVE_COUNT);
-        callback(MOVE_COUNT);
+        Exception.checkMoveCountInput(input);
+        callback(input);
       } catch (e) {
         console.log(e.message);
         this.readMoveCount(callback.bind(this));
