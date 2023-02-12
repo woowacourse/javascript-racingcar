@@ -50,7 +50,7 @@ class RacingGame {
     );
   }
 
-  #findMaxPosition() {
+  findMaxPosition() {
     return this.#carList.reduce((prev, car) => Math.max(prev, car.getPosition()), 0);
   }
 }
