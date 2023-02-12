@@ -20,9 +20,7 @@ const OutputView = {
   },
 
   printCar(name, pos) {
-    let result = `${name} : `;
-    result += new Array(pos).fill('-').join('');
-    Console.print(result);
+    Console.print(`${name} : ${new Array(pos).fill('-').join('')}`);
   },
 };
 
