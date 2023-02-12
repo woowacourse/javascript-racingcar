@@ -16,8 +16,10 @@ class Car {
     return this.#position;
   }
 
-  move() {
-    this.#position += 1;
+  move(condition) {
+    if (condition>= 4) {
+      this.#position += 1;        
+    }
   }
 
   print() {

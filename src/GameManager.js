@@ -13,30 +13,28 @@ const { ERROR } = require('./constants/message');
 class GameManager {
   #cars = [];
 
-  isForward() {
-    return RandomGenerator.pickRandomNumber() >= 4;
-  }
-
-  moveCars(cars) {
-    cars.forEach((car) => {
-      if (this.isForward()) {
-        car.move();
-      }
+  moveCars(randomNumbers) {
+    this.#cars.forEach((car) => {
+      car.move(randomNumbers.shift());
     });
   }
 
-  printCars(cars) {
-    cars.forEach((car) => {
+  printCars() {
+    this.#cars.forEach((car) => {
       car.print();
     });
     printEmptyLine();
   }
 
+  generateRandomNumbers(length) {
+    return Array(length).fill().map(() => RandomGenerator.pickRandomNumber())
+  }
+
   raceCars(tryCount) {
     printResult();
     Array(tryCount).fill().forEach(() => {
-      this.moveCars(this.#cars);
-      this.printCars(this.#cars);
+      this.moveCars(this.generateRandomNumbers(this.#cars.length));
+      this.printCars();
     })
   }
 
@@ -77,7 +75,7 @@ class GameManager {
     }
   }
 
-  setCars(cars){
+  setCars(cars) {
     this.#cars = cars;
   }
 
