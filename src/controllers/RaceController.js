@@ -28,8 +28,14 @@ class RaceController {
     }
   }
 
-  endRace() {
-    OutputView.printWinners(this.#race.findWinnerNames());
+  showWinners() {
+    const winnerNames = this.#race.findWinnerNames();
+    OutputView.printWinners(winnerNames);
+    InputView.close();
+  }
+
+  static handleError(error) {
+    OutputView.printError(error);
   }
 }
 

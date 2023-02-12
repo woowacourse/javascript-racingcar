@@ -18,6 +18,10 @@ const InputView = {
 
     return raceStep;
   },
+
+  close() {
+    Console.close();
+  },
 };
 
 export default InputView;
