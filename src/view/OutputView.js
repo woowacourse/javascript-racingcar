@@ -19,8 +19,8 @@ const OutputView = {
     Console.print(error.message);
   },
 
-  printCar(name, pos) {
-    Console.print(`${name} : ${new Array(pos).fill('-').join('')}`);
+  printCar(name, position) {
+    Console.print(`${name} : ${"-".repeat(position)}`);
   },
 };
 
