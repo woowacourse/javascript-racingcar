@@ -45,11 +45,11 @@ class Race {
   }
 
   #getLongestPosition() {
-    const result = this.#cars.sort(
+    const [winner] = this.#cars.sort(
       (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 
-    return result[0].getPosition();
+    return winner.getPosition();
   }
 }
 
