@@ -18,14 +18,14 @@ class RacingGame {
   }
 
   async inputName(){
-    const nameOfCars = await InputView.readCarName();
-    this.setCar(nameOfCars);
+    const carsName = await InputView.readCarName();
+    this.setCar(carsName);
   }
 
-  setCar(carName) {
-    for (let len = 0; len < carName.length; len++) {
+  setCar(name) {
+    for (let len = 0; len < name.length; len++) {
       let car = new Car();
-      car.inputName(carName[len]);
+      car.inputName(name[len]);
       this.#cars.push(car);
     }
 
@@ -58,7 +58,7 @@ class RacingGame {
     this.showWinners(this.#winners)
   }
 
-  showWinners(winner){
+  showWinners(){
     OutputView.printWinners(winner);
   }
 
