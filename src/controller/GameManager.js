@@ -26,14 +26,10 @@ class GameManager {
     printEmptyLine();
   }
 
-  generateRandomNumbers(length) {
-    return Array(length).fill().map(() => RandomGenerator.pickRandomNumber())
-  }
-
   raceCars(tryCount) {
     printResult();
     Array(tryCount).fill().forEach(() => {
-      this.moveCars(this.generateRandomNumbers(this.#cars.length));
+      this.moveCars(RandomGenerator.generateRandomNumbers(this.#cars.length));
       this.printCars();
     })
   }
