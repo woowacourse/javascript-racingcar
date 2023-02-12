@@ -48,14 +48,14 @@ class Validator {
     }
   }
 
-  isNumber(number) {
+  isStringNumber(number) {
     if (ONLY_NUMBER.test(number)) {
       throw new Error(NOT_POSITIVE_NUMBER);
     }
   }
 
   isValidTryCount(count) {
-    this.isNumber(count);
+    this.isStringNumber(count);
 
     if (count < MINIMUM_TRY_COUNT) {
       throw new Error(NOT_POSITIVE_NUMBER);
