@@ -17,6 +17,7 @@ const GAME = deepFreeze({
   nameDivider: ',',
   progressMarker: '-',
   blank: ' ',
+  newLine: '',
 });
 
 const INPUT = Object.freeze({

@@ -52,7 +52,7 @@ class RacingGameController {
       history.forEach((car) => {
         OutputView.print(OUTPUT_RESULT(car));
       });
-      OutputView.print('');
+      OutputView.print(GAME.newLine);
     });
     this.showWinners();
   }
