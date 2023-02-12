@@ -16,7 +16,11 @@ class App {
   #afterReadCarNames = (input) => {
     errorCheckFor(
       () => this.#prepareRace(input),
-      () => InputView.readInput(this.#afterReadCarNames, COMMENT.CARNAMES_PRECOMMENT)
+      () =>
+        InputView.readInput(
+          this.#afterReadCarNames,
+          COMMENT.CARNAMES_PRECOMMENT
+        )
     );
   };
 

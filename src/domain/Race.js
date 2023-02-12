@@ -1,5 +1,5 @@
-const { MAGIC_NUMBER } = require('../constant/magicNumber');
-const Random = require('../utils/Random');
+const { MAGIC_NUMBER } = require('../constant');
+const { Random } = require('../utils');
 
 class Race {
   #cars;
@@ -29,7 +29,10 @@ class Race {
   start() {
     new Array(Number(this.#trial)).fill(0).forEach(() => {
       this.#cars.forEach((car) => {
-        const randomNumber = Random.pickNumberInRange(MAGIC_NUMBER.RANGE_START, MAGIC_NUMBER.RANGE_END);
+        const randomNumber = Random.pickNumberInRange(
+          MAGIC_NUMBER.RANGE_START,
+          MAGIC_NUMBER.RANGE_END
+        );
         car.move(randomNumber);
       });
     });
@@ -46,7 +49,7 @@ class Race {
   }
 
   #getWinnerPosition() {
-    const [ winner ] = this.#cars.sort(
+    const [winner] = this.#cars.sort(
       (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 

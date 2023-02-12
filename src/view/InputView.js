@@ -1,11 +1,10 @@
-const Console = require('../utils/Console');
+const { Console } = require('../utils');
 
 const InputView = {
   readInput(callback, precomment) {
     Console.readLine(precomment, (input) => {
-        callback(input);
-      }
-    );
+      callback(input);
+    });
   },
 };
 

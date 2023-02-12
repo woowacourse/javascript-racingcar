@@ -1,6 +1,5 @@
 const App = require('../src/App');
-const Console = require('../src/utils/Console');
-const Random = require('../src/utils/Random');
+const { Console, Random } = require('../src/utils');
 
 const mockQuestions = (answers) => {
   Console.readLine = jest.fn();

@@ -1,4 +1,4 @@
-const InputValidator = require('../src/utils/InputValidator');
+const { InputValidator } = require('../src/utils');
 
 describe('InputValidator - 자동차 이름 테스트', () => {
   test.each([['배달의 민족'], ['1asd'], ['aaaaaaaaa'], ['adkf ']])(
@@ -11,7 +11,9 @@ describe('InputValidator - 자동차 이름 테스트', () => {
   test.each([['light'], ['poo'], ['pobi'], ['crong']])(
     '(성공 경우)',
     (input) => {
-      expect(() => InputValidator.checkCarName(input)).not.toThrowError('[ERROR]');
+      expect(() => InputValidator.checkCarName(input)).not.toThrowError(
+        '[ERROR]'
+      );
     }
   );
 });

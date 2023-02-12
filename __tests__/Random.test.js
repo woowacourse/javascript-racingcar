@@ -1,4 +1,4 @@
-const Random = require('../src/utils/Random');
+const { Random } = require('../src/utils');
 
 const mockMathRandoms = (number) => {
   Math.random = jest.fn();

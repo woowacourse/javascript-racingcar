@@ -10,4 +10,3 @@ const errorCheckFor = (tryFn, catchFn) => {
 };
 
 module.exports = errorCheckFor;
-
