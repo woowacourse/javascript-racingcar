@@ -7,7 +7,7 @@ const checkCarNamesLength = (carNames) => {
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
     )
   ) {
-    OutputView.print(new Error(ERROR.carNameLength).message);
+    OutputView.print(new Error(ERROR.carNamesLength).message);
     return false;
   }
   return true;
