@@ -12,13 +12,14 @@ describe('Car 클래스 테스트', () => {
   });
 
   test(`${StaticValue.MOVE_CONDITION}이상의 숫자를 입력받았을 때 자동차 인스턴스의 distance 필드가 하나 증가는지 확인`, () => {
-    const CAR = new Car('우형합격');
+    const car = new Car('우형합격');
     const RANDOM_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const EXPECTED_DISTANCES = [0, 0, 0, 0, 1, 2, 3, 4, 5, 6];
 
     RANDOM_NUMBERS.forEach((number, index) => {
-      CAR.move(number);
-      expect(CAR.getCurrentDistance()).toEqual(EXPECTED_DISTANCES[index]);
+      if (number >= StaticValue.MOVE_CONDITION) car.move();
+
+      expect(car.getCurrentDistance()).toEqual(EXPECTED_DISTANCES[index]);
     });
   });
 });
