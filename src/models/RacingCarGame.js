@@ -1,5 +1,5 @@
 const GAME_RULE = require('../constants/gameRule');
-const Random = require('../lib/random');
+const Random = require('../utils/Random');
 
 class RacingCarGame {
   #cars;
