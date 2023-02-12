@@ -30,10 +30,6 @@ class Cars {
     });
   }
 
-  getCars() {
-    return this.#cars;
-  }
-
   getRaceResult() {
     const result = new Map();
     this.#cars.forEach(car => {
