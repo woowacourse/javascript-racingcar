@@ -1,4 +1,4 @@
-const Cars = require('../src/Models/Cars');
+const Cars = require('../src/Domain/Cars');
 const RandomNumGenerator = require('../src/Utils/RandomNumGenerator');
 
 const mockRandoms = numbers => {

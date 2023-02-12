@@ -1,7 +1,7 @@
 const RACE_ERROR_MESSAGE = require('../src/Constant/ErrorMessage');
-const Cars = require('../src/Models/Cars');
-const Car = require('../src/Models/Car');
-const TryCount = require('../src/Models/TryCount');
+const Cars = require('../src/Domain/Cars');
+const Car = require('../src/Domain/Car');
+const TryCount = require('../src/Domain/TryCount');
 
 describe('유효성 검사 테스트', () => {
   test.each([[['garam'], [''], ['garam', 'garam']]])(

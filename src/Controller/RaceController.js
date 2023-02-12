@@ -1,7 +1,7 @@
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
-const Cars = require('../Models/Cars');
-const TryCount = require('../Models/TryCount');
+const Cars = require('../Domain/Cars');
+const TryCount = require('../Domain/TryCount');
 
 class RaceController {
   #cars;

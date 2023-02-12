@@ -1,4 +1,4 @@
-const Car = require('../src/Models/Car');
+const Car = require('../src/Domain/Car');
 
 test('move 인자로 4이상의 수가 들어온다면 position을 1만큼 이동한다.', () => {
   // given
