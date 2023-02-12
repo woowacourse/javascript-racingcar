@@ -1,4 +1,4 @@
-const Car = require('../model/Car');
+const Car = require('../domain/Car');
 const { GAME, MESSAGE } = require('../utils/constants');
 const terminalInputValidator = require('../validation/terminalInputValidator');
 const { toInt } = require('../utils/common');
@@ -33,7 +33,7 @@ class CarGame {
     const input = await this.view.input.readline(MESSAGE.INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
     if (!terminalInputValidator.validateCarNames(carNames)) return this.#setCars();
-    makeCars();
+    makeCars(carNames);
   }
 
   async #setWinningDistance() {
