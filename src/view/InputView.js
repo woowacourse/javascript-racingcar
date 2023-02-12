@@ -1,5 +1,5 @@
-const validations = require("./Validations");
-const { MESSAGE } = require("./Constant");
+const validations = require("./validations");
+const { MESSAGE } = require("./Constant_view");
 const RL = require("./Readline");
 
 const InputView = {
@@ -14,7 +14,7 @@ const InputView = {
         try {
             validations.carNameLengthMax(carNames);
             validations.carNameLengthMin(carNames);
-            callback(carNames)
+            callback(carNames);
         } catch (e) {
             console.log(e.message);
             this.inputCarName(callback);
@@ -23,23 +23,19 @@ const InputView = {
 
     inputRound(callback) {
         RL.question(MESSAGE.INPUT_ROUND_COUNT, (round) => {
-            this.tryCatchRound(round, callback)
-        })
+            this.tryCatchRound(round, callback);
+        });
     },
 
     tryCatchRound(round, callback) {
         try {
             validations.roundRange(+round);
-            callback(+round)
+            callback(+round);
         } catch (e) {
             console.log(e.message);
             this.inputRound(callback);
         }
     },
+};
 
-}
-
-
-
-
-module.exports = InputView
+module.exports = InputView;

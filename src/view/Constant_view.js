@@ -1,14 +1,3 @@
-const RACING = {
-    RANDOM_MIN: 0,
-    RANDOM_MAX: 9,
-    GO_POINT: 4,
-
-    CAR_NAME_MIN: 0,
-    CAR_NAME_MAX: 5,
-
-    ROUND_MIN: 1,
-};
-
 const MESSAGE = {
     INPUT_CAR_NAME:
         "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
@@ -24,4 +13,4 @@ const MESSAGE = {
     ERROR_CAR_NONAME: "[ERROR] 자동차 이름은 1자 이상이어야 합니다.",
 };
 
-module.exports = { RACING, MESSAGE };
+module.exports = { MESSAGE };

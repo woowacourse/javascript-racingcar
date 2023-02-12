@@ -1,4 +1,4 @@
-const { DOMAIN: RACING } = require("./CONSTANT");
+const { RACING } = require("./Constant_domain");
 
 const Run = {
     randomNumMakeCarGo(car, makeRandomFunction) {

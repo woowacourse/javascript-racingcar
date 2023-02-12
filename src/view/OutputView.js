@@ -1,4 +1,4 @@
-const { MESSAGE } = require("./Constant");
+const { MESSAGE } = require("./Constant_view");
 const RL = require("./Readline");
 
 const OutputView = {

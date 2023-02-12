@@ -1,6 +1,6 @@
 const Car = require("./Car");
-const InputView = require("./InputView");
-const OutputView = require("./OutputView");
+const InputView = require("../view/InputView");
+const OutputView = require("../view/OutputView");
 const Run = require("./Run");
 const Random = require("./Random");
 

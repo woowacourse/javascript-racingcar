@@ -1,4 +1,5 @@
-const { DOMAIN: RACING, MESSAGE } = require("./Constant");
+const { MESSAGE } = require("./Constant_view");
+const { RACING } = require("../domain/Constant_domain");
 
 const Validations = {
     carNameLengthMax(carNames) {
