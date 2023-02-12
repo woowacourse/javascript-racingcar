@@ -52,13 +52,17 @@ class RacingGameController {
 
   #showResult() {
     OutputView.print(OUTPUT.resultMent);
-    this.#service.recordCarsMove().forEach((history) => {
-      history.forEach((car) => {
-        OutputView.print(OUTPUT_RESULT(car));
-      });
-      OutputView.print(GAME.newLine);
+    this.#service.getCarsMoveRecord().forEach((history) => {
+      this.showCarsMoveHistory(history);
     });
     this.showWinners();
+  }
+
+  showCarsMoveHistory(history) {
+    history.forEach((car) => {
+      OutputView.print(OUTPUT_RESULT(car));
+    });
+    OutputView.print(GAME.newLine);
   }
 
   showWinners() {
