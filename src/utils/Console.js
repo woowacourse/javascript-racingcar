@@ -5,18 +5,18 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-class Console {
-  static readLine(question, callback) {
+const Console = {
+  readLine(question, callback) {
     rl.question(question, callback);
-  }
+  },
 
-  static print(data) {
+  print(data) {
     console.log(data);
-  }
+  },
 
-  static quit() {
+  quit() {
     rl.close();
-  }
-}
+  },
+};
 
 module.exports = Console;
