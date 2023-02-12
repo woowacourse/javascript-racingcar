@@ -8,7 +8,6 @@ const Random = require("./Random");
 const Validations = require("./validations");
 
 class App {
-
     play() {
         this.startRace();
     }
