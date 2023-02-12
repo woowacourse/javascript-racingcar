@@ -1,4 +1,4 @@
-const Car = require('../src/model/Car');
+const Car = require('../src/domain/Car');
 const common = require('../src/utils/common');
 const { GAME } = require('../src/constant/constants');
 
