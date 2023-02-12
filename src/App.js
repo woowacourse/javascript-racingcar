@@ -1,4 +1,4 @@
-const InputView = require("./UI/InputView");
+const InputView = require("./View/InputView");
 const utils = require("./Utils/Utils");
 
 class App {
