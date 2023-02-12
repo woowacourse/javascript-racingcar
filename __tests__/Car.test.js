@@ -1,4 +1,4 @@
-const Car = require('../src/models/Car');
+const { Car } = require('../src/domain');
 
 describe('Car 이동 테스트', () => {
   test('자동차가 이동하면 distance가 1 증가한다.', () => {

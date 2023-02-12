@@ -1,5 +1,4 @@
-const Car = require('../src/domain/Car');
-const RacingCarGame = require('../src/domain/RacingCarGame');
+const { Car, RacingCarGame } = require('../src/domain');
 
 describe('RacingCarGame 클래스 테스트', () => {
   const cars = ['pobi', 'fine', 'hp'].map((name) => new Car(name));
