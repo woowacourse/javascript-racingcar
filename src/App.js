@@ -78,7 +78,6 @@ class App {
         cars.decideWinnerCar();
         OutputView.outputWinner(cars.getWinnerCar());
     }
-
 }
 
 module.exports = App;
