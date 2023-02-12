@@ -27,7 +27,7 @@ class Race {
       throw new Error(Race.STEP_IS_NOT_INTEGER);
     }
 
-    if (Number(raceStep) < 0) {
+    if (Number(raceStep) < 1) {
       throw new Error(Race.STEP_IS_NOT_POSITIVE);
     }
   }
