@@ -23,10 +23,9 @@ class RacingCarGame {
   getWinner() {
     const carsInfo = this.getCarsInfo();
     const maxDistance = Math.max(...carsInfo.values());
-    const winners = [...carsInfo.entries()]
+    return [...carsInfo.entries()]
       .filter(([, distance]) => distance === maxDistance)
       .map(([name]) => name);
-    return winners;
   }
 }
 
