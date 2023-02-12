@@ -1,5 +1,5 @@
-const MovingDecider = require('../utils/MovingDecider');
-const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const GAME_RULE = require('../constants/gameRule');
+const Random = require('../lib/random');
 
 class RacingCarGame {
   #cars;
@@ -9,11 +9,22 @@ class RacingCarGame {
   }
 
   moveCars() {
-    const isMovable = MovingDecider.decide(this.#cars.length, RandomNumberGenerator.generate);
+    const carsMovingSuccesses = this.getCarsMovingSuccesses();
     this.#cars.forEach((car, index) => {
-      if (!isMovable[index]) return;
+      if (!carsMovingSuccesses[index]) return;
       car.move();
     });
+  }
+
+  getCarsMovingSuccesses() {
+    return Array.from(
+      { length: this.#cars.length },
+      () =>
+        Random.pickNumberInRange(
+          GAME_RULE.RANDOM_LOWER_INCLUSIVE,
+          GAME_RULE.RANDOM_UPPER_INCLUSIVE,
+        ) >= GAME_RULE.MOVING_CONDITION_NUMBER,
+    );
   }
 
   getCarsInfo() {
