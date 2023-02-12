@@ -1,5 +1,5 @@
-const CarGame = require('../models/CarGame');
-const CarNameParse = require('../utils/CarNameParse');
+const CarGame = require('../domain/CarGame');
+const parseCarName = require('../domain/parseCarName');
 const functionPipe = require('../utils/funcitonPipe');
 const getRandomNumber = require('../utils/getRandomNumber');
 const Validator = require('../utils/Validator');
@@ -20,7 +20,7 @@ class CarGameController {
   readCarNames() {
     InputView.readCarNames().then((input) => {
       try {
-        const parsedCarNames = CarNameParse(input);
+        const parsedCarNames = parseCarName(input);
         functionPipe(
           parsedCarNames,
           Validator.validateLength,

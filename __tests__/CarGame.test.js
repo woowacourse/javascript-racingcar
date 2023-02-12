@@ -1,4 +1,4 @@
-const CarGame = require('../src/models/CarGame');
+const CarGame = require('../src/domain/CarGame');
 
 describe('CarGame 테스트', () => {
   test('자동차 객체 리스트 생성 테스트', () => {
