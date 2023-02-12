@@ -2,11 +2,10 @@ const { MIN_RANDOM, MAX_RANDOM } = require("../constants");
 
 const Random = {
   makeRandomNumbers(countOfTrial) {
-    const race = [];
-    while (countOfTrial) {
+    let race = [];
+    for (let i = 0; i < countOfTrial; i++) {
       const randomNumber = this.generateRandomNumber();
-      race.push(randomNumber);
-      countOfTrial -= 1;
+      race = [...race, randomNumber];
     }
     return race;
   },

@@ -7,16 +7,14 @@ const OutputView = {
 
   drawProgress(carNames, currentRace) {
     const countOfTrial = currentRace[0];
-    for (const trial in countOfTrial) {
+    countOfTrial.map((_, trialIdx) => {
       carNames.map((carName, idx) => {
         Console.print(
-          carName +
-            " : " +
-            currentRace[idx].slice(0, Number(trial) + 1).join("")
+          carName + " : " + currentRace[idx].slice(0, trialIdx + 1).join("")
         );
       });
       Console.print("");
-    }
+    });
   },
 
   printResult(winners) {

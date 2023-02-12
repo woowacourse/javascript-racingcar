@@ -12,13 +12,13 @@ class Race {
   }
 
   start() {
-    while (true) {
+    this.#carNames.map(() => {
       const race = this.convertResults(
         Random.makeRandomNumbers(this.#countOfTrial)
       );
-      this.#currentRace.push(race);
-      if (this.#carNames.length === this.#currentRace.length) break;
-    }
+      this.#currentRace = [...this.#currentRace, race];
+    });
+
     return this.#currentRace;
   }
 
@@ -32,8 +32,7 @@ class Race {
     );
     const maxDistance = Math.max(...distanceArray);
     const winners = distanceArray.reduce((arr, distance, index) => {
-      if (distance === maxDistance) arr.push(this.#carNames[index]);
-      return arr;
+      return distance === maxDistance ? [...arr, this.#carNames[index]] : arr;
     }, []);
     return winners;
   }
