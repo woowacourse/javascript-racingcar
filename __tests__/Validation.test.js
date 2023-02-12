@@ -7,7 +7,6 @@ describe('Validation Test', () => {
     [['yunseong', 'gabriel'], false],
     [['aa', 'bb', 'cc'], true],
     [['aa', 'bb', ''], false],
-    // [['aa', 'bb', '윤생이😁😁'], true], => 고민할 부분(서로게이트 쌍)
   ])('이름 유효성 검사(%s: %s)', (names, expected) => {
     expect(isValidCarNames(names)).toBe(expected);
   });

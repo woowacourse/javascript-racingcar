@@ -6,8 +6,8 @@ describe('GameManager Test', () => {
 
   test.each([
     [
-      ['yun', 'park', 'kim'], 
-      [[9, 0, 1], [8, 1, 2], [7, 5, 6]], 
+      ['yun', 'park', 'kim'],
+      [[9, 0, 1], [8, 1, 2], [7, 5, 6]],
       ['yun']
     ],
     [
@@ -24,7 +24,7 @@ describe('GameManager Test', () => {
     const gameManager = new GameManager();
     const cars = gameManager.generateCars(carNames);
     gameManager.setCars(cars);
-    moves.forEach((numbers)=>{
+    moves.forEach((numbers) => {
       gameManager.moveCars(numbers);
     })
     expect(gameManager.judgeWinners()).toEqual(winners);
