@@ -1,8 +1,8 @@
 const Attempts = require('../model/Attempts');
 const Car = require('../model/Car');
 const { isMove, Random } = require('../utils');
-const InputView = require('../view/InputView');
-const OutputView = require('../view/OutputView');
+const inputView = require('../view/inputView');
+const outputView = require('../view/outputView');
 
 class Controller {
   #cars = [];
@@ -14,7 +14,7 @@ class Controller {
   }
 
   askCarName() {
-    InputView.readCarName((carNames) => {
+    inputView.readCarName((carNames) => {
       carNames.forEach((name) => {
         const carModel = new Car(name);
         this.#cars.push(carModel);
@@ -24,7 +24,7 @@ class Controller {
   }
 
   askAttempts() {
-    InputView.readAttempts((attemptInput) => {
+    inputView.readAttempts((attemptInput) => {
       this.#attempt = new Attempts(attemptInput);
       this.race();
     });
@@ -32,7 +32,7 @@ class Controller {
 
   race() {
     const attemptsCount = this.#attempt.getAttemptsCount();
-    OutputView.printGameStartMsg();
+    outputView.printGameStartMsg();
     this.calculateProgress(attemptsCount);
     this.showGameProgress();
     this.showGameWinner();
@@ -70,7 +70,7 @@ class Controller {
 
   showGameProgress() {
     this.#cars.forEach((car, index) => {
-      OutputView.printGameProgress(
+      outputView.printGameProgress(
         car.getName(),
         car.getProgress(),
         index === this.#cars.length - 1
@@ -81,7 +81,7 @@ class Controller {
   showGameWinner() {
     const winnerLength = this.calculateWinnerLength();
     const winnerNames = this.calculateWinner(winnerLength);
-    OutputView.printGameWinner(winnerNames);
+    outputView.printGameWinner(winnerNames);
   }
 }
 
