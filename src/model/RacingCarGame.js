@@ -1,20 +1,41 @@
-const RacingScoreMap = require("./RacingScoreMap");
+const ResultContainer = require("./ResultContainer");
+const RacingScoreMap = require("./ScoreMap");
 
 class RacingCarGame {
-  #numberOfTrial;
-  #racingCarMap;
+  #totalTrial;
+  #scoreMap;
+  #roundResultList;
 
-  constructor(carList, totalTrial) {
-    if (carList.every((car) => typeof car === 'string') && isNaN(totalTrial)){
-      throw new Error(`TypeError`)
+  constructor(carList, totalTrial) { 
+    if (carList.some((car) => typeof car !== 'string') && isNaN(totalTrial)){
+      throw new Error(`TypeError`);
     }
 
-    this.#racingCarMap = new RacingScoreMap(carList);
-    this.totalTrial = totalTrial;
+    this.#scoreMap = new RacingScoreMap(carList);
+    this.#roundResultList = [new Map(this.#scoreMap)];
+    this.#totalTrial = totalTrial;
   }
 
-  tryOnce () {
-    RacingScoreMap.updateScoreOnce();
+  getGameResult() {
+    const roundResultList = [...this.#roundResultList];
+    const winnerList = this.#scoreMap.getWinnerList();
+
+    return new ResultContainer(roundResultList, winnerList);
+  }
+
+  play() {
+    for (let i = 0; i < this.#totalTrial; i++) {
+      this.#tryOnce();
+    }
+  }
+
+  #tryOnce () {
+    this.#scoreMap.updateScoreOnce();
+    this.#addRoundResult(this.#scoreMap.getRoundResult());
+  }
+
+  #addRoundResult (roundResult) {
+    this.#roundResultList.push(roundResult);
   }
   
 }
