@@ -1,6 +1,6 @@
 const { ERROR_MESSAGE } = require('../constants/message');
 const { CAR_RULE } = require('../constants/rule');
-const { CharacterValidator, ArrayValidator } = require('../utils/Validator');
+const { CharacterValidator, ArrayValidator } = require('../../utils/validator');
 
 const isAllowedCharacter = (carName) => {
   return (

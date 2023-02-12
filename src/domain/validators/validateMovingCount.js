@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('../constants/message');
-const { NumberValidator } = require('../utils/Validator');
+const { NumberValidator } = require('../../utils/validator');
 
 const validateMovingCount = (movingCount) => {
   if (!NumberValidator.isNaturalNumber(movingCount)) {
