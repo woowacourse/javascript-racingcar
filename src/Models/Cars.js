@@ -5,6 +5,7 @@ const ValidatorConditions = require('../Utils/ValidatorConditions');
 
 class Cars {
   #cars = [];
+  #raceResult;
 
   constructor(cars) {
     this.validate(cars);
@@ -39,7 +40,21 @@ class Cars {
       result.set(car.getName(), car.getPosition());
     });
 
-    return result;
+    this.#raceResult = result;
+
+    return this.#raceResult;
+  }
+
+  getWinners() {
+    const winners = [];
+    const max = Math.max(...this.#raceResult.values());
+    this.#raceResult.forEach((value, key) => {
+      if (value === max) {
+        winners.push(key);
+      }
+    });
+
+    return winners;
   }
 }
 
