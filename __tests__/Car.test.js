@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const RacingCar = require('../src/model/RacingCar');
+const RacingCar = require('../src/domain/RacingCar');
 
 describe('Racing car test', () => {
   test('자동차 이름 반환 테스트', () => {
