@@ -1,7 +1,7 @@
 const CONSTANTS = {
   defaultPostion: 0,
   minNumberOfMoving: 4,
-  minNumberOfNames: 2,
+  minNumberOfCars: 2,
   maxNameLength: 5,
   undefinedType: 'undefined',
 };

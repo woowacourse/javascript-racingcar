@@ -1,3 +1,5 @@
+const CONSTANTS = require('../Constant/Constants');
+
 const ValidatorConditions = {
   isOverlap(names) {
     if (new Set(names).size !== names.length) {
