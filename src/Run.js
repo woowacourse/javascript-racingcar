@@ -1,15 +1,15 @@
 const { DOMAIN: RACING } = require("./CONSTANT");
 
 const Run = {
-    isCarGo(car, makeRandomFunction) {
+    randomNumMakeCarGo(car, makeRandomFunction) {
         const randomNum = makeRandomFunction(
             RACING.RANDOM_MIN,
             RACING.RANDOM_MAX
         );
-        if (this.goStop(randomNum)) car.go();
+        if (this.isGoStop(randomNum)) car.go();
     },
 
-    goStop(num) {
+    isGoStop(num) {
         return num >= RACING.GO_POINT;
     },
 };
