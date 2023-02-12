@@ -1,5 +1,4 @@
 const { OUTPUT_MESSAGE } = require('../utils/constants');
-const numberToDistanceString = require('../utils/numberToDistanceString');
 const readLine = require('../utils/readLine');
 
 const OutputView = {
@@ -11,8 +10,7 @@ const OutputView = {
     let resultStr = '';
 
     for (let index = 0; index < names.length; index++) {
-      resultStr +=
-        OUTPUT_MESSAGE.MOVE_RESULT(names[index], numberToDistanceString(moveData[index])) + '\n';
+      resultStr += OUTPUT_MESSAGE.MOVE_RESULT(names[index], '-'.repeat(moveData[index]) + '\n');
     }
 
     console.log(resultStr);
