@@ -13,17 +13,20 @@ const GAME_MESSAGE = Object.freeze({
 const MAXIMUM_CAR_NAME_LENGTH = 5;
 const MINIMUM_CAR_NAME_LENGTH = 1;
 const MINIMUM_TRY_COUNT = 1;
+const MAXIMIM_TRY_COUNT = 100;
 const MINIMUM_NUMBER_OF_CARS = 2;
 const MOVEMENT_STANDARD_NUMBER = 4;
 const FORWARD_VALUE = 1;
 
 const ERROR_MESSAGE = Object.freeze({
-  NAME_LENGTH_LIMIT: "1글자 이상 5글자 이하로 입력해 주세요.",
-  MINIMUM_CAR_COUNT: "자동차는 최소 2대 이상 등록해주셔야 합니다.",
+  NAME_LENGTH_LIMIT: `${MINIMUM_CAR_NAME_LENGTH}글자 이상 ${MAXIMUM_CAR_NAME_LENGTH}글자 이하로 입력해 주세요.`,
+  MINIMUM_CAR_COUNT: `자동차는 최소 ${MINIMUM_NUMBER_OF_CARS}대 이상 등록해주셔야 합니다.`,
   NOT_POSITIVE_NUMBER: "양수를 입력해 주세요.",
   INVALID_NAME: "유효한 이름을 입력해 주세요.",
   NOT_BLANK: "공백없이 입력해 주세요.",
   NAME_DUPLICATE: "중복된 이름은 사용할 수 없습니다.",
+  NOT_INTEGER: "정수를 입력해주세요.",
+  TRY_COUNT_ARRANGE: `${MINIMUM_TRY_COUNT}부터 ${MAXIMIM_TRY_COUNT}까지 입력이 가능합니다.`,
 });
 
 export {
@@ -37,4 +40,6 @@ export {
   MOVEMENT_STANDARD_NUMBER,
   MINIMUM_CAR_NAME_LENGTH,
   FORWARD_VALUE,
+  NOT_INTEGER,
+  MAXIMIM_TRY_COUNT,
 };
