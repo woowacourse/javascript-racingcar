@@ -4,13 +4,11 @@ const Car = require('../src/domain/Car');
 
 describe('Car Test', () => {
   test.each([
-    ['yun', 12, 12, true],
-    ['ga', 10, 11, false],
-  ])('자동차 전진 검사', (name, go, position, expected) => {
+    ['yun', [0, 0, 4], 1],
+    ['ga', [10, 11], 2],
+  ])('자동차 전진 검사', (name, numbers, expected) => {
     const car = new Car(name);
-    for (let i = 0; i < go; i++) {
-      car.move(true);
-    }
-    expect(car.getPosition() === position).toBe(expected);
+    numbers.forEach(number => car.move(number));
+    expect(car.getPosition()).toBe(expected);
   });
 });
