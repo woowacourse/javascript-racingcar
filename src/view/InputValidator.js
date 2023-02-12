@@ -14,6 +14,12 @@ const inputValidator = {
     }
   },
 
+  validateNumberOfTrials (numberOfTrials) {
+    if (isNaN(numberOfTrials)) {
+      throw new Error(ERROR_MESSAGE.numberOfTrials)
+    }
+  },
+
   isCarNameListInRange (carNameList) {
     return carNameList.every((carName) => (carName.length >= this.MIN_CAR_NAME_LENGTH)  
     && (carName.length <= this.MAX_CAR_NAME_LENGTH));

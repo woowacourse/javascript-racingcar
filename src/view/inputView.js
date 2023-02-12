@@ -18,12 +18,27 @@ const InputView = {
     }
   },
 
+  async readNumberOfTrials () {
+    try {
+      const input = await Console.question(INPUT_MESSAGE.numberOfTrials);
+      const numberOfTrials = this.preprocessNumberOfTrials(input);
+
+      inputValidator.validateNumberOfTrials(numberOfTrials);
+      return numberOfTrials;
+    } catch (err) {
+      Console.print(err.message);
+      return this.readNumberOfTrials();
+    } 
+  },
+
   preprocessCarName(input) {
     return input.split(',').map((carName) => carName.trim());
   },
 
+  preprocessNumberOfTrials(input) {
+    return Number(input);
+  },
+  
 }
-
-InputView.test();
 
 module.exports = InputView;
