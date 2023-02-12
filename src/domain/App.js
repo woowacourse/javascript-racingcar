@@ -1,46 +1,55 @@
+const { MESSAGES } = require("../constant/Constant");
 const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
-const MESSAGES = require("../constant/Constant");
-const CarRace = require("./CarRace");
 const CarRaceGame = require("./CarRaceGame");
 
 class App {
-  #carRace = new CarRace();
+  #carRaceGame = new CarRaceGame();
 
   play() {
-    this.#start();
+    this.#readCarText();
   }
 
-  async #start() {
+  async #readCarText() {
     try {
-      this.#carRace.setCarNames(await InputView.readCarNames(MESSAGES.carText));
-      this.#repeat();
-    } catch (e) {
-      OutputView.printMessage(MESSAGES.carTextError);
-      this.#start();
+      const carNames = await InputView.readCarNames(MESSAGES.carText);
+      this.#carRaceGame.createRaceUsingCarNames(carNames);
+      this.#readRepeatNumber();
+    } catch (error) {
+      OutputView.printMessage(error.message);
+      this.#readCarText();
     }
   }
 
-  async #repeat() {
+  async #readRepeatNumber() {
     try {
-      this.#carRace.setRepeatNumber(await InputView.readRepeatNumber(MESSAGES.repeatNumber));
-      this.#playGame();
-    } catch (e) {
-      OutputView.printMessage(MESSAGES.repeatRangeError);
-      this.#repeat();
+      const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber);
+      this.#playRoundMultipleTimes(repeatNumber);
+    } catch (error) {
+      OutputView.printMessage(error.message);
+      this.#readRepeatNumber();
     }
   }
 
-  #playGame() {
+  #playRoundMultipleTimes(repeatNumber) {
     OutputView.printMessage(MESSAGES.resultTitle);
-    for (let i = 0; i < this.#carRace.getRepeatNumber(); i += 1) {
-      const temp = CarRaceGame.updateRace(this.#carRace.getCarDistances());
-      this.#carRace.setCarDistances(temp);
-      OutputView.printRoundResult(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
+
+    for (let index = 0; index < repeatNumber; index += 1) {
+      this.#carRaceGame.performRaceOnce();
+      const carRaceRoundResult = this.#carRaceGame.getRaceResult();
+      OutputView.printRoundResult(carRaceRoundResult.carNames, carRaceRoundResult.carDistances);
     }
-    const winners = CarRaceGame.judgeWinners(this.#carRace.getCarNames(), this.#carRace.getCarDistances());
+
+    this.#announceWinners();
+  }
+
+  #announceWinners() {
+    const winners = this.#carRaceGame.getWinners();
     OutputView.printWinners(winners);
   }
 }
+
+const game = new App();
+game.play();
 
 module.exports = App;
