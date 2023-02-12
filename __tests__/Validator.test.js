@@ -1,11 +1,11 @@
-const Validator = require('../src/utils/Validator');
+const InputValidator = require('../src/validators/InputValidator');
 
 describe('Validator 테스트', () => {
   test('자동차 이름의 구분자가 쉼표인 경우 정상적으로 작동한다.', () => {
     const carNames = 'as,asdf,afa';
 
     expect(() => {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
     }).not.toThrow();
   });
 
@@ -13,7 +13,7 @@ describe('Validator 테스트', () => {
     const carNames = 'as;asdf;afa';
 
     expect(() => {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
     }).toThrow();
   });
 
@@ -21,7 +21,7 @@ describe('Validator 테스트', () => {
     '자동차 이름이 알파벳이나 한글로 이루어진 경우 정상적으로 작동한다.',
     (carNames) => {
       expect(() => {
-        Validator.checkCarName(carNames);
+        InputValidator.checkCarNames(carNames);
       }).not.toThrow();
     },
   );
@@ -30,7 +30,7 @@ describe('Validator 테스트', () => {
     const carNames = '0a';
 
     expect(() => {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
     }).toThrow();
   });
 
@@ -38,7 +38,7 @@ describe('Validator 테스트', () => {
     const carNames = 'abc,def';
 
     expect(() => {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
     }).not.toThrow();
   });
 
@@ -46,13 +46,13 @@ describe('Validator 테스트', () => {
     const carNames = 'abc,abc';
 
     expect(() => {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
     }).toThrow();
   });
 
   test.each([[['1'], ['101']]])('이동 횟수가 자연수인 경우 정상적으로 작동한다.', (movingCount) => {
     expect(() => {
-      Validator.checkMovingCount(movingCount);
+      InputValidator.checkMovingCount(movingCount);
     }).not.toThrow();
   });
 
@@ -60,7 +60,7 @@ describe('Validator 테스트', () => {
     '이동 횟수가 자연수가 아닌 경우 에러가 발생한다.',
     (movingCount) => {
       expect(() => {
-        Validator.checkMovingCount(movingCount);
+        InputValidator.checkMovingCount(movingCount);
       }).toThrow();
     },
   );

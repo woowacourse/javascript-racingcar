@@ -5,7 +5,7 @@ describe('Car 이동 테스트', () => {
     const car = new Car('abcd');
 
     car.move();
-    const [, distance] = car.getInfo();
+    const { distance } = car.getInfo();
 
     expect(distance).toEqual(2);
   });

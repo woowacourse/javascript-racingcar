@@ -1,6 +1,6 @@
 const Car = require('../src/models/Car');
 const RacingCarGame = require('../src/models/RacingCarGame');
-const Random = require('../src/lib/random');
+const Random = require('../src/utils/random');
 
 const mockRandoms = (numbers) => {
   Random.pickNumberInRange = jest.fn();
@@ -15,7 +15,7 @@ describe('RacingCarGame 테스트', () => {
 
     racingCarGame.moveCars();
 
-    const result = [...racingCarGame.getCarsInfo().values()];
+    const result = racingCarGame.getCarsInfo().map((carInfo) => carInfo.distance);
     expect(result).toStrictEqual([2, 1, 2]);
   });
 

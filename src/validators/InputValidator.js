@@ -13,7 +13,7 @@ const InputValidator = {
   },
 
   checkMovingCount(movingCount) {
-    if (Validator.isNaturalNumber(movingCount)) {
+    if (!Validator.isNaturalNumber(movingCount)) {
       throw new Error(ERROR_MESSAGE.MOVING_COUNT);
     }
   },

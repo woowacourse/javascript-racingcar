@@ -2,7 +2,7 @@ const CAR_RULE = require('../constants/carRule');
 const Console = require('../lib/console');
 const Car = require('../models/Car');
 const RacingCarGame = require('../models/RacingCarGame');
-const Validator = require('../utils/Validator');
+const InputValidator = require('../validators/InputValidator');
 const InputView = require('../views/InputView');
 const OutputView = require('../views/OutputView');
 
@@ -15,7 +15,7 @@ class RacingCarGameController {
 
   #onSubmitCarName(carNames) {
     try {
-      Validator.checkCarName(carNames);
+      InputValidator.checkCarNames(carNames);
       const cars = carNames.split(CAR_RULE.SEPARATOR).map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
       InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
@@ -27,7 +27,7 @@ class RacingCarGameController {
 
   #onSubmitMovingCount(movingCount) {
     try {
-      Validator.checkMovingCount(movingCount);
+      InputValidator.checkMovingCount(movingCount);
       this.#printResult(movingCount);
       Console.close();
     } catch (error) {
