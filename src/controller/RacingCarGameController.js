@@ -10,29 +10,29 @@ class RacingCarGameController {
   #game;
 
   play() {
-    InputView.readCarName(this.#onCarNameSubmit.bind(this));
+    InputView.readCarName(this.#onSubmitCarName.bind(this));
   }
 
-  #onCarNameSubmit(carNames) {
+  #onSubmitCarName(carNames) {
     try {
       Validator.checkCarName(carNames);
       const cars = carNames.split(CAR_RULE.separator).map((carName) => new Car(carName));
       this.#game = new RacingCarGame(cars);
-      InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
+      InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
     } catch (error) {
       OutputView.printError(error.message);
-      InputView.readCarName(this.#onCarNameSubmit.bind(this));
+      InputView.readCarName(this.#onSubmitCarName.bind(this));
     }
   }
 
-  #onMovingCountSubmit(movingCount) {
+  #onSubmitMovingCount(movingCount) {
     try {
       Validator.checkMovingCount(movingCount);
       this.#printResult(movingCount);
       Console.close();
     } catch (error) {
       OutputView.printError(error.message);
-      InputView.readMovingCount(this.#onMovingCountSubmit.bind(this));
+      InputView.readMovingCount(this.#onSubmitMovingCount.bind(this));
     }
   }
 
