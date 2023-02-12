@@ -1,4 +1,4 @@
-const App = require("../src/Index");
+const App = require("../src/domain/Index");
 
 describe("Racing 전체 기능 테스트", () => {
     test("차 객체 생성 확인", () => {

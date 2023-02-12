@@ -1,5 +1,5 @@
-const Run = require("../src/Run");
-const Car = require("../src/Car");
+const Run = require("../src/domain/Run");
+const Car = require("../src/domain/Car");
 
 describe("전진하는 함수 테스트", () => {
     test("인수(랜덤값)가 전진 기준값 이상인지 확인하여 논리갑 return_이상인 경우", () => {
