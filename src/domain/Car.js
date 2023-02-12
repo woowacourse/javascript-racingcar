@@ -21,7 +21,7 @@ class Car {
   }
 
   static #isValidNameLength(name) {
-    return name.length >= Car.MIN_NAME_LENGTH && name.length <= Car.MAX_NAME_LENGTH;
+    return [...name].length >= Car.MIN_NAME_LENGTH && [...name].length <= Car.MAX_NAME_LENGTH;
   }
 
   move() {
