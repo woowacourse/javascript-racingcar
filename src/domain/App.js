@@ -1,11 +1,11 @@
 const Car = require("./Car");
 const Cars = require("./Cars");
-const Racing = require("./Racing");
-const InputView = require("./InputView");
-const OutputView = require("./OutputView");
-const CONSTANT = require("./Constants");
-const Random = require("./Random");
-const Validations = require("./validations");
+const Racing = require("../Racing");
+const InputView = require("../view/InputView");
+const OutputView = require("../OutputView");
+const CONSTANT = require("../Constants");
+const Random = require("../utils/Random");
+const Validations = require("../validations");
 
 class App {
     play() {
