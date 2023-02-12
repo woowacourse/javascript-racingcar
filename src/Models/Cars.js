@@ -1,19 +1,19 @@
 const RandomNumGenerator = require('../Utils/RandomNumGenerator');
 
-class Race {
+class Cars {
   #cars;
 
   constructor(cars) {
     this.#cars = cars;
   }
 
-  go() {
+  race() {
     this.#cars.forEach(car => {
       car.move(RandomNumGenerator.generateNumber());
     });
   }
 
-  getResult() {
+  getRaceResult() {
     const result = new Map();
     this.#cars.forEach(car => {
       result.set(car.getName(), car.getPosition());
@@ -23,4 +23,4 @@ class Race {
   }
 }
 
-module.exports = Race;
+module.exports = Cars;
