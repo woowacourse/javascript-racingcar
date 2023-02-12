@@ -39,11 +39,15 @@ class RacingGameController {
   }
 
   isFinishGame(cars) {
-    if (!cars.some((car) => car.getDistance() >= this.#winningDistance)) {
+    if (!cars.some((car) => this.pickOutWinner(car))) {
       this.startRacing();
       return;
     }
     this.#showResult();
+  }
+
+  pickOutWinner(car) {
+    return car.getDistance() >= this.#winningDistance;
   }
 
   #showResult() {
@@ -58,9 +62,7 @@ class RacingGameController {
   }
 
   showWinners() {
-    const winners = this.#service
-      .getCars()
-      .filter((car) => car.getDistance() >= this.#winningDistance);
+    const winners = this.#service.getCars().filter((car) => this.pickOutWinner(car));
     OutputView.print(OUTPUT_WINNER(winners));
   }
 }
