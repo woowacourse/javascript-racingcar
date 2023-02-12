@@ -4,6 +4,7 @@ const Utils = require('./Utils');
 const Exception = {
   checkCarInput(input) {
     this.checkInputLength(input);
+    this.checkInputNaming(input);
     this.checkDuplicateInput(input);
   },
 
@@ -11,6 +12,14 @@ const Exception = {
     input.forEach((name) => {
       if (name.length > StaticValue.CAR_NAME_LIMIT || Utils.hasWhiteSpace(name)) {
         throw new Error(ErrorMessage.NAME_INPUT);
+      }
+    });
+  },
+
+  checkInputNaming(input) {
+    input.forEach((name) => {
+      if (Utils.startsWithDigit(name)) {
+        throw new Error(ErrorMessage.NAME_FORMAT);
       }
     });
   },
