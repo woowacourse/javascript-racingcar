@@ -5,6 +5,10 @@ import OutputView from '../view/OutputView';
 class RaceController {
   #race;
 
+  static handleError(error) {
+    OutputView.printError(error);
+  }
+
   async setRaceCars() {
     const carNames = await InputView.readCarNames();
 
@@ -21,21 +25,17 @@ class RaceController {
     OutputView.printRaceTitle();
 
     while (!this.#race.isRaceEnd()) {
-      this.#race.moveOnce();
+      this.#race.moveOneStep();
 
       const raceStates = this.#race.getRaceStates();
       OutputView.printRaceState(raceStates);
     }
   }
 
-  showWinners() {
+  endRace() {
     const winnerNames = this.#race.findWinnerNames();
     OutputView.printWinners(winnerNames);
     InputView.close();
-  }
-
-  static handleError(error) {
-    OutputView.printError(error);
   }
 }
 

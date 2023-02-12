@@ -2,7 +2,7 @@ class Car {
   static MIN_NAME_LENGTH = 1;
   static MAX_NAME_LENGTH = 5;
 
-  static VALID_NAME_LENGTH = `자동차의 이름은 최소${Car.MIN_NAME_LENGTH}자, 최대${Car.MAX_NAME_LENGTH}자입니다.`;
+  static VALID_NAME_LENGTH = `자동차의 이름은 최소 ${Car.MIN_NAME_LENGTH}자, 최대 ${Car.MAX_NAME_LENGTH}자입니다.`;
 
   #name;
   #position;
@@ -24,15 +24,15 @@ class Car {
     return name.length >= Car.MIN_NAME_LENGTH && name.length <= Car.MAX_NAME_LENGTH;
   }
 
+  move() {
+    this.#position += 1;
+  }
+
   getRaceState() {
     const name = this.#name;
     const position = this.#position;
 
     return { name, position };
-  }
-
-  move() {
-    this.#position += 1;
   }
 
   compareTo(other) {

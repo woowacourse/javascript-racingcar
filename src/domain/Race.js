@@ -1,5 +1,5 @@
-import Car from './Car';
 import { randomNumberBetween } from '../util/Random';
+import Car from './Car';
 
 class Race {
   static RANDOM_NUMBER_MIN = 0;
@@ -40,7 +40,11 @@ class Race {
     return raceStep < 1;
   }
 
-  moveOnce() {
+  isRaceEnd() {
+    return this.#raceStep === 0;
+  }
+
+  moveOneStep() {
     this.#cars.forEach((car) => {
       const randomNumber = randomNumberBetween(Race.RANDOM_NUMBER_MIN, Race.RANDOM_NUMBER_MAX);
 
@@ -48,6 +52,10 @@ class Race {
     });
 
     this.#raceStep -= 1;
+  }
+
+  getRaceStates() {
+    return this.#cars.map((car) => car.getRaceState());
   }
 
   #findWinners() {
@@ -62,14 +70,6 @@ class Race {
     const winnerCars = this.#findWinners();
 
     return winnerCars.map((winnerCar) => winnerCar.getName());
-  }
-
-  getRaceStates() {
-    return this.#cars.map((car) => car.getRaceState());
-  }
-
-  isRaceEnd() {
-    return this.#raceStep === 0;
   }
 }
 

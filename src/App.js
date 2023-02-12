@@ -38,7 +38,7 @@ class App {
   }
 
   endRace() {
-    this.#raceController.showWinners();
+    this.#raceController.endRace();
   }
 }
 
