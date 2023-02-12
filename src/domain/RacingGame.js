@@ -28,12 +28,6 @@ class RacingGame {
     });
   }
 
-  findWinner() {
-    const maxPosition = this.#findMaxPosition();
-    const winners = this.#carList.filter((car) => car.getPosition() === maxPosition);
-    return winners.map((car) => car.getName());
-  }
-
   findCarsAtPosition(position) {
     return this.#carList
       .filter((car) => car.getPosition() === position)
