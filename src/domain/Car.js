@@ -8,8 +8,8 @@ class Car {
     this.#state = 0;
   }
 
-  move(moveNumber) {
-    if (moveNumber >= MOVE_CHECK_NUMBER) this.#state += 1;
+  move(moveNumber, isCarMoved) {
+    if (isCarMoved(moveNumber)) this.#state += 1;
     return this.#state;
   }
 

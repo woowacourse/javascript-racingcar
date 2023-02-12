@@ -6,6 +6,7 @@ const getRandomNumber = require('./utils/getRandomNumber');
 const Validator = require('./utils/Validator');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
+const isBiggerThanStandard = require('./utils/isBiggerThanStandard');
 
 class App {
   #carList = [];
@@ -51,7 +52,7 @@ class App {
     for (let count = 0; count < tryCount; count++) {
       const moveData = [];
       this.#carList.forEach((car) => {
-        const carState = car.move(getRandomNumber());
+        const carState = car.move(getRandomNumber(), isBiggerThanStandard);
         moveData.push(carState);
       });
       this.#moveList.push([...moveData]);
