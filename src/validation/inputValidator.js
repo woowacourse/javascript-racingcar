@@ -1,7 +1,7 @@
 const OutputView = require('../view/OutputView');
 const { GAME, ERROR } = require('../constant/constants');
 
-const checkCarNameLength = (carNames) => {
+const checkCarNamesLength = (carNames) => {
   if (
     !carNames.every(
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
@@ -31,7 +31,7 @@ const checkBlankInCarName = (carNames) => {
 
 const validateCarNames = (carNames) => {
   return (
-    checkCarNameLength(carNames) &&
+    checkCarNamesLength(carNames) &&
     checkDuplicatedCarName(carNames) &&
     checkBlankInCarName(carNames)
   );
