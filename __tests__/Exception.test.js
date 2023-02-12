@@ -40,11 +40,11 @@ describe('Exception 객체 테스트', () => {
     });
 
     test('숫자가 아닌 문자 입력시 에러를 발생시키는지 확인', () => {
-      const MOVE_COUNT_INPUTS = ['a', '-b', '+c', '', ' '];
+      const MOVE_COUNT_INPUTS = ['a', '-b', '+c', '', ' ', '1A', ' 1A', '1 A', '1 2 3', '3 4 5', 'A1'];
 
       MOVE_COUNT_INPUTS.forEach((moveCount) => {
         expect(() => {
-          Exception.checkMoveCountInput(parseInt(moveCount, 10));
+          Exception.checkMoveCountInput(moveCount, 10);
         }).toThrow();
       });
     });
