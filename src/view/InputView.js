@@ -5,6 +5,10 @@ const InputView = {
     const input = await readline.question(text);
     return input;
   },
+
+  closeRead() {
+    readline.close();
+  },
 };
 
 module.exports = InputView;

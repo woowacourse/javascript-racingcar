@@ -70,6 +70,7 @@ class RacingGameController {
   showWinners() {
     const winners = this.#service.getCars().filter((car) => this.pickOutWinner(car));
     this.#output.print(OUTPUT_WINNER(winners));
+    this.#input.closeRead();
   }
 }
 module.exports = RacingGameController;
