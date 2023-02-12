@@ -1,4 +1,4 @@
-const { Settings, Messages } = require('./Config');
+const { Settings, Messages } = require('../Config');
 
 const Validator = {
   validateCarNames(carNameList) {

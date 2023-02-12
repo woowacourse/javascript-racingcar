@@ -1,6 +1,6 @@
 const Console = require('./Console');
 const { Messages, Settings } = require('../Config');
-const Validator = require('../Validator');
+const Validator = require('../util/Validator');
 
 const InputView = {
   async getCarNames() {
