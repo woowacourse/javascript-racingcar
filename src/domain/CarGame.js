@@ -6,9 +6,9 @@ const { MIN, MAX } = RANDOM_NUMBER_RANGE;
 class CarGame {
   #carStatus = new Map([]);
 
-  initializeCarStatus = (carNames) => {
+  initializeCarStatus(carNames) {
     carNames.forEach((name) => this.#carStatus.set(name, 0));
-  };
+  }
 
   moveCar() {
     [...this.#carStatus.entries()].forEach(([name, count]) => {
