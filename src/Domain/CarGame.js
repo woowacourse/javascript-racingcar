@@ -34,15 +34,8 @@ class CarGame {
   getWinnerNames(statusValues, maxPosition) {
     return statusValues
       .filter((state) => state.getCarStatus()["position"] === maxPosition)
-      .map((constructor) => constructor.getCarStatus()["name"]);
-  }
-
-  findWinner(statusValues) {
-    const maxPosition = this.getMaxPosition(statusValues);
-
-    const winnerNames = this.getWinnerNames(statusValues, maxPosition);
-
-    return [...winnerNames].join(COMMA);
+      .map((constructor) => constructor.getCarStatus()["name"])
+      .join(COMMA);
   }
 
   getStatusValuesArray = () => {

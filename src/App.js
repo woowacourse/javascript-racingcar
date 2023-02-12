@@ -63,7 +63,10 @@ class App {
   endPlay() {
     const gameStatus = this.#games.getStatusValuesArray();
 
-    OutputView.printWinner(this.#games.findWinner(gameStatus));
+    const maxPosition = this.#games.getMaxPosition(gameStatus);
+    const winnerNames = this.#games.getWinnerNames(gameStatus, maxPosition);
+
+    OutputView.printWinner(winnerNames);
 
     utils.close();
   }
