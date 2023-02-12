@@ -5,15 +5,15 @@ const InputView = {
   RACE_STEP_QUESTION: '시도할 회수는 몇회인가요?',
 
   async readCarNames() {
-    const carnamesString = await Console.readline(InputView.CAR_NAMES_QUESTION);
-    const carNames = carnamesString.split(',');
+    const answer = await Console.readline(InputView.CAR_NAMES_QUESTION);
+    const carNames = answer.split(',');
 
     return carNames;
   },
 
   async readRaceStep() {
-    const raceStepString = await Console.readline(InputView.RACE_STEP_QUESTION);
-    const raceStep = Number(raceStepString);
+    const answer = await Console.readline(InputView.RACE_STEP_QUESTION);
+    const raceStep = Number(answer);
 
     return raceStep;
   },
