@@ -1,5 +1,5 @@
 import Car from './Car.js';
-import { MAGIC_NUMBER } from '../constants/Constant.js';
+import { GAME_CONDITION } from '../constants/Condition.js';
 
 export default class RacingGame {
   #cars;
@@ -14,7 +14,7 @@ export default class RacingGame {
     this.#cars.forEach((car) => {
       const randomNumber = randomNumberGenerator();
 
-      if (randomNumber >= MAGIC_NUMBER.minimumMovableNumber) {
+      if (randomNumber >= GAME_CONDITION.maxMovableNumber) {
         car.move();
       }
     });

@@ -1,4 +1,4 @@
-import { MAGIC_NUMBER } from '../constants/Constant.js';
+import { GAME_CONDITION } from '../constants/Condition.js';
 
 export default class Validation {
   static validateCarNames(names) {
@@ -16,14 +16,14 @@ export default class Validation {
   }
 
   static #isCarQuantityValid(names) {
-    return names.length >= MAGIC_NUMBER.minimumCarQuantity;
+    return names.length >= GAME_CONDITION.minCarQuantity;
   }
 
   static #isCarNameLengthValid(names) {
     return names.every((name) => {
       return (
-        MAGIC_NUMBER.minimumCarNameLength <= name.length &&
-        MAGIC_NUMBER.maximumCarNameLength >= name.length
+        GAME_CONDITION.minCarNameLength <= name.length &&
+        GAME_CONDITION.maxCarNameLength >= name.length
       );
     });
   }
@@ -41,7 +41,7 @@ export default class Validation {
   }
 
   static #isRaceRoundValid(raceRound) {
-    return raceRound >= MAGIC_NUMBER.minimumRaceRound;
+    return raceRound >= GAME_CONDITION.minRaceRound;
   }
 }
 
