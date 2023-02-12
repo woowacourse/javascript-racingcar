@@ -1,4 +1,4 @@
-import { MAGIC_NUMBER } from './constants/Constant.js';
+import { MAGIC_NUMBER } from '../constants/Constant.js';
 
 export default class Validation {
   static validateCarNames(names) {
