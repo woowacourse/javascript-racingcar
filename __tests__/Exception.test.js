@@ -19,6 +19,14 @@ describe('Exception 객체 테스트', () => {
       }).toThrow();
     });
 
+    test('이름이 숫자로 시작하는 경우 에러를 발생시키는지 확인', () => {
+      const NAME_INPUTS = ['원', '투', '쓰리', '포', '5이브'];
+
+      expect(() => {
+        Exception.checkCarInput(NAME_INPUTS);
+      }).toThrow();
+    });
+
     test('중복된 이름 입력시 에러를 발생시키는지 확인', () => {
       const NAME_INPUTS = ['안녕하세요', '배달의민족', '우형', '배달의민족'];
 
