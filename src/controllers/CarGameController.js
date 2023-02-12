@@ -25,7 +25,7 @@ class CarGameController {
           parsedCarNames,
           Validator.validateLength,
           Validator.validateOverlap,
-          Validator.validateInvalidInput,
+          Validator.validateKorEngNum,
         );
         return this.saveCarDatas(parsedCarNames);
       } catch (error) {

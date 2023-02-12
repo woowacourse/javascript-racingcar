@@ -18,9 +18,11 @@ class Validator {
     });
   }
 
-  static validateKorEngNum(str) {
-    const ALPHABET_REGEXP = /^[가-힣|a-z|A-Z|0-9|]+$/;
-    return ALPHABET_REGEXP.test(str);
+  static validateKorEngNum(names) {
+    const KOR_ENG_NUM_REGEXP = /^[가-힣|a-z|A-Z|0-9|]+$/;
+    names.forEach((name) => {
+      if (!KOR_ENG_NUM_REGEXP.test(name)) throw new Error(ERROR_MESSAGE.NAME_ONLY_KOR_ENG_NUM);
+    });
   }
 
   static validateNumericInput(tryCount) {
