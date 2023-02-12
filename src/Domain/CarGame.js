@@ -1,12 +1,12 @@
-const { isMoving, randomNumberMaker } = require("./MovementIndicator");
-const { COMMA, FORWARD_VALUE } = require("./Utils/Constants");
+const { isMoving, randomNumberMaker } = require("../Utils/ConvenientFunctions");
+const { COMMA, FORWARD_VALUE } = require("../Utils/Constants");
 const Car = require("./Car");
 const {
   printResultMessage,
   printCarMovement,
   printWinner,
-} = require("./UI/OutputView");
-const Utils = require("./Utils/Utils");
+} = require("../View/OutputView");
+const Utils = require("../Utils/Utils");
 
 class CarGame {
   #carStatus;

@@ -1,4 +1,4 @@
-const { MOVEMENT_STANDARD_NUMBER } = require("./Utils/Constants");
+const { MOVEMENT_STANDARD_NUMBER } = require("../Utils/Constants");
 
 const randomNumberMaker = () => {
   return Math.floor(Math.random() * 10);
