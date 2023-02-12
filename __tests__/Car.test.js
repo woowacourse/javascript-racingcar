@@ -1,4 +1,4 @@
-const Car = require("../src/Car");
+const Car = require("../src/Domain/Car");
 
 describe("자동차 객체 테스트", () => {
   test("자동차 객체 생성 테스트", () => {
