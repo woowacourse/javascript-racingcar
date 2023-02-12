@@ -4,10 +4,11 @@ const OutputView = {
   },
 
   printRaceResult(carNames, carDistances) {
+    const raceResult = [];
     for (let i = 0; i < carNames.length; i += 1) {
-      console.log(`${carNames[i]} : ${"-".repeat(carDistances[i])}`);
+      raceResult[i] = `${carNames[i]} : ${"-".repeat(carDistances[i])}\n`;
     }
-    console.log();
+    console.log(raceResult.join(''));
   },
 
   printWinners(winners) {
