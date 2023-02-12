@@ -1,37 +1,80 @@
-import Race from '../src/models/Race';
-import Random from '../src/utils/Random';
+import Race from '../src/domain/Race';
 
-const mockRandom = (randomValues) => {
-  Random.randomNumberBetween = jest.fn();
-  randomValues.reduce((fn, randomValue) => {
-    return fn.mockReturnValueOnce(randomValue);
-  }, Random.randomNumberBetween);
-};
-
-describe('Race 클래스 테스트 입니다.', () => {
-  test('경주를 1회 진행하면 자동차들이 랜덤 값에 따라 움직이거나 멈춰있어야 한다.', () => {
+describe('Race 객체 생성의 validation 테스트입니다.', () => {
+  test('전진을 시도할 횟수는 정수여야한다. - 숫자가 아닐 경우', () => {
     // given
-    const cars = ['pobi', 'crong'];
-    const race = new Race(cars);
-    mockRandom([8, 3]);
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = 'not number';
 
     // when
-    race.moveOnce();
+    const setRaceStep = () => race.setRaceStep(raceStep);
 
     // then
-    expect(race.getCars().map((car) => car.getRaceState().position)).toEqual([1, 0]);
+    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_INTEGER);
   });
 
-  test('우승자들을 반환해준다.', () => {
+  test('전진을 시도할 횟수는 정수여야한다. - 소수일 경우', () => {
     // given
-    const carNames = ['pobi', 'crong', 'conan'];
-    const race = new Race(carNames);
-    mockRandom([8, 3, 9]);
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = 1.11;
 
     // when
-    race.moveOnce();
+    const setRaceStep = () => race.setRaceStep(raceStep);
 
     // then
-    expect(race.getWinners().map((car) => car.getRaceState().name)).toEqual(['pobi', 'conan']);
+    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_INTEGER);
+  });
+
+  test('전진을 시도할 횟수는 양의 정수여야 한다. - 음수일 경우', () => {
+    // given
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = -1;
+
+    // when
+    const setRaceStep = () => race.setRaceStep(raceStep);
+
+    // then
+    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_POSITIVE);
+  });
+
+  test('전진을 시도할 횟수는 양의 정수여야 한다. - 0일 경우', () => {
+    // given
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = 0;
+
+    // when
+    const setRaceStep = () => race.setRaceStep(raceStep);
+
+    // then
+    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_POSITIVE);
+  });
+});
+
+describe('Race 객체 메서드 테스트입니다.', () => {
+  test('isRaceEnd - 레이스가 끝나지 않은 경우 false를 반환한다.', () => {
+    // given
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = 1;
+    race.setRaceStep(raceStep);
+
+    // when
+
+    // then
+    expect(race.isRaceEnd()).toBe(false);
+  });
+
+  test('isRaceEnd - 레이스가 끝난 경우 true를 반환한다.', () => {
+    // given
+    const race = new Race(['pobi', 'conan']);
+    const raceStep = 2;
+    race.setRaceStep(raceStep);
+
+    // when
+    Array.from({ length: raceStep }).forEach(() => {
+      race.moveOnce();
+    });
+
+    // then
+    expect(race.isRaceEnd()).toBe(true);
   });
 });
