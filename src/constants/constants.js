@@ -7,7 +7,7 @@ const StaticValue = Object.freeze({
   REGEX_NON_DIGIT: /\D/,
   REGEX_DIGIT_START: /^\d/,
   CAR_NAME_LIMIT: 5,
-  CAR_NAME_INPUT_SEPERATOR: ',',
+  CAR_NAME_INPUT_SEPARATOR: ',',
   CAR_MOVEMENT_SYMBOL: '-',
   WINNER_RESULT_SEPARATOR: ', ',
 });
