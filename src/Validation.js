@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE, GAME_NUMBER, GAME_STRING } = require('./constants');
+const { ERROR_MESSAGE, GAME_NUMBER, INPUT_REGEX } = require('./constants');
 
 const Validation = {
   duplicatedCarName(carNames) {
@@ -30,8 +30,8 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.carCountRange);
     }
   },
-  onlyAlphabet(carNames) {
-    const regex = GAME_STRING.alphabetExpression;
+  isAlphabet(carNames) {
+    const regex = INPUT_REGEX.onlyAlphabetRegex;
     carNames.forEach((carName) => {
       if (regex.test(carName)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
     });
@@ -44,14 +44,8 @@ const Validation = {
     this.onlyAlphabet(carNames);
   },
 
-  attemptRange(attempt) {
-    if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {
-      throw new Error(ERROR_MESSAGE.attemptRange);
-    }
-  },
-
   isNumber(attempt) {
-    const regex = GAME_STRING.numberExpression;
+    const regex = INPUT_REGEX.onlyNumberRegex;
     return regex.test(attempt);
   },
 
@@ -59,14 +53,20 @@ const Validation = {
     return Number.isInteger(attempt);
   },
 
-  onlyInt(attempt) {
+  isIntegerNumber(attempt) {
     if (this.isNumber(attempt) || !this.isInteger(attempt)) {
       throw new Error(ERROR_MESSAGE.onlyInt);
     }
   },
 
+  attemptRange(attempt) {
+    if (attempt < GAME_NUMBER.minAttempt || attempt > GAME_NUMBER.maxAttempt) {
+      throw new Error(ERROR_MESSAGE.attemptRange);
+    }
+  },
+
   attempt(attempts) {
-    this.onlyInt(attempts);
+    this.isIntegerNumber(attempts);
     this.attemptRange(attempts);
   },
 };

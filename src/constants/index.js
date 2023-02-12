@@ -18,8 +18,11 @@ const GAME_STRING = Object.freeze({
   progressJoin: '',
   space: '\n',
   empty: '',
-  alphabetExpression: /[^a-zA-Z]/,
-  numberExpression: /^[0-9]+$/,
+});
+
+const INPUT_REGEX = Object.freeze({
+  onlyAlphabetRegex: /[^a-zA-Z]/,
+  onlyNumberRegex: /^[0-9]+$/,
 });
 
 const GAME_MESSAGE = Object.freeze({
@@ -42,6 +45,7 @@ const ERROR_MESSAGE = Object.freeze({
 module.exports = {
   ERROR_MESSAGE,
   ERROR_SUBJECT,
+  INPUT_REGEX,
   GAME_MESSAGE,
   GAME_NUMBER,
   GAME_STRING,
