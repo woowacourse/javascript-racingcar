@@ -23,13 +23,21 @@ class Race {
   }
 
   static #validateRaceStep(raceStep) {
-    if (!Number.isInteger(raceStep)) {
+    if (!Race.#isInteger(raceStep)) {
       throw new Error(Race.STEP_IS_NOT_INTEGER);
     }
 
-    if (Number(raceStep) < 1) {
+    if (Race.#isPositive(raceStep)) {
       throw new Error(Race.STEP_IS_NOT_POSITIVE);
     }
+  }
+
+  static #isInteger(raceStep) {
+    return Number.isInteger(raceStep);
+  }
+
+  static #isPositive(raceStep) {
+    return raceStep < 1;
   }
 
   moveOnce() {
