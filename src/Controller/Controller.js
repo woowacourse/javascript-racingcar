@@ -2,11 +2,11 @@ const InputView = require("../View/InputView");
 const OutputView = require("../View/OutputView");
 const ValidateCarName = require("../ValidateCarName");
 const ValidateCountOfTrial = require("../ValidateCountOfTrial");
-const Race = require("../Model/Race");
+const Race = require("../Domain/Race");
 
 class Controller {
   #carNames;
-  init() {
+  constructor() {
     this.inputCarNameHandler();
   }
 
