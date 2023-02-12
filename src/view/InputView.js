@@ -1,10 +1,14 @@
-const rl = require("../util/readlineInterface");
+const readlineInterface = require("../util/readlineInterface");
+const { CONDITION, MESSAGES } = require("../constant/Constant");
 
 const InputView = {
   readCarNames(messages) {
     return new Promise((resolve, reject) => {
-      rl.question(messages, (carNames) => {
-        if (!/^([^,]{1,5},)*[^,]{1,5}$/.test(carNames)) reject(new Error());
+      readlineInterface.question(messages, (carNames) => {
+        if (!CONDITION.carNames.test(carNames)) {
+          reject(new Error(MESSAGES.carTextError));
+        }
+
         const cars = carNames.split(",");
         resolve(cars);
       });
@@ -13,9 +17,12 @@ const InputView = {
 
   readRepeatNumber(messages) {
     return new Promise((resolve, reject) => {
-      rl.question(messages, (repeatNumber) => {
-        if (!/^[1-9]\d*$/.test(repeatNumber)) reject(new Error());
-        rl.close();
+      readlineInterface.question(messages, (repeatNumber) => {
+        if (!CONDITION.repeatNumber.test(repeatNumber)) {
+          reject(new Error(MESSAGES.repeatRangeError));
+        }
+
+        readlineInterface.close();
         resolve(repeatNumber);
       });
     });
