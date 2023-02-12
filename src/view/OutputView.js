@@ -1,20 +1,19 @@
-const Console = require('./Console');
 const { Messages } = require('../Config');
 
 const OutputView = {
   printResult(gameStatus) {
     Object.entries(gameStatus).forEach(([carName, position]) => {
-      Console.print(`${carName} : ${new Array(position).fill(Messages.MOVING_TRACE).join('')}`);
+      console.log(`${carName} : ${new Array(position).fill(Messages.MOVING_TRACE).join('')}`);
     });
-    Console.print('');
+    console.log();
   },
 
   printResultMessage() {
-    Console.print(Messages.RESULT);
+    console.log(Messages.RESULT);
   },
 
   printWinners(winners) {
-    Console.print(`${winners.join(Messages.WINNER_SEPARATOR)}${Messages.PRINT_WINNER}`);
+    console.log(`${winners.join(Messages.WINNER_SEPARATOR)}${Messages.PRINT_WINNER}`);
   },
 };
 

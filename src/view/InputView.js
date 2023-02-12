@@ -1,17 +1,33 @@
-const Console = require('./Console');
+const readline = require('readline');
 const { Messages, Settings } = require('../Config');
 const Validator = require('../util/Validator');
 
+const makeNewReadlineInterface = () => readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+const readLine = async (query) => {
+  const newRl = makeNewReadlineInterface();
+
+  const answer = await new Promise((resolve) => {
+    newRl.question(query, resolve);
+  });
+
+  newRl.close();
+  return answer;
+};
+
 const InputView = {
   async getCarNames() {
-    const answer = await Console.readLine(Messages.INPUT_CAR_NAMES);
+    const answer = await readLine(Messages.INPUT_CAR_NAMES);
     const carNames = answer.split(Settings.SEPARATOR).map((carName) => carName.trim());
     Validator.validateCarNames(carNames);
     return carNames;
   },
 
   async getAttempts() {
-    const answer = await Console.readLine(Messages.INPUT_ATTEMPTS);
+    const answer = await readLine(Messages.INPUT_ATTEMPTS);
     Validator.validateAttempts(answer);
     return Number(answer);
   },
@@ -22,8 +38,7 @@ const InputView = {
       const input = await inputFunction();
       return input;
     } catch (error) {
-      Console.print(error.message);
-      Console.print('');
+      console.log(`${error.message}\n`);
       return this.repeatInput(inputFunction, recursionDepth + 1);
     }
   },
