@@ -15,29 +15,30 @@ class CarGame {
     this.view = view;
   }
 
-  play() {
-    this.view.output.printStartGame();
-    this.#setCars();
+  async play() {
+    await this.view.output.printStartGame();
+    await this.#setCars();
+    await this.#setWinningDistance();
+    this.#moveCars();
+    this.#showResult();
+    this.#showWinners();
   }
 
   async #setCars() {
+    const makeCars = (carNames) => {
+      carNames.forEach((carName) => {
+        this.#cars.push(new Car(carName));
+      });
+    };
     const input = await this.view.input.readline(MESSAGE.INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
     if (!validateCarNames(carNames)) return this.#setCars();
-    this.#makeCars(carNames);
-  }
-
-  async #makeCars(carNames) {
-    carNames.forEach((carName) => {
-      this.#cars.push(new Car(carName));
-    });
-    this.#setWinningDistance();
+    makeCars();
   }
 
   async #setWinningDistance() {
     this.#winningDistance = toInt(await this.view.input.readline(MESSAGE.INPUT.winningDistance));
     if (!validateWinningDistance(this.#winningDistance)) return this.#setWinningDistance();
-    this.#moveCars();
   }
 
   #moveCars() {
@@ -49,12 +50,10 @@ class CarGame {
       this.#moveCars();
       return;
     }
-    this.#showResult();
   }
 
   #showResult() {
     this.view.output.printResult(this.#histories);
-    this.#showWinners();
   }
 
   #showWinners() {
