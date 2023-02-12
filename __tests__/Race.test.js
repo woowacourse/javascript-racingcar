@@ -1,46 +1,23 @@
 import Race from '../src/domain/Race';
 
 describe('Race 객체 생성의 validation 테스트입니다.', () => {
-  test('전진을 시도할 횟수는 정수여야한다. - 숫자가 아닐 경우', () => {
+  test.each(['string', true, {}, null, undefined, 10n, 1.11])(
+    '전진을 시도할 횟수는 정수여야한다',
+    (raceStep) => {
+      // given
+      const race = new Race(['pobi', 'conan']);
+
+      // when
+      const setRaceStep = () => race.setRaceStep(raceStep);
+
+      // then
+      expect(setRaceStep).toThrow(Race.STEP_IS_NOT_INTEGER);
+    },
+  );
+
+  test.each([-1, 0])('전진을 시도할 횟수는 양의 정수여야 한다.', (raceStep) => {
     // given
     const race = new Race(['pobi', 'conan']);
-    const raceStep = 'not number';
-
-    // when
-    const setRaceStep = () => race.setRaceStep(raceStep);
-
-    // then
-    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_INTEGER);
-  });
-
-  test('전진을 시도할 횟수는 정수여야한다. - 소수일 경우', () => {
-    // given
-    const race = new Race(['pobi', 'conan']);
-    const raceStep = 1.11;
-
-    // when
-    const setRaceStep = () => race.setRaceStep(raceStep);
-
-    // then
-    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_INTEGER);
-  });
-
-  test('전진을 시도할 횟수는 양의 정수여야 한다. - 음수일 경우', () => {
-    // given
-    const race = new Race(['pobi', 'conan']);
-    const raceStep = -1;
-
-    // when
-    const setRaceStep = () => race.setRaceStep(raceStep);
-
-    // then
-    expect(setRaceStep).toThrow(Race.STEP_IS_NOT_POSITIVE);
-  });
-
-  test('전진을 시도할 횟수는 양의 정수여야 한다. - 0일 경우', () => {
-    // given
-    const race = new Race(['pobi', 'conan']);
-    const raceStep = 0;
 
     // when
     const setRaceStep = () => race.setRaceStep(raceStep);
@@ -55,9 +32,9 @@ describe('Race 객체 메서드 테스트입니다.', () => {
     // given
     const race = new Race(['pobi', 'conan']);
     const raceStep = 1;
-    race.setRaceStep(raceStep);
 
     // when
+    race.setRaceStep(raceStep);
 
     // then
     expect(race.isRaceEnd()).toBe(false);
@@ -67,9 +44,9 @@ describe('Race 객체 메서드 테스트입니다.', () => {
     // given
     const race = new Race(['pobi', 'conan']);
     const raceStep = 2;
-    race.setRaceStep(raceStep);
 
     // when
+    race.setRaceStep(raceStep);
     Array.from({ length: raceStep }).forEach(() => {
       race.moveOnce();
     });
