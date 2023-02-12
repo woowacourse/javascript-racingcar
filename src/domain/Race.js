@@ -40,7 +40,8 @@ class Race {
 
     return this.#cars
       .filter((carInstance) => longestPosition === carInstance.getPosition())
-      .map((carInstance) => carInstance.getName());
+      .map((carInstance) => carInstance.getName())
+      .sort();
   }
 
   #getLongestPosition() {
