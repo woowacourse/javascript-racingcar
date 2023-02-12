@@ -12,7 +12,7 @@ class RacingCarGame {
     }
 
     this.#scoreMap = new RacingScoreMap(carList);
-    this.#roundResultList = [new Map(this.#scoreMap)];
+    this.#roundResultList = [this.#scoreMap.getRoundResult()];
     this.#totalTrial = totalTrial;
   }
 

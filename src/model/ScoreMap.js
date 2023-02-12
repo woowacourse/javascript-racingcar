@@ -1,5 +1,5 @@
 const RACE_MOVING_RULE = require("./constants/raceMovingRule");
-const RandomNumberGenerator = require("./utils/Random");
+const RandomNumberGenerator = require("./utils/RandomNumberGenerator");
 
 class ScoreMap extends Map {
   constructor(carList) {
