@@ -7,6 +7,7 @@ const {
   printWinners,
   printError,
   printEmptyLine,
+  printCar,
 } = require('../view/OutputView');
 const { readCarNames, readTryCount } = require('../view/InputView');
 const { ERROR } = require('../constants/message');
@@ -21,7 +22,7 @@ class GameManager {
 
   printCars() {
     this.#cars.forEach((car) => {
-      car.print();
+      printCar(car.getName(), car.getPosition());
     });
     printEmptyLine();
   }
