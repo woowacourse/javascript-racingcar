@@ -73,7 +73,7 @@ class CarGameController {
     const winnerList = this.#carGame.getWinners();
 
     OutputView.printMoveResult(carNames, carMoves);
-    OutputView.printWinner(winnerList);
+    OutputView.printWinners(winnerList);
 
     this.gameEnd();
   }

@@ -16,9 +16,8 @@ const OutputView = {
     console.log(resultStr);
   },
 
-  printWinner(names) {
-    const printNames = names.join(', ');
-    console.log(OUTPUT_MESSAGE.WINNERS(printNames));
+  printWinners(names) {
+    console.log(OUTPUT_MESSAGE.WINNERS(names.join(', ')));
   },
 
   closeConsole() {
