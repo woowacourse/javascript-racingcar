@@ -1,6 +1,6 @@
 const Car = require('./Car');
-const { Settings } = require('./Config');
-const Random = require('./util/Random');
+const { Settings } = require('../Config');
+const Random = require('../util/Random');
 
 class RacingGame {
   #carList = [];
