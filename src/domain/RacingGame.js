@@ -42,6 +42,6 @@ export default class RacingGame {
   }
 
   isPlaying() {
-    return this.#round;
+    return this.#round > 0;
   }
 }
