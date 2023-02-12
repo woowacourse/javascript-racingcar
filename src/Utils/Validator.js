@@ -2,7 +2,7 @@ const CONSTANTS = require('../Constant/Constants');
 const { RACE_ERROR_MESSAGE } = require('../Constant/ErrorMessage');
 
 class Validator {
-  static validateNamesOfCars(names) {
+  static validateNameInput(names) {
     if (new Set(names).size !== names.length) {
       throw new Error(RACE_ERROR_MESSAGE.numberOfNames);
     }
@@ -10,6 +10,8 @@ class Validator {
     if (names.length < CONSTANTS.minNumberOfNames) {
       throw new Error(RACE_ERROR_MESSAGE.numberOfNames);
     }
+    
+    names.forEach(name => this.validateCarName(name));
   }
 
   static validateCarName(name) {
@@ -17,10 +19,7 @@ class Validator {
       throw new Error(RACE_ERROR_MESSAGE.lengthOfName);
     }
 
-    if (
-      /^[0-9]+$/.test(name) ||
-      !/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]*$/.test(name)
-    ) {
+    if (/^[0-9]+$/.test(name) || !/^[A-Z|a-z|ㄱ-ㅎ|ㅏ-ㅣ|가-힣|0-9]*$/.test(name)) {
       throw new Error(RACE_ERROR_MESSAGE.invalidInput);
     }
 
