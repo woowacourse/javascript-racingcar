@@ -25,7 +25,10 @@ class Car {
   }
 
   getInfo() {
-    return [this.#name, this.#distance];
+    return {
+      name: this.#name,
+      distance: this.#distance,
+    };
   }
 }
 

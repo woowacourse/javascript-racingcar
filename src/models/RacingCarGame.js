@@ -28,15 +28,13 @@ class RacingCarGame {
   }
 
   getCarsInfo() {
-    return new Map(this.#cars.map((car) => car.getInfo()));
+    return this.#cars.map((car) => car.getInfo());
   }
 
   getWinner() {
     const carsInfo = this.getCarsInfo();
-    const maxDistance = Math.max(...carsInfo.values());
-    return [...carsInfo.entries()]
-      .filter(([, distance]) => distance === maxDistance)
-      .map(([name]) => name);
+    const maxDistance = Math.max(...carsInfo.map((carInfo) => carInfo.distance));
+    return carsInfo.filter(({ distance }) => distance === maxDistance).map(({ name }) => name);
   }
 }
 

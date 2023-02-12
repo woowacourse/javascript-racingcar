@@ -7,7 +7,7 @@ const OutputView = {
   },
 
   printCars(cars) {
-    cars.forEach((distance, name) => {
+    cars.forEach(({ distance, name }) => {
       Console.print(OUTPUT_MESSAGE.RESULT(name, distance));
     });
     Console.print('');
