@@ -27,7 +27,7 @@ class Race {
   }
 
   start() {
-    Array.from({ length: this.#trial }, () => 0).forEach(() => {
+    new Array(Number(this.#trial)).fill(0).forEach(() => {
       this.#cars.forEach((car) => {
         const randomNumber = Random.pickNumberInRange(MAGIC_NUMBER.RANGE_START, MAGIC_NUMBER.RANGE_END);
         car.move(randomNumber);
