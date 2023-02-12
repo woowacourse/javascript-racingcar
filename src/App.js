@@ -1,8 +1,9 @@
 const RacingGame = require('./controller/RacingGame');
+const RacingGameService = require('./service/RacingGameService');
 
 class App {
   start() {
-    new RacingGame().play();
+    new RacingGame(new RacingGameService()).play();
   }
 }
 
