@@ -2,7 +2,7 @@ const Race = require('./domain/Race');
 const Car = require('./domain/Car');
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
-const Validate = require('./utils/Validate');
+const InputValidator = require('./utils/InputValidator');
 const { errorCheckFor } = require('./utils/errorCheckFor');
 
 class App {
@@ -31,7 +31,7 @@ class App {
     const carNames = input.split(',');
 
     carNames.forEach((name) => {
-      Validate.checkCarName(name);
+      InputValidator.checkCarName(name);
       this.#race.addCar(new Car(name));
     });
 
@@ -39,7 +39,7 @@ class App {
   }
 
   #resultRace(input) {
-    Validate.checkTrial(input);
+    InputValidator.checkTrial(input);
 
     this.#race.setTrial(input);
     this.#race.start();
