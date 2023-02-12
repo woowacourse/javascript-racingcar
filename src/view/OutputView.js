@@ -4,16 +4,18 @@ const OutputView = {
   printTrace(raceInstance, index) {
     raceInstance.getCars().forEach((carInstance) => {
       const trace = new Array(carInstance.getTrace()[index]).fill('-').join('');
+
       Console.print(`${carInstance.getName()}: ${trace}`);
     });
   },
 
   printRaceResult(raceInstance) {
     Console.print('\n실행 결과');
-    for (let index = 0; index <= raceInstance.getTrial(); index += 1) {
+
+    Array.from({ length: raceInstance.getTrial() }).forEach((_, index) => {
       this.printTrace(raceInstance, index);
       Console.print('');
-    }
+    });
   },
 
   printWinners(winners) {
