@@ -13,7 +13,7 @@ class RacingController {
   }
 
   inputCarNames() {
-    InputView.readCarName((carNames) => {
+    InputView.readCarNames((carNames) => {
       const carArr = carNames.split(',');
       this.setCarNames(carArr);
     });
