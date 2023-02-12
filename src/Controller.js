@@ -45,11 +45,11 @@ class Controller {
   printResult(tryCount) {
     View.output(MESSAGE.RESULT);
 
-    for (let i = 0; i < tryCount; i++) {
+    Array.from({length: tryCount}, ()=>0).forEach(()=>{
       const moveCnt = this.#service.getmoveCnt();
       View.output(moveCnt, RESULT_TYPE.MOVE_CNT);
-    }
-
+    })
+      
     const winners = this.#service.getWinners();
     View.output(winners, RESULT_TYPE.WINNERS);
 
