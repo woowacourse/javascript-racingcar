@@ -10,20 +10,20 @@ class App {
 
   play() {
     this.#race = new Race();
-    InputView.readCarNames(this.#readCarNamesCallback);
+    InputView.readCarNames(this.#afterReadCarNames);
   }
 
-  #readCarNamesCallback = (input) => {
+  #afterReadCarNames = (input) => {
     errorCheckFor(
       () => this.#prepareRace(input),
-      () => InputView.readCarNames(this.#readCarNamesCallback)
+      () => InputView.readCarNames(this.#afterReadCarNames)
     );
   };
 
-  #readTrialCallback = (input) => {
+  #afterReadTrial = (input) => {
     errorCheckFor(
       () => this.#resultRace(input),
-      () => InputView.readTrial(this.#readTrialCallback)
+      () => InputView.readTrial(this.#afterReadTrial)
     );
   };
 
@@ -35,7 +35,7 @@ class App {
       this.#race.addCar(new Car(name));
     });
 
-    InputView.readTrial(this.#readTrialCallback);
+    InputView.readTrial(this.#afterReadTrial);
   }
 
   #resultRace(input) {
