@@ -16,10 +16,10 @@ describe('RacingGame 메소드들이 예상 값을 반환하는 지 테스트', 
     racingGame.race(mockFunc);
   }
 
-  test('모든 라운드가 예상대로 진행 후 isPlaying메소드가 0을 반환한다', () => {
+  test('모든 라운드가 종료된 후, isPlaying 메서드는 false를 반환해야 한다.', () => {
     const round = racingGame.isPlaying();
 
-    expect(round).toBe(0);
+    expect(round).toBe(false);
   });
 
   test('라운드 결과를 변환한다', () => {
