@@ -1,7 +1,6 @@
 const Console = require('./utils/Console');
 const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
 const Car = require('./Car');
-// const { pickRandomNumber } = require('./utils/RandomGenerator');
 const RandomGenerator = require('./utils/RandomGenerator');
 const {
   printResult,
@@ -20,7 +19,9 @@ class GameManager {
 
   moveCars(cars) {
     cars.forEach((car) => {
-      car.move(this.isForward());
+      if (this.isForward()) {
+        car.move();
+      }
     });
   }
 
