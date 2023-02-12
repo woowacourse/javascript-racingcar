@@ -3,8 +3,8 @@ const parseCarName = require('../domain/parseCarName');
 const functionPipe = require('../utils/funcitonPipe');
 const getRandomNumber = require('../utils/getRandomNumber');
 const Validator = require('../utils/Validator');
-const InputView = require('../views/InputView');
-const OutputView = require('../views/OutputView');
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
 
 class CarGameController {
   #carGame;
