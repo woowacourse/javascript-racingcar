@@ -1,6 +1,6 @@
 const Car = require('./Car');
 
-const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const RandomNumberGenerator = require('./utils/RandomNumberGenerator');
 
 class RacingGame {
   #cars = [];

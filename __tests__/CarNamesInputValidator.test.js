@@ -1,4 +1,4 @@
-const CarNamesInputValidator = require('../src/domain/validators/CarNamesInputValidator');
+const CarNamesInputValidator = require('../src/validators/CarNamesInputValidator');
 
 describe('자동차 이름에 대한 입력값의 유효성을 검사하는 객체 테스트', () => {
   describe('자동차 이름에 포함된 문자에 대한 유효성 검사 테스트', () => {

@@ -1,4 +1,4 @@
-const Car = require('../src/domain/Car');
+const Car = require('../src/Car');
 
 describe('자동차 클래스 테스트', () => {
   test.each([4, 5, 6, 7, 8, 9])(

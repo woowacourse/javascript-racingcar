@@ -1,10 +1,10 @@
-const RacingGame = require('./domain/RacingGame');
+const RacingGame = require('./RacingGame');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
 
-const CarNamesInputValidator = require('./domain/validators/CarNamesInputValidator');
-const TryCountInputValidator = require('./domain/validators/TryCountInputValidator');
+const CarNamesInputValidator = require('./validators/CarNamesInputValidator');
+const TryCountInputValidator = require('./validators/TryCountInputValidator');
 
 class App {
   #carManager;
