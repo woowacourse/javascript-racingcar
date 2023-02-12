@@ -3,38 +3,19 @@ const RacingCarGame = require('../model/RacingCarGame');
 const OutputView = require('../view/OutputView');
 
 class Controller {
+  #inputView;
+  #outputView;
+  #racingCarGame;
+
   constructor() {
-    this.inputView = new InputView();
-    this.racingCarGame = new RacingCarGame();
-    this.outputView = new OutputView();
+    this.#inputView = InputView;
+    this.#outputView = OutputView;
+    this.#racingCarGame 
+      = new RacingCarGame(this.#inputView.readCarNameList(), this.#inputView.readNumberOfTrials());
   }
 
-  async execute() {
-    let carNames;
-    let trialCount;
-
-    try {
-      carNames = await this.inputView.readCarNames();
-    } catch(err) {
-      this.outputView.printError(err);
-      this.execute();
-
-      return;
-    }
-
-    try {
-      trialCount = await this.inputView.readCount(); 
-    } catch(err) {
-      this.outputView.printError(err);
-      trialCount = await this.inputView.readCount();
-      const result = this.racingCarGame.getResult(carNames, trialCount);
-      this.outputView.printResult(result);
-      this.outputView.close();
-
-      return;
-    }
-    const result = this.racingCarGame.getResult(carNames, trialCount);
-    this.outputView.printResult(result);
+  executeRacingCarGame() {
+    this.outputView.printResult(this.#racingCarGame.getResult());
     this.outputView.close();
   }
 }
