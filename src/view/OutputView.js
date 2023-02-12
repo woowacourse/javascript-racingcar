@@ -17,17 +17,7 @@ const OutputView = {
   },
 
   printWinner(names) {
-    let printNames = names.join(', ');
-
-    console.log(OUTPUT_MESSAGE.WINNERS(printNames));
-  },
-
-  closeConsole() {
-    readLine.close();
-  },
-
-  printWinner(names) {
-    let printNames = names.join(', ');
+    const printNames = names.join(', ');
     console.log(OUTPUT_MESSAGE.WINNERS(printNames));
   },
 
