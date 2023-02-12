@@ -1,5 +1,5 @@
 const Console = require('./utils/Console');
-const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('./utils/constants');
+const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('./constants/message');
 
 const OutputView = {
   printEmptyLine() {

@@ -9,7 +9,7 @@ const {
   printEmptyLine,
 } = require('./OutputView');
 const { readCarNames, readTryCount } = require('./InputView');
-const { ERROR } = require('./utils/constants');
+const { ERROR } = require('./constants/message');
 class GameManager {
   #cars = [];
 
