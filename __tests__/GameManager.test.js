@@ -27,7 +27,7 @@ describe('GameManager Test', () => {
     [4, true],
     [3, false],
     [0, false],
-  ])('isFoward Test Random value : %i', (number, expected) => {
+  ])('특정 숫자가 전진이 가능한 값인지를 판별하는 함수 : %i', (number, expected) => {
     mockRandom(number);
     const gameManager = new GameManager();
     expect(gameManager.isForward()).toEqual(expected);
@@ -45,11 +45,12 @@ describe('GameManager Test', () => {
       [0, 0, 5, 5, 0, 0, 9, 9],
       ['aa', 'bb'],
     ],
-  ])('judgeWinners Test (%#)', (carNames, moves, winners) => {
+  ])('승자를 판별하는 테스트 (%#)', (carNames, moves, winners) => {
     const gameManager = new GameManager();
     const cars = gameManager.generateCars(carNames);
     mockRandoms(moves);
-    gameManager.moveCars(cars);
-    expect(gameManager.judgeWinners([...cars])).toEqual(winners);
+    gameManager.setCars(cars);
+    gameManager.raceCars(moves.length/cars.length);
+    expect(gameManager.judgeWinners()).toEqual(winners);
   });
 });
