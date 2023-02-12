@@ -34,10 +34,10 @@ class GameManager {
 
   raceCars(tryCount, cars) {
     printResult();
-    for (let i = 0; i < tryCount; i++) {
+    Array(tryCount).fill().forEach(() => {
       this.moveCars(cars);
       this.printCars(cars);
-    }
+    })
   }
 
   judgeWinners(cars) {
