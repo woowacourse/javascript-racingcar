@@ -1,36 +1,30 @@
 const OutputView = require('../view/OutputView');
 const { GAME, ERROR } = require('../constant/constants');
 
-const handleError = (errorMessage) => {
-  try {
-    throw new Error(errorMessage);
-  } catch (error) {
-    OutputView.print(error.message);
-  }
-  return false;
-};
-
 const checkCarNameLength = (carNames) => {
   if (
     !carNames.every(
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
     )
   ) {
-    return handleError(ERROR.carNameLength);
+    OutputView.print(new Error(ERROR.carNameLength).message);
+    return false;
   }
   return true;
 };
 
 const checkDuplicatedCarName = (carNames) => {
   if (carNames.length !== new Set(carNames).size) {
-    return handleError(ERROR.duplicatedCarName);
+    OutputView.print(new Error(ERROR.duplicatedCarName).message);
+    return false;
   }
   return true;
 };
 
 const checkBlankInCarName = (carNames) => {
   if (carNames.some((carName) => carName.includes(GAME.blank))) {
-    return handleError(ERROR.blankInCarName);
+    OutputView.print(new Error(ERROR.blankInCarName).message);
+    return false;
   }
   return true;
 };
@@ -45,14 +39,16 @@ const validateCarNames = (carNames) => {
 
 const checkIsBetweenValidRange = (winningDistance) => {
   if (!(GAME.DISTANCE.min <= winningDistance && winningDistance < GAME.DISTANCE.max)) {
-    return handleError(ERROR.invalidWinningDistanceRange);
+    OutputView.print(new Error(ERROR.invalidWinningDistanceRange).message);
+    return false;
   }
   return true;
 };
 
 const checkIsInt = (winningDistance) => {
   if (Number.isNaN(winningDistance)) {
-    return handleError(ERROR.invalidWinningDistanceType);
+    OutputView.print(Error(ERROR.invalidWinningDistanceType).message);
+    return false;
   }
   return true;
 };
