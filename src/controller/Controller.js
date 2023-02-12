@@ -1,9 +1,9 @@
 const InputView = require('../view/InputView');
-const OutputView = require('../view/OutputView');
 const Car = require('../model/Car');
 const { GAME, MESSAGE } = require('../utils/constants');
 const { validateCarNames, validateWinningDistance } = require('../validation/input.js');
 const { toInt } = require('../utils/common');
+const { printStartGame, printResult, printWinners } = require('../view/OutputView');
 
 class Controller {
   #cars;
@@ -17,7 +17,7 @@ class Controller {
   }
 
   play() {
-    OutputView.print(MESSAGE.OUTPUT.startGame);
+    printStartGame();
     this.#setCars();
   }
 
@@ -54,12 +54,7 @@ class Controller {
   }
 
   #showResult() {
-    OutputView.print(MESSAGE.OUTPUT.resultMent);
-    let result = [];
-    this.#histories.forEach((history) => {
-      result.push(Array.from(history, MESSAGE.OUTPUT.result).join(''));
-    });
-    OutputView.print(result.join('\n'));
+    printResult(this.#histories);
     this.#showWinners();
   }
 
@@ -67,7 +62,7 @@ class Controller {
     const winnerNames = this.#cars
       .filter((car) => car.isFinish(this.#winningDistance))
       .map((winner) => winner.getName());
-    OutputView.print(MESSAGE.OUTPUT.winner(winnerNames));
+    printWinners(winnerNames);
   }
 }
 module.exports = Controller;
