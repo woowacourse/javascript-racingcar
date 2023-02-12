@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-// const Car = require('../src/Car');
 const GameManager = require('../src/GameManager');
 const RandomGenerator = require('../src/utils/RandomGenerator');
 

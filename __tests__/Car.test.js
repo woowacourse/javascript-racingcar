@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-const Car = require('../src/Car');
+const Car = require('../src/domain/Car');
 
 describe('Car Test', () => {
   test.each([
