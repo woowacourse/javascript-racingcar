@@ -1,4 +1,4 @@
-const { MOVEMENT_STANDARD_NUMBER } = require("../Utils/Constants");
+import { MOVEMENT_STANDARD_NUMBER } from "../Utils/Constants.js";
 
 const randomNumberMaker = () => {
   return Math.floor(Math.random() * 10);
@@ -19,4 +19,4 @@ const splitStringAndTrim = (string, splitChar) => {
   return string.split(splitChar).map((element) => element.trim());
 };
 
-module.exports = { isMoving, randomNumberMaker, splitStringAndTrim };
+export { isMoving, randomNumberMaker, splitStringAndTrim };

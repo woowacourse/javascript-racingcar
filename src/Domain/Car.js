@@ -18,4 +18,4 @@ class Car {
   }
 }
 
-module.exports = Car;
+export default Car;

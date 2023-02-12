@@ -1,4 +1,4 @@
-const Car = require("../src/Domain/Car");
+import Car from "../src/Domain/Car.js";
 
 describe("자동차 객체 테스트", () => {
   test("자동차 객체 생성 테스트", () => {

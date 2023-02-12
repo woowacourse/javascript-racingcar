@@ -1,5 +1,5 @@
-const Car = require("../src/Domain/Car");
-const CarGame = require("../src/Domain/CarGame");
+import Car from "../src/Domain/Car.js";
+import CarGame from "../src/Domain/CarGame.js";
 
 describe("자동차 게임 기능 단위 테스트", () => {
   test("우승자 반환 테스트", () => {

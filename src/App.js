@@ -1,10 +1,11 @@
-const InputView = require("./View/InputView");
-const ErrorHandler = require("./Validator/ErrorHandler");
-const {
+import InputView from "./View/InputView.js";
+import { ErrorHandler } from "./Validator/ErrorHandler.js";
+import {
   inputCarNameValidator,
   tryCountValidator,
-} = require("./Validator/Validator");
-const CarGame = require("./Domain/CarGame");
+} from "./Validator/Validator.js";
+import CarGame from "./Domain/CarGame.js";
+
 class App {
   #games;
 
@@ -45,4 +46,4 @@ class App {
   }
 }
 
-module.exports = App;
+export default App;

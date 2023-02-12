@@ -1,18 +1,18 @@
-const { GAME_MESSAGE, COMMA } = require("../Utils/Constants");
-const { splitStringAndTrim } = require("../Utils/ConvenientFunctions");
-const Utils = require("../Utils/Utils");
+import { GAME_MESSAGE, COMMA } from "../Utils/Constants.js";
+import { splitStringAndTrim } from "../Utils/ConvenientFunctions.js";
+import { utils } from "../Utils/Utils.js";
 
 const { INPUT_CAR_NAME, INPUT_TRY_COUNT } = GAME_MESSAGE;
 
 const InputView = {
   async readCarName() {
-    const carNames = await Utils.readLine(INPUT_CAR_NAME);
+    const carNames = await utils.readLine(INPUT_CAR_NAME);
     const cars = splitStringAndTrim(carNames, COMMA);
 
     return cars;
   },
   async readTryCount() {
-    const tryCount = await Utils.readLine(INPUT_TRY_COUNT);
+    const tryCount = await utils.readLine(INPUT_TRY_COUNT);
 
     return tryCount;
   },
@@ -29,4 +29,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

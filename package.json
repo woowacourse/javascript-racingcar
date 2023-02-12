@@ -1,6 +1,7 @@
 {
   "name": "@woowacourse/javascript-racingcar",
   "version": "1.0.0",
+  "type": "module",
   "description": "우아한테크코스 웹 프론트엔드 레벨1 자동차 경주 미션",
   "main": "src/index.js",
   "scripts": {

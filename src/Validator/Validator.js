@@ -1,10 +1,11 @@
-const {
+import {
   ERROR_MESSAGE,
   MAXIMUM_CAR_NAME_LENGTH,
   MINIMUM_TRY_COUNT,
   MINIMUM_NUMBER_OF_CARS,
   MINIMUM_CAR_NAME_LENGTH,
-} = require("../Utils/Constants");
+} from "../Utils/Constants.js";
+
 const {
   NAME_LENGTH_LIMIT,
   NOT_BLANK,
@@ -77,4 +78,4 @@ const tryCountValidator = (count) => {
   validator.tryCount(count);
 };
 
-module.exports = { inputCarNameValidator, tryCountValidator };
+export { inputCarNameValidator, tryCountValidator };

@@ -1,4 +1,5 @@
-const Validator = require("../src/Validator/Validator");
+import Validator from "../src/Validator/Validator.js";
+
 const { inputCarNameValidator, tryCountValidator } = Validator;
 
 describe("예외 테스트", () => {

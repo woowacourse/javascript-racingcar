@@ -1,4 +1,4 @@
-const utils = require("../Utils/Utils");
+import { utils } from "../Utils/Utils.js";
 
 const ErrorHandler = ({ validator, nextStep, afterError }) => {
   try {
@@ -10,4 +10,4 @@ const ErrorHandler = ({ validator, nextStep, afterError }) => {
   }
 };
 
-module.exports = ErrorHandler;
+export { ErrorHandler };

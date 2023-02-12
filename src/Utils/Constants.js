@@ -26,7 +26,7 @@ const ERROR_MESSAGE = Object.freeze({
   NAME_DUPLICATE: "중복된 이름은 사용할 수 없습니다.",
 });
 
-module.exports = {
+export {
   GAME_MESSAGE,
   LINE_BREAK,
   ERROR_MESSAGE,

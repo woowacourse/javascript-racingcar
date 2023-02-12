@@ -1,12 +1,8 @@
-const { isMoving, randomNumberMaker } = require("../Utils/ConvenientFunctions");
-const { COMMA, FORWARD_VALUE } = require("../Utils/Constants");
-const Car = require("./Car");
-const {
-  printResultMessage,
-  printCarMovement,
-  printWinner,
-} = require("../View/OutputView");
-const Utils = require("../Utils/Utils");
+import { isMoving, randomNumberMaker } from "../Utils/ConvenientFunctions.js";
+import { COMMA, FORWARD_VALUE } from "../Utils/Constants.js";
+import Car from "./Car.js";
+import OutputView from "../View/OutputView.js";
+import { utils } from "../Utils/Utils.js";
 
 class CarGame {
   #carStatus;
@@ -46,21 +42,21 @@ class CarGame {
   showGameResult = () => {
     const statusValues = [...this.#carStatus.values()];
 
-    printResultMessage();
+    OutputView.printResultMessage();
 
     this.showGameRound();
 
-    printWinner(this.findWinner(statusValues));
+    OutputView.printWinner(this.findWinner(statusValues));
 
-    Utils.close();
+    utils.close();
   };
 
   showGameRound = () => {
     for (let idx = 0; idx < this.#round; idx++) {
       const currentCarStatus = this.cycleCarStatus();
-      printCarMovement(currentCarStatus);
+      OutputView.printCarMovement(currentCarStatus);
     }
   };
 }
 
-module.exports = CarGame;
+export default CarGame;
