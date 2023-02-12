@@ -16,59 +16,59 @@ class RacingGameController {
 
   async playGame() {
     this.#output.print(OUTPUT.startGame);
-    await this.setCars();
-    await this.setWinningDistance();
-    this.setCars();
-    this.setWinningDistance();
-    this.startRacing();
+    await this.#setCars();
+    await this.#setWinningDistance();
+    this.#setCars();
+    this.#setWinningDistance();
+    this.#startRacing();
   }
 
-  async setCars() {
+  async #setCars() {
     const input = await this.#input.readline(INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
-    if (!validateCarNames(carNames)) return this.setCars();
+    if (!validateCarNames(carNames)) return this.#setCars();
     this.#service.makeCars(carNames);
   }
 
-  async setWinningDistance() {
+  async #setWinningDistance() {
     this.#winningDistance = common.toInt(await this.#input.readline(INPUT.winningDistance));
-    if (!validateWinningDistance(this.#winningDistance)) return this.setWinningDistance();
+    if (!validateWinningDistance(this.#winningDistance)) return this.#setWinningDistance();
   }
 
-  startRacing() {
+  #startRacing() {
     this.#service.moveCars();
-    this.isFinishGame(this.#service.getCars());
+    this.#isFinishGame(this.#service.getCars());
   }
 
-  isFinishGame(cars) {
-    if (!cars.some((car) => this.pickOutWinner(car))) {
-      this.startRacing();
+  #isFinishGame(cars) {
+    if (!cars.some((car) => this.#pickOutWinner(car))) {
+      this.#startRacing();
       return;
     }
     this.#showResult();
   }
 
-  pickOutWinner(car) {
+  #pickOutWinner(car) {
     return car.getDistance() >= this.#winningDistance;
   }
 
   #showResult() {
     this.#output.print(OUTPUT.resultMent);
     this.#service.getCarsMoveRecord().forEach((history) => {
-      this.showCarsMoveHistory(history);
+      this.#showCarsMoveHistory(history);
     });
-    this.showWinners();
+    this.#showWinners();
   }
 
-  showCarsMoveHistory(history) {
+  #showCarsMoveHistory(history) {
     history.forEach((car) => {
       this.#output.print(OUTPUT_RESULT(car));
     });
     this.#output.print(GAME.newLine);
   }
 
-  showWinners() {
-    const winners = this.#service.getCars().filter((car) => this.pickOutWinner(car));
+  #showWinners() {
+    const winners = this.#service.getCars().filter((car) => this.#pickOutWinner(car));
     this.#output.print(OUTPUT_WINNER(winners));
     this.#input.closeRead();
   }
