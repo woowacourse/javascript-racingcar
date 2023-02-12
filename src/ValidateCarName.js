@@ -15,10 +15,15 @@ const ValidateCarName = {
 
   validateCarNameLength(carNames) {
     carNames.forEach((carName) => {
-      if (carName.length < NAME_MIN_LENGTH || carName.length > NAME_MAX_LENGTH)
-        return;
+      if (this.isValidCarNameLength(carName)) return;
       throw ERROR.CAR_NAME_LENGTH;
     });
+  },
+
+  isValidCarNameLength(carName) {
+    return (
+      carName.length >= NAME_MIN_LENGTH && carName.length <= NAME_MAX_LENGTH
+    );
   },
 
   validateCarNameDuplicated(carNames) {
