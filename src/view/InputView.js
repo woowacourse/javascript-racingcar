@@ -6,12 +6,12 @@ const REQUEST_MSG = {
 };
 
 const InputView = {
-  readCarNames(callback) {
-    Console.question(REQUEST_MSG.carNames, callback);
+  readCarNames() {
+    return Console.question(REQUEST_MSG.carNames);
   },
 
-  readRaceRound(callback) {
-    Console.question(REQUEST_MSG.raceRound, callback);
+  readRaceRound() {
+    return Console.question(REQUEST_MSG.raceRound);
   },
 };
 
