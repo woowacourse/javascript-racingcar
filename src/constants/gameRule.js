@@ -1,0 +1,6 @@
+const GAME_RULE = {
+  RANDOM_LOWER_INCLUSIVE: 0,
+  RANDOM_UPPER_INCLUSIVE: 9,
+};
+
+module.exports = GAME_RULE;
