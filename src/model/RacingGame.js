@@ -48,7 +48,7 @@ class RacingGame {
   findWinner() {
     const carsMoveResults = new Map();
     this.#cars.forEach((car) => {
-      carsMoveResults.set(car.getCarName(), car.getMoveCount());
+      carsMoveResults.set(car.carName, car.moveCount);
     });
 
     const winners = Util.filterMaxObjects(carsMoveResults).map((obj) => obj[0]);

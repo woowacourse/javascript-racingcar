@@ -8,9 +8,9 @@ const OutputView = {
 
   printMoveProcess(cars) {
     cars.forEach((car) => {
-      const moveCount = car.getMoveCount();
+      const moveCount = car.moveCount;
       IO.print(
-        `${car.getCarName()} ${SYMBOL.ASSIGNMENT} ${SYMBOL.MOVE_SYMBOL.repeat(
+        `${car.carName} ${SYMBOL.ASSIGNMENT} ${SYMBOL.MOVE_SYMBOL.repeat(
           moveCount
         )}`
       );
