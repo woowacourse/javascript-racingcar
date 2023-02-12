@@ -18,10 +18,10 @@ class Controller {
 
   inputMoveCount() {
     InputView.readMoveCount((moveCount) => {
-      for (let i = 0; i < moveCount; i += 1) {
+      Array.from({ length: moveCount }, () => {
         this.handleCarsMovement();
         OutputView.printEmptyLine();
-      }
+      });
 
       this.handleWinners();
     });
