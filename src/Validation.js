@@ -1,6 +1,13 @@
 const { ERROR_MESSAGE, GAME_NUMBER, INPUT_REGEX } = require('./constants');
 
-const Validation = {
+const validation = {
+  carName(carNames) {
+    validation.duplicatedCarName(carNames);
+    validation.carNameLengthRange(carNames);
+    validation.carCountRange(carNames.length);
+    validation.isAlphabet(carNames);
+  },
+
   duplicatedCarName(carNames) {
     const carNamesLowerCase = carNames.map((carName) => {
       return carName.toLowerCase();
@@ -22,6 +29,7 @@ const Validation = {
       }
     });
   },
+
   carCountRange(carCount) {
     if (
       carCount < GAME_NUMBER.minCarCount ||
@@ -30,18 +38,12 @@ const Validation = {
       throw new Error(ERROR_MESSAGE.carCountRange);
     }
   },
+
   isAlphabet(carNames) {
     const regex = INPUT_REGEX.onlyAlphabetRegex;
     carNames.forEach((carName) => {
       if (regex.test(carName)) throw new Error(ERROR_MESSAGE.onlyAlphabet);
     });
-  },
-
-  carName(carNames) {
-    this.duplicatedCarName(carNames);
-    this.carNameLengthRange(carNames);
-    this.carCountRange(carNames.length);
-    this.onlyAlphabet(carNames);
   },
 
   isNumber(attempt) {
@@ -70,5 +72,4 @@ const Validation = {
     this.attemptRange(attempts);
   },
 };
-
-module.exports = Validation;
+module.exports = validation;
