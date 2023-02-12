@@ -1,4 +1,4 @@
-const Car = require("../model/Car");
+const Car = require("../domain/Car");
 const InputView = require("../views/InputView");
 const OutputView = require("../views/OutputView");
 const RandomNumberGenerator = require("../utils/RandomNumberGenerator")

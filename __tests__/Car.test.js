@@ -1,4 +1,4 @@
-const Car = require("../src/model/Car");
+const Car = require("../src/domain/Car");
 const RacingGame = require("../src/controller/RacingGame");
 
 describe("Car 모델 테스트", () => {
