@@ -35,7 +35,7 @@ const expectLogContains = (received, logs) => {
 };
 
 describe('자동차 경주 게임 테스트', () => {
-  test('기능 테스트', () => {
+  test('주어진 자동차 이름들과 시도 횟수(첫 번째 예시)로 자동차 전진 및 싷행 결과를 보여주는 기능 테스트', () => {
     const logSpy = getLogSpy();
     mockRandoms([4, 4, 4, 4, 4, 2, 4, 4, 4]);
     mockQuestions(['eus,zero,pobi', '3']);
@@ -66,7 +66,7 @@ describe('자동차 경주 게임 테스트', () => {
     ]);
   });
 
-  test('기능 테스트2', () => {
+  test('주어진 자동차 이름들과 시도 횟수(두 번째 예시)로 자동차 전진 및 싷행 결과를 보여주는 기능 테스트', () => {
     const logSpy = getLogSpy();
     mockRandoms([4, 4, 4, 4, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]);
     mockQuestions(['pobi,crong,honux', '5']);
