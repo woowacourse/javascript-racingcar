@@ -1,5 +1,5 @@
-const Car = require("./Car");
-const RandomNumberGenerator = require("../util/RandomNumberGenerator");
+import Car from "./Car.js";
+import RandomNumberGenerator from "../util/RandomNumberGenerator.js";
 
 class RacingGame {
   #cars;
@@ -49,4 +49,4 @@ class RacingGame {
   }
 }
 
-module.exports = RacingGame;
+export default RacingGame;

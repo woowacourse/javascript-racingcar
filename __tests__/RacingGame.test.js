@@ -1,5 +1,5 @@
-const RacingGame = require("../src/domain/RacingGame");
-const RandomNumberGenerator = require("../src/util/RandomNumberGenerator");
+import RacingGame from "../src/domain/RacingGame.js";
+import RandomNumberGenerator from "../src/util/RandomNumberGenerator.js";
 
 const mockRandoms = (numbers) => {
   RandomNumberGenerator.generate = jest.fn();

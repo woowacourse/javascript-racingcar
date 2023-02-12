@@ -1,4 +1,4 @@
-const Car = require("../src/domain/Car");
+import Car from "../src/domain/Car.js";
 
 describe("Car 클래스 테스트", () => {
   test("이름이 '룩소'인 자동차 생성, 이동 거리의 초기값은 0", () => {

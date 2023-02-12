@@ -4,4 +4,4 @@ const RandomNumberGenerator = {
   },
 };
 
-module.exports = RandomNumberGenerator;
+export default RandomNumberGenerator;

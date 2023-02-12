@@ -8,4 +8,4 @@ const handleError = (validateFunction, input) => {
   }
 };
 
-module.exports = handleError;
+export default handleError;

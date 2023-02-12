@@ -1,8 +1,9 @@
-const RacingGame = require("./domain/RacingGame");
-const InputView = require("./view/InputView");
-const OutputView = require("./view/OutputView");
-const Validator = require("./domain/Validator");
-const handleError = require("./util/handleError");
+import RacingGame from "./domain/RacingGame.js";
+import InputView from "./view/InputView.js";
+import OutputView from "./view/OutputView.js";
+import Validator from "./domain/Validator.js";
+import handleError from "./util/handleError.js";
+
 class App {
   #racingGame;
 
