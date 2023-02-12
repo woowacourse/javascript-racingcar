@@ -65,7 +65,7 @@ class RacingGame {
   }
 
   showWinners() {
-    const winners = this.#cars.filter((car) => car.isFinish(this.#winningDistance));
+    const winners = this.#cars.filter((car) => car.getDistance() >= this.#winningDistance);
     OutputView.print(OUTPUT_WINNER(winners));
   }
 }
