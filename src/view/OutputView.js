@@ -3,7 +3,7 @@ const { Messages } = require('../Config');
 const OutputView = {
   printResult(gameStatus) {
     Object.entries(gameStatus).forEach(([carName, position]) => {
-      console.log(`${carName} : ${new Array(position).fill(Messages.MOVING_TRACE).join('')}`);
+      console.log(`${carName} : ${Messages.MOVING_TRACE.repeat(position)}`);
     });
     console.log();
   },
