@@ -22,15 +22,15 @@ class Race {
   }
 
   makeResult() {
-    const distanceArray = this.#currentRace.map((race) => {
-      return race.filter((el) => el === MOVE_FORWARD).length;
-    });
+    const distanceArray = this.#currentRace.map(
+      (race) => race.filter((el) => el === MOVE_FORWARD).length
+    );
     const maxDistance = Math.max(...distanceArray);
-    const winner = distanceArray.reduce((arr, distance, index) => {
+    const winners = distanceArray.reduce((arr, distance, index) => {
       if (distance === maxDistance) return [...arr, this.#carNames[index]];
       return arr;
     }, []);
-    return winner;
+    return winners;
   }
 }
 
