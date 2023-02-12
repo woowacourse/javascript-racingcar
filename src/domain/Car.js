@@ -1,3 +1,4 @@
+const { FORWARD_CONDITION } = require('../constants/value');
 const { printCar } = require('../view/OutputView');
 
 class Car {
@@ -17,8 +18,8 @@ class Car {
   }
 
   move(condition) {
-    if (condition>= 4) {
-      this.#position += 1;        
+    if (condition >= FORWARD_CONDITION) {
+      this.#position += 1;
     }
   }
 
