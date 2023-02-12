@@ -4,6 +4,9 @@ const Validator = {
   carName(string) {
     const names = string.split(',');
 
+    if (!this.isVaildCarNameExsit(names))
+      throw new Error('[ERROR] 자동차 이름은 공백일 수 없습니다.');
+
     if (this.isCarNameHasBlank(string)) throw new Error(MESSAGE.error.blank);
 
     if (this.isCarNameGreaterThanFive(names))
@@ -17,6 +20,10 @@ const Validator = {
 
   tryCount(number) {
     if (!this.isNumeric(number)) throw new Error(MESSAGE.error.numeric);
+  },
+
+  isVaildCarNameExsit(names) {
+    return names.every((name) => name !== '');
   },
 
   isCarNameHasBlank(string) {
