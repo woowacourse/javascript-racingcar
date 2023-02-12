@@ -14,7 +14,7 @@ const InputView = {
   async readTryCount() {
     const tryCount = await utils.readLine(INPUT_TRY_COUNT);
 
-    return tryCount;
+    return Number(tryCount);
   },
   async readTryCount() {
     const tryCount = await Utils.readLine(INPUT_TRY_COUNT);

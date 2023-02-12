@@ -4,6 +4,7 @@ import {
   MINIMUM_TRY_COUNT,
   MINIMUM_NUMBER_OF_CARS,
   MINIMUM_CAR_NAME_LENGTH,
+  MAXIMIM_TRY_COUNT,
 } from "../Utils/Constants.js";
 
 const {
@@ -13,6 +14,8 @@ const {
   NAME_DUPLICATE,
   MINIMUM_CAR_COUNT,
   NOT_POSITIVE_NUMBER,
+  TRY_COUNT_ARRANGE,
+  NOT_INTEGER,
 } = ERROR_MESSAGE;
 
 class Validator {
@@ -41,8 +44,14 @@ class Validator {
   }
 
   isNumber(number) {
-    if (isNaN(number) || number.includes("e")) {
+    if (Number.isNaN(number)) {
       throw new Error(NOT_POSITIVE_NUMBER);
+    }
+  }
+
+  isNotInteger(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error(NOT_INTEGER);
     }
   }
 
@@ -54,9 +63,10 @@ class Validator {
 
   tryCount(count) {
     this.isNumber(count);
-
-    if (count < MINIMUM_TRY_COUNT) {
-      throw new Error(NOT_POSITIVE_NUMBER);
+    this.isNotInteger(count);
+    console.log(count, typeof count, "tryCouny@@");
+    if (count < MINIMUM_TRY_COUNT || count > MAXIMIM_TRY_COUNT) {
+      throw new Error(TRY_COUNT_ARRANGE);
     }
   }
 }
