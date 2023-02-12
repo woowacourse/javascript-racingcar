@@ -4,10 +4,11 @@ const {
   inputCarNameValidator,
   tryCountValidator,
 } = require("./Validator/Validator");
+const CarGame = require("./Domain/CarGame");
 class App {
   #games;
 
-  constructor(game) {
+  constructor(game = new CarGame()) {
     this.#games = game;
   }
 
