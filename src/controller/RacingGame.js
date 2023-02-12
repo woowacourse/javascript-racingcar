@@ -55,11 +55,11 @@ class RacingGame {
     for (let car of this.#cars) {
       this.findWinners(car);
     }
-    this.showWinners(this.#winners)
+    this.showWinners()
   }
 
   showWinners(){
-    OutputView.printWinners(winner);
+    OutputView.printWinners(this.#winners);
   }
 
   findWinners(car) {
