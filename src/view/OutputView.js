@@ -1,16 +1,20 @@
-import { ErrorMessages, Messages } from '../constants/Messages';
 import Console from '../utils/Console';
 
 const OutputView = {
+  EMPTY_LINE: '',
+  ERROR_MESSAGE_PREFIX: '[ERROR]',
+  RACE_RESULT_TITLE: '실행 결과',
+  WINNER_MESSAGE_SUFFIX: '가 최종 우승했습니다.',
+
   printWinners(winnerCars) {
     const winners = winnerCars.map((car) => car.getRaceState().name).join(', ');
-    Console.print(`${winners}${Messages.PRINT_WINNERS_SUFFIX}`);
+    Console.print(`${winners}${OutputView.WINNER_MESSAGE_SUFFIX}`);
     Console.close();
   },
 
   printRaceStateTitle() {
-    Console.print('');
-    Console.print(Messages.PRINT_RACE_STATE_TITLE);
+    Console.print(OutputView.EMPTY_LINE);
+    Console.print(OutputView.RACE_RESULT_TITLE);
   },
 
   printRaceState(cars) {
@@ -21,11 +25,11 @@ const OutputView = {
     });
 
     carResults.forEach((result) => Console.print(result));
-    Console.print('');
+    Console.print(OutputView.EMPTY_LINE);
   },
 
   printError(error) {
-    Console.print(`${ErrorMessages.PREFIX} ${error.message}`);
+    Console.print(`${OutputView.ERROR_MESSAGE_PREFIX} ${error.message}`);
   },
 };
 
