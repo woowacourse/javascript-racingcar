@@ -14,9 +14,9 @@ export default class RacingGameController {
   }
 
   playGame() {
-    this.#raceCars();
+    this.#startRace();
     this.#findWinners();
-    this.#endGame();
+    this.#endRace();
   }
 
   async #requestCarNames() {
@@ -43,7 +43,7 @@ export default class RacingGameController {
     return raceRound;
   }
 
-  #raceCars() {
+  #startRace() {
     OutputView.printResultMessage();
 
     while (this.#racingGame.isPlaying()) {
@@ -62,7 +62,7 @@ export default class RacingGameController {
     OutputView.printFinalResult(winners);
   }
 
-  #endGame() {
+  #endRace() {
     Console.close();
   }
 }
