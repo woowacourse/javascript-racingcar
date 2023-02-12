@@ -1,6 +1,5 @@
 class Car {
   #name;
-
   #trace;
 
   constructor(name) {

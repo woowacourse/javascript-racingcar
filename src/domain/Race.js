@@ -3,7 +3,6 @@ const Random = require('../utils/Random');
 
 class Race {
   #cars;
-
   #trial;
 
   constructor() {
