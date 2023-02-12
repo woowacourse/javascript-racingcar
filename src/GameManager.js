@@ -77,11 +77,15 @@ class GameManager {
     }
   }
 
+  setCars(cars){
+    this.#cars = cars;
+  }
+
   async handleCarNames() {
     const names = await readCarNames();
     try {
       this.checkCarNames(names);
-      this.#cars = this.generateCars(names);
+      this.setCars(this.generateCars(names));
     } catch (error) {
       printError(error);
       await this.handleCarNames();
