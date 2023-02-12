@@ -2,7 +2,7 @@ const CarGame = require('../domain/CarGame');
 const parseCarName = require('../domain/parseCarName');
 const functionPipe = require('../utils/funcitonPipe');
 const getRandomNumber = require('../utils/getRandomNumber');
-const Validator = require('../utils/Validator');
+const validator = require('../utils/validator');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
 
@@ -23,9 +23,9 @@ class CarGameController {
         const parsedCarNames = parseCarName(input);
         functionPipe(
           parsedCarNames,
-          Validator.validateLength,
-          Validator.validateOverlap,
-          Validator.validateKorEngNum,
+          validator.validateLength,
+          validator.validateOverlap,
+          validator.validateKorEngNum,
         );
         return this.saveCarDatas(parsedCarNames);
       } catch (error) {
@@ -43,8 +43,8 @@ class CarGameController {
   readTryCount() {
     InputView.readTryCount().then((input) => {
       try {
-        Validator.validateNumericInput(input);
-        Validator.validatePositiveNumber(input);
+        validator.validateNumericInput(input);
+        validator.validatePositiveNumber(input);
         return this.requestMoveCars(Number(input));
       } catch (error) {
         OutputView.printError(error.message);
