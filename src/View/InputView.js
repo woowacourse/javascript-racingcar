@@ -2,31 +2,16 @@ const Console = require('../Utils/Console');
 const RACE_MESSAGE = require('../Constant/RaceMessage');
 
 const InputView = {
-  getUserInput(question, callback, redirect) {
-    Console.readLine(question, input => {
-      try {
-        callback(input);
-      } catch (err) {
-        Console.print(err);
-        redirect(callback);
-      }
-    });
+  async readCarNames() {
+    const input = await Console.readLine(RACE_MESSAGE.inputCarName);
+
+    return input.split(',');
   },
 
-  readCarName(callback) {
-    this.getUserInput(
-      RACE_MESSAGE.inputCarName,
-      callback,
-      this.readCarName.bind(this),
-    );
-  },
+  async readTryCount() {
+    const tryCount = await Console.readLine(RACE_MESSAGE.inputTryCount);
 
-  readTryCount(callback) {
-    this.getUserInput(
-      RACE_MESSAGE.inputTryCount,
-      callback,
-      this.readTryCount.bind(this),
-    );
+    return +tryCount;
   },
 };
 

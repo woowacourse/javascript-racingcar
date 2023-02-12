@@ -1,44 +1,51 @@
 const InputView = require('../View/InputView');
 const OutputView = require('../View/OutputView');
-const Validator = require('../Utils/Validator');
-const Car = require('../Models/Car');
-const Race = require('../Models/Race');
+const Cars = require('../Models/Cars');
+const TryCount = require('../Models/TryCount');
 
 class RaceController {
-  #race;
+  #cars;
+  #tryCount;
 
-  start() {
-    this.getCarName();
+  async play() {
+    await this.handleOnCarNames();
+    await this.handleOnTryCount();
+    this.showRaceResult();
+    this.showRaceWinner();
   }
 
-  getCarName() {
-    InputView.readCarName(carName => {
-      const splitCarName = carName.split(',');
-      Validator.validateNamesOfCars(splitCarName);
-      const cars = [];
-      splitCarName.forEach(name => {
-        Validator.validateCarName(name);
-        cars.push(new Car(name));
-      });
-      this.getTryCount(cars);
-    });
-  }
-
-  getTryCount(cars) {
-    InputView.readTryCount(count => {
-      Validator.validateTryCount(count);
-      this.#race = new Race(cars);
-      this.handleRaceAndShowResult(count);
-    });
-  }
-
-  handleRaceAndShowResult(count) {
-    OutputView.printResultMessage();
-    for (let i = 0; i < count; i += 1) {
-      this.#race.go();
-      OutputView.printRaceResult(this.#race.getResult());
+  async handleOnCarNames() {
+    const names = await InputView.readCarNames();
+    try {
+      this.#cars = new Cars(names);
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+      await this.handleOnCarNames();
     }
-    OutputView.printWinners(this.#race.getResult());
+  }
+
+  async handleOnTryCount() {
+    const tryCount = await InputView.readTryCount();
+    try {
+      this.#tryCount = new TryCount(tryCount);
+    } catch (error) {
+      OutputView.printErrorMessage(error);
+      await this.handleOnTryCount();
+    }
+  }
+
+  showRaceResult() {
+    OutputView.printResultMessage();
+    const tryCount = this.#tryCount.getTryCount();
+    for (let i = 0; i < tryCount; i += 1) {
+      this.#cars.race();
+      OutputView.printRaceResult(this.#cars.getRaceResult());
+    }
+  }
+
+  showRaceWinner() {
+    const winners = this.#cars.getWinners();
+    OutputView.printWinners(winners);
   }
 }
 
