@@ -18,6 +18,7 @@ class RacingGame {
 
   moveAllCars() {
     if (this.#attempts === 0) return;
+
     this.#attempts -= 1;
     this.#carList.forEach((car) => {
       const power = Random.generateRandomInteger(
