@@ -4,15 +4,19 @@ const OutputView = {
   },
 
   printRoundResult(carNames, carDistances) {
-    for (let i = 0; i < carNames.length; i += 1) {
-      console.log(`${carNames[i]} : ${"-".repeat(carDistances[i])}`);
-    }
-    console.log();
+    let result = "";
+
+    carNames.forEach((currentCarName, index) => {
+      result += `${currentCarName} : ${"-".repeat(carDistances[index])}\n`;
+    });
+    result += "\n";
+
+    console.log(result);
   },
 
   printWinners(winners) {
     console.log(`${winners}가 최종 우승했습니다.`);
-  }
+  },
 };
 
 module.exports = OutputView;
