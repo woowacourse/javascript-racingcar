@@ -27,7 +27,8 @@ class App {
   #onMovingCountSubmit(movingCount) {
     try {
       validateMovingCount(movingCount);
-      this.#printResult(movingCount);
+      const carCount = this.#game.getCarCount();
+      this.#printResult(movingCount, carCount);
       Console.close();
     } catch (error) {
       OutputView.printError(error.message);
@@ -35,11 +36,11 @@ class App {
     }
   }
 
-  #printResult(movingCount) {
+  #printResult(movingCount, carCount) {
     OutputView.printResultTitle();
     OutputView.printCars(this.#game.getCarsInfo());
     for (let i = 0; i < movingCount; i += 1) {
-      const carMoveSuccesses = MoveDecider.getCarMoveSuccesses(this.#game.getCarCount());
+      const carMoveSuccesses = MoveDecider.getCarMoveSuccesses(carCount);
       this.#game.moveCars(carMoveSuccesses);
       OutputView.printCars(this.#game.getCarsInfo());
     }
