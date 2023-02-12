@@ -1,8 +1,8 @@
-const Random = require('../utils/Random');
-const Validator = require('../validator');
+const Random = require('../../utils/Random');
+const Validator = require('../../validator');
 const Car = require('./Car');
-const { getRacingSnapShot } = require('../utils/output');
-const { FORWARD_CONDITIONS_NUMBER, INITIAL_POSITION } = require('../constants/values');
+const { getRacingSnapShot } = require('../../utils/output');
+const { FORWARD_CONDITIONS_NUMBER, INITIAL_POSITION } = require('../../constants/values');
 
 class RacingGame {
   #cars = [];

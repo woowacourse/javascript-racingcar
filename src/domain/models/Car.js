@@ -1,5 +1,5 @@
-const Validator = require('../validator');
-const { INITIAL_POSITION, STEP } = require('../constants/values');
+const Validator = require('../../validator');
+const { INITIAL_POSITION, STEP } = require('../../constants/values');
 
 class Car {
   #name;

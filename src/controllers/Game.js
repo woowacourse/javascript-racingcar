@@ -1,7 +1,7 @@
 const Console = require('../utils/Console');
-const Inputs = require('../views/Inputs');
-const Outputs = require('../views/Outputs');
-const RacingGame = require('../models/RacingGame');
+const Inputs = require('../view/Inputs');
+const Outputs = require('../view/Outputs');
+const RacingGame = require('../domain/models/RacingGame');
 
 class Game {
   #racingGame;
