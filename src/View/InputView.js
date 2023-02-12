@@ -9,7 +9,7 @@ const { INPUT_CAR_NAME, INPUT_TRY_COUNT } = GAME_MESSAGE;
 const InputView = {
   async readCarName() {
     const carNames = await Utils.readLine(INPUT_CAR_NAME);
-    const cars = carNames.split(COMMA).map((name) => name.trim());
+    const cars = splitStringAndTrim(carNames, COMMA);
 
     inputCarNameValidator(cars);
 
