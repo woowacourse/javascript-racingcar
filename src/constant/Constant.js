@@ -7,4 +7,18 @@ const MESSAGES = {
   repeatRangeError: "[ERROR] 횟수는 자연수로 입력해주세요.\n",
 };
 
-module.exports = MESSAGES;
+const RANDOMS = {
+  maximumNumber: 10,
+  minimumRunNumber: 4,
+};
+
+const RESULT = {
+  run: 1,
+  stay: 0,
+};
+
+module.exports = {
+  MESSAGES,
+  RANDOMS,
+  RESULT,
+};
