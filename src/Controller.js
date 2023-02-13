@@ -44,10 +44,10 @@ class Controller {
 
   printResult(tryCount) {
     View.output(MESSAGE.RESULT);
-    for (let i = 0; i < tryCount; i++) {
+    Array.from({ length: tryCount }).forEach(() => {
       const movingLog = this.#service.getMovingLog();
       View.output(movingLog, FORMATTING_TYPE.MOVING_LOG);
-    }
+    });
     const winners = this.#service.getWinners();
     View.output(winners, FORMATTING_TYPE.WINNERS);
 
