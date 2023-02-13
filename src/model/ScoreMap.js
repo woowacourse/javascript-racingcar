@@ -10,7 +10,7 @@ class ScoreMap extends Map {
   }
 
   updateScoreOnce() {
-    [...this.keys()].forEach(this.#updateMoving);
+    [...this.keys()].forEach(this.#updateMoving.bind(this));
   }
 
   #updateMoving(car) {
