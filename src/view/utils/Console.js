@@ -6,27 +6,27 @@ const rl = readline.createInterface({
 });
 
 const Console = {
-  question (message) {
+  question(message) {
     this.validateType(message);
 
-    return new Promise((resolve) => rl.question(message, (input) => resolve(input)))
+    return new Promise((resolve) => rl.question(message, (input) => resolve(input)));
   },
 
   print(message) {
     this.validateType(message);
 
-    Console.print(message);
+    console.log(message);
   },
 
   close() {
     rl.close();
   },
 
-  validateType (message) {
+  validateType(message) {
     if (typeof message !== 'string') {
-      throw new Error(`Argument is must be string type.`)
+      throw new Error(`Argument is must be string type.`);
     }
-  }
-}
+  },
+};
 
 module.exports = Console;
