@@ -29,7 +29,7 @@ const ConsoleMessage = Object.freeze({
 });
 
 const ErrorMessage = Object.freeze({
-  NAME_INPUT: `자동차 이름은 쉼표(,)로 구분하여 1 ~ ${StaticValue.CAR_NAME_LIMIT}자 사이로 입력해주세요.`,
+  NAME_INPUT: `자동차 이름은 쉼표(${StaticValue.CAR_NAME_INPUT_SEPARATOR})로 구분하여 1 ~ ${StaticValue.CAR_NAME_LIMIT}자 사이로 입력해주세요.`,
   NAME_FORMAT: '자동차 이름은 한글 또는 알파벳 문자로 시작해주세요.',
   NAME_DUPLICATION: '자동차 이름을 중복되지 않게 입력해주세요.',
   MOVE_INPUT: '1 이상의 숫자를 입력해주세요.',
