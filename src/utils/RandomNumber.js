@@ -1,12 +1,6 @@
-const { Settings } = require('../Config');
-
 const RandomNumber = {
-  generateRandomNumber() {
-    return (
-      Math.floor(
-        Math.random() * (Settings.MAX_RANDOM_VALUE - Settings.MIN_RANDOM_VALUE)
-      ) + Settings.MIN_RANDOM_VALUE
-    );
+  generateRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
   },
 };
 
