@@ -30,7 +30,7 @@ class RacingGameController {
     InputView.readInput(ConsoleMessage.MOVE_COUNT, (input) => {
       try {
         Exception.checkMoveCountInput(input);
-        this.handleRacingGame(input);
+        this.handleRacingGame(Number(input));
       } catch (error) {
         console.log(error.message);
         this.inputMoveCount();

@@ -33,7 +33,7 @@ const Exception = {
   checkMoveCountInput(input) {
     const MOVE_COUNT = input.trim();
 
-    if (Utils.hasNonDigit(MOVE_COUNT) || MOVE_COUNT <= 0) {
+    if (Utils.hasNonDigit(MOVE_COUNT) || Number(MOVE_COUNT) <= 0) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
   },
