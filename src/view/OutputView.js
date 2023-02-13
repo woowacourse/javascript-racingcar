@@ -1,23 +1,23 @@
-const Console = require("../lib/Console");
-const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require("../lib/Constant");
+import Console from '../util/Console.js';
+import { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } from '../util/Constant.js';
 
 const OutputView = {
   printErrorMessage(error) {
     Console.print(error);
   },
 
-  printProcessResult(carStatus, tryCount) {
+  printProcessResult({ carsStatus, tryCount }) {
     Console.print(MESSAGE.output.processResultHeader);
-    for (let sequence = 0; sequence < tryCount; sequence++) {
-      this.printCarStatus(carStatus, sequence);
-      Console.print("");
-    }
+    new Array(tryCount).fill(null).forEach((_, order) => {
+      this.printCarStatus(carsStatus, order);
+      Console.print('');
+    });
   },
 
-  printCarStatus(carStatus, sequence) {
-    carStatus.forEach(({ name, position }) => {
+  printCarStatus(carsStatus, order) {
+    carsStatus.forEach(({ name, position }) => {
       const currentPosition = position
-        .slice(0, sequence + 1)
+        .slice(0, order + 1)
         .reduce((acc, cur) => acc + cur, 0);
 
       Console.print(`${name} : ${POSITION_UNIT.repeat(currentPosition)}`);
@@ -29,4 +29,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

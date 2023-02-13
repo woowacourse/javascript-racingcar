@@ -1,24 +1,19 @@
-const InputView = require('./view/InputView.js');
-const OutputView = require('./view/OutputView.js');
-const Validator = require('./model/Validator.js');
-
-const Car = require('./model/Car.js');
-const Console = require('./lib/Console.js');
+import GameManager from './domain/GameManager.js';
+import Validator from './domain/Validator.js';
+import Console from './util/Console.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
-  #cars = [];
-  #tryCount;
+  #gameManager = new GameManager();
 
   async play() {
     await this.readCarName();
     await this.readTryCount();
 
-    this.moveCar();
-
-    const carsStatus = this.#cars.map((car) => car.getStatus());
-    this.printProcessResult(carsStatus);
-    this.printWinner(carsStatus);
-
+    this.#gameManager.moveCar();
+    this.printProcessResult();
+    this.printWinner();
     this.quit();
   }
 
@@ -26,41 +21,31 @@ class App {
     const carNames = await InputView.readCarName();
     try {
       Validator.carName(carNames);
-      carNames.split(',').forEach((carName) => this.createCarObject(carName));
+      this.#gameManager.addCars(carNames);
     } catch (error) {
       OutputView.printErrorMessage(error);
       await this.readCarName();
     }
   }
 
-  createCarObject(carName) {
-    this.#cars.push(new Car(carName));
-  }
-
   async readTryCount() {
     const tryCount = await InputView.readTryCount();
     try {
       Validator.tryCount(tryCount);
-      this.#tryCount = Number(tryCount);
+      this.#gameManager.saveTryCount(Number(tryCount));
     } catch (error) {
       OutputView.printErrorMessage(error);
       await this.readTryCount();
     }
   }
 
-  moveCar() {
-    this.#cars.forEach((car) => {
-      car.move(this.#tryCount);
-    });
+  printProcessResult() {
+    const carsStatus = this.#gameManager.getCarsStatus();
+    OutputView.printProcessResult(carsStatus);
   }
 
-  printProcessResult(carsStatus) {
-    OutputView.printProcessResult(carsStatus, this.#tryCount);
-  }
-
-  printWinner(carsStatus) {
-    const winner = Car.getWinner(carsStatus);
-
+  printWinner() {
+    const winner = this.#gameManager.getWinner();
     OutputView.printWinner(winner);
   }
 
@@ -72,4 +57,4 @@ class App {
 const app = new App();
 app.play();
 
-module.exports = App;
+export default App;
