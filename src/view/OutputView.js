@@ -6,16 +6,16 @@ const OutputView = {
     Console.print(error);
   },
 
-  printProcessResult(carStatus, tryCount) {
+  printProcessResult({ carsStatus, tryCount }) {
     Console.print(MESSAGE.output.processResultHeader);
     for (let sequence = 0; sequence < tryCount; sequence++) {
-      this.printCarStatus(carStatus, sequence);
+      this.printCarStatus(carsStatus, sequence);
       Console.print('');
     }
   },
 
-  printCarStatus(carStatus, sequence) {
-    carStatus.forEach(({ name, position }) => {
+  printCarStatus(carsStatus, sequence) {
+    carsStatus.forEach(({ name, position }) => {
       const currentPosition = position
         .slice(0, sequence + 1)
         .reduce((acc, cur) => acc + cur, 0);

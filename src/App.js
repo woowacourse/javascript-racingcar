@@ -8,7 +8,6 @@ import OutputView from './view/OutputView.js';
 class App {
   #gameManager = new GameManager();
   #cars = [];
-  #tryCount;
 
   async play() {
     await this.readCarName();
@@ -17,7 +16,7 @@ class App {
     this.#gameManager.moveCar();
 
     const carsStatus = this.#cars.map((car) => car.getStatus());
-    this.printProcessResult(carsStatus);
+    this.printProcessResult();
     this.printWinner(carsStatus);
 
     this.quit();
@@ -46,7 +45,8 @@ class App {
   }
 
   printProcessResult(carsStatus) {
-    OutputView.printProcessResult(carsStatus, this.#tryCount);
+    const carsStatus = this.#gameManager.getCarsStatus();
+    OutputView.printProcessResult(carsStatus);
   }
 
   printWinner(carsStatus) {

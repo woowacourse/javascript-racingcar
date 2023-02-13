@@ -17,6 +17,13 @@ class GameManager {
       car.move(this.#tryCount);
     });
   }
+
+  getCarsStatus() {
+    return {
+      tryCount: this.#tryCount,
+      carsStatus: this.#cars.map((car) => car.getStatus()),
+    };
+  }
 }
 
 export default GameManager;
