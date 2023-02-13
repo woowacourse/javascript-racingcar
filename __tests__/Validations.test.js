@@ -3,7 +3,7 @@ const Validations = require("../src/view/Validations");
 
 describe("유효성 검사", () => {
     // const validations = new Validations()
-    test("차 이름 길이가 기준보다 길면 오류", () => {
+    test("기준보다 긴 차 이름이 입력되면 오류 발생", () => {
         const carNames = ["naveowo", "nave"];
 
         expect(() => Validations.validateCarNameLength(carNames)).toThrow(
@@ -11,7 +11,7 @@ describe("유효성 검사", () => {
         );
     });
 
-    test("차 이름 공백이면 오류", () => {
+    test("차 이름으로 공백이 입력되면 오류 발생", () => {
         const carNames = ["nave", "nave", ""];
 
         expect(() => Validations.validateIsCarName(carNames)).toThrow(
