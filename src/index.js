@@ -47,7 +47,7 @@ class App {
 
     eachRoundRun() {
         this.#cars.forEach((car) => {
-            Move.carMove(car, Random.getRandomNumber);
+            Move.moveCar(car, Random.getRandomNumber);
         });
     }
 

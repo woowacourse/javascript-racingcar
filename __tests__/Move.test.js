@@ -16,7 +16,7 @@ describe("전진하는 함수 테스트", () => {
             //valOne = 0, valTwo = 9
             return valTwo;
         };
-        Move.carMove(car, fakeRandomFunction);
+        Move.moveCar(car, fakeRandomFunction);
         const score = car.exportNameScore()[1];
 
         expect(score).toEqual(1);
@@ -28,7 +28,7 @@ describe("전진하는 함수 테스트", () => {
             //valOne = 0, valTwo = 9
             return valOne;
         };
-        Move.carMove(car, fakeRandomFunction);
+        Move.moveCar(car, fakeRandomFunction);
         const score = car.exportNameScore()[1];
 
         expect(score).toEqual(0);

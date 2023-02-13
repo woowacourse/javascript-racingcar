@@ -1,7 +1,7 @@
 const { RACING } = require("./Constant_domain");
 
 const Move = {
-    carMove(car, makeRandomFunction) {
+    moveCar(car, makeRandomFunction) {
         const randomNum = makeRandomFunction(
             RACING.MIN_MOVE_CONDITION,
             RACING.MAX_MOVE_CONDITION
