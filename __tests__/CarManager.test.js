@@ -2,15 +2,16 @@ const CarManager = require('../src/domain/CarManager');
 
 const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
 
-const mockRandoms = (numbers) => {
-  RandomNumberGenerator.generate = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomNumberGenerator.generate);
-};
-
 describe('자동차를 관리하는 클래스 테스트', () => {
   let carManager;
+
+  const initializeBasicTestSettingWithRandomNumbers = (randomNumbers) => {
+    const cars = carManager.getCars();
+
+    for (let i = 0; i < cars.length; i++) {
+      cars[i].tryProgress(randomNumbers[i]);
+    }
+  };
 
   beforeEach(() => {
     carManager = new CarManager(['pobi', 'crong', 'honux']);
@@ -21,9 +22,7 @@ describe('자동차를 관리하는 클래스 테스트', () => {
   });
 
   test('자동차 각각을 전진시킨다', () => {
-    mockRandoms([5, 2, 1]);
-
-    carManager.progress();
+    initializeBasicTestSettingWithRandomNumbers([5, 2, 1]);
 
     expect(carManager.getCars().map((singleCar) => singleCar.progressCount)).toEqual([
       1, 0, 0,
@@ -32,18 +31,14 @@ describe('자동차를 관리하는 클래스 테스트', () => {
 
   describe('경주 우승자를 도출한다.', () => {
     test('우승자가 한 명인 경우', () => {
-      mockRandoms([5, 2, 1]);
-
-      carManager.progress();
+      initializeBasicTestSettingWithRandomNumbers([5, 2, 1]);
 
       const winners = carManager.getWinners();
       expect(winners.length === 1 && winners[0] === 'pobi').toBe(true);
     });
 
     test('우승자가 두 명 이상인 경우', () => {
-      mockRandoms([6, 7, 2]);
-
-      carManager.progress();
+      initializeBasicTestSettingWithRandomNumbers([6, 7, 2]);
 
       const winners = carManager.getWinners();
       expect(winners).toEqual(['pobi', 'crong']);
