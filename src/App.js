@@ -5,7 +5,9 @@ const OutputView = require('./view/OutputView');
 const Validator = require('./utils/Validator');
 
 class App {
-  #carManager;
+  constructor() {
+    this.carManager = new CarManager(this);
+  }
 
   play() {
     this.startWithInitialInputs();
@@ -25,8 +27,8 @@ class App {
   inputTryCount(carNamesInput) {
     InputView.readTryCount((tryCountsInput) => {
       if (this.isValidInput('tryCounts', tryCountsInput, Validator)) {
-        this.#carManager = new CarManager(carNamesInput.split(','));
-        this.#carManager.startRace(parseInt(tryCountsInput));
+        this.carManager.createInitialCars(carNamesInput.split(','));
+        this.carManager.startRace(parseInt(tryCountsInput));
         return;
       }
 
@@ -45,11 +47,11 @@ class App {
     }
   }
 
-  static printRaceProgress(cars) {
+  printRaceProgress(cars) {
     OutputView.printRaceProgress(cars);
   }
 
-  static printWinners(winners) {
+  printWinners(winners) {
     OutputView.printWinners(winners);
   }
 }
