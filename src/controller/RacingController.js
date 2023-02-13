@@ -1,7 +1,7 @@
 const InputView = require('../view/InputView.js');
 const OutputView = require('../view/OutputView.js');
 const InputValidator = require('../utils/InputValidator.js');
-const RacingGame = require('../model/RacingGame.js');
+const RacingGame = require('../domain/RacingGame.js');
 
 const IO = require('../utils/IO.js');
 
