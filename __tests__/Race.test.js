@@ -1,8 +1,19 @@
 import Race from '../src/domain/Race';
 
 describe('Race 객체 생성의 validation 테스트입니다.', () => {
+  test('전진을 시도할 횟수가 양의 정수일 경우 정상적으로 실행된다.', () => {
+    // given
+    const race = new Race(['pobi', 'conan']);
+
+    // when
+    const setRaceStep = () => race.setRaceStep(1);
+
+    // then
+    expect(setRaceStep).not.toThrow();
+  });
+
   test.each(['string', true, {}, null, undefined, 10n, 1.11])(
-    '전진을 시도할 횟수는 정수여야한다',
+    '전진을 시도할 횟수가 정수가 아닐경우 예외를 던진다.',
     (raceStep) => {
       // given
       const race = new Race(['pobi', 'conan']);
@@ -15,7 +26,7 @@ describe('Race 객체 생성의 validation 테스트입니다.', () => {
     },
   );
 
-  test.each([-1, 0])('전진을 시도할 횟수는 양의 정수여야 한다.', (raceStep) => {
+  test.each([-1, 0])('전진을 시도할 횟수가 양의 정수가 아닐 경우 예외를 던진다.', (raceStep) => {
     // given
     const race = new Race(['pobi', 'conan']);
 
@@ -48,7 +59,7 @@ describe('Race 객체 메서드 테스트입니다.', () => {
     // when
     race.setRaceStep(raceStep);
     Array.from({ length: raceStep }).forEach(() => {
-      race.moveOnce();
+      race.moveOneStep();
     });
 
     // then

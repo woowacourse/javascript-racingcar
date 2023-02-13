@@ -1,7 +1,18 @@
 import Car from '../src/domain/Car';
 
 describe('Car 객체 생성의 validation 테스트입니다.', () => {
-  test(`자동차의 이름은 최소${Car.MIN_NAME_LENGTH}자 이상이어야 한다.`, () => {
+  test.each(['1', 'conan', 'pobi🌱'])('정상 케이스의 경우 Car 객체가 생성된다.', (carName) => {
+    // given
+    const normalCarName = carName;
+
+    // when
+    const createCar = () => new Car(normalCarName);
+
+    // then
+    expect(createCar).not.toThrow();
+  });
+
+  test(`자동차의 이름이 ${Car.MIN_NAME_LENGTH}자 이하일 경우 예외를 던진다.`, () => {
     // given
     const emptyCarName = '';
 
@@ -12,7 +23,7 @@ describe('Car 객체 생성의 validation 테스트입니다.', () => {
     expect(createEmptyNameCar).toThrow(Car.VALID_NAME_LENGTH);
   });
 
-  test(`자동차의 이름은 최대${Car.MAX_NAME_LENGTH}자 이상이어야 한다.`, () => {
+  test(`자동차의 이름은 ${Car.MAX_NAME_LENGTH}자 이상일 경우 예외를 던진다.`, () => {
     // given
     const longName = 'conana';
 
