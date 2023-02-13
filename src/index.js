@@ -18,6 +18,7 @@ class App {
     startRace() {
         InputView.inputCarName((carNames) => {
             this.createCars(carNames);
+            this.getWinner();
             this.racing();
         });
     }
@@ -60,21 +61,18 @@ class App {
     printTotalRoundResult() {
         this.printEachRoundResult();
         const winner = this.getWinner();
-        console.log("");
         if (this.checkWinnerNone(winner))
-            return OutputView.totalWinnerResult(winner);
-        return OutputView.noneWinnerResult();
+            return `\n${OutputView.totalWinnerResult(winner)}`;
+        return `\n${OutputView.noneWinnerResult()}`;
     }
 
     getWinner() {
-        let winner = [];
-        let winnerScore = 0;
-        this.#cars.forEach((car) => {
-            const [name, score] = car.exportNameScore();
-            if (score > winnerScore) {
-                winnerScore = score;
-                winner = [name];
-            } else if (score !== 0 && score === winnerScore) winner.push(name);
+        const winnerScore = Math.max(
+            ...this.#cars.map((car) => car.exportNameScore()[1])
+        );
+        const winner = this.#cars.map((car) => {
+            car.exportNameScore()[1] === winnerScore;
+            return car.exportNameScore()[0];
         });
         return winner;
     }
