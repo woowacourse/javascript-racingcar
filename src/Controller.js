@@ -1,6 +1,6 @@
-const { Service } = require('./Service');
+const { Service } = require('./domain/Service');
 const { Validator } = require('./Validator');
-const { View } = require('./View');
+const { View } = require('./view/View');
 const { MESSAGE, FORMATTING_TYPE } = require('./constants');
 
 class Controller {

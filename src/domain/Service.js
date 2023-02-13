@@ -1,6 +1,6 @@
 const { Car } = require('./Car');
-const { randomGenerator } = require('./randomGenerator');
-const { GAME_VALUE } = require('./constants');
+const { randomGenerator } = require('../utils/randomGenerator');
+const { GAME_VALUE } = require('../constants');
 
 class Service {
   #cars;
