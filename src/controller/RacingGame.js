@@ -1,7 +1,7 @@
-const Car = require('./Car');
-const { Settings } = require('./Config');
-const OutputView = require('./UI/OutputView');
-const RandomNumber = require('./utils/RandomNumber');
+const Car = require('../model/Car');
+const { Settings } = require('../constants/Config');
+const OutputView = require('../view/OutputView');
+const RandomNumber = require('../utils/RandomNumber');
 
 class RacingGame {
   constructor() {}

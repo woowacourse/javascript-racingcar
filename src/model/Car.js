@@ -1,4 +1,4 @@
-const { Settings } = require('./Config');
+const { Settings } = require('../constants/Config');
 
 class Car {
   constructor(carName) {

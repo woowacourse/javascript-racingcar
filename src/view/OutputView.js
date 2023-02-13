@@ -1,5 +1,5 @@
 const Console = require('../utils/Console');
-const { Messages } = require('../Config');
+const { Messages } = require('../constants/Config');
 
 const OutputView = {
   printResult(racingGame) {
