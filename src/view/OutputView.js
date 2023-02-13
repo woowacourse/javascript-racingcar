@@ -1,8 +1,9 @@
-const Constants = require("./Constants")
+const Constants = require("../Constants")
 
 const OutputView = {
 
     outputResultTitle() {
+        console.log(Constants.BLANK)
         console.log(Constants.RESULT_TITLE);
     },
 
