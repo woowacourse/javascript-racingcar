@@ -1,7 +1,7 @@
 import Console from '../utils/Console.js';
 import { VIEW_MESSAGE } from '../constants/index.js';
 
-const View = {
+const OutputView = {
   naming() {
     Console.print(VIEW_MESSAGE.naming);
   },
@@ -15,7 +15,7 @@ const View = {
     cars.forEach((car) => {
       Console.print(VIEW_MESSAGE.carProgress(car));
     });
-    View.newLine();
+    OutputView.newLine();
   },
   winner(winnerList) {
     Console.print(VIEW_MESSAGE.winner(winnerList));
@@ -28,4 +28,4 @@ const View = {
   },
 };
 
-export default View;
+export default OutputView;
