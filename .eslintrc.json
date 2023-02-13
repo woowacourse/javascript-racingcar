@@ -1,7 +1,9 @@
 {
   "rules": {
     "max-lines-per-function": ["error", 10],
-    "max-depth": ["error", 2]
+    "max-depth": ["error", 2],
+    "semi": [2, "always"],
+    "eol-last": ["error", "always"]
   },
   "env": {
     "es6": true,
@@ -11,7 +13,5 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended"
-  ]
+  "extends": ["eslint:recommended"]
 }
