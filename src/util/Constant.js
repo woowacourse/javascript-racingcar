@@ -5,6 +5,7 @@ export const MESSAGE = {
     lowerCase: '[ERROR] 자동차 이름은 영소문자로 이루어져야 합니다.',
     duplicatedName: '[ERROR] 자동차 이름이 중복되었습니다.',
     numeric: '[ERROR] 시도 횟수는 양의 정수이어야 합니다.',
+    exist: '[ERROR] 자동차 이름은 존재하지 않습니다.',
   },
 
   input: {
@@ -22,10 +23,13 @@ export const POSITION_UNIT = '-';
 
 export const WINNER_DIVIDER = ', ';
 
+export const CAR_NAME_DIVIDER = ',';
+
 export const MOVE_SETTING = {
   advance: 1,
   stop: 0,
   advanceBoundary: 4,
 };
 
-export const RANDOM_NUMBER_RANGE = 10;
+export const MAX_NUMBER = 9;
+export const MIN_NUMBER = 0;

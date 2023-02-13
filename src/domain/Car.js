@@ -1,5 +1,4 @@
-import generateRandomNumber from '../util/generateRandomNumber.js';
-import { MOVE_SETTING, RANDOM_NUMBER_RANGE } from '../util/Constant.js';
+import { MOVE_SETTING } from '../util/Constant.js';
 
 class Car {
   #name;

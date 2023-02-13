@@ -1,11 +1,10 @@
-import { MESSAGE } from '../util/Constant.js';
+import { CAR_NAME_DIVIDER, MESSAGE } from '../util/Constant.js';
 
 const Validator = {
   carName(string) {
-    const names = string.split(',');
+    const names = string.split(CAR_NAME_DIVIDER);
 
-    if (!this.isVaildCarNameExist(names))
-      throw new Error('[ERROR] 자동차 이름은 존재하지 않습니다.');
+    if (!this.isVaildCarNameExist(names)) throw new Error(MESSAGE.error.exist);
 
     if (!this.isValidCarNameSpacing(string))
       throw new Error(MESSAGE.error.blank);

@@ -1,13 +1,15 @@
-import { RANDOM_NUMBER_RANGE } from '../util/Constant.js';
-import generateRandomNumber from '../util/generateRandomNumber.js';
 import Car from './Car.js';
+import generateRandomNumber from '../util/generateRandomNumber.js';
+import { CAR_NAME_DIVIDER, MAX_NUMBER, MIN_NUMBER } from '../util/Constant.js';
 
 class GameManager {
   #cars = [];
   #tryCount;
 
   addCars(carNames) {
-    carNames.split(',').forEach((carName) => this.#cars.push(new Car(carName)));
+    carNames
+      .split(CAR_NAME_DIVIDER)
+      .forEach((carName) => this.#cars.push(new Car(carName)));
   }
 
   saveTryCount(tryCount) {
@@ -23,7 +25,7 @@ class GameManager {
   generateRandomNumbers() {
     return new Array(this.#tryCount)
       .fill(null)
-      .map(() => generateRandomNumber.generator(0, RANDOM_NUMBER_RANGE));
+      .map(() => generateRandomNumber.generator(MIN_NUMBER, MAX_NUMBER));
   }
 
   getCarsStatus() {
