@@ -1,8 +1,8 @@
-const Car = require("./Car");
-const InputView = require("../view/InputView");
-const OutputView = require("../view/OutputView");
-const Run = require("./Run");
-const Random = require("./Random");
+const Car = require("./domain/Car");
+const InputView = require("./view/InputView");
+const OutputView = require("./view/OutputView");
+const Run = require("./domain/Move");
+const Random = require("./domain/Random");
 
 class App {
     #cars;
@@ -47,7 +47,7 @@ class App {
 
     eachRoundRun() {
         this.#cars.forEach((car) => {
-            Run.randomNumMakeCarGo(car, Random.getRandomNumber);
+            Run.carMove(car, Random.getRandomNumber);
         });
     }
 

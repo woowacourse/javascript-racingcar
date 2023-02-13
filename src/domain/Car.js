@@ -7,7 +7,7 @@ class Car {
         this.#score = 0;
     }
 
-    go() {
+    move() {
         this.#score++;
     }
 

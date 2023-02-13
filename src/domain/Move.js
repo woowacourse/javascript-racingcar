@@ -1,17 +1,17 @@
 const { RACING } = require("./Constant_domain");
 
-const Run = {
-    randomNumMakeCarGo(car, makeRandomFunction) {
+const move = {
+    carMove(car, makeRandomFunction) {
         const randomNum = makeRandomFunction(
             RACING.RANDOM_MIN,
             RACING.RANDOM_MAX
         );
-        if (this.isGoStop(randomNum)) car.go();
+        if (this.isMove(randomNum)) car.go();
     },
 
-    isGoStop(num) {
+    isMove(num) {
         return num >= RACING.GO_POINT;
     },
 };
 
-module.exports = Run;
+module.exports = move;
