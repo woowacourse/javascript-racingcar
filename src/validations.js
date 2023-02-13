@@ -1,5 +1,5 @@
-const { MESSAGE } = require("./Constant_view");
-const { RACING } = require("../domain/Constant_domain");
+const { MESSAGE } = require("./view/Constant_view");
+const { RACING } = require("./domain/Constant_domain");
 
 const Validations = {
     checkNameLength(carNames) {
