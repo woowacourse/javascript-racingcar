@@ -10,7 +10,7 @@ describe('utils 테스트', () => {
     expect(isMove(number)).toBe(expected);
   });
 
-  test('자동차 전진 여부와 관련된 랜덤 값을 반환하는 기능(calculateumber) 테스트', () => {
+  test('자동차 전진 여부와 관련된 랜덤 값을 반환하는 기능(calculateRandomNumber) 테스트', () => {
     Array.from({ length: 10 }).forEach(() => {
       expect(calculateRandomNumber()).toBeGreaterThanOrEqual(0);
       expect(calculateRandomNumber()).toBeLessThanOrEqual(9);
