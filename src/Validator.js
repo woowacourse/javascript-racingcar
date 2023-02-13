@@ -12,12 +12,16 @@ const Validator = {
     }
   },
 
+  validateCarNameLength(carName) {
+    return (
+      Settings.MIN_NAME_LENGTH > carName.length ||
+      carName.length > Settings.MAX_NAME_LENGTH
+    );
+  },
+
   carNameLength(carNames) {
     carNames.forEach((carName) => {
-      if (
-        carName.length < Settings.MIN_NAME_LENGTH ||
-        carName.length > Settings.MAX_NAME_LENGTH
-      ) {
+      if (Validator.validateCarNameLength(carName)) {
         throw new Error(Messages.ERROR_CAR_NAME);
       }
     });
