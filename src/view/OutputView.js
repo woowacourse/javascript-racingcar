@@ -8,16 +8,16 @@ const OutputView = {
 
   printProcessResult({ carsStatus, tryCount }) {
     Console.print(MESSAGE.output.processResultHeader);
-    for (let sequence = 0; sequence < tryCount; sequence++) {
-      this.printCarStatus(carsStatus, sequence);
+    new Array(tryCount).fill(null).forEach((_, order) => {
+      this.printCarStatus(carsStatus, order);
       Console.print('');
-    }
+    });
   },
 
-  printCarStatus(carsStatus, sequence) {
+  printCarStatus(carsStatus, order) {
     carsStatus.forEach(({ name, position }) => {
       const currentPosition = position
-        .slice(0, sequence + 1)
+        .slice(0, order + 1)
         .reduce((acc, cur) => acc + cur, 0);
 
       Console.print(`${name} : ${POSITION_UNIT.repeat(currentPosition)}`);
