@@ -7,7 +7,7 @@ class OutputView {
       throw new Error(`TypeError`);
     }
     
-    console.log(this.#getFinalResultMessage(finalResult));
+    Console.print(this.#getFinalResultMessage(finalResult));
   }
 
   static #getFinalResultMessage(finalResult) {
@@ -30,7 +30,7 @@ class OutputView {
   }
 
   static printError(error) {
-    console.log(error.message);
+    Console.print(error.message);
   }
 
   static close() {

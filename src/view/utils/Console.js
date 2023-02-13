@@ -15,7 +15,7 @@ const Console = {
   print(message) {
     this.validateType(message);
 
-    console.log(message);
+    Console.print(message);
   },
 
   close() {
