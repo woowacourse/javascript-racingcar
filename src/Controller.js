@@ -1,9 +1,8 @@
-import { NAME_DELIMITER, MOVE_NUMBER } from './constants/index.js';
-import Car from './models/Car.js';
-import Console from './utils/Console.js';
+import { MOVE_NUMBER } from './constants/index.js';
+import Car from './domain/Car.js';
 import randomNumberInRange from './utils/RandomNumberInRange.js';
-import Validator from './utils/Validator.js';
-import View from './View.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class Controller {
   #cars;
@@ -16,29 +15,29 @@ class Controller {
     await this.#initCars();
     this.#raceStart(await this.#initCount());
     this.#presentWinner();
-    Console.close();
+    InputView.close();
   }
 
   async #initCars() {
-    View.naming();
-    const names = await this.#readNames();
+    OutputView.naming();
+    const names = await InputView.readNames();
     this.#cars = names.map((name) => new Car(name));
   }
 
   async #initCount() {
-    View.tryCount();
-    const count = await this.#readTryCount();
-    View.newLine();
+    OutputView.tryCount();
+    const count = await InputView.readTryCount();
+    OutputView.newLine();
 
     return count;
   }
 
   #raceStart(count) {
-    View.resultTitle();
-    View.carProgress(this.#getCarsData());
+    OutputView.resultTitle();
+    OutputView.carProgress(this.#getCarsData());
     for (let i = 0; i < count; i += 1) {
       this.#cars.forEach(this.#judgeMove);
-      View.carProgress(this.#getCarsData());
+      OutputView.carProgress(this.#getCarsData());
     }
   }
 
@@ -48,7 +47,7 @@ class Controller {
   }
 
   #presentWinner() {
-    View.winner(this.#judgeWinner());
+    OutputView.winner(this.#judgeWinner());
   }
 
   #judgeWinner() {
@@ -61,28 +60,6 @@ class Controller {
     return this.#cars.map((car) => {
       return { name: car.getName(), distance: car.getDistance() };
     });
-  }
-
-  async #readNames() {
-    try {
-      const input = await Console.read();
-      Validator.checkNames(input);
-      return input.split(NAME_DELIMITER);
-    } catch (e) {
-      View.error(e);
-      return this.#readNames();
-    }
-  }
-
-  async #readTryCount() {
-    try {
-      const input = await Console.read();
-      Validator.checkIntegerNumber(input);
-      return Number(input);
-    } catch (e) {
-      View.error(e);
-      return this.#readTryCount();
-    }
   }
 }
 
