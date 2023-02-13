@@ -1,7 +1,7 @@
-const { View } = require("./View");
+const { View } = require("./view/View");
 const { Validator } = require("./Validator");
 const { RESULT_TYPE, MESSAGE, GAME_VALUE } = require("./constants");
-const { Car } = require("./Car");
+const { Car } = require("./doamin/Car");
 const { randomGenerator } = require("./randomGenerator");
 
 class Controller {

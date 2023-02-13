@@ -1,4 +1,4 @@
-const { Car } = require("../src/Car");
+const { Car } = require("../src/doamin/Car");
 const { randomGenerator } = require("../src/randomGenerator");
 
 describe("Car 객체 기능 검사", () => {
