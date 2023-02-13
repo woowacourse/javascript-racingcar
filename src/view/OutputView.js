@@ -1,7 +1,7 @@
 const { StaticValue, RL, ConsoleMessage } = require('../constants/constants');
 
 const OutputView = {
-  printMoveDistance(name, distance) {
+  printMoveDistance([name, distance]) {
     console.log(
       ConsoleMessage.moveDistance(
         name,

@@ -50,9 +50,7 @@ class RacingGameController {
   handleCarsMovement() {
     const CAR_MOVEMENT = this.#racingGame.getCarsMovement();
 
-    CAR_MOVEMENT.forEach(([name, distance]) => {
-      OutputView.printMoveDistance(name, distance);
-    });
+    CAR_MOVEMENT.forEach(OutputView.printMoveDistance);
   }
 
   handleWinners() {
