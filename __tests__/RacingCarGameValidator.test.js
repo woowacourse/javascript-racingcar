@@ -1,4 +1,4 @@
-const { validateCarNames, validateMovingCount } = require('../src/validators');
+const { validateCarNames, validateMovingCount } = require('../src/domain/validator');
 
 describe('자동차 이름 입력 유효성 검사', () => {
   test.each(['abc,bde', '파인,daw', '황펭a,가나'])(

@@ -1,5 +1,6 @@
 const CAR_RULE = {
   INIT_DISTANCE: 1,
+  MIN_NAME_LENGTH: 1,
   MAX_NAME_LENGTH: 5,
   NAME_SEPARATOR: ',',
 };
