@@ -1,5 +1,5 @@
 import generateRandomNumber from '../util/generateRandomNumber.js';
-import { MOVE_SETTING } from '../util/Constant.js';
+import { MOVE_SETTING, RANDOM_NUMBER_RANGE } from '../util/Constant.js';
 
 class Car {
   #name;
@@ -11,7 +11,7 @@ class Car {
 
   move(tryCount) {
     for (let sequence = 0; sequence < tryCount; sequence++) {
-      const number = generateRandomNumber.generator();
+      const number = generateRandomNumber.generator(0, RANDOM_NUMBER_RANGE);
 
       this.#position.push(
         number <= MOVE_SETTING.advanceBoundary

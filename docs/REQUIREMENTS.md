@@ -101,7 +101,7 @@
 - [x] refactor: 우승자의 자동차 이름을 반환하는 함수를 만들어 출력하기
 - [ ] refactor: 명령형 프로그래밍을 선언형 프로그래밍으로 수정하기
 - [ ] refactor: 매직 넘버 상수화하기
-- [ ] refactor: generateRandomNumber 재사용성 높이기
+- [x] refactor: generateRandomNumber 재사용성 높이기
 
 ## 파일 구조
 
