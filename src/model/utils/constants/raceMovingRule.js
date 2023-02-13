@@ -1,5 +1,6 @@
 const RACE_MOVING_RULE = {
-  startPosition: 0,
+  startPosition: 1,
+  stepSize: 1,
   minPoint: 0,
   maxPoint: 9,
   criticalPoint: 4,

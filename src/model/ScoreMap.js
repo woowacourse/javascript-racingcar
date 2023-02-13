@@ -1,11 +1,11 @@
-const RACE_MOVING_RULE = require("./constants/raceMovingRule");
+const RACE_MOVING_RULE = require("./utils/constants/raceMovingRule");
 const RandomNumberGenerator = require("./utils/RandomNumberGenerator");
 
 class ScoreMap extends Map {
   constructor(carList) {
     super();
     carList.forEach((car) => {
-      this.set(car, 1);
+      this.set(car, RACE_MOVING_RULE.startPosition);
     })
   }
 
@@ -14,7 +14,7 @@ class ScoreMap extends Map {
       const randomNumber = RandomNumberGenerator.between(RACE_MOVING_RULE.minPoint, RACE_MOVING_RULE.maxPoint);
       
       if (this.#determineCanMove(randomNumber)) {
-        this.set(car, this.get(car) + 1);
+        this.set(car, this.get(car) + RACE_MOVING_RULE.stepSize);
       }
     })
   }
@@ -30,7 +30,7 @@ class ScoreMap extends Map {
   }
 
   #determineCanMove(randomNumber) {
-    return randomNumber >= 4;
+    return randomNumber >= RACE_MOVING_RULE.criticalPoint;
   }
 }
 

@@ -1,4 +1,4 @@
-const { INPUT_MESSAGE } = require("./constants/message");
+const { INPUT_MESSAGE } = require("./utils/constants/message");
 const inputValidator = require("./InputValidator");
 const Console = require("./utils/Console");
 

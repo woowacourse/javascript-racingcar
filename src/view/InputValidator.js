@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE } = require("./constants/message");
+const { ERROR_MESSAGE } = require("./utils/constants/message");
 
 const inputValidator = {
   MIN_CAR_NAME_LENGTH: 1,

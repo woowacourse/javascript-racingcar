@@ -8,6 +8,10 @@ const OUTPUT_MESSAGE = {
   winner: '가 최종 우승했습니다.'
 }
 
+const OUTPUT_SIGNAL = {
+  carMovement: '-',
+}
+
 const ERROR_MESSAGE = {
   carNameListInRange: '[ERROR] 자동차 이름은 1글자부터 5글자 사이여야 합니다.`\n',
   carNameListDuplicated: '[ERROR] 자동차 이름 중에 중복이 있습니다. \n',
@@ -15,4 +19,4 @@ const ERROR_MESSAGE = {
   numberOfTrials: '[ERROR] 실행 횟누는 숫자만 입력 가능합니다. \n'
 }
 
-module.exports = {INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE};
+module.exports = {INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE, OUTPUT_SIGNAL};
