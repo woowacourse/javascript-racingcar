@@ -1,11 +1,11 @@
 const Car = require("./Car");
 const Cars = require("./Cars");
-const Racing = require("../Racing");
+const Racing = require("./Racing");
 const InputView = require("../view/InputView");
-const OutputView = require("../OutputView");
-const CONSTANT = require("../Constants");
+const OutputView = require("../view/OutputView");
+const Constants = require("../Constants");
 const Random = require("../utils/Random");
-const Validations = require("../validations");
+const Validations = require("../utils/validations");
 
 class App {
     play() {
@@ -22,7 +22,7 @@ class App {
                 console.log(e);
                 this.startRace();
             }
-        }, CONSTANT.INPUT_CAR_MASSEGE);
+        }, Constants.INPUT_CAR_MASSEGE+Constants.ENTER);
     }
 
     getSplitedCarName(carNames) {
@@ -30,8 +30,12 @@ class App {
     }
 
     validateCarInput(carNames) {
-        Validations.checkCarMaxName(carNames);
-        Validations.checkCarMinName(carNames);
+        if (!Validations.isCarNameUnderMax(carNames)) {
+            throw new Error(Constants.ERROR_CAR_LENGTH);
+        };
+        if (!Validations.isCarNameOverMin(carNames)) {
+            throw new Error(Constants.ERROR_CAR_NONAME);
+        };
     }
 
     createCars(carNames) {
@@ -44,13 +48,19 @@ class App {
     getRound(cars) {
         InputView.readUserInput((round => {
             try {
-                Validations.checkRound(Number(round));
+                this.validateRoundInput(Number(round))
                 this.getTotalResult(Number(round), cars);
             } catch (e) {
                 console.log(e);
                 this.getRound(cars);
             }
-        }), CONSTANT.INPUT_ROUND_MASSEGE);
+        }), Constants.INPUT_ROUND_MASSEGE+Constants.ENTER);
+    }
+
+    validateRoundInput(round) {
+        if (!Validations.isCorrectRoundNumber(round)) {
+            throw new Error(Constants.ERROR_ROUND);
+        }
     }
     
     getTotalResult(round,cars) {
