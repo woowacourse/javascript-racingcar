@@ -2,6 +2,7 @@ const { MESSAGES } = require("../constant/Constant");
 const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
 const CarRaceGame = require("./CarRaceGame");
+const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
 
 class App {
   #carRaceGame = new CarRaceGame();
@@ -32,14 +33,15 @@ class App {
   }
 
   #playRoundMultipleTimes(repeatNumber) {
+    const carCount = this.#carRaceGame.getCarCount();
     OutputView.printMessage(MESSAGES.resultTitle);
 
     for (let index = 0; index < repeatNumber; index += 1) {
-      this.#carRaceGame.performRaceOnce();
+      const raceRoundResult = CarRaceResultRandomGenerator.generate(carCount);
+      this.#carRaceGame.performRaceOnce(raceRoundResult);
       const carRaceRoundResult = this.#carRaceGame.getRaceResult();
       OutputView.printRoundResult(carRaceRoundResult.carNames, carRaceRoundResult.carDistances);
     }
-
     this.#announceWinners();
   }
 
