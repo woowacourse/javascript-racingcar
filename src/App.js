@@ -1,10 +1,17 @@
-const InputView = require("./UI/InputView");
-const utils = require("./Utils/Utils");
+import InputView from "./View/InputView.js";
+import OutputView from "./View/OutputView.js";
+import { ErrorHandler } from "./Validator/ErrorHandler.js";
+import {
+  inputCarNameValidator,
+  tryCountValidator,
+} from "./Validator/Validator.js";
+import CarGame from "./Domain/CarGame.js";
+import { utils } from "./Utils/Utils.js";
 
 class App {
   #games;
 
-  constructor(game) {
+  constructor(game = new CarGame()) {
     this.#games = game;
   }
 
@@ -13,31 +20,56 @@ class App {
   }
 
   async getCarNames() {
-    try {
-      const cars = await InputView.readCarName();
+    const cars = await InputView.readCarName();
+    const validateObject = {
+      validator: () => inputCarNameValidator(cars),
+      nextStep: () => this.getTryCount(cars),
+      afterError: () => this.getCarNames(),
+    };
 
-      this.getTryCount(cars);
-    } catch (error) {
-      utils.print(error);
-      this.getCarNames();
-    }
+    ErrorHandler(validateObject);
   }
 
   async getTryCount(cars) {
-    try {
-      const round = await InputView.readTryCount();
+    const round = await InputView.readTryCount();
 
-      this.startPlay(cars, round);
-    } catch (error) {
-      utils.print(error);
-      this.getTryCount(cars);
-    }
+    const validateObject = {
+      validator: () => tryCountValidator(round),
+      nextStep: () => this.startPlay(cars, round),
+      afterError: () => this.getTryCount(cars),
+    };
+
+    ErrorHandler(validateObject);
   }
 
   startPlay(cars, round) {
     this.#games.initializeGameStatus(cars, round);
-    this.#games.showGameResult();
+
+    OutputView.printResultMessage();
+
+    this.showEachGameRound();
+
+    this.endPlay();
+  }
+
+  showEachGameRound() {
+    const roundResult = this.#games.getEachGameRoundResult();
+
+    for (const result of roundResult) {
+      OutputView.printCarMovement(result);
+    }
+  }
+
+  endPlay() {
+    const gameStatus = this.#games.getStatusValuesArray();
+
+    const maxPosition = this.#games.getMaxPosition(gameStatus);
+    const winnerNames = this.#games.getWinnerNames(gameStatus, maxPosition);
+
+    OutputView.printWinner(winnerNames);
+
+    utils.close();
   }
 }
 
-module.exports = App;
+export default App;

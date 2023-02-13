@@ -1,10 +1,12 @@
-const {
+import {
   ERROR_MESSAGE,
   MAXIMUM_CAR_NAME_LENGTH,
   MINIMUM_TRY_COUNT,
   MINIMUM_NUMBER_OF_CARS,
   MINIMUM_CAR_NAME_LENGTH,
-} = require("../Utils/Constants");
+  MAXIMIM_TRY_COUNT,
+} from "../Utils/Constants.js";
+
 const {
   NAME_LENGTH_LIMIT,
   NOT_BLANK,
@@ -12,6 +14,8 @@ const {
   NAME_DUPLICATE,
   MINIMUM_CAR_COUNT,
   NOT_POSITIVE_NUMBER,
+  TRY_COUNT_ARRANGE,
+  NOT_INTEGER,
 } = ERROR_MESSAGE;
 
 class Validator {
@@ -40,8 +44,14 @@ class Validator {
   }
 
   isNumber(number) {
-    if (isNaN(number) || number.includes("e")) {
+    if (Number.isNaN(number)) {
       throw new Error(NOT_POSITIVE_NUMBER);
+    }
+  }
+
+  isNotInteger(number) {
+    if (!Number.isInteger(number)) {
+      throw new Error(NOT_INTEGER);
     }
   }
 
@@ -53,9 +63,10 @@ class Validator {
 
   tryCount(count) {
     this.isNumber(count);
+    this.isNotInteger(count);
 
-    if (count < MINIMUM_TRY_COUNT) {
-      throw new Error(NOT_POSITIVE_NUMBER);
+    if (count < MINIMUM_TRY_COUNT || count > MAXIMIM_TRY_COUNT) {
+      throw new Error(TRY_COUNT_ARRANGE);
     }
   }
 }
@@ -77,4 +88,4 @@ const tryCountValidator = (count) => {
   validator.tryCount(count);
 };
 
-module.exports = { inputCarNameValidator, tryCountValidator };
+export { inputCarNameValidator, tryCountValidator };

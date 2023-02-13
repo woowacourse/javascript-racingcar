@@ -1,6 +1,5 @@
-const App = require("./App");
-const CarGame = require("./CarGame");
+import App from "./App.js";
 
-const app = new App(new CarGame());
+const app = new App();
 
 app.play();
