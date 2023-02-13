@@ -1,11 +1,9 @@
-const handleError = (validateFunction, input) => {
+const handleError = (functionToTest, functionOnError) => {
   try {
-    validateFunction(input);
-    return true;
+    functionToTest();
   } catch (error) {
-    OutputView.printErrorMessage(error);
-    return false;
+    functionOnError(error);
   }
 };
 
-module.exports = handleError;
+export default handleError;

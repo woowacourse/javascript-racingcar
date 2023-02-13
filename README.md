@@ -3,3 +3,12 @@
 </p>
 <h2 align="middle">level1 - 자동차 경주 게임</h2>
 <p align="middle">자바스크립트로 구현 하는 자동차 경주 게임</p>
+
+---
+
+## 실행 방법
+
+```
+npm i
+node ./src/index.js
+```

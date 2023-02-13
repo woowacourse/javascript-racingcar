@@ -7,8 +7,7 @@ class Car {
     this.#currentDistance = 0;
   }
 
-  move(number) {
-    if (number < 4) return;
+  move() {
     this.#currentDistance += 1;
   }
 
