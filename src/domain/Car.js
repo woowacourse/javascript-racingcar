@@ -4,7 +4,7 @@ class Car {
   #name;
   #distance;
 
-  constructor(name) {
+  constructor(name, moveThereshold) {
     this.#name = name;
     this.#distance = CAR.initialDistance;
   }
