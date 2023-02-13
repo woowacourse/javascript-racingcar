@@ -1,4 +1,4 @@
-const { MINIMUM_RANDOM_NUMBER_TO_MOVE } = require('./constants/numbers');
+const { MINIMUM_RANDOM_NUMBER_TO_MOVE } = require('../constants/numbers');
 
 class Car {
   #name;

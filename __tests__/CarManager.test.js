@@ -1,4 +1,4 @@
-const CarManager = require('../src/CarManager');
+const CarManager = require('../src/domain/CarManager');
 
 const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
 

@@ -1,8 +1,11 @@
 const Car = require('./Car');
-const MainController = require('./App');
+const MainController = require('../App');
 
-const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
-const { RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE } = require('./constants/numbers');
+const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const {
+  RANDOM_LOWER_INCLUSIVE,
+  RANDOM_UPPER_INCLUSIVE,
+} = require('../constants/numbers');
 
 class OverallRacingGameManager {
   #cars = [];

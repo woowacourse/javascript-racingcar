@@ -1,4 +1,4 @@
-const CarManager = require('./CarManager');
+const CarManager = require('./domain/CarManager');
 
 const InputView = require('./view/InputView');
 const OutputView = require('./view/OutputView');
