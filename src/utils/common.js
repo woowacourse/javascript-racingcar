@@ -13,4 +13,9 @@ const toInt = (string) => Math.floor(Number(string));
 
 const generateRandomNumberInRange = (min, max) => min + Math.floor(Math.random() * (max - min));
 
-module.exports = { deepClone, deepFreeze, toInt, generateRandomNumberInRange };
+const readline = require('node:readline/promises').createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+module.exports = { deepClone, deepFreeze, toInt, generateRandomNumberInRange, readline };

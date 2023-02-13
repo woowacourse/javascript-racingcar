@@ -1,13 +1,13 @@
-const readlinePromises = require('node:readline/promises');
-const rl = readlinePromises.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const { readline } = require('../utils/common');
 
 const InputView = {
   async readline(text) {
-    const input = await rl.question(text);
+    const input = await readline.question(text);
     return input;
+  },
+
+  closeRead() {
+    readline.close();
   },
 };
 

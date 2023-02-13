@@ -17,6 +17,7 @@ const GAME = deepFreeze({
   nameDivider: ',',
   progressMarker: '-',
   blank: ' ',
+  newLine: '',
 });
 
 const INPUT = Object.freeze({
@@ -41,7 +42,7 @@ const OUTPUT_WINNER = (winners) =>
   `${winners.map((winner) => winner.getName()).join(GAME.nameDivider)}가 최종 우승했습니다.`;
 
 const ERROR = deepFreeze({
-  carNameLength: `자동차 이름은 ${GAME.CAR_NAME.min}~${GAME.CAR_NAME.max}글자 사이여야 합니다.`,
+  carNamesLength: `자동차 이름은 ${GAME.CAR_NAME.min}~${GAME.CAR_NAME.max}글자 사이여야 합니다.`,
   duplicatedCarName: '자동차 이름은 중복될 수 없습니다.',
   blankInCarName: '자동차 이름은 공백이 포함될 수 없습니다.',
   invalidWinningDistanceRange: `시도 횟수는 ${GAME.DISTANCE.min} 이상 ${GAME.DISTANCE.max} 미만이여야 합니다.`,

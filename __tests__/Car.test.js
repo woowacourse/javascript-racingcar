@@ -1,13 +1,5 @@
-const Car = require('../src/model/Car');
-const common = require('../src/utils/common');
+const Car = require('../src/domain/Car');
 const { GAME } = require('../src/constant/constants');
-
-const mockRandoms = (numbers) => {
-  common.generateRandomNumberInRange = jest.fn();
-  numbers.reduce((acc, cur) => {
-    return acc.mockReturnValueOnce(cur);
-  }, common.generateRandomNumberInRange);
-};
 
 describe('Car 클래스', () => {
   test(`자동차는 ${GAME.MOVE_CONDITION.min}와 ${GAME.MOVE_CONDITION.max - 1} 사이에서 무작위 값이 ${
@@ -16,10 +8,8 @@ describe('Car 클래스', () => {
     const car = new Car('name');
     const randomNumbers = [4, 5];
 
-    console.log('hh' + mockRandoms);
-    mockRandoms(randomNumbers);
-    randomNumbers.forEach(() => {
-      car.move();
+    randomNumbers.forEach((randomNumber) => {
+      car.move(randomNumber);
     });
 
     expect(car.getDistance()).toBe(2);
@@ -31,9 +21,8 @@ describe('Car 클래스', () => {
     const car = new Car('name');
     const randomNumbers = [3, 2];
 
-    mockRandoms(randomNumbers);
-    randomNumbers.forEach(() => {
-      car.move();
+    randomNumbers.forEach((randomNumber) => {
+      car.move(randomNumber);
     });
 
     expect(car.getDistance()).toBe(0);
