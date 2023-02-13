@@ -17,7 +17,7 @@ class App {
       .setRaceCars()
       .then(() => this.setRaceStep())
       .catch((error) => {
-        RaceController.handleError(error);
+        RaceController.handleSetRaceCarsError(error);
         this.setRaceCars();
       });
   }
@@ -27,7 +27,7 @@ class App {
       .setRaceStep()
       .then(() => this.startRace())
       .catch((error) => {
-        RaceController.handleError(error);
+        RaceController.handleSetRaceStepError(error);
         this.setRaceStep();
       });
   }

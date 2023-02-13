@@ -5,20 +5,24 @@ import OutputView from '../view/OutputView';
 class RaceController {
   #race;
 
-  static handleError(error) {
-    OutputView.printError(error);
-  }
-
   async setRaceCars() {
     const carNames = await InputView.readCarNames();
 
     this.#race = new Race(carNames);
   }
 
+  static handleSetRaceCarsError(error) {
+    OutputView.printError(error);
+  }
+
   async setRaceStep() {
     const raceStep = await InputView.readRaceStep();
 
     this.#race.setRaceStep(raceStep);
+  }
+
+  static handleSetRaceStepError(error) {
+    OutputView.printError(error);
   }
 
   startRace() {
