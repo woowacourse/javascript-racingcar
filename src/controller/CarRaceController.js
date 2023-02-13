@@ -17,7 +17,7 @@ class carRaceController {
       this.#carRace.setCarNames(cars);
       this.#repeat();
     } catch (e) {
-      OutputView.printMessage(e);
+      OutputView.printMessage(e.message);
       this.start();
     }
   }
@@ -27,7 +27,7 @@ class carRaceController {
       const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber);
       this.#playGame(repeatNumber);
     } catch (e) {
-      OutputView.printMessage(e);
+      OutputView.printMessage(e.message);
       this.#repeat();
     }
   }
