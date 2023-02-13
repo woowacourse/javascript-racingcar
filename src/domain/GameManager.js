@@ -9,7 +9,7 @@ class GameManager {
   }
 
   saveTryCount(tryCount) {
-    this.#tryCount(tryCount);
+    this.#tryCount = tryCount;
   }
 
   moveCar() {
