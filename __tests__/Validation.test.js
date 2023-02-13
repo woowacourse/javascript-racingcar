@@ -1,7 +1,7 @@
 const { ERROR_SUBJECT } = require('../src/constants');
-const Validation = require('../src/Validation');
+const validation = require('../src/domain/validator/validation');
 
-describe('Validation 테스트', () => {
+describe('자동차 경주 게임의 입력값에 대한 유효성(validation) 테스트', () => {
   test.each([
     [['eus', 'eus']],
     [['eus', 'EUS']],
@@ -38,7 +38,7 @@ describe('Validation 테스트', () => {
     [['eus!', 'zero']],
   ])('자동차 이름 예외 상황 테스트: %s일 때 에러 반환', (carNames) => {
     expect(() => {
-      Validation.carName(carNames);
+      validation.carName(carNames);
     }).toThrow(ERROR_SUBJECT);
   });
 
@@ -46,7 +46,7 @@ describe('Validation 테스트', () => {
     '시도 횟수 예외 상황 테스트: %s일 때 에러 반환',
     (attemptCount) => {
       expect(() => {
-        Validation.attempt(attemptCount);
+        validation.attempt(attemptCount);
       }).toThrow(ERROR_SUBJECT);
     }
   );
