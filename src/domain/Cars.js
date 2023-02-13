@@ -18,13 +18,13 @@ class Cars {
     }
 
     decideWinnerCar() {
-        this.getWinnerScore();
+        this.decideWinnerCarScore();
         this.#cars.filter(car => car.getScore() === this.#winnerCarScore).forEach(car => {
             this.#winnerCar.push(car.getCarName());
         });
     }
 
-    getWinnerScore() {
+    decideWinnerCarScore() {
         this.#cars.forEach(car => {
             this.#winnerCarScore = Math.max(this.#winnerCarScore, car.getScore());
         });
