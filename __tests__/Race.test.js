@@ -1,5 +1,5 @@
-import Car from '../src/models/Car';
-import Race from '../src/models/Race';
+import Car from '../src/domain/Car';
+import Race from '../src/domain/Race';
 import Random from '../src/utils/Random';
 
 const mockRandom = (randomValues) => {

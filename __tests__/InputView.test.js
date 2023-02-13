@@ -1,5 +1,5 @@
 import Console from '../src/utils/Console.js';
-import InputView from '../src/views/InputView';
+import InputView from '../src/view/InputView';
 
 describe('InputView 테스트 입니다.', () => {
   const mockQuestion = (answer) => {
