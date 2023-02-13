@@ -14,7 +14,7 @@ class App {
     await this.readCarName();
     await this.readTryCount();
 
-    this.moveCar();
+    this.#gameManager.moveCar();
 
     const carsStatus = this.#cars.map((car) => car.getStatus());
     this.printProcessResult(carsStatus);
@@ -43,12 +43,6 @@ class App {
       OutputView.printErrorMessage(error);
       await this.readTryCount();
     }
-  }
-
-  moveCar() {
-    this.#cars.forEach((car) => {
-      car.move(this.#tryCount);
-    });
   }
 
   printProcessResult(carsStatus) {

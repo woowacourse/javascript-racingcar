@@ -11,6 +11,12 @@ class GameManager {
   saveTryCount(tryCount) {
     this.#tryCount(tryCount);
   }
+
+  moveCar() {
+    this.#cars.forEach((car) => {
+      car.move(this.#tryCount);
+    });
+  }
 }
 
 export default GameManager;
