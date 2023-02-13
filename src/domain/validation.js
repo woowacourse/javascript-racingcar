@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE, GAME_NUMBER, REG_EXP } = require('./constants');
+const { ERROR_MESSAGE, GAME_NUMBER, REG_EXP } = require('../constants');
 
 const validation = {
   carName: (carNames) => {

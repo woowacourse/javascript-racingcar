@@ -1,8 +1,8 @@
 const Attempts = require('../model/Attempts');
 const Car = require('../model/Car');
-const { Random } = require('../utils');
-const inputView = require('../view/inputView');
-const outputView = require('../view/outputView');
+const { Random } = require('../../utils');
+const inputView = require('../../view/inputView');
+const outputView = require('../../view/outputView');
 
 class RacingGame {
   #cars;

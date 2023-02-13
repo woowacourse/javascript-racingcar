@@ -1,4 +1,4 @@
-const Car = require('../src/model/Car');
+const Car = require('../src/domain/model/Car');
 
 describe('Car 모델 테스트', () => {
   const car = new Car('제로');

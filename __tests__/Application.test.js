@@ -1,5 +1,5 @@
 const Console = require('../src/utils/Console');
-const RacingGame = require('../src/controller/RacingGame');
+const RacingGame = require('../src/domain/controller/RacingGame');
 const { Random } = require('../src/utils');
 const { GAME_NUMBER } = require('../src/constants');
 

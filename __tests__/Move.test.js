@@ -1,4 +1,4 @@
-const { isMove } = require('../src/model/Car');
+const { isMove } = require('../src/domain/model/Car');
 const { Random } = require('../src/utils');
 
 describe('utils 테스트', () => {
