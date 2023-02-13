@@ -1,16 +1,18 @@
 const readlineInterface = require("../util/readlineInterface");
-const { CONDITION, MESSAGES } = require("../constant/Constant");
+const validator = require("./validator");
+const trimmer = require("./trimmer");
+const { MESSAGES } = require("../constant/Constant");
 
 const InputView = {
   readCarNames(messages) {
     return new Promise((resolve, reject) => {
       readlineInterface.question(messages, (carNames) => {
-        if (!CONDITION.carNames.test(carNames)) {
+        if (validator.isCarNamesInvalid(carNames)) {
           reject(new Error(MESSAGES.carTextError));
         }
 
-        const cars = carNames.split(",");
-        resolve(cars);
+        const trimmedCars = trimmer.trimCarNames(carNames);
+        resolve(trimmedCars);
       });
     });
   },
@@ -18,14 +20,18 @@ const InputView = {
   readRepeatNumber(messages) {
     return new Promise((resolve, reject) => {
       readlineInterface.question(messages, (repeatNumber) => {
-        if (!CONDITION.repeatNumber.test(repeatNumber)) {
+        if (validator.isRepeatNumberInvalid(repeatNumber)) {
           reject(new Error(MESSAGES.repeatRangeError));
         }
 
-        readlineInterface.close();
-        resolve(Number(repeatNumber));
+        const trimmedRepeatNumber = trimmer.trimRepeatNumber(repeatNumber);
+        resolve(trimmedRepeatNumber);
       });
     });
+  },
+
+  close() {
+    readlineInterface.close();
   },
 };
 
