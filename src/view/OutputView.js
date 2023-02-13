@@ -11,12 +11,10 @@ const OutputView = {
   printRaceResult(raceInstance) {
     Console.print('\n실행 결과');
 
-    new Array(Number(raceInstance.getTrial()) + 1)
-      .fill(0)
-      .forEach((_, index) => {
-        this.printTrace(raceInstance, index);
-        Console.print('');
-      });
+    new Array(raceInstance.getTrial() + 1).fill(0).forEach((_, index) => {
+      this.printTrace(raceInstance, index);
+      Console.print('');
+    });
   },
 
   printWinners(winners) {

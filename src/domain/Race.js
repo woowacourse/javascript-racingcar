@@ -19,7 +19,7 @@ class Race {
   }
 
   setTrial(newTrial) {
-    this.#trial = newTrial;
+    this.#trial = Number(newTrial);
   }
 
   addCar(newCar) {
@@ -27,7 +27,7 @@ class Race {
   }
 
   start() {
-    new Array(Number(this.#trial)).fill(0).forEach(() => {
+    new Array(this.#trial).fill(0).forEach(() => {
       this.#cars.forEach((car) => {
         const randomNumber = Random.pickNumberInRange(
           MAGIC_NUMBER.RANGE_START,
