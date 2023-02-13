@@ -3,14 +3,14 @@ const { RACING } = require("./Constant_domain");
 const Move = {
     carMove(car, makeRandomFunction) {
         const randomNum = makeRandomFunction(
-            RACING.RANDOM_MIN,
-            RACING.RANDOM_MAX
+            RACING.MIN_MOVE_CONDITION,
+            RACING.MAX_MOVE_CONDITION
         );
         if (this.isMove(randomNum)) car.move();
     },
 
     isMove(num) {
-        return num >= RACING.GO_POINT;
+        return num >= RACING.MOVE_CONDITION;
     },
 };
 

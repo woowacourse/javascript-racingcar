@@ -2,24 +2,24 @@ const { MESSAGE } = require("./Constant_view");
 const { RACING } = require("../domain/Constant_domain");
 
 const Validations = {
-    carNameLengthMax(carNames) {
+    checkNameLength(carNames) {
         carNames.forEach((name) => {
-            if (name.length > RACING.CAR_NAME_MAX) {
+            if (name.length > RACING.MAX_CAR_NAME) {
                 throw new Error(MESSAGE.ERROR_CAR_LENGTH);
             }
         });
     },
 
-    carNameLengthMin(carNames) {
+    checkEmptyName(carNames) {
         carNames.forEach((name) => {
-            if (name.length <= RACING.CAR_NAME_MIN) {
+            if (name.length <= RACING.MIN_CAR_NAME) {
                 throw new Error(MESSAGE.ERROR_CAR_NONAME);
             }
         });
     },
 
-    roundRange(num) {
-        if (!Number.isInteger(num) || num < RACING.ROUND_MIN) {
+    checkRoundCount(num) {
+        if (!Number.isInteger(num) || num < RACING.MIN_ROUND) {
             throw new Error(MESSAGE.ERROR_ROUND);
         }
     },

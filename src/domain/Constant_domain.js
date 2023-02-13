@@ -1,12 +1,12 @@
 const RACING = {
-    RANDOM_MIN: 0,
-    RANDOM_MAX: 9,
-    GO_POINT: 4,
+    MIN_MOVE_CONDITION: 0,
+    MAX_MOVE_CONDITION: 9,
+    MOVE_CONDITION: 4,
 
-    CAR_NAME_MIN: 0,
-    CAR_NAME_MAX: 5,
+    MIN_CAR_NAME: 0,
+    MAX_CAR_NAME: 5,
 
-    ROUND_MIN: 1,
+    MIN_ROUND: 1,
 };
 
 module.exports = { RACING };

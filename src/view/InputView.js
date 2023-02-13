@@ -12,8 +12,8 @@ const InputView = {
 
     tryCatchCarName(carNames, callback) {
         try {
-            validations.carNameLengthMax(carNames);
-            validations.carNameLengthMin(carNames);
+            validations.checkNameLength(carNames);
+            validations.checkEmptyName(carNames);
             callback(carNames);
         } catch (e) {
             console.log(e.message);
@@ -29,7 +29,7 @@ const InputView = {
 
     tryCatchRound(round, callback) {
         try {
-            validations.roundRange(+round);
+            validations.checkRoundCount(+round);
             callback(+round);
         } catch (e) {
             console.log(e.message);
