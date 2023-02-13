@@ -6,10 +6,8 @@ const outputView = {
     Console.print(GAME_MESSAGE.progressResult);
   },
 
-  printGameProgress(name, progress, isLast) {
-    const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}${
-      isLast ? GAME_STRING.space : GAME_STRING.empty
-    }`;
+  printGameProgress(name, progress) {
+    const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}`;
     Console.print(result);
   },
 
@@ -17,6 +15,10 @@ const outputView = {
     const winners = names.join(GAME_STRING.winnersJoin);
     Console.print(GAME_MESSAGE.getWinners(winners));
     Console.close();
+  },
+
+  printSpace() {
+    Console.print(GAME_STRING.empty);
   },
 };
 
