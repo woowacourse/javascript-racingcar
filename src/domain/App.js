@@ -7,7 +7,7 @@ const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
 class App {
   #carRaceGame = new CarRaceGame();
 
-  play() {
+  startCarRaceGame() {
     this.#readCarText();
   }
 
@@ -48,10 +48,15 @@ class App {
   #announceWinners() {
     const winners = this.#carRaceGame.getWinners();
     OutputView.printWinners(winners);
+    this.#exitCarRaceGame();
+  }
+
+  #exitCarRaceGame() {
+    InputView.close();
   }
 }
 
 const game = new App();
-game.play();
+game.startCarRaceGame();
 
 module.exports = App;
