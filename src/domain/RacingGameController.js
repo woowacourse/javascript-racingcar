@@ -1,7 +1,7 @@
 import RacingGame from './RacingGame.js';
 import Validation from './Validation.js';
 import { InputView, OutputView } from '../view/index.js';
-import { inputErrorHandler, Console, randomNumberGenerator } from '../utils/index.js';
+import { Console, randomNumberGenerator } from '../utils/index.js';
 
 export default class RacingGameController {
   #racingGame;
@@ -23,24 +23,30 @@ export default class RacingGameController {
     const carNamesInput = await InputView.readCarNames();
     const carNames = carNamesInput.split(',').map((carName) => carName.trim());
 
-    const isValidInput = inputErrorHandler(Validation.validateCarNames, carNames);
-    if (!isValidInput) {
+    try {
+      Validation.validateCarNames(carNames);
+
+      return carNames;
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
       return this.#requestCarNames();
     }
-
-    return carNames;
   }
 
   async #requestRaceRound() {
     const raceRoundInput = await InputView.readRaceRound();
     const raceRound = Number(raceRoundInput);
 
-    const isValidInput = inputErrorHandler(Validation.validateRaceRound, raceRound);
-    if (!isValidInput) {
+    try {
+      Validation.validateRaceRound(raceRound);
+
+      return raceRound;
+    } catch ({ message }) {
+      OutputView.printErrorMessage(message);
+
       return this.#requestRaceRound();
     }
-
-    return raceRound;
   }
 
   #startRace() {

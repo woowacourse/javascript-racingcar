@@ -5,6 +5,10 @@ const OutputView = {
     console.log(RESULT_MESSAGE.opening);
   },
 
+  printErrorMessage(message) {
+    console.log(message);
+  },
+
   printRoundResult(roundResult) {
     const templates = roundResult.map(({ name, position }) => {
       const positionScore = Converter.numberToDash(position);
