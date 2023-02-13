@@ -5,7 +5,7 @@ export const MESSAGE = {
     lowerCase: '[ERROR] 자동차 이름은 영소문자로 이루어져야 합니다.',
     duplicatedName: '[ERROR] 자동차 이름이 중복되었습니다.',
     numeric: '[ERROR] 시도 횟수는 양의 정수이어야 합니다.',
-    exist: '[ERROR] 자동차 이름은 존재하지 않습니다.',
+    exist: '[ERROR] 자동차 이름이 존재해야 합니다.',
   },
 
   input: {
