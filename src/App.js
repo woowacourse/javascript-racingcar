@@ -1,10 +1,12 @@
 import Car from './domain/Car.js';
+import GameManager from './domain/GameManager.js';
 import Validator from './domain/Validator.js';
 import Console from './util/Console.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 
 class App {
+  #gameManager = new GameManager();
   #cars = [];
   #tryCount;
 
@@ -25,15 +27,11 @@ class App {
     const carNames = await InputView.readCarName();
     try {
       Validator.carName(carNames);
-      carNames.split(',').forEach((carName) => this.createCarObject(carName));
+      this.#gameManager.addCars(carNames);
     } catch (error) {
       OutputView.printErrorMessage(error);
       await this.readCarName();
     }
-  }
-
-  createCarObject(carName) {
-    this.#cars.push(new Car(carName));
   }
 
   async readTryCount() {
