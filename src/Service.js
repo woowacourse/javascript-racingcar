@@ -1,5 +1,6 @@
 const { Car } = require('./Car');
 const { randomGenerator } = require('./randomGenerator');
+const { GAME_VALUE } = require('./constants');
 
 class Service {
   #cars;
@@ -13,7 +14,7 @@ class Service {
 
   getMovingLog() {
     return this.#cars.reduce((roundLog, car) => {
-      const randomNumber = randomGenerator();
+      const randomNumber = randomGenerator(GAME_VALUE.MAX_RANGE);
       car.move(randomNumber);
 
       const { name, position } = car.getCarInfo();
