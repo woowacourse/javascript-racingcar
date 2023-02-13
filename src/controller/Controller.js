@@ -15,12 +15,12 @@ class Controller {
   async createRacingCarGame() {
     const carNameList = await this.#inputView.readCarNameList();
     const numberOfTrials = await this.#inputView.readNumberOfTrials();
-    this.#racingCarGame = new RacingCarGame(carNameList, numberOfTrials)
+    this.#racingCarGame = new RacingCarGame(carNameList, numberOfTrials);
   }
 
   executeRacingCarGame() {
     this.#racingCarGame.play();
-    
+
     this.#outputView.printResult(this.#racingCarGame.getGameResult());
     this.#outputView.close();
   }

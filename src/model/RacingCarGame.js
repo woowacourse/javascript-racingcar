@@ -1,13 +1,13 @@
-const ResultContainer = require("./ResultContainer");
-const RacingScoreMap = require("./ScoreMap");
+const ResultContainer = require('./ResultContainer');
+const RacingScoreMap = require('./ScoreMap');
 
 class RacingCarGame {
   #totalTrial;
   #scoreMap;
   #roundResultList;
 
-  constructor(carList, totalTrial) { 
-    if (carList.some((car) => typeof car !== 'string') && isNaN(totalTrial)){
+  constructor(carList, totalTrial) {
+    if (carList.some((car) => typeof car !== 'string') && isNaN(totalTrial)) {
       throw new Error(`TypeError`);
     }
 
@@ -29,15 +29,14 @@ class RacingCarGame {
     }
   }
 
-  #tryOnce () {
+  #tryOnce() {
     this.#scoreMap.updateScoreOnce();
     this.#addRoundResult(this.#scoreMap.getRoundResult());
   }
 
-  #addRoundResult (roundResult) {
+  #addRoundResult(roundResult) {
     this.#roundResultList.push(roundResult);
   }
-  
 }
 
 module.exports = RacingCarGame;
