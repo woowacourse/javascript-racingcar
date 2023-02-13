@@ -1,5 +1,5 @@
 const ResultContainer = require('./ResultContainer');
-const RacingScoreMap = require('./ScoreMap');
+const ScoreMap = require('./ScoreMap');
 
 class RacingCarGame {
   #totalTrial;
@@ -11,7 +11,7 @@ class RacingCarGame {
       throw new Error(`TypeError`);
     }
 
-    this.#scoreMap = new RacingScoreMap(carList);
+    this.#scoreMap = new ScoreMap(carList);
     this.#roundResultList = [this.#scoreMap.getRoundResult()];
     this.#totalTrial = totalTrial;
   }
