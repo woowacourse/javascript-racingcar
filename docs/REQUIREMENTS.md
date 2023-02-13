@@ -88,9 +88,13 @@
 - [x] refactor: ES6 모듈 적용하기
 - [x] refactor: 유효성 검사 메서드 이름 수정하기
   - 이름을 통해 해당 메서드가 하는 역할을 알 수 있도록 한다.
-- [ ] refactor: 자동차 게임을 관리하는 객체 만들기
+- [x] refactor: 자동차 게임을 관리하는 객체 만들기
   - 해당 객체에서 자동차 객체를 관리한다.
   - 해당 객체에서 자동차 게임의 전반적인 역할을 담당한다.
+- [x] refactor: 자동차 객체 생성을 GameManager에서 실행하기
+- [ ] refactor: GameManager에 시도횟수 저장하기
+- [ ] refactor: 자동차의 이동을 GameManager에서 실행하기
+- [ ] refactor: 자동차의 상태를 가져오기 위한 함수를 GameManager에서 실행하기
 - [ ] refactor: 명령형 프로그래밍을 선언형 프로그래밍으로 수정하기
 
 ## 파일 구조
