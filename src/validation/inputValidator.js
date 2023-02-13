@@ -1,13 +1,15 @@
 const OutputView = require('../view/OutputView');
 const { GAME, ERROR } = require('../constant/constants');
 
+const printErrorMessage = (errorMessage) => {OutputView.print(new Error(errorMessage).message)} 
+
 const checkCarNamesLength = (carNames) => {
   if (
     !carNames.every(
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
     )
   ) {
-    OutputView.print(new Error(ERROR.carNamesLength).message);
+    printErrorMessage(ERROR.carNamesLength);
     return false;
   }
   return true;
@@ -15,7 +17,7 @@ const checkCarNamesLength = (carNames) => {
 
 const checkDuplicatedCarName = (carNames) => {
   if (carNames.length !== new Set(carNames).size) {
-    OutputView.print(new Error(ERROR.duplicatedCarName).message);
+    printErrorMessage(ERROR.duplicatedCarName);
     return false;
   }
   return true;
@@ -23,7 +25,7 @@ const checkDuplicatedCarName = (carNames) => {
 
 const checkBlankInCarName = (carNames) => {
   if (carNames.some((carName) => carName.includes(GAME.blank))) {
-    OutputView.print(new Error(ERROR.blankInCarName).message);
+    printErrorMessage(ERROR.blankInCarName);
     return false;
   }
   return true;
@@ -39,7 +41,7 @@ const validateCarNames = (carNames) => {
 
 const checkIsBetweenValidRange = (winningDistance) => {
   if (!(GAME.DISTANCE.min <= winningDistance && winningDistance < GAME.DISTANCE.max)) {
-    OutputView.print(new Error(ERROR.invalidWinningDistanceRange).message);
+    printErrorMessage(ERROR.invalidWinningDistanceRange);
     return false;
   }
   return true;
@@ -47,7 +49,7 @@ const checkIsBetweenValidRange = (winningDistance) => {
 
 const checkIsInt = (winningDistance) => {
   if (Number.isNaN(winningDistance)) {
-    OutputView.print(Error(ERROR.invalidWinningDistanceType).message);
+    printErrorMessage(ERROR.invalidWinningDistanceType);
     return false;
   }
   return true;
