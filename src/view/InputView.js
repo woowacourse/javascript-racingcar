@@ -1,4 +1,4 @@
-const validations = require("../validations");
+const validations = require("../Validations");
 const { MESSAGE } = require("./Constant_view");
 const RL = require("./Readline");
 
