@@ -6,7 +6,7 @@ const Validator = {
 
     if (this.isCarNameHasBlank(string)) throw new Error(MESSAGE.error.blank);
 
-    if (!this.isCarNameLessThenFive(names))
+    if (!this.isValidNameLength(names))
       throw new Error(MESSAGE.error.nameLength);
 
     if (this.isCarNameNull(names)) throw new Error(MESSAGE.error.null);
@@ -26,7 +26,7 @@ const Validator = {
     return string.search(REGEXR.noBlank) !== -1;
   },
 
-  isCarNameLessThenFive(names) {
+  isValidNameLength(names) {
     return names.every((name) => name.length <= 5);
   },
 
