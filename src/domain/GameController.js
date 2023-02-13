@@ -17,7 +17,6 @@ class GameController {
   async #createRacingGame() {
     const carNames = await this.#requestCarNames();
     const round = await this.#requestRaceRound();
-
     this.#racingGame = new RacingGame(carNames, round);
   }
 
@@ -29,7 +28,7 @@ class GameController {
       return carNames;
     } catch (e) {
       OutputView.print(e.message);
-      await this.#requestCarNames();
+      return this.#requestCarNames();
     }
   }
 
@@ -41,7 +40,7 @@ class GameController {
       return raceRound;
     } catch (e) {
       OutputView.print(e.message);
-      await this.#requestRaceRound();
+      return this.#requestRaceRound();
     }
   }
 
