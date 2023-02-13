@@ -4,11 +4,12 @@ const generateRandomNumber = require('../utils/randomNumberGenerator');
 class RacingGame {
   static MOVE_CONDITION = 4;
   #cars;
-  #round;
+  #totalRound;
+  #currentRound = 1;
 
   constructor(carNames, round) {
     this.#cars = carNames.map((carName) => new Car(carName));
-    this.#round = round;
+    this.#totalRound = round;
   }
 
   race() {
@@ -18,15 +19,31 @@ class RacingGame {
       if (randomNumber >= RacingGame.MOVE_CONDITION) {
         car.move();
       }
+
+      car.accumlateRoundPosition();
     });
 
-    this.#round -= 1;
+    this.#currentRound += 1;
   }
 
-  getRoundResult() {
+  getFinalResult() {
+    const finalResult = [];
+    let roundCounter = 1;
+
+    while (roundCounter <= this.#totalRound) {
+      const roundResult = this.#getRoundResult(roundCounter);
+      finalResult.push(roundResult);
+
+      roundCounter += 1;
+    }
+
+    return finalResult;
+  }
+
+  #getRoundResult(round) {
     return this.#cars.map((car) => {
       const name = car.getName();
-      const position = car.getPosition();
+      const position = car.getRoundPosition(round - 1);
 
       return { name, position };
     });
@@ -34,16 +51,16 @@ class RacingGame {
 
   getWinners(highestScore) {
     return this.#cars
-      .filter((car) => car.getPosition() === highestScore)
+      .filter((car) => car.getRoundPosition(this.#totalRound - 1) === highestScore)
       .map((car) => car.getName());
   }
 
   getHighestScore() {
-    return Math.max(...this.#cars.map((car) => car.getPosition()));
+    return Math.max(...this.#cars.map((car) => car.getRoundPosition(this.#totalRound - 1)));
   }
 
   isPlaying() {
-    return Boolean(this.#round);
+    return this.#currentRound <= this.#totalRound;
   }
 }
 

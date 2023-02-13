@@ -1,6 +1,7 @@
 class Car {
   #name;
   #position = 0;
+  #roundPosition = [];
 
   constructor(name) {
     this.#name = name;
@@ -10,12 +11,16 @@ class Car {
     this.#position += 1;
   }
 
+  accumlateRoundPosition() {
+    this.#roundPosition.push(this.#position);
+  }
+
   getName() {
     return this.#name;
   }
 
-  getPosition() {
-    return this.#position;
+  getRoundPosition(round) {
+    return this.#roundPosition[round];
   }
 }
 

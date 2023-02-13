@@ -10,8 +10,8 @@ class GameController {
   async play() {
     await this.#createRacingGame();
     this.#raceCars();
-    const winners = this.#findWinners();
-    this.#showWinners(winners);
+    this.#showResult();
+    this.#endGame();
   }
 
   async #createRacingGame() {
@@ -46,14 +46,17 @@ class GameController {
   }
 
   #raceCars() {
-    OutputView.print(RESULT_MESSAGE.opening);
-
     while (this.#racingGame.isPlaying()) {
       this.#racingGame.race();
-
-      const roundResult = this.#racingGame.getRoundResult();
-      OutputView.printRoundResult(roundResult);
     }
+  }
+
+  #showResult() {
+    OutputView.print(RESULT_MESSAGE.opening);
+    const finalResult = this.#racingGame.getFinalResult();
+    const winners = this.#findWinners();
+    OutputView.printFinalResult(finalResult);
+    OutputView.printWinners(winners);
   }
 
   #findWinners() {
@@ -63,8 +66,7 @@ class GameController {
     return winners;
   }
 
-  #showWinners(winners) {
-    OutputView.printFinalResult(winners);
+  #endGame() {
     Console.close();
   }
 }
