@@ -1,6 +1,6 @@
 const Validator = {
-  isNumeric(value) {
-    return /^-?\d+$/.test(value);
+  isInteger(value) {
+    return Number.isInteger(+value);
   },
 
   isDuplicate(array) {

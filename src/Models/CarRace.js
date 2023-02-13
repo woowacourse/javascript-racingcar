@@ -20,7 +20,7 @@ class CarRace {
   }
 
   static validateTryCount(count) {
-    if (!Validator.isNumeric(count) || count < 1) {
+    if (!Validator.isInteger(count) || count < 1) {
       throw new Error(RACE_ERROR_MESSAGE.RANGE_OF_TRY_COUNT);
     }
   }
