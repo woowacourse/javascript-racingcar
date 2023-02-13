@@ -1,26 +1,26 @@
-const Constants = require("./Constants");
+const Constants = require("../Constants");
 
 const Validations = {
 
-    checkCarMaxName(carNames) {
-        carNames.forEach(name => {
-            if (name.length > Constants.CAR_NAME_MAX) {
-                throw new Error(Constants.ERROR_CAR_LENGTH);
-            } 
-        });
+    isCarNameUnderMax(carNames) {
+        for (let i = 0; i < carNames.length; i++) {
+            if (carNames[i].length > Constants.CAR_NAME_MAX) {
+                return false
+            }
+        }
     },
 
-    checkCarMinName(carNames) {
-        carNames.forEach(name => {
-            if (name.length <= Constants.CAR_NAME_MIN) {
-                throw new Error(Constants.ERROR_CAR_NONAME);
-            };
-        });
+    isCarNameOverMin(carNames) {
+        for (let i = 0; i < carNames.length; i++) {
+            if (carNames[i].length <= Constants.CAR_NAME_MIN) {
+                return false
+            }
+        }
     },
 
-    checkRound(num) {
+    isCorrectRoundNumber(num) {
         if (!Number.isInteger(num) || num <= 0) {
-            throw new Error(Constants.ERROR_ROUND);
+            return false
         };
     }
 }
