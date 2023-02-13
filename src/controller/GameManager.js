@@ -11,12 +11,15 @@ const {
 } = require('../view/OutputView');
 const { readCarNames, readTryCount } = require('../view/InputView');
 const { ERROR } = require('../constants/message');
+const { FORWARD_CONDITION } = require('../constants/value');
 class GameManager {
   #cars = [];
 
   moveCars(randomNumbers) {
     this.#cars.forEach((car) => {
-      car.move(randomNumbers.shift());
+      if (randomNumbers.shift() >= FORWARD_CONDITION) {
+        car.move();
+      }
     });
   }
 
