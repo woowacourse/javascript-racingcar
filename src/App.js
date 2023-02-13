@@ -1,4 +1,3 @@
-import Car from './domain/Car.js';
 import GameManager from './domain/GameManager.js';
 import Validator from './domain/Validator.js';
 import Console from './util/Console.js';
@@ -7,18 +6,14 @@ import OutputView from './view/OutputView.js';
 
 class App {
   #gameManager = new GameManager();
-  #cars = [];
 
   async play() {
     await this.readCarName();
     await this.readTryCount();
 
     this.#gameManager.moveCar();
-
-    const carsStatus = this.#cars.map((car) => car.getStatus());
     this.printProcessResult();
-    this.printWinner(carsStatus);
-
+    this.printWinner();
     this.quit();
   }
 
@@ -44,14 +39,13 @@ class App {
     }
   }
 
-  printProcessResult(carsStatus) {
+  printProcessResult() {
     const carsStatus = this.#gameManager.getCarsStatus();
     OutputView.printProcessResult(carsStatus);
   }
 
-  printWinner(carsStatus) {
-    const winner = Car.getWinner(carsStatus);
-
+  printWinner() {
+    const winner = this.#gameManager.getWinner();
     OutputView.printWinner(winner);
   }
 

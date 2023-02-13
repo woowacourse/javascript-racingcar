@@ -1,4 +1,4 @@
-import Car from './Car';
+import Car from './Car.js';
 
 class GameManager {
   #cars = [];
@@ -23,6 +23,16 @@ class GameManager {
       tryCount: this.#tryCount,
       carsStatus: this.#cars.map((car) => car.getStatus()),
     };
+  }
+
+  getWinner() {
+    const highestPosition = this.getHighestPosition();
+    return this.#cars.filter((car) => car.isWinner(highestPosition));
+  }
+
+  getHighestPosition() {
+    const carsPosition = this.#cars.map((car) => car.getFinalPosition());
+    return Math.max(...carsPosition);
   }
 }
 
