@@ -2,9 +2,9 @@ const { Settings, Messages } = require('./constants/Config');
 const Console = require('./utils/Console');
 
 const Validator = {
-  isValidCarNames(input) {
+  isValidCarNames(name) {
     try {
-      Validator.carNameLength(input);
+      Validator.carNameLength(name);
       return false;
     } catch (error) {
       Console.print(error.message);
@@ -12,8 +12,8 @@ const Validator = {
     }
   },
 
-  carNameLength(input) {
-    input.forEach((carName) => {
+  carNameLength(carNames) {
+    carNames.forEach((carName) => {
       if (
         carName.length < Settings.MIN_NAME_LENGTH ||
         carName.length > Settings.MAX_NAME_LENGTH
