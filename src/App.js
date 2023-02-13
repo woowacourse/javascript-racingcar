@@ -38,7 +38,7 @@ class App {
     const tryCount = await InputView.readTryCount();
     try {
       Validator.tryCount(tryCount);
-      this.#tryCount = Number(tryCount);
+      this.#gameManager.saveTryCount(Number(tryCount));
     } catch (error) {
       OutputView.printErrorMessage(error);
       await this.readTryCount();
