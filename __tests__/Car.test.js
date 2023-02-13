@@ -12,6 +12,16 @@ describe('Car 이동 테스트', () => {
 });
 
 describe('Car 유효성 테스트', () => {
+  test.each(['', ' ', undefined])(
+    '이름에 공백만 있거나 아무것도 입력하지 않을 시 에러가 발생한다.',
+    (input) => {
+      expect(() => {
+        console.log(input);
+        new Car(input);
+      }).toThrow();
+    },
+  );
+
   test('이름의 길이가 5 이하일 때 정상적으로 작동한다.', () => {
     expect(() => {
       new Car('abcd');
@@ -21,18 +31,6 @@ describe('Car 유효성 테스트', () => {
   test('이름의 길이가 5 초과일 때 에러가 발생한다.', () => {
     expect(() => {
       new Car('abcdef');
-    }).toThrow();
-  });
-
-  test('이름의 길이가 0일 때 에러가 발생한다.', () => {
-    expect(() => {
-      new Car('');
-    }).toThrow();
-  });
-
-  test('이름이 공백만 있을 때 에러가 발생한다.', () => {
-    expect(() => {
-      new Car('  ');
     }).toThrow();
   });
 });
