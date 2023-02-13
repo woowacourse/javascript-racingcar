@@ -7,15 +7,19 @@ class Race {
   /** @type {Car[]} */
   #cars;
 
+  /** @type {Random} */
+  #random;
+
   /**
    * @param {Car[]} cars
    */
-  constructor(cars) {
+  constructor(cars, random = Random) {
     this.#cars = cars;
+    this.#random = random;
   }
 
   canCarMove(car) {
-    const randomNumber = Random.randomNumberBetween(0, 10);
+    const randomNumber = this.#random.randomNumberBetween(0, 10);
     if (randomNumber < Race.FREEZE_CHANCE) return false;
 
     return true;
