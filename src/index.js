@@ -13,23 +13,24 @@ class App {
 
   requestInputCarNames() {
     InputView.readCarNames((names) => {
-      if (!handleError(Validator.validateCarNames.bind(Validator), names)) {
-        this.requestInputCarNames();
-        return;
-      }
       this.requestInputTryCount(names);
     });
   }
 
   requestInputTryCount(names) {
     InputView.readTryCount((tryCount) => {
-      if (!handleError(Validator.validateTryCount.bind(Validator), tryCount)) {
-        this.requestInputTryCount();
-        return;
-      }
-      this.#racingGame = new RacingGame(names, tryCount);
-      this.race();
+      handleError(this.setRacingGame.bind(this, names, tryCount), this.requestInputAgain.bind(this));
     });
+  }
+
+  setRacingGame(names, tryCount) {
+    this.#racingGame = new RacingGame(names, tryCount);
+    this.race();
+  }
+
+  requestInputAgain(error) {
+    OutputView.printErrorMessage(error);
+    this.requestInputCarNames();
   }
 
   race() {

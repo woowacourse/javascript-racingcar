@@ -1,5 +1,6 @@
 import Car from "./Car.js";
 import RandomNumberGenerator from "../util/RandomNumberGenerator.js";
+import Validator from "./Validator.js";
 
 class RacingGame {
   #cars;
@@ -8,6 +9,7 @@ class RacingGame {
   constructor(carNames, leftTryCount) {
     const carNamesArray = carNames.split(",");
     this.#cars = carNamesArray.map((name) => new Car(name));
+    Validator.validateTryCount(leftTryCount);
     this.#leftTryCount = leftTryCount;
   }
 

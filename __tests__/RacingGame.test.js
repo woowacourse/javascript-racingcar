@@ -10,7 +10,7 @@ const mockRandoms = (numbers) => {
 
 describe("RacingGame 클래스 테스트", () => {
   test("RacingGame을 생성하면 2개의 Car 인스턴스가 생성되고, 현재 이동 거리는 0이다.", () => {
-    const racingGame = new RacingGame("룩소,아인", 0);
+    const racingGame = new RacingGame("룩소,아인", 1);
 
     const result = racingGame.getCarsResultOfOneTurn();
 
