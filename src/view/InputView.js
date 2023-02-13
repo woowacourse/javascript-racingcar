@@ -22,6 +22,11 @@ const InputView = {
       throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
     }
 
+    const isEveryCarNameNotEmpty = carNames.every((carName) => carName.length > 0);
+    if (!isEveryCarNameNotEmpty) {
+      throw new AppError(ErrorMessages.CAR_NAME_EMPTY);
+    }
+
     const isEveryCarNameDistinct = new Set(carNames).size === carNames.length;
     if (!isEveryCarNameDistinct) {
       throw new AppError(ErrorMessages.CAR_NAME_MUST_DISTINCT);

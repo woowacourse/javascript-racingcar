@@ -8,6 +8,7 @@ export const Messages = {
 export const ErrorMessages = {
   PREFIX: '[ERROR]',
   CAR_NAME_LENGTH_LIMIT: '자동차의 이름은 {0}글자 이하여야 합니다.',
+  CAR_NAME_EMPTY: '자동차의 이름은 비어있을 수 없습니다',
   CAR_NAME_MUST_DISTINCT: '자동차의 이름은 서로 중복되지 않아야 합니다',
   RACE_STEP_NOT_INTEGER: '정수를 입력해야 합니다.',
   RACE_STEP_NOT_POSITIVE: '0보다 큰 양수를 입력해야 합니다.',
