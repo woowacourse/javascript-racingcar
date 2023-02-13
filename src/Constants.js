@@ -1,7 +1,7 @@
 
 const Constants = {
-    INPUT_CAR_MASSEGE: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
-    INPUT_ROUND_MASSEGE: "시도할 회수는 몇회인가요?\n",
+    INPUT_CAR_MASSEGE: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
+    INPUT_ROUND_MASSEGE: "시도할 회수는 몇회인가요?",
     
     RANDOM_MIN: 0,
     RANDOM_MAX: 9,
@@ -12,7 +12,7 @@ const Constants = {
 
     ROUND_MIN: 1,
 
-    RESULT_TITLE: "\n실행 결과",
+    RESULT_TITLE: "실행 결과",
     RESULT_MASSEGE: "가 최종 우승했습니다.",
 
     ERROR_ROUND: "[ERROR] 0보다 큰 숫자를 입력해주세요.",
@@ -21,6 +21,7 @@ const Constants = {
     ERROR_CAR_NONAME: "[ERROR] 자동차 이름은 1자 이상이어야 합니다.",
     
     BLANK: "",
+    ENTER: "\n",
     POSITION_BAR: "-"
 }
 
