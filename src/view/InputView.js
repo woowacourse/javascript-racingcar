@@ -5,9 +5,9 @@ const InputView = {
   readCarNames(callback) {
     RL.question(ConsoleMessage.CAR_NAME, (input) => {
       try {
-        const CARS = input.split(StaticValue.CAR_NAME_INPUT_SEPERATOR);
-        Exception.checkCarInput(CARS);
-        callback(CARS);
+        const cars = input.split(StaticValue.CAR_NAME_INPUT_SEPERATOR);
+        Exception.checkCarInput(cars);
+        callback(cars);
       } catch (e) {
         console.log(e.message);
         this.readCarNames(callback.bind(this));

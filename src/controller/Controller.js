@@ -25,9 +25,9 @@ class Controller {
   }
 
   handleMovementLog(moveCount) {
-    const COUNT = Number(moveCount);
+    const count = Number(moveCount);
 
-    for (let i = 0; i < COUNT; i += 1) {
+    for (let i = 0; i < count; i += 1) {
       this.handleCarsMovement();
       OutputView.printEmptyLine();
     }
@@ -37,25 +37,25 @@ class Controller {
 
   handleCarsMovement() {
     this.#cars.forEach((car) => {
-      const RANDOM_NUMBER = RandomNumberGenerator.generate(
+      const randomNumber = RandomNumberGenerator.generate(
         StaticValue.RANDOM_NUMBER_MIN,
         StaticValue.RANDOM_NUMBER_MAX
       );
 
-      if (RANDOM_NUMBER >= StaticValue.MOVE_CONDITION) car.move();
+      if (randomNumber >= StaticValue.MOVE_CONDITION) car.move();
 
       OutputView.printMoveDistance(car.getName(), car.getCurrentDistance());
     });
   }
 
   handleWinners() {
-    const CARS_DISTANCE = this.#cars.map((car) => car.getCurrentDistance());
-    const MAX_DISTANCE = Math.max(...CARS_DISTANCE);
-    const WINNERS = this.#cars
-      .filter((car) => car.getCurrentDistance() === MAX_DISTANCE)
+    const carsDistance = this.#cars.map((car) => car.getCurrentDistance());
+    const maxDistance = Math.max(...carsDistance);
+    const winners = this.#cars
+      .filter((car) => car.getCurrentDistance() === maxDistance)
       .map((car) => car.getName());
 
-    OutputView.printWinner(WINNERS);
+    OutputView.printWinner(winners);
   }
 }
 
