@@ -52,7 +52,7 @@ describe('Exception 객체 테스트', () => {
 
       MOVE_COUNT_INPUTS.forEach((moveCount) => {
         expect(() => {
-          Exception.checkMoveCountInput(moveCount, 10);
+          Exception.checkMoveCountInput(moveCount);
         }).toThrow();
       });
     });
