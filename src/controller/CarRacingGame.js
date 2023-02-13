@@ -4,7 +4,7 @@ const { isMove, calculateRandomNumber } = require('../utils');
 const inputView = require('../view/inputView');
 const outputView = require('../view/outputView');
 
-class Controller {
+class CarRacingGame {
   #cars = [];
 
   #attempt;
@@ -85,4 +85,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = CarRacingGame;
