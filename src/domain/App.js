@@ -13,11 +13,11 @@ class App {
 
   async #start() {
     try {
-      const carNames = await InputView.readCarNames(MESSAGES.carText);
-      this.#carRace.setCarNames(carNames.split(","));
+      const cars = await InputView.readCarNames(MESSAGES.carText);
+      this.#carRace.setCarNames(cars);
       this.#repeat();
     } catch (e) {
-      OutputView.printMessage(MESSAGES.carTextError);
+      OutputView.printMessage(e);
       this.#start();
     }
   }
