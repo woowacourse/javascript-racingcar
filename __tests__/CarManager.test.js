@@ -1,7 +1,5 @@
 const CarManager = require('../src/domain/CarManager');
 
-const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
-
 describe('자동차를 관리하는 클래스 테스트', () => {
   let carManager;
 
