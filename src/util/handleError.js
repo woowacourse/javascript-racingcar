@@ -1,6 +1,6 @@
-const handleError = (functionToTest, functionOnError) => {
+const handleError = (functionToTry, functionOnError) => {
   try {
-    functionToTest();
+    functionToTry();
   } catch (error) {
     functionOnError(error);
   }
