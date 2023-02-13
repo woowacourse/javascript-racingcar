@@ -15,7 +15,10 @@ class Race {
   start() {
     this.#carNames.map(() => {
       const race = Random.makeRandomNumbers(this.#countOfTrial);
+      console.log(race);
       const car = new Car(race);
+
+      console.log(car.getRaceResult());
       this.#currentRace = [...this.#currentRace, car.getRaceResult()];
     });
     return this.#currentRace;

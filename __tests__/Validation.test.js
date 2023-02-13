@@ -30,7 +30,7 @@ describe("자동차 경주 유효성 검사", () => {
 describe("시도 횟수 유효성 검사", () => {
   test.each([" ", "."])("시도 횟수는 정수여야 합니다.", (testCase) => {
     expect(() => {
-      ValidateCountOfTrial.validateNotANumber(testCase);
+      ValidateCountOfTrial.validateIsNotANumber(testCase);
     }).toThrow();
   });
   test("시도 횟수는 1이상 이어야 합니다.", () => {
