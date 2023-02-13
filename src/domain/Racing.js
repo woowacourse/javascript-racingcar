@@ -1,7 +1,6 @@
 const Constants = require("../Constants");
 
 class Racing {
-
     constructor(car) {
         this.car = car;
     }
@@ -13,7 +12,6 @@ class Racing {
     raceEachCar(randomNumber) {
         this.checkRandomNumber(randomNumber) && this.car.go();
     }
-
 }
 
 module.exports = Racing;

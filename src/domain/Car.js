@@ -1,5 +1,4 @@
 class Car {
-
     #score;
 
     constructor(name) {
@@ -18,7 +17,6 @@ class Car {
     go() {
         this.#score++;
     }
-
 }
 
 module.exports = Car;

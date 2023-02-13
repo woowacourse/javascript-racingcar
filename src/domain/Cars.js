@@ -1,5 +1,4 @@
 class Cars {
-
     #cars;
     #winnerCarScore;
     #winnerCar;
@@ -30,7 +29,6 @@ class Cars {
             this.#winnerCarScore = Math.max(this.#winnerCarScore, car.getScore());
         });
     }
-
 }
 
 module.exports = Cars;

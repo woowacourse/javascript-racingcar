@@ -1,7 +1,6 @@
 const Constants = require("../Constants");
 
 const Validations = {
-
     isCarNameUnderMax(carNames) {
         for (let i = 0; i < carNames.length; i++) {
             if (carNames[i].length > Constants.CAR_NAME_MAX) {

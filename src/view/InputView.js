@@ -5,13 +5,11 @@ const rl = readline.createInterface({
 });
 
 const InputView = {
-
     readUserInput(callback, inputMessage) {
         rl.question(inputMessage, (input) => {
             callback(input);
         });
     }
-
 }
 
 module.exports = InputView;
