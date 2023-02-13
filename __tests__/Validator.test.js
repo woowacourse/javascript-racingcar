@@ -1,4 +1,4 @@
-const Validator = require("../src/Validator/Validator");
+const Validator = require("../src/validator/Validator");
 const { inputCarNameValidator, tryCountValidator } = Validator;
 
 const checkException = (testList, checkFunction) => {

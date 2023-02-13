@@ -1,4 +1,4 @@
-const Utils = require("../Utils/Utils");
+const Utils = require("../util/Utils");
 
 const errorCatcher = (validator, readInput, acceptValidInput) => {
   try {
@@ -10,4 +10,4 @@ const errorCatcher = (validator, readInput, acceptValidInput) => {
   }
 };
 
-module.exports = { errorCatcher };
+module.exports = errorCatcher;

@@ -1,5 +1,5 @@
-const { movingDistance } = require("../src/Domain/MovementIndicator");
-const { MOVEMENT } = require("../src/Constants/Constants");
+const movingDistance = require("../src/domain/MovementIndicator");
+const { MOVEMENT } = require("../src/constant/Constants");
 const { FORWARD_DISTANCE } = MOVEMENT;
 
 test.each([
