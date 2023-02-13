@@ -13,7 +13,7 @@ class RacingGame {
     const MOVEMENT = [];
 
     this.#cars.forEach((car) => {
-      RacingGame.moveCar(car);
+      this.moveCar(car);
 
       MOVEMENT.push([car.getName(), car.getCurrentDistance()]);
     });
@@ -29,7 +29,7 @@ class RacingGame {
       .map((car) => car.getName());
   }
 
-  static moveCar(car) {
+  moveCar(car) {
     const RANDOM_NUMBER = Utils.generateRandomNumber();
 
     if (RANDOM_NUMBER >= StaticValue.MOVE_CONDITION) car.move();
