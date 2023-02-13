@@ -31,9 +31,19 @@ class App {
   }
 
   createCarObject(carNames) {
-    carNames.split(",").forEach((carName) => {
-      this.#cars.push(new Car(carName));
+    const splitedCarNames = this.splitCarNames(carNames);
+
+    splitedCarNames.forEach((carName) => {
+      this.pushNewCar(carName);
     });
+  }
+
+  splitCarNames(carNames) {
+    return carNames.split(",");
+  }
+
+  pushNewCar(carName) {
+    this.#cars.push(new Car(carName));
   }
 
   readTryCount() {
