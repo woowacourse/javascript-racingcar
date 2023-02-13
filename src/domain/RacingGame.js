@@ -1,12 +1,7 @@
 const Car = require('./Car');
 
-const RandomNumberGenerator = require('./utils/RandomNumberGenerator');
-
 class RacingGame {
   #cars = [];
-
-  static MIN_PROGRESS_CONDITION_NUMBER = 0;
-  static MAX_PROGRESS_CONDITION_NUMBER = 9;
 
   constructor(carNames) {
     this.#cars = carNames.map((carName) => new Car(carName));
@@ -14,12 +9,7 @@ class RacingGame {
 
   progressAllCars() {
     this.#cars.forEach((car) => {
-      car.tryProgress(
-        RandomNumberGenerator.generate(
-          RacingGame.MIN_PROGRESS_CONDITION_NUMBER,
-          RacingGame.MAX_PROGRESS_CONDITION_NUMBER,
-        ),
-      );
+      car.tryProgress();
     });
   }
 
