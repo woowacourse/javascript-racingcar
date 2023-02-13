@@ -1,5 +1,6 @@
 const Random = require("../utils/Random");
-const { MOVE_FORWARD, FLAG, NOT_MOVED } = require("../constants");
+const Car = require("../Domain/Car");
+const { MOVE_FORWARD } = require("../constants");
 
 class Race {
   #carNames;
@@ -13,17 +14,11 @@ class Race {
 
   start() {
     this.#carNames.map(() => {
-      const race = this.convertResults(
-        Random.makeRandomNumbers(this.#countOfTrial)
-      );
-      this.#currentRace = [...this.#currentRace, race];
+      const race = Random.makeRandomNumbers(this.#countOfTrial);
+      const car = new Car(race);
+      this.#currentRace = [...this.#currentRace, car.getRaceResult()];
     });
-
     return this.#currentRace;
-  }
-
-  convertResults(race) {
-    return race.map((step) => (step >= FLAG ? MOVE_FORWARD : NOT_MOVED));
   }
 
   makeResult() {

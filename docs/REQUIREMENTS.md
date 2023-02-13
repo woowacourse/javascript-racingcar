@@ -63,7 +63,7 @@
 - [x] 상수명 수정. COUNT_OF_TRIAL_SHOULD_BE_NUMBER => COUNT_OF_TRIAL_IS_ONLY_NUMBER
 - [x] OutputView의 경주 진행 상황 출력 함수 더 간단하게 작성. (while => map으로 변경했으나 극적으로 바뀌었는지는..?)
 - [x] 조건문이 길어지면 함수로 따로 분리
-
+- [x] Race 로직에서 Car 로직 분리
 
 ### 2단계 요구사항
 - [x] 메인 로직은 domain/ 하위로, UI 관련 로직은 view/ 하위에서 관리한다.
