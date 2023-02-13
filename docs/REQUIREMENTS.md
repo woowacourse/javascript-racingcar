@@ -96,7 +96,8 @@
 - [x] refactor: 자동차의 이동을 GameManager에서 실행하기
 - [x] refactor: 자동차의 상태를 가져오기 위한 함수를 GameManager에서 실행하기
 - [x] feat: 자동차의 최종 위치를 구하기
-- [ ] refactor: 자동차 경주 게임의 우승자를 가져오기 위한 함수를 GameMananger에서 실행하기
+- [x] refactor: 자동차 경주 게임의 우승자를 가져오기 위한 함수를 GameMananger에서 실행하기
+- [x] refactor: 우승자의 자동차 이름을 반환하는 함수를 만들어 출력하기
 - [ ] refactor: 명령형 프로그래밍을 선언형 프로그래밍으로 수정하기
 
 ## 파일 구조

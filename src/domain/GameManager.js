@@ -27,7 +27,9 @@ class GameManager {
 
   getWinner() {
     const highestPosition = this.getHighestPosition();
-    return this.#cars.filter((car) => car.isWinner(highestPosition));
+    return this.#cars
+      .map((car) => car.getWinnerName(highestPosition))
+      .filter((car) => car);
   }
 
   getHighestPosition() {

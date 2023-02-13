@@ -29,6 +29,10 @@ class Car {
     return this.#position.reduce((acc, cur) => acc + cur, 0);
   }
 
+  getWinnerName(highestPosition) {
+    if (this.isWinner(highestPosition)) return this.#name;
+  }
+
   isWinner(highestPosition) {
     return highestPosition === this.getFinalPosition();
   }
