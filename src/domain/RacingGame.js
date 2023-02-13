@@ -10,15 +10,11 @@ class RacingGame {
   }
 
   getCarsMovement() {
-    const MOVEMENT = [];
-
-    this.#cars.forEach((car) => {
+    return this.#cars.map((car) => {
       this.moveCar(car);
 
-      MOVEMENT.push([car.getName(), car.getCurrentDistance()]);
+      return [car.getName(), car.getCurrentDistance()];
     });
-
-    return MOVEMENT;
   }
 
   getWinners() {
