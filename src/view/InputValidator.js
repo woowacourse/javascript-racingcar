@@ -19,7 +19,7 @@ class InputValidator {
   }
 
   static validateNumberOfTrials(numberOfTrials) {
-    if (isNaN(numberOfTrials)) {
+    if (isNaN(numberOfTrials) || numberOfTrials === 0) {
       throw new Error(ERROR_MESSAGE.numberOfTrials);
     }
   }
