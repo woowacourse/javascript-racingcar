@@ -11,7 +11,7 @@ describe("Car 클래스 테스트", () => {
   test("무작위 값이 4 이상이면 1칸 이동", () => {
     const car = new Car("룩소");
 
-    car.move(4);
+    car.move();
 
     expect(car.getCurrentDistance()).toBe(1);
   });

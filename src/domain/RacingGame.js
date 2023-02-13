@@ -6,17 +6,18 @@ class RacingGame {
   #cars;
   #leftTryCount;
 
-  constructor(carNames, leftTryCount) {
+  constructor(carNames, tryCount) {
     const carNamesArray = carNames.split(",");
     this.#cars = carNamesArray.map((name) => new Car(name));
-    Validator.validateTryCount(leftTryCount);
-    this.#leftTryCount = leftTryCount;
+
+    Validator.validateTryCount(tryCount);
+    this.#leftTryCount = tryCount;
   }
 
   raceOneTurn() {
     this.#cars.forEach((car) => {
       const randomNumber = RandomNumberGenerator.generate();
-      car.move(randomNumber);
+      if (randomNumber >= 4) car.move();
     });
     this.#leftTryCount -= 1;
   }
