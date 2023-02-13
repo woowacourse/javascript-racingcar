@@ -17,5 +17,3 @@ const RandomNumberGenerator = {
 };
 
 module.exports = RandomNumberGenerator;
-
-console.log(RandomNumberGenerator.generate(0, 9));
