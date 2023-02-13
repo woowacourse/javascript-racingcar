@@ -1,9 +1,11 @@
 const OutputView = require('../view/OutputView');
 const { GAME, ERROR } = require('../constant/constants');
 
-const printErrorMessage = (errorMessage) => {OutputView.print(new Error(errorMessage).message)} 
+const printErrorMessage = (errorMessage) => {
+  OutputView.print(new Error(errorMessage).message);
+};
 
-const checkCarNamesLength = (carNames) => {
+const isCheckCarNamesLength = (carNames) => {
   if (
     !carNames.every(
       (carName) => carName.length >= GAME.CAR_NAME.min && carName.length <= GAME.CAR_NAME.max,
@@ -15,7 +17,7 @@ const checkCarNamesLength = (carNames) => {
   return true;
 };
 
-const checkDuplicatedCarName = (carNames) => {
+const isCheckDuplicatedCarName = (carNames) => {
   if (carNames.length !== new Set(carNames).size) {
     printErrorMessage(ERROR.duplicatedCarName);
     return false;
@@ -23,7 +25,7 @@ const checkDuplicatedCarName = (carNames) => {
   return true;
 };
 
-const checkBlankInCarName = (carNames) => {
+const isCheckBlankInCarName = (carNames) => {
   if (carNames.some((carName) => carName.includes(GAME.blank))) {
     printErrorMessage(ERROR.blankInCarName);
     return false;
@@ -33,13 +35,13 @@ const checkBlankInCarName = (carNames) => {
 
 const validateCarNames = (carNames) => {
   return (
-    checkCarNamesLength(carNames) &&
-    checkDuplicatedCarName(carNames) &&
-    checkBlankInCarName(carNames)
+    isCheckCarNamesLength(carNames) &&
+    isCheckDuplicatedCarName(carNames) &&
+    isCheckBlankInCarName(carNames)
   );
 };
 
-const checkIsBetweenValidRange = (winningDistance) => {
+const isCheckIsBetweenValidRange = (winningDistance) => {
   if (!(GAME.DISTANCE.min <= winningDistance && winningDistance < GAME.DISTANCE.max)) {
     printErrorMessage(ERROR.invalidWinningDistanceRange);
     return false;
@@ -47,7 +49,7 @@ const checkIsBetweenValidRange = (winningDistance) => {
   return true;
 };
 
-const checkIsInt = (winningDistance) => {
+const isCheckIsInt = (winningDistance) => {
   if (Number.isNaN(winningDistance)) {
     printErrorMessage(ERROR.invalidWinningDistanceType);
     return false;
@@ -56,7 +58,7 @@ const checkIsInt = (winningDistance) => {
 };
 
 const validateWinningDistance = (winningDistance) => {
-  return checkIsInt(winningDistance) && checkIsBetweenValidRange(winningDistance);
+  return isCheckIsInt(winningDistance) && isCheckIsBetweenValidRange(winningDistance);
 };
 
 module.exports = { validateCarNames, validateWinningDistance };
