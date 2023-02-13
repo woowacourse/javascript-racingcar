@@ -1,3 +1,5 @@
+const { MOVE_CRITERIA_NUMBER } = require('../util/constants');
+
 class Car {
   #name;
   #currentDistance;
@@ -8,7 +10,7 @@ class Car {
   }
 
   move(number) {
-    if (number < 4) return;
+    if (number < MOVE_CRITERIA_NUMBER.NUMBER) return;
     this.#currentDistance += 1;
   }
 
