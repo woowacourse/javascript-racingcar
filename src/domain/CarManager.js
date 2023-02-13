@@ -42,7 +42,7 @@ class OverallRacingGameManager {
     return this.#cars;
   }
 
-  get winners() {
+  getWinners() {
     const maxProgressCount = Math.max(...this.#cars.map((car) => car.progressCount));
 
     return this.#cars
