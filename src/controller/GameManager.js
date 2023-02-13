@@ -32,7 +32,7 @@ class GameManager {
     Array(tryCount).fill().forEach(() => {
       this.moveCars(RandomGenerator.generateRandomNumbers(this.#cars.length));
       this.printCars();
-    })
+    });
   }
 
   judgeWinners() {

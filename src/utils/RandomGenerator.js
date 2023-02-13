@@ -1,6 +1,6 @@
 const RandomGenerator = {
   generateRandomNumbers(length) {
-    return Array(length).fill().map(() => Math.floor((Math.random() * 10)))
+    return Array(length).fill().map(() => Math.floor((Math.random() * 10)));
   }
 };
 
