@@ -1,6 +1,8 @@
+const { DECIMAL_NUMBER } = require('./constants');
+
 const RandomNumberGenerator = {
   generate() {
-    return Math.floor(Math.random() * 9) + 1;
+    return Math.floor(Math.random() * DECIMAL_NUMBER.NUMBER);
   },
 };
 

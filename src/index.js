@@ -1,8 +1,8 @@
-const RacingGame = require("./domain/RacingGame");
-const InputView = require("./view/InputView");
-const OutputView = require("./view/OutputView");
-const Validator = require("./domain/Validator");
-const handleError = require("./util/handleError");
+const RacingGame = require('./domain/RacingGame');
+const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
+const Validator = require('./domain/Validator');
+const handleError = require('./util/handleError');
 class App {
   #racingGame;
 
@@ -35,7 +35,7 @@ class App {
     OutputView.printRacingStart();
     while (!this.#racingGame.isGameComplete()) {
       this.#racingGame.raceOneTurn();
-      const carsResultOfOneTurn = this.#racingGame.getCarsResultOfOneTurn();
+      const carsResultOfOneTurn = this.#racingGame.getAccumulatedDistancern();
       OutputView.printOneTurnResult(carsResultOfOneTurn);
     }
     this.finishRace();

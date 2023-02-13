@@ -1,12 +1,12 @@
-const Car = require("./Car");
-const RandomNumberGenerator = require("../util/RandomNumberGenerator");
+const Car = require('./Car');
+const RandomNumberGenerator = require('../util/RandomNumberGenerator');
 
 class RacingGame {
   #cars;
   #tryCount;
 
   constructor(carNames, tryCount) {
-    const carNamesArray = carNames.split(",");
+    const carNamesArray = carNames.split(',');
     this.#cars = carNamesArray.map((name) => new Car(name));
     this.#tryCount = tryCount;
   }
@@ -14,17 +14,24 @@ class RacingGame {
   raceOneTurn() {
     this.#cars.forEach((car) => {
       const randomNumber = RandomNumberGenerator.generate();
-      car.move(randomNumber);
+      this.moveCar(randomNumber, car);
     });
     this.#tryCount -= 1;
+  }
+
+  moveCar(randomNumber, car) {
+    car.move(randomNumber);
   }
 
   isGameComplete() {
     return this.#tryCount === 0;
   }
 
-  getCarsResultOfOneTurn() {
-    return this.#cars.map((car) => ({ name: car.getName(), currentDistance: car.getCurrentDistance() }));
+  getAccumulatedDistancern() {
+    return this.#cars.map((car) => ({
+      name: car.getName(),
+      currentDistance: car.getCurrentDistance(),
+    }));
   }
 
   #calculateWinners(car, winners, maxDistance) {

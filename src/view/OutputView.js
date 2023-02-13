@@ -1,10 +1,10 @@
 const OutputView = {
   printRacingStart() {
-    console.log("\n실행 결과");
+    console.log('\n실행 결과');
   },
 
   numberToPath(number) {
-    return "-".repeat(Number(number));
+    return '-'.repeat(Number(number));
   },
 
   printOneTurnResult(carsResultOfOneTurn) {
@@ -15,7 +15,7 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    console.log(`${winners.join(", ")}가 최종 우승했습니다.`);
+    console.log(`${winners.join(', ')}가 최종 우승했습니다.`);
   },
 
   printErrorMessage(error) {
