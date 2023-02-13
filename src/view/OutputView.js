@@ -1,5 +1,5 @@
-const Console = require('../util/Console');
-const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require('../util/Constant');
+import Console from '../util/Console.js';
+import { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } from '../util/Constant.js';
 
 const OutputView = {
   printErrorMessage(error) {
@@ -29,4 +29,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

@@ -45,5 +45,6 @@
       "@babel/preset-env"
     ]
   },
+  "type": "module",
   "dependencies": {}
 }

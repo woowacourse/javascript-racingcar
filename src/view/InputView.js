@@ -1,5 +1,5 @@
-const Console = require('../util/Console.js');
-const { MESSAGE } = require('../util/Constant.js');
+import Console from '../util/Console.js';
+import { MESSAGE } from '../util/Constant.js';
 
 const InputView = {
   readCarName() {
@@ -10,7 +10,7 @@ const InputView = {
     });
   },
 
-  async readTryCount(callback) {
+  async readTryCount() {
     return new Promise((resolve) => {
       Console.readLine(MESSAGE.input.tryCount, (tryCount) => {
         resolve(tryCount);
@@ -19,4 +19,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;

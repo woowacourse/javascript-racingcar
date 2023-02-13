@@ -1,5 +1,5 @@
-const { MOVE_SETTING } = require('../util/Constant.js');
-const GenerateRandomNumber = require('../util/GenerateRandomNumber.js');
+import generateRandomNumber from '../util/generateRandomNumber.js';
+import { MOVE_SETTING } from '../util/Constant.js';
 
 class Car {
   #name;
@@ -11,7 +11,7 @@ class Car {
 
   move(tryCount) {
     for (let sequence = 0; sequence < tryCount; sequence++) {
-      const number = GenerateRandomNumber.generator();
+      const number = generateRandomNumber.generator();
 
       this.#position.push(
         number <= MOVE_SETTING.advanceBoundary
@@ -39,4 +39,4 @@ class Car {
   }
 }
 
-module.exports = Car;
+export default Car;

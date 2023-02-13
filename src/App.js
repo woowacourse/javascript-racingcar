@@ -1,9 +1,8 @@
-const InputView = require('./view/InputView.js');
-const OutputView = require('./view/OutputView.js');
-const Validator = require('./domain/Validator.js');
-
-const Car = require('./domain/Car.js');
-const Console = require('./util/Console.js');
+import Car from './domain/Car.js';
+import Validator from './domain/Validator.js';
+import Console from './util/Console.js';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   #cars = [];
@@ -72,4 +71,4 @@ class App {
 const app = new App();
 app.play();
 
-module.exports = App;
+export default App;

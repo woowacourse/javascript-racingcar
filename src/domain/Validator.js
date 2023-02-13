@@ -1,4 +1,4 @@
-const { MESSAGE } = require('../util/Constant');
+import { MESSAGE } from '../util/Constant.js';
 
 const Validator = {
   carName(string) {
@@ -51,4 +51,4 @@ const Validator = {
   },
 };
 
-module.exports = Validator;
+export default Validator;
