@@ -1,43 +1,43 @@
 const { ERROR_MESSAGE } = require('./utils/constants/message');
 
-const inputValidator = {
-  MIN_CAR_NAME_LENGTH: 1,
-  MAX_CAR_NAME_LENGTH: 5,
+class InputValidator {
+  static #MIN_CAR_NAME_LENGTH = 1;
+  static #MAX_CAR_NAME_LENGTH = 5;
 
-  validateCarNameList(carNameList) {
-    if (this.hasCarNameListEmpty(carNameList)) {
+  static validateCarNameList(carNameList) {
+    if (this.#hasCarNameListEmpty(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameEmpty);
     }
 
-    if (!this.isCarNameListInRange(carNameList)) {
+    if (!this.#isCarNameListInRange(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameListInRange);
     }
 
-    if (!this.isCarNameListNotDuplicated(carNameList)) {
+    if (!this.#isCarNameListNotDuplicated(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameListDuplicated);
     }
-  },
+  }
 
-  validateNumberOfTrials(numberOfTrials) {
+  static validateNumberOfTrials(numberOfTrials) {
     if (isNaN(numberOfTrials)) {
       throw new Error(ERROR_MESSAGE.numberOfTrials);
     }
-  },
+  }
 
-  hasCarNameListEmpty(carNameList) {
+  static #hasCarNameListEmpty(carNameList) {
     return carNameList.some((carName) => carName.length === 0);
-  },
+  }
 
-  isCarNameListInRange(carNameList) {
+  static #isCarNameListInRange(carNameList) {
     return carNameList.every(
       (carName) =>
-        carName.length >= this.MIN_CAR_NAME_LENGTH && carName.length <= this.MAX_CAR_NAME_LENGTH
+        carName.length >= this.#MIN_CAR_NAME_LENGTH && carName.length <= this.#MAX_CAR_NAME_LENGTH
     );
-  },
+  }
 
-  isCarNameListNotDuplicated(carNameList) {
+  static #isCarNameListNotDuplicated(carNameList) {
     return new Set(carNameList).size === carNameList.length;
-  },
-};
+  }
+}
 
-module.exports = inputValidator;
+module.exports = InputValidator;

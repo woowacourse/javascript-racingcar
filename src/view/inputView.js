@@ -1,14 +1,17 @@
 const { INPUT_MESSAGE } = require('./utils/constants/message');
 const inputValidator = require('./InputValidator');
 const Console = require('./utils/Console');
+const InputValidator = require('./InputValidator');
 
 class InputView {
+  static #inputValidator = InputValidator;
+
   static async readCarNameList() {
     try {
       const input = await Console.question(INPUT_MESSAGE.carNames);
       const carNameList = this.#preprocessCarName(input);
 
-      inputValidator.validateCarNameList(carNameList);
+      this.#inputValidator.validateCarNameList(carNameList);
       return carNameList;
     } catch (err) {
       Console.print(err.message);
@@ -21,7 +24,7 @@ class InputView {
       const input = await Console.question(INPUT_MESSAGE.numberOfTrials);
       const numberOfTrials = this.#preprocessNumberOfTrials(input);
 
-      inputValidator.validateNumberOfTrials(numberOfTrials);
+      this.#inputValidator.validateNumberOfTrials(numberOfTrials);
       return numberOfTrials;
     } catch (err) {
       Console.print(err.message);
