@@ -4,11 +4,11 @@ const Console = require("./utils/Console");
 
 
 
-const InputView = {
-  async readCarNameList() {
+class InputView {
+  static async readCarNameList() {
     try {
       const input = await Console.question(INPUT_MESSAGE.carNames);
-      const carNameList = this.preprocessCarName(input);
+      const carNameList = this.#preprocessCarName(input);
 
       inputValidator.validateCarNameList(carNameList);
       return carNameList;
@@ -16,12 +16,12 @@ const InputView = {
       Console.print(err.message);
       return this.readCarNameList();
     }
-  },
+  }
 
-  async readNumberOfTrials () {
+  static async readNumberOfTrials () {
     try {
       const input = await Console.question(INPUT_MESSAGE.numberOfTrials);
-      const numberOfTrials = this.preprocessNumberOfTrials(input);
+      const numberOfTrials = this.#preprocessNumberOfTrials(input);
 
       inputValidator.validateNumberOfTrials(numberOfTrials);
       return numberOfTrials;
@@ -29,15 +29,15 @@ const InputView = {
       Console.print(err.message);
       return this.readNumberOfTrials();
     } 
-  },
+  }
 
-  preprocessCarName(input) {
+  static #preprocessCarName(input) {
     return input.split(',').map((carName) => carName.trim());
-  },
+  }
 
-  preprocessNumberOfTrials(input) {
+  static #preprocessNumberOfTrials(input) {
     return Number(input);
-  },
+  }
   
 }
 
