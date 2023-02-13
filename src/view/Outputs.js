@@ -1,7 +1,11 @@
 const Console = require('../utils/Console');
-const { getWinnersMessage } = require('../utils/output');
+const { getWinnersMessage } = require('../utils/outputGenerator');
 
 const Outputs = {
+  printError(error) {
+    Console.print(error);
+  },
+
   printGameResultMessage() {
     Console.print('\n실행 결과');
   },

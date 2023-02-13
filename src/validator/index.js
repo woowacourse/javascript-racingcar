@@ -1,7 +1,5 @@
-const Car = require('./Car');
-const Common = require('./Common');
-const Inputs = require('./Inputs');
+const CarValidator = require('./CarValidator');
+const StringValidator = require('./StringValidator');
+const InputsValidator = require('./InputsValidator');
 
-const Validator = { ...Common };
-
-module.exports = Object.assign(Validator, { Car, Inputs });
+module.exports = { ...StringValidator, CarValidator, InputsValidator };

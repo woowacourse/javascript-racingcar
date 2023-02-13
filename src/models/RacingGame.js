@@ -1,24 +1,23 @@
-const { getRacingSnapShot } = require('../utils/output');
-const Validator = require('../validator');
+const { getRacingSnapShot } = require('../utils/outputGenerator');
 const Car = require('./Car');
+const Random = require('../utils/Random');
 
 class RacingGame {
-  #cars = [];
-  #snapShots = [];
+  #instance = {
+    cars: [],
+    snapShots: [],
+  };
 
   constructor(names) {
-    Validator.Car.checkNames(names);
-    this.#cars = names.map(name => new Car(name));
+    this.#instance.cars = this.#generateCars(names);
   }
 
-  #moveAll() {
-    this.#cars.forEach(car => car.move());
+  get snapShots() {
+    return this.#instance.snapShots;
   }
 
-  #takeSnapShots() {
-    this.#snapShots.push(
-      this.#cars.map(car => getRacingSnapShot(car)).join('\n')
-    );
+  #generateCars(names) {
+    return names.map(name => new Car(name));
   }
 
   raceNTimes(n) {
@@ -28,29 +27,34 @@ class RacingGame {
   }
 
   race() {
-    this.#moveAll();
-    this.#takeSnapShots();
+    this.#moveCars();
+
+    this.#instance.snapShots = this.#updateSnapShots();
   }
 
-  getCars() {
-    return this.#cars;
+  #moveCars() {
+    this.#instance.cars.forEach(car => car.move(Random.generateNumber()));
+  }
+
+  #updateSnapShots() {
+    return [...this.#instance.snapShots, this.#takeSnapShots()];
+  }
+
+  #takeSnapShots() {
+    return this.#instance.cars.map(car => getRacingSnapShot(car)).join('\n');
   }
 
   getWinners() {
-    const max = Math.max(...this.#cars.map(car => car.getPosition()));
-    const winners = this.#cars
-      .filter(car => car.getPosition() === max)
-      .map(car => car.getName());
+    const max = Math.max(...this.#instance.cars.map(car => car.position));
+    const winners = this.#instance.cars
+      .filter(car => car.position === max)
+      .map(car => car.name);
 
     return winners;
   }
 
-  getSnapShots() {
-    return this.#snapShots;
-  }
-
-  allFailed() {
-    return this.#cars.every(car => car.getPosition() === 0);
+  isAllFailed() {
+    return this.#instance.cars.every(car => car.position === 0);
   }
 }
 

@@ -1,12 +1,14 @@
 const Console = require('../utils/Console');
-const Inputs = require('../views/Inputs');
-const Outputs = require('../views/Outputs');
+const Inputs = require('../view/Inputs');
+const Outputs = require('../view/Outputs');
 const RacingGame = require('../models/RacingGame');
 
 class Game {
-  #RacingGame;
-  #count;
-  #names = [];
+  #racingGame;
+  #car = {
+    count: 0,
+    names: [],
+  };
 
   async play() {
     await this.setGame();
@@ -17,15 +19,14 @@ class Game {
   }
 
   async setGame() {
-    this.#names = await Inputs.readCarName();
-    this.#count = await Inputs.readTryCount();
+    this.#car.names = await Inputs.readCarName();
+    this.#car.count = await Inputs.readTryCount();
   }
 
   start() {
-    this.#RacingGame = new RacingGame(this.#names);
-    this.#RacingGame.raceNTimes(this.#count);
-
-    if (this.#RacingGame.allFailed()) this.restart();
+    this.#racingGame = new RacingGame(this.#car.names);
+    this.#racingGame.raceNTimes(this.#car.count);
+    this.#racingGame.isAllFailed() && this.start();
   }
 
   restart() {
@@ -34,8 +35,8 @@ class Game {
 
   awards() {
     Outputs.printGameResultMessage();
-    Outputs.printRacingSnapShot(this.#RacingGame.getSnapShots());
-    Outputs.printWinners(this.#RacingGame.getWinners());
+    Outputs.printRacingSnapShot(this.#racingGame.snapShots);
+    Outputs.printWinners(this.#racingGame.getWinners());
   }
 
   exit() {

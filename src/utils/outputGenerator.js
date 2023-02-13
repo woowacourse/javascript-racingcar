@@ -1,16 +1,12 @@
 const { MESSAGE } = require('../constants/messages');
+const { POSITION_SYMBOL } = require('../constants/values');
 
 const getPositionLine = position => {
-  return Array(position)
-    .fill()
-    .map(() => '-')
-    .join('');
+  return POSITION_SYMBOL.repeat(position);
 };
 
 const getRacingSnapShot = car => {
-  const positionLine = getPositionLine(car.getPosition());
-
-  return `${car.getName()} : ${positionLine}`;
+  return `${car.name} : ${getPositionLine(car.position)}`;
 };
 
 const getWinnersMessage = winnerSet => {

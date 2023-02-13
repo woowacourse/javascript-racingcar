@@ -1,6 +1,7 @@
-const INIT_POSITION = 0;
+const INITIAL_POSITION = 0;
 const STEP = 1;
-const FORWARD_CONDITIONS_NUMBER = 4;
+const MOVE_CONDITION = 4;
+const POSITION_SYMBOL = '-';
 const NAME = Object.freeze({
   MIN: 1,
   MAX: 5,
@@ -11,9 +12,10 @@ const TRY_COUNT = Object.freeze({
 });
 
 module.exports = {
-  INIT_POSITION,
+  INITIAL_POSITION,
   STEP,
-  FORWARD_CONDITIONS_NUMBER,
+  MOVE_CONDITION,
+  POSITION_SYMBOL,
   NAME,
   TRY_COUNT,
 };

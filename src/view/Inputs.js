@@ -1,4 +1,4 @@
-const Validator = require('../validator');
+const InputsValidator = require('../validator/InputsValidator');
 const Console = require('../utils/Console');
 const { QUERY } = require('../constants/messages');
 
@@ -6,7 +6,7 @@ const Inputs = {
   async readCarName({ onError } = { onError: null }) {
     const names = await Console.readline(QUERY.CAR_NAME);
 
-    return await Validator.Inputs.readCarName(names, {
+    return await InputsValidator.readCarName(names, {
       onError: onError ?? this.readCarName,
     });
   },
@@ -14,7 +14,7 @@ const Inputs = {
   async readTryCount({ onError } = { onError: null }) {
     const count = await Console.readline(QUERY.TRY_COUNT);
 
-    return await Validator.Inputs.readTryCount(count, {
+    return await InputsValidator.readTryCount(count, {
       onError: onError ?? this.readTryCount,
     });
   },

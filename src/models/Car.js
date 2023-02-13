@@ -1,34 +1,36 @@
-const Validator = require('../validator');
-const Random = require('../utils/Random');
 const {
-  INIT_POSITION,
+  INITIAL_POSITION,
   STEP,
-  FORWARD_CONDITIONS_NUMBER,
+  MOVE_CONDITION,
 } = require('../constants/values');
 
 class Car {
   #name;
 
-  #position = INIT_POSITION;
+  #position = INITIAL_POSITION;
 
   constructor(name) {
-    Validator.Car.checkName(name);
-
     this.#name = name;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getPosition() {
+  get position() {
     return this.#position;
   }
 
-  move() {
-    const number = Random.generateNumber();
+  move(number) {
+    if (!this.shouldMove(number)) {
+      return;
+    }
 
-    if (number >= FORWARD_CONDITIONS_NUMBER) this.#position += STEP;
+    this.#position += STEP;
+  }
+
+  shouldMove(number) {
+    return number >= MOVE_CONDITION;
   }
 }
 
