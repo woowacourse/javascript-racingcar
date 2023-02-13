@@ -12,7 +12,7 @@ class Car {
   move(randomNumbers) {
     randomNumbers.forEach((number) => {
       this.#position.push(
-        number <= MOVE_SETTING.advanceBoundary
+        number >= MOVE_SETTING.advanceBoundary
           ? MOVE_SETTING.advance
           : MOVE_SETTING.stop
       );

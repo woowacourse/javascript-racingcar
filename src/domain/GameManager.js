@@ -21,7 +21,7 @@ class GameManager {
   }
 
   generateRandomNumbers() {
-    return new Array(10)
+    return new Array(this.#tryCount)
       .fill(null)
       .map(() => generateRandomNumber.generator(0, RANDOM_NUMBER_RANGE));
   }
