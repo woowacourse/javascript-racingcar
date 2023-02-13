@@ -1,5 +1,5 @@
 const CONSTANT = require("../src/view/Constant_view");
-const Validations = require("../src/validations");
+const Validations = require("../src/Validations");
 
 describe("유효성 검사", () => {
     // const validations = new Validations()

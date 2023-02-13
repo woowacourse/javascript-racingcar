@@ -1,4 +1,4 @@
-const App = require("../src");
+const App = require("../src/Racing");
 
 describe("Racing 전체 기능 테스트", () => {
     test("자동차 이름 array로 car객체를 만들어 그 갯수를 반환", () => {
