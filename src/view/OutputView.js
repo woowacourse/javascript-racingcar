@@ -1,5 +1,5 @@
-const Console = require("../lib/Console");
-const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require("../lib/Constant");
+const Console = require('../util/Console');
+const { MESSAGE, POSITION_UNIT, WINNER_DIVIDER } = require('../util/Constant');
 
 const OutputView = {
   printErrorMessage(error) {
@@ -10,7 +10,7 @@ const OutputView = {
     Console.print(MESSAGE.output.processResultHeader);
     for (let sequence = 0; sequence < tryCount; sequence++) {
       this.printCarStatus(carStatus, sequence);
-      Console.print("");
+      Console.print('');
     }
   },
 

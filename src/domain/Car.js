@@ -1,5 +1,5 @@
-const { MOVE_SETTING } = require("../lib/Constant.js");
-const GenerateRandomNumber = require("../lib/GenerateRandomNumber.js");
+const { MOVE_SETTING } = require('../util/Constant.js');
+const GenerateRandomNumber = require('../util/GenerateRandomNumber.js');
 
 class Car {
   #name;

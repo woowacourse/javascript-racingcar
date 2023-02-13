@@ -1,5 +1,5 @@
-const Console = require('../lib/Console.js');
-const { MESSAGE } = require('../lib/Constant.js');
+const Console = require('../util/Console.js');
+const { MESSAGE } = require('../util/Constant.js');
 
 const InputView = {
   readCarName() {

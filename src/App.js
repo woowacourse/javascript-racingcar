@@ -1,9 +1,9 @@
 const InputView = require('./view/InputView.js');
 const OutputView = require('./view/OutputView.js');
-const Validator = require('./model/Validator.js');
+const Validator = require('./domain/Validator.js');
 
-const Car = require('./model/Car.js');
-const Console = require('./lib/Console.js');
+const Car = require('./domain/Car.js');
+const Console = require('./util/Console.js');
 
 class App {
   #cars = [];
