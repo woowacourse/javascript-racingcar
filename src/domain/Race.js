@@ -12,6 +12,7 @@ class Race {
 
   /**
    * @param {Car[]} cars
+   * @param random
    */
   constructor(cars, random = Random) {
     this.#cars = cars;
