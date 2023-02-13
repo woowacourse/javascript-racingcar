@@ -1,5 +1,5 @@
 const { StaticValue } = require("../constants/Constants");
-const Car = require("../model/Car");
+const Car = require("../domain/Car");
 const RandomNumberGenerator = require("../utils/RandomNumberGenerator");
 const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");

@@ -1,5 +1,5 @@
 const { StaticValue } = require("../src/constants/Constants");
-const Car = require("../src/model/Car");
+const Car = require("../src/domain/Car");
 
 describe("Car 클래스 테스트", () => {
   const CAR_NAMES = ["우아한", "테크코스", "형제들", "합격"];
