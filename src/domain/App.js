@@ -30,10 +30,10 @@ class App {
     }
 
     validateCarInput(carNames) {
-        if (!Validations.isCarNameUnderMax(carNames)) {
+        if (Validations.isCarNameUnderMax(carNames) === false) {
             throw new Error(Constants.ERROR_CAR_LENGTH);
         };
-        if (!Validations.isCarNameOverMin(carNames)) {
+        if (Validations.isCarNameOverMin(carNames) === false) {
             throw new Error(Constants.ERROR_CAR_NONAME);
         };
     }
@@ -58,7 +58,7 @@ class App {
     }
 
     validateRoundInput(round) {
-        if (!Validations.isCorrectRoundNumber(round)) {
+        if (Validations.isCorrectRoundNumber(round) === false) {
             throw new Error(Constants.ERROR_ROUND);
         }
     }
