@@ -1,6 +1,6 @@
-const CAR_RULE = require('../constants/carRule');
-const { ERROR_MESSAGE } = require('../constants/message');
-const Validator = require('../utils/Validator');
+const CAR_RULE = require('../constant/carRule');
+const { ERROR_MESSAGE } = require('../constant/message');
+const Validator = require('../util/Validator');
 
 const InputValidator = {
   checkCarNames(carNames) {

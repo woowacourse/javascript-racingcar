@@ -1,6 +1,6 @@
-const Car = require('../src/models/Car');
-const RacingCarGame = require('../src/models/RacingCarGame');
-const Random = require('../src/utils/random');
+const Car = require('../src/domain/Car');
+const RacingCarGame = require('../src/domain/RacingCarGame');
+const Random = require('../src/util/Random');
 
 const mockRandoms = (numbers) => {
   Random.pickNumberInRange = jest.fn();
