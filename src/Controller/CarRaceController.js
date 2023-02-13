@@ -14,7 +14,7 @@ class CarRaceController {
 
   getCars() {
     InputView.readCarName(carNameString => {
-      const splitCarName = carNameString.split(CONSTANTS.comma);
+      const splitCarName = carNameString.split(CONSTANTS.COMMA);
       CarRace.validateCars(splitCarName);
       this.createCarRace(splitCarName);
     });

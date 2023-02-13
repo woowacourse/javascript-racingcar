@@ -1,16 +1,16 @@
 const CONSTANTS = {
-  comma: ',',
-  defaultPostion: 0,
-  lowerNumber: 0,
-  upperNumber: 10,
-  minNumberOfMoving: 4,
-  minNumberOfNames: 2,
-  maxNameLength: 5,
-  empty: '',
-  colon: ':',
-  dash: '-',
-  delimiter: ', ',
-  undefinedType: 'undefined',
+  COMMA: ',',
+  DEFAULT_POSTION: 0,
+  LOWER_NUMBER: 0,
+  UPPER_NUMBER: 10,
+  MIN_NUMBER_OF_MOVING: 4,
+  MIN_NUMBER_OF_NAMES: 2,
+  MAX_NAME_LENGTH: 5,
+  EMPTY: '',
+  COLON: ':',
+  DASH: '-',
+  DELIMITER: ', ',
+  UNDEFINED_TYPE: 'undefined',
 };
 
 module.exports = CONSTANTS;

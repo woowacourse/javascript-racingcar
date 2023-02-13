@@ -9,19 +9,19 @@ const rl = readline.createInterface({
 const Console = {
   readLine(query, callback) {
     if (arguments.length !== 2) {
-      throw new Error(CONSOLE_ERROR_MESSAGE.numberOfArguments);
+      throw new Error(CONSOLE_ERROR_MESSAGE.NUMBER_OF_ARGUMENTS);
     }
 
     if (typeof query !== 'string') {
-      throw new Error(CONSOLE_ERROR_MESSAGE.isNotString);
+      throw new Error(CONSOLE_ERROR_MESSAGE.IS_NOT_STRING);
     }
 
     if (typeof callback !== 'function') {
-      throw new Error(CONSOLE_ERROR_MESSAGE.typeOfCallback);
+      throw new Error(CONSOLE_ERROR_MESSAGE.TYPE_OF_CALLBACK);
     }
 
     if (callback.length !== 1) {
-      throw new Error(CONSOLE_ERROR_MESSAGE.callbackArguments);
+      throw new Error(CONSOLE_ERROR_MESSAGE.CALLBACK_ARGUMENTS);
     }
 
     rl.question(query, callback);

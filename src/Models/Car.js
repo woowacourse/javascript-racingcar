@@ -8,7 +8,7 @@ class Car {
   constructor(name) {
     this.validate(name);
     this.#name = name;
-    this.#position = CONSTANTS.defaultPostion;
+    this.#position = CONSTANTS.DEFAULT_POSTION;
   }
 
   get name() {
@@ -20,13 +20,13 @@ class Car {
   }
 
   validate(name) {
-    if (!name.length || name.length > CONSTANTS.maxNameLength) {
-      throw new Error(RACE_ERROR_MESSAGE.lengthOfName);
+    if (!name.length || name.length > CONSTANTS.MAX_NAME_LENGTH) {
+      throw new Error(RACE_ERROR_MESSAGE.LENGTH_OF_NAME);
     }
   }
 
   move(number) {
-    if (number >= CONSTANTS.minNumberOfMoving) {
+    if (number >= CONSTANTS.MIN_NUMBER_OF_MOVING) {
       this.#position += 1;
     }
   }

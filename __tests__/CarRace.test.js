@@ -36,14 +36,14 @@ describe('CarRace Class 테스트', () => {
     input => {
       expect(() => {
         CarRace.validateCars(input);
-      }).toThrow(RACE_ERROR_MESSAGE.numberOfNames);
+      }).toThrow(RACE_ERROR_MESSAGE.NUMBER_OF_NAMES);
     },
   );
 
   test.each([[0], [-1]])('시도 횟수가 1이상이 아니면 예외처리한다', input => {
     expect(() => {
       CarRace.validateTryCount(input);
-    }).toThrow(RACE_ERROR_MESSAGE.rangeOfTryCount);
+    }).toThrow(RACE_ERROR_MESSAGE.RANGE_OF_TRY_COUNT);
   });
 
   test.each([['aa'], [' '], ['한']])(
@@ -51,7 +51,7 @@ describe('CarRace Class 테스트', () => {
     input => {
       expect(() => {
         CarRace.validateTryCount(input);
-      }).toThrow(RACE_ERROR_MESSAGE.rangeOfTryCount);
+      }).toThrow(RACE_ERROR_MESSAGE.RANGE_OF_TRY_COUNT);
     },
   );
 });

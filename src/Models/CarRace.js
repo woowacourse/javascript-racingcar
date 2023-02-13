@@ -13,15 +13,15 @@ class CarRace {
   static validateCars(cars) {
     if (
       Validator.isDuplicate(cars) ||
-      cars.length < CONSTANTS.minNumberOfNames
+      cars.length < CONSTANTS.MIN_NUMBER_OF_NAMES
     ) {
-      throw new Error(RACE_ERROR_MESSAGE.numberOfNames);
+      throw new Error(RACE_ERROR_MESSAGE.NUMBER_OF_NAMES);
     }
   }
 
   static validateTryCount(count) {
     if (!Validator.isNumeric(count) || count < 1) {
-      throw new Error(RACE_ERROR_MESSAGE.rangeOfTryCount);
+      throw new Error(RACE_ERROR_MESSAGE.RANGE_OF_TRY_COUNT);
     }
   }
 
@@ -29,8 +29,8 @@ class CarRace {
     this.#cars.forEach(car => {
       car.move(
         RandomNumGenerator.generateNumberInRange(
-          CONSTANTS.lowerNumber,
-          CONSTANTS.upperNumber,
+          CONSTANTS.LOWER_NUMBER,
+          CONSTANTS.UPPER_NUMBER,
         ),
       );
     });

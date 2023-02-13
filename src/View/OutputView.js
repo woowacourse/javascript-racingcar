@@ -5,22 +5,22 @@ const DataParseUtils = require('../Utils/DataParseUtils');
 
 const OutputView = {
   printResultMessage() {
-    Console.print(RACE_MESSAGE.raceResult);
+    Console.print(RACE_MESSAGE.RACE_RESULT);
   },
 
   printRaceResult(result) {
     result.forEach((value, key) => {
       Console.print(
-        `${key} ${CONSTANTS.colon} ${CONSTANTS.dash.repeat(value)}`,
+        `${key} ${CONSTANTS.COLON} ${CONSTANTS.DASH.repeat(value)}`,
       );
     });
-    Console.print(CONSTANTS.empty);
+    Console.print(CONSTANTS.EMPTY);
   },
 
   printWinners(result) {
     const winners = DataParseUtils.parseWinner(result);
     Console.print(
-      `${winners.join(CONSTANTS.delimiter)}${RACE_MESSAGE.winnerResult}`,
+      `${winners.join(CONSTANTS.DELIMITER)}${RACE_MESSAGE.WINNER_RESULT}`,
     );
   },
 };

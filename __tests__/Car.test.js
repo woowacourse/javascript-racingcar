@@ -22,7 +22,7 @@ describe('Car Class 테스트', () => {
     input => {
       expect(() => {
         new Car(input);
-      }).toThrow(RACE_ERROR_MESSAGE.lengthOfName);
+      }).toThrow(RACE_ERROR_MESSAGE.LENGTH_OF_NAME);
     },
   );
 });

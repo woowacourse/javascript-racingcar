@@ -15,7 +15,7 @@ const InputView = {
 
   readCarName(callback) {
     this.getUserInput(
-      RACE_MESSAGE.inputCarName,
+      RACE_MESSAGE.INPUT_CAR_NAME,
       callback,
       this.readCarName.bind(this),
     );
@@ -23,7 +23,7 @@ const InputView = {
 
   readTryCount(callback) {
     this.getUserInput(
-      RACE_MESSAGE.inputTryCount,
+      RACE_MESSAGE.INPUT_TRY_COUNT,
       callback,
       this.readTryCount.bind(this),
     );
