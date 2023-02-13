@@ -4,9 +4,9 @@ describe("자동차 객체 테스트", () => {
     const car = new Car("sua");
 
     test("자동차 전진 시, 자동차 객체의 score변수 +1처리", () => {
-        car.go();
-        car.go();
-        car.go();
+        car.move();
+        car.move();
+        car.move();
         expect(car.exportNameScore()[1]).toEqual(3);
     });
 
