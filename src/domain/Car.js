@@ -9,16 +9,14 @@ class Car {
     this.#name = carName;
   }
 
-  move(tryCount) {
-    for (let sequence = 0; sequence < tryCount; sequence++) {
-      const number = generateRandomNumber.generator(0, RANDOM_NUMBER_RANGE);
-
+  move(randomNumbers) {
+    randomNumbers.forEach((number) => {
       this.#position.push(
         number <= MOVE_SETTING.advanceBoundary
           ? MOVE_SETTING.advance
           : MOVE_SETTING.stop
       );
-    }
+    });
   }
 
   getStatus() {

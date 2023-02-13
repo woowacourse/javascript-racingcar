@@ -1,3 +1,5 @@
+import { RANDOM_NUMBER_RANGE } from '../util/Constant.js';
+import generateRandomNumber from '../util/generateRandomNumber.js';
 import Car from './Car.js';
 
 class GameManager {
@@ -14,8 +16,14 @@ class GameManager {
 
   moveCar() {
     this.#cars.forEach((car) => {
-      car.move(this.#tryCount);
+      car.move(this.generateRandomNumbers());
     });
+  }
+
+  generateRandomNumbers() {
+    return new Array(10)
+      .fill(null)
+      .map(() => generateRandomNumber.generator(0, RANDOM_NUMBER_RANGE));
   }
 
   getCarsStatus() {
