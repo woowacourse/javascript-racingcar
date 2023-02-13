@@ -1,10 +1,10 @@
-const validations = require("./validations");
+const validations = require("../validations");
 const { MESSAGE } = require("./Constant_view");
 const RL = require("./Readline");
 
 const InputView = {
     inputCarName(callback) {
-        RL.question(MESSAGE.INPUT_CAR_NAME, (input) => {
+        RL.question(`${MESSAGE.INPUT_CAR_NAME}\n`, (input) => {
             const carNames = input.split(",");
             this.tryCatchCarName(carNames, callback);
         });
@@ -22,7 +22,7 @@ const InputView = {
     },
 
     inputRound(callback) {
-        RL.question(MESSAGE.INPUT_ROUND_COUNT, (round) => {
+        RL.question(`${MESSAGE.INPUT_ROUND_COUNT}\n`, (round) => {
             this.tryCatchRound(round, callback);
         });
     },

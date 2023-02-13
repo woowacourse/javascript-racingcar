@@ -3,7 +3,7 @@ const RL = require("./Readline");
 
 const OutputView = {
     resultTitle() {
-        console.log(MESSAGE.RESULT_TITLE);
+        console.log(`\n${MESSAGE.RESULT_TITLE}`);
     },
 
     roundResult([carName, carScore]) {
