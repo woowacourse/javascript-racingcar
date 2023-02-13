@@ -1,4 +1,4 @@
-const InputValidator = require('../src/validators/InputValidator');
+const InputValidator = require('../src/validator/InputValidator');
 
 describe('Validator 테스트', () => {
   test('자동차 이름의 구분자가 쉼표인 경우 정상적으로 작동한다.', () => {
