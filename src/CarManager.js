@@ -12,7 +12,7 @@ class OverallRacingGameManager {
   }
 
   createInitialCars(carNames) {
-    return (this.#cars = carNames.map((carName) => new Car(carName)));
+    return carNames.map((carName) => new Car(carName));
   }
 
   startRace(tryCounts) {
