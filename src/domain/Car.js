@@ -25,6 +25,10 @@ class Car {
     return { name: this.#name, position: this.#position };
   }
 
+  getFinalPosition() {
+    return this.#position.reduce((acc, cur) => acc + cur, 0);
+  }
+
   static getWinner(carsStatus) {
     carsStatus = carsStatus.map(({ name, position }) => {
       return { name, position: position.reduce((acc, cur) => acc + cur, 0) };
