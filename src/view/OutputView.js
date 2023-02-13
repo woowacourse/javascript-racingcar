@@ -2,19 +2,19 @@ const ResultContainer = require("../model/ResultContainer");
 const Console = require("./utils/Console");
 const {OUTPUT_MESSAGE} = require("./constants/message")
 class OutputView {
-  printResult(finalResult) {
+  static printResult(finalResult) {
     if (!finalResult instanceof ResultContainer) {
       throw new Error(`TypeError`);
     }
     
-    console.log(this.getFinalResultMessage(finalResult));
+    console.log(this.#getFinalResultMessage(finalResult));
   }
 
-  getFinalResultMessage(finalResult) {
-    return `${OUTPUT_MESSAGE.result}\n${this.getRoundResultMessage(finalResult.roundResultList)}${this.getWinnerMessage(finalResult.winnerList)}`
+  static #getFinalResultMessage(finalResult) {
+    return `${OUTPUT_MESSAGE.result}\n${this.#getRoundResultMessage(finalResult.roundResultList)}${this.#getWinnerMessage(finalResult.winnerList)}`
   }
 
-  getRoundResultMessage(roundResultList) {
+  static #getRoundResultMessage(roundResultList) {
     return roundResultList.reduce((message, roundResult) => {
   
       roundResult.forEach((score, car) => {
@@ -25,15 +25,15 @@ class OutputView {
     },'')
   }
 
-  getWinnerMessage(winnerList) {
+  static #getWinnerMessage(winnerList) {
     return winnerList.join(', ') + OUTPUT_MESSAGE.winner
   }
 
-  printError(error) {
+  static printError(error) {
     console.log(error.message)
   }
 
-  close() {
+  static close() {
     Console.close();
   }
 }

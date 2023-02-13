@@ -9,7 +9,7 @@ class Controller {
 
   constructor() {
     this.#inputView = InputView;
-    this.#outputView = new OutputView ();
+    this.#outputView = OutputView;
   }
 
   async createRacingCarGame() {

@@ -11,6 +11,7 @@ const OUTPUT_MESSAGE = {
 const ERROR_MESSAGE = {
   carNameListInRange: '[ERROR] 자동차 이름은 1글자부터 5글자 사이여야 합니다.`\n',
   carNameListDuplicated: '[ERROR] 자동차 이름 중에 중복이 있습니다. \n',
+  carNameEmpty: '[ERROR] 자동차 이름은 공백으로만 작성될 수 없습니다.\n',
   numberOfTrials: '[ERROR] 실행 횟누는 숫자만 입력 가능합니다. \n'
 }
 

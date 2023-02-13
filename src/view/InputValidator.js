@@ -5,10 +5,14 @@ const inputValidator = {
   MAX_CAR_NAME_LENGTH: 5,
 
   validateCarNameList(carNameList) {
+    if (this.hasCarNameListEmpty(carNameList)) {
+      throw new Error(ERROR_MESSAGE.carNameEmpty)
+    }
+
     if (!this.isCarNameListInRange(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameListInRange);
     }
-    
+
     if (!this.isCarNameListNotDuplicated(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameListDuplicated);
     }
@@ -18,6 +22,10 @@ const inputValidator = {
     if (isNaN(numberOfTrials)) {
       throw new Error(ERROR_MESSAGE.numberOfTrials)
     }
+  },
+
+  hasCarNameListEmpty (carNameList) {
+    return carNameList.some((carName) => carName.length === 0);
   },
 
   isCarNameListInRange (carNameList) {
