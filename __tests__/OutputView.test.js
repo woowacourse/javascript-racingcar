@@ -11,8 +11,8 @@ describe('OutputView 객체 테스트', () => {
     ];
     const EXPECTED_RESULTS = ['우형 : ----------', '네이버 : ----', '카카오 : ---'];
 
-    INPUT_VALUES.forEach(([name, distance], index) => {
-      OutputView.printMoveDistance(name, distance);
+    INPUT_VALUES.forEach((input, index) => {
+      OutputView.printMoveDistance(input);
       expect(LOG_SPY).toHaveBeenCalledWith(EXPECTED_RESULTS[index]);
     });
   });
