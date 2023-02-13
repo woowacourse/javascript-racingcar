@@ -1,7 +1,7 @@
 const Console = require('../utils/Console');
 const { errorHandler } = require('../utils');
 const { GAME_MESSAGE, GAME_STRING } = require('../constants');
-const validation = require('../validation');
+const validation = require('../domain/validation');
 
 const inputView = {
   readCarName: (callback) => {

@@ -1,4 +1,4 @@
-const { GAME_STRING, GAME_NUMBER } = require('../constants');
+const { GAME_STRING, GAME_NUMBER } = require('../../constants');
 
 class Car {
   #name;

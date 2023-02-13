@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('../src/constants');
-const validation = require('../src/validation');
+const validation = require('../src/domain/validation');
 
 describe('Validation 테스트', () => {
   test.each([

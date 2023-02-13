@@ -1,4 +1,4 @@
-const { ERROR_MESSAGE, GAME_NUMBER, REG_EXP } = require('./constants');
+const { ERROR_MESSAGE, GAME_NUMBER, REG_EXP } = require('../constants');
 
 const validation = {
   carName: (carNames) => {
@@ -17,10 +17,8 @@ const validation = {
     }
   },
   isNotNumber: (attempt) => {
-    if (typeof attempt !== 'number' && typeof attempt !== 'string') {
-      return true;
-    }
-    return Number.isNaN(attempt);
+    const parsedNumber = parseInt(attempt);
+    return Number.isNaN(parsedNumber);
   },
   isNotInteger: (attempt) => {
     return !Number.isInteger(Number(attempt));

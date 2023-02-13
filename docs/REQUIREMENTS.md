@@ -33,3 +33,10 @@
 - [x] printGameProgress의 인자를 3개에서 2개로 변경하고 공백을 출력하는 기능을 분리한다.
 - [x] Random getNumber 메서드를 getCarGameNumber 메서드로 이름 변경
 - [x] Controller를 RacingGame으로 변경
+
+# 2단계 미션 리팩토링 목록
+
+- [x] 도메인 로직은 domain 폴더 하위, UI 관련 로직은 view 폴더 하위에서 관리한다.
+- [x] 도메인 로직은 UI 로직 하위의 모듈을 의존하지 않아야 한다.
+- [x] 도메인 로직을 단위 테스트하기 쉽게 분리한다.
+- [x] 테스트 코드에서 jest.fn() (모킹 함수 테스트) 를 사용하지 않는다.
