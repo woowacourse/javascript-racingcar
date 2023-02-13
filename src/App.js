@@ -28,7 +28,7 @@ class App {
     InputView.readTryCount((tryCountsInput) => {
       if (this.isValidInput('tryCounts', tryCountsInput, Validator)) {
         this.carManager.createInitialCars(carNamesInput.split(','));
-        this.carManager.startRace(parseInt(tryCountsInput));
+        this.printGameResult(carNamesInput, tryCountsInput);
         return;
       }
 
@@ -47,7 +47,18 @@ class App {
     }
   }
 
-  printRaceProgress(cars) {
+  printGameResult(carNamesInput, tryCountsInput) {
+    this.printRaceProgress(this.carManager.accumulatedProgress(parseInt(tryCountsInput)));
+    this.printWinners(this.carManager.winners);
+  }
+
+  printRaceProgress(accumulatedProgress) {
+    accumulatedProgress.forEach((caseProgress) => {
+      this.printSingleCaseResult(caseProgress);
+    });
+  }
+
+  printSingleCaseResult(cars) {
     OutputView.printRaceProgress(cars);
   }
 

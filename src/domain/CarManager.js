@@ -19,13 +19,15 @@ class OverallRacingGameManager {
     this.#cars = carNames.map((carName) => new Car(carName));
   }
 
-  startRace(tryCounts) {
+  accumulatedProgress(tryCounts) {
+    const accumulatedProgress = [];
+
     for (let i = 0; i < tryCounts; i++) {
       this.progress();
 
-      this.#app.printRaceProgress(this.getCars());
+      accumulatedProgress.push(this.getCars());
     }
-    this.#app.printWinners(this.getWinners());
+    return accumulatedProgress;
   }
 
   progress() {
@@ -40,7 +42,7 @@ class OverallRacingGameManager {
     return this.#cars;
   }
 
-  getWinners() {
+  get winners() {
     const maxProgressCount = Math.max(...this.#cars.map((car) => car.progressCount));
 
     return this.#cars
