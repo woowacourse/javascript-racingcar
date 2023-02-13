@@ -1,15 +1,19 @@
 {
-  "rules": {},
+	"plugins": [
+		"prettier"
+	],
+  "rules": {
+    "max-depth": ["error", 2],
+    "max-lines-per-function": ["error", 10],
+    "max-params": ["error", 3],
+    "no-console": "off",
+		"prettier/prettier": "error"
+  },
   "env": {
     "es6": true,
-    "node": true
-  },
-  "parserOptions": {
+@@ -19,5 +15,5 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
-  ]
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
 }
