@@ -44,7 +44,7 @@ class CarRaceController {
   }
 
   finishCarRace() {
-    OutputView.printWinners(this.#carRace.getResult());
+    OutputView.printWinners(this.#carRace.getWinners());
     Console.close();
   }
 }
