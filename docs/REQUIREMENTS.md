@@ -107,19 +107,19 @@
 
 ```bash
 ├── __test__
-│ ├── App.test.js
 │ ├── Car.test.js
 │ ├── Validator.test.js
 ├── docs
 │ ├── REQUIREMENTS.md
 ├── src
-│ ├── libs
+│ ├── domain
+│ │ ├── Car.js
+│ │ ├── GameManager.js
+│ │ ├── Validator.js
+│ ├── util
 │ │ ├── Console.js
 │ │ ├── Constant.js
-│ │ ├── GenerateRandomNumber.js
-│ ├── model
-│ │ ├── Car.js
-│ │ ├── Validator.js
+│ │ ├── generateRandomNumber.js
 │ ├── view
 │ │ ├── InputView.js
 │ │ ├── OutputView.js
