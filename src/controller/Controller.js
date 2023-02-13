@@ -23,12 +23,12 @@ class Controller {
   }
 
   moveCars(tryNumber, getRandom = RandomMaker.RandomMinMax) {
-    for (let num = 0; num < tryNumber; num++) {
+    Array.from({ length: tryNumber }, () => {
       this.#cars.forEach((car) =>
         car.decideGoAndStop(getRandom(RANDOM.MAXNUMBER, RANDOM.MINNUMBER))
       );
       this.printCarsMove();
-    }
+    });
   }
 
   whoIsWinners() {
