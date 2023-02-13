@@ -21,6 +21,11 @@ const InputView = {
     if (!isEveryCarNameValid) {
       throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
     }
+
+    const isEveryCarNameDistinct = new Set(carNames).size === carNames.length;
+    if (!isEveryCarNameDistinct) {
+      throw new AppError(ErrorMessages.CAR_NAME_MUST_DISTINCT);
+    }
   },
 
   readRaceStep() {
