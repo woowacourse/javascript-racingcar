@@ -1,9 +1,9 @@
-const CONSTANT = require("../src/Constant");
+const CONSTANT = require("../src/view/Constant_view");
 const Validations = require("../src/Validations");
 
-describe("validationTest", () => {
+describe("유효성 검사", () => {
     // const validations = new Validations()
-    test("차 이름 길이가 길면 오류", () => {
+    test("기준보다 긴 차 이름이 입력되면 오류 발생", () => {
         const carNames = ["naveowo", "nave"];
 
         expect(() => Validations.validateCarNameLength(carNames)).toThrow(
@@ -11,7 +11,7 @@ describe("validationTest", () => {
         );
     });
 
-    test("차 이름 공백이면 오류", () => {
+    test("차 이름으로 공백이 입력되면 오류 발생", () => {
         const carNames = ["nave", "nave", ""];
 
         expect(() => Validations.validateIsCarName(carNames)).toThrow(
@@ -35,7 +35,7 @@ describe("validationTest", () => {
         );
     });
 
-    test("경기 라운드 입력에 음수가 들어가면 오류", () => {
+    test("경기 라운드 입력에 문자가 들어가면 오류", () => {
         const roundNum = "a";
 
         expect(() => Validations.validateRound(roundNum)).toThrow(

@@ -1,10 +1,10 @@
-const validations = require("./Validations");
-const { MESSAGE } = require("./Constant");
+const validations = require("../Validations");
+const { MESSAGE } = require("./Constant_view");
 const RL = require("./Readline");
 
 const InputView = {
     inputCarName(callback) {
-        RL.question(MESSAGE.INPUT_CAR_NAME, (input) => {
+        RL.question(`${MESSAGE.INPUT_CAR_NAME}\n`, (input) => {
             const carNames = input.split(",");
             this.tryCatchCarName(carNames, callback);
         });
@@ -12,9 +12,9 @@ const InputView = {
 
     tryCatchCarName(carNames, callback) {
         try {
-            validations.carNameLengthMax(carNames);
-            validations.carNameLengthMin(carNames);
-            callback(carNames)
+            validations.checkNameLength(carNames);
+            validations.checkEmptyName(carNames);
+            callback(carNames);
         } catch (e) {
             console.log(e.message);
             this.inputCarName(callback);
@@ -22,24 +22,20 @@ const InputView = {
     },
 
     inputRound(callback) {
-        RL.question(MESSAGE.INPUT_ROUND_COUNT, (round) => {
-            this.tryCatchRound(round, callback)
-        })
+        RL.question(`${MESSAGE.INPUT_ROUND_COUNT}\n`, (round) => {
+            this.tryCatchRound(round, callback);
+        });
     },
 
     tryCatchRound(round, callback) {
         try {
-            validations.roundRange(+round);
-            callback(+round)
+            validations.checkRoundCount(+round);
+            callback(+round);
         } catch (e) {
             console.log(e.message);
             this.inputRound(callback);
         }
     },
+};
 
-}
-
-
-
-
-module.exports = InputView
+module.exports = InputView;
