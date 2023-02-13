@@ -45,9 +45,9 @@ class RacingGame {
     this.whoIsWinners();
   }
 
-  runCar() {
+  runCar(getRandomNumberFunction = RandomNumberGenerator.makeRandomNumber) {
     for (let car of this.#cars) {
-      car.decideGoAndStop(RandomNumberGenerator.makeRandomNumber());
+      car.decideGoAndStop(getRandomNumberFunction());
     }
   }
 
@@ -71,6 +71,10 @@ class RacingGame {
       this.#winners = [];
       this.#winners.push(car.getName());
     }
+  }
+
+  get winners() {
+    return this.#winners;
   }
 }
 

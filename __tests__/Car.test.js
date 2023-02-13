@@ -20,4 +20,14 @@ describe("Car 모델 테스트", () => {
     const name = car.getName();
     expect(name).toBe("patrick");
   });
+
+  test("Car 우승자 확인 테스트", () => {
+    let racingGame = new RacingGame();
+
+    racingGame.setCar(["patrick", "dori"]);
+    racingGame.runCar(() => 5);
+    racingGame.whoIsWinners()
+
+    expect(racingGame.winners).toEqual(["patrick", "dori"]);
+  });
 });
