@@ -1,6 +1,7 @@
 import { NAME_DELIMITER } from '../constants/index.js';
 import Console from '../utils/Console.js';
 import Validator from '../utils/Validator.js';
+import OutputView from './OutputView.js';
 
 const InputView = {
   close() {
@@ -13,7 +14,7 @@ const InputView = {
       Validator.checkNames(input);
       return input.split(NAME_DELIMITER);
     } catch (e) {
-      InputView.error(e);
+      OutputView.error(e);
       return InputView.readNames();
     }
   },
@@ -24,7 +25,7 @@ const InputView = {
       Validator.checkIntegerNumber(input);
       return Number(input);
     } catch (e) {
-      InputView.error(e);
+      OutputView.error(e);
       return InputView.readTryCount();
     }
   },
