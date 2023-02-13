@@ -40,7 +40,7 @@ class GameManager {
 
   judgeWinners() {
     const max = Math.max(...this.#cars.map((car) => car.getPosition()));
-    const winners = [...this.#cars]
+    const winners = this.#cars
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
     return winners;
