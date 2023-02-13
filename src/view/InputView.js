@@ -4,9 +4,11 @@ import Console from '../utils/Console';
 import OutputView from './OutputView';
 
 const InputView = {
+  Console: Console,
+
   async readCarNames() {
     return InputView.repeat(async () => {
-      const carnamesString = await Console.readline(Messages.READ_CAR_NAMES);
+      const carnamesString = await InputView.Console.readline(Messages.READ_CAR_NAMES);
       const carNames = carnamesString.split(',');
 
       InputView.validateCarNames(carNames);
@@ -23,7 +25,7 @@ const InputView = {
 
   readRaceStep() {
     return InputView.repeat(async () => {
-      const raceStepString = await Console.readline(Messages.READ_RACE_STEP);
+      const raceStepString = await InputView.Console.readline(Messages.READ_RACE_STEP);
       const raceStep = Number(raceStepString);
 
       InputView.validateRaceStep(raceStep);

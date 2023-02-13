@@ -1,15 +1,19 @@
-import Console from '../src/utils/Console.js';
 import InputView from '../src/view/InputView';
 
-describe('InputView 테스트 입니다.', () => {
-  const mockQuestion = (answer) => {
-    Console.readline = jest.fn();
-    Console.readline.mockReturnValue(answer);
+const mockConsole = (questions) => {
+  const remainQuestions = [...questions];
+  return {
+    readline() {
+      return remainQuestions.shift();
+    },
   };
+};
 
+describe('InputView 테스트 입니다.', () => {
   test('readCarNames 메서드는 차 이름을 입력받아 쉼표(,)를 기준으로 배열로 반환해줍니다.', async () => {
     // given
-    mockQuestion('pobi,crong');
+    const questions = ['pobi,crong'];
+    InputView.Console = mockConsole(questions);
 
     // when
     const carnames = await InputView.readCarNames();
@@ -20,7 +24,8 @@ describe('InputView 테스트 입니다.', () => {
 
   test('readRaceStep 메서드는 횟수를 입력받아 숫자 타입으로 반환해야합니다.', async () => {
     // given
-    mockQuestion('3');
+    const questions = ['3'];
+    InputView.Console = mockConsole(questions);
 
     // when
     const raceStep = await InputView.readRaceStep();
