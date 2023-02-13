@@ -1,4 +1,4 @@
-const Car = require("../src/Car")
+const Car = require("../src/domain/Car")
 
 describe("Car객체 단위 테스트", () => {
     const car = new Car("nave");    
