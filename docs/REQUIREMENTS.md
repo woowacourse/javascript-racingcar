@@ -84,6 +84,8 @@
 ## step2 기능 목록 및 리팩터링 및 기능 구현 목록
 
 - [x] feat: 자동차 이름이 공백일 경우 에러 반환하기
+- [x] feat: 자동차의 최종 위치를 구하기
+- [ ] feat: 자동차의 이동를 결정하는 숫자 배열 만들기
 - [x] refactor: 도메인 로직과 UI 로직 폴더 분리하기
 - [x] refactor: ES6 모듈 적용하기
 - [x] refactor: 유효성 검사 메서드 이름 수정하기
@@ -95,10 +97,11 @@
 - [x] refactor: GameManager에 시도횟수 저장하기
 - [x] refactor: 자동차의 이동을 GameManager에서 실행하기
 - [x] refactor: 자동차의 상태를 가져오기 위한 함수를 GameManager에서 실행하기
-- [x] feat: 자동차의 최종 위치를 구하기
 - [x] refactor: 자동차 경주 게임의 우승자를 가져오기 위한 함수를 GameMananger에서 실행하기
 - [x] refactor: 우승자의 자동차 이름을 반환하는 함수를 만들어 출력하기
 - [ ] refactor: 명령형 프로그래밍을 선언형 프로그래밍으로 수정하기
+- [ ] refactor: 매직 넘버 상수화하기
+- [ ] refactor: generateRandomNumber 재사용성 높이기
 
 ## 파일 구조
 
