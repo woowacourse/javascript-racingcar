@@ -1,6 +1,6 @@
-const Car = require("../model/Car");
-const InputView = require("../views/InputView");
-const OutputView = require("../views/OutputView");
+const Car = require("../domain/Car");
+const InputView = require("../view/InputView");
+const OutputView = require("../view/OutputView");
 const RandomNumberGenerator = require("../utils/RandomNumberGenerator")
 class RacingGame {
   #cars;
@@ -45,9 +45,9 @@ class RacingGame {
     this.whoIsWinners();
   }
 
-  runCar() {
+  runCar(number = RandomNumberGenerator.makeRandomNumber) {
     for (let car of this.#cars) {
-      car.decideGoAndStop(RandomNumberGenerator.makeRandomNumber());
+      car.decideGoAndStop(number());
     }
   }
 
@@ -71,6 +71,10 @@ class RacingGame {
       this.#winners = [];
       this.#winners.push(car.getName());
     }
+  }
+
+  get winners() {
+    return this.#winners;
   }
 }
 
