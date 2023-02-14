@@ -25,7 +25,7 @@ describe("자동차 경주 유효성 검사 테스트", () => {
     expect(ErrorHandler.checkCarNames("Rulu,")).toBeFalsy();
   });
 
-  test("자동차 이름이 중복도면 안된다", () => {
+  test("자동차 이름이 중복되면 안된다", () => {
     expect(ErrorHandler.checkIsSameCarName(["Rulu","Rulu"])).toBeTruthy();
   });
 });

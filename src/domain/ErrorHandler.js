@@ -1,23 +1,19 @@
 const ErrorHandler = {
   checkCarNames(carNames) {
-    if (!/^([^,]{1,5},)*[^,]{1,5}$/.test(carNames)) return false;
-    return true;
+    return /^([^,]{1,5},)*[^,]{1,5}$/.test(carNames);
   },
 
   checkIsOneCar(cars) {
-    if (cars.length === 1) return true;
-    return false;
+    return cars.length === 1;
   },
 
   checkIsSameCarName (cars) {
     const carSet = new Set(cars);
-    if (carSet.size != cars.length) return true;
-    return false;
+    return carSet.size != cars.length;
   },
 
   checkRepeatNumber(repeatNumber) {
-    if (!/^[1-9]\d*$/.test(repeatNumber)) return false;
-    return true;
+    return /^[1-9]\d*$/.test(repeatNumber);
   },
 };
 module.exports = ErrorHandler;

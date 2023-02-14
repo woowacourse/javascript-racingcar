@@ -4,7 +4,7 @@ const MESSAGES = require("../constant/Constant");
 const CarRaceGame = require("../domain/CarRaceGame");
 const CarRaceResultRandomGenerator = require("../domain/CarRaceResultRandomGenerator");
 
-class carRaceController {
+class CarRaceController {
   #carRace = new CarRaceGame();
 
   play() {
@@ -46,4 +46,4 @@ class carRaceController {
   }
 }
 
-module.exports = carRaceController;
+module.exports = CarRaceController;
