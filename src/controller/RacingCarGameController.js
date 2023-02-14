@@ -1,10 +1,11 @@
-const CAR_RULE = require('../constants/carRule');
-const Console = require('../lib/console');
-const Car = require('../models/Car');
-const RacingCarGame = require('../models/RacingCarGame');
-const InputValidator = require('../validators/InputValidator');
-const InputView = require('../views/InputView');
-const OutputView = require('../views/OutputView');
+const CAR_RULE = require('../constant/carRule');
+const MovingDecider = require('../domain/MovingDecider');
+const Console = require('../util/console');
+const Car = require('../domain/Car');
+const RacingCarGame = require('../domain/RacingCarGame');
+const InputValidator = require('../validator/InputValidator');
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
 
 class RacingCarGameController {
   #game;
@@ -40,7 +41,7 @@ class RacingCarGameController {
     OutputView.printResultTitle();
     OutputView.printCars(this.#game.getCarsInfo());
     for (let i = 0; i < movingCount; i += 1) {
-      this.#game.moveCars();
+      this.#game.moveCars(MovingDecider.getCarsMovingSuccesses(this.#game.getCountOfCars()));
       OutputView.printCars(this.#game.getCarsInfo());
     }
     OutputView.printWinner(this.#game.getWinner());

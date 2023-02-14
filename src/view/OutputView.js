@@ -1,5 +1,5 @@
-const Console = require('../utils/Console');
-const { OUTPUT_MESSAGE } = require('../constants/message');
+const Console = require('../util/Console');
+const { OUTPUT_MESSAGE } = require('../constant/message');
 
 const OutputView = {
   printResultTitle() {
