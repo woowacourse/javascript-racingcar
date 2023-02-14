@@ -1,29 +1,18 @@
-const Car = require('../src/model/Car');
-const { randomGenerator } = require('../src/utils/common');
+const Car = require('../src/domain/Car');
 const { GAME } = require('../src/utils/constants');
 
-const mockRandoms = (numbers) => {
-  randomGenerator.getBetween = jest.fn();
-  numbers.reduce((acc, cur) => {
-    return acc.mockReturnValueOnce(cur);
-  }, randomGenerator.getBetween);
-};
-
 describe('Car 클래스', () => {
-  test(`자동차가 전진하는 조건은 ${GAME.MOVE_CONDITION.min}에서 ${
-    GAME.MOVE_CONDITION.max - 1
-  } 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.`, () => {
+  test(`자동차는 각 단계에서 전진하거나 멈춰있을 수 있다.`, () => {
     const car = new Car('name');
-    const randomNumbers = [0, 1, 3, 5, 3, 2, 7, 9, 7];
+    const moveConditions = [true, false, false, true];
     const distanceResult = [];
 
-    mockRandoms(randomNumbers);
-    randomNumbers.forEach(() => {
-      car.move();
+    moveConditions.forEach((moveCondition) => {
+      car.move(moveCondition);
       distanceResult.push(car.getDistance());
     });
 
-    expect(distanceResult).toEqual([0, 0, 0, 1, 1, 1, 2, 3, 4]);
+    expect(distanceResult).toEqual([1, 1, 1, 2]);
   });
 
   test.each([
@@ -33,10 +22,9 @@ describe('Car 클래스', () => {
   ])('자동차가 결승선에 도착했는지 알 수 있다.', (winningDistance, result) => {
     const car = new Car('name');
 
-    mockRandoms([5, 5, 5]);
-    car.move();
-    car.move();
-    car.move();
+    car.move(true);
+    car.move(true);
+    car.move(true);
 
     expect(car.isFinish(winningDistance)).toEqual(result);
   });

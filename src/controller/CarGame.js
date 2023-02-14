@@ -1,7 +1,7 @@
-const Car = require('../model/Car');
+const Car = require('../domain/Car');
 const { GAME, MESSAGE } = require('../utils/constants');
 const terminalInputValidator = require('../validation/terminalInputValidator');
-const { toInt } = require('../utils/common');
+const { toInt, randomGenerator } = require('../utils/common');
 
 class CarGame {
   #cars;
@@ -33,7 +33,7 @@ class CarGame {
     const input = await this.view.input.readline(MESSAGE.INPUT.carName);
     const carNames = input.split(GAME.nameDivider);
     if (!terminalInputValidator.validateCarNames(carNames)) return this.#setCars();
-    makeCars();
+    makeCars(carNames);
   }
 
   async #setWinningDistance() {
@@ -42,8 +42,18 @@ class CarGame {
       return this.#setWinningDistance();
   }
 
+  #getCarMoveCondition() {
+    const randomNumber = randomGenerator.getBetween(
+      GAME.MOVE_CONDITION.min,
+      GAME.MOVE_CONDITION.max,
+    );
+    return randomNumber > GAME.MOVE_CONDITION.mid;
+  }
+
   #moveCars() {
-    this.#cars.forEach((car) => car.move());
+    this.#cars.forEach((car) => {
+      car.move(this.#getCarMoveCondition());
+    });
     this.#histories.push(
       this.#cars.map((car) => ({ name: car.getName(), distance: car.getDistance() })),
     );
