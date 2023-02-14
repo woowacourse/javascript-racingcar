@@ -1,9 +1,9 @@
-const Validator = require("../src/domain/Validator");
+import Validator from "../src/domain/Validator.js";
 
 describe("Validator 객체 테스트", () => {
   test("자동차의 이름 입력은 5글자 이하여야 한다.", () => {
     expect(() => {
-      Validator.validateCarNames("코딩하는룩소,코딩하는아인");
+      Validator.validateCarName("코딩하는룩소");
     }).toThrow("[ERROR]");
   });
 

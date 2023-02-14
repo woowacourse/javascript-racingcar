@@ -1,52 +1,41 @@
-const Car = require("./Car");
-const RandomNumberGenerator = require("../util/RandomNumberGenerator");
+import Car from "./Car.js";
+import RandomNumberGenerator from "../util/RandomNumberGenerator.js";
+import Validator from "./Validator.js";
 
 class RacingGame {
   #cars;
-  #tryCount;
+  #leftTryCount;
 
   constructor(carNames, tryCount) {
     const carNamesArray = carNames.split(",");
     this.#cars = carNamesArray.map((name) => new Car(name));
-    this.#tryCount = tryCount;
+
+    Validator.validateTryCount(tryCount);
+    this.#leftTryCount = tryCount;
   }
 
   raceOneTurn() {
     this.#cars.forEach((car) => {
       const randomNumber = RandomNumberGenerator.generate();
-      car.move(randomNumber);
+      if (randomNumber >= 4) car.move();
     });
-    this.#tryCount -= 1;
+    this.#leftTryCount -= 1;
   }
 
   isGameComplete() {
-    return this.#tryCount === 0;
+    return this.#leftTryCount === 0;
   }
 
   getCarsResultOfOneTurn() {
     return this.#cars.map((car) => ({ name: car.getName(), currentDistance: car.getCurrentDistance() }));
   }
 
-  #calculateWinners(car, winners, maxDistance) {
-    if (car.getCurrentDistance() === maxDistance) winners.push(car.getName());
-    if (car.getCurrentDistance() > maxDistance) {
-      winners = [];
-      winners.push(car.getName());
-      maxDistance = car.getCurrentDistance();
-    }
-    return { newWinners: winners, newMaxDistance: maxDistance };
-  }
-
   getWinners() {
-    let winners = [];
-    let maxDistance = 0;
-    this.#cars.forEach((car) => {
-      const { newWinners, newMaxDistance } = this.#calculateWinners(car, winners, maxDistance);
-      winners = newWinners;
-      maxDistance = newMaxDistance;
-    });
+    const maxDistance = Math.max(...this.#cars.map((car) => car.getCurrentDistance()));
+    const winners = this.#cars.filter((car) => car.getCurrentDistance() === maxDistance).map((car) => car.getName());
+
     return winners;
   }
 }
 
-module.exports = RacingGame;
+export default RacingGame;

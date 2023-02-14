@@ -23,4 +23,4 @@ const OutputView = {
   },
 };
 
-module.exports = OutputView;
+export default OutputView;

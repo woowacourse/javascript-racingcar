@@ -1,6 +1,6 @@
-const readline = require("readline");
+import { createInterface } from "readline";
 
-const readLine = readline.createInterface({
+const readLine = createInterface({
   input: process.stdin,
   output: process.stdout,
 });
@@ -19,4 +19,4 @@ const InputView = {
   },
 };
 
-module.exports = InputView;
+export default InputView;
