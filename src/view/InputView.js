@@ -1,4 +1,4 @@
-const Console = require('../utils/Console');
+import Console from '../utils/Console.js';
 
 const REQUEST_MSG = {
   carNames: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
@@ -6,13 +6,13 @@ const REQUEST_MSG = {
 };
 
 const InputView = {
-  readCarNames(callback) {
-    Console.question(REQUEST_MSG.carNames, callback);
+  readCarNames() {
+    return Console.question(REQUEST_MSG.carNames);
   },
 
-  readRaceRound(callback) {
-    Console.question(REQUEST_MSG.raceRound, callback);
+  readRaceRound() {
+    return Console.question(REQUEST_MSG.raceRound);
   },
 };
 
-module.exports = InputView;
+export default InputView;

@@ -1,8 +1,6 @@
-const rl = require('readline');
+import * as readline from 'node:readline/promises';
+import { stdin as input, stdout as output } from 'node:process';
 
-const Console = rl.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const Console = readline.createInterface({ input, output });
 
-module.exports = Console;
+export default Console;

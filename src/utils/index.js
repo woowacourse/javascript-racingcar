@@ -1,11 +1,3 @@
-const Console = require('./Console');
-const inputErrorHandler = require('./inputErrorHandler');
-const randomNumberGenerator = require('./randomNumberGenerator');
-const Converter = require('./Converter');
-
-module.exports = {
-  Console,
-  inputErrorHandler,
-  randomNumberGenerator,
-  Converter,
-};
+export { default as Console } from './Console.js';
+export { default as Converter } from './Converter.js';
+export { default as randomNumberGenerator } from './randomNumberGenerator.js';

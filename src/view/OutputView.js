@@ -1,8 +1,12 @@
-const { Converter } = require('../utils');
+import { Converter } from '../utils/index.js';
 
 const OutputView = {
   printResultMessage() {
     console.log(RESULT_MESSAGE.opening);
+  },
+
+  printErrorMessage(message) {
+    console.log(message);
   },
 
   printRoundResult(roundResult) {
@@ -29,4 +33,4 @@ const RESULT_MESSAGE = {
   ending: '(이)가 최종 우승했습니다.',
 };
 
-module.exports = OutputView;
+export default OutputView;

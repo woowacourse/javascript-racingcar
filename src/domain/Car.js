@@ -1,4 +1,4 @@
-class Car {
+export default class Car {
   #name;
   #position = 0;
 
@@ -18,5 +18,3 @@ class Car {
     return this.#position;
   }
 }
-
-module.exports = Car;

@@ -1,48 +1,90 @@
-const RacingGame = require('../src/RacingGame');
+import RacingGame from '../src/domain/RacingGame.js';
 
-describe('RacingGame 메소드들이 예상 값을 반환하는 지 테스트', () => {
-  const names = ['a', 'b'];
-  const round = 3;
-  const racingGame = new RacingGame(names, round);
-
+describe('RacingGame클래스 메서드 테스트', () => {
   const mockFunc = jest.fn();
-  const randoms = [1, 5, 2, 6, 3, 7];
 
-  randoms.forEach((random) => {
-    mockFunc.mockReturnValueOnce(random);
-  });
+  test('getRoundResult메서드는 객체 배열 형태로 각 자동차의 라운드 진행 결과를 반환한다', () => {
+    const names = ['a', 'b'];
+    const round = 1;
+    const racingGame = new RacingGame(names, round);
 
-  while (racingGame.isPlaying()) {
+    const randoms = [1, 5];
+    randoms.forEach((random) => {
+      mockFunc.mockReturnValueOnce(random);
+    });
+
     racingGame.race(mockFunc);
-  }
 
-  test('모든 라운드가 예상대로 진행 후 isPlaying메소드가 0을 반환한다', () => {
-    const round = racingGame.isPlaying();
-
-    expect(round).toBe(0);
-  });
-
-  test('라운드 결과를 변환한다', () => {
+    const result = racingGame.getRoundResult();
     const expected = [
       { name: 'a', position: 0 },
-      { name: 'b', position: 3 },
+      { name: 'b', position: 1 },
     ];
-    const result = racingGame.getRoundResult();
 
     expect(result).toEqual(expected);
   });
 
-  test('모든 차 객체의 포지션 중 가장 큰 수를 반환한다.', () => {
-    const expected = 3;
+  test('getHighestScore메서드는 모든 자동차 객체의 position필드 중 가장 큰 수를 반환한다.', () => {
+    const names = ['a', 'b'];
+    const round = 1;
+    const racingGame = new RacingGame(names, round);
+
+    const randoms = [1, 5];
+    randoms.forEach((random) => {
+      mockFunc.mockReturnValueOnce(random);
+    });
+
+    racingGame.race(mockFunc);
+
     const highestScore = racingGame.getHighestScore();
+    const expected = 1;
 
     expect(highestScore).toBe(expected);
   });
 
-  test('가장 큰 포지션을 가진 우승자 배열을 반환한다.', () => {
+  test('getWinners메서드는 가장 큰 포지션을 가진 우승자 배열을 반환한다.', () => {
+    const names = ['a', 'b'];
+    const round = 1;
+    const racingGame = new RacingGame(names, round);
+
+    const randoms = [1, 5];
+    randoms.forEach((random) => {
+      mockFunc.mockReturnValueOnce(random);
+    });
+
+    racingGame.race(mockFunc);
+
+    const highestScore = 1;
+    const winners = racingGame.getWinners(highestScore);
     const expected = ['b'];
-    const winners = racingGame.getWinners(3);
 
     expect(winners).toEqual(expected);
+  });
+
+  test('모든 라운드가 종료된 후, isPlaying메서드는 false를 반환해야 한다.', () => {
+    const names = ['a', 'b'];
+    const round = 1;
+    const racingGame = new RacingGame(names, round);
+
+    const randoms = [1, 5];
+    randoms.forEach((random) => {
+      mockFunc.mockReturnValueOnce(random);
+    });
+
+    racingGame.race(mockFunc);
+
+    const isPlaying = racingGame.isPlaying();
+
+    expect(isPlaying).toBe(false);
+  });
+
+  test('진행해야 할 라운드가 남은 경우, isPlaying메서드는 true를 반환해야 한다.', () => {
+    const names = ['a', 'b'];
+    const round = 1;
+    const racingGame = new RacingGame(names, round);
+
+    const isPlaying = racingGame.isPlaying();
+
+    expect(isPlaying).toBe(true);
   });
 });

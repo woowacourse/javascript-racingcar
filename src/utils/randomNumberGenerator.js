@@ -2,4 +2,4 @@ const randomNumberGenerator = () => {
   return Math.floor(Math.random() * 10);
 };
 
-module.exports = randomNumberGenerator;
+export default randomNumberGenerator;
