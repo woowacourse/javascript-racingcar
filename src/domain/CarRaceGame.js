@@ -1,15 +1,15 @@
 class CarRaceGame {
-  #carNames;
+  #cars;
 
   #carDistances;
 
-  setCarNames(carNames) {
-    this.#carNames = carNames;
-    this.#carDistances = Array(this.#carNames.length).fill(0);
+  setCarNames(cars) {
+    this.#cars = cars;
+    this.#carDistances = Array(this.#cars.length).fill(0);
   }
 
   getCarNames() {
-    return this.#carNames;
+    return this.#cars;
   }
 
   updateRace(carRaceResult) {
@@ -25,7 +25,7 @@ class CarRaceGame {
     const maxDistance = Math.max(...this.#carDistances);
     for (let i = 0; i < this.#carDistances.length; i += 1) {
       if (this.#carDistances[i] === maxDistance) {
-        winners.push(this.#carNames[i]);
+        winners.push(this.#cars[i]);
       }
     }
     return winners.join(", ");

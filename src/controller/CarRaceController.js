@@ -1,24 +1,24 @@
 const InputView = require("../view/InputView");
 const OutputView = require("../view/OutputView");
 const MESSAGES = require("../constant/Constant");
-const CarRaceGame = require("./CarRaceGame");
-const CarRaceResultRandomGenerator = require("./CarRaceResultRandomGenerator");
+const CarRaceGame = require("../domain/CarRaceGame");
+const CarRaceResultRandomGenerator = require("../domain/CarRaceResultRandomGenerator");
 
-class App {
+class CarRaceController {
   #carRace = new CarRaceGame();
 
   play() {
-    this.#start();
+    this.start();
   }
 
-  async #start() {
+  async start() {
     try {
-      const carNames = await InputView.readCarNames(MESSAGES.carText);
-      this.#carRace.setCarNames(carNames.split(","));
+      const cars = await InputView.readCarNames(MESSAGES.carText);
+      this.#carRace.setCarNames(cars);
       this.#repeat();
     } catch (e) {
-      OutputView.printMessage(MESSAGES.carTextError);
-      this.#start();
+      OutputView.printMessage(e.message);
+      this.start();
     }
   }
 
@@ -27,7 +27,7 @@ class App {
       const repeatNumber = await InputView.readRepeatNumber(MESSAGES.repeatNumber);
       this.#playGame(repeatNumber);
     } catch (e) {
-      OutputView.printMessage(MESSAGES.repeatRangeError);
+      OutputView.printMessage(e.message);
       this.#repeat();
     }
   }
@@ -46,4 +46,4 @@ class App {
   }
 }
 
-module.exports = App;
+module.exports = CarRaceController;
