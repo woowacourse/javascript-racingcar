@@ -4,7 +4,7 @@ const Console = require('./utils/Console');
 const Validator = {
   isValidCarNames(name) {
     try {
-      Validator.carNameLength(name);
+      Validator.validateCarName(name);
       return false;
     } catch (error) {
       Console.print(error.message);
@@ -12,16 +12,16 @@ const Validator = {
     }
   },
 
-  validateCarNameLength(carName) {
+  carNameLength(carName) {
     return (
       Settings.MIN_NAME_LENGTH > carName.length ||
       carName.length > Settings.MAX_NAME_LENGTH
     );
   },
 
-  carNameLength(carNames) {
+  validateCarName(carNames) {
     carNames.forEach((carName) => {
-      if (Validator.validateCarNameLength(carName)) {
+      if (Validator.carNameLength(carName)) {
         throw new Error(Messages.ERROR_CAR_NAME);
       }
     });
