@@ -1,6 +1,6 @@
-import Car from '../src/models/Car';
+import Car from '../src/domain/Car';
 import Console from '../src/utils/Console';
-import OutputView from '../src/views/OutputView';
+import OutputView from '../src/view/OutputView';
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');

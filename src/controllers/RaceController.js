@@ -1,8 +1,8 @@
-import Car from '../models/Car';
-import Race from '../models/Race';
+import Car from '../domain/Car';
+import Race from '../domain/Race';
 import Console from '../utils/Console';
-import InputView from '../views/InputView';
-import OutputView from '../views/OutputView';
+import InputView from '../view/InputView';
+import OutputView from '../view/OutputView';
 
 class RaceController {
   /** @type {Race} */

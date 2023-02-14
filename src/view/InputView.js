@@ -4,9 +4,11 @@ import Console from '../utils/Console';
 import OutputView from './OutputView';
 
 const InputView = {
+  Console: Console,
+
   async readCarNames() {
     return InputView.repeat(async () => {
-      const carnamesString = await Console.readline(Messages.READ_CAR_NAMES);
+      const carnamesString = await InputView.Console.readline(Messages.READ_CAR_NAMES);
       const carNames = carnamesString.split(',');
 
       InputView.validateCarNames(carNames);
@@ -16,14 +18,18 @@ const InputView = {
 
   validateCarNames(carNames) {
     const isEveryCarNameValid = carNames.every((carName) => carName.length <= 5);
-    if (!isEveryCarNameValid) {
-      throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
-    }
+    if (!isEveryCarNameValid) throw new AppError(ErrorMessages.CAR_NAME_LENGTH_LIMIT, 5);
+
+    const isEveryCarNameNotEmpty = carNames.every((carName) => carName.length > 0);
+    if (!isEveryCarNameNotEmpty) throw new AppError(ErrorMessages.CAR_NAME_EMPTY);
+
+    const isEveryCarNameDistinct = new Set(carNames).size === carNames.length;
+    if (!isEveryCarNameDistinct) throw new AppError(ErrorMessages.CAR_NAME_MUST_DISTINCT);
   },
 
   readRaceStep() {
     return InputView.repeat(async () => {
-      const raceStepString = await Console.readline(Messages.READ_RACE_STEP);
+      const raceStepString = await InputView.Console.readline(Messages.READ_RACE_STEP);
       const raceStep = Number(raceStepString);
 
       InputView.validateRaceStep(raceStep);
