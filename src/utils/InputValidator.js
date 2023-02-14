@@ -6,14 +6,14 @@ class InputValidator {
       throw ERROR_MESSAGE.CAR_NAME_LENGTH_ERROR;
   }
 
-  static validateCarNames(carArr) {
-    carArr.forEach(InputValidator.validateCarName);
-    carArr.forEach(InputValidator.validateBlank);
-  }
-
   static validateBlank(inputValue) {
     if (inputValue.length <= NUMBERS.BLANK_CHECK_NUMBER)
       throw ERROR_MESSAGE.BLANK_ERROR;
+  }
+
+  static validateCarNames(carArr) {
+    carArr.forEach(InputValidator.validateCarName);
+    carArr.forEach(InputValidator.validateBlank);
   }
 
   static validateTypeNumber(inputValue) {
