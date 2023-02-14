@@ -1,5 +1,4 @@
-const { randomGenerator } = require('./randomGenerator');
-const { GAME_VALUE } = require('./constants');
+const { GAME_VALUE } = require('../constants');
 
 class Car {
   #name;
