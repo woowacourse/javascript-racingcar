@@ -11,7 +11,7 @@ class RacingCarGame {
   generateRacingCarGame(carNamesMap, totalTrialCount) {
     let movingCars = '';
     for (let count = 0; count < totalTrialCount; count++) {
-      [...carNamesMap.keys()].map(carName => {
+      [...carNamesMap.keys()].forEach(carName => {
         if (this.goForward()) carNamesMap.set(carName, carNamesMap.get(carName) + 1);
         movingCars += `${carName} : ${'-'.repeat(carNamesMap.get(carName))}\n`;
       });
@@ -22,7 +22,7 @@ class RacingCarGame {
 
   defaultRacingCarGame(carNamesMap) {
     let defaultCars = '';
-    [...carNamesMap.keys()].map(carName => (defaultCars += `${carName} : -\n`));
+    [...carNamesMap.keys()].forEach(carName => (defaultCars += `${carName} : -\n`));
     return `${defaultCars}\n`;
   }
 
