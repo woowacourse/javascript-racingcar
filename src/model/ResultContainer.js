@@ -9,4 +9,4 @@ class ResultContainer {
   }
 }
 
-module.exports = ResultContainer; 
+module.exports = ResultContainer;

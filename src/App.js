@@ -6,7 +6,7 @@ class App {
   async playRacingCarGame() {
     this.#controller = new Controller();
     await this.#controller.createRacingCarGame();
-    
+
     this.#controller.executeRacingCarGame();
   }
 }
