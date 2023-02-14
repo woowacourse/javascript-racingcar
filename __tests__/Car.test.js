@@ -66,7 +66,7 @@ describe('Car 객체의 메서드 테스트입니다.', () => {
     expect(car.getRaceState()).toEqual({ name: 'conan', position: 3 });
   });
 
-  test('compareTo - 다른 Car 객체와 위치를 비교해 멀리 간 Car 객체를 반환한다.', () => {
+  test('isFarPosition - 다른 Car 객체와 위치를 비교해 멀리 갔다면 true를 반환한다.', () => {
     // given
     const pobi = new Car('pobi');
     const conan = new Car('conan');
@@ -75,7 +75,19 @@ describe('Car 객체의 메서드 테스트입니다.', () => {
     pobi.move();
 
     // then
-    expect(pobi.compareTo(conan)).toBe(pobi);
+    expect(pobi.isFarPosition(conan)).toBe(true);
+  });
+
+  test('isFarPosition - 다른 Car 객체와 위치를 비교해 멀리 가지 않았다면 false를 반환한다.', () => {
+    // given
+    const pobi = new Car('pobi');
+    const conan = new Car('conan');
+
+    // when
+    pobi.move();
+
+    // then
+    expect(conan.isFarPosition(pobi)).toBe(false);
   });
 
   test('isSamePosition - 다른 Car 객체와 위치가 같으면 true를 반환한다.', () => {
