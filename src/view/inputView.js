@@ -1,46 +1,42 @@
-const rl = require("./Readline");
+const { INPUT_MESSAGE } = require('./utils/constants/message');
+const Console = require('./utils/Console');
+const InputValidator = require('./InputValidator');
 
 class InputView {
-  readCarNames() {
-    return new Promise((resolve, reject) => {
-      rl.question(
-        '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
-        input => {
-          const carNames = input.split(',');
-          if (!this.validateCarNames(carNames)) {
-            reject(new Error('[ERROR] 다섯글자 이하의 자동차를 중복없이 입력해주세요.\n'));
-          }
+  static #inputValidator = InputValidator;
 
-          const carMap = carNames.reduce((acc, cur) => {
-            return acc.set(cur, 0);
-          }, new Map());
+  static async readCarNameList() {
+    try {
+      const input = await Console.question(INPUT_MESSAGE.carNames);
+      const carNameList = this.#preprocessCarName(input);
 
-          resolve(carMap);
-        }
-      );
-    });
-  }
-
-  validateCarNames(carNames) {
-    if ([...new Set(carNames)].length !== carNames.length) return false;
-
-    for (const car of carNames) {
-      if (car.length > 5 || car.length === 0) return false;
+      this.#inputValidator.validateCarNameList(carNameList);
+      return carNameList;
+    } catch (err) {
+      Console.print(err.message);
+      return this.readCarNameList();
     }
-
-    return true;
   }
 
-  readCount() {
-    return new Promise((resolve, reject) => {
-      rl.question('시도할 회수는 몇회인가요?\n', input => {
-        const trialCount = Number(input);
-        if (isNaN(trialCount)) {
-          reject(new Error('[ERROR] 숫자만 입력 가능합니다.'));
-        }
-        resolve(trialCount);
-      });
-    });
+  static async readNumberOfTrials() {
+    try {
+      const input = await Console.question(INPUT_MESSAGE.numberOfTrials);
+      const numberOfTrials = this.#preprocessNumberOfTrials(input);
+
+      this.#inputValidator.validateNumberOfTrials(numberOfTrials);
+      return numberOfTrials;
+    } catch (err) {
+      Console.print(err.message);
+      return this.readNumberOfTrials();
+    }
+  }
+
+  static #preprocessCarName(input) {
+    return input.split(',').map((carName) => carName.trim());
+  }
+
+  static #preprocessNumberOfTrials(input) {
+    return Number(input);
   }
 }
 

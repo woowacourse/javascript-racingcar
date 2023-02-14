@@ -1,11 +1,13 @@
 const Controller = require('./controller/Controller');
 
 class App {
-  constructor() {
-    this.controller = new Controller();
-  }
-  playRacingCarGame() {
-    this.controller.execute();
+  #controller;
+
+  async playRacingCarGame() {
+    this.#controller = new Controller();
+    await this.#controller.createRacingCarGame();
+
+    this.#controller.executeRacingCarGame();
   }
 }
 

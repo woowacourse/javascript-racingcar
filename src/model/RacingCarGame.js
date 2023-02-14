@@ -1,45 +1,41 @@
+const ResultContainer = require('./ResultContainer');
+const ScoreMap = require('./ScoreMap');
+
 class RacingCarGame {
-  getResult(carNamesMap, totalTrialCount) {
-    let carCount = 0;
-    let carResult = '\n실행 결과\n';
+  #totalTrial;
+  #scoreMap;
+  #roundResultList;
 
-    carNamesMap.forEach((_, carName) => {
-      carResult += `${carName}: -\n`
-    })
-
-    carResult += '\n'
-
-    while (carCount < totalTrialCount) {
-      carNamesMap.forEach((position, carName) => {
-        if (this.goForward()) {
-          carNamesMap.set(carName, position + 1);
-        }
-
-        carResult += `${carName} : ${'-'.repeat(carNamesMap.get(carName) + 1)}\n`
-      });
-
-      carResult += '\n';
-      carCount += 1;
+  constructor(carList, totalTrial) {
+    if (carList.some((car) => typeof car !== 'string') && isNaN(totalTrial)) {
+      throw new Error(`TypeError`);
     }
 
-    carResult += this.getWinnerCar(carNamesMap);
-    return carResult;
+    this.#scoreMap = new ScoreMap(carList);
+    this.#roundResultList = [this.#scoreMap.getRoundResult()];
+    this.#totalTrial = totalTrial;
   }
 
-  goForward() {
-    const GO_FORWARD = 4;
-    return Math.floor(Math.random() * 10) >= GO_FORWARD;
+  getGameResult() {
+    const roundResultList = [...this.#roundResultList];
+    const winnerList = this.#scoreMap.getWinnerList();
+
+    return new ResultContainer(roundResultList, winnerList);
   }
 
-  getWinnerCar(carNamesMap) {
-    const result = [];
-    const maxCarCount = Math.max(...carNamesMap.values());
-
-    for (const [carName, count] of carNamesMap.entries()) {
-      if (maxCarCount === count) result.push(carName);
+  play() {
+    for (let i = 0; i < this.#totalTrial; i++) {
+      this.#tryOnce();
     }
+  }
 
-    return result.join(', ') + '이(가) 최종 우승했습니다.';
+  #tryOnce() {
+    this.#scoreMap.updateScoreOnce();
+    this.#addRoundResult(this.#scoreMap.getRoundResult());
+  }
+
+  #addRoundResult(roundResult) {
+    this.#roundResultList.push(roundResult);
   }
 }
 
