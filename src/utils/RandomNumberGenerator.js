@@ -1,6 +1,6 @@
 const RandomNumberGenerator = {
-  generate(lowerBound, UpperBound) {
-    return Math.floor(Math.random() * (UpperBound - lowerBound)) + lowerBound;
+  generate(lowerBound, upperBound) {
+    return Math.floor(Math.random() * (upperBound - lowerBound)) + lowerBound;
   },
 };
 

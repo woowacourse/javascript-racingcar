@@ -1,27 +1,33 @@
 const Car = require('./Car');
-const MainController = require('./App');
 
-const RandomNumberGenerator = require('../src/utils/RandomNumberGenerator');
-const { RANDOM_LOWER_INCLUSIVE, RANDOM_UPPER_INCLUSIVE } = require('./constants/numbers');
+const RandomNumberGenerator = require('../utils/RandomNumberGenerator');
+const {
+  RANDOM_LOWER_INCLUSIVE,
+  RANDOM_UPPER_INCLUSIVE,
+} = require('../constants/numbers');
 
 class OverallRacingGameManager {
   #cars = [];
+  #app;
 
-  constructor(carNames) {
-    this.#cars = this.createInitialCars(carNames);
+  constructor(app) {
+    this.#app = app;
+    this.#cars = [];
   }
 
   createInitialCars(carNames) {
-    return (this.#cars = carNames.map((carName) => new Car(carName)));
+    this.#cars = carNames.map((carName) => new Car(carName));
   }
 
-  startRace(tryCounts) {
+  accumulatedProgress(tryCounts) {
+    const accumulatedProgress = [];
+
     for (let i = 0; i < tryCounts; i++) {
       this.progress();
 
-      MainController.printRaceProgress(this.getCars());
+      accumulatedProgress.push(this.getCars());
     }
-    MainController.printWinners(this.getWinners());
+    return accumulatedProgress;
   }
 
   progress() {

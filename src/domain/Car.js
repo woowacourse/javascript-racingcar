@@ -1,4 +1,4 @@
-const { MINIMUM_RANDOM_NUMBER_TO_MOVE } = require('./constants/numbers');
+const { MINIMUM_RANDOM_NUMBER_TO_MOVE } = require('../constants/numbers');
 
 class Car {
   #name;
@@ -11,7 +11,7 @@ class Car {
 
   tryProgress(randomNumber) {
     if (this.canProgress(randomNumber)) {
-      this.#progressCount++;
+      this.progressCount = this.progressCount + 1;
     }
   }
 
@@ -25,6 +25,10 @@ class Car {
 
   get progressCount() {
     return this.#progressCount;
+  }
+
+  set progressCount(value) {
+    this.#progressCount = value;
   }
 }
 
