@@ -1,3 +1,5 @@
+const { NUMBER } = require('../utils/constant');
+
 class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
     let carResult = '\n실행 결과\n';
@@ -27,7 +29,7 @@ class RacingCarGame {
   }
 
   goForward() {
-    return Math.floor(Math.random() * 10) >= 4;
+    return Math.floor(Math.random() * 10) >= NUMBER.goForward;
   }
 
   getWinnerCar(carNamesMap) {
