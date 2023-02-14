@@ -4,6 +4,7 @@ const Utils = require('./Utils');
 const Exception = {
   checkCarInput(input) {
     this.checkInputLength(input);
+    this.checkInputNaming(input);
     this.checkDuplicateInput(input);
   },
 
@@ -15,6 +16,14 @@ const Exception = {
     });
   },
 
+  checkInputNaming(input) {
+    input.forEach((name) => {
+      if (Utils.startsWithDigit(name)) {
+        throw new Error(ErrorMessage.NAME_FORMAT);
+      }
+    });
+  },
+
   checkDuplicateInput(input) {
     if (new Set(input).size !== input.length) {
       throw new Error(ErrorMessage.NAME_DUPLICATION);
@@ -22,7 +31,9 @@ const Exception = {
   },
 
   checkMoveCountInput(input) {
-    if (isNaN(input) || input <= 0) {
+    const MOVE_COUNT = input.trim();
+
+    if (Utils.hasNonDigit(MOVE_COUNT) || Number(MOVE_COUNT) <= 0) {
       throw new Error(ErrorMessage.MOVE_INPUT);
     }
   },

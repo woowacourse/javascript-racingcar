@@ -1,7 +1,7 @@
-const Controller = require('./controller/Controller');
+const RacingGameController = require('./controller/RacingGameController');
 
 class App {
-  #controller = new Controller();
+  #controller = new RacingGameController();
 
   play() {
     this.#controller.playGame();
@@ -9,3 +9,6 @@ class App {
 }
 
 module.exports = App;
+
+const app = new App();
+app.play();
