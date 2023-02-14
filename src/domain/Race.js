@@ -27,7 +27,7 @@ class Race {
       throw new Error(Race.STEP_IS_NOT_INTEGER);
     }
 
-    if (Race.#isPositive(raceStep)) {
+    if (!Race.#isPositive(raceStep)) {
       throw new Error(Race.STEP_IS_NOT_POSITIVE);
     }
   }
@@ -37,7 +37,7 @@ class Race {
   }
 
   static #isPositive(raceStep) {
-    return raceStep < 1;
+    return raceStep > 0;
   }
 
   isRaceEnd() {
