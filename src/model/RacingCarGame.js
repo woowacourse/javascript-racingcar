@@ -1,10 +1,11 @@
 class RacingCarGame {
   getResult(carNamesMap, totalTrialCount) {
     let carResult = '\n실행 결과\n';
-    carResult += this.defaultRacingCarGame(carNamesMap);
-    carResult += this.generateRacingCarGame(carNamesMap, totalTrialCount);
-    carResult += this.getWinnerCar(carNamesMap);
-    return carResult;
+    return carResult.concat(
+      this.defaultRacingCarGame(carNamesMap),
+      this.generateRacingCarGame(carNamesMap, totalTrialCount),
+      this.getWinnerCar(carNamesMap)
+    );
   }
 
   generateRacingCarGame(carNamesMap, totalTrialCount) {
