@@ -1,5 +1,6 @@
 const Random = require("../utils/Random");
-const { MOVE_FORWARD, FLAG, NOT_MOVED } = require("../constants");
+const Car = require("../Domain/Car");
+const { MOVE_FORWARD } = require("../constants");
 
 class Race {
   #carNames;
@@ -12,18 +13,15 @@ class Race {
   }
 
   start() {
-    while (true) {
-      const race = this.convertResults(
-        Random.makeRandomNumbers(this.#countOfTrial)
-      );
-      this.#currentRace.push(race);
-      if (this.#carNames.length === this.#currentRace.length) break;
-    }
-    return this.#currentRace;
-  }
+    this.#carNames.map(() => {
+      const race = Random.makeRandomNumbers(this.#countOfTrial);
+      console.log(race);
+      const car = new Car(race);
 
-  convertResults(race) {
-    return race.map((step) => (step >= FLAG ? MOVE_FORWARD : NOT_MOVED));
+      console.log(car.getRaceResult());
+      this.#currentRace = [...this.#currentRace, car.getRaceResult()];
+    });
+    return this.#currentRace;
   }
 
   makeResult() {
@@ -32,8 +30,7 @@ class Race {
     );
     const maxDistance = Math.max(...distanceArray);
     const winners = distanceArray.reduce((arr, distance, index) => {
-      if (distance === maxDistance) arr.push(this.#carNames[index]);
-      return arr;
+      return distance === maxDistance ? [...arr, this.#carNames[index]] : arr;
     }, []);
     return winners;
   }
