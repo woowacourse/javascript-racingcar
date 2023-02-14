@@ -1,5 +1,5 @@
-import Console from './utils/Console.js';
-import { VIEW_MESSAGE } from './Template/index.js';
+import Console from '../utils/Console.js';
+import { VIEW_MESSAGE } from '../Template/index.js';
 
 const View = {
   naming() {
@@ -8,8 +8,9 @@ const View = {
   tryCount() {
     Console.print(VIEW_MESSAGE.tryCount);
   },
-  resultTitle() {
+  resultTitle(cars) {
     Console.print(VIEW_MESSAGE.resultTitle);
+    this.carProgress(cars);
   },
   carProgress(cars) {
     cars.forEach((car) => {

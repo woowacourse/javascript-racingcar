@@ -1,9 +1,9 @@
-import { NAME_DELIMITER, MOVE_NUMBER } from './Template/index.js';
-import Car from './models/Car.js';
-import Console from './utils/Console.js';
-import randomNumberInRange from './utils/RandomNumberInRange.js';
-import Validator from './utils/Validator.js';
-import View from './View.js';
+import { NAME_DELIMITER, MOVE_NUMBER } from '../Template/index.js';
+import Car from './Car.js';
+import Console from '../utils/Console.js';
+import randomNumberInRange from '../utils/RandomNumberInRange.js';
+import InputValidator from '../utils/Validator.js';
+import View from '../view/index.js';
 
 class Controller {
   #cars;
@@ -29,19 +29,17 @@ class Controller {
 
   async #initCount() {
     View.tryCount();
-    const moveCount = await this.#readTryCount();
-    const viewCount = moveCount + 1;
+    const count = await this.#readTryCount();
     View.newLine();
 
-    return { moveCount, viewCount };
+    return count;
   }
 
-  #raceStart({ moveCount, viewCount }) {
-    View.resultTitle();
-    for (let count = 0; count < viewCount; count++) {
-      View.carProgress(this.#getCarsData());
-      if (count === moveCount) break;
+  #raceStart(count) {
+    View.resultTitle(this.#getCarsData());
+    for (let i = 0; i < count; i += 1) {
       this.#cars.forEach(this.#judgeMove);
+      View.carProgress(this.#getCarsData());
     }
   }
 
@@ -69,7 +67,7 @@ class Controller {
   async #readNames() {
     try {
       const input = await Console.read();
-      Validator.checkNames(input);
+      InputValidator.checkNames(input);
       return input.split(NAME_DELIMITER);
     } catch (e) {
       View.error(e);
@@ -80,7 +78,7 @@ class Controller {
   async #readTryCount() {
     try {
       const input = await Console.read();
-      Validator.checkIntegerNumber(input);
+      InputValidator.checkIntegerNumber(input);
       return Number(input);
     } catch (e) {
       View.error(e);
