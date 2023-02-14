@@ -1,23 +1,22 @@
 const RacingGame = require('./RacingGame');
-const Validation = require('./Validation');
-const OutputView = require('./view/OutputView');
-const { Console } = require('./utils');
-const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('./constants/Constant');
+const Validation = require('../utils/Validation');
+const OutputView = require('../view/OutputView');
+const { Console } = require('../utils');
+const { REQUEST_MESSAGE, RESULT_MESSAGE } = require('../constants/Constant');
 
-class App {
+class GameController {
   #racingGame;
 
   async play() {
-    await this.createRacingGame();
+    await this.#createRacingGame();
     this.#raceCars();
-    const winners = this.#findWinners();
-    this.#showWinners(winners);
+    this.#showResult();
+    this.#endGame();
   }
 
-  async createRacingGame() {
+  async #createRacingGame() {
     const carNames = await this.#requestCarNames();
     const round = await this.#requestRaceRound();
-
     this.#racingGame = new RacingGame(carNames, round);
   }
 
@@ -29,7 +28,7 @@ class App {
       return carNames;
     } catch (e) {
       OutputView.print(e.message);
-      await this.#requestCarNames();
+      return this.#requestCarNames();
     }
   }
 
@@ -41,19 +40,22 @@ class App {
       return raceRound;
     } catch (e) {
       OutputView.print(e.message);
-      await this.#requestRaceRound();
+      return this.#requestRaceRound();
     }
   }
 
   #raceCars() {
-    OutputView.print(RESULT_MESSAGE.opening);
-
     while (this.#racingGame.isPlaying()) {
       this.#racingGame.race();
-
-      const roundResult = this.#racingGame.getRoundResult();
-      OutputView.printRoundResult(roundResult);
     }
+  }
+
+  #showResult() {
+    OutputView.print(RESULT_MESSAGE.opening);
+    const finalResult = this.#racingGame.getFinalResult();
+    const winners = this.#findWinners();
+    OutputView.printFinalResult(finalResult);
+    OutputView.printWinners(winners);
   }
 
   #findWinners() {
@@ -63,10 +65,9 @@ class App {
     return winners;
   }
 
-  #showWinners(winners) {
-    OutputView.printFinalResult(winners);
+  #endGame() {
     Console.close();
   }
 }
 
-new App().play();
+module.exports = GameController;

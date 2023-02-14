@@ -6,19 +6,17 @@ const OutputView = {
     console.log(message);
   },
 
-  printRoundResult(roundResult) {
-    const templates = roundResult.map(({ name, position }) => {
-      const positionScore = Converter.numberToDash(position);
+  printFinalResult(finalResult) {
+    const template = finalResult
+      .map((eachRound) => {
+        return eachRound.map(Converter.carRoundResult).join('\n');
+      })
+      .join('\n\n');
 
-      return `${name} : ${positionScore}`;
-    });
-
-    const result = Converter.arrayToString(templates, '\n');
-
-    console.log(`${result}\n`);
+    console.log(template);
   },
 
-  printFinalResult(winners) {
+  printWinners(winners) {
     const winnersName = Converter.arrayToString(winners, ', ');
 
     console.log(`${winnersName}${RESULT_MESSAGE.ending}`);

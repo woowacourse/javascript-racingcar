@@ -1,5 +1,5 @@
 const { ERROR_MESSAGE } = require('../src/constants/Constant');
-const Validation = require('../src/Validation');
+const Validation = require('../src/utils/Validation');
 
 describe('Validation.validateCarNames', () => {
   test('최소 자동차 수 조건을 만족하지 않는 경우, 에러가 발생한다.', () => {
