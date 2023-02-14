@@ -14,7 +14,6 @@ export default {
     'no-console': 'off',
     'no-alert': 'off',
     'max-depth': ['error', 2],
-    'max-lines-per-function': ['error', 17],
   },
   parserOptions: {
     ecmaVersion: 12,
