@@ -16,12 +16,16 @@ class InputValidator {
     if (!this.#isCarNameListNotDuplicated(carNameList)) {
       throw new Error(ERROR_MESSAGE.carNameListDuplicated);
     }
+
+    return true;
   }
 
   static validateNumberOfTrials(numberOfTrials) {
     if (isNaN(numberOfTrials) || numberOfTrials === 0) {
       throw new Error(ERROR_MESSAGE.numberOfTrials);
     }
+
+    return true;
   }
 
   static #hasCarNameListEmpty(carNameList) {
