@@ -11,14 +11,14 @@ class RacingGame {
     this.#cars = [];
   }
 
-  makeCarsNameList(cars) {
+  get car() {
+    return this.#cars;
+  }
+
+  set car(cars) {
     cars.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
-  }
-
-  get carsNameList() {
-    return this.#cars;
   }
 
   get tryCount() {

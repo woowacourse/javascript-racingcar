@@ -15,7 +15,7 @@ class RacingController {
     InputView.readCarName((carNames) => {
       const carArr = carNames.split(',');
 
-      this.#racingGame.makeCarsNameList(carArr);
+      this.#racingGame.car(carArr);
       this.judgeCarNamesProgress(carArr);
     });
   }
@@ -52,13 +52,13 @@ class RacingController {
   repeatMoveProcess() {
     for (let i = 0; i < this.#racingGame.tryCount; i++) {
       this.#racingGame.assignRandom();
-      OutputView.printMoveProcess(this.#racingGame.carsNameList);
+      OutputView.printMoveProcess(this.#racingGame.car);
     }
   }
 
   showMoveResult() {
     OutputView.printMoveResult();
-    OutputView.printMoveProcess(this.#racingGame.carsNameList);
+    OutputView.printMoveProcess(this.#racingGame.car);
     this.repeatMoveProcess();
   }
 
