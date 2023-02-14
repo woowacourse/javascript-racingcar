@@ -1,9 +1,9 @@
-const InputView = require('../View/InputView');
-const OutputView = require('../View/OutputView');
-const Validation = require('../Validation');
-const Race = require('../Model/Race');
+const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
+const Validation = require('./Validation');
+const Race = require('./domain/Race');
 
-class Controller {
+class RaceController {
   #carNames;
   constructor() {
     this.inputCarNameHandler();
@@ -47,4 +47,4 @@ class Controller {
   }
 }
 
-module.exports = Controller;
+module.exports = RaceController;
