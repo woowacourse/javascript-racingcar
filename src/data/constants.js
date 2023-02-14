@@ -13,17 +13,19 @@ const SYMBOL = Object.freeze({
 const ERROR_MESSAGE = Object.freeze({
   CAR_NAME_LENGTH_ERROR: '[ERROR] 자동차 이름은 5자 이하만 가능합니다.',
   TRY_COUNT_TYPE_ERROR: '[ERROR] 시도 횟수는 숫자로 입력해주세요.',
+  BLANK_ERROR: '[ERROR] 내용을 입력해주세요.',
 });
 
-const UTIL_NUMBER = Object.freeze({
+const NUMBERS = Object.freeze({
   CAR_MOVE_MINIMUM_NUMBER: 4,
   CAR_RANDOM_MAXIMUM_NUMBER: 9,
-  CAR_NAME_LENGTH_LIMIT: 5,
+  CAR_NAME_LENGTH_LIMIT_NUMBER: 5,
+  BLANK_CHECK_NUMBER: 0,
 });
 
 module.exports = {
   MESSAGE,
   SYMBOL,
   ERROR_MESSAGE,
-  UTIL_NUMBER,
+  NUMBERS,
 };

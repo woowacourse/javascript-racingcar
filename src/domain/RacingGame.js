@@ -1,7 +1,6 @@
 const RacingCar = require('./RacingCar.js');
 const Util = require('../utils/Util.js');
-const { UTIL_NUMBER } = require('../data/constants.js');
-const OutputView = require('../view/OutputView.js');
+const { NUMBERS } = require('../data/constants.js');
 
 class RacingGame {
   #cars;
@@ -12,18 +11,26 @@ class RacingGame {
     this.#cars = [];
   }
 
-  setCarsName(cars) {
+  get car() {
+    return this.#cars;
+  }
+
+  set car(cars) {
     cars.forEach((carName) => {
       this.#cars.push(new RacingCar(carName));
     });
   }
 
-  setTryCount(tryCount) {
+  get tryCount() {
+    return this.#tryCount;
+  }
+
+  set tryCount(tryCount) {
     this.#tryCount = tryCount;
   }
 
   judgeMove(randomNumber, car) {
-    if (randomNumber >= UTIL_NUMBER.CAR_MOVE_MINIMUM_NUMBER) {
+    if (randomNumber >= NUMBERS.CAR_MOVE_MINIMUM_NUMBER) {
       car.moveForward();
     }
   }
@@ -31,34 +38,20 @@ class RacingGame {
   assignRandom() {
     this.#cars.forEach((car) => {
       const randomNumber = Util.generateRandomNumber(
-        UTIL_NUMBER.CAR_RANDOM_MAXIMUM_NUMBER
+        NUMBERS.CAR_RANDOM_MAXIMUM_NUMBER
       );
       this.judgeMove(randomNumber, car);
     });
-
-    OutputView.printMoveProcess(this.#cars);
-  }
-
-  repeatProcess() {
-    OutputView.printMoveResult();
-    OutputView.printMoveProcess(this.#cars);
-    for (let i = 0; i < this.#tryCount; i++) {
-      this.assignRandom();
-    }
   }
 
   findWinner() {
     const carsMoveResults = new Map();
     this.#cars.forEach((car) => {
-      carsMoveResults.set(car.getCarName(), car.getMoveCount());
+      carsMoveResults.set(car.carName, car.moveCount);
     });
 
     const winners = Util.filterMaxObjects(carsMoveResults).map((obj) => obj[0]);
     return winners;
-  }
-
-  printWinner() {
-    OutputView.printWinner(this.findWinner());
   }
 }
 

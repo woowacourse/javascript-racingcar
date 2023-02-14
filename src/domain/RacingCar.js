@@ -12,11 +12,11 @@ class RacingCar {
     this.#movePosition += 1;
   }
 
-  getCarName() {
+  get carName() {
     return this.#carName;
   }
 
-  getMoveCount() {
+  get moveCount() {
     return this.#movePosition;
   }
 }

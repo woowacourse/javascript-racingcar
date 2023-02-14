@@ -8,10 +8,8 @@ const OutputView = {
 
   printMoveProcess(cars) {
     cars.forEach((car) => {
-      const moveCount = car.getMoveCount();
-      IO.print(
-        `${car.getCarName()} ${':'} ${SYMBOL.MOVE_SYMBOL.repeat(moveCount)}`
-      );
+      const moveCount = car.moveCount;
+      IO.print(`${car.carName} ${':'} ${SYMBOL.MOVE_SYMBOL.repeat(moveCount)}`);
     });
     IO.print('');
   },
