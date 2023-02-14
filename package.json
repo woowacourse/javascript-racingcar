@@ -46,5 +46,9 @@
     "presets": [
       "@babel/preset-env"
     ]
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }
