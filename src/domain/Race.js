@@ -59,9 +59,9 @@ class Race {
   }
 
   #findWinners() {
-    const winnerCar = this.#cars.reduce((maxPositionCar, currentCar) =>
-      maxPositionCar.compareTo(currentCar),
-    );
+    const winnerCar = this.#cars.reduce((maxPositionCar, currentCar) => {
+      return maxPositionCar.isFarPosition(currentCar) ? maxPositionCar : currentCar;
+    });
 
     return this.#cars.filter((car) => car.isSamePosition(winnerCar));
   }

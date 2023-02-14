@@ -35,10 +35,8 @@ class Car {
     return { name, position };
   }
 
-  compareTo(other) {
-    if (this.#position > other.#position) return this;
-
-    return other;
+  isFarPosition(other) {
+    return this.#position > other.#position;
   }
 
   isSamePosition(other) {
