@@ -1,15 +1,11 @@
+import calcWordCount from './calcWordCount.js';
 import constants from './constants.js';
 
 const Validation = {
   isValidCarNames(carNames) {
-    return carNames.every((carName) => {
-      let count = 0;
-      // eslint-disable-next-line no-unused-vars
-      for (const char of carName) {
-        count += 1;
-      }
-      return this.isValidCarNameLength(count);
-    });
+    return carNames.every((carName) =>
+      this.isValidCarNameLength(calcWordCount(carName))
+    );
   },
 
   isValidTryCount(tryCount) {
