@@ -1,10 +1,9 @@
-const CarGame = require('../models/CarGame');
-const CarNameParse = require('../utils/CarNameParse');
-const functionPipe = require('../utils/funcitonPipe');
+const CarGame = require('../domain/CarGame');
+const parseCarName = require('../domain/parseCarName');
 const getRandomNumber = require('../utils/getRandomNumber');
-const Validator = require('../utils/Validator');
-const InputView = require('../views/InputView');
-const OutputView = require('../views/OutputView');
+const validator = require('../utils/validator');
+const InputView = require('../view/InputView');
+const OutputView = require('../view/OutputView');
 
 class CarGameController {
   #carGame;
@@ -20,13 +19,12 @@ class CarGameController {
   readCarNames() {
     InputView.readCarNames().then((input) => {
       try {
-        const parsedCarNames = CarNameParse(input);
-        functionPipe(
-          parsedCarNames,
-          Validator.validateLength,
-          Validator.validateOverlap,
-          Validator.validateInvalidInput,
-        );
+        const parsedCarNames = parseCarName(input);
+        parsedCarNames.forEach((carName) => {
+          validator.validateLength(carName);
+          validator.validateKorEngNum(carName);
+        });
+        validator.validateOverlap(parsedCarNames);
         return this.saveCarDatas(parsedCarNames);
       } catch (error) {
         OutputView.printError(error.message);
@@ -43,8 +41,8 @@ class CarGameController {
   readTryCount() {
     InputView.readTryCount().then((input) => {
       try {
-        Validator.validateNumericInput(input);
-        Validator.validatePositiveNumber(input);
+        validator.validateNumericInput(input);
+        validator.validatePositiveNumber(input);
         return this.requestMoveCars(Number(input));
       } catch (error) {
         OutputView.printError(error.message);
@@ -73,7 +71,7 @@ class CarGameController {
     const winnerList = this.#carGame.getWinners();
 
     OutputView.printMoveResult(carNames, carMoves);
-    OutputView.printWinner(winnerList);
+    OutputView.printWinners(winnerList);
 
     this.gameEnd();
   }

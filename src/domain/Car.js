@@ -1,4 +1,4 @@
-const { MOVE_CHECK_NUMBER } = require('../utils/constants');
+const { CAR } = require('../utils/constants');
 
 class Car {
   #name;
@@ -10,7 +10,7 @@ class Car {
   }
 
   move(moveNumber) {
-    if (moveNumber >= MOVE_CHECK_NUMBER) this.#state += 1;
+    if (moveNumber >= CAR.MOVE_CONDITION) this.#state += 1;
 
     return this.#state;
   }
