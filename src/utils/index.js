@@ -5,7 +5,7 @@ const isMove = (number) => {
   return number >= GAME_NUMBER.moveStandard;
 };
 
-const calculateRandomNumber = () => {
+const getRandomNumber = () => {
   return Math.random() * GAME_NUMBER.moveRange;
 };
 
@@ -19,4 +19,4 @@ const errorHandler = (validate, input) => {
   }
 };
 
-module.exports = { calculateRandomNumber, errorHandler, isMove };
+module.exports = { getRandomNumber, errorHandler, isMove };

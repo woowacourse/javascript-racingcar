@@ -1,6 +1,6 @@
 const Attempts = require('../domain/model/Attempts');
 const Car = require('../domain/model/Car');
-const { isMove, calculateRandomNumber } = require('../utils');
+const { isMove, getRandomNumber } = require('../utils');
 const inputView = require('../view/inputView');
 const outputView = require('../view/outputView');
 
@@ -41,7 +41,7 @@ class CarRacingGame {
   calculateProgress(attemptsCount) {
     Array.from({ length: attemptsCount }).forEach(() => {
       this.#cars.forEach((car) => {
-        const randomNumber = calculateRandomNumber();
+        const randomNumber = getRandomNumber();
         if (isMove(randomNumber)) car.setProgress();
       });
       this.showGameProgress();
