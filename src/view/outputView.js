@@ -5,7 +5,7 @@ const outputView = {
   printGameStartMsg() {
     Console.print(GAME_MESSAGE.progressResult);
   },
-
+  
   printGameProgress(name, progress) {
     const result = `${name} : ${progress.join(GAME_STRING.progressJoin)}`;
     Console.print(result);
@@ -16,7 +16,7 @@ const outputView = {
     Console.print(GAME_MESSAGE.getWinners(winners));
     Console.close();
   },
-
+  
   printEmptyLine() {
     Console.print(GAME_STRING.emptyLine);
   },
