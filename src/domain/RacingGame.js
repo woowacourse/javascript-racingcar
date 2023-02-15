@@ -29,18 +29,17 @@ class RacingGame {
     });
   }
 
-  findCarsAtPosition(position) {
-    return this.#carList
-      .filter((car) => car.getPosition() === position)
-      .map((car) => car.getName());
+  static findCarsAtPosition(gameStatus, position) {
+    return Object.keys(gameStatus)
+      .filter((carName) => gameStatus[carName] === position);
   }
 
   getGameStatus() {
     return Object.fromEntries(this.#carList.map((car) => [car.getName(), car.getPosition()]));
   }
 
-  findMaxPosition() {
-    return Math.max(...this.#carList.map((car) => car.getPosition()));
+  static findMaxPosition(gameStatus) {
+    return Math.max(...Object.values(gameStatus));
   }
 }
 
