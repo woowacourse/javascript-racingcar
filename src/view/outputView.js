@@ -17,8 +17,8 @@ const outputView = {
     Console.close();
   },
 
-  printSpace() {
-    Console.print(GAME_STRING.empty);
+  printEmptyLine() {
+    Console.print(GAME_STRING.emptyLine);
   },
 };
 

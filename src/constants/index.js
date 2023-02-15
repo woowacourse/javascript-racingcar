@@ -16,8 +16,7 @@ const GAME_STRING = Object.freeze({
   nameSplit: ',',
   winnersJoin: ', ',
   progressJoin: '',
-  space: '\n',
-  empty: '',
+  emptyLine: ' ',
 });
 
 const INPUT_REGEX = Object.freeze({

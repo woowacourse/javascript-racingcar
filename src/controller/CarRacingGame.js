@@ -72,7 +72,7 @@ class CarRacingGame {
     this.#cars.forEach((car) => {
       outputView.printGameProgress(car.getName(), car.getProgress());
     });
-    outputView.printSpace();
+    outputView.printEmptyLine();
   }
 
   showGameWinner() {
