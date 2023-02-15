@@ -1,5 +1,4 @@
-const { Settings } = require('./Config');
-const RandomNumber = require('./utils/RandomNumber');
+const { Settings } = require('../constants/Config');
 
 class Car {
   constructor(carName) {

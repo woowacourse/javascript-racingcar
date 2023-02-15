@@ -1,5 +1,5 @@
 const Console = require('../utils/Console');
-const { Messages, Settings } = require('../Config');
+const { Messages, Settings } = require('../constants/Config');
 const Validator = require('../Validator');
 
 const InputView = {

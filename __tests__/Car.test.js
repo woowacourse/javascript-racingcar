@@ -1,4 +1,4 @@
-const Car = require('../src/Car');
+const Car = require('../src/model/Car');
 
 test.each([0, 1, 2, 3])('전진하지 않는 경우', (condition) => {
   const car = new Car('에이든');

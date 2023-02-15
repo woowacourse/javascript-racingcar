@@ -1,10 +1,10 @@
-const { Settings, Messages } = require('./Config');
+const { Settings, Messages } = require('./constants/Config');
 const Console = require('./utils/Console');
 
 const Validator = {
-  isValidCarNames(input) {
+  isValidCarNames(name) {
     try {
-      Validator.carNameLength(input);
+      Validator.validateCarName(name);
       return false;
     } catch (error) {
       Console.print(error.message);
@@ -12,12 +12,16 @@ const Validator = {
     }
   },
 
-  carNameLength(input) {
-    input.forEach((carName) => {
-      if (
-        carName.length < Settings.MIN_NAME_LENGTH ||
-        carName.length > Settings.MAX_NAME_LENGTH
-      ) {
+  carNameLength(carName) {
+    return (
+      Settings.MIN_NAME_LENGTH > carName.length ||
+      carName.length > Settings.MAX_NAME_LENGTH
+    );
+  },
+
+  validateCarName(carNames) {
+    carNames.forEach((carName) => {
+      if (Validator.carNameLength(carName)) {
         throw new Error(Messages.ERROR_CAR_NAME);
       }
     });

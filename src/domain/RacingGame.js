@@ -1,6 +1,7 @@
-const Car = require('./Car');
-const OutputView = require('./UI/OutputView');
-const RandomNumber = require('./utils/RandomNumber');
+const Car = require('../model/Car');
+const { Settings } = require('../constants/Config');
+const OutputView = require('../view/OutputView');
+const RandomNumber = require('../utils/RandomNumber');
 
 class RacingGame {
   constructor() {}
@@ -17,7 +18,12 @@ class RacingGame {
     if (this.attempts === 0) return;
     this.attempts -= 1;
     this.carList.forEach((car) =>
-      car.move(RandomNumber.generateRandomNumber())
+      car.move(
+        RandomNumber.generateRandomNumber(
+          Settings.MIN_RANDOM_VALUE,
+          Settings.MAX_RANDOM_VALUE
+        )
+      )
     );
   }
 
