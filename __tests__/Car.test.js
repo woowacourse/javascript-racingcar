@@ -1,37 +1,29 @@
-const Random = require('../src/utils/Random');
 const Car = require('../src/domain/Car');
 
-const mockMathRandoms = (number) => {
-  Math.random = jest.fn();
-
-  return Math.random.mockReturnValueOnce(number);
-};
-
 describe('Car - move() 기능 테스트', () => {
-  test('(랜덤함수에 의해 4이상의 숫자가 나와서 전진하는 경우)', () => {
-    jest.useFakeTimers();
-    const name = 'test';
-    const car = new Car(name);
+  test('차가 출발선 1에서 랜덤 수 5(4이상의 수)가 나와 한 칸 이동하는지 테스트', () => {
+    const car = new Car('pobi');
+    const random = 5;
 
-    mockMathRandoms(0.523);
-
-    const result = Random.pickNumberInRange(0, 9);
-
-    car.move(result);
-
+    car.move(random);
     expect(car.getPosition()).toEqual(2);
   });
 
-  test('(랜덤함수에 의해 4미만의 숫자가 나와 전진하지 않는 경우)', () => {
-    jest.useFakeTimers();
-    const name = 'test';
-    const car = new Car(name);
+  test('차가 출발선 1에서 랜덤 수 1(4미만의 수)가 나와 한 칸 이동하지 않는지 테스트', () => {
+    const car = new Car('crong');
+    const random = 1;
 
-    mockMathRandoms(0.123);
-
-    const result = Random.pickNumberInRange(0, 9);
-    car.move(result);
-
+    car.move(random);
     expect(car.getPosition()).toEqual(1);
+  });
+
+  test('차가 출발선 1에서 랜덤 수가 1 - 5 - 2 - 6 - 9가 나왔을 때 3칸 이동하는 지 테스트', () => {
+    const car = new Car('honux');
+
+    [1, 5, 2, 6, 9].forEach((random) => {
+      car.move(random);
+    });
+
+    expect(car.getPosition()).toEqual(4);
   });
 });

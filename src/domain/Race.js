@@ -19,7 +19,7 @@ class Race {
   }
 
   setTrial(newTrial) {
-    this.#trial = newTrial;
+    this.#trial = Number(newTrial);
   }
 
   addCar(newCar) {
@@ -27,12 +27,14 @@ class Race {
   }
 
   start() {
-    Array.from({ length: this.#trial }, () => 0).forEach(() => {
-      this.#cars.forEach((car) => {
-        const randomNumber = Random.pickNumberInRange(0, 9);
-        car.move(randomNumber);
+    Array(this.#trial)
+      .fill(0)
+      .forEach(() => {
+        this.#cars.forEach((car) => {
+          const randomNumber = Random.pickNumberInRange(0, 9);
+          car.move(randomNumber);
+        });
       });
-    });
   }
 
   getWinners() {
@@ -40,15 +42,16 @@ class Race {
 
     return this.#cars
       .filter((carInstance) => longestPosition === carInstance.getPosition())
-      .map((carInstance) => carInstance.getName());
+      .map((carInstance) => carInstance.getName())
+      .sort();
   }
 
   #getLongestPosition() {
-    const result = this.#cars.sort(
+    const [winner] = this.#cars.sort(
       (xCar, yCar) => yCar.getPosition() - xCar.getPosition()
     );
 
-    return result[0].getPosition();
+    return winner.getPosition();
   }
 }
 

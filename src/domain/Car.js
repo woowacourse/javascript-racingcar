@@ -20,13 +20,10 @@ class Car {
     return this.#trace[this.#trace.length - 1];
   }
 
-  move(randomNumber) {
-    if (randomNumber > 3) {
-      this.#trace.push(this.#trace[this.#trace.length - 1] + 1);
-      return;
-    }
+  move(random) {
+    const result = random > 3 ? this.getPosition() + 1 : this.getPosition();
 
-    this.#trace.push(this.#trace[this.#trace.length - 1]);
+    this.#trace.push(result);
   }
 }
 
