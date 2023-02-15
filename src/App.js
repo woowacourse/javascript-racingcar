@@ -1,8 +1,8 @@
-const Controller = require('./controller/Controller');
+const CarRacingGame = require('./controller/CarRacingGame');
 
 class App {
   play() {
-    const carGame = new Controller();
+    const carGame = new CarRacingGame();
     carGame.play();
   }
 }
