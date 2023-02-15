@@ -1,25 +1,42 @@
-const RacingGame = require('./RacingGame');
-const InputView = require('./UI/InputView');
-const OutputView = require('./UI/OutputView');
+const RacingGame = require('./domain/RacingGame');
+const InputView = require('./view/InputView');
+const OutputView = require('./view/OutputView');
 
 class App {
   #racingGame;
 
-  async setup() {
+  static async readUserInput() {
     const carNames = await InputView.repeatInput(InputView.getCarNames);
     const attempts = await InputView.repeatInput(InputView.getAttempts);
-    this.#racingGame = new RacingGame(carNames, attempts);
+    return { carNames, attempts };
   }
 
   async play() {
-    await this.setup();
+    const { carNames, attempts } = App.readUserInput();
+    this.#racingGame = new RacingGame(carNames, attempts);
+    this.playRacingGame();
+    this.showWinners();
+  }
+
+  playRacingGame() {
+    if (!this.#racingGame) return;
+
     OutputView.printResultMessage();
     OutputView.printResult(this.#racingGame.getGameStatus());
+
     while (this.#racingGame.canMove()) {
       this.#racingGame.moveAllCars();
       OutputView.printResult(this.#racingGame.getGameStatus());
     }
-    OutputView.printWinners(this.#racingGame.findWinner());
+  }
+
+  showWinners() {
+    if (!this.#racingGame) return;
+
+    const maxPosition = this.#racingGame.findMaxPosition();
+    const winners = this.#racingGame.findCarsAtPosition(maxPosition);
+
+    OutputView.printWinners(winners);
   }
 }
 

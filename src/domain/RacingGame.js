@@ -1,6 +1,6 @@
 const Car = require('./Car');
-const { Settings } = require('./Config');
-const Random = require('./util/Random');
+const { Settings } = require('../Config');
+const Random = require('../util/Random');
 
 class RacingGame {
   #carList = [];
@@ -18,6 +18,7 @@ class RacingGame {
 
   moveAllCars() {
     if (this.#attempts === 0) return;
+
     this.#attempts -= 1;
     this.#carList.forEach((car) => {
       const power = Random.generateRandomInteger(
@@ -28,20 +29,17 @@ class RacingGame {
     });
   }
 
-  findWinner() {
-    const maxPosition = this.#findMaxPosition();
-    const winners = this.#carList.filter((car) => car.getPosition() === maxPosition);
-    return winners.map((car) => car.getName());
+  static findCarsAtPosition(gameStatus, position) {
+    return Object.keys(gameStatus)
+      .filter((carName) => gameStatus[carName] === position);
   }
 
   getGameStatus() {
-    const status = {};
-    this.#carList.forEach((car) => { status[car.getName()] = car.getPosition(); });
-    return status;
+    return Object.fromEntries(this.#carList.map((car) => [car.getName(), car.getPosition()]));
   }
 
-  #findMaxPosition() {
-    return this.#carList.reduce((prev, car) => Math.max(prev, car.getPosition()), 0);
+  static findMaxPosition(gameStatus) {
+    return Math.max(...Object.values(gameStatus));
   }
 }
 
