@@ -1,16 +1,19 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-const Car = require('../src/Car');
+const { FORWARD_CONDITION } = require('../src/constants/value');
+const Car = require('../src/domain/Car');
 
 describe('Car Test', () => {
   test.each([
-    ['yun', 12, 12, true],
-    ['ga', 10, 11, false],
-  ])('자동차 전진 검사', (name, go, position, expected) => {
+    ['yun', [0, 0, 4], 1],
+    ['ga', [10, 11], 2],
+  ])('자동차 전진 검사', (name, numbers, expected) => {
     const car = new Car(name);
-    for (let i = 0; i < go; i++) {
-      car.move(true);
-    }
-    expect(car.getPosition() === position).toBe(expected);
+    numbers.forEach(number => {
+      if (number >= FORWARD_CONDITION) {
+        car.move();
+      }
+    });
+    expect(car.getPosition()).toBe(expected);
   });
 });

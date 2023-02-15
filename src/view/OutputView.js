@@ -1,5 +1,5 @@
-const Console = require('./utils/Console');
-const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('./constants/message');
+const Console = require('../utils/Console');
+const { EMPTY_LINE, RESULT_TITLE, IS_WINNERS } = require('../constants/message');
 
 const OutputView = {
   printEmptyLine() {
@@ -19,8 +19,8 @@ const OutputView = {
     Console.print(error.message);
   },
 
-  printCar(name, pos) {
-    Console.print(`${name} : ${new Array(pos).fill('-').join('')}`);
+  printCar(name, position) {
+    Console.print(`${name} : ${"-".repeat(position)}`);
   },
 };
 

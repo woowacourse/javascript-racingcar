@@ -1,33 +1,31 @@
-const Console = require('./utils/Console');
-const { isValidCarNames, isValidTryCount } = require('./utils/Validation');
-const Car = require('./Car');
-const RandomGenerator = require('./utils/RandomGenerator');
+const Console = require('../utils/Console');
+const { isValidCarNames, isValidTryCount } = require('../utils/Validation');
+const Car = require('../domain/Car');
+const RandomGenerator = require('../utils/RandomGenerator');
 const {
   printResult,
   printWinners,
   printError,
   printEmptyLine,
-} = require('./OutputView');
-const { readCarNames, readTryCount } = require('./InputView');
-const { ERROR } = require('./constants/message');
+  printCar,
+} = require('../view/OutputView');
+const { readCarNames, readTryCount } = require('../view/InputView');
+const { ERROR } = require('../constants/message');
+const { FORWARD_CONDITION } = require('../constants/value');
 class GameManager {
   #cars = [];
 
-  isForward() {
-    return RandomGenerator.pickRandomNumber() >= 4;
-  }
-
-  moveCars(cars) {
-    cars.forEach((car) => {
-      if (this.isForward()) {
+  moveCars(randomNumbers) {
+    this.#cars.forEach((car) => {
+      if (randomNumbers.shift() >= FORWARD_CONDITION) {
         car.move();
       }
     });
   }
 
-  printCars(cars) {
-    cars.forEach((car) => {
-      car.print();
+  printCars() {
+    this.#cars.forEach((car) => {
+      printCar(car.getName(), car.getPosition());
     });
     printEmptyLine();
   }
@@ -35,16 +33,14 @@ class GameManager {
   raceCars(tryCount) {
     printResult();
     Array(tryCount).fill().forEach(() => {
-      this.moveCars(this.#cars);
-      this.printCars(this.#cars);
-    })
+      this.moveCars(RandomGenerator.generateRandomNumbers(this.#cars.length));
+      this.printCars();
+    });
   }
 
   judgeWinners() {
-    const cars = [...this.#cars];
-    cars.sort((a, b) => b.getPosition() - a.getPosition());
-    const max = cars[0].getPosition();
-    const winners = cars
+    const max = Math.max(...this.#cars.map((car) => car.getPosition()));
+    const winners = this.#cars
       .filter((car) => car.getPosition() === max)
       .map((car) => car.getName());
     return winners;
@@ -77,7 +73,7 @@ class GameManager {
     }
   }
 
-  setCars(cars){
+  setCars(cars) {
     this.#cars = cars;
   }
 

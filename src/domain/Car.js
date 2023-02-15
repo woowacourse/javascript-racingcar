@@ -1,5 +1,3 @@
-const { printCar } = require('./OutputView');
-
 class Car {
   #name;
   #position = 0;
@@ -20,9 +18,6 @@ class Car {
     this.#position += 1;
   }
 
-  print() {
-    printCar(this.#name, this.#position);
-  }
 }
 
 module.exports = Car;
