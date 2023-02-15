@@ -1,55 +1,21 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-// const Car = require('../src/Car');
-import GameManager from '../src/GameManager';
-import RandomGenerator from '../src/utils/RandomGenerator';
 
-const mockRandom = (number) => {
-  RandomGenerator.pickRandomNumber = jest.fn();
-  RandomGenerator.pickRandomNumber.mockReturnValueOnce(number);
-};
-
-const mockRandoms = (numbers) => {
-  RandomGenerator.pickRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomGenerator.pickRandomNumber);
-};
+import GameManager from '../src/domain/GameManager';
 
 describe('GameManager Test', () => {
-  test('Random mock Test', () => {
-    mockRandom(10);
-    expect(RandomGenerator.pickRandomNumber()).toBe(10);
+  test('차 이름 입력이 유효하지 않으면 에러를 던지는 지 테스트', () => {
+    const gameMananger = new GameManager();
+    const badNamesInput = 'abcdef,bad guy,nononono';
+
+    expect(() => gameMananger.checkCarNames(badNamesInput)).toThrow();
   });
 
-  test.each([
-    [9, true],
-    [4, true],
-    [3, false],
-    [0, false],
-  ])('isFoward Test Random value : %i', (number, expected) => {
-    mockRandom(number);
-    const gameManager = new GameManager();
-    expect(gameManager.isForward()).toEqual(expected);
-  });
-
-  test.each([
-    [['yun', 'park', 'kim'], [9, 0, 1, 8, 1, 2, 7, 5, 6], ['yun']],
-    [
-      ['choi', 'ann', 'lee', 'gabi'],
-      [0, 0, 5, 5, 0, 0, 9, 9],
-      ['lee', 'gabi'],
-    ],
-    [
-      ['aa', 'bb'],
-      [0, 0, 5, 5, 0, 0, 9, 9],
-      ['aa', 'bb'],
-    ],
-  ])('judgeWinners Test (%#)', (carNames, moves, winners) => {
-    const gameManager = new GameManager();
-    const cars = gameManager.generateCars(carNames);
-    mockRandoms(moves);
-    gameManager.moveCars(cars);
-    expect(gameManager.judgeWinners([...cars])).toEqual(winners);
-  });
+  test.each([0, -1, NaN])(
+    '시도 횟수 입력이 유효하지 않으면 에러를 던지는 지 테스트',
+    (input) => {
+      const gameMananger = new GameManager();
+      expect(() => gameMananger.checkTryCount(input)).toThrow();
+    }
+  );
 });

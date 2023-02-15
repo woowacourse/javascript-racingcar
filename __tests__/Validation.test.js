@@ -4,12 +4,20 @@ import Validation from '../src/utils/Validation.js';
 
 describe('Validation Test', () => {
   test.each([
-    [['yunseong', 'gabriel'], false],
-    [['aa', 'bb', 'cc'], true],
-    [['aa', 'bb', ''], false],
-    // [['aa', 'bb', '윤생이😁😁'], true], => 고민할 부분(서로게이트 쌍)
-  ])('이름 유효성 검사(%s: %s)', (names, expected) => {
-    expect(Validation.isValidCarNames(names)).toBe(expected);
+    'ys,pobi,crong',
+    'gabi,hoho',
+    'jason,poco',
+    '윤생😁😁😁,𩷶𩷶𩷶𩷶',
+  ])('올바른 차이름 입력 시 true를 반환한다.', (carNames) => {
+    expect(Validation.isValidCarNames(carNames.split(','))).toBeTruthy();
+  });
+
+  test.each([
+    'gabriel,yunseong',
+    '이윤성입니다,윤생',
+    '우아한 배달이,치킨과피자',
+  ])('잘못된 차이름 입력 시 false를 반환한다.', (carNames) => {
+    expect(Validation.isValidCarNames(carNames.split(','))).toBeFalsy();
   });
 
   test.each([

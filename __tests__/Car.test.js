@@ -1,6 +1,6 @@
 /* eslint-disable max-lines-per-function */
 /* eslint-disable no-undef */
-import Car from '../src/Car';
+import Car from '../src/domain/Car';
 
 describe('Car Test', () => {
   test.each([
@@ -11,6 +11,6 @@ describe('Car Test', () => {
     for (let i = 0; i < go; i++) {
       car.move(true);
     }
-    expect(car.getPosition() === position).toBe(expected);
+    expect(car.position === position).toBe(expected);
   });
 });

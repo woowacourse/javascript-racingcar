@@ -1,10 +1,10 @@
-import Console from './utils/Console.js';
-import Validation from './utils/Validation.js';
+import Console from '../utils/Console.js';
+import Validation from '../utils/Validation.js';
 import Car from './Car.js';
-import RandomGenerator from './utils/RandomGenerator.js';
-import OutputView from './OutputView.js';
-import InputView from './InputView.js';
-import constants from './utils/constants.js';
+import RandomGenerator from '../utils/RandomGenerator.js';
+import OutputView from '../view/OutputView.js';
+import InputView from '../view/InputView.js';
+import constants from '../utils/constants.js';
 
 class GameManager {
   #cars = [];
@@ -21,13 +21,12 @@ class GameManager {
 
   printCars(cars) {
     cars.forEach((car) => {
-      car.print();
+      OutputView.printCar(car.name, car.position);
     });
     OutputView.printEmptyLine();
   }
 
   tryMoveCars(tryCount, cars) {
-    OutputView.printResult();
     for (let i = 0; i < tryCount; i++) {
       this.moveCars(cars);
       this.printCars(cars);
@@ -35,11 +34,11 @@ class GameManager {
   }
 
   judgeWinners(cars) {
-    cars.sort((a, b) => b.getPosition() - a.getPosition());
-    const max = cars[0].getPosition();
+    cars.sort((a, b) => b.position - a.position);
+    const max = cars[0].position;
     const winners = cars
-      .filter((car) => car.getPosition() === max)
-      .map((car) => car.getName());
+      .filter((car) => car.position === max)
+      .map((car) => car.name);
     return winners;
   }
 
@@ -84,6 +83,7 @@ class GameManager {
   async play() {
     await this.handleCarNames();
     const tryCount = await this.handleTryCount();
+    OutputView.printResult();
     this.tryMoveCars(tryCount, this.#cars);
     const winners = this.judgeWinners([...this.#cars]);
     OutputView.printWinners(winners);

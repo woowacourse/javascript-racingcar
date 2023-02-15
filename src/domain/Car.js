@@ -1,5 +1,3 @@
-import OutputView from './OutputView.js';
-
 class Car {
   #name;
   #position = 0;
@@ -8,11 +6,11 @@ class Car {
     this.#name = name;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getPosition() {
+  get position() {
     return this.#position;
   }
 
@@ -24,10 +22,6 @@ class Car {
     if (isForward) {
       this.move();
     }
-  }
-
-  print() {
-    OutputView.printCar(this.#name, this.#position);
   }
 }
 
