@@ -5,14 +5,15 @@ const OutputView = require('./view/OutputView');
 class App {
   #racingGame;
 
-  async setup() {
+  static async readUserInput() {
     const carNames = await InputView.repeatInput(InputView.getCarNames);
     const attempts = await InputView.repeatInput(InputView.getAttempts);
-    this.#racingGame = new RacingGame(carNames, attempts);
+    return { carNames, attempts };
   }
 
   async play() {
-    await this.setup();
+    const { carNames, attempts } = App.readUserInput();
+    this.#racingGame = new RacingGame(carNames, attempts);
     this.playRacingGame();
     this.showWinners();
   }
