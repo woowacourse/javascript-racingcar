@@ -14,7 +14,6 @@ export const OUTPUT_MESSAGE_HEADER = Object.freeze({
   winner: '최종 우승자',
 });
 
-export const ERROR_MESSAGE = Object.freeze({
-  name: `유효하지 않은 이름 형식이에요.\n ${FORM_MESSAGE.name}\n${FORM_MESSAGE.delimiter}`,
-  round: `유효하지 않은 형식이에요.\n${FORM_MESSAGE.round}`,
-});
+export const ERROR_MESSAGE = Object.freeze(
+  '\n[Error] 유효하지 않은 형식이에요.',
+);
