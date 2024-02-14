@@ -1,8 +1,7 @@
 {
   "rules": {
     "lines-between-class-members": "off",
-    "class-methods-use-this":"off",
-    "no-console": "off"
+    "class-methods-use-this":"off"
   },
   "env": {
     "es6": true,
@@ -17,6 +16,6 @@
     "eslint:recommended",
     "plugin:prettier/recommended",
     "airbnb"
-  ], 
+  ],
   "plugins": ["prettier"]
 }
