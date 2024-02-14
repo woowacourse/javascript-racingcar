@@ -50,6 +50,10 @@ const InputView = {
   readCarNames() {
     return Private.robustInput(Private.readCarNames, Object);
   },
+
+  readTrialCount() {
+    return Private.robustInput(Private.readTrialCount, Object);
+  },
 };
 
 export default InputView;
