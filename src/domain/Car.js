@@ -1,9 +1,33 @@
+import RandomUtil from "../utils/RandomUtil.js";
 export default class Car {
+  static thresholdForGoing = 4;
+
   #name;
+  #mileage = 0;
+
   constructor(name) {
     this.#name = name;
   }
-  go() {}
 
-  getMileage() {}
+  go() {
+    if (this.#shouldGo()) {
+      this.#raiseMileage();
+    }
+  }
+
+  getMileage() {
+    return this.#mileage;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  #shouldGo() {
+    return RandomUtil.pickRandomNumber() >= Car.thresholdForGoing;
+  }
+
+  #raiseMileage() {
+    this.#mileage += 1;
+  }
 }

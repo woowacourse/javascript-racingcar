@@ -1,11 +1,11 @@
 import Car from "../src/domain/Car.js";
-import pickUniqueNumbersInRange from "../src/utils/pickUniqueNumbersInRange.js";
+import RandomUtil from "../src/utils/RandomUtil.js";
 
 const mockRandoms = (numbers) => {
-  pickUniqueNumbersInRange = jest.fn();
+  RandomUtil.pickRandomNumber = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, pickUniqueNumbersInRange);
+  }, RandomUtil.pickRandomNumber);
 };
 
 describe("Car 유닛 테스트", () => {

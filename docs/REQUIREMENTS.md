@@ -1,7 +1,7 @@
 1. 클래스 정의
-   - [ ] Car
-     - [ ] go: 전진할지 말지 결정해서 마일리지에 반영
-     - [ ] getMileage: 마일리지를 반환  
+   - [x] Car
+     - [x] go: 전진할지 말지 결정해서 마일리지에 반영
+     - [x] getMileage: 마일리지를 반환  
    - [ ] Cars (Cars 컬렉션)
      - [ ] goAll: 모든 Car들의 go 메소드를 호출
      - [ ] getMileageBoard: 각 자동차의 이름과 마일리지를 반환
