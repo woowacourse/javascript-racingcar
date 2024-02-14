@@ -1,6 +1,7 @@
 import InputView from '../view/InputView.js';
 import CommonValidator from '../validator/CommonValidator.js';
 import CarNamesValidator from '../validator/CarNamesValidator.js';
+import TryCountValidator from '../validator/TryCountValidator.js';
 
 class GameController {
   constructor() {
@@ -39,8 +40,15 @@ class GameController {
   }
 
   async getTryCount() {
-    const tryCount = await this.input.inputTryCount();
-    return tryCount;
+    while (true) {
+      try {
+        const tryCount = await this.input.inputTryCount();
+        TryCountValidator.isNaturalNumber(Number(tryCount));
+        return tryCount;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
   }
 }
 
