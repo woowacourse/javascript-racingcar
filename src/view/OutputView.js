@@ -1,3 +1,4 @@
+import CONDITIONS from '../constant/Conditions.js';
 import { OUTPUT_MESSAGES } from '../constant/messages.js';
 import numberToDistanceSymbol from '../utils/numberToDistanceSymbol.js';
 
@@ -20,6 +21,10 @@ const OutputView = {
       this.printCarInformation(carName, distance);
     });
     this.printNewLine();
+  },
+
+  printWinners(winners) {
+    console.log(OUTPUT_MESSAGES.winners + winners.join(CONDITIONS.delimiter));
   },
 };
 

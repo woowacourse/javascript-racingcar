@@ -22,6 +22,11 @@ class Controller {
       OutputView.printGameResult(racingResult);
     });
   }
+
+  racingWinners() {
+    const winners = this.#carService.getRaceResult();
+    OutputView.printWinners(winners);
+  }
 }
 
 export default Controller;
