@@ -1,7 +1,10 @@
 import ERROR_MESSAGE from '../error/message.js';
 import { COMMA } from '../view/OutputView.js';
 import Car from './Car.js';
+<<<<<<< HEAD
 import Random from './Random.js';
+=======
+>>>>>>> 23d6fdc (feat: Cars 클래스 유효성 검사 작성)
 
 class Cars {
   #cars;
@@ -25,6 +28,7 @@ class Cars {
       throw new Error(`${ERROR_MESSAGE.duplicated} ${ERROR_MESSAGE.retry}`);
   }
 
+<<<<<<< HEAD
   play() {
     this.#cars.forEach((car) => {
       const randomNumber = Random.create();
@@ -43,6 +47,10 @@ class Cars {
     return this.#cars
       .filter((car) => car.getLocation() === maxLocation)
       .map((car) => car.getName());
+=======
+  get cars() {
+    return this.#cars;
+>>>>>>> 23d6fdc (feat: Cars 클래스 유효성 검사 작성)
   }
 }
 
