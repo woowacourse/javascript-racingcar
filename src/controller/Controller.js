@@ -1,5 +1,6 @@
 import CarService from '../service/CarService.js';
 import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 
 class Controller {
   #carService;
@@ -12,6 +13,14 @@ class Controller {
   async getMoveCount() {
     const moveCount = await InputView.readMoveCount();
     this.#carService.setMoveCount(moveCount);
+  }
+
+  race() {
+    const racingResults = this.#carService.startRacing();
+    OutputView.printGameResultMessage();
+    racingResults.forEach((racingResult) => {
+      OutputView.printGameResult(racingResult);
+    });
   }
 }
 
