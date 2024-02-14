@@ -1,11 +1,11 @@
 import readline from 'readline';
 
 class Console {
-  print(message) {
+  static print(message) {
     console.log(message);
   }
 
-  read(query) {
+  static read(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
