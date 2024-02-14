@@ -1,5 +1,6 @@
 import InputView from './InputView';
 import Validation from './utils/Validation';
+import OutputView from './OutputView';
 
 class Game {
   getCarNames() {
@@ -9,7 +10,9 @@ class Game {
         const carNamesArray = this.carNamesToCarNamesArray(carNames);
         Validation.carNamesArrayValidate(carNamesArray);
         break;
-      } catch (error) {}
+      } catch (error) {
+        OutputView.printError(error);
+      }
     }
   }
 
