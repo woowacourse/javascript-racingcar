@@ -9,8 +9,9 @@ class GameController {
 
   async startGame() {
     const carNamesArr = await this.getCarNames();
+    const tryCount = await this.getTryCount();
 
-    console.log(carNamesArr);
+    console.log(carNamesArr, tryCount);
   }
 
   async getCarNames() {
@@ -35,6 +36,11 @@ class GameController {
         console.log(err.message);
       }
     }
+  }
+
+  async getTryCount() {
+    const tryCount = await this.input.inputTryCount();
+    return tryCount;
   }
 }
 
