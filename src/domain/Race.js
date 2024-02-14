@@ -14,10 +14,18 @@ class Race {
     if (Number(attemptNum) <= 0) throw new Error('[ERROR] 0 이상의 정수를 입력해 주세요.\n');
   }
 
-  raceStart(cars) {
-    for (let i = 0; i < this.#attemptNum; i++) {
-      cars.moveCars();
-    }
+  // raceStart(cars) {
+  //   const result = [];
+
+  //   for (let i = 0; i < this.#attemptNum; i++) {
+  //     cars.moveCars();
+  //     // result에 결과 추가
+  //   }
+  //   // return result
+  // }
+
+  get attemptNum() {
+    return this.#attemptNum;
   }
 }
 

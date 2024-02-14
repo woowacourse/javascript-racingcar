@@ -10,10 +10,6 @@ class Car {
     this.#position = 0;
   }
 
-  getName() {
-    return this.#name;
-  }
-
   move() {
     const randNum = Random.pickNumberInRange(0, 9);
     if (randNum >= 4) this.#position++;
@@ -21,6 +17,10 @@ class Car {
 
   get position() {
     return this.#position;
+  }
+
+  get name() {
+    return this.#name;
   }
 }
 

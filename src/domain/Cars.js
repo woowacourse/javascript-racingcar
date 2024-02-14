@@ -21,6 +21,28 @@ class Cars {
     });
   }
 
+  get result() {
+    return this.#cars.reduce((acc, car) => {
+      acc[car.name] = car.position;
+      return acc;
+    }, {});
+  }
+
+  judgeWinner() {
+    const maxPosition = this.#cars.reduce((acc, car) => {
+      if (acc <= car.position) {
+        acc = car.position;
+      }
+      return acc;
+    }, 0);
+
+    return this.#cars
+      .filter(car => {
+        return car.position === maxPosition;
+      })
+      .map(winner => winner.name);
+  }
+
   //getWinnerCars(){}
 }
 
