@@ -1,14 +1,15 @@
 import readLineAsync from './utils/readLineAsync.js';
 import getRandomNumberInRange from './utils/getRandomNumberInRange.js';
+import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
 
 class App {
   #carNames;
   #tryCount;
 
   async run() {
-    this.#carNames = await this.readCarNames();
+    this.#carNames = await retryWhenErrorOccurs(() => this.readCarNames());
+    this.#tryCount = await retryWhenErrorOccurs(() => this.readTryCount());
 
-    this.#tryCount = await this.readTryCount();
     const result = this.play();
     this.printResult(result);
   }
@@ -16,8 +17,7 @@ class App {
   async readCarNames() {
     const answer = await readLineAsync(
       '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n'
-    ).then(names => names.split(','));
-
+    ).then(names => names.split(',').map(string => string.trim()));
     const result = this.validateCars(answer);
     if (!result) throw new Error('[ERROR] 유효한 차 이름 입력이 아님!');
     return answer;
