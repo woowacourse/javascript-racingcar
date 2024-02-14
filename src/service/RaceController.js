@@ -13,6 +13,8 @@ class RaceController {
 
     const attemptNum = await InputView.readAttemptNum();
     this.#race = new Race(attemptNum);
+
+    this.#race.raceStart(this.#cars);
   }
 }
 
