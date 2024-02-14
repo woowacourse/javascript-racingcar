@@ -39,11 +39,19 @@ class Controller {
   }
 
   playGame() {
+    OutputView.printCurrentResultTitle();
+
     const tryCount = this.#carGame.getTryCount();
 
     for (let i = 0; i < tryCount; i++) {
       this.#carGame.moveCars();
+      this.#displayCurrentLocation();
     }
+  }
+
+  #displayCurrentLocation() {
+    const carInfos = this.#carGame.getCurrentLocation();
+    OutputView.printCurrentLocation(carInfos);
   }
 }
 

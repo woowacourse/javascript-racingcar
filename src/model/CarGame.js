@@ -54,6 +54,20 @@ class CarGame {
       }
     });
   }
+
+  // [{name: a, location: 1}, {}]
+  getCurrentLocation() {
+    let carInfos = [];
+
+    this.#carList.forEach((car) => {
+      carInfos.push({
+        name: car.getName(),
+        location: car.getLocation(),
+      });
+    });
+
+    return carInfos;
+  }
 }
 
 export default CarGame;

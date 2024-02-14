@@ -10,6 +10,14 @@ class Car {
   move() {
     this.#location++;
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getLocation() {
+    return this.#location;
+  }
 }
 
 export default Car;
