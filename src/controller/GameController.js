@@ -1,19 +1,25 @@
 import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 import CommonValidator from '../utils/CommonValidator.js';
 import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
+import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
 
 class GameController {
   constructor() {
     this.input = new InputView();
+    this.output = new OutputView();
   }
 
   async startGame() {
     const carNamesMap = await this.getCarNames();
     const tryCount = await this.getTryCount();
 
-    console.log(carNamesMap, tryCount);
+    for (let i = 0; i < tryCount; i++) {
+      this.playRound(carNamesMap);
+      this.output.roundResult(carNamesMap);
+    }
   }
 
   async getCarNames() {
