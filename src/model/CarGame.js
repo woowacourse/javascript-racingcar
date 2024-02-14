@@ -68,6 +68,18 @@ class CarGame {
 
     return carInfos;
   }
+
+  findWinners() {
+    const maxLocation = Math.max(
+      ...this.#carList.map((car) => car.getLocation())
+    );
+
+    const winners = this.#carList
+      .filter((car) => car.getLocation() === maxLocation)
+      .map((car) => car.getName());
+
+    return winners;
+  }
 }
 
 export default CarGame;

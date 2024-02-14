@@ -8,7 +8,7 @@ class Car {
   }
 
   move() {
-    this.#location++;
+    this.#location += 1;
   }
 
   getName() {

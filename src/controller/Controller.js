@@ -53,6 +53,10 @@ class Controller {
     const carInfos = this.#carGame.getCurrentLocation();
     OutputView.printCurrentLocation(carInfos);
   }
+
+  findWinner() {
+    const winners = this.#carGame.findWinners();
+  }
 }
 
 export default Controller;

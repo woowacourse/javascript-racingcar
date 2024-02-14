@@ -9,6 +9,7 @@ class App {
     await this.controller.inputCarNames();
     await this.controller.inputTryCount();
     this.controller.playGame();
+    this.controller.findWinner();
   }
 }
 
