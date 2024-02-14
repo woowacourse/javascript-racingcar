@@ -26,15 +26,17 @@ class Cars {
   }
 
   play() {
-    this.#cars.foreach((car) => {
+    this.#cars.forEach((car) => {
       car.forward();
     });
-    return this.#cars.map(({ name, location }) => {
-      name, location;
-    });
+
+    return this.#cars.map(({ name, location }) => ({
+      name,
+      location,
+    }));
   }
 
-  winner() {
+  winners() {
     const maxLocation = Math.max(...this.#cars.map(({ location }) => location));
     return this.#cars.filter(({ location }) => location === maxLocation).map(({ name }) => name);
   }
