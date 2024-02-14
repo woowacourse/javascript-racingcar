@@ -7,6 +7,7 @@ class App {
 
   async run() {
     await this.controller.inputCarNames();
+    await this.controller.inputTryCount();
   }
 }
 

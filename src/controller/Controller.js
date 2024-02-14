@@ -15,6 +15,10 @@ class Controller {
 
     this.#cars.setCars(carsNames);
   }
+
+  async inputTryCount() {
+    const tryCount = await InputView.readTryCount();
+  }
 }
 
 export default Controller;
