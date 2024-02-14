@@ -14,6 +14,5 @@ export default RacingGameController;
  */
 async function processUserInput() {
   const racingCarNames = await ErrorHandler.retryOnErrors(() => InputView.readRacingCarNames());
-
-  console.log(racingCarNames);
+  const tryCount = await ErrorHandler.retryOnErrors(() => InputView.readTryCount());
 }

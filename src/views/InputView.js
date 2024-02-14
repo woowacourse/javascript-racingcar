@@ -3,6 +3,7 @@ import { CommonValidator, CarNameValidator } from '../validator/index.js';
 
 import Console from '../utils/console.js';
 import { SYMBOLS } from '../constants/symbols.js';
+import TryCountValidator from '../validator/tryCount/TryCountValidator.js';
 
 const InputView = Object.freeze({
   async read(message) {
@@ -19,6 +20,14 @@ const InputView = Object.freeze({
     CarNameValidator.check(inputRacingCarNames);
 
     return inputRacingCarNames.split(SYMBOLS.comma);
+  },
+
+  async readTryCount() {
+    const inputTryCount = await this.read(INPUT_MESSAGE.tryCount);
+
+    TryCountValidator.check(inputTryCount);
+
+    return Number(inputTryCount);
   },
 });
 
