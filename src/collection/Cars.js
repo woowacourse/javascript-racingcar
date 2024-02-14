@@ -4,6 +4,7 @@ class Cars {
   constructor(cars) {
     this.#cars = [];
     this.#validate(cars);
+    this.#cars = cars;
   }
 
   #validate(cars) {
