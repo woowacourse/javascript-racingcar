@@ -19,8 +19,12 @@ class Car {
     this.#position += 1;
   }
 
-  isSamePosition(otherPosition) {
-    return this.#position === otherPosition;
+  isSamePosition(otherCar) {
+    return this.#position === otherCar.getPosition();
+  }
+
+  isAheadOf(otherCar) {
+    return this.#position > otherCar.getPosition();
   }
 
   getName() {
@@ -31,3 +35,5 @@ class Car {
     return this.#position;
   }
 }
+
+export default Car;
