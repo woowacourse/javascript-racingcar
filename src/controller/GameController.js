@@ -21,7 +21,6 @@ class GameController {
         const carNames = await this.input.inputCarName();
 
         CommonValidator.inputEmpty(carNames);
-        CarNamesValidator.isValidFormat(carNames);
 
         const carNamesArr = carNames.split(',');
 
