@@ -64,6 +64,11 @@ class GameController {
       carName.updateAdvance(randomNumber);
     });
   }
+
+  calculateWinner(carNamesMap) {
+    const maxAdvance = Math.max(...carNamesMap.map((carNames) => carNames.getAdvance()));
+    return carNamesMap.filter((carNames) => carNames.getAdvance() === maxAdvance);
+  }
 }
 
 export default GameController;
