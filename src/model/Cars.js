@@ -24,6 +24,20 @@ class Cars {
       throw new Error(`${ERROR_MESSAGE.duplicated} ${ERROR_MESSAGE.retry}`);
   }
 
+  play() {
+    this.#cars.foreach((car) => {
+      car.forward();
+    });
+    return this.#cars.map(({ name, location }) => {
+      name, location;
+    });
+  }
+
+  winner() {
+    const maxLocation = Math.max(...this.#cars.map(({ location }) => location));
+    return this.#cars.filter(({ location }) => location === maxLocation).map(({ name }) => name);
+  }
+
   get cars() {
     return this.#cars;
   }
