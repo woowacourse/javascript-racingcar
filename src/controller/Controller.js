@@ -12,6 +12,7 @@ class Controller {
 
   async inputCarNames() {
     const namesInput = await this.#inputView.readCarNames();
+    const carsNames = namesInput.split(',');
   }
 }
 
