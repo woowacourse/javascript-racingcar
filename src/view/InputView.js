@@ -10,6 +10,13 @@ const InputView = {
     // TODO: 유효성 검사
     return splitCarNames;
   },
+
+  async readMoveCount() {
+    const input = await readLineAsync(INPUT_MESSSAGES.moveCount);
+
+    // TODO: 유효성 검사
+    return Number(input);
+  },
 };
 
 export default InputView;

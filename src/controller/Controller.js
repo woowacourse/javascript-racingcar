@@ -8,6 +8,11 @@ class Controller {
     const carNames = await InputView.readCarNames();
     this.#carService = new CarService(carNames);
   }
+
+  async getMoveCount() {
+    const moveCount = await InputView.readMoveCount();
+    this.#carService.setMoveCount(moveCount);
+  }
 }
 
 export default Controller;
