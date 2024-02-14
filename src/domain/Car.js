@@ -1,11 +1,14 @@
 import { pickRandomNumber } from "../utils/RandomUtil.js";
 export default class Car {
   static thresholdForGoing = 4;
+  static MAX_NAME_LENGTH = 5;
 
   #name;
   #mileage = 0;
 
   constructor(name) {
+    this.#validate(name);
+
     this.#name = name;
   }
 
@@ -21,6 +24,12 @@ export default class Car {
 
   getName() {
     return this.#name;
+  }
+
+  #validate(name) {
+    if (name.length > Car.MAX_NAME_LENGTH) {
+      throw new Error("[ERROR] 이름은 5자 이하여야 합니다.");
+    }
   }
 
   #shouldGo() {
