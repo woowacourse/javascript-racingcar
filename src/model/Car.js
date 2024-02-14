@@ -7,6 +7,10 @@ class Car {
   updateAdvance(number) {
     if (number >= 4) this.advance += 1;
   }
+
+  getAdvance() {
+    return this.advance;
+  }
 }
 
 export default Car;
