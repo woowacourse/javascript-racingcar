@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 import Name from './Name.js';
 
-=======
-import ERROR_MESSAGE from '../error/message.js';
-import Random from './Random.js';
-
-export const MIN_NAME_LENGTH = 1;
-export const MAX_NAME_LENGTH = 5;
->>>>>>> 42bbcb3 (feat: Car 클래스에 전진 메서드 추가)
 const FORWARD_CONDITION = 4;
 
 class Car {
