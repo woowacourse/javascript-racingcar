@@ -7,6 +7,11 @@ const InputView = {
     );
     return carNames;
   },
+
+  async queryTryCount() {
+    const tryCount = await Console.readLineAsync('시도할 횟수는 몇 회인가요?');
+    return tryCount;
+  },
 };
 
 export default InputView;
