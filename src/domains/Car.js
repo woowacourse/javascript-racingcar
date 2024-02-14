@@ -19,6 +19,10 @@ class Car {
     this.#position += 1;
   }
 
+  isSamePosition(otherPosition) {
+    return this.#position === otherPosition;
+  }
+
   getName() {
     return this.#name;
   }
