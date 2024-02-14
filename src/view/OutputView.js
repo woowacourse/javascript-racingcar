@@ -9,6 +9,12 @@ class OutputView {
     for (const [name, position] of Object.entries(result)) {
       Console.print(`${name} : ${'-'.repeat(position)}`);
     }
+    Console.print('');
+  }
+
+  static printWinners(names) {
+    const winners = names.join(', ');
+    Console.print(`최종 우승자: ${winners}`);
   }
 }
 

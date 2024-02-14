@@ -5,6 +5,7 @@ class Cars {
 
   constructor(carNames) {
     this.#validateName(carNames);
+    this.#validateRedundant(carNames);
     this.#cars = carNames.split(',').map(name => {
       return new Car(name);
     });
@@ -13,6 +14,14 @@ class Cars {
   #validateName(carNames) {
     const nameRegex = new RegExp(/^[\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,5}(?:,[\w|ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,5})*$/);
     if (!nameRegex.test(carNames)) throw new Error('자동차 이름 입력이 올바르지 않습니다');
+  }
+
+  #validateRedundant(carNames) {
+    const splittedCarNames = carNames.split(',');
+    const uniqueCarNames = new Set(splittedCarNames);
+    if (splittedCarNames.length !== uniqueCarNames.size) {
+      throw new Error('중복된 자동차 이름이 있습니다.');
+    }
   }
 
   moveCars() {
