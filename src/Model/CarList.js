@@ -1,8 +1,8 @@
-import CAR, { ERROR } from '../Constant/Constant.js';
+import CAR, { ERROR, MESSAGE } from '../Constant/Constant.js';
 
 class CarList {
 	async ask() {
-		const nameInput = await readLineAsync('사용자 이름을 입력하세요.');
+		const nameInput = await readLineAsync(MESSAGE.NAME_INPUT);
 		const nameArray = nameInput.split(',');
 		this.#reaskUtilValidateSuccess(nameArray);
 		return nameArray;
@@ -10,18 +10,25 @@ class CarList {
 
 	#reaskUtilValidateSuccess(nameArray) {
 		try {
-			for (const name of nameArray) {
-				this.#validate(name);
-			}
+			this.validate(nameArray);
 		} catch (e) {
 			print(e.message);
 			return this.ask();
 		}
 	}
 
-	#validate(name) {
-		this.#validateNameLength(name);
-		this.#validateEmpty(name);
+	validate(nameArray) {
+		this.#validateCarNumber(nameArray);
+		for (const name of nameArray) {
+			this.#validateNameLength(name);
+			this.#validateEmpty(name);
+		}
+	}
+
+	#validateCarNumber(nameArray) {
+		if (nameArray.length === CAR.MIN_CAR_LEN) {
+			throw new Error(ERROR.NAME);
+		}
 	}
 
 	#validateNameLength(name) {
