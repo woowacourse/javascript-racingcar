@@ -35,6 +35,16 @@ class CarRace {
 
     return maxPositionCar;
   }
+
+  // 우승자 결정
+  judgeWinners() {
+    const maxPositionCar = this.findMaxPosition();
+    const winners = this.#cars
+      .filter((car) => maxPositionCar.isSamePosition(car))
+      .map((winner) => winner.getName());
+
+    return winners;
+  }
 }
 
 export default CarRace;
