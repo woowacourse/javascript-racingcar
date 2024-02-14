@@ -31,6 +31,12 @@ class InputView {
 
     return input;
   }
+
+  async inputTryCount() {
+    const input = await this.readLineAsync('시도할 횟수는 몇 회인가요?');
+
+    return input;
+  }
 }
 
 export default InputView;
