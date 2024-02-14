@@ -18,6 +18,12 @@ class Car {
 
     return { carName: this.#name, distance: this.#distance };
   }
+
+  isWinner(maxMoveCount) {
+    if (maxMoveCount === this.#distance) {
+      return this.#name;
+    }
+  }
 }
 
 export default Car;
