@@ -1,5 +1,9 @@
+import InputView from '../views/InputView.js';
+
 class MainController {
-  run() {}
+  async run() {
+    await InputView.readCarNames();
+  }
 }
 
 export default MainController;

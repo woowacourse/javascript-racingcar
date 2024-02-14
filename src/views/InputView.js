@@ -1,18 +1,22 @@
-import readline from 'readline.js';
-import OutputView from 'OutputView.js';
+import readline from 'readline';
+//import OutputView from './OutputView.js';
 import MESSAGES from '../constants/messages.js';
+import Cars from '../entities/Cars.js';
+import TrialCount from '../entities/TrialCount.js';
+import OutputView from './outputView.js';
 
 const Private = {
-  readline() {
-    Private.readLineAsync();
+  async readline() {
+    return await Private.readLineAsync();
   },
-  readCarNames() {
-    return Private.readLineAsync(MESSAGES.carNamesInput);
+  async readCarNames() {
+    return await Private.readLineAsync(MESSAGES.carNamesInput);
   },
 
-  readTrialCount() {
-    return Private.readLineAsync(MESSAGES.trialCountInput);
+  async readTrialCount() {
+    return await Private.readLineAsync(MESSAGES.trialCountInput);
   },
+
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
@@ -35,24 +39,24 @@ const Private = {
     });
   },
 
-  robustInput(readline, Object) {
+  async robustInput(readline, Object) {
     while (true) {
       try {
-        return new Object(readline());
+        return new Object(await readline());
       } catch (error) {
-        print(error.message);
+        OutputView.print(error.message);
       }
     }
   },
 };
 
 const InputView = {
-  readCarNames() {
-    return Private.robustInput(Private.readCarNames, Object);
+  async readCarNames() {
+    return await Private.robustInput(Private.readCarNames, Cars);
   },
 
-  readTrialCount() {
-    return Private.robustInput(Private.readTrialCount, Object);
+  async readTrialCount() {
+    return await Private.robustInput(Private.readTrialCount, TrialCount);
   },
 };
 

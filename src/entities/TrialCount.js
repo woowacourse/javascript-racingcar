@@ -1,4 +1,4 @@
-import ERRORS from '../constants/errors';
+import ERRORS from '../constants/errors.js';
 
 class TrialCount {
   #count;
@@ -34,3 +34,5 @@ class TrialCount {
     }
   }
 }
+
+export default TrialCount;
