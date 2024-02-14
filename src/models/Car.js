@@ -7,6 +7,7 @@ class Car {
 
   #validate(carName) {
     Validator.isValidCarNameLengthRange(carName);
+    Validator.isValidCarNameRule(carName);
   }
 }
 
