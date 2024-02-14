@@ -7,16 +7,15 @@ class Car {
     this.#position = 0;
   }
 
+  // 무작위 값 가져오기 (0~9)
+  #pickRandomNumber() {
+    return Math.floor(Math.random() * 10);
+  }
+
   move() {
-    this.#position += 1;
-  }
-
-  get name() {
-    return this.#name;
-  }
-
-  get position() {
-    return this.#position;
+    if (this.#pickRandomNumber() >= 4) {
+      this.#position += 1;
+    }
   }
 }
 
