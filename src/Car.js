@@ -9,6 +9,7 @@ class Car {
 
   #validation(carList) {
     Validation.isDuplicate(carList);
+    Validation.checkRange(carList);
     return carList;
   }
 
