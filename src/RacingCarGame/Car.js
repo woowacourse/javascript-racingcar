@@ -1,6 +1,6 @@
 class Car {
-  #name
-  #position
+  #name;
+  #position;
 
   constructor(name) {
     this.#name = name;
