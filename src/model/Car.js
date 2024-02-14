@@ -30,6 +30,10 @@ class Car {
   getLocation() {
     return this.#location;
   }
+
+  get location() {
+    return this.#location;
+  }
 }
 
 export default Car;
