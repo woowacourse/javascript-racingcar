@@ -11,6 +11,10 @@ class Car {
   getAdvance() {
     return this.advance;
   }
+
+  getCarName() {
+    return this.carName;
+  }
 }
 
 export default Car;
