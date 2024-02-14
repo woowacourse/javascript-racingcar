@@ -1,6 +1,6 @@
-import CommonValidator from '../src/validator/CommonValidator';
-import CarNamesValidator from '../src/validator/CarNamesValidator';
-import TryCountValidator from '../src/validator/TryCountValidator';
+import CommonValidator from '../src/utils/CommonValidator';
+import CarNamesValidator from '../src/utils/CarNamesValidator';
+import TryCountValidator from '../src/utils/TryCountValidator';
 
 describe('공통 유효성 테스트', () => {
   test('입력 공백이 들어오면 에러가 발생한다.', () => {

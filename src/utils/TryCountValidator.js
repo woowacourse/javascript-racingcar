@@ -1,13 +1,7 @@
-import Message from '../constant/Message.js';
-import Condition from '../constant/Condition.js';
-
-const { ERROR } = Message;
-const { TRY_COUNT } = Condition;
-
 class TryCountValidator {
   static isNaturalNumber(tryCount) {
-    if (!Number.isInteger(tryCount) || tryCount < TRY_COUNT.RANGE.MIN) {
-      throw new Error(ERROR.TRY_COUNT_RANGE);
+    if (!Number.isInteger(tryCount) || tryCount < 1) {
+      throw new Error('[ERROR] 시도 횟수는 자연수여야 합니다.');
     }
   }
 }

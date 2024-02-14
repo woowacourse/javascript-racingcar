@@ -1,7 +1,7 @@
 import InputView from '../view/InputView.js';
-import CommonValidator from '../validator/CommonValidator.js';
-import CarNamesValidator from '../validator/CarNamesValidator.js';
-import TryCountValidator from '../validator/TryCountValidator.js';
+import CommonValidator from '../utils/CommonValidator.js';
+import CarNamesValidator from '../utils/CarNamesValidator.js';
+import TryCountValidator from '../utils/TryCountValidator.js';
 
 class GameController {
   constructor() {
