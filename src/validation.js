@@ -13,18 +13,24 @@ class Validation {
     return true;
   }
 
+  static checkRange(carList) {
+    carList.forEach((carName) => {
+      Validation.isRange(carName);
+    });
+  }
+
   static isNaturalNumber(tryNumber) {
     // 입력이 비어 있거나 숫자가 아닌 경우 false 반환
     if (tryNumber === "" || isNaN(tryNumber)) {
-      return false;
+      throw new Error("숫자를 입력해주세요");
     }
     // 입력이 0 또는 음수인 경우 false 반환
     if (Number(tryNumber) <= 0) {
-      return false;
+      throw new Error("자연수를 입력해주세요");
     }
     // 소수점이 포함된 경우 false 반환
     if (tryNumber.includes(".")) {
-      return false;
+      throw new Error("자연수를 입력해주세요");
     }
     // 입력이 자연수인 경우 true 반환
     return true;
