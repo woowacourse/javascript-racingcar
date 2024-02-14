@@ -8,8 +8,16 @@ class CarService {
     this.#cars = carNames.map((carName) => new Car(carName));
   }
 
+  #racing() {
+    return this.#cars.map((car) => car.tryMove());
+  }
+
   setMoveCount(moveCount) {
     this.#moveCount = moveCount;
+  }
+
+  startRacing() {
+    return Array.from({ length: this.#moveCount }).map(() => this.#racing());
   }
 }
 
