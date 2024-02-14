@@ -9,6 +9,7 @@ export class Game {
     const cars = new Cars(carNameArray);
     const tryCount = await Game.getTryCount();
     Game.moveCars(cars, tryCount);
+    OutputView.printWinner(cars.findWinner());
   }
 
   static async getCarNamesArray() {
