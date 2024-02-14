@@ -20,6 +20,8 @@ class GameController {
       this.playRound(carNamesMap);
       this.output.roundResult(carNamesMap);
     }
+
+    this.output.winnerResult(this.calculateWinner(carNamesMap));
   }
 
   async getCarNames() {
