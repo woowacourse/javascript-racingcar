@@ -1,6 +1,7 @@
 import Car from './Car.js';
 
 class CarGame {
+  #tryCount;
   #carList = [];
 
   setCars(carNames) {
@@ -29,12 +30,26 @@ class CarGame {
 
   setTryCount(tryCount) {
     this.#validateTryCount(tryCount);
+    this.#tryCount = tryCount;
   }
 
   #validateTryCount(tryCount) {
-    if (!Number.isInteger(tryCount)) {
+    if (!Number.isInteger(Number(tryCount))) {
+      throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
+    }
+    if (tryCount < 1) {
       throw new Error('[ERROR] 1회 이상 시도해야합니다.');
     }
+  }
+
+  getTryCount() {
+    return this.#tryCount;
+  }
+
+  moveCars() {
+    this.#carList.forEach((car) => {
+      const randomNumber = Math.floor(Math.random() * 10);
+    });
   }
 }
 

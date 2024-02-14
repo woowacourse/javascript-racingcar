@@ -4,10 +4,10 @@ import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
 class Controller {
-  #cars;
+  #carGame;
 
   constructor() {
-    this.#cars = new CarGame();
+    this.#carGame = new CarGame();
   }
 
   // TODO: 예외처리 모듈화
@@ -19,7 +19,7 @@ class Controller {
           namesInput.split(',')
         );
 
-        return this.#cars.setCars(carsNames);
+        return this.#carGame.setCars(carsNames);
       } catch (error) {
         OutputView.printErrorMessage(error.message);
       }
@@ -30,11 +30,19 @@ class Controller {
   async inputTryCount() {
     while (1) {
       try {
-        const tryCount = await InputView.readTryCount();
-        this.#cars.setTryCount(tryCount);
+        const tryCountInput = await InputView.readTryCount();
+        return this.#carGame.setTryCount(tryCountInput);
       } catch (error) {
         OutputView.printErrorMessage(error.message);
       }
+    }
+  }
+
+  playGame() {
+    const tryCount = this.#carGame.getTryCount();
+
+    for (let i = 0; i < tryCount; i++) {
+      this.#carGame.moveCars();
     }
   }
 }
