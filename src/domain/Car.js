@@ -1,4 +1,4 @@
-import RandomUtil from "../utils/RandomUtil.js";
+import { pickRandomNumber } from "../utils/RandomUtil.js";
 export default class Car {
   static thresholdForGoing = 4;
 
@@ -24,7 +24,7 @@ export default class Car {
   }
 
   #shouldGo() {
-    return RandomUtil.pickRandomNumber() >= Car.thresholdForGoing;
+    return pickRandomNumber() >= Car.thresholdForGoing;
   }
 
   #raiseMileage() {
