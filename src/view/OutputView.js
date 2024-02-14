@@ -1,6 +1,6 @@
 import { print } from "../utils/ConsoleUtil.js";
 
-export default OutputView = {
+const OutputView = {
   printResultIntro() {
     print("실행 결과");
   },
@@ -15,3 +15,5 @@ export default OutputView = {
     print(`최종 우승자: ${winner.join(", ")}`);
   },
 };
+
+export default OutputView;
