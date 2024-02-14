@@ -1,5 +1,5 @@
-import Game from './controller/Game.js';
+import GameController from './controller/GameController';
 
-const game = new Game();
+const game = new GameController();
 
 game.startGame();
