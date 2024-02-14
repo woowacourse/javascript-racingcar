@@ -28,8 +28,14 @@ class Controller {
 
   // TODO: 예외처리 모듈화
   async inputTryCount() {
-    const tryCount = await InputView.readTryCount();
-    this.#cars.setTryCount(tryCount);
+    while (1) {
+      try {
+        const tryCount = await InputView.readTryCount();
+        this.#cars.setTryCount(tryCount);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
+    }
   }
 }
 

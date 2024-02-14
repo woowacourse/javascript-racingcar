@@ -26,6 +26,16 @@ class CarGame {
       throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
     }
   }
+
+  setTryCount(tryCount) {
+    this.#validateTryCount(tryCount);
+  }
+
+  #validateTryCount(tryCount) {
+    if (!Number.isInteger(tryCount)) {
+      throw new Error('[ERROR] 1회 이상 시도해야합니다.');
+    }
+  }
 }
 
 export default CarGame;
