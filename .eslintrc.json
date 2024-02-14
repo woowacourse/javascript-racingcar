@@ -1,15 +1,32 @@
 {
-  "rules": {},
   "env": {
-    "es6": true,
-    "node": true
+    "es2021": true,
+    "node": true,
+    "jest": true
   },
+
+  "extends": ["airbnb-base", "prettier",  "plugin:jsdoc/recommended", "plugin:jest/recommended"],
+
+  "overrides": [
+    {
+      "files": ["*.test.js"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    }
+  ],
+
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
-  ]
+
+  "rules": {
+    "no-use-before-define": ["off"],
+    "import/prefer-default-export": ["off"],
+    "import/extensions": ["off"],
+    "class-methods-use-this" : ["off"],
+    "max-depth": ["error", 2],
+    "max-lines-per-function": ["error", { "max": 10 }]
+  }
 }
