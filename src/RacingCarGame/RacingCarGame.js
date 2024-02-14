@@ -3,7 +3,15 @@ import Car from "./Car.js";
 import StringParser from "../utils/StringParser.js";
 import SETTING from "../constants/Setting.js";
 import OutputView from "../view/OutputView.js";
-import { AttemptRangeError, AttemptTypeError } from "../error/CustomError.js";
+import REGEXP from "../constants/RegExp.js";
+import {
+  AttemptRangeError,
+  AttemptTypeError,
+  CarNameDuplicatedError,
+  CarNameLengthError,
+  CarNameRangeError,
+  CarNameTypeError,
+} from "../error/CustomError.js";
 
 class RacingCarGame {
   #carArray;
@@ -20,10 +28,25 @@ class RacingCarGame {
   }
 
   async #setCarName() {
-    const input = await InputView.readCarNames();
-    const carNames = StringParser.splitCarNames(input);
+    while (true) {
+      try {
+        const input = await InputView.readCarNames();
 
+        const carNames = StringParser.splitCarNames(input);
+        this.#validateCarNameArray(carNames);
+        this.#createCars(carNames);
+
+        break;
+      } catch (error) {
+        OutputView.printError(error);
+      }
+    }
+  }
+
+  #createCars(carNames) {
     carNames.forEach((carName) => {
+      this.#validateCarName(carName);
+
       const newCar = new Car(carName);
       this.#carArray.push(newCar);
     });
@@ -39,8 +62,31 @@ class RacingCarGame {
         break;
       } catch (error) {
         OutputView.printError(error);
-        continue;
       }
+    }
+  }
+
+  #validateCarName(input) {
+    if (
+      input.length < SETTING.minCarNameLength ||
+      input.length > SETTING.maxCarNameLength
+    ) {
+      throw new CarNameLengthError();
+    }
+    if (!REGEXP.carName.test(input)) {
+      throw new CarNameTypeError();
+    }
+  }
+
+  #validateCarNameArray(inputArray) {
+    if (
+      inputArray.length < SETTING.minCarCount ||
+      inputArray.length > SETTING.maxCarCount
+    ) {
+      throw new CarNameRangeError();
+    }
+    if (inputArray.length !== new Set(inputArray).size) {
+      throw new CarNameDuplicatedError();
     }
   }
 
