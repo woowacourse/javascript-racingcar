@@ -29,6 +29,7 @@ class Cars {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   play() {
     this.#cars.forEach((car) => {
       const randomNumber = Random.create();
@@ -48,6 +49,22 @@ class Cars {
       .filter((car) => car.getLocation() === maxLocation)
       .map((car) => car.getName());
 =======
+=======
+  play() {
+    this.#cars.foreach((car) => {
+      car.forward();
+    });
+    return this.#cars.map(({ name, location }) => {
+      name, location;
+    });
+  }
+
+  winner() {
+    const maxLocation = Math.max(...this.#cars.map(({ location }) => location));
+    return this.#cars.filter(({ location }) => location === maxLocation).map(({ name }) => name);
+  }
+
+>>>>>>> ac275e8 (feat: Cars 클래스 구현 완료)
   get cars() {
     return this.#cars;
 >>>>>>> 23d6fdc (feat: Cars 클래스 유효성 검사 작성)
