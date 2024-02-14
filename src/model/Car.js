@@ -7,7 +7,7 @@ const FORWARD_CONDITION = 4;
 
 class Car {
   #name;
-  #location;
+  #location = 0;
 
   constructor(name) {
     this.#validate(name);
@@ -15,13 +15,13 @@ class Car {
   }
 
   #validate(name) {
-    if (name.length < MIN_LENGTH || name.length > MAX_LENGTH) {
+    if (name.length < MIN_NAME_LENGTH || name.length > MAX_NAME_LENGTH) {
       throw new Error(`${ERROR_MESSAGE.nameLength} ${ERROR_MESSAGE.retry}`);
     }
   }
 
   forward() {
-    const randomNumber = new Random.create();
+    const randomNumber = new Random().create();
 
     if (randomNumber >= FORWARD_CONDITION) this.#location += 1;
   }
