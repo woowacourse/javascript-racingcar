@@ -19,6 +19,7 @@ class CarRace {
     const result = {};
 
     this.#cars.forEach((car) => {
+      car.move();
       result[car.getName()] = car.getPosition();
     });
   }
@@ -26,7 +27,6 @@ class CarRace {
   // 가장 멀리간 차 찾기
   findMaxPosition() {
     let maxPositionCar = this.#cars[0];
-
     for (let index = 1; index < this.#cars.length; index++) {
       if (!maxPositionCar.isAheadOf(this.#cars[index])) {
         maxPositionCar = this.#cars[index];
