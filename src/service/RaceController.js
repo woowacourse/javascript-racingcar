@@ -1,3 +1,4 @@
+import Cars from '../domain/Cars';
 import Race from '../domain/Race';
 import InputView from '../view/InputView';
 
@@ -8,7 +9,7 @@ class RaceController {
 
   async start() {
     const carsName = await InputView.readCarsName();
-    this.#cars = new this.#cars(carsName);
+    this.#cars = new Cars(carsName);
 
     const attemptNum = await InputView.readAttemptNum();
     this.#race = new Race(attemptNum);

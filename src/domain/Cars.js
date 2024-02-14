@@ -15,3 +15,5 @@ class Cars {
     if (!nameRegex.test(carNames)) throw new Error('자동차 이름 입력이 올바르지 않습니다');
   }
 }
+
+export default Cars;
