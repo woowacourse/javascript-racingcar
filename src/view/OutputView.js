@@ -17,6 +17,11 @@ const OutputView = {
     });
     this.print('');
   },
+
+  printWinners(winners) {
+    const result = winners.join(', ');
+    this.print(`최종 우승자: ${result}`);
+  },
 };
 
 export default OutputView;

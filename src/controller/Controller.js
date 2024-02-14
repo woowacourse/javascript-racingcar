@@ -56,6 +56,7 @@ class Controller {
 
   findWinner() {
     const winners = this.#carGame.findWinners();
+    OutputView.printWinners(winners);
   }
 }
 
