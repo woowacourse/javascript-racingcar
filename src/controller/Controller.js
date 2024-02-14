@@ -1,18 +1,19 @@
-import { InputView } from '../view/InputView';
-import { OutputView } from '../view/OutputView';
+import Cars from '../model/Cars.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 
 class Controller {
-  #inputView;
-  #outputView;
+  #cars;
 
   constructor() {
-    this.#inputView = new InputView();
-    this.#outputView = new OutputView();
+    this.#cars = new Cars();
   }
 
   async inputCarNames() {
-    const namesInput = await this.#inputView.readCarNames();
+    const namesInput = await InputView.readCarNames();
     const carsNames = namesInput.split(',');
+
+    this.#cars.setCars(carsNames);
   }
 }
 
