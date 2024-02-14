@@ -1,4 +1,4 @@
-import Cars from '../model/Cars.js';
+import CarGame from '../model/CarGame.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
@@ -6,18 +6,27 @@ class Controller {
   #cars;
 
   constructor() {
-    this.#cars = new Cars();
+    this.#cars = new CarGame();
   }
 
+  // TODO: 예외처리 모듈화
   async inputCarNames() {
-    const namesInput = await InputView.readCarNames();
-    const carsNames = namesInput.split(',');
+    while (1) {
+      try {
+        const namesInput = await InputView.readCarNames();
+        const carsNames = namesInput.split(',');
 
-    this.#cars.setCars(carsNames);
+        return this.#cars.setCars(carsNames);
+      } catch (error) {
+        OutputView.printErrorMessage(error.message);
+      }
+    }
   }
 
+  // TODO: 예외처리 모듈화
   async inputTryCount() {
     const tryCount = await InputView.readTryCount();
+    this.#cars.setTryCount(tryCount);
   }
 }
 
