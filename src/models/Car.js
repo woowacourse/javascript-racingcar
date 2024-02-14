@@ -2,7 +2,7 @@ class Car {
   #name = '';
   #step = 0;
 
-  constructor(name, step, randomNumber) {
+  constructor(name, step, randomNumber = undefined) {
     this.#name = name;
     this.#step = step;
     this.#movement(randomNumber);
