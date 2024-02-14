@@ -7,6 +7,9 @@ const SETTING = Object.freeze({
 
   minAttempt: 1,
   maxAttempt: 1000,
+
+  minRandomNumber: 0,
+  maxRandomNumber: 9,
 });
 
 export default SETTING;
