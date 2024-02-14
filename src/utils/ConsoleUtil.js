@@ -1,6 +1,6 @@
 import readline from "readline";
 
-export default ConsoleUtil = {
+export default consoleUtil = {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
