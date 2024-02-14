@@ -1,14 +1,14 @@
-import MESSAGE from "../constants/Message";
-import readLineAsync from "../utils/readLineAsync";
+import MESSAGE from "../constants/Message.js";
+import readLineAsync from "../utils/readLineAsync.js";
 
 class InputView {
-  async readCarNames() {
+  static async readCarNames() {
     const carNames = await readLineAsync(MESSAGE.readCarNames);
 
     return carNames;
   }
 
-  async readAttempt() {
+  static async readAttempt() {
     const attempt = await readLineAsync(MESSAGE.readAttempt);
 
     return attempt;
