@@ -1,32 +1,11 @@
-import CarValidator from '../utils/CarValidator';
-import Condition from '../constant/Condition';
-
-const { CAR_ADVANCE } = Condition;
-
 class Car {
-  #name;
-  #advance;
-
-  constructor(name) {
-    this.#name = this.#validateName(name);
-    this.#advance = 0;
-  }
-
-  #validateName(name) {
-    CarValidator.isValidNameRange(name);
-    return name;
-  }
-
-  getName() {
-    return this.#name;
-  }
-
-  getAdvance() {
-    return this.#advance;
+  constructor(carName) {
+    this.carName = carName;
+    this.advance = 0;
   }
 
   updateAdvance(number) {
-    if (number >= CAR_ADVANCE.CONDITION) this.#advance += CAR_ADVANCE.STEP;
+    if (number >= 4) this.advance += 1;
   }
 }
 

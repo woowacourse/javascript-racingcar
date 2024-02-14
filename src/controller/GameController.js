@@ -2,6 +2,7 @@ import InputView from '../view/InputView.js';
 import CommonValidator from '../utils/CommonValidator.js';
 import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
+import Car from '../model/Car.js';
 
 class GameController {
   constructor() {
@@ -9,10 +10,10 @@ class GameController {
   }
 
   async startGame() {
-    const carNamesArr = await this.getCarNames();
+    const carNamesMap = await this.getCarNames();
     const tryCount = await this.getTryCount();
 
-    console.log(carNamesArr, tryCount);
+    console.log(carNamesMap, tryCount);
   }
 
   async getCarNames() {
@@ -27,11 +28,12 @@ class GameController {
         CarNamesValidator.isValidCount(carNamesArr);
         CarNamesValidator.isDuplicate(carNamesArr);
 
-        carNamesArr.forEach((carName) => {
+        const carNamesMap = carNamesArr.map((carName) => {
           CarNamesValidator.isValidRange(carName);
+          return new Car(carName);
         });
 
-        return carNames.split(',');
+        return carNamesMap;
       } catch (err) {
         console.log(err.message);
       }
@@ -48,6 +50,13 @@ class GameController {
         console.log(err.message);
       }
     }
+  }
+
+  playRound(carNamesMap) {
+    carNamesMap.forEach((carName) => {
+      const randomNumber = Random.pickNumberZeroToNine();
+      carName.updateAdvance(randomNumber);
+    });
   }
 }
 
