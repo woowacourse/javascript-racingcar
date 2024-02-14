@@ -1,23 +1,24 @@
-import InputView from './InputView';
-import Validation from './utils/Validation';
-import OutputView from './OutputView';
-import Cars from './Cars';
+import InputView from './InputView.js';
+import Validation from './utils/Validation.js';
+import OutputView from './OutputView.js';
+import Cars from './Cars.js';
 
-class Game {
+export class Game {
   async start() {
     const carNameArray = await Game.getCarNamesArray();
     const cars = new Cars(carNameArray);
     const tryCount = await Game.getTryCount();
+    Game.moveCars(cars, tryCount);
   }
 
-  static getCarNamesArray() {
+  static async getCarNamesArray() {
     try {
-      const carNamesArray = Game.carNamesToCarNamesArray();
-      Validation.carNamesArrayValidate(carNamesArray.name);
+      const carNamesArray = await Game.carNamesToCarNamesArray();
+      Validation.carNamesArrayValidate(carNamesArray);
       return carNamesArray;
     } catch (error) {
       OutputView.printError(error);
-      Game.getCarNamesArray();
+      return await Game.getCarNamesArray();
     }
   }
 
@@ -28,11 +29,18 @@ class Game {
       return Number(tryCountString);
     } catch (error) {
       OutputView.printError(error);
-      Game.getTryCount();
+      return await Game.getTryCount();
     }
   }
   static async carNamesToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
+  }
+  static moveCars(cars, tryCount) {
+    OutputView.printResultTitle();
+    for (let i = 0; i < tryCount; i++) {
+      cars.moveAllCars();
+      OutputView.printEachStepResult(cars);
+    }
   }
 }

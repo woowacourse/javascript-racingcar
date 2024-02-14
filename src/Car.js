@@ -7,7 +7,7 @@ class Car {
   }
 
   canMove() {
-    const randomValue = Math.getRandomInt(0, 10);
+    const randomValue = Math.floor(Math.random() * 10);
     return randomValue >= 4;
   }
 
@@ -16,6 +16,15 @@ class Car {
       this.#distance += 1;
     }
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getDistance() {
+    return this.#distance;
+  }
+
   getDistanceString() {
     return `${this.#name} : ${'-'.repeat(this.#distance)}\n`;
   }

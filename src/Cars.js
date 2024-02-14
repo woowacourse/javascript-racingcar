@@ -1,5 +1,4 @@
 import Car from './Car.js';
-
 class Cars {
   #carList;
   constructor(carNameArray) {
@@ -13,7 +12,7 @@ class Cars {
   }
   getEachStepString() {
     return this.#carList.reduce((pre, cur) => {
-      pre += cur.getDistanceString();
+      return pre + cur.getDistanceString();
     }, '');
   }
 }
