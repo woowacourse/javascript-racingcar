@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "lines-between-class-members": "off",
+    "class-methods-use-this":"off"
+  },
   "env": {
     "es6": true,
     "node": true
