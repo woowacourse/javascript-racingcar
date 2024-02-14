@@ -1,4 +1,5 @@
 import CarGame from '../model/CarGame.js';
+import Preprocessor from '../utils/Preprocessor.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 
@@ -14,7 +15,9 @@ class Controller {
     while (1) {
       try {
         const namesInput = await InputView.readCarNames();
-        const carsNames = namesInput.split(',');
+        const carsNames = Preprocessor.filterOutEmptyStrings(
+          namesInput.split(',')
+        );
 
         return this.#cars.setCars(carsNames);
       } catch (error) {
