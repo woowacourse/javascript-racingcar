@@ -8,7 +8,9 @@ class App {
     for (let i = 0; i < turnCount; i += 1) {
       carList.forEach((car) => {
         car.move();
+        car.printPosition();
       });
+      console.log();
     }
   }
 
