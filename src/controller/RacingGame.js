@@ -2,6 +2,7 @@ import gameUtils from '../utils/gameUtils';
 import InputView from '../views/InputView';
 import Car from '../models/Car';
 import repeatFunctionUntilIsValid from '../utils/repeatFunctionUntilIsValid';
+import Cars from '../collection/Cars';
 
 class RacingGame {
   async play() {
@@ -12,7 +13,7 @@ class RacingGame {
   async setCarNames() {
     const inputValue = await InputView.readCarNames();
     const seperatedCarNames = gameUtils.seperateComma(inputValue);
-    seperatedCarNames.map((carName) => new Car(carName));
+    return new Cars(seperatedCarNames.map((carName) => new Car(carName)));
   }
 }
 

@@ -12,6 +12,10 @@ class Car {
     Validator.isValidCarNameLengthRange(carName);
     Validator.isValidCarNameRule(carName);
   }
+
+  addNameForDuplicatedCheck(uniqueCarNames) {
+    uniqueCarNames.add(this.#name);
+  }
 }
 
 export default Car;
