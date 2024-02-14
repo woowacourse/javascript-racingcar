@@ -13,6 +13,10 @@ const OutputView = {
       this.printMessage(`${name} : ${positionMark}`);
     });
   },
+
+  printWinners(winners) {
+    this.printMessage(`최종 우승자 : ${winners.join(',')}`);
+  },
 };
 
 export default OutputView;

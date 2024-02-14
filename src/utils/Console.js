@@ -23,4 +23,5 @@ const Console = {
     console.log(message);
   },
 };
+
 export default Console;
