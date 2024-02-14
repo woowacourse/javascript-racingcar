@@ -1,3 +1,3 @@
-import { readLineAsync } from './console.js';
+import { readLineAsync } from './Console.js';
 
 export { readLineAsync };
