@@ -1,3 +1,4 @@
+import deepFreeze from '../utils/deepFreeze';
 import Car from './Car';
 
 class CarRace {
@@ -31,7 +32,7 @@ class CarRace {
       result[car.getName()] = car.getPosition();
     });
 
-    return result;
+    return deepFreeze(result);
   }
 
   judgeWinners() {
@@ -40,7 +41,7 @@ class CarRace {
       .filter((car) => maxPositionCar.isSamePosition(car))
       .map((winner) => winner.getName());
 
-    return winners;
+    return deepFreeze(winners);
   }
 }
 
