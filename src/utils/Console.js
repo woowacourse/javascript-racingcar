@@ -7,7 +7,7 @@ class Console {
   static validateQuery(query) {
     return new Promise((resolve, reject) => {
       if (!query || typeof query !== 'string') {
-        reject(new Error('query must be a non-empty string'));
+        reject(new Error(ERROR.query));
       }
 
       resolve();

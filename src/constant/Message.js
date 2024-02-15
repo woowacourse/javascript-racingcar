@@ -1,6 +1,7 @@
 const PREFIX = '[ERROR]';
 
 const ERROR = {
+  query: `${PREFIX} 쿼리는 공백이 아닌 문자열이어야 한다.`,
   null: `${PREFIX} 입력은 공백이 될 수 없습니다.`,
   car_count: `${PREFIX} 자동차 대수는 2대 이상만 가능하다.`,
   car_name_duplicate: `${PREFIX} 자동차 이름은 중복될 수 없다.`,
