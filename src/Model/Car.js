@@ -1,4 +1,4 @@
-import AppError from '../utils/Error';
+import AppError from "../utils/Error";
 
 export default class Car {
   #name;
@@ -11,7 +11,7 @@ export default class Car {
 
   #checkName(name) {
     if (5 < name.length || name.length < 1) {
-      throw new AppError('[ERROR]');
+      throw new AppError("[ERROR]");
     }
   }
 
@@ -23,5 +23,9 @@ export default class Car {
 
   getDistance() {
     return this.#distance;
+  }
+
+  getName() {
+    return this.#name;
   }
 }
