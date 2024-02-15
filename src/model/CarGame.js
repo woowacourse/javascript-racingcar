@@ -38,7 +38,7 @@ class CarGame {
 
   // eslint-disable-next-line class-methods-use-this
   #validateTryCount(tryCount) {
-    if (!Number.isInteger(Number(tryCount))) {
+    if (!Number.isInteger(tryCount)) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER);
     }
     if (tryCount < 1) {
@@ -63,25 +63,24 @@ class CarGame {
     const carInfos = [];
 
     this.#carList.forEach((car) => {
-      carInfos.push({
-        name: car.getName(),
-        location: car.getLocation(),
-      });
+      carInfos.push({ name: car.getName(), location: car.getLocation() });
     });
 
     return carInfos;
   }
 
   findWinners() {
-    const maxLocation = Math.max(
-      ...this.#carList.map((car) => car.getLocation()),
-    );
+    const maxLocation = this.findMaxLocation();
 
     const winners = this.#carList
       .filter((car) => car.getLocation() === maxLocation)
       .map((car) => car.getName());
 
     return winners;
+  }
+
+  findMaxLocation() {
+    return Math.max(...this.#carList.map((car) => car.getLocation()));
   }
 }
 
