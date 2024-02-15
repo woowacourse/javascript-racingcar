@@ -1,4 +1,5 @@
 import InputView from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
 import ErrorHandler from '../errors/ErrorHandler/module.js';
 import RacingGame from '../domain/RacingGame/module.js';
 import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
@@ -26,4 +27,7 @@ function processRacingGame({ racingCarNames, tryCount }) {
 
   const finalRacingResult = racingResult.at(-1);
   const racingWinners = RacingWinnerRecorder.createRacingWinners(finalRacingResult);
+
+  OutputView.printRacingResult(racingResult);
+  OutputView.printRacingWinners(racingWinners);
 }
