@@ -1,10 +1,6 @@
 import { CAR, ERROR } from '../Constant/Constant.js';
 
 class CarList {
-	// constructor(nameArray) {
-	// 	this.validate(nameArray);
-	// }
-
 	validate(nameArray) {
 		this.validateCarNumber(nameArray);
 		this.validateDuplicate(nameArray);

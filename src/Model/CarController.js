@@ -1,5 +1,5 @@
-import { MESSAGE } from '../Constant/Constant.js';
-import { print, makeRandomNum } from '../Utils/MissionUtils.js';
+import { makeRandomNum } from '../Utils/MissionUtils.js';
+import OutputView from '../View/OutputView.js';
 
 class CarController {
 	constructor(carNames, tryNumber) {
@@ -9,11 +9,11 @@ class CarController {
 	}
 
 	playAllTurn() {
-		print(MESSAGE.RESULT);
+		OutputView.printResultMessage();
 		for (let i = 0; i < this.tryNumber; i++) {
 			this.playOneTurn(this.carNames);
 			this.playOneTurnResult(this.carNames);
-			print(MESSAGE.BLANK);
+			OutputView.printBlank();
 		}
 		this.decideWinner();
 	}
@@ -31,11 +31,7 @@ class CarController {
 	playOneTurnResult() {
 		const carNameLength = this.carNames.length;
 		for (let i = 0; i < carNameLength; i++) {
-			print(
-				`${this.carNames[i]} : ${MESSAGE.PRINT_CHAR.repeat(
-					this.resultCounter[i],
-				)}`,
-			);
+			OutputView.printNameAndResult(this.carNames, this.resultCounter, i);
 		}
 	}
 
@@ -61,7 +57,7 @@ class CarController {
 	printWinner(winnerIndexArr) {
 		const winners = winnerIndexArr.map(e => this.carNames[e]);
 		const winnersStr = winners.join(', ');
-		print(`최종 우승자 : ${winnersStr}`);
+		OutputView.printWinners(winnersStr);
 	}
 }
 
