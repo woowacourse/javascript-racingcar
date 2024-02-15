@@ -1,3 +1,4 @@
+import { RULES } from '../statics/constants';
 import Random from '../utils/Random';
 
 class Car {
@@ -11,8 +12,10 @@ class Car {
   }
 
   move() {
-    const randNum = Random.pickNumberInRange(0, 9);
-    if (randNum >= 4) this.#position++;
+    const { moveThreshold, minRandomRange, maxRandomRange } = RULES;
+
+    const randNum = Random.pickNumberInRange(minRandomRange, maxRandomRange);
+    if (randNum >= moveThreshold) this.#position++;
   }
 
   get position() {

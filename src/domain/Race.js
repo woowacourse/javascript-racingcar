@@ -1,31 +1,77 @@
+import { REGEX, RULES, SYMBOLS } from '../statics/constants';
+import { ERROR_MESSAGES } from '../statics/messages';
 import Car from './Car';
 
 class Race {
+  #cars;
+
   #attemptNum;
 
-  constructor(attemptNum) {
-    this.#validateNum(attemptNum);
+  set cars(carsName) {
+    this.#validateCarsName(carsName);
+    this.#cars = carsName.split(SYMBOLS.nameSeperator).map(name => {
+      return new Car(name);
+    });
+  }
+
+  set attemptNum(attemptNum) {
+    this.#validateAttemptNum(attemptNum);
     this.#attemptNum = Number(attemptNum);
   }
 
-  #validateNum(attemptNum) {
-    if (!Number.isInteger(Number(attemptNum))) throw new Error('[ERROR] 정수를 입력해 주세요.');
+  #validateCarsName(carsName) {
+    const nameRegex = new RegExp(REGEX.carName);
+    if (!nameRegex.test(carsName)) throw new Error(ERROR_MESSAGES.invalidCarName);
 
-    if (Number(attemptNum) <= 0) throw new Error('[ERROR] 0 이상의 정수를 입력해 주세요.');
+    const splittedCarNames = carsName.split(SYMBOLS.nameSeperator);
+    const uniqueCarNames = new Set(splittedCarNames);
+    if (splittedCarNames.length !== uniqueCarNames.size) {
+      throw new Error(ERROR_MESSAGES.redundantCarName);
+    }
   }
 
-  // raceStart(cars) {
-  //   const result = [];
+  #validateAttemptNum(attemptNum) {
+    if (!Number.isInteger(Number(attemptNum))) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
 
-  //   for (let i = 0; i < this.#attemptNum; i++) {
-  //     cars.moveCars();
-  //     // result에 결과 추가
-  //   }
-  //   // return result
-  // }
+    if (Number(attemptNum) < RULES.minAttemptNum) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
+  }
 
-  get attemptNum() {
-    return this.#attemptNum;
+  gameCycle(outputView) {
+    for (let i = 0; i < this.#attemptNum; i++) {
+      this.#moveCars();
+      // Race 도메인에서 처리하면 변수에 초기화시키지 않고 바로 할당하는 게 깔끔할 것 같음.
+      outputView(this.#getCycleResult());
+    }
+  }
+
+  judgeWinner() {
+    const winnersPosition = this.#getWinnersPosition();
+
+    return this.#cars
+      .filter(car => {
+        return car.position === winnersPosition;
+      })
+      .map(winner => winner.name);
+  }
+
+  #moveCars() {
+    this.#cars.forEach(car => {
+      car.move();
+    });
+  }
+
+  #getCycleResult() {
+    return this.#cars.reduce((cycleResult, car) => {
+      cycleResult[car.name] = car.position;
+      return cycleResult;
+    }, {});
+  }
+
+  #getWinnersPosition() {
+    return this.#cars.reduce((max, car) => {
+      if (max <= car.position) return car.position;
+      return max;
+    }, 0);
   }
 }
 

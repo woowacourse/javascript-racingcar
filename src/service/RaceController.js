@@ -1,14 +1,17 @@
-import Cars from '../domain/Cars';
 import Race from '../domain/Race';
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
 import Console from '../utils/Console';
 
 class RaceController {
-  #cars;
-
   #race;
 
+  constructor() {
+    this.#race = new Race();
+  }
+
+  // TODO: reInput이라는 이름이 어떤 상황에서 재입력을 받는지 나타내고 있지 않음. 함수 이름 변경 제안.
+  // TODO: reInput이라는 로직이 컨트롤러에 있는 게 맞을까? util 함수로 분리되어야 하지 않을까?
   async reInput(func) {
     try {
       return await func();
@@ -20,28 +23,30 @@ class RaceController {
 
   async start() {
     await this.reInput(() => this.#initCars());
-    await this.reInput(() => this.#initRace());
+    await this.reInput(() => this.#initAttemptNum());
 
-    OutputView.printResultMessage();
-    for (let i = 0; i < this.#race.attemptNum; i++) {
-      this.#cars.moveCars();
-      const result = this.#cars.result;
-      OutputView.printCarpositionAndName(result);
-    }
-
-    const winners = this.#cars.judgeWinner();
-    OutputView.printWinners(winners);
+    this.#gameCycleStart();
+    this.#gameCycleEnd();
   }
 
   async #initCars() {
     const carsName = await InputView.readCarsName();
-    this.#cars = new Cars(carsName);
+    this.#race.cars = carsName;
   }
 
-  //TODO : race가 사라질 수 있음.. 사라지면 initAttemptNum으로 변경
-  async #initRace() {
+  async #initAttemptNum() {
     const attemptNum = await InputView.readAttemptNum();
-    this.#race = new Race(attemptNum);
+    this.#race.attemptNum = attemptNum;
+  }
+
+  #gameCycleStart() {
+    OutputView.printResultMessage();
+    this.#race.gameCycle(cycleResult => OutputView.printNameAndCarPosition(cycleResult));
+  }
+
+  #gameCycleEnd() {
+    const winners = this.#race.judgeWinner();
+    OutputView.printWinners(winners);
   }
 }
 
