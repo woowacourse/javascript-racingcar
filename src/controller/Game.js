@@ -7,17 +7,17 @@ import Car from '../model/Car.js';
 
 class Game {
   async startGame() {
-    const carNamesMap = await this.getCarNames();
+    const cars = await this.getCars();
     const tryCount = await this.getTryCount();
 
     for (let i = 0; i < tryCount; i++) {
-      this.playRound(carNamesMap);
+      this.playRound(cars);
     }
 
-    Output.winnerResult(this.calculateWinner(carNamesMap));
+    Output.winnerResult(this.calculateWinner(cars));
   }
 
-  async getCarNames() {
+  async getCars() {
     while (true) {
       try {
         const carNames = await Input.inputCarName();
@@ -26,11 +26,11 @@ class Game {
         CarNamesValidator.isValidCount(carNamesArr);
         CarNamesValidator.isDuplicate(carNamesArr);
 
-        const carNamesMap = carNamesArr.map((carName) => {
-          return new Car(carName);
+        const cars = carNamesArr.map((car) => {
+          return new Car(car);
         });
 
-        return carNamesMap;
+        return cars;
       } catch (err) {
         console.log(err.message);
       }
@@ -49,21 +49,21 @@ class Game {
     }
   }
 
-  playRound(carNamesMap) {
-    this.calculateAdvance(carNamesMap);
-    Output.roundResult(carNamesMap);
+  playRound(cars) {
+    this.calculateAdvance(cars);
+    Output.roundResult(cars);
   }
 
-  calculateAdvance(carNamesMap) {
-    carNamesMap.forEach((carName) => {
+  calculateAdvance(cars) {
+    cars.forEach((car) => {
       const randomNumber = Random.pickNumberZeroToNine();
-      carName.updateAdvance(randomNumber);
+      car.updateAdvance(randomNumber);
     });
   }
 
-  calculateWinner(carNamesMap) {
-    const maxAdvance = Math.max(...carNamesMap.map((carNames) => carNames.getAdvance()));
-    return carNamesMap.filter((carNames) => carNames.getAdvance() === maxAdvance);
+  calculateWinner(cars) {
+    const maxAdvance = Math.max(...cars.map((car) => car.getAdvance()));
+    return cars.filter((car) => car.getAdvance() === maxAdvance);
   }
 }
 
