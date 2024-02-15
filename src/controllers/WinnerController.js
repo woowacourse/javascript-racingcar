@@ -11,13 +11,7 @@ class WinnerController {
 
   findWinner() {
     const max = Math.max(...this.#positions);
-    const winners = [];
-    for (let i = 0; i < this.#positions.length; i++) {
-      if (this.#positions[i] === max) {
-        winners.push(this.#carNames[i]);
-      }
-    }
-    return winners;
+    return this.#carNames.filter((_, i) => this.#positions[i] === max);
   }
 
   run() {
