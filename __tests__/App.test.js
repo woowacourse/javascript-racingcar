@@ -1,6 +1,7 @@
 import Car from '../src/Car';
+import CarList from '../src/CarList';
 import CONFIG from '../src/constants/config';
-//   - [ ] 현재 위치값이 가장 큰 최종 우승자를 출력한다.
+import OutputView from '../src/views/OutputView';
 
 const mockRandom = (multiply) => {
   jest.spyOn(Math, 'random').mockImplementation(() => 0.1 * multiply);
@@ -49,6 +50,27 @@ describe('각 자동차 별로 현재 위치를 출력한다.', () => {
       carList[index].move();
       carList[index].printPosition();
     });
+
+    // Assert
+    logs.forEach((log) => {
+      expect(console.log).toHaveBeenCalledWith(log);
+    });
+  });
+});
+
+describe('현재 위치값이 가장 큰 최종 우승자를 출력한다.', () => {
+  test('자동차 경주 우승자를 판별하여 출력한다.', () => {
+    // Arrange
+    console.log = jest.fn();
+
+    const carList = new CarList(['마루', '아르']);
+    const logs = ['마루 : -', '아르 : -', '최종 우승자: 마루, 아르'];
+
+    // Act
+    mockRandom(CONFIG.CAR_MOVING_CONDITION);
+    carList.printCurrentPosition();
+    const winners = carList.getWinner();
+    OutputView.printWinners(winners);
 
     // Assert
     logs.forEach((log) => {
