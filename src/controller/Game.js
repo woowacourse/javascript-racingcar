@@ -12,7 +12,6 @@ class Game {
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(carNamesMap);
-      Output.roundResult(carNamesMap);
     }
 
     Output.winnerResult(this.calculateWinner(carNamesMap));
@@ -51,6 +50,11 @@ class Game {
   }
 
   playRound(carNamesMap) {
+    this.calculateAdvance(carNamesMap);
+    Output.roundResult(carNamesMap);
+  }
+
+  calculateAdvance(carNamesMap) {
     carNamesMap.forEach((carName) => {
       const randomNumber = Random.pickNumberZeroToNine();
       carName.updateAdvance(randomNumber);
