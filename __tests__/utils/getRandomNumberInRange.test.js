@@ -18,7 +18,7 @@ const typeCheckCase = [
 ];
 const lowerAndUpperCheckCase = [9, 0];
 describe('utils: getRandomNumberInRange 검증', () => {
-  test.skip.each(rangeCheckCase)(
+  test.each(rangeCheckCase)(
     '범위 내 숫자 나오는지 1만회 검증',
     //Arrange
     (lower, upper) => {
@@ -34,7 +34,7 @@ describe('utils: getRandomNumberInRange 검증', () => {
     }
   );
   describe('예외 검증', () => {
-    test.skip('대소 검증', () => {
+    test('대소 검증', () => {
       // Arrange
       const [lower, upper] = lowerAndUpperCheckCase;
       //Assert
@@ -44,7 +44,7 @@ describe('utils: getRandomNumberInRange 검증', () => {
       ).toThrow();
     });
 
-    test.skip.each(typeCheckCase)(
+    test.each(typeCheckCase)(
       '타입 검증',
       //Arrange
       (lower, upper) => {

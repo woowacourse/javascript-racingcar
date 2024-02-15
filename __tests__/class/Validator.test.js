@@ -25,14 +25,15 @@ describe('Validator 클래스 테스트', () => {
     ['-1', false],
     ['1.1', false],
     ['3회', false],
+    ['0x15', false],
+    ['Infinity', false],
   ];
-  test.each(carsCases)(
+  test.each(tryCountCases)(
     'validateTryCount 메서드는 시도 횟수를 받아, 십진수로 이루어진 자연수 값인지 검증한다.',
     // Arrange
     (tryCount, expectedResult) => {
       // Act
       const result = Validator.validateTryCount(tryCount);
-
       // Assert
       expect(result).toBe(expectedResult);
     }
