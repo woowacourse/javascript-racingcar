@@ -1,6 +1,6 @@
 class Validation {
   static isDuplicate(carList) {
-    if (carList.length == new Set(carList).size) {
+    if (carList.length === new Set(carList).size) {
       return true;
     }
     throw new Error("중복된 차가 있습니다.");
