@@ -1,6 +1,11 @@
+import { count } from "../util/count.js";
 class Output {
-  static printMove(carInfo) {
-    console.log(carInfo.carName + " : " + "-".repeat(carInfo.moveCount));
+  static printMove(carInfo, round) {
+    console.log(
+      carInfo.carName +
+        " : " +
+        "-".repeat(count(carInfo.moveTrace.slice(0, round)))
+    );
   }
 
   static printWinner(winner) {

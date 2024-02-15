@@ -1,13 +1,13 @@
-import readLineAsync from "../readLineAsync.js";
-import Car from "../Car.js";
-import Validation from "../validation.js";
+import readLineAsync from "../util/readLineAsync.js";
+import Cars from "../Cars.js";
+import Validation from "../Validation.js";
 
 const carNameInput = async () => {
   try {
     const carList = await readLineAsync(
       "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
     );
-    const car = new Car(carList.split(","));
+    const car = new Cars(carList.split(","));
 
     return car.getCarList();
   } catch (error) {
