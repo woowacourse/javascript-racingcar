@@ -4,12 +4,14 @@ import Car from '../models/Car';
 import repeatFunctionUntilIsValid from '../utils/repeatFunctionUntilIsValid';
 import Cars from '../collection/Cars';
 import RoundCount from '../models/RoundCount';
+import OutputView from '../views/OutputView';
 
 class RacingGame {
   async play() {
     const cars = await repeatFunctionUntilIsValid(this.setCarNames);
     const roundCount = await repeatFunctionUntilIsValid(this.setRoundCount);
     roundCount.raceStart(cars);
+    OutputView.printRaceResult(roundCount.makeRaceResultOutput())
     return this;
   }
 
