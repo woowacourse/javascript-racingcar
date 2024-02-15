@@ -11,7 +11,7 @@ class CarRace {
   // 문자열 -> Car 인스턴스 리스트 만들기
   #initRaceCars(cars) {
     const spliitedCars = cars.split(',');
-    this.#cars = spliitedCars.map((carName) => new Car(carName));
+    return spliitedCars.map((carName) => new Car(carName));
   }
 
   // 각 레이스 결과 보드 만들기
@@ -22,6 +22,8 @@ class CarRace {
       car.move();
       result[car.getName()] = car.getPosition();
     });
+
+    return result;
   }
 
   // 가장 멀리간 차 찾기
