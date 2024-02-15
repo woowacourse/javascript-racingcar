@@ -20,8 +20,14 @@ const InputView = {
   },
 
   async readTurnCount() {
-    const turnCount = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    return turnCount;
+    try {
+      const turnCountInput = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+      Validator.validateTurnCount(turnCountInput);
+      return parseInt(turnCountInput, 10);
+    } catch (error) {
+      OutputView.print(error.message);
+      return this.readTurnCount();
+    }
   },
 };
 
