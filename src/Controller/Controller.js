@@ -12,6 +12,13 @@ const ERROR_MESSAGES = Object.freeze({
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
 const BLANK_STR = '';
 
+const RESULT_MESSAGE = "실행 결과";
+const ERROR_MESSAGES = Object.freeze({
+  onlyNum: "숫자 값만 입력해주세요.",
+  invalidNumRange: "1 이상 200미만의 숫자만 입력해주세요.",
+});
+const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
+
 export default class Controller {
   #cars;
 
