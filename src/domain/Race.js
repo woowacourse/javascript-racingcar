@@ -8,7 +8,6 @@ class Race {
   #cars;
 
   #attemptNum;
-
   set cars(carsNameInput) {
     this.#validateCarsName(carsNameInput);
     this.#cars = carsNameInput.split(SYMBOLS.nameSeperator).map(name => {

@@ -1,4 +1,10 @@
+import Car from '../domain/Car';
+
 const RaceController = {
+  /**
+   * @param {Car[]} cars
+   * @returns
+   */
   getCycleResult: cars => {
     return cars.reduce((cycleResult, car) => {
       cycleResult[car.name] = car.position;
@@ -6,6 +12,10 @@ const RaceController = {
     }, {});
   },
 
+  /**
+   * @param {Car[]} cars
+   * @returns
+   */
   getWinnersPosition: cars => {
     return cars.reduce((max, car) => {
       if (max <= car.position) return car.position;
@@ -13,6 +23,10 @@ const RaceController = {
     }, 0);
   },
 
+  /**
+   * @param {Car[]} cars
+   * @returns
+   */
   getWinners: (cars, winnersPosition) => {
     return cars
       .filter(car => {
