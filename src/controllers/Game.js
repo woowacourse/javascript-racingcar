@@ -10,7 +10,7 @@ class Game {
 
   #round = {
     total: 0,
-    current: 0,
+    current: 1,
   };
 
   async #setCarList() {
@@ -53,7 +53,7 @@ class Game {
   play() {
     OutputView.printMessage(`\n${OUTPUT_MESSAGE.roundResult}`);
 
-    while (this.#round.total > this.#round.current) {
+    while (this.#round.total >= this.#round.current) {
       this.#carList.forEach((car) => {
         car.movement();
       });
