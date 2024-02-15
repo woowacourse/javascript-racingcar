@@ -1,39 +1,32 @@
-import { REGEX, RULES, SYMBOLS } from '../statics/constants';
+import { SYMBOLS } from '../statics/constants';
 import { ERROR_MESSAGES } from '../statics/messages';
 import Car from './Car';
+import { hasRedundantCarName, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
 
 class Race {
   #cars;
 
   #attemptNum;
 
-  set cars(carsName) {
-    this.#validateCarsName(carsName);
-    this.#cars = carsName.split(SYMBOLS.nameSeperator).map(name => {
+  set cars(carsNameInput) {
+    this.#validateCarsName(carsNameInput);
+    this.#cars = carsNameInput.split(SYMBOLS.nameSeperator).map(name => {
       return new Car(name);
     });
   }
 
-  set attemptNum(attemptNum) {
-    this.#validateAttemptNum(attemptNum);
-    this.#attemptNum = Number(attemptNum);
+  set attemptNum(attemptInput) {
+    this.#validateAttemptNum(attemptInput);
+    this.#attemptNum = Number(attemptInput);
   }
 
-  #validateCarsName(carsName) {
-    const nameRegex = new RegExp(REGEX.carName);
-    if (!nameRegex.test(carsName)) throw new Error(ERROR_MESSAGES.invalidCarName);
-
-    const splittedCarNames = carsName.split(SYMBOLS.nameSeperator);
-    const uniqueCarNames = new Set(splittedCarNames);
-    if (splittedCarNames.length !== uniqueCarNames.size) {
-      throw new Error(ERROR_MESSAGES.redundantCarName);
-    }
+  #validateCarsName(carsNameInput) {
+    if (isInvalidCarName(carsNameInput)) throw new Error(ERROR_MESSAGES.invalidCarName);
+    if (hasRedundantCarName(carsNameInput)) throw new Error(ERROR_MESSAGES.redundantCarName);
   }
 
-  #validateAttemptNum(attemptNum) {
-    if (!Number.isInteger(Number(attemptNum))) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
-
-    if (Number(attemptNum) < RULES.minAttemptNum) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
+  #validateAttemptNum(attemptInput) {
+    if (isInvalidAttemptNum(attemptInput)) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
   }
 
   gameCycle(outputView) {
