@@ -1,8 +1,8 @@
-import { print } from '../utils/console.js';
+import { Console } from '../utils/index.js';
 
 const OutputView = {
   printMessage(message) {
-    print(message);
+    Console.print(message);
   },
 };
 

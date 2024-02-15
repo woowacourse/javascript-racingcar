@@ -12,7 +12,6 @@ const InputController = {
 
       result = value;
     } catch (error) {
-      console.log(error);
       OutputView.printMessage(error.message);
 
       this.getCarName();

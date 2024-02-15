@@ -1,47 +1,35 @@
 import { Car } from '../models/index.js';
-import { getRandomNumber } from '../utils/index.js';
-import InputController from './InputController.js';
+import { InputController } from './controllers.index.js';
 
 class Game {
   #carList = [];
   #winner = [];
-  #round = 0;
-  #randomNumberArray = [];
+  #round = {
+    total: 0,
+    current: 0,
+  };
 
-  constructor(string, numbers = undefined) {
+  constructor(string) {
     this.#setCarList(string);
-    this.#getRound();
-    this.#setRandomNumberArray(numbers);
+    this.#getTotalRound();
     this.#play();
     this.#judgementWinner();
   }
 
   #setCarList(string) {
-    this.#carList = string.split(',').map((name) => new Car(name, 0));
+    this.#carList = string.split(',').map((name) => new Car(name));
   }
 
-  async #getRound() {
+  async #getTotalRound() {
     const value = await InputController.getRoundNumber();
 
-    this.#round = Number(value);
-  }
-  //TODO - 랜덤 숫자
-  // numbers : 테스트 코드 시 이중 배열로 숫자
-  #setRandomNumberArray(numbers) {
-    this.#randomNumberArray =
-      numbers ||
-      Array.from(Array(this.#round), () =>
-        Array.from({ length: this.#carList.length }, () => getRandomNumber()),
-      );
+    this.#round.total = Number(value);
   }
 
   #play() {
-    this.#randomNumberArray.forEach((numbers) => {
-      numbers.forEach((number, index) => {
-        const { name, step } = this.#carList[index].getCarInfo();
-        this.#carList[index] = new Car(name, step, number);
-      });
-    });
+    while (this.#round.total < this.#round.current) {
+      this.#carList.forEach((car) => car.movement());
+    }
   }
 
   #judgementWinner() {

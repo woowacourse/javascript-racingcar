@@ -1,4 +1,4 @@
-import { readLineAsync } from '../utils/index.js';
+import { Console } from '../utils/index.js';
 
 const InputView = {
   /**
@@ -6,7 +6,7 @@ const InputView = {
    * @returns {string}
    */
   async readInput(query) {
-    const value = await readLineAsync(`\n${query}\n`);
+    const value = await Console.readLineAsync(`\n${query}\n`);
 
     return value;
   },

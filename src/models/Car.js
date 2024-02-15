@@ -1,15 +1,14 @@
+import { RandomNumber } from './../utils/index.js';
 class Car {
   #name = '';
   #step = 0;
 
-  constructor(name, step, randomNumber = undefined) {
+  constructor(name) {
     this.#name = name;
-    this.#step = step;
-    this.#movement(randomNumber);
   }
 
-  #movement(randomNumber) {
-    if (randomNumber >= 4) this.#step += 1;
+  movement() {
+    if (RandomNumber.pickNumber() >= 4) this.#step += 1;
   }
 
   getCarInfo() {

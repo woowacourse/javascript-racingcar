@@ -1,4 +1,4 @@
-import { readLineAsync } from './Console.js';
-import { getRandomNumber } from './RandomNumber.js';
+import Console from './Console.js';
+import RandomNumber from './RandomNumber.js';
 
-export { readLineAsync, getRandomNumber };
+export { Console, RandomNumber };
