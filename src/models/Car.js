@@ -1,6 +1,8 @@
-import { RandomNumber } from './../utils/index.js';
+import { RandomNumber } from '../utils/index.js';
+
 class Car {
   #name = '';
+
   #step = 0;
 
   constructor(name) {

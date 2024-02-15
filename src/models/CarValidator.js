@@ -17,7 +17,7 @@ const CarValidator = {
 
   private_confirmComma(string, nameArray) {
     const commaCount = (string.match(/,/g) || []).length;
-    const length = nameArray.length;
+    const { length } = nameArray;
 
     if (length >= 1 && nameArray.length - 1 !== commaCount) {
       throw new Error(ERROR_MESSAGE);
@@ -31,7 +31,7 @@ const CarValidator = {
   },
 
   private_confirmNumberOfCars(nameArray) {
-    const length = nameArray.length;
+    const { length } = nameArray;
     const pass = length >= 1 && length <= 5;
 
     if (!pass) throw new Error(ERROR_MESSAGE);
