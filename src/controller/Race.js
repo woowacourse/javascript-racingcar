@@ -10,8 +10,8 @@ export default class Race {
   static MAX_ROUND_NUMBER = 100;
 
   async start() {
-    const cars = await tryUntilSuccess(this.#getCars).bind(this)();
-    const roundNumber = await tryUntilSuccess(this.#getRoundNumber).bind(this)();
+    const cars = await this.#getCars();
+    const roundNumber = await this.#getRoundNumber();
     this.#runRounds(cars, roundNumber);
   }
 
@@ -21,9 +21,9 @@ export default class Race {
     return this.#makeCars(parsedCarNames);
   }
 
-  #parseCarNames() {
-    const carNames = splitByComma(carNames);
-    return trimAll(carNames);
+  #parseCarNames(rawCarNames) {
+    const parsedCarNames = splitByComma(rawCarNames);
+    return trimAll(parsedCarNames);
   }
 
   async #getRoundNumber() {
@@ -48,6 +48,7 @@ export default class Race {
   }
 
   #runRounds(cars, roundNumber) {
+    OutputView.printBlankLine();
     OutputView.printResultIntro();
 
     for (let i = 0; i < roundNumber; i++) {
@@ -60,10 +61,11 @@ export default class Race {
     cars.goAll();
     const mileageBoard = cars.getMileageBoard();
     OutputView.printMileageBoard(mileageBoard);
+    OutputView.printBlankLine();
   }
 
   #showWinner(cars) {
-    const winner = cars.getWinner();
+    const winner = cars.getFirstPlaceNames();
     OutputView.printWinner(winner);
   }
 }
