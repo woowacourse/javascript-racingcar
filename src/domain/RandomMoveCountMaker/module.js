@@ -1,4 +1,4 @@
-import Random from '../../utils/random.js`';
+import Random from '../../utils/random.js';
 
 const RandomMoveCountMaker = Object.freeze({
   execute(tryCount, racingCarNamesLength) {
