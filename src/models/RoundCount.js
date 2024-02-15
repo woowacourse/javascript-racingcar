@@ -43,7 +43,7 @@ class RoundCount {
 
   judgeWinners() {
     const winners = this.#findWinners();
-    return winners.split(', ');
+    return `최종 우승자: ${winners.join(', ')}`;
   }
 
   #findWinners() {

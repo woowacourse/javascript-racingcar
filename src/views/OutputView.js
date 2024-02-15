@@ -16,6 +16,10 @@ const OutputView = {
     roundResult.forEach(car => {
       consolePrint(car);
     });
+  },
+
+  printWinners(winners) {
+    consolePrint(winners);
   }
 };
 
