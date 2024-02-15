@@ -21,22 +21,15 @@ class CarInfo {
   }
 
   setPosition() {
-    this.#position = Array(this.#tryCount)
-      .fill(null)
-      .reduce(this.getPositionReducer(this.#doesGo), []);
-  }
+    this.#position = [this.#doesGo()];
+    let lastPosition = this.#position[0];
 
-  getPositionReducer(goFunc) {
-    return array => {
-      if (array.length === 0) {
-        array.push(goFunc() ? NUMERIC.moveDistance : 0);
-        return array;
-      }
-      array.push(
-        array[array.length - 1] + (goFunc() ? NUMERIC.moveDistance : 0)
+    for (let nowCount = 1; nowCount < this.#tryCount; nowCount++) {
+      this.#position.push(
+        lastPosition + (this.#doesGo() ? NUMERIC.moveDistance : 0)
       );
-      return array;
-    };
+      lastPosition = this.#position[nowCount];
+    }
   }
 
   #doesGo() {
