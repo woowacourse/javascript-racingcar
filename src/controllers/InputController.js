@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE, INPUT_MESSAGE } from '../constants/Message.js';
-import { CarNameValidator, RoundValidator } from '../models/index.js';
+import { CarValidator, RoundValidator } from '../models/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
 const InputController = {
@@ -8,7 +8,7 @@ const InputController = {
     try {
       const value = await InputView.readInput(INPUT_MESSAGE.name);
       //유효성 검사 : 통과하지 못하면 throw Error
-      CarNameValidator.confirm(value);
+      CarValidator.confirm(value);
 
       result = value;
     } catch (error) {

@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '../constants/Message.js';
 
-const CarNameValidator = {
+const CarValidator = {
   private_confirmType(string) {
     const regex = /^[A-Za-z가-힣]{1,5}$/;
 
@@ -30,13 +30,21 @@ const CarNameValidator = {
     }
   },
 
+  private_confirmNumberOfCars(nameArray) {
+    const length = nameArray.length;
+    const pass = length >= 1 && length <= 5;
+
+    if (!pass) throw new Error(ERROR_MESSAGE);
+  },
+
   confirm(string) {
     const nameArray = string.split(',');
 
     this.private_confirmComma(string, nameArray);
     this.private_confirmDuplicate(nameArray);
+    this.private_confirmNumberOfCars(nameArray);
     this.private_confirmName(nameArray);
   },
 };
 
-export default CarNameValidator;
+export default CarValidator;

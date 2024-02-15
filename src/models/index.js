@@ -1,5 +1,5 @@
 import Car from './Car.js';
-import CarNameValidator from './CarNameValidator.js';
+import CarValidator from './CarValidator.js';
 import RoundValidator from './RoundValidator.js';
 
-export { Car, CarNameValidator, RoundValidator };
+export { Car, CarValidator, RoundValidator };
