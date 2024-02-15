@@ -12,11 +12,7 @@ describe('Car 이름 테스트', () => {
   `(
     '$testTitle테스트는 $carName이 입력되면 $expected 이름을 출력한다.',
     ({ carName, expected }) => {
-<<<<<<< HEAD
       expect(new Car(carName).getName()).toEqual(expected);
-=======
-      expect(new Car(carName).name).toEqual(expected);
->>>>>>> 72e3afb (test: Car 전진-정지 테스트 작성)
     },
   );
 
@@ -33,20 +29,13 @@ describe('Car 이름 테스트', () => {
 // Car forward 테스트
 
 // 랜덤 함수가 고정값을 반환하도록 하는 함수
-<<<<<<< HEAD
 export const mockRandoms = (numbers) => {
-=======
-const mockRandoms = (numbers) => {
->>>>>>> 72e3afb (test: Car 전진-정지 테스트 작성)
   Random.create = jest.fn();
   numbers.reduce((acc, num) => acc.mockReturnValueOnce(num), Random.create);
 };
 
 describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트', () => {
-<<<<<<< HEAD
   // given
-=======
->>>>>>> 72e3afb (test: Car 전진-정지 테스트 작성)
   const goValues = [9, 4];
   const notGoValues = [0, 3];
   mockRandoms([...goValues, ...notGoValues]);
@@ -64,7 +53,11 @@ describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트'
   `('$testTitle 테스트가 모두 전진하는지 테스트', ({ expected }) => {
     expect(car.getLocation()).toEqual(expected);
   });
+
   // 정지 테스트
+  test.each`
+    testTitle            | expected
+    ${'정지하는 경우 1'} | ${2}
     ${'정지하는 경우 2'} | ${2}
   `('$testTitle 테스트가 모두 정지하는지 테스트', ({ expected }) => {
     expect(car.getLocation()).toEqual(expected);
