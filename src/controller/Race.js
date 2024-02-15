@@ -10,14 +10,15 @@ export default class Race {
   static MAX_ROUND_NUMBER = 100;
 
   async start() {
-    const cars = await this.#getCars();
-    const roundNumber = await this.#getRoundNumber();
+    const cars = await tryUntilSuccess(this.#getCars.bind(this))();
+    const roundNumber = await tryUntilSuccess(this.#getRoundNumber.bind(this))();
     this.#runRounds(cars, roundNumber);
   }
 
   async #getCars() {
     const rawCarNames = await InputView.readCarNames();
     const parsedCarNames = this.#parseCarNames(rawCarNames);
+
     return this.#makeCars(parsedCarNames);
   }
 
