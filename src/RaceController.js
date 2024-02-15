@@ -1,4 +1,4 @@
-import { carNameInput, tryInput } from "./view/Input.js";
+import Input from "./view/Input.js";
 import Move from "./Move.js";
 import Output from "./view/Output.js";
 import { count } from "./util/count.js";
@@ -17,8 +17,8 @@ class RaceController {
   }
 
   async input() {
-    const cars = await carNameInput();
-    const tryNumber = await tryInput();
+    const cars = await Input.carNameInput();
+    const tryNumber = await Input.tryInput();
     return { cars, tryNumber };
   }
 
@@ -56,7 +56,6 @@ class RaceController {
         (moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove
       )
       .map((moveInstance) => moveInstance.getInfo().carName);
-    console.log(result);
     return result;
   }
 }

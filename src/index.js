@@ -1,6 +1,3 @@
-import { carNameInput, tryInput } from "./view/Input.js";
-import Move from "./Move.js";
-import Output from "./view/Output.js";
 import RaceController from "./RaceController.js";
 
 class App {
@@ -8,5 +5,4 @@ class App {
     new RaceController().race();
   }
 }
-
-new App().play();
+export default App;
