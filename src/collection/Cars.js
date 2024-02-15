@@ -17,6 +17,12 @@ class Cars {
       throw new Error('차 이름은 중복되지 않아야 합니다.');
     }
   }
+
+  roundStart() {
+    this.#cars.forEach(car => {
+      
+    });
+  }
 }
 
 export default Cars;

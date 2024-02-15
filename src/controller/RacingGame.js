@@ -7,8 +7,8 @@ import RoundCount from '../models/RoundCount';
 
 class RacingGame {
   async play() {
-    await repeatFunctionUntilIsValid(this.setCarNames);
-    await repeatFunctionUntilIsValid(this.setRoundCount);
+    const cars = await repeatFunctionUntilIsValid(this.setCarNames);
+    const roundCount = await repeatFunctionUntilIsValid(this.setRoundCount);
     return this;
   }
 
