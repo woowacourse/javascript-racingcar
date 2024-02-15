@@ -1,20 +1,22 @@
+import { SYMBOLS } from '../statics/constants';
+import { OUTPUT_MESSAGES } from '../statics/messages';
 import Console from '../utils/Console';
 
 class OutputView {
   static printResultMessage() {
-    Console.print('\n실행 결과');
+    Console.print(OUTPUT_MESSAGES.resultGuide);
   }
 
-  static printCarpositionAndName(result) {
-    for (const [name, position] of Object.entries(result)) {
-      Console.print(`${name} : ${'-'.repeat(position)}`);
+  static printNameAndCarPosition(result) {
+    for (const carNameAndPosition of Object.entries(result)) {
+      Console.print(OUTPUT_MESSAGES.nameAndCarPosition(carNameAndPosition));
     }
-    Console.print('');
+    Console.print(SYMBOLS.whiteSpace);
   }
 
   static printWinners(names) {
-    const winners = names.join(', ');
-    Console.print(`최종 우승자: ${winners}`);
+    const winners = names.join(SYMBOLS.winnerSeperator);
+    Console.print(OUTPUT_MESSAGES.gameResult(winners));
   }
 }
 
