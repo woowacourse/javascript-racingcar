@@ -6,16 +6,12 @@ import TrialCount from '../entities/TrialCount.js';
 import OutputView from './outputView.js';
 
 const Private = {
-  async readline() {
-    return Private.readLineAsync();
-  },
-
-  async readCarNames() {
+  readCarNames() {
     return Private.readLineAsync(MESSAGES.carNamesInput);
   },
 
-  async readTrialCount() {
-    return await Private.readLineAsync(MESSAGES.trialCountInput);
+  readTrialCount() {
+    return Private.readLineAsync(MESSAGES.trialCountInput);
   },
 
   readLineAsync(query) {
@@ -52,12 +48,12 @@ const Private = {
 };
 
 const InputView = {
-  async readCarNames() {
+  readCarNames() {
     return Private.robustInput(Private.readCarNames, Cars);
   },
 
-  async readTrialCount() {
-    return await Private.robustInput(Private.readTrialCount, TrialCount);
+  readTrialCount() {
+    return Private.robustInput(Private.readTrialCount, TrialCount);
   },
 };
 
