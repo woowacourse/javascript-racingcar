@@ -6,20 +6,20 @@ const { ERROR } = Message;
 
 class CarValidator {
   static isValidCount(cars) {
-    if (cars.length < CAR.COUNT.MIN) {
-      throw new Error(ERROR.CAR_COUNT);
+    if (cars.length < CAR.count.min) {
+      throw new Error(ERROR.car_count);
     }
   }
 
   static isNameDuplicate(cars) {
     if (new Set(cars.map((car) => car.getName())).size !== cars.length) {
-      throw new Error(ERROR.CAR_NAME_DUPLICATE);
+      throw new Error(ERROR.car_name_duplicate);
     }
   }
 
   static isValidNameRange(carName) {
-    if (carName.length < CAR_NAME.RANGE.MIN || carName.length > CAR_NAME.RANGE.MAX) {
-      throw new Error(ERROR.CAR_NAME_RANGE);
+    if (carName.length < CAR_NAME.range.min || carName.length > CAR_NAME.range.max) {
+      throw new Error(ERROR.car_name_range);
     }
   }
 }

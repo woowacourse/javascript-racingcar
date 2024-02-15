@@ -1,6 +1,6 @@
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
-import CarNamesValidator from '../utils/CarNamesValidator.js';
+import CarValidator from '../utils/CarValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
 import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
@@ -22,17 +22,17 @@ class Game {
   }
 
   async getCars() {
-    const carNames = await Input.inputCarName();
+    const carNames = await Input.carName();
     const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
 
-    CarNamesValidator.isValidCount(cars);
-    CarNamesValidator.isDuplicate(cars);
+    CarValidator.isValidCount(cars);
+    CarValidator.isNameDuplicate(cars);
 
     return cars;
   }
 
   async getTryCount() {
-    const tryCount = await Input.inputTryCount();
+    const tryCount = await Input.tryCount();
 
     TryCountValidator.isNaturalNumber(Number(tryCount));
 
