@@ -6,6 +6,7 @@ class RoundCount {
   constructor(count) {
     this.#roundCount = 0;
     this.#validate(count);
+    this.#roundCount = count;
   }
 
   #validate(count) {
