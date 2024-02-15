@@ -9,7 +9,8 @@ class App {
 		this.#carNames = await this.#inputCarNames();
 		console.log(this.#carNames);
 
-		// await InputView.inputCountOfAttempt();
+		this.#count = await this.#inputCountOfAttempt();
+		console.log(this.#count);
 	}
 
 	async #inputCarNames() {
@@ -20,6 +21,17 @@ class App {
 		} catch (error) {
 			console.error(error.message);
 			return await this.#inputCarNames();
+		}
+	}
+
+	async #inputCountOfAttempt() {
+		try {
+			const count = await InputView.inputCountOfAttempt();
+			Validator.validateCountOfAttempt(count);
+			return count;
+		} catch (error) {
+			console.log(error.message);
+			return await this.#inputCountOfAttempt();
 		}
 	}
 }
