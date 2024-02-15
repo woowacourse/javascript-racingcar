@@ -12,6 +12,8 @@ export const OUTPUT_MESSAGES = Object.freeze({
 
 export const ERROR_MESSAGES = Object.freeze({
   invalidCarCountRange: `자동차 갯수는 ${CONDITIONS.minCarCount}개 이상 ${CONDITIONS.maxCarCount}개 이하여야 합니다.`,
+  carNameEmpty: '자동차 이름은 빈 문자열일 수 없습니다.',
+  carNameDuplicate: '자동차 이름은 중복될 수 없습니다.',
   invalidCarNameLength: `자동차 이름은 ${CONDITIONS.maxCarNameLength}자 이하여야 합니다.`,
   NaN: `입력값은 숫자여야 합니다.`,
   invalidTryCountRange: `시도할 횟수는 ${CONDITIONS.minTryCount}회 이상 ${CONDITIONS.maxTryCount}회 이하여야 합니다.`,
