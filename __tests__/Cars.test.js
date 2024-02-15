@@ -59,5 +59,3 @@ describe('Cars 우승자 테스트', () => {
     cars.winners().forEach((name, i) => expect(name).toEqual(output[i]));
   });
 });
-=======
->>>>>>> 29b165e (test: 한 번의 라운드에서 모든 자동차가 올바르게 전진하고 정지하는지 테스트)
