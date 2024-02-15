@@ -1,49 +1,27 @@
 import readline from 'readline';
-import Message from '../constant/Message.js';
-
-const { ERROR } = Message;
 
 class Console {
-  static validateQuery(query) {
+  static readLineAsync(query) {
     return new Promise((resolve, reject) => {
-      if (!query || typeof query !== 'string') {
-        reject(new Error(ERROR.query));
+      if (arguments.length !== 1) {
+        reject(new Error('arguments must be 1'));
       }
 
-      resolve();
-    });
-  }
+      if (typeof query !== 'string') {
+        reject(new Error('query must be string'));
+      }
 
-  static makeReadLineQuestion(query, rl) {
-    return new Promise((resolve, reject) => {
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
       rl.question(query, (input) => {
-        if (input === '') reject(new Error(ERROR.null));
         rl.close();
+        console.log(input);
         resolve(input);
       });
     });
-  }
-
-  static async readLineAsync(query) {
-    await this.validateQuery(query);
-
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    return await this.makeReadLineQuestion(query, rl);
-  }
-
-  static async retryUntilSuccess(getFunc) {
-    while (true) {
-      try {
-        const result = await getFunc();
-        return result;
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
   }
 }
 
