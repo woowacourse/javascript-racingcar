@@ -2,10 +2,7 @@ import InputView from './views/InputView.js';
 import { Validator } from './models/Validator.js';
 import OutputView from './views/OutputView.js';
 import ScoreBoard from './models/ScoreBoard.js';
-import generateRandomNumber from './utils/generateRandomNumber.js';
 import Game from './models/Game.js';
-import RandomNameGererator from './services/RandomNameGenerator.js';
-import generateRandomNumberOfName from './services/generateRandomNumberOfName.js';
 
 class App {
 	#scoreBoard;
@@ -15,10 +12,8 @@ class App {
 	async play() {
 		await this.#inputCarNames();
 		await this.#inputCountOfAttempt();
-		// console.log(this.#scoreBoard);
 		this.gameStart();
 		this.printGameResult();
-		// console.log(this.#gameResult);
 	}
 
 	gameStart() {

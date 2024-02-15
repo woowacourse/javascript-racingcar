@@ -1,5 +1,3 @@
-// import OutputView from '../views/OutputView.js';
-// import rl from '../constants/interfaces/interface.js';
 import AppError from '../errors/AppError.js';
 import ERROR_MESSAGE from '../constants/messages/errorMessage.js';
 /**
