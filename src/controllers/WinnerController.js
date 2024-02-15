@@ -1,4 +1,5 @@
 import MESSAGES from '../constants/Messages.js';
+import WinnerService from '../services/WinnerService.js';
 import OutputView from '../views/outputView.js';
 
 class WinnerController {
@@ -16,8 +17,7 @@ class WinnerController {
   }
 
   findWinner() {
-    const max = Math.max(...this.#positions);
-    return this.#carNames.filter((_, i) => this.#positions[i] === max);
+    return new WinnerService([this.#carNames, this.#positions]).findWinner();
   }
 }
 
