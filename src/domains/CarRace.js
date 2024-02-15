@@ -10,7 +10,7 @@ class CarRace {
 
   // 문자열 -> Car 인스턴스 리스트 만들기
   #initRaceCars(cars) {
-    const spliitedCars = cars.split(',');
+    const spliitedCars = cars.split(',').map((carName) => carName.trim());
     return spliitedCars.map((carName) => new Car(carName));
   }
 

@@ -5,6 +5,7 @@ import OutputView from '../views/OutputView.js';
 
 import carNamesValidator from '../validators/carNamesValidator';
 import tryCountValidator from '../validators/tryCountValidator';
+import { MESSAGES } from '../constants/car-race.js';
 
 class RaceController {
   #carRace;
@@ -38,18 +39,18 @@ class RaceController {
   async #initCarRace() {
     const carNames = await this.#processCarNames();
     this.#carRace = new CarRace(carNames);
+
+    const tryCount = await this.#processTryCount();
+    return tryCount;
   }
 
-  // tryCount 만큼 경주 결과 보드 만들기
-  // OutputView에 전달하기
-
-  // plaryRount -> 한 라운드만 담당하는 함수
-  async #playCarRace() {
-    const tryCount = await this.#processTryCount();
+  async #playCarRace(tryCount) {
+    OutputView.printMessage(MESSAGES.result);
 
     Array.from({ length: tryCount }, () => {
       const roundResult = this.#carRace.makesRoundResult();
       OutputView.printRoundResult(roundResult);
+      OutputView.printBlankLine();
     });
   }
 
@@ -58,10 +59,9 @@ class RaceController {
     OutputView.printWinners(winners);
   }
 
-  // gameStart
   async run() {
-    await this.#initCarRace();
-    await this.#playCarRace();
+    const tryCount = await this.#initCarRace();
+    await this.#playCarRace(tryCount);
     this.#announceWinners();
   }
 }
