@@ -6,11 +6,17 @@ const INPUT_MESSAGES = Object.freeze({
   tryMessage: "시도할 횟수는 몇 회인가요?",
 });
 
+const DIVIDE_SYMBOL = ",";
+
+const STD_OBJ = Object.freeze({
+  input: process.stdin,
+  output: process.stdout,
+});
+
 const InputView = {
   async readCars() {
     const carsName = await this.readLineAsync(INPUT_MESSAGES.carMessage);
-
-    return carsName.split(",");
+    return carsName.split(DIVIDE_SYMBOL);
   },
   async readTry() {
     const tryNums = await this.readLineAsync(INPUT_MESSAGES.tryMessage);
@@ -19,11 +25,7 @@ const InputView = {
   },
 
   readLineAsync(prompt) {
-    const rl = readLine.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
+    const rl = readLine.createInterface(STD_OBJ);
     return new Promise((resolve) => {
       rl.question(prompt, (answer) => {
         resolve(answer);

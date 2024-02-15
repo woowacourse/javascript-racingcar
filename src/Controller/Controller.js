@@ -7,8 +7,10 @@ const RESULT_MESSAGE = "실행 결과";
 const ERROR_MESSAGES = Object.freeze({
   onlyNum: "숫자 값만 입력해주세요.",
   invalidNumRange: "1 이상 200미만의 숫자만 입력해주세요.",
+  duplicateName: "중복된 이름이 있습니다.",
 });
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
+const BLANK_STR = "";
 
 export default class Controller {
   #cars;
@@ -18,9 +20,9 @@ export default class Controller {
   #output = OutputView;
 
   async run() {
-    this.#cars = await this.#promptCarNames();
+    const str = await this.#promptCarNames();
+    this.#cars = str;
     const tryNum = await this.#promptTry();
-
     this.#runRace(tryNum);
     this.#output.printMessage(RESULT_MESSAGE);
 
@@ -31,10 +33,18 @@ export default class Controller {
   async #promptCarNames() {
     try {
       const carNames = await this.#input.readCars();
+      this.#checkCarDuplicate(carNames);
+
       return carNames.map((name) => new Car(name));
     } catch (error) {
       this.#output.printMessage(error.message);
-      await this.#promptCarNames();
+      return await this.#promptCarNames();
+    }
+  }
+
+  #checkCarDuplicate(carNames) {
+    if (carNames.length !== new Set([...carNames]).size) {
+      throw new AppError(ERROR_MESSAGES.duplicateName);
     }
   }
 
@@ -47,7 +57,7 @@ export default class Controller {
       return tryNum;
     } catch (error) {
       this.#output.printMessage(error.message);
-      await this.#promptTry();
+      return await this.#promptTry();
     }
   }
 
@@ -67,7 +77,7 @@ export default class Controller {
         car.move(this.#makeRandomNumber1to10());
         this.#output.printCarCurrentDistance(car);
       });
-      this.#output.printMessage("");
+      this.#output.printMessage(BLANK_STR);
     }
   }
 
