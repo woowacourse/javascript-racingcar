@@ -22,6 +22,10 @@ class Car {
     const positionString = '-'.repeat(this.#position);
     console.log(`${this.#name} : ${positionString}`);
   }
+
+  getData() {
+    return { name: this.#name, position: this.#position };
+  }
 }
 
 export default Car;

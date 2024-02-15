@@ -12,6 +12,20 @@ class App {
       });
       console.log();
     }
+
+    let finalPosition = 0;
+    carList.forEach((car) => {
+      const carData = car.getData();
+      finalPosition = Math.max(finalPosition, carData.position);
+    });
+
+    const result = carList.filter((car) => {
+      const carData = car.getData();
+      return carData.position === finalPosition;
+    });
+
+    const winnerList = result.map((car) => car.getData().name);
+    console.log(`최종 우승자: ${winnerList.join(', ')}`);
   }
 
   async #getCarList() {
