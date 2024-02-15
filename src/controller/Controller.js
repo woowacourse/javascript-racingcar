@@ -7,16 +7,19 @@ class Controller {
 
   async getCarNames() {
     const carNames = await InputView.readCarNames();
+
     this.#carService = new CarService(carNames);
   }
 
   async getMoveCount() {
     const moveCount = await InputView.readMoveCount();
+
     this.#carService.setMoveCount(moveCount);
   }
 
   race() {
     const racingResults = this.#carService.startRacing();
+
     OutputView.printGameResultMessage();
     racingResults.forEach((racingResult) => {
       OutputView.printGameResult(racingResult);
@@ -25,6 +28,7 @@ class Controller {
 
   racingWinners() {
     const winners = this.#carService.getRaceResult();
+
     OutputView.printWinners(winners);
   }
 }

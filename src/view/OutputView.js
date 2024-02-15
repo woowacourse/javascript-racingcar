@@ -1,6 +1,6 @@
 const CONDITIONS = require('../constant/Conditions.js');
-const { OUTPUT_MESSAGES } = require('../constant/messages.js');
 const numberToDistanceSymbol = require('../utils/numberToDistanceSymbol.js');
+const { OUTPUT_MESSAGES } = require('../constant/messages.js');
 
 const OutputView = {
   // 추후 수정
@@ -20,6 +20,7 @@ const OutputView = {
     gameResult.forEach(({ carName, distance }) => {
       this.printCarInformation(carName, distance);
     });
+
     this.printNewLine();
   },
 

@@ -12,7 +12,9 @@ class CarService {
 
   #racing() {
     const cars = this.#cars.map((car) => car.tryMove());
+
     this.#maxMoveCount = Math.max(...cars.map(({ distance }) => distance));
+
     return cars;
   }
 

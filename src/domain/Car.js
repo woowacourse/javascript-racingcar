@@ -12,17 +12,14 @@ class Car {
 
   tryMove() {
     const randomNumber = getRandomNumber(CONDITIONS.minRandomNumberRange, CONDITIONS.maxRandomNumberRange);
-    if (randomNumber >= CONDITIONS.minMoveCondition) {
-      this.#distance += CONDITIONS.moveDistance;
-    }
+
+    if (randomNumber >= CONDITIONS.minMoveCondition) this.#distance += CONDITIONS.moveDistance;
 
     return { carName: this.#name, distance: this.#distance };
   }
 
   isWinner(maxMoveCount) {
-    if (maxMoveCount === this.#distance) {
-      return this.#name;
-    }
+    if (maxMoveCount === this.#distance) return this.#name;
   }
 }
 

@@ -1,6 +1,6 @@
+const CustomError = require('./customError.js');
 const CONDITIONS = require('../constant/Conditions.js');
 const { ERROR_MESSAGES } = require('../constant/messages.js');
-const CustomError = require('./customError.js');
 
 const ValidatorCondtion = {
   carCountRange(carCount) {
