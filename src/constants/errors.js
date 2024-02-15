@@ -3,7 +3,8 @@ const ERRORS = Object.freeze({
   carNameBlank: '[ERROR] 자동차 이름은 빈칸이 아니어야 합니다.',
   trialBlank: '[ERROR] 시도할 횟수는 빈칸이 아니어야 합니다.',
   trialNumber: '[ERROR] 시도할 횟수는 숫자여야 합니다.',
-  trialPositive: '[ERROR] 시도할 횟수는 자연수여야 합니다.',
+  trialPositive: '[ERROR] 시도할 횟수는 양수여야 합니다.',
+  trialInteger: '[ERROR] 시도할 횟수는 정수여야 합니다.',
 });
 
 export default ERRORS;
