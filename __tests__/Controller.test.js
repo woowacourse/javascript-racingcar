@@ -39,9 +39,9 @@ describe("Controller 객체 테스트", () => {
   });
 
   const mockQuestions = (inputs) => {
-    InputView.readLine = jest.fn();
+    InputView.readLineAsync = jest.fn();
 
-    InputView.readLine.mockImplementation(() => {
+    InputView.readLineAsync.mockImplementation(() => {
       const input = inputs.shift();
 
       return Promise.resolve(input);
@@ -54,11 +54,22 @@ describe("Controller 객체 테스트", () => {
 
     return logSpy;
   };
-  test.only("", async () => {
+  test("시도할 횟수는 1이상 200이하가 아니면 에러를 던져야한다.", async () => {
     //Arrange
     const logSpy = getLogSpy();
     const app = new Controller();
-    mockQuestions(["test", "0", "1"]);
+    mockQuestions(["러기,리버", "0", "1"]);
+    //Action
+    await app.run();
+    //Assert
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
+  });
+
+  test("이름은 중복되지 않아야 합니다.", async () => {
+    //Arrange
+    const logSpy = getLogSpy();
+    const app = new Controller();
+    mockQuestions(["러기,러기,리버", "러기,리버", "1"]);
     //Action
     await app.run();
     //Assert
