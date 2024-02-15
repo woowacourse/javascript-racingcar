@@ -9,5 +9,7 @@ export const ERROR = {
 };
 
 export const MESSAGE = {
-	NAME_INPUT: '사용자 이름을 입력하세요.',
+	NAME_INPUT:
+		'경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
+	TRY_NUM_INPUT: '시도할 횟수는 몇 회인가요?',
 };

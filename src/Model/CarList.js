@@ -1,21 +1,9 @@
-import { CAR, ERROR, MESSAGE } from '../Constant/Constant.js';
-import { readLineAsync, print } from '../Utils/MissionUtils.js';
-class CarList {
-	async ask() {
-		const nameInput = await readLineAsync(MESSAGE.NAME_INPUT);
-		const nameArray = nameInput.split(',');
-		this.#reaskUntilValidateSuccess(nameArray);
-		return nameArray;
-	}
+import { CAR, ERROR } from '../Constant/Constant.js';
 
-	#reaskUntilValidateSuccess(nameArray) {
-		try {
-			this.validate(nameArray);
-		} catch (e) {
-			print(e.message);
-			return this.ask();
-		}
-	}
+class CarList {
+	// constructor(nameArray) {
+	// 	this.validate(nameArray);
+	// }
 
 	validate(nameArray) {
 		this.validateCarNumber(nameArray);

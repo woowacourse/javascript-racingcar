@@ -1,9 +1,9 @@
 import CarList from './Model/CarList.js';
+import InputView from './View/InputView.js';
 
 class App {
 	async play() {
-		const car = new CarList();
-		await car.ask();
+		const carArray = InputView.askCarNames();
 	}
 }
 
