@@ -23,11 +23,13 @@ class TrialCount {
       throw new Error(ERRORS.trialBlank);
     }
   }
+
   #validateNumber(countStr) {
     if (isNaN(countStr)) {
       throw new Error(ERRORS.trialNumber);
     }
   }
+
   #validatePositive(countStr) {
     if (parseInt(countStr) <= 0) {
       throw new Error(ERRORS.trialPositive);

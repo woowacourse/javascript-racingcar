@@ -5,23 +5,6 @@ class Cars {
   #names;
   #positions;
 
-  #validateLength(carStr) {
-    if (carStr.split(',').some(car => car.length > 5)) {
-      throw new Error(ERRORS.carNameLength);
-    }
-  }
-
-  #validateBlank(carStr) {
-    if (carStr.split(',').some(car => car.trim().length === 0)) {
-      throw new Error(ERRORS.carNameBlank);
-    }
-  }
-
-  #validate(carStr) {
-    this.#validateLength(carStr);
-    this.#validateBlank(carStr);
-  }
-
   constructor(carStr) {
     this.#validate(carStr);
     this.#names = carStr.split(',').map(car => car.trim());
@@ -40,6 +23,23 @@ class Cars {
 
   getCarsCount() {
     return this.#names.length;
+  }
+
+  #validateLength(carStr) {
+    if (carStr.split(',').some(car => car.length > 5)) {
+      throw new Error(ERRORS.carNameLength);
+    }
+  }
+
+  #validateBlank(carStr) {
+    if (carStr.split(',').some(car => car.trim().length === 0)) {
+      throw new Error(ERRORS.carNameBlank);
+    }
+  }
+
+  #validate(carStr) {
+    this.#validateLength(carStr);
+    this.#validateBlank(carStr);
   }
 }
 

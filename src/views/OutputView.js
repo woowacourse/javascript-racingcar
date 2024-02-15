@@ -12,7 +12,7 @@ const OutputView = {
     cars.forEach((car, index) => {
       this.print(`${car} : ${'-'.repeat(positions[index])}`);
     });
-    this.print('\n');
+    this.print('');
   },
 };
 
