@@ -1,22 +1,23 @@
+import { CONSOLE_MESSAGE } from "../constants/message.js";
 import { print } from "../utils/console.js";
 
 class OutputView {
-  printBlankLine() {
+  static printBlankLine() {
     print("");
   }
 
-  printResultIntro() {
-    print("실행 결과");
+  static printResultIntro() {
+    print(CONSOLE_MESSAGE.resultIntro);
   }
 
-  printMileageBoard(mileageBoard) {
+  static printMileageBoard(mileageBoard) {
     mileageBoard.forEach(({ name, mileage }) => {
-      print(`${name} : ${"-".repeat(mileage)}`);
+      print(CONSOLE_MESSAGE.mileageBoardForm(name, mileage));
     });
   }
 
-  printWinner(winner) {
-    print(`최종 우승자 : ${winner.join(", ")}`);
+  static printWinner(winner) {
+    print(CONSOLE_MESSAGE.winnerForm(winner));
   }
 }
 
