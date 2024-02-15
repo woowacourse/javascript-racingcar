@@ -18,6 +18,15 @@ const CarNameValidator = Object.freeze({
       },
     }),
 
+    duplicateCarNames: Object.freeze({
+      errorMessage: `중복된 자동차 이름이 존재합니다.`,
+      isValid(inputValue) {
+        const carNames = inputValue.split(SYMBOLS.comma);
+
+        return new Set(carNames).size === carNames.length;
+      },
+    }),
+
     invalidCarLength: Object.freeze({
       errorMessage: '자동차는 2대 이상 부터 가능합니다.',
       isValid(inputValue) {
