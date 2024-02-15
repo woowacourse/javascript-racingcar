@@ -1,18 +1,16 @@
 import Car from '../src/Car';
+import CONFIG from '../src/constants/config';
 //   - [ ] 각 자동차 별로 현재 위치를 출력한다.
 //   - [ ] 현재 위치값이 가장 큰 최종 우승자를 출력한다.
 
-let spy = null;
-describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨다.', () => {
-  beforeEach(() => {
-    spy = jest.spyOn(Math, 'random').mockImplementation(() => 0.4);
-  });
-  afterEach(() => {
-    spy.mockRestore();
-  });
+const mockRandom = (multiply) => {
+  jest.spyOn(Math, 'random').mockImplementation(() => 0.1 * multiply);
+};
 
+describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨다.', () => {
   test('무작위 값이 4 이상이면 자동차를 1 전진시킨다.', () => {
     // Arrange
+    mockRandom(CONFIG.CAR_MOVING_CONDITION);
     const car = new Car('아르');
 
     // Act
@@ -24,7 +22,7 @@ describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨�
 
   test('무작위 값이 4 미만이면 자동차를 전진시키지 않는다.', () => {
     // Arrange
-    jest.spyOn(Math, 'random').mockImplementation(() => 0.3);
+    mockRandom(CONFIG.CAR_MOVING_CONDITION - 1);
     const car = new Car('마루');
 
     // Act
