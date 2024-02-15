@@ -40,10 +40,6 @@ class Cars {
     const maxLocation = Math.max(...this.#cars.map(({ location }) => location));
     return this.#cars.filter(({ location }) => location === maxLocation).map(({ name }) => name);
   }
-
-  get cars() {
-    return this.#cars;
-  }
 }
 
 export default Cars;
