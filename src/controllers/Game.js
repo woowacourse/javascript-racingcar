@@ -50,23 +50,27 @@ class Game {
     });
   }
 
-  play() {
-    OutputView.printMessage(`\n${OUTPUT_MESSAGE.roundResult}`);
+  #printRoundMessage() {
+    OutputView.printMessage(
+      `\n${OUTPUT_MESSAGE.roundResult}\n라운드:${this.#round.current}\n`,
+    );
+  }
 
+  play() {
+    this.#printRoundMessage();
     while (this.#round.total >= this.#round.current) {
-      this.#carList.forEach((car) => {
-        car.movement();
-      });
-      OutputView.printMessage(`\n라운드:${this.#round.current}\n`);
+      this.#carList.forEach((car) => car.movement());
       this.#printRoundResult();
       this.#round.current += 1;
     }
   }
 
+  #getWinnerPoint() {
+    return Math.max(...this.#carList.map((car) => car.getCarInfo().step));
+  }
+
   #judgementWinner() {
-    const winnerPoint = Math.max(
-      ...this.#carList.map((car) => car.getCarInfo().step),
-    );
+    const winnerPoint = this.#getWinnerPoint();
 
     if (winnerPoint)
       this.#carList.forEach((car) => {

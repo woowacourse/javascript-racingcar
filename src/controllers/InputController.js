@@ -4,33 +4,25 @@ import { InputView, OutputView } from '../views/index.js';
 
 const InputController = {
   async getCarName() {
-    let result;
     try {
-      const value = await InputView.readInput(INPUT_MESSAGE.name);
-
-      CarValidator.confirm(value);
-
-      result = value;
+      const result = await InputView.readInput(INPUT_MESSAGE.name);
+      CarValidator.confirm(result);
+      return result;
     } catch (error) {
       OutputView.printMessage(error.message);
-
-      await this.getCarName();
+      return this.getCarName();
     }
-    return result;
   },
 
   async getRoundNumber() {
-    let result;
     try {
-      const value = await InputView.readInput(INPUT_MESSAGE.round);
-      RoundValidator.confirmRound(value);
-
-      result = value;
+      const result = await InputView.readInput(INPUT_MESSAGE.round);
+      RoundValidator.confirmRound(result);
+      return result;
     } catch (error) {
       OutputView.printMessage(ERROR_MESSAGE);
-      await this.getRoundNumber();
+      return this.getRoundNumber();
     }
-    return result;
   },
 };
 

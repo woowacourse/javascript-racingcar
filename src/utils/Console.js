@@ -2,11 +2,7 @@ import readline from 'readline';
 
 class Console {
   static async readLineAsync(query) {
-    return new Promise((resolve, reject) => {
-      if (typeof query !== 'string') {
-        reject(new Error('query must be string'));
-      }
-
+    return new Promise((resolve) => {
       const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
