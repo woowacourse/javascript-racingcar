@@ -21,7 +21,7 @@ class RaceController {
       return carNames;
     } catch (error) {
       OutputView.printMessage(error.message);
-      return this.#processCarNames();
+      return await this.#processCarNames();
     }
   }
 
@@ -32,7 +32,7 @@ class RaceController {
       return tryCount;
     } catch (error) {
       OutputView.printMessage(error.message);
-      return this.#processTryCount();
+      return await this.#processTryCount();
     }
   }
 
