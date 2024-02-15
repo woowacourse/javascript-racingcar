@@ -1,7 +1,6 @@
 import MESSAGE from "../constants/Message.js";
 import OutputView from "../view/OutputView.js";
 import SetGame from "./SetGame.js";
-import Car from "./Car.js";
 import StringParser from "../utils/StringParser.js";
 
 class RacingCarGame {

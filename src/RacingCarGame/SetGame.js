@@ -27,14 +27,17 @@ class SetGame {
     await this.#setAttempt();
   }
 
+  async #readCarName() {
+    const input = await InputView.readCarNames();
+    const carNames = StringParser.splitCarNames(input);
+    this.#validateCarNameArray(carNames);
+    this.#createCars(carNames);
+  }
+
   async #setCarName() {
     while (true) {
       try {
-        const input = await InputView.readCarNames();
-        const carNames = StringParser.splitCarNames(input);
-        this.#validateCarNameArray(carNames);
-        this.#createCars(carNames);
-
+        await this.#readCarName();
         break;
       } catch (error) {
         OutputView.printError(error);
@@ -51,13 +54,16 @@ class SetGame {
     });
   }
 
+  async #readAttempt() {
+    const inputAttempt = await InputView.readAttempt();
+    this.#validateAttempt(inputAttempt);
+    this.#attempt = inputAttempt;
+  }
+
   async #setAttempt() {
     while (true) {
       try {
-        const inputAttempt = await InputView.readAttempt();
-        this.#validateAttempt(inputAttempt);
-        this.#attempt = inputAttempt;
-
+        await this.#readAttempt();
         break;
       } catch (error) {
         OutputView.printError(error);
@@ -65,42 +71,65 @@ class SetGame {
     }
   }
 
-  #validateCarName(input) {
+  #validateCarNameLength(input) {
     if (
       input.length < SETTING.minCarNameLength ||
       input.length > SETTING.maxCarNameLength
     ) {
       throw new CarNameLengthError();
     }
+  }
+
+  #validateCarNameType(input) {
     if (!REGEXP.carName.test(input)) {
       throw new CarNameTypeError();
     }
   }
 
-  #validateCarNameArray(inputArray) {
+  #validateCarName(input) {
+    this.#validateCarNameLength(input);
+    this.#validateCarNameType(input);
+  }
+
+  #validateCarNameRange(inputArray) {
     if (
       inputArray.length < SETTING.minCarCount ||
       inputArray.length > SETTING.maxCarCount
     ) {
       throw new CarNameRangeError();
     }
+  }
+
+  #validateCarNameDuplicated(inputArray) {
     if (inputArray.length !== new Set(inputArray).size) {
       throw new CarNameDuplicatedError();
     }
   }
 
-  #validateAttempt(input) {
-    const attempt = input.trim();
+  #validateCarNameArray(inputArray) {
+    this.#validateCarNameRange(inputArray);
+    this.#validateCarNameDuplicated(inputArray);
+  }
 
-    if (isNaN(attempt) || attempt === "") {
+  #validateAttemptType(attempt) {
+    if (Number.isNaN(attempt) || attempt === "") {
       throw new AttemptTypeError();
     }
+  }
+
+  #validateAttemptRange(attempt) {
     if (
       Number(attempt) < SETTING.minAttempt ||
       Number(attempt) > SETTING.maxAttempt
     ) {
       throw new AttemptRangeError();
     }
+  }
+
+  #validateAttempt(input) {
+    const attempt = input.trim();
+    this.#validateAttemptType(attempt);
+    this.#validateAttemptRange(attempt);
   }
 
   get() {
