@@ -1,5 +1,7 @@
 import Controller from "../src/Controller/Controller";
 import Car from "../src/Model/Car";
+import InputView from "../src/View/InputView";
+import OutputView from "../src/View/OutputView";
 
 describe("Controller 객체 테스트", () => {
   test.each([
@@ -34,5 +36,32 @@ describe("Controller 객체 테스트", () => {
 
     // assert
     expect(winners.map((car) => car.getName())).toStrictEqual(expectedValue);
+  });
+
+  const mockQuestions = (inputs) => {
+    InputView.readLine = jest.fn();
+
+    InputView.readLine.mockImplementation(() => {
+      const input = inputs.shift();
+
+      return Promise.resolve(input);
+    });
+  };
+
+  const getLogSpy = () => {
+    const logSpy = jest.spyOn(console, "log");
+    logSpy.mockClear();
+
+    return logSpy;
+  };
+  test.only("", async () => {
+    //Arrange
+    const logSpy = getLogSpy();
+    const app = new Controller();
+    mockQuestions(["test", "0", "1"]);
+    //Action
+    await app.run();
+    //Assert
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[ERROR]"));
   });
 });
