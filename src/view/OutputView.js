@@ -26,6 +26,10 @@ const OutputView = {
   printWinners(winners) {
     console.log(OUTPUT_MESSAGES.winners + winners.join(CONDITIONS.delimiter + CONDITIONS.space));
   },
+
+  print(message) {
+    console.log(message);
+  },
 };
 
 export default OutputView;
