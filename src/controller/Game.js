@@ -21,16 +21,8 @@ class Game {
     while (true) {
       try {
         const carNames = await Input.inputCarName();
-        const carNamesArr = carNames.split(',');
-
-        CarNamesValidator.isValidCount(carNamesArr);
-        CarNamesValidator.isDuplicate(carNamesArr);
-
-        const cars = carNamesArr.map((car) => {
-          return new Car(car);
-        });
-
-        return cars;
+        const cars = carNames.split(',').map((car) => new Car(car));
+        return this.validateCars(cars);
       } catch (err) {
         console.log(err.message);
       }
@@ -41,12 +33,22 @@ class Game {
     while (true) {
       try {
         const tryCount = await Input.inputTryCount();
-        TryCountValidator.isNaturalNumber(Number(tryCount));
-        return tryCount;
+        return this.validateTryCount(Number(tryCount));
       } catch (err) {
         console.log(err.message);
       }
     }
+  }
+
+  validateCars(cars) {
+    CarNamesValidator.isValidCount(cars);
+    CarNamesValidator.isDuplicate(cars);
+    return cars;
+  }
+
+  validateTryCount(tryCount) {
+    TryCountValidator.isNaturalNumber(tryCount);
+    return tryCount;
   }
 
   playRound(cars) {
