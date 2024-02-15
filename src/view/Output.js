@@ -1,23 +1,13 @@
-import Message from '../constant/Message.js';
-
-const { OUTPUT } = Message;
-
 class Output {
-  static notice() {
-    console.log(OUTPUT.RESULT_NOTICE);
-  }
-
-  static roundResult(cars) {
-    cars.forEach((car) => {
-      console.log(`${car.getName()} ${OUTPUT.COLON} ${OUTPUT.ADVANCE.repeat(car.getAdvance())}`);
+  roundResult(carNamesMap) {
+    carNamesMap.forEach((carName) => {
+      console.log(`${carName.getCarName()} : ${'-'.repeat(carName.getAdvance())}`);
     });
-
-    console.log('');
   }
 
-  static winnerResult(winnerCars) {
+  winnerResult(winnerCarNamesMap) {
     console.log(
-      `${OUTPUT.WINNER} ${winnerCars.map((winnerCar) => winnerCar.getName()).join(OUTPUT.COMBINER)}`
+      `최종 우승자: ${winnerCarNamesMap.map((carName) => carName.getCarName()).join(', ')}`
     );
   }
 }

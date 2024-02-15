@@ -1,65 +1,75 @@
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
-import CarValidator from '../utils/CarValidator.js';
+import CommonValidator from '../utils/CommonValidator.js';
+import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
-import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
-import Condition from '../constant/Condition.js';
-
-const { SEPERATOR } = Condition;
 
 class Game {
+  constructor() {
+    this.input = new Input();
+    this.output = new Output();
+  }
+
   async startGame() {
-    const cars = await Console.retryUntilSuccess(this.createCarsFromInput);
-    const tryCount = await Console.retryUntilSuccess(this.getTryCountFromInput);
-
-    this.playGame(cars, tryCount);
-
-    Output.winnerResult(this.calculateWinner(cars));
-  }
-
-  async createCarsFromInput() {
-    const carNames = await Input.carName();
-    const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
-
-    CarValidator.isValidCount(cars);
-    CarValidator.isNameDuplicate(cars);
-
-    return cars;
-  }
-
-  async getTryCountFromInput() {
-    const tryCount = await Input.tryCount();
-
-    TryCountValidator.isNaturalNumber(Number(tryCount));
-
-    return tryCount;
-  }
-
-  playGame(cars, tryCount) {
-    Output.notice();
+    const carNamesMap = await this.getCarNames();
+    const tryCount = await this.getTryCount();
 
     for (let i = 0; i < tryCount; i++) {
-      this.playRound(cars);
+      this.playRound(carNamesMap);
+      this.output.roundResult(carNamesMap);
+    }
+
+    this.output.winnerResult(this.calculateWinner(carNamesMap));
+  }
+
+  async getCarNames() {
+    while (true) {
+      try {
+        const carNames = await this.input.inputCarName();
+
+        CommonValidator.inputEmpty(carNames);
+
+        const carNamesArr = carNames.split(',');
+
+        CarNamesValidator.isValidCount(carNamesArr);
+        CarNamesValidator.isDuplicate(carNamesArr);
+
+        const carNamesMap = carNamesArr.map((carName) => {
+          CarNamesValidator.isValidRange(carName);
+          return new Car(carName);
+        });
+
+        return carNamesMap;
+      } catch (err) {
+        console.log(err.message);
+      }
     }
   }
 
-  playRound(cars) {
-    this.calculateAdvance(cars);
-    Output.roundResult(cars);
+  async getTryCount() {
+    while (true) {
+      try {
+        const tryCount = await this.input.inputTryCount();
+        TryCountValidator.isNaturalNumber(Number(tryCount));
+        return tryCount;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
   }
 
-  calculateAdvance(cars) {
-    cars.forEach((car) => {
+  playRound(carNamesMap) {
+    carNamesMap.forEach((carName) => {
       const randomNumber = Random.pickNumberZeroToNine();
-      car.updateAdvance(randomNumber);
+      carName.updateAdvance(randomNumber);
     });
   }
 
-  calculateWinner(cars) {
-    const maxAdvance = Math.max(...cars.map((car) => car.getAdvance()));
-    return cars.filter((car) => car.getAdvance() === maxAdvance);
+  calculateWinner(carNamesMap) {
+    const maxAdvance = Math.max(...carNamesMap.map((carNames) => carNames.getAdvance()));
+    return carNamesMap.filter((carNames) => carNames.getAdvance() === maxAdvance);
   }
 }
 
