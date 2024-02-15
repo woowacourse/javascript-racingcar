@@ -1,15 +1,15 @@
 class Move {
   #carName;
-  #moveCount;
+  #moveTrace = [];
 
   constructor(carName) {
     this.#carName = carName;
-    this.#moveCount = 0;
   }
   move() {
     if (this.#randomNum() >= 4) {
-      this.#moveCount++;
+      return this.#moveTrace.push(true);
     }
+    return this.#moveTrace.push(false);
   }
 
   #randomNum() {
@@ -19,7 +19,7 @@ class Move {
   getInfo() {
     return {
       carName: this.#carName,
-      moveCount: this.#moveCount,
+      moveTrace: this.#moveTrace,
     };
   }
 }
