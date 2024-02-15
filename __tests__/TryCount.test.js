@@ -3,16 +3,16 @@ import TryCount from '../src/model/TryCount.js';
 
 describe('tryCount 횟수 입력 테스트', () => {
   // 올바른 테스트
-  // test.each`
-  //   testTitle                        | carName   | expected
-  //   ${'올바른 이름이 들어온 경우 1'} | ${'pobi'} | ${'pobi'}
-  //   ${'올바른 이름이 들어온 경우 2'} | ${'cron'} | ${'cron'}
-  // `(
-  //   '$testTitle테스트는 $carName이 입력되면 $expected 이름을 출력한다.',
-  //   ({ carName, expected }) => {
-  //     expect(new Car(carName).name).toEqual(expected);
-  //   },
-  // );
+  test.each`
+    testTitle                        | tryCount | expected
+    ${'올바른 횟수가 들어온 경우 1'} | ${'1'}   | ${1}
+    ${'올바른 횟수가 들어온 경우 2'} | ${'10'}  | ${10}
+  `(
+    '$testTitle테스트는 $tryCount이 입력되면 $expected 횟수를 출력한다.',
+    ({ tryCount, expected }) => {
+      expect(new TryCount(tryCount).getTryCount()).toEqual(expected);
+    },
+  );
 
   // 예외 테스트
   test.each`
