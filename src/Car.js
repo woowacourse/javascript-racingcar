@@ -1,3 +1,5 @@
+import OutputView from './views/OutputView';
+
 class Car {
   #name;
   #position;
@@ -7,7 +9,6 @@ class Car {
     this.#position = 0;
   }
 
-  // 무작위 값 가져오기 (0~9)
   #pickRandomNumber() {
     return Math.floor(Math.random() * 10);
   }
@@ -20,7 +21,7 @@ class Car {
 
   printPosition() {
     const positionString = '-'.repeat(this.#position);
-    console.log(`${this.#name} : ${positionString}`);
+    OutputView.printCarPosition(this.#name, positionString);
   }
 
   getData() {

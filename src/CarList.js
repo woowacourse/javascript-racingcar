@@ -1,4 +1,5 @@
 import Car from './Car';
+import OutputView from './views/OutputView';
 
 class CarList {
   #carList;
@@ -12,7 +13,7 @@ class CarList {
       car.move();
       car.printPosition();
     });
-    console.log();
+    OutputView.print();
   }
 
   #getMaxPosition() {
