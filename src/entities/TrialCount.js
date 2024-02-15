@@ -4,8 +4,8 @@ class TrialCount {
   #count;
 
   constructor(countStr) {
-    this.#validate(countStr);
-    this.#count = parseInt(countStr);
+    this.#validate(countStr.trim());
+    this.#count = parseInt(countStr.trim());
   }
 
   getCount() {
@@ -16,6 +16,7 @@ class TrialCount {
     this.#validateBlank(countStr);
     this.#validateNumber(countStr);
     this.#validatePositive(countStr);
+    this.#validateInteger(countStr);
   }
 
   #validateBlank(countStr) {
@@ -33,6 +34,12 @@ class TrialCount {
   #validatePositive(countStr) {
     if (parseInt(countStr) <= 0) {
       throw new Error(ERRORS.trialPositive);
+    }
+  }
+
+  #validateInteger(countStr) {
+    if (parseInt(countStr).toString() !== countStr) {
+      throw new Error(ERRORS.trialInteger);
     }
   }
 }
