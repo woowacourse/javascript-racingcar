@@ -20,8 +20,9 @@ export default class Race {
   async #getCars() {
     const rawCarNames = await InputView.readCarNames();
     const parsedCarNames = this.#parseCarNames(rawCarNames);
+    const cars = this.#makeCars(parsedCarNames);
 
-    return this.#makeCars(parsedCarNames);
+    return cars;
   }
 
   #parseCarNames(rawCarNames) {
@@ -29,11 +30,17 @@ export default class Race {
     return trimAll(parsedCarNames);
   }
 
+  #makeCars(carNames) {
+    return new Cars(carNames.map((name) => new Car(name)));
+  }
+
   async #getRoundNumber() {
     const rawRoundNumber = await InputView.readRoundNumber();
-    const parsedRoundNumber = Number(rawRoundNumber);
-    this.#validateRoundNumber(parsedRoundNumber);
-    return parsedRoundNumber;
+    const roundNumber = Number(rawRoundNumber);
+
+    this.#validateRoundNumber(roundNumber);
+
+    return roundNumber;
   }
 
   #validateRoundNumber(number) {
@@ -46,10 +53,6 @@ export default class Race {
     }
   }
 
-  #makeCars(carNames) {
-    return new Cars(carNames.map((name) => new Car(name)));
-  }
-
   #runRounds(cars, roundNumber) {
     OutputView.printBlankLine();
     OutputView.printResultIntro();
@@ -57,18 +60,21 @@ export default class Race {
     for (let i = 0; i < roundNumber; i++) {
       this.#processRound(cars);
     }
+
     this.#showWinner(cars);
   }
 
   #processRound(cars) {
     cars.goAll();
     const mileageBoard = cars.getMileageBoard();
+
     OutputView.printMileageBoard(mileageBoard);
     OutputView.printBlankLine();
   }
 
   #showWinner(cars) {
     const winner = cars.getFirstPlaceNames();
+
     OutputView.printWinner(winner);
   }
 }
