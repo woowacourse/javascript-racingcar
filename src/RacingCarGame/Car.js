@@ -27,11 +27,6 @@ class Car {
   info() {
     return { name: this.#name, position: this.#position };
   }
-
-  //test를 위한 임의 getter
-  position() {
-    return this.#position;
-  }
 }
 
 export default Car;
