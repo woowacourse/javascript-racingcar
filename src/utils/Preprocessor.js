@@ -8,6 +8,11 @@ const Preprocessor = {
       return func.call(this, value);
     }, input);
   },
+
+  applyFunctionToInput(input, func) {
+    return Array.isArray(input) ? input.map(func) : func(input);
+  },
+
   filterOutEmptyStrings(input) {
     return input.filter((str) => str !== '');
   },

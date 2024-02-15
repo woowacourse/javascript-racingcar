@@ -30,11 +30,11 @@ class Controller {
     }
   }
 
-  // TODO: 전처리 추가 - 문자열 앞뒤 공백 제거
   async #inputCarNames() {
     const namesInput = await InputView.readCarNames();
-    const carNames = Preprocessor.filterOutEmptyStrings(
+    const carNames = Preprocessor.process(
       namesInput.split(OPTION.INPUT_SPLITER),
+      [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings],
     );
 
     this.#carGame.setCars(carNames);
