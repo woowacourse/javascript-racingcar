@@ -15,7 +15,8 @@ class WinnerController {
   }
 
   run() {
-    const winnerMessage = MESSAGES.winnerHeader + this.findWinner().join(', ');
+    const SEPERATOR = ', ';
+    const winnerMessage = MESSAGES.winnerHeader + this.findWinner().join(SEPERATOR);
     OutputView.print(winnerMessage);
   }
 }

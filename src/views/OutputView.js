@@ -9,8 +9,9 @@ const OutputView = {
   },
 
   printProgress([cars, positions]) {
+    const PROGRESS_MARKER = '-';
     cars.forEach((car, index) => {
-      this.print(`${car} : ${'-'.repeat(positions[index])}`);
+      this.print(`${car} : ${PROGRESS_MARKER.repeat(positions[index])}`);
     });
     this.print('');
   },

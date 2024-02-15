@@ -12,8 +12,9 @@ class Cars {
   }
 
   progress(randoms) {
+    const PROGRESS_THRESHOLD = 4;
     randoms.forEach((random, index) => {
-      this.#positions[index] += random >= 4 ? 1 : 0;
+      this.#positions[index] += random >= PROGRESS_THRESHOLD ? 1 : 0;
     });
   }
 
