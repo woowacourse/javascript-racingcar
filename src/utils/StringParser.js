@@ -1,3 +1,5 @@
+import MESSAGE from "../constants/Message.js";
+
 class StringParser {
   static splitCarNames(input) {
     const carNamesArray = input.split(",");
@@ -8,6 +10,10 @@ class StringParser {
     });
 
     return result;
+  }
+
+  static concatElements(array) {
+    return array.join(MESSAGE.championSeparator);
   }
 }
 

@@ -4,10 +4,12 @@ const MESSAGE = Object.freeze({
   readAttempt: "시도할 횟수는 몇 회인가요?\n",
 
   positionIndex: "-",
+  championSeparator: ", ",
   printCarInfo: (car) =>
     `${car.info().name} : ${MESSAGE.positionIndex.repeat(car.info().position)}`,
 
   printAttemptTitle: "실행 결과",
+  printChampionTitle: "최종 우승자",
 });
 
 export default MESSAGE;

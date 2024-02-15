@@ -13,6 +13,10 @@ class OutputView {
     console.log(string);
   }
 
+  static printChampions(names) {
+    console.log(`${MESSAGE.printChampionTitle}: ${names}`);
+  }
+
   static newLine() {
     console.log("");
   }
