@@ -1,6 +1,6 @@
-import Validation from "./validation.js";
+import Validation from "./Validation.js";
 
-class Car {
+class Cars {
   #carList;
 
   constructor(carList) {
@@ -18,4 +18,4 @@ class Car {
   }
 }
 
-export default Car;
+export default Cars;
