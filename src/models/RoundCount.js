@@ -3,8 +3,11 @@ import Validator from './../utils/Validator';
 class RoundCount {
   #roundCount;
 
+  #raceResult;
+
   constructor(count) {
     this.#roundCount = 0;
+    this.#raceResult = [];
     this.#validate(count);
     this.#roundCount = Number(count);
   }
@@ -16,7 +19,8 @@ class RoundCount {
   }
 
   raceStart(cars) {
-    Array.from({length: this.#roundCount}).forEach(() => (cars.roundStart()));
+    const raceResult = Array.from({length: this.#roundCount}).map(() => cars.roundStart());
+    this.#raceResult = raceResult;
   }
 }
 

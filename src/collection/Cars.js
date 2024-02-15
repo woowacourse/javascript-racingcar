@@ -1,8 +1,11 @@
 class Cars {
   #cars;
 
+  #previousRoundResult;
+
   constructor(cars) {
     this.#cars = [];
+    this.#previousRoundResult = [];
     this.#validate(cars);
     this.#cars = cars;
   }
@@ -19,8 +22,30 @@ class Cars {
   }
 
   roundStart() {
-    const roundResult = this.#cars.map(car => car.actCar());
-    return roundResult;
+    const accumulatedRoundResult = this.#cars.map(car => {
+      const roundResult = car.actCar();
+      if (this.#isFirstRound(roundResult)) return roundResult;
+    
+      const accumulatedResult = this.#accmulateScore(roundResult);
+      this.#previousRoundResult[0] = accumulatedResult;
+      return accumulatedResult;
+    });
+    return accumulatedRoundResult;
+  }
+
+  #isFirstRound(roundResult) {
+    if (this.#previousRoundResult.length !== 0) {
+      return false;
+    }
+
+    this.#previousRoundResult.push(roundResult);
+    return true;
+  }
+
+  #accmulateScore(roundResult) {
+    roundResult.map(({name, isForward}, index) => {
+      return {name, isForward: this.#previousRoundResult[index] + isForward}
+    });
   }
 }
 

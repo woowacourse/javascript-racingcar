@@ -9,6 +9,7 @@ class RacingGame {
   async play() {
     const cars = await repeatFunctionUntilIsValid(this.setCarNames);
     const roundCount = await repeatFunctionUntilIsValid(this.setRoundCount);
+    roundCount.raceStart(cars);
     return this;
   }
 

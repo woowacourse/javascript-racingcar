@@ -20,7 +20,12 @@ class Car {
   actCar() {
     const randomNumber = this.#pickRandomNumber();
     const isForward = this.#judgeForwardMovement(randomNumber);
-    return {name: this.#name, isForward};
+
+    if (isForward) {
+      return {name: this.#name, isForward: 1};
+    }
+
+    return {name: this.#name, isForward: 0};
   }
 
   #pickRandomNumber() {
