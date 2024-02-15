@@ -29,19 +29,22 @@ describe('Car 이름 테스트', () => {
 // Car forward 테스트
 
 // 랜덤 함수가 고정값을 반환하도록 하는 함수
-const mockRandoms = (numbers) => {
+export const mockRandoms = (numbers) => {
   Random.create = jest.fn();
   numbers.reduce((acc, num) => acc.mockReturnValueOnce(num), Random.create);
 };
 
 describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트', () => {
+  // given
   const goValues = [9, 4];
   const notGoValues = [0, 3];
   mockRandoms([...goValues, ...notGoValues]);
 
+  // when
   const car = new Car('pobi');
   beforeEach(() => car.forward());
 
+  // then
   // 전진 테스트
   test.each`
     testTitle            | expected
