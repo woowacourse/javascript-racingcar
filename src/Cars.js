@@ -1,5 +1,4 @@
 import Car from './Car';
-import { NUMBERS } from './constants';
 class Cars {
   #carList;
   constructor(carNameArray = []) {
@@ -19,15 +18,12 @@ class Cars {
   }
 
   findWinner() {
-    let maxDistance = NUMBERS.DEFAULT_CAR_DISTANCE;
-    const winner = [];
-    this.#carList.forEach((car) => {
-      if (car.getDistance() > maxDistance) maxDistance = car.getDistance();
-    });
-    this.#carList.forEach((car) => {
-      if (car.getDistance() === maxDistance) winner.push(car.getName());
-    });
-    return [...winner];
+    const maxDistance = Math.max(
+      ...this.#carList.map((car) => car.getDistance())
+    );
+    return this.#carList
+      .filter((car) => car.getDistance() === maxDistance)
+      .map((car) => car.getName());
   }
 }
 
