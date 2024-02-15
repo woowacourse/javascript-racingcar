@@ -1,4 +1,6 @@
 import Validator from '../Validator';
+import { MESSAGE } from '../constants/message';
+
 import readLineAsync from '../utils/readLineAsync';
 import OutputView from './OutputView';
 
@@ -15,13 +17,13 @@ const InputView = {
   },
 
   async getCarNameInput() {
-    const carNameListInput = await readLineAsync('경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n');
+    const carNameListInput = await readLineAsync(MESSAGE.CAR_NAME_LIST_INPUT);
     return carNameListInput.split(',').map((car) => car.trim());
   },
 
   async readTurnCount() {
     try {
-      const turnCountInput = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+      const turnCountInput = await readLineAsync(MESSAGE.TURN_COUNT_INPUT);
       Validator.validateTurnCount(turnCountInput);
       return parseInt(turnCountInput, 10);
     } catch (error) {

@@ -1,4 +1,5 @@
 import CarList from './CarList';
+import { MESSAGE } from './constants/message';
 import InputView from './views/InputView';
 import OutputView from './views/OutputView';
 
@@ -15,10 +16,10 @@ class App {
   }
 
   #race(turnCount) {
-    OutputView.print('\n실행 결과');
-    for (let i = 0; i < turnCount; i += 1) {
+    OutputView.print(MESSAGE.RACE_RESULT);
+    Array.from({ length: turnCount }).forEach(() => {
       this.#carList.printCurrentPosition();
-    }
+    });
   }
 }
 

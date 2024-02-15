@@ -1,3 +1,4 @@
+import CONFIG from './constants/config';
 import OutputView from './views/OutputView';
 
 class Car {
@@ -14,7 +15,7 @@ class Car {
   }
 
   move() {
-    if (this.#pickRandomNumber() >= 4) {
+    if (this.#pickRandomNumber() >= CONFIG.CAR_MOVING_CONDITION) {
       this.#position += 1;
     }
   }
