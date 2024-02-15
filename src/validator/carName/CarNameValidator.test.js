@@ -11,6 +11,10 @@ describe('자동차 이름 유효성 검사 테스트', () => {
         expectedErrorMessage: CarNameValidator.validationTypes.notCommaSeparated.errorMessage,
       },
       {
+        input: 'car,car',
+        expectedErrorMessage: CarNameValidator.validationTypes.duplicateCarNames.errorMessage,
+      },
+      {
         input: 'car,123456',
         expectedErrorMessage: CarNameValidator.validationTypes.invalidCarNameLength.errorMessage,
       },

@@ -1,8 +1,9 @@
+import { CAR_MOVE_COUNT, MIN_MOVABLE_VALUE } from './constant.js';
+
 const CarEngine = Object.freeze({
   triggerMove(carDetail, randomMoveCount) {
-    //TODO: 4 하드 코딩 된 거 수정
-    if (randomMoveCount >= 4) {
-      carDetail.moveCount += 1;
+    if (randomMoveCount >= MIN_MOVABLE_VALUE) {
+      carDetail.moveCount += CAR_MOVE_COUNT;
     }
 
     return carDetail;

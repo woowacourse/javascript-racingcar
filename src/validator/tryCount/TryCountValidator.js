@@ -1,4 +1,5 @@
 import { startValidation } from '../startValidation.js';
+import { TRY_COUNT_RANGE } from './constant.js';
 
 /**
  * @module TryCountValidator
@@ -17,9 +18,9 @@ const TryCountValidator = Object.freeze({
     }),
 
     outOfRange: Object.freeze({
-      errorMessage: '시도 횟수는 1 ~ 10만 입력 가능합니다.',
+      errorMessage: `시도 횟수는 ${TRY_COUNT_RANGE.min} ~ ${TRY_COUNT_RANGE.max}만 입력 가능합니다.`,
       isValid(inputValue) {
-        return inputValue >= 1 && inputValue <= 10;
+        return inputValue >= TRY_COUNT_RANGE.min && inputValue <= TRY_COUNT_RANGE.max;
       },
     }),
   }),

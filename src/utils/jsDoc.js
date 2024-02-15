@@ -13,6 +13,7 @@
 /**
  * @typedef {object} CarNameValidationTypes
  * @property {CommonValidationType} notCommaSeparated - 콤마로 구분했는지 확인하기 위한 객체
+ * @property {CommonValidationType} duplicateCarNames - 중복된 자동차 이름이 있는지 확인하기 위한 객체
  * @property {CommonValidationType} invalidCarNameLength - 자동차 이름 수가 올바른지 검사하기 위한 객체
  * @property {CommonValidationType} invalidCarLength - 자동차 대 수가 올바른지 검사하기 위한 객체
  */
