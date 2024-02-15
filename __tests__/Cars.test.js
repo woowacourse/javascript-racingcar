@@ -1,5 +1,6 @@
 import ERROR_MESSAGE from '../src/error/message.js';
 import Cars from '../src/model/Cars.js';
+import { mockRandoms } from './Car.test.js';
 
 // Cars validate 메소드 테스트
 describe('Cars 이름 문자열 테스트', () => {
@@ -14,4 +15,29 @@ describe('Cars 이름 문자열 테스트', () => {
       expect(() => new Cars(carNames)).toThrow(expected);
     },
   );
+});
+
+// Cars play 메소드 테스트
+describe('Cars 한 라운드 테스트', () => {
+  test('한 번의 라운드에서 모든 자동차가 올바르게 전진하고 정지하는지 테스트', () => {
+    // given
+    const cars = new Cars('pobi,jun,cron');
+    const FORWARD = 9;
+    const STOP = 0;
+    mockRandoms([FORWARD, STOP, FORWARD]);
+    const output = [
+      { name: 'pobi', location: 1 },
+      { name: 'jun', location: 0 },
+      { name: 'cron', location: 1 },
+    ];
+
+    // when
+    const roundResult = cars.play();
+
+    // then
+    roundResult.forEach((car, i) => {
+      expect(car.name).toEqual(output[i].name);
+      expect(car.location).toEqual(output[i].location);
+    });
+  });
 });
