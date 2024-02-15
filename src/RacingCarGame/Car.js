@@ -11,7 +11,7 @@ class Car {
 
   #movable() {
     // 4 상수화
-    if (randomNumber >= 4) {
+    if (randomNumber() >= 4) {
       return true;
     }
 
