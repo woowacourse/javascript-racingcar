@@ -8,6 +8,7 @@ export class Validator {
 			Validator.validateSpecialCharacter(car);
 			Validator.validateOutOfRange(car);
 		});
+		Validator.validateDuplication(carNames);
 		return carNames;
 	}
 
@@ -22,6 +23,12 @@ export class Validator {
 	static validateOutOfRange(car) {
 		if (car.length > 5) {
 			throw new AppError(ERROR_MESSAGE.out_of_range);
+		}
+	}
+
+	static validateDuplication(carNames) {
+		if (new Set(carNames).size !== carNames.length) {
+			throw new AppError(ERROR_MESSAGE.have_duplication);
 		}
 	}
 }
