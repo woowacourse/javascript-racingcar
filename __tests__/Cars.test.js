@@ -1,9 +1,6 @@
 import ERROR_MESSAGE from '../src/error/message.js';
 import Cars from '../src/model/Cars.js';
-<<<<<<< HEAD
 import { mockRandoms } from './Car.test.js';
-=======
->>>>>>> fca13fe (test: Cars 이름 문자열 예외 테스트 작성)
 
 // Cars validate 메소드 테스트
 describe('Cars 이름 문자열 테스트', () => {
@@ -62,3 +59,5 @@ describe('Cars 우승자 테스트', () => {
     cars.winners().forEach((name, i) => expect(name).toEqual(output[i]));
   });
 });
+=======
+>>>>>>> 29b165e (test: 한 번의 라운드에서 모든 자동차가 올바르게 전진하고 정지하는지 테스트)
