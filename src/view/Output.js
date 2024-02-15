@@ -7,6 +7,7 @@ class Output {
     cars.forEach((car) => {
       console.log(`${car.getName()} ${OUTPUT.colon} ${OUTPUT.advance.repeat(car.getAdvance())}`);
     });
+
     console.log('');
   }
 
