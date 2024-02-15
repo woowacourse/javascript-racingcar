@@ -1,6 +1,5 @@
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
-import CommonValidator from '../utils/CommonValidator.js';
 import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
 import Random from '../utils/Random.js';
@@ -23,16 +22,12 @@ class Game {
     while (true) {
       try {
         const carNames = await Input.inputCarName();
-
-        CommonValidator.inputEmpty(carNames);
-
         const carNamesArr = carNames.split(',');
 
         CarNamesValidator.isValidCount(carNamesArr);
         CarNamesValidator.isDuplicate(carNamesArr);
 
         const carNamesMap = carNamesArr.map((carName) => {
-          CarNamesValidator.isValidRange(carName);
           return new Car(carName);
         });
 

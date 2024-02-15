@@ -1,10 +1,17 @@
+import CarNamesValidator from '../utils/CarNamesValidator';
+
 class Car {
   #name;
   #advance;
 
-  constructor(carName) {
-    this.#name = carName;
+  constructor(name) {
+    this.#name = this.#validateName(name);
     this.#advance = 0;
+  }
+
+  #validateName(name) {
+    CarNamesValidator.isValidRange(name);
+    return name;
   }
 
   getName() {
