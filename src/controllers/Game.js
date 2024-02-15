@@ -10,15 +10,12 @@ class Game {
 
   constructor(string, numbers = undefined) {
     this.#setCarList(string);
-    this.#round = round;
     this.#getRound();
     this.#setRandomNumberArray(numbers);
     this.#play();
     this.#judgementWinner();
   }
-  getCar() {
-    return this.#carList.map((car) => car.getCarInfo());
-  }
+
   #setCarList(string) {
     this.#carList = string.split(',').map((name) => new Car(name, 0));
   }
@@ -28,7 +25,7 @@ class Game {
 
     this.#round = Number(value);
   }
-
+  //TODO - 랜덤 숫자
   // numbers : 테스트 코드 시 이중 배열로 숫자
   #setRandomNumberArray(numbers) {
     this.#randomNumberArray =
@@ -52,9 +49,10 @@ class Game {
       this.#carList.map((car) => car.getCarInfo().step),
     );
 
-    this.#winner = this.#carList
-      .filter((car) => car.getCarInfo().step === winnerPoint)
-      .map((car) => car.getCarInfo().name);
+    this.#carList.forEach((car) => {
+      const { step, name } = car.getCarInfo();
+      if (step >= winnerPoint) this.#winner.push(name);
+    });
   }
 
   getWinner() {
