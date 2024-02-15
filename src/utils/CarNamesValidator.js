@@ -1,19 +1,25 @@
+import Condition from '../constant/Condition.js';
+import Message from '../constant/Message.js';
+
+const { CAR, CAR_NAME } = Condition;
+const { ERROR } = Message;
+
 class CarNamesValidator {
   static isValidCount(cars) {
-    if (cars.length < 2) {
-      throw new Error('[ERROR] 자동차 대수는 2대 이상만 가능하다.');
+    if (cars.length < CAR.count.min) {
+      throw new Error(ERROR.car_count);
     }
   }
 
   static isDuplicate(cars) {
     if (new Set(cars.map((car) => car.getName())).size !== cars.length) {
-      throw new Error('[ERROR] 자동차 이름은 중복될 수 없다.');
+      throw new Error(ERROR.car_name_duplicate);
     }
   }
 
   static isValidRange(carName) {
-    if (carName.length < 1 || carName.length > 5) {
-      throw new Error('[ERROR] 자동차 이름은 1자 이상, 5자 이하만 가능하다.');
+    if (carName.length < CAR_NAME.range.min || carName.length > CAR_NAME.range.max) {
+      throw new Error(ERROR.car_name_range);
     }
   }
 }
