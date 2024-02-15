@@ -1,23 +1,39 @@
 import InputView from './views/InputView.js';
 import { Validator } from './models/Validator.js';
+import OutputView from './views/OutputView.js';
+import ScoreBoard from './models/ScoreBoard.js';
+import generateRandomNumber from './utils/generateRandomNumber.js';
+import Game from './models/Game.js';
 
 class App {
-	#carNames;
+	#scoreBoard;
 	#count;
+	#gameResult;
 
 	async play() {
-		this.#carNames = await this.#inputCarNames();
-		console.log(this.#carNames);
+		await this.#inputCarNames();
+		await this.#inputCountOfAttempt();
+		// console.log(this.#scoreBoard);
+		this.gameStart();
+		this.printGameResult();
+		// console.log(this.#gameResult);
+	}
 
-		this.#count = await this.#inputCountOfAttempt();
-		console.log(this.#count);
+	gameStart() {
+		const game = new Game(this.#scoreBoard, this.#count);
+		this.#gameResult = game.getGameResult();
+	}
+
+	printGameResult() {
+		OutputView.printStartGame();
+		OutputView.printResult(this.#gameResult);
 	}
 
 	async #inputCarNames() {
 		try {
 			const carNames = await InputView.inputCarNames();
-			Validator.validateCarNames(carNames);
-			return carNames;
+			const scoreBoard = new ScoreBoard(carNames);
+			this.#scoreBoard = scoreBoard.getScoreBoard();
 		} catch (error) {
 			console.error(error.message);
 			return await this.#inputCarNames();
@@ -28,7 +44,7 @@ class App {
 		try {
 			const count = await InputView.inputCountOfAttempt();
 			Validator.validateCountOfAttempt(count);
-			return count;
+			this.#count = count;
 		} catch (error) {
 			console.log(error.message);
 			return await this.#inputCountOfAttempt();
