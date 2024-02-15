@@ -1,5 +1,15 @@
 import AppError from "../utils/Error";
 
+const NAME_LENGTH_RANGE = Object.freeze({
+  min: 1,
+  max: 5,
+});
+
+const MIN_MOVE_THRESHOLD = 4;
+const MOVE_DISTANCE = 1;
+
+const ERROR_MESSAGE = `자동차 이름 길이는 ${NAME_LENGTH_RANGE.min}자 이상 ${NAME_LENGTH_RANGE.max}자 이하여야합니다.`;
+
 export default class Car {
   #name;
   #distance = 0;
@@ -10,14 +20,17 @@ export default class Car {
   }
 
   #checkName(name) {
-    if (5 < name.length || name.length < 1) {
-      throw new AppError("자동차 이름 길이는 1자 이상 5자 이하여야합니다.");
+    if (
+      NAME_LENGTH_RANGE.max < name.length ||
+      name.length < NAME_LENGTH_RANGE.min
+    ) {
+      throw new AppError(ERROR_MESSAGE);
     }
   }
 
   move(randomNum) {
-    if (randomNum >= 4) {
-      this.#distance += 1;
+    if (randomNum >= MIN_MOVE_THRESHOLD) {
+      this.#distance += MOVE_DISTANCE;
     }
   }
 

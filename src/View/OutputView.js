@@ -1,20 +1,29 @@
+const NO_WINNER_MESSAGE = "최종 우승자는 없습니다.";
+
+const WINNER_PREFIX = "최종 우승자 : ";
+const DIVIDE_SYMBOL = ", ";
+const MOVE_SYMBOL = "-";
+const DISPLAY_CURRENT_DISTANCE = (name, distance) =>
+  `${name} : ${MOVE_SYMBOL.repeat(distance)}`;
+
 const OutputView = {
   printCarCurrentDistance(car) {
     const name = car.getName();
     const distance = car.getDistance();
 
-    console.log(`${name} : ${"-".repeat(distance)}`);
+    console.log(DISPLAY_CURRENT_DISTANCE(name, distance));
   },
 
   printWinner(calculValue) {
     const { hasWinner, winners } = calculValue;
-    const text = "최종 우승자 : ";
 
     if (hasWinner) {
-      this.printMessage(text + winners.map((car) => car.getName()).join(", "));
+      this.printMessage(
+        WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL)
+      );
     }
     if (!hasWinner) {
-      this.printMessage("최종 우승자는 없습니다.");
+      this.printMessage(NO_WINNER_MESSAGE);
     }
   },
 
