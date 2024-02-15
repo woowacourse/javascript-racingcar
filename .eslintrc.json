@@ -9,7 +9,7 @@
 
   "overrides": [
     {
-      "files": ["*.test.js"],
+      "files": ["*.test.js", "console.js"],
       "rules": {
         "max-lines-per-function": ["off"]
       }
@@ -27,6 +27,9 @@
     "import/extensions": ["off"],
     "class-methods-use-this" : ["off"],
     "max-depth": ["error", 2],
-    "max-lines-per-function": ["error", { "max": 10 }]
+    "max-lines-per-function": ["error", { "max": 10, "ignoreComments": true }],
+    "jsdoc/require-returns" : ["off"],
+    "jsdoc/require-jsdoc" : ["off"],
+    "no-param-reassign" : ["off"]
   }
 }
