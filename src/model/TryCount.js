@@ -22,7 +22,7 @@ class TryCount {
       throw new Error(`${ERROR_MESSAGE.tryCountRange} ${ERROR_MESSAGE.retry}`);
   }
 
-  get tryCount() {
+  getTryCount() {
     return this.#tryCount;
   }
 }

@@ -27,7 +27,7 @@ class Controller {
 
   #run() {
     this.#outputView.printResultTitle();
-    for (let i = 0; i < this.#tryCount.tryCount; i++) {
+    for (let i = 0; i < this.#tryCount.getTryCount(); i++) {
       const playResult = this.#cars.play();
       this.#outputView.printRacingResult(playResult);
     }
