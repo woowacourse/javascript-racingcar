@@ -11,6 +11,7 @@ class RoundCount {
   #validate(count) {
     Validator.isValidRoundCountExist(count);
     Validator.isValidRoundCountRule(count);
+    Validator.isValidRoundCountRange(count);
   }
 }
 

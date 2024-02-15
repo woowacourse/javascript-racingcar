@@ -24,7 +24,15 @@ const Validator = {
     if (!Number.isInteger(countValueToNumber)) {
       throw new Error('이동횟수는 정수여야 합니다.\n');
     }
-  }
+  },
+
+  isValidRoundCountRange(count) {
+    const countValueToNumber = Number(count);
+
+    if (countValueToNumber < 1 || countValueToNumber > 10) {
+      throw new Error('이동횟수는 1이상 10이하여야 합니다.\n');
+    }
+  },
 };
 
 export default Validator;
