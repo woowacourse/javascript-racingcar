@@ -9,6 +9,7 @@ export class Validator {
 			Validator.validateOutOfRange(car);
 		});
 		Validator.validateDuplication(carNames);
+
 		return carNames;
 	}
 
