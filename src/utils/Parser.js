@@ -3,7 +3,7 @@ const splitByComma = (string) => {
 };
 
 const trimAll = (stringArr) => {
-  stringArr.map((s) => s.trim());
+  return stringArr.map((s) => s.trim());
 };
 
 export { splitByComma, trimAll };
