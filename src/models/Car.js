@@ -1,4 +1,5 @@
 import Validator from '../utils/Validator';
+import gameUtils from '../utils/gameUtils';
 
 class Car {
   #name;
@@ -18,7 +19,7 @@ class Car {
   }
 
   actCar() {
-    const randomNumber = this.#pickRandomNumber();
+    const randomNumber = gameUtils.pickRandomNumber();
     const isForward = this.#judgeForwardMovement(randomNumber);
 
     if (isForward) {
@@ -26,13 +27,6 @@ class Car {
     }
 
     return {name: this.#name, score: 0};
-  }
-
-  #pickRandomNumber() {
-    const START = 0;
-    const END = 10;
-    const randomNumber = Math.floor(START + Math.random() * END);
-    return randomNumber;
   }
 
   #judgeForwardMovement(randomNumber) {

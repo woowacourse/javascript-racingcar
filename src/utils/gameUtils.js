@@ -6,6 +6,13 @@ const gameUtils = {
   makeDashForNumber(number) {
     const totalDash = '';
     return totalDash.padEnd(number, '-');
+  },
+
+  pickRandomNumber() {
+    const START = 0;
+    const END = 10;
+    const randomNumber = Math.floor(START + Math.random() * END);
+    return randomNumber;
   }
 };
 
