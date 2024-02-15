@@ -15,9 +15,9 @@ const BLANK_STR = '';
 export default class Controller {
   #cars;
 
-  #input = new InputView();
+  #input = InputView;
 
-  #output = new OutputView();
+  #output = OutputView;
 
   async run() {
     this.#cars = await this.#makeCars();
