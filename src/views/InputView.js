@@ -7,10 +7,11 @@ import OutputView from './outputView.js';
 
 const Private = {
   async readline() {
-    return await Private.readLineAsync();
+    return Private.readLineAsync();
   },
+
   async readCarNames() {
-    return await Private.readLineAsync(MESSAGES.carNamesInput);
+    return Private.readLineAsync(MESSAGES.carNamesInput);
   },
 
   async readTrialCount() {
@@ -52,7 +53,7 @@ const Private = {
 
 const InputView = {
   async readCarNames() {
-    return await Private.robustInput(Private.readCarNames, Cars);
+    return Private.robustInput(Private.readCarNames, Cars);
   },
 
   async readTrialCount() {

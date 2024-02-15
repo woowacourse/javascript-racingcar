@@ -24,7 +24,7 @@ class Cars {
 
   constructor(carStr) {
     this.#validate(carStr);
-    this.#names = carStr.split(',');
+    this.#names = carStr.split(',').map(car => car.trim());
     this.#positions = [...Array(this.#names.length)].map(() => 0);
   }
 
@@ -32,6 +32,14 @@ class Cars {
     randoms.forEach((random, index) => {
       this.#positions[index] += random >= 4 ? 1 : 0;
     });
+  }
+
+  getState() {
+    return [this.#names, this.#positions];
+  }
+
+  getCarsCount() {
+    return this.#names.length;
   }
 }
 

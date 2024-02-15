@@ -1,24 +1,35 @@
+import MESSAGES from '../constants/messages.js';
 import Cars from '../entities/Cars.js';
+import OutputView from '../views/outputView.js';
 
 class ProgressController {
   #cars;
   #trialCount;
 
-  constructor(carStr, trialCount) {
-    this.#cars = new Cars(carStr);
+  constructor(cars, trialCount) {
+    this.#cars = cars;
     this.#trialCount = trialCount;
   }
 
   getRandomNumber() {
-    FROM = 0;
-    TO = 9;
+    const FROM = 0;
+    const TO = 9;
     return Math.floor(Math.random() * (TO - FROM + 1));
   }
 
   run() {
-    for (let i = 0; i < this.#trialCount; i++) {
-      this.#cars.progress(this.getRandomNumber());
+    OutputView.print(MESSAGES.resultHeader);
+    for (let i = 0; i < this.#trialCount.getCount(); i++) {
+      const randoms = [...Array(this.#cars.getCarsCount())].map(() =>
+        this.getRandomNumber(),
+      );
+      this.#cars.progress(randoms);
+      this.#printProgress();
     }
+  }
+
+  #printProgress() {
+    OutputView.printProgress(this.#cars.getState());
   }
 }
 export default ProgressController;

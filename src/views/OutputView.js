@@ -1,4 +1,4 @@
-import messages from "../constants/messages.js";
+import messages from '../constants/messages.js';
 
 // const Private = {
 // };
@@ -6,6 +6,13 @@ import messages from "../constants/messages.js";
 const OutputView = {
   print(message) {
     console.log(message);
+  },
+
+  printProgress([cars, positions]) {
+    cars.forEach((car, index) => {
+      this.print(`${car} : ${'-'.repeat(positions[index])}`);
+    });
+    this.print('\n');
   },
 };
 
