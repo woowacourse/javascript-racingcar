@@ -11,6 +11,12 @@ const Validator = {
       throw new Error('이름은 한글 또는 영어여야 합니다.');
     }
   },
+
+  isValidRoundCountExist(count) {
+    if (count === '') {
+      throw new Error('이동횟수는 입력되어야 합니다.');
+    }
+  },
 };
 
 export default Validator;
