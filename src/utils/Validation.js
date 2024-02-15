@@ -1,21 +1,29 @@
+import { ERROR_MESSAGE, NUMBERS } from '../constants';
+
 const Validation = {
-  carNamesArrayValidate(carNamesArray) {
+  carNamesArrayValidate(carNamesArray = []) {
     carNamesArray.forEach((carName) => {
-      if (carName.length <= 0 || carName.length > 5) {
+      if (
+        carName.length < NUMBERS.CAR_NAME_MINIMUM_LENGTH ||
+        carName.length > NUMBERS.CAR_NAME_MAXIMUM_LENGTH
+      ) {
         throw new Error(
-          '[ERROR] 각 자동차의 이름은 1 ~ 5자 이내로 입력해주세요.'
+          ERROR_MESSAGE.CAR_NAME_INPUT_ERROR.CAR_NAME_IS_NOT_IN_RANGE
         );
       }
     });
   },
 
-  tryCountValidate(tryCountString) {
+  tryCountValidate(tryCountString = '') {
     if (
       !Number.isInteger(Number(tryCountString)) ||
-      Number(tryCountString) < 0
+      Number(tryCountString) < NUMBERS.TRY_COUNT_MINIMUM_COUNT
     ) {
-      throw new Error('[ERROR]');
+      throw new Error(
+        ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.TRY_COUNT_IS_LESS_THAN_ZERO
+      );
     }
   },
 };
+
 export default Validation;

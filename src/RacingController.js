@@ -1,7 +1,7 @@
-import InputView from './InputView.js';
-import Validation from './utils/Validation.js';
-import OutputView from './OutputView.js';
-import Cars from './Cars.js';
+import InputView from './InputView';
+import Validation from './utils/Validation';
+import OutputView from './OutputView';
+import Cars from './Cars';
 
 export class Game {
   async start() {
@@ -37,7 +37,7 @@ export class Game {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
-  static moveCars(cars, tryCount) {
+  static moveCars(cars = {}, tryCount = 0) {
     OutputView.printResultTitle();
     for (let i = 0; i < tryCount; i++) {
       cars.moveAllCars();

@@ -1,4 +1,4 @@
-import { Game } from './RacingController.js';
+import { Game } from './RacingController';
 
 const game = new Game();
-await game.start();
+game.start();

@@ -1,19 +1,21 @@
+import { NUMBERS } from './constants';
+
 class Car {
   #name;
   #distance;
   constructor(name) {
     this.#name = name;
-    this.#distance = 0;
+    this.#distance = NUMBERS.DEFAULT_CAR_DISTANCE;
   }
 
   canMove() {
     const randomValue = Math.floor(Math.random() * 10);
-    return randomValue >= 4;
+    return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
   }
 
   move() {
     if (this.canMove()) {
-      this.#distance += 1;
+      this.#distance += NUMBERS.MOVE_INCREMENT;
     }
   }
 

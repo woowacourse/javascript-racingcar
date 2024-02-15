@@ -1,7 +1,8 @@
-import Car from './Car.js';
+import Car from './Car';
+import { NUMBERS } from './constants';
 class Cars {
   #carList;
-  constructor(carNameArray) {
+  constructor(carNameArray = []) {
     this.#carList = carNameArray.map((name) => new Car(name));
   }
 
@@ -18,7 +19,7 @@ class Cars {
   }
 
   findWinner() {
-    let maxDistance = 0;
+    let maxDistance = NUMBERS.DEFAULT_CAR_DISTANCE;
     const winner = [];
     this.#carList.forEach((car) => {
       if (car.getDistance() > maxDistance) maxDistance = car.getDistance();
