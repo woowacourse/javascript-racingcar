@@ -1,16 +1,24 @@
 import CarList from './CarList';
 import InputView from './views/InputView';
+import OutputView from './views/OutputView';
 
 class App {
+  #carList;
+
   async play() {
     const carNameList = await InputView.readCarList();
-    const carList = new CarList(carNameList);
+    this.#carList = new CarList(carNameList);
     const turnCount = await InputView.readTurnCount();
+    this.#race(turnCount);
+    const winners = this.#carList.getWinner();
+    OutputView.printWinners(winners);
+  }
+
+  #race(turnCount) {
+    OutputView.print('\n실행 결과');
     for (let i = 0; i < turnCount; i += 1) {
-      carList.printCurrentPosition();
+      this.#carList.printCurrentPosition();
     }
-    const winners = carList.getWinner();
-    console.log(`최종 우승자: ${winners.join(', ')}`);
   }
 }
 
