@@ -1,4 +1,4 @@
-import { MESSAGE, OPTION } from '../constants/System.js';
+import { ERROR_MESSAGE, MESSAGE, OPTION } from '../constants/System.js';
 
 const OutputView = {
   print(message) {
@@ -6,7 +6,7 @@ const OutputView = {
   },
 
   printErrorMessage(error) {
-    this.print(error);
+    this.print(`${ERROR_MESSAGE.PREFIX} ${error}`);
   },
 
   printCurrentResultTitle() {
@@ -16,8 +16,8 @@ const OutputView = {
   printCurrentLocation(carInfos) {
     carInfos.forEach(({ name, location }) => {
       this.print(`${MESSAGE.CURRENT_LOCATION(name, location)}`);
-      this.print('');
     });
+    this.print('');
   },
 
   printWinners(winners) {

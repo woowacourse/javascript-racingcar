@@ -6,8 +6,7 @@ class App {
   }
 
   async run() {
-    await this.controller.inputCarNames();
-    await this.controller.inputTryCount();
+    await this.controller.inputGameInfo();
     this.controller.playGame();
     this.controller.findWinner();
   }
