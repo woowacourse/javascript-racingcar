@@ -1,107 +1,49 @@
-import InputView from "../view/InputView.js";
-import Car from "./Car.js";
-import StringParser from "../utils/StringParser.js";
-import SETTING from "../constants/Setting.js";
+import MESSAGE from "../constants/Message.js";
 import OutputView from "../view/OutputView.js";
-import REGEXP from "../constants/RegExp.js";
-import {
-  AttemptRangeError,
-  AttemptTypeError,
-  CarNameDuplicatedError,
-  CarNameLengthError,
-  CarNameRangeError,
-  CarNameTypeError,
-} from "../error/CustomError.js";
+import SetGame from "./SetGame.js";
 
 class RacingCarGame {
-  #carArray;
+  #cars;
   #attempt;
 
   constructor() {
-    this.#carArray = [];
-    this.#setGame();
+    this.#init();
   }
 
-  async #setGame() {
-    await this.#setCarName();
-    await this.#setAttempt();
+  async #init() {
+    const setGame = new SetGame();
+    await setGame.init();
+    this.#cars = setGame.get().cars;
+    this.#attempt = setGame.get().attempt;
+    this.#play();
   }
 
-  async #setCarName() {
-    while (true) {
-      try {
-        const input = await InputView.readCarNames();
-
-        const carNames = StringParser.splitCarNames(input);
-        this.#validateCarNameArray(carNames);
-        this.#createCars(carNames);
-
-        break;
-      } catch (error) {
-        OutputView.printError(error);
-      }
-    }
+  async #play() {
+    this.#printAttemptTitle();
+    this.#iterateAttempt();
   }
 
-  #createCars(carNames) {
-    carNames.forEach((carName) => {
-      this.#validateCarName(carName);
-
-      const newCar = new Car(carName);
-      this.#carArray.push(newCar);
-    });
-  }
-
-  async #setAttempt() {
-    while (true) {
-      try {
-        const inputAttempt = await InputView.readAttempt();
-        this.#validateAttempt(inputAttempt);
-        this.#attempt = inputAttempt;
-
-        break;
-      } catch (error) {
-        OutputView.printError(error);
-      }
+  #iterateAttempt() {
+    // "실행결과" 출력
+    for (let i = 0; i < this.#attempt; i++) {
+      this.#cars.forEach((car) => {
+        car.moveOn();
+        this.#printCarInfo(car);
+      });
+      this.#printNewLine();
     }
   }
 
-  #validateCarName(input) {
-    if (
-      input.length < SETTING.minCarNameLength ||
-      input.length > SETTING.maxCarNameLength
-    ) {
-      throw new CarNameLengthError();
-    }
-    if (!REGEXP.carName.test(input)) {
-      throw new CarNameTypeError();
-    }
+  #printAttemptTitle() {
+    OutputView.printQuery(MESSAGE.printAttemptTitle);
   }
 
-  #validateCarNameArray(inputArray) {
-    if (
-      inputArray.length < SETTING.minCarCount ||
-      inputArray.length > SETTING.maxCarCount
-    ) {
-      throw new CarNameRangeError();
-    }
-    if (inputArray.length !== new Set(inputArray).size) {
-      throw new CarNameDuplicatedError();
-    }
+  #printCarInfo(car) {
+    OutputView.printCar(car);
   }
 
-  #validateAttempt(input) {
-    const attempt = input.trim();
-
-    if (isNaN(attempt) || attempt === "") {
-      throw new AttemptTypeError();
-    }
-    if (
-      Number(attempt) < SETTING.minAttempt ||
-      Number(attempt) > SETTING.maxAttempt
-    ) {
-      throw new AttemptRangeError();
-    }
+  #printNewLine() {
+    OutputView.newLine();
   }
 }
 
