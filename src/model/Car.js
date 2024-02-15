@@ -23,7 +23,7 @@ class Car {
     return this.#location;
   }
 
-  get location() {
+  getLocation() {
     return this.#location;
   }
 }
