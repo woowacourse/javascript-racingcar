@@ -1,6 +1,8 @@
 import Race from '../domain/Race';
+
 import InputView from '../view/InputView';
 import OutputView from '../view/OutputView';
+
 import { retryOnInvalidInput } from '../utils/retryOnInvalidInput';
 
 class RaceController {

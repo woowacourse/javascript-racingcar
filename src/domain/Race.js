@@ -1,7 +1,10 @@
+import Car from './Car';
+
 import RaceController from '../service/RaceController';
+
 import { SYMBOLS } from '../statics/constants';
 import { ERROR_MESSAGES } from '../statics/messages';
-import Car from './Car';
+
 import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
 
 class Race {

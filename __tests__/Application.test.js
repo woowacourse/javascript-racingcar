@@ -1,5 +1,4 @@
 import App from '../src/App';
-import { ERROR_MESSAGES } from '../src/statics/messages';
 import Console from '../src/utils/Console';
 import Random from '../src/utils/Random';
 
