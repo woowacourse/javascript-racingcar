@@ -1,20 +1,21 @@
 import { INPUT_MESSSAGES } from '../constant/messages.js';
 import readLineAsync from '../utils/readLineAsync.js';
 import splitByDelimiter from '../utils/splitByDelimiter.js';
+import Validator from '../utils/validator.js';
 
 const InputView = {
   async readCarNames() {
     const input = await readLineAsync(INPUT_MESSSAGES.carNames);
     const splitCarNames = splitByDelimiter(input);
 
-    // TODO: 유효성 검사
+    Validator.carNames(splitCarNames);
     return splitCarNames;
   },
 
   async readMoveCount() {
     const input = await readLineAsync(INPUT_MESSSAGES.moveCount);
 
-    // TODO: 유효성 검사
+    Validator.tryCount(input);
     return Number(input);
   },
 };
