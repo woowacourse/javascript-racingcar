@@ -1,4 +1,4 @@
-import { applyFunctionToValues } from "../utils/applyFunctionToObject.js";
+import { applyFunctionToValues } from "../utils/applyFunctionToValues.js";
 
 const addErrorPrefix = (message) => `[ERROR] ${message}`;
 
