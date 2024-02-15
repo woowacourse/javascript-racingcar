@@ -35,9 +35,9 @@ export default class Cars {
   }
 
   #validate(cars) {
+    this.#validateType(cars);
     this.#validateLength(cars);
     this.#validateUnique(cars);
-    this.#validateType(cars);
   }
 
   #validateLength(cars) {
