@@ -1,4 +1,4 @@
-import { print } from "../utils/ConsoleUtil.js";
+import { print } from "../utils/console.js";
 
 const OutputView = {
   printBlankLine() {

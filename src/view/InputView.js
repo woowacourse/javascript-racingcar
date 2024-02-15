@@ -1,4 +1,4 @@
-import { readLineAsync } from "../utils/ConsoleUtil.js";
+import { readLineAsync } from "../utils/console.js";
 
 class InputView {
   static async readCarNames() {

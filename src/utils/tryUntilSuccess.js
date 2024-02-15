@@ -1,4 +1,4 @@
-import { print } from "./ConsoleUtil.js";
+import { print } from "./console.js";
 
 const tryUntilSuccess = (func) => {
   const repeatable = async (...args) => {
