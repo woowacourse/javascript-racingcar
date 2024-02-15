@@ -1,6 +1,5 @@
 import Car from '../src/Car';
 import CONFIG from '../src/constants/config';
-//   - [ ] 각 자동차 별로 현재 위치를 출력한다.
 //   - [ ] 현재 위치값이 가장 큰 최종 우승자를 출력한다.
 
 const mockRandom = (multiply) => {
@@ -30,5 +29,30 @@ describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨�
 
     // Assert
     expect(car.getData().position).toBe(0);
+  });
+});
+
+describe('각 자동차 별로 현재 위치를 출력한다.', () => {
+  test('각 자동차 별로 현재 위치를 출력한다.', () => {
+    // Arrange
+    console.log = jest.fn();
+
+    const car1 = new Car('마루');
+    const car2 = new Car('아르');
+    const carList = [car1, car2];
+    const randomMoveNumbers = [4, 3];
+    const logs = ['마루 : -', '아르 : '];
+
+    // Act
+    randomMoveNumbers.forEach((moveNumber, index) => {
+      mockRandom(moveNumber);
+      carList[index].move();
+      carList[index].printPosition();
+    });
+
+    // Assert
+    logs.forEach((log) => {
+      expect(console.log).toHaveBeenCalledWith(log);
+    });
   });
 });
