@@ -16,7 +16,8 @@ class RaceManager {
   getResultString() {
     return new Array(this.#tryCount)
       .fill(null)
-      .map((_, nowTry) => this.#generateTryString(nowTry));
+      .map((_, nowTry) => this.#generateTryString(nowTry))
+      .join(MESSAGE.resultLineBreakMarkInRace);
   }
 
   getWinnerString() {

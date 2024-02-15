@@ -1,10 +1,11 @@
 import InputView from './UI/InputView.js';
 import OutputView from './UI/OutputView.js';
-import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
+import Validator from './class/Validator.js';
 import RaceManager from './class/RaceManager.js';
 import CONSTANT from './CONSTANTS/index.js';
+import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
 
-const { MESSAGE, NUMERIC, SEPARATOR } = CONSTANT;
+const { MESSAGE, SEPARATOR } = CONSTANT;
 
 class App {
   #raceManger;
@@ -21,7 +22,7 @@ class App {
     const answer = await InputView.readLineAsync(MESSAGE.carNameInput).then(
       names => names.split(SEPARATOR.carName).map(string => string.trim())
     );
-    const result = this.validateCars(answer);
+    const result = Validator.validateCars(answer);
     if (!result) throw new Error(MESSAGE.invalidCarName);
     return answer;
   }
@@ -29,7 +30,7 @@ class App {
   async readTryCount() {
     const answer = await InputView.readLineAsync(MESSAGE.tryCountInput);
 
-    const result = this.validateTryCount(answer);
+    const result = Validator.validateTryCount(answer);
     if (!result) throw new Error(MESSAGE.invalidTryCount);
     return Number(answer);
   }
@@ -38,25 +39,9 @@ class App {
     if (isLineBreak) OutputView.lineBreak();
     OutputView.print(MESSAGE.resultOutput);
 
-    OutputView.print(
-      this.#raceManger.getResultString().join(MESSAGE.resultLineBreakMarkInRace)
-    );
+    OutputView.print(this.#raceManger.getResultString());
     OutputView.lineBreak();
     OutputView.print(this.#raceManger.getWinnerString());
-  }
-
-  validateCars(cars) {
-    return (
-      cars.every(
-        name =>
-          name.length >= NUMERIC.carNameLengthLower &&
-          name.length <= NUMERIC.carNameLengthUpper
-      ) && cars.length === new Set(cars).size
-    );
-  }
-
-  validateTryCount(tryCount) {
-    return /^[0-9]+$/.test(tryCount);
   }
 }
 export default App;
