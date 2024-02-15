@@ -1,10 +1,5 @@
-// TODO
-
 import { ERROR_MESSAGES } from '../constants/car-race';
 import InvalidInputException from '../exceptions/InvalidInputException';
-
-// 1. 정수형 숫자인지
-// 2. 음수, 실수
 
 const tryCountValidator = {
   isNumeric(tryCount) {

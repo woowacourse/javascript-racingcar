@@ -1,10 +1,12 @@
+import { ERROR_MESSAGES } from '../constants/car-race';
+
 const validateRange = (min, max) => {
   if (typeof min !== 'number' || typeof max !== 'number') {
-    throw new Error('');
+    throw new Error(ERROR_MESSAGES.invalidNumberType);
   }
 
   if (min > max) {
-    throw new Error('');
+    throw new Error(ERROR_MESSAGES.invalidNumberRange);
   }
 };
 

@@ -34,7 +34,6 @@ class CarRace {
     return result;
   }
 
-  // 우승자 결정
   judgeWinners() {
     const maxPositionCar = this.#findMaxPosition();
     const winners = this.#cars
