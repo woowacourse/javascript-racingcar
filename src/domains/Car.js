@@ -1,4 +1,4 @@
-import pickNumberInRange from '../utils/randomNumber';
+import pickNumberInRange from '../utils/pickNumberInRange';
 
 class Car {
   #name;
