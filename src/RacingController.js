@@ -4,7 +4,7 @@ import OutputView from './OutputView';
 import Cars from './Cars';
 
 export class Game {
-  async start() {
+  async play() {
     const carNameArray = await Game.getCarNamesArray();
     const cars = new Cars(carNameArray);
     const tryCount = await Game.getTryCount();
