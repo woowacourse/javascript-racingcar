@@ -2,6 +2,7 @@ import { MESSAGE } from '../Constant/Constant.js';
 import CarList from '../Model/CarList.js';
 import TryNumber from '../Model/TryNumber.js';
 import { readLineAsync } from '../Utils/MissionUtils.js';
+import OutputView from './OutputView.js';
 
 const InputView = {
 	async askCarNames() {
@@ -10,7 +11,7 @@ const InputView = {
 		try {
 			new CarList().validate(nameArray);
 		} catch (e) {
-			print(e.message);
+			OutputView.printErrorMessage(e);
 			return this.askCarNames();
 		}
 		return nameArray;
@@ -22,7 +23,7 @@ const InputView = {
 		try {
 			new TryNumber().validate(numberInput);
 		} catch (e) {
-			print(e.message);
+			OutputView.printErrorMessage(e);
 			return this.askTryNumber();
 		}
 		return numberInput;

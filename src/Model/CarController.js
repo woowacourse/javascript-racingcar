@@ -15,7 +15,8 @@ class CarController {
 			this.playOneTurnResult(this.carNames);
 			OutputView.printBlank();
 		}
-		this.decideWinner();
+		const winnerIndexArr = this.decideWinner();
+		this.showWinner(winnerIndexArr);
 	}
 
 	playOneTurn() {
@@ -51,13 +52,12 @@ class CarController {
 			winnerIndexArr.push(idx);
 			idx = this.resultCounter.indexOf(maxValue, idx + 1);
 		}
-		this.printWinner(winnerIndexArr);
+		return winnerIndexArr;
 	}
 
-	printWinner(winnerIndexArr) {
+	showWinner(winnerIndexArr) {
 		const winners = winnerIndexArr.map(e => this.carNames[e]);
-		const winnersStr = winners.join(', ');
-		OutputView.printWinners(winnersStr);
+		OutputView.printWinners(winners);
 	}
 }
 

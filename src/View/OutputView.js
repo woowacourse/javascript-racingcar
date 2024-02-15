@@ -6,13 +6,17 @@ const OutputView = {
 		print(MESSAGE.RESULT);
 	},
 	printBlank() {
-		print(MESSAGE.BLANK);
+		print('');
 	},
 	printNameAndResult(carNames, resultCounter, i) {
 		print(`${carNames[i]} : ${MESSAGE.PRINT_CHAR.repeat(resultCounter[i])}`);
 	},
-	printWinners(winnersStr) {
+	printWinners(winners) {
+		const winnersStr = winners.join(', ');
 		print(`최종 우승자 : ${winnersStr}`);
+	},
+	printErrorMessage(e) {
+		print(e.message);
 	},
 };
 
