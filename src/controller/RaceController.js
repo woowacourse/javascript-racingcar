@@ -1,7 +1,10 @@
-import CarRace from '../domains/CarRace';
+import CarRace from '../domains/CarRace.js';
 
-import InputView from '../views/InputView';
-import OutputView from '../views/OutputView';
+import InputView from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
+
+import carNamesValidator from '../validators/carNamesValidator';
+import tryCountValidator from '../validators/tryCountValidator';
 
 class RaceController {
   #carRace;
@@ -13,27 +16,27 @@ class RaceController {
   async #processCarNames() {
     try {
       const carNames = await InputView.readCarNames();
-      // TODO: 유효성 검사
+      carNamesValidator.validate(carNames);
       return carNames;
     } catch (error) {
       OutputView.printMessage(error.message);
-      await this.#processCarNames();
+      return this.#processCarNames();
     }
   }
 
   async #processTryCount() {
     try {
       const tryCount = await InputView.readTryCount();
-      // TODO: 유효성 검사
+      tryCountValidator.validate(tryCount);
       return tryCount;
     } catch (error) {
       OutputView.printMessage(error.message);
-      await this.#processCarNames();
+      return this.#processTryCount();
     }
   }
 
   async #initCarRace() {
-    const carNames = this.#processCarNames();
+    const carNames = await this.#processCarNames();
     this.#carRace = new CarRace(carNames);
   }
 
