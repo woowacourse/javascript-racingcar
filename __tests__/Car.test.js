@@ -1,5 +1,5 @@
 import { Car } from '../src/models/index.js';
-import { mockRandoms } from './utils/index';
+import { mockRandoms } from '../testUtils/index.js';
 
 describe('자동차 테스트', () => {
   test('랜덤 숫자가 4이상 일때 전진 ', () => {
