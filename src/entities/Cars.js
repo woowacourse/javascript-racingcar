@@ -26,7 +26,7 @@ class Cars {
   }
 
   #validateLength(carStr) {
-    if (carStr.split(',').some(car => car.length > 5)) {
+    if (carStr.split(',').some(car => car.trim().length > 5)) {
       throw new Error(ERRORS.carNameLength);
     }
   }
