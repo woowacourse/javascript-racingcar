@@ -9,7 +9,22 @@ const mockRandoms = (numbers) => {
 };
 
 describe("Car 유닛 테스트", () => {
-  describe("go 함수 실행 시 ", () => {
+  test("getName 함수가 정상적으로 차 이름을 반환한다.", () => {
+    const name = "Hain";
+    const car = new Car(name);
+
+    expect(car.getName()).toBe(name);
+  });
+
+  test("getMileage 함수가 정상적으로 마일리지를 반환한다.", () => {
+    const name = "Sofa";
+    const car = new Car(name);
+    const MILEAGE_INITIAL_VALUE = 0;
+
+    expect(car.getMileage()).toBe(MILEAGE_INITIAL_VALUE);
+  });
+
+  describe("go 함수 테스트 ", () => {
     const name = "Ryan";
     const car = new Car(name);
 
@@ -26,5 +41,11 @@ describe("Car 유닛 테스트", () => {
 
       expect(car.getMileage()).toBe(expected);
     });
+  });
+
+  test("생성 시 이름이 5자 초과인 경우 오류가 발생한다.", () => {
+    const name = "banana";
+    const generateCar = () => new Car(name);
+    expect(generateCar).toThrow("[ERROR]");
   });
 });
