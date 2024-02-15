@@ -15,6 +15,10 @@ const BLANK_STR = '';
 export default class Controller {
   #cars;
 
+  #input = new InputView();
+
+  #output = new OutputView();
+
   async run() {
     this.#cars = await this.#makeCars();
     const tryNum = await this.#promptTry();
