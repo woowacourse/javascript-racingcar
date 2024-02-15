@@ -1,9 +1,9 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { splitByComma, trimAll } from "../utils/parser.js";
+import { splitByComma, trimAll } from "../utils/parse.js";
 import Cars from "../domain/Cars.js";
 import Car from "../domain/Car.js";
-import { tryUntilSuccess } from "../utils/ErrorUtil.js";
+import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
 
 export default class Race {
   static MIN_ROUND_NUMBER = 1;
