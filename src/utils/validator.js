@@ -28,6 +28,12 @@ const ValidatorCondtion = {
     }
   },
 
+  carNameInSpace(carNames) {
+    if (carNames.some((carName) => carName.includes(CONDITIONS.space))) {
+      throw new CustomError(ERROR_MESSAGES.carNameInSpace);
+    }
+  },
+
   isNaN(value) {
     if (!CONDITIONS.numericPattern.test(value)) {
       throw new CustomError(ERROR_MESSAGES.NaN);
@@ -47,6 +53,7 @@ const Validator = {
     ValidatorCondtion.carNameLength(carNames);
     ValidatorCondtion.carNameEmpty(carNames);
     ValidatorCondtion.carNameDuplicate(carNames);
+    ValidatorCondtion.carNameInSpace(carNames);
   },
 
   tryCount(tryCount) {
