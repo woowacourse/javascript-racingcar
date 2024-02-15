@@ -41,3 +41,21 @@ describe('Cars 한 라운드 테스트', () => {
     });
   });
 });
+
+// Cars winners 메소드 테스트
+describe('Cars 우승자 테스트', () => {
+  test('모든 라운드가 끝나고 올바르게 우승자를 반환하는지 테스트', () => {
+    // given
+    const cars = new Cars('pobi,jun,cron');
+    const FORWARD = 9;
+    const STOP = 0;
+    mockRandoms([FORWARD, STOP, FORWARD, FORWARD, STOP, FORWARD]);
+    const round = 2;
+    const output = ['pobi', 'cron'];
+
+    // when
+    for (let i = 0; i < round; i++) cars.play();
+
+    cars.winners().forEach((name, i) => expect(name).toEqual(output[i]));
+  });
+});
