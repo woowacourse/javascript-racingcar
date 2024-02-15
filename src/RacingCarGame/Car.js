@@ -18,10 +18,15 @@ class Car {
     return false;
   }
 
-  #moveOn() {
+  moveOn() {
     if (this.#movable()) {
       this.#position += 1;
     }
+  }
+
+  //test를 위한 임의 getter
+  position() {
+    return this.#position;
   }
 }
 
