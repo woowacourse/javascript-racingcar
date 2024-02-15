@@ -19,9 +19,7 @@ class Cars {
   }
 
   roundStart() {
-    this.#cars.forEach(car => {
-      
-    });
+    this.#cars.forEach(car => car.actCar());
   }
 }
 
