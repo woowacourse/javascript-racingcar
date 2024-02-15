@@ -9,43 +9,55 @@ const mockRandoms = (numbers) => {
 };
 
 describe("Car 유닛 테스트", () => {
-  test("getName 메서드가 정상적으로 차 이름을 반환한다.", () => {
-    const name = "Hain";
-    const car = new Car(name);
+  describe("기능 테스트", () => {
+    test("getName 메서드가 정상적으로 차 이름을 반환한다.", () => {
+      const NAME = "Hain";
 
-    expect(car.getName()).toBe(name);
-  });
+      const car = new Car(NAME);
 
-  test("getMileage 메서드가 정상적으로 마일리지를 반환한다.", () => {
-    const name = "Sofa";
-    const car = new Car(name);
-    const MILEAGE_INITIAL_VALUE = 0;
+      expect(car.getName()).toBe(NAME);
+    });
 
-    expect(car.getMileage()).toBe(MILEAGE_INITIAL_VALUE);
-  });
+    test("getMileage 메서드가 정상적으로 마일리지를 반환한다.", () => {
+      const NAME = "Sofa";
+      const MILEAGE_INITIAL_VALUE = 0;
 
-  describe("go 메서드 테스트 ", () => {
-    const name = "Ryan";
-    const car = new Car(name);
+      const car = new Car(NAME);
 
-    test.each([
-      { randomNumbers: [5], expected: 1 },
-      { randomNumbers: [1], expected: 1 },
-      { randomNumbers: [6], expected: 2 },
-      { randomNumbers: [7], expected: 3 },
-      { randomNumbers: [0], expected: 3 },
-    ])("%s가 나오면 마일리지 값이 %m가 된다.", ({ randomNumbers, expected }) => {
-      mockRandoms(randomNumbers);
+      expect(car.getMileage()).toBe(MILEAGE_INITIAL_VALUE);
+    });
 
-      car.go();
+    describe("go 메서드 테스트 ", () => {
+      const NAME = "Ryan";
 
-      expect(car.getMileage()).toBe(expected);
+      const car = new Car(NAME);
+
+      test.each([
+        { randomNumbers: 5, expected: 1 },
+        { randomNumbers: 1, expected: 1 },
+        { randomNumbers: 6, expected: 2 },
+        { randomNumbers: 7, expected: 3 },
+        { randomNumbers: 0, expected: 3 },
+      ])(
+        "$randomNumbers이(가) 나오면 마일리지 값이 $expected가 된다.",
+        ({ randomNumbers, expected }) => {
+          mockRandoms([randomNumbers]);
+
+          car.go();
+
+          expect(car.getMileage()).toBe(expected);
+        }
+      );
     });
   });
 
-  test("생성 시 이름이 5자 초과인 경우 오류가 발생한다.", () => {
-    const name = "banana";
-    const generateCar = () => new Car(name);
-    expect(generateCar).toThrow("[ERROR]");
+  describe("유효성 검증 테스트", () => {
+    test("생성 시 이름이 5자 초과인 경우 오류가 발생한다.", () => {
+      const NAME = "banana";
+
+      const generateCar = () => new Car(NAME);
+
+      expect(generateCar).toThrow("[ERROR]");
+    });
   });
 });
