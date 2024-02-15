@@ -1,13 +1,13 @@
-export default class OutputView {
+const OutputView = {
   printCarCurrentDistance(car) {
     const name = car.getName();
     const distance = car.getDistance();
 
     console.log(`${name} : ${"-".repeat(distance)}`);
-  }
+  },
 
   printWinner(calculValue) {
-    const { hasWinner, maxDistance, winners } = calculValue;
+    const { hasWinner, winners } = calculValue;
     const text = "최종 우승자 : ";
 
     if (hasWinner) {
@@ -16,9 +16,11 @@ export default class OutputView {
     if (!hasWinner) {
       this.printMessage("최종 우승자는 없습니다.");
     }
-  }
+  },
 
   printMessage(message) {
     console.log(message);
-  }
-}
+  },
+};
+
+export default OutputView;

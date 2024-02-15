@@ -6,9 +6,9 @@ import AppError from "../utils/Error.js";
 export default class Controller {
   #cars;
 
-  #input = new InputView();
+  #input = InputView;
 
-  #output = new OutputView();
+  #output = OutputView;
 
   async run() {
     this.#cars = await this.#promptCarNames();
@@ -74,8 +74,8 @@ export default class Controller {
       const winners = cars.filter((car) =>
         car.getDistance() === maxDistance ? true : false
       );
-      return { hasWinner: true, maxDistance, winners };
+      return { hasWinner: true, winners };
     }
-    return { hasWinner: false, maxDistance, winners: [] };
+    return { hasWinner: false, winners: [] };
   }
 }
