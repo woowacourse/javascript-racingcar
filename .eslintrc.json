@@ -1,7 +1,8 @@
 {
   "rules": {
     "lines-between-class-members": "off",
-    "class-methods-use-this":"off"
+    "class-methods-use-this":"off",
+    "no-console": "off"
   },
   "env": {
     "es6": true,
