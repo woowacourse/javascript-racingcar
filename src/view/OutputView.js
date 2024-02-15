@@ -1,3 +1,5 @@
+import { MESSAGE } from '../constants/System.js';
+
 const OutputView = {
   print(message) {
     console.log(message);
@@ -8,7 +10,7 @@ const OutputView = {
   },
 
   printCurrentResultTitle() {
-    this.print('\n실행 결과');
+    this.print(MESSAGE.RESULT);
   },
 
   printCurrentLocation(carInfos) {
@@ -20,7 +22,7 @@ const OutputView = {
 
   printWinners(winners) {
     const result = winners.join(', ');
-    this.print(`최종 우승자: ${result}`);
+    this.print(`${MESSAGE.WINNER} ${result}`);
   },
 };
 
