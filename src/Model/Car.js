@@ -11,7 +11,7 @@ export default class Car {
 
   #checkName(name) {
     if (5 < name.length || name.length < 1) {
-      throw new AppError("[ERROR]");
+      throw new AppError("자동차 이름 길이는 1자 이상 5자 이하여야합니다.");
     }
   }
 
