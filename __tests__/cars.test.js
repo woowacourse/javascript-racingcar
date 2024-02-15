@@ -10,70 +10,111 @@ const mockRandoms = (numbers) => {
 };
 
 describe("Cars 유닛 테스트", () => {
-  describe("goAll 메서드 테스트 ", () => {
-    const NAME1 = "Ryan";
-    const NAME2 = "Hain";
-    const NAME3 = "Pobi";
+  describe("기능 테스트", () => {
+    describe("goAll 메서드 테스트 ", () => {
+      const NAME1 = "Ryan";
+      const NAME2 = "Hain";
+      const NAME3 = "Pobi";
 
-    const car1 = new Car(NAME1);
-    const car2 = new Car(NAME2);
-    const car3 = new Car(NAME3);
+      const car1 = new Car(NAME1);
+      const car2 = new Car(NAME2);
+      const car3 = new Car(NAME3);
 
-    const cars = new Cars([car1, car2, car3]);
+      const cars = new Cars([car1, car2, car3]);
 
-    test.each([
-      { randomNumbers: [5, 1, 6], expected: [1, 0, 1] },
-      { randomNumbers: [2, 5, 6], expected: [1, 1, 2] },
-      { randomNumbers: [6, 8, 9], expected: [2, 2, 3] },
-    ])("%s가 나오면 마일리지 값이 %m가 된다.", ({ randomNumbers, expected }) => {
-      const [expected1, expected2, expected3] = expected;
+      test.each([
+        { randomNumbers: [5, 1, 6], expected: [1, 0, 1] },
+        { randomNumbers: [2, 5, 6], expected: [1, 1, 2] },
+        { randomNumbers: [6, 8, 9], expected: [2, 2, 3] },
+      ])(
+        "$randomNumbers가 나오면 마일리지 값이 각각 $expected가 된다.",
+        ({ randomNumbers, expected }) => {
+          const [expected1, expected2, expected3] = expected;
 
-      mockRandoms(randomNumbers);
+          mockRandoms(randomNumbers);
+
+          cars.goAll();
+
+          expect(car1.getMileage()).toBe(expected1);
+          expect(car2.getMileage()).toBe(expected2);
+          expect(car3.getMileage()).toBe(expected3);
+        }
+      );
+    });
+
+    test("getMileageBoard 매서드가 정상적으로 차 이름과 마일리지 정보를 담은 배열을 반환한다.", () => {
+      const NAME1 = "Ryan";
+      const NAME2 = "Hain";
+      const NAME3 = "Pobi";
+
+      const car1 = new Car(NAME1);
+      const car2 = new Car(NAME2);
+      const car3 = new Car(NAME3);
+
+      const cars = new Cars([car1, car2, car3]);
+
+      const expected = [
+        { name: NAME1, mileage: 0 },
+        { name: NAME2, mileage: 0 },
+        { name: NAME3, mileage: 0 },
+      ];
+
+      expect(cars.getMileageBoard()).toEqual(expected);
+    });
+
+    test("getFirstPlaceNames 매서드가 정상적으로 현재 마일리지가 가장 높은 차의 이름이 담긴 배열을 반환한다.", () => {
+      const NAME1 = "Ryan";
+      const NAME2 = "Hain";
+      const NAME3 = "Pobi";
+
+      const car1 = new Car(NAME1);
+      const car2 = new Car(NAME2);
+      const car3 = new Car(NAME3);
+
+      const cars = new Cars([car1, car2, car3]);
+
+      const MOCK_RANDOM_NUMBERS = [5, 1, 2];
+      const expected = [NAME1];
+
+      mockRandoms(MOCK_RANDOM_NUMBERS);
+
       cars.goAll();
 
-      expect(car1.getMileage()).toBe(expected1);
-      expect(car2.getMileage()).toBe(expected2);
-      expect(car3.getMileage()).toBe(expected3);
+      expect(cars.getFirstPlaceNames()).toEqual(expected);
     });
   });
 
-  test("getMileageBoard 매서드가 정상적으로 차 이름과 마일리지 정보를 담은 배열을 반환한다.", () => {
-    const NAME1 = "Ryan";
-    const NAME2 = "Hain";
-    const NAME3 = "Pobi";
+  describe("유효성 검증 테스트", () => {
+    describe("차 개수가 2 이상 100 이하가 아닌 경우 오류가 발생한다.", () => {
+      const SINGLE_NAME = ["Ryan"];
+      const TOO_MANY_NAMES = new Array(101).fill().map((_, i) => `na${i}`);
 
-    const car1 = new Car(NAME1);
-    const car2 = new Car(NAME2);
-    const car3 = new Car(NAME3);
+      test.each([[SINGLE_NAME], [TOO_MANY_NAMES]])("", (names) => {
+        const cars = names.map((name) => new Car(name));
 
-    const cars = new Cars([car1, car2, car3]);
+        const generateCars = () => new Cars(cars);
 
-    const expected = [
-      { name: NAME1, mileage: 0 },
-      { name: NAME2, mileage: 0 },
-      { name: NAME3, mileage: 0 },
-    ];
+        expect(generateCars).toThrow("[ERROR]");
+      });
+    });
 
-    expect(cars.getMileageBoard()).toEqual(expected);
-  });
+    test("생성 시 차 이름이 중복되는 경우 오류가 발생한다.", () => {
+      const NAME = "Ryan";
 
-  test("getFirstPlaceNames 매서드가 정상적으로 현재 마일리지가 가장 높은 차의 이름이 담긴 배열을 반환한다.", () => {
-    const NAME1 = "Ryan";
-    const NAME2 = "Hain";
-    const NAME3 = "Pobi";
+      const car1 = new Car(NAME);
+      const car2 = new Car(NAME);
 
-    const car1 = new Car(NAME1);
-    const car2 = new Car(NAME2);
-    const car3 = new Car(NAME3);
+      const generateCars = () => new Cars([car1, car2]);
 
-    const cars = new Cars([car1, car2, car3]);
+      expect(generateCars).toThrow("[ERROR]");
+    });
 
-    const randomNumbers = [5, 1, 2];
-    const expected = [NAME1];
+    test("잘못된 타입의 인자를 받을 경우 오류가 발생한다.", () => {
+      const WRONG_TYPE_CARS = ["Ryan", "Hain", "Pobi"];
 
-    mockRandoms(randomNumbers);
-    cars.goAll();
+      const generateCars = () => new Cars(WRONG_TYPE_CARS);
 
-    expect(cars.getFirstPlaceNames()).toEqual(expected);
+      expect(generateCars).toThrow("[ERROR]");
+    });
   });
 });
