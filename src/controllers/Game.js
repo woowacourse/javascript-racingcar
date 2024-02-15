@@ -16,13 +16,22 @@ class Game {
   async #setCarList() {
     const value = await InputController.getCarName();
 
-    if (value) this.#carList = value.split(',').map((name) => new Car(name));
+    if (value) {
+      const nameArray = value.split(',');
+      this.#carList = nameArray.map((name) => new Car(name));
+
+      OutputView.printMessage(`\n=> 참가 자동차: ${nameArray.join(',')}`);
+    }
   }
 
   async #getTotalRound() {
     const value = await InputController.getRoundNumber();
 
     this.#round.total = Number(value);
+
+    OutputView.printMessage(
+      `\n=> 게임을 진행할 라운드 횟수: ${this.#round.total}`,
+    );
   }
 
   async setGame() {
