@@ -1,12 +1,12 @@
 class Output {
-  static roundResult(carNamesMap) {
-    carNamesMap.forEach((carName) => {
-      console.log(`${carName.getName()} : ${'-'.repeat(carName.getAdvance())}`);
+  static roundResult(cars) {
+    cars.forEach((car) => {
+      console.log(`${car.getName()} : ${'-'.repeat(car.getAdvance())}`);
     });
   }
 
-  static winnerResult(winnerCarNamesMap) {
-    console.log(`최종 우승자: ${winnerCarNamesMap.map((carName) => carName.getName()).join(', ')}`);
+  static winnerResult(winnerCars) {
+    console.log(`최종 우승자: ${winnerCars.map((winnerCar) => winnerCar.getName()).join(', ')}`);
   }
 }
 
