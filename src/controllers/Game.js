@@ -57,7 +57,7 @@ class Game {
       this.#carList.forEach((car) => {
         car.movement();
       });
-      OutputView.printMessage('');
+      OutputView.printMessage(`\n라운드:${this.#round.current}\n`);
       this.#printRoundResult();
       this.#round.current += 1;
     }
