@@ -24,7 +24,7 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    console.log(OUTPUT_MESSAGES.winners + winners.join(CONDITIONS.delimiter));
+    console.log(OUTPUT_MESSAGES.winners + winners.join(CONDITIONS.delimiter + CONDITIONS.space));
   },
 };
 
