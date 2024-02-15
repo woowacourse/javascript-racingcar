@@ -1,0 +1,203 @@
+[33mcommit 107e22fdbbd6775cf107f4ea4ee7c5b75e682b39[m[33m ([m[1;36mHEAD -> [m[1;32mnovice0840[m[33m, [m[1;31mdle234/step1[m[33m)[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 16:47:26 2024 +0900
+
+    test: application test
+
+[33mcommit 22063dbe55ffd7abaf7a6250627ddd499f706673[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 16:47:13 2024 +0900
+
+    test: 자동차 이름 테스트
+
+[33mcommit 265d0c7a71744db64d9fe186b1f35535578fc7e1[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 16:46:36 2024 +0900
+
+    test: 자동차 전진 테스트 추가
+
+[33mcommit 0f2f878383701f6969bc3471cd680ac6be52518b[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 16:46:17 2024 +0900
+
+    fix:함수 class 로 변경
+
+[33mcommit 5952a25aeaffa45e7a1a63cb374e043fc25b31fa[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 12:15:59 2024 +0900
+
+    fix: 개발 요구사항 확인
+
+[33mcommit 08a7984d157c08e973a726e4bfae89c60f963bbe[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:53:20 2024 +0900
+
+    feat:문자 상수화
+
+[33mcommit 391ef759a0740d85287b4e216924103ccd400e46[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:45:12 2024 +0900
+
+    fix:동등 연산자 수정
+
+[33mcommit c7d8bf5a0e6ee1f1fa56674b10cc369b1b82d43c[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:40:43 2024 +0900
+
+    fix:컨트롤러 실행
+
+[33mcommit c837ba097de8a253c5830ec517a6f4ff69a914cc[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:39:31 2024 +0900
+
+    fix:폴더 경로 수정
+
+[33mcommit c1c3b1f59ce361a3ae8c33f2bc917bf5378ce4eb[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:38:22 2024 +0900
+
+    refactor:자동차 하나의 각 회차 이동
+
+[33mcommit ac0f01f780d26a6a9f4ba6673df7299f8a3d6f23[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:37:19 2024 +0900
+
+    feat:Race Controller 생성
+
+[33mcommit 46a9aeba89f16b10618045fa11004a0336e25233[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:36:53 2024 +0900
+
+    feat:util파일 생성
+
+[33mcommit 10d24b3a9125b6b43c243b87fd5611aa7aa18f97[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Thu Feb 15 11:35:58 2024 +0900
+
+    rename:Car 을 Cars 로 변경
+
+[33mcommit 92974c7e11a7a437a6c36631372b448815d0bd4e[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 18:07:35 2024 +0900
+
+    feat: 최종 우승자 선정 기능
+
+[33mcommit 0cfa49f8cbf9517e682b97d54dbdfeb38458be7f[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 18:04:03 2024 +0900
+
+    feat: 출력 기능
+
+[33mcommit e9c320aca87c6a71e3d01ba119e45f2115013788[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 18:03:12 2024 +0900
+
+    feat: 자동차 전진 기능
+
+[33mcommit 98a99e443a6e0e22cee9fcd88b36796ca2b07d2e[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 17:50:24 2024 +0900
+
+    faet: 전체 자동차이름 길이 확인
+
+[33mcommit b602e11127b86c0dd840801bed9f57c1ce4f01e4[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 17:49:14 2024 +0900
+
+    feat: 시도 횟수 입력받기
+
+[33mcommit 8d4b575d9844c80a1821cd4fd02b9f63c7b86684[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 17:48:46 2024 +0900
+
+    feat: Car 리스트 유효성검사
+
+[33mcommit 8f68bb4b8e2c29ca57b6c674a7e5717941a07837[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:33:22 2024 +0900
+
+    chore:초기 다운로드
+
+[33mcommit a85c64598842fe3b8d910ee4364f2e55734e6ee2[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:32:44 2024 +0900
+
+    feat:입력받는 함수
+
+[33mcommit 62a6dbc75483671845b389fd49c7414b9e6360d1[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:32:13 2024 +0900
+
+    feat: 유효성검사 함수 작성
+
+[33mcommit c48105684fb68a1bd9b68237c5c61f5481aa9feb[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:31:35 2024 +0900
+
+    feat:input 및 유효성 검사
+
+[33mcommit da0f347e7c606c2b397ee9fc0373f5a46010b1b0[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:30:40 2024 +0900
+
+    feat:실행 클래스 생성
+
+[33mcommit 69e8ab50f951a49cf84ced3d911c3ff4063b67d8[m
+Author: GimGayeon <kky1373@naver.com>
+Date:   Wed Feb 14 16:29:56 2024 +0900
+
+    docs:기능 명세 작성
+
+[33mcommit a725a72bed0e806ec2177ebeb862693157cd88ca[m[33m ([m[1;31morigin/yoonkyoungme[m[33m, [m[1;31morigin/vi-wolhwa[m[33m, [m[1;31morigin/useon[m[33m, [m[1;31morigin/todari[m[33m, [m[1;31morigin/ss0526100[m[33m, [m[1;31morigin/soosoo22[m[33m, [m[1;31morigin/soi-ha[m[33m, [m[1;31morigin/skiende74[m[33m, [m[1;31morigin/simorimi[m[33m, [m[1;31morigin/seongjinme[m[33m, [m[1;31morigin/rbgksqkr[m[33m, [m[1;31morigin/pp449[m[33m, [m[1;31morigin/parkhanyoung[m[33m, [m[1;31morigin/pakxe[m[33m, [m[1;31morigin/ooherin[m[33m, [m[1;31morigin/novice0840[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/lurgi[m[33m, [m[1;31morigin/llqqssttyy[m[33m, [m[1;31morigin/largopie[m[33m, [m[1;31morigin/jinyoung234[m[33m, [m[1;31morigin/jinhokim98[m[33m, [m[1;31morigin/jaymyong66[m[33m, [m[1;31morigin/jaeml06[m[33m, [m[1;31morigin/imxyjl[m[33m, [m[1;31morigin/hwinkr[m[33m, [m[1;31morigin/healim01[m[33m, [m[1;31morigin/hain-tain[m[33m, [m[1;31morigin/greetings1012[m[33m, [m[1;31morigin/dle234[m[33m, [m[1;31morigin/cys4585[m[33m, [m[1;31morigin/chysis[m[33m, [m[1;31morigin/chosim-dvlpr[m[33m, [m[1;31morigin/chlwlstlf[m[33m, [m[1;31morigin/brgndyy[m[33m, [m[1;31morigin/badahertz52[m[33m, [m[1;31morigin/anttiey[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/0jenn0[m[33m, [m[1;31morigin/00kang[m[33m, [m[1;32mmain[m[33m)[m
+Author: Cron <hojoong.choi@woowahan.com>
+Date:   Mon Jan 29 16:38:19 2024 +0900
+
+    chore: .gitkeep
+
+[33mcommit 13f75f4190e05653c24610138e3fd7ae70aa263c[m
+Author: Cron <hojoong.choi@woowahan.com>
+Date:   Wed Jan 24 16:48:11 2024 +0900
+
+    chore: Specified the minimum Node version and NPM version
+
+[33mcommit 51fbb026a3af97dcbc41398cd3f14f88ff155b7d[m
+Author: woowapark <shinyoung.park@woowahan.com>
+Date:   Mon Feb 6 15:00:27 2023 +0900
+
+    feat: setup build configurations and templates
+
+[33mcommit 2dc2fa944cdf34be9d14be6ceb10d6271bd42cc6[m
+Author: Poco <devjang2016@gmail.com>
+Date:   Sun Feb 20 17:20:10 2022 +0900
+
+    Update index.html
+
+[33mcommit a0aae70666c77ad1a60642e8fca71094f789447e[m
+Author: woowapark <shinyoung.park@woowahan.com>
+Date:   Mon Feb 7 18:27:33 2022 +0900
+
+    refactor: remove feature requirements
+
+[33mcommit d506cfdc9b5071d3f8aaf7f8df04e82efd2d8c2c[m
+Author: woowapark <shinyoung.park@woowahan.com>
+Date:   Mon Feb 7 12:32:48 2022 +0900
+
+    refactor: remove html,css templates
+
+[33mcommit 03c16523c0d77e19ccce18e2055585d4901f11d5[m[33m ([m[1;31morigin/karmaboat[m[33m)[m
+Author: 임동준 <im1@woowahan.com>
+Date:   Wed Apr 14 17:05:50 2021 +0900
+
+    Update README.md
+
+[33mcommit 202efafc79b8dbe2f481a5b8ae2c6e944fe720c4[m
+Author: im1 <im1@woowahan.com>
+Date:   Mon Feb 1 13:33:38 2021 +0900
+
+    feat: init racingcar  project
+
+[33mcommit 36afc4c779b9d96d5652f8c447c7eb3fef34637a[m
+Author: 임동준 <im1@woowahan.com>
+Date:   Mon Feb 1 13:23:16 2021 +0900
+
+    Initial commit
