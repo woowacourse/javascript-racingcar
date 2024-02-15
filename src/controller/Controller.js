@@ -1,3 +1,4 @@
+import { OPTION } from '../constants/System.js';
 import CarGame from '../model/CarGame.js';
 import Preprocessor from '../utils/Preprocessor.js';
 import InputView from '../view/InputView.js';
@@ -10,32 +11,38 @@ class Controller {
     this.#carGame = new CarGame();
   }
 
-  // TODO: 예외처리 모듈화
-  async inputCarNames() {
-    while (1) {
-      try {
-        const namesInput = await InputView.readCarNames();
-        const carsNames = Preprocessor.filterOutEmptyStrings(
-          namesInput.split(',')
-        );
+  // QNA: 멤버변수에 값을 저장하는 방식 vs 값을 반환받아 저장하는 방법
+  async inputGameInfo() {
+    await this.#retryAndErrorLogging(this.#inputCarNames.bind(this));
+    await this.#retryAndErrorLogging(this.#inputTryCount.bind(this));
+  }
 
-        return this.#carGame.setCars(carsNames);
+  // QNA: private 함수에 'this'를 사용해야하는 이유 (eslint)
+  // eslint-disable-next-line class-methods-use-this
+  async #retryAndErrorLogging(inputFunction) {
+    while (true) {
+      try {
+        await inputFunction();
+        break;
       } catch (error) {
-        OutputView.printErrorMessage(error.message);
+        OutputView.print(error.message);
       }
     }
   }
 
-  // TODO: 예외처리 모듈화
-  async inputTryCount() {
-    while (1) {
-      try {
-        const tryCountInput = await InputView.readTryCount();
-        return this.#carGame.setTryCount(tryCountInput);
-      } catch (error) {
-        OutputView.printErrorMessage(error.message);
-      }
-    }
+  async #inputCarNames() {
+    const namesInput = await InputView.readCarNames();
+    const carNames = Preprocessor.process(
+      namesInput.split(OPTION.INPUT_SPLITER),
+      [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings],
+    );
+
+    this.#carGame.setCars(carNames);
+  }
+
+  async #inputTryCount() {
+    const tryCount = Number(await InputView.readTryCount());
+    this.#carGame.setTryCount(tryCount);
   }
 
   playGame() {
@@ -43,7 +50,7 @@ class Controller {
 
     const tryCount = this.#carGame.getTryCount();
 
-    for (let i = 0; i < tryCount; i++) {
+    for (let i = 0; i < tryCount; i += 1) {
       this.#carGame.moveCars();
       this.#displayCurrentLocation();
     }

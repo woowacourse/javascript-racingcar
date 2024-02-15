@@ -1,7 +1,9 @@
+import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
 import Car from './Car.js';
 
 class CarGame {
   #tryCount;
+
   #carList = [];
 
   setCars(carNames) {
@@ -14,9 +16,10 @@ class CarGame {
     }, this.#carList);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   #validateCarNamesLength(carName) {
-    if (carName.length > 5) {
-      throw new Error('[ERROR] 자동차 이름은 5글자 이하만 가능합니다.');
+    if (carName.length > OPTION.CAR_NAME_MAX_LENGTH) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
   }
 
@@ -24,7 +27,7 @@ class CarGame {
     this.validMulti = new Set(new Set(carNames)).size === carNames.length;
 
     if (!this.validMulti) {
-      throw new Error('[ERROR] 자동차 이름은 중복될 수 없습니다.');
+      throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     }
   }
 
@@ -33,12 +36,13 @@ class CarGame {
     this.#tryCount = tryCount;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   #validateTryCount(tryCount) {
-    if (!Number.isInteger(Number(tryCount))) {
-      throw new Error('[ERROR] 시도 횟수는 숫자여야 합니다.');
+    if (!Number.isInteger(tryCount)) {
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER);
     }
     if (tryCount < 1) {
-      throw new Error('[ERROR] 1회 이상 시도해야합니다.');
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_MIN);
     }
   }
 
@@ -49,36 +53,34 @@ class CarGame {
   moveCars() {
     this.#carList.forEach((car) => {
       const randomNumber = Math.floor(Math.random() * 10);
-      if (randomNumber >= 4) {
+      if (randomNumber >= OPTION.MOVE_CONDITION) {
         car.move();
       }
     });
   }
 
-  // [{name: a, location: 1}, {}]
   getCurrentLocation() {
-    let carInfos = [];
+    const carInfos = [];
 
     this.#carList.forEach((car) => {
-      carInfos.push({
-        name: car.getName(),
-        location: car.getLocation(),
-      });
+      carInfos.push({ name: car.getName(), location: car.getLocation() });
     });
 
     return carInfos;
   }
 
   findWinners() {
-    const maxLocation = Math.max(
-      ...this.#carList.map((car) => car.getLocation())
-    );
+    const maxLocation = this.findMaxLocation();
 
     const winners = this.#carList
       .filter((car) => car.getLocation() === maxLocation)
       .map((car) => car.getName());
 
     return winners;
+  }
+
+  findMaxLocation() {
+    return Math.max(...this.#carList.map((car) => car.getLocation()));
   }
 }
 
