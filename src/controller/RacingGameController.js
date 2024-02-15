@@ -2,6 +2,7 @@ import InputView from '../views/InputView.js';
 import ErrorHandler from '../errors/ErrorHandler/module.js';
 import RacingGame from '../domain/RacingGame/module.js';
 import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
+import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/module.js';
 
 const RacingGameController = Object.freeze({
   async run() {
@@ -22,5 +23,7 @@ async function processUserInput() {
 function processRacingGame({ racingCarNames, tryCount }) {
   const randomMoveCounts = RandomMoveCountMaker.execute(tryCount, racingCarNames.length);
   const racingResult = RacingGame.startRace({ racingCarNames, tryCount, randomMoveCounts });
-  console.log(racingResult);
+
+  const finalRacingResult = racingResult.at(-1);
+  const racingWinners = RacingWinnerRecorder.createRacingWinners(finalRacingResult);
 }
