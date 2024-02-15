@@ -21,7 +21,7 @@ class CarInfo {
   }
 
   setPosition() {
-    this.#position = [this.#doesGo()];
+    this.#position = [this.#doesGo() ? NUMERIC.moveDistance : 0];
     let lastPosition = this.#position[0];
 
     for (let nowCount = 1; nowCount < this.#tryCount; nowCount++) {
