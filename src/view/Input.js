@@ -1,6 +1,6 @@
 import readline from 'readline';
 
-class InputView {
+class Input {
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
@@ -39,4 +39,4 @@ class InputView {
   }
 }
 
-export default InputView;
+export default Input;

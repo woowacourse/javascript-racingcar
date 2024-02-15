@@ -1,15 +1,15 @@
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import Input from '../view/Input.js';
+import Output from '../view/Output.js';
 import CommonValidator from '../utils/CommonValidator.js';
 import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
 import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
 
-class GameController {
+class Game {
   constructor() {
-    this.input = new InputView();
-    this.output = new OutputView();
+    this.input = new Input();
+    this.output = new Output();
   }
 
   async startGame() {
@@ -73,4 +73,4 @@ class GameController {
   }
 }
 
-export default GameController;
+export default Game;

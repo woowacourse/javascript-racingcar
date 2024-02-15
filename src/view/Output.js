@@ -1,4 +1,4 @@
-class OutputView {
+class Output {
   roundResult(carNamesMap) {
     carNamesMap.forEach((carName) => {
       console.log(`${carName.getCarName()} : ${'-'.repeat(carName.getAdvance())}`);
@@ -12,4 +12,4 @@ class OutputView {
   }
 }
 
-export default OutputView;
+export default Output;
