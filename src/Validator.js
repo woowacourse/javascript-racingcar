@@ -1,51 +1,14 @@
-import CONFIG from './constants/config';
-import { ERROR_MESSAGE } from './constants/message';
-
 const Validator = {
   validateCarNameList(carNameList) {
-    this.validateCarNameListLength(carNameList.length);
+    if (carNameList.length <= 1) {
+      throw new Error('[ERROR] 자동차 목록은 2대 이상 입력해주세요.');
+    }
+
     carNameList.forEach((carName) => {
-      this.validateCarNameLength(carName.length);
+      if (carName.length === 0 || carName.length > 5) {
+        throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
+      }
     });
-  },
-
-  validateTurnCount(turnCountInput) {
-    this.validateNumber(turnCountInput);
-    this.validateFloatNumber(turnCountInput);
-    this.validateNaturalNumber(turnCountInput);
-  },
-
-  validateCarNameListLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LIST_LENGTH) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_LIST_LENGTH);
-    }
-  },
-
-  validateCarNameLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LENGTH || length > CONFIG.MAX_CAR_NAME_LENGTH) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
-    }
-  },
-
-  validateFloatNumber(turnCountInput) {
-    const turnCount = parseFloat(turnCountInput, 10);
-    if (!Number.isInteger(turnCount)) {
-      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_INTEGER);
-    }
-  },
-
-  validateNumber(turnCountInput) {
-    const turnCount = parseFloat(turnCountInput, 10);
-    if (Number.isNaN(turnCount)) {
-      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
-    }
-  },
-
-  validateNaturalNumber(turnCountInput) {
-    const turnCount = parseFloat(turnCountInput, 10);
-    if (turnCount < CONFIG.MIN_TURN_COUNT) {
-      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NATURAL_NUMBER);
-    }
   },
 };
 

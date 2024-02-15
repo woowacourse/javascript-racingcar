@@ -6,7 +6,7 @@ class App {
   #carList;
 
   async play() {
-    const carNameList = await InputView.readCarList();
+    const carNameList = await InputView.readCarNameList();
     this.#carList = new CarList(carNameList);
     const turnCount = await InputView.readTurnCount();
     this.#race(turnCount);
