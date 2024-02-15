@@ -17,6 +17,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
 });
 export const ERROR_MESSAGES = Object.freeze({
   invalidAttemptNum: '[ERROR] 0 이상의 정수를 입력해 주세요.',
-  redundantCarName: '[ERROR] 중복된 자동차 이름이 있습니다.',
+  hasRedundantCarName: '[ERROR] 중복된 자동차 이름이 있습니다.',
   invalidCarName: '[ERROR] 자동차 이름 입력이 올바르지 않습니다',
+  hasSingleCar: '[ERROR] 두 대 이상의 자동차를 입력해 주세요.',
 });
