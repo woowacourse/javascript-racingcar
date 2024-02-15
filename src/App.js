@@ -27,6 +27,7 @@ class App {
 	printGameResult() {
 		OutputView.printStartGame();
 		OutputView.printResult(this.#gameResult);
+		OutputView.printWinner(this.#gameResult, this.#count);
 	}
 
 	async #inputCarNames() {
