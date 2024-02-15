@@ -1,4 +1,5 @@
 import { count } from "../util/count.js";
+import { MESSAGES } from "../constant/constant.js";
 class Output {
   static printMove(carInfo, round) {
     console.log(
@@ -10,7 +11,7 @@ class Output {
 
   static printWinner(winner) {
     const finalWinner = winner.join(", ");
-    console.log("최종 우승자: " + finalWinner);
+    console.log(MESSAGES.WINNER + finalWinner);
   }
 }
 

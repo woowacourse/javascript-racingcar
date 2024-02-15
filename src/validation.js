@@ -1,14 +1,17 @@
+import { ERROR } from "./constant/constant.js";
+const { DUPLICATE, NAME_RANGE, NATURAL_NUMBER, NOT_A_NUMBER } = ERROR;
+
 class Validation {
   static isDuplicate(carList) {
     if (carList.length === new Set(carList).size) {
       return true;
     }
-    throw new Error("중복된 차가 있습니다.");
+    throw new Error(DUPLICATE);
   }
 
   static isRange(carName) {
-    if (carName.length > 5) {
-      throw new Error("자동차 이름이 5글자 이상입니다");
+    if (carName.length >= 5 || carName.length < 1) {
+      throw new Error(NAME_RANGE);
     }
     return true;
   }
@@ -20,19 +23,15 @@ class Validation {
   }
 
   static isNaturalNumber(tryNumber) {
-    // 입력이 비어 있거나 숫자가 아닌 경우 false 반환
     if (tryNumber === "" || isNaN(tryNumber)) {
-      throw new Error("숫자를 입력해주세요");
+      throw new Error(NOT_A_NUMBER);
     }
-    // 입력이 0 또는 음수인 경우 false 반환
     if (Number(tryNumber) <= 0) {
-      throw new Error("자연수를 입력해주세요");
+      throw new Error(NATURAL_NUMBER);
     }
-    // 소수점이 포함된 경우 false 반환
     if (tryNumber.includes(".")) {
-      throw new Error("자연수를 입력해주세요");
+      throw new Error(NATURAL_NUMBER);
     }
-    // 입력이 자연수인 경우 true 반환
     return true;
   }
 }
