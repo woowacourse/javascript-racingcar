@@ -1,4 +1,5 @@
-import messages from '../constants/messages.js';
+import CONDITIONS from '../constants/Conditions.js';
+import messages from '../constants/Messages.js';
 
 // const Private = {
 // };
@@ -9,9 +10,8 @@ const OutputView = {
   },
 
   printProgress([cars, positions]) {
-    const PROGRESS_MARKER = '-';
     cars.forEach((car, index) => {
-      this.print(`${car} : ${PROGRESS_MARKER.repeat(positions[index])}`);
+      this.print(`${car} : ${CONDITIONS.progressMarker.repeat(positions[index])}`);
     });
     this.print('');
   },

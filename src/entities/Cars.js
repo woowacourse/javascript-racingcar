@@ -1,5 +1,5 @@
-import MESSAGES from '../constants/messages.js';
-import ERRORS from '../constants/errors.js';
+import ERRORS from '../constants/Errors.js';
+import CONDITIONS from '../constants/Conditions.js';
 
 class Cars {
   #names;
@@ -12,9 +12,8 @@ class Cars {
   }
 
   progress(randoms) {
-    const PROGRESS_THRESHOLD = 4;
     randoms.forEach((random, index) => {
-      this.#positions[index] += random >= PROGRESS_THRESHOLD ? 1 : 0;
+      this.#positions[index] += random >= CONDITIONS.progressRandomThreshold ? 1 : 0;
     });
   }
 
