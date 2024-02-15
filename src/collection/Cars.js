@@ -19,7 +19,8 @@ class Cars {
   }
 
   roundStart() {
-    this.#cars.forEach(car => car.actCar());
+    const roundResult = this.#cars.map(car => car.actCar());
+    return roundResult;
   }
 }
 
