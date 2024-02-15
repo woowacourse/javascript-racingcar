@@ -1,6 +1,7 @@
 import Car from "../Model/Car.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
+import AppError from "../utils/Error.js";
 
 export default class Controller {
   #cars;
@@ -10,33 +11,46 @@ export default class Controller {
   #output = new OutputView();
 
   async run() {
-    await this.#promptCarNames();
+    this.#cars = await this.#promptCarNames();
     const tryNum = await this.#promptTry();
 
     this.#runRace(tryNum);
-    this.#output.printResultTitle();
+    this.#output.printMessage("실행 결과");
 
-    const calculValue = this.calculateWinners(this.cars);
+    const calculValue = this.calculateWinners(this.#cars);
     this.#output.printWinner(calculValue);
   }
 
   async #promptCarNames() {
     try {
       const carNames = await this.#input.readCars();
-      this.#cars = carNames.map((name) => new Car(name));
+      return carNames.map((name) => new Car(name));
     } catch (error) {
-      //TODO: print Error
+      this.#output.printMessage(error.message);
       await this.#promptCarNames();
     }
   }
 
   async #promptTry() {
     try {
-      const tryNum = await this.#input.readTry();
-      return tryNum;
+      const tryInput = await this.#input.readTry();
+      const tryNum = Number(tryInput);
+
+      this.#checkTryNum(tryNum);
+
+      return Number(tryNum);
     } catch (error) {
-      //TODO print Error
+      this.#output.printMessage(error.message);
       await this.#promptTry();
+    }
+  }
+
+  #checkTryNum(number) {
+    if (Number.isNaN(number)) {
+      throw new AppError("숫자 값만 입력해주세요.");
+    }
+    if (number < 1 || number > 200) {
+      throw new AppError("3초과 200미만의 숫자만 입력해주세요.");
     }
   }
 
@@ -46,7 +60,7 @@ export default class Controller {
         car.move(this.#makeRandomNumber());
         this.#output.printCarCurrentDistance(car);
       });
-      this.#output.printBlank();
+      this.#output.printMessage("");
     }
   }
 
