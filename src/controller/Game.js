@@ -7,8 +7,8 @@ import Car from '../model/Car.js';
 
 class Game {
   async startGame() {
-    const cars = await this.getCars();
-    const tryCount = await this.getTryCount();
+    const cars = await this.errorHandler(this.getCars);
+    const tryCount = await this.errorHandler(this.getTryCount);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
@@ -17,37 +17,32 @@ class Game {
     Output.winnerResult(this.calculateWinner(cars));
   }
 
+  async errorHandler(getFunc) {
+    while (true) {
+      try {
+        const result = await getFunc();
+        return result;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  }
+
   async getCars() {
-    while (true) {
-      try {
-        const carNames = await Input.inputCarName();
-        const cars = carNames.split(',').map((car) => new Car(car));
-        return this.validateCars(cars);
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-  }
+    const carNames = await Input.inputCarName();
+    const cars = carNames.split(',').map((car) => new Car(car));
 
-  async getTryCount() {
-    while (true) {
-      try {
-        const tryCount = await Input.inputTryCount();
-        return this.validateTryCount(Number(tryCount));
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
-  }
-
-  validateCars(cars) {
     CarNamesValidator.isValidCount(cars);
     CarNamesValidator.isDuplicate(cars);
+
     return cars;
   }
 
-  validateTryCount(tryCount) {
-    TryCountValidator.isNaturalNumber(tryCount);
+  async getTryCount() {
+    const tryCount = await Input.inputTryCount();
+
+    TryCountValidator.isNaturalNumber(Number(tryCount));
+
     return tryCount;
   }
 
