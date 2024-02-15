@@ -7,21 +7,14 @@ import OutputView from '../view/OutputView.js';
 class Controller {
   #carGame;
 
-  #carNames;
-
-  #tryCount;
-
   constructor() {
     this.#carGame = new CarGame();
   }
 
   // QNA: 멤버변수에 값을 저장하는 방식 vs 값을 반환받아 저장하는 방법
   async inputGameInfo() {
-    this.#retryAndErrorLogging(this.#inputCarNames);
-    this.#retryAndErrorLogging(this.#inputTryCount);
-
-    this.#carGame.setCars(this.#carNames);
-    this.#carGame.setTryCount(this.#tryCount);
+    await this.#retryAndErrorLogging(this.#inputCarNames.bind(this));
+    await this.#retryAndErrorLogging(this.#inputTryCount.bind(this));
   }
 
   // QNA: private 함수에 'this'를 사용해야하는 이유 (eslint)
@@ -37,14 +30,19 @@ class Controller {
     }
   }
 
+  // TODO: 전처리 추가 - 문자열 앞뒤 공백 제거
   async #inputCarNames() {
-    this.#carNames = Preprocessor.filterOutEmptyStrings(
-      await InputView.readCarNames().split(OPTION.INPUT_SPLITER),
+    const namesInput = await InputView.readCarNames();
+    const carNames = Preprocessor.filterOutEmptyStrings(
+      namesInput.split(OPTION.INPUT_SPLITER),
     );
+
+    this.#carGame.setCars(carNames);
   }
 
   async #inputTryCount() {
-    this.#tryCount = Number(await InputView.readTryCount());
+    const tryCount = Number(await InputView.readTryCount());
+    this.#carGame.setTryCount(tryCount);
   }
 
   playGame() {
