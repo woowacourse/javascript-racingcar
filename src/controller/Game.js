@@ -5,11 +5,18 @@ import TryCountValidator from '../utils/TryCountValidator.js';
 import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
+import Condition from '../constant/Condition.js';
+import Message from '../constant/Message.js';
+
+const { SEPERATOR } = Condition;
+const { OUTPUT } = Message;
 
 class Game {
   async startGame() {
     const cars = await Console.errorHandler(this.getCars);
     const tryCount = await Console.errorHandler(this.getTryCount);
+
+    console.log(OUTPUT.result);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
@@ -20,7 +27,7 @@ class Game {
 
   async getCars() {
     const carNames = await Input.inputCarName();
-    const cars = carNames.split(',').map((car) => new Car(car));
+    const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
 
     CarNamesValidator.isValidCount(cars);
     CarNamesValidator.isDuplicate(cars);

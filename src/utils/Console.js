@@ -1,4 +1,7 @@
 import readline from 'readline';
+import Message from '../constant/Message.js';
+
+const { ERROR } = Message;
 
 class Console {
   static readLineAsync(query) {
@@ -18,12 +21,9 @@ class Console {
 
       rl.question(query, (input) => {
         rl.close();
-
         if (input === '') {
-          reject(new Error('[ERROR] 입력은 공백이 될 수 없습니다.'));
+          reject(new Error(ERROR.null));
         }
-
-        console.log(input);
         resolve(input);
       });
     });

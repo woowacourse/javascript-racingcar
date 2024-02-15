@@ -1,4 +1,7 @@
 import CarNamesValidator from '../utils/CarNamesValidator';
+import Condition from '../constant/Condition';
+
+const { CAR_ADVANCE } = Condition;
 
 class Car {
   #name;
@@ -23,7 +26,7 @@ class Car {
   }
 
   updateAdvance(number) {
-    if (number >= 4) this.#advance += 1;
+    if (number >= CAR_ADVANCE.condition) this.#advance += CAR_ADVANCE.step;
   }
 }
 

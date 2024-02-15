@@ -1,31 +1,31 @@
 const SEPERATOR = ',';
 
 const CAR = {
-  COUNT: {
-    MIN: 2,
+  count: {
+    min: 2,
   },
 };
 
 const CAR_NAME = {
-  RANGE: {
-    MIN: 1,
-    MAX: 5,
+  range: {
+    min: 1,
+    max: 5,
   },
 };
 
 const CAR_ADVANCE = {
-  CONDITION: 4,
-  STEP: 1,
+  condition: 4,
+  step: 1,
 };
 
 const TRY_COUNT = {
-  RANGE: {
-    MIN: 1,
+  range: {
+    min: 1,
   },
 };
 
 const RANDOM = {
-  RANGE: 10,
+  range: 10,
 };
 
 export default {
