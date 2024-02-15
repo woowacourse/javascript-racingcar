@@ -3,7 +3,9 @@ import OutputView from "../view/OutputView.js";
 import { splitByComma, trimAll } from "../utils/parse.js";
 import Cars from "../domain/Cars.js";
 import Car from "../domain/Car.js";
+
 import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
 
 export default class Race {
   static MIN_ROUND_NUMBER = 1;
@@ -36,11 +38,11 @@ export default class Race {
 
   #validateRoundNumber(number) {
     if (!Number.isInteger(number)) {
-      throw new Error("[ERROR] 정수를 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.notInteger);
     }
 
     if (number < Race.MIN_ROUND_NUMBER || number > Race.MAX_ROUND_NUMBER) {
-      throw new Error("[ERROR] 1 이상, 100 이하의 숫자를 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.invalidRoundNumber);
     }
   }
 

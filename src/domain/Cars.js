@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../constants/message.js";
 import Car from "./Car.js";
 
 export default class Cars {
@@ -41,7 +42,7 @@ export default class Cars {
 
   #validateLength(cars) {
     if (cars.length < Cars.MIN_LENGTH || cars.length > Cars.MAX_LENGTH) {
-      throw new Error("자동차는 2대 이상 100대 이하만 가능합니다.");
+      throw new Error(ERROR_MESSAGE.invalidCarLength);
     }
   }
 
@@ -49,13 +50,13 @@ export default class Cars {
     const names = cars.map((car) => car.getName());
 
     if (new Set(names).size !== names.length) {
-      throw new Error("중복되지 않은 이름을 입력해주세요.");
+      throw new Error(ERROR_MESSAGE.duplicateCarName);
     }
   }
 
   #validateType(cars) {
     if (!cars.every((car) => car instanceof Car)) {
-      throw new Error("Car 인스턴스만 가능합니다.");
+      throw new Error(ERROR_MESSAGE.notCarType);
     }
   }
 }
