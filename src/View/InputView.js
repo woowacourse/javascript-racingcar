@@ -1,6 +1,7 @@
 import { MESSAGE } from '../Constant/Constant.js';
 import CarList from '../Model/CarList.js';
 import TryNumber from '../Model/TryNumber.js';
+import { readLineAsync } from '../Utils/MissionUtils.js';
 
 const InputView = {
 	async askCarNames() {
