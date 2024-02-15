@@ -1,5 +1,6 @@
 import { SYMBOLS } from '../../constants/symbols.js';
 import { startValidation } from '../startValidation.js';
+import { CAR_NAME_RANGE, CAR_NAME_REGEX, MIN_CAR_LENGTH } from './constant.js';
 
 /**
  * @module CarNameValidator
@@ -13,8 +14,7 @@ const CarNameValidator = Object.freeze({
     notCommaSeparated: Object.freeze({
       errorMessage: `자동차 이름은 ${SYMBOLS.comma}로만 구분 가능합니다.`,
       isValid(inputValue) {
-        const regex = /^[a-z0-9A-Z가-힣]+([,][a-z0-9A-Z가-힣]*)*[,]?$/;
-        return regex.test(inputValue);
+        return CAR_NAME_REGEX.test(inputValue);
       },
     }),
 
@@ -28,18 +28,18 @@ const CarNameValidator = Object.freeze({
     }),
 
     invalidCarLength: Object.freeze({
-      errorMessage: '자동차는 2대 이상 부터 가능합니다.',
+      errorMessage: `자동차는 ${MIN_CAR_LENGTH}대 이상 부터 가능합니다.`,
       isValid(inputValue) {
-        return inputValue.split(`${SYMBOLS.comma}`).length >= 2;
+        return inputValue.split(SYMBOLS.comma).length >= MIN_CAR_LENGTH;
       },
     }),
 
     invalidCarNameLength: Object.freeze({
-      // TODO: 도메인 객체에 상수 값으로 분리 할 것
-      errorMessage: `자동차 이름은 1 ~ 5자의 범위만 가능합니다.`,
+      errorMessage: `자동차 이름은 ${CAR_NAME_RANGE.min} ~ ${CAR_NAME_RANGE.max}자의 범위만 가능합니다.`,
       isValid(inputValue) {
-        // 모든 이름이 1~5자인지 확인
-        return inputValue.split(`${SYMBOLS.comma}`).every((name) => name.length >= 1 && name.length <= 5);
+        return inputValue
+          .split(`${SYMBOLS.comma}`)
+          .every((name) => name.length >= CAR_NAME_RANGE.min && name.length <= CAR_NAME_RANGE.max);
       },
     }),
   }),
