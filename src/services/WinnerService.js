@@ -5,8 +5,8 @@ class WinnerService {
   #carNames;
   #positions;
 
-  constructor(cars) {
-    [this.#carNames, this.#positions] = cars.getState();
+  constructor(carsState) {
+    [this.#carNames, this.#positions] = carsState;
   }
 
   findWinner() {
