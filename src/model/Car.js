@@ -27,11 +27,11 @@ class Car {
     if (randomNumber >= FORWARD_CONDITION) this.#location += 1;
   }
 
-  get name() {
+  getName() {
     return this.#name;
   }
 
-  get location() {
+  getLocation() {
     return this.#location;
   }
 }

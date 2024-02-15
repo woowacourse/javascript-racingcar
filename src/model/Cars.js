@@ -29,15 +29,17 @@ class Cars {
       car.forward();
     });
 
-    return this.#cars.map(({ name, location }) => ({
-      name,
-      location,
+    return this.#cars.map((car) => ({
+      name: car.getName(),
+      location: car.getLocation(),
     }));
   }
 
   winners() {
-    const maxLocation = Math.max(...this.#cars.map(({ location }) => location));
-    return this.#cars.filter(({ location }) => location === maxLocation).map(({ name }) => name);
+    const maxLocation = Math.max(...this.#cars.map((car) => car.getLocation()));
+    return this.#cars
+      .filter((car) => car.getLocation() === maxLocation)
+      .map((car) => car.getName());
   }
 }
 

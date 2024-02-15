@@ -12,7 +12,7 @@ describe('Car 이름 테스트', () => {
   `(
     '$testTitle테스트는 $carName이 입력되면 $expected 이름을 출력한다.',
     ({ carName, expected }) => {
-      expect(new Car(carName).name).toEqual(expected);
+      expect(new Car(carName).getName()).toEqual(expected);
     },
   );
 
@@ -51,7 +51,7 @@ describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트'
     ${'전진하는 경우 1'} | ${1}
     ${'전진하는 경우 2'} | ${2}
   `('$testTitle 테스트가 모두 전진하는지 테스트', ({ expected }) => {
-    expect(car.location).toEqual(expected);
+    expect(car.getLocation()).toEqual(expected);
   });
 
   // 정지 테스트
@@ -60,6 +60,6 @@ describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트'
     ${'정지하는 경우 1'} | ${2}
     ${'정지하는 경우 2'} | ${2}
   `('$testTitle 테스트가 모두 정지하는지 테스트', ({ expected }) => {
-    expect(car.location).toEqual(expected);
+    expect(car.getLocation()).toEqual(expected);
   });
 });
