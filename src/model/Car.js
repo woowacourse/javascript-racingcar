@@ -11,6 +11,7 @@ class Car {
 
   constructor(name) {
     this.#validate(name);
+
     this.#name = name;
   }
 
@@ -21,7 +22,7 @@ class Car {
   }
 
   forward() {
-    const randomNumber = new Random().create();
+    const randomNumber = Random.create();
 
     if (randomNumber >= FORWARD_CONDITION) this.#location += 1;
   }
