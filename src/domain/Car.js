@@ -1,5 +1,5 @@
-import CONDITIONS from '../constant/Conditions.js';
-import getRandomNumber from '../utils/getRandomNumber.js';
+const CONDITIONS = require('../constant/Conditions.js');
+const getRandomNumber = require('../utils/getRandomNumber.js');
 
 class Car {
   #name;
@@ -26,4 +26,4 @@ class Car {
   }
 }
 
-export default Car;
+module.exports = Car;

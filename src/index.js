@@ -1,4 +1,4 @@
-import Controller from './controller/Controller.js';
+const Controller = require('./controller/Controller.js');
 
 class App {
   #controller;

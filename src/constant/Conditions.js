@@ -14,4 +14,4 @@ const CONDITIONS = Object.freeze({
   numericPattern: /^\d+$/,
 });
 
-export default CONDITIONS;
+module.exports = CONDITIONS;

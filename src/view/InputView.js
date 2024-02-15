@@ -1,8 +1,8 @@
-import { INPUT_MESSSAGES } from '../constant/messages.js';
-import readLineAsync from '../utils/readLineAsync.js';
-import splitByDelimiter from '../utils/splitByDelimiter.js';
-import Validator from '../utils/validator.js';
-import OutputView from './OutputView.js';
+const { INPUT_MESSSAGES } = require('../constant/messages.js');
+const readLineAsync = require('../utils/readLineAsync.js');
+const splitByDelimiter = require('../utils/splitByDelimiter.js');
+const Validator = require('../utils/validator.js');
+const OutputView = require('./OutputView.js');
 
 const InputView = {
   async readCarNames() {
@@ -31,4 +31,4 @@ const InputView = {
   },
 };
 
-export default InputView;
+module.exports = InputView;

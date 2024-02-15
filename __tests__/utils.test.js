@@ -1,6 +1,6 @@
-import getRandomNumber from '../src/utils/getRandomNumber.js';
-import numberToDistanceSymbol from '../src/utils/numberToDistanceSymbol.js';
-import splitByDelimiter from '../src/utils/splitByDelimiter.js';
+const getRandomNumber = require('../src/utils/getRandomNumber.js');
+const numberToDistanceSymbol = require('../src/utils/numberToDistanceSymbol.js');
+const splitByDelimiter = require('../src/utils/splitByDelimiter.js');
 
 jest.spyOn(Math, 'random').mockReturnValue(0.5);
 

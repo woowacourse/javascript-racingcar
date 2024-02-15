@@ -1,6 +1,6 @@
-import CONDITIONS from '../constant/Conditions.js';
-import { ERROR_MESSAGES } from '../constant/messages.js';
-import CustomError from './customError.js';
+const CONDITIONS = require('../constant/Conditions.js');
+const { ERROR_MESSAGES } = require('../constant/messages.js');
+const CustomError = require('./customError.js');
 
 const ValidatorCondtion = {
   carCountRange(carCount) {
@@ -55,4 +55,4 @@ const Validator = {
   },
 };
 
-export default Validator;
+module.exports = Validator;

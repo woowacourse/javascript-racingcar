@@ -1,4 +1,4 @@
-import readline from 'readline';
+const readline = require('readline');
 
 function readLineAsync(query) {
   return new Promise((resolve, reject) => {
@@ -22,4 +22,4 @@ function readLineAsync(query) {
   });
 }
 
-export default readLineAsync;
+module.exports = readLineAsync;

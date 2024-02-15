@@ -1,4 +1,4 @@
-import Car from '../domain/Car.js';
+const Car = require('../domain/Car.js');
 
 class CarService {
   #cars;
@@ -29,4 +29,4 @@ class CarService {
   }
 }
 
-export default CarService;
+module.exports = CarService;

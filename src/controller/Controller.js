@@ -1,6 +1,6 @@
-import CarService from '../service/CarService.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+const CarService = require('../service/CarService.js');
+const InputView = require('../view/InputView.js');
+const OutputView = require('../view/OutputView.js');
 
 class Controller {
   #carService;
@@ -29,4 +29,4 @@ class Controller {
   }
 }
 
-export default Controller;
+module.exports = Controller;

@@ -1,6 +1,6 @@
-import CONDITIONS from '../constant/Conditions.js';
-import { OUTPUT_MESSAGES } from '../constant/messages.js';
-import numberToDistanceSymbol from '../utils/numberToDistanceSymbol.js';
+const CONDITIONS = require('../constant/Conditions.js');
+const { OUTPUT_MESSAGES } = require('../constant/messages.js');
+const numberToDistanceSymbol = require('../utils/numberToDistanceSymbol.js');
 
 const OutputView = {
   // 추후 수정
@@ -32,4 +32,4 @@ const OutputView = {
   },
 };
 
-export default OutputView;
+module.exports = OutputView;
