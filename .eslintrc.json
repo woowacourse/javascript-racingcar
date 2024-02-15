@@ -1,6 +1,5 @@
 {
   "rules": {
-    "max-lines-per-function": ["error", { "max": 10 }],
     "max-depth": ["error", { "max": 2 }]
   },
   "env": {
@@ -11,5 +10,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "overrides": [
+    {
+      "files": ["*.test.js", "console.js"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    }
+  ],
   "extends": ["eslint:recommended"]
 }
