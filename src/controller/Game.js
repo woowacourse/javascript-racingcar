@@ -16,11 +16,7 @@ class Game {
     const cars = await Console.errorHandler(this.getCars);
     const tryCount = await Console.errorHandler(this.getTryCount);
 
-    console.log(OUTPUT.result);
-
-    for (let i = 0; i < tryCount; i++) {
-      this.playRound(cars);
-    }
+    this.playGame(cars, tryCount);
 
     Output.winnerResult(this.calculateWinner(cars));
   }
@@ -41,6 +37,14 @@ class Game {
     TryCountValidator.isNaturalNumber(Number(tryCount));
 
     return tryCount;
+  }
+
+  playGame(cars, tryCount) {
+    console.log(OUTPUT.result);
+
+    for (let i = 0; i < tryCount; i++) {
+      this.playRound(cars);
+    }
   }
 
   playRound(cars) {
