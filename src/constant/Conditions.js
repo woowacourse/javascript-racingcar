@@ -6,6 +6,12 @@ const CONDITIONS = Object.freeze({
   minRandomNumberRange: 0,
   maxRandomNumberRange: 9,
   moveDistance: 1,
+  minCarCount: 1,
+  maxCarCount: 10,
+  maxCarNameLength: 5,
+  minTryCount: 1,
+  maxTryCount: 1000,
+  numericPattern: /^\d+$/,
 });
 
 export default CONDITIONS;
