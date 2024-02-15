@@ -17,12 +17,12 @@ class CarList {
   }
 
   #getMaxPosition() {
-    let finalPosition = 0;
+    let maxPosition = 0;
     this.#carList.forEach((car) => {
       const carData = car.getData();
-      finalPosition = Math.max(finalPosition, carData.position);
+      maxPosition = Math.max(maxPosition, carData.position);
     });
-    return finalPosition;
+    return maxPosition;
   }
 
   #getFinalCarList() {
