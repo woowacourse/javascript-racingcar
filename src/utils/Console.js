@@ -18,6 +18,11 @@ class Console {
 
       rl.question(query, (input) => {
         rl.close();
+
+        if (input === '') {
+          reject(new Error('[ERROR] 입력은 공백이 될 수 없습니다.'));
+        }
+
         console.log(input);
         resolve(input);
       });
