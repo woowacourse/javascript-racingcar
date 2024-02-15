@@ -1,19 +1,22 @@
 class Car {
+  #name;
+  #advance;
+
   constructor(carName) {
-    this.carName = carName;
-    this.advance = 0;
+    this.#name = carName;
+    this.#advance = 0;
   }
 
-  updateAdvance(number) {
-    if (number >= 4) this.advance += 1;
+  getName() {
+    return this.#name;
   }
 
   getAdvance() {
-    return this.advance;
+    return this.#advance;
   }
 
-  getCarName() {
-    return this.carName;
+  updateAdvance(number) {
+    if (number >= 4) this.#advance += 1;
   }
 }
 
