@@ -11,7 +11,7 @@ class RacingGame {
     const cars = await repeatFunctionUntilIsValid(this.setCarNames);
     const roundCount = await repeatFunctionUntilIsValid(this.setRoundCount);
     roundCount.raceStart(cars);
-    OutputView.printRaceResult(roundCount.makeRaceResultOutput())
+    OutputView.printRaceResult(roundCount.makeRaceResultOutput());
     return this;
   }
 

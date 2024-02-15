@@ -40,6 +40,19 @@ class RoundCount {
 
     return roundResultOutput;
   }
+
+  judgeWinners() {
+    const winners = this.#findWinners();
+    return winners.split(', ');
+  }
+
+  #findWinners() {
+    const lastRound = this.#raceResult[this.#raceResult.length - 1];
+    const sortedByScore = lastRound.sort((prevCar, nextCar) => nextCar.score - prevCar.score);
+    const maxScore = sortedByScore[0].score;
+    const winnerCarNames = sortedByScore.filter(car => car.score === maxScore).map(car => car.name);
+    return winnerCarNames;
+  }
 }
 
 export default RoundCount;
