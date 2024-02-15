@@ -6,7 +6,6 @@
         "editor.formatOnSave": true
     },
     "editor.codeActionsOnSave": {
-        // For ESLint
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     }
 }

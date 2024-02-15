@@ -4,29 +4,28 @@
     "node": true,
     "jest": true
   },
-
   "extends": ["airbnb-base", "prettier",  "plugin:jsdoc/recommended", "plugin:jest/recommended"],
-
   "overrides": [
     {
-      "files": ["*.test.js"],
+      "files": ["*.test.js", "console.js"],
       "rules": {
         "max-lines-per-function": ["off"]
       }
     }
   ],
-
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-
   "rules": {
     "no-use-before-define": ["off"],
     "import/prefer-default-export": ["off"],
     "import/extensions": ["off"],
     "class-methods-use-this" : ["off"],
     "max-depth": ["error", 2],
-    "max-lines-per-function": ["error", { "max": 10 }]
+    "max-lines-per-function": ["error", { "max": 10, "ignoreComments": true }],
+    "jsdoc/require-returns" : ["off"],
+    "jsdoc/require-jsdoc" : ["off"],
+    "no-param-reassign" : ["off"]
   }
 }
