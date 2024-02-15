@@ -2,30 +2,20 @@ import Input from '../view/Input.js';
 import Output from '../view/Output.js';
 import CarNamesValidator from '../utils/CarNamesValidator.js';
 import TryCountValidator from '../utils/TryCountValidator.js';
+import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
 
 class Game {
   async startGame() {
-    const cars = await this.errorHandler(this.getCars);
-    const tryCount = await this.errorHandler(this.getTryCount);
+    const cars = await Console.errorHandler(this.getCars);
+    const tryCount = await Console.errorHandler(this.getTryCount);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
     }
 
     Output.winnerResult(this.calculateWinner(cars));
-  }
-
-  async errorHandler(getFunc) {
-    while (true) {
-      try {
-        const result = await getFunc();
-        return result;
-      } catch (err) {
-        console.log(err.message);
-      }
-    }
   }
 
   async getCars() {

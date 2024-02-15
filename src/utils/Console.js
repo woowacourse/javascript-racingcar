@@ -28,6 +28,17 @@ class Console {
       });
     });
   }
+
+  static async errorHandler(getFunc) {
+    while (true) {
+      try {
+        const result = await getFunc();
+        return result;
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  }
 }
 
 export default Console;
