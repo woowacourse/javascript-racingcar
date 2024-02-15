@@ -33,24 +33,30 @@ class RaceController {
   }
 
   calculateResult(tryNumber) {
-    for (let i = 0; i <= tryNumber; i++) {
+    for (let i = 0; i < tryNumber; i++) {
       this.#moveInstanceList.forEach((move) => {
         move.move();
       });
     }
   }
 
-  calculateWinner() {
+  calculateMaxMove() {
     const maxMove = Math.max(
       ...this.#moveInstanceList.map((moveInstance) =>
         count(moveInstance.getInfo().moveTrace)
       )
     );
+    return maxMove;
+  }
+
+  calculateWinner() {
+    const maxMove = this.calculateMaxMove();
     const result = this.#moveInstanceList
       .filter(
         (moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove
       )
       .map((moveInstance) => moveInstance.getInfo().carName);
+    console.log(result);
     return result;
   }
 }
