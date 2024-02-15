@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/System.js';
+import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
 import Car from './Car.js';
 
 class CarGame {
@@ -18,7 +18,7 @@ class CarGame {
 
   // eslint-disable-next-line class-methods-use-this
   #validateCarNamesLength(carName) {
-    if (carName.length > 5) {
+    if (carName.length > OPTION.CAR_NAME_MAX_LENGTH) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
   }

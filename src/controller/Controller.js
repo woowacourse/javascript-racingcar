@@ -1,3 +1,4 @@
+import { OPTION } from '../constants/System.js';
 import CarGame from '../model/CarGame.js';
 import Preprocessor from '../utils/Preprocessor.js';
 import InputView from '../view/InputView.js';
@@ -38,7 +39,7 @@ class Controller {
 
   async #inputCarNames() {
     this.#carNames = Preprocessor.filterOutEmptyStrings(
-      await InputView.readCarNames().split(','),
+      await InputView.readCarNames().split(OPTION.INPUT_SPLITER),
     );
   }
 

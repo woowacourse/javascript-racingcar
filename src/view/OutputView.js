@@ -1,4 +1,4 @@
-import { MESSAGE } from '../constants/System.js';
+import { MESSAGE, OPTION } from '../constants/System.js';
 
 const OutputView = {
   print(message) {
@@ -15,13 +15,13 @@ const OutputView = {
 
   printCurrentLocation(carInfos) {
     carInfos.forEach(({ name, location }) => {
-      this.print(`${name} : ${'-'.repeat(location)}`);
+      this.print(`${MESSAGE.CURRENT_LOCATION(name, location)}`);
+      this.print('');
     });
-    this.print('');
   },
 
   printWinners(winners) {
-    const result = winners.join(', ');
+    const result = winners.join(OPTION.OUPUT_SPLITER);
     this.print(`${MESSAGE.WINNER} ${result}`);
   },
 };
