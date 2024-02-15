@@ -1,3 +1,6 @@
+import CONFIG from './constants/config';
+import { ERROR_MESSAGE } from './constants/message';
+
 const Validator = {
   validateCarNameList(carNameList) {
     this.validateCarNameListLength(carNameList.length);
@@ -14,32 +17,32 @@ const Validator = {
   },
 
   validateCarNameListLength(length) {
-    if (length <= 1) {
-      throw new Error('[ERROR] 자동차 목록은 2대 이상 입력해주세요.');
+    if (length < CONFIG.MIN_CAR_NAME_LIST_LENGTH) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_LIST_LENGTH);
     }
   },
 
   validateCarNameLength(length) {
-    if (length === 0 || length > 5) {
-      throw new Error('[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다.');
+    if (length < CONFIG.MIN_CAR_NAME_LENGTH || length > CONFIG.MAX_CAR_NAME_LENGTH) {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
   },
 
   validateFloatNumber(turnCount) {
     if (!Number.isInteger(turnCount)) {
-      throw new Error('[ERROR] 시도할 횟수는 실수로 입력할 수 없습니다. 다시 입력해주세요.');
+      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
     }
   },
 
   validateNumber(turnCount) {
     if (Number.isNaN(turnCount)) {
-      throw new Error('[ERROR] 시도할 횟수는 숫자로만 입력해주세요.');
+      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
     }
   },
 
   validateNaturalNumber(turnCount) {
-    if (turnCount <= 0) {
-      throw new Error('[ERROR] 시도할 횟수는 1 이상의 자연수로만 입력해주세요.');
+    if (turnCount < CONFIG.MIN_TURN_COUNT) {
+      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NATURAL_NUMBER);
     }
   },
 };
