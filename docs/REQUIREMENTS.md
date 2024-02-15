@@ -47,10 +47,10 @@
    - [x] 유효성 검증 테스트
      - [x] 생성 시 이름 글자 수가 5자 초과인 경우 오류를 발생시키는가
  - [ ] Cars
-   - [ ] 기능 테스트 
-     - [ ] goAll
-     - [ ] getMileageBoard
-     - [ ] getFirstPlaceNames
+   - [x] 기능 테스트 
+     - [x] goAll
+     - [x] getMileageBoard
+     - [x] getFirstPlaceNames
    - [ ] 유효성 검증 테스트
      - [ ] 차 개수가 2 이상 100 이하가 아닌 경우 오류룰 발생시키는가
      - [ ] 중복된 차 이름이 존재할 경우 오류를 발생시키는가
