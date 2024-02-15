@@ -68,15 +68,17 @@ class Game {
       ...this.#carList.map((car) => car.getCarInfo().step),
     );
 
-    this.#carList.forEach((car) => {
-      const { step, name } = car.getCarInfo();
+    if (winnerPoint)
+      this.#carList.forEach((car) => {
+        const { step, name } = car.getCarInfo();
 
-      if (step === winnerPoint) this.#winner.push(name);
-    });
+        if (step === winnerPoint) this.#winner.push(name);
+      });
   }
 
   #printWinner() {
-    const message = `\n${OUTPUT_MESSAGE.winner}: ${this.#winner.join(',')}`;
+    const winners = this.#winner.join(', ');
+    const message = `\n${OUTPUT_MESSAGE.winner}: ${winners || '없음'}`;
 
     OutputView.printMessage(message);
   }
