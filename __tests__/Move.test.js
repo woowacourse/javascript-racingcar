@@ -9,7 +9,7 @@ describe("자동차 이동 테스트", () => {
 
     const move = new Move(carName);
     Random.randomNum = jest.fn();
-    mockRandom.map((num) => Random.randomNum.mockReturnValueOnce(num));
+    mockRandom.forEach((num) => Random.randomNum.mockReturnValueOnce(num));
 
     //Act
     for (let i = 0; i < 5; i++) {
