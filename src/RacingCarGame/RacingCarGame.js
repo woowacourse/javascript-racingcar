@@ -20,8 +20,8 @@ class RacingCarGame {
   async #init() {
     const setGame = new SetGame();
     await setGame.init();
-    this.#cars = setGame.get().cars;
-    this.#attempt = setGame.get().attempt;
+    this.#cars = setGame.getGameInputs().cars;
+    this.#attempt = setGame.getGameInputs().attempt;
     this.#play();
   }
 

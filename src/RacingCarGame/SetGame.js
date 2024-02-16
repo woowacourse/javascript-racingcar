@@ -66,7 +66,7 @@ class SetGame {
     }
   }
 
-  get() {
+  getGameInputs() {
     return { cars: this.#carArray, attempt: this.#attempt };
   }
 }
