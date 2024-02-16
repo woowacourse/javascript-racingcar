@@ -1,8 +1,8 @@
-import Car from '../domain/Car';
+import Car from './Car';
 
-const RaceController = {
+const RaceGameCalculator = {
   /**
-   * @param {Car[]} cars
+   * @param {Car[]} cars Car 클래스의 인스턴스
    * @returns
    */
   getCycleResult: cars => {
@@ -13,7 +13,7 @@ const RaceController = {
   },
 
   /**
-   * @param {Car[]} cars
+   * @param {Car[]} cars Car 클래스의 인스턴스
    * @returns
    */
   getWinnersPosition: cars => {
@@ -24,7 +24,7 @@ const RaceController = {
   },
 
   /**
-   * @param {Car[]} cars
+   * @param {Car[]} cars Car 클래스의 인스턴스
    * @returns
    */
   getWinners: (cars, winnersPosition) => {
@@ -36,4 +36,4 @@ const RaceController = {
   },
 };
 
-export default RaceController;
+export default RaceGameCalculator;
