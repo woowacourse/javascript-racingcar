@@ -11,15 +11,15 @@ class RacingGame {
   }
 
   startRace(randomMoveCounts) {
-    const racingResult = Array.from({ length: this.#tryCount }, (_, rowIndex) =>
-      this.#updateRacingResult(rowIndex, randomMoveCounts),
+    const racingResult = Array.from({ length: this.#tryCount }, (_, racingTurn) =>
+      this.#updateRacingResult(racingTurn, randomMoveCounts),
     );
 
     return racingResult;
   }
 
-  #updateRacingResult(rowIndex, randomMoveCounts) {
-    return this.#cars.map((car, columnIndex) => car.move(randomMoveCounts[rowIndex][columnIndex]));
+  #updateRacingResult(racingTurn, randomMoveCounts) {
+    return this.#cars.map((car, carIndex) => car.move(randomMoveCounts[racingTurn][carIndex]));
   }
 }
 
