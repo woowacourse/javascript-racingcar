@@ -1,11 +1,12 @@
-import CarRace from '../domains/CarRace.js';
+import CarRace from "../domains/CarRace.js";
 
-import InputView from '../views/InputView.js';
-import OutputView from '../views/OutputView.js';
+import InputView from "../views/InputView.js";
+import OutputView from "../views/OutputView.js";
 
-import carNamesValidator from '../validators/carNamesValidator';
-import tryCountValidator from '../validators/tryCountValidator';
-import { MESSAGES } from '../constants/car-race.js';
+import carNamesValidator from "../validators/carNamesValidator";
+import tryCountValidator from "../validators/tryCountValidator";
+import { MESSAGES } from "../constants/car-race.js";
+import processInputWithRetry from "../utils/processInputWithRetry.js";
 
 class RaceController {
   #carRace;
@@ -15,25 +16,23 @@ class RaceController {
   }
 
   async #processCarNames() {
-    try {
-      const carNames = await InputView.readCarNames();
-      carNamesValidator.validate(carNames);
-      return carNames;
-    } catch (error) {
-      OutputView.printMessage(error.message);
-      return await this.#processCarNames();
-    }
+    const carNames = processInputWithRetry(
+      InputView.readCarNames.bind(InputView),
+      carNamesValidator.validate.bind(carNamesValidator),
+      OutputView.printMessage.bind(OutputView)
+    );
+
+    return carNames;
   }
 
   async #processTryCount() {
-    try {
-      const tryCount = await InputView.readTryCount();
-      tryCountValidator.validate(tryCount);
-      return tryCount;
-    } catch (error) {
-      OutputView.printMessage(error.message);
-      return await this.#processTryCount();
-    }
+    const carNames = processInputWithRetry(
+      InputView.readTryCount.bind(InputView),
+      tryCountValidator.validate.bind(tryCountValidator),
+      OutputView.printMessage.bind(OutputView)
+    );
+
+    return carNames;
   }
 
   async #initCarRace() {
