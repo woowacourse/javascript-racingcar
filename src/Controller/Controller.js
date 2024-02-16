@@ -5,9 +5,9 @@ import AppError from '../utils/Error';
 
 const RESULT_MESSAGE = '실행 결과';
 const ERROR_MESSAGES = Object.freeze({
-  onlyNum: '숫자 값만 입력해주세요.',
-  invalidNumRange: '1 이상 200미만의 숫자만 입력해주세요.',
-  duplicateName: '중복된 이름이 있습니다.',
+  ONLY_NUM: '숫자 값만 입력해주세요.',
+  INVALID_NUM_RANGE: '1 이상 200미만의 숫자만 입력해주세요.',
+  DUPLICATE_NAME: '중복된 이름이 있습니다.',
 });
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
 const BLANK_STR = '';
@@ -40,7 +40,7 @@ export default class Controller {
 
   static checkCarDuplicate(carNames) {
     if (carNames.length !== new Set([...carNames]).size) {
-      throw new AppError(ERROR_MESSAGES.duplicateName);
+      throw new AppError(ERROR_MESSAGES.DUPLICATE_NAME);
     }
   }
 
@@ -58,31 +58,32 @@ export default class Controller {
 
   static checkTryNum(number) {
     if (Number.isNaN(number)) {
-      throw new AppError(ERROR_MESSAGES.onlyNum);
+      throw new AppError(ERROR_MESSAGES.ONLY_NUM);
     }
 
     if (number < TRY_RANGE.min || number > TRY_RANGE.max) {
-      throw new AppError(ERROR_MESSAGES.invalidNumRange);
+      throw new AppError(ERROR_MESSAGES.INVALID_NUM_RANGE);
     }
   }
 
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
       this.#cars.forEach((car) => {
-        car.move(Controller.makeRandomNumber1to10());
+        car.move(Controller.makeRandomNumber0to10());
         OutputView.printCarCurrentDistance(car);
       });
       OutputView.printMessage(BLANK_STR);
     }
   }
 
-  static makeRandomNumber1to10() {
+  static makeRandomNumber0to10() {
     return Math.floor(Math.random() * 10);
   }
 
   static calculateWinners(cars) {
+    const MIN_DISTACNE = 0;
     const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
-    if (maxDistance) {
+    if (maxDistance !== MIN_DISTACNE) {
       const winners = cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
     }
