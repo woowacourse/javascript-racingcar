@@ -28,6 +28,9 @@ export default class Car {
   }
 
   #validate(name) {
+    if (!name.length) {
+      throw new Error(ERROR_MESSAGE.carNameIsBlank);
+    }
     if (name.length > Car.MAX_NAME_LENGTH) {
       throw new Error(ERROR_MESSAGE.invalidCarNameLength);
     }

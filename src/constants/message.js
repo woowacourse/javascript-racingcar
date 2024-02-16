@@ -3,12 +3,13 @@ import { applyFunctionToValues } from "../utils/applyFunctionToValues.js";
 const addErrorPrefix = (message) => `[ERROR] ${message}`;
 
 const RAW_ERROR_MESSAGE = {
-  invalidCarNameLength: "이름은 5자 이하여야 합니다.",
+  invalidCarNameLength: "이름은 5자 이하로 입력해주세요.",
+  carNameIsBlank: "이름을 1자 이상 입력해주세요.",
   invalidCarLength: "자동차는 2대 이상 100대 이하만 가능합니다.",
-  duplicateCarName: "중복되지 않은 이름을 입력해주세요.",
+  duplicateCarName: "자동차 이름이 중복되지 않게 입력해주세요.",
   notCarType: "Car 인스턴스만 가능합니다.",
 
-  notInteger: "정수를 입력해주세요.",
+  notInteger: "정수로 입력해주세요.",
   invalidRoundNumber: "1 이상, 100 이하의 숫자를 입력해주세요.",
 };
 
