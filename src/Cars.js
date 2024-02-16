@@ -17,7 +17,7 @@ class Cars {
     }, '');
   }
 
-  findWinner() {
+  findWinners() {
     const maxDistance = Math.max(
       ...this.#carList.map((car) => car.getDistance())
     );
