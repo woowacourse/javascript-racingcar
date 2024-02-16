@@ -1,4 +1,4 @@
-import RandomMoveCountMaker from './module';
+import RandomMoveCountMaker from './RandomMoveCountMaker';
 
 jest.mock('../../utils/random.js', () => ({
   pickUniqueNumbersInRange: jest.fn((min, max, length) => Array.from({ length }, (_, index) => index)),

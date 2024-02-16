@@ -1,4 +1,4 @@
-import RacingWinnerRecorder from './module.js';
+import RacingWinnerRecorder from './RacingWinnerRecorder';
 
 describe('레이싱 게임 우승자 생성 테스트', () => {
   // given

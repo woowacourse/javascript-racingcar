@@ -1,4 +1,4 @@
-import { FORMAT_MESSAGE } from './module';
+import { FORMAT_MESSAGE } from './messages';
 
 describe('자동차 경주 문자열 변환 테스트', () => {
   describe('racingResultToString 메서드를 통한 자동차 경주 결과 문자열 변환 테스트', () => {

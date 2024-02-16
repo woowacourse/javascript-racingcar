@@ -1,4 +1,4 @@
-import AppError from '../../errors/AppError/module.js';
+import AppError from '../../errors/AppError/AppError.js';
 import CommonValidator from './CommonValidator.js';
 
 describe('공통 유효성 검사 테스트', () => {

@@ -1,4 +1,4 @@
-import AppError from '../../errors/AppError/module.js';
+import AppError from '../../errors/AppError/AppError.js';
 import TryCountValidator from './TryCountValidator.js';
 
 describe('자동차 시도 횟수 유효성 검사 테스트', () => {

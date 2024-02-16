@@ -1,4 +1,4 @@
-import AppError from '../../errors/AppError/module.js';
+import AppError from '../../errors/AppError/AppError.js';
 import CarNameValidator from './CarNameValidator.js';
 
 describe('자동차 이름 유효성 검사 테스트', () => {
