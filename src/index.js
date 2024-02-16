@@ -1,4 +1,4 @@
-import MainController from './Controller/MainController';
+import MainController from './Controller/MainController.js';
 
-const gameController = new MainController();
-gameController.play();
+const mainController = new MainController();
+await mainController.play();

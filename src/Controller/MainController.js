@@ -1,6 +1,6 @@
-import CarList from '../Domain/CarList';
-import CarController from './CarController';
-import InputView from '../View/InputView';
+import CarList from '../Domain/CarList.js';
+import InputView from '../View/InputView.js';
+import GameController from './GameController.js';
 
 class MainController {
 	async play() {
@@ -8,8 +8,8 @@ class MainController {
 		const tryNumber = await InputView.askTryNumber();
 
 		const carList = new CarList(names);
-		const carController = new CarController(carList, tryNumber);
-		carController.playAllTurn();
+		const gameController = new GameController(carList, tryNumber, names);
+		gameController.playAllTurn();
 	}
 }
 
