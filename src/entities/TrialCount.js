@@ -38,7 +38,8 @@ class TrialCount {
   }
 
   #validateInteger(countStr) {
-    if (parseInt(countStr).toString() !== countStr) {
+    const isInteger = parseInt(countStr).toString() !== countStr;
+    if (isInteger) {
       throw new Error(ERRORS.trialInteger);
     }
   }
