@@ -1,6 +1,6 @@
 import { SYMBOLS } from '../../constants/symbols.js';
 import { startValidation } from '../startValidation.js';
-import { CAR_NAME_RANGE, CAR_NAME_REGEX, MIN_CAR_LENGTH } from './constant.js';
+import { CAR_NAME_RANGE, CAR_NAME_REGEX, CAR_LENGTH_RANGE } from './constant.js';
 
 /**
  * @module CarNameValidator
@@ -28,9 +28,9 @@ const CarNameValidator = Object.freeze({
     }),
 
     invalidCarLength: Object.freeze({
-      errorMessage: `자동차는 ${MIN_CAR_LENGTH}대 이상 부터 가능합니다.`,
+      errorMessage: `자동차는 ${CAR_LENGTH_RANGE.min}대 이상 부터 가능합니다.`,
       isValid(inputValue) {
-        return inputValue.split(SYMBOLS.comma).length >= MIN_CAR_LENGTH;
+        return inputValue.split(SYMBOLS.comma).length >= CAR_LENGTH_RANGE.min;
       },
     }),
 
