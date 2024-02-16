@@ -1,4 +1,3 @@
-import Game from '../src/RacingController';
 import Validation from '../src/utils/Validation';
 import { ERROR_MESSAGE } from '../src/constants';
 

@@ -1,4 +1,3 @@
-import Game from '../src/RacingController';
 import Cars from '../src/Cars';
 import RandomNumberGenerator from '../src/utils/RandomNumberGenerator';
 
