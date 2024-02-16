@@ -2,25 +2,21 @@ import { MESSAGES } from '../constants/car-race';
 import Console from '../utils/Console';
 
 const OutputView = {
-  printMessage(message) {
-    Console.print(message);
-  },
-
   printRoundResult(roundResult) {
     const carNames = Object.keys(roundResult);
 
     carNames.forEach((name) => {
       const positionMark = MESSAGES.positionMark.repeat(roundResult[name]);
-      this.printMessage(`${name} : ${positionMark}`);
+      Console.print(`${name} : ${positionMark}`);
     });
   },
 
   printWinners(winners) {
-    this.printMessage(`${MESSAGES.winner}${winners.join(',')}`);
+    Console.print(`${MESSAGES.winner}${winners.join(',')}`);
   },
 
   printBlankLine() {
-    this.printMessage('');
+    Console.print('');
   },
 };
 

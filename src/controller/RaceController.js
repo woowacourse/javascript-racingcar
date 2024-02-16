@@ -6,6 +6,7 @@ import OutputView from '../views/OutputView.js';
 import carNamesValidator from '../validators/carNamesValidator';
 import tryCountValidator from '../validators/tryCountValidator';
 import { MESSAGES } from '../constants/car-race.js';
+import Console from '../utils/Console.js';
 
 class RaceController {
   #carRace;
@@ -20,7 +21,7 @@ class RaceController {
       carNamesValidator.validate(carNames);
       return carNames;
     } catch (error) {
-      OutputView.printMessage(error.message);
+      Console.print(error.message);
       return await this.#processCarNames();
     }
   }
@@ -31,7 +32,7 @@ class RaceController {
       tryCountValidator.validate(tryCount);
       return tryCount;
     } catch (error) {
-      OutputView.printMessage(error.message);
+      Console.print(error.message);
       return await this.#processTryCount();
     }
   }
@@ -45,7 +46,7 @@ class RaceController {
   }
 
   async #playCarRace(tryCount) {
-    OutputView.printMessage(MESSAGES.result);
+    Console.print(MESSAGES.result);
 
     Array.from({ length: tryCount }, () => {
       const roundResult = this.#carRace.makesRoundResult();
