@@ -1,5 +1,5 @@
 const OutputView = {
-  print() {
+  print(message) {
     console.log(message);
   },
 
