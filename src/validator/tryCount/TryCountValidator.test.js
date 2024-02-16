@@ -30,7 +30,7 @@ describe('자동차 시도 횟수 유효성 검사 테스트', () => {
     );
   });
 
-  describe('비 예외 테스트', () => {
+  describe('정상 동작 테스트', () => {
     test.each([
       {
         input: '1',

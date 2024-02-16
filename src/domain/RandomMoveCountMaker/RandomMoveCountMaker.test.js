@@ -23,7 +23,7 @@ describe('시도 횟수와 총 자동차 대수가 주어졌을 때 알맞은 �
   ];
 
   test.each(testCases)(
-    'tryCount가 $tryCount고, racingCarNamesLength가 $racingCarNamesLength일 때, 예상한 결과 값이 도출된다.',
+    'tryCount가 $tryCount이고, racingCarNamesLength가 $racingCarNamesLength일 때, racingCarNamesLength 길이의 tryCount개의 배열이 나와야 하며 예상한 결과 값 $expectedRandomMoveCounts이 도출된다.',
     ({ tryCount, racingCarNamesLength, expectedRandomMoveCounts }) => {
       // when
       const randomMoveCounts = RandomMoveCountMaker.execute(tryCount, racingCarNamesLength);
