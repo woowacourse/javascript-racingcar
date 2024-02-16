@@ -5,12 +5,12 @@ const { INPUT } = Message;
 
 class Input {
   static async carName() {
-    const input = await Console.readLineAsync(INPUT.car_name);
+    const input = await Console.readLineAsync(INPUT.CAR_NAME);
     return input;
   }
 
   static async tryCount() {
-    const input = await Console.readLineAsync(INPUT.try_count);
+    const input = await Console.readLineAsync(INPUT.TRY_COUNT);
     return input;
   }
 }

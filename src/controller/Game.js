@@ -40,7 +40,7 @@ class Game {
   }
 
   playGame(cars, tryCount) {
-    console.log(OUTPUT.result);
+    console.log(OUTPUT.RESULT);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
