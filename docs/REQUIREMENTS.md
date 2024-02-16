@@ -58,5 +58,5 @@
 
 6. 지그 피드백 반영 사항
   - [x] 변수 명 winner 복수형 의미를 담아 s 붙이기
-  - [ ] 함수명은 동사형으로! (repeatable -> repeat)
+  - [x] 함수명은 동사형으로! (repeatable -> repeat)
   - [ ] 불필요한 객체 형태의 export를 export const 형식으로 변경

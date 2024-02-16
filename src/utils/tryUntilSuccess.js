@@ -1,7 +1,7 @@
 import { print } from "./console.js";
 
 const tryUntilSuccess = (func) => {
-  const repeatable = async (...args) => {
+  const repeat = async (...args) => {
     while (true) {
       try {
         return await func(...args);
@@ -11,7 +11,7 @@ const tryUntilSuccess = (func) => {
     }
   };
 
-  return repeatable;
+  return repeat;
 };
 
 export { tryUntilSuccess };
