@@ -25,12 +25,11 @@ class RacingCarGame {
     OutputView.printNewLine();
     OutputView.printAttemptTitle();
     this.#iterateAttempt();
-    this.#findChampion();
+    this.#setChampion();
     OutputView.printChampions(this.#champion);
   }
 
   #iterateAttempt() {
-    // "실행결과" 출력
     for (let i = 0; i < this.#attempt; i++) {
       this.#cars.forEach((car) => {
         car.moveOn();
@@ -40,6 +39,11 @@ class RacingCarGame {
     }
   }
 
+  #setChampion() {
+    const champion = this.#findChampion();
+    this.#champion = champion.map((car) => car.getInfo().name);
+  }
+
   #findChampion() {
     const maxPosition = Math.max(
       ...this.#cars.map((car) => car.getInfo().position),
@@ -47,7 +51,8 @@ class RacingCarGame {
     const result = this.#cars.filter(
       (car) => car.getInfo().position === maxPosition,
     );
-    this.#champion = result.map((car) => car.getInfo().name);
+
+    return result;
   }
 }
 
