@@ -13,7 +13,9 @@ export default class Race {
 
   async start() {
     const cars = await tryUntilSuccess(this.#getCars.bind(this))();
-    const roundNumber = await tryUntilSuccess(this.#getRoundNumber.bind(this))();
+    const roundNumber = await tryUntilSuccess(
+      this.#getRoundNumber.bind(this)
+    )();
     this.#runRounds(cars, roundNumber);
   }
 
@@ -61,7 +63,7 @@ export default class Race {
       this.#processRound(cars);
     }
 
-    this.#showWinner(cars);
+    this.#showWinners(cars);
   }
 
   #processRound(cars) {
@@ -72,9 +74,9 @@ export default class Race {
     OutputView.printBlankLine();
   }
 
-  #showWinner(cars) {
-    const winner = cars.getFirstPlaceNames();
+  #showWinners(cars) {
+    const winners = cars.getFirstPlaceNames();
 
-    OutputView.printWinner(winner);
+    OutputView.printWinners(winners);
   }
 }

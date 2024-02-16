@@ -16,8 +16,8 @@ class OutputView {
     });
   }
 
-  static printWinner(winner) {
-    print(CONSOLE_MESSAGE.winnerForm(winner));
+  static printWinners(winners) {
+    print(CONSOLE_MESSAGE.winnersForm(winners));
   }
 }
 
