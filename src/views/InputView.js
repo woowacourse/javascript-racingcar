@@ -1,7 +1,7 @@
 import readline from 'readline';
 //import OutputView from './OutputView.js';
 import MESSAGES from '../constants/Messages.js';
-import Cars from '../entities/Cars.js';
+import CarList from '../entities/CarList.js';
 import TrialCount from '../entities/TrialCount.js';
 import OutputView from './outputView.js';
 
@@ -36,10 +36,10 @@ const Private = {
     });
   },
 
-  async robustInput(readline, Object) {
+  async robustInput(readline, EntityObject) {
     while (true) {
       try {
-        return new Object(await readline());
+        return new EntityObject(await readline());
       } catch (error) {
         OutputView.print(error.message);
       }
@@ -49,7 +49,7 @@ const Private = {
 
 const InputView = {
   readCarNames() {
-    return Private.robustInput(Private.readCarNames, Cars);
+    return Private.robustInput(Private.readCarNames, CarList);
   },
 
   readTrialCount() {
