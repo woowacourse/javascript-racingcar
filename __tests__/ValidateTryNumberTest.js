@@ -1,4 +1,4 @@
-import { validateTryNumber } from '../src/Utils/validate.js';
+import { validateTryNumber } from '../src/Domain/Validate.js';
 
 describe('시도할 횟수 도메인 테스트', () => {
 	// Arrange

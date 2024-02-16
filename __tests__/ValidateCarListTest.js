@@ -1,4 +1,4 @@
-import { validateCarList } from '../src/Utils/validate.js';
+import { validateCarList } from '../src/Domain/Validate.js';
 
 describe('자동차 도메인 테스트', () => {
 	test('자동차 이름이 5자 이상이면 에러를 낸다', () => {

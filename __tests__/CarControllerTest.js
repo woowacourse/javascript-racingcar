@@ -1,5 +1,5 @@
 import { makeRandomNum } from '../src/Utils/MissionUtils.js';
-import CarController from '../src/Domain/CarController.js';
+import CarController from '../src/Controller/CarController.js';
 
 jest.mock('../src/Utils/MissionUtils.js', () => ({
 	makeRandomNum: jest.fn(),

@@ -1,6 +1,6 @@
 import { MESSAGE } from '../Constant/Constant.js';
 import { readLineAsync } from '../Utils/MissionUtils.js';
-import { validateCarList, validateTryNumber } from '../Utils/validate.js';
+import { validateCarList, validateTryNumber } from '../Domain/Validate.js';
 import OutputView from './OutputView.js';
 
 const InputView = {
