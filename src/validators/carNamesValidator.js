@@ -1,25 +1,36 @@
-import { ERROR_MESSAGES } from '../constants/car-race';
+import { ERROR_MESSAGES, RULES } from '../constants/car-race';
 import InvalidInputException from '../exceptions/InvalidInputException';
 
 const carNamesValidator = {
   isUnique(carNames) {
     const carNamesSet = new Set(carNames);
+    return carNames.length !== carNamesSet.size;
+  },
 
-    if (carNames.length !== carNamesSet.size) {
-      throw new InvalidInputException(ERROR_MESSAGES.carNameUniqueness);
+  validateUniqueness(carNames) {
+    if (this.isUnique(carNames)) {
+      throw new Error(ERROR_MESSAGES.carNameUniqueness);
     }
   },
 
   isValidLength(carNames) {
-    if (carNames.some((name) => name.length < 1 || name.length > 5)) {
+    return carNames.every(
+      (name) =>
+        name.length >= RULES.minCarNameLength &&
+        name.length <= RULES.maxCarNameLength,
+    );
+  },
+
+  validateLength(carNames) {
+    if (!this.isValidLength(carNames)) {
       throw new InvalidInputException(ERROR_MESSAGES.carNameLength);
     }
   },
 
   validate(carNames) {
     const carNamesArray = carNames.split(',').map((name) => name.trim());
-    this.isValidLength(carNamesArray);
-    this.isUnique(carNamesArray);
+    this.validateLength(carNamesArray);
+    this.validateUniqueness(carNamesArray);
   },
 };
 

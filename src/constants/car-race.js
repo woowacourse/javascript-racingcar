@@ -22,6 +22,8 @@ export const ERROR_MESSAGES = {
 export const RULES = {
   minRandomNumber: 1,
   maxRandomNumber: 9,
+  minCarNameLength: 1,
+  maxCarNameLength: 5,
   moveStandard: 4,
   initialPosition: 0,
   movingUnit: 1,
