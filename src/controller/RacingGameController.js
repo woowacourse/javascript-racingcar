@@ -5,15 +5,6 @@ import RacingGame from '../domain/RacingGame/module.js';
 import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
 import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/module.js';
 
-const RacingGameController = {
-  async run() {
-    const { racingCarNames, tryCount } = await processUserInput();
-    processRacingGame({ racingCarNames, tryCount });
-  },
-};
-
-export default RacingGameController;
-
 async function processUserInput() {
   const racingCarNames = await ErrorHandler.retryOnErrors(() => InputView.readRacingCarNames());
   const tryCount = await ErrorHandler.retryOnErrors(() => InputView.readTryCount());
@@ -31,3 +22,12 @@ function processRacingGame({ racingCarNames, tryCount }) {
   OutputView.printRacingResult(racingResult);
   OutputView.printRacingWinners(racingWinners);
 }
+
+const RacingGameController = {
+  async run() {
+    const { racingCarNames, tryCount } = await processUserInput();
+    processRacingGame({ racingCarNames, tryCount });
+  },
+};
+
+export default RacingGameController;
