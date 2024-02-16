@@ -1,9 +1,9 @@
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
-import ErrorHandler from '../errors/ErrorHandler/module.js';
 import RacingGame from '../domain/RacingGame/module.js';
 import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
 import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/module.js';
+import RetryHandler from '../errors/RetryHandler/module.js';
 
 const RacingGameController = Object.freeze({
   async run() {
@@ -15,8 +15,8 @@ const RacingGameController = Object.freeze({
 export default RacingGameController;
 
 async function processUserInput() {
-  const racingCarNames = await ErrorHandler.retryOnErrors(() => InputView.readRacingCarNames());
-  const tryCount = await ErrorHandler.retryOnErrors(() => InputView.readTryCount());
+  const racingCarNames = await RetryHandler.errorWithLogging(() => InputView.readRacingCarNames());
+  const tryCount = await RetryHandler.errorWithLogging(() => InputView.readTryCount());
 
   return { racingCarNames, tryCount };
 }
