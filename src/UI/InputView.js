@@ -1,7 +1,7 @@
 import readline from 'readline';
 
-class InputView {
-  static readLineAsync(query) {
+const InputView = {
+  readNextLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
@@ -18,10 +18,10 @@ class InputView {
 
       rl.question(query, input => {
         rl.close();
-        resolve(input);
+        resolve(`${query}${'\n'}`);
       });
     });
-  }
-}
+  },
+};
 
 export default InputView;

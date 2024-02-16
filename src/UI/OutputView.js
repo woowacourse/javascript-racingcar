@@ -1,11 +1,11 @@
-class OutputView {
-  static print(message) {
+const OutputView = {
+  print: message => {
     console.log(message);
-  }
+  },
 
-  static lineBreak() {
+  lineBreak: () => {
     console.log();
-  }
-}
+  },
+};
 
 export default OutputView;

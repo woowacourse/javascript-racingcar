@@ -20,7 +20,7 @@ class App {
   }
 
   async readCarNames() {
-    const answer = await InputView.readLineAsync(MESSAGE.carNameInput).then(
+    const answer = await InputView.readNextLineAsync(MESSAGE.carNameInput).then(
       names => names.split(SEPARATOR.carName).map(string => string.trim())
     );
     const result = Validator.validateCars(answer);
@@ -29,7 +29,7 @@ class App {
   }
 
   async readMaxTryCount() {
-    const answer = await InputView.readLineAsync(MESSAGE.maxTryCountInput);
+    const answer = await InputView.readNextLineAsync(MESSAGE.maxTryCountInput);
 
     const result = Validator.validateTryCount(answer);
     if (!result) throw new Error(MESSAGE.invalidMaxTryCount);
