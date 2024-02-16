@@ -6,9 +6,9 @@ import Random from '../src/model/Random.js';
 describe('Car 이름 테스트', () => {
   // 올바른 테스트
   test.each`
-    testTitle                        | carName   | expected
-    ${'올바른 이름이 들어온 경우 1'} | ${'pobi'} | ${'pobi'}
-    ${'올바른 이름이 들어온 경우 2'} | ${'cron'} | ${'cron'}
+    testTitle          | carName   | expected
+    ${'올바른 경우의'} | ${'pobi'} | ${'pobi'}
+    ${'올바른 경우의'} | ${'cron'} | ${'cron'}
   `(
     '$testTitle테스트는 $carName이 입력되면 $expected 이름을 출력한다.',
     ({ carName, expected }) => {
