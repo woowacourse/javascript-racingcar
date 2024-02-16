@@ -1,4 +1,4 @@
-import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../model/Car.js';
+import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from '../model/Name.js';
 import { MAX_TRY_COUNT, MIN_TRY_COUNT } from '../model/TryCount.js';
 
 const ERROR_MESSAGE = Object.freeze({
