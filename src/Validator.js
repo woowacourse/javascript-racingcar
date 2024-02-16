@@ -30,7 +30,7 @@ const Validator = {
 
   validateFloatNumber(turnCount) {
     if (!Number.isInteger(turnCount)) {
-      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
+      throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_INTEGER);
     }
   },
 
