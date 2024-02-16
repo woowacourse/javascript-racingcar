@@ -24,16 +24,8 @@ class Validation {
   }
 
   static isNaturalNumber(tryNumber) {
-    if (tryNumber === "" || isNaN(tryNumber)) {
-      throw new Error(NOT_A_NUMBER);
-    }
-    if (Number(tryNumber) <= 0) {
-      throw new Error(NATURAL_NUMBER);
-    }
-    if (tryNumber.includes(".")) {
-      throw new Error(NATURAL_NUMBER);
-    }
-    return;
+    if (Number.isFinite(tryNumber)) return ;
+    throw new Error(NATURAL_NUMBER);
   }
 }
 
