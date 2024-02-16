@@ -9,7 +9,9 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      input.forEach((carName) => {
+        Validator.validateCarNameLength(carName.length);
+      });
     };
 
     /// Assert
@@ -22,7 +24,9 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      input.forEach((carName) => {
+        Validator.validateCarNameLength(carName.length);
+      });
     };
 
     /// Assert
@@ -35,7 +39,7 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      Validator.validateCarNameListLength(input.length);
     };
 
     /// Assert
@@ -48,7 +52,7 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateNaturalNumber(input);
     };
 
     /// Assert
@@ -61,7 +65,7 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateNumber(input);
     };
 
     /// Assert
@@ -74,7 +78,7 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateFloatNumber(input);
     };
 
     /// Assert
