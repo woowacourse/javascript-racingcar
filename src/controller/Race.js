@@ -20,7 +20,7 @@ export default class Race {
 
   async #getCars() {
     const rawCarNames = await InputView.readCarNames();
-    const parsedCarNames = this.parseCarNames(rawCarNames);
+    const parsedCarNames = this.#parseCarNames(rawCarNames);
     const cars = this.#makeCars(parsedCarNames);
 
     return cars;
@@ -46,7 +46,7 @@ export default class Race {
     this.#showWinners(cars);
   }
 
-  parseCarNames(rawCarNames) {
+  #parseCarNames(rawCarNames) {
     const parsedCarNames = trimAll(splitByComma(rawCarNames));
     return parsedCarNames;
   }
