@@ -6,7 +6,7 @@ describe('사용자 입력 유효성 검사', () => {
     '자동차 이름 길이 유효성 검사',
     (nameArray) => {
       expect(() => Validation.carNamesArrayValidate(nameArray)).toThrow(
-        ERROR_MESSAGE.CAR_NAME_INPUT_ERROR.CAR_NAME_IS_NOT_IN_RANGE
+        ERROR_MESSAGE.CAR_NAME_INPUT_ERROR.NOT_IN_RANGE
       );
     }
   );
@@ -14,7 +14,7 @@ describe('사용자 입력 유효성 검사', () => {
     '시도 횟수 숫자 유효성 검사',
     (nameArray) => {
       expect(() => Validation.tryCountValidate(nameArray)).toThrow(
-        ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.TRY_COUNT_IS_LESS_THAN_ZERO
+        ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.SHOULD_BE_POSITIVE
       );
     }
   );

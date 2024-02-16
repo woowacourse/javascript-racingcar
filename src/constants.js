@@ -1,11 +1,11 @@
 const ERROR_MESSAGE = Object.freeze({
   CAR_NAME_INPUT_ERROR: Object.freeze({
-    CAR_NAME_IS_NOT_IN_RANGE:
+    NOT_IN_RANGE:
       '[ERROR] 각 자동차의 이름은 1 ~ 5자 이내로 입력해주세요.',
   }),
 
   TRY_COUNT_INPUT_ERROR: Object.freeze({
-    TRY_COUNT_IS_LESS_THAN_ZERO:
+    SHOULD_BE_POSITIVE:
       '[ERROR] 시도 횟수를 음수가 아닌 정수로 입력해주세요.',
   }),
 });

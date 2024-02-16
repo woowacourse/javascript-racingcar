@@ -8,7 +8,7 @@ const Validation = {
         carName.length > NUMBERS.CAR_NAME_MAXIMUM_LENGTH
       ) {
         throw new Error(
-          ERROR_MESSAGE.CAR_NAME_INPUT_ERROR.CAR_NAME_IS_NOT_IN_RANGE
+          ERROR_MESSAGE.CAR_NAME_INPUT_ERROR.NOT_IN_RANGE
         );
       }
     });
@@ -20,7 +20,7 @@ const Validation = {
       Number(tryCountString) < NUMBERS.TRY_COUNT_MINIMUM_COUNT
     ) {
       throw new Error(
-        ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.TRY_COUNT_IS_LESS_THAN_ZERO
+        ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.SHOULD_BE_POSITIVE
       );
     }
   },
