@@ -1,6 +1,5 @@
 import Validator from '../Validator';
-import { MESSAGE } from '../constants/message';
-
+import { MESSAGE } from '../constants';
 import readLineAsync from '../utils/readLineAsync';
 import OutputView from './OutputView';
 

@@ -1,7 +1,7 @@
 import Car from '../src/Car';
 import CarList from '../src/CarList';
-import CONFIG from '../src/constants/config';
-import OutputView from '../src/views/OutputView';
+import { CONFIG } from '../src/constants';
+import { OutputView } from '../src/views';
 
 beforeAll(() => {
   console.log = jest.fn();

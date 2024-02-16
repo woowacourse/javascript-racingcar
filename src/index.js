@@ -1,9 +1,7 @@
 import CarList from './CarList';
-import CONFIG from './constants/config';
-import { MESSAGE } from './constants/message';
+import { CONFIG, MESSAGE } from './constants';
+import { InputView, OutputView } from './views';
 import pickRandomNumber from './utils/pickRandomNumber';
-import InputView from './views/InputView';
-import OutputView from './views/OutputView';
 
 class App {
   async play() {
