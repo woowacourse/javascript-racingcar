@@ -17,7 +17,7 @@ describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨�
     car.move();
 
     // Assert
-    expect(car.getData().position).toBe(1);
+    expect(car.position).toBe(1);
   });
 
   test('무작위 값이 4 미만이면 자동차를 전진시키지 않는다.', () => {
@@ -29,7 +29,7 @@ describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨�
     car.move();
 
     // Assert
-    expect(car.getData().position).toBe(0);
+    expect(car.position).toBe(0);
   });
 });
 

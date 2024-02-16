@@ -25,8 +25,12 @@ class Car {
     OutputView.printCarPosition(this.#name, positionString);
   }
 
-  getData() {
-    return { name: this.#name, position: this.#position };
+  get name() {
+    return this.#name;
+  }
+
+  get position() {
+    return this.#position;
   }
 }
 

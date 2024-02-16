@@ -19,22 +19,18 @@ class CarList {
   #getMaxPosition() {
     let maxPosition = 0;
     this.#carList.forEach((car) => {
-      const carData = car.getData();
-      maxPosition = Math.max(maxPosition, carData.position);
+      maxPosition = Math.max(maxPosition, car.position);
     });
     return maxPosition;
   }
 
   #getFinalCarList() {
     const finalPosition = this.#getMaxPosition();
-    return this.#carList.filter((car) => {
-      const carData = car.getData();
-      return carData.position === finalPosition;
-    });
+    return this.#carList.filter((car) => car.position === finalPosition);
   }
 
   getWinner() {
-    return this.#getFinalCarList().map((car) => car.getData().name);
+    return this.#getFinalCarList().map((car) => car.name);
   }
 }
 
