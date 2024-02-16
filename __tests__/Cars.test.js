@@ -1,4 +1,5 @@
 import Cars from "../src/Cars";
+import { ERROR } from "../src/constant/constant";
 
 describe("자동차 이름 입력 테스트", () => {
   test("자동차 이름 리스트 중복 검사", () => {
@@ -6,7 +7,7 @@ describe("자동차 이름 입력 테스트", () => {
 
     expect(() => {
       new Cars(carList);
-    }).toThrow();
+    }).toThrow(ERROR.DUPLICATE);
   });
 
   test("자동차 이름 한 글지 이상 다섯 글자 이내 확인", () => {
@@ -14,7 +15,7 @@ describe("자동차 이름 입력 테스트", () => {
 
     expect(() => {
       new Cars(carList);
-    }).toThrow();
+    }).toThrow(ERROR.NAME_RANGE);
   });
 
   test("자동차 이름 제대로 입력되었을 때", () => {
