@@ -36,30 +36,26 @@ export const mockRandoms = (numbers) => {
 
 describe('각 자동차가 올바르게 전진하고 정지하는 지 테스트', () => {
   // given
-  const goValues = [9, 4];
-  const notGoValues = [0, 3];
-  mockRandoms([...goValues, ...notGoValues]);
-
-  // when
   const car = new Car('pobi');
-  beforeEach(() => car.forward());
+  const gasPowerHigh = 4;
+  const gasPowerLow = 3;
 
-  // then
-  // 전진 테스트
-  test.each`
-    testTitle            | expected
-    ${'전진하는 경우 1'} | ${1}
-    ${'전진하는 경우 2'} | ${2}
-  `('$testTitle 테스트가 모두 전진하는지 테스트', ({ expected }) => {
-    expect(car.getLocation()).toEqual(expected);
+  const afterGo = 1;
+  const stopHere = 1;
+
+  test('전진 테스트', () => {
+    // when
+    car.forward(gasPowerHigh);
+
+    // then
+    expect(car.getLocation()).toEqual(afterGo);
   });
 
-  // 정지 테스트
-  test.each`
-    testTitle            | expected
-    ${'정지하는 경우 1'} | ${2}
-    ${'정지하는 경우 2'} | ${2}
-  `('$testTitle 테스트가 모두 정지하는지 테스트', ({ expected }) => {
-    expect(car.getLocation()).toEqual(expected);
+  test('정지 테스트', () => {
+    // when
+    car.forward(gasPowerLow);
+
+    // then
+    expect(car.getLocation()).toEqual(stopHere);
   });
 });
