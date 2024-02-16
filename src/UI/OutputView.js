@@ -1,9 +1,9 @@
 const OutputView = {
-  print: message => {
+  print() {
     console.log(message);
   },
 
-  lineBreak: () => {
+  lineBreak() {
     console.log();
   },
 };
