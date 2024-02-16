@@ -1,14 +1,14 @@
-import Input from '../view/Input.js';
-import Output from '../view/Output.js';
-import CarValidator from '../utils/CarValidator.js';
-import TryCountValidator from '../utils/TryCountValidator.js';
-import Console from '../utils/Console.js';
-import Random from '../utils/Random.js';
-import Car from '../model/Car.js';
-import Condition from '../constant/Condition.js';
-import Message from '../constant/Message.js';
+import Input from "../view/Input.js";
+import Output from "../view/Output.js";
+import CarValidator from "../validator/CarValidator.js";
+import TryCountValidator from "../validator/TryCountValidator.js";
+import Console from "../utils/Console.js";
+import Random from "../utils/Random.js";
+import Car from "../model/Car.js";
+import Condition from "../constant/Condition.js";
+import Message from "../constant/Message.js";
 
-const { SEPERATOR } = Condition;
+const { RANDOM } = Condition;
 const { OUTPUT } = Message;
 
 class Game {
@@ -23,10 +23,10 @@ class Game {
 
   async getCars() {
     const carNames = await Input.carName();
-    const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
+    const cars = carNames.split(",").map((car) => new Car(car));
 
-    CarValidator.isValidCount(cars);
-    CarValidator.isNameDuplicate(cars);
+    CarValidator.validCount(cars);
+    CarValidator.duplicateName(cars);
 
     return cars;
   }
@@ -34,13 +34,13 @@ class Game {
   async getTryCount() {
     const tryCount = await Input.tryCount();
 
-    TryCountValidator.isNaturalNumber(Number(tryCount));
+    TryCountValidator.naturalNumber(Number(tryCount));
 
     return tryCount;
   }
 
   playGame(cars, tryCount) {
-    console.log(OUTPUT.result);
+    console.log(OUTPUT.RESULT);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
@@ -54,7 +54,7 @@ class Game {
 
   calculateAdvance(cars) {
     cars.forEach((car) => {
-      const randomNumber = Random.pickNumberZeroToNine();
+      const randomNumber = Random.pickNumber(RANDOM.MIN, RANDOM.MAX);
       car.updateAdvance(randomNumber);
     });
   }
