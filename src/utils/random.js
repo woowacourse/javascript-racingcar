@@ -4,11 +4,7 @@ const Random = Object.freeze({
   },
 
   pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
-    const result = [];
-
-    for (let i = startInclusive; i <= endInclusive; i += 1) {
-      result.push(i);
-    }
+    const result = Array.from({ length: endInclusive - startInclusive + 1 }, (_, index) => index + 1);
 
     return Random.shuffle(result).slice(0, count);
   },
