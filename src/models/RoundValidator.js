@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/Message.js';
+import { ERROR_MESSAGE } from '../constants/index.js';
 
 const RoundValidator = {
   validateRound(number) {
