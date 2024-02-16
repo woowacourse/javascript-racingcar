@@ -1,16 +1,24 @@
+import { swap } from './array.js';
+
 const Random = Object.freeze({
   shuffle(array) {
-    return array.sort(() => Math.random() - 0.5);
+    for (let currentIndex = array.length - 1; currentIndex > 0; currentIndex -= 1) {
+      const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+
+      swap(array, currentIndex, randomIndex);
+    }
+
+    return array;
   },
 
   pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
     const result = [];
 
-    for (let i = startInclusive; i <= endInclusive; i += 1) {
-      result.push(i);
+    for (let currentValue = startInclusive; currentValue <= endInclusive; currentValue += 1) {
+      result.push(currentValue);
     }
 
-    return Random.shuffle(result).slice(0, count);
+    return this.shuffle(result).slice(0, count);
   },
 });
 
