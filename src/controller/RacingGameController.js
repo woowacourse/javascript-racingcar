@@ -1,8 +1,8 @@
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
-import RacingGame from '../domain/RacingGame/RacingGame.js';
-import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/RandomMoveCountMaker.js';
-import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/RacingWinnerRecorder.js';
+import RacingGame from '../models/RacingGame/RacingGame.js';
+import RandomMoveCountMaker from '../models/RandomMoveCountMaker/RandomMoveCountMaker.js';
+import RacingWinnerRecorder from '../models/RacingWinnerRecorder/RacingWinnerRecorder.js';
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
 
 const RacingGameController = Object.freeze({
