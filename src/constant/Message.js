@@ -1,13 +1,13 @@
 import Condition from "./Condition.js";
 
-const { CAR_NAME } = Condition;
+const { CAR, CAR_NAME } = Condition;
 
 const PREFIX = "[ERROR]";
 
 const ERROR = {
   QUERY: `${PREFIX} 쿼리는 공백이 아닌 문자열이어야 한다.`,
   NULL: `${PREFIX} 입력은 공백이 될 수 없습니다.`,
-  CAR_COUNT: `${PREFIX} 자동차 대수는 2대 이상만 가능하다.`,
+  CAR_COUNT: `${PREFIX} 자동차 대수는 ${CAR.COUNT.MIN}대 이상만 가능하다.`,
   CAR_NAME_DUPLICATE: `${PREFIX} 자동차 이름은 중복될 수 없다.`,
   CAR_NAME_RANGE: `${PREFIX} 자동차 이름은 ${CAR_NAME.RANGE.MIN}자 이상, ${CAR_NAME.RANGE.MAX}자 이하만 가능하다.`,
   TRY_COUNT_RANGE: `${PREFIX} 시도 횟수는 자연수여야 합니다.`,
