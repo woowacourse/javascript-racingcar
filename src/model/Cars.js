@@ -27,7 +27,9 @@ class Cars {
 
   play() {
     this.#cars.forEach((car) => {
-      car.forward();
+      const randomNumber = Random.create();
+
+      car.forward(randomNumber);
     });
 
     return this.#cars.map((car) => ({
