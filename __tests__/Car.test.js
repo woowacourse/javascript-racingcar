@@ -9,7 +9,7 @@ describe("Car 객체 constructor test", () => {
   test("Car 객체가 올바르게 생성되어야 한다.", () => {
     const car = new Car('testCar');
 
-    const info = car.info();
+    const info = car.getInfo();
 
     expect(info.name).toBe('testCar');
     expect(info.position).toBe(0);
@@ -24,7 +24,7 @@ describe("Car 객체 moveOn method test", () => {
     const car = new Car("testCar");
 
     car.moveOn();
-    const result = car.info().position;
+    const result = car.getInfo().position;
 
     expect(result).toEqual(0);
   });
@@ -34,7 +34,7 @@ describe("Car 객체 moveOn method test", () => {
     const car = new Car("testCar");
 
     car.moveOn();
-    const result = car.info().position;
+    const result = car.getInfo().position;
 
     expect(result).toEqual(1);
   });
@@ -46,12 +46,12 @@ describe("Car 객체 info method test", () => {
     randomNumber.mockImplementation(() => 4);
 
     // 초기 상태 테스트
-    let info = car.info();
+    let info = car.getInfo();
     expect(info.name).toBe('testCar');
     expect(info.position).toBe(0);
 
     car.moveOn();
-    info = car.info();
+    info = car.getInfo();
 
     expect(info.name).toBe('testCar');
     expect(info.position).toBe(1);

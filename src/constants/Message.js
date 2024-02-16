@@ -6,7 +6,7 @@ const MESSAGE = Object.freeze({
   positionIndex: "-",
   championSeparator: ", ",
   printCarInfo: (car) =>
-    `${car.info().name} : ${MESSAGE.positionIndex.repeat(car.info().position)}`,
+    `${car.getInfo().name} : ${MESSAGE.positionIndex.repeat(car.getInfo().position)}`,
 
   printAttemptTitle: "실행 결과",
   printChampionTitle: "최종 우승자",

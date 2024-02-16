@@ -1,3 +1,4 @@
+import SETTING from "../constants/Setting.js";
 import randomNumber from "../utils/randomNumber.js";
 
 class Car {
@@ -9,9 +10,8 @@ class Car {
     this.#position = 0;
   }
 
-  #movable() {
-    // 4 상수화
-    if (randomNumber() >= 4) {
+  #isMovable() {
+    if (randomNumber() >= SETTING.moveOnThreshold) {
       return true;
     }
 
@@ -19,12 +19,12 @@ class Car {
   }
 
   moveOn() {
-    if (this.#movable()) {
+    if (this.#isMovable()) {
       this.#position += 1;
     }
   }
 
-  info() {
+  getInfo() {
     return { name: this.#name, position: this.#position };
   }
 }

@@ -53,12 +53,12 @@ class RacingCarGame {
 
   #findChampion() {
     const maxPosition = Math.max(
-      ...this.#cars.map((car) => car.info().position),
+      ...this.#cars.map((car) => car.getInfo().position),
     );
     const result = this.#cars.filter(
-      (car) => car.info().position === maxPosition,
+      (car) => car.getInfo().position === maxPosition,
     );
-    this.#champion = result.map((car) => car.info().name);
+    this.#champion = result.map((car) => car.getInfo().name);
   }
 
   #printChampion() {

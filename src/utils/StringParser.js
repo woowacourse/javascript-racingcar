@@ -6,7 +6,10 @@ class StringParser {
 
     const result = [];
     carNamesArray.forEach((carName) => {
-      result.push(carName.trim());
+      const name = carName.trim();
+      if (name !== "") {
+        result.push(carName.trim());
+      }
     });
 
     return result;

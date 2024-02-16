@@ -10,6 +10,7 @@ const SETTING = Object.freeze({
 
   minRandomNumber: 0,
   maxRandomNumber: 9,
+  moveOnThreshold: 4,
 });
 
 export default SETTING;
