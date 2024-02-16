@@ -1,6 +1,8 @@
-import { CAR_MOVE_COUNT, MIN_MOVABLE_VALUE } from './constant.js';
-
 class Car {
+  static #MIN_MOVABLE_VALUE = 4;
+
+  static #CAR_MOVE_COUNT = 1;
+
   #carDetails;
 
   constructor(carName) {
@@ -18,12 +20,12 @@ class Car {
 
   #updateMoveCount(randomMoveCount) {
     if (this.#isMovable(randomMoveCount)) {
-      this.#carDetails.moveCount += CAR_MOVE_COUNT;
+      this.#carDetails.moveCount += Car.#CAR_MOVE_COUNT;
     }
   }
 
   #isMovable(randomMoveCount) {
-    return randomMoveCount >= MIN_MOVABLE_VALUE;
+    return randomMoveCount >= Car.#MIN_MOVABLE_VALUE;
   }
 }
 
