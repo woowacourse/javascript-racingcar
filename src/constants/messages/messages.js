@@ -7,15 +7,17 @@ export const INPUT_MESSAGE = Object.freeze({
 
 export const OUTPUT_MESSAGE = Object.freeze({
   executeResult: '\n실행 결과',
+  movementIndicator: '-',
 });
 
 export const FORMAT_MESSAGE = Object.freeze({
   racingResultToString(racingResult) {
-    return racingResult
-      .map((racingTurn) =>
-        racingTurn.map(({ carName, moveCount }) => `${carName} : ${'-'.repeat(moveCount)}`).join('\n'),
-      )
-      .join('\n\n');
+    const extractCarNameToString = ({ carName, moveCount }) =>
+      `${carName} : ${OUTPUT_MESSAGE.movementIndicator.repeat(moveCount)}`;
+
+    const generatePartialRacingResultToString = (racingTurn) => racingTurn.map(extractCarNameToString).join('\n');
+
+    return racingResult.map(generatePartialRacingResultToString).join('\n\n');
   },
 
   racingWinnersToString(racingWinners) {
