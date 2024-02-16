@@ -5,12 +5,12 @@ import RacingGame from '../domain/RacingGame/module.js';
 import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
 import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/module.js';
 
-const RacingGameController = Object.freeze({
+const RacingGameController = {
   async run() {
     const { racingCarNames, tryCount } = await processUserInput();
     processRacingGame({ racingCarNames, tryCount });
   },
-});
+};
 
 export default RacingGameController;
 
