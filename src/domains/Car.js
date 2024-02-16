@@ -23,14 +23,6 @@ class Car {
     this.#position += RULES.movingUnit;
   }
 
-  isSamePosition(otherCar) {
-    return this.#position === otherCar.position;
-  }
-
-  isAheadOf(otherCar) {
-    return this.#position > otherCar.position;
-  }
-
   get name() {
     return this.#name;
   }

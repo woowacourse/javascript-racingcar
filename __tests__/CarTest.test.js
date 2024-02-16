@@ -43,46 +43,4 @@ describe('자동차 도메인 테스트', () => {
     // then
     expect(harryCar.position).toBe(expectedPosition);
   });
-
-  it('두 자동차의 위치가 같은 경우 true를 반환해야 한다.', () => {
-    // given
-    const bongCar = new Car('bong');
-    mockRandoms([4, 9]);
-
-    // when
-    harryCar.move();
-    bongCar.move();
-
-    // then
-    const isSame = harryCar.isSamePosition(bongCar);
-    expect(isSame).toBe(true);
-  });
-
-  it('두 자동차의 위치가 다른 경우 false 반환해야 한다.', () => {
-    // given
-    const bongCar = new Car('bong');
-    mockRandoms([3, 9]);
-
-    // when
-    harryCar.move();
-    bongCar.move();
-
-    // then
-    const isSame = harryCar.isSamePosition(bongCar);
-    expect(isSame).toBe(false);
-  });
-
-  it('자동차 도메인은 다른 자동차 도메인과 위치 비교를 할 수 있어야 한다.', () => {
-    // given
-    const bongCar = new Car('bong');
-    mockRandoms([1, 7]);
-
-    // when
-    harryCar.move();
-    bongCar.move();
-
-    // then
-    const isAheadOf = harryCar.isAheadOf(bongCar);
-    expect(isAheadOf).toBe(false);
-  });
 });

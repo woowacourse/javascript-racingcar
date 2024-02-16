@@ -14,14 +14,8 @@ class CarRace {
   }
 
   #findMaxPosition() {
-    let maxPositionCar = this.#cars[0];
-    for (let index = 1; index < this.#cars.length; index++) {
-      if (!maxPositionCar.isAheadOf(this.#cars[index])) {
-        maxPositionCar = this.#cars[index];
-      }
-    }
-
-    return maxPositionCar;
+    const maxPosition = Math.max(...this.#cars.map((car) => car.position));
+    return maxPosition;
   }
 
   makesRoundResult() {
@@ -36,9 +30,10 @@ class CarRace {
   }
 
   judgeWinners() {
-    const maxPositionCar = this.#findMaxPosition();
+    const maxPosition = this.#findMaxPosition();
+
     const winners = this.#cars
-      .filter((car) => maxPositionCar.isSamePosition(car))
+      .filter((car) => car.position === maxPosition)
       .map((winner) => winner.name);
 
     return deepFreeze(winners);
