@@ -14,24 +14,16 @@ export default class Race {
   async start() {
     const cars = await tryUntilSuccess(this.#getCars.bind(this))();
     const roundNumber = await tryUntilSuccess(this.#getRoundNumber.bind(this))();
+
     this.#runRounds(cars, roundNumber);
   }
 
   async #getCars() {
     const rawCarNames = await InputView.readCarNames();
-    const parsedCarNames = this.#parseCarNames(rawCarNames);
+    const parsedCarNames = this.parseCarNames(rawCarNames);
     const cars = this.#makeCars(parsedCarNames);
 
     return cars;
-  }
-
-  #parseCarNames(rawCarNames) {
-    const parsedCarNames = splitByComma(rawCarNames);
-    return trimAll(parsedCarNames);
-  }
-
-  #makeCars(carNames) {
-    return new Cars(carNames.map((name) => new Car(name)));
   }
 
   async #getRoundNumber() {
@@ -41,6 +33,26 @@ export default class Race {
     this.#validateRoundNumber(roundNumber);
 
     return roundNumber;
+  }
+
+  #runRounds(cars, roundNumber) {
+    OutputView.printBlankLine();
+    OutputView.printResultIntro();
+
+    for (let i = 0; i < roundNumber; i++) {
+      this.#processRound(cars);
+    }
+
+    this.#showWinners(cars);
+  }
+
+  parseCarNames(rawCarNames) {
+    const parsedCarNames = trimAll(splitByComma(rawCarNames));
+    return parsedCarNames;
+  }
+
+  #makeCars(carNames) {
+    return new Cars(carNames.map((name) => new Car(name)));
   }
 
   #validateRoundNumber(number) {
@@ -53,28 +65,18 @@ export default class Race {
     }
   }
 
-  #runRounds(cars, roundNumber) {
-    OutputView.printBlankLine();
-    OutputView.printResultIntro();
-
-    for (let i = 0; i < roundNumber; i++) {
-      this.#processRound(cars);
-    }
-
-    this.#showWinner(cars);
-  }
-
   #processRound(cars) {
     cars.goAll();
+
     const mileageBoard = cars.getMileageBoard();
 
     OutputView.printMileageBoard(mileageBoard);
     OutputView.printBlankLine();
   }
 
-  #showWinner(cars) {
-    const winner = cars.getFirstPlaceNames();
+  #showWinners(cars) {
+    const winners = cars.getFirstPlaceNames();
 
-    OutputView.printWinner(winner);
+    OutputView.printWinners(winners);
   }
 }

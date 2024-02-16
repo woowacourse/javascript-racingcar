@@ -21,23 +21,20 @@ export default class Cars {
   }
 
   getFirstPlaceNames() {
-    const firstPlaceCars = this.#getFirstPlace();
+    const firstPlaceCars = this.#getFirstPlaces();
     return firstPlaceCars.map((car) => car.getName());
-  }
-
-  #getFirstPlace() {
-    const maxMileage = this.#getMaxMileage();
-    return this.#cars.filter((car) => car.getMileage() === maxMileage);
-  }
-
-  #getMaxMileage() {
-    return Math.max(...this.#cars.map((car) => car.getMileage()));
   }
 
   #validate(cars) {
     this.#validateType(cars);
     this.#validateLength(cars);
     this.#validateUnique(cars);
+  }
+
+  #validateType(cars) {
+    if (!cars.every((car) => car instanceof Car)) {
+      throw new Error(ERROR_MESSAGE.notCarType);
+    }
   }
 
   #validateLength(cars) {
@@ -54,9 +51,12 @@ export default class Cars {
     }
   }
 
-  #validateType(cars) {
-    if (!cars.every((car) => car instanceof Car)) {
-      throw new Error(ERROR_MESSAGE.notCarType);
-    }
+  #getFirstPlaces() {
+    const maxMileage = this.#getMaxMileage();
+    return this.#cars.filter((car) => car.getMileage() === maxMileage);
+  }
+
+  #getMaxMileage() {
+    return Math.max(...this.#cars.map((car) => car.getMileage()));
   }
 }

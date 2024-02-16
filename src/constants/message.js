@@ -20,7 +20,7 @@ const CONSOLE_MESSAGE = Object.freeze({
 
   resultIntro: "실행 결과",
   mileageBoardForm: (name, mileage) => `${name} : ${MILEAGE_MARK.repeat(mileage)}`,
-  winnerForm: (winner) => `최종 우승자 : ${winner.join(", ")}`,
+  winnersForm: (winners) => `최종 우승자 : ${winners.join(", ")}`,
 });
 
 const ERROR_MESSAGE = Object.freeze(applyFunctionToValues(RAW_ERROR_MESSAGE, addErrorPrefix));
