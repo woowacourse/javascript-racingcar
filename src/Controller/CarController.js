@@ -2,29 +2,34 @@ import { makeRandomNum } from '../Utils/MissionUtils.js';
 import OutputView from '../View/OutputView.js';
 
 class CarController {
-	constructor(carNames, tryNumber) {
-		this.carNames = carNames;
-		this.tryNumber = tryNumber;
-		this.resultCounter = Array.from(carNames).fill(0);
+	#carList;
+	#tryNumber;
+	#resultCounter;
+
+	constructor(carList, tryNumber) {
+		this.#carList = carList;
+		this.#tryNumber = tryNumber;
+		this.#resultCounter = Array.from(carNames).fill(0);
 	}
 
 	playAllTurn() {
 		OutputView.printResultMessage();
-		for (let i = 0; i < this.tryNumber; i++) {
-			this.playOneTurn(this.carNames);
+
+		for (let i = 0; i < this.#tryNumber; i++) {
+			this.playOneTurn();
 			this.playOneTurnResult(this.carNames);
 			OutputView.printBlank();
 		}
+
 		const winnerIndexArr = this.decideWinner();
 		this.showWinner(winnerIndexArr);
 	}
 
 	playOneTurn() {
-		const carNameLength = this.carNames.length;
+		const carNameLength = this.#carList.length;
 		for (let i = 0; i < carNameLength; i++) {
-			//전진시 해당 인원 인덱스의 카운터 추가
 			if (this.isForward()) {
-				this.resultCounter[i]++;
+				this.#resultCounter[i]++;
 			}
 		}
 	}
@@ -32,7 +37,7 @@ class CarController {
 	playOneTurnResult() {
 		const carNameLength = this.carNames.length;
 		for (let i = 0; i < carNameLength; i++) {
-			OutputView.printNameAndResult(this.carNames, this.resultCounter, i);
+			OutputView.printNameAndResult(this.carNames, this.#resultCounter, i);
 		}
 	}
 
@@ -46,11 +51,12 @@ class CarController {
 
 	decideWinner() {
 		const winnerIndexArr = [];
-		const maxValue = Math.max(...this.resultCounter);
-		let idx = this.resultCounter.indexOf(maxValue);
+		const maxValue = Math.max(...this.#resultCounter);
+		let idx = this.#resultCounter.indexOf(maxValue);
+
 		while (idx !== -1) {
 			winnerIndexArr.push(idx);
-			idx = this.resultCounter.indexOf(maxValue, idx + 1);
+			idx = this.#resultCounter.indexOf(maxValue, idx + 1);
 		}
 		return winnerIndexArr;
 	}

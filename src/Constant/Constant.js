@@ -1,6 +1,7 @@
 export const CAR = {
 	MAX_NAME_LEN: 5,
-	MIN_CAR_LEN: 1,
+	MIN_CAR_LEN: 2,
+	MAX_CAR_LEN: 50,
 };
 
 export const ERROR = {
