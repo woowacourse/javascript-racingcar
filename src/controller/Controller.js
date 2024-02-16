@@ -11,7 +11,7 @@ class Controller {
 
   async start() {
     await this.#input();
-    this.#run();
+    this.#totalRound();
     this.#printWinner();
   }
 
@@ -25,12 +25,14 @@ class Controller {
     this.#tryCount = new TryCount(count);
   }
 
-  #run() {
+  #totalRound() {
     this.#outputView.printResultTitle();
-    for (let i = 0; i < this.#tryCount.getTryCount(); i++) {
-      const playResult = this.#cars.play();
-      this.#outputView.printRacingResult(playResult);
-    }
+    for (let i = 0; i < this.#tryCount.getTryCount(); i++) this.#oneRound();
+  }
+
+  #oneRound() {
+    const playResult = this.#cars.play();
+    this.#outputView.printRacingResult(playResult);
   }
 
   #printWinner() {
