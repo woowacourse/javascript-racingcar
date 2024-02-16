@@ -2,7 +2,7 @@ import Car from './Car';
 import RaceGameCalculator from './RaceGameCalculator';
 
 import { SYMBOLS } from '../statics/constants';
-import { ERROR_MESSAGES } from '../statics/messages';
+import { ERRORS } from '../statics/messages';
 
 import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
 
@@ -41,13 +41,13 @@ class Race {
   }
 
   #validateCarsName(carsNameInput) {
-    if (isInvalidCarName(carsNameInput)) throw new Error(ERROR_MESSAGES.invalidCarName);
-    if (hasRedundantCarName(carsNameInput)) throw new Error(ERROR_MESSAGES.hasRedundantCarName);
-    if (hasSingleCar(carsNameInput)) throw new Error(ERROR_MESSAGES.hasSingleCar);
+    if (isInvalidCarName(carsNameInput)) throw new Error(ERRORS.invalidCarName);
+    if (hasRedundantCarName(carsNameInput)) throw new Error(ERRORS.hasRedundantCarName);
+    if (hasSingleCar(carsNameInput)) throw new Error(ERRORS.hasSingleCar);
   }
 
   #validateAttemptNum(attemptInput) {
-    if (isInvalidAttemptNum(attemptInput)) throw new Error(ERROR_MESSAGES.invalidAttemptNum);
+    if (isInvalidAttemptNum(attemptInput)) throw new Error(ERRORS.invalidAttemptNum);
   }
 }
 
