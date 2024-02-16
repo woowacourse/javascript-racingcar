@@ -1,13 +1,6 @@
-import RandomUtil from "../src/utils/RandomUtil.js";
 import Car from "../src/domain/Car.js";
 import Cars from "../src/domain/Cars.js";
-
-const mockRandoms = (numbers) => {
-  RandomUtil.pickRandomNumberBetween = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomUtil.pickRandomNumberBetween);
-};
+import { mockPickRandomNumberBetween } from "../testUtils/mock.js";
 
 describe("Cars 유닛 테스트", () => {
   describe("기능 테스트", () => {
@@ -33,7 +26,7 @@ describe("Cars 유닛 테스트", () => {
         ({ randomNumbers, expected }) => {
           const [expected1, expected2, expected3] = expected;
 
-          mockRandoms(randomNumbers);
+          mockPickRandomNumberBetween(randomNumbers);
 
           cars.goAll();
 
@@ -78,7 +71,7 @@ describe("Cars 유닛 테스트", () => {
       const MOCK_RANDOM_NUMBERS = [5, 1, 2];
       const expected = [NAME1];
 
-      mockRandoms(MOCK_RANDOM_NUMBERS);
+      mockPickRandomNumberBetween(MOCK_RANDOM_NUMBERS);
 
       cars.goAll();
 
