@@ -5,7 +5,7 @@ import OutputView from '../view/OutputView';
 
 import { retryOnInvalidInput } from '../utils/retryOnInvalidInput';
 
-class RaceController {
+class RaceService {
   #race;
 
   constructor() {
@@ -41,4 +41,4 @@ class RaceController {
   }
 }
 
-export default RaceController;
+export default RaceService;

@@ -1,8 +1,8 @@
-import RaceController from './service/RaceService';
+import RaceService from './service/RaceService';
 
 class App {
   async run() {
-    const service = new RaceController();
+    const service = new RaceService();
     await service.start();
   }
 }
