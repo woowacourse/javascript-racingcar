@@ -17,7 +17,10 @@ export default class Cars {
   }
 
   getMileageBoard() {
-    return this.#cars.map((car) => ({ name: car.getName(), mileage: car.getMileage() }));
+    return this.#cars.map((car) => ({
+      name: car.getName(),
+      mileage: car.getMileage(),
+    }));
   }
 
   getFirstPlaceNames() {
