@@ -17,9 +17,9 @@ describe('스코어보드에 대한 유효성 테스트', () => {
 
 	test.each([[['!df', 'soha']], [['brgndy', 'pobi']], [['왼손', '왼손', '공원']]])(
 		'유효하지 않은 값을 넣으면 에러를 발생시킨다.',
-		(inputs) => {
+		(invalidInputs) => {
 			expect(() => {
-				new ScoreBoard(inputs);
+				new ScoreBoard(invalidInputs);
 			}).toThrow('[ERROR]');
 		}
 	);
