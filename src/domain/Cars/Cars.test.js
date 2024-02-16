@@ -1,4 +1,4 @@
-import Cars from './module.js';
+import Cars from './Cars.js';
 
 describe('랜덤 값에 따른 자동차 이동 테스트', () => {
   // given

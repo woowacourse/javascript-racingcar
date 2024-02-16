@@ -1,5 +1,5 @@
 import Console from '../../utils/console.js';
-import RetryHandler from './module.js';
+import RetryHandler from './RetryHandler.js';
 
 jest.mock('../../utils/console.js', () => ({
   print: jest.fn(),

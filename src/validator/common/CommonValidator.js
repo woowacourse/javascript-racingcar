@@ -27,7 +27,7 @@ const CommonValidator = Object.freeze({
 
   /**
    * @param {string} inputValue - 사용자의 입력 값
-   * @throws {import('../../errors/AppError/module.js').default} 유효성을 만족하지 않을 경우 에러 발생
+   * @throws {import('../../errors/AppError/AppError.js').default} 유효성을 만족하지 않을 경우 에러 발생
    * @returns {void}
    */
   check(inputValue) {

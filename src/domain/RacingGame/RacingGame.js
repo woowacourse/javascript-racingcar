@@ -1,4 +1,4 @@
-import Cars from '../Cars/module.js';
+import Cars from '../Cars/Cars.js';
 
 const RacingGame = Object.freeze({
   startRace({ racingCarNames, tryCount, randomMoveCounts }) {

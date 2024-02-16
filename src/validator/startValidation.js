@@ -1,4 +1,4 @@
-import AppError from '../errors/AppError/module.js';
+import AppError from '../errors/AppError/AppError.js';
 
 export const startValidation = (validationTypes, value) => {
   Object.values(validationTypes).forEach(({ errorMessage, isValid }) => {

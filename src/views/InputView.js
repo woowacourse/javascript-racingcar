@@ -1,4 +1,4 @@
-import { INPUT_MESSAGE } from '../constants/messages/module.js';
+import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 import { CommonValidator, CarNameValidator } from '../validator/index.js';
 
 import Console from '../utils/console.js';

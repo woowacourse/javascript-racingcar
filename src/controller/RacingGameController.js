@@ -1,9 +1,9 @@
 import InputView from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
-import RacingGame from '../domain/RacingGame/module.js';
-import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/module.js';
-import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/module.js';
-import RetryHandler from '../errors/RetryHandler/module.js';
+import RacingGame from '../domain/RacingGame/RacingGame.js';
+import RandomMoveCountMaker from '../domain/RandomMoveCountMaker/RandomMoveCountMaker.js';
+import RacingWinnerRecorder from '../domain/RacingWinnerRecorder/RacingWinnerRecorder.js';
+import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
 
 const RacingGameController = Object.freeze({
   async run() {

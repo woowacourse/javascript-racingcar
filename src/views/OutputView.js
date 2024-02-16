@@ -1,4 +1,4 @@
-import { FORMAT_MESSAGE, OUTPUT_MESSAGE } from '../constants/messages/module.js';
+import { FORMAT_MESSAGE, OUTPUT_MESSAGE } from '../constants/messages/messages.js';
 import Console from '../utils/console.js';
 
 const OutputView = Object.freeze({
