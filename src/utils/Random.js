@@ -1,11 +1,9 @@
-import Condition from '../constant/Condition.js';
+//import Condition from "../constant/Condition.js";
 
-const { RANDOM } = Condition;
-
-class Random {
-  static pickNumberZeroToNine() {
-    return Math.floor(Math.random() * RANDOM.range);
-  }
-}
+const Random = {
+  pickNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+};
 
 export default Random;
