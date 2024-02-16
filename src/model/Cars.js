@@ -1,6 +1,7 @@
 import ERROR_MESSAGE from '../error/message.js';
 import { COMMA } from '../view/OutputView.js';
 import Car from './Car.js';
+import Random from './Random.js';
 
 class Cars {
   #cars;
@@ -26,7 +27,9 @@ class Cars {
 
   play() {
     this.#cars.forEach((car) => {
-      car.forward();
+      const randomNumber = Random.create();
+
+      car.forward(randomNumber);
     });
 
     return this.#cars.map((car) => ({

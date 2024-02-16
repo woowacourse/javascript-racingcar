@@ -1,5 +1,4 @@
 import Name from './Name.js';
-import Random from './Random.js';
 
 const FORWARD_CONDITION = 4;
 
@@ -11,10 +10,9 @@ class Car {
     this.#name = new Name(name);
   }
 
-  forward() {
-    const randomNumber = Random.create();
-
-    if (randomNumber >= FORWARD_CONDITION) this.#location += 1;
+  // 차마다 전진 페달을 얼마나 밟느냐에 따라 전진되는 정도가 다를 수 있음
+  forward(gasPower) {
+    if (gasPower >= FORWARD_CONDITION) this.#location += 1;
   }
 
   getName() {
