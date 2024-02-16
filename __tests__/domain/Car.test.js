@@ -1,6 +1,6 @@
 import Car from '../../src/domain/Car';
-import { RULES } from '../../src/statics/constants';
 import Random from '../../src/utils/Random';
+import { RANDOMCASES } from '../../src/statics/test_constants';
 
 const mockRandoms = numbers => {
   Random.pickNumberInRange = jest.fn();
@@ -12,7 +12,7 @@ const mockRandoms = numbers => {
 describe('Car Test', () => {
   test('move', () => {
     // given
-    const randomCase = [RULES.movingForward, RULES.movingForward, RULES.stop, RULES.stop];
+    const randomCase = RANDOMCASES.moveTwoTimeOfOneCarRandomCase;
 
     const ATTEMPT_NUM = randomCase.length;
 

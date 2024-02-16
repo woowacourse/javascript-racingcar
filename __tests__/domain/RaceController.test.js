@@ -1,7 +1,7 @@
 import Car from '../../src/domain/Car';
 import RaceController from '../../src/service/RaceController';
-import { RULES } from '../../src/statics/constants';
 import Random from '../../src/utils/Random';
+import { RANDOMCASES, TEST_RULES } from '../../src/statics/test_constants';
 
 const mockRandoms = numbers => {
   Random.pickNumberInRange = jest.fn();
@@ -12,36 +12,23 @@ const mockRandoms = numbers => {
 
 describe('RaceController 테스트', () => {
   // given
-
-  const firstWinOfTwoCarRandomCase = [
-    RULES.stop,
-    RULES.stop,
-    RULES.movingForward,
-    RULES.movingForward,
-    RULES.movingForward,
-    RULES.stop,
-  ];
-
-  const ATTEMPT_NUM = 3;
-
-  mockRandoms([...firstWinOfTwoCarRandomCase]);
+  mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
 
   // when
   const carsCase = [new Car('pobi'), new Car('jay')];
 
-  for (let i = 0; i < ATTEMPT_NUM; i++) {
+  for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
     carsCase.forEach(car => car.move());
   }
 
   test('getCycleResult', () => {
     //given
-    const firstWinOfTwoCarRandomCase = [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop];
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...firstWinOfTwoCarRandomCase]);
+    mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
 
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
+    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
       carsCase.forEach(car => car.move());
     }
 
@@ -54,13 +41,12 @@ describe('RaceController 테스트', () => {
 
   test('getWinnersPosition', () => {
     //given
-    const firstWinOfTwoCarRandomCase = [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop];
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...firstWinOfTwoCarRandomCase]);
+    mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
 
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
+    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
       carsCase.forEach(car => car.move());
     }
 
@@ -69,27 +55,27 @@ describe('RaceController 테스트', () => {
   });
 
   //given
-  const randomCases = [
+  const testCases = [
     {
-      randoms: [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop],
+      randomCase: RANDOMCASES.firstWinOfTwoCarRandomCase,
       winnersPosion: 2,
       winners: ['pobi'],
     },
     {
-      randoms: [RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop],
+      randomCase: RANDOMCASES.drawOfTwoCarRandomCase,
       winnersPosion: 2,
       winners: ['pobi', 'jay'],
     },
   ];
 
-  test.each(randomCases)('getWinners', ({ randoms, winnersPosion, winners }) => {
+  test.each(testCases)('getWinners', ({ randomCase, winnersPosion, winners }) => {
     //given
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...randoms]);
+    mockRandoms([...randomCase]);
 
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
+    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
       carsCase.forEach(car => car.move());
     }
 

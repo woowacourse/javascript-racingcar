@@ -2,6 +2,7 @@ import App from '../src/App';
 import { RULES } from '../src/statics/constants';
 import Console from '../src/utils/Console';
 import Random from '../src/utils/Random';
+import { RANDOMCASES } from '../src/statics/test_constants';
 
 const mockRandoms = numbers => {
   Random.pickNumberInRange = jest.fn();
@@ -28,21 +29,13 @@ const getLogSpy = () => {
 describe('기능테스트', () => {
   test('최종 결과 테스트', async () => {
     //given
-    const randomCase = [
-      RULES.movingForward,
-      RULES.stop,
-      RULES.movingForward,
-      RULES.movingForward,
-      RULES.movingForward,
-      RULES.stop,
-    ];
     const inputs = ['pobi,jay', '3'];
     const output = '최종 우승자: pobi';
     const logSpy = getLogSpy();
 
     //when
     mockQuestions(inputs);
-    mockRandoms([...randomCase]);
+    mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
 
     const app = new App();
     await app.run();
