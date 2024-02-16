@@ -22,10 +22,11 @@ class RacingCarGame {
   }
 
   async #play() {
-    this.#printAttemptTitle();
+    OutputView.printNewLine();
+    OutputView.printAttemptTitle();
     this.#iterateAttempt();
     this.#findChampion();
-    this.#printChampion();
+    OutputView.printChampions(this.#champion);
   }
 
   #iterateAttempt() {
@@ -33,22 +34,10 @@ class RacingCarGame {
     for (let i = 0; i < this.#attempt; i++) {
       this.#cars.forEach((car) => {
         car.moveOn();
-        this.#printCarInfo(car);
+        OutputView.printCar(car);
       });
-      this.#printNewLine();
+      OutputView.printNewLine();
     }
-  }
-
-  #printAttemptTitle() {
-    OutputView.printQuery(MESSAGE.printAttemptTitle);
-  }
-
-  #printCarInfo(car) {
-    OutputView.printCar(car);
-  }
-
-  #printNewLine() {
-    OutputView.newLine();
   }
 
   #findChampion() {
@@ -59,10 +48,6 @@ class RacingCarGame {
       (car) => car.getInfo().position === maxPosition,
     );
     this.#champion = result.map((car) => car.getInfo().name);
-  }
-
-  #printChampion() {
-    OutputView.printChampions(StringParser.concatElements(this.#champion));
   }
 }
 
