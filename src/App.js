@@ -1,11 +1,11 @@
 import InputView from './UI/InputView.js';
 import OutputView from './UI/OutputView.js';
-import Validator from './class/Validator.js';
-import RaceManager from './class/RaceManager.js';
-import CONSTANT from './CONSTANTS/index.js';
+import Validator from './domain/class/Validator.js';
+import RaceManager from './domain/class/RaceManager.js';
+import CONSTANTS from './CONSTANTS/index.js';
 import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
 
-const { MESSAGE, SEPARATOR } = CONSTANT;
+const { message, separator } = CONSTANTS;
 
 class App {
   #raceManger;
@@ -20,25 +20,29 @@ class App {
   }
 
   async readCarNames() {
-    const answer = await InputView.readNextLineAsync(MESSAGE.carNameInput).then(
-      names => names.split(SEPARATOR.carName).map(string => string.trim())
+    const answer = await InputView.readNextLineAsync(
+      message.CAR_NAME_INPUT
+    ).then(names =>
+      names.split(separator.CAR_NAME).map(string => string.trim())
     );
     const result = Validator.validateCars(answer);
-    if (!result) throw new Error(MESSAGE.invalidCarName);
+    if (!result) throw new Error(message.INVALID_CAR_NAME);
     return answer;
   }
 
   async readMaxTryCount() {
-    const answer = await InputView.readNextLineAsync(MESSAGE.maxTryCountInput);
+    const answer = await InputView.readNextLineAsync(
+      message.MAX_TRY_COUNT_INPUT
+    );
 
     const result = Validator.validateTryCount(answer);
-    if (!result) throw new Error(MESSAGE.invalidMaxTryCount);
+    if (!result) throw new Error(message.INVALID_MAX_TRY_COUNT);
     return Number(answer);
   }
 
   printRace(isLineBreak = true) {
     if (isLineBreak) OutputView.lineBreak();
-    OutputView.print(MESSAGE.resultOutput);
+    OutputView.print(message.RESULT_OUTPUT);
 
     OutputView.print(this.#raceManger.getProgressString());
     OutputView.lineBreak();

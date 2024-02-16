@@ -1,10 +1,10 @@
-const NUMERIC = Object.freeze({
-  carNameLengthLower: 1,
-  carNameLengthUpper: 5,
-  randomNumberLower: 0,
-  randomNumberUpper: 9,
-  moveStandard: 4,
-  moveDistance: 1,
+const numeric = Object.freeze({
+  CAR_NAME_LENGTH_LOWER: 1,
+  CAR_NAME_LENGTH_UPPER: 5,
+  RANDOM_NUMBER_LOWER: 0,
+  RANDOM_NUMBER_UPPER: 9,
+  MOVE_STANDARD: 4,
+  MOVE_DISTANCE: 1,
 });
 
-export default NUMERIC;
+export default numeric;

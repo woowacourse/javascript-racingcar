@@ -1,7 +1,7 @@
 import getRandomNumberInRange from '../../utils/getRandomNumberInRange.js';
-import CONSTANT from '../../CONSTANTS/index.js';
+import CONSTANTS from '../../CONSTANTS/index.js';
 
-const { NUMERIC } = CONSTANT;
+const { numeric } = CONSTANTS;
 
 class CarInfo {
   #name;
@@ -31,14 +31,14 @@ class CarInfo {
   }
 
   #getNextMoving() {
-    return this.#doesGo() ? NUMERIC.moveDistance : 0;
+    return this.#doesGo() ? numeric.MOVE_DISTANCE : 0;
   }
   #doesGo() {
     return (
       getRandomNumberInRange(
-        NUMERIC.randomNumberLower,
-        NUMERIC.randomNumberUpper
-      ) >= NUMERIC.moveStandard
+        numeric.RANDOM_NUMBER_LOWER,
+        numeric.RANDOM_NUMBER_UPPER
+      ) >= numeric.MOVE_STANDARD
     );
   }
 }

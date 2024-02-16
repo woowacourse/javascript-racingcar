@@ -1,7 +1,7 @@
 import CarInfo from './CarInfo.js';
-import CONSTANT from '../../CONSTANTS/index.js';
+import CONSTANTS from '../../CONSTANTS/index.js';
 
-const { hello: MESSAGE } = CONSTANT;
+const { message } = CONSTANTS;
 
 class RaceManager {
   #maxTryCount;
@@ -15,14 +15,14 @@ class RaceManager {
   getProgressString() {
     return Array.from({ length: this.#maxTryCount })
       .map((_, nowTryCount) => this.#generateTryString(nowTryCount))
-      .join(MESSAGE.resultLineBreakMarkInRace);
+      .join(message.PROGRESS_LINE_BREAK_MARK_EACH_TRY);
   }
 
   getWinnerString() {
     const maxPosition = this.#getMaxPosition();
     const winners = this.#getCarInfosInFinish(maxPosition);
-    return `${MESSAGE.winnerOutputHeader}${winners.join(
-      MESSAGE.winnerConnectionMark
+    return `${message.WINNER_OUTPUT_HEADER}${winners.join(
+      message.WINNER_CONNECTION_MARK
     )}`;
   }
 
@@ -46,10 +46,10 @@ class RaceManager {
       .map(
         carInfo =>
           `${carInfo.getName()}${
-            MESSAGE.resultConnectionMark
-          }${MESSAGE.distanceMark.repeat(carInfo.getPositionWhen(tryCount))}`
+            message.PROGRESS_CONNECTION_MARK
+          }${message.DISTANCE_MARK.repeat(carInfo.getPositionWhen(tryCount))}`
       )
-      .join(MESSAGE.resultLineBreakMarkInRound);
+      .join(message.PROGRESS_LINE_BREAK_MARK_EACH_ROUND);
   }
 
   #getCarInfosInFinish(position) {

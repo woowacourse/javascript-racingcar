@@ -1,7 +1,7 @@
-import MESSAGE from './MESSAGE.js';
-import NUMERIC from './NUMERIC.js';
-import SEPARATOR from './SEPARATOR.js';
+import message from './message.js';
+import numeric from './numeric.js';
+import separator from './seperator.js';
 
-const CONSTANT = Object.freeze({ MESSAGE, NUMERIC, SEPARATOR });
+const CONSTANTS = Object.freeze({ message, numeric, separator });
 
-export default CONSTANT;
+export default CONSTANTS;
