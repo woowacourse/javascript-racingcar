@@ -5,11 +5,15 @@ const OutputView = {
     console.log(`${MESSAGE.WINNER} ${winners.join(', ')}`);
   },
 
-  printCarPosition(name, positionString) {
-    console.log(`${name} : ${positionString}`);
+  printTurnResult(turnResult) {
+    turnResult.forEach((carInfo) => {
+      const positionString = MESSAGE.POSITION_SYMBOL.repeat(carInfo.position);
+      console.log(`${carInfo.name} : ${positionString}`);
+    });
+    console.log();
   },
 
-  print(message = '') {
+  print(message) {
     console.log(message);
   },
 };
