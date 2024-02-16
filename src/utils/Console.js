@@ -35,7 +35,7 @@ class Console {
     return await this.makeReadLineQuestion(query, rl);
   }
 
-  static async errorHandler(getFunc) {
+  static async retryUntilSuccess(getFunc) {
     while (true) {
       try {
         const result = await getFunc();

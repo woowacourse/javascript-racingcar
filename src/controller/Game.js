@@ -13,15 +13,15 @@ const { OUTPUT } = Message;
 
 class Game {
   async startGame() {
-    const cars = await Console.errorHandler(this.getCars);
-    const tryCount = await Console.errorHandler(this.getTryCount);
+    const cars = await Console.retryUntilSuccess(this.createCarsFromInput);
+    const tryCount = await Console.retryUntilSuccess(this.getTryCountFromInput);
 
     this.playGame(cars, tryCount);
 
     Output.winnerResult(this.calculateWinner(cars));
   }
 
-  async getCars() {
+  async createCarsFromInput() {
     const carNames = await Input.carName();
     const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
 
@@ -31,7 +31,7 @@ class Game {
     return cars;
   }
 
-  async getTryCount() {
+  async getTryCountFromInput() {
     const tryCount = await Input.tryCount();
 
     TryCountValidator.isNaturalNumber(Number(tryCount));
