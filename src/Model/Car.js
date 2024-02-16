@@ -1,4 +1,4 @@
-import AppError from "../utils/Error";
+import AppError from '../utils/Error';
 
 const NAME_LENGTH_RANGE = Object.freeze({
   min: 1,
@@ -12,14 +12,15 @@ const ERROR_MESSAGE = `자동차 이름 길이는 ${NAME_LENGTH_RANGE.min}자 �
 
 export default class Car {
   #name;
+
   #distance = 0;
 
   constructor(name) {
-    this.#checkName(name);
+    Car.checkName(name);
     this.#name = name;
   }
 
-  #checkName(name) {
+  static checkName(name) {
     if (
       NAME_LENGTH_RANGE.max < name.length ||
       name.length < NAME_LENGTH_RANGE.min

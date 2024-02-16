@@ -1,48 +1,44 @@
-import Car from "../Model/Car.js";
-import InputView from "../View/InputView.js";
-import OutputView from "../View/OutputView.js";
-import AppError from "../utils/Error.js";
+import Car from '../Model/Car';
+import InputView from '../View/InputView';
+import OutputView from '../View/OutputView';
+import AppError from '../utils/Error';
 
-const RESULT_MESSAGE = "실행 결과";
+const RESULT_MESSAGE = '실행 결과';
 const ERROR_MESSAGES = Object.freeze({
-  onlyNum: "숫자 값만 입력해주세요.",
-  invalidNumRange: "1 이상 200미만의 숫자만 입력해주세요.",
-  duplicateName: "중복된 이름이 있습니다.",
+  onlyNum: '숫자 값만 입력해주세요.',
+  invalidNumRange: '1 이상 200미만의 숫자만 입력해주세요.',
+  duplicateName: '중복된 이름이 있습니다.',
 });
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
-const BLANK_STR = "";
+const BLANK_STR = '';
 
 export default class Controller {
   #cars;
 
-  #input = InputView;
-
-  #output = OutputView;
-
   async run() {
-    const str = await this.#promptCarNames();
-    this.#cars = str;
+    this.#cars = await this.#makeCars();
     const tryNum = await this.#promptTry();
-    this.#runRace(tryNum);
-    this.#output.printMessage(RESULT_MESSAGE);
 
-    const calculValue = this.calculateWinners(this.#cars);
-    this.#output.printWinner(calculValue);
+    this.#runRace(tryNum);
+    OutputView.printMessage(RESULT_MESSAGE);
+
+    const calculValue = Controller.calculateWinners(this.#cars);
+    OutputView.printWinner(calculValue);
   }
 
-  async #promptCarNames() {
+  async #makeCars() {
     try {
-      const carNames = await this.#input.readCars();
-      this.#checkCarDuplicate(carNames);
-
+      const carNames = await InputView.readCars();
+      Controller.checkCarDuplicate(carNames);
       return carNames.map((name) => new Car(name));
     } catch (error) {
-      this.#output.printMessage(error.message);
-      return await this.#promptCarNames();
+      OutputView.printMessage(error.message);
+      const returnValue = await this.#makeCars();
+      return returnValue;
     }
   }
 
-  #checkCarDuplicate(carNames) {
+  static checkCarDuplicate(carNames) {
     if (carNames.length !== new Set([...carNames]).size) {
       throw new AppError(ERROR_MESSAGES.duplicateName);
     }
@@ -50,18 +46,17 @@ export default class Controller {
 
   async #promptTry() {
     try {
-      const tryInput = await this.#input.readTry();
-      const tryNum = Number(tryInput);
-      this.#checkTryNum(tryNum);
-
+      const tryNum = await InputView.readTry();
+      Controller.checkTryNum(tryNum);
       return tryNum;
     } catch (error) {
-      this.#output.printMessage(error.message);
-      return await this.#promptTry();
+      OutputView.printMessage(error.message);
+      const returnValue = await this.#promptTry();
+      return returnValue;
     }
   }
 
-  #checkTryNum(number) {
+  static checkTryNum(number) {
     if (Number.isNaN(number)) {
       throw new AppError(ERROR_MESSAGES.onlyNum);
     }
@@ -74,23 +69,21 @@ export default class Controller {
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
       this.#cars.forEach((car) => {
-        car.move(this.#makeRandomNumber1to10());
-        this.#output.printCarCurrentDistance(car);
+        car.move(Controller.makeRandomNumber1to10());
+        OutputView.printCarCurrentDistance(car);
       });
-      this.#output.printMessage(BLANK_STR);
+      OutputView.printMessage(BLANK_STR);
     }
   }
 
-  #makeRandomNumber1to10() {
+  static makeRandomNumber1to10() {
     return Math.floor(Math.random() * 10);
   }
 
-  calculateWinners(cars) {
+  static calculateWinners(cars) {
     const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
     if (maxDistance) {
-      const winners = cars.filter((car) =>
-        car.getDistance() === maxDistance ? true : false
-      );
+      const winners = cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
     }
     return { hasWinner: false, winners: [] };
