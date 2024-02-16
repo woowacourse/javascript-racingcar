@@ -18,8 +18,7 @@ const RaceGameCalculator = {
    */
   getWinnersPosition: cars => {
     return cars.reduce((max, car) => {
-      if (max <= car.position) return car.position;
-      return max;
+      return max <= car.position ? car.position : max;
     }, 0);
   },
 
