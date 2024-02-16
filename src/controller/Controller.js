@@ -12,7 +12,7 @@ class Controller {
 
   async start() {
     await this.#input();
-    this.#totalRound();
+    this.#allRound();
     this.#printWinner();
   }
 
@@ -32,7 +32,7 @@ class Controller {
     return new TryCount(count);
   }
 
-  #totalRound() {
+  #allRound() {
     this.#outputView.printResultTitle();
     for (let i = 0; i < this.#tryCount.getTryCount(); i++) this.#oneRound();
   }
