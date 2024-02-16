@@ -11,7 +11,7 @@ class App {
     const race = new Race(carNameList);
     race.runRace(turnCount);
 
-    OutputView.printWinners(race.winner);
+    OutputView.printWinners(race.getWinner());
   }
 
   async #readCarNameList() {
