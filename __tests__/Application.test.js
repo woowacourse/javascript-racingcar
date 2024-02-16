@@ -12,7 +12,7 @@ const mockQuestions = (inputs) => {
 
 const mockRandoms = (numbers) => {
   Random.randomNum = jest.fn();
-  numbers.map((num) => {
+  numbers.forEach((num) => {
     Random.randomNum.mockReturnValueOnce(num);
   });
 };
