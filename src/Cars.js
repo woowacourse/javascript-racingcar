@@ -4,13 +4,13 @@ class Cars {
   #carList;
 
   constructor(carList) {
-    this.#carList = this.#validateCarName(carList);
+    this.#validateCarName(carList);
+    this.#carList = carList
   }
 
   #validateCarName(carList) {
     Validation.isDuplicate(carList);
     Validation.checkRange(carList);
-    return carList;
   }
 
   getCarList() {
