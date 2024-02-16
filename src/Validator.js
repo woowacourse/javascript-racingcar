@@ -10,9 +10,10 @@ const Validator = {
   },
 
   validateTurnCount(turnCountInput) {
-    const turnCount = parseFloat(turnCountInput, 10);
-    this.validateFloatNumber(turnCount);
+    const turnCount = parseFloat(turnCountInput);
+
     this.validateNumber(turnCount);
+    this.validateFloatNumber(turnCount);
     this.validateNaturalNumber(turnCount);
   },
 

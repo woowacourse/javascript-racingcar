@@ -2,13 +2,13 @@ import Validator from '../src/Validator';
 import { ERROR_MESSAGE } from '../src/constants/message';
 
 describe('입력값 검증', () => {
-  test('각 자동차의 이름은 5자 이하여야 한다.', () => {
+  test('자동차 이름이 5자를 초과하는 경우 예외 처리한다.', () => {
     // Arrange
-    const input = ['마루', '아르르르르르'];
+    const input = '아르르르르르';
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      Validator.validateCarNameLength(input.length);
     };
 
     /// Assert
@@ -17,11 +17,11 @@ describe('입력값 검증', () => {
 
   test('입력값이 공백일 경우 예외 처리한다.', () => {
     // Arrange
-    const input = ['아르', ''];
+    const input = '';
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      Validator.validateCarNameLength(input.length);
     };
 
     /// Assert
@@ -34,7 +34,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameList(input);
+      Validator.validateCarNameListLength(input.length);
     };
 
     /// Assert
@@ -47,7 +47,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateNaturalNumber(input);
     };
 
     /// Assert
@@ -57,14 +57,15 @@ describe('입력값 검증', () => {
   test('이동 횟수가 문자인 경우 예외 처리한다.', () => {
     // Arrange
     const input = 'string';
+    const turnCount = parseFloat(input);
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateNumber(turnCount);
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
   });
 
   test('이동 횟수가 실수로 들어온 경우 예외 처리한다.', () => {
@@ -73,7 +74,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateTurnCount(input);
+      Validator.validateFloatNumber(input);
     };
 
     /// Assert
