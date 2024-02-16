@@ -1,12 +1,9 @@
 import Console from './Console.js';
 
 const catchReturn = async (callback) => {
-  let result;
-
-  while (1) {
+  while (true) {
     try {
-      result = await callback();
-      return result;
+      return await callback();
     } catch (e) {
       Console.print(e.message);
     }
