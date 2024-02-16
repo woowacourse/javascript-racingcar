@@ -1,11 +1,11 @@
-import StringParser from "../src/utils/StringParser";
+import { splitCarNames } from "../src/utils/StringParser";
 
 describe("StringParser method 테스트", () => {
   test("구분자(,)를 통해 입력된 자동차 이름들이 올바르게 분리되어야 한다.", () => {
     const input = "pobi, woni, jun";
     const expected = ["pobi", "woni", "jun"];
 
-    const result = StringParser.splitCarNames(input);
+    const result = splitCarNames(input);
 
     expect(result).toEqual(expected);
   });
@@ -14,7 +14,7 @@ describe("StringParser method 테스트", () => {
     const input = "  pobi , woni  ,   jun ";
     const expected = ["pobi", "woni", "jun"];
 
-    const result = StringParser.splitCarNames(input);
+    const result = splitCarNames(input);
 
     expect(result).toEqual(expected);
   });

@@ -1,8 +1,8 @@
-import InputView from "../view/InputView.js";
+import { readCarNames, readAttempt } from "../view/InputView.js";
+import { printError } from "../view/OutputView.js";
 import Car from "./Car.js";
-import StringParser from "../utils/StringParser.js";
+import { splitCarNames } from "../utils/StringParser.js";
 import SETTING from "../constants/Setting.js";
-import OutputView from "../view/OutputView.js";
 import REGEXP from "../constants/RegExp.js";
 import {
   AttemptRangeError,
@@ -28,8 +28,8 @@ class SetGame {
   }
 
   async #readCarName() {
-    const input = await InputView.readCarNames();
-    const carNames = StringParser.splitCarNames(input);
+    const input = await readCarNames();
+    const carNames = splitCarNames(input);
     this.#validateCarNameArray(carNames);
     this.#createCars(carNames);
   }
@@ -40,7 +40,7 @@ class SetGame {
         await this.#readCarName();
         break;
       } catch (error) {
-        OutputView.printError(error);
+        printError(error);
       }
     }
   }
@@ -55,7 +55,7 @@ class SetGame {
   }
 
   async #readAttempt() {
-    const inputAttempt = await InputView.readAttempt();
+    const inputAttempt = await readAttempt();
     this.#validateAttempt(inputAttempt);
     this.#attempt = inputAttempt;
   }
@@ -66,7 +66,7 @@ class SetGame {
         await this.#readAttempt();
         break;
       } catch (error) {
-        OutputView.printError(error);
+        printError(error);
       }
     }
   }

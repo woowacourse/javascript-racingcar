@@ -1,7 +1,11 @@
-import MESSAGE from "../constants/Message.js";
-import OutputView from "../view/OutputView.js";
+import { concatElements } from "../utils/StringParser.js";
 import SetGame from "./SetGame.js";
-import StringParser from "../utils/StringParser.js";
+import {
+  printChampions,
+  printCar,
+  printNewLine,
+  printAttemptTitle,
+} from "../view/OutputView.js";
 
 class RacingCarGame {
   #cars;
@@ -22,20 +26,20 @@ class RacingCarGame {
   }
 
   async #play() {
-    OutputView.printNewLine();
-    OutputView.printAttemptTitle();
+    printNewLine();
+    printAttemptTitle();
     this.#iterateAttempt();
     this.#setChampion();
-    OutputView.printChampions(this.#champion);
+    printChampions(concatElements(this.#champion));
   }
 
   #iterateAttempt() {
     for (let i = 0; i < this.#attempt; i++) {
       this.#cars.forEach((car) => {
         car.moveOn();
-        OutputView.printCar(car);
+        printCar(car);
       });
-      OutputView.printNewLine();
+      printNewLine();
     }
   }
 
