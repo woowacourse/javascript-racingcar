@@ -3,6 +3,7 @@ export const SYMBOLS = {
   move: '-',
   whiteSpace: '',
   winnerSeperator: ', ',
+  newLine: '\n',
 };
 
 export const REGEX = {

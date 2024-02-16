@@ -1,11 +1,11 @@
 import { SYMBOLS } from './constants';
 
 export const INPUT_MESSAGES = Object.freeze({
-  carsName: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). \n',
-  attemptNum: '시도할 횟수는 몇 회인가요? \n',
+  carsName: `경주할 자동차 이름을 입력하세요(이름은 쉼표(${SYMBOLS.nameSeperator})를 기준으로 구분). ${SYMBOLS.newLine}`,
+  attemptNum: `시도할 횟수는 몇 회인가요? ${SYMBOLS.newLine}`,
 });
 export const OUTPUT_MESSAGES = Object.freeze({
-  resultGuide: '\n실행 결과',
+  resultGuide: `${SYMBOLS.newLine}실행 결과`,
 
   nameAndCarPosition: ([name, position]) => {
     return `${name} : ${SYMBOLS.move.repeat(position)}`;
