@@ -6,26 +6,28 @@ import InputView from './views/InputView';
 import OutputView from './views/OutputView';
 
 class App {
-  #carList;
-
   async play() {
     const carNameList = await InputView.readCarNameList();
-    this.#carList = new CarList(carNameList);
     const turnCount = await InputView.readTurnCount();
-    this.#race(turnCount);
-    const winners = this.#carList.getWinner();
+    const carList = new CarList(carNameList);
+    this.#race(carList, turnCount);
+    const winners = carList.getWinner();
     OutputView.printWinners(winners);
   }
 
-  #race(turnCount) {
+  #race(carList, turnCount) {
     OutputView.print(MESSAGE.RACE_RESULT);
     Array.from({ length: turnCount }).forEach(() => {
-      this.#carList.forEach((car) => {
-        const randomNumber = pickRandomNumber();
-        if (randomNumber >= CONFIG.CAR_MOVING_CONDITION) car.move();
-        OutputView.printCarPosition(car.name, car.position);
-      });
+      this.#moveCars(carList);
       OutputView.print();
+    });
+  }
+
+  #moveCars(carList) {
+    carList.cars.forEach((car) => {
+      const randomNumber = pickRandomNumber();
+      if (randomNumber >= CONFIG.CAR_MOVING_CONDITION) car.move();
+      OutputView.printCarPosition(car.name, car.position);
     });
   }
 }
