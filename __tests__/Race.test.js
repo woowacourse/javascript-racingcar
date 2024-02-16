@@ -1,9 +1,8 @@
 import Car from '../src/Car';
 import Race from '../src/Race';
 import CONFIG from '../src/constants/config';
-import { RACE_TEST_MESSAGE } from '../src/constants/testMessage';
 
-describe(RACE_TEST_MESSAGE.TITLE, () => {
+describe('Race 클래스 테스트', () => {
   const carNames = ['아르', '마루', '크론'];
   let race;
 
@@ -11,7 +10,7 @@ describe(RACE_TEST_MESSAGE.TITLE, () => {
     race = new Race(carNames);
   });
 
-  test(RACE_TEST_MESSAGE.MOVE_CAR_WHEN_MET_CONDITION, () => {
+  test('무작위 값이 4 이상이라면 자동차를 1만큼 전진시켜야 한다.', () => {
     // Arrange
     const car = new Car(carNames[0]);
 
@@ -22,7 +21,7 @@ describe(RACE_TEST_MESSAGE.TITLE, () => {
     expect(car.position).toBe(1);
   });
 
-  test(RACE_TEST_MESSAGE.NOT_MOVE_CAR_WHEN_MISS_CONDITION, () => {
+  test('무작위 값이 4 미만이라면 자동차를 전진시키지 않아야 한다.', () => {
     // Arrange
     const car = new Car(carNames[1]);
 
@@ -33,7 +32,7 @@ describe(RACE_TEST_MESSAGE.TITLE, () => {
     expect(car.position).toBe(0);
   });
 
-  test(RACE_TEST_MESSAGE.RETURN_CAR_POSITIONS, () => {
+  test('getTurnResult 메서드는 호출 시점의 각 자동차의 이름과 위치값을 반환해야 한다.', () => {
     // Arrange
     const carList = carNames.map((carName) => new Car(carName));
     const randomNumbers = [9, 6, 3];
@@ -53,7 +52,7 @@ describe(RACE_TEST_MESSAGE.TITLE, () => {
     expect(turnResult).toEqual(expectedResult);
   });
 
-  test(RACE_TEST_MESSAGE.RETURN_WINNERS, () => {
+  test('winner 메서드는 호출 시점의 최종 우승자를 배열 형태로 반환해야 한다.', () => {
     // Arrange
     const carList = carNames.map((carName) => new Car(carName));
     const randomNumbers = [9, 1, 4];
