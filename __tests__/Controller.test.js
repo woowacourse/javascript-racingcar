@@ -13,7 +13,7 @@ const mockQuestions = (inputs) => {
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, 'print');
-  logSpy.mockClear(); // ?
+  logSpy.mockClear();
   return logSpy;
 };
 
