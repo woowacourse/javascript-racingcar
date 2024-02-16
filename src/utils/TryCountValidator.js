@@ -6,8 +6,8 @@ const { TRY_COUNT } = Condition;
 
 class TryCountValidator {
   static isNaturalNumber(tryCount) {
-    if (!Number.isInteger(tryCount) || tryCount < TRY_COUNT.range.min) {
-      throw new Error(ERROR.try_count_range);
+    if (!Number.isInteger(tryCount) || tryCount < TRY_COUNT.RANGE.MIN) {
+      throw new Error(ERROR.TRY_COUNT_RANGE);
     }
   }
 }

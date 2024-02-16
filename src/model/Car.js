@@ -26,7 +26,7 @@ class Car {
   }
 
   updateAdvance(number) {
-    if (number >= CAR_ADVANCE.condition) this.#advance += CAR_ADVANCE.step;
+    if (number >= CAR_ADVANCE.CONDITION) this.#advance += CAR_ADVANCE.STEP;
   }
 }
 

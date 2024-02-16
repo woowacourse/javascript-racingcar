@@ -5,7 +5,7 @@ const { OUTPUT } = Message;
 class Output {
   static roundResult(cars) {
     cars.forEach((car) => {
-      console.log(`${car.getName()} ${OUTPUT.colon} ${OUTPUT.advance.repeat(car.getAdvance())}`);
+      console.log(`${car.getName()} ${OUTPUT.COLON} ${OUTPUT.ADVANCE.repeat(car.getAdvance())}`);
     });
 
     console.log('');
@@ -13,7 +13,7 @@ class Output {
 
   static winnerResult(winnerCars) {
     console.log(
-      `${OUTPUT.winner} ${winnerCars.map((winnerCar) => winnerCar.getName()).join(OUTPUT.combiner)}`
+      `${OUTPUT.WINNER} ${winnerCars.map((winnerCar) => winnerCar.getName()).join(OUTPUT.COMBINER)}`
     );
   }
 }
