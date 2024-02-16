@@ -1,8 +1,9 @@
 import Car from './Car';
 import RaceCalculator from './RaceCalculator';
-import { SYMBOLS } from '../statics/constants';
+import { RULES, SYMBOLS } from '../statics/constants';
 import { ERROR_MESSAGES } from '../statics/messages';
 import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
+import Random from '../utils/Random';
 
 class Race {
   #cars;
@@ -33,8 +34,11 @@ class Race {
   }
 
   #moveCars() {
+    const { moveThreshold, minRandomRange, maxRandomRange } = RULES;
+
     this.#cars.forEach(car => {
-      car.move();
+      const randNum = Random.pickNumberInRange(minRandomRange, maxRandomRange);
+      car.move(randNum >= moveThreshold);
     });
   }
 

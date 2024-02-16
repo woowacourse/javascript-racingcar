@@ -11,26 +11,18 @@ const mockRandoms = numbers => {
 };
 
 describe('RaceCalculator 테스트', () => {
-  // given
-  mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
-
-  // when
-  const carsCase = [new Car('pobi'), new Car('jay')];
-
-  for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
-    carsCase.forEach(car => car.move());
-  }
 
   test('getCycleResult', () => {
     //given
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
+    const moveCases = [true,false,true,false,false,true];
 
-    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
-      carsCase.forEach(car => car.move());
+    for (let i = 0; i < TEST_RULES.attemptNum; i++) {
+      carsCase.forEach((car, idx) => car.move(moveCases[i * carsCase.length + idx]));
     }
+    console.log(carsCase[0].position, carsCase[1].position);
 
     //then
     expect(RaceCalculator.getCycleResult(carsCase)).toEqual({
@@ -44,10 +36,10 @@ describe('RaceCalculator 테스트', () => {
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
+    const moveCases = [true, false, true, false, false, true];
 
-    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
-      carsCase.forEach(car => car.move());
+    for (let i = 0; i < TEST_RULES.attemptNum; i++) {
+      carsCase.forEach((car, idx) => car.move(moveCases[i * carsCase.length + idx]));
     }
 
     //then
@@ -57,26 +49,24 @@ describe('RaceCalculator 테스트', () => {
   //given
   const testCases = [
     {
-      randomCase: RANDOMCASES.firstWinOfTwoCarRandomCase,
+      moveCase : [true, false, true, false, false, true],
       winnersPosion: 2,
       winners: ['pobi'],
     },
     {
-      randomCase: RANDOMCASES.drawOfTwoCarRandomCase,
+      moveCase : [true, false, true, true, false, true],
       winnersPosion: 2,
       winners: ['pobi', 'jay'],
     },
   ];
 
-  test.each(testCases)('getWinners', ({ randomCase, winnersPosion, winners }) => {
+  test.each(testCases)('getWinners', ({ moveCase, winnersPosion, winners }) => {
     //given
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...randomCase]);
-
-    for (let i = 0; i < TEST_RULES.attemptNUM; i++) {
-      carsCase.forEach(car => car.move());
+    for (let i = 0; i < TEST_RULES.attemptNum; i++) {
+      carsCase.forEach((car, idx) => car.move(moveCase[i * carsCase.length + idx]));
     }
 
     expect(RaceCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);

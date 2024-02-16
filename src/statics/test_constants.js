@@ -21,5 +21,5 @@ export const RANDOMCASES = {
 };
 
 export const TEST_RULES = {
-  attemptNUM: 3,
+  attemptNum: 3,
 }

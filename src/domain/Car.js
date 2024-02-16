@@ -11,11 +11,8 @@ class Car {
     this.#position = 0;
   }
 
-  move() {
-    const { moveThreshold, minRandomRange, maxRandomRange } = RULES;
-
-    const randNum = Random.pickNumberInRange(minRandomRange, maxRandomRange);
-    if (randNum >= moveThreshold) this.#position++;
+  move(canMoving) {
+    canMoving && this.#position++;
   }
 
   get position() {
