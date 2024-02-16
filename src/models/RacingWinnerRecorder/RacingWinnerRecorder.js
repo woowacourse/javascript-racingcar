@@ -1,7 +1,7 @@
 const RacingWinnerRecorder = Object.freeze({
   createRacingWinners(finalRacingResults) {
     const maxMoveCount = calculateMaxMoveCount(finalRacingResults);
-    const racingWinners = extractCarDetailByMaxMoveCount(finalRacingResults, maxMoveCount);
+    const racingWinners = extractRacingWinnersByMaxMoveCount(finalRacingResults, maxMoveCount);
 
     return racingWinners;
   },
@@ -15,6 +15,6 @@ function calculateMaxMoveCount(finalRacingResults) {
   return Math.max(...moveCounts);
 }
 
-function extractCarDetailByMaxMoveCount(finalRacingResults, maxMoveCount) {
+function extractRacingWinnersByMaxMoveCount(finalRacingResults, maxMoveCount) {
   return finalRacingResults.filter(({ moveCount }) => moveCount === maxMoveCount).map(({ carName }) => carName);
 }
