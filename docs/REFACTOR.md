@@ -9,5 +9,5 @@
 ## 1차 피드백
 - [x] 테스트코드 상수화
 - [ ] Car클래스 move 책임 분리
-- [ ] RaceService 이름 교체
+- [x] RaceService 이름 교체
 - [ ] messages 
