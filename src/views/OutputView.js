@@ -1,8 +1,4 @@
 import CONDITIONS from '../constants/Conditions.js';
-import messages from '../constants/Messages.js';
-
-// const Private = {
-// };
 
 const OutputView = {
   print(message) {
