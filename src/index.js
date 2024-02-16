@@ -18,7 +18,11 @@ class App {
   #race(turnCount) {
     OutputView.print(MESSAGE.RACE_RESULT);
     Array.from({ length: turnCount }).forEach(() => {
-      this.#carList.printCurrentPosition();
+      this.#carList.forEach((car) => {
+        car.move();
+        OutputView.printCarPosition(car.name, car.position);
+      });
+      OutputView.print();
     });
   }
 }

@@ -1,5 +1,4 @@
 import CONFIG from './constants/config';
-import OutputView from './views/OutputView';
 
 class Car {
   #name;
@@ -10,6 +9,14 @@ class Car {
     this.#position = 0;
   }
 
+  get name() {
+    return this.#name;
+  }
+
+  get position() {
+    return this.#position;
+  }
+
   #pickRandomNumber() {
     return Math.floor(Math.random() * 10);
   }
@@ -18,19 +25,6 @@ class Car {
     if (this.#pickRandomNumber() >= CONFIG.CAR_MOVING_CONDITION) {
       this.#position += 1;
     }
-  }
-
-  printPosition() {
-    const positionString = '-'.repeat(this.#position);
-    OutputView.printCarPosition(this.#name, positionString);
-  }
-
-  get name() {
-    return this.#name;
-  }
-
-  get position() {
-    return this.#position;
   }
 }
 

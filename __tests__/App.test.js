@@ -48,8 +48,9 @@ describe('각 자동차 별로 현재 위치를 출력한다.', () => {
     randomMoveNumbers.forEach((moveNumber, index) => {
       mockRandom(moveNumber);
       carList[index].move();
-      carList[index].printPosition();
+      OutputView.printCarPosition(carList[index].name, carList[index].position);
     });
+    OutputView.print();
 
     // Assert
     logs.forEach((log) => {
@@ -68,7 +69,13 @@ describe('현재 위치값이 가장 큰 최종 우승자를 출력한다.', () 
 
     // Act
     mockRandom(CONFIG.CAR_MOVING_CONDITION);
-    carList.printCurrentPosition();
+
+    carList.cars.forEach((car) => {
+      car.move();
+      OutputView.printCarPosition(car.name, car.position);
+    });
+    OutputView.print();
+
     const winners = carList.getWinner();
     OutputView.printWinners(winners);
 

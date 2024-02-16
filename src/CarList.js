@@ -1,5 +1,4 @@
 import Car from './Car';
-import OutputView from './views/OutputView';
 
 class CarList {
   #carList;
@@ -8,12 +7,8 @@ class CarList {
     this.#carList = carNameList.map((carName) => new Car(carName));
   }
 
-  printCurrentPosition() {
-    this.#carList.forEach((car) => {
-      car.move();
-      car.printPosition();
-    });
-    OutputView.print();
+  get cars() {
+    return this.#carList;
   }
 
   #getMaxPosition() {

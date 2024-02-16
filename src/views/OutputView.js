@@ -3,7 +3,8 @@ const OutputView = {
     console.log(`최종 우승자: ${winners.join(', ')}`);
   },
 
-  printCarPosition(name, positionString) {
+  printCarPosition(name, position) {
+    const positionString = '-'.repeat(position);
     console.log(`${name} : ${positionString}`);
   },
 
