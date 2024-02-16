@@ -3,6 +3,7 @@ import { Validator } from './models/Validator.js';
 import OutputView from './views/OutputView.js';
 import ScoreBoard from './models/ScoreBoard.js';
 import Game from './models/Game.js';
+import generateRandomNumber from './utils/generateRandomNumber.js';
 
 class App {
 	#scoreBoard;
