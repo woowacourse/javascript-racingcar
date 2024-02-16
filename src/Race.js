@@ -2,6 +2,7 @@ import Car from './Car';
 import OutputView from './views/OutputView';
 import CONFIG from './constants/config';
 import { MESSAGE } from './constants/message';
+import pickRandomNumber from './utils/pickRandomNumber';
 
 class Race {
   #carList;
@@ -29,17 +30,14 @@ class Race {
   }
 
   #moveCar(car) {
-    if (this.#isMetConditionToMoveCar(this.#pickRandomNumber())) {
+    const randomNumber = pickRandomNumber();
+    if (this.#isMetConditionToMoveCar(randomNumber)) {
       car.move();
     }
   }
 
   #isMetConditionToMoveCar(pickedNumber) {
     return pickedNumber >= CONFIG.CAR_MOVING_CONDITION;
-  }
-
-  #pickRandomNumber() {
-    return Math.floor(Math.random() * 10);
   }
 
   get winner() {
