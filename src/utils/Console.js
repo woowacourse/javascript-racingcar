@@ -1,13 +1,13 @@
-import readline from 'readline';
-import Message from '../constant/Message.js';
+import readline from "readline";
+import Message from "../constant/Message.js";
 
 const { ERROR } = Message;
 
 class Console {
   static validateQuery(query) {
     return new Promise((resolve, reject) => {
-      if (!query || typeof query !== 'string') {
-        reject(new Error(ERROR.query));
+      if (!query || typeof query !== "string") {
+        reject(new Error(ERROR.QUERY));
       }
 
       resolve();
@@ -17,7 +17,7 @@ class Console {
   static makeReadLineQuestion(query, rl) {
     return new Promise((resolve, reject) => {
       rl.question(query, (input) => {
-        if (input === '') reject(new Error(ERROR.null));
+        if (input === "") reject(new Error(ERROR.NULL));
         rl.close();
         resolve(input);
       });
