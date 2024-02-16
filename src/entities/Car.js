@@ -1,3 +1,6 @@
+import CONDITIONS from '../constants/Conditions.js';
+import ERRORS from '../constants/Errors.js';
+
 class Car {
   #name;
   #position;
