@@ -3,10 +3,11 @@ import WinnerService from '../services/WinnerService.js';
 import OutputView from '../views/outputView.js';
 
 class WinnerController {
-  #carList;
+  #carNames;
+  #positions;
 
   constructor(cars) {
-    this.#carList = cars.getCarList();
+    [this.#carNames, this.#positions] = cars.getState();
   }
 
   run() {
@@ -16,7 +17,7 @@ class WinnerController {
   }
 
   findWinner() {
-    return new WinnerService(this.#carList).findWinner();
+    return new WinnerService([this.#carNames, this.#positions]).findWinner();
   }
 }
 

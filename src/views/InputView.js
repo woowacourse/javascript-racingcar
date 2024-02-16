@@ -1,6 +1,6 @@
 import readline from 'readline';
 import MESSAGES from '../constants/Messages.js';
-import CarList from '../entities/CarList.js';
+import Cars from '../entities/Cars.js';
 import TrialCount from '../entities/TrialCount.js';
 import OutputView from './outputView.js';
 
@@ -48,7 +48,7 @@ const Private = {
 
 const InputView = {
   readCarNames() {
-    return Private.robustInput(Private.readCarNames, CarList);
+    return Private.robustInput(Private.readCarNames, Cars);
   },
 
   readTrialCount() {

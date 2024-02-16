@@ -5,9 +5,9 @@ const OutputView = {
     console.log(message);
   },
 
-  printProgress(carList) {
-    carList.forEach(car => {
-      this.print(`${car.getName()} : ${CONDITIONS.progressMarker.repeat(car.getPosition())}`);
+  printProgress([cars, positions]) {
+    cars.forEach((car, index) => {
+      this.print(`${car} : ${CONDITIONS.progressMarker.repeat(positions[index])}`);
     });
     this.print('');
   },

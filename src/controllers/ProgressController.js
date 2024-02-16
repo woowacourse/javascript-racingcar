@@ -26,7 +26,7 @@ class ProgressController {
   }
 
   #printProgress() {
-    OutputView.printProgress(this.#cars.getCarList());
+    OutputView.printProgress(this.#cars.getState());
   }
 }
 export default ProgressController;
