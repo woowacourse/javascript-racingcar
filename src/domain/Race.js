@@ -1,10 +1,7 @@
 import Car from './Car';
-
-import RaceController from '../service/RaceController';
-
+import RaceCalculator from './RaceCalculator';
 import { SYMBOLS } from '../statics/constants';
 import { ERROR_MESSAGES } from '../statics/messages';
-
 import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
 
 class Race {
@@ -26,13 +23,13 @@ class Race {
   gameCycle(outputView) {
     for (let i = 0; i < this.#attemptNum; i++) {
       this.#moveCars();
-      outputView(RaceController.getCycleResult(this.#cars));
+      outputView(RaceCalculator.getCycleResult(this.#cars));
     }
   }
 
   judgeWinner() {
-    const winnersPosition = RaceController.getWinnersPosition(this.#cars);
-    return RaceController.getWinners(this.#cars, winnersPosition);
+    const winnersPosition = RaceCalculator.getWinnersPosition(this.#cars);
+    return RaceCalculator.getWinners(this.#cars, winnersPosition);
   }
 
   #moveCars() {

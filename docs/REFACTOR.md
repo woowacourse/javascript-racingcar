@@ -10,4 +10,5 @@
 - [x] 테스트코드 상수화
 - [ ] Car클래스 move 책임 분리
 - [x] RaceService 이름 교체
+- [x] RaceController 파일명 고민 -> RaceCalculator로 변경, domain 폴더 하위로 이동
 - [ ] messages 

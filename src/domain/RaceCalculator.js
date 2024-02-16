@@ -1,6 +1,6 @@
-import Car from '../domain/Car';
+import Car from './Car';
 
-const RaceController = {
+const RaceCalculator = {
   /**
    * @param {Car[]} cars
    * @returns
@@ -36,4 +36,4 @@ const RaceController = {
   },
 };
 
-export default RaceController;
+export default RaceCalculator;

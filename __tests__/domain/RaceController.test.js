@@ -1,5 +1,5 @@
 import Car from '../../src/domain/Car';
-import RaceController from '../../src/service/RaceController';
+import RaceCalculator from '../../src/domain/RaceCalculator';
 import Random from '../../src/utils/Random';
 import { RANDOMCASES, TEST_RULES } from '../../src/statics/test_constants';
 
@@ -10,7 +10,7 @@ const mockRandoms = numbers => {
   }, Random.pickNumberInRange);
 };
 
-describe('RaceController 테스트', () => {
+describe('RaceCalculator 테스트', () => {
   // given
   mockRandoms([...RANDOMCASES.firstWinOfTwoCarRandomCase]);
 
@@ -33,7 +33,7 @@ describe('RaceController 테스트', () => {
     }
 
     //then
-    expect(RaceController.getCycleResult(carsCase)).toEqual({
+    expect(RaceCalculator.getCycleResult(carsCase)).toEqual({
       pobi: 2,
       jay: 1,
     });
@@ -51,7 +51,7 @@ describe('RaceController 테스트', () => {
     }
 
     //then
-    expect(RaceController.getWinnersPosition(carsCase)).toEqual(2);
+    expect(RaceCalculator.getWinnersPosition(carsCase)).toEqual(2);
   });
 
   //given
@@ -79,6 +79,6 @@ describe('RaceController 테스트', () => {
       carsCase.forEach(car => car.move());
     }
 
-    expect(RaceController.getWinners(carsCase, winnersPosion)).toEqual(winners);
+    expect(RaceCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);
   });
 });

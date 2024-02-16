@@ -15,6 +15,7 @@ export const OUTPUT_MESSAGES = Object.freeze({
     return `최종 우승자: ${winners}`;
   },
 });
+
 export const ERROR_MESSAGES = Object.freeze({
   invalidAttemptNum: '[ERROR] 0 이상의 정수를 입력해 주세요.',
   hasRedundantCarName: '[ERROR] 중복된 자동차 이름이 있습니다.',

@@ -1,5 +1,4 @@
 import App from '../src/App';
-import { RULES } from '../src/statics/constants';
 import Console from '../src/utils/Console';
 import Random from '../src/utils/Random';
 import { RANDOMCASES } from '../src/statics/test_constants';
