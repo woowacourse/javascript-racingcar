@@ -1,2 +1,7 @@
 node_modules/
 dist/
+yarn.lock
+webpack.config.js
+package.json
+.eslintrc.json
+.DS_Store
