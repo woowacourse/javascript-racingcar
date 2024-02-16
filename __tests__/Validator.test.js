@@ -1,8 +1,9 @@
 import Validator from '../src/Validator';
 import { ERROR_MESSAGE } from '../src/constants/message';
+import { VALIDATOR_TEST_MESSAGE } from '../src/constants/testMessage';
 
-describe('입력값 검증', () => {
-  test('각 자동차의 이름은 5자 이하여야 한다.', () => {
+describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
+  test(VALIDATOR_TEST_MESSAGE.MAX_CAR_NAME_LENGTH, () => {
     // Arrange
     const input = ['마루', '아르르르르르'];
 
@@ -15,7 +16,7 @@ describe('입력값 검증', () => {
     expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
   });
 
-  test('입력값이 공백일 경우 예외 처리한다.', () => {
+  test(VALIDATOR_TEST_MESSAGE.MIN_CAR_NAME_LENGTH, () => {
     // Arrange
     const input = ['아르', ''];
 
@@ -28,7 +29,7 @@ describe('입력값 검증', () => {
     expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
   });
 
-  test('자동차가 1대일 경우 예외 처리한다.', () => {
+  test(VALIDATOR_TEST_MESSAGE.MIN_CAR_NAME_LIST_LENGTH, () => {
     // Arrange
     const input = ['마루'];
 
@@ -41,7 +42,7 @@ describe('입력값 검증', () => {
     expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LIST_LENGTH);
   });
 
-  test('이동 횟수가 0 이하일 경우 예외 처리한다.', () => {
+  test(VALIDATOR_TEST_MESSAGE.MIN_TURN_COUNT, () => {
     // Arrange
     const input = 0;
 
@@ -54,7 +55,7 @@ describe('입력값 검증', () => {
     expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NATURAL_NUMBER);
   });
 
-  test('이동 횟수가 문자인 경우 예외 처리한다.', () => {
+  test(VALIDATOR_TEST_MESSAGE.TURN_COUNT_SHOULD_BE_NUMBER, () => {
     // Arrange
     const input = 'string';
 
@@ -64,10 +65,10 @@ describe('입력값 검증', () => {
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
   });
 
-  test('이동 횟수가 실수로 들어온 경우 예외 처리한다.', () => {
+  test(VALIDATOR_TEST_MESSAGE.TURN_COUNT_SHOULD_BE_INTEGER, () => {
     // Arrange
     const input = 1.234;
 
@@ -77,6 +78,6 @@ describe('입력값 검증', () => {
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_INTEGER);
   });
 });
