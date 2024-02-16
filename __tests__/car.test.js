@@ -2,10 +2,10 @@ import Car from "../src/domain/Car.js";
 import RandomUtil from "../src/utils/RandomUtil.js";
 
 const mockRandoms = (numbers) => {
-  RandomUtil.pickRandomNumber = jest.fn();
+  RandomUtil.pickRandomNumberBetween = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, RandomUtil.pickRandomNumber);
+  }, RandomUtil.pickRandomNumberBetween);
 };
 
 describe("Car 유닛 테스트", () => {

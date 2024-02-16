@@ -1,8 +1,11 @@
 import RandomUtil from "../utils/RandomUtil.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
 export default class Car {
-  static THRESHOLD_FOR_GOING = 4;
   static MAX_NAME_LENGTH = 5;
+  static THRESHOLD_FOR_GOING = 4;
+
+  static MIN_RANDOM_NUMBER = 0;
+  static MAX_RANDOM_NUMBER = 9;
 
   #name;
   #mileage = 0;
@@ -34,7 +37,10 @@ export default class Car {
   }
 
   #shouldGo() {
-    return RandomUtil.pickRandomNumber() >= Car.THRESHOLD_FOR_GOING;
+    return (
+      RandomUtil.pickRandomNumberBetween(Car.MIN_RANDOM_NUMBER, Car.MAX_RANDOM_NUMBER) >=
+      Car.THRESHOLD_FOR_GOING
+    );
   }
 
   #increaseOneMileage() {

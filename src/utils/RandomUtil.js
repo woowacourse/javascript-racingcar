@@ -1,5 +1,7 @@
-export default RandomUtil = {
-  pickRandomNumber() {
-    return Math.floor(Math.random() * 10);
+const RandomUtil = {
+  pickRandomNumberBetween(minInclusive, maxInclusive) {
+    return Math.floor(Math.random() * (maxInclusive - minInclusive + 1)) + minInclusive;
   },
 };
+
+export default RandomUtil;
