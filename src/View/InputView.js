@@ -1,7 +1,6 @@
 import { MESSAGE } from '../Constant/Constant.js';
-import CarList from '../Model/CarList.js';
-import TryNumber from '../Model/TryNumber.js';
 import { readLineAsync } from '../Utils/MissionUtils.js';
+import { validateCarList, validateTryNumber } from '../Utils/validate.js';
 import OutputView from './OutputView.js';
 
 const InputView = {
@@ -9,7 +8,7 @@ const InputView = {
 		const nameInput = await readLineAsync(MESSAGE.NAME_INPUT);
 		const nameArray = nameInput.split(',');
 		try {
-			new CarList().validate(nameArray);
+			validateCarList.validate(nameArray);
 		} catch (e) {
 			OutputView.printErrorMessage(e);
 			return this.askCarNames();
@@ -18,10 +17,10 @@ const InputView = {
 	},
 
 	async askTryNumber() {
-		let numberInput = await readLineAsync(MESSAGE.TRY_NUM_INPUT);
-		numberInput = Number(numberInput);
+		const input = await readLineAsync(MESSAGE.TRY_NUM_INPUT);
+		const numberInput = Number(input);
 		try {
-			new TryNumber().validate(numberInput);
+			validateTryNumber.validate(numberInput);
 		} catch (e) {
 			OutputView.printErrorMessage(e);
 			return this.askTryNumber();

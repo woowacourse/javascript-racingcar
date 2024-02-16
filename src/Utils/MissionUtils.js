@@ -18,10 +18,6 @@ export const readLineAsync = query => {
 	});
 };
 
-export const print = query => {
-	console.log(query);
-};
-
 export const makeRandomNum = (min, max) => {
 	min = Math.ceil(min);
 	max = Math.floor(max);
