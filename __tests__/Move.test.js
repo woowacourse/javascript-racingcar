@@ -1,15 +1,22 @@
 import Move from "../src/Move.js";
 import Random from "../src/util/random.js";
 
+
+const mockRandoms = (numbers) => {
+  Random.randomNum = jest.fn();
+  numbers.forEach((num) => {
+    Random.randomNum.mockReturnValueOnce(num);
+  });
+};
+
 describe("자동차 이동 테스트", () => {
   test(" 자동차 5번 이동 시도, 2번 성공", () => {
     //Arrange
     const mockRandom = [1, 2, 3, 4, 5];
     const carName = "a";
-
     const move = new Move(carName);
-    Random.randomNum = jest.fn();
-    mockRandom.forEach((num) => Random.randomNum.mockReturnValueOnce(num));
+    mockRandoms([...mockRandom]);
+
 
     //Act
     for (let i = 0; i < 5; i++) {
@@ -27,10 +34,9 @@ describe("자동차 이동 테스트", () => {
     //Arrange
     const mockRandom = [0, 0, 0, 0, 0];
     const carName = "a";
-
     const move = new Move(carName);
-    Random.randomNum = jest.fn();
-    mockRandom.map((num) => Random.randomNum.mockReturnValueOnce(num));
+    mockRandoms([...mockRandom]);
+
 
     //Act
     for (let i = 0; i < 5; i++) {
@@ -48,10 +54,9 @@ describe("자동차 이동 테스트", () => {
     //Arrange
     const mockRandom = [4, 4, 4, 4, 4];
     const carName = "a";
-
     const move = new Move(carName);
-    Random.randomNum = jest.fn();
-    mockRandom.map((num) => Random.randomNum.mockReturnValueOnce(num));
+    mockRandoms([...mockRandom]);
+
 
     //Act
     for (let i = 0; i < 5; i++) {
