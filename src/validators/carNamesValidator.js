@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from '../constants/car-race';
-import InvalidInputException from '../exceptions/InvalidInputException';
+import { ERROR_MESSAGES, RULES } from "../constants/car-race";
+import InvalidInputException from "../exceptions/InvalidInputException";
 
 const carNamesValidator = {
   isUnique(carNames) {
@@ -11,13 +11,19 @@ const carNamesValidator = {
   },
 
   isValidLength(carNames) {
-    if (carNames.some((name) => name.length < 1 || name.length > 5)) {
+    if (
+      carNames.some(
+        (name) =>
+          name.length < RULES.minCarNameLength ||
+          name.length > RULES.maxCarNameLength
+      )
+    ) {
       throw new InvalidInputException(ERROR_MESSAGES.carNameLength);
     }
   },
 
   validate(carNames) {
-    const carNamesArray = carNames.split(',').map((name) => name.trim());
+    const carNamesArray = carNames.split(",").map((name) => name.trim());
     this.isValidLength(carNamesArray);
     this.isUnique(carNamesArray);
   },
