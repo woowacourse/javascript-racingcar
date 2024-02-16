@@ -12,13 +12,9 @@ const Random = Object.freeze({
   },
 
   pickUniqueNumbersInRange(startInclusive, endInclusive, count) {
-    const result = [];
+    const rangeArray = Array.from({ length: endInclusive - startInclusive + 1 }, (_, index) => startInclusive + index);
 
-    for (let currentValue = startInclusive; currentValue <= endInclusive; currentValue += 1) {
-      result.push(currentValue);
-    }
-
-    return this.shuffle(result).slice(0, count);
+    return this.shuffle(rangeArray).slice(0, count);
   },
 });
 
