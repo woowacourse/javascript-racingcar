@@ -5,14 +5,19 @@ import OutputView from './OutputView';
 
 const InputView = {
   async readCarNameList() {
-    try {
-      const carNameList = await this.getCarNameInput();
-      Validator.validateCarNameList(carNameList);
-      return carNameList;
-    } catch (error) {
-      OutputView.print(error.message);
-      return this.readCarNameList();
+    let carNameList = [];
+    let isValid = false;
+
+    while (!isValid) {
+      try {
+        carNameList = await this.getCarNameInput();
+        Validator.validateCarNameList(carNameList);
+        isValid = true;
+      } catch (error) {
+        OutputView.print(error.message);
+      }
     }
+    return carNameList;
   },
 
   async getCarNameInput() {
