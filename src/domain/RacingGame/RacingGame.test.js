@@ -42,8 +42,10 @@ describe('시도 횟수에 따른 자동차 경주 결과 테스트', () => {
   ];
 
   test.each(testCases)('$description', ({ racingCarNames, tryCount, randomMoveCounts, expectedRacingResult }) => {
+    const racingGame = new RacingGame({ racingCarNames, tryCount });
+
     // when
-    const results = RacingGame.startRace({ racingCarNames, tryCount, randomMoveCounts });
+    const results = racingGame.startRace(randomMoveCounts);
 
     // then
     expect(results).toStrictEqual(expectedRacingResult);
