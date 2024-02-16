@@ -5,22 +5,22 @@ import Cars from './Cars';
 
 export class Game {
   async play() {
-    const carNameArray = await Game.getCarNamesArray();
+    const carNameArray = await Game.getCarNames();
     const cars = new Cars(carNameArray);
     const tryCount = await Game.getTryCount();
-    
+
     Game.moveCars(cars, tryCount);
     OutputView.printWinner(cars.findWinners());
   }
 
-  static async getCarNamesArray() {
+  static async getCarNames() {
     try {
       const carNamesArray = await Game.carNamesToCarNamesArray();
       Validation.carNamesArrayValidate(carNamesArray);
       return carNamesArray;
     } catch (error) {
       OutputView.printError(error);
-      return await Game.getCarNamesArray();
+      return await Game.getCarNames();
     }
   }
 
