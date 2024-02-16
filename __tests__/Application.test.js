@@ -105,9 +105,3 @@ describe('자동차 경주 애플리케이션 테스트', () => {
     );
   });
 });
-
-/* 
-harry, harry -> ERROR
-undefined -> split method net exists
-harry, bong -> tryCount -> undefined ->  [ERROR] 시도할 횟수는 1이상의 숫자만 가능합니다.
-*/
