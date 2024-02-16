@@ -1,5 +1,5 @@
-import getRandomNumberInRange from '../utils/getRandomNumberInRange.js';
-import CONSTANT from '../CONSTANTS/index.js';
+import getRandomNumberInRange from '../../utils/getRandomNumberInRange.js';
+import CONSTANT from '../../CONSTANTS/index.js';
 
 const { NUMERIC } = CONSTANT;
 

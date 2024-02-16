@@ -1,4 +1,4 @@
-import CONSTANT from '../CONSTANTS';
+import CONSTANT from '../../CONSTANTS';
 
 const { NUMERIC } = CONSTANT;
 

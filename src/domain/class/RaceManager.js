@@ -1,5 +1,5 @@
 import CarInfo from './CarInfo.js';
-import CONSTANT from '../CONSTANTS/index.js';
+import CONSTANT from '../../CONSTANTS/index.js';
 
 const { hello: MESSAGE } = CONSTANT;
 
