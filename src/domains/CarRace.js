@@ -1,5 +1,5 @@
-import deepFreeze from '../utils/deepFreeze';
-import Car from './Car';
+import deepFreeze from "../utils/deepFreeze";
+import Car from "./Car";
 
 class CarRace {
   #cars;
@@ -9,17 +9,16 @@ class CarRace {
   }
 
   #initRaceCars(cars) {
-    const spliitedCars = cars.split(',').map((carName) => carName.trim());
+    const spliitedCars = cars.split(",").map((carName) => carName.trim());
     return spliitedCars.map((carName) => new Car(carName));
   }
 
   #findMaxPosition() {
-    let maxPositionCar = this.#cars[0];
-    for (let index = 1; index < this.#cars.length; index++) {
-      if (!maxPositionCar.isAheadOf(this.#cars[index])) {
-        maxPositionCar = this.#cars[index];
-      }
-    }
+    const maxPositionCar = this.#cars.reduce(
+      (currMaxPositionCar, car) =>
+        currMaxPositionCar.isAheadOf(car) ? currMaxPositionCar : car,
+      this.#cars[0]
+    );
 
     return maxPositionCar;
   }
