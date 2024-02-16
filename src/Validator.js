@@ -10,10 +10,9 @@ const Validator = {
   },
 
   validateTurnCount(turnCountInput) {
-    const turnCount = parseFloat(turnCountInput, 10);
-    this.validateFloatNumber(turnCount);
-    this.validateNumber(turnCount);
-    this.validateNaturalNumber(turnCount);
+    this.validateNumber(turnCountInput);
+    this.validateFloatNumber(turnCountInput);
+    this.validateNaturalNumber(turnCountInput);
   },
 
   validateCarNameListLength(length) {
@@ -28,19 +27,22 @@ const Validator = {
     }
   },
 
-  validateFloatNumber(turnCount) {
+  validateFloatNumber(turnCountInput) {
+    const turnCount = parseFloat(turnCountInput, 10);
     if (!Number.isInteger(turnCount)) {
       throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_INTEGER);
     }
   },
 
-  validateNumber(turnCount) {
+  validateNumber(turnCountInput) {
+    const turnCount = parseFloat(turnCountInput, 10);
     if (Number.isNaN(turnCount)) {
       throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
     }
   },
 
-  validateNaturalNumber(turnCount) {
+  validateNaturalNumber(turnCountInput) {
+    const turnCount = parseFloat(turnCountInput, 10);
     if (turnCount < CONFIG.MIN_TURN_COUNT) {
       throw new Error(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NATURAL_NUMBER);
     }
