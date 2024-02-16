@@ -1,6 +1,8 @@
+import { MESSAGE } from '../constants/message';
+
 const OutputView = {
   printWinners(winners) {
-    console.log(`최종 우승자: ${winners.join(', ')}`);
+    console.log(`${MESSAGE.WINNER} ${winners.join(', ')}`);
   },
 
   printCarPosition(name, positionString) {
