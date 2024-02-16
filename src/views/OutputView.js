@@ -3,13 +3,13 @@ import RESULT_MESSAGE from '../constants/messages/resultMessage.js';
 
 const OutputView = {
 	printStartGame() {
-		console.log(RESULT_MESSAGE.result_start);
+		console.log(RESULT_MESSAGE.RESULT_START);
 	},
 
 	printResult(gameResult) {
 		gameResult.forEach((round) => {
 			for (const [key, value] of Object.entries(round)) {
-				console.log(PROGRESS_MESSAGE.round_result(key, value));
+				console.log(`${key} : ${'-'.repeat(value)}`);
 			}
 			console.log(' ');
 		});
@@ -27,7 +27,7 @@ const OutputView = {
 			}
 		}
 
-		console.log(PROGRESS_MESSAGE.final_winner(winnerCar));
+		console.log(PROGRESS_MESSAGE.FINAL_WINNER, winnerCar.join(','));
 	},
 };
 

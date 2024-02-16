@@ -13,7 +13,7 @@ const validateOfTypeFromInput = (input, type) => {
 		if (type === 'number') {
 			const num = Number(input);
 			if (isNaN(num)) {
-				return reject(new AppError(ERROR_MESSAGE.not_number));
+				return reject(new AppError(ERROR_MESSAGE.NOT_NUMBER));
 			}
 			return resolve(Number(num));
 		}

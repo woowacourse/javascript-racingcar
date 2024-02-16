@@ -1,7 +1,7 @@
 import deepFreeze from '../../utils/deepFeeze.js';
 
 const REGEX_CONFIG = deepFreeze({
-	special_character: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/,
+	SPECIAL_CHARACTER: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/,
 });
 
 export default REGEX_CONFIG;
