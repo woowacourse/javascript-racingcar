@@ -22,7 +22,7 @@ const InputView = {
 		const tryNumber = Number(tryNumberInput);
 
 		try {
-			new TryNumber().validate(tryNumber);
+			new TryNumber(tryNumber);
 		} catch (e) {
 			OutputView.printErrorMessage(e);
 			return this.askTryNumber();

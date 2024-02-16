@@ -8,8 +8,8 @@ const OutputView = {
 	printBlank() {
 		print('');
 	},
-	printNameAndResult(carNames, resultCounter, i) {
-		print(`${carNames[i]} : ${MESSAGE.PRINT_CHAR.repeat(resultCounter[i])}`);
+	printNameAndResult(carName, result) {
+		print(`${carName} : ${MESSAGE.PRINT_CHAR.repeat(result)}`);
 	},
 	printWinners(winners) {
 		const winnersStr = winners.join(', ');

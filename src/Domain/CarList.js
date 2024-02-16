@@ -3,13 +3,11 @@ import { CAR, ERROR } from '../Constant/Constant.js';
 class CarList {
 	#names;
 	#distance;
-	#carCount;
 
 	constructor(names) {
+		this.validate(names);
 		this.#names = names;
 		this.#distance = Array.from(names).fill(0);
-		this.#carCount = 0;
-		this.validate(names);
 	}
 
 	move(index) {
@@ -33,18 +31,18 @@ class CarList {
 	}
 
 	isValidateCarNumber(nameArray) {
-		return !!(
-			nameArray.length >= CAR.MIN_CAR_LEN && nameArray.length <= CAR.MAX_CAR_LEN
+		return !(
+			nameArray.length < CAR.MIN_CAR_LEN || nameArray.length > CAR.MAX_CAR_LEN
 		);
 	}
 
 	isValidateDuplicate(nameArray) {
-		const set = new Set(nameArray);
-		return nameArray.length === set.size;
+		const nameUniqueSet = new Set(nameArray);
+		return nameArray.length === nameUniqueSet.size;
 	}
 
 	isValidateNameLength(name) {
-		return !!name.length <= CAR.MAX_NAME_LEN;
+		return name.length <= CAR.MAX_NAME_LEN && name.length > 0;
 	}
 }
 

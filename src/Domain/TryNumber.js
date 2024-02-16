@@ -1,6 +1,13 @@
 import { ERROR } from '../Constant/Constant.js';
 
 class TryNumber {
+	#numberInput;
+
+	constructor(numberInput) {
+		this.validate(numberInput);
+		this.#numberInput = numberInput;
+	}
+
 	validate(numberInput) {
 		this.validateIntegerNumber(numberInput);
 		this.validateNotANum(numberInput);
