@@ -1,5 +1,5 @@
 import randomNumber from "../utils/randomNumber.js";
-
+import SETTING from "../constants/Setting.js";
 class Car {
   #name;
   #position;
@@ -9,17 +9,13 @@ class Car {
     this.#position = 0;
   }
 
-  #movable() {
-    // 4 상수화
-    if (randomNumber() >= 4) {
-      return true;
-    }
-
+  #isMovable() {
+    if (randomNumber() >= SETTING.moveableNumberStart) return true;
     return false;
   }
 
   moveOn() {
-    if (this.#movable()) {
+    if (this.#isMovable()) {
       this.#position += 1;
     }
   }
