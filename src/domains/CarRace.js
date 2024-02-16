@@ -23,7 +23,7 @@ class CarRace {
     return maxPositionCar;
   }
 
-  makesRoundResult() {
+  makeRoundResult() {
     const result = {};
 
     this.#cars.forEach((car) => {
