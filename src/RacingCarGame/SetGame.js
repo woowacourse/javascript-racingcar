@@ -2,11 +2,7 @@ import { readCarNames, readAttempt } from "../view/InputView.js";
 import { printError } from "../view/OutputView.js";
 import Car from "./Car.js";
 import { splitCarNames } from "../utils/StringParser.js";
-import {
-  validateAttempt,
-  validateCarName,
-  validateCarNameArray,
-} from "./Valitarot.js";
+import Validator from "./Validator.js";
 
 class SetGame {
   #carArray;
@@ -14,7 +10,6 @@ class SetGame {
 
   constructor() {
     this.#carArray = [];
-    // this.#setGame();
   }
 
   async init() {
@@ -25,7 +20,7 @@ class SetGame {
   async #readCarName() {
     const input = await readCarNames();
     const carNames = splitCarNames(input);
-    validateCarNameArray(carNames);
+
     this.#createCars(carNames);
   }
 
@@ -42,7 +37,7 @@ class SetGame {
 
   #createCars(carNames) {
     carNames.forEach((carName) => {
-      validateCarName(carName);
+      Validator.carName(carName);
 
       const newCar = new Car(carName);
       this.#carArray.push(newCar);
@@ -51,7 +46,7 @@ class SetGame {
 
   async #readAttempt() {
     const inputAttempt = await readAttempt();
-    validateAttempt(inputAttempt);
+    Validator.attempt(inputAttempt);
     this.#attempt = inputAttempt;
   }
 
