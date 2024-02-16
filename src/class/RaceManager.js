@@ -1,41 +1,34 @@
 import CarInfo from './CarInfo.js';
 import CONSTANT from '../CONSTANTS/index.js';
 
-const { MESSAGE } = CONSTANT;
+const { hello: MESSAGE } = CONSTANT;
 
 class RaceManager {
-  #carNames;
-  #tryCount;
+  #maxTryCount;
   #result;
 
-  constructor(carNames, tryCount) {
-    this.#carNames = carNames;
-    this.#tryCount = tryCount;
+  constructor(carNames, maxTryCount) {
+    this.#maxTryCount = maxTryCount;
+    this.#initResult(carNames);
   }
 
-  getResultString() {
-    return new Array(this.#tryCount)
-      .fill(null)
-      .map((_, nowTry) => this.#generateTryString(nowTry))
+  getProgressString() {
+    return Array.from({ length: this.#maxTryCount })
+      .map((_, nowTryCount) => this.#generateTryString(nowTryCount))
       .join(MESSAGE.resultLineBreakMarkInRace);
   }
 
   getWinnerString() {
     const maxPosition = this.#getMaxPosition();
-    const winners = this.#result
-      .filter(
-        carInfo => carInfo.getPositionWhen(this.#tryCount - 1) === maxPosition
-      )
-      .map(carInfo => carInfo.getName());
+    const winners = this.#getCarInfosInFinish(maxPosition);
     return `${MESSAGE.winnerOutputHeader}${winners.join(
       MESSAGE.winnerConnectionMark
     )}`;
   }
 
-  setResult() {
-    this.#result = this.#carNames.map(name => {
-      const carInfo = new CarInfo(name, this.#tryCount);
-      carInfo.setPosition();
+  #initResult(carNames) {
+    this.#result = carNames.map(name => {
+      const carInfo = new CarInfo(name, this.#maxTryCount);
       return carInfo;
     });
   }
@@ -43,20 +36,28 @@ class RaceManager {
   #getMaxPosition() {
     return Math.max(
       ...this.#result.map(carInfo =>
-        carInfo.getPositionWhen(this.#tryCount - 1)
+        carInfo.getPositionWhen(this.#maxTryCount - 1)
       )
     );
   }
 
-  #generateTryString(nowTry) {
+  #generateTryString(tryCount) {
     return this.#result
       .map(
         carInfo =>
           `${carInfo.getName()}${
             MESSAGE.resultConnectionMark
-          }${MESSAGE.distanceMark.repeat(carInfo.getPositionWhen(nowTry))}`
+          }${MESSAGE.distanceMark.repeat(carInfo.getPositionWhen(tryCount))}`
       )
       .join(MESSAGE.resultLineBreakMarkInRound);
+  }
+
+  #getCarInfosInFinish(position) {
+    return this.#result
+      .filter(
+        carInfo => carInfo.getPositionWhen(this.#maxTryCount - 1) === position
+      )
+      .map(carInfo => carInfo.getName());
   }
 }
 

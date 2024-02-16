@@ -6,10 +6,9 @@ const { NUMERIC } = CONSTANT;
 class CarInfo {
   #name;
   #position;
-  #tryCount;
-  constructor(name, tryCount) {
+  constructor(name, maxTryCount) {
     this.#name = name;
-    this.#tryCount = tryCount;
+    this.#initPosition(maxTryCount);
   }
 
   getName() {
@@ -20,18 +19,20 @@ class CarInfo {
     return this.#position[count];
   }
 
-  setPosition() {
-    this.#position = [this.#doesGo() ? NUMERIC.moveDistance : 0];
-    let lastPosition = this.#position[0];
-
-    for (let nowCount = 1; nowCount < this.#tryCount; nowCount++) {
-      this.#position.push(
-        lastPosition + (this.#doesGo() ? NUMERIC.moveDistance : 0)
-      );
-      lastPosition = this.#position[nowCount];
-    }
+  #initPosition(maxTryCount) {
+    this.#position = Array.from({ length: maxTryCount }).reduce(
+      array => {
+        array.push(array[array.length - 1] + this.#getNextMoving());
+        return array;
+      },
+      [0]
+    );
+    this.#position.shift();
   }
 
+  #getNextMoving() {
+    return this.#doesGo() ? NUMERIC.moveDistance : 0;
+  }
   #doesGo() {
     return (
       getRandomNumberInRange(

@@ -12,10 +12,11 @@ class App {
 
   async run() {
     const carNames = await retryWhenErrorOccurs(() => this.readCarNames());
-    const tryCount = await retryWhenErrorOccurs(() => this.readTryCount());
-    this.#raceManger = new RaceManager(carNames, tryCount);
-    this.#raceManger.setResult();
-    this.printResult();
+    const maxTryCount = await retryWhenErrorOccurs(() =>
+      this.readMaxTryCount()
+    );
+    this.#raceManger = new RaceManager(carNames, maxTryCount);
+    this.printRace();
   }
 
   async readCarNames() {
@@ -27,19 +28,19 @@ class App {
     return answer;
   }
 
-  async readTryCount() {
-    const answer = await InputView.readLineAsync(MESSAGE.tryCountInput);
+  async readMaxTryCount() {
+    const answer = await InputView.readLineAsync(MESSAGE.maxTryCountInput);
 
     const result = Validator.validateTryCount(answer);
-    if (!result) throw new Error(MESSAGE.invalidTryCount);
+    if (!result) throw new Error(MESSAGE.invalidMaxTryCount);
     return Number(answer);
   }
 
-  printResult(isLineBreak = true) {
+  printRace(isLineBreak = true) {
     if (isLineBreak) OutputView.lineBreak();
     OutputView.print(MESSAGE.resultOutput);
 
-    OutputView.print(this.#raceManger.getResultString());
+    OutputView.print(this.#raceManger.getProgressString());
     OutputView.lineBreak();
     OutputView.print(this.#raceManger.getWinnerString());
   }
