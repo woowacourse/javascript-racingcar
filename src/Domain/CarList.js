@@ -13,11 +13,11 @@ class CarList {
 	}
 
 	move(index) {
-		this.#distance = this.#distance[index]++;
+		this.#distance[index]++;
 	}
 
-	getCarCount() {
-		return this.#names.length;
+	getDistance() {
+		return this.#distance;
 	}
 
 	validate(nameArray) {

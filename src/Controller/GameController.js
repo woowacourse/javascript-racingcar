@@ -4,14 +4,12 @@ import OutputView from '../View/OutputView.js';
 class GameController {
 	#carList;
 	#tryNumber;
-	#carsPosition;
 	#names;
 
 	constructor(carList, tryNumber, names) {
 		this.#carList = carList;
 		this.#tryNumber = tryNumber;
 		this.#names = names;
-		this.#carsPosition = Array.from(names).fill(0);
 	}
 
 	playAllTurn() {
@@ -28,27 +26,18 @@ class GameController {
 	}
 
 	playOneTurn() {
-		const carNameLength = this.#names.length;
-		for (let i = 0; i < carNameLength; i++) {
-			//전진시 해당 인원 인덱스의 카운터 추가
-			if (this.isForward()) {
-				this.#carsPosition[i]++;
-			}
-		}
-	}
-
-	showOneTurnResult() {
-		this.#carList.forEach((_, i) => {
+		this.#names.forEach((_, i) => {
 			const forwardResult = this.isForward();
 			if (forwardResult) {
-				this.#carsPosition[i]++;
+				this.#carList.move(i);
 			}
 		});
 	}
 
-	playOneTurnResult() {
-		this.#carList.forEach((car, i) => {
-			OutputView.printNameAndResult(car, this.#carsPosition, i);
+	showOneTurnResult() {
+		this.#names.forEach((car, i) => {
+			const distance = this.#carList.getDistance();
+			OutputView.printNameAndResult(car, distance, i);
 		});
 	}
 
@@ -62,9 +51,10 @@ class GameController {
 
 	decideWinner() {
 		const winnerIndexArr = [];
-		const maxValue = Math.max(...this.#carsPosition);
+		const carDistances = this.#carList.getDistance();
+		const maxValue = Math.max(...carDistances);
 
-		this.#carsPosition.forEach((position, i) => {
+		carDistances.forEach((position, i) => {
 			if (position === maxValue) {
 				winnerIndexArr.push(i);
 			}
