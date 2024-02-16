@@ -18,7 +18,7 @@ const getLogSpy = () => {
 };
 
 describe('자동차 게임 테스트', () => {
-  test('', async () => {
+  test('전체 프로세스가 정상적으로 동작하는지 테스트', async () => {
     // given
     const FORWARD = 4;
     const STOP = 3;
