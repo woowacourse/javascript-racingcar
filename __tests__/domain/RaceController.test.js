@@ -1,5 +1,6 @@
 import Car from '../../src/domain/Car';
 import RaceController from '../../src/service/RaceController';
+import { RULES } from '../../src/statics/constants';
 import Random from '../../src/utils/Random';
 
 const mockRandoms = numbers => {
@@ -9,15 +10,21 @@ const mockRandoms = numbers => {
   }, Random.pickNumberInRange);
 };
 
-describe('RaceController Test', () => {
+describe('RaceController 테스트', () => {
   // given
-  const MOVING_FORWARD = 5;
-  const STOP = 1;
-  const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
+
+  const firstWinOfTwoCarRandomCase = [
+    RULES.stop,
+    RULES.stop,
+    RULES.movingForward,
+    RULES.movingForward,
+    RULES.movingForward,
+    RULES.stop,
+  ];
 
   const ATTEMPT_NUM = 3;
 
-  mockRandoms([...randomsCase]);
+  mockRandoms([...firstWinOfTwoCarRandomCase]);
 
   // when
   const carsCase = [new Car('pobi'), new Car('jay')];
@@ -28,11 +35,11 @@ describe('RaceController Test', () => {
 
   test('getCycleResult', () => {
     //given
-    const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
+    const firstWinOfTwoCarRandomCase = [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop];
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...randomsCase]);
+    mockRandoms([...firstWinOfTwoCarRandomCase]);
 
     for (let i = 0; i < ATTEMPT_NUM; i++) {
       carsCase.forEach(car => car.move());
@@ -47,11 +54,11 @@ describe('RaceController Test', () => {
 
   test('getWinnersPosition', () => {
     //given
-    const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
+    const firstWinOfTwoCarRandomCase = [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop];
     const carsCase = [new Car('pobi'), new Car('jay')];
 
     //when
-    mockRandoms([...randomsCase]);
+    mockRandoms([...firstWinOfTwoCarRandomCase]);
 
     for (let i = 0; i < ATTEMPT_NUM; i++) {
       carsCase.forEach(car => car.move());
@@ -64,12 +71,12 @@ describe('RaceController Test', () => {
   //given
   const randomCases = [
     {
-      randoms: [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP],
+      randoms: [RULES.stop, RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop],
       winnersPosion: 2,
       winners: ['pobi'],
     },
     {
-      randoms: [STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP],
+      randoms: [RULES.stop, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.movingForward, RULES.stop],
       winnersPosion: 2,
       winners: ['pobi', 'jay'],
     },

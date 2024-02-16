@@ -1,4 +1,5 @@
 import App from '../src/App';
+import { RULES } from '../src/statics/constants';
 import Console from '../src/utils/Console';
 import Random from '../src/utils/Random';
 
@@ -27,16 +28,21 @@ const getLogSpy = () => {
 describe('기능테스트', () => {
   test('최종 결과 테스트', async () => {
     //given
-    const MOVING_FORWARD = 5;
-    const STOP = 1;
-    const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
+    const randomCase = [
+      RULES.movingForward,
+      RULES.stop,
+      RULES.movingForward,
+      RULES.movingForward,
+      RULES.movingForward,
+      RULES.stop,
+    ];
     const inputs = ['pobi,jay', '3'];
     const output = '최종 우승자: pobi';
     const logSpy = getLogSpy();
 
     //when
     mockQuestions(inputs);
-    mockRandoms([...randomsCase]);
+    mockRandoms([...randomCase]);
 
     const app = new App();
     await app.run();

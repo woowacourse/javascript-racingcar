@@ -1,4 +1,5 @@
 import Car from '../../src/domain/Car';
+import { RULES } from '../../src/statics/constants';
 import Random from '../../src/utils/Random';
 
 const mockRandoms = numbers => {
@@ -11,14 +12,12 @@ const mockRandoms = numbers => {
 describe('Car Test', () => {
   test('move', () => {
     // given
-    const MOVING_FORWARD = 5;
-    const STOP = 1;
-    const randoms = [MOVING_FORWARD, MOVING_FORWARD, STOP, STOP];
+    const randomCase = [RULES.movingForward, RULES.movingForward, RULES.stop, RULES.stop];
 
-    const ATTEMPT_NUM = randoms.length;
+    const ATTEMPT_NUM = randomCase.length;
 
     // when
-    mockRandoms([...randoms]);
+    mockRandoms([...randomCase]);
 
     const car = new Car('pobi');
     for (let i = 0; i < ATTEMPT_NUM; i++) {
