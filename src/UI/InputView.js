@@ -2,6 +2,7 @@ import readline from 'readline';
 
 const InputView = {
   readNextLineAsync(query) {
+    const nextLineQuery = `${query}\n`;
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error('arguments must be 1'));
@@ -16,9 +17,9 @@ const InputView = {
         output: process.stdout,
       });
 
-      rl.question(query, input => {
+      rl.question(nextLineQuery, input => {
         rl.close();
-        resolve(`${query}${'\n'}`);
+        resolve(input);
       });
     });
   },
