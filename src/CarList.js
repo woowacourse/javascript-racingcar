@@ -11,21 +11,10 @@ class CarList {
     return this.#carList;
   }
 
-  #getMaxPosition() {
-    let maxPosition = 0;
-    this.#carList.forEach((car) => {
-      maxPosition = Math.max(maxPosition, car.position);
-    });
-    return maxPosition;
-  }
-
-  #getFinalCarList() {
-    const finalPosition = this.#getMaxPosition();
-    return this.#carList.filter((car) => car.position === finalPosition);
-  }
-
   getWinner() {
-    return this.#getFinalCarList().map((car) => car.name);
+    const maxPosition = Math.max(...this.#carList.map((car) => car.position));
+    const winners = this.#carList.filter((car) => car.position === maxPosition);
+    return winners.map((car) => car.name);
   }
 }
 
