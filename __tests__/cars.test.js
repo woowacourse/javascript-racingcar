@@ -22,11 +22,13 @@ describe("Cars 유닛 테스트", () => {
 
       const cars = new Cars([car1, car2, car3]);
 
-      test.each([
+      const testCases = [
         { randomNumbers: [5, 1, 6], expected: [1, 0, 1] },
         { randomNumbers: [2, 5, 6], expected: [1, 1, 2] },
         { randomNumbers: [6, 8, 9], expected: [2, 2, 3] },
-      ])(
+      ];
+
+      test.each(testCases)(
         "$randomNumbers가 나오면 마일리지 값이 각각 $expected가 된다.",
         ({ randomNumbers, expected }) => {
           const [expected1, expected2, expected3] = expected;
