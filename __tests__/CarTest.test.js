@@ -28,7 +28,7 @@ describe('자동차 도메인 테스트', () => {
     harryCar.move();
 
     // then
-    expect(harryCar.getPosition()).toBe(expectedPosition);
+    expect(harryCar.position).toBe(expectedPosition);
   });
 
   it('숫자가 4미만인 경우 자동차는 전진할 수 없다.', () => {
@@ -41,7 +41,7 @@ describe('자동차 도메인 테스트', () => {
     harryCar.move();
 
     // then
-    expect(harryCar.getPosition()).toBe(expectedPosition);
+    expect(harryCar.position).toBe(expectedPosition);
   });
 
   it('두 자동차의 위치가 같은 경우 true를 반환해야 한다.', () => {

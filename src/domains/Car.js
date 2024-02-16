@@ -24,18 +24,18 @@ class Car {
   }
 
   isSamePosition(otherCar) {
-    return this.#position === otherCar.getPosition();
+    return this.#position === otherCar.position;
   }
 
   isAheadOf(otherCar) {
-    return this.#position > otherCar.getPosition();
+    return this.#position > otherCar.position;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getPosition() {
+  get position() {
     return this.#position;
   }
 }

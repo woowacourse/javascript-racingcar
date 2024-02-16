@@ -29,7 +29,7 @@ class CarRace {
 
     this.#cars.forEach((car) => {
       car.move();
-      result[car.getName()] = car.getPosition();
+      result[car.name] = car.position;
     });
 
     return deepFreeze(result);
@@ -39,7 +39,7 @@ class CarRace {
     const maxPositionCar = this.#findMaxPosition();
     const winners = this.#cars
       .filter((car) => maxPositionCar.isSamePosition(car))
-      .map((winner) => winner.getName());
+      .map((winner) => winner.name);
 
     return deepFreeze(winners);
   }
