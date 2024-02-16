@@ -1,4 +1,4 @@
-const applyFunctionToValues = (object, fn) => {
+export const applyFunctionToValues = (object, fn) => {
   const result = {};
   for (const key in object) {
     result[key] = fn(object[key]);
@@ -6,5 +6,3 @@ const applyFunctionToValues = (object, fn) => {
 
   return result;
 };
-
-export { applyFunctionToValues };

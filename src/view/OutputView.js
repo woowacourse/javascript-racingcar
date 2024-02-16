@@ -1,7 +1,7 @@
 import { CONSOLE_MESSAGE } from "../constants/message.js";
 import { print } from "../utils/console.js";
 
-class OutputView {
+export default class OutputView {
   static printBlankLine() {
     print("");
   }
@@ -20,5 +20,3 @@ class OutputView {
     print(CONSOLE_MESSAGE.winnersForm(winners));
   }
 }
-
-export default OutputView;

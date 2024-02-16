@@ -1,7 +1,7 @@
 import { CONSOLE_MESSAGE } from "../constants/message.js";
 import { readLineAsync } from "../utils/console.js";
 
-class InputView {
+export default class InputView {
   static async readCarNames() {
     return await readLineAsync(CONSOLE_MESSAGE.carNamesQuery + "\n");
   }
@@ -10,5 +10,3 @@ class InputView {
     return await readLineAsync(CONSOLE_MESSAGE.roundNumberQuery + "\n");
   }
 }
-
-export default InputView;
