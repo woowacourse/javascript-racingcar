@@ -50,16 +50,13 @@ class Game {
     });
   }
 
-  #printRoundMessage() {
-    OutputView.printMessage(
-      `\n${OUTPUT_MESSAGE.roundResult}\n라운드:${this.#round.current}\n`,
-    );
-  }
-
   play() {
-    this.#printRoundMessage();
+    OutputView.printMessage(`\n${OUTPUT_MESSAGE.roundResult}\n`);
+
     while (this.#round.total >= this.#round.current) {
-      this.#carList.forEach((car) => car.movement());
+      OutputView.printMessage(`\n라운드:${this.#round.current}\n`);
+      // 자동차 전진 판단
+      this.#carList.forEach((car) => car.move());
       this.#printRoundResult();
       this.#round.current += 1;
     }
