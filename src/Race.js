@@ -14,35 +14,38 @@ class Race {
   runRace(turnCount) {
     OutputView.print(MESSAGE.RACE_RESULT);
     Array.from({ length: turnCount }).forEach(() => {
-      const turnResult = this.#getTurnResult();
-      OutputView.printTurnResult(turnResult);
+      this.proceedTurn(this.#carList);
+      OutputView.printTurnResult(this.getTurnResult(this.#carList));
     });
   }
 
-  #getTurnResult() {
-    return this.#carList.map((car) => {
-      this.#moveCar(car);
-      return {
-        name: car.name,
-        position: car.position,
-      };
+  proceedTurn(carList) {
+    carList.forEach((car) => {
+      const randomNumber = pickRandomNumber();
+      this.moveCar(car, randomNumber);
     });
   }
 
-  #moveCar(car) {
-    const randomNumber = pickRandomNumber();
-    if (this.#isMetConditionToMoveCar(randomNumber)) {
+  getTurnResult(carList) {
+    return carList.map((car) => ({
+      name: car.name,
+      position: car.position,
+    }));
+  }
+
+  isMetConditionToMoveCar(pickedNumber) {
+    return pickedNumber >= CONFIG.CAR_MOVING_CONDITION;
+  }
+
+  moveCar(car, randomNumber) {
+    if (this.isMetConditionToMoveCar(randomNumber)) {
       car.move();
     }
   }
 
-  #isMetConditionToMoveCar(pickedNumber) {
-    return pickedNumber >= CONFIG.CAR_MOVING_CONDITION;
-  }
-
-  get winner() {
-    const maxPosition = Math.max(...this.#carList.map((car) => car.position));
-    const winners = this.#carList.filter((car) => car.position === maxPosition);
+  getWinner(carList = this.#carList) {
+    const maxPosition = Math.max(...carList.map((car) => car.position));
+    const winners = carList.filter((car) => car.position === maxPosition);
     return winners.map((car) => car.name);
   }
 }
