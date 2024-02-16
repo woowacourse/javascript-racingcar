@@ -12,3 +12,7 @@ export const ERROR = Object.freeze({
   NATURAL_NUMBER: "자연수를 입력해주세요",
   NOT_A_NUMBER: "숫자를 입력해주세요",
 });
+
+export const CAR = Object.freeze({
+  MOVE_THRESHOLD: 4
+})

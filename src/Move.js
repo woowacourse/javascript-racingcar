@@ -1,4 +1,6 @@
 import Random from "./util/random.js";
+import { CAR } from "./constant/constant.js";
+
 class Move {
   #carName;
   #moveTrace = [];
@@ -7,7 +9,7 @@ class Move {
     this.#carName = carName;
   }
   move() {
-    if (Random.randomNum() >= 4) {
+    if (Random.randomNum() >= CAR.MOVE_THRESHOLD) {
       return this.#moveTrace.push(true);
     }
     return this.#moveTrace.push(false);
