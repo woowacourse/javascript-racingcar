@@ -1,25 +1,25 @@
 class AppError extends Error {
-	/**
-	 * @type {string}
-	 */
+  /**
+   * @type {string}
+   */
 
-	static PREFIX = '[ERROR]';
+  static PREFIX = '[ERROR]';
 
-	/**
-	 * @type {string}
-	 */
-	name;
+  /**
+   * @type {string}
+   */
+  name;
 
-	/**
-	 *
-	 * @param {string} errorMessage
-	 */
+  /**
+   *
+   * @param {string} errorMessage
+   */
 
-	constructor(errorMessage) {
-		const message = `${AppError.PREFIX} ${errorMessage}`;
-		super(message);
-		this.name = this.constructor.name;
-	}
+  constructor(errorMessage) {
+    const message = `${AppError.PREFIX} ${errorMessage}`;
+    super(message);
+    this.name = this.constructor.name;
+  }
 }
 
 export default AppError;

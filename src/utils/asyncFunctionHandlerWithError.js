@@ -9,30 +9,30 @@ import ERROR_MESSAGE from '../constants/messages/errorMessage.js';
  */
 
 const validateOfTypeFromInput = (input, type) => {
-	return new Promise((resolve, reject) => {
-		if (type === 'number') {
-			const num = Number(input);
-			if (isNaN(num)) {
-				return reject(new AppError(ERROR_MESSAGE.not_number));
-			}
-			return resolve(Number(num));
-		}
+  return new Promise((resolve, reject) => {
+    if (type === 'number') {
+      const num = Number(input);
+      if (isNaN(num)) {
+        return reject(new AppError(ERROR_MESSAGE.not_number));
+      }
+      return resolve(Number(num));
+    }
 
-		return resolve(input);
-	});
+    return resolve(input);
+  });
 };
 
 const asyncFunctionHandlerWithError = (query, type, resolve, rl) => {
-	rl.question(query, async (input) => {
-		try {
-			const validatedInput = await validateOfTypeFromInput(input, type);
-			rl.close();
-			resolve(validatedInput);
-		} catch (error) {
-			console.error(error.message);
-			asyncFunctionHandlerWithError(query, type, resolve);
-		}
-	});
+  rl.question(query, async (input) => {
+    try {
+      const validatedInput = await validateOfTypeFromInput(input, type);
+      rl.close();
+      resolve(validatedInput);
+    } catch (error) {
+      console.error(error.message);
+      asyncFunctionHandlerWithError(query, type, resolve);
+    }
+  });
 };
 
 export default asyncFunctionHandlerWithError;
