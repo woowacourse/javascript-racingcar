@@ -54,7 +54,7 @@ describe("Car 유닛 테스트", () => {
   });
 
   describe("유효성 검증 테스트", () => {
-    test("생성 시 이름이 5자 초과인 경우 오류가 발생한다.", () => {
+    test("Car 객체 생성 시 주어진 이름이 5자 초과인 경우 오류가 발생한다.", () => {
       const NAME = "banana";
 
       const generateCar = () => new Car(NAME);

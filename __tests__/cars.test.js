@@ -29,7 +29,7 @@ describe("Cars 유닛 테스트", () => {
       ];
 
       test.each(testCases)(
-        "$randomNumbers가 나오면 마일리지 값이 각각 $expected가 된다.",
+        "$randomNumbers가 나오면 Car 객체들의 마일리지 값이 각각 $expected가 된다.",
         ({ randomNumbers, expected }) => {
           const [expected1, expected2, expected3] = expected;
 
@@ -87,7 +87,7 @@ describe("Cars 유닛 테스트", () => {
   });
 
   describe("유효성 검증 테스트", () => {
-    describe("차 개수가 2 이상 100 이하가 아닌 경우 오류가 발생한다.", () => {
+    describe("Cars 객체 생성 시 주어진 Car 객체의 개수가 2 이상 100 이하가 아닌 경우 오류가 발생한다.", () => {
       const SINGLE_NAME = ["Ryan"];
       const TOO_MANY_NAMES = new Array(101).fill().map((_, i) => `na${i}`);
 
@@ -100,7 +100,7 @@ describe("Cars 유닛 테스트", () => {
       });
     });
 
-    test("생성 시 차 이름이 중복되는 경우 오류가 발생한다.", () => {
+    test("Cars 객체 생성 시 주어진 Car 객체들의 이름 간 중복이 발생한 경우 오류가 발생한다.", () => {
       const NAME = "Ryan";
 
       const car1 = new Car(NAME);
@@ -111,7 +111,7 @@ describe("Cars 유닛 테스트", () => {
       expect(generateCars).toThrow("[ERROR]");
     });
 
-    test("잘못된 타입의 인자를 받을 경우 오류가 발생한다.", () => {
+    test("Cars 객체 생성 시 Car 객체가 아닌 타입의 배열이 주어질 경우 오류가 발생한다.", () => {
       const WRONG_TYPE_CARS = ["Ryan", "Hain", "Pobi"];
 
       const generateCars = () => new Cars(WRONG_TYPE_CARS);
