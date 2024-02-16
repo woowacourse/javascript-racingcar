@@ -1,5 +1,5 @@
-import CarValidator from '../utils/CarValidator';
-import Condition from '../constant/Condition';
+import CarValidator from "../validator/CarValidator";
+import Condition from "../constant/Condition";
 
 const { CAR_ADVANCE } = Condition;
 
@@ -13,7 +13,7 @@ class Car {
   }
 
   #validateName(name) {
-    CarValidator.isValidNameRange(name);
+    CarValidator.validNameRange(name);
     return name;
   }
 
@@ -26,7 +26,7 @@ class Car {
   }
 
   updateAdvance(number) {
-    if (number >= CAR_ADVANCE.condition) this.#advance += CAR_ADVANCE.step;
+    if (number >= CAR_ADVANCE.CONDITION) this.#advance += CAR_ADVANCE.STEP;
   }
 }
 
