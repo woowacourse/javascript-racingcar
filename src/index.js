@@ -1,5 +1,7 @@
 import CarList from './CarList';
+import CONFIG from './constants/config';
 import { MESSAGE } from './constants/message';
+import pickRandomNumber from './utils/pickRandomNumber';
 import InputView from './views/InputView';
 import OutputView from './views/OutputView';
 
@@ -19,7 +21,8 @@ class App {
     OutputView.print(MESSAGE.RACE_RESULT);
     Array.from({ length: turnCount }).forEach(() => {
       this.#carList.forEach((car) => {
-        car.move();
+        const randomNumber = pickRandomNumber();
+        if (randomNumber >= CONFIG.CAR_MOVING_CONDITION) car.move();
         OutputView.printCarPosition(car.name, car.position);
       });
       OutputView.print();

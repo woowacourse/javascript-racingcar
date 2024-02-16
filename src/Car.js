@@ -1,5 +1,3 @@
-import CONFIG from './constants/config';
-
 class Car {
   #name;
   #position;
@@ -17,14 +15,8 @@ class Car {
     return this.#position;
   }
 
-  #pickRandomNumber() {
-    return Math.floor(Math.random() * 10);
-  }
-
   move() {
-    if (this.#pickRandomNumber() >= CONFIG.CAR_MOVING_CONDITION) {
-      this.#position += 1;
-    }
+    this.#position += 1;
   }
 }
 
