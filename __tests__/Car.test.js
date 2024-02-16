@@ -9,7 +9,7 @@ describe('자동차 테스트', () => {
 
     carNameArray.forEach((name, index) => {
       const car = new Car(name);
-      car.movement();
+      Car.move();
       const { step } = car.getCarInfo();
 
       const pass = index >= 1 ? step === 1 : step === 0;

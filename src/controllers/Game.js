@@ -1,12 +1,12 @@
 import { Car } from '../models/index.js';
 import OutputView from '../views/OutView.js';
 import InputController from './InputController.js';
-import { OUTPUT_MESSAGE } from '../constants/Message.js';
+import { OUTPUT_MESSAGE } from '../constants/index.js';
 
 class Game {
   #carList = [];
 
-  #winner = [];
+  #winnerList = [];
 
   #round = {
     total: 0,
@@ -72,16 +72,17 @@ class Game {
   #judgementWinner() {
     const winnerPoint = this.#getWinnerPoint();
 
-    if (winnerPoint)
+    if (winnerPoint) {
       this.#carList.forEach((car) => {
         const { step, name } = car.getCarInfo();
 
-        if (step === winnerPoint) this.#winner.push(name);
+        if (step === winnerPoint) this.#winnerList.push(name);
       });
+    }
   }
 
   #printWinner() {
-    const winners = this.#winner.join(', ');
+    const winners = this.#winnerList.join(', ');
     const message = `\n${OUTPUT_MESSAGE.winner}: ${winners || '없음'}`;
 
     OutputView.printMessage(message);

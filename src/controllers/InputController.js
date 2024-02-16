@@ -6,7 +6,7 @@ const InputController = {
   async getCarName() {
     try {
       const result = await InputView.readInput(INPUT_MESSAGE.name);
-      CarValidator.confirm(result);
+      CarValidator.validate(result);
       return result;
     } catch (error) {
       OutputView.printMessage(error.message);
@@ -17,7 +17,7 @@ const InputController = {
   async getRoundNumber() {
     try {
       const result = await InputView.readInput(INPUT_MESSAGE.round);
-      RoundValidator.confirmRound(result);
+      RoundValidator.validateRound(result);
       return result;
     } catch (error) {
       OutputView.printMessage(ERROR_MESSAGE);

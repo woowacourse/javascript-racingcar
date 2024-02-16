@@ -9,8 +9,10 @@ class Car {
     this.#name = name;
   }
 
-  movement() {
-    if (RandomNumber.pickNumber() >= 4) this.#step += 1;
+  move() {
+    if (RandomNumber.pickNumber() >= 4) {
+      this.#step += 1;
+    }
   }
 
   getCarInfo() {

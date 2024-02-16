@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/Message.js';
 
 const RoundValidator = {
-  confirmRound(number) {
+  validateRound(number) {
     const regex = /^[1-5]$/;
 
     if (!regex.test(number)) {

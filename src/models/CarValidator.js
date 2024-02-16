@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/Message.js';
 
 const CarValidator = {
-  private_confirmType(string) {
+  private_validateType(string) {
     const regex = /^[A-Za-z가-힣]{1,5}$/;
 
     if (!regex.test(string)) {
@@ -9,13 +9,13 @@ const CarValidator = {
     }
   },
 
-  private_confirmName(nameArray) {
+  private_validateName(nameArray) {
     nameArray.forEach((name) => {
-      this.private_confirmType(name);
+      this.private_validateType(name);
     });
   },
 
-  private_confirmComma(string, nameArray) {
+  private_validateComma(string, nameArray) {
     const commaCount = (string.match(/,/g) || []).length;
     const { length } = nameArray;
 
@@ -24,26 +24,28 @@ const CarValidator = {
     }
   },
 
-  private_confirmDuplicate(nameArray) {
+  private_validateDuplicate(nameArray) {
     if (nameArray.length >= 2 && new Set(nameArray).size !== nameArray.length) {
       throw new Error(`${ERROR_MESSAGE} (이름 중복 오류)`);
     }
   },
 
-  private_confirmNumberOfCars(nameArray) {
+  private_validateNumberOfCars(nameArray) {
     const { length } = nameArray;
     const pass = length >= 1 && length <= 5;
 
-    if (!pass) throw new Error(`${ERROR_MESSAGE} (참여할 수 자동차 개수 오류)`);
+    if (!pass) {
+      throw new Error(`${ERROR_MESSAGE} (참여할 수 자동차 개수 오류)`);
+    }
   },
 
-  confirm(string) {
+  validate(string) {
     const nameArray = string.split(',');
 
-    this.private_confirmComma(string, nameArray);
-    this.private_confirmDuplicate(nameArray);
-    this.private_confirmNumberOfCars(nameArray);
-    this.private_confirmName(nameArray);
+    this.private_validateComma(string, nameArray);
+    this.private_validateDuplicate(nameArray);
+    this.private_validateNumberOfCars(nameArray);
+    this.private_validateName(nameArray);
   },
 };
 

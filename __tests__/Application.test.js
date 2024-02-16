@@ -18,9 +18,7 @@ describe('자동차 경주 테스트', () => {
     const app = new App();
     await app.play();
 
-    outputs.forEach((output) =>
-      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output)),
-    );
+    outputs.forEach((output) => expect(logSpy).toHaveBeenCalledWith(output));
   });
 
   test('참가한 자동차 모두 전진하지 못했다면 최종 우승자는 없음', async () => {
@@ -37,6 +35,6 @@ describe('자동차 경주 테스트', () => {
     const app = new App();
     await app.play();
 
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
+    expect(logSpy).toHaveBeenCalledWith(output);
   });
 });
