@@ -19,7 +19,15 @@ class RacingGame {
   }
 
   #updateRacingResult(racingTurn, randomMoveCounts) {
-    return this.#cars.map((car, carIndex) => car.move(randomMoveCounts[racingTurn][carIndex]));
+    const partialRacingResult = this.#cars.map((car, carIndex) => {
+      const randomMoveCount = randomMoveCounts[racingTurn][carIndex];
+
+      const updatedCarDetail = car.move(randomMoveCount);
+
+      return updatedCarDetail;
+    });
+
+    return partialRacingResult;
   }
 }
 
