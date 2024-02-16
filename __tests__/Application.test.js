@@ -25,7 +25,7 @@ const getLogSpy = () => {
 };
 
 describe('기능테스트', () => {
-  test('최종 결과 테스트', async () => {
+  test('최종 결과 테스트 - 모든 입력이 유효할 때 예측 가능한 결과가 나온다.', async () => {
     //given
     const MOVING_FORWARD = 5;
     const STOP = 1;
@@ -52,7 +52,7 @@ describe('예외테스트', () => {
     { invalidInput: 'pobi, jay' },
     { invalidInput: 'pobi,pobi' },
     { invalidInput: 'pobi' },
-  ])('유효하지 않은 자동차 이름 입력', async ({ invalidInput }) => {
+  ])('유효하지 않은 자동차 이름 입력이 들어올 때 에러를 던지고 재입력을 받는다.', async ({ invalidInput }) => {
     const logSpy = getLogSpy();
 
     const INPUT_TO_END = ['pobi,jay', '1'];
@@ -69,7 +69,7 @@ describe('예외테스트', () => {
     { invalidInput: ['pobi,eryi', '-1'] },
     { invalidInput: ['pobi,eryi', '1.2'] },
     { invalidInput: ['pobi,eryi', 'm'] },
-  ])('유효하지 않은 시도 횟수 입력', async ({ invalidInput }) => {
+  ])('유효하지 않은 시도 횟수가 입력되었을 때 에러를 던지고 재입력을 받는다.', async ({ invalidInput }) => {
     const logSpy = getLogSpy();
 
     const INPUT_TO_END = ['1'];

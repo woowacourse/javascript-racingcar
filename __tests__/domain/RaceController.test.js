@@ -1,5 +1,5 @@
 import Car from '../../src/domain/Car';
-import RaceController from '../../src/service/RaceController';
+import RaceGameCalculator from '../../src/domain/RaceGameCalculator';
 import Random from '../../src/utils/Random';
 
 const mockRandoms = numbers => {
@@ -9,7 +9,7 @@ const mockRandoms = numbers => {
   }, Random.pickNumberInRange);
 };
 
-describe('RaceController Test', () => {
+describe('RaceGameCalculator Test', () => {
   // given
   const MOVING_FORWARD = 5;
   const STOP = 1;
@@ -26,39 +26,15 @@ describe('RaceController Test', () => {
     carsCase.forEach(car => car.move());
   }
 
-  test('getCycleResult', () => {
-    //given
-    const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
-    const carsCase = [new Car('pobi'), new Car('jay')];
-
-    //when
-    mockRandoms([...randomsCase]);
-
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
-      carsCase.forEach(car => car.move());
-    }
-
-    //then
-    expect(RaceController.getCycleResult(carsCase)).toEqual({
+  test('getCycleResult - 자동차의 이름과 위치를 매핑하여 반환한다.', () => {
+    expect(RaceGameCalculator.getCycleResult(carsCase)).toEqual({
       pobi: 2,
       jay: 1,
     });
   });
 
-  test('getWinnersPosition', () => {
-    //given
-    const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
-    const carsCase = [new Car('pobi'), new Car('jay')];
-
-    //when
-    mockRandoms([...randomsCase]);
-
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
-      carsCase.forEach(car => car.move());
-    }
-
-    //then
-    expect(RaceController.getWinnersPosition(carsCase)).toEqual(2);
+  test('getWinnersPosition - 가장 멀리 나간 자동차의 위치를 계산한다.', () => {
+    expect(RaceGameCalculator.getWinnersPosition(carsCase)).toEqual(2);
   });
 
   //given
@@ -75,17 +51,20 @@ describe('RaceController Test', () => {
     },
   ];
 
-  test.each(randomCases)('getWinners', ({ randoms, winnersPosion, winners }) => {
-    //given
-    const carsCase = [new Car('pobi'), new Car('jay')];
+  test.each(randomCases)(
+    'getWinners - 가장 멀리 나간 자동차의 위치를 받아 이와 동일한 위치의 자동차의 이름을 반환한다.',
+    ({ randoms, winnersPosion, winners }) => {
+      //given
+      const carsCase = [new Car('pobi'), new Car('jay')];
 
-    //when
-    mockRandoms([...randoms]);
+      //when
+      mockRandoms([...randoms]);
 
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
-      carsCase.forEach(car => car.move());
-    }
+      for (let i = 0; i < ATTEMPT_NUM; i++) {
+        carsCase.forEach(car => car.move());
+      }
 
-    expect(RaceController.getWinners(carsCase, winnersPosion)).toEqual(winners);
-  });
+      expect(RaceGameCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);
+    },
+  );
 });

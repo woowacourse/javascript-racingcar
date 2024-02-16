@@ -9,7 +9,7 @@ const mockRandoms = numbers => {
 };
 
 describe('Car Test', () => {
-  test('move', () => {
+  test('move - 랜덤 값에 따라 postion 필드 값의 변경한다.', () => {
     // given
     const MOVING_FORWARD = 5;
     const STOP = 1;
