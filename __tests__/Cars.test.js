@@ -10,7 +10,7 @@ describe("자동차 이름 입력 테스트", () => {
     }).toThrow(ERROR.DUPLICATE);
   });
 
-  test("자동차 이름 한 글지 이상 다섯 글자 이내 확인", () => {
+  test("자동차 이름이 5자를 초과하는 경우 예외를 던진다 ", () => {
     const carList = ["a", "b", "c", "c123456"];
 
     expect(() => {
