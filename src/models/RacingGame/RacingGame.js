@@ -9,13 +9,13 @@ class RacingGame {
     this.#cars = racingCarNames.map((carName) => new Car(carName));
   }
 
-  #updateRacingResult(row, randomMoveCounts) {
-    return this.#cars.map((car, column) => car.move(randomMoveCounts[row][column]));
+  #updateRacingResult(rowIndex, randomMoveCounts) {
+    return this.#cars.map((car, columnIndex) => car.move(randomMoveCounts[rowIndex][columnIndex]));
   }
 
   startRace(randomMoveCounts) {
-    const racingResult = Array.from({ length: this.#tryCount }, (_, row) =>
-      this.#updateRacingResult(row, randomMoveCounts),
+    const racingResult = Array.from({ length: this.#tryCount }, (_, rowIndex) =>
+      this.#updateRacingResult(rowIndex, randomMoveCounts),
     );
 
     return racingResult;
