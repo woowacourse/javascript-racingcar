@@ -6,10 +6,8 @@ import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
 import Car from '../model/Car.js';
 import Condition from '../constant/Condition.js';
-import Message from '../constant/Message.js';
 
 const { SEPERATOR } = Condition;
-const { OUTPUT } = Message;
 
 class Game {
   async startGame() {
@@ -40,7 +38,7 @@ class Game {
   }
 
   playGame(cars, tryCount) {
-    console.log(OUTPUT.RESULT);
+    Output.notice();
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
