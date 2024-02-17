@@ -6,9 +6,9 @@ import { MESSAGES } from "../constant/constant.js";
 class Input {
   static carNameInput = async () => {
     try {
-      const carList = await ReadLine.readLineAsync(MESSAGES.INPUT_CAR_NAMES);
-      const car = new Cars(carList.split(","));
-
+      const carNames = (await ReadLine.readLineAsync(MESSAGES.INPUT_CAR_NAMES)).split(",");
+      Validation.validateCarNames(carNames);
+      const car = new Cars(carNames);
       return car.getCarList();
     } catch (error) {
       console.log(error.message);
@@ -18,8 +18,8 @@ class Input {
 
   static tryInput = async () => {
     try {
-      const tryNumber = await ReadLine.readLineAsync(MESSAGES.INPUT_TRY_NUMBER);
-      Validation.isNaturalNumber(tryNumber);
+      const tryNumber = Number(await ReadLine.readLineAsync(MESSAGES.INPUT_TRY_NUMBER));
+      Validation.validateTryNumber(tryNumber);
       return tryNumber;
     } catch (error) {
       console.log(error.message);

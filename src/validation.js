@@ -1,30 +1,39 @@
 import { ERROR } from "./constant/constant.js";
-const { DUPLICATE, NAME_RANGE, NATURAL_NUMBER, NOT_A_NUMBER } = ERROR;
+const { DUPLICATE, NAME_RANGE, NATURAL_NUMBER } = ERROR;
 
 class Validation {
-  static isDuplicate(carList) {
-    if (carList.length === new Set(carList).size) {
+  static #isDuplicate(carNames) {
+    if (carNames.length === new Set(carNames).size) {
       return;
     }
     throw new Error(DUPLICATE);
   }
 
-  static isRange(carName) {
+  static #isRange(carName) {
     if (1 <= carName.length && carName.length <= 5) {
       return;
     }
     throw new Error(NAME_RANGE);
   }
 
-  static checkRange(carList) {
-    carList.forEach((carName) => {
-      Validation.isRange(carName);
+  static #checkRange(carNames) {
+    carNames.forEach((carName) => {
+      Validation.#isRange(carName);
     });
   }
 
-  static isNaturalNumber(tryNumber) {
+  static #isNaturalNumber(tryNumber) {
     if (Number.isInteger(tryNumber)) return;
     throw new Error(NATURAL_NUMBER);
+  }
+
+  static validateCarNames(carNames) {
+    Validation.#isDuplicate(carNames);
+    Validation.#checkRange(carNames);
+  }
+
+  static validateTryNumber(tryNumber) {
+    Validation.#isNaturalNumber(tryNumber);
   }
 }
 
