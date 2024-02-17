@@ -21,7 +21,7 @@ const OutputController = {
   },
 
   printRoundResultHeader() {
-    OutputView.printMessage(`\n${OUTPUT_MESSAGE.roundResult}\n`);
+    OutputView.printMessage(`\n${OUTPUT_MESSAGE.roundResult}`);
   },
 
   printCurrentRound(currentRound) {

@@ -1,5 +1,4 @@
-import { Car } from '../src/domain';
-import { RandomNumber } from '../src/domain';
+import { Car, RandomNumber } from '../src/domain';
 
 describe('랜던 숫자에 대한 테스트', () => {
   test.skip('지정한 랜덤 숫자의 범위안에서 무작위로 하나의 정수를 반환', () => {

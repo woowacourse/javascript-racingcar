@@ -49,13 +49,10 @@ describe('자동차 관련 유효성 검사 테스트', () => {
     });
 
     test('참여자(자동차)의 수가 1~5 사이 값이 아닐 때 오류 출력', () => {
-      const inputArray = [, 'a,b,c,d,e,f'];
-
-      inputArray.forEach((input) => {
-        expect(() => CarValidator.validate(input)).toThrow(
-          ERROR_MESSAGE.numberOfCars,
-        );
-      });
+      const input = 'a,b,c,d,e,f';
+      expect(() => CarValidator.validate(input)).toThrow(
+        ERROR_MESSAGE.numberOfCars,
+      );
     });
   });
 });
