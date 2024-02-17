@@ -1,4 +1,5 @@
 import Validator from '../utils/Validator';
+import discriminator from '../utils/discriminator';
 import randomNumberGenerator from '../utils/randomNumberGenerator';
 
 class Car {
@@ -14,24 +15,19 @@ class Car {
     Validator.isValidCarNameRule(carName);
   }
 
-  addNameForDuplicatedCheck(uniqueCarNames) {
-    uniqueCarNames.add(this.#name);
+  getCarName() {
+    return this.#name;
   }
 
   actCar() {
     const randomNumber = randomNumberGenerator();
-    const isForward = this.#judgeForwardMovement(randomNumber);
+    const isForward = discriminator(randomNumber);
 
     if (isForward) {
       return { name: this.#name, score: 1 };
     }
 
     return { name: this.#name, score: 0 };
-  }
-
-  #judgeForwardMovement(randomNumber) {
-    const isForward = randomNumber >= 4;
-    return isForward;
   }
 }
 

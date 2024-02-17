@@ -13,18 +13,17 @@ class Cars {
   #validate(cars) {
     const uniqueCarNames = new Set();
     cars.forEach((car) => {
-      car.addNameForDuplicatedCheck(uniqueCarNames);
+      uniqueCarNames.add(car.getCarName());
     });
-
     if (uniqueCarNames.size !== cars.length) {
       throw new Error('차 이름은 중복되지 않아야 합니다.');
     }
   }
 
   roundStart() {
-    const roundResult = this.#cars.map(car => car.actCar());
+    const roundResult = this.#cars.map((car) => car.actCar());
     if (this.#isFirstRound(roundResult)) return roundResult;
-    
+
     const accumulatedResult = this.#accmulateScore(roundResult);
     this.#previousRoundResult = accumulatedResult;
     return accumulatedResult;
@@ -40,8 +39,8 @@ class Cars {
   }
 
   #accmulateScore(roundResult) {
-    return roundResult.map(({name, score}, index) => {
-      return {name, score: this.#previousRoundResult[index].score + score};
+    return roundResult.map(({ name, score }, index) => {
+      return { name, score: this.#previousRoundResult[index].score + score };
     });
   }
 }
