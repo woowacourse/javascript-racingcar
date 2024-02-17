@@ -1,5 +1,6 @@
 import MESSAGE from "../constants/Message.js";
 import Car from "./Car.js";
+import Garage from "./Garage.js";
 import InputView from "../view/InputView.js";
 import { carValidation } from "./CarValidation.js";
 import { attemptValidation } from "./attemptValidation.js";
@@ -8,7 +9,8 @@ import StringParser from "../utils/StringParser.js";
 
 // 컨트롤러
 class RacingCarGame {
-  #carList = [];
+  #carNameList = [];
+  #garage = null;
   #attempt = 0;
 
   constructor() {}
@@ -16,10 +18,11 @@ class RacingCarGame {
   #setCars(carNames) {
     carNames.forEach((carName) => {
       carValidation.validateCarName(carName);
-
-      const car = new Car(carName);
-      this.#carList.push(car);
+      this.#carNameList.push(carName);
     });
+
+    //console.log(this.#carNameList);
+    this.#garage = new Garage([...this.#carNameList]);
   }
 
   async #setCarList() {
@@ -49,6 +52,7 @@ class RacingCarGame {
     this.#attempt = Number(attemptInput);
   }
 
+  // 이거 유틸로 빼면 좋을듯
   async #setValidAttempt() {
     while (true) {
       try {
@@ -66,7 +70,18 @@ class RacingCarGame {
     await this.#setValidAttempt();
   }
 
-  #playGame() {}
+  // 얘도 두동강 내야할듯
+  #playGame() {
+    console.log(MESSAGE.printAttemptTitle);
+
+    while (this.#attempt--) {
+      this.#garage.runAttempt();
+      const carStatusList = this.#garage.getCarStatus();
+      //console.log(carStatusList);
+      console.log(MESSAGE.carStatusListFormat(carStatusList));
+      console.log("");
+    }
+  }
 
   async play() {
     await this.#setGame();

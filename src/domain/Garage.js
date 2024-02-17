@@ -2,18 +2,39 @@ import Car from "./Car.js";
 
 class Garage {
   #carList = [];
+  #carStatusList = [];
 
   constructor(carNameList) {
     this.#carList = this.#createCarList(carNameList);
-    
+    // console.log(this.#carList);
   }
 
   #createCarList(carNameList) {
-    return carNameList.map(carName => new Car(carName));
+    // console.log(carNameList);
+    // console.log(typeof carNameList);
+    return carNameList.map((carName) => new Car(carName));
   }
 
-  #registerCar(){
-    this.#carList.push();
+  #tryAllCarsMove() {
+    this.#carList.forEach((car) => {
+      car.tryToMove();
+    });
+  }
+
+  #setAllCarsPosition() {
+    const newCarStatusList = [];
+    this.#carList.forEach((car) => newCarStatusList.push(car.getCarStatus()));
+
+    this.#carStatusList = newCarStatusList;
+  }
+
+  runAttempt() {
+    this.#tryAllCarsMove();
+    this.#setAllCarsPosition();
+  }
+
+  getCarStatus() {
+    return [...this.#carStatusList];
   }
 }
 

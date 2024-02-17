@@ -14,17 +14,21 @@ class Car {
     return false;
   }
 
-  moveOneStep() {
+  tryToMove() {
     if (this.#isMovable()) this.#position += 1;
   }
 
-  getName() {
-    return this.#name;
+  getCarStatus() {
+    return { name: this.#name, position: this.#position };
   }
 
-  getPosition() {
-    return this.#position;
-  }
+  // getName() {
+  //   return this.#name;
+  // }
+
+  // getPosition() {
+  //   return this.#position;
+  // }
 }
 
 export default Car;
