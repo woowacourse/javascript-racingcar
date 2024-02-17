@@ -9,8 +9,7 @@ class CarRace {
   }
 
   #initRaceCars(cars) {
-    const spliitedCars = cars.split(',').map((carName) => carName.trim());
-    return spliitedCars.map((carName) => new Car(carName));
+    return cars.map((carName) => new Car(carName));
   }
 
   #findMaxPosition() {

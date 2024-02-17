@@ -19,7 +19,7 @@ class RaceController {
     try {
       const carNames = await InputView.readCarNames();
       carNamesValidator.validate(carNames);
-      return carNames;
+      return carNames.split(',').map((carName) => carName.trim());
     } catch (error) {
       Console.print(error.message);
       return await this.#processCarNames();

@@ -15,7 +15,7 @@ describe('자동차 경주 도메인 테스트', () => {
   let carRace;
 
   beforeEach(() => {
-    carRace = new CarRace('harry,bong,pobi');
+    carRace = new CarRace(['harry', 'bong', 'pobi']);
   });
 
   it('각 라운드의 결과를 올바르게 표시한다.', () => {
