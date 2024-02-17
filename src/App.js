@@ -1,10 +1,9 @@
 import RacingGame from './controller/RacingGame';
 
-class App {
+const App = {
   async init() {
-    await RacingGame.prototype.play();
-    return this;
-  }
-}
+    await RacingGame.play();
+  },
+};
 
 export default App;

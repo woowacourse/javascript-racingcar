@@ -6,26 +6,25 @@ import Cars from '../collection/Cars';
 import RoundCount from '../models/RoundCount';
 import OutputView from '../views/OutputView';
 
-class RacingGame {
+const RacingGame = {
   async play() {
     const cars = await repeatFunctionUntilIsValid(this.setCarNames);
     const roundCount = await repeatFunctionUntilIsValid(this.setRoundCount);
     roundCount.raceStart(cars);
     OutputView.printRaceResult(roundCount.makeRaceResultOutput());
     OutputView.printWinners(roundCount.judgeWinners());
-    return this;
-  }
+  },
 
   async setCarNames() {
     const inputValue = await InputView.readCarNames();
     const seperatedCarNames = gameUtils.seperateComma(inputValue);
     return new Cars(seperatedCarNames.map((carName) => new Car(carName)));
-  }
+  },
 
   async setRoundCount() {
     const inputValue = await InputView.readRoundCount();
     return new RoundCount(inputValue);
-  }
-}
+  },
+};
 
 export default RacingGame;
