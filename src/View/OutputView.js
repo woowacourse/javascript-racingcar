@@ -16,14 +16,13 @@ const OutputView = {
   printWinner(calculValue) {
     const { hasWinner, winners } = calculValue;
 
-    if (hasWinner) {
-      console.log(
-        WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL)
-      );
-    }
     if (!hasWinner) {
       console.log(NO_WINNER_MESSAGE);
+      return;
     }
+    console.log(
+      WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL)
+    );
   },
 };
 

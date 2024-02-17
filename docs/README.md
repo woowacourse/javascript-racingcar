@@ -66,4 +66,4 @@
 
 > early return을 잘 사용해보자.
 
-- [ ] OutputView의 `printWinner` 함수 early return 사용하여 리팩토링하기.
+- [x] OutputView의 `printWinner` 함수 early return 사용하여 리팩토링하기.
