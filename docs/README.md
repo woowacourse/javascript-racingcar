@@ -29,7 +29,7 @@
 
 > 관된 상수들을 모듈 내에 포함시켜 놓는 것도 좋으나 크기가 조금만 커져도 가독성에 문제가 발생할 수 있다
 
-- [ ] Constants 폴더에 따로 분리
+- [x] Constants 폴더에 따로 분리
 
 </br>
 
@@ -51,7 +51,8 @@
 
 > 모듈 안에서만 사용되는 함수라면 private으로 은닉하자. 단순히 test를 위해 노출시킨것이라면 노출된 함수들을 테스트하자.
 
-- [ ] InputView 안의 `readLineAsync` 은닉하기
+- [x] InputView 안의 `readLineAsync` 은닉하기
+- [x] `readLineAsync`을 은닉한 후 노출된 함수(`readCars`,`readTry`)를 테스트하도록 테스트 코드 수정
 
 ### 6. 추상화 관련
 

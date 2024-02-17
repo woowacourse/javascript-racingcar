@@ -39,13 +39,15 @@ describe("Controller 객체 테스트", () => {
   });
 
   const mockQuestions = (inputs) => {
-    InputView.readLineAsync = jest.fn();
+    InputView.readCars = jest.fn();
+    InputView.readTry = jest.fn();
 
-    InputView.readLineAsync.mockImplementation(() => {
-      const input = inputs.shift();
-
-      return Promise.resolve(input);
-    });
+    InputView.readCars.mockImplementation(() =>
+      Promise.resolve(inputs.shift().split(","))
+    );
+    InputView.readTry.mockImplementation(() =>
+      Promise.resolve(Number(inputs.shift()))
+    );
   };
 
   const getLogSpy = () => {

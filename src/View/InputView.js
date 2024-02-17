@@ -10,25 +10,25 @@ const STD_OBJ = Object.freeze({
   output: process.stdout,
 });
 
+const readLineAsync = (prompt) => {
+  const rl = readLine.createInterface(STD_OBJ);
+  return new Promise((resolve) => {
+    rl.question(prompt, (answer) => {
+      resolve(answer);
+      rl.close();
+    });
+  });
+};
+
 const InputView = {
   async readCars() {
-    const carsName = await this.readLineAsync(PROMPT_CAR_NAMES);
+    const carsName = await readLineAsync(PROMPT_CAR_NAMES);
     return carsName.split(DIVIDE_SYMBOL);
   },
   async readTry() {
-    const tryNums = await this.readLineAsync(PROMPT_TRY);
+    const tryNums = await readLineAsync(PROMPT_TRY);
 
     return Number(tryNums);
-  },
-
-  readLineAsync(prompt) {
-    const rl = readLine.createInterface(STD_OBJ);
-    return new Promise((resolve) => {
-      rl.question(prompt, (answer) => {
-        resolve(answer);
-        rl.close();
-      });
-    });
   },
 };
 
