@@ -24,11 +24,12 @@ const InputView = (() => {
   return {
     readCars: async () => {
       const carsName = await readLineAsync(PROMPT_CAR_NAMES);
-      return carsName.split(DIVIDE_SYMBOL);
+      return carsName.split(DIVIDE_SYMBOL).map((name) => name.trim());
     },
     readTry: async () => {
       const tryNums = await readLineAsync(PROMPT_TRY);
-      return Number(tryNums);
+
+      return tryNums;
     },
   };
 })();

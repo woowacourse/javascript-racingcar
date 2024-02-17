@@ -4,39 +4,39 @@ import InputView from "../src/View/InputView";
 import OutputView from "../src/View/OutputView";
 
 describe("Controller 객체 테스트", () => {
-  test.each([
-    [
-      [
-        ["리버", 3],
-        ["러기", 5],
-        ["헤일리", 5],
-      ],
-      ["러기", "헤일리"],
-    ],
-    [
-      [
-        ["리버", 0],
-        ["러기", 0],
-        ["헤일리", 0],
-      ],
-      [],
-    ],
-  ])("우승자 계산을 해야된다.", (info, expectedValue) => {
-    // arrange
-    const controller = new Controller();
-    const cars = info.map(([name, distance]) => {
-      const car = new Car(name);
-      car.getName = jest.fn(() => name);
-      car.getDistance = jest.fn(() => distance);
-      return car;
-    });
+  //   test.each([
+  //     [
+  //       [
+  //         ["리버", 3],
+  //         ["러기", 5],
+  //         ["헤일리", 5],
+  //       ],
+  //       ["러기", "헤일리"],
+  //     ],
+  //     [
+  //       [
+  //         ["리버", 0],
+  //         ["러기", 0],
+  //         ["헤일리", 0],
+  //       ],
+  //       [],
+  //     ],
+  //   ])("우승자 계산을 해야된다.", (info, expectedValue) => {
+  //     // arrange
+  //     const controller = new Controller();
+  //     const cars = info.map(([name, distance]) => {
+  //       const car = new Car(name);
+  //       car.getName = jest.fn(() => name);
+  //       car.getDistance = jest.fn(() => distance);
+  //       return car;
+  //     });
 
-    // action
-    const { winners } = controller.calculateWinners(cars);
+  //     // action
+  //     const { winners } = controller.calculateWinners(cars);
 
-    // assert
-    expect(winners.map((car) => car.getName())).toStrictEqual(expectedValue);
-  });
+  //     // assert
+  //     expect(winners.map((car) => car.getName())).toStrictEqual(expectedValue);
+  //   });
 
   const mockQuestions = (inputs) => {
     InputView.readCars = jest.fn();

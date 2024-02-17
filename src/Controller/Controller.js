@@ -1,10 +1,11 @@
 import { SYMBOL, TRY_CONSTANTS } from "../Constants/Constants.js";
 import { ERROR_MESSAGES, VIEW_MESSAGES } from "../Constants/Messages.js";
 import Car from "../Model/Car.js";
+import CarValidator from "../Validator/CarValidator.js";
+import CommonValidator from "../Validator/CommonValidator.js";
 import TryNumValidator from "../Validator/TryNumValidator.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
-import AppError from "../utils/Error.js";
 
 const { RESULT_MESSAGE } = VIEW_MESSAGES;
 const { DUPLICATED_NAME } = ERROR_MESSAGES;
@@ -18,8 +19,9 @@ export default class Controller {
   #output = OutputView;
 
   async run() {
-    const str = await this.#promptCarNames();
-    this.#cars = str;
+    const carNamesInput = await this.#promptCarNames();
+    this.#cars = carNamesInput;
+
     const tryNum = await this.#promptTry();
     this.#runRace(tryNum);
     console.log(RESULT_MESSAGE);
@@ -31,28 +33,25 @@ export default class Controller {
   async #promptCarNames() {
     try {
       const carNames = await this.#input.readCars();
-      this.#checkCarDuplicate(carNames);
+      CommonValidator.check(carNames);
+      CarValidator.checkCarName(carNames);
 
       return carNames.map((name) => new Car(name));
     } catch (error) {
       console.log(error.message);
-      return await this.#promptCarNames();
-    }
-  }
 
-  #checkCarDuplicate(carNames) {
-    if (carNames.length !== new Set([...carNames]).size) {
-      throw new AppError(DUPLICATED_NAME);
+      return await this.#promptCarNames();
     }
   }
 
   async #promptTry() {
     try {
       const tryInput = await this.#input.readTry();
-      const tryNum = Number(tryInput);
-      TryNumValidator.checkTryNum(tryNum);
+      CommonValidator.check(tryInput);
+      TryNumValidator.checkTryNum(tryInput);
 
-      return tryNum;
+      console.log(Number(tryInput));
+      return Number(tryInput);
     } catch (error) {
       console.log(error.message);
       return await this.#promptTry();

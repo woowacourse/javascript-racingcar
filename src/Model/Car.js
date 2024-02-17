@@ -1,5 +1,4 @@
 import { CAR_CONSTANTS } from "../Constants/Constants";
-import CarValidator from "../Validator/CarValidator";
 
 const { MIN_MOVE_THRESHOLD, MOVE_DISTANCE } = CAR_CONSTANTS;
 
@@ -9,7 +8,6 @@ export default class Car {
   #distance = 0;
 
   constructor(name) {
-    CarValidator.checkCarName(name);
     this.#name = name;
   }
 
