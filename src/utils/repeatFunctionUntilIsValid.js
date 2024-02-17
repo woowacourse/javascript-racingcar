@@ -14,6 +14,7 @@ async function repeatFunctionUntilIsValid(method, params) {
   const errorStack = [];
   while (errorStack.length < 10) {
     const result = await runMethod(method, params);
+    if (!(result instanceof Error)) return result;
     errorStack.push(result);
   }
   throw new Error('\n입력 횟수를 초과하였습니다.');
