@@ -9,6 +9,7 @@ describe("자동차 이름 입력 테스트", () => {
     // Act
     const cars = new Cars(carNames);
 
-    expect(cars.getCarList).toThrow(ERROR.DUPLICATE);
+    // Assert
+    expect(cars.getCarList).toEqual(carNames);
   });
 });
