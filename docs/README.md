@@ -30,13 +30,12 @@
 > 관된 상수들을 모듈 내에 포함시켜 놓는 것도 좋으나 크기가 조금만 커져도 가독성에 문제가 발생할 수 있다
 
 - [ ] Constants 폴더에 따로 분리
-<!-- - [ ] 가독성 이슈로 분리하는것이기 때문에 Constants 내부에서도 Messages들과 Constants,Symbol로 나눠보기 -->
 
 </br>
 
 ### 4. MVC 패턴 관련
 
->
+> MVC 패턴을 사용하다보면 자연스럽게 Model, View 말고는 전부 Controller에 때려박는 방향으로 흘러가는 경우가 많다보니 Controller가 비대해지곤 하니 조금 더 분리해보자.
 
 - [ ] Controller 다이어트 시키기
 
@@ -53,3 +52,9 @@
 > 모듈 안에서만 사용되는 함수라면 private으로 은닉하자. 단순히 test를 위해 노출시킨것이라면 노출된 함수들을 테스트하자.
 
 - [ ] InputView 안의 `readLineAsync` 은닉하기
+
+### 6. 추상화 관련
+
+> 불필요한 추상화로 인해서 협업시 문제 발생 할 수 있다.
+
+- [ ] OutputView의 printMessage 삭제
