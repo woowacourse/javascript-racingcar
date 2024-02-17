@@ -1,3 +1,5 @@
+import { CONFIG } from '../constants';
+
 class Car {
   #name;
   #position;
@@ -15,8 +17,16 @@ class Car {
     return this.#position;
   }
 
-  move() {
-    this.#position += 1;
+  move(randomNumber) {
+    if (this.canMove(randomNumber)) this.#position += 1;
+  }
+
+  canMove(randomNumber) {
+    return randomNumber >= CONFIG.CAR_MOVING_CONDITION;
+  }
+
+  isMaxPosition(maxPosition) {
+    return this.#position === maxPosition;
   }
 }
 

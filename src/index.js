@@ -1,14 +1,13 @@
-import CarList from './domain/CarList';
 import { InputView } from './view';
-import race from './controller/race';
+import RaceController from './controller/RaceController';
 
 const app = {
   async play() {
     const carNameList = await InputView.readCarNameList();
     const turnCount = await InputView.readTurnCount();
-    const carList = new CarList(carNameList);
-    race.start(carList, turnCount);
-    race.showWinner(carList);
+    const race = new RaceController(carNameList, turnCount);
+    race.start();
+    race.showRaceResult();
   },
 };
 
