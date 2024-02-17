@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from '../src/constants';
 import { CarValidator, RoundValidator } from '../src/models';
 
 describe('자동차 관련 유효성 검사 테스트', () => {
@@ -9,7 +10,9 @@ describe('자동차 관련 유효성 검사 테스트', () => {
 
     test('쉼표로 자동차를 구분하지 않은 경우 오류 출력', () => {
       const input = 'a b c';
-      expect(() => CarValidator.validate(input)).toThrow();
+      expect(() => CarValidator.validate(input)).toThrow(
+        ERROR_MESSAGE.delimiter,
+      );
     });
   });
 
@@ -21,7 +24,9 @@ describe('자동차 관련 유효성 검사 테스트', () => {
 
     test('참여자(자동차) 리스트에 중복되는 원소가 있을 때', () => {
       const input = 'a,a';
-      expect(() => CarValidator.validate(input)).toThrow();
+      expect(() => CarValidator.validate(input)).toThrow(
+        ERROR_MESSAGE.duplicate,
+      );
     });
   });
 
@@ -33,7 +38,9 @@ describe('자동차 관련 유효성 검사 테스트', () => {
 
     test('참여자(자동차)의 수가 1~5 사이 값이 아닐 때', () => {
       const input = 'a,b,c,d,e,f';
-      expect(() => CarValidator.validate(input)).toThrow();
+      expect(() => CarValidator.validate(input)).toThrow(
+        ERROR_MESSAGE.numberOfCars,
+      );
     });
   });
 
@@ -45,7 +52,7 @@ describe('자동차 관련 유효성 검사 테스트', () => {
 
     test('참여자(자동차)의 이름 조건에 맞지 않을 때', () => {
       const input = 'abcdef33';
-      expect(() => CarValidator.validate(input)).toThrow();
+      expect(() => CarValidator.validate(input)).toThrow(ERROR_MESSAGE.carName);
     });
   });
 });
@@ -58,7 +65,9 @@ describe('진행횟수 관련 유효성 검사 테스트', () => {
 
   test('진행횟수가 1~5 사이의 값이 아닐 때', () => {
     ['a12', '6'].forEach((input) => {
-      expect(() => RoundValidator.validateRound(input)).toThrow();
+      expect(() => RoundValidator.validateRound(input)).toThrow(
+        ERROR_MESSAGE.round,
+      );
     });
   });
 });
