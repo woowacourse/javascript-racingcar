@@ -12,10 +12,8 @@ class Car {
     return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
   }
 
-  move(randomValue = 0) {
-    if (Car.canMove(randomValue)) {
-      this.#distance += NUMBERS.MOVE_INCREMENT;
-    }
+  move() {
+    this.#distance += NUMBERS.MOVE_INCREMENT;
   }
 
   getName() {

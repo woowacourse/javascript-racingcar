@@ -1,14 +1,16 @@
 import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 import Car from './Car';
-class Cars {
+class RaceProgress {
   #carList;
-  constructor(carNameArray = []) {
-    this.#carList = carNameArray.map((name) => new Car(name));
+  constructor(carArray = []) {
+    this.#carList = carArray;
   }
 
   moveAllCars() {
     this.#carList.forEach((car) => {
-      car.move(RandomNumberGenerator.pickRandomNumber());
+      if (Car.canMove(RandomNumberGenerator.pickRandomNumber())) {
+        car.move();
+      }
     });
   }
 
@@ -28,4 +30,4 @@ class Cars {
   }
 }
 
-export default Cars;
+export default RaceProgress;

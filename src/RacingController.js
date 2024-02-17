@@ -1,12 +1,13 @@
 import InputView from './view/InputView';
 import Validation from './utils/Validation';
 import OutputView from './view/OutputView';
-import Cars from './domain/Cars';
+import RaceProgress from './domain/RaceProgress';
+import Car from './domain/Car';
 
 export class Game {
   async play() {
-    const carNameArray = await Game.getCarNamesArray();
-    const cars = new Cars(carNameArray);
+    const carNames = await Game.getCarNamesArray();
+    const cars = this.createCars(carNames);
     const tryCount = await Game.getTryCount();
     const eachStepCarsResults = Game.getMovingCarsResults(cars, tryCount);
     OutputView.printEachStepResult(eachStepCarsResults);
@@ -38,6 +39,11 @@ export class Game {
   static async carNamesToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
+  }
+
+  createCars(carNames = []) {
+    const carArray = carNames.map((carName) => new Car(carName));
+    return new RaceProgress(carArray);
   }
 
   static getMovingCarsResults(cars = {}, tryCount = 0) {
