@@ -1,6 +1,6 @@
 import Validation from "./Validation.js";
 import { ERROR } from "./constant/index.js";
-const { CAR_DUPLICATE, NAME_RANGE, NATURAL_NUMBER, NOT_A_NUMBER } = ERROR;
+const { CAR_DUPLICATE, NAME_RANGE } = ERROR;
 
 class Cars {
   #carList;
