@@ -1,13 +1,13 @@
-import Car from "../../src/models/Car";
-import Cars from './../../src/collection/Cars';
-import gameUtils from "../../src/utils/gameUtils";
+import Car from '../../src/models/Car';
+import Cars from '../../src/collection/Cars';
+import gameUtils from '../../src/utils/gameUtils';
 
 const mockRandoms = (numbers) => {
   gameUtils.pickRandomNumber = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
   }, gameUtils.pickRandomNumber);
-}
+};
 
 describe('자동차 콜렉션 검증', () => {
   describe('자동차 이름 중복 검증', () => {
@@ -19,7 +19,7 @@ describe('자동차 콜렉션 검증', () => {
       expect(() => {
         // when
         new Cars([sundayCar, duplicatedCar]);
-        
+
         // then
       }).toThrow();
     });
@@ -31,7 +31,7 @@ describe('자동차 콜렉션 검증', () => {
       // when
       const cars = new Cars([sundayCar, cookieCar]);
 
-      expect(typeof cars === 'object').toBeTruthy();
+      expect(cars instanceof Cars).toBeTruthy();
     });
   });
   describe('자동차 통합테스트', () => {
@@ -42,7 +42,10 @@ describe('자동차 콜렉션 검증', () => {
       const cars = new Cars([sundayCar, cookieCar]);
       const randomNumbers = [3, 4];
       mockRandoms(randomNumbers);
-      const answer = [{name: '썬데이', score: 0}, {name: '쿠키', score: 1}];
+      const answer = [
+        { name: '썬데이', score: 0 },
+        { name: '쿠키', score: 1 },
+      ];
 
       // when
       const roundResult = cars.roundStart();
