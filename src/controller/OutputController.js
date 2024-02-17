@@ -15,7 +15,9 @@ const OutputController = {
   },
 
   printMovement(name, step) {
-    const message = `${name} : ${OUTPUT_MESSAGE.movement.repeat(step)} `;
+    const message = `${name}${SPACE}:${SPACE}${OUTPUT_MESSAGE.movement.repeat(
+      step,
+    )} `;
 
     OutputView.printMessage(message);
   },
@@ -29,8 +31,9 @@ const OutputController = {
   },
 
   printWinner(winnerList) {
-    const winners = winnerList.join(`${DELIMITER}${SPACE}`);
-    const message = `\n${OUTPUT_MESSAGE.winner}: ${winners || NONE}`;
+    const message = `\n${OUTPUT_MESSAGE.winner}:${SPACE}${
+      winnerList.join(`${DELIMITER}${SPACE}`) || NONE
+    }`;
 
     OutputView.printMessage(message);
   },

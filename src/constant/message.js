@@ -1,10 +1,10 @@
 import { CAR_RULE, DELIMITER, ROUND_RULE } from './rule.js';
 
-const HINT = Object.freeze('[hint]');
+const HINT = '[hint]';
 
-const ARROW = Object.freeze('=>');
+const ARROW = '=>';
 
-const GREETING = Object.freeze('\n--- 🚗🏁 자동차 경주를 시작합니다. ---\n');
+const GREETING = '\n--- 🚗🏁 자동차 경주를 시작합니다. ---\n';
 
 export const SPACE = ' ';
 
@@ -29,12 +29,10 @@ export const OUTPUT_MESSAGE = Object.freeze({
   movement: '-',
 });
 
-const COMMON_ERROR_MESSAGE = Object.freeze(
-  '\n[Error] 유효하지 않은 형식이에요.',
-);
+const COMMON_ERROR_MESSAGE = '\n[Error] 유효하지 않은 형식이에요.';
 
 export const ERROR_MESSAGE = Object.freeze({
-  carName: `${COMMON_ERROR_MESSAGE} (자동차 이름 형식 또는 ${DELIMITER} 사용 오류)`,
+  carNameAndDelimiter: `${COMMON_ERROR_MESSAGE} (자동차 이름 형식 또는 ${DELIMITER} 사용 오류)`,
   duplicate: `${COMMON_ERROR_MESSAGE} (자동차 이름 중복 오류)`,
   numberOfCars: `${COMMON_ERROR_MESSAGE} (참여하는 자동차 개수 오류)`,
   round: `${COMMON_ERROR_MESSAGE} (게임 진행 횟수 오류)`,

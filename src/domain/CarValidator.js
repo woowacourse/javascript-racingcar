@@ -1,15 +1,15 @@
 import { CAR_RULE, DELIMITER, ERROR_MESSAGE } from '../constant/index.js';
 
 const CarValidator = {
-  private_validateCarName(string) {
+  private_validateCarNameAndDelimiter(string) {
     const { min, max } = CAR_RULE.numberOfName;
     const regex = new RegExp(
-      `^[A-Za-z가-힣]{${min},${max}}(,[A-Za-z가-힣]{${min},${max}})*$`,
+      `^[A-Za-z가-힣]{${min},${max}}(${DELIMITER}[A-Za-z가-힣]{${min},${max}})*$`,
     );
     const pass = regex.test(string);
 
     if (!pass) {
-      throw new Error(ERROR_MESSAGE.carName);
+      throw new Error(ERROR_MESSAGE.carNameAndDelimiter);
     }
   },
 
@@ -36,7 +36,7 @@ const CarValidator = {
   },
 
   validate(string) {
-    this.private_validateCarName(string);
+    this.private_validateCarNameAndDelimiter(string);
 
     const nameArray = string.split(DELIMITER);
 
