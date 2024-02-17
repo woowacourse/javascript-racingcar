@@ -22,11 +22,7 @@ class Car {
     const randomNumber = gameUtils.pickRandomNumber();
     const isForward = this.#judgeForwardMovement(randomNumber);
 
-    if (isForward) {
-      return { name: this.#name, score: 1 };
-    }
-
-    return { name: this.#name, score: 0 };
+    return isForward ? { name: this.#name, score: 1 } : { name: this.#name, score: 0 };
   }
 
   #judgeForwardMovement(randomNumber) {
