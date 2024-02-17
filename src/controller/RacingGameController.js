@@ -9,6 +9,8 @@ import { InputView, OutputView } from '../views/index.js';
  * 사용자로부터 자동차 이름과 시도 횟수를 입력 받아 게임 실행 결과를 처리하여 출력하는 컨트롤러 모듈
  */
 class RacingGameController {
+  #racingWinnerRecorder = new RacingWinnerRecorder();
+
   /**
    * @returns {Promise<void>}
    */
@@ -39,7 +41,7 @@ class RacingGameController {
     const racingResult = racingGame.startRace(randomMoveCounts);
 
     const finalRacingResult = racingResult.at(-1);
-    const racingWinners = RacingWinnerRecorder.createRacingWinners(finalRacingResult);
+    const racingWinners = this.#racingWinnerRecorder.createRacingWinners(finalRacingResult);
 
     OutputView.printRacingResult(racingResult);
     OutputView.printRacingWinners(racingWinners);

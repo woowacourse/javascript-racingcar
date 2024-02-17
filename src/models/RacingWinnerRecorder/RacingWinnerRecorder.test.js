@@ -23,9 +23,11 @@ describe('레이싱 게임 우승자 생성 테스트', () => {
     },
   ];
 
+  const racingWinnerRecorder = new RacingWinnerRecorder();
+
   test.each(testCases)('$description', ({ finalRacingResults, expectedRacingWinners }) => {
     // when
-    const racingWinners = RacingWinnerRecorder.createRacingWinners(finalRacingResults);
+    const racingWinners = racingWinnerRecorder.createRacingWinners(finalRacingResults);
 
     // then
     expect(racingWinners).toStrictEqual(expectedRacingWinners);
