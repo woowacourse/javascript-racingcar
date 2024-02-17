@@ -1,13 +1,13 @@
 import { SYMBOL, TRY_CONSTANTS } from "../Constants/Constants.js";
 import { ERROR_MESSAGES, VIEW_MESSAGES } from "../Constants/Messages.js";
 import Car from "../Model/Car.js";
+import TryNumValidator from "../Validator/TryNumValidator.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
 import AppError from "../utils/Error.js";
 
-const { TRY_RANGE } = TRY_CONSTANTS;
 const { RESULT_MESSAGE } = VIEW_MESSAGES;
-const { INVALID_TYPE, INVALID_RANGE, DUPLICATED_NAME } = ERROR_MESSAGES;
+const { DUPLICATED_NAME } = ERROR_MESSAGES;
 const { BLANK_SYMBOL } = SYMBOL;
 
 export default class Controller {
@@ -50,22 +50,12 @@ export default class Controller {
     try {
       const tryInput = await this.#input.readTry();
       const tryNum = Number(tryInput);
-      this.#checkTryNum(tryNum);
+      TryNumValidator.checkTryNum(tryNum);
 
       return tryNum;
     } catch (error) {
       console.log(error.message);
       return await this.#promptTry();
-    }
-  }
-
-  #checkTryNum(number) {
-    if (Number.isNaN(number)) {
-      throw new AppError(INVALID_TYPE);
-    }
-
-    if (number < TRY_RANGE.min || number > TRY_RANGE.max) {
-      throw new AppError(INVALID_RANGE);
     }
   }
 
