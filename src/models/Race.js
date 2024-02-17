@@ -1,7 +1,6 @@
-import gameUtils from '../utils/gameUtils';
-import Validator from '../utils/Validator';
+import { Validator, gameUtils } from '../utils';
 
-class RoundCount {
+class Race {
   #roundCount;
 
   #raceResult;
@@ -57,4 +56,4 @@ class RoundCount {
   }
 }
 
-export default RoundCount;
+export default Race;

@@ -1,6 +1,5 @@
 import CONDITION from '../constants/Condition';
-import Validator from '../utils/Validator';
-import gameUtils from '../utils/gameUtils';
+import { Validator, gameUtils } from '../utils';
 
 class Car {
   #name;

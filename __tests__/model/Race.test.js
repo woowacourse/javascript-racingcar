@@ -1,7 +1,6 @@
 import Cars from "../../src/collection/Cars";
-import Car from "../../src/models/Car";
-import RoundCount from "../../src/models/RoundCount";
-import gameUtils from "../../src/utils/gameUtils";
+import { Car, Race } from "../../src/models";
+import { gameUtils } from "../../src/utils";
 
 const mockRandoms = (numbers) => {
   gameUtils.pickRandomNumber = jest.fn();
@@ -18,7 +17,7 @@ describe('라운드 카운트 검증', () => {
 
       expect(() => {
         // when
-        new RoundCount(invalidInput);
+        new Race(invalidInput);
 
         // then
       }).toThrow();
@@ -29,7 +28,7 @@ describe('라운드 카운트 검증', () => {
 
       expect(() => {
         // when
-        new RoundCount(invalidInput);
+        new Race(invalidInput);
 
         // then
       }).toThrow();
@@ -40,7 +39,7 @@ describe('라운드 카운트 검증', () => {
 
       expect(() => {
         // when
-        new RoundCount(invalidInput);
+        new Race(invalidInput);
 
         // then
       }).toThrow();
@@ -51,7 +50,7 @@ describe('라운드 카운트 검증', () => {
 
       expect(() => {
         // when
-        new RoundCount(invalidInput);
+        new Race(invalidInput);
 
         // then
       }).toThrow();
@@ -61,10 +60,10 @@ describe('라운드 카운트 검증', () => {
       const invalidInput = '8';
       
       // when
-      const roundCount = new RoundCount(invalidInput);
+      const race = new Race(invalidInput);
 
       // then
-      expect(roundCount instanceof RoundCount).toBeTruthy();
+      expect(race instanceof Race).toBeTruthy();
     });
   });
   describe('자동차 전진 통합테스트', () => {
@@ -72,7 +71,7 @@ describe('라운드 카운트 검증', () => {
     const sundayCar = new Car('썬데이');
     const cookieCar = new Car('쿠키');
     const cars = new Cars([sundayCar, cookieCar]);
-    const roundCount = new RoundCount('2');
+    const race = new Race('2');
     const randomNumbers = [3, 4, 4, 5];
     mockRandoms(randomNumbers);
 
@@ -84,10 +83,10 @@ describe('라운드 카운트 검증', () => {
       ];
     
       // when
-      roundCount.raceStart(cars);
+      race.raceStart(cars);
 
       // then
-      expect(roundCount.makeRaceResultOutput()).toEqual(answer);
+      expect(race.makeRaceResultOutput()).toEqual(answer);
     });
   });
 });

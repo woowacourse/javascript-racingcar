@@ -1,5 +1,5 @@
-import Car from "../../src/models/Car";
-import gameUtils from "../../src/utils/gameUtils";
+import { Car } from "../../src/models";
+import { gameUtils } from "../../src/utils";
 
 const mockRandoms = (numbers) => {
   gameUtils.pickRandomNumber = jest.fn();

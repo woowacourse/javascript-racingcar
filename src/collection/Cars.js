@@ -1,4 +1,4 @@
-import Validator from '../utils/Validator';
+import { Validator } from '../utils';
 
 class Cars {
   #cars;
