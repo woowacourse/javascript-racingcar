@@ -1,5 +1,7 @@
 import deepFreeze from '../utils/deepFreeze';
 import Car from './Car';
+import pickNumberInRange from '../utils/pickNumberInRange';
+import { RULES } from '../constants/car-race';
 
 class CarRace {
   #cars;
@@ -17,15 +19,35 @@ class CarRace {
     return maxPosition;
   }
 
-  makesRoundResult() {
+  #canMove() {
+    const randomNumber = pickNumberInRange(
+      RULES.minRandomNumber,
+      RULES.maxRandomNumber,
+    );
+    return randomNumber >= RULES.moveStandard;
+  }
+
+  #moveCars() {
+    this.#cars.forEach((car) => {
+      if (this.#canMove()) {
+        car.move();
+      }
+    });
+  }
+
+  #makeRoundResult() {
     const result = {};
 
     this.#cars.forEach((car) => {
-      car.move();
       result[car.name] = car.position;
     });
 
     return deepFreeze(result);
+  }
+
+  makesRoundResult() {
+    this.#moveCars();
+    return this.#makeRoundResult();
   }
 
   judgeWinners() {

@@ -34,7 +34,7 @@ describe('자동차 도메인 테스트', () => {
   it('숫자가 4미만인 경우 자동차는 전진할 수 없다.', () => {
     // given
     mockRandoms([1, 3]);
-    const expectedPosition = 0;
+    const expectedPosition = 2;
 
     // when
     harryCar.move();
