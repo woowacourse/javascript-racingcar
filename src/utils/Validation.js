@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE, NUMBERS } from '../constants';
 
 const Validation = {
-  carNamesArrayValidate(carNamesArray = []) {
+  carNamesValidate(carNamesArray = []) {
     carNamesArray.forEach((carName) => {
       if (
         carName.length < NUMBERS.CAR_NAME_MINIMUM_LENGTH ||

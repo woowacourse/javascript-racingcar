@@ -15,9 +15,9 @@ export class Game {
 
   static async getCarNames() {
     try {
-      const carNamesArray = await Game.carNamesToCarNamesArray();
-      Validation.carNamesArrayValidate(carNamesArray);
-      return carNamesArray;
+      const carNames = await Game.carNamesStringToCarNamesArray();
+      Validation.carNamesValidate(carNames);
+      return carNames;
     } catch (error) {
       OutputView.printError(error);
       return await Game.getCarNames();
@@ -34,7 +34,7 @@ export class Game {
       return await Game.getTryCount();
     }
   }
-  static async carNamesToCarNamesArray() {
+  static async carNamesStringToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
