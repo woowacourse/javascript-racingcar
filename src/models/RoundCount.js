@@ -1,4 +1,4 @@
-import gameUtils from '../utils/gameUtils';
+import converter from '../utils/converter';
 import Validator from './../utils/Validator';
 
 class RoundCount {
@@ -20,7 +20,7 @@ class RoundCount {
   }
 
   raceStart(cars) {
-    const raceResult = Array.from({length: this.#roundCount}).map(() => cars.roundStart());
+    const raceResult = Array.from({ length: this.#roundCount }).map(() => cars.roundStart());
     this.#raceResult = raceResult;
   }
 
@@ -34,7 +34,7 @@ class RoundCount {
 
   #makeRoundResultOutput(round) {
     const roundResultOutput = round.map((car) => {
-      const output = `${car.name} : ${gameUtils.makeDashForNumber(car.score)}`;
+      const output = `${car.name} : ${converter.makeDashForNumber(car.score)}`;
       return output;
     });
 
@@ -50,7 +50,9 @@ class RoundCount {
     const lastRound = this.#raceResult[this.#raceResult.length - 1];
     const sortedByScore = lastRound.sort((prevCar, nextCar) => nextCar.score - prevCar.score);
     const maxScore = sortedByScore[0].score;
-    const winnerCarNames = sortedByScore.filter(car => car.score === maxScore).map(car => car.name);
+    const winnerCarNames = sortedByScore
+      .filter((car) => car.score === maxScore)
+      .map((car) => car.name);
     return winnerCarNames;
   }
 }

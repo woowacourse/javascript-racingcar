@@ -1,9 +1,9 @@
 import Validator from '../utils/Validator';
-import gameUtils from '../utils/gameUtils';
+import randomNumberGenerator from '../utils/randomNumberGenerator';
 
 class Car {
   #name;
-  
+
   constructor(carName) {
     this.#validate(carName);
     this.#name = carName;
@@ -19,14 +19,14 @@ class Car {
   }
 
   actCar() {
-    const randomNumber = gameUtils.pickRandomNumber();
+    const randomNumber = randomNumberGenerator();
     const isForward = this.#judgeForwardMovement(randomNumber);
 
     if (isForward) {
-      return {name: this.#name, score: 1};
+      return { name: this.#name, score: 1 };
     }
 
-    return {name: this.#name, score: 0};
+    return { name: this.#name, score: 0 };
   }
 
   #judgeForwardMovement(randomNumber) {

@@ -1,10 +1,10 @@
-import gameUtils from '../utils/gameUtils';
 import InputView from '../views/InputView';
 import Car from '../models/Car';
 import repeatFunctionUntilIsValid from '../utils/repeatFunctionUntilIsValid';
 import Cars from '../collection/Cars';
 import RoundCount from '../models/RoundCount';
 import OutputView from '../views/OutputView';
+import converter from '../utils/converter';
 
 const RacingGame = {
   async play() {
@@ -17,7 +17,7 @@ const RacingGame = {
 
   async setCarNames() {
     const inputValue = await InputView.readCarNames();
-    const seperatedCarNames = gameUtils.seperateComma(inputValue);
+    const seperatedCarNames = converter.seperateComma(inputValue);
     return new Cars(seperatedCarNames.map((carName) => new Car(carName)));
   },
 
