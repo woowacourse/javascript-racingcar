@@ -7,7 +7,7 @@ beforeAll(() => {
   console.log = jest.fn();
 });
 
-describe('무작위 값이 4 이상인 경우 자동차를 1만큼 전진시킨다.', () => {
+describe('자동차 전진 로직 검증', () => {
   test('무작위 값이 4 이상이면 자동차를 1 전진시킨다.', () => {
     // Arrange
     const car = new Car('아르');
