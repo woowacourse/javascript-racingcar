@@ -1,10 +1,10 @@
-import InputView from '../views/InputView';
-import Car from '../models/Car';
+import InputView from '../view/InputView';
+import Car from '../domain/Car';
 import repeatFunctionUntilIsValid from '../utils/repeatFunctionUntilIsValid';
 import Cars from '../collection/Cars';
-import OutputView from '../views/OutputView';
+import OutputView from '../view/OutputView';
 import converter from '../utils/converter';
-import Race from '../models/Race';
+import Race from '../domain/Race';
 
 const RacingGame = {
   async play() {
