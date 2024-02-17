@@ -64,7 +64,7 @@ describe('라운드 카운트 검증', () => {
       const roundCount = new RoundCount(invalidInput);
 
       // then
-      expect(typeof roundCount === 'object').toBeTruthy();
+      expect(roundCount instanceof RoundCount).toBeTruthy();
     });
   });
   describe('자동차 전진 통합테스트', () => {
