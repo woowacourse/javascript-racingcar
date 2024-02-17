@@ -3,7 +3,7 @@ const CONDITIONS = require('../constant/Conditions.js');
 const { ERROR_MESSAGES } = require('../constant/messages.js');
 
 const ValidatorCondtion = {
-  carCountRange(carCount) {
+  carCountInRange(carCount) {
     if (carCount < CONDITIONS.minCarCount || carCount > CONDITIONS.maxCarCount) {
       throw new CustomError(ERROR_MESSAGES.invalidCarCountRange);
     }
@@ -22,7 +22,7 @@ const ValidatorCondtion = {
     }
   },
 
-  carNameLength(carNames) {
+  carNameLengthAvailable(carNames) {
     if (carNames.some((carName) => carName.length > CONDITIONS.maxCarNameLength)) {
       throw new CustomError(ERROR_MESSAGES.invalidCarNameLength);
     }
@@ -49,11 +49,11 @@ const ValidatorCondtion = {
 
 const Validator = {
   carNames(carNames) {
-    ValidatorCondtion.carCountRange(carNames.length);
-    ValidatorCondtion.carNameLength(carNames);
+    ValidatorCondtion.carCountInRange(carNames.length);
     ValidatorCondtion.carNameEmpty(carNames);
-    ValidatorCondtion.carNameDuplicate(carNames);
     ValidatorCondtion.carNameInSpace(carNames);
+    ValidatorCondtion.carNameLengthAvailable(carNames);
+    ValidatorCondtion.carNameDuplicate(carNames);
   },
 
   tryCount(tryCount) {
