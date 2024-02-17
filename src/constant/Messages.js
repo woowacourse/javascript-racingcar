@@ -18,6 +18,8 @@ const ERROR_MESSAGES = Object.freeze({
   invalidCarNameLength: `자동차 이름은 ${CONDITIONS.maxCarNameLength}자 이하여야 합니다.`,
   NaN: `입력값은 숫자여야 합니다.`,
   invalidTryCountRange: `시도할 횟수는 ${CONDITIONS.minTryCount}회 이상 ${CONDITIONS.maxTryCount}회 이하여야 합니다.`,
+  argumentsNotOne: '인자값은 1개여야 합니다',
+  typeIsNotString: '입력 타입은 string 이어야 합니다.',
 });
 
 module.exports = {
