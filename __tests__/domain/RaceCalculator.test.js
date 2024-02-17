@@ -1,5 +1,5 @@
 import Car from '../../src/domain/Car';
-import RaceGameCalculator from '../../src/domain/RaceGameCalculator';
+import RaceCalculator from '../../src/domain/RaceCalculator';
 import Random from '../../src/utils/Random';
 
 const mockRandoms = numbers => {
@@ -27,14 +27,14 @@ describe('RaceGameCalculator Test', () => {
   }
 
   test('getCycleResult - 자동차의 이름과 위치를 매핑하여 반환한다.', () => {
-    expect(RaceGameCalculator.getCycleResult(carsCase)).toEqual({
+    expect(RaceCalculator.getCycleResult(carsCase)).toEqual({
       pobi: 2,
       jay: 1,
     });
   });
 
   test('getWinnersPosition - 가장 멀리 나간 자동차의 위치를 계산한다.', () => {
-    expect(RaceGameCalculator.getWinnersPosition(carsCase)).toEqual(2);
+    expect(RaceCalculator.getWinnersPosition(carsCase)).toEqual(2);
   });
 
   //given
@@ -64,7 +64,7 @@ describe('RaceGameCalculator Test', () => {
         carsCase.forEach(car => car.move());
       }
 
-      expect(RaceGameCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);
+      expect(RaceCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);
     },
   );
 });
