@@ -1,9 +1,9 @@
-import { INPUT_MESSAGE } from '../constants/messages/messages.js';
-import { CommonValidator, CarNameValidator } from '../validator/index.js';
-
 import Console from '../utils/console.js';
+
+import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 import { SYMBOLS } from '../constants/symbols.js';
-import TryCountValidator from '../validator/tryCount/TryCountValidator.js';
+
+import { CommonValidator, CarNameValidator, TryCountValidator } from '../validator/index.js';
 
 /**
  * @module InputView
