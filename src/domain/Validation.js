@@ -1,4 +1,4 @@
-import { ERROR } from "./constant/constant.js";
+import { ERROR } from "../constant/constant.js";
 const { DUPLICATE, NAME_RANGE, NATURAL_NUMBER } = ERROR;
 
 class Validation {

@@ -1,5 +1,5 @@
 import Input from "./view/Input.js";
-import Move from "./Move.js";
+import Move from "./domain/Move.js";
 import Output from "./view/Output.js";
 import { count } from "./util/count.js";
 import { MESSAGES } from "./constant/constant.js";

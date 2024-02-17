@@ -1,4 +1,4 @@
-import Cars from "../src/Cars";
+import Cars from "../src/domain/Cars";
 import { ERROR } from "../src/constant/constant";
 
 describe("자동차 이름 입력 테스트", () => {
@@ -10,6 +10,6 @@ describe("자동차 이름 입력 테스트", () => {
     const cars = new Cars(carNames);
 
     // Assert
-    expect(cars.getCarList).toEqual(carNames);
+    expect(cars.getCarNames).toEqual(carNames);
   });
 });
