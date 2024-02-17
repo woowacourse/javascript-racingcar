@@ -1,9 +1,8 @@
-import InputView from '../views/InputView.js';
-import OutputView from '../views/OutputView.js';
-import RacingGame from '../models/RacingGame/RacingGame.js';
-import RandomMoveCountMaker from '../models/RandomMoveCountMaker/RandomMoveCountMaker.js';
-import RacingWinnerRecorder from '../models/RacingWinnerRecorder/RacingWinnerRecorder.js';
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
+
+import { RacingGame, RandomMoveCountMaker, RacingWinnerRecorder } from '../models/index.js';
+
+import { InputView, OutputView } from '../views/index.js';
 
 /**
  * @module RacingGameController
