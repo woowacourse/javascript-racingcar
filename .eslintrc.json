@@ -1,5 +1,7 @@
 {
-  "rules": {},
+  "rules": {
+    "max-depth": ["error", { "max": 2 }]
+  },
   "env": {
     "es6": true,
     "node": true
@@ -8,8 +10,13 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
-  ]
+  "overrides": [
+    {
+      "files": ["*.test.js", "console.js"],
+      "rules": {
+        "max-lines-per-function": ["off"]
+      }
+    }
+  ],
+  "extends": ["eslint:recommended"]
 }
