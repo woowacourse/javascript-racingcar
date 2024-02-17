@@ -1,23 +1,25 @@
 import OutputView from '../views/OutputView';
 
+const RETRY_INPUT_LIMIT = 10;
+
 async function runMethod(method, params) {
   try {
     const result = await method.call(this, params);
     return result;
   } catch (error) {
     OutputView.printError(error);
-    return false;
+    return error;
   }
 }
 
 async function repeatFunctionUntilIsValid(method, params) {
-  let retryCount = 0;
-  while (retryCount < 10) {
+  const errorStack = [];
+  while (errorStack.length < RETRY_INPUT_LIMIT) {
     const result = await runMethod(method, params);
-    if (result !== false) return result;
-    retryCount += 1;
+    if (!(result instanceof Error)) return result;
+    errorStack.push(result);
   }
-  return OutputView.printError(new Error('\n입력 횟수를 초과하였습니다.'));
+  throw new Error('\n입력 횟수를 초과하였습니다.');
 }
 
 export default repeatFunctionUntilIsValid;
