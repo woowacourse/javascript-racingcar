@@ -1,10 +1,9 @@
-const NO_WINNER_MESSAGE = "최종 우승자는 없습니다.";
+import { SYMBOL } from "../Constants/Constants";
+import { VIEW_MESSAGES } from "../Constants/Messages";
 
-const WINNER_PREFIX = "최종 우승자 : ";
-const DIVIDE_SYMBOL = ", ";
-const MOVE_SYMBOL = "-";
-const DISPLAY_CURRENT_DISTANCE = (name, distance) =>
-  `${name} : ${MOVE_SYMBOL.repeat(distance)}`;
+const { WINNER_PREFIX, NO_WINNER_MESSAGE, DISPLAY_CURRENT_DISTANCE } =
+  VIEW_MESSAGES;
+const { DIVIDE_SYMBOL } = SYMBOL;
 
 const OutputView = {
   printCarCurrentDistance(car) {

@@ -1,14 +1,7 @@
 import AppError from "../utils/Error";
+import { CAR_CONSTANTS } from "../Constants/Constants";
 
-const NAME_LENGTH_RANGE = Object.freeze({
-  min: 1,
-  max: 5,
-});
-
-const MIN_MOVE_THRESHOLD = 4;
-const MOVE_DISTANCE = 1;
-
-const ERROR_MESSAGE = `자동차 이름 길이는 ${NAME_LENGTH_RANGE.min}자 이상 ${NAME_LENGTH_RANGE.max}자 이하여야합니다.`;
+const { NAME_LENGTH_RANGE, MIN_MOVE_THRESHOLD, MOVE_DISTANCE } = CAR_CONSTANTS;
 
 export default class Car {
   #name;
@@ -24,7 +17,7 @@ export default class Car {
       NAME_LENGTH_RANGE.max < name.length ||
       name.length < NAME_LENGTH_RANGE.min
     ) {
-      throw new AppError(ERROR_MESSAGE);
+      throw new AppError();
     }
   }
 

@@ -1,16 +1,14 @@
+import { SYMBOL, TRY_CONSTANTS } from "../Constants/Constants.js";
+import { ERROR_MESSAGES, VIEW_MESSAGES } from "../Constants/Messages.js";
 import Car from "../Model/Car.js";
 import InputView from "../View/InputView.js";
 import OutputView from "../View/OutputView.js";
 import AppError from "../utils/Error.js";
 
-const RESULT_MESSAGE = "실행 결과";
-const ERROR_MESSAGES = Object.freeze({
-  onlyNum: "숫자 값만 입력해주세요.",
-  invalidNumRange: "1 이상 200미만의 숫자만 입력해주세요.",
-  duplicateName: "중복된 이름이 있습니다.",
-});
-const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
-const BLANK_STR = "";
+const { TRY_RANGE } = TRY_CONSTANTS;
+const { RESULT_MESSAGE } = VIEW_MESSAGES;
+const { INVALID_TYPE, INVALID_RANGE, DUPLICATED_NAME } = ERROR_MESSAGES;
+const { BLANK_SYMBOL } = SYMBOL;
 
 export default class Controller {
   #cars;
@@ -44,7 +42,7 @@ export default class Controller {
 
   #checkCarDuplicate(carNames) {
     if (carNames.length !== new Set([...carNames]).size) {
-      throw new AppError(ERROR_MESSAGES.duplicateName);
+      throw new AppError(DUPLICATED_NAME);
     }
   }
 
@@ -63,11 +61,11 @@ export default class Controller {
 
   #checkTryNum(number) {
     if (Number.isNaN(number)) {
-      throw new AppError(ERROR_MESSAGES.onlyNum);
+      throw new AppError(INVALID_TYPE);
     }
 
     if (number < TRY_RANGE.min || number > TRY_RANGE.max) {
-      throw new AppError(ERROR_MESSAGES.invalidNumRange);
+      throw new AppError(INVALID_RANGE);
     }
   }
 
@@ -77,7 +75,7 @@ export default class Controller {
         car.move(this.#makeRandomNumber1to10());
         this.#output.printCarCurrentDistance(car);
       });
-      this.#output.printMessage(BLANK_STR);
+      this.#output.printMessage(BLANK_SYMBOL);
     }
   }
 
