@@ -1,5 +1,9 @@
 {
-  "rules": {},
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "max-depth": ["error", 2],
+    "max-lines-per-function": ["error", { "max" : 10 }]
+  },
   "env": {
     "es6": true,
     "node": true
@@ -9,7 +13,13 @@
     "sourceType": "module"
   },
   "extends": [
+    "airbnb-base",
+    "eslint-config-prettier",
     "eslint:recommended",
     "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "eslint-plugin-prettier"
   ]
 }
