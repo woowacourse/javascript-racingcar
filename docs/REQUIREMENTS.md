@@ -15,7 +15,7 @@
 #### RaceWinner : 우승자를 구하고 저장하는 클래스
 
 - 멤버변수 : raceWinner(우승자 리스트)
-- 메서드 : calculateWinner(우승자를 계산하는 함수), eachCarMove(각 자동차의 최종 이동 횟수를 계산하는 함수),caculateMaxMove(최대 이동 횟수를 계산하는 함수)
+- 메서드 : calculateWinner(우승자를 계산하는 함수), eachCarMove(각 자동차의 최종 이동 횟수를 계산하는 함수),calculateMaxMove(최대 이동 횟수를 계산하는 함수)
 
 ### < View >
 
