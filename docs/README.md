@@ -9,9 +9,9 @@
 - Controller 비대화와 연관된 것으로 생각되어짐.
 - Controller 속 여러 로직들을 외부로 분리하여 테스트 코드를 실행할 때마다 Controller를 실행 시키게 하지 않도록하자.
   - [x] 우승자 가리는 로직을 Car 객체로 넘겨 Controller에서의 우승자 가리는 로직을 간소화
-    - [ ] 이에 따른 테스트 코드를 Controlelr.test가 아닌 Car.test에 새로 구현
+    - [x] 이에 따른 테스트 코드를 Controlelr.test가 아닌 Car.test에 새로 구현
   - [x] 시도 횟수를 검증하는 로직을 Validator 폴더로 분리
-    - [ ] 이에 따라 TryNum.test에서 따로 작성
+    - [x] 이에 따라 TryNum.test에서 따로 작성
 
 </br>
 
