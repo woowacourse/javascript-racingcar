@@ -58,3 +58,11 @@
 > 불필요한 추상화로 인해서 협업시 문제 발생 할 수 있다.
 
 - [ ] OutputView의 printMessage 삭제
+
+</br>
+
+### 7. 리팩토링 관련
+
+> early return을 잘 사용해보자.
+
+- [ ] OutputView의 `printWinner` 함수 early return 사용하여 리팩토링하기.
