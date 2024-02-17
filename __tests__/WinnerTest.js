@@ -1,6 +1,5 @@
 import Winner from '../src/Domain/Winner';
 
-//carNames, distance
 describe('우승자 테스트', () => {
 	test('결과값에 따른 공동 우승자가 잘 반환되는지 확인', () => {
 		//Arrange
