@@ -1,4 +1,4 @@
-import Random from "./util/random.js";
+import { randomNum } from "./util/random.js";
 class Move {
   #carName;
   #moveTrace = [];
@@ -6,11 +6,19 @@ class Move {
   constructor(carName) {
     this.#carName = carName;
   }
+
   move() {
-    if (Random.randomNum() >= 4) {
+    if (this.moveCondition()) {
       return this.#moveTrace.push(true);
     }
     return this.#moveTrace.push(false);
+  }
+
+  moveCondition() {
+    if (randomNum() >= 4) {
+      return true;
+    }
+    return false;
   }
 
   getInfo() {

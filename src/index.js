@@ -5,4 +5,5 @@ class App {
     new RaceController().race();
   }
 }
+new App().play();
 export default App;
