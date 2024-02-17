@@ -14,24 +14,28 @@ export class Game {
   }
 
   static async getCarNames() {
-    try {
-      const carNames = await Game.carNamesStringToCarNamesArray();
-      Validation.carNamesValidate(carNames);
-      return carNames;
-    } catch (error) {
-      OutputView.printError(error);
-      return await Game.getCarNames();
+    while(true){
+      try {
+        const carNames = await Game.carNamesStringToCarNamesArray();
+        Validation.carNamesValidate(carNames);
+        return carNames;
+      } catch (error) {
+        OutputView.printError(error);
+        continue;
+      }
     }
   }
 
   static async getTryCount() {
-    try {
-      const tryCountString = await InputView.queryTryCount();
-      Validation.tryCountValidate(tryCountString);
-      return Number(tryCountString);
-    } catch (error) {
-      OutputView.printError(error);
-      return await Game.getTryCount();
+    while(true) {
+      try {
+        const tryCountString = await InputView.queryTryCount();
+        Validation.tryCountValidate(tryCountString);
+        return Number(tryCountString);
+      } catch (error) {
+        OutputView.printError(error);
+        continue;
+      }
     }
   }
   static async carNamesStringToCarNamesArray() {
