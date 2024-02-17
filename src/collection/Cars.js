@@ -1,3 +1,5 @@
+import Validator from '../utils/Validator';
+
 class Cars {
   #cars;
 
@@ -10,14 +12,7 @@ class Cars {
   }
 
   #validate(cars) {
-    const uniqueCarNames = new Set();
-    cars.forEach((car) => {
-      uniqueCarNames.add(car.getName());
-    });
-
-    if (uniqueCarNames.size !== cars.length) {
-      throw new Error('차 이름은 중복되지 않아야 합니다.');
-    }
+    Validator.validCarNameDuplicate(cars);
   }
 
   roundStart() {

@@ -10,8 +10,8 @@ class Car {
   }
 
   #validate(carName) {
-    Validator.isValidCarNameLengthRange(carName);
-    Validator.isValidCarNameRule(carName);
+    Validator.validCarNameLengthRange(carName);
+    Validator.validCarNameRule(carName);
   }
 
   getName() {

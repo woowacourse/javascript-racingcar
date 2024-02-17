@@ -1,5 +1,5 @@
 import gameUtils from '../utils/gameUtils';
-import Validator from './../utils/Validator';
+import Validator from '../utils/Validator';
 
 class RoundCount {
   #roundCount;
@@ -14,13 +14,13 @@ class RoundCount {
   }
 
   #validate(count) {
-    Validator.isValidRoundCountExist(count);
-    Validator.isValidRoundCountRule(count);
-    Validator.isValidRoundCountRange(count);
+    Validator.validRoundCountExist(count);
+    Validator.validRoundCountRule(count);
+    Validator.validRoundCountRange(count);
   }
 
   raceStart(cars) {
-    const raceResult = Array.from({length: this.#roundCount}).map(() => cars.roundStart());
+    const raceResult = Array.from({ length: this.#roundCount }).map(() => cars.roundStart());
     this.#raceResult = raceResult;
   }
 
@@ -50,7 +50,9 @@ class RoundCount {
     const lastRound = this.#raceResult[this.#raceResult.length - 1];
     const sortedByScore = lastRound.sort((prevCar, nextCar) => nextCar.score - prevCar.score);
     const maxScore = sortedByScore[0].score;
-    const winnerCarNames = sortedByScore.filter(car => car.score === maxScore).map(car => car.name);
+    const winnerCarNames = sortedByScore
+      .filter((car) => car.score === maxScore)
+      .map((car) => car.name);
     return winnerCarNames;
   }
 }
