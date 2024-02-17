@@ -1,9 +1,11 @@
-import { ERROR_MESSAGE } from "../constants/message.js";
 import Car from "./Car.js";
+import { validateUniqueCarNames, validateCarsLength } from "../validate.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
+import { STANDARD_VALUE } from "../constants/standardValue.js";
 
 export default class Cars {
-  static MIN_LENGTH = 2;
-  static MAX_LENGTH = 100;
+  static MIN_LENGTH = STANDARD_VALUE.minCarsLength;
+  static MAX_LENGTH = STANDARD_VALUE.maxCarsLength;
 
   #cars;
 
@@ -39,22 +41,14 @@ export default class Cars {
 
   #validate(cars) {
     this.#validateType(cars);
-    this.#validateLength(cars);
-    this.#validateUnique(cars);
-  }
 
-  #validateLength(cars) {
-    if (cars.length < Cars.MIN_LENGTH || cars.length > Cars.MAX_LENGTH) {
-      throw new Error(ERROR_MESSAGE.invalidCarLength);
-    }
-  }
-
-  #validateUnique(cars) {
     const names = cars.map((car) => car.getName());
 
-    if (new Set(names).size !== names.length) {
-      throw new Error(ERROR_MESSAGE.duplicateCarName);
-    }
+    validateCarsLength(cars, {
+      min: Cars.MIN_LENGTH,
+      max: Cars.MAX_LENGTH,
+    });
+    validateUniqueCarNames(names);
   }
 
   #validateType(cars) {
