@@ -1,3 +1,4 @@
+import CONDITION from '../constants/Condition';
 import Validator from '../utils/Validator';
 import gameUtils from '../utils/gameUtils';
 
@@ -22,12 +23,13 @@ class Car {
     const randomNumber = gameUtils.pickRandomNumber();
     const isForward = this.#judgeForwardMovement(randomNumber);
 
-    return isForward ? { name: this.#name, score: 1 } : { name: this.#name, score: 0 };
+    return isForward
+      ? { name: this.#name, score: CONDITION.RACE.FORWARD }
+      : { name: this.#name, score: CONDITION.RACE.STOP };
   }
 
   #judgeForwardMovement(randomNumber) {
-    const isForward = randomNumber >= 4;
-    return isForward;
+    return randomNumber >= CONDITION.RACE.FORWARD_CONDITION;
   }
 }
 

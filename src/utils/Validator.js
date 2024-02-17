@@ -1,12 +1,17 @@
+import CONDITION from '../constants/Condition';
+
 const Validator = {
   validCarNameLengthRange(carName) {
-    if (carName.length < 1 || carName.length > 5) {
+    if (
+      carName.length < CONDITION.VALIDATE.MIN_CARNAME ||
+      carName.length > CONDITION.VALIDATE.MAX_CARNAME
+    ) {
       throw new Error('이름은 1자이상 5자이하여야 합니다.\n');
     }
   },
 
   validCarNameRule(carName) {
-    const regex = /^[가-힣a-zA-Z\s]*$/;
+    const regex = CONDITION.VALIDATE.CAR_NAME_RULE;
     if (!regex.test(carName)) {
       throw new Error('이름은 한글 또는 영어여야 합니다.\n');
     }
@@ -29,7 +34,10 @@ const Validator = {
   validRoundCountRange(count) {
     const countValueToNumber = Number(count);
 
-    if (countValueToNumber < 1 || countValueToNumber > 10) {
+    if (
+      countValueToNumber < CONDITION.VALIDATE.MIN_ROUND_COUNT ||
+      countValueToNumber > CONDITION.VALIDATE.MAX_ROUND_COUNT
+    ) {
       throw new Error('이동횟수는 1이상 10이하여야 합니다.\n');
     }
   },
