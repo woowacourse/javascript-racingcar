@@ -1,8 +1,13 @@
 export const CAR_RULE = Object.freeze({
+  numberOfName: Object.freeze({
+    min: 1,
+    max: 5,
+  }),
   numberOfCars: Object.freeze({
     min: 1,
     max: 5,
   }),
+  forwardThreshold: 4,
 });
 
 export const ROUND_RULE = Object.freeze({

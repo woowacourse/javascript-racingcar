@@ -1,4 +1,4 @@
-import { RANDOM_NUMBER_RANGE } from '../constants/rule.js';
+import { CAR_RULE, RANDOM_NUMBER_RANGE } from '../constants/rule.js';
 import { RandomNumber } from '../utils/index.js';
 
 class Car {
@@ -17,7 +17,7 @@ class Car {
   }
 
   move() {
-    if (this.getRandomNumber >= 4) {
+    if (this.getRandomNumber() >= CAR_RULE.forwardThreshold) {
       this.#step += 1;
     }
   }

@@ -23,9 +23,8 @@ const COMMON_ERROR_MESSAGE = Object.freeze(
 );
 
 export const ERROR_MESSAGE = Object.freeze({
-  carName: `${COMMON_ERROR_MESSAGE} (자동차 이름 오류)`,
+  carName: `${COMMON_ERROR_MESSAGE} (자동차 이름 형식 또는 ${DELIMITER} 사용 오류)`,
   duplicate: `${COMMON_ERROR_MESSAGE} (자동차 이름 중복 오류)`,
-  delimiter: `${COMMON_ERROR_MESSAGE} (자동차를 ${DELIMITER}로 구분하지 않은 오류)`,
   numberOfCars: `${COMMON_ERROR_MESSAGE} (참여하는 자동차 개수  오류)`,
   round: `${COMMON_ERROR_MESSAGE} (게임 진행 횟수 오류)`,
 });
