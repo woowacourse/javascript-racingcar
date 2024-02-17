@@ -1,16 +1,18 @@
-import RandomUtil from "../utils/RandomUtil.js";
-import { ERROR_MESSAGE } from "../constants/message.js";
+import { validateCarName } from "../validate.js";
+import { STANDARD_VALUE } from "../constants/standardValue.js";
+import { isHigherThanThreshold } from "../raceRule.js";
 export default class Car {
-  static THRESHOLD_FOR_GOING = 4;
-  static MAX_NAME_LENGTH = 5;
+  static MAX_NAME_LENGTH = STANDARD_VALUE.maxCarNameLength;
 
   #name;
-  #mileage = 0;
+  #mileage = STANDARD_VALUE.initMileage;
+  #shouldGo;
 
-  constructor(name) {
+  constructor(name, shouldGo = isHigherThanThreshold) {
     this.#validate(name);
 
     this.#name = name;
+    this.#shouldGo = shouldGo;
   }
 
   go() {
@@ -28,16 +30,7 @@ export default class Car {
   }
 
   #validate(name) {
-    if (!name.length) {
-      throw new Error(ERROR_MESSAGE.carNameIsBlank);
-    }
-    if (name.length > Car.MAX_NAME_LENGTH) {
-      throw new Error(ERROR_MESSAGE.invalidCarNameLength);
-    }
-  }
-
-  #shouldGo() {
-    return RandomUtil.pickRandomNumber() >= Car.THRESHOLD_FOR_GOING;
+    validateCarName(name, { max: Car.MAX_NAME_LENGTH });
   }
 
   #increaseOneMileage() {
