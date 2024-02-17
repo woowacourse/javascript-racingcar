@@ -1,10 +1,11 @@
 import { CAR_RULE, DELIMITER, ERROR_MESSAGE } from '../constants/index.js';
 
 const CarValidator = {
-  private_validateCarsNameInput(string) {
-    const regex = /^([a-zA-Z가-힣]{1,5})+(,([a-zA-Z가-힣]{1,5}))*$/;
+  private_validateCarName(nameArray) {
+    const regex = /^[A-Za-z가-힣]{1,5}$/;
+    const pass = nameArray.every((name) => regex.test(name));
 
-    if (!regex.test(string)) {
+    if (!pass) {
       throw new Error(ERROR_MESSAGE.carName);
     }
   },
@@ -44,9 +45,9 @@ const CarValidator = {
 
     const nameArray = string.split(DELIMITER);
 
+    this.private_validateCarName(nameArray);
     this.private_validateDuplicate(nameArray);
     this.private_validateNumberOfCars(nameArray);
-    this.private_validateCarNameArray(nameArray);
   },
 };
 
