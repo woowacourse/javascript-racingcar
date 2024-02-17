@@ -3,6 +3,7 @@ import Move from "./Move.js";
 import Output from "./view/Output.js";
 import { count } from "./util/count.js";
 import { MESSAGES } from "./constant/constant.js";
+import { randomNum } from "./util/random.js";
 
 class RaceController {
   #moveInstanceList = [];
@@ -35,7 +36,7 @@ class RaceController {
   calculateResult(tryNumber) {
     for (let i = 0; i < tryNumber; i++) {
       this.#moveInstanceList.forEach((move) => {
-        move.move();
+        move.move(randomNum());
       });
     }
   }
