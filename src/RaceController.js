@@ -12,9 +12,7 @@ class RaceController {
   async race() {
     const { cars, tryNumber } = await this.#input();
 
-    this.#enterMoveCar(cars);
-    this.#carsMoveExecute(tryNumber);
-    this.#getCarMoveInfo();
+    this.#controlCarMove(cars, tryNumber);
 
     const raceWinner = new RaceWinner(this.#carsMoveInfoList).getRaceWinner();
 
@@ -30,6 +28,12 @@ class RaceController {
   #print(tryNumber, raceWinner) {
     this.#printResult(tryNumber);
     Output.printWinner(raceWinner);
+  }
+
+  #controlCarMove(cars, tryNumber) {
+    this.#enterMoveCar(cars);
+    this.#carsMoveExecute(tryNumber);
+    this.#getCarMoveInfo();
   }
 
   #enterMoveCar(cars) {
