@@ -1,7 +1,8 @@
 import readline from 'readline';
 
-const Console = {
-  readLineAsync(query = '') {
+class Console {
+  constructor() {}
+  static readLineAsync(query = '') {
     const rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -12,7 +13,7 @@ const Console = {
         resolve(input);
       });
     });
-  },
-};
+  }
+}
 
 export default Console;
