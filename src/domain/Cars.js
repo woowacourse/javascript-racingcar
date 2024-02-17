@@ -1,5 +1,5 @@
-import Car from './Car';
-import { ERROR_MESSAGE, NUMBERS } from './constants';
+import Car from '../domain/Car';
+import { ERROR_MESSAGE, NUMBERS } from '../constants/constants';
 class Cars {
   #carList;
   constructor(carNameArray = []) {

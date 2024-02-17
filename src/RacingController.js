@@ -1,6 +1,6 @@
-import InputView from './InputView';
-import OutputView from './OutputView';
-import Cars from './Cars';
+import InputView from './view/InputView';
+import OutputView from './view/OutputView';
+import Cars from './domain/Cars';
 
 export class Game {
   async play() {
