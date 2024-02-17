@@ -6,9 +6,9 @@ class WinnerService {
   }
 
   findWinner() {
+    const carNames = this.#carList.map(car => car.getName());
     const positions = this.#carList.map(car => car.getPosition());
     const maxPosition = Math.max(...positions);
-    const carNames = this.#carList.map(car => car.getName());
     return carNames.filter((_, i) => positions[i] === maxPosition);
   }
 }

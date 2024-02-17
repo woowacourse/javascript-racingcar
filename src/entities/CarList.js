@@ -20,10 +20,6 @@ class CarList {
   getCarList() {
     return this.#carList;
   }
-
-  getCarsCount() {
-    return this.#carList.length;
-  }
 }
 
 export default CarList;

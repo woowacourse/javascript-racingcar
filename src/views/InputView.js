@@ -1,5 +1,4 @@
 import readline from 'readline';
-//import OutputView from './OutputView.js';
 import MESSAGES from '../constants/Messages.js';
 import CarList from '../entities/CarList.js';
 import TrialCount from '../entities/TrialCount.js';

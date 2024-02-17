@@ -1,5 +1,4 @@
 import MESSAGES from '../constants/Messages.js';
-import Cars from '../entities/Cars.js';
 import OutputView from '../views/outputView.js';
 
 class ProgressController {
