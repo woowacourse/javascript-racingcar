@@ -1,6 +1,7 @@
 import { getLogSpy, mockQuestions, mockRandoms } from '..';
-import Game from '../../src/controllers/Game';
-import { RandomNumber } from '../../src/utils';
+import { SPACE } from '../../src/constant';
+import Game from '../../src/controller/Game';
+import { RandomNumber } from '../../src/domain';
 
 describe('Test Util 테스트', () => {
   test(' mockQuestions & getLogSpy 테스트', async () => {
@@ -12,10 +13,10 @@ describe('Test Util 테스트', () => {
     await game.setGame();
 
     expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining('참가 자동차: v,h'),
+      expect.stringContaining(`참가 자동차: v,${SPACE}h`),
     );
     expect(logSpy).toHaveBeenCalledWith(
-      expect.stringContaining('게임을 진행할 라운드 횟수: 2'),
+      expect.stringContaining(`게임을 진행할 라운드 횟수:${SPACE}2`),
     );
   });
 

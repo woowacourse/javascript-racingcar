@@ -1,4 +1,5 @@
 import App from '../src/App';
+import { SPACE } from '../src/constant';
 
 import { getLogSpy, mockQuestions, mockRandoms } from '../testUtils';
 
@@ -7,7 +8,7 @@ describe('자동차 경주 테스트', () => {
     const carNameInput = 'pobi,woni,jun';
     const roundInput = '3';
     const randoms = [5, 3, 6, 2, 3, 9, 7, 8, 1];
-    const winnerOutput = '최종 우승자: pobi, jun';
+    const winnerOutput = `최종 우승자: pobi,${SPACE}jun`;
     const outputs = ['pobi : --', 'woni : -', 'jun : --', winnerOutput];
 
     const logSpy = getLogSpy();

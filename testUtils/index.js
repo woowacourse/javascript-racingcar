@@ -1,4 +1,5 @@
-import { Console, RandomNumber } from '../src/utils';
+import { RandomNumber } from '../src/domain';
+import { Console } from '../src/view';
 
 export const mockRandoms = (numbers) => {
   RandomNumber.pickNumberInRange = jest.fn();

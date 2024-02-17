@@ -1,5 +1,5 @@
-import { CAR_RULE, RANDOM_NUMBER_RANGE } from '../constants/rule.js';
-import { RandomNumber } from '../utils/index.js';
+import { CAR_RULE, RANDOM_NUMBER_RANGE } from '../constant/rule.js';
+import RandomNumber from './util/RandomNumber.js';
 
 class Car {
   #name = '';

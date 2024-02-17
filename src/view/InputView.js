@@ -1,4 +1,4 @@
-import { Console } from '../utils/index.js';
+import Console from './util/Console.js';
 
 const InputView = {
   /**

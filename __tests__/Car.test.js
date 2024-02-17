@@ -1,4 +1,4 @@
-import { Car } from '../src/models/index.js';
+import { Car } from '../src/domain/index.js';
 import { mockRandoms } from '../testUtils/index.js';
 
 describe('자동차 테스트', () => {

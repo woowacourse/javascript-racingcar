@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from '../src/constants';
-import { CarValidator } from '../src/models';
+import { ERROR_MESSAGE } from '../src/constant';
+import { CarValidator } from '../src/domain';
 
 describe('자동차 관련 유효성 검사 테스트', () => {
   test('자동차 이름에 대한 조건을 모두 충족한 상황 테스트', () => {

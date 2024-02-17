@@ -1,4 +1,4 @@
-import { CAR_RULE, DELIMITER, ERROR_MESSAGE } from '../constants/index.js';
+import { CAR_RULE, DELIMITER, ERROR_MESSAGE } from '../constant/index.js';
 
 const CarValidator = {
   private_validateCarName(string) {
