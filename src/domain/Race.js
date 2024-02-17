@@ -1,5 +1,5 @@
 import Car from './Car';
-import RaceGameCalculator from './RaceGameCalculator';
+import RaceCalculator from './RaceCalculator';
 
 import { SYMBOLS } from '../statics/constants';
 import { ERRORS } from '../statics/messages';
@@ -10,6 +10,7 @@ class Race {
   #cars;
 
   #attemptNum;
+
   set cars(carsNameInput) {
     this.#validateCarsName(carsNameInput);
     this.#cars = carsNameInput.split(SYMBOLS.nameSeperator).map(name => {
@@ -25,13 +26,13 @@ class Race {
   gameCycle(outputView) {
     for (let i = 0; i < this.#attemptNum; i++) {
       this.#moveCars();
-      outputView(RaceGameCalculator.getCycleResult(this.#cars));
+      outputView(RaceCalculator.getCycleResult(this.#cars));
     }
   }
 
   judgeWinner() {
-    const winnersPosition = RaceGameCalculator.getWinnersPosition(this.#cars);
-    return RaceGameCalculator.getWinners(this.#cars, winnersPosition);
+    const winnersPosition = RaceCalculator.getWinnersPosition(this.#cars);
+    return RaceCalculator.getWinners(this.#cars, winnersPosition);
   }
 
   #moveCars() {
