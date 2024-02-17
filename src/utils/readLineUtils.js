@@ -12,27 +12,14 @@ function isValidQueryType(query, reject) {
   }
 }
 
-function checkIsValidate(length, query, reject) {
+export function checkIsValidate(length, query, reject) {
   isValidArgumentsLength(length, reject);
   isValidQueryType(query, reject);
 }
 
-function createReadLineInterface() {
+export function createReadLineInterface() {
   return readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
 }
-
-function readLineAsync(query) {
-  return new Promise((resolve, reject) => {
-    checkIsValidate(arguments.length, query, reject);
-    const rl = createReadLineInterface();
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
-}
-
-export default readLineAsync;
