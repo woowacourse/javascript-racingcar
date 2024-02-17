@@ -29,6 +29,6 @@ describe('Cars 클래스 함수 검사', () => {
     const cars = new Cars(['a', 'b', 'c']);
     mockRandoms(number);
     cars.moveAllCars();
-    expect(cars.findWinner()).toEqual(expected);
+    expect(cars.findWinners()).toEqual(expected);
   });
 });

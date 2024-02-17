@@ -10,7 +10,7 @@ export class Game {
     const tryCount = await Game.getTryCount();
     const eachStepCarsResults = Game.getMovingCarsResults(cars, tryCount);
     OutputView.printEachStepResult(eachStepCarsResults);
-    OutputView.printWinner(cars.findWinner());
+    OutputView.printWinner(cars.findWinners());
   }
 
   static async getCarNamesArray() {
