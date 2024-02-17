@@ -17,17 +17,13 @@ const OutputView = {
     const { hasWinner, winners } = calculValue;
 
     if (hasWinner) {
-      this.printMessage(
+      console.log(
         WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL)
       );
     }
     if (!hasWinner) {
-      this.printMessage(NO_WINNER_MESSAGE);
+      console.log(NO_WINNER_MESSAGE);
     }
-  },
-
-  printMessage(message) {
-    console.log(message);
   },
 };
 

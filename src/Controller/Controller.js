@@ -22,7 +22,7 @@ export default class Controller {
     this.#cars = str;
     const tryNum = await this.#promptTry();
     this.#runRace(tryNum);
-    this.#output.printMessage(RESULT_MESSAGE);
+    console.log(RESULT_MESSAGE);
 
     const calculValue = this.calculateWinners(this.#cars);
     this.#output.printWinner(calculValue);
@@ -35,7 +35,7 @@ export default class Controller {
 
       return carNames.map((name) => new Car(name));
     } catch (error) {
-      this.#output.printMessage(error.message);
+      console.log(error.message);
       return await this.#promptCarNames();
     }
   }
@@ -54,7 +54,7 @@ export default class Controller {
 
       return tryNum;
     } catch (error) {
-      this.#output.printMessage(error.message);
+      console.log(error.message);
       return await this.#promptTry();
     }
   }
@@ -75,7 +75,7 @@ export default class Controller {
         car.move(this.#makeRandomNumber1to10());
         this.#output.printCarCurrentDistance(car);
       });
-      this.#output.printMessage(BLANK_SYMBOL);
+      console.log(BLANK_SYMBOL);
     }
   }
 

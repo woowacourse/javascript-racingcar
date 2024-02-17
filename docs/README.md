@@ -58,7 +58,7 @@
 
 > 불필요한 추상화로 인해서 협업시 문제 발생 할 수 있다.
 
-- [ ] OutputView의 printMessage 삭제
+- [x] OutputView의 printMessage 삭제
 
 </br>
 
