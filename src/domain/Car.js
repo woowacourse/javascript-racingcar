@@ -1,5 +1,5 @@
 const { RULES } = require('../constant/Conditions.js');
-const getRandomNumber = require('../utils/getRandomNumber.js');
+const pickRandomNumberInRange = require('../utils/pickRandomNumberInRange.js');
 
 class Car {
   #name;
@@ -11,7 +11,7 @@ class Car {
   }
 
   tryMove() {
-    const randomNumber = getRandomNumber(RULES.minRandomNumberRange, RULES.maxRandomNumberRange);
+    const randomNumber = pickRandomNumberInRange(RULES.minRandomNumberRange, RULES.maxRandomNumberRange);
 
     if (randomNumber >= RULES.minMoveCondition) this.#distance += RULES.moveDistance;
 

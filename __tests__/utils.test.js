@@ -1,4 +1,4 @@
-const getRandomNumber = require('../src/utils/getRandomNumber.js');
+const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js');
 const numberToDistanceSymbol = require('../src/utils/numberToDistanceSymbol.js');
 const splitByDelimiter = require('../src/utils/splitByDelimiter.js');
 
@@ -9,7 +9,7 @@ test.each([
   [2, 5, 4],
   [11, 12, 12],
 ])('범위 내 랜덤값 생성 테스트', (start, end, expectResult) => {
-  const randomNumber = getRandomNumber(start, end);
+  const randomNumber = pickRandomNumberInRange(start, end);
 
   expect(randomNumber).toBe(expectResult);
 });

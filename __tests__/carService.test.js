@@ -1,12 +1,12 @@
 const CarService = require('../src/service/CarService');
-const getRandomNumber = require('../src/utils/getRandomNumber.js');
+const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js');
 
-jest.mock('../src/utils/getRandomNumber.js');
+jest.mock('../src/utils/pickRandomNumberInRange.js');
 
 const mockRandoms = (numbers) => {
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, getRandomNumber);
+  }, pickRandomNumberInRange);
 };
 
 describe('카서비스 클래스 테스트', () => {
