@@ -9,6 +9,14 @@ const CarValidator = {
     }
   },
 
+  private_validateDelimiter(string) {
+    const regex = /^([\w]*)(,[\w]*)*$/;
+
+    if (!regex.test(string)) {
+      throw new Error(ERROR_MESSAGE.delimiter);
+    }
+  },
+
   private_isDuplicate(nameArray) {
     return (
       nameArray.length >= 2 && new Set(nameArray).size !== nameArray.length
@@ -32,9 +40,10 @@ const CarValidator = {
   },
 
   validate(string) {
+    this.private_validateDelimiter(string);
+
     const nameArray = string.split(DELIMITER);
 
-    this.private_validateDelimiter(string, nameArray);
     this.private_validateDuplicate(nameArray);
     this.private_validateNumberOfCars(nameArray);
     this.private_validateCarNameArray(nameArray);
