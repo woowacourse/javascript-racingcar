@@ -8,8 +8,8 @@ export default class Controller {
   #moveInstanceList = [];
 
   async start() {
-    const { cars, tryNumber } = await this.input();
-    cars.map((car) => this.#moveInstanceList.push(new Move(car)));
+    const { carNames, tryNumber } = await this.input();
+    carNames.map((carName) => this.#moveInstanceList.push(new Move(carName)));
     this.calculateResult(tryNumber);
     this.printResult(tryNumber);
     const winner = this.calculateWinner();
@@ -17,9 +17,9 @@ export default class Controller {
   }
 
   async input() {
-    const cars = await Input.carNameInput();
-    const tryNumber = await Input.tryInput();
-    return { cars, tryNumber };
+    const carNames = await Input.inputCarNames();
+    const tryNumber = await Input.inputTryInput();
+    return { carNames, tryNumber };
   }
 
   printResult(tryNumber) {
@@ -41,10 +41,9 @@ export default class Controller {
   }
 
   calculateMaxMove() {
-    const maxMove = Math.max(
+    return Math.max(
       ...this.#moveInstanceList.map((moveInstance) => count(moveInstance.getInfo().moveTrace))
     );
-    return maxMove;
   }
 
   calculateWinner() {
