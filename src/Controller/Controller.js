@@ -12,21 +12,8 @@ const ERROR_MESSAGES = Object.freeze({
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
 const BLANK_STR = '';
 
-const RESULT_MESSAGE = "실행 결과";
-const ERROR_MESSAGES = Object.freeze({
-  onlyNum: "숫자 값만 입력해주세요.",
-  invalidNumRange: "1 이상 200미만의 숫자만 입력해주세요.",
-  duplicateName: "중복된 이름이 있습니다.",
-});
-const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
-const BLANK_STR = "";
-
 export default class Controller {
   #cars;
-
-  #input = InputView;
-
-  #output = OutputView;
 
   async run() {
     this.#cars = await this.#makeCars();
@@ -95,6 +82,7 @@ export default class Controller {
   static calculateWinners(cars) {
     const MIN_DISTACNE = 0;
     const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
+    
     if (maxDistance !== MIN_DISTACNE) {
       const winners = cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
