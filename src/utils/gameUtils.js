@@ -13,7 +13,7 @@ const gameUtils = {
     const END = 10;
     const randomNumber = Math.floor(START + Math.random() * END);
     return randomNumber;
-  }
+  },
 };
 
 export default gameUtils;

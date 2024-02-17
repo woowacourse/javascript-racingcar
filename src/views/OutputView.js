@@ -6,21 +6,21 @@ const OutputView = {
   },
 
   printRaceResult(raceResult) {
-    raceResult.forEach(roundResult => {
+    raceResult.forEach((roundResult) => {
       this.printRoundResult(roundResult);
       consolePrint('');
     });
   },
 
   printRoundResult(roundResult) {
-    roundResult.forEach(car => {
+    roundResult.forEach((car) => {
       consolePrint(car);
     });
   },
 
   printWinners(winners) {
     consolePrint(winners);
-  }
+  },
 };
 
 export default OutputView;
