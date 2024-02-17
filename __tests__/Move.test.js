@@ -1,4 +1,4 @@
-import MoveCarInfo from "../src/MoveCarInfo.js";
+import MoveCarInfo from "../src/domain/MoveCarInfo.js";
 
 describe("자동차 이동 테스트", () => {
   test("자동차 5번 이동 시도, 2번 전진 성공", () => {

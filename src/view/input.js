@@ -1,6 +1,6 @@
 import ReadLine from "../util/readLineAsync.js";
-import Cars from "../Cars.js";
-import Validation from "../Validation.js";
+import Cars from "../domain/Cars.js";
+import Validation from "../util/Validation.js";
 import { MESSAGES, ERROR } from "../constant/index.js";
 
 class Input {

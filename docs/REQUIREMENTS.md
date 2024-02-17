@@ -7,15 +7,15 @@
 - 멤버변수 : carList
 - 메서드 : 자동차 validation
 
-#### Move : 자동차 하나의 전진 여부와 자동차의 이름 저장하는 클래스
+#### MoveCarInfo : 자동차 하나의 전진 여부와 자동차의 이름 저장하는 클래스
 
 - 멤버변수 : carName(자동차 하나의 이름), moveTrace(회차별 전진 여부 리스트 ex) 3회차 어느 자동차의 이동 흔적-> [true, false, true] )
-- 메서드 : move(랜덤숫자를 받아서 전진여부를 결정하는 함수)
+- 메서드 : move(랜덤숫자를 받아서 전진여부를 결정하는 함수), moveCondition(전진여부를 결정하는 함수),
 
-#### Validation : 유효성 검사 모아두는 클래스
+#### RaceWinner : 우승자를 구하고 저장하는 클래스
 
-- 멤버변수 : X
-- 메서드 : 중복검사, 자동차 이름 길이 검사, 시도 횟수가 자연수인지 검사
+- 멤버변수 : raceWinner(우승자 리스트)
+- 메서드 : calculateWinner(우승자를 계산하는 함수), eachCarMove(각 자동차의 최종 이동 횟수를 계산하는 함수),caculateMaxMove(최대 이동 횟수를 계산하는 함수)
 
 ### < View >
 
@@ -43,6 +43,7 @@
 - readLineAsync: 사용자 입력 받는 비동기 함수
 - count : 자동차의 이동 횟수를 계산하는 함수
 - randomNum : 0~9 사이의 랜덤 숫자를 반환하는 함수
+- validation : 유효성 검사 클래스
 
 #### constant
 

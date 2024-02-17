@@ -1,9 +1,9 @@
-import Input from "./view/Input.js";
-import MoveCarInfo from "./MoveCarInfo.js";
-import Output from "./view/Output.js";
-import { MESSAGES } from "./constant/index.js";
-import RaceWinner from "./RaceWinner.js";
-import { randomNum } from "./util/random.js";
+import Input from "../view/Input.js";
+import MoveCarInfo from "../domain/MoveCarInfo.js";
+import Output from "../view/Output.js";
+import { MESSAGES } from "../constant/index.js";
+import RaceWinner from "../domain/RaceWinner.js";
+import { randomNum } from "../util/random.js";
 
 class RaceController {
   #carsMoveInfoList = [];
@@ -11,11 +11,8 @@ class RaceController {
 
   async race() {
     const { cars, tryNumber } = await this.#input();
-
     this.#controlCarMove(cars, tryNumber);
-
     const raceWinner = new RaceWinner(this.#carsMoveInfoList).getRaceWinner();
-
     this.#print(tryNumber, raceWinner);
   }
 

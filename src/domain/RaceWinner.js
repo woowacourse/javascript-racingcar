@@ -1,4 +1,4 @@
-import { numberMoveSuccess } from "./util/numberMoveSuccess.js";
+import { numberMoveSuccess } from "../util/numberMoveSuccess.js";
 class RaceWinner {
   #raceWinner = [];
 
@@ -8,11 +8,11 @@ class RaceWinner {
   }
 
   #calculateMaxMove(carsMoveInfoList) {
-    const maxMove = Math.max(...this.#eachCarMoveSuccess(carsMoveInfoList));
+    const maxMove = Math.max(...this.#eachCarMove(carsMoveInfoList));
     return maxMove;
   }
 
-  #eachCarMoveSuccess(carsMoveInfoList) {
+  #eachCarMove(carsMoveInfoList) {
     return carsMoveInfoList.map((moveInfo) =>
       numberMoveSuccess(moveInfo.moveTrace)
     );

@@ -1,4 +1,4 @@
-import Cars from "../src/Cars";
+import Cars from "../src/domain/Cars";
 
 describe("자동차 이름 유효성 검사", () => {
   test("자동차 이름이 중복으로 입력 될 때 에러가 나는 지 확인.", () => {
