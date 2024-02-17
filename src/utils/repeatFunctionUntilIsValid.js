@@ -1,3 +1,4 @@
+import { ERROR_INPUT_COUNT } from '../constants/message';
 import OutputView from '../views/OutputView';
 
 async function runMethod(method, params) {
@@ -17,7 +18,7 @@ async function repeatFunctionUntilIsValid(method, params) {
     if (!(result instanceof Error)) return result;
     errorStack.push(result);
   }
-  throw new Error('\n입력 횟수를 초과하였습니다.');
+  throw new Error(ERROR_INPUT_COUNT);
 }
 
 export default repeatFunctionUntilIsValid;

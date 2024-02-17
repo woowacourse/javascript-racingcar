@@ -1,26 +1,28 @@
+import { ERROR_CAR_NAME, ERROR_MOVE_COUNT } from '../constants/message';
+
 const Validator = {
   isValidCarNameLengthRange(carName) {
     if (carName.length < 1 || carName.length > 5) {
-      throw new Error('이름은 1자이상 5자이하여야 합니다.\n');
+      throw new Error(ERROR_CAR_NAME.RANGE);
     }
   },
 
   isValidCarNameRule(carName) {
     const regex = /^[가-힣a-zA-Z\s]*$/;
     if (!regex.test(carName)) {
-      throw new Error('이름은 한글 또는 영어여야 합니다.\n');
+      throw new Error(ERROR_CAR_NAME.RULE);
     }
   },
 
   isUniqueCarName(cars, uniqueCarNames) {
     if (cars.length !== uniqueCarNames.size) {
-      throw new Error('차 이름은 중복되지 않아야 합니다.');
+      throw new Error(ERROR_CAR_NAME.DUPLICATED);
     }
   },
 
   isValidRoundCountExist(count) {
     if (count === '') {
-      throw new Error('이동횟수는 입력되어야 합니다.\n');
+      throw new Error(ERROR_MOVE_COUNT.EMPTY);
     }
   },
 
@@ -28,7 +30,7 @@ const Validator = {
     const countValueToNumber = Number(count);
 
     if (!Number.isInteger(countValueToNumber)) {
-      throw new Error('이동횟수는 정수여야 합니다.\n');
+      throw new Error(ERROR_MOVE_COUNT.RULE);
     }
   },
 
@@ -36,7 +38,7 @@ const Validator = {
     const countValueToNumber = Number(count);
 
     if (countValueToNumber < 1 || countValueToNumber > 10) {
-      throw new Error('이동횟수는 1이상 10이하여야 합니다.\n');
+      throw new Error(ERROR_MOVE_COUNT.RANGE);
     }
   },
 };
