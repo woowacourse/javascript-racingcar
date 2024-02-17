@@ -9,15 +9,23 @@ const carValidator = {
   },
 
   validateCarNameListLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LIST_LENGTH) {
+    if (!this.isValidCarNameListLength(length)) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_LIST_LENGTH);
     }
   },
 
   validateCarNameLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LENGTH || length > CONFIG.MAX_CAR_NAME_LENGTH) {
+    if (!this.isValidCarNameLength(length)) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     }
+  },
+
+  isValidCarNameListLength(length) {
+    return length >= CONFIG.MIN_CAR_NAME_LIST_LENGTH;
+  },
+
+  isValidCarNameLength(length) {
+    return CONFIG.MIN_CAR_NAME_LENGTH <= length && length <= CONFIG.MAX_CAR_NAME_LENGTH;
   },
 };
 
