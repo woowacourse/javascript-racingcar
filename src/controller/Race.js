@@ -1,15 +1,15 @@
+import Car from "../domain/Car.js";
+import Cars from "../domain/Cars.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import { splitByComma, trimAll } from "../utils/parse.js";
-import Cars from "../domain/Cars.js";
-import Car from "../domain/Car.js";
-
 import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
 import { ERROR_MESSAGE } from "../constants/message.js";
+import { STANDARD_VALUE } from "../constants/standardValue.js";
 
 export default class Race {
-  static MIN_ROUND_NUMBER = 1;
-  static MAX_ROUND_NUMBER = 100;
+  static MIN_ROUND_NUMBER = STANDARD_VALUE.minRoundNumber;
+  static MAX_ROUND_NUMBER = STANDARD_VALUE.maxRoundNumber;
 
   async start() {
     const cars = await tryUntilSuccess(this.#getCars.bind(this))();
