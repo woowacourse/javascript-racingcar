@@ -1,11 +1,13 @@
 import Random from '../../utils/random.js';
+import { deepFreeze } from '../../utils/object/object.js';
+
 import { RANDOM_MOVE_COUNT_RANGE } from './constant.js';
 
 /**
  * @module RandomMoveCountMaker
  * 자동차 경주에 필요한 랜덤 이동 값들을 생성하는 도메인 모델 객체
  */
-const RandomMoveCountMaker = Object.freeze({
+const RandomMoveCountMaker = deepFreeze({
   /**
    * @param {number} tryCount - 자동차 게임 진행 횟수
    * @param {number} racingCarNamesLength - 자동차 갯수

@@ -1,3 +1,4 @@
+import { deepFreeze } from '../../utils/object/object.js';
 import { SYMBOLS } from '../symbols.js';
 
 export const INPUT_MESSAGE = Object.freeze({
@@ -10,7 +11,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
   movementIndicator: '-',
 });
 
-export const FORMAT_MESSAGE = Object.freeze({
+export const FORMAT_MESSAGE = deepFreeze({
   /**
    * @param {import('../../types/jsDoc.js').RacingResult} racingResult - 자동차 경주 결과
    * @returns {string} 경주 진행 상황을 나타내는 문자열

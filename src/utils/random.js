@@ -1,10 +1,11 @@
 import { swap } from './array.js';
+import { deepFreeze } from './object/object.js';
 
 /**
  * @module Random
  * 랜덤 값들에 대한 연산을 담당하는 유틸리티 모듈
  */
-const Random = Object.freeze({
+const Random = deepFreeze({
   /**
    * @param {number[]} array - 임의의 숫자 배열
    * @returns {number[]} 무작위로 섞인 숫자 배열

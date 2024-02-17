@@ -1,4 +1,5 @@
 import Console from '../utils/console.js';
+import { deepFreeze } from '../utils/object/object.js';
 
 import { INPUT_MESSAGE } from '../constants/messages/messages.js';
 import { SYMBOLS } from '../constants/symbols.js';
@@ -9,7 +10,7 @@ import { CommonValidator, CarNameValidator, TryCountValidator } from '../validat
  * @module InputView
  * 자동차 경주 게임에 대한 사용자 입력을 처리하는 모듈
  */
-const InputView = Object.freeze({
+const InputView = deepFreeze({
   /**
    * @param {string} message - 사용자에게 표시할 입력 안내 메시지
    * @returns {Promise<string>} 검증된 사용자 입력 값의 Promise

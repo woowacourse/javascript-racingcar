@@ -1,29 +1,32 @@
-import { SYMBOLS } from '../../constants/symbols.js';
 import { startValidation } from '../startValidation.js';
+
+import { SYMBOLS } from '../../constants/symbols.js';
+
+import { deepFreeze } from '../../utils/object/object.js';
 
 /**
  * @module CommonValidator
  * 입력 값에 대한 일반적인 유효성 검사를 수행하는 모듈
  */
-const CommonValidator = Object.freeze({
+const CommonValidator = deepFreeze({
   /**
    * @type {import('../../types/jsDoc.js').CommonValidationTypes}
    */
-  validationTypes: Object.freeze({
-    emptyValues: Object.freeze({
+  validationTypes: {
+    emptyValues: {
       errorMessage: '아무것도 입력하지 않았으므로 다시 입력해주세요.',
       isValid(inputValue) {
         return inputValue !== SYMBOLS.emptyString;
       },
-    }),
+    },
 
-    existSpaces: Object.freeze({
+    existSpaces: {
       errorMessage: '입력한 값에 공백이 존재합니다.',
       isValid(inputValue) {
         return !inputValue.includes(SYMBOLS.space);
       },
-    }),
-  }),
+    },
+  },
 
   /**
    * @param {string} inputValue - 사용자의 입력 값

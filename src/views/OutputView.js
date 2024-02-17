@@ -1,11 +1,13 @@
 import { FORMAT_MESSAGE, OUTPUT_MESSAGE } from '../constants/messages/messages.js';
+
+import { deepFreeze } from '../utils/object/object.js';
 import Console from '../utils/console.js';
 
 /**
  * @module OutputView
  * 자동차 경주 게임에 대한 출력을 처리하는 모듈
  */
-const OutputView = Object.freeze({
+const OutputView = deepFreeze({
   /**
    * @param {import('../types/jsDoc.js').RacingResult} racingResult - 자동차 경주 결과
    * @returns {void}

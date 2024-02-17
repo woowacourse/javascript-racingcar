@@ -1,4 +1,5 @@
 import { SYMBOLS } from '../../constants/symbols.js';
+import { deepFreeze } from '../../utils/object/object.js';
 import { startValidation } from '../startValidation.js';
 import { CAR_NAME_RANGE, CAR_NAME_REGEX, CAR_LENGTH_RANGE } from './constant.js';
 
@@ -6,43 +7,43 @@ import { CAR_NAME_RANGE, CAR_NAME_REGEX, CAR_LENGTH_RANGE } from './constant.js'
  * @module CarNameValidator
  * 자동차 이름 입력에 대한 유효성 검사를 수행하는 모듈
  */
-const CarNameValidator = Object.freeze({
+const CarNameValidator = deepFreeze({
   /**
-   * @type {import('../../utils/jsDoc.js').CarNameValidationTypes}
+   * @type {import('../../types/jsDoc.js').CarNameValidationTypes}
    */
-  validationTypes: Object.freeze({
-    notCommaSeparated: Object.freeze({
+  validationTypes: {
+    notCommaSeparated: {
       errorMessage: `자동차 이름은 ${SYMBOLS.comma}로만 구분 가능합니다.`,
       isValid(inputValue) {
         return CAR_NAME_REGEX.test(inputValue);
       },
-    }),
+    },
 
-    duplicateCarNames: Object.freeze({
+    duplicateCarNames: {
       errorMessage: `중복된 자동차 이름이 존재합니다.`,
       isValid(inputValue) {
         const carNames = inputValue.split(SYMBOLS.comma);
 
         return new Set(carNames).size === carNames.length;
       },
-    }),
+    },
 
-    invalidCarLength: Object.freeze({
+    invalidCarLength: {
       errorMessage: `자동차는 ${CAR_LENGTH_RANGE.min}대 이상 부터 가능합니다.`,
       isValid(inputValue) {
         return inputValue.split(SYMBOLS.comma).length >= CAR_LENGTH_RANGE.min;
       },
-    }),
+    },
 
-    invalidCarNameLength: Object.freeze({
+    invalidCarNameLength: {
       errorMessage: `자동차 이름은 ${CAR_NAME_RANGE.min} ~ ${CAR_NAME_RANGE.max}자의 범위만 가능합니다.`,
       isValid(inputValue) {
         return inputValue
           .split(`${SYMBOLS.comma}`)
           .every((name) => name.length >= CAR_NAME_RANGE.min && name.length <= CAR_NAME_RANGE.max);
       },
-    }),
-  }),
+    },
+  },
 
   /**
    * 사용자의 입력 값에 대한 유효성 검사를 수행하고 에러를 발생시킬 수 있음
