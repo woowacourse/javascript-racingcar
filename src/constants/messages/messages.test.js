@@ -2,7 +2,8 @@ import { FORMAT_MESSAGE } from './messages';
 
 describe('자동차 경주 문자열 변환 테스트', () => {
   describe('racingResultToString 메서드를 통한 자동차 경주 결과 문자열 변환 테스트', () => {
-    test.each([
+    // given
+    const testCases = [
       {
         description:
           "racingResult가 [[{ carName: 'CarA', moveCount: 1 }, { carName: 'CarB', moveCount: 1 }]] 일 때, \n 문자열 변환 결과는 'CarA : - CarB : -'이다.",
@@ -12,7 +13,7 @@ describe('자동차 경주 문자열 변환 테스트', () => {
             { carName: 'CarB', moveCount: 1 },
           ],
         ],
-        expected: 'CarA : -\nCarB : -',
+        expectedFormatResult: 'CarA : -\nCarB : -',
       },
       {
         description:
@@ -27,25 +28,39 @@ describe('자동차 경주 문자열 변환 테스트', () => {
             { carName: 'CarB', moveCount: 1 },
           ],
         ],
-        expected: 'CarA : --\nCarB : \n\nCarA : ---\nCarB : -',
+        expectedFormatResult: 'CarA : --\nCarB : \n\nCarA : ---\nCarB : -',
       },
-    ])('$description', ({ racingResult, expected }) => {
-      expect(FORMAT_MESSAGE.racingResultToString(racingResult)).toMatch(expected);
+    ];
+    test.each(testCases)('$description', ({ racingResult, expectedFormatResult }) => {
+      // when
+      const formatResult = FORMAT_MESSAGE.racingResultToString(racingResult);
+
+      // then
+      expect(formatResult).toMatch(expectedFormatResult);
     });
   });
 
   describe('racingWinnersToString 메서드를 통한 우승자 문자열 변환 테스트', () => {
-    test.each([
+    // given
+    const testCases = [
       {
         racingWinners: ['CarA'],
-        expected: '\n최종 우승자: CarA',
+        expectedFormatResult: '\n최종 우승자: CarA',
       },
       {
         racingWinners: ['CarA', 'CarB'],
-        expected: '\n최종 우승자: CarA, CarB',
+        expectedFormatResult: '\n최종 우승자: CarA, CarB',
       },
-    ])('racingWinners가 $racingWinners일 때, 문자열 변환 결과는 "$expected다."', ({ racingWinners, expected }) => {
-      expect(FORMAT_MESSAGE.racingWinnersToString(racingWinners)).toMatch(expected);
-    });
+    ];
+    test.each(testCases)(
+      'racingWinners가 $racingWinners일 때, 문자열 변환 결과는 "$expectedFormatResult다."',
+      ({ racingWinners, expectedFormatResult }) => {
+        // when
+        const formatResult = FORMAT_MESSAGE.racingWinnersToString(racingWinners);
+
+        // then
+        expect(formatResult).toMatch(expectedFormatResult);
+      },
+    );
   });
 });
