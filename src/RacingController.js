@@ -13,7 +13,7 @@ export class Game {
     OutputView.printWinner(cars.findWinners());
   }
 
-  static async getCarNames() {
+  async getCarNames() {
     while(true){
       try {
         const carNames = await Game.carNamesStringToCarNamesArray();
@@ -38,11 +38,11 @@ export class Game {
       }
     }
   }
-  static async carNamesStringToCarNamesArray() {
+  async carNamesStringToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
-  static moveCars(cars = {}, tryCount = 0) {
+  moveCars(cars = {}, tryCount = 0) {
     OutputView.printResultTitle();
     for (let i = 0; i < tryCount; i++) {
       cars.moveAllCars();

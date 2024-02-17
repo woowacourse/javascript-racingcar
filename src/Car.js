@@ -9,7 +9,7 @@ class Car {
     this.#distance = NUMBERS.DEFAULT_CAR_DISTANCE;
   }
 
-  static canMove() {
+  canMove() {
     const randomValue = RandomNumberGenerator.pickRandomNumber();
     return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
   }
