@@ -1,6 +1,6 @@
 import { MESSAGE } from '../constants';
 import readLineAsync from '../utils/readLineAsync';
-import { carValidator, turnCountValidator } from '../validator';
+import { carValidator, turnCountValidator } from '../domain/validator';
 import OutputView from './OutputView';
 
 const InputView = {

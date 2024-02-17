@@ -33,7 +33,8 @@ class RaceController {
   }
 
   showRaceResult() {
-    raceWinnerController.showWinner(this.#carList);
+    const maxPosition = Math.max(...this.#carList.map((car) => car.position));
+    raceWinnerController.showWinner(this.#carList, maxPosition);
   }
 }
 

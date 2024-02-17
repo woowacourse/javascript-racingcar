@@ -1,8 +1,7 @@
 import { OutputView } from '../view';
 
 const raceWinnerController = {
-  showWinner(carList) {
-    const maxPosition = Math.max(...carList.map((car) => car.position));
+  showWinner(carList, maxPosition) {
     const winners = this.getWinner(carList, maxPosition);
     OutputView.printWinners(winners);
   },
