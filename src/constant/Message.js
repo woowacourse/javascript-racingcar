@@ -15,7 +15,7 @@ const INPUT = {
 };
 
 const OUTPUT = {
-  RESULT: '\n실행 결과',
+  RESULT_NOTICE: '\n실행 결과',
   WINNER: '최종 우승자:',
   COLON: ':',
   ADVANCE: '-',
