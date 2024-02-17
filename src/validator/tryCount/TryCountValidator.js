@@ -7,7 +7,7 @@ import { TRY_COUNT_RANGE } from './constant.js';
  */
 const TryCountValidator = Object.freeze({
   /**
-   * 자동차 이동 횟수 유효성 검사 유형
+   * @type {import('../../types/jsDoc.js').TryCountValidationTypes}
    */
   validationTypes: Object.freeze({
     typeOfNumber: Object.freeze({

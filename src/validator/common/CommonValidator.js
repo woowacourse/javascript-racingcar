@@ -7,7 +7,7 @@ import { startValidation } from '../startValidation.js';
  */
 const CommonValidator = Object.freeze({
   /**
-   * @type {import('../../utils/jsDoc.js').CommonValidationTypes}
+   * @type {import('../../types/jsDoc.js').CommonValidationTypes}
    */
   validationTypes: Object.freeze({
     emptyValues: Object.freeze({
