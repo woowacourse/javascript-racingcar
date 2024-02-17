@@ -22,7 +22,7 @@ const Validator = {
 
   isValidRoundCountExist(count) {
     if (count === '') {
-      throw new Error(ERROR_MOVE_COUNT.EMPTY);
+      throw new Error(ERROR_TRY_COUNT.EMPTY);
     }
   },
 
@@ -30,7 +30,7 @@ const Validator = {
     const countValueToNumber = Number(count);
 
     if (!Number.isInteger(countValueToNumber)) {
-      throw new Error(ERROR_MOVE_COUNT.RULE);
+      throw new Error(ERROR_TRY_COUNT.RULE);
     }
   },
 
@@ -38,7 +38,7 @@ const Validator = {
     const countValueToNumber = Number(count);
 
     if (countValueToNumber < 1 || countValueToNumber > 10) {
-      throw new Error(ERROR_MOVE_COUNT.RANGE);
+      throw new Error(ERROR_TRY_COUNT.RANGE);
     }
   },
 };
