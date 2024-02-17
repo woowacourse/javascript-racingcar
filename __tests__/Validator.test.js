@@ -1,7 +1,20 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
 import { carValidator, turnCountValidator } from '../src/validator';
 
-describe('입력값 검증', () => {
+describe('자동차 입력값 검증', () => {
+  test('자동차 이름이 모두 5자 이내인 경우 정상적으로 동작한다.', () => {
+    // Arrange
+    const input = ['아르', '마루'];
+
+    // Act
+    const mockFn = () => {
+      carValidator.validateCarNameList(input);
+    };
+
+    /// Assert
+    expect(mockFn).not.toThrow();
+  });
+
   test('자동차 이름이 5자를 초과하는 경우 예외 처리한다.', () => {
     // Arrange
     const input = '아르르르르르';
@@ -15,6 +28,21 @@ describe('입력값 검증', () => {
     expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
   });
 
+  test('자동차 배열 내의 5자를 초과하는 자동차 이름이 있는 경우 예외 처리한다.', () => {
+    // Arrange
+    const input = ['아르', '마루루루루루'];
+
+    // Act
+    const mockFn = () => {
+      carValidator.validateCarNameList(input);
+    };
+
+    /// Assert
+    expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
+  });
+});
+
+describe('경주 횟수 입력값 검증', () => {
   test('입력값이 공백일 경우 예외 처리한다.', () => {
     // Arrange
     const input = '';
