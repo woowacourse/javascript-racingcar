@@ -3,7 +3,7 @@ import gameUtils from '../utils/gameUtils';
 
 class Car {
   #name;
-  
+
   constructor(carName) {
     this.#validate(carName);
     this.#name = carName;
@@ -14,8 +14,8 @@ class Car {
     Validator.isValidCarNameRule(carName);
   }
 
-  addNameForDuplicatedCheck(uniqueCarNames) {
-    uniqueCarNames.add(this.#name);
+  getName() {
+    return this.#name;
   }
 
   actCar() {
@@ -23,10 +23,10 @@ class Car {
     const isForward = this.#judgeForwardMovement(randomNumber);
 
     if (isForward) {
-      return {name: this.#name, score: 1};
+      return { name: this.#name, score: 1 };
     }
 
-    return {name: this.#name, score: 0};
+    return { name: this.#name, score: 0 };
   }
 
   #judgeForwardMovement(randomNumber) {

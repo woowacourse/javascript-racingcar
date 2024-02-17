@@ -12,7 +12,7 @@ class Cars {
   #validate(cars) {
     const uniqueCarNames = new Set();
     cars.forEach((car) => {
-      car.addNameForDuplicatedCheck(uniqueCarNames);
+      uniqueCarNames.add(car.getName());
     });
 
     if (uniqueCarNames.size !== cars.length) {
