@@ -2,7 +2,7 @@ const readLineAsync = require('../utils/readLineAsync.js');
 const splitByDelimiter = require('../utils/splitByDelimiter.js');
 const Validator = require('../utils/validator.js');
 const OutputView = require('./OutputView.js');
-const { INPUT_MESSSAGES } = require('../constant/messages.js');
+const { INPUT_MESSSAGES } = require('../constant/Messages.js');
 
 const InputView = {
   async readCarNames() {

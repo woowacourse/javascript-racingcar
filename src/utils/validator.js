@@ -1,10 +1,10 @@
 const CustomError = require('./customError.js');
-const CONDITIONS = require('../constant/Conditions.js');
-const { ERROR_MESSAGES } = require('../constant/messages.js');
+const { ERROR_MESSAGES } = require('../constant/Messages.js');
+const { RULES, SYMBOL, REGEXP } = require('../constant/Conditions.js');
 
 const ValidatorCondtion = {
   carCountRange(carCount) {
-    if (carCount < CONDITIONS.minCarCount || carCount > CONDITIONS.maxCarCount) {
+    if (carCount < RULES.minCarCount || carCount > RULES.maxCarCount) {
       throw new CustomError(ERROR_MESSAGES.invalidCarCountRange);
     }
   },
@@ -23,25 +23,25 @@ const ValidatorCondtion = {
   },
 
   carNameLength(carNames) {
-    if (carNames.some((carName) => carName.length > CONDITIONS.maxCarNameLength)) {
+    if (carNames.some((carName) => carName.length > RULES.maxCarNameLength)) {
       throw new CustomError(ERROR_MESSAGES.invalidCarNameLength);
     }
   },
 
   carNameInSpace(carNames) {
-    if (carNames.some((carName) => carName.includes(CONDITIONS.space))) {
+    if (carNames.some((carName) => carName.includes(SYMBOL.space))) {
       throw new CustomError(ERROR_MESSAGES.carNameInSpace);
     }
   },
 
   isNaN(value) {
-    if (!CONDITIONS.numericPattern.test(value)) {
+    if (!REGEXP.numericPattern.test(value)) {
       throw new CustomError(ERROR_MESSAGES.NaN);
     }
   },
 
   tryCountRange(tryCount) {
-    if (tryCount < CONDITIONS.minTryCount || tryCount > CONDITIONS.maxTryCount) {
+    if (tryCount < RULES.minTryCount || tryCount > RULES.maxTryCount) {
       throw new CustomError(ERROR_MESSAGES.invalidTryCountRange);
     }
   },

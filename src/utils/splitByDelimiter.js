@@ -1,7 +1,7 @@
-const CONDITIONS = require('../constant/Conditions.js');
+const { SYMBOL } = require('../constant/Conditions');
 
 const splitByDelimiter = (input) => {
-  return input.split(CONDITIONS.delimiter).map((value) => value.trim());
+  return input.split(SYMBOL.delimiter).map((value) => value.trim());
 };
 
 module.exports = splitByDelimiter;
