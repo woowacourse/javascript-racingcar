@@ -20,7 +20,7 @@ class Move {
     return false;
   }
 
-  getInfo() {
+  getCarMoveInfo() {
     return {
       carName: this.#carName,
       moveTrace: this.#moveTrace,

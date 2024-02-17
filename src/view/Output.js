@@ -1,11 +1,11 @@
-import { count } from "../util/count.js";
+import { numberMoveSuccess } from "../util/numberMoveSuccess.js";
 import { MESSAGES } from "../constant/index.js";
 class Output {
   static printMove(carInfo, round) {
     console.log(
       carInfo.carName +
         " : " +
-        "-".repeat(count(carInfo.moveTrace.slice(0, round)))
+        "-".repeat(numberMoveSuccess(carInfo.moveTrace.slice(0, round)))
     );
   }
 

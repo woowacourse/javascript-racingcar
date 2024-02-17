@@ -14,7 +14,7 @@ describe("자동차 이동 테스트", () => {
     }
 
     //Assert
-    expect(move.getInfo()).toEqual({
+    expect(move.getCarMoveInfo()).toEqual({
       carName: "a",
       moveTrace: [false, false, false, true, true],
     });
@@ -33,7 +33,7 @@ describe("자동차 이동 테스트", () => {
     }
 
     //Assert
-    expect(move.getInfo()).toEqual({
+    expect(move.getCarMoveInfo()).toEqual({
       carName: "a",
       moveTrace: [false, false, false, false, false],
     });
@@ -52,7 +52,7 @@ describe("자동차 이동 테스트", () => {
     }
 
     //Assert
-    expect(move.getInfo()).toEqual({
+    expect(move.getCarMoveInfo()).toEqual({
       carName: "a",
       moveTrace: [true, true, true, true, true],
     });
