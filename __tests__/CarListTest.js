@@ -1,6 +1,6 @@
 import CarList from '../src/Domain/CarList.js';
 
-describe('자동차 도메인 테스트', () => {
+describe('자동차 리스트 도메인 테스트', () => {
 	test('자동차 이름이 6자 이상이면 에러를 낸다', () => {
 		// Arrange
 		const input = ['123456', '리안'];

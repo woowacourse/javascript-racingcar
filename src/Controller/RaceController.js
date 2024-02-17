@@ -14,23 +14,12 @@ class RaceController {
 		this.showRaceResult(raceResult);
 
 		const distance = carList.getDistance();
-
 		const winner = new Winner(carNames, distance);
 		winner.decideWinner();
 	}
 
 	makeCarList(carNames) {
 		return new CarList(carNames);
-	}
-
-	showRaceResult(raceResult) {
-		raceResult.forEach(oneTurn => {
-			oneTurn.forEach(carResult => {
-				const [name, result] = carResult;
-				OutputView.printNameAndResult(name, result);
-			});
-			OutputView.printBlank();
-		});
 	}
 
 	playAllTurn(carList, tryNumber) {
@@ -65,6 +54,20 @@ class RaceController {
 			return [name, targetDistance];
 		});
 		return raceResult;
+	}
+
+	showRaceResult(raceResult) {
+		raceResult.forEach(oneTurn => {
+			this.showOneTurnResult(oneTurn);
+			OutputView.printBlank();
+		});
+	}
+
+	showOneTurnResult(oneTurn) {
+		oneTurn.forEach(carResult => {
+			const [name, result] = carResult;
+			OutputView.printNameAndResult(name, result);
+		});
 	}
 
 	isForward() {
