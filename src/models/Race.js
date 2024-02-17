@@ -1,3 +1,4 @@
+import { WINNER_INFO } from '../constants/message';
 import converter from '../utils/converter';
 import Validator from '../utils/Validator';
 
@@ -43,7 +44,7 @@ class Race {
 
   judgeWinners() {
     const winners = this.#findWinners();
-    return `최종 우승자: ${winners.join(', ')}`;
+    return `${WINNER_INFO}${winners.join(', ')}`;
   }
 
   #findWinners() {

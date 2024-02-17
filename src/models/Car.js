@@ -1,3 +1,4 @@
+import { CAR } from '../constants/setting';
 import Validator from '../utils/Validator';
 import discriminator from '../utils/discriminator';
 import randomNumberGenerator from '../utils/randomNumberGenerator';
@@ -24,10 +25,10 @@ class Car {
     const isForward = discriminator(randomNumber);
 
     if (isForward) {
-      return { name: this.#name, score: 1 };
+      return { name: this.#name, score: CAR.FORWARD_SYMBOL };
     }
 
-    return { name: this.#name, score: 0 };
+    return { name: this.#name, score: CAR.STOP_SYMBOL };
   }
 }
 

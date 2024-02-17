@@ -1,6 +1,8 @@
+import { RANDOM } from '../constants/setting';
+
 const randomNumberGenerator = () => {
-  const START = 0;
-  const END = 10;
+  const START = RANDOM.MIN;
+  const END = RANDOM.MAX;
   const randomNumber = Math.floor(START + Math.random() * END);
   return randomNumber;
 };
