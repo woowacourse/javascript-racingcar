@@ -11,3 +11,8 @@ export const ERROR_ROUND_COUNT = Object.freeze({
 });
 
 export const ERROR_INPUT_COUNT = '\n입력 횟수를 초과하였습니다.';
+
+export const INPUT_INFO = Object.freeze({
+  CAR_NAME: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분\n',
+  ROUNT_COUNT: '시도할 횟수는 몇 회인가요?\n',
+});
