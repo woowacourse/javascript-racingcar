@@ -1,7 +1,7 @@
 import converter from '../utils/converter';
-import Validator from './../utils/Validator';
+import Validator from '../utils/Validator';
 
-class RoundCount {
+class Race {
   #roundCount;
 
   #raceResult;
@@ -19,7 +19,7 @@ class RoundCount {
     Validator.isValidRoundCountRange(count);
   }
 
-  raceStart(cars) {
+  start(cars) {
     const raceResult = Array.from({ length: this.#roundCount }).map(() => cars.roundStart());
     this.#raceResult = raceResult;
   }
@@ -57,4 +57,4 @@ class RoundCount {
   }
 }
 
-export default RoundCount;
+export default Race;
