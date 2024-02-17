@@ -2,7 +2,7 @@ import RacingGameController from './controller/RacingGameController.js';
 
 const App = Object.freeze({
   async start() {
-    await RacingGameController.run();
+    await new RacingGameController().run();
   },
 });
 
