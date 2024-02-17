@@ -9,6 +9,5 @@ export const MESSAGES = Object.freeze({
 export const ERROR = Object.freeze({
   CAR_DUPLICATE: "중복된 차가 있습니다.",
   NAME_RANGE: "자동차 이름은 1자 이상, 5자 이하만 가능합니다.",
-  NATURAL_NUMBER: "자연수를 입력해주세요",
-  NOT_A_NUMBER: "숫자를 입력해주세요",
+  NOT_NATURAL_NUMBER: "자연수를 입력해주세요.",
 });

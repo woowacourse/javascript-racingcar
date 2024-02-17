@@ -14,16 +14,10 @@ class Validation {
   }
 
   static isNaturalNumber(tryNumber) {
-    if (tryNumber === "" || isNaN(tryNumber)) {
-      throw new Error(NOT_A_NUMBER);
+    if (Number.isInteger(Number(tryNumber)) && Number(tryNumber) > 0) {
+      return true;
     }
-    if (Number(tryNumber) <= 0) {
-      throw new Error(NATURAL_NUMBER);
-    }
-    if (tryNumber.includes(".")) {
-      throw new Error(NATURAL_NUMBER);
-    }
-    return true;
+    return false;
   }
 }
 
