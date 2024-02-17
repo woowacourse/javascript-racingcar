@@ -1,5 +1,5 @@
 import Input from "./view/Input.js";
-import Move from "./Move.js";
+import MoveCarInfo from "./MoveCarInfo.js";
 import Output from "./view/Output.js";
 import { MESSAGES } from "./constant/index.js";
 import RaceWinner from "./RaceWinner.js";
@@ -33,7 +33,7 @@ class RaceController {
   }
 
   #enterMoveCar(cars) {
-    cars.map((car) => this.#carsMoveExecutionList.push(new Move(car)));
+    cars.map((car) => this.#carsMoveExecutionList.push(new MoveCarInfo(car)));
   }
 
   #carsMoveExecute(tryNumber) {

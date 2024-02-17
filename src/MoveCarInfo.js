@@ -1,4 +1,4 @@
-class Move {
+class MoveCarInfo {
   #carName;
   #moveTrace = [];
 
@@ -27,4 +27,4 @@ class Move {
     };
   }
 }
-export default Move;
+export default MoveCarInfo;
