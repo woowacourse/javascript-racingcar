@@ -1,6 +1,9 @@
 class RandomNumber {
-  static pickNumber() {
-    return Math.floor(Math.random() * 10);
+  static pickNumberInRange(start, end) {
+    const range = [start, end].sort((a, b) => a < b);
+    const [first, last] = range;
+
+    return Math.floor(Math.random() * (last - first + 1)) + first;
   }
 }
 

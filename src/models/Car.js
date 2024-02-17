@@ -1,3 +1,4 @@
+import { RANDOM_NUMBER_RANGE } from '../constants/rule.js';
 import { RandomNumber } from '../utils/index.js';
 
 class Car {
@@ -9,8 +10,14 @@ class Car {
     this.#name = name;
   }
 
+  getRandomNumber() {
+    const { start, end } = RANDOM_NUMBER_RANGE;
+
+    return RandomNumber.pickNumberInRange(start, end);
+  }
+
   move() {
-    if (RandomNumber.pickNumber() >= 4) {
+    if (this.getRandomNumber >= 4) {
       this.#step += 1;
     }
   }

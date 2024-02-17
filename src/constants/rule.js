@@ -10,4 +10,9 @@ export const ROUND_RULE = Object.freeze({
   max: 5,
 });
 
+export const RANDOM_NUMBER_RANGE = Object.freeze({
+  start: 0,
+  end: 9,
+});
+
 export const DELIMITER = Object.freeze(',');

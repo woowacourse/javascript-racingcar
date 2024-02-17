@@ -24,7 +24,7 @@ describe('Test Util 테스트', () => {
     mockRandoms(randoms);
 
     randoms.forEach((number) => {
-      expect(RandomNumber.pickNumber()).toBe(number);
+      expect(RandomNumber.pickNumberInRange(0, 9)).toBe(number);
     });
   });
 });
