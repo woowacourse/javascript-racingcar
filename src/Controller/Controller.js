@@ -24,8 +24,8 @@ export default class Controller {
     this.#runRace(tryNum);
     console.log(RESULT_MESSAGE);
 
-    const calculValue = this.calculateWinners(this.#cars);
-    this.#output.printWinner(calculValue);
+    const winners = this.#findWinners();
+    this.#output.printWinner(winners);
   }
 
   async #promptCarNames() {
@@ -83,14 +83,7 @@ export default class Controller {
     return Math.floor(Math.random() * 10);
   }
 
-  calculateWinners(cars) {
-    const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
-    if (maxDistance) {
-      const winners = cars.filter((car) =>
-        car.getDistance() === maxDistance ? true : false
-      );
-      return { hasWinner: true, winners };
-    }
-    return { hasWinner: false, winners: [] };
+  #findWinners() {
+    return this.#cars.filter((car) => car.isWinner());
   }
 }

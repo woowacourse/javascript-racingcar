@@ -13,10 +13,8 @@ const OutputView = {
     console.log(DISPLAY_CURRENT_DISTANCE(name, distance));
   },
 
-  printWinner(calculValue) {
-    const { hasWinner, winners } = calculValue;
-
-    if (!hasWinner) {
+  printWinner(winners) {
+    if (winners.length === 0) {
       console.log(NO_WINNER_MESSAGE);
       return;
     }
