@@ -1,5 +1,5 @@
 const CONDITIONS = require('../constant/Conditions.js');
-const numberToDistanceSymbol = require('../utils/numberToDistanceSymbol.js');
+const getNumberToDistanceSymbol = require('../utils/getNumberToDistanceSymbol.js');
 const { OUTPUT_MESSAGES } = require('../constant/messages.js');
 
 const OutputView = {
@@ -13,7 +13,7 @@ const OutputView = {
   },
 
   printCarInformation(carName, distance) {
-    console.log(`${carName} : ${numberToDistanceSymbol(distance)}`);
+    console.log(`${carName} : ${getNumberToDistanceSymbol(distance)}`);
   },
 
   printGameResult(gameResult) {

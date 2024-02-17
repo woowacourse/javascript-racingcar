@@ -1,12 +1,12 @@
 const Car = require('../src/domain/Car.js');
-const getRandomNumber = require('../src/utils/getRandomNumber.js');
+const getRandomNumberInRange = require('../src/utils/getRandomNumberInRange.js');
 
-jest.mock('../src/utils/getRandomNumber.js');
+jest.mock('../src/utils/getRandomNumberInRange.js');
 
 const mockRandoms = (numbers) => {
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
-  }, getRandomNumber);
+  }, getRandomNumberInRange);
 };
 
 describe('자동차 객체 테스트', () => {
