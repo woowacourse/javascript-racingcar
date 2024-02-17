@@ -1,7 +1,13 @@
 {
   "rules": {
     "import/extensions": ["error", { "js": "ignorePackages" }],
-    "methods-use-this": ["error", { "js": "ignorePackages" }],
+    "import/order": [
+      "error",
+      {
+      "alphabetize": {
+      "order": "asc",
+      "caseInsensitive": true
+      }}]
   },
   "env": {
     "es6": true,

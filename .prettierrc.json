@@ -9,5 +9,6 @@
   "arrowParens": "always",
   "endOfLine": "auto",
   "maxDepth": 2,
-  "max-lines-per-function": ["error", { "max": 10 }]
+  "max-lines-per-function": ["error", { "max": 10 }],
+  "importOrder": ["^\\u0000", "^@\\w", "^[^.]"]
 }

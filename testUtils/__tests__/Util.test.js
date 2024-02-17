@@ -1,4 +1,4 @@
-import { getLogSpy, mockQuestions, mockRandoms } from '../index';
+import { getLogSpy, mockQuestions, mockRandoms } from '..';
 import Game from '../../src/controllers/Game';
 import { RandomNumber } from '../../src/utils';
 

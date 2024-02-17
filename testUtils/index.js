@@ -2,9 +2,10 @@ import { Console, RandomNumber } from '../src/utils';
 
 export const mockRandoms = (numbers) => {
   RandomNumber.pickNumberInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomNumber.pickNumberInRange);
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    RandomNumber.pickNumberInRange,
+  );
 };
 
 export const mockQuestions = (inputs) => {

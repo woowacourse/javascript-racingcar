@@ -9,7 +9,7 @@ class Car {
   constructor(name) {
     this.#name = name;
   }
-
+  // eslint-disable-next-line
   getRandomNumber() {
     const { start, end } = RANDOM_NUMBER_RANGE;
 
