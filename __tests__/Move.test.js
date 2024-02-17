@@ -1,5 +1,4 @@
 import Move from "../src/Move.js";
-import { randomNum } from "../src/util/random.js";
 
 describe("자동차 이동 테스트", () => {
   test(" 자동차 5번 이동 시도, 2번 성공", () => {
@@ -8,12 +7,10 @@ describe("자동차 이동 테스트", () => {
     const carName = "a";
 
     const move = new Move(carName);
-    randomNum = jest.fn();
-    mockRandom.map((num) => randomNum.mockReturnValueOnce(num));
 
     //Act
     for (let i = 0; i < 5; i++) {
-      move.move();
+      move.move(mockRandom[i]);
     }
 
     //Assert
@@ -29,12 +26,10 @@ describe("자동차 이동 테스트", () => {
     const carName = "a";
 
     const move = new Move(carName);
-    Random.randomNum = jest.fn();
-    mockRandom.map((num) => Random.randomNum.mockReturnValueOnce(num));
 
     //Act
     for (let i = 0; i < 5; i++) {
-      move.move();
+      move.move(mockRandom[i]);
     }
 
     //Assert
@@ -50,12 +45,10 @@ describe("자동차 이동 테스트", () => {
     const carName = "a";
 
     const move = new Move(carName);
-    Random.randomNum = jest.fn();
-    mockRandom.map((num) => Random.randomNum.mockReturnValueOnce(num));
 
     //Act
     for (let i = 0; i < 5; i++) {
-      move.move();
+      move.move(mockRandom[i]);
     }
 
     //Assert
