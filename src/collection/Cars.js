@@ -1,3 +1,5 @@
+import Validator from '../utils/Validator';
+
 class Cars {
   #cars;
 
@@ -6,18 +8,21 @@ class Cars {
   constructor(cars) {
     this.#cars = [];
     this.#previousRoundResult = [];
-    this.#validate(cars);
+    const uniqueCarNames = this.#setUniqueCarName(cars);
+    this.#validate(cars, uniqueCarNames);
     this.#cars = cars;
   }
 
-  #validate(cars) {
+  #setUniqueCarName(cars) {
     const uniqueCarNames = new Set();
     cars.forEach((car) => {
       uniqueCarNames.add(car.getCarName());
     });
-    if (uniqueCarNames.size !== cars.length) {
-      throw new Error('차 이름은 중복되지 않아야 합니다.');
-    }
+    return uniqueCarNames;
+  }
+
+  #validate(cars, uniqueCarNames) {
+    Validator.isUniqueCarName(cars, uniqueCarNames);
   }
 
   roundStart() {

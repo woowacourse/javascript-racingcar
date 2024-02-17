@@ -12,6 +12,12 @@ const Validator = {
     }
   },
 
+  isUniqueCarName(cars, uniqueCarNames) {
+    if (cars.length !== uniqueCarNames.size) {
+      throw new Error('차 이름은 중복되지 않아야 합니다.');
+    }
+  },
+
   isValidRoundCountExist(count) {
     if (count === '') {
       throw new Error('이동횟수는 입력되어야 합니다.\n');
