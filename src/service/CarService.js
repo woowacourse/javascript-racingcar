@@ -27,7 +27,8 @@ class CarService {
   }
 
   getRaceResult() {
-    return this.#cars.map((car) => car.isWinner(this.#maxMoveCount)).filter((carName) => carName !== undefined);
+    const winningCars = this.#cars.map((car) => car.isWinner(this.#maxMoveCount));
+    return winningCars.filter((carName) => carName !== undefined);
   }
 }
 
