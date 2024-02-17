@@ -45,14 +45,18 @@ class RaceController {
     return tryCount;
   }
 
-  async #playCarRace(tryCount) {
+  async #playCarRace(tryCount, onFinishRound) {
     Console.print(MESSAGES.result);
 
-    Array.from({ length: tryCount }, () => {
+    for (let i = 0; i < tryCount; i++) {
       const roundResult = this.#carRace.makesRoundResult();
-      OutputView.printRoundResult(roundResult);
-      OutputView.printBlankLine();
-    });
+      onFinishRound(roundResult);
+    }
+  }
+
+  async #announceRoundResult(roundResult) {
+    OutputView.printRoundResult(roundResult);
+    OutputView.printBlankLine();
   }
 
   #announceWinners() {
@@ -62,7 +66,7 @@ class RaceController {
 
   async run() {
     const tryCount = await this.#initCarRace();
-    await this.#playCarRace(tryCount);
+    await this.#playCarRace(tryCount, this.#announceRoundResult);
     this.#announceWinners();
   }
 }
