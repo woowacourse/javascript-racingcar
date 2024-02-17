@@ -1,12 +1,14 @@
-import { OUTPUT_MESSAGE } from './constants';
+import { OUTPUT_MESSAGE } from '../constants';
 
 const OutputView = {
   printError(error) {
     console.log(error.message);
   },
 
-  printEachStepResult(cars = {}) {
-    console.log(cars.getEachStepString());
+  printEachStepResult(eachStepCarsResults = []) {
+    eachStepCarsResults.forEach((result) => {
+      console.log(result);
+    });
   },
 
   printResultTitle() {
