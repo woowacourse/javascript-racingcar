@@ -1,3 +1,4 @@
+import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 import Car from './Car';
 class Cars {
   #carList;
@@ -7,7 +8,7 @@ class Cars {
 
   moveAllCars() {
     this.#carList.forEach((car) => {
-      car.move();
+      car.move(RandomNumberGenerator.pickRandomNumber());
     });
   }
 
