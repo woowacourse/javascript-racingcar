@@ -18,4 +18,30 @@
  * @property {CommonValidationType} invalidCarLength - 자동차 대 수가 올바른지 검사하기 위한 객체
  */
 
+/**
+ * @typedef {object} TryCountValidationTypes
+ * @property {CommonValidationType} typeOfInteger - 들어온 값이 정수 인지 확인하기 위한 객체
+ * @property {CommonValidationType} outOfRange - 주어진 범위에서 벗어나는 숫자인지 확인하기 위한 객체
+ */
+
+/**
+ * @typedef {object} UserInputDetails
+ * @property {string[]} racingCarNames - 입력 받은 자동차 이름들
+ * @property {number} tryCount - 시도 횟수
+ */
+
+/**
+ * @typedef {object} RacingCar
+ * @property {string} carName - 자동차 이름
+ * @property {number} moveCount - 이동 횟수
+ */
+
+/**
+ * @typedef {RacingCar[]} RacingTurnResult
+ */
+
+/**
+ * @typedef {RacingTurnResult[]} RacingResult
+ */
+
 export {};
