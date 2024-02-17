@@ -2,7 +2,7 @@ import Input from "./view/Input.js";
 import Move from "./Move.js";
 import Output from "./view/Output.js";
 import { count } from "./util/count.js";
-import { MESSAGES } from "./constant/constant.js";
+import { MESSAGES } from "./constant/index.js";
 import { randomNum } from "./util/random.js";
 
 class RaceController {

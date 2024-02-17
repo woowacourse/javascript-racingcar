@@ -1,7 +1,7 @@
 import ReadLine from "../util/readLineAsync.js";
 import Cars from "../Cars.js";
 import Validation from "../Validation.js";
-import { MESSAGES } from "../constant/constant.js";
+import { MESSAGES } from "../constant/index.js";
 
 class Input {
   static carNameInput = async () => {
@@ -12,7 +12,7 @@ class Input {
       return car.getCarList();
     } catch (error) {
       console.log(error.message);
-      return carNameInput();
+      return this.carNameInput();
     }
   };
 
@@ -23,7 +23,7 @@ class Input {
       return tryNumber;
     } catch (error) {
       console.log(error.message);
-      return tryInput();
+      return this.tryInput();
     }
   };
 }

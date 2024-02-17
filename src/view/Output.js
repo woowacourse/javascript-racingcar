@@ -1,5 +1,5 @@
 import { count } from "../util/count.js";
-import { MESSAGES } from "../constant/constant.js";
+import { MESSAGES } from "../constant/index.js";
 class Output {
   static printMove(carInfo, round) {
     console.log(
