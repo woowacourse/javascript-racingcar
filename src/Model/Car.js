@@ -1,7 +1,7 @@
-import AppError from "../utils/Error";
 import { CAR_CONSTANTS } from "../Constants/Constants";
+import CarValidator from "../Validator/CarValidator";
 
-const { NAME_LENGTH_RANGE, MIN_MOVE_THRESHOLD, MOVE_DISTANCE } = CAR_CONSTANTS;
+const { MIN_MOVE_THRESHOLD, MOVE_DISTANCE } = CAR_CONSTANTS;
 
 export default class Car {
   static maxDistance = 0;
@@ -9,17 +9,8 @@ export default class Car {
   #distance = 0;
 
   constructor(name) {
-    this.#checkName(name);
+    CarValidator.checkCarName(name);
     this.#name = name;
-  }
-
-  #checkName(name) {
-    if (
-      NAME_LENGTH_RANGE.max < name.length ||
-      name.length < NAME_LENGTH_RANGE.min
-    ) {
-      throw new AppError();
-    }
   }
 
   move(randomNum) {

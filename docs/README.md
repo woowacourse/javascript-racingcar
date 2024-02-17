@@ -10,7 +10,7 @@
 - Controller 속 여러 로직들을 외부로 분리하여 테스트 코드를 실행할 때마다 Controller를 실행 시키게 하지 않도록하자.
   - [x] 우승자 가리는 로직을 Car 객체로 넘겨 Controller에서의 우승자 가리는 로직을 간소화
     - [ ] 이에 따른 테스트 코드를 Controlelr.test가 아닌 Car.test에 새로 구현
-  - [ ] 시도 횟수를 검증하는 로직을 Validator 폴더로 분리
+  - [x] 시도 횟수를 검증하는 로직을 Validator 폴더로 분리
     - [ ] 이에 따라 TryNum.test에서 따로 작성
 
 </br>
@@ -41,13 +41,13 @@
 
 > MVC 패턴을 사용하다보면 자연스럽게 Model, View 말고는 전부 Controller에 때려박는 방향으로 흘러가는 경우가 많다보니 Controller가 비대해지곤 하니 조금 더 분리해보자.
 
-- [ ] Controller 다이어트 시키기
+- [x] Controller 다이어트 시키기
 
-  - [ ] Controller 내부에 있던 검증 로직 따로 분리하기
+  - [x] Controller 내부에 있던 검증 로직 따로 분리하기
   - 검증 로직은 Model 내부에 두고 싶다면 이를 위해 따로 Model을 만드는것도 좋을까?
-  - [ ] Validator 폴더로 따로 분리
+  - [x] Validator 폴더로 따로 분리
 
-  - [ ] Controller 내부에 있던 우승자 판별 로직을 Car 객체에 넣어보기
+  - [x] Controller 내부에 있던 우승자 판별 로직을 Car 객체에 넣어보기
 
 </br>
 
