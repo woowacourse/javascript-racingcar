@@ -1,5 +1,5 @@
-import Console from './utils/Console';
-import { INPUT_MESSAGE } from './constants';
+import Console from '../utils/Console';
+import { INPUT_MESSAGE } from '../constants';
 
 const InputView = {
   async queryCarName() {
