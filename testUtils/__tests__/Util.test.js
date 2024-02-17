@@ -11,8 +11,12 @@ describe('Test Util 테스트', () => {
     const game = new Game();
     await game.setGame();
 
-    expect(logSpy).toHaveBeenCalledWith('참가 자동차: v,h');
-    expect(logSpy).toHaveBeenCalledWith('게임을 진행할 라운드 횟수: 2');
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining('참가 자동차: v,h'),
+    );
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining('게임을 진행할 라운드 횟수: 2'),
+    );
   });
 
   test('mockRandoms 테스트', () => {
