@@ -1,12 +1,10 @@
-import consolePrint from "../src/utils/consolePrint";
-import gameUtils from "../src/utils/gameUtils";
-import readLineAsync from "../src/utils/readLineAsync";
+import { Console, gameUtils } from "../src/utils";
 import App from './../src/App';
 
 const mockQuestions = (inputs) => {
-  readLineAsync = jest.fn();
+  Console.readLineAsync = jest.fn();
 
-  readLineAsync.mockImplementation(() => {
+  Console.readLineAsync.mockImplementation(() => {
     const input = inputs.shift();
     return Promise.resolve(input);
   });
@@ -20,7 +18,7 @@ const mockRandoms = (numbers) => {
 }
 
 const getLogSpy = () => {
-  const logSpy = jest.spyOn(consolePrint);
+  const logSpy = jest.spyOn(Console, 'print');
   logSpy.mockClear();
   return logSpy;
 };
@@ -37,8 +35,7 @@ describe('자동차 경주 테스트', () => {
     mockRandoms([...randomNumbers]);
 
     // when
-    const app = new App();
-    await app.init();
+    await App.init();
 
     // then
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(answer));
