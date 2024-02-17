@@ -1,13 +1,5 @@
-import RandomUtil from "../src/utils/RandomUtil.js";
 import Car from "../src/domain/Car.js";
 import Cars from "../src/domain/Cars.js";
-
-const mockRandoms = (numbers) => {
-  RandomUtil.pickRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomUtil.pickRandomNumber);
-};
 
 describe("Cars 유닛 테스트", () => {
   describe("주어진 횟수 동안 n 대의 자동차는 전진 또는 멈출 수 있다. ", () => {
@@ -15,22 +7,41 @@ describe("Cars 유닛 테스트", () => {
     const NAME2 = "Hain";
     const NAME3 = "Pobi";
 
-    const car1 = new Car(NAME1);
-    const car2 = new Car(NAME2);
-    const car3 = new Car(NAME3);
+    const shouldGoresultForCar1 = [true, false, true];
+    const shouldGoresultForCar2 = [false, true, true];
+    const shouldGoresultForCar3 = [true, true, true];
+
+    let countForCar1 = -1;
+    let countForCar2 = -1;
+    let countForCar3 = -1;
+
+    const shouldGoForCar1 = () => {
+      countForCar1++;
+      return shouldGoresultForCar1[countForCar1];
+    };
+    const shouldGoForCar2 = () => {
+      countForCar2++;
+      return shouldGoresultForCar2[countForCar2];
+    };
+    const shouldGoForCar3 = () => {
+      countForCar3++;
+      return shouldGoresultForCar3[countForCar3];
+    };
+
+    const car1 = new Car(NAME1, shouldGoForCar1);
+    const car2 = new Car(NAME2, shouldGoForCar2);
+    const car3 = new Car(NAME3, shouldGoForCar3);
 
     const cars = new Cars([car1, car2, car3]);
 
     test.each([
-      { randomNumbers: [5, 1, 6], expected: [1, 0, 1] },
-      { randomNumbers: [2, 5, 6], expected: [1, 1, 2] },
-      { randomNumbers: [6, 8, 9], expected: [2, 2, 3] },
+      { randomNumbers: shouldGoresultForCar1, expected: [1, 0, 1] },
+      { randomNumbers: shouldGoresultForCar2, expected: [1, 1, 2] },
+      { randomNumbers: shouldGoresultForCar3, expected: [2, 2, 3] },
     ])(
       "$randomNumbers가 나오면 마일리지 값이 각각 $expected가 된다.",
       ({ randomNumbers, expected }) => {
         const [expected1, expected2, expected3] = expected;
-
-        mockRandoms(randomNumbers);
 
         cars.goAll();
 
@@ -66,16 +77,12 @@ describe("Cars 유닛 테스트", () => {
     const NAME2 = "Hain";
     const NAME3 = "Pobi";
 
-    const car1 = new Car(NAME1);
-    const car2 = new Car(NAME2);
-    const car3 = new Car(NAME3);
+    const car1 = new Car(NAME1, () => true);
+    const car2 = new Car(NAME2, () => false);
+    const car3 = new Car(NAME3, () => false);
 
     const cars = new Cars([car1, car2, car3]);
-
-    const MOCK_RANDOM_NUMBERS = [5, 1, 2];
     const expected = [NAME1];
-
-    mockRandoms(MOCK_RANDOM_NUMBERS);
 
     cars.goAll();
 
