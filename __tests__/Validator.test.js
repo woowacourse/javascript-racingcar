@@ -1,8 +1,8 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
-import { carValidator, turnCountValidator } from '../src/validator';
+import { carValidator, turnCountValidator } from '../src/domain/validator';
 
 describe('자동차 입력값 검증', () => {
-  test('자동차 이름이 모두 5자 이내인 경우 정상적으로 동작한다.', () => {
+  test('자동차 목록 중 자동차 이름이 모두 5자 이내인 경우 정상적으로 동작한다.', () => {
     // Arrange
     const input = ['아르', '마루'];
 
@@ -15,10 +15,7 @@ describe('자동차 입력값 검증', () => {
     expect(mockFn).not.toThrow();
   });
 
-  test('자동차 이름이 5자를 초과하는 경우 예외 처리한다.', () => {
-    // Arrange
-    const input = '아르르르르르';
-
+  test.each(['아르르르르르', 'abcdef', '123456'])('자동차 이름이 5자를 초과하는 경우 예외 처리한다.', (input) => {
     // Act
     const mockFn = () => {
       carValidator.validateCarNameLength(input.length);

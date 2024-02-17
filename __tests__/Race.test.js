@@ -4,28 +4,30 @@ import RaceController from '../src/controller/RaceController';
 import raceWinnerController from '../src/controller/RaceWinnerController';
 
 describe('자동차 전진 로직 검증', () => {
-  test('무작위 값이 4 이상이면 자동차를 1 전진시킨다.', () => {
-    // Arrange
-    const car = new Car('아르');
-    const RANDOM_NUMBER = CONFIG.CAR_MOVING_CONDITION;
+  describe('무작위 값이 4 이상이면 자동차를 1 전진시킨다.', () => {
+    test.each([4, 5, 6, 7, 8, 9])('무작위 값이 %i 인 경우', (condition) => {
+      // Arrange
+      const car = new Car('아르');
 
-    // Act
-    car.move(RANDOM_NUMBER);
+      // Act
+      car.move(condition);
 
-    // Assert
-    expect(car.position).toBe(1);
+      // Assert
+      expect(car.position).toBe(1);
+    });
   });
 
-  test('무작위 값이 4 미만이면 자동차를 전진시키지 않는다.', () => {
-    // Arrange
-    const car = new Car('마루');
-    const RANDOM_NUMBER = CONFIG.CAR_MOVING_CONDITION - 1;
+  describe('무작위 값이 4 미만이면 자동차를 전진시키지 않는다.', () => {
+    test.each([0, 1, 2, 3])('무작위 값이 %i 인 경우', (condition) => {
+      // Arrange
+      const car = new Car('마루');
 
-    // Act
-    car.move(RANDOM_NUMBER);
+      // Act
+      car.move(condition);
 
-    // Assert
-    expect(car.position).toBe(0);
+      // Assert
+      expect(car.position).toBe(0);
+    });
   });
 });
 
@@ -37,8 +39,8 @@ describe('자동차 경주 로직 검증', () => {
     const TURN_COUNT = CONFIG.MIN_TURN_COUNT;
     const RANDOM_NUMBERS = [CONFIG.CAR_MOVING_CONDITION, CONFIG.CAR_MOVING_CONDITION - 1];
     const MAX_POSITION = 1;
-    const race = new RaceController(CAR_NAME_LIST, TURN_COUNT);
     const RESULT_WINNER = ['마루'];
+    const race = new RaceController(CAR_NAME_LIST, TURN_COUNT);
 
     // Act
     CAR_LIST.forEach((car, index) => {
@@ -57,8 +59,8 @@ describe('자동차 경주 로직 검증', () => {
     const TURN_COUNT = CONFIG.MIN_TURN_COUNT;
     const RANDOM_NUMBERS = [CONFIG.CAR_MOVING_CONDITION, CONFIG.CAR_MOVING_CONDITION];
     const MAX_POSITION = 1;
-    const race = new RaceController(CAR_NAME_LIST, TURN_COUNT);
     const RESULT_WINNER = ['마루', '아르'];
+    const race = new RaceController(CAR_NAME_LIST, TURN_COUNT);
 
     // Act
     CAR_LIST.forEach((car, index) => {
