@@ -9,8 +9,7 @@ class App {
     const turnCount = await InputView.readTurnCount();
     const carList = new CarList(carNameList);
     this.#race(carList, turnCount);
-    const winners = carList.getWinner();
-    OutputView.printWinners(winners);
+    this.#showRaceWinner(carList);
   }
 
   #race(carList, turnCount) {
@@ -26,6 +25,11 @@ class App {
       if (this.#isCarMove()) car.move();
       OutputView.printCarPosition(car.name, car.position);
     });
+  }
+
+  #showRaceWinner(carList) {
+    const winners = carList.getWinner();
+    OutputView.printWinners(winners);
   }
 
   #isCarMove() {
