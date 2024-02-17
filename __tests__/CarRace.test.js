@@ -28,7 +28,7 @@ describe('자동차 경주 도메인 테스트', () => {
     };
 
     // when
-    const roundResult = carRace.makesRoundResult();
+    const roundResult = carRace.makeRoundResult();
 
     // then
     expect(roundResult).toEqual(expectedResult);
@@ -42,7 +42,7 @@ describe('자동차 경주 도메인 테스트', () => {
 
     // when
     Array.from({ length: TRY_COUNT }, () => {
-      carRace.makesRoundResult();
+      carRace.makeRoundResult();
     });
     const winners = carRace.judgeWinners();
 

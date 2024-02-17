@@ -35,19 +35,15 @@ class CarRace {
     });
   }
 
-  #makeRoundResult() {
+  makeRoundResult() {
     const result = {};
 
     this.#cars.forEach((car) => {
+      this.#moveCars();
       result[car.name] = car.position;
     });
 
     return deepFreeze(result);
-  }
-
-  makesRoundResult() {
-    this.#moveCars();
-    return this.#makeRoundResult();
   }
 
   judgeWinners() {

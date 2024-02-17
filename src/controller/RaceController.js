@@ -49,7 +49,7 @@ class RaceController {
     Console.print(MESSAGES.result);
 
     for (let i = 0; i < tryCount; i++) {
-      const roundResult = this.#carRace.makesRoundResult();
+      const roundResult = this.#carRace.makeRoundResult();
       onFinishRound(roundResult);
     }
   }
