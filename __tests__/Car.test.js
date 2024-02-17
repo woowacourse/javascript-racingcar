@@ -1,4 +1,4 @@
-import Car from '../src/Car';
+import Car from '../src/domain/Car';
 import RandomNumberGenerator from '../src/utils/RandomNumberGenerator';
 
 const mockRandom = (number) => {

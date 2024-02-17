@@ -1,5 +1,5 @@
-import { NUMBERS } from './constants';
-import RandomNumberGenerator from './utils/RandomNumberGenerator';
+import { NUMBERS } from '../constants';
+import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 
 class Car {
   #name;

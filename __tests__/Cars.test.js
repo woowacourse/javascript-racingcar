@@ -1,5 +1,4 @@
-import Game from '../src/RacingController';
-import Cars from '../src/Cars';
+import Cars from '../src/domain/Cars';
 import RandomNumberGenerator from '../src/utils/RandomNumberGenerator';
 
 const mockRandom = (number) => {
