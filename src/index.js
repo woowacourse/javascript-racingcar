@@ -1,7 +1,7 @@
 import CarList from './CarList';
 import { CONFIG, MESSAGE } from './constants';
 import { InputView, OutputView } from './views';
-import pickRandomNumber from './utils/pickRandomNumber';
+import getRandomNumber from './utils/getRandomNumber';
 
 class App {
   async play() {
@@ -23,10 +23,14 @@ class App {
 
   #moveCars(carList) {
     carList.cars.forEach((car) => {
-      const randomNumber = pickRandomNumber();
-      if (randomNumber >= CONFIG.CAR_MOVING_CONDITION) car.move();
+      if (this.#isCarMove()) car.move();
       OutputView.printCarPosition(car.name, car.position);
     });
+  }
+
+  #isCarMove() {
+    const randomNumber = getRandomNumber();
+    return randomNumber >= CONFIG.CAR_MOVING_CONDITION;
   }
 }
 
