@@ -15,7 +15,7 @@ class Car {
   }
 
   move() {
-    if (Car.canMove()) {
+    if (this.canMove()) {
       this.#distance += NUMBERS.MOVE_INCREMENT;
     }
   }

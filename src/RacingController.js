@@ -1,23 +1,22 @@
 import InputView from './InputView';
-import Validation from './utils/Validation';
 import OutputView from './OutputView';
 import Cars from './Cars';
 
 export class Game {
   async play() {
-    const carNameArray = await Game.getCarNames();
+    const carNameArray = await this.getCarNames();
     const cars = new Cars(carNameArray);
-    const tryCount = await Game.getTryCount();
+    const tryCount = await this.getTryCount();
 
-    Game.moveCars(cars, tryCount);
+    this.moveCars(cars, tryCount);
     OutputView.printWinner(cars.findWinners());
   }
 
   async getCarNames() {
     while(true){
       try {
-        const carNames = await Game.carNamesStringToCarNamesArray();
-        Validation.carNamesValidate(carNames);
+        const carNames = await this.carNamesStringToCarNamesArray();
+        Cars.carNamesValidate(carNames);
         return carNames;
       } catch (error) {
         OutputView.printError(error);
@@ -26,11 +25,11 @@ export class Game {
     }
   }
 
-  static async getTryCount() {
+  async getTryCount() {
     while(true) {
       try {
         const tryCountString = await InputView.queryTryCount();
-        Validation.tryCountValidate(tryCountString);
+        Cars.tryCountValidate(tryCountString);
         return Number(tryCountString);
       } catch (error) {
         OutputView.printError(error);
@@ -38,10 +37,12 @@ export class Game {
       }
     }
   }
+
   async carNamesStringToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
+
   moveCars(cars = {}, tryCount = 0) {
     OutputView.printResultTitle();
     for (let i = 0; i < tryCount; i++) {
