@@ -9,7 +9,7 @@ class Input {
       const carNames = (await ReadLine.readLineAsync(MESSAGES.INPUT_CAR_NAMES)).split(",");
       Validation.validateCarNames(carNames);
       const car = new Cars(carNames);
-      return car.getCarList();
+      return car.getCarNames;
     } catch (error) {
       console.log(error.message);
       return Input.inputCarNames();

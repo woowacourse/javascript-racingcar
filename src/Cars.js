@@ -1,14 +1,14 @@
 import Validation from "./Validation.js";
 
 class Cars {
-  #carList;
+  #carNames;
 
-  constructor(carList) {
-    this.#carList = carList;
+  constructor(carNames) {
+    this.#carNames = carNames;
   }
 
-  getCarList() {
-    return this.#carList;
+  get getCarNames() {
+    return this.#carNames;
   }
 }
 
