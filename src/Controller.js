@@ -4,10 +4,10 @@ import Output from "./view/Output.js";
 import { count } from "./util/count.js";
 import { MESSAGES } from "./constant/constant.js";
 
-class RaceController {
+export default class Controller {
   #moveInstanceList = [];
 
-  async race() {
+  async start() {
     const { cars, tryNumber } = await this.input();
     cars.map((car) => this.#moveInstanceList.push(new Move(car)));
     this.calculateResult(tryNumber);
@@ -42,9 +42,7 @@ class RaceController {
 
   calculateMaxMove() {
     const maxMove = Math.max(
-      ...this.#moveInstanceList.map((moveInstance) =>
-        count(moveInstance.getInfo().moveTrace)
-      )
+      ...this.#moveInstanceList.map((moveInstance) => count(moveInstance.getInfo().moveTrace))
     );
     return maxMove;
   }
@@ -52,12 +50,8 @@ class RaceController {
   calculateWinner() {
     const maxMove = this.calculateMaxMove();
     const result = this.#moveInstanceList
-      .filter(
-        (moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove
-      )
+      .filter((moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove)
       .map((moveInstance) => moveInstance.getInfo().carName);
     return result;
   }
 }
-
-export default RaceController;

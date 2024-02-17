@@ -12,7 +12,7 @@ class Input {
       return car.getCarList();
     } catch (error) {
       console.log(error.message);
-      return carNameInput();
+      return Input.carNameInput();
     }
   };
 
@@ -23,7 +23,7 @@ class Input {
       return tryNumber;
     } catch (error) {
       console.log(error.message);
-      return tryInput();
+      return Input.tryInput();
     }
   };
 }

@@ -1,8 +1,10 @@
-import RaceController from "./RaceController.js";
+import Controller from "./Controller.js";
 
 class App {
   async play() {
-    new RaceController().race();
+    new Controller().start();
   }
 }
 export default App;
+
+new App().play();
