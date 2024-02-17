@@ -1,8 +1,13 @@
 {
-  "rules": {},
+  "rules": {
+    "lines-between-class-members": "off",
+    "class-methods-use-this":"off",
+    "no-console": "off"
+  },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -10,6 +15,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:prettier/recommended"
-  ]
+    "plugin:prettier/recommended",
+    "airbnb"
+  ], 
+  "plugins": ["prettier"]
 }
