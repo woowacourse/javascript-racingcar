@@ -1,4 +1,4 @@
-import MainController from './Controller/MainController.js';
+import RaceController from './Controller/RaceController.js';
 
-const mainController = new MainController();
-await mainController.play();
+const raceController = new RaceController();
+await raceController.startRace();

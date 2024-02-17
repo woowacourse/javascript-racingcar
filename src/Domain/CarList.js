@@ -14,6 +14,10 @@ class CarList {
 		this.#distance[index]++;
 	}
 
+	getNames() {
+		return this.#names;
+	}
+
 	getDistance() {
 		return this.#distance;
 	}
