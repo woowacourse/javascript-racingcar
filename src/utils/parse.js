@@ -1,9 +1,7 @@
-const splitByComma = (string) => {
+export const splitByComma = (string) => {
   return string.split(",");
 };
 
-const trimAll = (stringArr) => {
+export const trimAll = (stringArr) => {
   return stringArr.map((s) => s.trim());
 };
-
-export { splitByComma, trimAll };

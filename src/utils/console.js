@@ -1,6 +1,6 @@
 import readline from "readline";
 
-const readLineAsync = (query) => {
+export const readLineAsync = (query) => {
   return new Promise((resolve, reject) => {
     if (!query) {
       reject(new Error("query must be given"));
@@ -22,8 +22,6 @@ const readLineAsync = (query) => {
   });
 };
 
-const print = (query) => {
+export const print = (query) => {
   console.log(query);
 };
-
-export { readLineAsync, print };

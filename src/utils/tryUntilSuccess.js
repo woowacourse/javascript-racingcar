@@ -1,6 +1,6 @@
 import { print } from "./console.js";
 
-const tryUntilSuccess = (func) => {
+export const tryUntilSuccess = (func) => {
   const repeat = async (...args) => {
     while (true) {
       try {
@@ -13,5 +13,3 @@ const tryUntilSuccess = (func) => {
 
   return repeat;
 };
-
-export { tryUntilSuccess };

@@ -13,9 +13,13 @@ const RAW_ERROR_MESSAGE = {
   invalidRoundNumber: "1 이상, 100 이하의 숫자를 입력해주세요.",
 };
 
+export const ERROR_MESSAGE = Object.freeze(
+  applyFunctionToValues(RAW_ERROR_MESSAGE, addErrorPrefix)
+);
+
 const MILEAGE_MARK = "-";
 
-const CONSOLE_MESSAGE = Object.freeze({
+export const CONSOLE_MESSAGE = Object.freeze({
   carNamesQuery:
     "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
   roundNumberQuery: "시도할 횟수는 몇 회인가요?",
@@ -25,9 +29,3 @@ const CONSOLE_MESSAGE = Object.freeze({
     `${name} : ${MILEAGE_MARK.repeat(mileage)}`,
   winnersForm: (winners) => `최종 우승자 : ${winners.join(", ")}`,
 });
-
-const ERROR_MESSAGE = Object.freeze(
-  applyFunctionToValues(RAW_ERROR_MESSAGE, addErrorPrefix)
-);
-
-export { ERROR_MESSAGE, CONSOLE_MESSAGE };
