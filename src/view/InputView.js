@@ -1,13 +1,13 @@
-import Validator from '../Validator';
 import { MESSAGE } from '../constants';
 import readLineAsync from '../utils/readLineAsync';
+import { carValidator, turnCountValidator } from '../validator';
 import OutputView from './OutputView';
 
 const InputView = {
   async readCarNameList() {
     try {
       const carNameList = await this.getCarNameInput();
-      Validator.validateCarNameList(carNameList);
+      carValidator.validateCarNameList(carNameList);
       return carNameList;
     } catch (error) {
       OutputView.print(error.message);
@@ -23,7 +23,7 @@ const InputView = {
   async readTurnCount() {
     try {
       const turnCountInput = await readLineAsync(MESSAGE.TURN_COUNT_INPUT);
-      Validator.validateTurnCount(turnCountInput);
+      turnCountValidator.validateTurnCount(turnCountInput);
       return parseInt(turnCountInput, 10);
     } catch (error) {
       OutputView.print(error.message);

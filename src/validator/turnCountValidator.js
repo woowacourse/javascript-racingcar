@@ -1,31 +1,12 @@
-import { CONFIG, ERROR_MESSAGE } from './constants';
+import { CONFIG, ERROR_MESSAGE } from '../constants';
 
-const Validator = {
-  validateCarNameList(carNameList) {
-    this.validateCarNameListLength(carNameList.length);
-    carNameList.forEach((carName) => {
-      this.validateCarNameLength(carName.length);
-    });
-  },
-
+const turnCountValidator = {
   validateTurnCount(turnCountInput) {
     const turnCount = parseFloat(turnCountInput);
 
     this.validateNumber(turnCount);
     this.validateFloatNumber(turnCount);
     this.validateNaturalNumber(turnCount);
-  },
-
-  validateCarNameListLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LIST_LENGTH) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_LIST_LENGTH);
-    }
-  },
-
-  validateCarNameLength(length) {
-    if (length < CONFIG.MIN_CAR_NAME_LENGTH || length > CONFIG.MAX_CAR_NAME_LENGTH) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
-    }
   },
 
   validateFloatNumber(turnCount) {
@@ -47,4 +28,4 @@ const Validator = {
   },
 };
 
-export default Validator;
+export default turnCountValidator;

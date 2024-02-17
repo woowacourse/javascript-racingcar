@@ -1,5 +1,5 @@
-import Validator from '../src/Validator';
 import { ERROR_MESSAGE } from '../src/constants/message';
+import { carValidator, turnCountValidator } from '../src/validator';
 
 describe('입력값 검증', () => {
   test('자동차 이름이 5자를 초과하는 경우 예외 처리한다.', () => {
@@ -8,7 +8,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameLength(input.length);
+      carValidator.validateCarNameLength(input.length);
     };
 
     /// Assert
@@ -21,7 +21,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameLength(input.length);
+      carValidator.validateCarNameLength(input.length);
     };
 
     /// Assert
@@ -34,7 +34,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateCarNameListLength(input.length);
+      carValidator.validateCarNameListLength(input.length);
     };
 
     /// Assert
@@ -47,7 +47,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateNaturalNumber(input);
+      turnCountValidator.validateNaturalNumber(input);
     };
 
     /// Assert
@@ -61,7 +61,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateNumber(turnCount);
+      turnCountValidator.validateNumber(turnCount);
     };
 
     /// Assert
@@ -74,7 +74,7 @@ describe('입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      Validator.validateFloatNumber(input);
+      turnCountValidator.validateFloatNumber(input);
     };
 
     /// Assert

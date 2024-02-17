@@ -1,6 +1,6 @@
-import CarList from './CarList';
+import CarList from './domain/CarList';
 import { CONFIG, MESSAGE } from './constants';
-import { InputView, OutputView } from './views';
+import { InputView, OutputView } from './view';
 import getRandomNumber from './utils/getRandomNumber';
 
 class App {
