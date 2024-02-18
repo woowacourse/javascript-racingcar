@@ -40,7 +40,7 @@ export default class Game {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
-
+  
   createCars(carNames = []) {
     const carArray = carNames.map((carName) => new Car(carName));
     return new RaceProgress(carArray);

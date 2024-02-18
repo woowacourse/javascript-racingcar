@@ -8,7 +8,6 @@ class Console {
       input: process.stdin,
       output: process.stdout,
     });
-
     return new Promise((resolve) => {
       rl.question(query, (input) => {
         rl.close();
