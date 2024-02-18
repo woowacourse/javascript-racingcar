@@ -1,5 +1,5 @@
-import MESSAGES from '../constants/Messages.js';
-import OutputView from '../views/outputView.js';
+import MESSAGES from '../domain/constants/Messages.js';
+import OutputView from '../view/OutputView.js';
 
 class ProgressController {
   #cars;

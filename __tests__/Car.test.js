@@ -1,4 +1,4 @@
-import Car from '../src/entities/Car.js';
+import Car from '../src/domain/entities/Car.js';
 
 describe('자동차 이름 테스트', () => {
   test.each(['jade', ' Fe', 'car1 ', ' car2 '])('정상 입력', carName => {

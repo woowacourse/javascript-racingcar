@@ -1,5 +1,5 @@
-import WinnerService from '../src/services/WinnerService.js';
-import CarList from '../src/entities/CarList.js';
+import WinnerService from '../src/domain/services/WinnerService.js';
+import CarList from '../src/domain/entities/CarList.js';
 
 describe('승자 판단', () => {
   test('승자가 한 명일 때', () => {

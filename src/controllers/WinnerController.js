@@ -1,6 +1,6 @@
-import MESSAGES from '../constants/Messages.js';
-import WinnerService from '../services/WinnerService.js';
-import OutputView from '../views/outputView.js';
+import MESSAGES from '../domain/constants/Messages.js';
+import WinnerService from '../domain/services/WinnerService.js';
+import OutputView from '../view/OutputView.js';
 
 class WinnerController {
   #carList;

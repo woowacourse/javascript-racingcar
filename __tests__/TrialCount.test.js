@@ -1,4 +1,4 @@
-import TrialCount from '../src/entities/TrialCount';
+import TrialCount from '../src/domain/entities/TrialCount.js';
 
 describe('시도 횟수 테스트', () => {
   test.each(['5', '1', '3 '])('정상 입력', countStr => {

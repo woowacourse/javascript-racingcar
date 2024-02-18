@@ -1,5 +1,5 @@
-import CONDITIONS from '../src/constants/Conditions.js';
-import CarList from './../src/entities/CarList';
+import CONDITIONS from '../src/domain/constants/Conditions.js';
+import CarList from '../src/domain/entities/CarList.js';
 
 describe('Car 테스트', () => {
   test('랜덤값에 따른 전진 여부', () => {
