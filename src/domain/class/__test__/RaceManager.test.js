@@ -1,23 +1,14 @@
-import RaceManager from '../../src/class/RaceManager.js';
-import CONSTANT from '../../src/CONSTANTS/index.js';
-import getRandomNumberInRange from '../../src/utils/getRandomNumberInRange.js';
+import CONSTANTS from '../../../CONSTANTS/index.js';
+import RaceManager from '../RaceManager.js';
+import mockRandomNumberInRange from './testUtil/mockRandomNumberInRange.js';
 
-const { NUMERIC } = CONSTANT;
-
-jest.mock('../../src/utils/getRandomNumberInRange');
-
-const mockRandomNumberInRange = numbers => {
-  jest.mock('../../src/utils/getRandomNumberInRange');
-  numbers.forEach(n => {
-    getRandomNumberInRange.mockReturnValueOnce(n);
-  });
-};
+const { numeric } = CONSTANTS;
 
 const getMockRandomArgument = isGone => {
   return isGone.reduce((array, oneGone) => {
     array.push(
       ...oneGone.map(boolean =>
-        boolean ? NUMERIC.moveStandard : NUMERIC.moveStandard - 1
+        boolean ? numeric.MOVE_STANDARD : numeric.MOVE_STANDARD - 1
       )
     );
     return array;
@@ -32,7 +23,7 @@ const mockRaceManager = (carNames, isGone) => {
 };
 
 describe('RaceManager 검증', () => {
-  test('getResultString', () => {
+  test('getResultString이 올바른 값을 반환하는지 검증', () => {
     //Arrange
     const carNames = ['a', 'b', 'c'];
     const isGone = [
