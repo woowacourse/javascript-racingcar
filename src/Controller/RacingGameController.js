@@ -2,6 +2,7 @@ import { SYSTEM_CONSTANTS } from '../Constants';
 import Car from '../Model/Car';
 import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
 import { InputView, OutputView } from '../View';
+import GameSetupManager from '../service/GameSetupManager';
 import { pickRandomNumInRange } from '../utils';
 
 const { RANDOM_NUM_RAGE } = SYSTEM_CONSTANTS;
@@ -9,50 +10,23 @@ const { RANDOM_NUM_RAGE } = SYSTEM_CONSTANTS;
 export default class RacingGameController {
   #cars;
 
-  #input = InputView;
-
   #output = OutputView;
 
   async run() {
-    this.#cars = await this.#executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
-    const tryNum = await this.#executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
+    const gameSetupManager = new GameSetupManager(InputView);
+    const { cars, tryNum } = await gameSetupManager.setup();
+
+    this.#cars = cars;
 
     this.#runRace(tryNum);
     this.#declareResult();
   }
 
-  async #executeOrRetryAsync(asyncFn, context) {
-    try {
-      return await asyncFn.call(context);
-    } catch (error) {
-      console.log(error.message);
-      return this.#executeOrRetryAsync(asyncFn, context);
-    }
-  }
-
-  async #setupCarsFromInput() {
-    const carNames = await this.#input.readCars();
-    CommonValidator.check(carNames);
-    CarValidator.checkCarName(carNames);
-
-    return carNames.map((name) => new Car(name));
-  }
-
-  async #setupTryNumFromInput() {
-    const tryInput = await this.#input.readTry();
-    CommonValidator.check(tryInput);
-    TryNumValidator.checkTryNum(tryInput);
-
-    return Number(tryInput);
-  }
-
   #runRace(tryNum) {
-    Array.from({ length: tryNum }, () => {
-      this.#cars.forEach((car) => {
-        this.#moveCarAndPrintDistance(car);
-      });
-      return undefined;
-    });
+    for (let i = 0; i < tryNum; i++) {
+      this.#cars.forEach((car) => this.#moveCarAndPrintDistance(car));
+      console.log(``);
+    }
   }
 
   #moveCarAndPrintDistance(car) {
