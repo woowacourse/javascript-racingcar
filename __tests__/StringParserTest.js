@@ -10,7 +10,7 @@ describe("StringParser method 테스트", () => {
     expect(result).toEqual(expected);
   });
 
-  test("자동차 이름들에 공백이 포함된 경우 공백을 올바르게 제거해야 한다.", () => {
+  test("자동차 이름들에 공백이 포함된 경우 공백을 제거해야 한다.", () => {
     const input = "  pobi , woni  ,   jun ";
     const expected = ["pobi", "woni", "jun"];
 
