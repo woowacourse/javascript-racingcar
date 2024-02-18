@@ -1,60 +1,41 @@
 import MoveCarInfo from "../src/domain/MoveCarInfo.js";
 
 describe("자동차 이동 테스트", () => {
-  test("자동차 5번 이동 시도, 2번 전진 성공", () => {
+  test("랜덤값이 3일 경우 전진하지 않음.(false를 반환)", () => {
     //Arrange
-    const mockRandom = [1, 2, 3, 4, 5];
+    const mockRandom = [3];
     const carName = "a";
 
     const move = new MoveCarInfo(carName);
 
     //Act
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < mockRandom.length; i++) {
       move.move(mockRandom[i]);
     }
 
     //Assert
     expect(move.getCarMoveInfo()).toEqual({
       carName: "a",
-      moveTrace: [false, false, false, true, true],
+      moveTrace: [false],
     });
   });
 
-  test("5회 시도 시 전부 실패", () => {
+  test("랜덤값이 4일 경우 전진에 성공함.true를 반환)", () => {
     //Arrange
-    const mockRandom = [0, 0, 0, 0, 0];
+    const mockRandom = [4];
     const carName = "a";
 
     const move = new MoveCarInfo(carName);
 
     //Act
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < mockRandom.length; i++) {
       move.move(mockRandom[i]);
     }
 
     //Assert
     expect(move.getCarMoveInfo()).toEqual({
       carName: "a",
-      moveTrace: [false, false, false, false, false],
-    });
-  });
-
-  test("5회 시도 시 전부 전진 성공", () => {
-    //Arrange
-    const mockRandom = [4, 4, 4, 4, 4];
-    const carName = "a";
-
-    const move = new MoveCarInfo(carName);
-
-    //Act
-    for (let i = 0; i < 5; i++) {
-      move.move(mockRandom[i]);
-    }
-
-    //Assert
-    expect(move.getCarMoveInfo()).toEqual({
-      carName: "a",
-      moveTrace: [true, true, true, true, true],
+      moveTrace: [true],
     });
   });
 });

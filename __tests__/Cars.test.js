@@ -9,16 +9,24 @@ describe("자동차 이름 유효성 검사", () => {
     }).toThrow();
   });
 
-  test("자동차 이름 길이가 1~5글자가 아닐 때 에러가 나는 지 확인.", () => {
-    const carList = ["a", "b", "c", "c123456"];
+  test("자동차 이름 길이가 6글자가 일 때 에러가 나는 지 확인.", () => {
+    const carList = ["a", "b", "c", "c12345"];
 
     expect(() => {
       new Cars(carList);
     }).toThrow();
   });
 
-  test("자동차 이름이 제대로 입력되었을 때 에러가 발생하지 않는 지 확인.", () => {
-    const carList = ["a", "b", "c", "d"];
+  test("자동차 이름이 공백 일 때 에러가 나는 지 확인.", () => {
+    const carList = ["a", "b", "c", ""];
+
+    expect(() => {
+      new Cars(carList);
+    }).toThrow();
+  });
+
+  test("자동차 이름이 5글자가 입력되었을 때 에러가 발생하지 않는 지 확인.", () => {
+    const carList = ["a", "b", "c", "d1234"];
 
     expect(() => {
       new Cars(carList);
