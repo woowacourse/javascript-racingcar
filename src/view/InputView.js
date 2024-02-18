@@ -1,5 +1,5 @@
-import { LINE_BREAK, MESSAGE } from '../constants/message';
-import readLineAsync from '../utils/readLineAsync';
+import { LINE_BREAK, MESSAGE } from '../constant/message';
+import readLineAsync from '../util/readLineAsync';
 
 const InputView = {
   async readCarNameList() {

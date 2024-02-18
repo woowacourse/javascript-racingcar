@@ -1,7 +1,7 @@
 import Car from '../src/domain/Car';
 import Race from '../src/domain/Race';
-import CONFIG from '../src/constants/config';
-import { RACE_TEST_MESSAGE } from '../src/constants/testMessage';
+import CONFIG from '../src/constant/config';
+import { RACE_TEST_MESSAGE } from '../src/constant/testMessage';
 
 describe(RACE_TEST_MESSAGE.TITLE, () => {
   const carNames = ['아르', '마루', '크론'];

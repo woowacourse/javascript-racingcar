@@ -1,4 +1,4 @@
-import { LINE_BREAK, MESSAGE } from '../constants/message';
+import { LINE_BREAK, MESSAGE } from '../constant/message';
 
 const OutputView = {
   printRaceHeader() {

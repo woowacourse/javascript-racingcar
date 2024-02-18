@@ -1,6 +1,6 @@
 import Validator from '../src/validator/Validator';
-import { ERROR_MESSAGE } from '../src/constants/message';
-import { VALIDATOR_TEST_MESSAGE } from '../src/constants/testMessage';
+import { ERROR_MESSAGE } from '../src/constant/message';
+import { VALIDATOR_TEST_MESSAGE } from '../src/constant/testMessage';
 
 describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
   test(VALIDATOR_TEST_MESSAGE.MAX_CAR_NAME_LENGTH, () => {

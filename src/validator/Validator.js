@@ -1,5 +1,5 @@
-import CONFIG from '../constants/config';
-import { ERROR_MESSAGE } from '../constants/message';
+import CONFIG from '../constant/config';
+import { ERROR_MESSAGE } from '../constant/message';
 
 const Validator = {
   validateCarNameList(carNameList) {
