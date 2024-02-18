@@ -1,5 +1,5 @@
 import readline from 'readline';
-import asyncFunctionHandlerWithError from './asyncFunctionHandlerWithError';
+import asyncFunctionHandlerWithError from './asyncFunctionHandlerWithError.js';
 
 const readLineAsyncSeperatedFromType = (query, type = 'string') =>
   new Promise((resolve) => {

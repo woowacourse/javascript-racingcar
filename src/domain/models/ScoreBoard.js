@@ -1,4 +1,4 @@
-import Validator from './Validator';
+import Validator from './Validator.js';
 
 export default class ScoreBoard {
   board = new Map();

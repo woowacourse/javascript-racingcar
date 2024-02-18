@@ -1,4 +1,4 @@
-import generateRandomOfName from '../src/domain/services/generateRandomOfName';
+import generateRandomOfName from '../src/domain/services/generateRandomOfName.js';
 
 describe('임의의 이름 지정 테스트', () => {
   test('이름 리스트에 공백 문자열이 존재할 경우, user1과 같이 임의의 이름을 부여한다.', () => {

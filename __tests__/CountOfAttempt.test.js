@@ -1,4 +1,4 @@
-import Validator from '../src/domain/models/Validator';
+import Validator from '../src/domain/models/Validator.js';
 
 const validInputsTest = () => {
   test('1~20 사이의 정수가 시도횟수로 입력 되었을때 해당 값을 반환한다', () => {

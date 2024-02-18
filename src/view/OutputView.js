@@ -1,5 +1,5 @@
-import PROGRESS_MESSAGE from '../constants/messages/progressMessage';
-import RESULT_MESSAGE from '../constants/messages/resultMessage';
+import PROGRESS_MESSAGE from '../constants/messages/progressMessage.js';
+import RESULT_MESSAGE from '../constants/messages/resultMessage.js';
 
 const OutputView = {
   printStartGame() {

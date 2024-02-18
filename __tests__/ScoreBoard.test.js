@@ -1,4 +1,4 @@
-import ScoreBoard from '../src/domain/models/ScoreBoard';
+import ScoreBoard from '../src/domain/models/ScoreBoard.js';
 
 const validInputsTest = () => {
   test('특수문자가 존재하지 않는 5글자 이하의 이름 리스트가 중복되지 않으면, 0으로 초기화된 Map 객체를 반환한다', () => {

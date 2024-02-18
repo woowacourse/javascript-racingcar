@@ -1,4 +1,4 @@
-import deepFreeze from '../../utils/deepFeeze';
+import deepFreeze from '../../utils/deepFeeze.js';
 
 const ERROR_MESSAGE = deepFreeze({
   HAVE_DUPLICATION: '중복된 이름이 존재합니다.',

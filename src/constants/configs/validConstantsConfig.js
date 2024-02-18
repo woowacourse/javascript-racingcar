@@ -1,4 +1,4 @@
-import deepFreeze from '../../utils/deepFeeze';
+import deepFreeze from '../../utils/deepFeeze.js';
 
 const VALID_CONSTANTS_CONFIG = deepFreeze({
   ATTEMPT_MIN_LIMIT_RANGE: 1,

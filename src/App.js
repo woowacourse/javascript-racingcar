@@ -1,9 +1,9 @@
-import InputView from './view/InputView';
-import Validator from './domain/models/Validator';
-import OutputView from './view/OutputView';
-import ScoreBoard from './domain/models/ScoreBoard';
-import Game from './domain/models/Game';
-import generateRandomNumberOfName from './domain/services/generateRandomNumberOfName';
+import InputView from './view/InputView.js';
+import Validator from './domain/models/Validator.js';
+import OutputView from './view/OutputView.js';
+import ScoreBoard from './domain/models/ScoreBoard.js';
+import Game from './domain/models/Game.js';
+import generateRandomOfName from './domain/services/generateRandomOfName.js';
 
 class App {
   #scoreBoard;
@@ -39,7 +39,7 @@ class App {
   async #getInputCarNames() {
     try {
       const carNames = await InputView.inputCarNames();
-      const formattedCarNames = generateRandomNumberOfName(carNames);
+      const formattedCarNames = generateRandomOfName(carNames);
       return formattedCarNames;
     } catch (error) {
       console.error(error.message);

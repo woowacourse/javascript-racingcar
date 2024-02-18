@@ -1,7 +1,7 @@
-import REGEX_CONFIG from '../../constants/configs/regexConfig';
-import AppError from '../../errors/AppError';
-import ERROR_MESSAGE from '../../constants/messages/errorMessage';
-import VALID_CONSTANTS_CONFIG from '../../constants/configs/validConstantsConfig';
+import REGEX_CONFIG from '../../constants/configs/regexConfig.js';
+import AppError from '../../errors/AppError.js';
+import ERROR_MESSAGE from '../../constants/messages/errorMessage.js';
+import VALID_CONSTANTS_CONFIG from '../../constants/configs/validConstantsConfig.js';
 
 export default class Validator {
   static validateCarNames(carNames) {

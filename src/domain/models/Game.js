@@ -1,4 +1,4 @@
-import generateRandomNumber from '../../utils/generateRandomNumber';
+import generateRandomNumber from '../../utils/generateRandomNumber.js';
 
 export default class Game {
   #scoreBoard;

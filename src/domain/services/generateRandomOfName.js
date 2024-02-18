@@ -1,16 +1,9 @@
-import RANDOM_NAME_CONFIG from '../../constants/configs/randomNameConfig';
+import RANDOM_NAME_CONFIG from '../../constants/configs/randomNameConfig.js';
+import trimmedString from '../../utils/trimmedString.js';
 
 const generateRandomOfName = (carNames) => {
   let generateOfNumber = 0;
-  const formattedCarNames = carNames.map((car) => {
-    if (!car.length) {
-      generateOfNumber += 1;
-      return `${RANDOM_NAME_CONFIG.DEFAULT_NAME}${generateOfNumber}`;
-    }
-    return car;
-  });
-
-  return formattedCarNames;
+  return trimmedString(carNames).map((car) => (car.length ? car : `${RANDOM_NAME_CONFIG.DEFAULT_NAME}${++generateOfNumber}`));
 };
 
 export default generateRandomOfName;

@@ -1,5 +1,5 @@
-import readLineAsyncSeperatedFromType from '../utils/readLineAsyncSeperatedFromType';
-import PROGRESS_MESSAGE from '../constants/messages/progressMessage';
+import readLineAsyncSeperatedFromType from '../utils/readLineAsyncSeperatedFromType.js';
+import PROGRESS_MESSAGE from '../constants/messages/progressMessage.js';
 
 const InputView = {
   async inputCarNames() {
