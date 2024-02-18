@@ -33,11 +33,7 @@ export default class Car {
     return false;
   }
 
-  getDistance() {
-    return this.#distance;
-  }
-
-  getName() {
-    return this.#name;
+  getInfo() {
+    return { name: this.#name, distance: this.#distance };
   }
 }

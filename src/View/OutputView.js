@@ -5,8 +5,7 @@ const { DIVIDE_SYMBOL } = SYMBOL;
 
 const OutputView = {
   printCarCurrentDistance({ car, index }) {
-    const name = car.getName();
-    const distance = car.getDistance();
+    const { name, distance } = car.getInfo();
 
     if (index === 0) {
       console.log(`\n${DISPLAY_CURRENT_DISTANCE(name, distance)}`);
@@ -20,7 +19,7 @@ const OutputView = {
       console.log(NO_WINNER_MESSAGE);
       return;
     }
-    console.log(WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL));
+    console.log(WINNER_PREFIX + winners.map((car) => car.getInfo().name).join(DIVIDE_SYMBOL));
   },
 
   printRaceResultHeader() {
