@@ -26,10 +26,10 @@ class Race {
   }
 
   gameCycle(outputView) {
-    for (let i = 0; i < this.#attemptNum; i++) {
+    Array.from({ length: this.#attemptNum }, () => {
       this.#moveCars();
       outputView(RaceCalculator.getCycleResult(this.#cars));
-    }
+    });
   }
 
   judgeWinner() {
