@@ -3,6 +3,10 @@ import Message from "../constant/Message.js";
 const { OUTPUT } = Message;
 
 class Output {
+  static message(text) {
+    console.log(text);
+  }
+
   static roundResult(cars) {
     cars.forEach((car) => {
       console.log(`${car.getName()} : ${"-".repeat(car.getAdvance())}`);
