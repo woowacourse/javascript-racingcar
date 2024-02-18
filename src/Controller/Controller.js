@@ -15,15 +15,12 @@ export default class Controller {
   #output = OutputView;
 
   async run() {
-    const carNamesInput = await this.#promptCarNames();
-    this.#cars = carNamesInput;
-
+    this.#cars = await this.#promptCarNames();
     const tryNum = await this.#promptTry();
-    this.#runRace(tryNum);
-    this.#output.printRaceResultHeader();
 
-    const winners = this.#findWinners();
-    this.#output.printWinner(winners);
+    this.#runRace(tryNum);
+
+    this.#declareResult();
   }
 
   async #promptCarNames() {
@@ -63,6 +60,12 @@ export default class Controller {
       });
       console.log(BLANK_SYMBOL);
     }
+  }
+
+  #declareResult() {
+    this.#output.printRaceResultHeader();
+    const winners = this.#findWinners();
+    this.#output.printWinner(winners);
   }
 
   #findWinners() {
