@@ -1,30 +1,24 @@
-import CarValidator from "../src/Validator/CarValidator";
+import { CAR_CONSTANTS } from '../src/Constants';
+import CarValidator from '../src/Validator/CarValidator';
 
-describe("CarValidator 객체 테스트", () => {
-  describe("Car 이름은 1~5자여야 한다.", () => {
-    test("엣지) 이름이 1자일 때", () => {
-      const minLengthName = ["가"];
-      expect(() => CarValidator.checkCarName(minLengthName)).not.toThrow();
+describe('CarValidator 객체 테스트', () => {
+  const { NAME_LENGTH_RANGE } = CAR_CONSTANTS;
+
+  describe(`Car 이름은 ${NAME_LENGTH_RANGE.min}~${NAME_LENGTH_RANGE.max}자여야 한다.`, () => {
+    test.each([['가'], ['가나다라마']])('엣지) "%s"라는 이름의 길이는 경계값이므로 에러가 나지 않아야한다.', (name) => {
+      expect(() => CarValidator.checkCarName([name])).not.toThrow();
     });
 
-    test("엣지) 이름이 5자일 때", () => {
-      const maxLengthName = ["가나다라마"];
-      expect(() => CarValidator.checkCarName(maxLengthName)).not.toThrow();
-    });
-
-    test("예외) 이름이 5자가 넘을 때", () => {
-      const overMaxLengthName = ["가나다라마사"];
-      expect(() => CarValidator.checkCarName(overMaxLengthName)).toThrow();
+    test.each([['여섯글자지롱']])('예외) "%s"라는 이름은 길이는 범위를 벗어났으므로 에러가 나야한다.', (name) => {
+      expect(() => CarValidator.checkCarName([name])).toThrow();
     });
   });
 
-  test("Car 이름은 중복되면 안된다.", () => {
-    const duplicatedName = ["다니엘", "다니엘", "리버"];
-    expect(() => CarValidator.checkCarName(duplicatedName)).toThrow();
+  test.each([['다니엘', '다니엘', '리버']])('"%s,%s,%s"처럼 중복된 이름이 있으면 에러가 나야한다.', (names) => {
+    expect(() => CarValidator.checkCarName(names)).toThrow();
   });
 
-  test("Car 이름 중간에 공백이 있으면 안된다.", () => {
-    const includesSpaceName = ["나 바보"];
+  test.each(['1번 선수'])('"%s"처럼 이름 중간에 공백이 들어가면 에러가 나야한다.', () => {
     expect(() => CarValidator.checkCarName(includesSpaceName)).toThrow();
   });
 });
