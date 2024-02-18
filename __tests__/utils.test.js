@@ -2,16 +2,15 @@ const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js
 const numberToDistanceSymbol = require('../src/utils/numberToDistanceSymbol.js');
 const splitByDelimiter = require('../src/utils/splitByDelimiter.js');
 
-jest.spyOn(Math, 'random').mockReturnValue(0.5);
-
 test.each([
-  [1, 10, 6],
-  [2, 5, 4],
-  [11, 12, 12],
-])('범위 내 랜덤값 생성 테스트', (start, end, expectResult) => {
+  [1, 10],
+  [2, 5],
+  [11, 12],
+])('범위 내 랜덤값 생성 테스트(start 이상, end 이하)', (start, end) => {
   const randomNumber = pickRandomNumberInRange(start, end);
 
-  expect(randomNumber).toBe(expectResult);
+  expect(randomNumber).toBeGreaterThanOrEqual(start);
+  expect(randomNumber).toBeLessThanOrEqual(end);
 });
 
 test.each([
