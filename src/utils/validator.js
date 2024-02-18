@@ -67,6 +67,15 @@ const Validator = {
     ValidatorCondtion.isNaN(tryCount);
     ValidatorCondtion.tryCountRange(tryCount);
   },
+
+  carInstanceName(carName) {
+    const carNameArr = [carName];
+
+    ValidatorCondtion.carNameEmpty(carNameArr);
+    ValidatorCondtion.carNameInSpace(carNameArr);
+    ValidatorCondtion.carNameLengthAvailable(carNameArr);
+    ValidatorCondtion.carNameInDelimiter(carNameArr);
+  },
 };
 
 module.exports = Validator;

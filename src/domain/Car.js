@@ -1,11 +1,12 @@
 const CONDITIONS = require('../constant/Conditions.js');
-const getRandomNumberInRange = require('../utils/getRandomNumberInRange.js');
+const Validator = require('../utils/validator.js');
 
 class Car {
   #name;
   #distance;
 
   constructor(name) {
+    Validator.carInstanceName(name);
     this.#name = name;
     this.#distance = 0;
   }
