@@ -1,4 +1,4 @@
-import CarInfo from './CarInfo.js';
+import CarPosition from './Car.js';
 import CONSTANTS from '../../CONSTANTS/index.js';
 
 const { message } = CONSTANTS;
@@ -28,7 +28,7 @@ class RaceManager {
 
   #initResult(carNames) {
     this.#result = carNames.map(name => {
-      const carInfo = new CarInfo(name, this.#maxTryCount);
+      const carInfo = new CarPosition(name, this.#maxTryCount);
       return carInfo;
     });
   }
