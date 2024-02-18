@@ -62,7 +62,7 @@ class RaceController {
 	}
 
 	isForward() {
-		return !!makeRandomNum(0, 9) >= 4;
+		return makeRandomNum(0, 9) >= 4;
 	}
 
 	showRaceResult(raceResult) {
