@@ -1,5 +1,5 @@
-import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from "../model/Car.js";
-import { MAX_TRY_COUNT, MIN_TRY_COUNT } from "../model/TryCount.js";
+import { MAX_NAME_LENGTH, MIN_NAME_LENGTH } from "../domain/Car.js";
+import { MAX_TRY_COUNT, MIN_TRY_COUNT } from "../domain/TryCount.js";
 
 const ERROR_MESSAGE = Object.freeze({
   retry: "다시 입력해주세요.",

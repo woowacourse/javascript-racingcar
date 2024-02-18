@@ -1,5 +1,5 @@
-import Cars from "../model/Cars.js";
-import TryCount from "../model/TryCount.js";
+import Cars from "../domain/Cars.js";
+import TryCount from "../domain/TryCount.js";
 import catchReturn from "../utils/catchReturn.js";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
