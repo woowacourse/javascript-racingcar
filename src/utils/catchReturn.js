@@ -1,4 +1,4 @@
-import Console from './Console.js';
+import handleIO from "./handleIO.js";
 
 const catchReturn = async (callback) => {
   let result;
@@ -8,7 +8,7 @@ const catchReturn = async (callback) => {
       result = await callback();
       return result;
     } catch (e) {
-      Console.print(e.message);
+      handleIO.print(e.message);
     }
   }
 };

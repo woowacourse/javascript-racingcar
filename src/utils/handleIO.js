@@ -1,18 +1,18 @@
-import readline from 'readline';
+import readline from "readline";
 
-class Console {
-  static print(message) {
+const handleIO = {
+  print(message) {
     console.log(message);
-  }
+  },
 
-  static read(query) {
+  read(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
-        reject(new Error('arguments must be 1'));
+        reject(new Error("arguments must be 1"));
       }
 
-      if (typeof query !== 'string') {
-        reject(new Error('query must be string'));
+      if (typeof query !== "string") {
+        reject(new Error("query must be string"));
       }
 
       const rl = readline.createInterface({
@@ -25,7 +25,7 @@ class Console {
         resolve(input);
       });
     });
-  }
-}
+  },
+};
 
-export default Console;
+export default handleIO;
