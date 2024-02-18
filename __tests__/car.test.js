@@ -1,13 +1,4 @@
 const Car = require('../src/domain/Car.js');
-const getRandomNumberInRange = require('../src/utils/getRandomNumberInRange.js');
-
-jest.mock('../src/utils/getRandomNumberInRange.js');
-
-const mockRandoms = (numbers) => {
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, getRandomNumberInRange);
-};
 
 describe('자동차 객체 테스트', () => {
   test('자동차 이동 테스트', () => {
@@ -16,10 +7,9 @@ describe('자동차 객체 테스트', () => {
     const randoms = [4, 3, 2, 5, 9];
     const carDistanceResult = [1, 1, 1, 2, 3];
 
-    mockRandoms([...randoms]);
-
-    carDistanceResult.forEach((distance) => {
-      expect(car.tryMove().distance).toBe(distance);
+    carDistanceResult.forEach((distanceResult, idx) => {
+      const carCurrentDistance = car.tryMove(randoms[idx]).distance;
+      expect(carCurrentDistance).toBe(distanceResult);
     });
   });
 
@@ -30,10 +20,8 @@ describe('자동차 객체 테스트', () => {
     const winningDistance = 4;
     const randoms = [1, 2, 3, 4, 5];
 
-    mockRandoms([...randoms]);
-
-    randoms.forEach(() => {
-      car.tryMove();
+    randoms.forEach((randomVal) => {
+      car.tryMove(randomVal);
     });
 
     expect(car.isWinner(winningDistance)).toBe(winner);
@@ -47,10 +35,8 @@ describe('자동차 객체 테스트', () => {
 
     const randoms = [1, 2, 3, 4, 5];
 
-    mockRandoms([...randoms]);
-
-    randoms.forEach(() => {
-      car.tryMove();
+    randoms.forEach((randomVal) => {
+      car.tryMove(randomVal);
     });
 
     expect(car.isWinner(winningDistance)).toBe(winner);
