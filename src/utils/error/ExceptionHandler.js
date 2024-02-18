@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/strings.js';
+import { ERROR } from '../../constant/strings.js';
 
 const ExceptionHandler = {
   throwError(errorMessage) {
