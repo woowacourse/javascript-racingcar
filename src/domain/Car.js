@@ -10,10 +10,8 @@ class Car {
     this.#distance = 0;
   }
 
-  tryMove() {
-    const randomNumber = getRandomNumberInRange(CONDITIONS.minRandomNumberRange, CONDITIONS.maxRandomNumberRange);
-
-    if (randomNumber >= CONDITIONS.minMoveCondition) this.#distance += CONDITIONS.moveDistance;
+  tryMove(number) {
+    if (number >= CONDITIONS.minMoveCondition) this.#distance += CONDITIONS.moveDistance;
 
     return { carName: this.#name, distance: this.#distance };
   }

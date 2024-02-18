@@ -1,4 +1,6 @@
 const Car = require('../domain/Car.js');
+const getRandomNumberInRange = require('../utils/getRandomNumberInRange.js');
+const CONDITIONS = require('../constant/Conditions.js');
 
 class CarService {
   #cars;
@@ -11,7 +13,10 @@ class CarService {
   }
 
   #racing() {
-    const cars = this.#cars.map((car) => car.tryMove());
+    const cars = this.#cars.map((car) => {
+      const randomNumber = getRandomNumberInRange(CONDITIONS.minRandomNumberRange, CONDITIONS.maxRandomNumberRange);
+      return car.tryMove(randomNumber);
+    });
 
     this.#maxMoveCount = Math.max(...cars.map(({ distance }) => distance));
 
