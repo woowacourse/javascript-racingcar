@@ -1,7 +1,7 @@
 import { MESSAGE } from '../constants/System.js';
 import readLineAsync from '../utils/ReadLine.js';
 
-const InputView = {
+const inputView = {
   async readCarNames() {
     const input = await readLineAsync(MESSAGE.INPUT_CAR_NAME);
     return input;
@@ -12,4 +12,4 @@ const InputView = {
     return input;
   },
 };
-export default InputView;
+export default inputView;

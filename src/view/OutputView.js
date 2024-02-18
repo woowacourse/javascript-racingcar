@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE, MESSAGE, OPTION } from '../constants/System.js';
 
-const OutputView = {
+const outputView = {
   print(message) {
     console.log(message);
   },
@@ -21,9 +21,9 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    const result = winners.join(OPTION.OUPUT_SPLITER);
+    const result = winners.join(OPTION.OUPUT_DELIMITER);
     this.print(`${MESSAGE.WINNER} ${result}`);
   },
 };
 
-export default OutputView;
+export default outputView;

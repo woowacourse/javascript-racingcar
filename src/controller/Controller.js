@@ -1,8 +1,8 @@
 import { OPTION } from '../constants/System.js';
 import CarGame from '../model/CarGame.js';
 import Preprocessor from '../utils/Preprocessor.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
+import inputView from '../view/inputView.js';
+import outputView from '../view/outputView.js';
 
 class Controller {
   #carGame;
@@ -25,28 +25,28 @@ class Controller {
         await inputFunction();
         break;
       } catch (error) {
-        OutputView.print(error.message);
+        outputView.print(error.message);
       }
     }
   }
 
   async #inputCarNames() {
-    const namesInput = await InputView.readCarNames();
+    const namesInput = await inputView.readCarNames();
     const carNames = Preprocessor.process(
-      namesInput.split(OPTION.INPUT_SPLITER),
-      [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings],
+      namesInput.split(OPTION.INPUT_DELIMITER),
+      [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings]
     );
 
     this.#carGame.setCars(carNames);
   }
 
   async #inputTryCount() {
-    const tryCount = Number(await InputView.readTryCount());
+    const tryCount = Number(await inputView.readTryCount());
     this.#carGame.setTryCount(tryCount);
   }
 
   playGame() {
-    OutputView.printCurrentResultTitle();
+    outputView.printCurrentResultTitle();
 
     const tryCount = this.#carGame.getTryCount();
 
@@ -58,12 +58,12 @@ class Controller {
 
   #displayCurrentLocation() {
     const carInfos = this.#carGame.getCurrentLocation();
-    OutputView.printCurrentLocation(carInfos);
+    outputView.printCurrentLocation(carInfos);
   }
 
   findWinner() {
     const winners = this.#carGame.findWinners();
-    OutputView.printWinners(winners);
+    outputView.printWinners(winners);
   }
 }
 
