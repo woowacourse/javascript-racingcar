@@ -1,15 +1,17 @@
 import OPT from '../constant/options.js';
-import Car from './Car.js';
+import Cars from './Cars.js';
 
 class CarGame {
+  #cars;
+
   #tryCount;
 
-  #carList = [];
+  constructor() {
+    this.#cars = new Cars();
+  }
 
-  setCarNames(carNames) {
-    carNames.forEach((carName) => {
-      this.#carList.push(new Car(carName));
-    });
+  setCars(carNames) {
+    this.#cars.makeCars(carNames);
   }
 
   setTryCount(tryCount) {
@@ -21,7 +23,7 @@ class CarGame {
   }
 
   moveCars() {
-    this.#carList.forEach((car) => {
+    this.#cars.cars.forEach((car) => {
       const randomNumber = Math.floor(Math.random() * 10);
       if (randomNumber >= OPT.CAR.leastMoveCondition) {
         car.move();
@@ -30,7 +32,7 @@ class CarGame {
   }
 
   getCurrentLocation() {
-    const carInfos = this.#carList.map((car) => ({
+    const carInfos = this.#cars.cars.map((car) => ({
       name: car.getName(),
       location: car.getLocation()
     }));
@@ -41,7 +43,7 @@ class CarGame {
   findWinners() {
     const maxLocation = this.findMaxLocation();
 
-    const winners = this.#carList
+    const winners = this.#cars.cars
       .filter((car) => car.getLocation() === maxLocation)
       .map((car) => car.getName());
 
@@ -49,7 +51,7 @@ class CarGame {
   }
 
   findMaxLocation() {
-    return Math.max(...this.#carList.map((car) => car.getLocation()));
+    return Math.max(...this.#cars.cars.map((car) => car.getLocation()));
   }
 }
 

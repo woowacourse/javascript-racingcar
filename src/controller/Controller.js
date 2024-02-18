@@ -41,7 +41,7 @@ class Controller {
   }
 
   setCarNames(carNames) {
-    this.#carGame.setCarNames(carNames);
+    this.#carGame.setCars(carNames);
   }
 
   setTryCount(tryCount) {

@@ -1,11 +1,14 @@
 class Car {
   #name;
 
-  #location;
+  #location = 0;
 
   constructor(name) {
+    this.setName(name);
+  }
+
+  setName(name) {
     this.#name = name;
-    this.#location = 0;
   }
 
   move() {
