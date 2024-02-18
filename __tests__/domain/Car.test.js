@@ -1,29 +1,15 @@
 import Car from '../../src/domain/Car';
-import Random from '../../src/utils/Random';
-
-const mockRandoms = numbers => {
-  Random.pickNumberInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.pickNumberInRange);
-};
 
 describe('Car Test', () => {
-  test('move - 랜덤 값에 따라 postion 필드 값의 변경한다.', () => {
+  test('move - 2번 움직이고 2번 정지한다', () => {
     // given
-    const MOVING_FORWARD = 5;
-    const STOP = 1;
-    const randoms = [MOVING_FORWARD, MOVING_FORWARD, STOP, STOP];
-
-    const ATTEMPT_NUM = randoms.length;
+    const MOVE = true;
+    const STOP = false;
+    const CAN_MOVE_CASES = [MOVE, MOVE, STOP, STOP];
 
     // when
-    mockRandoms([...randoms]);
-
     const car = new Car('pobi');
-    for (let i = 0; i < ATTEMPT_NUM; i++) {
-      car.move();
-    }
+    CAN_MOVE_CASES.forEach(canMove => car.move(canMove));
 
     // then
     expect(car.position).toBe(2);

@@ -1,70 +1,74 @@
 import Car from '../../src/domain/Car';
 import RaceCalculator from '../../src/domain/RaceCalculator';
-import Random from '../../src/utils/Random';
 
-const mockRandoms = numbers => {
-  Random.pickNumberInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.pickNumberInRange);
-};
+const MOVE = true;
+const STOP = false;
 
-describe('RaceGameCalculator Test', () => {
-  // given
-  const MOVING_FORWARD = 5;
-  const STOP = 1;
-  const randomsCase = [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP];
+function simulateCarMovements(cars, movements) {
+  movements.forEach((canMove, canMoveIdx) => {
+    const carIdx = canMoveIdx % cars.length;
+    cars[carIdx].move(canMove);
+  });
+}
 
-  const ATTEMPT_NUM = 3;
+describe('RaceGameCalculator Unit Test - pobi는 2번, jay는 1번 움직인다', () => {
+  const CARS = [new Car('pobi'), new Car('jay')];
+  const MOVEMENTS = [MOVE, STOP, STOP, MOVE, MOVE, STOP];
 
-  mockRandoms([...randomsCase]);
+  beforeAll(() => {
+    simulateCarMovements(CARS, MOVEMENTS);
+  });
 
-  // when
-  const carsCase = [new Car('pobi'), new Car('jay')];
-
-  for (let i = 0; i < ATTEMPT_NUM; i++) {
-    carsCase.forEach(car => car.move());
-  }
-
-  test('getCycleResult - 자동차의 이름과 위치를 매핑하여 반환한다.', () => {
-    expect(RaceCalculator.getCycleResult(carsCase)).toEqual({
+  test('getCycleResult - 자동차의 이름과 위치를 매핑하여 반환한다', () => {
+    const RESULT = {
       pobi: 2,
       jay: 1,
-    });
+    };
+
+    expect(RaceCalculator.getCycleResult(CARS)).toEqual(RESULT);
   });
 
-  test('getWinnersPosition - 가장 멀리 나간 자동차의 위치를 계산한다.', () => {
-    expect(RaceCalculator.getWinnersPosition(carsCase)).toEqual(2);
+  test('getWinnersPosition - pobi의 위치를 반환한다', () => {
+    const MAX_POSITION = 2;
+
+    expect(RaceCalculator.getWinnersPosition(CARS)).toEqual(MAX_POSITION);
   });
 
-  //given
-  const randomCases = [
-    {
-      randoms: [STOP, STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP],
-      winnersPosion: 2,
-      winners: ['pobi'],
-    },
-    {
-      randoms: [STOP, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, STOP],
-      winnersPosion: 2,
-      winners: ['pobi', 'jay'],
-    },
-  ];
+  test("getWinners - 'pobi'가 담긴 배열을 반환한다", () => {
+    const WINNER_POSITION = RaceCalculator.getWinnersPosition(CARS);
+    const WINNERS = ['pobi'];
 
-  test.each(randomCases)(
-    'getWinners - 가장 멀리 나간 자동차의 위치를 받아 이와 동일한 위치의 자동차의 이름을 반환한다.',
-    ({ randoms, winnersPosion, winners }) => {
-      //given
-      const carsCase = [new Car('pobi'), new Car('jay')];
+    expect(RaceCalculator.getWinners(CARS, WINNER_POSITION)).toEqual(WINNERS);
+  });
+});
 
-      //when
-      mockRandoms([...randoms]);
+describe('RaceGameCalculator Unit Test - pobi와 jay 모두 2번 움직인다', () => {
+  const CARS = [new Car('pobi'), new Car('jay')];
+  const MOVEMENTS = [MOVE, STOP, STOP, MOVE, MOVE, MOVE];
 
-      for (let i = 0; i < ATTEMPT_NUM; i++) {
-        carsCase.forEach(car => car.move());
-      }
+  beforeAll(() => {
+    simulateCarMovements(CARS, MOVEMENTS);
+  });
 
-      expect(RaceCalculator.getWinners(carsCase, winnersPosion)).toEqual(winners);
-    },
-  );
+  test('getCycleResult - 자동차의 이름과 위치를 매핑하여 반환한다', () => {
+    const RESULT = {
+      pobi: 2,
+      jay: 2,
+    };
+
+    expect(RaceCalculator.getCycleResult(CARS)).toEqual(RESULT);
+  });
+
+  test('getWinnersPosition - pobi와 jay의 위치인 2를 반환한다', () => {
+    const MAX_POSITION = 2;
+
+    expect(RaceCalculator.getWinnersPosition(CARS)).toEqual(MAX_POSITION);
+  });
+
+  test("getWinners - 'pobi'와 'jay'가 담긴 배열을 반환한다", () => {
+    const WINNER_POSITION = RaceCalculator.getWinnersPosition(CARS);
+    const WINNERS = ['pobi', 'jay'];
+
+    expect(RaceCalculator.getWinners(CARS, WINNER_POSITION)).toEqual(WINNERS);
+  });
 });
