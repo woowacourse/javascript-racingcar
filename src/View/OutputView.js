@@ -4,10 +4,14 @@ const { WINNER_PREFIX, NO_WINNER_MESSAGE, DISPLAY_CURRENT_DISTANCE } = VIEW_MESS
 const { DIVIDE_SYMBOL } = SYMBOL;
 
 const OutputView = {
-  printCarCurrentDistance(car) {
+  printCarCurrentDistance({ car, index }) {
     const name = car.getName();
     const distance = car.getDistance();
 
+    if (index === 0) {
+      console.log(`\n${DISPLAY_CURRENT_DISTANCE(name, distance)}`);
+      return;
+    }
     console.log(DISPLAY_CURRENT_DISTANCE(name, distance));
   },
 
@@ -20,7 +24,7 @@ const OutputView = {
   },
 
   printRaceResultHeader() {
-    console.log(VIEW_MESSAGES.RESULT_MESSAGE);
+    console.log(`\n${VIEW_MESSAGES.RESULT_MESSAGE}`);
   },
 };
 

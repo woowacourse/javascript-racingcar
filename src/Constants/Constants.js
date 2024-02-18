@@ -12,6 +12,5 @@ export const TRY_CONSTANTS = Object.freeze({
 export const SYMBOL = Object.freeze({
   DIVIDE_SYMBOL: ',',
   MOVE_SYMBOL: '-',
-  BLANK_SYMBOL: '',
   SPACE: ' ',
 });

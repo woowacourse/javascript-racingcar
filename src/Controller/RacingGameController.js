@@ -1,10 +1,9 @@
-import { CAR_CONSTANTS, SYMBOL } from '../Constants';
+import { CAR_CONSTANTS } from '../Constants';
 import Car from '../Model/Car';
 import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
 import { InputView, OutputView } from '../View';
 import { pickRandomNumInRange } from '../utils';
 
-const { BLANK_SYMBOL } = SYMBOL;
 const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
 
 export default class RacingGameController {
@@ -50,11 +49,10 @@ export default class RacingGameController {
 
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
-      this.#cars.forEach((car) => {
+      this.#cars.forEach((car, index) => {
         car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
-        this.#output.printCarCurrentDistance(car);
+        this.#output.printCarCurrentDistance({ car, index });
       });
-      console.log(BLANK_SYMBOL);
     }
   }
 
