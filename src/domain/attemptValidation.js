@@ -1,5 +1,5 @@
-import SETTING from "../constants/Setting.js";
 import ERROR from "../constants/Error.js";
+import SETTING from "../constants/Setting.js";
 
 export const attemptValidation = {
   validateAttemptType(attemptInput) {

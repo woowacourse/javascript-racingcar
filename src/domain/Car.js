@@ -1,5 +1,5 @@
-import randomNumber from "../utils/randomNumber.js";
 import SETTING from "../constants/Setting.js";
+import randomNumber from "../utils/randomNumber.js";
 class Car {
   #name;
   #position;
@@ -21,14 +21,6 @@ class Car {
   getCarStatus() {
     return { name: this.#name, position: this.#position };
   }
-
-  // getName() {
-  //   return this.#name;
-  // }
-
-  // getPosition() {
-  //   return this.#position;
-  // }
 }
 
 export default Car;

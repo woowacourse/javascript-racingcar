@@ -1,6 +1,6 @@
-import SETTING from "../constants/Setting.js";
-import REGEXP from "../constants/RegExp.js";
 import ERROR from "../constants/Error.js";
+import REGEXP from "../constants/RegExp.js";
+import SETTING from "../constants/Setting.js";
 
 export const carValidation = {
   validateCarNameLength(carName) {
@@ -38,7 +38,7 @@ export const carValidation = {
     }
   },
 
-  validateCarNameArray(carNameList) {
+  validateCarNameList(carNameList) {
     this.validateCarNameRange(carNameList);
     this.validateCarNameDuplicated(carNameList);
   },

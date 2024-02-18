@@ -6,12 +6,9 @@ class Garage {
 
   constructor(carNameList) {
     this.#carList = this.#createCarList(carNameList);
-    // console.log(this.#carList);
   }
 
   #createCarList(carNameList) {
-    // console.log(carNameList);
-    // console.log(typeof carNameList);
     return carNameList.map((carName) => new Car(carName));
   }
 
@@ -28,13 +25,26 @@ class Garage {
     this.#carStatusList = newCarStatusList;
   }
 
+  getCarStatus() {
+    return [...this.#carStatusList];
+  }
+
+  #getMaxCarPosition() {
+    return Math.max(...this.#carStatusList.map((car) => car.position));
+  }
+
   runAttempt() {
     this.#tryAllCarsMove();
     this.#setAllCarsPosition();
   }
 
-  getCarStatus() {
-    return [...this.#carStatusList];
+  findWinners() {
+    const finalCarStatus = this.getCarStatus();
+    const maxPosition = this.#getMaxCarPosition();
+
+    return finalCarStatus
+      .filter((car) => car.position === maxPosition)
+      .map((car) => car.name);
   }
 }
 
