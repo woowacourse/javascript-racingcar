@@ -16,7 +16,7 @@ export default class RacingGameController {
 
   async run() {
     this.#cars = await this.#executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
-    const tryNum = await this.#promptTry();
+    const tryNum = await this.#executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
 
     this.#runRace(tryNum);
 
@@ -40,19 +40,12 @@ export default class RacingGameController {
     return carNames.map((name) => new Car(name));
   }
 
-  async #promptTry() {
-    try {
-      const tryInput = await this.#input.readTry();
-      CommonValidator.check(tryInput);
-      TryNumValidator.checkTryNum(tryInput);
+  async #setupTryNumFromInput() {
+    const tryInput = await this.#input.readTry();
+    CommonValidator.check(tryInput);
+    TryNumValidator.checkTryNum(tryInput);
 
-      console.log(Number(tryInput));
-      return Number(tryInput);
-    } catch (error) {
-      console.log(error.message);
-      const tryNum = await this.#promptTry();
-      return tryNum;
-    }
+    return Number(tryInput);
   }
 
   #runRace(tryNum) {
