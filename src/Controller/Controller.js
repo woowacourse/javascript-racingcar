@@ -1,4 +1,4 @@
-import { SYMBOL } from '../Constants/Constants';
+import { CAR_CONSTANTS, SYMBOL } from '../Constants/Constants';
 import { VIEW_MESSAGES } from '../Constants/Messages';
 import Car from '../Model/Car';
 import CarValidator from '../Validator/CarValidator';
@@ -6,9 +6,11 @@ import CommonValidator from '../Validator/CommonValidator';
 import TryNumValidator from '../Validator/TryNumValidator';
 import InputView from '../View/InputView';
 import OutputView from '../View/OutputView';
+import pickRandomNumberInRange from '../utils/pickRandomInt';
 
 const { RESULT_MESSAGE } = VIEW_MESSAGES;
 const { BLANK_SYMBOL } = SYMBOL;
+const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
 
 export default class Controller {
   #cars;
@@ -61,15 +63,11 @@ export default class Controller {
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
       this.#cars.forEach((car) => {
-        car.move(this.#makeRandomNumber1to10());
+        car.move(pickRandomNumberInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
         this.#output.printCarCurrentDistance(car);
       });
       console.log(BLANK_SYMBOL);
     }
-  }
-
-  #makeRandomNumber1to10() {
-    return Math.floor(Math.random() * 10);
   }
 
   #findWinners() {
