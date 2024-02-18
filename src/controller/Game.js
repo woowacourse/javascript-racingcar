@@ -1,10 +1,10 @@
 import Input from "../view/Input.js";
 import Output from "../view/Output.js";
-import CarValidator from "../validator/CarValidator.js";
-import TryCountValidator from "../validator/TryCountValidator.js";
+import CarValidator from "../domain/validator/CarValidator.js";
+import TryCountValidator from "../domain/validator/TryCountValidator.js";
 import Console from "../utils/Console.js";
 import Random from "../utils/Random.js";
-import Car from "../model/Car.js";
+import Car from "../domain/Car.js";
 import Condition from "../constant/Condition.js";
 import Message from "../constant/Message.js";
 
@@ -40,7 +40,7 @@ class Game {
   }
 
   playGame(cars, tryCount) {
-    console.log(OUTPUT.RESULT);
+    Output.message(OUTPUT.RESULT);
 
     for (let i = 0; i < tryCount; i++) {
       this.playRound(cars);
