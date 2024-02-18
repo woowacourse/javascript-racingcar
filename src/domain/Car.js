@@ -7,7 +7,7 @@ export default class Car {
   #mileage = 0;
 
   constructor(name) {
-    this.#validate(name);
+    this.#validateNameLength(name);
 
     this.#name = name;
   }
@@ -26,7 +26,7 @@ export default class Car {
     return this.#name;
   }
 
-  #validate(name) {
+  #validateNameLength(name) {
     if (name.length > Car.MAX_NAME_LENGTH) {
       throw new Error(ERROR_MESSAGE.invalidCarNameLength);
     }
