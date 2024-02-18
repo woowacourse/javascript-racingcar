@@ -1,6 +1,6 @@
 import deepFreeze from '../../utils/deepFreeze.js';
 import { startValidation } from '../startValidation.js';
-import { TRY_COUNT_RANGE } from './constant.js';
+import { ERROR_MESSAGE_INTEGER, ERROR_MESSAGE_TRY_COUNT, TRY_COUNT_RANGE } from './constant.js';
 
 /**
  * @module TryCountValidator
@@ -12,14 +12,14 @@ const TryCountValidator = deepFreeze({
    */
   validationTypes: {
     typeOfNumber: {
-      errorMessage: '정수만 입력 가능합니다.',
+      errorMessage: ERROR_MESSAGE_INTEGER,
       isValid(inputValue) {
         return !Number.isNaN(inputValue) && Number.isInteger(inputValue);
       },
     },
 
     outOfRange: {
-      errorMessage: `시도 횟수는 ${TRY_COUNT_RANGE.min} ~ ${TRY_COUNT_RANGE.max}만 입력 가능합니다.`,
+      errorMessage: ERROR_MESSAGE_TRY_COUNT,
       isValid(inputValue) {
         return inputValue >= TRY_COUNT_RANGE.min && inputValue <= TRY_COUNT_RANGE.max;
       },

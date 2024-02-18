@@ -1,5 +1,6 @@
 import AppError from '../../errors/AppError/module.js';
 import TryCountValidator from './TryCountValidator.js';
+import { ERROR_MESSAGE_INTEGER, ERROR_MESSAGE_TRY_COUNT } from './constant.js';
 
 describe('자동차 시도 횟수 유효성 검사 테스트', () => {
   const startValidation = (inputValue) => () => TryCountValidator.check(inputValue);
@@ -8,19 +9,19 @@ describe('자동차 시도 횟수 유효성 검사 테스트', () => {
     test.each([
       {
         input: 'abc',
-        expectedErrorMessage: TryCountValidator.validationTypes.typeOfNumber.errorMessage,
+        expectedErrorMessage: ERROR_MESSAGE_INTEGER,
       },
       {
         input: '11',
-        expectedErrorMessage: TryCountValidator.validationTypes.outOfRange.errorMessage,
+        expectedErrorMessage: ERROR_MESSAGE_TRY_COUNT,
       },
       {
         input: '0',
-        expectedErrorMessage: TryCountValidator.validationTypes.outOfRange.errorMessage,
+        expectedErrorMessage: ERROR_MESSAGE_TRY_COUNT,
       },
       {
         input: '1.5',
-        expectedErrorMessage: TryCountValidator.validationTypes.typeOfNumber.errorMessage,
+        expectedErrorMessage: ERROR_MESSAGE_INTEGER,
       },
     ])(
       '입력값이 "$input"일 때 "$expectedErrorMessage" 메시지와 함께 에러가 발생해야 한다.',

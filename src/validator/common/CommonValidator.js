@@ -1,6 +1,7 @@
 import deepFreeze from '../../utils/deepFreeze.js';
 import { SYMBOLS } from '../../constants/symbols.js';
 import { startValidation } from '../startValidation.js';
+import { ERROR_MESSAGE_EMPTY, ERROR_MESSAGE_SPACE } from './constant.js';
 
 /**
  * @module CommonValidator
@@ -12,14 +13,14 @@ const CommonValidator = deepFreeze({
    */
   validationTypes: {
     emptyValues: {
-      errorMessage: '아무것도 입력하지 않았으므로 다시 입력해주세요.',
+      errorMessage: ERROR_MESSAGE_EMPTY,
       isValid(inputValue) {
         return inputValue !== SYMBOLS.emptyString;
       },
     },
 
     existSpaces: {
-      errorMessage: '입력한 값에 공백이 존재합니다.',
+      errorMessage: ERROR_MESSAGE_SPACE,
       isValid(inputValue) {
         return !inputValue.includes(SYMBOLS.space);
       },
