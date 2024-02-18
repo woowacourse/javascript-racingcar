@@ -1,10 +1,7 @@
-import { CAR_CONSTANTS, SYMBOL } from '../Constants/Constants';
+import { CAR_CONSTANTS, SYMBOL } from '../Constants';
 import Car from '../Model/Car';
-import CarValidator from '../Validator/CarValidator';
-import CommonValidator from '../Validator/CommonValidator';
-import TryNumValidator from '../Validator/TryNumValidator';
-import InputView from '../View/InputView';
-import OutputView from '../View/OutputView';
+import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
+import { InputView, OutputView } from '../View';
 import pickRandomNumberInRange from '../utils/pickRandomInt';
 
 const { BLANK_SYMBOL } = SYMBOL;

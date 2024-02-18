@@ -1,6 +1,5 @@
-import { TRY_CONSTANTS } from '../Constants/Constants';
-import { ERROR_MESSAGES } from '../Constants/Messages';
-import AppError from '../utils/Error';
+import { TRY_CONSTANTS, ERROR_MESSAGES } from '../Constants';
+import { AppError } from '../utils';
 
 const { INVALID_TYPE, INVALID_RANGE } = ERROR_MESSAGES;
 const { TRY_RANGE } = TRY_CONSTANTS;

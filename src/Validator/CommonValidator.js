@@ -1,4 +1,4 @@
-import AppError from '../utils/Error';
+import { AppError } from '../utils';
 
 const CommonValidator = (() => {
   const checkEmpty = (input) => {
