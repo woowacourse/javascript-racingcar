@@ -8,13 +8,17 @@ class Car {
   #advance;
 
   constructor(name) {
-    this.#name = this.#validateName(name);
+    this.#validateName(name);
+    this.#name = name;
     this.#advance = 0;
   }
 
   #validateName(name) {
     CarValidator.validNameRange(name);
-    return name;
+  }
+
+  updateAdvance(number) {
+    if (number >= CAR_ADVANCE.CONDITION) this.#advance += CAR_ADVANCE.STEP;
   }
 
   getName() {
@@ -23,10 +27,6 @@ class Car {
 
   getAdvance() {
     return this.#advance;
-  }
-
-  updateAdvance(number) {
-    if (number >= CAR_ADVANCE.CONDITION) this.#advance += CAR_ADVANCE.STEP;
   }
 }
 
