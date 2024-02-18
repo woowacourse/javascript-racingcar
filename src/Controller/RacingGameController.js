@@ -7,7 +7,7 @@ import pickRandomNumberInRange from '../utils/pickRandomInt';
 const { BLANK_SYMBOL } = SYMBOL;
 const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
 
-export default class Controller {
+export default class RacingGameController {
   #cars;
 
   #input = InputView;
