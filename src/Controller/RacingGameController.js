@@ -1,10 +1,10 @@
-import { CAR_CONSTANTS } from '../Constants';
+import { SYSTEM_CONSTANTS } from '../Constants';
 import Car from '../Model/Car';
 import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
 import { InputView, OutputView } from '../View';
 import { pickRandomNumInRange } from '../utils';
 
-const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
+const { RANDOM_NUM_RAGE } = SYSTEM_CONSTANTS;
 
 export default class RacingGameController {
   #cars;
