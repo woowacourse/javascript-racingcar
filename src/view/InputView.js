@@ -1,8 +1,8 @@
 import readline from 'readline';
-import MESSAGES from '../constants/Messages.js';
-import CarList from '../entities/CarList.js';
-import TrialCount from '../entities/TrialCount.js';
-import OutputView from './outputView.js';
+import MESSAGES from '../domain/constants/Messages.js';
+import CarList from '../domain/entities/CarList.js';
+import TrialCount from '../domain/entities/TrialCount.js';
+import OutputView from './OutputView.js';
 
 const Private = {
   readCarNames() {

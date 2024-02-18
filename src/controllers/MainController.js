@@ -1,5 +1,5 @@
-import InputView from '../views/InputView.js';
-import OutputView from '../views/outputView.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
 import ProgressController from './ProgressController.js';
 import WinnerController from './WinnerController.js';
 
