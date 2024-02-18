@@ -2,6 +2,7 @@ const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js
 const numberToDistanceSymbol = require('../src/utils/numberToDistanceSymbol.js');
 const splitByDelimiter = require('../src/utils/splitByDelimiter.js');
 const { SYMBOL } = require('../src/constant/Conditions.js');
+const throwErrorIfFalse = require('../src/utils/throwErrorIfFalse.js');
 
 test.each([
   [1, 10],
@@ -32,4 +33,13 @@ test.each([
   const result = splitByDelimiter(str, SYMBOL.delimiter);
 
   expect(result).toEqual(expectArr);
+});
+
+test('검증 결과가 false일때 에러 발생', () => {
+  const validateResult = false;
+  const errorMessage = 'Error';
+
+  expect(() => {
+    throwErrorIfFalse(validateResult, errorMessage);
+  }).toThrow();
 });
