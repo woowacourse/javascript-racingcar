@@ -17,4 +17,5 @@ export const SYMBOL = Object.freeze({
   DIVIDE_SYMBOL: ',',
   MOVE_SYMBOL: '-',
   SPACE: ' ',
+  BLANK: '',
 });
