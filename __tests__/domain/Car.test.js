@@ -1,5 +1,4 @@
 import { Car } from "../../src/domain";
-import { mockRandoms } from "../testUtils";
 
 describe('자동차 테스트', () => {
   describe('자동차 생성 테스트', () => {
@@ -49,24 +48,22 @@ describe('자동차 테스트', () => {
 
     test('랜덤한 수를 3을 받으면 전진하지 않습니다.', () => {
       // given
-      const randomNumber = [3];
+      const randomNumber = 3;
       const answer = 0;
-      mockRandoms(randomNumber);
 
       // when
-      const actResult = sundayCar.actCar();
+      const actResult = sundayCar.actCar(randomNumber);
 
       // then
       expect(actResult.score).toEqual(answer);
     });
     test('랜덤한 수를 4을 받으면 전진합니다.', () => {
       // given
-      const randomNumber = [4];
+      const randomNumber = 4;
       const answer = 1;
-      mockRandoms(randomNumber);
 
       // when
-      const actResult = sundayCar.actCar();
+      const actResult = sundayCar.actCar(randomNumber);
 
       // then
       expect(actResult.score).toEqual(answer);
