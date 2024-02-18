@@ -39,10 +39,7 @@ class Game {
 
   playGame(cars, tryCount) {
     Output.notice();
-
-    for (let i = 0; i < tryCount; i++) {
-      this.playRound(cars);
-    }
+    Array.from({ length: tryCount }).forEach(() => this.playRound(cars));
   }
 
   playRound(cars) {
@@ -52,7 +49,7 @@ class Game {
 
   calculateAdvance(cars) {
     cars.forEach((car) => {
-      const randomNumber = Random.pickNumberZeroToNine();
+      const randomNumber = Random.pickNumberInRange();
       car.updateAdvance(randomNumber);
     });
   }
