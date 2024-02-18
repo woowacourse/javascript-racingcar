@@ -8,8 +8,8 @@ class Car {
     this.#position = 0;
   }
 
-  move(canMove) {
-    if (canMove) this.#position++;
+  move() {
+    this.#position++;
   }
 
   get position() {

@@ -40,8 +40,10 @@ class Race {
   #moveCars() {
     this.#cars.forEach(car => {
       const randNum = this.#getRandomNumber();
-      const canMove = randNum >= RULES.moveThreshold;
-      car.move(canMove);
+
+      if (randNum >= RULES.moveThreshold) {
+        car.move();
+      }
     });
   }
 

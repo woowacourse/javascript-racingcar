@@ -1,13 +1,12 @@
 import Car from '../../src/domain/Car';
 import RaceCalculator from '../../src/domain/RaceCalculator';
 
-const MOVE = true;
-const STOP = false;
+import { MOVE, STOP } from '../statics/constants';
 
 function simulateCarMovements(cars, movements) {
-  movements.forEach((canMove, canMoveIdx) => {
-    const carIdx = canMoveIdx % cars.length;
-    cars[carIdx].move(canMove);
+  movements.forEach((canMove, movementIdx) => {
+    const carIdx = movementIdx % cars.length;
+    if (canMove) cars[carIdx].move();
   });
 }
 
@@ -28,7 +27,7 @@ describe('RaceGameCalculator Unit Test - pobi는 2번, jay는 1번 움직인다'
     expect(RaceCalculator.getCycleResult(CARS)).toEqual(RESULT);
   });
 
-  test('getWinnersPosition - pobi의 위치를 반환한다', () => {
+  test('getWinnersPosition - pobi의 위치인 2를 반환한다', () => {
     const MAX_POSITION = 2;
 
     expect(RaceCalculator.getWinnersPosition(CARS)).toEqual(MAX_POSITION);

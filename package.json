@@ -40,7 +40,11 @@
   "jest": {
     "transform": {
       "\\.[jt]sx?$": "babel-jest"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/__tests__/statics/"
+    ]
   },
   "babel": {
     "presets": [
