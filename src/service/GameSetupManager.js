@@ -1,4 +1,5 @@
-import Car from '../domain/Car';
+import Car from '../domain/car';
+import { executeOrRetryAsync } from '../utils';
 import { CarValidator, CommonValidator, TryNumValidator } from '../validator';
 
 export default class GameSetupManager {
@@ -9,19 +10,10 @@ export default class GameSetupManager {
   }
 
   async setup() {
-    const cars = await this.#executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
-    const tryNum = await this.#executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
+    const cars = await executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
+    const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
 
     return { cars, tryNum };
-  }
-
-  async #executeOrRetryAsync(asyncFn, context) {
-    try {
-      return await asyncFn.call(context);
-    } catch (error) {
-      console.log(error.message);
-      return this.#executeOrRetryAsync(asyncFn, context);
-    }
   }
 
   async #setupCarsFromInput() {
