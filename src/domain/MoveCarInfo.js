@@ -1,3 +1,6 @@
+import { REQUIREMENT } from "../constant/index.js";
+const { MOVE_SUCCESS } = REQUIREMENT;
+
 class MoveCarInfo {
   #carName;
   #moveTrace = [];
@@ -7,14 +10,14 @@ class MoveCarInfo {
   }
 
   move(randomNum) {
-    if (this.moveCondition(randomNum)) {
+    if (this.#moveRequire(randomNum)) {
       return this.#moveTrace.push(true);
     }
     return this.#moveTrace.push(false);
   }
 
-  moveCondition(randomNum) {
-    if (randomNum >= 4) {
+  #moveRequire(randomNum) {
+    if (randomNum >= MOVE_SUCCESS) {
       return true;
     }
     return false;
