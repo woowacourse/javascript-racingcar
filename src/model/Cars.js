@@ -1,5 +1,4 @@
 import ERROR_MESSAGE from '../error/message.js';
-import { COMMA } from '../view/OutputView.js';
 import Car from './Car.js';
 
 class Cars {
@@ -14,7 +13,7 @@ class Cars {
   }
 
   #parse(names) {
-    return names.split(COMMA).map((name) => name.trim());
+    return names.split(',').map((name) => name.trim());
   }
 
   #validate(names) {
