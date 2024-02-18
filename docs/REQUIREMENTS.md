@@ -18,7 +18,7 @@
 ## 리팩토링 목록
 
 - [ ] 전진 룰을 담당하는 객체 만들기
-- [ ] RandomNumberInRange `Infinity`문제 해결
+- [x] RandomNumberInRange `Infinity`문제 해결
 - [ ] RaceManager,CarInfo 이름 바꾸기
 - [ ] 체이닝 눈에 잘 띄게 만들기
 - [ ] Mock을 사용하지 않는 구조로 만들기
