@@ -43,7 +43,7 @@ class CarGame {
     if (!Number.isInteger(tryCount)) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER);
     }
-    if (tryCount < 1) {
+    if (tryCount < OPTION.MIN_TRY_COUNT) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_MIN);
     }
   }
@@ -54,7 +54,7 @@ class CarGame {
 
   moveCars() {
     this.#carList.forEach((car) => {
-      const randomNumber = Math.floor(Math.random() * 10);
+      const randomNumber = Math.floor(Math.random() * OPTION.RANDOM_MAX);
       if (randomNumber >= OPTION.MOVE_CONDITION) {
         car.move();
       }

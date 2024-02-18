@@ -4,6 +4,8 @@ export const OPTION = {
   LOCATATION_INDICATOR: '-',
   CAR_NAME_MAX_LENGTH: 5,
   MOVE_CONDITION: 4,
+  MIN_TRY_COUNT: 1,
+  RANDOM_MAX: 10,
 };
 
 export const MESSAGE = {
