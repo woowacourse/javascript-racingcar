@@ -132,6 +132,8 @@ src
  ┃ ┗ ScoreBoard.js
  ┣ errors
  ┃ ┗ AppError.js
+ ┣ services
+ ┃ ┗ makeRandomCarName.js
  ┣ utils
  ┃ ┣ validate
  ┃ ┃ ┗ validateFunctions.js
@@ -156,7 +158,7 @@ src
 -------------------------|---------|----------|---------|---------|-------------------
 File                     | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 -------------------------|---------|----------|---------|---------|-------------------
-All files                |   92.59 |    78.57 |   83.33 |   92.59 |
+All files                |    92.3 |    76.92 |   83.33 |    92.3 |
  constants/configs       |     100 |      100 |     100 |     100 |
   gameCondition.js       |     100 |      100 |     100 |     100 |
   randomCarNameConfig.js |     100 |      100 |     100 |     100 |
