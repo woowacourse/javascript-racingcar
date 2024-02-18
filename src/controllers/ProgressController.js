@@ -2,19 +2,19 @@ import MESSAGES from '../constants/Messages.js';
 import OutputView from '../views/OutputView.js';
 
 class ProgressController {
-  #cars;
+  #carList;
   #trialCount;
 
-  constructor(cars, trialCount) {
-    this.#cars = cars;
+  constructor(carList, trialCount) {
+    this.#carList = carList;
     this.#trialCount = trialCount;
   }
 
   run() {
     OutputView.print(MESSAGES.resultHeader);
     for (let i = 0; i < this.#trialCount.getCount(); i++) {
-      const randoms = [...Array(this.#cars.getCarsCount())].map(() => this.#getRandomNumber());
-      this.#cars.progress(randoms);
+      const randoms = [...Array(this.#carList.getCarsCount())].map(() => this.#getRandomNumber());
+      this.#carList.progress(randoms);
       this.#printProgress();
     }
   }
@@ -26,7 +26,7 @@ class ProgressController {
   }
 
   #printProgress() {
-    OutputView.printProgress(this.#cars.getNames(), this.#cars.getPositions());
+    OutputView.printProgress(this.#carList.getNames(), this.#carList.getPositions());
   }
 }
 export default ProgressController;

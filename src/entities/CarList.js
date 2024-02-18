@@ -1,7 +1,7 @@
 import CONDITIONS from '../constants/Conditions.js';
 import Car from './Car.js';
 
-class Cars {
+class CarList {
   #cars;
 
   constructor(carStr) {
@@ -28,4 +28,4 @@ class Cars {
   }
 }
 
-export default Cars;
+export default CarList;

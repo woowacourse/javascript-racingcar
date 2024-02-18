@@ -6,9 +6,9 @@ class WinnerController {
   #carNames;
   #positions;
 
-  constructor(cars) {
-    this.#carNames = cars.getNames();
-    this.#positions = cars.getPositions();
+  constructor(carList) {
+    this.#carNames = carList.getNames();
+    this.#positions = carList.getPositions();
   }
 
   run() {
