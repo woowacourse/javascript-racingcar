@@ -1,10 +1,12 @@
-import { CAR_CONSTANTS } from "../Constants/Constants";
+import { CAR_CONSTANTS } from '../Constants/Constants';
 
 const { MIN_MOVE_THRESHOLD, MOVE_DISTANCE } = CAR_CONSTANTS;
 
 export default class Car {
   static maxDistance = 0;
+
   #name;
+
   #distance = 0;
 
   constructor(name) {

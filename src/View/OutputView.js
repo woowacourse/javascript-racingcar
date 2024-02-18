@@ -1,8 +1,7 @@
-import { SYMBOL } from "../Constants/Constants";
-import { VIEW_MESSAGES } from "../Constants/Messages";
+import { SYMBOL } from '../Constants/Constants';
+import { VIEW_MESSAGES } from '../Constants/Messages';
 
-const { WINNER_PREFIX, NO_WINNER_MESSAGE, DISPLAY_CURRENT_DISTANCE } =
-  VIEW_MESSAGES;
+const { WINNER_PREFIX, NO_WINNER_MESSAGE, DISPLAY_CURRENT_DISTANCE } = VIEW_MESSAGES;
 const { DIVIDE_SYMBOL } = SYMBOL;
 
 const OutputView = {
@@ -19,7 +18,7 @@ const OutputView = {
       return;
     }
     console.log(
-      WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL)
+      WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL),
     );
   },
 };

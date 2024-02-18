@@ -1,6 +1,6 @@
-import readLine from "readline";
-import { VIEW_MESSAGES } from "../Constants/Messages";
-import { SYMBOL } from "../Constants/Constants";
+import readLine from 'readline';
+import { VIEW_MESSAGES } from '../Constants/Messages';
+import { SYMBOL } from '../Constants/Constants';
 
 const { PROMPT_CAR_NAMES, PROMPT_TRY } = VIEW_MESSAGES;
 const { DIVIDE_SYMBOL } = SYMBOL;

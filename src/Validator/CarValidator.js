@@ -1,17 +1,15 @@
-import { CAR_CONSTANTS, SYMBOL } from "../Constants/Constants";
-import { ERROR_MESSAGES } from "../Constants/Messages";
-import AppError from "../utils/Error";
+import { CAR_CONSTANTS, SYMBOL } from '../Constants/Constants';
+import { ERROR_MESSAGES } from '../Constants/Messages';
+import AppError from '../utils/Error';
 
 const { NAME_LENGTH_RANGE } = CAR_CONSTANTS;
-const { INVALID_NAME_LENGTH, DUPLICATED_NAME, INCLUDES_SPACE_NAME } =
-  ERROR_MESSAGES;
+const { INVALID_NAME_LENGTH, DUPLICATED_NAME, INCLUDES_SPACE_NAME } = ERROR_MESSAGES;
 
 const CarValidator = (() => {
   const checkNameLength = (carNames) => {
     const isOverLength = carNames.some(
-      (carName) =>
-        carName.length > NAME_LENGTH_RANGE.max ||
-        carName.length < NAME_LENGTH_RANGE.min
+      (carName) => carName.length > NAME_LENGTH_RANGE.max
+        || carName.length < NAME_LENGTH_RANGE.min,
     );
     if (isOverLength) {
       throw new AppError(INVALID_NAME_LENGTH);
@@ -25,9 +23,7 @@ const CarValidator = (() => {
   };
 
   const checkIncludesSpace = (carNames) => {
-    const someNameIncludesSpace = carNames.some((name) =>
-      name.includes(SYMBOL.SPACE)
-    );
+    const someNameIncludesSpace = carNames.some((name) => name.includes(SYMBOL.SPACE));
     if (someNameIncludesSpace) {
       throw new AppError(INCLUDES_SPACE_NAME);
     }

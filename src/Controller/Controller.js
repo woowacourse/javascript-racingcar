@@ -1,14 +1,13 @@
-import { SYMBOL, TRY_CONSTANTS } from "../Constants/Constants.js";
-import { ERROR_MESSAGES, VIEW_MESSAGES } from "../Constants/Messages.js";
-import Car from "../Model/Car.js";
-import CarValidator from "../Validator/CarValidator.js";
-import CommonValidator from "../Validator/CommonValidator.js";
-import TryNumValidator from "../Validator/TryNumValidator.js";
-import InputView from "../View/InputView.js";
-import OutputView from "../View/OutputView.js";
+import { SYMBOL } from '../Constants/Constants';
+import { VIEW_MESSAGES } from '../Constants/Messages';
+import Car from '../Model/Car';
+import CarValidator from '../Validator/CarValidator';
+import CommonValidator from '../Validator/CommonValidator';
+import TryNumValidator from '../Validator/TryNumValidator';
+import InputView from '../View/InputView';
+import OutputView from '../View/OutputView';
 
 const { RESULT_MESSAGE } = VIEW_MESSAGES;
-const { DUPLICATED_NAME } = ERROR_MESSAGES;
 const { BLANK_SYMBOL } = SYMBOL;
 
 export default class Controller {
@@ -39,8 +38,8 @@ export default class Controller {
       return carNames.map((name) => new Car(name));
     } catch (error) {
       console.log(error.message);
-
-      return await this.#promptCarNames();
+      const carNames = await this.#promptCarNames();
+      return carNames;
     }
   }
 
@@ -54,7 +53,8 @@ export default class Controller {
       return Number(tryInput);
     } catch (error) {
       console.log(error.message);
-      return await this.#promptTry();
+      const tryNum = await this.#promptTry();
+      return tryNum;
     }
   }
 
