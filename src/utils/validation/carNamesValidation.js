@@ -16,12 +16,10 @@ const carNamesValidation = {
   },
 
   checkIsInRange(carNames, min, max) {
-    carNames.forEach((carName) => {
-      throwErrorIfInvalid(
-        validation.isInRange(carName.length, min, max),
-        ERROR.isNotInRange(NAME.carName, min, max)
-      );
-    });
+    throwErrorIfInvalid(
+      carNames.every((carName) => validation.isInRange(carName.length, min, max)),
+      ERROR.isNotInRange(NAME.carName, min, max)
+    );
   }
 };
 
