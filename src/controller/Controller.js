@@ -1,6 +1,5 @@
 import OPT from '../constant/options.js';
 import CarGame from '../model/CarGame.js';
-import ExceptionHandler from '../utils/error/ExceptionHandler.js';
 import Prep from '../utils/Preprocessor.js';
 import validator from '../utils/validation/validator.js';
 import inputView from '../view/inputView.js';
@@ -13,12 +12,8 @@ class Controller {
     this.#carGame = new CarGame();
   }
 
-  async inputGameInfo() {
-    await ExceptionHandler.retryAsyncWithErrorLogging(this.#inputCarNames.bind(this));
-    await ExceptionHandler.retryAsyncWithErrorLogging(this.#inputTryCount.bind(this));
-  }
-
-  async #inputCarNames() {
+  // eslint-disable-next-line class-methods-use-this
+  async inputCarNames() {
     const carNamesInput = await inputView.readCarNames();
 
     const carNames = Prep.process(carNamesInput, [
@@ -28,10 +23,11 @@ class Controller {
 
     validator.carNamesValidation(carNames);
 
-    this.#carGame.setCars(carNames);
+    return carNames;
   }
 
-  async #inputTryCount() {
+  // eslint-disable-next-line class-methods-use-this
+  async inputTryCount() {
     const tryCountInput = await inputView.readTryCount();
 
     const tryCount = Prep.process(tryCountInput, [
@@ -41,6 +37,14 @@ class Controller {
 
     validator.tryCountValidation(tryCount);
 
+    return tryCount;
+  }
+
+  setCarNames(carNames) {
+    this.#carGame.setCarNames(carNames);
+  }
+
+  setTryCount(tryCount) {
     this.#carGame.setTryCount(tryCount);
   }
 
