@@ -1,4 +1,6 @@
+import OPTIONS from '../constants/options.js';
 import CarGame from '../model/CarGame.js';
+import ExceptionHandler from '../utils/ExceptionHandler.js';
 import Preprocessor from '../utils/Preprocessor.js';
 import inputView from '../view/inputView.js';
 import outputView from '../view/outputView.js';
@@ -11,29 +13,16 @@ class Controller {
   }
 
   async inputGameInfo() {
-    await this.#retryAndErrorLogging(this.#inputCarNames.bind(this));
-    await this.#retryAndErrorLogging(this.#inputTryCount.bind(this));
-  }
-
-  async #retryAndErrorLogging(inputFunction) {
-    while (true) {
-      try {
-        await inputFunction();
-        let a = b;
-        break;
-      } catch (error) {
-        outputView.print(error.message);
-      }
-    }
+    await ExceptionHandler.retryAsyncWithErrorLogging(this.#inputCarNames.bind(this));
+    await ExceptionHandler.retryAsyncWithErrorLogging(this.#inputTryCount.bind(this));
   }
 
   async #inputCarNames() {
     const namesInput = await inputView.readCarNames();
-    const carNames = Preprocessor.process(namesInput.split(OPTIONS.INPUT_DELIMITER), [
+    const carNames = Preprocessor.process(namesInput.split(OPTIONS.INPUT.carNameDelimiter), [
       Preprocessor.trimEdgeWhitespaces,
       Preprocessor.filterOutEmptyStrings
     ]);
-
     this.#carGame.setCars(carNames);
   }
 
