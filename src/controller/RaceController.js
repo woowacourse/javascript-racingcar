@@ -30,7 +30,7 @@ class RaceController {
   #controlCarMove(cars, tryNumber) {
     this.#enterMoveCar(cars);
     this.#carsMoveExecute(tryNumber);
-    this.#getCarMoveInfo();
+    this.#saveCarMoveInfo();
   }
 
   #enterMoveCar(cars) {
@@ -45,7 +45,7 @@ class RaceController {
     }
   }
 
-  #getCarMoveInfo() {
+  #saveCarMoveInfo() {
     this.#carsMoveExecutionList.map((carMoveExecution) =>
       this.#carsMoveInfoList.push(carMoveExecution.getCarMoveInfo())
     );

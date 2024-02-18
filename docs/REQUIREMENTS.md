@@ -9,7 +9,7 @@
 
 #### MoveCarInfo : 자동차 하나의 전진 여부와 자동차의 이름 저장하는 클래스
 
-- 멤버변수 : carName(자동차 하나의 이름), moveTrace(회차별 전진 여부 리스트 ex) 3회차 어느 자동차의 이동 흔적-> [true, false, true] )
+- 멤버변수 : carName(자동차 하나의 이름), moveTrace(회차별 전진 여부 리스트 ex) 3회차 어느 자동차의 이동 흔적-> [true, false, true])
 - 메서드 : move(랜덤숫자를 받아서 전진여부를 결정하는 함수), moveCondition(전진여부를 결정하는 함수),
 
 #### RaceWinner : 우승자를 구하고 저장하는 클래스
@@ -33,8 +33,8 @@
 
 #### RaceController : 게임을 진행하는 클래스
 
-- 멤버변수 : moveInstanceList(move클래스의 인스턴스 리스트)
-- 메서드 : race(게임을 진행하는 함수), input(입력 받는 함수), printResult(결과를 출력하는 함수), calculateResult(레이싱 결과를 계산하는 함수),calculateMaxMove(최대 이동 횟수를 계산하는 함수), calculateWinner(우승자를 계산하는 함수)
+- 멤버변수 :carsMoveExecutionList(move클래스의 인스턴스 리스트), carsMoveInfoList(move 클래스에서 생성된 자동차의 이동 정보 리스트)
+- 메서드 : race(게임을 진행하는 함수), input(입력 받는 함수), print(게임 결과와 우승자를 출력하는 함수), controlMove(자동차의 이동을 제어하는 함수),enterMoveCar(자동차의 이동 인스턴스를 저장하는 함수), carsMoveExecute(자동차의 이동을 실행하는 함수), saveCarMoveInfo(자동차의 이동 정보를 저장하는 함수), printResult(게임 결과를 출력하는 함수)
 
 ### < etc >
 
