@@ -1,4 +1,3 @@
-import { CAR, ERROR } from '../Constant/Constant.js';
 import CarListValidate from '../Validator/CarListValidator.js';
 
 class CarList {

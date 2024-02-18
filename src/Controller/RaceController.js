@@ -11,11 +11,16 @@ class RaceController {
 
 		const carList = this.makeCarList(carNames);
 		const raceResult = this.playAllTurn(carList, tryNumber);
+		this.endRaceAndShowResult(carList, raceResult);
+	}
+
+	endRaceAndShowResult(carList, raceResult) {
 		this.showRaceResult(raceResult);
 
 		const distance = carList.getDistance();
 		const winner = new Winner(carNames, distance);
-		winner.decideWinner();
+		const raceWinners = winner.decideWinnerAndReturnNames();
+		this.showWinner(raceWinners);
 	}
 
 	makeCarList(carNames) {
@@ -56,6 +61,10 @@ class RaceController {
 		return raceResult;
 	}
 
+	isForward() {
+		return !!makeRandomNum(0, 9) >= 4;
+	}
+
 	showRaceResult(raceResult) {
 		raceResult.forEach(oneTurn => {
 			this.showOneTurnResult(oneTurn);
@@ -70,12 +79,8 @@ class RaceController {
 		});
 	}
 
-	isForward() {
-		const random = makeRandomNum(0, 9);
-		if (random >= 4) {
-			return true;
-		}
-		return false;
+	showWinner(winners) {
+		OutputView.printWinners(winners);
 	}
 }
 

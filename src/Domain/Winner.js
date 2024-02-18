@@ -1,5 +1,3 @@
-import OutputView from '../View/OutputView.js';
-
 class Winner {
 	#carNames;
 	#distance;
@@ -9,7 +7,13 @@ class Winner {
 		this.#distance = distance;
 	}
 
-	decideWinner() {
+	decideWinnerAndReturnNames() {
+		this.decideWinnerIndex();
+		const winnersNames = this.changeIdxToNames(winnerIndexArr);
+		return winnersNames;
+	}
+
+	decideWinnerIndex() {
 		const winnerIndexArr = [];
 		const maxValue = Math.max(...this.#distance);
 
@@ -18,14 +22,11 @@ class Winner {
 				winnerIndexArr.push(i);
 			}
 		});
-
-		const winnerNames = winnerIndexArr.map(e => this.#carNames[e]);
-		this.showWinner(winnerNames);
-		return winnerNames;
+		return winnerIndexArr;
 	}
 
-	showWinner(winners) {
-		OutputView.printWinners(winners);
+	changeIdxToNames(indexArr) {
+		return indexArr.map(e => this.#carNames[e]);
 	}
 }
 

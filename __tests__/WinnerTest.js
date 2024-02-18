@@ -9,7 +9,7 @@ describe('우승자 테스트', () => {
 
 		//Arrange
 		// Act & Assert
-		expect(winner.decideWinner()).toEqual(['리안', '시모']);
+		expect(winner.decideWinnerIndex()).toEqual([0, 1]);
 	});
 	test('결과값에 따른 우승자 인덱스가 잘 반환되는지 확인', () => {
 		//Arrange
@@ -18,6 +18,6 @@ describe('우승자 테스트', () => {
 		const winner = new Winner(names, distance);
 
 		// Act & Assert
-		expect(winner.decideWinner()).toEqual(['시모']);
+		expect(winner.decideWinnerIndex()).toEqual([1]);
 	});
 });
