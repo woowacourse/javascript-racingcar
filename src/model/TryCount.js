@@ -16,7 +16,7 @@ class TryCount {
     if (tryCount === "") {
       throw new Error(`${ERROR_MESSAGE.tryCountEmpty} ${ERROR_MESSAGE.retry}`);
     }
-    if (!Number.isNaN(tryCount)) {
+    if (!Number.isInteger(Number(tryCount))) {
       throw new Error(`${ERROR_MESSAGE.isNan} ${ERROR_MESSAGE.retry}`);
     }
     if (Number(tryCount) < MIN_TRY_COUNT || Number(tryCount) > MAX_TRY_COUNT) {
