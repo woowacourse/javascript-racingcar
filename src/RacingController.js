@@ -4,7 +4,7 @@ import OutputView from './view/OutputView';
 import RaceProgress from './domain/RaceProgress';
 import Car from './domain/Car';
 
-export class Game {
+export default class Game {
   async play() {
     const carNames = await Game.getCarNamesArray();
     const cars = this.createCars(carNames);

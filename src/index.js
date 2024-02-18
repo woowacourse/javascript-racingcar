@@ -1,4 +1,4 @@
-import { Game } from './RacingController';
+import Game from './RacingController';
 
 const game = new Game();
 game.play();
