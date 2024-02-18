@@ -1,10 +1,11 @@
 import deepFreeze from '../../utils/deepFeeze.js';
 
 const DELIMITER = deepFreeze({
-  SPACE: '',
+  NONE: '',
+  SPACE: ' ',
   COMMA: ',',
   HYPHEN: '-',
-  COLON: ':',
+  COLON: ' : ',
 });
 
 export default DELIMITER;
