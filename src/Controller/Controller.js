@@ -1,5 +1,4 @@
 import { CAR_CONSTANTS, SYMBOL } from '../Constants/Constants';
-import { VIEW_MESSAGES } from '../Constants/Messages';
 import Car from '../Model/Car';
 import CarValidator from '../Validator/CarValidator';
 import CommonValidator from '../Validator/CommonValidator';
@@ -8,7 +7,6 @@ import InputView from '../View/InputView';
 import OutputView from '../View/OutputView';
 import pickRandomNumberInRange from '../utils/pickRandomInt';
 
-const { RESULT_MESSAGE } = VIEW_MESSAGES;
 const { BLANK_SYMBOL } = SYMBOL;
 const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
 
@@ -25,7 +23,7 @@ export default class Controller {
 
     const tryNum = await this.#promptTry();
     this.#runRace(tryNum);
-    console.log(RESULT_MESSAGE);
+    this.#output.printRaceResultHeader();
 
     const winners = this.#findWinners();
     this.#output.printWinner(winners);

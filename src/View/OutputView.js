@@ -17,9 +17,11 @@ const OutputView = {
       console.log(NO_WINNER_MESSAGE);
       return;
     }
-    console.log(
-      WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL),
-    );
+    console.log(WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL));
+  },
+
+  printRaceResultHeader() {
+    console.log(VIEW_MESSAGES.RESULT_MESSAGE);
   },
 };
 
