@@ -1,64 +1,71 @@
-const CustomError = require('./customError.js');
+const throwErrorIfFalse = require('./throwErrorIfFalse.js');
 const { ERROR_MESSAGES } = require('../constant/Messages.js');
 const { RULES, SYMBOL, REGEXP } = require('../constant/Conditions.js');
 
 const ValidatorCondtion = {
-  carCountRange(carCount) {
+  checkCarCountRange(carCount) {
     if (carCount < RULES.minCarCount || carCount > RULES.maxCarCount) {
-      throw new CustomError(ERROR_MESSAGES.invalidCarCountRange);
+      return false;
     }
+    return true;
   },
 
-  carNameEmpty(carNames) {
+  checkCarNameIsEmpty(carNames) {
     if (carNames.some((carName) => carName === '')) {
-      throw new CustomError(ERROR_MESSAGES.carNameEmpty);
+      return false;
     }
+    return true;
   },
 
-  carNameDuplicate(carNames) {
+  checkCarNameIsDuplicate(carNames) {
     const uniqueCarNames = new Set(carNames);
     if (uniqueCarNames.size !== carNames.length) {
-      throw new CustomError(ERROR_MESSAGES.carNameDuplicate);
+      return false;
     }
+    return true;
   },
 
-  carNameLength(carNames) {
+  checkCarNameLength(carNames) {
     if (carNames.some((carName) => carName.length > RULES.maxCarNameLength)) {
-      throw new CustomError(ERROR_MESSAGES.invalidCarNameLength);
+      return false;
     }
+    return true;
   },
 
-  carNameInSpace(carNames) {
+  checkCarNameInSpace(carNames) {
     if (carNames.some((carName) => carName.includes(SYMBOL.space))) {
-      throw new CustomError(ERROR_MESSAGES.carNameInSpace);
+      return false;
     }
+    return true;
   },
 
-  isNaN(value) {
+  checkIsNaN(value) {
     if (!REGEXP.numericPattern.test(value)) {
-      throw new CustomError(ERROR_MESSAGES.NaN);
+      return false;
     }
+    return true;
   },
 
-  tryCountRange(tryCount) {
+  checkTryCountRange(tryCount) {
     if (tryCount < RULES.minTryCount || tryCount > RULES.maxTryCount) {
-      throw new CustomError(ERROR_MESSAGES.invalidTryCountRange);
+      return false;
     }
+    return true;
   },
 };
 
 const Validator = {
   carNames(carNames) {
-    ValidatorCondtion.carCountRange(carNames.length);
-    ValidatorCondtion.carNameLength(carNames);
-    ValidatorCondtion.carNameEmpty(carNames);
-    ValidatorCondtion.carNameDuplicate(carNames);
-    ValidatorCondtion.carNameInSpace(carNames);
+    throwErrorIfFalse(ValidatorCondtion.checkCarNameIsEmpty(carNames), ERROR_MESSAGES.carNameEmpty);
+    throwErrorIfFalse(ValidatorCondtion.checkCarNameIsDuplicate(carNames), ERROR_MESSAGES.carNameDuplicate);
+    throwErrorIfFalse(ValidatorCondtion.checkCarNameLength(carNames), ERROR_MESSAGES.invalidCarNameLength);
+    throwErrorIfFalse(ValidatorCondtion.checkCarNameInSpace(carNames), ERROR_MESSAGES.carNameInSpace);
+    throwErrorIfFalse(ValidatorCondtion.checkCarCountRange(carNames), ERROR_MESSAGES.invalidCarCountRange);
   },
 
   tryCount(tryCount) {
-    ValidatorCondtion.isNaN(tryCount);
-    ValidatorCondtion.tryCountRange(tryCount);
+    throwErrorIfFalse(ValidatorCondtion.checkIsNaN(tryCount), ERROR_MESSAGES.NaN);
+    throwErrorIfFalse(ValidatorCondtion.checkTryCountRange(tryCount), ERROR_MESSAGES.invalidTryCountRange);
   },
 };
 
