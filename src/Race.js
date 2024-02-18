@@ -19,14 +19,14 @@ class Race {
     });
   }
 
-  proceedTurn(carList) {
+  proceedTurn(carList = this.#carList) {
     carList.forEach((car) => {
       const randomNumber = pickRandomNumber();
       this.moveCar(car, randomNumber);
     });
   }
 
-  getTurnResult(carList) {
+  getTurnResult(carList = this.#carList) {
     return carList.map((car) => ({
       name: car.name,
       position: car.position,
