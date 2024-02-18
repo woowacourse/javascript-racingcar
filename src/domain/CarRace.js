@@ -1,6 +1,6 @@
 const Car = require('./Car.js');
 
-class CarService {
+class CarRace {
   #cars;
   #moveCount;
   #maxMoveCount;
@@ -31,4 +31,4 @@ class CarService {
   }
 }
 
-module.exports = CarService;
+module.exports = CarRace;

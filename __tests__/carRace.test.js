@@ -1,4 +1,4 @@
-const CarService = require('../src/domain/CarService.js');
+const CarRace = require('../src/domain/CarRace.js');
 const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js');
 
 jest.mock('../src/utils/pickRandomNumberInRange.js');
@@ -14,7 +14,7 @@ describe('카서비스 클래스 테스트', () => {
     const carNames = ['붕붕이', '빵빵이'];
     const moveCount = 2;
     const randomNumbers = [1, 4, 1, 5];
-    const carService = new CarService(carNames);
+    const carRace = new CarRace(carNames);
     const raceResult = [
       [
         {
@@ -38,23 +38,23 @@ describe('카서비스 클래스 테스트', () => {
       ],
     ];
 
-    carService.setMoveCount(moveCount);
+    carRace.setMoveCount(moveCount);
     mockRandoms(randomNumbers);
 
-    expect(carService.startRacing()).toEqual(raceResult);
+    expect(carRace.startRacing()).toEqual(raceResult);
   });
 
   test('레이싱 최종 결과 테스트', () => {
     const carNames = ['붕붕이', '빵빵이', '옥지'];
     const moveCount = 3;
     const randomNumbers = [1, 1, 4, 1, 2, 5, 1, 3, 6];
-    const carService = new CarService(carNames);
+    const carRace = new CarRace(carNames);
     const raceWinner = ['옥지'];
 
-    carService.setMoveCount(moveCount);
+    carRace.setMoveCount(moveCount);
     mockRandoms(randomNumbers);
 
-    randomNumbers.forEach(() => carService.startRacing());
-    expect(carService.getRaceResult()).toEqual(raceWinner);
+    randomNumbers.forEach(() => carRace.startRacing());
+    expect(carRace.getRaceResult()).toEqual(raceWinner);
   });
 });
