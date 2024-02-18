@@ -4,7 +4,9 @@ export const deepFreeze = (object) => {
   propNames.forEach((name) => {
     const value = object[name];
 
-    value && typeof value === 'object' ? deepFreeze(value) : value;
+    if (value && typeof value === 'object') {
+      deepFreeze(value);
+    }
   });
 
   return Object.freeze(object);
