@@ -8,7 +8,7 @@ class Winner {
 	}
 
 	decideWinnerAndReturnNames() {
-		this.decideWinnerIndex();
+		const winnerIndexArr = this.decideWinnerIndex();
 		const winnersNames = this.changeIdxToNames(winnerIndexArr);
 		return winnersNames;
 	}
