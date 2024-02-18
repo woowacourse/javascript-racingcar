@@ -3,12 +3,13 @@ const splitByDelimiter = require('../utils/splitByDelimiter.js');
 const Validator = require('../utils/validator.js');
 const OutputView = require('./OutputView.js');
 const { INPUT_MESSSAGES } = require('../constant/Messages.js');
+const { SYMBOL } = require('../constant/Conditions.js');
 
 const InputView = {
   async readCarNames() {
     try {
       const input = await readLineAsync(INPUT_MESSSAGES.carNames);
-      const splitCarNames = splitByDelimiter(input);
+      const splitCarNames = splitByDelimiter(input, SYMBOL.delimiter);
 
       Validator.carNames(splitCarNames);
 

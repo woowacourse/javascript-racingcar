@@ -1,6 +1,7 @@
 const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js');
 const numberToDistanceSymbol = require('../src/utils/numberToDistanceSymbol.js');
 const splitByDelimiter = require('../src/utils/splitByDelimiter.js');
+const { SYMBOL } = require('../src/constant/Conditions.js');
 
 test.each([
   [1, 10],
@@ -28,7 +29,7 @@ test.each([
   ['자동차, 트럭, 경운기       ', ['자동차', '트럭', '경운기']],
   ['   자동차  ', ['자동차']],
 ])('문자열 구분자 분리 테스트 (양 끝 공백 제거)', (str, expectArr) => {
-  const result = splitByDelimiter(str);
+  const result = splitByDelimiter(str, SYMBOL.delimiter);
 
   expect(result).toEqual(expectArr);
 });
