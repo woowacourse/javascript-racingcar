@@ -1,5 +1,4 @@
 import OPT from '../constant/options.js';
-import { ERROR } from '../constant/strings.js';
 import Car from './Car.js';
 
 class CarGame {
@@ -7,44 +6,14 @@ class CarGame {
 
   #carList = [];
 
-  setCars(carNames) {
-    this.#validateCarNamesMulti(carNames);
-
-    carNames.reduce((carList, name) => {
-      this.#validateCarNamesLength(name);
-      carList.push(new Car(name));
-      return carList;
-    }, this.#carList);
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  #validateCarNamesLength(carName) {
-    if (carName.length > OPT.CAR_NAME_MAX_LENGTH) {
-      throw new Error(ERROR.CAR_NAME_LENGTH);
-    }
-  }
-
-  #validateCarNamesMulti(carNames) {
-    this.validMulti = new Set(new Set(carNames)).size === carNames.length;
-
-    if (!this.validMulti) {
-      throw new Error(ERROR.isNotUnique);
-    }
+  setCarNames(carNames) {
+    carNames.forEach((carName) => {
+      this.#carList.push(new Car(carName));
+    });
   }
 
   setTryCount(tryCount) {
-    this.#validateTryCount(tryCount);
     this.#tryCount = tryCount;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  #validateTryCount(tryCount) {
-    if (!Number.isInteger(tryCount)) {
-      throw new Error(ERROR.TRY_COUNT_NUMBER);
-    }
-    if (tryCount < 1) {
-      throw new Error(ERROR.TRY_COUNT_MIN);
-    }
   }
 
   getTryCount() {
