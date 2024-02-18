@@ -1,7 +1,5 @@
 import Car from './Car';
-import OutputView from './views/OutputView';
 import CONFIG from './constants/config';
-import { MESSAGE } from './constants/message';
 import pickRandomNumber from './utils/pickRandomNumber';
 
 class Race {
@@ -9,14 +7,6 @@ class Race {
 
   constructor(carNameList) {
     this.#carList = carNameList.map((carName) => new Car(carName));
-  }
-
-  runRace(turnCount) {
-    OutputView.print(MESSAGE.RACE_RESULT);
-    Array.from({ length: turnCount }).forEach(() => {
-      this.proceedTurn(this.#carList);
-      OutputView.printTurnResult(this.getTurnResult(this.#carList));
-    });
   }
 
   proceedTurn(carList = this.#carList) {

@@ -2,16 +2,28 @@ import Race from './Race';
 import InputView from './views/InputView';
 import OutputView from './views/OutputView';
 import Validator from './Validator';
+import { MESSAGE } from './constants/message';
 
 class App {
   async play() {
     const carNameList = await this.#readCarNameList();
     const turnCount = await this.#readTurnCount();
-
     const race = new Race(carNameList);
-    race.runRace(turnCount);
 
-    OutputView.printWinners(race.getWinner());
+    OutputView.print(MESSAGE.RACE_RESULT);
+    OutputView.printWinners(this.#getWinner(race, turnCount));
+  }
+
+  #runRace(race, turnCount) {
+    Array.from({ length: turnCount }).forEach(() => {
+      race.proceedTurn();
+      OutputView.printTurnResult(race.getTurnResult());
+    });
+  }
+
+  #getWinner(race, turnCount) {
+    this.#runRace(race, turnCount);
+    return race.getWinner();
   }
 
   async #readCarNameList() {
