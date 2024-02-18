@@ -1,47 +1,37 @@
-import InputView from "./UI/InputView.js";
-import OutputView from "./UI/OutputView.js";
-import Validator from "./class/Validator.js";
-import RaceManager from "./class/RaceManager.js";
-import CONSTANT from "./CONSTANTS/index.js";
-import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs.js";
-
-const { MESSAGE, SEPARATOR } = CONSTANT;
+import InputView from "./view/InputView";
+import OutputView from "./view/OutputView";
+import RaceManager from "./domain/RaceManager";
+import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs";
 
 class App {
   #raceManger;
 
   async run() {
-    const carNames = await retryWhenErrorOccurs(() => this.readCarNames());
-    const tryCount = await retryWhenErrorOccurs(() => this.readTryCount());
-    this.#raceManger = new RaceManager(carNames, tryCount);
-    this.#raceManger.setResult();
+    const carNames = await this.readCarNames();
+    const tryCount = await this.readTryCount();
+
+    this.startRaceGame(carNames, tryCount);
+
     this.printResult();
   }
 
   async readCarNames() {
-    const answer = await InputView.readLineAsync(MESSAGE.carNameInput).then(
-      (names) => names.split(SEPARATOR.carName).map((string) => string.trim())
-    );
-    const result = Validator.validateCars(answer);
-    if (!result) throw new Error(MESSAGE.invalidCarName);
-    return answer;
+    return retryWhenErrorOccurs(() => InputView.readCarNames());
   }
 
   async readTryCount() {
-    const answer = await InputView.readLineAsync(MESSAGE.tryCountInput);
-
-    const result = Validator.validateTryCount(answer);
-    if (!result) throw new Error(MESSAGE.invalidTryCount);
-    return Number(answer);
+    return retryWhenErrorOccurs(() => InputView.readTryCount());
   }
 
-  printResult(isLineBreak = true) {
-    if (isLineBreak) OutputView.lineBreak();
-    OutputView.print(MESSAGE.resultOutput);
+  startRaceGame(carNames, tryCount) {
+    this.#raceManger = new RaceManager(carNames, tryCount);
+    this.#raceManger.setResult();
+  }
 
-    OutputView.print(this.#raceManger.getResultString());
-    OutputView.lineBreak();
-    OutputView.print(this.#raceManger.getWinnerString());
+  printResult() {
+    OutputView.printResult(this.#raceManger);
+    OutputView.printWinner(this.#raceManger);
   }
 }
+
 export default App;

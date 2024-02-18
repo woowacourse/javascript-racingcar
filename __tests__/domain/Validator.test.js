@@ -1,4 +1,4 @@
-import Validator from "../../src/class/Validator";
+import Validator from "../../src/domain/Validator";
 
 describe("Validator 클래스 테스트", () => {
   const carsCases = [

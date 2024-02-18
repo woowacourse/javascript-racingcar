@@ -1,6 +1,10 @@
 import readline from "readline";
 
-class InputView {
+class Console {
+  static print(message) {
+    console.log(message);
+  }
+
   static readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
@@ -24,4 +28,4 @@ class InputView {
   }
 }
 
-export default InputView;
+export default Console;

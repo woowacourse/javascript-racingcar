@@ -1,6 +1,6 @@
-import RaceManager from "../../src/class/RaceManager.js";
-import CONSTANT from "../../src/CONSTANTS/index.js";
-import getRandomNumberInRange from "../../src/utils/getRandomNumberInRange.js";
+import RaceManager from "../../src/domain/RaceManager";
+import CONSTANT from "../../src/CONSTANTS/index";
+import getRandomNumberInRange from "../../src/utils/getRandomNumberInRange";
 
 const { NUMERIC } = CONSTANT;
 

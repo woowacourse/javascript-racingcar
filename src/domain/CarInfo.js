@@ -1,12 +1,13 @@
-import getRandomNumberInRange from "../utils/getRandomNumberInRange.js";
-import CONSTANT from "../CONSTANTS/index.js";
+import getRandomNumberInRange from "../utils/getRandomNumberInRange";
+import CONSTANT from "../CONSTANTS/index";
 
 const { NUMERIC } = CONSTANT;
 
 class CarInfo {
   #name;
-  #position;
+  #positions;
   #tryCount;
+
   constructor(name, tryCount) {
     this.#name = name;
     this.#tryCount = tryCount;
@@ -17,18 +18,18 @@ class CarInfo {
   }
 
   getPositionWhen(count) {
-    return this.#position[count];
+    return this.#positions[count];
   }
 
   setPosition() {
-    this.#position = [this.#doesGo() ? NUMERIC.moveDistance : 0];
-    let lastPosition = this.#position[0];
+    this.#positions = [this.#doesGo() ? NUMERIC.moveDistance : 0];
+    let lastPosition = this.#positions[0];
 
     for (let nowCount = 1; nowCount < this.#tryCount; nowCount++) {
-      this.#position.push(
+      this.#positions.push(
         lastPosition + (this.#doesGo() ? NUMERIC.moveDistance : 0)
       );
-      lastPosition = this.#position[nowCount];
+      lastPosition = this.#positions[nowCount];
     }
   }
 
@@ -41,4 +42,5 @@ class CarInfo {
     );
   }
 }
+
 export default CarInfo;

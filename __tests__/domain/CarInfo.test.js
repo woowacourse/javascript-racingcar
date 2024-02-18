@@ -1,5 +1,5 @@
 import getRandomNumberInRange from "../../src/utils/getRandomNumberInRange";
-import CarInfo from "../../src/class/CarInfo";
+import CarInfo from "../../src/domain/CarInfo";
 
 jest.mock("../../src/utils/getRandomNumberInRange");
 
