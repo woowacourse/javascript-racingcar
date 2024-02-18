@@ -48,12 +48,16 @@ export default class RacingGameController {
   }
 
   #runRace(tryNum) {
-    for (let i = 0; i < tryNum; i += 1) {
-      this.#cars.forEach((car, index) => {
-        car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
-        this.#output.printCarCurrentDistance({ car, index });
+    Array.from({ length: tryNum }, () => {
+      this.#cars.forEach((car) => {
+        this.#moveCarAndPrintDistance(car);
       });
-    }
+    });
+  }
+
+  #moveCarAndPrintDistance(car) {
+    car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
+    this.#output.printCarCurrentDistance(car);
   }
 
   #declareResult() {
