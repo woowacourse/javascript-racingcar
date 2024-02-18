@@ -18,15 +18,21 @@ class RaceResult {
     this.#updateMaxPosition(car);
   }
 
-  getProgressMapWhentryCount(tryCount) {
+  getAllProgressMap() {
+    return Array.from({ length: this.#maxTryCount }).map((_, tryCount) =>
+      this.#getProgressMapWhentryCount(tryCount)
+    );
+  }
+
+  getWinnersNames() {
+    return this.#getWinners().map(car => car.getName());
+  }
+
+  #getProgressMapWhentryCount(tryCount) {
     return this.#result.reduce(
       (map, car) => map.set(car.getName(), car.getPositionWhen(tryCount)),
       new Map()
     );
-  }
-
-  getWinnersNameArray() {
-    return this.#getWinners().map(car => car.getName());
   }
 
   #getWinners() {

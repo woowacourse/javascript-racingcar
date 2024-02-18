@@ -1,7 +1,18 @@
 import readline from 'readline';
+import CONSTANTS from '../../CONSTANTS';
 
-const InputView = {
-  readNextLineAsync(query) {
+const { message } = CONSTANTS;
+
+class InputView {
+  static async readCarNames() {
+    return await this.#readNextLineAsync(message.CAR_NAME_INPUT);
+  }
+
+  static async readMaxTryCount() {
+    return await this.#readNextLineAsync(message.MAX_TRY_COUNT_INPUT);
+  }
+
+  static #readNextLineAsync(query) {
     const nextLineQuery = `${query}\n`;
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
@@ -22,7 +33,7 @@ const InputView = {
         resolve(input);
       });
     });
-  },
-};
+  }
+}
 
 export default InputView;

@@ -1,5 +1,5 @@
-import InputView from './UI/InputView.js';
-import OutputView from './UI/OutputView.js';
+import InputView from './view/class/InputView.js';
+import OutputView from './view/class/OutputView.js';
 import Validator from './domain/class/Validator.js';
 import RaceManager from './domain/class/RaceManager.js';
 import CONSTANTS from './CONSTANTS/index.js';
@@ -8,20 +8,22 @@ import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
 import RaceStaff from './domain/class/RaceStaff.js';
 import CarMover from './domain/class/CarMover.js';
 import getRandomNumberInRange from './utils/getRandomNumberInRange.js';
+import RaceResult from './domain/class/RaceResult.js';
 
 const { message, separator, numeric } = CONSTANTS;
 
+const moveByRandom = () => {
+  const randomNumber = getRandomNumberInRange(
+    numeric.RANDOM_NUMBER_LOWER,
+    numeric.RANDOM_NUMBER_UPPER
+  );
+  return randomNumber >= numeric.MOVE_STANDARD;
+};
 class App {
   #carMover;
 
   constructor(
-    moveFunction = () => {
-      const nowNumber = getRandomNumberInRange(
-        numeric.RANDOM_NUMBER_LOWER,
-        numeric.RANDOM_NUMBER_UPPER
-      );
-      return nowNumber >= numeric.MOVE_STANDARD;
-    },
+    moveFunction = moveByRandom,
     moveDistance = numeric.MOVE_DISTANCE
   ) {
     this.#carMover = new CarMover(moveFunction, moveDistance);
@@ -46,29 +48,24 @@ class App {
   }
 
   async #readCarNames() {
-    const carNames = (
-      await InputView.readNextLineAsync(message.CAR_NAME_INPUT)
-    ).split(separator.CAR_NAME);
+    const carNames = (await InputView.readCarNames()).split(separator.CAR_NAME);
+
     Validator.validateCarNames(carNames);
     return carNames;
   }
 
   async #readMaxTryCount() {
-    const maxTryCountString = await InputView.readNextLineAsync(
-      message.MAX_TRY_COUNT_INPUT
-    );
+    const maxTryCountString = await InputView.readMaxTryCount();
 
     Validator.validateMaxTryCountString(maxTryCountString);
     return Number(maxTryCountString);
   }
 
-  // printRace(isLineBreak = true) {
-  //   if (isLineBreak) OutputView.lineBreak();
-  //   OutputView.print(message.RESULT_OUTPUT);
+  #printRace(raceResult, isLineBreak = true) {
+    OutputView.printRaceHeader(isLineBreak);
 
-  //   OutputView.print(this.#raceManger.getProgressString());
-  //   OutputView.lineBreak();
-  //   OutputView.print(this.#raceManger.getWinnerString());
-  // }
+    OutputView.printProgressMapArray(raceResult.getAllProgressMap());
+    OutputView.printWinnersName(raceResult.getWinnersNames());
+  }
 }
 export default App;
