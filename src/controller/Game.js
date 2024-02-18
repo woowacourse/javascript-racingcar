@@ -1,10 +1,10 @@
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
-import CarValidator from '../utils/CarValidator.js';
-import TryCountValidator from '../utils/TryCountValidator.js';
+import CarValidator from '../domain/CarValidator.js';
+import TryCountValidator from '../domain/TryCountValidator.js';
 import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
-import Car from '../model/Car.js';
+import Car from '../domain/Car.js';
 import Condition from '../constant/Condition.js';
 
 const { SEPERATOR } = Condition;
