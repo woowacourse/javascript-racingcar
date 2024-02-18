@@ -2,7 +2,7 @@ import { CAR_CONSTANTS, SYMBOL } from '../Constants';
 import Car from '../Model/Car';
 import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
 import { InputView, OutputView } from '../View';
-import pickRandomNumberInRange from '../utils/pickRandomInt';
+import { pickRandomNumInRange } from '../utils';
 
 const { BLANK_SYMBOL } = SYMBOL;
 const { RANDOM_NUM_RAGE } = CAR_CONSTANTS;
@@ -15,7 +15,7 @@ export default class RacingGameController {
   #output = OutputView;
 
   async run() {
-    this.#cars = await this.#promptCarNames();
+    this.#cars = await this.#executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
     const tryNum = await this.#promptTry();
 
     this.#runRace(tryNum);
@@ -23,18 +23,21 @@ export default class RacingGameController {
     this.#declareResult();
   }
 
-  async #promptCarNames() {
+  async #executeOrRetryAsync(asyncFn, context) {
     try {
-      const carNames = await this.#input.readCars();
-      CommonValidator.check(carNames);
-      CarValidator.checkCarName(carNames);
-
-      return carNames.map((name) => new Car(name));
+      return await asyncFn.call(context);
     } catch (error) {
       console.log(error.message);
-      const carNames = await this.#promptCarNames();
-      return carNames;
+      return this.#executeOrRetryAsync(asyncFn, context);
     }
+  }
+
+  async #setupCarsFromInput() {
+    const carNames = await this.#input.readCars();
+    CommonValidator.check(carNames);
+    CarValidator.checkCarName(carNames);
+
+    return carNames.map((name) => new Car(name));
   }
 
   async #promptTry() {
@@ -55,7 +58,7 @@ export default class RacingGameController {
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
       this.#cars.forEach((car) => {
-        car.move(pickRandomNumberInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
+        car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
         this.#output.printCarCurrentDistance(car);
       });
       console.log(BLANK_SYMBOL);
