@@ -17,7 +17,7 @@ export default class Controller {
 
   async run() {
     this.#cars = await this.#makeCars();
-    const tryNum = await this.#promptTry();
+    const tryNum = await this.#makeTryNum();
     this.#runRace(tryNum);
     OutputView.printMessage(RESULT_MESSAGE);
 
@@ -31,8 +31,7 @@ export default class Controller {
       Controller.checkCarDuplicate(carNames);
       return carNames.map((name) => new Car(name));
     } catch (error) {
-      OutputView.printMessage(error.message);
-      const returnValue = await this.#makeCars();
+      const returnValue = await this.#printErrorAndRetry(error, this.#makeCars);
       return returnValue;
     }
   }
@@ -43,16 +42,21 @@ export default class Controller {
     }
   }
 
-  async #promptTry() {
+  async #makeTryNum() {
     try {
       const tryNum = await InputView.readTry();
       Controller.checkTryNum(tryNum);
       return tryNum;
     } catch (error) {
-      OutputView.printMessage(error.message);
-      const returnValue = await this.#promptTry();
+      const returnValue = await this.#printErrorAndRetry(error, this.#makeTryNum);
       return returnValue;
     }
+  }
+
+  async #printErrorAndRetry(error, retryFn) {
+    OutputView.printMessage(error.message);
+    const returnValue = await retryFn();
+    return returnValue;
   }
 
   static checkTryNum(number) {
@@ -68,21 +72,21 @@ export default class Controller {
   #runRace(tryNum) {
     for (let i = 0; i < tryNum; i += 1) {
       this.#cars.forEach((car) => {
-        car.move(Controller.makeRandomNumber0to10());
+        car.move(Controller.makeRandomNumber0to9());
         OutputView.printCarCurrentDistance(car);
       });
       OutputView.printMessage(BLANK_STR);
     }
   }
 
-  static makeRandomNumber0to10() {
+  static makeRandomNumber0to9() {
     return Math.floor(Math.random() * 10);
   }
 
   static calculateWinners(cars) {
     const MIN_DISTACNE = 0;
     const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
-    
+
     if (maxDistance !== MIN_DISTACNE) {
       const winners = cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
