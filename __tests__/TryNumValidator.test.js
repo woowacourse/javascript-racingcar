@@ -1,33 +1,29 @@
-import { TRY_CONSTANTS } from "../src/Constants/Constants";
-import TryNumValidator from "../src/Validator/TryNumValidator";
+import { TRY_CONSTANTS } from '../src/Constants/Constants';
+import TryNumValidator from '../src/Validator/TryNumValidator';
 
-describe("TryNumValidator 객체 테스트", () => {
-  test("시도 횟수는 숫자만 입력할 수 있다.", () => {
-    const isNaNinput = "다섯번";
-    expect(() => TryNumValidator.checkTryNum(isNaNinput)).toThrow();
+describe('TryNumValidator 객체 테스트', () => {
+  const { TRY_RANGE } = TRY_CONSTANTS;
+
+  describe('시도 횟수는 숫자만 입력할 수 있다.', () => {
+    test.each(['다섯번', '6번'])('예외) "%s"은 숫자가 아니므로 에러가 나야한다.', (isNaNInput) => {
+      console.log(Number.isNaN(Number(isNaNInput)));
+      expect(() => TryNumValidator.checkTryNum(isNaNInput)).toThrow();
+    });
   });
 
-  describe("시도 횟수는 1이상 200이하만 입력 가능하다.", () => {
-    test("예외) 시도 횟수가 음수일 때", () => {
-      const underZeroInput = -1;
-      expect(() => TryNumValidator.checkTryNum(underZeroInput)).toThrow();
-    });
+  describe(`시도 횟수는 ${TRY_RANGE.min} 이상 ${TRY_RANGE.max} 이하만 입력 가능하다.`, () => {
+    test.each([TRY_RANGE.min - 1, TRY_RANGE.max + 1])(
+      '예외) 시도 횟수가 범위를 벗어난 %d일 때 에러가 나야한다.',
+      (invalidTryNum) => {
+        expect(() => TryNumValidator.checkTryNum(invalidTryNum)).toThrow();
+      },
+    );
 
-    test("엣지) 시도 횟수가  1일 때", () => {
-      expect(() =>
-        TryNumValidator.checkTryNum(TRY_CONSTANTS.TRY_RANGE.min)
-      ).not.toThrow();
-    });
-
-    test("엣지) 시도 횟수가 200일 때", () => {
-      expect(() =>
-        TryNumValidator.checkTryNum(TRY_CONSTANTS.TRY_RANGE.max)
-      ).not.toThrow();
-    });
-
-    test("예외) 시도 횟수가 200보다 클 때", () => {
-      const overMaxRange = 201;
-      expect(() => TryNumValidator.checkTryNum(overMaxRange)).toThrow();
-    });
+    test.each([TRY_RANGE.min, TRY_RANGE.max])(
+      '엣지) 시도 횟수가 경계값 %d일 때 에러가 나지 않아야 한다.',
+      (validTryNum) => {
+        expect(() => TryNumValidator.checkTryNum(validTryNum)).not.toThrow();
+      },
+    );
   });
 });
