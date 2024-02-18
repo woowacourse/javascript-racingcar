@@ -1,6 +1,6 @@
-import MESSAGE from "./MESSAGE";
-import NUMERIC from "./NUMERIC";
-import SEPARATOR from "./SEPARATOR";
+import MESSAGE from "./message";
+import NUMERIC from "./numeric";
+import SEPARATOR from "./separator";
 
 const CONSTANT = Object.freeze({ MESSAGE, NUMERIC, SEPARATOR });
 

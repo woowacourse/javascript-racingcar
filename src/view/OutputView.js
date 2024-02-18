@@ -1,12 +1,11 @@
-import CONSTANT from "../CONSTANTS";
 import Console from "../utils/Console";
+import CONSTANT from "../constants";
 
 class OutputView {
-  static printResult(tryCount, result) {
+  static printResult(tryCount, cars) {
     Console.print("");
     Console.print(CONSTANT.MESSAGE.resultOutput);
-
-    Console.print(this.#getResultString(tryCount, result));
+    Console.print(this.#convertResultToString(tryCount, cars));
   }
 
   static printWinners(winners) {
@@ -18,24 +17,24 @@ class OutputView {
     );
   }
 
-  static #getResultString(tryCount, result) {
-    return new Array(tryCount)
-      .fill(null)
-      .map((_, nowTry) => this.#generateTryString(nowTry, result))
+  static #convertResultToString(tryCount, cars) {
+    return Array.from({ length: tryCount }, (_, i) => i)
+      .map((currentRound) => this.#generateResultInRace(currentRound, cars))
       .join(CONSTANT.MESSAGE.resultLineBreakMarkInRace);
   }
 
-  static #generateTryString(nowTry, result) {
-    return result
-      .map(
-        (carInfo) =>
-          `${carInfo.getName()}${
-            CONSTANT.MESSAGE.resultConnectionMark
-          }${CONSTANT.MESSAGE.distanceMark.repeat(
-            carInfo.getPositionWhen(nowTry)
-          )}`
-      )
+  static #generateResultInRace(currentRound, cars) {
+    return cars
+      .map((car) => this.#generateResultInRound(currentRound, car))
       .join(CONSTANT.MESSAGE.resultLineBreakMarkInRound);
+  }
+
+  static #generateResultInRound(currentRound, car) {
+    return `${car.getName()}${
+      CONSTANT.MESSAGE.resultConnectionMark
+    }${CONSTANT.MESSAGE.distanceMark.repeat(
+      car.getPositionWhen(currentRound)
+    )}`;
   }
 }
 
