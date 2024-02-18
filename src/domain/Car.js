@@ -1,5 +1,5 @@
 import CONDITION from '../constants/Condition';
-import { Validator, gameUtils } from '../utils';
+import { Validator } from '../utils';
 
 class Car {
   #name;
@@ -18,8 +18,7 @@ class Car {
     return this.#name;
   }
 
-  actCar() {
-    const randomNumber = gameUtils.pickRandomNumber();
+  actCar(randomNumber) {
     const isForward = this.#judgeForwardMovement(randomNumber);
 
     return isForward

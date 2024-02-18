@@ -1,4 +1,4 @@
-import { Validator } from '../utils';
+import { Validator, gameUtils } from '../utils';
 
 class Cars {
   #cars;
@@ -15,8 +15,13 @@ class Cars {
     Validator.validCarNameDuplicate(cars);
   }
 
+  #actCars(car) {
+    const randomNumber = gameUtils.pickRandomNumber();
+    return car.actCar(randomNumber);
+  }
+
   roundStart() {
-    const roundResult = this.#cars.map((car) => car.actCar());
+    const roundResult = this.#cars.map((car) => this.#actCars(car));
     if (this.#isFirstRound()) {
       return this.#saveRoundResultAndReturn(roundResult);
     }
