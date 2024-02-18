@@ -1,5 +1,5 @@
-import CarValidator from "../src/validator/CarValidator.js";
-import TryCountValidator from "../src/validator/TryCountValidator.js";
+import CarValidator from "../src/domain/validator/CarValidator.js";
+import TryCountValidator from "../src/domain/validator/TryCountValidator.js";
 
 describe("자동차 이름 유효성 테스트", () => {
   test("자동차 대수가 2대 미만이면 에러가 발생한다.", () => {
