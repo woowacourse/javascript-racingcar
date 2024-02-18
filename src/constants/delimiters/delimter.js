@@ -4,6 +4,7 @@ const DELIMITER = deepFreeze({
   SPACE: '',
   COMMA: ',',
   HYPHEN: '-',
+  COLON: ':',
 });
 
 export default DELIMITER;
