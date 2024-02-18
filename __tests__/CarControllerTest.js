@@ -1,9 +1,4 @@
-import { makeRandomNum } from '../src/Utils/MissionUtils.js';
 import CarController from '../src/Controller/CarController.js';
-
-jest.mock('../src/Utils/MissionUtils.js', () => ({
-	makeRandomNum: jest.fn(),
-}));
 
 describe('차 컨트롤러 도메인 테스트', () => {
 	//Arrange
@@ -11,17 +6,17 @@ describe('차 컨트롤러 도메인 테스트', () => {
 
 	test('랜덤 숫자가 4이상이면 전진이 true가 나오는지 확인', () => {
 		//Arrange
-		makeRandomNum.mockReturnValue(5);
+		const randomNumber = 5;
 
 		// Act & Assert
-		expect(carController.isForward()).toBeTruthy();
+		expect(carController.isForward(randomNumber)).toBeTruthy();
 	});
 	test('랜덤 숫자가 4미만이면 전진이 false가 나오는지 확인', () => {
 		//Arrange
-		makeRandomNum.mockReturnValue(3);
+		const randomNumber = 3;
 
 		// Act & Assert
-		expect(carController.isForward()).toBeFalsy();
+		expect(carController.isForward(randomNumber)).toBeFalsy();
 	});
 
 	test('결과값에 따른 공동 우승자 인덱스가 잘 반환되는지 확인', () => {

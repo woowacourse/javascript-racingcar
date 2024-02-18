@@ -25,7 +25,8 @@ class CarController {
 	playOneTurn(carNames, resultCounter) {
 		const carNameLength = carNames.length;
 		for (let i = 0; i < carNameLength; i++) {
-			if (this.isForward()) {
+			const randomNumber = makeRandomNum(0, 9);
+			if (this.isForward(randomNumber)) {
 				resultCounter[i]++;
 			}
 		}
@@ -38,9 +39,8 @@ class CarController {
 		}
 	}
 
-	isForward() {
-		const random = makeRandomNum(0, 9);
-		if (random >= 4) {
+	isForward(randomNumber) {
+		if (randomNumber >= 4) {
 			return true;
 		}
 		return false;
