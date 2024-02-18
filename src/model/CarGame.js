@@ -1,4 +1,5 @@
-import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
+import OPT from '../constant/options.js';
+import { ERROR } from '../constant/strings.js';
 import Car from './Car.js';
 
 class CarGame {
@@ -18,8 +19,8 @@ class CarGame {
 
   // eslint-disable-next-line class-methods-use-this
   #validateCarNamesLength(carName) {
-    if (carName.length > OPTION.CAR_NAME_MAX_LENGTH) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
+    if (carName.length > OPT.CAR_NAME_MAX_LENGTH) {
+      throw new Error(ERROR.CAR_NAME_LENGTH);
     }
   }
 
@@ -27,7 +28,7 @@ class CarGame {
     this.validMulti = new Set(new Set(carNames)).size === carNames.length;
 
     if (!this.validMulti) {
-      throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
+      throw new Error(ERROR.isNotUnique);
     }
   }
 
@@ -39,10 +40,10 @@ class CarGame {
   // eslint-disable-next-line class-methods-use-this
   #validateTryCount(tryCount) {
     if (!Number.isInteger(tryCount)) {
-      throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER);
+      throw new Error(ERROR.TRY_COUNT_NUMBER);
     }
     if (tryCount < 1) {
-      throw new Error(ERROR_MESSAGE.TRY_COUNT_MIN);
+      throw new Error(ERROR.TRY_COUNT_MIN);
     }
   }
 
@@ -53,7 +54,7 @@ class CarGame {
   moveCars() {
     this.#carList.forEach((car) => {
       const randomNumber = Math.floor(Math.random() * 10);
-      if (randomNumber >= OPTION.MOVE_CONDITION) {
+      if (randomNumber >= OPT.CAR.leastMoveCondition) {
         car.move();
       }
     });
@@ -62,7 +63,7 @@ class CarGame {
   getCurrentLocation() {
     const carInfos = this.#carList.map((car) => ({
       name: car.getName(),
-      location: car.getLocation(),
+      location: car.getLocation()
     }));
 
     return carInfos;

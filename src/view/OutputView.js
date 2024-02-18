@@ -1,29 +1,26 @@
-import { ERROR_MESSAGE, MESSAGE, OPTION } from '../constants/System.js';
+import OPT from '../constant/options.js';
+import { MESSAGE } from '../constant/strings.js';
 
 const outputView = {
   print(message) {
     console.log(message);
   },
 
-  printErrorMessage(error) {
-    this.print(`${ERROR_MESSAGE.PREFIX} ${error}`);
-  },
-
   printCurrentResultTitle() {
-    this.print(MESSAGE.RESULT);
+    this.print(MESSAGE.middleResult);
   },
 
   printCurrentLocation(carInfos) {
     carInfos.forEach(({ name, location }) => {
-      this.print(`${MESSAGE.CURRENT_LOCATION(name, location)}`);
+      this.print(`${MESSAGE.currentLocation(name, location)}`);
     });
     this.print('');
   },
 
   printWinners(winners) {
-    const result = winners.join(OPTION.OUPUT_DELIMITER);
-    this.print(`${MESSAGE.WINNER} ${result}`);
-  },
+    const result = winners.join(OPT.OUTPUT.finalWinnerDelimiter);
+    this.print(`${MESSAGE.finalWinner}${result}`);
+  }
 };
 
 export default outputView;

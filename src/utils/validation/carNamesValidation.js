@@ -18,7 +18,7 @@ const carNamesValidation = {
   checkIsInRange(carNames, min, max) {
     carNames.forEach((carName) => {
       throwErrorIfInvalid(
-        validation.isInRange(carName, min, max),
+        validation.isInRange(carName.length, min, max),
         ERROR.isNotInRange(NAME.carName, min, max)
       );
     });
