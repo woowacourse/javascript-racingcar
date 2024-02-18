@@ -1,5 +1,5 @@
 import InputView from './view/InputView';
-import Validation from './utils/Validation';
+import Validation from './Validation';
 import OutputView from './view/OutputView';
 import RaceProgress from './domain/RaceProgress';
 import Car from './domain/Car';

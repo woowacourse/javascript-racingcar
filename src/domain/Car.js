@@ -1,4 +1,4 @@
-import { NUMBERS } from '../constants';
+import { NUMBERS } from '../constants/number';
 
 class Car {
   #name;

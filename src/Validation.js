@@ -1,4 +1,5 @@
-import { ERROR_MESSAGE, NUMBERS } from '../constants';
+import { ERROR_MESSAGE } from './constants/message';
+import { NUMBERS } from './constants/number';
 
 const Validation = {
   carNamesArrayValidate(carNamesArray = []) {

@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE } from '../constants';
+import { OUTPUT_MESSAGE } from '../constants/message';
 
 const OutputView = {
   printError(error) {
