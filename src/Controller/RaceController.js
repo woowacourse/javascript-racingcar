@@ -1,9 +1,9 @@
+import { GAME } from '../Constant/Constant.js';
 import CarList from '../Domain/CarList.js';
 import Winner from '../Domain/Winner.js';
 import { makeRandomNum } from '../Utils/MissionUtils.js';
 import InputView from '../View/InputView.js';
 import OutputView from '../View/OutputView.js';
-
 class RaceController {
 	async startRace() {
 		const carNames = await InputView.askCarNames();
@@ -50,6 +50,10 @@ class RaceController {
 		});
 	}
 
+	isForward() {
+		return makeRandomNum(0, 9) >= GAME.FORWARD_MIN_NUM;
+	}
+
 	makeOneTurnResult(carList) {
 		const carNames = carList.getNames();
 
@@ -59,10 +63,6 @@ class RaceController {
 			return [name, targetDistance];
 		});
 		return raceResult;
-	}
-
-	isForward() {
-		return makeRandomNum(0, 9) >= 4;
 	}
 
 	showRaceResult(raceResult) {

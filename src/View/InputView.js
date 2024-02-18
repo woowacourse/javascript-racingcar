@@ -8,12 +8,14 @@ const InputView = {
 	async askCarNames() {
 		const nameInput = await readLineAsync(MESSAGE.NAME_INPUT);
 		const nameArray = nameInput.trim().split(',');
+
 		try {
 			carListValidate.validate(nameArray);
 		} catch (e) {
 			OutputView.printErrorMessage(e);
 			return this.askCarNames();
 		}
+
 		return nameArray;
 	},
 
@@ -27,6 +29,7 @@ const InputView = {
 			OutputView.printErrorMessage(e);
 			return this.askTryNumber();
 		}
+
 		return tryNumber;
 	},
 };
