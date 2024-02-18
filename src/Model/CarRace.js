@@ -9,9 +9,17 @@ const ERROR_MESSAGES = Object.freeze({
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
 
 export default class CarRace {
-  validCars(carNames) {
+  #cars;
+
+  #tryNum;
+
+  setCars(carNames) {
     this.#checkCarDuplicate(carNames);
-    return carNames.map((name) => new Car(name));
+    this.#cars = carNames.map((name) => new Car(name));
+  }
+
+  getCars() {
+    return [...this.#cars];
   }
 
   #checkCarDuplicate(carNames) {
@@ -20,9 +28,13 @@ export default class CarRace {
     }
   }
 
-  validTryNum(tryNum) {
+  setTryNum(tryNum) {
     this.#checkTryNum(tryNum);
-    return tryNum;
+    this.#tryNum = tryNum;
+  }
+
+  getTryNum() {
+    return this.#tryNum;
   }
 
   #checkTryNum(number) {
@@ -34,12 +46,12 @@ export default class CarRace {
     }
   }
 
-  calculateWinners(cars) {
+  calculateWinners() {
     const MIN_DISTACNE = 0;
-    const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
+    const maxDistance = Math.max(...this.#cars.map((car) => car.getDistance()));
 
     if (maxDistance !== MIN_DISTACNE) {
-      const winners = cars.filter((car) => car.getDistance() === maxDistance);
+      const winners = this.#cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
     }
     return { hasWinner: false, winners: [] };

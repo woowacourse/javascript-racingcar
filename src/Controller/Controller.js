@@ -6,52 +6,45 @@ const RESULT_MESSAGE = '실행 결과';
 const BLANK_STR = '';
 
 export default class Controller {
-  #cars;
-
   #carRace = new CarRace();
 
   async run() {
-    this.#cars = await this.#handleCar();
-    const tryNum = await this.#handleTryNum();
+    await this.#handleCar();
+    await this.#handleTryNum();
 
     OutputView.printMessage(RESULT_MESSAGE);
-    this.#runRace(tryNum);
+    this.#runRace();
 
-    const calculValue = this.#carRace.calculateWinners(this.#cars);
+    const calculValue = this.#carRace.calculateWinners();
     OutputView.printWinner(calculValue);
   }
 
   async #handleCar() {
     try {
       const carNames = await InputView.readCars();
-      const cars = this.#carRace.validCars(carNames);
-      return cars;
+      this.#carRace.setCars(carNames);
     } catch (error) {
-      const returnValue = await this.#printErrorAndRetry(error, this.#handleCar);
-      return returnValue;
+      await this.#printErrorAndRetry(error, this.#handleCar);
     }
   }
 
   async #handleTryNum() {
     try {
       const tryNum = await InputView.readTry();
-      this.#carRace.validTryNum(tryNum);
-      return tryNum;
+      this.#carRace.setTryNum(tryNum);
     } catch (error) {
-      const returnValue = await this.#printErrorAndRetry(error, this.#handleTryNum);
-      return returnValue;
+      await this.#printErrorAndRetry(error, this.#handleTryNum);
     }
   }
 
   async #printErrorAndRetry(error, retryFn) {
     OutputView.printMessage(error.message);
-    const returnValue = await retryFn.call(this);
-    return returnValue;
+    await retryFn.call(this);
   }
 
-  #runRace(tryNum) {
-    for (let i = 0; i < tryNum; i += 1) {
-      this.#cars.forEach((car) => {
+  #runRace() {
+    for (let i = 0; i < this.#carRace.getTryNum(); i += 1) {
+      this.#carRace.getCars().forEach((car) => {
         car.move(this.#makeRandomNumber0to9());
         OutputView.printCarCurrentDistance(car);
       });
