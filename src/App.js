@@ -1,9 +1,8 @@
-import InputView from './views/InputView.js';
-import { Validator } from './models/Validator.js';
-import OutputView from './views/OutputView.js';
-import ScoreBoard from './models/ScoreBoard.js';
-import Game from './models/Game.js';
-import generateRandomNumber from './utils/generateRandomNumber.js';
+import InputView from './view/InputView.js';
+import { Validator } from './domain/models/Validator.js';
+import OutputView from './view/OutputView.js';
+import ScoreBoard from './domain/models/ScoreBoard.js';
+import Game from './domain/models/Game.js';
 
 class App {
 	#scoreBoard;

@@ -1,7 +1,8 @@
-import REGEX_CONFIG from '../constants/configs/regexConfig.js';
-import AppError from '../errors/AppError.js';
-import ERROR_MESSAGE from '../constants/messages/errorMessage.js';
-import VALID_LIMIT_CONSTANTS_CONFIG from '../constants/configs/validLimitConstantsConfig.js';
+import REGEX_CONFIG from '../../constants/configs/regexConfig.js';
+import AppError from '../../errors/AppError.js';
+import ERROR_MESSAGE from '../../constants/messages/errorMessage.js';
+import VALID_LIMIT_CONSTANTS_CONFIG from '../../constants/configs/validLimitConstantsConfig.js';
+
 export class Validator {
 	static validateCarNames(carNames) {
 		carNames.forEach((car) => {

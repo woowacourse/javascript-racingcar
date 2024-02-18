@@ -1,5 +1,5 @@
-import RANDOM_NAME_CONFIG from '../constants/configs/randomNameConfig.js';
-import generateRandomNumber from '../utils/generateRandomNumber.js';
+import RANDOM_NAME_CONFIG from '../../constants/configs/randomNameConfig.js';
+import generateRandomNumber from '../../utils/generateRandomNumber.js';
 
 const generateRandomNumberOfName = (carNames) => {
 	const formattedCarNames = carNames.map((car, index) => {
