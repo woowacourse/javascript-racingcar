@@ -15,16 +15,4 @@ describe('초기화된 점수판에 대한 유효성 테스트', () => {
 
     expect(initializedScoreBoard).toEqual(expectedResult);
   });
-
-  test('만약 자동차 이름에 대해서 빈 값이 들어온다면, "user1" 같은 임의의 자동차 이름을 생성해서 부여해준다.', () => {
-    const validInputCarNames = ['pobi', ''];
-    const scoreBoard = new ScoreBoard(validInputCarNames);
-    const initializedScoreBoard = scoreBoard.getScoreBoard();
-
-    const expectedResult = new Map();
-    expectedResult.set('pobi', GAME_CONDITION.INITIALIZED_SCORE);
-    expectedResult.set(`${RANDOM_CAR_NAME_CONFIG.DEFAULT}1`, GAME_CONDITION.INITIALIZED_SCORE);
-
-    expect(initializedScoreBoard).toEqual(expectedResult);
-  });
 });

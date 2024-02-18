@@ -4,6 +4,7 @@ import ScoreBoard from './domains/ScoreBoard.js';
 import Game from './domains/Game.js';
 import asyncFunctionHandlerWithError from './utils/asyncFunctionHandlerWithError.js';
 import Validator from './validator/Validator.js';
+import makeRandomCarName from './services/makeRandomCarName.js';
 
 class App {
   #initializedScoreBoard;
@@ -20,9 +21,9 @@ class App {
 
   async #readCarNames() {
     const carNames = await InputView.inputCarNames();
-    Validator.validateCarNames(carNames);
-
-    const scoreBoard = new ScoreBoard(carNames);
+    const formattedCarNames = makeRandomCarName(carNames);
+    Validator.validateCarNames(formattedCarNames);
+    const scoreBoard = new ScoreBoard(formattedCarNames);
     this.#initializedScoreBoard = scoreBoard.getScoreBoard();
 
     OutputView.divideLine();
