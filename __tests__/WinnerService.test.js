@@ -8,10 +8,10 @@ describe('승자 판단 테스트', () => {
     // Arrange
     const CAR_NAMES = ['car1', 'car2', 'car3', 'car4'];
     const POSITIONS = [0, 1, 4, 1];
-    const cars = makeCars(CAR_NAMES, POSITIONS);
+    const CARS = makeCars(CAR_NAMES, POSITIONS);
 
     // Act
-    const winners = new WinnerService(cars).findWinners();
+    const winners = new WinnerService(CARS).findWinners();
 
     // Assert
     expect(winners).toEqual(['car3']);
@@ -21,10 +21,10 @@ describe('승자 판단 테스트', () => {
     // Arrange
     const CAR_NAMES = ['car1', 'car2', 'car3', 'car4'];
     const POSITIONS = [0, 4, 4, 2];
-    const cars = makeCars(CAR_NAMES, POSITIONS);
+    const CARS = makeCars(CAR_NAMES, POSITIONS);
 
     // Act
-    const winners = new WinnerService(cars).findWinners();
+    const winners = new WinnerService(CARS).findWinners();
 
     // Assert
     expect(winners).toEqual(['car2', 'car3']);
