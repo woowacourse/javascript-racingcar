@@ -1,23 +1,14 @@
 import Car from '../../src/domain/Car';
-import Random from '../../src/utils/Random';
 import { TEST_RULES } from '../constants/test_constants';
-
-const mockRandoms = numbers => {
-  Random.pickNumberInRange = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, Random.pickNumberInRange);
-};
 
 describe('Car Test', () => {
   test('move', () => {
     // given
+    const car = new Car('pobi');
 
     // when
-    const car = new Car('pobi');
-    
     for (let i = 0; i < TEST_RULES.attemptNum; i++) {
-      car.move(true);
+      car.move();
     }
 
     // then
