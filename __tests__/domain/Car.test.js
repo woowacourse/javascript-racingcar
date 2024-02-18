@@ -1,12 +1,5 @@
 import { Car } from "../../src/domain";
-import { gameUtils } from "../../src/utils";
-
-const mockRandoms = (numbers) => {
-  gameUtils.pickRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, gameUtils.pickRandomNumber);
-}
+import { mockRandoms } from "../testUtils";
 
 describe('자동차 테스트', () => {
   describe('자동차 생성 테스트', () => {

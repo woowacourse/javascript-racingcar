@@ -1,13 +1,6 @@
 import Cars from "../../src/collection/Cars";
 import { Car, Race } from "../../src/domain";
-import { gameUtils } from "../../src/utils";
-
-const mockRandoms = (numbers) => {
-  gameUtils.pickRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, gameUtils.pickRandomNumber);
-}
+import { mockRandoms } from "../testUtils";
 
 describe('라운드 카운트 검증', () => {
   describe('라운드 카운트 생성 검증', () => {
