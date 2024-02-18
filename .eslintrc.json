@@ -11,9 +11,6 @@
     "prettier",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:jsx-a11y/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "eslint:recommended"
@@ -25,12 +22,22 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["import", "jest", "jsx-a11y", "prettier", "react", "react-hooks"],
+  "plugins": ["import", "jest", "prettier"],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "endOfLine": "auto",
+        "printWidth": 100
+      }
+    ],
     "import/extensions": ["error", "ignorePackages"],
     "no-await-in-loop": "off",
     "no-constant-condition": "off",
     "max-lines-per-function": ["error", 10],
+    "no-undef": "error",
     "no-console": "off"
   }
 }
