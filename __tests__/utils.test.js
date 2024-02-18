@@ -18,7 +18,7 @@ test.each([
   [2, '--'],
   [0, ''],
   [10, '----------'],
-])('거리 문자 변환 테스트', (distance, expectSymbol) => {
+])('입력 받은 숫자 개수만큼 문자(-) 변환 테스트', (distance, expectSymbol) => {
   const distanceSymbol = numberToDistanceSymbol(distance);
 
   expect(distanceSymbol).toBe(expectSymbol);
@@ -28,7 +28,7 @@ test.each([
   ['자동차,트럭,경운기', ['자동차', '트럭', '경운기']],
   ['자동차, 트럭, 경운기       ', ['자동차', '트럭', '경운기']],
   ['   자동차  ', ['자동차']],
-])('문자열 구분자 분리 테스트 (양 끝 공백 제거)', (str, expectArr) => {
+])('구분 기호에 따른 문자열 분리 테스트 (양 끝 공백 제거)', (str, expectArr) => {
   const result = splitByDelimiter(str, SYMBOL.delimiter);
 
   expect(result).toEqual(expectArr);
