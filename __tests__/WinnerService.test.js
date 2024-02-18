@@ -1,7 +1,7 @@
 import WinnerService from '../src/services/WinnerService.js';
 
-describe('승자 판단', () => {
-  test('승자가 한 명일 때', () => {
+describe('승자 판단 테스트', () => {
+  test('승자가 한 명일 때, 승자를 잘 반환한다.', () => {
     // Arrange
     const CAR_NAMES = ['car1', 'car2', 'car3', 'car4'];
     const POSITIONS = [0, 1, 4, 1];
@@ -11,7 +11,7 @@ describe('승자 판단', () => {
     expect(winners).toEqual(['car3']);
   });
 
-  test('승자가 여러 명일 때', () => {
+  test('승자가 여러 명일 때, 승자를 잘 반환한다.', () => {
     // Arrange
     const CAR_NAMES = ['car1', 'car2', 'car3', 'car4'];
     const POSITIONS = [0, 4, 4, 2];
