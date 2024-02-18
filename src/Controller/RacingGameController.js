@@ -18,7 +18,6 @@ export default class RacingGameController {
     const tryNum = await this.#executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
 
     this.#runRace(tryNum);
-
     this.#declareResult();
   }
 
@@ -52,6 +51,7 @@ export default class RacingGameController {
       this.#cars.forEach((car) => {
         this.#moveCarAndPrintDistance(car);
       });
+      return undefined;
     });
   }
 

@@ -6,7 +6,6 @@ describe('TryNumValidator 객체 테스트', () => {
 
   describe('시도 횟수는 숫자만 입력할 수 있다.', () => {
     test.each(['다섯번', '6번'])('예외) "%s"은 숫자가 아니므로 에러가 나야한다.', (isNaNInput) => {
-      console.log(Number.isNaN(Number(isNaNInput)));
       expect(() => TryNumValidator.checkTryNum(isNaNInput)).toThrow();
     });
   });

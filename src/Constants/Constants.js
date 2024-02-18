@@ -6,6 +6,7 @@ export const CAR_CONSTANTS = Object.freeze({
   NAME_LENGTH_RANGE: Object.freeze({ min: 1, max: 5 }),
   MIN_MOVE_THRESHOLD: 4,
   MOVE_DISTANCE: 1,
+  INITIAL_DISTANCE: 0,
 });
 
 export const TRY_CONSTANTS = Object.freeze({
