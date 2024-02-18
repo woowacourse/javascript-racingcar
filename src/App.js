@@ -3,6 +3,7 @@ import Validator from './domain/models/Validator';
 import OutputView from './view/OutputView';
 import ScoreBoard from './domain/models/ScoreBoard';
 import Game from './domain/models/Game';
+import generateRandomNumberOfName from './domain/services/generateRandomNumberOfName';
 
 class App {
   #scoreBoard;
@@ -38,7 +39,8 @@ class App {
   async #getInputCarNames() {
     try {
       const carNames = await InputView.inputCarNames();
-      return carNames;
+      const formattedCarNames = generateRandomNumberOfName(carNames);
+      return formattedCarNames;
     } catch (error) {
       console.error(error.message);
       return this.#getInputCarNames();
