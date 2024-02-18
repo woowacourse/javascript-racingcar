@@ -24,6 +24,10 @@ class CarList {
     return this.#cars.map(car => car.getPosition());
   }
 
+  getCars() {
+    return this.#cars.map(car => car.getState());
+  }
+
   getCarsCount() {
     return this.#cars.length;
   }

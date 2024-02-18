@@ -37,6 +37,10 @@ class Car {
     return this.#position;
   }
 
+  getState() {
+    return { name: this.#name, position: this.#position };
+  }
+
   moveForward() {
     this.#position++;
   }

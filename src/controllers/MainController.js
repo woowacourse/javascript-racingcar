@@ -10,7 +10,7 @@ class MainController {
     const trialCount = await InputView.readTrialCount();
     OutputView.print('');
     new ProgressController(carList, trialCount).run();
-    new WinnerController(carList).run();
+    new WinnerController(carList.getCars()).run();
   }
 }
 

@@ -6,21 +6,19 @@ import WinnerService from '../services/WinnerService.js';
 import OutputView from '../views/OutputView.js';
 
 class WinnerController {
-  #carNames;
-  #positions;
+  #cars;
 
-  constructor(carList) {
-    this.#carNames = carList.getNames();
-    this.#positions = carList.getPositions();
+  constructor(cars) {
+    this.#cars = cars;
   }
 
   run() {
-    const winnerMessage = MESSAGES.winnerHeader + this.findWinner().join(CONDITIONS.WINNER_RESULT_SEPERATOR);
+    const winnerMessage = MESSAGES.winnerHeader + this.findWinners().join(CONDITIONS.WINNER_RESULT_SEPARATOR);
     OutputView.print(winnerMessage);
   }
 
-  findWinner() {
-    return new WinnerService(this.#carNames, this.#positions).findWinner();
+  findWinners() {
+    return new WinnerService(this.#cars).findWinners();
   }
 }
 

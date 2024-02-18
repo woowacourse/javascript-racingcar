@@ -1,15 +1,13 @@
 class WinnerService {
-  #carNames;
-  #positions;
+  #cars;
 
-  constructor(carNames, positions) {
-    this.#carNames = carNames;
-    this.#positions = positions;
+  constructor(cars) {
+    this.#cars = cars;
   }
 
-  findWinner() {
-    const maxPosition = Math.max(...this.#positions);
-    return this.#carNames.filter((_, i) => this.#positions[i] === maxPosition);
+  findWinners() {
+    const maxPosition = Math.max(...this.#cars.map(car => car['position']));
+    return this.#cars.filter(car => car['position'] === maxPosition).map(car => car['name']);
   }
 }
 
