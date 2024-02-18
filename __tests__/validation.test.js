@@ -22,7 +22,7 @@ describe('자동차 이름 유효성 테스트', () => {
 
 describe('경주 횟수 유효성 테스트', () => {
   test.each(['ㄱ', 'a', '0', '-1', '5.5', '&'])(
-    '경주 횟수가 자연수가 아니라면 발생한다.',
+    '경주 횟수가 자연수가 아니라면 에러가 발생한다.',
     (input) => {
       expect(() => TryCountValidator.validateNaturalNumber(Number(input))).toThrow();
     }
