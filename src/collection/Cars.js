@@ -18,16 +18,19 @@ class Cars {
   roundStart() {
     const roundResult = this.#cars.map((car) => car.actCar());
     if (this.#isFirstRound()) {
-      this.#previousRoundResult = roundResult;
-      return roundResult;
+      return this.#saveRoundResultAndReturn(roundResult);
     }
     const accumulatedResult = this.#accmulateScore(roundResult);
-    this.#previousRoundResult = accumulatedResult;
-    return accumulatedResult;
+    return this.#saveRoundResultAndReturn(accumulatedResult);
   }
 
   #isFirstRound() {
     return this.#previousRoundResult.length === 0;
+  }
+
+  #saveRoundResultAndReturn(roundResult) {
+    this.#previousRoundResult = roundResult;
+    return roundResult;
   }
 
   #accmulateScore(roundResult) {
