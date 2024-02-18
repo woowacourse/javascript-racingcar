@@ -1,15 +1,19 @@
+import { ERROR_MESSAGES, SYMBOL } from '../constanst';
 import { AppError } from '../utils';
+
+const { EMPTY_INPUT, SPACE_IN_INPUT } = ERROR_MESSAGES;
+const { BLANK, SPACE } = SYMBOL;
 
 const CommonValidator = (() => {
   const checkEmpty = (input) => {
-    if (input === '') {
-      throw new AppError('아무것도 입력하지 않았으므로 다시 입력해주세요.');
+    if (input === BLANK) {
+      throw new AppError(EMPTY_INPUT);
     }
   };
 
   const checkExistSpace = (input) => {
-    if (input.includes(' ')) {
-      throw new AppError('입력한 값에 공백이 존재합니다.');
+    if (input.includes(SPACE)) {
+      throw new AppError(SPACE_IN_INPUT);
     }
   };
 

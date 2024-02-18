@@ -12,6 +12,10 @@ export const ERROR_MESSAGES = Object.freeze({
   // try 관련 에러 메시지
   INVALID_TYPE: '숫자 값만 입력해주세요.',
   INVALID_RANGE: '1 이상 200미만의 숫자만 입력해주세요.',
+
+  // 공통 에러 메시지 :
+  EMPTY_INPUT: '아무것도 입력하지 않았으므로 다시 입력해주세요.',
+  SPACE_IN_INPUT: '입력한 값에 공백이 존재합니다.',
 });
 
 export const VIEW_MESSAGES = Object.freeze({
