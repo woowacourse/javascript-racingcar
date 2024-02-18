@@ -1,4 +1,6 @@
+import CONDITIONS from '../domain/constants/Conditions.js';
 import MESSAGES from '../domain/constants/Messages.js';
+import getRandomNumberInRange from '../domain/utils/GetRandomNumberInRange.js';
 import OutputView from '../view/OutputView.js';
 
 class ProgressController {
@@ -13,16 +15,12 @@ class ProgressController {
   run() {
     OutputView.print(MESSAGES.resultHeader);
     for (let i = 0; i < this.#trialCount.getCount(); i++) {
-      const randoms = [...Array(this.#cars.getCarsCount())].map(() => this.#getRandomNumber());
+      const randoms = [...Array(this.#cars.getCarsCount())].map(() =>
+        getRandomNumberInRange(CONDITIONS.minRandomNumber, CONDITIONS.maxRandomNumber),
+      );
       this.#cars.progress(randoms);
       this.#printProgress();
     }
-  }
-
-  #getRandomNumber() {
-    const FROM = 0;
-    const TO = 9;
-    return Math.floor(Math.random() * (TO - FROM + 1));
   }
 
   #printProgress() {
