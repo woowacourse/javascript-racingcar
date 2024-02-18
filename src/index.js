@@ -1,2 +1,2 @@
 import App from './App.js';
-new App().play();
+await new App().play();
