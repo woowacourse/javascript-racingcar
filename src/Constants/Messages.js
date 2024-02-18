@@ -16,9 +16,8 @@ export const ERROR_MESSAGES = Object.freeze({
 
 export const VIEW_MESSAGES = Object.freeze({
   // input 관련 메시지
-  PROMPT_CAR_NAMES:
-    '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ',
-  PROMPT_TRY: '시도할 횟수는 몇 회인가요?',
+  PROMPT_CAR_NAMES: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분). ',
+  PROMPT_TRY: '시도할 횟수는 몇 회인가요? ',
 
   // output 관련 메시지
   RESULT_MESSAGE: '실행 결과',

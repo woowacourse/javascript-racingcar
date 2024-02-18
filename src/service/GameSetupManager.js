@@ -1,18 +1,17 @@
-import Car from '../Model/Car';
+import Car from '../domain/Car';
 import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
 
 export default class GameSetupManager {
   #input;
 
   constructor(inputView) {
-    console.log(inputView);
     this.#input = inputView;
   }
 
   async setup() {
     const cars = await this.#executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
     const tryNum = await this.#executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
-    console.log(cars, tryNum);
+
     return { cars, tryNum };
   }
 

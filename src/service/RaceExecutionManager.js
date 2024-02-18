@@ -19,6 +19,7 @@ export default class RaceExecutionManager {
   }
 
   #runRace() {
+    this.#output.printBlankLine();
     for (let i = 0; i < this.#raceInfo.tryNum; i += 1) {
       this.#raceInfo.cars.forEach((car) => this.#moveCarAndPrintDistance(car));
       this.#output.printBlankLine();

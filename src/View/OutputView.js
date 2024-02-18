@@ -11,8 +11,9 @@ const OutputView = {
   },
 
   printRaceResult(winners) {
-    console.log(`\n${VIEW_MESSAGES.RESULT_MESSAGE}`);
+    console.log(`${VIEW_MESSAGES.RESULT_MESSAGE}`);
     console.log(WINNER_PREFIX + winners.map((car) => car.getInfo().name).join(DIVIDE_SYMBOL));
+    this.printBlankLine();
   },
 
   printBlankLine() {
