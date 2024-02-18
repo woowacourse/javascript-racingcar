@@ -1,4 +1,4 @@
-const CarService = require('../src/service/CarService');
+const CarService = require('../src/domain/CarService.js');
 const pickRandomNumberInRange = require('../src/utils/pickRandomNumberInRange.js');
 
 jest.mock('../src/utils/pickRandomNumberInRange.js');

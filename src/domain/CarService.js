@@ -1,4 +1,4 @@
-const Car = require('../domain/Car.js');
+const Car = require('./Car.js');
 
 class CarService {
   #cars;

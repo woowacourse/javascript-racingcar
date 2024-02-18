@@ -1,4 +1,4 @@
-const CarService = require('../service/CarService.js');
+const CarService = require('../domain/CarService.js');
 const InputView = require('../view/InputView.js');
 const OutputView = require('../view/OutputView.js');
 
