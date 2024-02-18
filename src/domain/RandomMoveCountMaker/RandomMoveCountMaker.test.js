@@ -25,4 +25,15 @@ describe('시도 횟수와 총 자동차 대수가 주어졌을 때 알맞은 �
       });
     },
   );
+
+  test.each(testCases)(
+    'tryCount가 $tryCount이고, racingCarNamesLength가 $racingCarNamesLength일 때, randomMoveCounts의 길이는 tryCount 길이인 $tryCount 와 같다.',
+    ({ tryCount, racingCarNamesLength }) => {
+      // when
+      const randomMoveCounts = RandomMoveCountMaker.execute(tryCount, racingCarNamesLength);
+
+      // then
+      expect(randomMoveCounts.length).toBe(tryCount);
+    },
+  );
 });
