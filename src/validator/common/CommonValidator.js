@@ -8,7 +8,7 @@ import { startValidation } from '../startValidation.js';
  */
 const CommonValidator = deepFreeze({
   /**
-   * @type {import('../../utils/jsDoc.js').CommonValidationTypes}
+   * @type {import('../../type/jsDoc.js').CommonValidationTypes}
    */
   validationTypes: {
     emptyValues: {

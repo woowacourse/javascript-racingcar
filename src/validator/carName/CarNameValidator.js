@@ -9,7 +9,7 @@ import { CAR_NAME_RANGE, CAR_NAME_REGEX, CAR_LENGTH_RANGE } from './constant.js'
  */
 const CarNameValidator = deepFreeze({
   /**
-   * @type {import('../../utils/jsDoc.js').CarNameValidationTypes}
+   * @type {import('../../type/jsDoc.js').CarNameValidationTypes}
    */
   validationTypes: {
     notCommaSeparated: {
