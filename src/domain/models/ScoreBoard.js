@@ -1,20 +1,20 @@
-import { Validator } from './Validator.js';
+import Validator from './Validator';
 
 export default class ScoreBoard {
-	board = new Map();
+  board = new Map();
 
-	constructor(carNames) {
-		Validator.validateCarNames(carNames);
-		this.initializeScoreBoard(carNames);
-	}
+  constructor(carNames) {
+    Validator.validateCarNames(carNames);
+    this.initializeScoreBoard(carNames);
+  }
 
-	initializeScoreBoard(carNames) {
-		carNames.forEach((car) => {
-			this.board.set(car, 0);
-		});
-	}
+  initializeScoreBoard(carNames) {
+    carNames.forEach((car) => {
+      this.board.set(car, 0);
+    });
+  }
 
-	getScoreBoard() {
-		return this.board;
-	}
+  getScoreBoard() {
+    return this.board;
+  }
 }

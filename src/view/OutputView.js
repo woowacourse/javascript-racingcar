@@ -1,34 +1,28 @@
-import PROGRESS_MESSAGE from '../constants/messages/progressMessage.js';
-import RESULT_MESSAGE from '../constants/messages/resultMessage.js';
+import PROGRESS_MESSAGE from '../constants/messages/progressMessage';
+import RESULT_MESSAGE from '../constants/messages/resultMessage';
 
 const OutputView = {
-	printStartGame() {
-		console.log(RESULT_MESSAGE.RESULT_START);
-	},
+  printStartGame() {
+    console.log(RESULT_MESSAGE.RESULT_START);
+  },
 
-	printResult(gameResult) {
-		gameResult.forEach((round) => {
-			for (const [key, value] of Object.entries(round)) {
-				console.log(`${key} : ${'-'.repeat(value)}`);
-			}
-			console.log(' ');
-		});
-	},
+  printResult(gameResult) {
+    gameResult.map((round) => {
+      Object.keys(round).forEach((key) => {
+        const value = round[key];
+        console.log(`${key} : ${'-'.repeat(value)}`);
+      });
+      console.log(' ');
+    });
+  },
 
-	printWinner(gameResult, count) {
-		const finalRound = gameResult[count - 1];
-		const finalScore = Object.values(finalRound);
-		const maxNumber = Math.max(...finalScore);
-		const winnerCar = [];
+  printWinner(gameResult, count) {
+    const finalRound = gameResult[count - 1];
+    const maxNumber = Math.max(...Object.values(finalRound));
+    const winnerCar = Object.keys(finalRound).filter((key) => finalRound[key] === maxNumber);
 
-		for (const key in finalRound) {
-			if (finalRound.hasOwnProperty(key) && finalRound[key] === maxNumber) {
-				winnerCar.push(key);
-			}
-		}
-
-		console.log(PROGRESS_MESSAGE.FINAL_WINNER, winnerCar.join(','));
-	},
+    console.log(PROGRESS_MESSAGE.FINAL_WINNER, winnerCar.join(','));
+  },
 };
 
 export default OutputView;
