@@ -1,16 +1,14 @@
 import InputView from './view/class/InputView.js';
 import OutputView from './view/class/OutputView.js';
 import Validator from './domain/class/Validator.js';
-import RaceManager from './domain/class/RaceManager.js';
 import CONSTANTS from './CONSTANTS/index.js';
 import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
 
 import RaceStaff from './domain/class/RaceStaff.js';
 import CarMover from './domain/class/CarMover.js';
 import getRandomNumberInRange from './utils/getRandomNumberInRange.js';
-import RaceResult from './domain/class/RaceResult.js';
 
-const { message, separator, numeric } = CONSTANTS;
+const { separator, numeric } = CONSTANTS;
 
 const moveByRandom = () => {
   const randomNumber = getRandomNumberInRange(

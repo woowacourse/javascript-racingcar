@@ -16,7 +16,7 @@ class CarPosition {
     return this.#position[this.#position.length - 1];
   }
 
-  getLastTry() {
+  getLastTryCount() {
     return this.#position.length - 2;
   }
 

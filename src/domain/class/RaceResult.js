@@ -41,7 +41,7 @@ class RaceResult {
     );
   }
   #updateMaxTryCount(car) {
-    this.#maxTryCount = Math.max(this.#maxTryCount, car.getLastTry());
+    this.#maxTryCount = Math.max(this.#maxTryCount, car.getLastTryCount());
   }
 
   #updateMaxPosition(car) {
