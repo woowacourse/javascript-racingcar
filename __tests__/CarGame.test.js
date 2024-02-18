@@ -8,7 +8,6 @@ describe('Car Game Test', () => {
   let carGame;
 
   beforeEach(() => {
-    // eslint-disable-next-line no-unused-vars
     carGame = new CarGame();
   });
 
