@@ -13,13 +13,13 @@ export default class CarRace {
 
   #tryNum;
 
-  setCars(carNames) {
+  setCarsByCarNames(carNames) {
     this.#checkCarDuplicate(carNames);
     this.#cars = carNames.map((name) => new Car(name));
   }
 
   getCars() {
-    return [...this.#cars];
+    return this.#cars;
   }
 
   #checkCarDuplicate(carNames) {
@@ -46,12 +46,12 @@ export default class CarRace {
     }
   }
 
-  calculateWinners() {
+  calculateWinners(cars = this.#cars) {
     const MIN_DISTACNE = 0;
-    const maxDistance = Math.max(...this.#cars.map((car) => car.getDistance()));
+    const maxDistance = Math.max(...cars.map((car) => car.getDistance()));
 
     if (maxDistance !== MIN_DISTACNE) {
-      const winners = this.#cars.filter((car) => car.getDistance() === maxDistance);
+      const winners = cars.filter((car) => car.getDistance() === maxDistance);
       return { hasWinner: true, winners };
     }
     return { hasWinner: false, winners: [] };

@@ -22,7 +22,7 @@ export default class Controller {
   async #handleCar() {
     try {
       const carNames = await InputView.readCars();
-      this.#carRace.setCars(carNames);
+      this.#carRace.setCarsByCarNames(carNames);
     } catch (error) {
       await this.#printErrorAndRetry(error, this.#handleCar);
     }
