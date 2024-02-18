@@ -1,4 +1,3 @@
-import CONDITIONS from '../src/constants/Conditions';
 import CarList from '../src/entities/CarList';
 
 describe('CarList 테스트', () => {
