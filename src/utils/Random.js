@@ -3,7 +3,7 @@ import Condition from '../constant/Condition.js';
 const { RANDOM } = Condition;
 
 const Random = {
-  pickNumberZeroToNine() {
+  pickNumberInRange() {
     return Math.floor(Math.random() * RANDOM.RANGE);
   },
 };
