@@ -4,33 +4,42 @@ import RaceManager from "./domain/RaceManager";
 import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs";
 
 class App {
-  #raceManger;
+  #raceManager;
 
   async run() {
-    const carNames = await this.readCarNames();
-    const tryCount = await this.readTryCount();
+    const carNames = await this.#readCarNames();
+    const tryCount = await this.#readTryCount();
 
-    this.startRaceGame(carNames, tryCount);
+    this.#startRaceGame(carNames, tryCount);
 
-    this.printResult();
+    this.#printResult();
+    this.#printWinners();
   }
 
-  async readCarNames() {
+  async #readCarNames() {
     return retryWhenErrorOccurs(() => InputView.readCarNames());
   }
 
-  async readTryCount() {
+  async #readTryCount() {
     return retryWhenErrorOccurs(() => InputView.readTryCount());
   }
 
-  startRaceGame(carNames, tryCount) {
-    this.#raceManger = new RaceManager(carNames, tryCount);
-    this.#raceManger.setResult();
+  #startRaceGame(carNames, tryCount) {
+    this.#raceManager = new RaceManager(carNames, tryCount);
+    this.#raceManager.setResult();
   }
 
-  printResult() {
-    OutputView.printResult(this.#raceManger);
-    OutputView.printWinner(this.#raceManger);
+  #printResult() {
+    const tryCount = this.#raceManager.getTryCount();
+    const raceResult = this.#raceManager.getResult();
+
+    OutputView.printResult(tryCount, raceResult);
+  }
+
+  #printWinners() {
+    const winners = this.#raceManager.getWinners();
+
+    OutputView.printWinners(winners);
   }
 }
 

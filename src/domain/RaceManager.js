@@ -1,7 +1,4 @@
 import CarInfo from "./CarInfo";
-import CONSTANT from "../CONSTANTS/index";
-
-const { MESSAGE } = CONSTANT;
 
 class RaceManager {
   #carNames;
@@ -13,23 +10,23 @@ class RaceManager {
     this.#tryCount = tryCount;
   }
 
-  getResultString() {
-    return new Array(this.#tryCount)
-      .fill(null)
-      .map((_, nowTry) => this.#generateTryString(nowTry))
-      .join(MESSAGE.resultLineBreakMarkInRace);
+  getTryCount() {
+    return this.#tryCount;
   }
 
-  getWinnerString() {
+  getResult() {
+    return [...this.#result];
+  }
+
+  getWinners() {
     const maxPosition = this.#getMaxPosition();
     const winners = this.#result
       .filter(
         (carInfo) => carInfo.getPositionWhen(this.#tryCount - 1) === maxPosition
       )
       .map((carInfo) => carInfo.getName());
-    return `${MESSAGE.winnerOutputHeader}${winners.join(
-      MESSAGE.winnerConnectionMark
-    )}`;
+
+    return winners;
   }
 
   setResult() {
@@ -46,17 +43,6 @@ class RaceManager {
         carInfo.getPositionWhen(this.#tryCount - 1)
       )
     );
-  }
-
-  #generateTryString(nowTry) {
-    return this.#result
-      .map(
-        (carInfo) =>
-          `${carInfo.getName()}${
-            MESSAGE.resultConnectionMark
-          }${MESSAGE.distanceMark.repeat(carInfo.getPositionWhen(nowTry))}`
-      )
-      .join(MESSAGE.resultLineBreakMarkInRound);
   }
 }
 
