@@ -62,11 +62,10 @@ class CarGame {
   }
 
   getCurrentLocation() {
-    const carInfos = [];
-
-    this.#carList.forEach((car) => {
-      carInfos.push({ name: car.getName(), location: car.getLocation() });
-    });
+    const carInfos = this.#carList.map((car) => ({
+      name: car.getName(),
+      location: car.getLocation(),
+    }));
 
     return carInfos;
   }
