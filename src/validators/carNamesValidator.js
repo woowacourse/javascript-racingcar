@@ -13,16 +13,16 @@ const carNamesValidator = {
     }
   },
 
-  isValidLength(carNames) {
-    return carNames.every(
+  isInvalidLength(carNames) {
+    return carNames.some(
       (name) =>
-        name.length >= RULES.minCarNameLength &&
-        name.length <= RULES.maxCarNameLength,
+        name.length < RULES.minCarNameLength ||
+        name.length > RULES.maxCarNameLength,
     );
   },
 
   validateLength(carNames) {
-    if (!this.isValidLength(carNames)) {
+    if (this.isInvalidLength(carNames)) {
       throw new InvalidInputException(ERROR_MESSAGES.carNameLength);
     }
   },
