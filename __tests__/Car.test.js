@@ -23,7 +23,6 @@ describe('Car 객체 테스트', () => {
 
     const simulateCarMovement = ({ car, distance }) => {
       Array.from({ length: distance }, () => {
-        console.log(car, distance);
         car.move(MIN_MOVE_THRESHOLD);
       });
     };
