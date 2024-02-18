@@ -17,14 +17,26 @@
 
 ## 리팩토링 목록
 
-- [ ] 전진 룰을 담당하는 객체 만들기
-- [x] RandomNumberInRange `Infinity`문제 해결
-- [ ] RaceManager,CarInfo 이름 바꾸기
-- [ ] 체이닝 눈에 잘 띄게 만들기
-- [ ] Mock을 사용하지 않는 구조로 만들기
-- [ ] 텍스트를 만드는 로직 만들기
 - [ ] 도메인 뷰 로직 분리
-- [x] Validator 로직 분리
+  - [ ] 도메인
+    - [x] 전진 룰을 담당하는 객체 만들기
+    - [x] RandomNumberInRange `Infinity`문제 해결
+    - [x] RaceManager,CarInfo 이름 바꾸기
+    - [x] 체이닝 눈에 잘 띄게 만들기
+    - [x] Validator 로직 분리
+  - [ ] 뷰
+    - [ ] 텍스트를 만드는 로직 만들기
+
+- [ ] test 만들기
+  - [ ] Mock을 사용하지 않는 구조로 만들기
+  - [ ] `Car`
+  - [ ] `CarMover`
+  - [ ] `RaceResult`
+  - [ ] `RaceStaff`
+  - [ ] `Validator`
+
+- [ ] 기타
+  - [ ] retryWhenOccurs 이름 변경
 
 ## 실행예시
 ```
