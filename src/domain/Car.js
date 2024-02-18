@@ -13,7 +13,7 @@ class Car {
   }
 
   #validateName(name) {
-    CarValidator.isValidNameRange(name);
+    CarValidator.validateNameRange(name);
     return name;
   }
 

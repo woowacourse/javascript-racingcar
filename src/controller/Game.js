@@ -23,8 +23,8 @@ class Game {
     const carNames = await Input.carName();
     const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
 
-    CarValidator.isValidCount(cars);
-    CarValidator.isNameDuplicate(cars);
+    CarValidator.validateCount(cars);
+    CarValidator.validateNameDuplicate(cars);
 
     return cars;
   }
@@ -32,7 +32,7 @@ class Game {
   async getTryCountFromInput() {
     const tryCount = await Input.tryCount();
 
-    TryCountValidator.isNaturalNumber(Number(tryCount));
+    TryCountValidator.validateNaturalNumber(Number(tryCount));
 
     return tryCount;
   }

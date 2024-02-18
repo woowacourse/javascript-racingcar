@@ -5,19 +5,19 @@ const { CAR, CAR_NAME } = Condition;
 const { ERROR } = Message;
 
 class CarValidator {
-  static isValidCount(cars) {
+  static validateCount(cars) {
     if (cars.length < CAR.COUNT.MIN) {
       throw new Error(ERROR.CAR_COUNT);
     }
   }
 
-  static isNameDuplicate(cars) {
+  static validateNameDuplicate(cars) {
     if (new Set(cars.map((car) => car.getName())).size !== cars.length) {
       throw new Error(ERROR.CAR_NAME_DUPLICATE);
     }
   }
 
-  static isValidNameRange(carName) {
+  static validateNameRange(carName) {
     if (carName.length < CAR_NAME.RANGE.MIN || carName.length > CAR_NAME.RANGE.MAX) {
       throw new Error(ERROR.CAR_NAME_RANGE);
     }

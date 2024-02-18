@@ -5,7 +5,7 @@ const { ERROR } = Message;
 const { TRY_COUNT } = Condition;
 
 class TryCountValidator {
-  static isNaturalNumber(tryCount) {
+  static validateNaturalNumber(tryCount) {
     if (!Number.isInteger(tryCount) || tryCount < TRY_COUNT.RANGE.MIN) {
       throw new Error(ERROR.TRY_COUNT_RANGE);
     }
