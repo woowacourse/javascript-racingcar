@@ -8,9 +8,9 @@ export default class RaceExecutionManager {
 
   #output;
 
-  constructor(raceInfo, ouputView) {
+  constructor(raceInfo, outputView) {
     this.#raceInfo = raceInfo;
-    this.#output = ouputView;
+    this.#output = outputView;
   }
 
   executeRace() {
