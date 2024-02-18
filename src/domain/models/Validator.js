@@ -15,8 +15,8 @@ export class Validator {
 	}
 
 	static validateCountOfAttempt(count) {
-		Validator.validateNaturalNumber(count);
-		Validator.validateOverLimitCount(count);
+		Validator.validateIntegerNumber(count);
+		Validator.validateOverLimitCountRange(count);
 		return count;
 	}
 
@@ -38,13 +38,13 @@ export class Validator {
 		}
 	}
 
-	static validateNaturalNumber(count) {
+	static validateIntegerNumber(count) {
 		if (!Number.isInteger(count)) {
 			throw new AppError(ERROR_MESSAGE.NOT_INTEGER);
 		}
 	}
 
-	static validateOverLimitCount(count) {
+	static validateOverLimitCountRange(count) {
 		if (
 			count < VALID_CONSTANTS_CONFIG.ATTEMPT_MIN_LIMIT_RANGE ||
 			count > VALID_CONSTANTS_CONFIG.ATTEMPT_MAX_LIMIT_RANGE
