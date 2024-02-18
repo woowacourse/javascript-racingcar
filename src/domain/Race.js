@@ -1,6 +1,6 @@
 import Car from './Car';
-import CONFIG from './constants/config';
-import pickRandomNumber from './utils/pickRandomNumber';
+import CONFIG from '../constants/config';
+import pickRandomNumber from '../utils/pickRandomNumber';
 
 class Race {
   #carList;

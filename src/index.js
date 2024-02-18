@@ -1,7 +1,7 @@
-import Race from './Race';
-import InputView from './views/InputView';
-import OutputView from './views/OutputView';
-import Validator from './Validator';
+import Race from './domain/Race';
+import InputView from './view/InputView';
+import OutputView from './view/OutputView';
+import Validator from './validator/Validator';
 
 class App {
   async play() {

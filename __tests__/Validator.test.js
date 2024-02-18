@@ -1,4 +1,4 @@
-import Validator from '../src/Validator';
+import Validator from '../src/validator/Validator';
 import { ERROR_MESSAGE } from '../src/constants/message';
 import { VALIDATOR_TEST_MESSAGE } from '../src/constants/testMessage';
 

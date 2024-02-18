@@ -1,5 +1,5 @@
-import Car from '../src/Car';
-import Race from '../src/Race';
+import Car from '../src/domain/Car';
+import Race from '../src/domain/Race';
 import CONFIG from '../src/constants/config';
 import { RACE_TEST_MESSAGE } from '../src/constants/testMessage';
 

@@ -1,4 +1,4 @@
-import Car from '../src/Car';
+import Car from '../src/domain/Car';
 import { CAR_TEST_MESSAGE } from '../src/constants/testMessage';
 
 describe(CAR_TEST_MESSAGE.TITLE, () => {
