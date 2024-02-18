@@ -6,7 +6,7 @@ import { RULES, SYMBOLS } from '../statics/constants';
 
 import Random from '../utils/Random';
 
-import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
+import { hasRedundantCarName, hasSingleCarName, isInvalidAttemptNum, isInvalidCarNameForm } from './validate/validator';
 
 class Race {
   #cars;
@@ -51,9 +51,9 @@ class Race {
   }
 
   #validateCarsName(carsNameInput) {
-    if (isInvalidCarName(carsNameInput)) throw new Error(ERRORS.invalidCarName);
+    if (isInvalidCarNameForm(carsNameInput)) throw new Error(ERRORS.invalidCarNameForm);
     if (hasRedundantCarName(carsNameInput)) throw new Error(ERRORS.hasRedundantCarName);
-    if (hasSingleCar(carsNameInput)) throw new Error(ERRORS.hasSingleCar);
+    if (hasSingleCarName(carsNameInput)) throw new Error(ERRORS.hasSingleCarName);
   }
 
   #validateAttemptNum(attemptInput) {
