@@ -4,6 +4,7 @@ const CONDITIONS = Object.freeze({
   minRandomNumber: 0,
   maxRandomNumber: 9,
   maxCarNameLength: 5,
+  winnerSeperator: ', ',
 });
 
 export default CONDITIONS;
