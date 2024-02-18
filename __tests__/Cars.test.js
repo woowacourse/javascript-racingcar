@@ -1,17 +1,4 @@
-import Cars from '../src/Cars';
-import RandomNumberGenerator from '../src/utils/RandomNumberGenerator';
-
-const mockRandom = (number) => {
-  RandomNumberGenerator.pickRandomNumber = jest.fn();
-  RandomNumberGenerator.pickRandomNumber.mockReturnValueOnce(number);
-};
-
-const mockRandoms = (numbers) => {
-  RandomNumberGenerator.pickRandomNumber = jest.fn();
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, RandomNumberGenerator.pickRandomNumber);
-};
+import Cars from '../src/domain/Cars';
 
 describe('Cars 클래스 함수 검사', () => {
   test.each([
@@ -27,7 +14,6 @@ describe('Cars 클래스 함수 검사', () => {
     [[0, 2, 8], ['c']],
   ])('랜덤 값에 따른 우승자 배열 확인', (number, expected) => {
     const cars = new Cars(['a', 'b', 'c']);
-    mockRandoms(number);
     cars.moveAllCars();
     expect(cars.findWinners()).toEqual(expected);
   });

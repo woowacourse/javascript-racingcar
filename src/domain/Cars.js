@@ -1,5 +1,6 @@
 import Car from '../domain/Car';
 import { ERROR_MESSAGE, NUMBERS } from '../constants/constants';
+import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 class Cars {
   #carList;
   constructor(carNameArray = []) {
@@ -8,7 +9,8 @@ class Cars {
 
   moveAllCars() {
     this.#carList.forEach((car) => {
-      car.move();
+      const randomValue = RandomNumberGenerator.pickRandomNumber();
+      car.move(randomValue);
     });
   }
 
