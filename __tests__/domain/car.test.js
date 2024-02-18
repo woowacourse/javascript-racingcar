@@ -1,5 +1,5 @@
-import { CAR_CONSTANTS } from '../src/constanst';
-import Car from '../src/domain/car';
+import { CAR_CONSTANTS } from '../../src/constanst';
+import Car from '../../src/domain/car';
 
 describe('Car 객체 테스트', () => {
   let car;
