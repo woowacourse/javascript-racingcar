@@ -3,7 +3,6 @@ const getNumberToDistanceSymbol = require('../utils/getNumberToDistanceSymbol.js
 const { OUTPUT_MESSAGES } = require('../constant/messages.js');
 
 const OutputView = {
-  // 추후 수정
   printNewLine() {
     console.log();
   },
