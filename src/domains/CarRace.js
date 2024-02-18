@@ -5,9 +5,11 @@ import { RULES } from '../constants/car-race';
 
 class CarRace {
   #cars;
+  #tryCount;
 
-  constructor(cars) {
+  constructor(cars, tryCount) {
     this.#cars = this.#initRaceCars(cars);
+    this.#tryCount = tryCount;
   }
 
   #initRaceCars(cars) {
@@ -35,15 +37,25 @@ class CarRace {
     });
   }
 
-  makeRoundResult() {
-    const result = {};
+  #makeRoundResult() {
+    const roundResult = {};
 
     this.#cars.forEach((car) => {
       this.#moveCars();
-      result[car.name] = car.position;
+      roundResult[car.name] = car.position;
     });
+    return roundResult;
+  }
 
-    return deepFreeze(result);
+  makeTotalRoundResult() {
+    const results = [];
+
+    for (let count = 0; count < this.#tryCount; count++) {
+      const roundResult = this.#makeRoundResult();
+      results.push(roundResult);
+    }
+
+    return deepFreeze(results);
   }
 
   judgeWinners() {
