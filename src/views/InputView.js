@@ -37,10 +37,10 @@ const Private = {
     });
   },
 
-  async robustInput(readline, Object) {
+  async robustInput(readline, EntityObject) {
     while (true) {
       try {
-        return new Object(await readline());
+        return new EntityObject(await readline());
       } catch (error) {
         OutputView.print(error.message);
       }
