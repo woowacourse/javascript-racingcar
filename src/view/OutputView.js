@@ -22,7 +22,7 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    const result = winners.join(OPTION.OUPUT_SPLITER);
+    const result = winners.join(OPTION.OUPUT_DELIMITER);
     this.print(`${MESSAGE.WINNER} ${result}`);
   },
 };

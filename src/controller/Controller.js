@@ -35,7 +35,7 @@ class Controller {
   async #inputCarNames() {
     const namesInput = await InputView.readCarNames();
     const carNames = Preprocessor.process(
-      namesInput.split(OPTION.INPUT_SPLITER),
+      namesInput.split(OPTION.INPUT_DELIMITER),
       [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings],
     );
 
