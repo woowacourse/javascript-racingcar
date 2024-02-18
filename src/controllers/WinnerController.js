@@ -13,7 +13,7 @@ class WinnerController {
   }
 
   run() {
-    const winnerMessage = MESSAGES.winnerHeader + this.findWinners().join(CONDITIONS.WINNER_RESULT_SEPARATOR);
+    const winnerMessage = MESSAGES.winnerHeader + this.findWinners().join(CONDITIONS.winnerResultSeparator);
     OutputView.print(winnerMessage);
   }
 

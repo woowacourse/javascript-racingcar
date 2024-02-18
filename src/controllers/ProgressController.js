@@ -30,4 +30,5 @@ class ProgressController {
     OutputView.printProgress(this.#carList.getNames(), this.#carList.getPositions());
   }
 }
+
 export default ProgressController;
