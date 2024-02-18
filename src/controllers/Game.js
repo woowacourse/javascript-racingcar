@@ -1,7 +1,7 @@
 import { Car } from '../models/index.js';
 import OutputView from '../views/OutView.js';
 import InputController from './InputController.js';
-import { OUTPUT_MESSAGE } from '../constants/Message.js';
+import { OUTPUT_MESSAGE } from '../constants/index.js';
 
 class Game {
   #carList = [];
@@ -42,23 +42,28 @@ class Game {
   #printRoundResult() {
     this.#carList.forEach((car) => {
       const { name, step } = car.getCarInfo();
-      const message = `${name} : ${Array.from({ length: step }, () => '-').join(
-        '',
-      )} `;
+      const message = `${name} : ${'-'.repeat(step)} `;
 
       OutputView.printMessage(message);
     });
   }
 
+  #printGameplayMessage() {
+    OutputView.printMessage(
+      `\n${OUTPUT_MESSAGE.roundResult}`,
+    );
+  }
   #printRoundMessage() {
     OutputView.printMessage(
-      `\n${OUTPUT_MESSAGE.roundResult}\n라운드:${this.#round.current}\n`,
+      `\n라운드:${this.#round.current}`,
     );
   }
 
   play() {
-    this.#printRoundMessage();
+    this.#printGameplayMessage();
     while (this.#round.total >= this.#round.current) {
+      this.#printRoundMessage();
+
       this.#carList.forEach((car) => car.movement());
       this.#printRoundResult();
       this.#round.current += 1;

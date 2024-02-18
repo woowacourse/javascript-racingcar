@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE, INPUT_MESSAGE } from '../constants/Message.js';
+import { ERROR_MESSAGE, INPUT_MESSAGE } from '../constants/index.js';
 import { CarValidator, RoundValidator } from '../models/index.js';
 import { InputView, OutputView } from '../views/index.js';
 
