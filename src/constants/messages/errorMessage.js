@@ -8,5 +8,6 @@ const ERROR_MESSAGE = deepFreeze({
   OVER_LIMIT_COUNT: '최대 시도 횟수는 20회입니다.',
   HAVE_SPECIAL_CHARACTERS: '특수문자는 입력할 수 없습니다.',
   OUT_OF_RANGE: '0~5자 사이의 이름을 입력해주세요.',
+  NOT_INTEGER: '정수만 입력 가능해요!',
 });
 export default ERROR_MESSAGE;
