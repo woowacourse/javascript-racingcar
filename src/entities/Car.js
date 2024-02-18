@@ -1,8 +1,12 @@
+import CONDITIONS from '../constants/Conditions.js';
+import ERRORS from '../constants/Errors.js';
+
 class Car {
   #name;
   #position;
 
   constructor(name) {
+    name = name.trim();
     this.#validate(name);
     this.#name = name;
     this.#position = 0;

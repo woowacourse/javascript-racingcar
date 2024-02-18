@@ -5,7 +5,7 @@ const OutputView = {
     console.log(message);
   },
 
-  printProgress([cars, positions]) {
+  printProgress(cars, positions) {
     cars.forEach((car, index) => {
       this.print(`${car} : ${CONDITIONS.progressMarker.repeat(positions[index])}`);
     });

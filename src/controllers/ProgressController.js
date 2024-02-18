@@ -1,5 +1,5 @@
 import MESSAGES from '../constants/Messages.js';
-import OutputView from '../views/outputView.js';
+import OutputView from '../views/OutputView.js';
 
 class ProgressController {
   #cars;
@@ -26,7 +26,7 @@ class ProgressController {
   }
 
   #printProgress() {
-    OutputView.printProgress(this.#cars.getState());
+    OutputView.printProgress(this.#cars.getNames(), this.#cars.getPositions());
   }
 }
 export default ProgressController;

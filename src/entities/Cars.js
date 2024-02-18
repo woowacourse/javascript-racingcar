@@ -1,45 +1,30 @@
-import ERRORS from '../constants/Errors.js';
 import CONDITIONS from '../constants/Conditions.js';
+import Car from './Car.js';
 
 class Cars {
-  #names;
-  #positions;
+  #cars;
 
   constructor(carStr) {
-    this.#validate(carStr);
-    this.#names = carStr.split(',').map(car => car.trim());
-    this.#positions = [...Array(this.#names.length)].map(() => 0);
+    this.#cars = carStr.split(',').map(carName => new Car(carName));
   }
 
   progress(randoms) {
-    randoms.forEach((random, index) => {
-      this.#positions[index] += random >= CONDITIONS.progressRandomThreshold ? 1 : 0;
+    this.#cars.forEach((car, i) => {
+      if (randoms[i] >= CONDITIONS.progressRandomThreshold) {
+        car.moveForward();
+      }
     });
   }
 
-  getState() {
-    return [this.#names, this.#positions];
+  getNames() {
+    return this.#cars.map(car => car.getName());
+  }
+  getPositions() {
+    return this.#cars.map(car => car.getPosition());
   }
 
   getCarsCount() {
-    return this.#names.length;
-  }
-
-  #validateLength(carStr) {
-    if (carStr.split(',').some(car => car.trim().length > CONDITIONS.maxCarNameLength)) {
-      throw new Error(ERRORS.carNameLength);
-    }
-  }
-
-  #validateBlank(carStr) {
-    if (carStr.split(',').some(car => car.trim().length === 0)) {
-      throw new Error(ERRORS.carNameBlank);
-    }
-  }
-
-  #validate(carStr) {
-    this.#validateLength(carStr);
-    this.#validateBlank(carStr);
+    return this.#cars.length;
   }
 }
 

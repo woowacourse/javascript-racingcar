@@ -1,17 +1,15 @@
-import MESSAGES from '../constants/Messages.js';
-import OutputView from '../views/outputView.js';
-
 class WinnerService {
   #carNames;
   #positions;
 
-  constructor(carsState) {
-    [this.#carNames, this.#positions] = carsState;
+  constructor(carNames, positions) {
+    this.#carNames = carNames;
+    this.#positions = positions;
   }
 
   findWinner() {
-    const max = Math.max(...this.#positions);
-    return this.#carNames.filter((_, i) => this.#positions[i] === max);
+    const maxPosition = Math.max(...this.#positions);
+    return this.#carNames.filter((_, i) => this.#positions[i] === maxPosition);
   }
 }
 
