@@ -60,3 +60,6 @@
   - [x] 변수 명 winner 복수형 의미를 담아 s 붙이기
   - [x] 함수명은 동사형으로! (repeatable -> repeat)
   - [x] 불필요한 객체 형태의 export를 export const 형식으로 변경
+
+7. step2 변경 사항
+  - [x] gitignore 수정
