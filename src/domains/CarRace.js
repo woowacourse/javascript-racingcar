@@ -1,5 +1,5 @@
-import deepFreeze from '../utils/deepFreeze';
 import Car from './Car';
+import deepFreeze from '../utils/deepFreeze';
 import pickNumberInRange from '../utils/pickNumberInRange';
 import { RULES } from '../constants/car-race';
 
@@ -49,7 +49,6 @@ class CarRace {
       const roundResult = this.#makeRoundResult();
       results.push(roundResult);
     }
-
     return deepFreeze(results);
   }
 
