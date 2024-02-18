@@ -5,8 +5,8 @@ const OutputView = {
     OutputView.print(`${LINE_BREAK}${MESSAGE.RACE_HEADER}`);
   },
 
-  printRaceWinners(winners) {
-    console.log(`${MESSAGE.WINNER} ${winners.join(', ')}`);
+  printRaceWinner(winner) {
+    console.log(`${MESSAGE.WINNER} ${winner.join(', ')}`);
   },
 
   printTurnResult(turnResult) {

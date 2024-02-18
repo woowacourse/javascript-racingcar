@@ -10,7 +10,7 @@ class App {
     const race = new Race(carNameList);
 
     OutputView.printRaceHeader();
-    OutputView.printRaceWinners(this.#getWinner(race, turnCount));
+    OutputView.printRaceWinner(this.#getWinner(race, turnCount));
   }
 
   #runRace(race, turnCount) {
