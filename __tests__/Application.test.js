@@ -1,7 +1,7 @@
 import App from '../src/App';
 import Console from '../src/utils/Console';
 import Random from '../src/utils/Random';
-import { RANDOMCASES } from '../src/statics/test_constants';
+import { RANDOMCASES } from './constants/test_constants';
 
 const mockRandoms = numbers => {
   Random.pickNumberInRange = jest.fn();

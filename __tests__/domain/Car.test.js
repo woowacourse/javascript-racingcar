@@ -1,6 +1,6 @@
 import Car from '../../src/domain/Car';
 import Random from '../../src/utils/Random';
-import { RANDOMCASES, TEST_RULES } from '../../src/statics/test_constants';
+import { TEST_RULES } from '../constants/test_constants';
 
 const mockRandoms = numbers => {
   Random.pickNumberInRange = jest.fn();

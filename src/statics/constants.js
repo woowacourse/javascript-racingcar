@@ -16,6 +16,4 @@ export const RULES = {
   minAttemptNum: 1,
   maxRandomRange: 9,
   moveThreshold: 4,
-  movingForward: 5,
-  stop: 1,
 };
