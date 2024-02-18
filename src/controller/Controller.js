@@ -52,10 +52,10 @@ class Controller {
 
     const tryCount = this.#carGame.getTryCount();
 
-    for (let i = 0; i < tryCount; i += 1) {
+    Array.from({ length: tryCount }).map(() => {
       this.#carGame.moveCars();
-      this.#displayCurrentLocation();
-    }
+      return this.#displayCurrentLocation();
+    });
   }
 
   #displayCurrentLocation() {
