@@ -1,7 +1,8 @@
-import OPTIONS from '../constants/options.js';
+import OPT from '../constant/options.js';
 import CarGame from '../model/CarGame.js';
-import ExceptionHandler from '../utils/ExceptionHandler.js';
+import ExceptionHandler from '../utils/error/ExceptionHandler.js';
 import Prep from '../utils/Preprocessor.js';
+import validator from '../utils/validation/validator.js';
 import inputView from '../view/inputView.js';
 import outputView from '../view/outputView.js';
 
@@ -21,9 +22,11 @@ class Controller {
     const carNamesInput = await inputView.readCarNames();
 
     const carNames = Prep.process(carNamesInput, [
-      [Prep.splitStringByDelimiter, OPTIONS.INPUT.carNameDelimiter],
+      [Prep.splitStringByDelimiter, OPT.INPUT.carNameDelimiter],
       Prep.trimEdgeWhitespaces
     ]);
+
+    validator.carNamesValidation(carNames);
 
     this.#carGame.setCars(carNames);
   }
@@ -35,6 +38,8 @@ class Controller {
       Prep.trimEdgeWhitespaces,
       Prep.convertStringToNumber
     ]);
+
+    validator.tryCountValidation(tryCount);
 
     this.#carGame.setTryCount(tryCount);
   }
