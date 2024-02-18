@@ -1,4 +1,4 @@
-import { ERROR } from '../Constant/Constant.js';
+import { ERROR, TRY_NUMBER } from '../Constant/Constant.js';
 import validate from '../Utils/ValidateUtils.js';
 
 const tryNumber = {
@@ -6,6 +6,7 @@ const tryNumber = {
 		this.integer(number);
 		this.notANum(number);
 		this.empty(number);
+		this.less(number);
 	},
 
 	integer(number) {
@@ -22,6 +23,12 @@ const tryNumber = {
 
 	empty(number) {
 		if (validate.isEmpty(number)) {
+			throw new Error(ERROR.TRY_NUMBER);
+		}
+	},
+
+	less(number) {
+		if (validate.isNumberLess(number, TRY_NUMBER.MAX_NUMBER)) {
 			throw new Error(ERROR.TRY_NUMBER);
 		}
 	},
