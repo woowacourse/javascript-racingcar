@@ -14,6 +14,10 @@ class Cars {
     });
   }
 
+  getCarList() {
+    return this.#carList;
+  }
+
   getEachStepString() {
     return this.#carList.reduce((pre, cur) => {
       return pre + cur.getDistanceString();

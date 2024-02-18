@@ -9,14 +9,18 @@ class Car {
     this.#distance = NUMBERS.DEFAULT_CAR_DISTANCE;
   }
 
-  static canMove(randomValue) {
+  canMove(randomValue) {
     return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
   }
 
   move(randomValue) {
     if (this.canMove(randomValue)) {
-      this.#distance += NUMBERS.MOVE_INCREMENT;
+      this.setDistance(this.#distance + NUMBERS.MOVE_INCREMENT);
     }
+  }
+
+  setDistance(distance) {
+    this.#distance = distance;
   }
 
   getName() {
