@@ -1,12 +1,10 @@
 import Car from './Car.js';
 
 class Cars {
-  cars = [];
+  #cars;
 
   makeCars(carNames) {
-    carNames.forEach((carName) => {
-      this.cars.push(new Car(carName));
-    });
+    this.#cars = carNames.map((carName) => new Car(carName));
   }
 }
 
