@@ -1,8 +1,12 @@
-import { OPTION } from '../constants/System.js';
-import CarGame from '../model/CarGame.js';
-import Preprocessor from '../utils/Preprocessor.js';
+// domain
+import CarGame from '../domain/CarGame.js';
+// view
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
+// constants
+import { OPTION } from '../constants/System.js';
+// utils
+import Preprocessor from '../utils/Preprocessor.js';
 
 class Controller {
   #carGame;
@@ -11,13 +15,11 @@ class Controller {
     this.#carGame = new CarGame();
   }
 
-  // QNA: 멤버변수에 값을 저장하는 방식 vs 값을 반환받아 저장하는 방법
   async inputGameInfo() {
     await this.#retryAndErrorLogging(this.#inputCarNames.bind(this));
     await this.#retryAndErrorLogging(this.#inputTryCount.bind(this));
   }
 
-  // QNA: private 함수에 'this'를 사용해야하는 이유 (eslint)
   // eslint-disable-next-line class-methods-use-this
   async #retryAndErrorLogging(inputFunction) {
     while (true) {

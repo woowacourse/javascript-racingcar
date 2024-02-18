@@ -1,3 +1,4 @@
+// constants
 import { ERROR_MESSAGE, MESSAGE, OPTION } from '../constants/System.js';
 
 const OutputView = {

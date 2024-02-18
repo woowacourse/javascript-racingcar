@@ -1,5 +1,7 @@
-import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
+// domain
 import Car from './Car.js';
+// constants
+import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
 
 class CarGame {
   #tryCount;
