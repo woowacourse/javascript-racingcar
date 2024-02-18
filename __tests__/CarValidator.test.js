@@ -1,5 +1,5 @@
-import { CAR_CONSTANTS } from '../src/Constants';
-import CarValidator from '../src/Validator/CarValidator';
+import { CAR_CONSTANTS } from '../src/constanst';
+import CarValidator from '../src/validator/carValidator';
 
 describe('CarValidator 객체 테스트', () => {
   const { NAME_LENGTH_RANGE } = CAR_CONSTANTS;

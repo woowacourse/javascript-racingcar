@@ -1,4 +1,4 @@
-import RacingGameController from './Controller/RacingGameController';
+import RacingGameController from './controller/RacingGameController';
 
 class App {
   async run() {

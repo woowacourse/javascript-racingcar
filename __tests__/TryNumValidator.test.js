@@ -1,5 +1,5 @@
-import { TRY_CONSTANTS } from '../src/Constants/Constants';
-import TryNumValidator from '../src/Validator/TryNumValidator';
+import { TRY_CONSTANTS } from '../src/constanst/app-constants';
+import TryNumValidator from '../src/validator/tryNumValidator';
 
 describe('TryNumValidator 객체 테스트', () => {
   const { TRY_RANGE } = TRY_CONSTANTS;

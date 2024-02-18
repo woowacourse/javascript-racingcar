@@ -1,4 +1,4 @@
-import { CAR_CONSTANTS, SYMBOL } from './Constants';
+import { CAR_CONSTANTS, SYMBOL } from './app-constants';
 
 const { NAME_LENGTH_RANGE } = CAR_CONSTANTS;
 const { MOVE_SYMBOL } = SYMBOL;

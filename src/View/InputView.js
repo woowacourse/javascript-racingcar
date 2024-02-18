@@ -1,5 +1,5 @@
 import readLine from 'readline';
-import { SYMBOL, VIEW_MESSAGES } from '../Constants';
+import { SYMBOL, VIEW_MESSAGES } from '../constanst';
 
 const { PROMPT_CAR_NAMES, PROMPT_TRY } = VIEW_MESSAGES;
 const { DIVIDE_SYMBOL } = SYMBOL;

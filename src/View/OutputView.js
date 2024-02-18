@@ -1,4 +1,4 @@
-import { SYMBOL, VIEW_MESSAGES } from '../Constants';
+import { SYMBOL, VIEW_MESSAGES } from '../constanst';
 
 const { WINNER_PREFIX, DISPLAY_CURRENT_DISTANCE } = VIEW_MESSAGES;
 const { DIVIDE_SYMBOL, BLANK } = SYMBOL;

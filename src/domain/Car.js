@@ -1,4 +1,4 @@
-import { CAR_CONSTANTS } from '../Constants/Constants';
+import { CAR_CONSTANTS } from '../constanst/app-constants';
 
 const { MIN_MOVE_THRESHOLD, MOVE_DISTANCE, INITIAL_DISTANCE } = CAR_CONSTANTS;
 

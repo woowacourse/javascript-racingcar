@@ -1,5 +1,5 @@
 import Car from '../domain/Car';
-import { CarValidator, CommonValidator, TryNumValidator } from '../Validator';
+import { CarValidator, CommonValidator, TryNumValidator } from '../validator';
 
 export default class GameSetupManager {
   #input;

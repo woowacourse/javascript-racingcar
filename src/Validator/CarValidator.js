@@ -1,4 +1,4 @@
-import { CAR_CONSTANTS, ERROR_MESSAGES, SYMBOL } from '../Constants';
+import { CAR_CONSTANTS, ERROR_MESSAGES, SYMBOL } from '../constanst';
 import { AppError } from '../utils';
 
 const { NAME_LENGTH_RANGE } = CAR_CONSTANTS;

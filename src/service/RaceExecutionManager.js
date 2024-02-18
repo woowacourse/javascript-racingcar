@@ -1,4 +1,4 @@
-import { SYSTEM_CONSTANTS } from '../Constants';
+import { SYSTEM_CONSTANTS } from '../constanst';
 import { pickRandomNumInRange } from '../utils';
 
 const { RANDOM_NUM_RAGE } = SYSTEM_CONSTANTS;
