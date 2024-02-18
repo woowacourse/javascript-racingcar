@@ -7,7 +7,7 @@ const Console = {
   validateQuery(query) {
     return new Promise((resolve, reject) => {
       if (!query || typeof query !== 'string') {
-        reject(new Error(ERROR.query));
+        reject(new Error(ERROR.QUERY_NOT_NULL));
       }
 
       resolve();
@@ -17,7 +17,7 @@ const Console = {
   makeReadLineQuestion(query, rl) {
     return new Promise((resolve, reject) => {
       rl.question(query, (input) => {
-        if (input === '') reject(new Error(ERROR.null));
+        if (input === '') reject(new Error(ERROR.INPUT_NOT_NULL));
         rl.close();
         resolve(input);
       });

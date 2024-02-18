@@ -13,7 +13,7 @@ const CarValidator = {
 
   validateNameDuplicate(cars) {
     if (new Set(cars.map((car) => car.getName())).size !== cars.length) {
-      throw new Error(ERROR.CAR_NAME_DUPLICATE);
+      throw new Error(ERROR.CAR_NAME_NO_DUPLICATE);
     }
   },
 
