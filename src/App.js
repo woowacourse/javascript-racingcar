@@ -3,7 +3,6 @@ import { Validator } from './domain/models/Validator.js';
 import OutputView from './view/OutputView.js';
 import ScoreBoard from './domain/models/ScoreBoard.js';
 import Game from './domain/models/Game.js';
-
 class App {
 	#scoreBoard;
 	#count;
