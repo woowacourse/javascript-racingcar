@@ -1,4 +1,4 @@
-import CONDITIONS from '../constants/Conditions.js';
+import CONDITIONS from '../domain/constants/Conditions.js';
 import Car from './Car.js';
 
 class CarList {
