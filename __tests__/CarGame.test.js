@@ -1,6 +1,8 @@
 /* eslint-disable max-lines-per-function */
+// domain
+import CarGame from '../src/domain/CarGame.js';
+// constants
 import { ERROR_MESSAGE } from '../src/constants/System.js';
-import CarGame from '../src/model/CarGame.js';
 
 describe('Car Game Test', () => {
   let carGame;
