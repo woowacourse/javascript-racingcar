@@ -1,3 +1,3 @@
-export default function generateRandomNumber(range) {
-	return Math.floor(Math.random() * (range.to - range.from + 1)) + range.from;
+export default function generateRandomNumber({ from, to }) {
+	return Math.floor(Math.random() * (to - from + 1)) + from;
 }
