@@ -4,9 +4,9 @@ const LINE_BREAK = '\n';
 const ERROR_MESSAGE_PREFIX = '[ERROR]';
 
 const MESSAGE = {
-  CAR_NAME_LIST_INPUT: `경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).${LINE_BREAK}`,
-  TURN_COUNT_INPUT: `시도할 횟수는 몇 회인가요?${LINE_BREAK}`,
-  RACE_HEADER: `${LINE_BREAK}실행 결과`,
+  CAR_NAME_LIST_INPUT: '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).',
+  TURN_COUNT_INPUT: '시도할 횟수는 몇 회인가요?',
+  RACE_HEADER: '실행 결과',
   WINNER: '최종 우승자:',
   POSITION_SYMBOL: '-',
 };
@@ -19,4 +19,4 @@ const ERROR_MESSAGE = {
   TURN_COUNT_IS_NOT_NATURAL_NUMBER: `${ERROR_MESSAGE_PREFIX} 시도할 횟수는 ${CONFIG.MIN_TURN_COUNT} 이상의 자연수로만 입력해주세요.`,
 };
 
-export { MESSAGE, ERROR_MESSAGE };
+export { LINE_BREAK, MESSAGE, ERROR_MESSAGE };

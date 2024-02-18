@@ -1,7 +1,11 @@
-import { MESSAGE } from '../constants/message';
+import { LINE_BREAK, MESSAGE } from '../constants/message';
 
 const OutputView = {
-  printWinners(winners) {
+  printRaceHeader() {
+    OutputView.print(`${LINE_BREAK}${MESSAGE.RACE_HEADER}`);
+  },
+
+  printRaceWinners(winners) {
     console.log(`${MESSAGE.WINNER} ${winners.join(', ')}`);
   },
 

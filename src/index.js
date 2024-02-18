@@ -2,7 +2,6 @@ import Race from './Race';
 import InputView from './views/InputView';
 import OutputView from './views/OutputView';
 import Validator from './Validator';
-import { MESSAGE } from './constants/message';
 
 class App {
   async play() {
@@ -10,8 +9,8 @@ class App {
     const turnCount = await this.#readTurnCount();
     const race = new Race(carNameList);
 
-    OutputView.print(MESSAGE.RACE_HEADER);
-    OutputView.printWinners(this.#getWinner(race, turnCount));
+    OutputView.printRaceHeader();
+    OutputView.printRaceWinners(this.#getWinner(race, turnCount));
   }
 
   #runRace(race, turnCount) {
