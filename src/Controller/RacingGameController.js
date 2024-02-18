@@ -1,6 +1,5 @@
-import { InputView, OutputView } from '../View';
-import GameSetupManager from '../service/GameSetupManager';
-import RaceExecutionManager from '../service/RaceExecutionManager';
+import { InputView, OutputView } from '../view';
+import { GameSetupManager, RaceExecutionManager } from '../service';
 
 export default class RacingGameController {
   async run() {
