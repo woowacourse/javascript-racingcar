@@ -1,6 +1,5 @@
 import Car from "../src/domain/Car.js";
 import Cars from "../src/domain/Cars.js";
-import { mockPickRandomNumberBetween } from "../testUtils/mock.js";
 
 describe("Cars 유닛 테스트", () => {
   describe("기능 테스트", () => {
@@ -26,9 +25,7 @@ describe("Cars 유닛 테스트", () => {
         ({ randomNumbers, expected }) => {
           const [expected1, expected2, expected3] = expected;
 
-          mockPickRandomNumberBetween(randomNumbers);
-
-          cars.goAll();
+          cars.goAll(randomNumbers);
 
           expect(car1.getMileage()).toBe(expected1);
           expect(car2.getMileage()).toBe(expected2);
@@ -71,9 +68,7 @@ describe("Cars 유닛 테스트", () => {
       const MOCK_RANDOM_NUMBERS = [5, 1, 2];
       const expected = [NAME1];
 
-      mockPickRandomNumberBetween(MOCK_RANDOM_NUMBERS);
-
-      cars.goAll();
+      cars.goAll(MOCK_RANDOM_NUMBERS);
 
       expect(cars.getFirstPlaceNames()).toEqual(expected);
     });

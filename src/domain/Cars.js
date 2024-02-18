@@ -12,8 +12,8 @@ export default class Cars {
     this.#cars = cars;
   }
 
-  goAll() {
-    this.#cars.forEach((car) => car.go());
+  goAll(numbers) {
+    this.#cars.forEach((car, index) => car.go(numbers[index]));
   }
 
   getMileageBoard() {
@@ -23,6 +23,10 @@ export default class Cars {
   getFirstPlaceNames() {
     const firstPlaceCars = this.#getFirstPlaces();
     return firstPlaceCars.map((car) => car.getName());
+  }
+
+  getLength() {
+    return this.#cars.length;
   }
 
   #validate(cars) {
