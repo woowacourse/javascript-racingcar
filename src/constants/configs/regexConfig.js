@@ -2,7 +2,7 @@ import deepFreeze from '../../utils/deepFeeze.js';
 
 /* eslint-disable no-useless-escape */
 const REGEX_CONFIG = deepFreeze({
-  special_character: `/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/`,
+  SPECIAL_CHARACTER: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/,
 });
 
 export default REGEX_CONFIG;
