@@ -1,5 +1,5 @@
-import Message from "../constant/Message.js";
-import Condition from "../constant/Condition.js";
+import Message from "../../constant/Message.js";
+import Condition from "../../constant/Condition.js";
 
 const { ERROR } = Message;
 const { TRY_COUNT } = Condition;

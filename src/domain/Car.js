@@ -1,4 +1,4 @@
-import CarValidator from "../validator/CarValidator";
+import CarValidator from "./validator/CarValidator";
 import Condition from "../constant/Condition";
 
 const { CAR_ADVANCE } = Condition;
