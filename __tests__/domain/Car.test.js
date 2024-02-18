@@ -1,4 +1,4 @@
-import { Car } from "../../src/models";
+import { Car } from "../../src/domain";
 import { gameUtils } from "../../src/utils";
 
 const mockRandoms = (numbers) => {

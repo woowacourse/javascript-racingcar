@@ -1,5 +1,5 @@
 import Cars from "../../src/collection/Cars";
-import { Car, Race } from "../../src/models";
+import { Car, Race } from "../../src/domain";
 import { gameUtils } from "../../src/utils";
 
 const mockRandoms = (numbers) => {

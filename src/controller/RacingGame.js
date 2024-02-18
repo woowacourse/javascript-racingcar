@@ -1,4 +1,4 @@
-import { Car, Race } from '../models';
+import { Car, Race } from '../domain';
 import { InputView, OutputView } from '../views';
 import Cars from '../collection/Cars';
 
