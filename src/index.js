@@ -10,7 +10,7 @@ class App {
     const turnCount = await this.#readTurnCount();
     const race = new Race(carNameList);
 
-    OutputView.print(MESSAGE.RACE_RESULT);
+    OutputView.print(MESSAGE.RACE_HEADER);
     OutputView.printWinners(this.#getWinner(race, turnCount));
   }
 
