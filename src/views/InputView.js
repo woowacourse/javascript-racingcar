@@ -1,4 +1,3 @@
-// import Validator from '../Validator';
 import { MESSAGE } from '../constants/message';
 import readLineAsync from '../utils/readLineAsync';
 
