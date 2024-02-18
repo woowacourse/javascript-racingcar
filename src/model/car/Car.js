@@ -11,8 +11,10 @@ class Car {
     this.#name = name;
   }
 
-  move() {
-    this.#location += 1;
+  move(canMove = true) {
+    if (canMove) {
+      this.#location += 1;
+    }
   }
 
   getName() {

@@ -1,4 +1,4 @@
-const Preprocessor = {
+const preprocessor = {
   process(input, funcs) {
     return funcs.reduce((value, func) => {
       if (Array.isArray(func)) {
@@ -30,4 +30,4 @@ const Preprocessor = {
   }
 };
 
-export default Preprocessor;
+export default preprocessor;

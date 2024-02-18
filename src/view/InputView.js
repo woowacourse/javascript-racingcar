@@ -1,5 +1,5 @@
 import { PROMPT } from '../constant/strings.js';
-import readLineAsync from '../utils/ReadLine.js';
+import readLineAsync from '../utils/readLine.js';
 
 const inputView = {
   async readCarNames() {

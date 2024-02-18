@@ -9,14 +9,27 @@ class App {
   }
 
   async run() {
+    await this.#initializeGameInfo();
+    this.#executeGame();
+    this.#displayGameResult();
+  }
+
+  async #initializeGameInfo() {
     const carNames = await retryAsyncWithErrorLogging(() => this.controller.inputCarNames());
     const tryCount = await retryAsyncWithErrorLogging(() => this.controller.inputTryCount());
 
     this.controller.setCarNames(carNames);
     this.controller.setTryCount(tryCount);
+  }
 
-    this.controller.playGame();
-    this.controller.findWinner();
+  #executeGame() {
+    this.controller.executeGame();
+    this.controller.findWinners();
+  }
+
+  #displayGameResult() {
+    this.controller.displayMiddleResults();
+    this.controller.displayFinalWinners();
   }
 }
 

@@ -4,11 +4,13 @@ const OPTIONS = {
   },
   OUTPUT: {
     locationIndicator: '-',
-    finalWinnerDelimiter: ', '
+    finalResultDelimiter: ', '
   },
   CAR: {
     minNameLength: 1,
     maxNameLength: 5,
+    minMoveNumber: 1,
+    maxMoveNumber: 9,
     leastMoveCondition: 4
   }
 };

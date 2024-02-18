@@ -1,4 +1,3 @@
-import OPT from '../constant/options.js';
 import { MESSAGE } from '../constant/strings.js';
 
 const outputView = {
@@ -6,20 +5,21 @@ const outputView = {
     console.log(message);
   },
 
-  printCurrentResultTitle() {
-    this.print(MESSAGE.middleResult);
+  printMiddleResultTitle() {
+    this.print(MESSAGE.middleResultTitle);
   },
 
-  printCurrentLocation(carInfos) {
-    carInfos.forEach(({ name, location }) => {
-      this.print(`${MESSAGE.currentLocation(name, location)}`);
+  printMiddleResults(middleResults) {
+    middleResults.forEach((middleResult) => {
+      middleResult.forEach(({ name, location }) => {
+        this.print(`${MESSAGE.middleResult(name, location)}`);
+      });
+      this.print('');
     });
-    this.print('');
   },
 
-  printWinners(winners) {
-    const result = winners.join(OPT.OUTPUT.finalWinnerDelimiter);
-    this.print(`${MESSAGE.finalWinner}${result}`);
+  printFinalResult(finalWinners) {
+    this.print(`${MESSAGE.finalResult(finalWinners)}`);
   }
 };
 

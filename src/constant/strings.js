@@ -6,9 +6,9 @@ export const NAME = {
 };
 
 export const MESSAGE = {
-  middleResult: '\n실행 결과',
-  finalWinner: '최종 우승자: ',
-  currentLocation: (name, location) => `${name} : ${OPT.OUTPUT.locationIndicator.repeat(location)}`
+  middleResultTitle: '\n실행 결과',
+  middleResult: (name, location) => `${name} : ${OPT.OUTPUT.locationIndicator.repeat(location)}`,
+  finalResult: (names) => `최종 우승자: ${names.join(OPT.OUTPUT.finalResultDelimiter)}`
 };
 
 export const PROMPT = {

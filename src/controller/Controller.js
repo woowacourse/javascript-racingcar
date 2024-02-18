@@ -1,24 +1,24 @@
 import OPT from '../constant/options.js';
-import CarGame from '../model/CarGame.js';
-import Prep from '../utils/Preprocessor.js';
+import RacingGame from '../model/RacingGame.js';
+import prep from '../utils/preprocessor.js';
 import validator from '../utils/validation/validator.js';
 import inputView from '../view/inputView.js';
 import outputView from '../view/outputView.js';
 
 class Controller {
-  #carGame;
+  #racingGame;
 
   constructor() {
-    this.#carGame = new CarGame();
+    this.#racingGame = new RacingGame();
   }
 
   // eslint-disable-next-line class-methods-use-this
   async inputCarNames() {
     const carNamesInput = await inputView.readCarNames();
 
-    const carNames = Prep.process(carNamesInput, [
-      [Prep.splitStringByDelimiter, OPT.INPUT.carNameDelimiter],
-      Prep.trimEdgeWhitespaces
+    const carNames = prep.process(carNamesInput, [
+      [prep.splitStringByDelimiter, OPT.INPUT.carNameDelimiter],
+      prep.trimEdgeWhitespaces
     ]);
 
     validator.carNamesValidation(carNames);
@@ -30,9 +30,9 @@ class Controller {
   async inputTryCount() {
     const tryCountInput = await inputView.readTryCount();
 
-    const tryCount = Prep.process(tryCountInput, [
-      Prep.trimEdgeWhitespaces,
-      Prep.convertStringToNumber
+    const tryCount = prep.process(tryCountInput, [
+      prep.trimEdgeWhitespaces,
+      prep.convertStringToNumber
     ]);
 
     validator.tryCountValidation(tryCount);
@@ -41,32 +41,31 @@ class Controller {
   }
 
   setCarNames(carNames) {
-    this.#carGame.setCars(carNames);
+    this.#racingGame.setCars(carNames);
   }
 
   setTryCount(tryCount) {
-    this.#carGame.setTryCount(tryCount);
+    this.#racingGame.setTryCount(tryCount);
   }
 
-  playGame() {
-    outputView.printCurrentResultTitle();
-
-    const tryCount = this.#carGame.getTryCount();
-
-    for (let i = 0; i < tryCount; i += 1) {
-      this.#carGame.moveCars();
-      this.#displayCurrentLocation();
-    }
+  executeGame() {
+    this.#racingGame.playRacing();
   }
 
-  #displayCurrentLocation() {
-    const carInfos = this.#carGame.getCurrentLocation();
-    outputView.printCurrentLocation(carInfos);
+  findWinners() {
+    this.#racingGame.findWinners();
   }
 
-  findWinner() {
-    const winners = this.#carGame.findWinners();
-    outputView.printWinners(winners);
+  displayMiddleResults() {
+    const middleResults = this.#racingGame.getMiddleResults();
+
+    outputView.printMiddleResultTitle();
+    outputView.printMiddleResults(middleResults);
+  }
+
+  displayFinalWinners() {
+    const finalWinners = this.#racingGame.getFinalWinners();
+    outputView.printFinalResult(finalWinners);
   }
 }
 
