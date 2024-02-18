@@ -1,4 +1,5 @@
 import MESSAGES from '../constants/Messages.js';
+
 import OutputView from '../views/OutputView.js';
 
 class ProgressController {

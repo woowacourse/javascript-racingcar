@@ -1,7 +1,9 @@
 import MESSAGES from '../constants/Messages.js';
-import WinnerService from '../services/WinnerService.js';
-import OutputView from '../views/OutputView.js';
 import CONDITIONS from '../constants/Conditions.js';
+
+import WinnerService from '../services/WinnerService.js';
+
+import OutputView from '../views/OutputView.js';
 
 class WinnerController {
   #carNames;
