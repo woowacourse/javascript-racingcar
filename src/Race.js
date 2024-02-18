@@ -11,7 +11,7 @@ class Race {
 
   proceedTurn(carList = this.#carList) {
     carList.forEach((car) => {
-      const randomNumber = pickRandomNumber();
+      const randomNumber = pickRandomNumber(CONFIG.MIN_RANDOM_NUMBER, CONFIG.MAX_RANDOM_NUMBER);
       this.moveCar(car, randomNumber);
     });
   }
