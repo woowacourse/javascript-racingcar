@@ -41,7 +41,7 @@ describe('자동차 테스트', () => {
       const car = new Car(validInput);
 
       // then
-      expect(typeof car === 'object').toBeTruthy();
+      expect(car instanceof Car).toBeTruthy();
     });
   });
   describe('자동차 전진테스트, (4이상이면 전진)', () => {
