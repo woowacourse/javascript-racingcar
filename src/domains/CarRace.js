@@ -21,19 +21,14 @@ class CarRace {
     return maxPosition;
   }
 
-  #canMove() {
-    const randomNumber = pickNumberInRange(
-      RULES.minRandomNumber,
-      RULES.maxRandomNumber,
-    );
-    return randomNumber >= RULES.moveStandard;
-  }
-
   #moveCars() {
     this.#cars.forEach((car) => {
-      if (this.#canMove()) {
-        car.move();
-      }
+      const randomNumber = pickNumberInRange(
+        RULES.minRandomNumber,
+        RULES.maxRandomNumber,
+      );
+
+      car.move(randomNumber);
     });
   }
 

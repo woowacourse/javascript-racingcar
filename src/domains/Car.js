@@ -9,8 +9,10 @@ class Car {
     this.#position = RULES.initialPosition;
   }
 
-  move() {
-    this.#position += RULES.movingUnit;
+  move(randomNumber) {
+    if (randomNumber >= RULES.moveStandard) {
+      this.#position += RULES.movingUnit;
+    }
   }
 
   get name() {
