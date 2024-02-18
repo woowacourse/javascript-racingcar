@@ -26,7 +26,7 @@ class CarGame {
   }
 
   #validateCarNamesMulti(carNames) {
-    this.validMulti = new Set(new Set(carNames)).size === carNames.length;
+    this.validMulti = new Set(carNames).size === carNames.length;
 
     if (!this.validMulti) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
