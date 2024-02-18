@@ -22,6 +22,7 @@ const RacingGame = {
   async setRoundCount() {
     const inputValue = await InputView.readRoundCount();
     return new Race(inputValue);
+
   },
 };
 
