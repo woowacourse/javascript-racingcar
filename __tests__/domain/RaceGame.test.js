@@ -12,9 +12,9 @@ const mockRandom = (numbers) => {
 describe("RaceGame 클래스 테스트", () => {
   test("start() 메소드를 호출하면 게임을 진행한 후, 결과를 반환한다.", () => {
     //Arrange
-    const randomNumbers = [0, 1, 2, 3, 4, 1, 6, 7, 3, 9];
+    const randomNumbers = [5, 1, 2, 3, 0, 1, 6, 7, 3, 9];
     const expectedResult = {
-      suya: [0, 0, 1, 2, 2],
+      suya: [1, 1, 1, 2, 2],
       sofa: [0, 0, 0, 1, 2],
       winners: ["suya", "sofa"],
     };
