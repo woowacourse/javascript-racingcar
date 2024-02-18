@@ -19,11 +19,19 @@ describe('Car 객체 테스트', () => {
   });
 
   describe('최대 거리 이동 차량이 우승자로 판별되어야 한다.', () => {
-    const move = ({ car, distance }) => {
+    let car1, car2;
+
+    const simulateCarMovement = ({ car, distance }) => {
       Array.from({ length: distance }, () => {
+        console.log(car, distance);
         car.move(MIN_MOVE_THRESHOLD);
       });
     };
+
+    beforeEach(() => {
+      car1 = new Car('해린');
+      car2 = new Car('다니엘');
+    });
 
     afterEach(() => {
       Car.maxDistance = 0;
@@ -33,23 +41,15 @@ describe('Car 객체 테스트', () => {
       [2, 5, false],
       [10, 7, true],
     ])('car1의 %d칸, car2가 %d칸 이동했을 때, car1이 우승자인가? %s', (distance1, distance2, isWinner) => {
-      const car1 = new Car('해린');
-      const car2 = new Car('다니엘');
-
-      move({ car1, distance1 });
-      move({ car2, distance2 });
+      simulateCarMovement({ car: car1, distance: distance1 });
+      simulateCarMovement({ car: car2, distance: distance2 });
 
       expect(car1.isWinner()).toBe(isWinner);
     });
 
     test.each([[3]])('car1,car2가 둘 다 %d만큼 움직였다면 공동 우승자이다.', (distance) => {
-      const car1 = new Car('해린');
-      const car2 = new Car('다니엘');
-
-      Array.from({ length: distance }, () => {
-        car1.move(MIN_MOVE_THRESHOLD);
-        car2.move(MIN_MOVE_THRESHOLD);
-      });
+      simulateCarMovement({ car: car1, distance });
+      simulateCarMovement({ car: car2, distance });
 
       expect(car1.isWinner()).toBeTruthy();
       expect(car2.isWinner()).toBeTruthy();
