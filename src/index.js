@@ -1,4 +1,11 @@
-import Controller from './Controller/Controller';
+import RacingGameController from './Controller/RacingGameController';
 
-const controller = new Controller();
-controller.run();
+class App {
+  async run() {
+    const racingGameController = new RacingGameController();
+    racingGameController.run();
+  }
+}
+
+const app = new App();
+app.run();
