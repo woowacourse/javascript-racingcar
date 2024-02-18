@@ -1,4 +1,4 @@
-import CONSTANT from '../CONSTANTS';
+import CONSTANT from "../CONSTANTS";
 
 const { NUMERIC } = CONSTANT;
 
@@ -6,7 +6,7 @@ class Validator {
   static validateCars(cars) {
     return (
       cars.every(
-        name =>
+        (name) =>
           name.length >= NUMERIC.carNameLengthLower &&
           name.length <= NUMERIC.carNameLengthUpper
       ) && cars.length === new Set(cars).size

@@ -1,4 +1,4 @@
 const SEPARATOR = {
-  carName: ',',
+  carName: ",",
 };
 export default SEPARATOR;

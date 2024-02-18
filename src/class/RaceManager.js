@@ -1,5 +1,5 @@
-import CarInfo from './CarInfo.js';
-import CONSTANT from '../CONSTANTS/index.js';
+import CarInfo from "./CarInfo.js";
+import CONSTANT from "../CONSTANTS/index.js";
 
 const { MESSAGE } = CONSTANT;
 
@@ -24,16 +24,16 @@ class RaceManager {
     const maxPosition = this.#getMaxPosition();
     const winners = this.#result
       .filter(
-        carInfo => carInfo.getPositionWhen(this.#tryCount - 1) === maxPosition
+        (carInfo) => carInfo.getPositionWhen(this.#tryCount - 1) === maxPosition
       )
-      .map(carInfo => carInfo.getName());
+      .map((carInfo) => carInfo.getName());
     return `${MESSAGE.winnerOutputHeader}${winners.join(
       MESSAGE.winnerConnectionMark
     )}`;
   }
 
   setResult() {
-    this.#result = this.#carNames.map(name => {
+    this.#result = this.#carNames.map((name) => {
       const carInfo = new CarInfo(name, this.#tryCount);
       carInfo.setPosition();
       return carInfo;
@@ -42,7 +42,7 @@ class RaceManager {
 
   #getMaxPosition() {
     return Math.max(
-      ...this.#result.map(carInfo =>
+      ...this.#result.map((carInfo) =>
         carInfo.getPositionWhen(this.#tryCount - 1)
       )
     );
@@ -51,7 +51,7 @@ class RaceManager {
   #generateTryString(nowTry) {
     return this.#result
       .map(
-        carInfo =>
+        (carInfo) =>
           `${carInfo.getName()}${
             MESSAGE.resultConnectionMark
           }${MESSAGE.distanceMark.repeat(carInfo.getPositionWhen(nowTry))}`

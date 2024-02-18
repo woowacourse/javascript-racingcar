@@ -1,9 +1,9 @@
-import InputView from './UI/InputView.js';
-import OutputView from './UI/OutputView.js';
-import Validator from './class/Validator.js';
-import RaceManager from './class/RaceManager.js';
-import CONSTANT from './CONSTANTS/index.js';
-import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
+import InputView from "./UI/InputView.js";
+import OutputView from "./UI/OutputView.js";
+import Validator from "./class/Validator.js";
+import RaceManager from "./class/RaceManager.js";
+import CONSTANT from "./CONSTANTS/index.js";
+import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs.js";
 
 const { MESSAGE, SEPARATOR } = CONSTANT;
 
@@ -20,7 +20,7 @@ class App {
 
   async readCarNames() {
     const answer = await InputView.readLineAsync(MESSAGE.carNameInput).then(
-      names => names.split(SEPARATOR.carName).map(string => string.trim())
+      (names) => names.split(SEPARATOR.carName).map((string) => string.trim())
     );
     const result = Validator.validateCars(answer);
     if (!result) throw new Error(MESSAGE.invalidCarName);
