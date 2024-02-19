@@ -9,8 +9,8 @@ class Car {
     this.#distance = 0;
   }
 
-  tryMove(randomNumber) {
-    if (randomNumber >= RULES.minMoveCondition) this.#distance += RULES.moveDistance;
+  tryMove(number) {
+    if (number >= RULES.minMoveCondition) this.#distance += RULES.moveDistance;
 
     return { carName: this.#name, distance: this.#distance };
   }
