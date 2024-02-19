@@ -7,8 +7,11 @@ export class Game {
     const carNameArray = await this.getCarNames();
     const cars = new Cars(carNameArray);
     const tryCount = await this.getTryCount();
-
-    this.moveCars(cars, tryCount);
+    OutputView.printResultTitle();
+    for (let i = 0; i < tryCount; i++) {
+      cars.moveAllCars();
+      OutputView.printEachStepResult(cars);
+    }
     OutputView.printWinner(cars.findWinners());
   }
 
@@ -41,13 +44,5 @@ export class Game {
   async carNamesStringToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
-  }
-
-  moveCars(cars = {}, tryCount = 0) {
-    OutputView.printResultTitle();
-    for (let i = 0; i < tryCount; i++) {
-      cars.moveAllCars();
-      OutputView.printEachStepResult(cars);
-    }
   }
 }
