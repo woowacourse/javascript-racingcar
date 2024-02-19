@@ -23,12 +23,12 @@ class Race {
     }));
   }
 
-  isMetConditionToMoveCar(pickedNumber) {
+  #isMetConditionToMoveCar(pickedNumber) {
     return pickedNumber >= CONFIG.CAR_MOVING_CONDITION;
   }
 
   moveCar(car, randomNumber) {
-    if (this.isMetConditionToMoveCar(randomNumber)) {
+    if (this.#isMetConditionToMoveCar(randomNumber)) {
       car.move();
     }
   }
