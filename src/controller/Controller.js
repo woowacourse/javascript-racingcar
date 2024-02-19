@@ -3,6 +3,8 @@ import TryCount from '../model/TryCount.js';
 import catchReturn from '../utils/catchReturn.js';
 import OutputView from '../view/OutputView.js';
 import InputView from '../view/InputView.js';
+import { getRandomNumber } from '../utils/getRandomNumber.js';
+import { NUMBER_RANGE } from '../constants/numberRange.js';
 
 class Controller {
   #cars;
@@ -38,7 +40,8 @@ class Controller {
   }
 
   #oneRound() {
-    const playResult = this.#cars.play();
+    const randomNumbers = getRandomNumber(NUMBER_RANGE.min, NUMBER_RANGE.max);
+    const playResult = this.#cars.play(getRandomNumber);
     this.#outputView.printRacingResult(playResult);
   }
 
