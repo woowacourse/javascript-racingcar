@@ -10,19 +10,11 @@ class App {
     const race = new Race(carNameList);
 
     OutputView.printRaceHeader();
-    OutputView.printRaceWinner(this.#getWinner(race, turnCount));
-  }
-
-  #runRace(race, turnCount) {
     Array.from({ length: turnCount }).forEach(() => {
       race.proceedTurn();
       OutputView.printTurnResult(race.getTurnResult());
     });
-  }
-
-  #getWinner(race, turnCount) {
-    this.#runRace(race, turnCount);
-    return race.getWinner();
+    OutputView.printRaceWinner(race.getWinner());
   }
 
   async #readCarNameList() {
