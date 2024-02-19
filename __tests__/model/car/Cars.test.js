@@ -17,8 +17,10 @@ describe('[단위 테스트] Cars', () => {
       const createdCars = cars.getCars();
 
       expect(createdCars.length).toEqual(carNames.length);
-      expect(createdCars[0]).toBeInstanceOf(Car);
-      expect(createdCars[0].getName()).toEqual(carNames[0]);
+      carNames.forEach((carName, index) => {
+        expect(createdCars[index]).toBeInstanceOf(Car);
+        expect(createdCars[index].getName()).toEqual(carName);
+      });
     });
   });
 
