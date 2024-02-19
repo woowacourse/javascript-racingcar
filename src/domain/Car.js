@@ -1,6 +1,7 @@
 import { validateCarName } from "../validate.js";
 import { STANDARD_VALUE } from "../constants/standardValue.js";
 import { isHigherThanThreshold } from "../raceRule.js";
+
 export default class Car {
   static MAX_NAME_LENGTH = STANDARD_VALUE.maxCarNameLength;
 
