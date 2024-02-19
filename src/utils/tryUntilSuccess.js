@@ -1,4 +1,4 @@
-import { print } from "./console.js";
+import { printMessage } from "./console.js";
 
 export const tryUntilSuccess = (func) => {
   const repeat = async (...args) => {
@@ -6,7 +6,7 @@ export const tryUntilSuccess = (func) => {
       try {
         return await func(...args);
       } catch (error) {
-        print(error.message);
+        printMessage(error.message);
       }
     }
   };
