@@ -2,7 +2,6 @@ import ReadLine from "../util/readLineAsync.js";
 import Cars from "../domain/Cars.js";
 import Validation from "../util/Validation.js";
 import { MESSAGES, ERROR } from "../constant/index.js";
-const { NOT_NATURAL_NUMBER } = ERROR;
 const { INPUT_CAR_NAMES, INPUT_TRY_NUMBER } = MESSAGES;
 
 class Input {

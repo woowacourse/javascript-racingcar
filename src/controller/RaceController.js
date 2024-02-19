@@ -27,7 +27,7 @@ class RaceController {
   async #carsInput() {
     try {
       const carList = await Input.carNameInput();
-      const cars = this.#carValidation(carList);
+      const cars = this.#carsValidation(carList);
       return cars;
     } catch (error) {
       console.log(error.message);
@@ -35,7 +35,7 @@ class RaceController {
     }
   }
 
-  #carValidation(carList) {
+  #carsValidation(carList) {
     const car = new Cars(carList.split(","));
     return car.getCarList();
   }

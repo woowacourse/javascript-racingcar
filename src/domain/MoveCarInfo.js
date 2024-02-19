@@ -16,7 +16,6 @@ class MoveCarInfo {
   }
 
   #canMove(randomNum) {
-    console.log(MOVE_CONDITION);
     if (randomNum >= MOVE_CONDITION) {
       return true;
     }
