@@ -1,6 +1,5 @@
 import ERROR_MESSAGE from "../src/error/message.js";
 import Car from "../src/domain/Car.js";
-import createRandom from "../src/utils/createRandom.js";
 
 // Car validate 메소드 테스트
 describe("Car 이름에 유효한 입력이 들어왔을 때", () => {
@@ -24,38 +23,42 @@ describe("Car 이름에 유효하지 않은 입력이 들어왔을 때", () => {
 });
 
 // Car forward 테스트
-// 랜덤 함수가 고정값을 반환하도록 하는 함수
-export const mockRandoms = (numbers) => {
-  createRandom = jest.fn();
-  numbers.reduce((acc, num) => acc.mockReturnValueOnce(num), createRandom);
-};
+describe("각 자동차가 올바르게 전진하고 정지하는 지 테스트", () => {
+  test("4일 때는 전진하고 3일 때는 전진하지 않는다.", () => {
+    // given
+    const FORWARD = 4;
+    const STOP = 3;
+    const RANDOMS = [FORWARD, FORWARD, STOP, STOP];
+    const outputs = [1, 2, 2, 2];
+
+    //when
+    const car = new Car("pobi");
+
+    // then
+    // 전진-정지 테스트
+    outputs.forEach((output, i) => {
+      car.forward(RANDOMS[i]);
+      expect(car.getLocation()).toEqual(output);
+    });
+  });
+});
 
 describe("각 자동차가 올바르게 전진하고 정지하는 지 테스트", () => {
-  // given
-  const goValues = [9, 4];
-  const notGoValues = [0, 3];
-  mockRandoms([...goValues, ...notGoValues]);
+  test("9일 때는 전진하고 0일 때는 전진하지 않는다.", () => {
+    // given
+    const FORWARD = 9;
+    const STOP = 0;
+    const RANDOMS = [STOP, FORWARD, FORWARD, STOP, STOP, FORWARD];
+    const outputs = [0, 1, 2, 2, 2, 3];
 
-  // when
-  const car = new Car("pobi");
-  beforeEach(() => car.forward());
+    //when
+    const car = new Car("pobi");
 
-  // then
-  // 전진 테스트
-  test.each`
-    testTitle            | expected
-    ${"전진하는 경우 1"} | ${1}
-    ${"전진하는 경우 2"} | ${2}
-  `("$testTitle 테스트가 모두 전진하는지 테스트", ({ expected }) => {
-    expect(car.getLocation()).toEqual(expected);
-  });
-
-  // 정지 테스트
-  test.each`
-    testTitle            | expected
-    ${"정지하는 경우 1"} | ${2}
-    ${"정지하는 경우 2"} | ${2}
-  `("$testTitle 테스트가 모두 정지하는지 테스트", ({ expected }) => {
-    expect(car.getLocation()).toEqual(expected);
+    // then
+    // 전진-정지 테스트
+    outputs.forEach((output, i) => {
+      car.forward(RANDOMS[i]);
+      expect(car.getLocation()).toEqual(output);
+    });
   });
 });
