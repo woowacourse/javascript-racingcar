@@ -14,14 +14,14 @@ class Winner {
 	}
 
 	decideWinnerIndex() {
-		const winnerIndexArr = [];
 		const maxValue = Math.max(...this.#distance);
 
-		this.#distance.forEach((position, i) => {
-			if (position === maxValue) {
-				winnerIndexArr.push(i);
+		const winnerIndexArr = this.#distance.reduce((acc, cur, idx) => {
+			if (cur === maxValue) {
+				acc.push(idx);
 			}
-		});
+			return acc;
+		}, []);
 		return winnerIndexArr;
 	}
 

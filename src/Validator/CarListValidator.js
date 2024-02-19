@@ -9,7 +9,8 @@ const CarListValidate = {
 			throw new Error(ERROR.NAME);
 
 		for (const name of nameArray) {
-			if (!this.isValidateNameLength(name)) throw new Error(ERROR.NAME);
+			const pureName = name.trim();
+			if (!this.isValidateNameLength(pureName)) throw new Error(ERROR.NAME);
 		}
 	},
 
