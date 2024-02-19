@@ -1,12 +1,12 @@
-import deepFreeze from '../../utils/deepFeeze.js';
+import deepFreeze from '../utils/deepFeeze.js';
 
 const DELIMITER = deepFreeze({
 <<<<<<< HEAD
 <<<<<<< HEAD
   NONE: '',
   SPACE: ' ',
-  COMMA: ',',
-  HYPHEN: '-',
+  CAR_NAME_SEPARATOR: ',',
+  SCORE_MARK: '-',
   COLON: ' : ',
 =======
   SPACE: '',
