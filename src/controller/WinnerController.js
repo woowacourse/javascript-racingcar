@@ -1,9 +1,9 @@
-import MESSAGES from '../constants/Messages.js';
-import CONDITIONS from '../constants/Conditions.js';
+import MESSAGES from '../constant/Messages.js';
+import CONDITIONS from '../constant/Conditions.js';
 
-import WinnerService from '../services/WinnerService.js';
+import WinnerService from '../model/service/WinnerService.js';
 
-import OutputView from '../views/OutputView.js';
+import OutputView from '../view/OutputView.js';
 
 class WinnerController {
   #cars;

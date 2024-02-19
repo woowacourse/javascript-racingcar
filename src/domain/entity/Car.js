@@ -1,5 +1,5 @@
-import CONDITIONS from '../constants/Conditions.js';
-import ERRORS from '../constants/Errors.js';
+import CONDITIONS from '../constant/Conditions.js';
+import ERRORS from '../constant/Errors.js';
 
 class Car {
   #name;

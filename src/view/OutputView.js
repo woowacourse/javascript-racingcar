@@ -1,4 +1,4 @@
-import CONDITIONS from '../constants/Conditions.js';
+import CONDITIONS from '../constant/Conditions.js';
 
 const OutputView = {
   print(message) {

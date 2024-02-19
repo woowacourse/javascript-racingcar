@@ -1,8 +1,8 @@
 import readline from 'readline';
-import MESSAGES from '../constants/Messages.js';
+import MESSAGES from '../constant/Messages.js';
 
-import Cars from '../entities/CarList.js';
-import TrialCount from '../entities/TrialCount.js';
+import Cars from '../entity/CarList.js';
+import TrialCount from '../entity/TrialCount.js';
 
 import OutputView from './OutputView.js';
 
