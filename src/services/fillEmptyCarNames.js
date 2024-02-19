@@ -1,6 +1,6 @@
 import RANDOM_CAR_NAME_CONFIG from '../constants/configs/randomCarNameConfig.js';
 
-const makeRandomCarName = (carNames) => {
+const fillEmptyCarNames = (carNames) => {
   let userNumberCount = 1;
 
   const formattedCarNames = carNames.map((carName) => {
@@ -10,4 +10,4 @@ const makeRandomCarName = (carNames) => {
   return formattedCarNames;
 };
 
-export default makeRandomCarName;
+export default fillEmptyCarNames;
