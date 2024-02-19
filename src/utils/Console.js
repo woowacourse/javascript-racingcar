@@ -3,28 +3,28 @@ import Message from '../constant/Message.js';
 
 const { ERROR } = Message;
 
-class Console {
-  static validateQuery(query) {
+const Console = {
+  validateQuery(query) {
     return new Promise((resolve, reject) => {
       if (!query || typeof query !== 'string') {
-        reject(new Error(ERROR.query));
+        reject(new Error(ERROR.QUERY_NOT_NULL));
       }
 
       resolve();
     });
-  }
+  },
 
-  static makeReadLineQuestion(query, rl) {
+  makeReadLineQuestion(query, rl) {
     return new Promise((resolve, reject) => {
       rl.question(query, (input) => {
-        if (input === '') reject(new Error(ERROR.null));
+        if (input === '') reject(new Error(ERROR.INPUT_NOT_NULL));
         rl.close();
         resolve(input);
       });
     });
-  }
+  },
 
-  static async readLineAsync(query) {
+  async readLineAsync(query) {
     await this.validateQuery(query);
 
     const rl = readline.createInterface({
@@ -33,9 +33,9 @@ class Console {
     });
 
     return await this.makeReadLineQuestion(query, rl);
-  }
+  },
 
-  static async retryUntilSuccess(getFunc) {
+  async retryUntilSuccess(getFunc) {
     while (true) {
       try {
         const result = await getFunc();
@@ -44,7 +44,7 @@ class Console {
         console.log(err.message);
       }
     }
-  }
-}
+  },
+};
 
 export default Console;

@@ -1,10 +1,10 @@
 import Input from '../view/Input.js';
 import Output from '../view/Output.js';
-import CarValidator from '../utils/CarValidator.js';
-import TryCountValidator from '../utils/TryCountValidator.js';
+import Car from '../domain/Car.js';
+import CarValidator from '../domain/CarValidator.js';
+import TryCountValidator from '../domain/TryCountValidator.js';
 import Console from '../utils/Console.js';
 import Random from '../utils/Random.js';
-import Car from '../model/Car.js';
 import Condition from '../constant/Condition.js';
 
 const { SEPERATOR } = Condition;
@@ -23,8 +23,8 @@ class Game {
     const carNames = await Input.carName();
     const cars = carNames.split(SEPERATOR).map((car) => new Car(car));
 
-    CarValidator.isValidCount(cars);
-    CarValidator.isNameDuplicate(cars);
+    CarValidator.validateCount(cars);
+    CarValidator.validateNameDuplicate(cars);
 
     return cars;
   }
@@ -32,17 +32,14 @@ class Game {
   async getTryCountFromInput() {
     const tryCount = await Input.tryCount();
 
-    TryCountValidator.isNaturalNumber(Number(tryCount));
+    TryCountValidator.validateNaturalNumber(Number(tryCount));
 
     return tryCount;
   }
 
   playGame(cars, tryCount) {
     Output.notice();
-
-    for (let i = 0; i < tryCount; i++) {
-      this.playRound(cars);
-    }
+    Array.from({ length: tryCount }).forEach(() => this.playRound(cars));
   }
 
   playRound(cars) {
@@ -52,7 +49,7 @@ class Game {
 
   calculateAdvance(cars) {
     cars.forEach((car) => {
-      const randomNumber = Random.pickNumberZeroToNine();
+      const randomNumber = Random.pickNumberInRange();
       car.updateAdvance(randomNumber);
     });
   }

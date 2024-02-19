@@ -1,6 +1,8 @@
 {
   "rules": {
-    "max-depth": ["error", { "max": 2 }]
+    "max-lines-per-function": ["error", { "max": 10 }],
+    "max-depth": ["error", { "max": 2 }],
+    "no-constant-condition": "off"
   },
   "env": {
     "es6": true,
@@ -12,9 +14,11 @@
   },
   "overrides": [
     {
-      "files": ["*.test.js", "console.js"],
+      "files": ["*.test.js"],
       "rules": {
-        "max-lines-per-function": ["off"]
+        "max-lines-per-function": "off",
+        "max-depth": "off",
+        "no-undef": "off"
       }
     }
   ],

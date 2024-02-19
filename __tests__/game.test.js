@@ -1,5 +1,5 @@
 import Game from '../src/controller/Game';
-import Car from '../src/model/Car';
+import Car from '../src/domain/Car';
 
 describe('최종 우승자 선발 테스트', () => {
   test('가장 전진을 많이 한 자동차를 최종 우승자로 선발한다', () => {

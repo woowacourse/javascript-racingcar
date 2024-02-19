@@ -1,25 +1,27 @@
+import Condition from '../constant/Condition.js';
 import Message from '../constant/Message.js';
 
+const { COMBINER } = Condition;
 const { OUTPUT } = Message;
 
-class Output {
-  static notice() {
+const Output = {
+  notice() {
     console.log(OUTPUT.RESULT_NOTICE);
-  }
+  },
 
-  static roundResult(cars) {
+  roundResult(cars) {
     cars.forEach((car) => {
-      console.log(`${car.getName()} ${OUTPUT.COLON} ${OUTPUT.ADVANCE.repeat(car.getAdvance())}`);
+      console.log(`${car.getName()} : ${OUTPUT.ADVANCE_LETTER.repeat(car.getAdvance())}`);
     });
 
     console.log('');
-  }
+  },
 
-  static winnerResult(winnerCars) {
+  winnerResult(winnerCars) {
     console.log(
-      `${OUTPUT.WINNER} ${winnerCars.map((winnerCar) => winnerCar.getName()).join(OUTPUT.COMBINER)}`
+      `${OUTPUT.WINNER_NOTICE} ${winnerCars.map((winnerCar) => winnerCar.getName()).join(COMBINER)}`
     );
-  }
-}
+  },
+};
 
 export default Output;

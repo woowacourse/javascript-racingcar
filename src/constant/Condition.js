@@ -1,4 +1,5 @@
 const SEPERATOR = ',';
+const COMBINER = ', ';
 
 const CAR = {
   COUNT: {
@@ -30,6 +31,7 @@ const RANDOM = {
 
 export default {
   SEPERATOR,
+  COMBINER,
   CAR,
   CAR_NAME,
   CAR_ADVANCE,

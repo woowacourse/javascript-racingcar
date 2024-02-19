@@ -1,4 +1,4 @@
-import CarValidator from '../utils/CarValidator';
+import CarValidator from './CarValidator';
 import Condition from '../constant/Condition';
 
 const { CAR_ADVANCE } = Condition;
@@ -13,7 +13,7 @@ class Car {
   }
 
   #validateName(name) {
-    CarValidator.isValidNameRange(name);
+    CarValidator.validateNameRange(name);
     return name;
   }
 
