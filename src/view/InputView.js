@@ -4,7 +4,7 @@ import readLineAsync from '../util/readLineAsync';
 const InputView = {
   async readCarNameList() {
     const carNameListInput = await readLineAsync(`${MESSAGE.CAR_NAME_LIST_INPUT}${LINE_BREAK}`);
-    return carNameListInput.split(',').map((car) => car.trim());
+    return carNameListInput;
   },
 
   async readTurnCount() {

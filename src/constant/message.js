@@ -12,6 +12,7 @@ const MESSAGE = {
 };
 
 const ERROR_MESSAGE = {
+  CAR_NAME_INPUT_FORMAT: `${ERROR_MESSAGE_PREFIX} 자동차 이름 입력값은 문자열 형태로 입력해주셔야 합니다.`,
   CAR_NAME_LIST_LENGTH: `${ERROR_MESSAGE_PREFIX} 자동차 목록은 ${CONFIG.MIN_CAR_NAME_LIST_LENGTH}대 이상 입력해주세요.`,
   CAR_NAME_LENGTH: `${ERROR_MESSAGE_PREFIX} 자동차 이름은 ${CONFIG.MIN_CAR_NAME_LENGTH}자 이상 ${CONFIG.MAX_CAR_NAME_LENGTH}자 이하여야 합니다.`,
   TURN_COUNT_IS_NOT_INTEGER: `${ERROR_MESSAGE_PREFIX} 시도할 횟수는 실수로 입력할 수 없습니다. 다시 입력해주세요.`,

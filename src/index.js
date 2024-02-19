@@ -27,9 +27,9 @@ class App {
 
   async #readCarNameList() {
     try {
-      const carNameList = await InputView.readCarNameList();
-      Validator.validateCarNameList(carNameList);
-      return carNameList;
+      const carNameListInput = await InputView.readCarNameList();
+      Validator.validateCarNameListInput(carNameListInput);
+      return carNameListInput.split(',').map((car) => car.trim());
     } catch (error) {
       OutputView.print(error.message);
       return this.#readCarNameList();
