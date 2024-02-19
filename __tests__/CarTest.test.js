@@ -1,85 +1,72 @@
-import Car from '../src/domains/Car';
-import pickNumberInRange from '../src/utils/pickNumberInRange';
+import Car from "../src/domains/Car";
 
-jest.mock('../src/utils/pickNumberInRange', () => {
-  return jest.fn();
-});
-
-const mockRandoms = (numbers) => {
-  numbers.reduce((acc, number) => {
-    return acc.mockReturnValueOnce(number);
-  }, pickNumberInRange);
-};
-
-describe('자동차 도메인 테스트', () => {
+describe("자동차 도메인 로직 테스트", () => {
   let harryCar;
 
   beforeEach(() => {
-    harryCar = new Car('harry');
+    harryCar = new Car("harry");
   });
 
-  it('숫자가 4이상인 경우에 자동차는 전진해야한다.', () => {
+  test.each([1, 2, 3])(
+    "숫자가 4미만인 경우 자동차는 전진할 수 없다",
+    (number) => {
+      // given
+      const INITIAL_POSITION = 0;
+      // when
+      harryCar.move(number);
+
+      // then
+      expect(harryCar.position).toBe(INITIAL_POSITION);
+    }
+  );
+
+  test.each([4, 5, 6, 7, 8, 9])(
+    "숫자가 4이상인 경우 자동차는 전진해야 한다.",
+    (number) => {
+      // given
+      const EXPECTED_POSITION = 1;
+
+      // when
+      harryCar.move(number);
+
+      // then
+      expect(harryCar.position).toBe(EXPECTED_POSITION);
+    }
+  );
+
+  it("두 자동차의 위치가 같은 경우 true를 반환해야 한다.", () => {
     // given
-    mockRandoms([4, 6]);
-    const expectedPosition = 2;
+    const bongCar = new Car("bong");
 
     // when
-    harryCar.move();
-    harryCar.move();
-
-    // then
-    expect(harryCar.getPosition()).toBe(expectedPosition);
-  });
-
-  it('숫자가 4미만인 경우 자동차는 전진할 수 없다.', () => {
-    // given
-    mockRandoms([1, 3]);
-    const expectedPosition = 0;
-
-    // when
-    harryCar.move();
-    harryCar.move();
-
-    // then
-    expect(harryCar.getPosition()).toBe(expectedPosition);
-  });
-
-  it('두 자동차의 위치가 같은 경우 true를 반환해야 한다.', () => {
-    // given
-    const bongCar = new Car('bong');
-    mockRandoms([4, 9]);
-
-    // when
-    harryCar.move();
-    bongCar.move();
+    harryCar.move(4);
+    bongCar.move(7);
 
     // then
     const isSame = harryCar.isSamePosition(bongCar);
     expect(isSame).toBe(true);
   });
 
-  it('두 자동차의 위치가 다른 경우 false 반환해야 한다.', () => {
+  it("두 자동차의 위치가 다른 경우 false 반환해야 한다.", () => {
     // given
-    const bongCar = new Car('bong');
-    mockRandoms([3, 9]);
+    const bongCar = new Car("bong");
 
     // when
-    harryCar.move();
-    bongCar.move();
+    harryCar.move(1);
+    bongCar.move(9);
 
     // then
     const isSame = harryCar.isSamePosition(bongCar);
     expect(isSame).toBe(false);
   });
 
-  it('자동차 도메인은 다른 자동차 도메인과 위치 비교를 할 수 있어야 한다.', () => {
+  it("자동차 도메인은 다른 자동차 도메인과 위치 비교를 할 수 있어야 한다.", () => {
     // given
-    const bongCar = new Car('bong');
-    mockRandoms([1, 7]);
+    const bongCar = new Car("bong");
 
     // when
-    harryCar.move();
-    bongCar.move();
+    harryCar.move(1);
+    bongCar.move(7);
 
     // then
     const isAheadOf = harryCar.isAheadOf(bongCar);
