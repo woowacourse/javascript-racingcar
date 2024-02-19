@@ -1,6 +1,6 @@
 import { RULES } from "../constants/car-race";
 import deepFreeze from "../utils/deepFreeze";
-import pickNumberInRange from "../utils/pickNumberInRange";
+import Random from "../utils/random";
 import Car from "./Car";
 
 class CarRace {
@@ -16,7 +16,10 @@ class CarRace {
   }
 
   #getRandomNumber() {
-    return pickNumberInRange(RULES.minRandomNumber, RULES.maxRandomNumber);
+    return Random.pickNumberInRange(
+      RULES.minRandomNumber,
+      RULES.maxRandomNumber
+    );
   }
 
   #findMaxPosition() {
