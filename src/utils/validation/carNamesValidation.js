@@ -1,14 +1,14 @@
 import validation from './validation.js';
 import { ERROR, NAME } from '../../constant/strings.js';
 import ExceptionHandler from '../error/ExceptionHandler.js';
-import OPT from '../../constant/options.js';
+import OPTIONS from '../../constant/options.js';
 
 const { throwErrorIfInvalid } = ExceptionHandler;
 
 const carNamesValidation = {
   validate(carNames) {
     this.checkIsUnique(carNames);
-    this.checkIsInRange(carNames, OPT.CAR.minNameLength, OPT.CAR.maxNameLength);
+    this.checkIsInRange(carNames, OPTIONS.CAR.minNameLength, OPTIONS.CAR.maxNameLength);
   },
 
   checkIsUnique(carNames) {

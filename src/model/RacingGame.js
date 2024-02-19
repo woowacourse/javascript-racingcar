@@ -1,4 +1,4 @@
-import OPT from '../constant/options.js';
+import OPTIONS from '../constant/options.js';
 import random from '../utils/random.js';
 import Cars from './car/Cars.js';
 
@@ -34,8 +34,8 @@ class RacingGame {
 
   #playOneTurn() {
     const canMoveCars = this.#cars.getCars().map(() => {
-      const movingNumber = random.inRange(OPT.CAR.minMoveNumber, OPT.CAR.maxMoveNumber);
-      return movingNumber >= OPT.CAR.leastMoveCondition;
+      const movingNumber = random.inRange(OPTIONS.CAR.minMoveNumber, OPTIONS.CAR.maxMoveNumber);
+      return movingNumber >= OPTIONS.CAR.leastMoveCondition;
     });
 
     this.#cars.moveCars(canMoveCars);

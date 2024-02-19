@@ -1,4 +1,4 @@
-import OPT from '../constant/options.js';
+import OPTIONS from '../constant/options.js';
 import RacingGame from '../model/RacingGame.js';
 import prep from '../utils/preprocessor.js';
 import validator from '../utils/validation/validator.js';
@@ -17,7 +17,7 @@ class Controller {
     const carNamesInput = await inputView.readCarNames();
 
     const carNames = prep.process(carNamesInput, [
-      [prep.splitStringByDelimiter, OPT.INPUT.carNameDelimiter],
+      [prep.splitStringByDelimiter, OPTIONS.INPUT.carNameDelimiter],
       prep.trimEdgeWhitespaces
     ]);
 

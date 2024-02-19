@@ -1,4 +1,4 @@
-import OPT from './options.js';
+import OPTIONS from './options.js';
 
 export const NAME = {
   carName: '자동차 이름',
@@ -7,8 +7,9 @@ export const NAME = {
 
 export const MESSAGE = {
   middleResultTitle: '\n실행 결과',
-  middleResult: (name, location) => `${name} : ${OPT.OUTPUT.locationIndicator.repeat(location)}`,
-  finalResult: (names) => `최종 우승자: ${names.join(OPT.OUTPUT.finalResultDelimiter)}`
+  middleResult: (name, location) =>
+    `${name} : ${OPTIONS.OUTPUT.locationIndicator.repeat(location)}`,
+  finalResult: (names) => `최종 우승자: ${names.join(OPTIONS.OUTPUT.finalResultDelimiter)}`
 };
 
 export const PROMPT = {
