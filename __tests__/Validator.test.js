@@ -1,6 +1,5 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
-import { carValidator } from '../src/domain/validator';
-import raceCountValidator from '../src/domain/validator/raceCountValidator';
+import { carValidator, raceCountValidator } from '../src/domain/validator';
 
 describe('자동차 입력값 검증', () => {
   test('자동차 목록 중 자동차 이름이 모두 5자 이내인 경우 정상적으로 동작한다.', () => {
