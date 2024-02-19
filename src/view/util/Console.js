@@ -16,6 +16,7 @@ class Console {
   }
 
   static print(message) {
+    // eslint-disable-next-line
     console.log(message);
   }
 }

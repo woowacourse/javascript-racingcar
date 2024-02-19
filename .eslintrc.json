@@ -1,15 +1,23 @@
 {
-  "rules": {},
+  "rules": {
+    "import/extensions": ["error", { "js": "ignorePackages" }],
+    "import/order": [
+      "error",
+      {
+      "alphabetize": {
+      "order": "asc",
+      "caseInsensitive": true
+      }}]
+  },
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "jest": true
   },
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
-  ]
+  "plugins": ["node"],
+  "extends": ["airbnb-base", "prettier"]
 }

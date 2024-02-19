@@ -1,16 +1,18 @@
-import { Console, RandomNumber } from '../src/utils';
+import { RandomNumber } from '../src/domain';
+import { Console } from '../src/view';
 
 export const mockRandoms = (numbers) => {
-  RandomNumber.pickNumber = jest.fn();
-  numbers.forEach((number) => {
-    RandomNumber.pickNumber.mockReturnValueOnce(number);
-  });
+  const mockPickNumberInRange = jest.spyOn(RandomNumber, 'pickNumberInRange');
+  numbers.reduce(
+    (acc, number) => acc.mockReturnValueOnce(number),
+    mockPickNumberInRange,
+  );
 };
 
 export const mockQuestions = (inputs) => {
-  Console.readLineAsync = jest.fn();
+  const mockReadLineAsync = jest.spyOn(Console, 'readLineAsync');
 
-  Console.readLineAsync.mockImplementation(() => {
+  mockReadLineAsync.mockImplementation(() => {
     const input = inputs.shift();
 
     return Promise.resolve(input);

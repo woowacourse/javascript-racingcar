@@ -1,6 +1,6 @@
-import { ERROR_MESSAGE, INPUT_MESSAGE } from '../constants/index.js';
-import { CarValidator, RoundValidator } from '../models/index.js';
-import { InputView, OutputView } from '../views/index.js';
+import { INPUT_MESSAGE } from '../constant/index.js';
+import { CarValidator, Round } from '../domain/index.js';
+import { InputView, OutputView } from '../view/index.js';
 
 const InputController = {
   async getCarName() {
@@ -17,10 +17,10 @@ const InputController = {
   async getRoundNumber() {
     try {
       const result = await InputView.readInput(INPUT_MESSAGE.round);
-      RoundValidator.validateRound(result);
-      return result;
+
+      return new Round(result);
     } catch (error) {
-      OutputView.printMessage(ERROR_MESSAGE);
+      OutputView.printMessage(error.message);
       return this.getRoundNumber();
     }
   },

@@ -1,18 +1,28 @@
-import { getLogSpy, mockQuestions, mockRandoms } from '../index';
-import Game from '../../src/controllers/Game';
-import { RandomNumber } from '../../src/utils';
+import { getLogSpy, mockQuestions, mockRandoms } from '..';
+import { DELIMITER, SPACE } from '../../src/constant';
+import Game from '../../src/controller/Game';
+import { RandomNumber } from '../../src/domain';
 
 describe('Test Util 테스트', () => {
   test(' mockQuestions & getLogSpy 테스트', async () => {
     const logSpy = getLogSpy();
-
-    mockQuestions(['v,h', '2']);
+    const carNameArray = ['v', 'h'];
+    const roundInput = '2';
+    mockQuestions([carNameArray.join(DELIMITER), roundInput]);
 
     const game = new Game();
     await game.setGame();
 
-    expect(logSpy).toHaveBeenCalledWith('참가 자동차: v,h');
-    expect(logSpy).toHaveBeenCalledWith('게임을 진행할 라운드 횟수: 2');
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(
+        `참가 자동차: ${carNameArray[0]}${DELIMITER}${SPACE}${carNameArray[1]}`,
+      ),
+    );
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(
+        `게임을 진행할 라운드 횟수:${SPACE}${roundInput}`,
+      ),
+    );
   });
 
   test('mockRandoms 테스트', () => {
@@ -20,7 +30,9 @@ describe('Test Util 테스트', () => {
     mockRandoms(randoms);
 
     randoms.forEach((number) => {
-      expect(RandomNumber.pickNumber()).toBe(number);
+      expect(RandomNumber.pickNumberInRange(randoms[0], randoms[1])).toBe(
+        number,
+      );
     });
   });
 });
