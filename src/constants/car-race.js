@@ -14,9 +14,10 @@ export const ERROR_MESSAGES = {
   prefix: "[ERROR]",
   carNameLength: "경주할 자동차 이름은 1자 이상 5자 이하만 가능합니다.",
   carNameUniqueness: "자동차 이름은 중복될 수 없습니다.",
-  negativeTryCount: "시도할 횟수는 1이상의 숫자만 가능합니다.",
-  invalidNumberRange: "최솟값은 최대값보다 작거나 같아야 합니다.",
-  invalidNumberType: "숫자만 입력 가능합니다.",
+  invalidTryCountType: "자동차 경주 시도 횟수는 숫자만 입력 가능합니다.",
+  invalidTryCountRange: "자동차 경주 시도 횟수는 1이상의 숫자만 가능합니다.",
+  invalidRandomNumberRange: "최솟값은 최대값보다 작거나 같아야 합니다.",
+  invalidRandomNumberType: "숫자만 입력해주세요",
 };
 
 export const RULES = {

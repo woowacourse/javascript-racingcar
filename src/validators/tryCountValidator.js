@@ -4,13 +4,13 @@ import InvalidInputException from "../exceptions/InvalidInputException";
 const tryCountValidator = {
   isNumeric(tryCount) {
     if (!Number.isInteger(tryCount)) {
-      throw new InvalidInputException(ERROR_MESSAGES.invalidNumberType);
+      throw new InvalidInputException(ERROR_MESSAGES.invalidTryCountType);
     }
   },
 
   isPositive(tryCount) {
     if (tryCount <= 0) {
-      throw new InvalidInputException(ERROR_MESSAGES.negativeTryCount);
+      throw new InvalidInputException(ERROR_MESSAGES.invalidTryCountRange);
     }
   },
 

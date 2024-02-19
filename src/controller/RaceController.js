@@ -47,7 +47,7 @@ class RaceController {
     OutputView.printMessage(MESSAGES.result);
 
     Array.from({ length: tryCount }, () => {
-      const roundResult = this.#carRace.makesRoundResult();
+      const roundResult = this.#carRace.makeRoundResult();
       OutputView.printRoundResult(roundResult);
       OutputView.printBlankLine();
     });

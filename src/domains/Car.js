@@ -1,5 +1,4 @@
-import { RULES } from '../constants/car-race';
-import pickNumberInRange from '../utils/pickNumberInRange';
+import { RULES } from "../constants/car-race";
 
 class Car {
   #name;
@@ -10,32 +9,29 @@ class Car {
     this.#position = RULES.initialPosition;
   }
 
-  #canMove() {
-    const randomNumber = pickNumberInRange(
-      RULES.minRandomNumber,
-      RULES.maxRandomNumber,
-    );
-    return randomNumber >= RULES.moveStandard;
+  #canMove(number) {
+    return number >= RULES.moveStandard;
   }
 
-  move() {
-    if (!this.#canMove()) return;
-    this.#position += RULES.movingUnit;
+  move(number) {
+    if (!this.#canMove(number)) return;
+
+    this.#position += 1;
   }
 
   isSamePosition(otherCar) {
-    return this.#position === otherCar.getPosition();
+    return this.#position === otherCar.position;
   }
 
   isAheadOf(otherCar) {
-    return this.#position > otherCar.getPosition();
+    return this.#position > otherCar.position;
   }
 
-  getName() {
+  get name() {
     return this.#name;
   }
 
-  getPosition() {
+  get position() {
     return this.#position;
   }
 }

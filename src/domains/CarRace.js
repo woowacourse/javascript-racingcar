@@ -1,4 +1,6 @@
+import { RULES } from "../constants/car-race";
 import deepFreeze from "../utils/deepFreeze";
+import Random from "../utils/random";
 import Car from "./Car";
 
 class CarRace {
@@ -13,6 +15,13 @@ class CarRace {
     return spliitedCars.map((carName) => new Car(carName));
   }
 
+  #getRandomNumber() {
+    return Random.pickNumberInRange(
+      RULES.minRandomNumber,
+      RULES.maxRandomNumber
+    );
+  }
+
   #findMaxPosition() {
     const maxPositionCar = this.#cars.reduce(
       (currMaxPositionCar, car) =>
@@ -23,22 +32,28 @@ class CarRace {
     return maxPositionCar;
   }
 
+  #calculateWinners(maxPositionCar) {
+    return this.#cars
+      .filter((car) => maxPositionCar.isSamePosition(car))
+      .map((winner) => winner.name);
+  }
+
   makeRoundResult() {
-    const result = {};
+    const roundResult = this.#cars.reduce((accResult, currCar) => {
+      const number = this.#getRandomNumber();
+      currCar.move(number);
+      return {
+        ...accResult,
+        [currCar.name]: currCar.position,
+      };
+    }, {});
 
-    this.#cars.forEach((car) => {
-      car.move();
-      result[car.getName()] = car.getPosition();
-    });
-
-    return deepFreeze(result);
+    return deepFreeze(roundResult);
   }
 
   judgeWinners() {
     const maxPositionCar = this.#findMaxPosition();
-    const winners = this.#cars
-      .filter((car) => maxPositionCar.isSamePosition(car))
-      .map((winner) => winner.getName());
+    const winners = this.#calculateWinners(maxPositionCar);
 
     return deepFreeze(winners);
   }
