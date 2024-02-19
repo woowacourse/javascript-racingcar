@@ -32,7 +32,7 @@ export default class Game {
     });
   }
 
-  static getFinalWinner(totalResult) {
+  static getFinalWinners(totalResult) {
     const finalScores = totalResult[totalResult.length - 1];
     const maxScore = Math.max(...Object.values(finalScores));
     return Object.keys(finalScores).filter((name) => finalScores[name] === maxScore);
