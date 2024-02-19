@@ -15,11 +15,18 @@ class Controller {
   }
 
   async #input() {
-    const names = await catchReturn(InputView.readCarNames);
-    this.#cars = new Cars(names);
+    this.#cars = await catchReturn(this.#getCars);
+    this.#tryCount = await catchReturn(this.#getCount);
+  }
 
-    const count = await catchReturn(InputView.readTryCount);
-    this.#tryCount = new TryCount(count);
+  async #getCars() {
+    const names = await InputView.readCarNames();
+    return new Cars(names);
+  }
+
+  async #getCount() {
+    const count = await InputView.readTryCount();
+    return new TryCount(count);
   }
 
   #run() {

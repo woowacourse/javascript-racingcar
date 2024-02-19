@@ -1,14 +1,12 @@
 import handleIO from "./handleIO.js";
 
 const catchReturn = async (callback) => {
-  let result;
-
-  while (1) {
+  while (true) {
     try {
-      result = await callback();
+      const result = await callback();
       return result;
-    } catch (e) {
-      handleIO.print(e.message);
+    } catch (err) {
+      handleIO.print(err.message);
     }
   }
 };
