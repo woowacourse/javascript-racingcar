@@ -7,4 +7,3 @@ const PROGRESS_MESSAGE = deepFreeze({
 });
 
 export default PROGRESS_MESSAGE;
-
