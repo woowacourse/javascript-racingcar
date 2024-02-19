@@ -20,15 +20,16 @@ class Car {
     return this.#name;
   }
 
+  setCar(randomNumber) {
+    const isForward = discriminator(randomNumber);
+    return isForward
+      ? { name: this.#name, score: CAR.FORWARD_SYMBOL }
+      : { name: this.#name, score: CAR.STOP_SYMBOL };
+  }
+
   actCar() {
     const randomNumber = randomNumberGenerator();
-    const isForward = discriminator(randomNumber);
-
-    if (isForward) {
-      return { name: this.#name, score: CAR.FORWARD_SYMBOL };
-    }
-
-    return { name: this.#name, score: CAR.STOP_SYMBOL };
+    return this.setCar(randomNumber);
   }
 }
 
