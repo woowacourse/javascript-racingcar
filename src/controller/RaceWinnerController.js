@@ -8,7 +8,7 @@ const raceWinnerController = {
 
   getWinner(carList, maxPosition) {
     const winners = carList.filter((car) => car.isMaxPosition(maxPosition));
-    return winners.map((car) => car.name);
+    return winners.map((winner) => winner.name);
   },
 };
 
