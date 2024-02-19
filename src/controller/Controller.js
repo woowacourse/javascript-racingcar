@@ -1,69 +1,71 @@
-import { OPTION } from '../constants/System.js';
-import CarGame from '../model/CarGame.js';
-import Preprocessor from '../utils/Preprocessor.js';
+import OPTIONS from '../constant/options.js';
+import RacingGame from '../model/RacingGame.js';
+import prep from '../utils/preprocessor.js';
+import validator from '../utils/validation/validator.js';
 import inputView from '../view/inputView.js';
 import outputView from '../view/outputView.js';
 
 class Controller {
-  #carGame;
+  #racingGame;
 
   constructor() {
-    this.#carGame = new CarGame();
+    this.#racingGame = new RacingGame();
   }
 
-  // QNA: 멤버변수에 값을 저장하는 방식 vs 값을 반환받아 저장하는 방법
-  async inputGameInfo() {
-    await this.#retryAndErrorLogging(this.#inputCarNames.bind(this));
-    await this.#retryAndErrorLogging(this.#inputTryCount.bind(this));
-  }
-
-  // QNA: private 함수에 'this'를 사용해야하는 이유 (eslint)
   // eslint-disable-next-line class-methods-use-this
-  async #retryAndErrorLogging(inputFunction) {
-    while (true) {
-      try {
-        await inputFunction();
-        break;
-      } catch (error) {
-        outputView.print(error.message);
-      }
-    }
+  async inputCarNames() {
+    const carNamesInput = await inputView.readCarNames();
+
+    const carNames = prep.process(carNamesInput, [
+      [prep.splitStringByDelimiter, OPTIONS.INPUT.carNameDelimiter],
+      prep.trimEdgeWhitespaces
+    ]);
+
+    validator.carNamesValidation(carNames);
+
+    return carNames;
   }
 
-  async #inputCarNames() {
-    const namesInput = await inputView.readCarNames();
-    const carNames = Preprocessor.process(
-      namesInput.split(OPTION.INPUT_DELIMITER),
-      [Preprocessor.trimEdgeWhitespaces, Preprocessor.filterOutEmptyStrings]
-    );
+  // eslint-disable-next-line class-methods-use-this
+  async inputTryCount() {
+    const tryCountInput = await inputView.readTryCount();
 
-    this.#carGame.setCars(carNames);
+    const tryCount = prep.process(tryCountInput, [
+      prep.trimEdgeWhitespaces,
+      prep.convertStringToNumber
+    ]);
+
+    validator.tryCountValidation(tryCount);
+
+    return tryCount;
   }
 
-  async #inputTryCount() {
-    const tryCount = Number(await inputView.readTryCount());
-    this.#carGame.setTryCount(tryCount);
+  setCarNames(carNames) {
+    this.#racingGame.setCars(carNames);
   }
 
-  playGame() {
-    outputView.printCurrentResultTitle();
-
-    const tryCount = this.#carGame.getTryCount();
-
-    for (let i = 0; i < tryCount; i += 1) {
-      this.#carGame.moveCars();
-      this.#displayCurrentLocation();
-    }
+  setTryCount(tryCount) {
+    this.#racingGame.setTryCount(tryCount);
   }
 
-  #displayCurrentLocation() {
-    const carInfos = this.#carGame.getCurrentLocation();
-    outputView.printCurrentLocation(carInfos);
+  executeGame() {
+    this.#racingGame.playRacing();
   }
 
-  findWinner() {
-    const winners = this.#carGame.findWinners();
-    outputView.printWinners(winners);
+  findWinners() {
+    this.#racingGame.findWinners();
+  }
+
+  displayMiddleResults() {
+    const middleResults = this.#racingGame.getMiddleResults();
+
+    outputView.printMiddleResultTitle();
+    outputView.printMiddleResults(middleResults);
+  }
+
+  displayFinalWinners() {
+    const finalWinners = this.#racingGame.getFinalWinners();
+    outputView.printFinalResult(finalWinners);
   }
 }
 

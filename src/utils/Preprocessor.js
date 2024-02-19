@@ -1,4 +1,4 @@
-const Preprocessor = {
+const preprocessor = {
   process(input, funcs) {
     return funcs.reduce((value, func) => {
       if (Array.isArray(func)) {
@@ -13,13 +13,21 @@ const Preprocessor = {
     return Array.isArray(input) ? input.map(func) : func(input);
   },
 
+  convertStringToNumber(input) {
+    return this.applyFunctionToInput(input, (str) => Number(str));
+  },
+
   filterOutEmptyStrings(input) {
     return input.filter((str) => str !== '');
   },
 
+  splitStringByDelimiter(input, delimiter) {
+    return this.applyFunctionToInput(input, (str) => str.split(delimiter));
+  },
+
   trimEdgeWhitespaces(input) {
     return this.applyFunctionToInput(input, (str) => str.trim());
-  },
+  }
 };
 
-export default Preprocessor;
+export default preprocessor;
