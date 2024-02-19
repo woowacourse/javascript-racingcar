@@ -1,6 +1,15 @@
 import readline from 'readline';
+import { deepFreeze } from './object/object.js';
 
-const Console = Object.freeze({
+/**
+ * @module Console
+ * 애플리케이션의 입/출력을 담당하는 유틸리티 모듈
+ */
+const Console = deepFreeze({
+  /**
+   * @param {string} message - 유저에게 전달할 메시지
+   * @returns {Promise<string>} 유저가 입력한 값의 Promise
+   */
   readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
@@ -23,6 +32,10 @@ const Console = Object.freeze({
     });
   },
 
+  /**
+   * @param {string} message - 전달 받은 문자열
+   * @returns {void}
+   */
   print(message) {
     console.log(message);
   },

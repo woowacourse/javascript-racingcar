@@ -6,7 +6,7 @@ describe('자동차 이동 테스트', () => {
   const NOT_MOVE = '안 움직인다.';
   const MOVE = '움직인다.';
 
-  const car = new Car('jiny');
+  const car = new Car(carName);
 
   const testCases = [
     {
