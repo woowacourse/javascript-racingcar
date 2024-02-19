@@ -44,7 +44,7 @@ class RaceController {
     this.#carRace = new CarRace(carNames, tryCount);
   }
 
-  async #playCarRace() {
+  #playCarRace() {
     Console.print(MESSAGES.result);
 
     const totalRoundResult = this.#carRace.makeTotalRoundResult();
@@ -61,7 +61,7 @@ class RaceController {
 
   async run() {
     await this.#initCarRace();
-    await this.#playCarRace();
+    this.#playCarRace();
     this.#announceWinners();
   }
 }
