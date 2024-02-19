@@ -1,4 +1,4 @@
-import { CAR, ERROR } from '../Constant/Constant';
+import { CAR, ERROR } from '../Constant/Constant.js';
 
 const CarListValidate = {
 	validate(nameArray) {

@@ -18,6 +18,7 @@ class RaceController {
 		this.showRaceResult(raceResult);
 
 		const distance = carList.getDistance();
+		const carNames = carList.getNames();
 		const winner = new Winner(carNames, distance);
 		const raceWinners = winner.decideWinnerAndReturnNames();
 		this.showWinner(raceWinners);
