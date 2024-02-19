@@ -4,53 +4,33 @@ const { RULES, SYMBOL, REGEXP } = require('../constant/Conditions.js');
 
 const ValidatorCondtion = {
   checkCarCountRange(carCount) {
-    if (carCount < RULES.minCarCount || carCount > RULES.maxCarCount) {
-      return false;
-    }
-    return true;
+    return carCount >= RULES.minCarCount && carCount <= RULES.maxCarCount;
   },
 
   checkCarNameIsEmpty(carNames) {
-    if (carNames.some((carName) => carName === '')) {
-      return false;
-    }
-    return true;
+    return carNames.every((carName) => carName !== '');
   },
 
   checkCarNameIsDuplicate(carNames) {
     const uniqueCarNames = new Set(carNames);
-    if (uniqueCarNames.size !== carNames.length) {
-      return false;
-    }
-    return true;
+
+    return uniqueCarNames.size === carNames.length;
   },
 
   checkCarNameLength(carNames) {
-    if (carNames.some((carName) => carName.length > RULES.maxCarNameLength)) {
-      return false;
-    }
-    return true;
+    return carNames.every((carName) => carName.length <= RULES.maxCarNameLength);
   },
 
   checkCarNameInSpace(carNames) {
-    if (carNames.some((carName) => carName.includes(SYMBOL.space))) {
-      return false;
-    }
-    return true;
+    return carNames.every((carName) => !carName.includes(SYMBOL.space));
   },
 
   checkIsNaN(value) {
-    if (!REGEXP.numericPattern.test(value)) {
-      return false;
-    }
-    return true;
+    return REGEXP.numericPattern.test(value);
   },
 
   checkTryCountRange(tryCount) {
-    if (tryCount < RULES.minTryCount || tryCount > RULES.maxTryCount) {
-      return false;
-    }
-    return true;
+    return tryCount >= RULES.minTryCount && tryCount <= RULES.maxTryCount;
   },
 };
 
@@ -60,7 +40,7 @@ const Validator = {
     throwErrorIfFalse(ValidatorCondtion.checkCarNameIsDuplicate(carNames), ERROR_MESSAGES.carNameDuplicate);
     throwErrorIfFalse(ValidatorCondtion.checkCarNameLength(carNames), ERROR_MESSAGES.invalidCarNameLength);
     throwErrorIfFalse(ValidatorCondtion.checkCarNameInSpace(carNames), ERROR_MESSAGES.carNameInSpace);
-    throwErrorIfFalse(ValidatorCondtion.checkCarCountRange(carNames), ERROR_MESSAGES.invalidCarCountRange);
+    throwErrorIfFalse(ValidatorCondtion.checkCarCountRange(carNames.length), ERROR_MESSAGES.invalidCarCountRange);
   },
 
   tryCount(tryCount) {
