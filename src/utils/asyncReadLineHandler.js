@@ -3,9 +3,7 @@ import readline from 'readline';
 /**
  * 사용자에게 입력값을 받아서, 받은 입력값을 반환하는 함수 입니다.
  * @param { string } query 사용자에게 안내할 입력 문구
- * @returns
  */
-
 function asyncReadLineHandler(query) {
   return new Promise((resolve, reject) => {
     if (arguments.length !== 1) {
