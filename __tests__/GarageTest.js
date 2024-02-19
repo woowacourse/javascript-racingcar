@@ -8,7 +8,6 @@ describe("Garage", () => {
   const carNames = ["car1", "car2", "car3"];
 
   beforeEach(() => {
-    randomNumber.mockClear();
     garage = new Garage(carNames);
   });
 
@@ -27,7 +26,7 @@ describe("Garage", () => {
     expect(carStatusList).toHaveLength(carNames.length);
   });
 
-  test("car가 이동할 수 있을 때, 모든 car에 대해서 전진 명령을 내리는지 테스트", () => {
+  test("난수가 4 이상일 때, 모든 car가 전진하는지 테스트", () => {
     randomNumber.mockReturnValue(4);
     garage.runAttempt();
 
