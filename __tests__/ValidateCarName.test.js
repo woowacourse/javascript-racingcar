@@ -1,8 +1,6 @@
 /* eslint-disable max-lines-per-function */
-// domain
-import CarGame from '../src/domain/CarGame.js';
-// constants
 import { ERROR_MESSAGE } from '../src/constants/System.js';
+import CarGame from '../src/domain/CarGame.js';
 
 describe('자동차 이름 인풋값에 대한 유효성 검사 테스트', () => {
   let carGame;

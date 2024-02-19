@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-// domain
 import CarGame from '../src/domain/CarGame.js';
 
 describe('자동차 게임 기능 테스트', () => {

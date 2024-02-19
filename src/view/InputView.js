@@ -1,6 +1,4 @@
-// constants
 import { MESSAGE } from '../constants/System.js';
-// utils
 import readLineAsync from '../utils/ReadLine.js';
 
 const InputView = {

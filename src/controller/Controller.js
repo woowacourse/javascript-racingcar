@@ -1,12 +1,8 @@
-// domain
+import { OPTION } from '../constants/System.js';
 import CarGame from '../domain/CarGame.js';
-// view
+import Preprocessor from '../utils/Preprocessor.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
-// constants
-import { OPTION } from '../constants/System.js';
-// utils
-import Preprocessor from '../utils/Preprocessor.js';
 
 class Controller {
   #carGame;
