@@ -22,9 +22,9 @@ class RaceWinner {
     const result = carsMoveInfoList.filter(
       (moveInfo) => numberMoveSuccess(moveInfo.moveTrace) === maxMove
     );
-    const winner = result.map((moveInfo) => moveInfo.carName);
+    const winnerName = result.map((moveInfo) => moveInfo.carName);
 
-    return winner;
+    return winnerName;
   }
 
   getRaceWinner() {

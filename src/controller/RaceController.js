@@ -1,10 +1,12 @@
 import Input from "../view/Input.js";
 import MoveCarInfo from "../domain/MoveCarInfo.js";
 import Output from "../view/Output.js";
-import { MESSAGES } from "../constant/index.js";
+import { MESSAGES, ERROR } from "../constant/index.js";
 import RaceWinner from "../domain/RaceWinner.js";
 import { randomNum } from "../util/random.js";
-
+import Cars from "../domain/Cars.js";
+import Validation from "../util/Validation.js";
+const { NOT_NATURAL_NUMBER } = ERROR;
 class RaceController {
   #carsMoveInfoList = [];
   #carsMoveExecutionList = [];
@@ -17,9 +19,42 @@ class RaceController {
   }
 
   async #input() {
-    const cars = await Input.carNameInput();
-    const tryNumber = await Input.tryInput();
+    const cars = await this.#carsInput();
+    const tryNumber = await this.#tryNumberInput();
     return { cars, tryNumber };
+  }
+
+  async #carsInput() {
+    try {
+      const carList = await Input.carNameInput();
+      const cars = this.#carsValidation(carList);
+      return cars;
+    } catch (error) {
+      console.log(error.message);
+      return this.#carsInput();
+    }
+  }
+
+  #carsValidation(carList) {
+    const car = new Cars(carList.split(","));
+    return car.getCarList();
+  }
+
+  async #tryNumberInput() {
+    try {
+      const tryNumber = await Input.tryInput();
+      this.#tryNumberValidation(tryNumber);
+      return tryNumber;
+    } catch (error) {
+      console.log(error.message);
+      return this.#tryNumberInput();
+    }
+  }
+
+  #tryNumberValidation(tryNumber) {
+    if (!Validation.isNaturalNumber(tryNumber)) {
+      throw new Error(NOT_NATURAL_NUMBER);
+    }
   }
 
   #print(tryNumber, raceWinner) {
@@ -30,7 +65,7 @@ class RaceController {
   #controlCarMove(cars, tryNumber) {
     this.#enterMoveCar(cars);
     this.#carsMoveExecute(tryNumber);
-    this.#getCarMoveInfo();
+    this.#saveCarMoveInfo();
   }
 
   #enterMoveCar(cars) {
@@ -45,7 +80,7 @@ class RaceController {
     }
   }
 
-  #getCarMoveInfo() {
+  #saveCarMoveInfo() {
     this.#carsMoveExecutionList.map((carMoveExecution) =>
       this.#carsMoveInfoList.push(carMoveExecution.getCarMoveInfo())
     );
