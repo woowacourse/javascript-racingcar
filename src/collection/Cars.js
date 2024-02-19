@@ -1,4 +1,4 @@
-import Validator from '../utils/Validator';
+import { Validator, gameUtils } from '../utils';
 
 class Cars {
   #cars;
@@ -15,19 +15,27 @@ class Cars {
     Validator.validCarNameDuplicate(cars);
   }
 
+  #actCars(car) {
+    const randomNumber = gameUtils.pickRandomNumber();
+    return car.actCar(randomNumber);
+  }
+
   roundStart() {
-    const roundResult = this.#cars.map((car) => car.actCar());
+    const roundResult = this.#cars.map((car) => this.#actCars(car));
     if (this.#isFirstRound()) {
-      this.#previousRoundResult = roundResult;
-      return roundResult;
+      return this.#saveRoundResultAndReturn(roundResult);
     }
     const accumulatedResult = this.#accmulateScore(roundResult);
-    this.#previousRoundResult = accumulatedResult;
-    return accumulatedResult;
+    return this.#saveRoundResultAndReturn(accumulatedResult);
   }
 
   #isFirstRound() {
     return this.#previousRoundResult.length === 0;
+  }
+
+  #saveRoundResultAndReturn(roundResult) {
+    this.#previousRoundResult = roundResult;
+    return roundResult;
   }
 
   #accmulateScore(roundResult) {

@@ -1,25 +1,25 @@
-import consolePrint from '../utils/consolePrint';
+import { Console } from '../utils';
 
 const OutputView = {
   printError(error) {
-    consolePrint(error.message);
+    Console.print(error.message);
   },
 
   printRaceResult(raceResult) {
     raceResult.forEach((roundResult) => {
       this.printRoundResult(roundResult);
-      consolePrint('');
+      Console.print('');
     });
   },
 
   printRoundResult(roundResult) {
     roundResult.forEach((car) => {
-      consolePrint(car);
+      Console.print(car);
     });
   },
 
   printWinners(winners) {
-    consolePrint(winners);
+    Console.print(winners);
   },
 };
 
