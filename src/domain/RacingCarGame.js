@@ -1,7 +1,8 @@
 import Garage from "./Garage.js";
-import InputView from "../view/InputView.js";
 import MESSAGE from "../constants/Message.js";
+import InputView from "../view/InputView.js";
 import StringParser from "../utils/StringParser.js";
+import getInputUntilValid from "../utils/getInputUntilValid.js";
 import { carValidation } from "./CarValidation.js";
 import { attemptValidation } from "./attemptValidation.js";
 
@@ -13,15 +14,7 @@ class RacingCarGame {
   constructor() {}
 
   async #setValidCarList() {
-    while (true) {
-      try {
-        await this.#setCarList();
-
-        break;
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
+    await getInputUntilValid(this.#setCarList.bind(this));
   }
 
   #setCars(carNames) {
@@ -42,15 +35,7 @@ class RacingCarGame {
   }
 
   async #setValidAttempt() {
-    while (true) {
-      try {
-        await this.#setAttempt();
-
-        break;
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
+    await getInputUntilValid(this.#setAttempt.bind(this));
   }
 
   async #setAttempt() {
