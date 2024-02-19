@@ -2,9 +2,9 @@ import InputView from './views/InputView.js';
 import OutputView from './views/OutputView.js';
 import ScoreBoard from './domains/ScoreBoard.js';
 import Game from './domains/Game.js';
-import asyncFunctionHandlerWithError from './utils/asyncFunctionHandlerWithError.js';
+import retryAsyncFunctionOnError from './utils/retryAsyncFunctionOnError.js';
 import Validator from './validator/Validator.js';
-import makeRandomCarName from './services/makeRandomCarName.js';
+import fillEmptyCarNames from './services/fillEmptyCarNames.js';
 
 class App {
   #initializedScoreBoard;
@@ -12,8 +12,8 @@ class App {
   #gameResult;
 
   async play() {
-    await asyncFunctionHandlerWithError(this.#readCarNames, this);
-    await asyncFunctionHandlerWithError(this.#readCountOfAttempts, this);
+    await retryAsyncFunctionOnError(this.#readCarNames, this);
+    await retryAsyncFunctionOnError(this.#readCountOfAttempts, this);
     this.#gameStart();
     this.#printGameResult();
     this.#printWinner();
@@ -21,7 +21,7 @@ class App {
 
   async #readCarNames() {
     const carNames = await InputView.inputCarNames();
-    const formattedCarNames = makeRandomCarName(carNames);
+    const formattedCarNames = fillEmptyCarNames(carNames);
     Validator.validateCarNames(formattedCarNames);
     const scoreBoard = new ScoreBoard(formattedCarNames);
     this.#initializedScoreBoard = scoreBoard.getScoreBoard();
@@ -48,8 +48,8 @@ class App {
   }
 
   #printWinner() {
-    const finalWinnerArr = Game.getFinalWinner(this.#gameResult);
-    OutputView.printWinner(finalWinnerArr);
+    const finalWinners = Game.getFinalWinners(this.#gameResult);
+    OutputView.printWinner(finalWinners);
   }
 }
 export default App;
