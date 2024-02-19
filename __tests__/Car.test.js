@@ -1,4 +1,4 @@
-import Car from '../src/Model/Car';
+import Car from '../src/Domain/Car';
 
 /* eslint-disable */
 describe('Car 객체 테스트', () => {

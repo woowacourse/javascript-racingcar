@@ -1,4 +1,4 @@
-import CarRace from '../Model/CarRace';
+import CarRace from '../Domain/CarRace';
 import InputView from '../View/InputView';
 import OutputView from '../View/OutputView';
 
