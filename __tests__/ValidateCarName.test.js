@@ -23,23 +23,23 @@ describe('자동차 이름 인풋값에 대한 유효성 검사 테스트', () =
 
   test('자동차 이름 5글자 초과시 에러발생', () => {
     // Arrange
-    const carNames = ['가나다라마바'];
+    const LONGER_THAN_RANGE_CARNAME = ['가나다라마바'];
 
     // Assert
     expect(() =>
       // Act
-      carGame.setCars(carNames),
+      carGame.setCars(LONGER_THAN_RANGE_CARNAME),
     ).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
   });
 
   test('자동차 이름 중복시 에러발생', () => {
     // Arrange
-    const carNames = ['가나', '다라', '가나'];
+    const DUPLICATE_CARNAMES = ['가나', '가나'];
 
     // Assert
     expect(() =>
       // Act
-      carGame.setCars(carNames),
+      carGame.setCars(DUPLICATE_CARNAMES),
     ).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
   });
 });
