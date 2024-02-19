@@ -21,24 +21,23 @@ class CarRace {
     return maxPosition;
   }
 
-  #moveCars() {
-    this.#cars.forEach((car) => {
-      const randomNumber = pickNumberInRange(
-        RULES.minRandomNumber,
-        RULES.maxRandomNumber,
-      );
+  #moveCar(car) {
+    const randomNumber = pickNumberInRange(
+      RULES.minRandomNumber,
+      RULES.maxRandomNumber,
+    );
 
-      car.move(randomNumber);
-    });
+    car.move(randomNumber);
   }
 
   #makeRoundResult() {
     const roundResult = {};
 
     this.#cars.forEach((car) => {
-      this.#moveCars();
+      this.#moveCar(car);
       roundResult[car.name] = car.position;
     });
+
     return roundResult;
   }
 
