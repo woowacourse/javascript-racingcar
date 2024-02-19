@@ -9,6 +9,7 @@ class Race {
   #cars;
 
   #attemptNum;
+  
   set cars(carsNameInput) {
     this.#validateCarsName(carsNameInput);
     this.#cars = carsNameInput.split(SYMBOLS.nameSeperator).map(name => {
@@ -38,7 +39,10 @@ class Race {
 
     this.#cars.forEach(car => {
       const randNum = Random.pickNumberInRange(minRandomRange, maxRandomRange);
-      car.move(randNum >= moveThreshold);
+      
+      if (randNum >= moveThreshold) {
+        car.move();
+      };
     });
   }
 

@@ -1,6 +1,3 @@
-import { RULES } from '../statics/constants';
-import Random from '../utils/Random';
-
 class Car {
   #name;
 
@@ -11,8 +8,8 @@ class Car {
     this.#position = 0;
   }
 
-  move(canMoving) {
-    canMoving && this.#position++;
+  move() {
+    this.#position++;
   }
 
   get position() {

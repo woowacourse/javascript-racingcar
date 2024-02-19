@@ -4,7 +4,7 @@ import Console from '../utils/Console';
 
 class OutputView {
   static printResultMessage() {
-    Console.print(OUTPUT_MESSAGES.resultGuide);
+    Console.print(`${SYMBOLS.newLine}${OUTPUT_MESSAGES.resultGuide}`);
   }
 
   static printNameAndCarPosition(result) {
