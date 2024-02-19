@@ -19,7 +19,7 @@ describe("경주 우승자를 구하는 테스트", () => {
     expect(raceWinner.getRaceWinner()).toEqual(winner);
   });
 
-  test("최종 우승자가 2명 이상일 경우", () => {
+  test("최종 우승자는 두 명 이상일 수 있다. ", () => {
     //Arrange
     const carsMoveInfoList = [
       { carName: "a", moveTrace: [false, false, false, false, true] },

@@ -12,8 +12,9 @@ export const ERROR = Object.freeze({
   NOT_NATURAL_NUMBER: "시도 횟수에는 자연수를 입력해주세요.",
 });
 
-export const REQUIREMENT = Object.freeze({
-  CAR_NAME_MIN: 1,
-  CAR_NAME_MAX: 5,
-  MOVE_SUCCESS: 4,
+export const CAR_NAME_REQUIREMENTS = Object.freeze({
+  NAME_LENGTH_MIN: 1,
+  NAME_LENGTH_MAX: 5,
 });
+
+export const MOVE_CONDITION = 4;

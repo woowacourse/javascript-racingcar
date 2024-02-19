@@ -1,8 +1,8 @@
 import Validation from "../util/Validation.js";
-import { ERROR, REQUIREMENT } from "../constant/index.js";
+import { ERROR, CAR_NAME_REQUIREMENTS } from "../constant/index.js";
 
 const { CAR_DUPLICATE, NAME_RANGE } = ERROR;
-const { CAR_NAME_MIN, CAR_NAME_MAX } = REQUIREMENT;
+const { NAME_LENGTH_MIN, NAME_LENGTH_MAX } = CAR_NAME_REQUIREMENTS;
 
 class Cars {
   #carList;
@@ -15,7 +15,7 @@ class Cars {
     if (Validation.isDuplicate(carList)) {
       throw new Error(CAR_DUPLICATE);
     }
-    this.#checkListInRange(carList, CAR_NAME_MAX, CAR_NAME_MIN);
+    this.#checkListInRange(carList, NAME_LENGTH_MAX, NAME_LENGTH_MIN);
 
     return carList;
   }
