@@ -10,11 +10,20 @@ describe('CarRace 객체 테스트', () => {
 
   test('이름이 중복되었다면 에러를 던져야한다.', () => {
     // Arrange
-    const names = '러기,러기,리버';
+    const names = ['러기', '러기', '리버'];
     // Action
     expect(() => carRace.setCarsByCarNames(names))
       // Assert
       .toThrow('[ERROR] 중복된 이름이 있습니다.');
+  });
+
+  test('이름에 공백이 있다면 에러를 던져야 한다.', () => {
+    // Arrange
+    const names = ['러기', ' ', '리버'];
+    // Action
+    expect(() => carRace.setCarsByCarNames(names))
+      // Assert
+      .toThrow('[ERROR] 이름에는 공백이 없어야 합니다');
   });
 
   test.each([[0], [201], [-5]])('시도할 횟수는 1이상 200이하가 아니면 에러를 던져야한다.', (number) => {
