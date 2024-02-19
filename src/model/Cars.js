@@ -1,7 +1,7 @@
 import ERROR_MESSAGE from '../error/message.js';
+import { getRandomNumber } from '../utils/getRandomNumber.js';
 import { COMMA } from '../view/OutputView.js';
 import Car from './Car.js';
-import Random from './Random.js';
 
 class Cars {
   #cars;
@@ -25,12 +25,8 @@ class Cars {
       throw new Error(`${ERROR_MESSAGE.duplicated} ${ERROR_MESSAGE.retry}`);
   }
 
-  play() {
-    this.#cars.forEach((car) => {
-      const randomNumber = Random.create();
-
-      car.forward(randomNumber);
-    });
+  play(randomNumbers) {
+    this.#cars.forEach((car, i) => car.forward(randomNumbers[i]));
 
     return this.#cars.map((car) => ({
       name: car.getName(),
