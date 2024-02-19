@@ -5,7 +5,7 @@ export const OPTION = {
   CAR_NAME_MAX_LENGTH: 5,
   MOVE_CONDITION: 4,
   MIN_TRY_COUNT: 1,
-  RANDOM_MAX: 10,
+  RANDOM_RANGE: 10,
 };
 
 export const MESSAGE = {
@@ -15,7 +15,7 @@ export const MESSAGE = {
   WINNER: '최종 우승자: ',
   RESULT: '\n실행 결과',
   CURRENT_LOCATION: (name, location) =>
-    `${name} : ${OPTION.LOCATATION_INDICATOR.repeat(location)}`,
+    `${name} : ${OPTION.LOCATION_INDICATOR.repeat(location)}`,
 };
 
 export const ERROR_MESSAGE = {
