@@ -15,6 +15,7 @@ const RACE_TEST_MESSAGE = {
 
 const VALIDATOR_TEST_MESSAGE = {
   TITLE: '입력값 검증 테스트',
+  CAR_NAME_INPUT_FORMAT: '자동차 목록 입력값에 배열, 숫자 또는 객체 포맷은 허용하지 않는다.',
   MAX_CAR_NAME_LENGTH: `각 자동차의 이름은 ${CONFIG.MAX_CAR_NAME_LENGTH}글자 이하여야 한다.`,
   MIN_CAR_NAME_LENGTH: `각 자동차의 이름은 ${CONFIG.MIN_CAR_NAME_LENGTH}글자 이상이어야 한다.`,
   MIN_CAR_NAME_LIST_LENGTH: `자동차 입력은 최소 ${CONFIG.MIN_CAR_NAME_LIST_LENGTH}대 이상 이루어져야 한다.`,
