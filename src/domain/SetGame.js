@@ -1,18 +1,13 @@
-import { readCarNames, readAttempt } from "../view/InputView.js";
-import { printError } from "../view/OutputView.js";
 import Car from "./Car.js";
-import { splitCarNames } from "../utils/StringParser.js";
-import {
-  validateAttempt,
-  validateCarName,
-  validateCarNameArray,
-} from "./Validator.js";
+import { validateCarName } from "./Validator.js";
 
 class SetGame {
   #carArray;
   #attempt;
+  #controller;
 
-  constructor() {
+  constructor(controller) {
+    this.#controller = controller;
     this.#carArray = [];
   }
 
@@ -20,27 +15,19 @@ class SetGame {
     await this.#setCarName();
     await this.#setAttempt();
   }
-
-  async #readCarName() {
-    const input = await readCarNames();
-    const carNames = splitCarNames(input);
-    validateCarNameArray(carNames);
-
-    this.#createCars(carNames);
-  }
-
   async #setCarName() {
     while (true) {
       try {
-        await this.#readCarName();
+        await this.#createCars();
         break;
       } catch (error) {
-        printError(error);
+        continue;
       }
     }
   }
 
-  #createCars(carNames) {
+  async #createCars() {
+    const carNames = await this.#controller.setCarName();
     carNames.forEach((carName) => {
       validateCarName(carName);
 
@@ -49,19 +36,13 @@ class SetGame {
     });
   }
 
-  async #readAttempt() {
-    const inputAttempt = await readAttempt();
-    validateAttempt(inputAttempt);
-    this.#attempt = inputAttempt;
-  }
-
   async #setAttempt() {
     while (true) {
       try {
-        await this.#readAttempt();
+        this.#attempt = await this.#controller.setAttempt();
         break;
       } catch (error) {
-        printError(error);
+        continue;
       }
     }
   }

@@ -9,6 +9,7 @@ export const readCarNames = async () => {
 
 export const readAttempt = async () => {
   const attempt = await readLineAsync(MESSAGE.readAttempt);
+  console.log("");
 
   return attempt;
 };

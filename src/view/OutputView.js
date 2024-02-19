@@ -1,9 +1,5 @@
 import MESSAGE from "../constants/Message.js";
 
-export const printError = (error) => {
-  console.log(error.message);
-};
-
 export const printCar = (car) => {
   console.log(MESSAGE.printCarInfo(car));
 };
