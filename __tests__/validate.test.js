@@ -1,5 +1,7 @@
 import Car from "../src/domain/Car.js";
 import Cars from "../src/domain/Cars.js";
+import { validateRoundNumber } from "../src/validate.js";
+import { STANDARD_VALUE } from "../src/constants/standardValue.js";
 
 describe("유효성 검증 관련 테스트", () => {
   describe("자동차 이름 관련 테스트", () => {
@@ -37,8 +39,24 @@ describe("유효성 검증 관련 테스트", () => {
   });
 
   describe("시도 횟수 관련 테스트", () => {
-    test("정수가 아닐 경우 에러가 발생한다.", () => {});
+    const min = STANDARD_VALUE.minRoundNumber;
+    const max = STANDARD_VALUE.maxRoundNumber;
 
-    test("시도 횟수가 0 혹은 100 초과일 경우 에러가 발생한다.", () => {});
+    test("정수가 아닐 경우 에러가 발생한다.", () => {
+      const INVALID_ROUND_NUMBER = "round";
+      const validate = () =>
+        validateRoundNumber(INVALID_ROUND_NUMBER, { min, max });
+
+      expect(validate).toThrow("[ERROR]");
+    });
+
+    test.each([0, 101])(
+      "시도 횟수가 0 혹은 100 초과일 경우 에러가 발생한다.",
+      (roundNumber) => {
+        const validate = () => validateRoundNumber(roundNumber, { min, max });
+
+        expect(validate).toThrow("[ERROR]");
+      }
+    );
   });
 });
