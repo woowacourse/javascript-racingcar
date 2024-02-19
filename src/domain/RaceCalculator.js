@@ -1,6 +1,6 @@
 import Car from './Car';
 
-const RaceGameCalculator = {
+const RaceCalculator = {
   /**
    * @param {Car[]} cars Car 클래스의 인스턴스
    * @returns
@@ -35,4 +35,4 @@ const RaceGameCalculator = {
   },
 };
 
-export default RaceGameCalculator;
+export default RaceCalculator;

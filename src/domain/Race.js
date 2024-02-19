@@ -1,15 +1,18 @@
 import Car from './Car';
-import RaceGameCalculator from './RaceGameCalculator';
+import RaceCalculator from './RaceCalculator';
 
-import { SYMBOLS } from '../statics/constants';
 import { ERRORS } from '../statics/messages';
+import { RULES, SYMBOLS } from '../statics/constants';
 
-import { hasRedundantCarName, hasSingleCar, isInvalidAttemptNum, isInvalidCarName } from './validate/validator';
+import Random from '../utils/Random';
+
+import { hasRedundantCarName, hasSingleCarName, isInvalidAttemptNum, isInvalidCarNameForm } from './validate/validator';
 
 class Race {
   #cars;
 
   #attemptNum;
+
   set cars(carsNameInput) {
     this.#validateCarsName(carsNameInput);
     this.#cars = carsNameInput.split(SYMBOLS.nameSeperator).map(name => {
@@ -23,27 +26,36 @@ class Race {
   }
 
   gameCycle(outputView) {
-    for (let i = 0; i < this.#attemptNum; i++) {
+    Array.from({ length: this.#attemptNum }, () => {
       this.#moveCars();
-      outputView(RaceGameCalculator.getCycleResult(this.#cars));
-    }
+      outputView(RaceCalculator.getCycleResult(this.#cars));
+    });
   }
 
   judgeWinner() {
-    const winnersPosition = RaceGameCalculator.getWinnersPosition(this.#cars);
-    return RaceGameCalculator.getWinners(this.#cars, winnersPosition);
+    const winnersPosition = RaceCalculator.getWinnersPosition(this.#cars);
+    return RaceCalculator.getWinners(this.#cars, winnersPosition);
   }
 
   #moveCars() {
     this.#cars.forEach(car => {
-      car.move();
+      const randNum = this.#getRandomNumber();
+
+      if (randNum >= RULES.moveThreshold) {
+        car.move();
+      }
     });
   }
 
+  #getRandomNumber() {
+    const { minRandomRange, maxRandomRange } = RULES;
+    return Random.pickNumberInRange(minRandomRange, maxRandomRange);
+  }
+
   #validateCarsName(carsNameInput) {
-    if (isInvalidCarName(carsNameInput)) throw new Error(ERRORS.invalidCarName);
+    if (isInvalidCarNameForm(carsNameInput)) throw new Error(ERRORS.invalidCarNameForm);
     if (hasRedundantCarName(carsNameInput)) throw new Error(ERRORS.hasRedundantCarName);
-    if (hasSingleCar(carsNameInput)) throw new Error(ERRORS.hasSingleCar);
+    if (hasSingleCarName(carsNameInput)) throw new Error(ERRORS.hasSingleCarName);
   }
 
   #validateAttemptNum(attemptInput) {

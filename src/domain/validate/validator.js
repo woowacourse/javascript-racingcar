@@ -1,6 +1,6 @@
 import { REGEX, RULES, SYMBOLS } from '../../statics/constants';
 
-export const isInvalidCarName = carsNameInput => {
+export const isInvalidCarNameForm = carsNameInput => {
   const nameRegex = new RegExp(REGEX.carName);
   return !nameRegex.test(carsNameInput);
 };
@@ -11,7 +11,7 @@ export const hasRedundantCarName = carsNameInput => {
   return splittedCarNames.length !== uniqueCarNames.size;
 };
 
-export const hasSingleCar = carsNameInput => {
+export const hasSingleCarName = carsNameInput => {
   const splittedCarNames = carsNameInput.split(SYMBOLS.nameSeperator);
   return splittedCarNames.length === 1;
 };

@@ -3,6 +3,11 @@ export const SYMBOLS = {
   move: '-',
   whiteSpace: '',
   winnerSeperator: ', ',
+  newLine: '\n',
+};
+
+export const PREFIX = {
+  error: '[ERROR]',
 };
 
 export const REGEX = {
@@ -12,7 +17,8 @@ export const REGEX = {
 export const RULES = {
   startPosition: 0,
   minRandomRange: 0,
-  minAttemptNum: 1,
   maxRandomRange: 9,
+  minAttemptNum: 1,
+  minCarNameCnt: 2,
   moveThreshold: 4,
 };
