@@ -1,6 +1,5 @@
 class Car {
   #name;
-
   #location;
 
   constructor(name) {

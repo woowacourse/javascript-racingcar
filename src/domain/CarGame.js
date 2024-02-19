@@ -5,7 +5,6 @@ import Car from './Car.js';
 
 class CarGame {
   #tryCount;
-
   #carList = [];
 
   setCars(carNames) {

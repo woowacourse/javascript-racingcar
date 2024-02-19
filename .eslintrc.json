@@ -32,6 +32,11 @@
     "no-constant-condition": "off",
     "max-lines-per-function": ["error", 10],
     "no-console": "off",
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
     "sort-imports": [
       "error",
       {
