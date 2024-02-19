@@ -4,7 +4,9 @@ class Car {
   #location = 0;
 
   constructor(name) {
-    this.setName(name);
+    if (name) {
+      this.setName(name);
+    }
   }
 
   setName(name) {

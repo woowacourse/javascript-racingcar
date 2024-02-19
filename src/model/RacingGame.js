@@ -23,10 +23,6 @@ class RacingGame {
     this.#tryCount = tryCount;
   }
 
-  getTryCount() {
-    return this.#tryCount;
-  }
-
   playRacing() {
     this.#middleResults = Array(this.#tryCount)
       .fill()
