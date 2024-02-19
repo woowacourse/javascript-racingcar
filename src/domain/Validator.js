@@ -45,6 +45,7 @@ const validateCarNameDuplicated = (inputArray) => {
 };
 
 export const validateCarNameArray = (inputArray) => {
+  console.log(inputArray);
   validateCarNameRange(inputArray);
   validateCarNameDuplicated(inputArray);
 };

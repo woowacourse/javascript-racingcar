@@ -1,4 +1,4 @@
-import SetGame from "../src/RacingCarGame/SetGame.js";
+import SetGame from "../src/domain/SetGame.js";
 import { CarNameDuplicatedError, CarNameLengthError, CarNameRangeError } from "../src/error/CustomError.js";
 import { readCarNames, readAttempt } from "../src/view/InputView.js";
 import{ printError } from "../src/view/OutputView.js";
