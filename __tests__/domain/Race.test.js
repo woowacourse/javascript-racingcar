@@ -24,7 +24,7 @@ describe('레이스 검증', () => {
         // then
       }).toThrow();
     });
-    test('라운드 입력이 1미만일 경우 아닐 경우 에러 발생', () => {
+    test('라운드 입력이 1미만일 경우 에러 발생', () => {
       // given
       const invalidInput = '-3';
 
@@ -35,7 +35,7 @@ describe('레이스 검증', () => {
         // then
       }).toThrow();
     });
-    test('라운드 입력이 10 초과인 경우 아닐 경우 에러 발생', () => {
+    test('라운드 입력이 10 초과인 경우 에러 발생', () => {
       // given
       const invalidInput = '11';
 
