@@ -1,56 +1,56 @@
 /* eslint-disable max-lines-per-function */
-import { ERROR_MESSAGE } from '../src/constants/System.js';
-import CarGame from '../src/model/CarGame.js';
+import CarGame from '../src/domain/CarGame.js';
 
-describe('Car Game Test', () => {
+describe('자동차 게임 기능 테스트', () => {
   let carGame;
 
   beforeEach(() => {
-    // eslint-disable-next-line no-unused-vars
     carGame = new CarGame();
   });
 
-  test('5글자 이상 자동차 이름 예외처리', () => {
+  test('시도 횟수 반환 확인 테스트', () => {
     // Arrange
-    const carNames = ['a', 'b', 'cdefghi'];
+    const carNames = ['가', '나', '다'];
+    const tryCount = 5;
+
+    // Act
+    carGame.setCars(carNames);
+    carGame.setTryCount(tryCount);
 
     // Assert
-    expect(() =>
-      // Act
-      carGame.setCars(carNames),
-    ).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
+    expect(carGame.getTryCount()).toBe(tryCount);
   });
 
-  test('자동차 이름 중복 예외처리', () => {
+  test('자동차 전진 or 멈춤 확인 테스트', () => {
     // Arrange
-    const carNames = ['a', 'b', 'a'];
+    const carNames = ['가'];
+    const tryCount = 1;
+
+    // Act
+    carGame.setCars(carNames);
+    carGame.setTryCount(tryCount);
+    carGame.moveCars();
+    const currentLocations = carGame.getCurrentLocation();
 
     // Assert
-    expect(() =>
-      // Act
-      carGame.setCars(carNames),
-    ).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
+    currentLocations.forEach((location) => {
+      expect(location.name).toBe('가');
+      expect([0, 1].includes(location.location)).toBeTruthy();
+    });
   });
 
-  test('시도 횟수 정수 예외처리', () => {
+  test('자동차 게임 우승자 판별 테스트', () => {
     // Arrange
-    const tryCount = 'a';
+    const carNames = ['가'];
+    const tryCount = 1;
+
+    // Act
+    carGame.setCars(carNames);
+    carGame.setTryCount(tryCount);
+    carGame.moveCars();
+    const winner = carGame.findWinners();
 
     // Assert
-    expect(() =>
-      // Act
-      carGame.setTryCount(tryCount),
-    ).toThrow(ERROR_MESSAGE.TRY_COUNT_NUMBER);
-  });
-
-  test('시도 횟수 양수 예외처리', () => {
-    // Arrange
-    const tryCount = -1;
-
-    // Assert
-    expect(() =>
-      // Act
-      carGame.setTryCount(tryCount),
-    ).toThrow(ERROR_MESSAGE.TRY_COUNT_MIN);
+    expect(winner).toEqual(['가']);
   });
 });

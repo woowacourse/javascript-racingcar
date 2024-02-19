@@ -31,6 +31,56 @@
     "no-await-in-loop": "off",
     "no-constant-condition": "off",
     "max-lines-per-function": ["error", 10],
-    "no-console": "off"
+    "no-console": "off",
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "allowSeparatedGroups": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "next",
+            "group": "builtin"
+          },
+          {
+            "pattern": "react",
+            "group": "builtin"
+          },
+          {
+            "pattern": "@MyDesignSystem/**",
+            "group": "internal"
+          },
+          {
+            "pattern": "src/**",
+            "group": "internal"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["src/**", "@MyDesignSystem/**"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

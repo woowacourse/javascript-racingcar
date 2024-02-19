@@ -1,9 +1,10 @@
 import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
+import getRandomNum from '../utils/RandomNum.js';
+
 import Car from './Car.js';
 
 class CarGame {
   #tryCount;
-
   #carList = [];
 
   setCars(carNames) {
@@ -24,7 +25,7 @@ class CarGame {
   }
 
   #validateCarNamesMulti(carNames) {
-    this.validMulti = new Set(new Set(carNames)).size === carNames.length;
+    this.validMulti = new Set(carNames).size === carNames.length;
 
     if (!this.validMulti) {
       throw new Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
@@ -41,7 +42,7 @@ class CarGame {
     if (!Number.isInteger(tryCount)) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_NUMBER);
     }
-    if (tryCount < 1) {
+    if (tryCount < OPTION.MIN_TRY_COUNT) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_MIN);
     }
   }
@@ -52,7 +53,7 @@ class CarGame {
 
   moveCars() {
     this.#carList.forEach((car) => {
-      const randomNumber = Math.floor(Math.random() * 10);
+      const randomNumber = getRandomNum();
       if (randomNumber >= OPTION.MOVE_CONDITION) {
         car.move();
       }
@@ -60,11 +61,10 @@ class CarGame {
   }
 
   getCurrentLocation() {
-    const carInfos = [];
-
-    this.#carList.forEach((car) => {
-      carInfos.push({ name: car.getName(), location: car.getLocation() });
-    });
+    const carInfos = this.#carList.map((car) => ({
+      name: car.getName(),
+      location: car.getLocation(),
+    }));
 
     return carInfos;
   }
