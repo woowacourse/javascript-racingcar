@@ -30,5 +30,5 @@ export const isValidDuplication = (inputArr) => {
 };
 
 export const isValidInteger = (inputValue) => {
-  return Number.isInteger(+inputValue);
+  return Number.isInteger(Number(inputValue));
 };
