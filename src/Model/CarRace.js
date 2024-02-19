@@ -5,8 +5,10 @@ const ERROR_MESSAGES = Object.freeze({
   ONLY_NUM: '숫자 값만 입력해주세요.',
   INVALID_NUM_RANGE: '1 이상 200미만의 숫자만 입력해주세요.',
   DUPLICATE_NAME: '중복된 이름이 있습니다.',
+  NO_BLANK: '이름에는 공백이 없어야 합니다.',
 });
 const TRY_RANGE = Object.freeze({ min: 1, max: 200 });
+const BLANK = ' ';
 
 export default class CarRace {
   #cars;
@@ -15,11 +17,11 @@ export default class CarRace {
 
   setCarsByCarNames(carNames) {
     this.#checkCarDuplicate(carNames);
-    this.#cars = carNames.map((name) => new Car(name));
-  }
-
-  getCars() {
-    return this.#cars;
+    this.#checkCarNameBlank(carNames);
+    this.#cars = carNames.map((name) => {
+      this.#checkCarNameBlank(name);
+      return new Car(name);
+    });
   }
 
   #checkCarDuplicate(carNames) {
@@ -28,13 +30,15 @@ export default class CarRace {
     }
   }
 
+  #checkCarNameBlank(name) {
+    if (name.includes(BLANK)) {
+      throw new AppError(ERROR_MESSAGES.NO_BLANK);
+    }
+  }
+
   setTryNum(tryNum) {
     this.#checkTryNum(tryNum);
     this.#tryNum = tryNum;
-  }
-
-  getTryNum() {
-    return this.#tryNum;
   }
 
   #checkTryNum(number) {
@@ -55,5 +59,13 @@ export default class CarRace {
       return { hasWinner: true, winners };
     }
     return { hasWinner: false, winners: [] };
+  }
+
+  getCars() {
+    return this.#cars;
+  }
+
+  getTryNum() {
+    return this.#tryNum;
   }
 }
