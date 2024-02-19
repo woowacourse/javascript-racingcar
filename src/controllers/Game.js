@@ -1,6 +1,6 @@
-import { Car } from '../models/index.js';
-import OutputView from '../views/OutView.js';
-import InputController from './InputController.js';
+import { Car } from '../domain/index.js';
+import {OutputView} from '../view/index.js';
+import {InputController} from './index.js';
 import { OUTPUT_MESSAGE } from '../constants/index.js';
 
 class Game {
