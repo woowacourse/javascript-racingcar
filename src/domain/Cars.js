@@ -27,11 +27,13 @@ export default class Cars {
 
   getFirstPlaceNames() {
     const firstPlaceCars = this.#getFirstPlace();
+
     return firstPlaceCars.map((car) => car.getName());
   }
 
   #getFirstPlace() {
     const maxMileage = this.#getMaxMileage();
+
     return this.#cars.filter((car) => car.getMileage() === maxMileage);
   }
 

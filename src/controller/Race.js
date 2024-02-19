@@ -4,7 +4,7 @@ import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
 import { splitByComma, trimAll } from "../utils/parse.js";
 import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
-import { ERROR_MESSAGE } from "../constants/message.js";
+import { validateRoundNumber } from "../validate.js";
 import { STANDARD_VALUE } from "../constants/standardValue.js";
 
 export default class Race {
@@ -16,7 +16,9 @@ export default class Race {
     const roundNumber = await tryUntilSuccess(
       this.#getRoundNumber.bind(this)
     )();
+
     this.#runRounds(cars, roundNumber);
+    this.#showWinners(cars);
   }
 
   async #getCars() {
@@ -40,30 +42,21 @@ export default class Race {
     const rawRoundNumber = await InputView.readRoundNumber();
     const roundNumber = Number(rawRoundNumber);
 
-    this.#validateRoundNumber(roundNumber);
+    validateRoundNumber(roundNumber, {
+      min: Race.MIN_ROUND_NUMBER,
+      max: Race.MAX_ROUND_NUMBER,
+    });
 
     return roundNumber;
-  }
-
-  #validateRoundNumber(number) {
-    if (!Number.isInteger(number)) {
-      throw new Error(ERROR_MESSAGE.notInteger);
-    }
-
-    if (number < Race.MIN_ROUND_NUMBER || number > Race.MAX_ROUND_NUMBER) {
-      throw new Error(ERROR_MESSAGE.invalidRoundNumber);
-    }
   }
 
   #runRounds(cars, roundNumber) {
     OutputView.printBlankLine();
     OutputView.printResultIntro();
 
-    for (let i = 0; i < roundNumber; i++) {
+    for (let round = 0; round < roundNumber; round++) {
       this.#processRound(cars);
     }
-
-    this.#showWinners(cars);
   }
 
   #processRound(cars) {
