@@ -31,7 +31,6 @@ export default class Race {
 
   #parseCarNames(rawCarNames) {
     const parsedCarNames = splitByComma(rawCarNames);
-
     return trimAll(parsedCarNames);
   }
 
@@ -62,7 +61,6 @@ export default class Race {
 
   #processRound(cars) {
     cars.goAll();
-
     const mileageBoard = cars.getMileageBoard();
 
     OutputView.printMileageBoard(mileageBoard);
