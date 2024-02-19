@@ -70,7 +70,7 @@ export default class Race {
   }
 
   #processRound(cars) {
-    const randomNumbers = this.#pickRandomNumbers(cars.getCount());
+    const randomNumbers = this.#pickRandomNumbers(cars.getLength());
 
     cars.goAll(randomNumbers);
 
