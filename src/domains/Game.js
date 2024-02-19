@@ -34,7 +34,7 @@ export default class Game {
 
   static getFinalWinner(totalResult) {
     const finalScores = totalResult[totalResult.length - 1];
-    let maxScore = Math.max(...Object.values(finalScores));
+    const maxScore = Math.max(...Object.values(finalScores));
     return Object.keys(finalScores).filter((name) => finalScores[name] === maxScore);
   }
 }
