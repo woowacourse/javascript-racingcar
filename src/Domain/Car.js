@@ -16,15 +16,12 @@ export default class Car {
   #distance = 0;
 
   constructor(name) {
-    Car.checkName(name);
+    this.#checkName(name);
     this.#name = name;
   }
 
-  static checkName(name) {
-    if (
-      NAME_LENGTH_RANGE.MAX < name.length ||
-      name.length < NAME_LENGTH_RANGE.MIN
-    ) {
+  #checkName(name) {
+    if (NAME_LENGTH_RANGE.MAX < name.length || name.length < NAME_LENGTH_RANGE.MIN) {
       throw new AppError(ERROR_MESSAGE);
     }
   }
