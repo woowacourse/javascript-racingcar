@@ -23,7 +23,7 @@ const typeCheckCase = [
 const lowerAndUpperCheckCase = [9, 0];
 
 describe('utils: getRandomNumberInRange 검증', () => {
-  test.skip.each(rangeCheckCase)(
+  test.each(rangeCheckCase)(
     '범위 내 숫자 나오는지 1만회 검증',
     //Arrange
     (lower, upper) => {

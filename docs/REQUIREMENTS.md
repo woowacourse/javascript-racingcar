@@ -27,16 +27,12 @@
   - [x] 뷰
     - [x] 텍스트를 만드는 로직 만들기
 
-- [ ] test 만들기
-  - [ ] Mock을 사용하지 않는 구조로 만들기
-  - [ ] `Car`
-  - [ ] `CarMover`
-  - [ ] `RaceResult`
-  - [ ] `RaceStaff`
-  - [ ] `Validator`
-
-- [ ] 기타
-  - [ ] retryWhenOccurs 이름 변경
+- [x] test 만들기
+  - [x] Mock을 사용하지 않는 구조로 만들기
+  - [x] `Car`
+  - [x] `CarMover`
+  - [x] `RaceResult`
+  - [x] `Validator`
 
 ## 실행예시
 ```

@@ -1,41 +1,89 @@
-import Validator from '../../src/class/Validator';
+import Validator from '../Validator';
+
+const validMaxTryCount = ['1', '2', '10'];
+const notNumberMaxTryCount = ['한번', '1회'];
+const notDigitMaxTryCount = ['0x10', '0b101', '0o123'];
+const decimalMaxTryCount = ['0.1', '0.2', '0.123'];
 
 describe('Validator 클래스 테스트', () => {
-  const carsCases = [
-    ['pobi', 'sofa', 'suya', true],
-    ['pobi', 'sofa', 'soyaho', false],
-    ['pobi', 'sofa', 'sofa', false],
-  ];
-  test.each(carsCases)(
-    'validateCars 메서드는 자동차 이름 배열을 받아, 이름의 길이와 중복 여부를 검증한다.',
-    // Arrange
-    (name1, name2, name3, expectedResult) => {
-      // Act
-      const result = Validator.validateCars([name1, name2, name3]);
+  describe('validateCars', () => {
+    test('validateCars 예외 아닌 경우', () => {
+      // Arrange
+      const names = ['pobi', 'sofa', 'suya'];
 
       // Assert
-      expect(result).toBe(expectedResult);
+      expect(
+        //Act
+        () => Validator.validateCarNames(names)
+      ).not.toThrow();
+    });
+
+    test('validateCars의 값에 5 이상의 문자열이 있는 경우', () => {
+      // Arrange
+      const names = ['pobi', 'sofa', 'soyaho'];
+      // Assert
+      expect(
+        //Act
+        () => Validator.validateCarNames(names)
+      ).toThrow();
+    });
+
+    test('validateCars의 값에 중복 값이 있는 경우', () => {
+      // Arrange
+      const names = ['pobi', 'suya', 'suya'];
+      // Assert
+      expect(
+        //Act
+        () => Validator.validateCarNames(names)
+      ).toThrow();
+    });
+  });
+
+  test.each(validMaxTryCount)(
+    'validateTryCount에 맞는 값이 들어오는 경우.',
+    // Arrange
+    maxTryCountString => {
+      // Assert
+      expect(
+        //Act
+        () => Validator.validateMaxTryCountString(maxTryCountString)
+      ).not.toThrow();
     }
   );
 
-  const tryCountCases = [
-    ['1', true],
-    ['10', true],
-    ['0', true],
-    ['-1', false],
-    ['1.1', false],
-    ['3회', false],
-    ['0x15', false],
-    ['Infinity', false],
-  ];
-  test.each(tryCountCases)(
-    'validateTryCount 메서드는 시도 횟수를 받아, 십진수로 이루어진 자연수 값인지 검증한다.',
+  test.each(notNumberMaxTryCount)(
+    'validateTryCount에 숫자가 아닌 값이 들어오는 경우 예외',
     // Arrange
-    (tryCount, expectedResult) => {
-      // Act
-      const result = Validator.validateTryCount(tryCount);
+    maxTryCountString => {
       // Assert
-      expect(result).toBe(expectedResult);
+      expect(
+        //Act
+        () => Validator.validateMaxTryCountString(maxTryCountString)
+      ).toThrow();
+    }
+  );
+
+  test.each(notDigitMaxTryCount)(
+    'validateTryCount에 십진수가 아닌 값이 들어오는 경우 예외',
+    // Arrange
+    maxTryCountString => {
+      // Assert
+      expect(
+        //Act
+        () => Validator.validateMaxTryCountString(maxTryCountString)
+      ).toThrow();
+    }
+  );
+
+  test.each(decimalMaxTryCount)(
+    'validateTryCount에 소수 들어오는 경우 예외',
+    // Arrange
+    maxTryCountString => {
+      // Assert
+      expect(
+        //Act
+        () => Validator.validateMaxTryCountString(maxTryCountString)
+      ).toThrow();
     }
   );
 });
