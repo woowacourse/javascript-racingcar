@@ -1,7 +1,8 @@
 import { MESSAGE } from '../constants';
 import readLineAsync from '../utils/readLineAsync';
-import { carValidator, turnCountValidator } from '../domain/validator';
+import { carValidator } from '../domain/validator';
 import OutputView from './OutputView';
+import raceCountValidator from '../domain/validator/raceCountValidator';
 
 const InputView = {
   async readCarNameList() {
@@ -20,14 +21,14 @@ const InputView = {
     return carNameListInput.split(',').map((car) => car.trim());
   },
 
-  async readTurnCount() {
+  async readRaceCount() {
     try {
-      const turnCountInput = await readLineAsync(MESSAGE.TURN_COUNT_INPUT);
-      turnCountValidator.validateTurnCount(turnCountInput);
-      return parseInt(turnCountInput, 10);
+      const raceCountInput = await readLineAsync(MESSAGE.RACE_COUNT_INPUT);
+      raceCountValidator.validateRaceCount(raceCountInput);
+      return parseInt(raceCountInput, 10);
     } catch (error) {
       OutputView.print(error.message);
-      return this.readTurnCount();
+      return this.readRaceCount();
     }
   },
 };

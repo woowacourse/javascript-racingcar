@@ -1,2 +1,2 @@
 export { default as carValidator } from './carValidator';
-export { default as turnCountValidator } from './turnCountValidator';
+export { default as raceCountValidator } from './raceCountValidator';

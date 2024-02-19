@@ -6,16 +6,16 @@ import raceWinnerController from './RaceWinnerController';
 
 class RaceController {
   #carList;
-  #turnCount;
+  #raceCount;
 
-  constructor(carNameList, turnCount) {
+  constructor(carNameList, raceCount) {
     this.#carList = carNameList.map((carName) => new Car(carName));
-    this.#turnCount = turnCount;
+    this.#raceCount = raceCount;
   }
 
   start() {
     OutputView.print(MESSAGE.RACE_RESULT);
-    Array.from({ length: this.#turnCount }).forEach(() => {
+    Array.from({ length: this.#raceCount }).forEach(() => {
       this.#moveCarList();
       OutputView.print();
     });

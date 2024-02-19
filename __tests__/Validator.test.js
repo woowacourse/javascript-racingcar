@@ -1,5 +1,6 @@
 import { ERROR_MESSAGE } from '../src/constants/message';
-import { carValidator, turnCountValidator } from '../src/domain/validator';
+import { carValidator } from '../src/domain/validator';
+import raceCountValidator from '../src/domain/validator/raceCountValidator';
 
 describe('자동차 입력값 검증', () => {
   test('자동차 목록 중 자동차 이름이 모두 5자 이내인 경우 정상적으로 동작한다.', () => {
@@ -72,25 +73,25 @@ describe('경주 횟수 입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      turnCountValidator.validateNaturalNumber(input);
+      raceCountValidator.validateNaturalNumber(input);
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NATURAL_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.RACE_COUNT_IS_NOT_NATURAL_NUMBER);
   });
 
   test('이동 횟수가 문자인 경우 예외 처리한다.', () => {
     // Arrange
     const input = 'string';
-    const turnCount = parseFloat(input);
+    const raceCount = parseFloat(input);
 
     // Act
     const mockFn = () => {
-      turnCountValidator.validateNumber(turnCount);
+      raceCountValidator.validateNumber(raceCount);
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_NOT_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.RACE_COUNT_IS_NOT_NUMBER);
   });
 
   test('이동 횟수가 실수로 들어온 경우 예외 처리한다.', () => {
@@ -99,10 +100,10 @@ describe('경주 횟수 입력값 검증', () => {
 
     // Act
     const mockFn = () => {
-      turnCountValidator.validateFloatNumber(input);
+      raceCountValidator.validateFloatNumber(input);
     };
 
     /// Assert
-    expect(mockFn).toThrow(ERROR_MESSAGE.TURN_COUNT_IS_FLOAT_NUMBER);
+    expect(mockFn).toThrow(ERROR_MESSAGE.RACE_COUNT_IS_FLOAT_NUMBER);
   });
 });

@@ -4,8 +4,8 @@ import RaceController from './controller/RaceController';
 const app = {
   async play() {
     const carNameList = await InputView.readCarNameList();
-    const turnCount = await InputView.readTurnCount();
-    const race = new RaceController(carNameList, turnCount);
+    const raceCount = await InputView.readRaceCount();
+    const race = new RaceController(carNameList, raceCount);
     race.start();
     race.showRaceResult();
   },
