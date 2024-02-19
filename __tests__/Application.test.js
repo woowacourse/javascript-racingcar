@@ -1,26 +1,9 @@
 import App from "../src/App";
-import pickNumberInRange from "../src/utils/pickNumberInRange";
 import Console from "../src/utils/Console";
 import { ERROR_MESSAGES } from "../src/constants/car-race";
-
-jest.mock("../src/utils/pickNumberInRange", () => {
-  return jest.fn();
-});
-
-const mockRandoms = (numbers) => {
-  numbers.forEach((number) => {
-    pickNumberInRange.mockReturnValueOnce(number);
-  });
-};
-
-const mockQuestions = (inputs) => {
-  Console.readLineAsync = jest.fn();
-
-  Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
-    return Promise.resolve(input);
-  });
-};
+import Random from "../src/utils/random";
+import mockQuestions from "../src/test-utils/mockQuestions";
+import mockRandoms from "../src/test-utils/mockRandoms";
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(Console, "print");
@@ -67,11 +50,11 @@ describe("자동차 경주 입력에 대한 예외 테스트", () => {
     },
     {
       inputs: ["harry,bong", "a", "10"],
-      expectedErrorMessage: ERROR_MESSAGES.invalidNumberType,
+      expectedErrorMessage: ERROR_MESSAGES.invalidTryCountType,
     },
     {
       inputs: ["harry,bong", "-1", "10"],
-      expectedErrorMessage: ERROR_MESSAGES.negativeTryCount,
+      expectedErrorMessage: ERROR_MESSAGES.invalidTryCountRange,
     },
   ];
 
