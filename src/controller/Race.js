@@ -16,8 +16,8 @@ export default class Race {
   static MAX_RANDOM_NUMBER = 9;
 
   async start() {
-    const cars = await tryUntilSuccess(this.#getCars.bind(this))();
-    const roundNumber = await tryUntilSuccess(this.#getRoundNumber.bind(this))();
+    const cars = await tryUntilSuccess(this.#getCars, this)();
+    const roundNumber = await tryUntilSuccess(this.#getRoundNumber, this)();
 
     this.#runRounds(cars, roundNumber);
   }
