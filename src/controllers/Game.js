@@ -20,7 +20,7 @@ class Game {
       const nameArray = value.split(',');
       this.#carList = nameArray.map((name) => new Car(name));
 
-      OutputView.printMessage(`\n=> 참가 자동차: ${nameArray.join(',')}`);
+      OutputView.printMessage(`[input check] 참가 자동차: ${nameArray.join(',')}`);
     }
   }
 
@@ -30,7 +30,7 @@ class Game {
     this.#round.total = Number(value);
 
     OutputView.printMessage(
-      `\n=> 게임을 진행할 라운드 횟수: ${this.#round.total}`,
+      `[input check] 게임을 진행할 라운드 횟수: ${this.#round.total}`,
     );
   }
 
@@ -53,9 +53,10 @@ class Game {
       `\n${OUTPUT_MESSAGE.roundResult}`,
     );
   }
+
   #printRoundMessage() {
     OutputView.printMessage(
-      `\n라운드:${this.#round.current}`,
+      `\n[${this.#round.current}라운드]`,
     );
   }
 
