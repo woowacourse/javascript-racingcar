@@ -13,7 +13,7 @@ const carNamesValidator = {
     }
   },
 
-  isInvalidLength(carNames) {
+  isValidLength(carNames) {
     return carNames.some(
       (name) =>
         name.length < RULES.minCarNameLength ||
@@ -22,7 +22,7 @@ const carNamesValidator = {
   },
 
   validateLength(carNames) {
-    if (this.isInvalidLength(carNames)) {
+    if (this.isValidLength(carNames)) {
       throw new InvalidInputException(ERROR_MESSAGES.carNameLength);
     }
   },
