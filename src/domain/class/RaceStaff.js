@@ -13,7 +13,7 @@ class RaceStaff {
     carNames.forEach(name => {
       const nowCar = new Car(name);
       this.#carMover.giveManyTry(nowCar, maxTryCount);
-      raceResult.pushCarPosition(nowCar);
+      raceResult.pushCar(nowCar);
     });
     return raceResult;
   }

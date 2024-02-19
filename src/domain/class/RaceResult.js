@@ -11,7 +11,7 @@ class RaceResult {
     this.#maxPosition = 0;
   }
 
-  pushCarPosition(car) {
+  pushCar(car) {
     if (!(car instanceof Car)) throw new Error('[ERROR]Car이 아님');
     this.#result.push(car);
     this.#updateMaxTryCount(car);
