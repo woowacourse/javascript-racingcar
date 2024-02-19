@@ -1,9 +1,8 @@
-const CONDITIONS = require('../constant/Conditions.js');
 const numberToDistanceSymbol = require('../utils/numberToDistanceSymbol.js');
-const { OUTPUT_MESSAGES } = require('../constant/messages.js');
+const { OUTPUT_MESSAGES } = require('../constant/Messages.js');
+const { SYMBOL } = require('../constant/Conditions.js');
 
 const OutputView = {
-  // 추후 수정
   printNewLine() {
     console.log();
   },
@@ -25,7 +24,7 @@ const OutputView = {
   },
 
   printWinners(winners) {
-    console.log(OUTPUT_MESSAGES.winners + winners.join(CONDITIONS.delimiter + CONDITIONS.space));
+    console.log(OUTPUT_MESSAGES.winners + winners.join(SYMBOL.delimiter + SYMBOL.space));
   },
 
   print(message) {

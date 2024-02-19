@@ -1,7 +1,7 @@
-const CONDITIONS = require('../constant/Conditions.js');
+const { SYMBOL } = require('../constant/Conditions');
 
 const numberToDistanceSymbol = (num) => {
-  return CONDITIONS.distance.repeat(num);
+  return SYMBOL.distance.repeat(num);
 };
 
 module.exports = numberToDistanceSymbol;

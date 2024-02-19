@@ -1,24 +1,24 @@
-const CarService = require('../service/CarService.js');
+const CarRace = require('../domain/CarRace.js');
 const InputView = require('../view/InputView.js');
 const OutputView = require('../view/OutputView.js');
 
 class Controller {
-  #carService;
+  #carRace;
 
   async getCarNames() {
     const carNames = await InputView.readCarNames();
 
-    this.#carService = new CarService(carNames);
+    this.#carRace = new CarRace(carNames);
   }
 
   async getMoveCount() {
     const moveCount = await InputView.readMoveCount();
 
-    this.#carService.setMoveCount(moveCount);
+    this.#carRace.setMoveCount(moveCount);
   }
 
   race() {
-    const racingResults = this.#carService.startRacing();
+    const racingResults = this.#carRace.startRacing();
 
     OutputView.printGameResultMessage();
     racingResults.forEach((racingResult) => {
@@ -27,7 +27,7 @@ class Controller {
   }
 
   racingWinners() {
-    const winners = this.#carService.getRaceResult();
+    const winners = this.#carRace.getRaceResult();
 
     OutputView.printWinners(winners);
   }

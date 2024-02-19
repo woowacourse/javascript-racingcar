@@ -20,10 +20,4 @@ const REGEXP = Object.freeze({
   numericPattern: /^\d+$/,
 });
 
-const CONDITIONS = Object.freeze({
-  ...SYMBOL,
-  ...RULES,
-  ...REGEXP,
-});
-
-module.exports = CONDITIONS;
+module.exports = { SYMBOL, RULES, REGEXP };
