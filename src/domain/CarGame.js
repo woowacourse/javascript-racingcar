@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE, OPTION } from '../constants/System.js';
+import getRandomNum from '../utils/RandomNum.js';
 
 import Car from './Car.js';
 
@@ -53,7 +54,7 @@ class CarGame {
 
   moveCars() {
     this.#carList.forEach((car) => {
-      const randomNumber = Math.floor(Math.random() * OPTION.RANDOM_MAX);
+      const randomNumber = getRandomNum();
       if (randomNumber >= OPTION.MOVE_CONDITION) {
         car.move();
       }
