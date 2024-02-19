@@ -1,19 +1,16 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { splitByComma, trimAll } from "../utils/parse.js";
 import Cars from "../domain/Cars.js";
 import Car from "../domain/Car.js";
 
+import { splitByComma, trimAll } from "../utils/parse.js";
 import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
+
 import { ERROR_MESSAGE } from "../constants/message.js";
-import RandomUtil from "../utils/RandomUtil.js";
 
 export default class Race {
   static MIN_ROUND_NUMBER = 1;
   static MAX_ROUND_NUMBER = 100;
-
-  static MIN_RANDOM_NUMBER = 0;
-  static MAX_RANDOM_NUMBER = 9;
 
   async start() {
     const cars = await tryUntilSuccess(this.#getCars, this)();
@@ -70,18 +67,12 @@ export default class Race {
   }
 
   #processRound(cars) {
-    const randomNumbers = this.#pickRandomNumbers(cars.getLength());
-
-    cars.goAll(randomNumbers);
+    cars.goAll();
 
     const mileageBoard = cars.getMileageBoard();
 
     OutputView.printMileageBoard(mileageBoard);
     OutputView.printBlankLine();
-  }
-
-  #pickRandomNumbers(length) {
-    return RandomUtil.pickRandomNumbers(Race.MIN_RANDOM_NUMBER, Race.MAX_RANDOM_NUMBER, length);
   }
 
   #showWinners(cars) {

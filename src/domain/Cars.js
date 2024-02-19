@@ -1,9 +1,13 @@
-import { ERROR_MESSAGE } from "../constants/message.js";
 import Car from "./Car.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
+import RandomUtil from "../utils/RandomUtil.js";
 
 export default class Cars {
   static MIN_LENGTH = 2;
   static MAX_LENGTH = 100;
+
+  static MIN_RANDOM_NUMBER = 0;
+  static MAX_RANDOM_NUMBER = 9;
 
   #cars;
 
@@ -12,7 +16,7 @@ export default class Cars {
     this.#cars = cars;
   }
 
-  goAll(numbers) {
+  goAll(numbers = this.#pickRandomNumbers(this.#cars.length)) {
     this.#cars.forEach((car, index) => car.go(numbers[index]));
   }
 
@@ -23,10 +27,6 @@ export default class Cars {
   getFirstPlaceNames() {
     const firstPlaceCars = this.#getFirstPlaces();
     return firstPlaceCars.map((car) => car.getName());
-  }
-
-  getLength() {
-    return this.#cars.length;
   }
 
   #validate(cars) {
@@ -53,6 +53,10 @@ export default class Cars {
     if (new Set(names).size !== names.length) {
       throw new Error(ERROR_MESSAGE.duplicateCarName);
     }
+  }
+
+  #pickRandomNumbers(length) {
+    return RandomUtil.pickRandomNumbers(Cars.MIN_RANDOM_NUMBER, Cars.MAX_RANDOM_NUMBER, length);
   }
 
   #getFirstPlaces() {
