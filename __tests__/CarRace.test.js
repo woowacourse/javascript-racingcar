@@ -1,4 +1,4 @@
-import CarRace from '../src/Model/CarRace';
+import CarRace from '../src/Domain/CarRace';
 
 /* eslint-disable */
 describe('CarRace 객체 테스트', () => {
@@ -35,6 +35,14 @@ describe('CarRace 객체 테스트', () => {
       .toThrow('[ERROR] 1 이상 200미만의 숫자만 입력해주세요.');
   });
 
+  const FORWARD_NUMBER = 4;
+
+  function carMove(car, distance) {
+    for (let i = 0; i < distance; i += 1) {
+      car.move(FORWARD_NUMBER);
+    }
+  }
+
   test.each([
     [['러기', '리버', '헤일리'], [5, 4, 3], ['러기']],
     [
@@ -51,9 +59,7 @@ describe('CarRace 객체 테스트', () => {
       const cars = carRace.getCars();
       cars.forEach((car, index) => {
         const distance = distances[index];
-        for (let i = 0; i < distance; i += 1) {
-          car.move(4);
-        }
+        carMove(car, distance);
       });
       //Action
       expect(carRace.calculateWinners(cars).winners.map((car) => car.getName()))
