@@ -1,5 +1,4 @@
 import ERROR_MESSAGE from "../error/message.js";
-import createRandom from "../utils/createRandom.js";
 
 export const MIN_NAME_LENGTH = 1;
 export const MAX_NAME_LENGTH = 5;
@@ -22,9 +21,7 @@ class Car {
     }
   }
 
-  forward() {
-    const randomNumber = createRandom();
-
+  forward(randomNumber) {
     if (randomNumber >= FORWARD_CONDITION) this.#location += FORWARD;
   }
 
