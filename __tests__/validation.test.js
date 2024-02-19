@@ -7,8 +7,8 @@ describe('자동차 이름 유효성 테스트', () => {
     expect(() => CarValidator.validateCount(input)).toThrow();
   });
 
-  test.each(['', '파슬리쑤쑤쿠키썬데이'])(
-    '자동차 이름이 1자 미만 또는 5자 초과면 에러가 발생한다.',
+  test.each(['', '파슬리쑤쑤쿠', '파슬리쑤쑤쿠키썬데이'])(
+    '자동차 이름이 %p일 때 1자 미만, 5자 초과이므로 에러가 발생한다.',
     (input) => {
       expect(() => CarValidator.validateNameRange(input)).toThrow();
     }
@@ -22,7 +22,7 @@ describe('자동차 이름 유효성 테스트', () => {
 
 describe('경주 횟수 유효성 테스트', () => {
   test.each(['ㄱ', 'a', '0', '-1', '5.5', '&'])(
-    '경주 횟수가 자연수가 아니라면 에러가 발생한다.',
+    '경주 횟수가 %p일 때 자연수가 아니므로 에러가 발생한다.',
     (input) => {
       expect(() => TryCountValidator.validateNaturalNumber(Number(input))).toThrow();
     }
