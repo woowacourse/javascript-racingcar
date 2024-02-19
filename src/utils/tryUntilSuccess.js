@@ -1,12 +1,12 @@
-import { print } from "./console.js";
+import { printMessage } from "./console.js";
 
-export const tryUntilSuccess = (func) => {
+export const tryUntilSuccess = (func, thisArg) => {
   const repeat = async (...args) => {
     while (true) {
       try {
-        return await func(...args);
+        return await func.bind(thisArg)(...args);
       } catch (error) {
-        print(error.message);
+        printMessage(error.message);
       }
     }
   };

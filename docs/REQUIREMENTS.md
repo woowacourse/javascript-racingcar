@@ -59,4 +59,9 @@
 6. 지그 피드백 반영 사항
   - [x] 변수 명 winner 복수형 의미를 담아 s 붙이기
   - [x] 함수명은 동사형으로! (repeatable -> repeat)
-  - [ ] 불필요한 객체 형태의 export를 export const 형식으로 변경
+  - [x] 불필요한 객체 형태의 export를 export const 형식으로 변경
+
+7. **step2 요구 사항**
+  - [x] 도메인 로직은 domain/ 하위로, UI 관련 로직은 view/ 하위에서 관리한다. -> step1부터 충족
+  - [x] domain/ 하위의 모듈은 view/ 하위의 모듈을 의존하지 않아야 한다. -> step1부터 충족
+  - [x] 도메인 로직 내 테스트 어려운 부분을 분리하고, jest.fn 제거

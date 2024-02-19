@@ -1,10 +1,11 @@
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { splitByComma, trimAll } from "../utils/parse.js";
 import Cars from "../domain/Cars.js";
 import Car from "../domain/Car.js";
 
+import { splitByComma, trimAll } from "../utils/parse.js";
 import { tryUntilSuccess } from "../utils/tryUntilSuccess.js";
+
 import { ERROR_MESSAGE } from "../constants/message.js";
 
 export default class Race {
@@ -12,8 +13,8 @@ export default class Race {
   static MAX_ROUND_NUMBER = 100;
 
   async start() {
-    const cars = await tryUntilSuccess(this.#getCars.bind(this))();
-    const roundNumber = await tryUntilSuccess(this.#getRoundNumber.bind(this))();
+    const cars = await tryUntilSuccess(this.#getCars, this)();
+    const roundNumber = await tryUntilSuccess(this.#getRoundNumber, this)();
 
     this.#runRounds(cars, roundNumber);
   }

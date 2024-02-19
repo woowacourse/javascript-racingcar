@@ -22,8 +22,8 @@ const readLineAsync = (query) => {
   });
 };
 
-const print = (query) => {
-  console.log(query);
+const printMessage = (message) => {
+  console.log(message);
 };
 
-export { readLineAsync, print };
+export { readLineAsync, printMessage };
