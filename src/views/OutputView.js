@@ -1,34 +1,40 @@
 import PROGRESS_MESSAGE from '../constants/messages/progressMessage.js';
 import RESULT_MESSAGE from '../constants/messages/resultMessage.js';
+import DELIMITER from '../constants/delimiter.js';
 
 const OutputView = {
-	printStartGame() {
-		console.log(RESULT_MESSAGE.result_start);
-	},
+  printStartGame() {
+    console.log(RESULT_MESSAGE.START_PREFIX);
+  },
 
-	printResult(gameResult) {
-		gameResult.forEach((round) => {
-			for (const [key, value] of Object.entries(round)) {
-				console.log(PROGRESS_MESSAGE.round_result(key, value));
-			}
-			console.log(' ');
-		});
-	},
+  /**
+   * 게임 라운드마다의 누적 결과를 출력합니다.
+   * @param { Map } gameResult
+   */
+  printResult(gameResult) {
+    gameResult.forEach((round) => {
+      Object.entries(round).forEach(([key, value]) =>
+        console.log(key + DELIMITER.COLON + DELIMITER.SCORE_MARK.repeat(value)),
+      );
+      this.divideLine();
+    });
+  },
 
-	printWinner(gameResult, count) {
-		const finalRound = gameResult[count - 1];
-		const finalScore = Object.values(finalRound);
-		const maxNumber = Math.max(...finalScore);
-		const winnerCar = [];
+  /**
+   * 총 게임 결과의 최종 승자를 출력합니다.
+   * @param { Map } gameResult
+   * @param { Number } count
+   */
+  printWinner(finalWinnerArr) {
+    console.log(
+      PROGRESS_MESSAGE.FINAL_WINNER_PREFIX +
+        finalWinnerArr.join(DELIMITER.CAR_NAME_SEPARATOR + DELIMITER.SPACE),
+    );
+  },
 
-		for (const key in finalRound) {
-			if (finalRound.hasOwnProperty(key) && finalRound[key] === maxNumber) {
-				winnerCar.push(key);
-			}
-		}
-
-		console.log(PROGRESS_MESSAGE.final_winner(winnerCar));
-	},
+  divideLine() {
+    console.log(DELIMITER.SPACE);
+  },
 };
 
 export default OutputView;

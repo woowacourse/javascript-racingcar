@@ -1,52 +1,55 @@
 import InputView from './views/InputView.js';
-import { Validator } from './models/Validator.js';
 import OutputView from './views/OutputView.js';
-import ScoreBoard from './models/ScoreBoard.js';
-import Game from './models/Game.js';
+import ScoreBoard from './domains/ScoreBoard.js';
+import Game from './domains/Game.js';
+import retryAsyncFunctionOnError from './utils/retryAsyncFunctionOnError.js';
+import Validator from './validator/Validator.js';
+import fillEmptyCarNames from './services/fillEmptyCarNames.js';
 
 class App {
-	#scoreBoard;
-	#count;
-	#gameResult;
+  #initializedScoreBoard;
+  #countOfAttempts;
+  #gameResult;
 
-	async play() {
-		await this.#inputCarNames();
-		await this.#inputCountOfAttempt();
-		this.gameStart();
-		this.printGameResult();
-	}
+  async play() {
+    await retryAsyncFunctionOnError(this.#readCarNames, this);
+    await retryAsyncFunctionOnError(this.#readCountOfAttempts, this);
+    this.#gameStart();
+    this.#printGameResult();
+    this.#printWinner();
+  }
 
-	gameStart() {
-		const game = new Game(this.#scoreBoard, this.#count);
-		this.#gameResult = game.getGameResult();
-	}
+  async #readCarNames() {
+    const carNames = await InputView.inputCarNames();
+    const formattedCarNames = fillEmptyCarNames(carNames);
+    Validator.validateCarNames(formattedCarNames);
+    const scoreBoard = new ScoreBoard(formattedCarNames);
+    this.#initializedScoreBoard = scoreBoard.getScoreBoard();
 
-	printGameResult() {
-		OutputView.printStartGame();
-		OutputView.printResult(this.#gameResult);
-		OutputView.printWinner(this.#gameResult, this.#count);
-	}
+    OutputView.divideLine();
+  }
 
-	async #inputCarNames() {
-		try {
-			const carNames = await InputView.inputCarNames();
-			const scoreBoard = new ScoreBoard(carNames);
-			this.#scoreBoard = scoreBoard.getScoreBoard();
-		} catch (error) {
-			console.error(error.message);
-			return await this.#inputCarNames();
-		}
-	}
+  async #readCountOfAttempts() {
+    const countOfAttempts = await InputView.inputCountOfAttempt();
+    Validator.validateCountOfAttempts(countOfAttempts);
+    this.#countOfAttempts = countOfAttempts;
 
-	async #inputCountOfAttempt() {
-		try {
-			const count = await InputView.inputCountOfAttempt();
-			Validator.validateCountOfAttempt(count);
-			this.#count = count;
-		} catch (error) {
-			console.log(error.message);
-			return await this.#inputCountOfAttempt();
-		}
-	}
+    OutputView.divideLine();
+  }
+
+  #gameStart() {
+    const game = new Game(this.#initializedScoreBoard, this.#countOfAttempts);
+    this.#gameResult = game.getGameResult();
+  }
+
+  #printGameResult() {
+    OutputView.printStartGame();
+    OutputView.printResult(this.#gameResult);
+  }
+
+  #printWinner() {
+    const finalWinners = Game.getFinalWinners(this.#gameResult);
+    OutputView.printWinner(finalWinners);
+  }
 }
 export default App;
