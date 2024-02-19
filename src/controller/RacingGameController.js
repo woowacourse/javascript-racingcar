@@ -1,6 +1,6 @@
 import RetryHandler from '../errors/RetryHandler/RetryHandler.js';
 
-import { RacingGame, RandomMoveCountMaker, RacingWinnerRecorder } from '../models/index.js';
+import { RacingGame, RandomMoveCountMaker, RacingWinnerRecorder } from '../domain/index.js';
 
 import { InputView, OutputView } from '../views/index.js';
 
