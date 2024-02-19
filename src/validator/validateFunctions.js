@@ -10,11 +10,11 @@ export const isValidMaxLength = (inputValue, conditionValue) => {
 };
 
 export const isValidMinValue = (inputValue, conditionValue) => {
-  return Number(inputValue) <= (conditionValue || 0);
+  return Number(inputValue) > (conditionValue || 0);
 };
 
 export const isValidMaxValue = (inputValue, conditionValue) => {
-  return Number(inputValue) > (conditionValue || 0);
+  return Number(inputValue) <= (conditionValue || 0);
 };
 
 export const notIncludesNoSpace = (inputValue) => {
