@@ -3,12 +3,12 @@ import Cars from "../src/domain/Cars.js";
 import { mockRandoms } from "./Car.test.js";
 
 // Cars validate 메소드 테스트
-describe("Cars 이름 문자열 테스트", () => {
+describe("Cars 이름에 유효하지 않은 입력이 들어왔을 때", () => {
   // 예외 테스트
   test.each`
-    testTitle                      | carNames              | expected
-    ${"빈 칸이 들어온 경우"}       | ${""}                 | ${ERROR_MESSAGE.nameLength}
-    ${"중복된 이름이 들어온 경우"} | ${"pobi,pobi,  pobi"} | ${ERROR_MESSAGE.duplicated}
+    testTitle                                | carNames              | expected
+    ${"Cars 이름은 무조건 입력되어야 한다."} | ${""}                 | ${ERROR_MESSAGE.nameLength}
+    ${"중복된 이름은 없어야 한다."}          | ${"pobi,pobi,  pobi"} | ${ERROR_MESSAGE.duplicated}
   `("$testTitle테스트는 $carNames이 입력되면 $expected 에러를 던진다.", ({ carNames, expected }) => {
     expect(() => new Cars(carNames)).toThrow(expected);
   });
