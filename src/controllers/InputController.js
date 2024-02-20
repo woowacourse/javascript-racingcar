@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE, INPUT_MESSAGE } from '../constants/index.js';
-import { CarValidator, RoundValidator } from '../models/index.js';
-import { InputView, OutputView } from '../views/index.js';
+import { CarValidator, RoundValidator } from '../domain/index.js';
+import { InputView, OutputView } from '../view/index.js';
 
 const InputController = {
   async getCarName() {

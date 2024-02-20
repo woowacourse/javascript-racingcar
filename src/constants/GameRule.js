@@ -6,3 +6,5 @@ export const MAX_CAR_COUNT = 5;
 export const MIN_COMMA_COUNT = 1;
 export const MIN_ROUND_COUNT = 1;
 export const MAX_ROUND_COUNT = 5;
+
+export const MOVE_FORWARD_THRESHOLD = 4;
