@@ -1,19 +1,21 @@
-import { OUTPUT_MESSAGE } from './constants';
+import { OUTPUT_MESSAGE } from '../constants/message';
 
 const OutputView = {
   printError(error) {
     console.log(error.message);
   },
 
-  printEachStepResult(cars = {}) {
-    console.log(cars.getEachStepString());
+  printEachStepResult(eachStepResults = []) {
+    eachStepResults.forEach((result) => {
+      console.log(result);
+    });
   },
 
   printResultTitle() {
     console.log(OUTPUT_MESSAGE.RESULT_TITLE);
   },
 
-  printWinner(winners = []) {
+  printWinners(winners = []) {
     console.log(`${OUTPUT_MESSAGE.WINNER_IS} ${winners.join(', ')}`);
   },
 };

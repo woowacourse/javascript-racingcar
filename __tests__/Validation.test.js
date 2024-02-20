@@ -1,6 +1,5 @@
-import Game from '../src/RacingController';
-import Validation from '../src/utils/Validation';
-import { ERROR_MESSAGE } from '../src/constants';
+import Validation from '../src/Validation';
+import { ERROR_MESSAGE } from '../src/constants/message';
 
 describe('사용자 입력 유효성 검사', () => {
   test.each([[['pobi', 'jun', '']], [['pobipobi', 'jun', 'cron']]])(

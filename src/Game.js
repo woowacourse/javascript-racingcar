@@ -1,15 +1,17 @@
-import InputView from './InputView';
-import Validation from './utils/Validation';
-import OutputView from './OutputView';
-import Cars from './Cars';
+import InputView from './view/InputView';
+import Validation from './Validation';
+import OutputView from './view/OutputView';
+import RaceProgress from './domain/RaceProgress';
+import Car from './domain/Car';
 
-export class Game {
+export default class Game {
   async play() {
-    const carNameArray = await Game.getCarNamesArray();
-    const cars = new Cars(carNameArray);
+    const carNames = await Game.getCarNamesArray();
+    const cars = this.createRaceProgress(carNames);
     const tryCount = await Game.getTryCount();
-    Game.moveCars(cars, tryCount);
-    OutputView.printWinner(cars.findWinner());
+    const eachStepCarsResults = Game.getMovingCarsResults(cars, tryCount);
+    OutputView.printEachStepResult(eachStepCarsResults);
+    OutputView.printWinner(cars.findWinners());
   }
 
   static async getCarNamesArray() {
@@ -33,15 +35,21 @@ export class Game {
       return await Game.getTryCount();
     }
   }
+
   static async carNamesToCarNamesArray() {
     const carNames = await InputView.queryCarName();
     return carNames.split(',');
   }
-  static moveCars(cars = {}, tryCount = 0) {
-    OutputView.printResultTitle();
-    for (let i = 0; i < tryCount; i++) {
+
+  createRaceProgress(carNames = []) {
+    const carArray = carNames.map((carName) => new Car(carName));
+    return new RaceProgress(carArray);
+  }
+
+  static getMovingCarsResults(cars = {}, tryCount = 0) {
+    return Array.from({ length: tryCount }, () => {
       cars.moveAllCars();
-      OutputView.printEachStepResult(cars);
-    }
+      return cars.getEachStepString();
+    });
   }
 }

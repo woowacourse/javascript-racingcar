@@ -1,13 +1,16 @@
+import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 import Car from './Car';
-class Cars {
+class RaceProgress {
   #carList;
-  constructor(carNameArray = []) {
-    this.#carList = carNameArray.map((name) => new Car(name));
+  constructor(carArray = []) {
+    this.#carList = carArray;
   }
 
   moveAllCars() {
     this.#carList.forEach((car) => {
-      car.move();
+      if (Car.canMove(RandomNumberGenerator.pickRandomNumber(1, 9))) {
+        car.move();
+      }
     });
   }
 
@@ -17,7 +20,7 @@ class Cars {
     }, '');
   }
 
-  findWinner() {
+  findWinners() {
     const maxDistance = Math.max(
       ...this.#carList.map((car) => car.getDistance())
     );
@@ -27,4 +30,4 @@ class Cars {
   }
 }
 
-export default Cars;
+export default RaceProgress;
