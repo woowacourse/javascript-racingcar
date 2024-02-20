@@ -1,19 +1,18 @@
 const CONDITIONS = require('../constant/Conditions.js');
-const getRandomNumberInRange = require('../utils/getRandomNumberInRange.js');
+const Validator = require('../utils/validator.js');
 
 class Car {
   #name;
   #distance;
 
   constructor(name) {
+    Validator.initCarInstanceName(name);
     this.#name = name;
     this.#distance = 0;
   }
 
-  tryMove() {
-    const randomNumber = getRandomNumberInRange(CONDITIONS.minRandomNumberRange, CONDITIONS.maxRandomNumberRange);
-
-    if (randomNumber >= CONDITIONS.minMoveCondition) this.#distance += CONDITIONS.moveDistance;
+  tryMove(number) {
+    if (number >= CONDITIONS.minMoveCondition) this.#distance += CONDITIONS.moveDistance;
 
     return { carName: this.#name, distance: this.#distance };
   }
