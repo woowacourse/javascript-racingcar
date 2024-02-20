@@ -13,7 +13,7 @@ describe('Validator 클래스 테스트', () => {
   jest.setTimeout(7000);
 
   describe('validateCars', () => {
-    test('validateCars에 5 이상의 문자열이 없는 경우 예외 처리하지 않음', () => {
+    test('carNames에 5 이상의 문자열이 없는 경우 예외 처리하지 않음', () => {
       // Arrange
       const names = ['pobi', 'sofa', 'suya'];
 
@@ -24,7 +24,7 @@ describe('Validator 클래스 테스트', () => {
       ).not.toThrow();
     });
 
-    test('validateCars의 값에 5 이상의 문자열이 있는 경우 예외처리 함', () => {
+    test('carNames의 값에 5 이상의 문자열이 있는 경우 예외처리 함', () => {
       // Arrange
       const names = ['pobi', 'sofa', 'soyaho'];
       // Assert
@@ -34,7 +34,7 @@ describe('Validator 클래스 테스트', () => {
       ).toThrow();
     });
 
-    test('validateCars의 값에 중복 값이 있는 경우 예외처리 함', () => {
+    test('carNames의 값에 중복 값이 있는 경우 예외처리 함', () => {
       // Arrange
       const names = ['pobi', 'suya', 'suya'];
       // Assert
@@ -46,7 +46,7 @@ describe('Validator 클래스 테스트', () => {
   });
 
   test.each(validMaxTryCount)(
-    'validateTryCount에 숫자이고 범위 내의 값이 들어오는 경우.',
+    'maxTryCount에 숫자이고 범위 내의 값이 들어오는 경우 예외처리하지 않음.',
     // Arrange
     maxTryCountString => {
       // Assert
@@ -58,7 +58,7 @@ describe('Validator 클래스 테스트', () => {
   );
 
   test.each(notNumberMaxTryCount)(
-    'validateTryCount에 숫자가 아닌 값이 들어오는 경우 예외처리 함.',
+    'maxTryCount에 숫자가 아닌 값이 들어오는 경우 예외처리 함.',
     // Arrange
     maxTryCountString => {
       // Assert
@@ -70,7 +70,7 @@ describe('Validator 클래스 테스트', () => {
   );
 
   test.each(notDigitMaxTryCount)(
-    'validateTryCount에 십진수가 아닌 값이 들어오는 경우 예외처리 함.',
+    'maxTryCount에 십진수가 아닌 값이 들어오는 경우 예외처리 함.',
     // Arrange
     maxTryCountString => {
       // Assert
@@ -82,7 +82,7 @@ describe('Validator 클래스 테스트', () => {
   );
 
   test.each(decimalMaxTryCount)(
-    'validateTryCount에 소수 들어오는 경우 예외처리 함.',
+    'maxTryCount에 소수 들어오는 경우 예외처리 함.',
     // Arrange
     maxTryCountString => {
       // Assert
@@ -93,16 +93,17 @@ describe('Validator 클래스 테스트', () => {
     }
   );
 
-  test(`validateTryCount에 최소값(${numeric.MIN_MAX_TRY_COUNT}) 이하의 값이 들어오는 경우 예외처리 함.`, () => {
+  test(`maxTryCount에 최소값(${numeric.MIN_MAX_TRY_COUNT}) 미만의 값이 들어오는 경우 예외처리 함.`, () => {
     // Arrange
     // Assert
     expect(
       //Act
-      () => Validator.validateMaxTryCountString('0')
+      () =>
+        Validator.validateMaxTryCountString(`${numeric.MIN_MAX_TRY_COUNT - 1}`)
     ).toThrow();
   });
 
-  test(`validateTryCount에 최대값(${numeric.MAX_MAX_TRY_COUNT}) 초과의 값이 들어오는 경우 예외처리 함.`, () => {
+  test(`maxTryCountt에 최대값(${numeric.MAX_MAX_TRY_COUNT}) 초과의 값이 들어오는 경우 예외처리 함.`, () => {
     // Arrange
     // Assert
     expect(
@@ -110,5 +111,23 @@ describe('Validator 클래스 테스트', () => {
       () =>
         Validator.validateMaxTryCountString(`${numeric.MAX_MAX_TRY_COUNT + 1}`)
     ).toThrow();
+  });
+
+  test(`maxTryCount에 최소값(${numeric.MIN_MAX_TRY_COUNT})이 들어오는 경우 예외처리 하지 않음.`, () => {
+    // Arrange
+    // Assert
+    expect(
+      //Act
+      () => Validator.validateMaxTryCountString(`${numeric.MIN_MAX_TRY_COUNT}`)
+    ).not.toThrow();
+  });
+
+  test(`maxTryCountt에 최대값(${numeric.MAX_MAX_TRY_COUNT})이 들어오는 경우 예외처리 하지 않음.`, () => {
+    // Arrange
+    // Assert
+    expect(
+      //Act
+      () => Validator.validateMaxTryCountString(`${numeric.MAX_MAX_TRY_COUNT}`)
+    ).not.toThrow();
   });
 });

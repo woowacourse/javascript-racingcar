@@ -2,7 +2,7 @@ import Car from '../Car';
 import RaceResult from '../RaceResult';
 
 describe('RaceResult 테스트', () => {
-  test('pushCar에 Car가 아닌 값이 들어가면 에러', () => {
+  test('pushCar에 Car가 아닌 값이 들어가면 예외처리된다.', () => {
     //Arrage
     const raceResult = new RaceResult();
     const notCar = {};
@@ -14,7 +14,7 @@ describe('RaceResult 테스트', () => {
     ).toThrow();
   });
 
-  test('WinnersNames를 제대로 가져오는지 확인', () => {
+  test('가장 멀리간 Car의 name이 담긴 배열을 반환한다.', () => {
     //Arrage
     const cars = [new Car('a'), new Car('b'), new Car('c'), new Car('d')];
     const carPostion = [3, 5, 1, 5];

@@ -6,7 +6,7 @@ const manyTryCase = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 const moveDistances = [1, 2, 3, 4, 5, 6];
 
 describe('CarMover 테스트', () => {
-  test('giveManyTry에 1을 인자로 줬을 경우 ', () => {
+  test('giveManyTry에 1을 인자로 줬을 경우 한 번 움직인다', () => {
     //Arrange
     const car = new Car();
     const carMover = new CarMover(onlyMove, 1);
@@ -19,7 +19,7 @@ describe('CarMover 테스트', () => {
   });
 
   test.each(manyTryCase)(
-    'giveManyTry에 1 이상의 값을 인자로 줬을 경우 여러 번 반복 테스트 한다',
+    'giveManyTry에 1 이상의 값을 인자로 줬을 경우 여러 번 움직인다.',
     maxTryCount => {
       //Arrange
       const car = new Car();

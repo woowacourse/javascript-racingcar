@@ -17,7 +17,7 @@ const moveCase = [
 
 describe('Car 테스트', () => {
   test.each(moveCase)(
-    'grantTry에 특정한 값을 줬을 경우, 그 값만큼 마지막 위치 값이 움직이는지 확인한다.',
+    '지시한 특정한 값 만큼 마지막 위치 값이 움직인다.',
     (moveDistance, expectedPostion) => {
       //Arrange
       const car = new Car();
@@ -33,7 +33,7 @@ describe('Car 테스트', () => {
   );
 
   test.each(moveCase)(
-    'getPositionWhen에 큰 수가 들어왔을 때 마지막 값 반환하는지 확인',
+    'getPositionWhen에 기존 진행횟수보다 큰 수가 들어왔을 때 마지막 위치 값을 반환한다.',
     (moveDistance, expectedPostion) => {
       //Arrange
       const car = new Car();
