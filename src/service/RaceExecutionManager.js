@@ -13,7 +13,7 @@ export default class RaceExecutionManager {
     this.#tryNum = tryNum;
   }
 
-  runRace() {
+  #runRace() {
     for (let i = 0; i < this.#tryNum; i += 1) {
       this.#cars.forEach((car) => {
         this.#moveCar(car);
@@ -25,13 +25,21 @@ export default class RaceExecutionManager {
     car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
   }
 
-  getCarRaceRecords() {
+  #getCarRaceRecords() {
     return this.#cars.map(
       (car) => ({ name: car.getName(), records: car.getDistanceRecords() }), //
     );
   }
 
-  findWinners() {
+  #findWinners() {
     return this.#cars.filter((car) => car.isWinner());
+  }
+
+  executeRaceAndCollectResults() {
+    this.#runRace();
+    const raceRecords = this.#getCarRaceRecords();
+    const winner = this.#findWinners();
+
+    return { raceRecords, winner };
   }
 }

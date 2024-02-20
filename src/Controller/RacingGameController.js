@@ -15,11 +15,10 @@ export default class RacingGameController {
 
   async run() {
     const { cars, tryNum } = await this.#setupCarsAndTryNum();
-    const raceExecuteManager = new RaceExecutionManager({ cars, tryNum });
-    raceExecuteManager.runRace();
 
-    const winner = raceExecuteManager.findWinners();
-    const raceRecords = raceExecuteManager.getCarRaceRecords();
+    const raceExecuteManager = new RaceExecutionManager({ cars, tryNum });
+    const { raceRecords, winner } = raceExecuteManager.executeRaceAndCollectResults();
+
     this.#output.printRaceRecords(raceRecords, tryNum);
     this.#output.printRaceResult(winner);
   }
