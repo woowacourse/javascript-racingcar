@@ -1,7 +1,7 @@
 import Winner from '../src/Domain/Winner';
 
-describe('우승자 테스트', () => {
-	test('공동 우승자 인덱스가 잘 반환되는지 확인', () => {
+describe('우승자 도메인 테스트', () => {
+	test('최종 거리가 같을 때 공동 우승자 인덱스가 잘 반환되는지 확인', () => {
 		//Arrange
 		const names = ['리안', '시모'];
 		const distance = [2, 2];
@@ -11,7 +11,7 @@ describe('우승자 테스트', () => {
 		// Act & Assert
 		expect(winner.decideWinnerIndex()).toEqual([0, 1]);
 	});
-	test('우승자 인덱스가 잘 반환되는지 확인', () => {
+	test('최종 거리에서 가장 높은 사람이 우승자 인덱스가 잘 반환되는지 확인', () => {
 		//Arrange
 		const names = ['리안', '시모'];
 		const distance = [1, 2];

@@ -4,6 +4,7 @@ import Winner from '../Domain/Winner.js';
 import { makeRandomNum } from '../Utils/MissionUtils.js';
 import InputView from '../View/InputView.js';
 import OutputView from '../View/OutputView.js';
+
 class RaceController {
 	async startRace() {
 		const carNames = await InputView.askCarNames();
@@ -30,40 +31,27 @@ class RaceController {
 
 	playAllTurn(carList, tryNumber) {
 		const raceResult = [];
+		const carNames = carList.getNames();
 
 		for (let i = 0; i < tryNumber; i++) {
-			this.playOneTurn(carList);
-			const oneTurnResult = this.makeOneTurnResult(carList);
+			const forwardArr = this.getOneTurnIsForwardArr(carNames);
+			carList.moveCarsByIsForward(forwardArr);
+			const oneTurnResult = carList.getCarNameAndDistanceArr();
 			raceResult.push(oneTurnResult);
 		}
 
 		return raceResult;
 	}
 
-	playOneTurn(carList) {
-		const carNames = carList.getNames();
-
-		carNames.forEach((_, i) => {
-			const forwardResult = this.isForward();
-			if (forwardResult) {
-				carList.move(i);
-			}
+	getOneTurnIsForwardArr(carNames) {
+		return carNames.map(() => {
+			const randomNumber = makeRandomNum(1, 9);
+			return this.isForward(randomNumber);
 		});
 	}
 
-	isForward() {
-		return makeRandomNum(0, 9) >= GAME.FORWARD_MIN_NUM;
-	}
-
-	makeOneTurnResult(carList) {
-		const carNames = carList.getNames();
-
-		const raceResult = carNames.map((name, i) => {
-			const distanceArr = carList.getDistance();
-			const targetDistance = distanceArr[i];
-			return [name, targetDistance];
-		});
-		return raceResult;
+	isForward(number) {
+		return number >= GAME.FORWARD_MIN_NUM;
 	}
 
 	showRaceResult(raceResult) {
