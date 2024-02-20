@@ -26,7 +26,7 @@ const OutputView = {
       let output = '';
       recordsArray.forEach(({ name, records }) => {
         const record = records[i] || 0;
-        output += `${name}: ${'-'.repeat(record)}\n`;
+        output += `${name}: ${SYMBOL.MOVE_SYMBOL.repeat(record)}\n`;
       });
       console.log(output);
     }

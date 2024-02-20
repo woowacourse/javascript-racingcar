@@ -19,14 +19,14 @@ export default class RacingGameController {
     raceExecuteManager.runRace();
 
     const winner = raceExecuteManager.findWinners();
-    const dd = raceExecuteManager.getCarRaceRecords();
-    this.#output.printRaceRecords(dd, tryNum);
+    const raceRecords = raceExecuteManager.getCarRaceRecords();
+    this.#output.printRaceRecords(raceRecords, tryNum);
     this.#output.printRaceResult(winner);
   }
 
   async #setupCarsAndTryNum() {
-    const cars = await executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
-    const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
+    const cars = await executeOrRetryAsync(this.#setupCarsFromInput);
+    const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput);
 
     return { cars, tryNum };
   }
