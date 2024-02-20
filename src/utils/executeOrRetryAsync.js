@@ -1,8 +1,8 @@
-export default async function executeOrRetryAsync(asyncFn) {
+export default async function executeOrRetryAsync(asyncFn, handleError) {
   try {
     return await asyncFn();
   } catch (error) {
-    console.log(error.message);
-    return executeOrRetryAsync(asyncFn);
+    handleError(error.message);
+    return executeOrRetryAsync(asyncFn, handleError);
   }
 }
