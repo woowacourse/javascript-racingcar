@@ -1,4 +1,4 @@
-import RacingGame from './module';
+import RacingGame from './module.js';
 
 describe('시도 횟수에 따른 자동차 경주 결과 테스트', () => {
   // given

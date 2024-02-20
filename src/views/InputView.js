@@ -5,7 +5,7 @@ import Console from '../utils/console.js';
 import { SYMBOLS } from '../constants/symbols.js';
 import TryCountValidator from '../validator/tryCount/TryCountValidator.js';
 
-const InputView = Object.freeze({
+const InputView = {
   async read(message) {
     const inputValue = await Console.readLineAsync(message);
 
@@ -29,6 +29,6 @@ const InputView = Object.freeze({
 
     return Number(inputTryCount);
   },
-});
+};
 
 export default InputView;

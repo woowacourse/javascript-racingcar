@@ -4,10 +4,6 @@ class Cars {
   #racingCarDetails;
 
   constructor(racingCarNames) {
-    this.#createInitRacingCarDetails(racingCarNames);
-  }
-
-  #createInitRacingCarDetails(racingCarNames) {
     this.#racingCarDetails = racingCarNames.map((carName) => ({ carName, moveCount: 0 }));
   }
 
