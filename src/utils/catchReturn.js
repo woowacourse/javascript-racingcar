@@ -1,4 +1,4 @@
-import handleIO from "./handleIO.js";
+import errorHandler from "./errorHandler";
 
 const catchReturn = async (callback) => {
   while (true) {
@@ -6,7 +6,7 @@ const catchReturn = async (callback) => {
       const result = await callback();
       return result;
     } catch (err) {
-      handleIO.print(err.message);
+      errorHandler(err);
     }
   }
 };
