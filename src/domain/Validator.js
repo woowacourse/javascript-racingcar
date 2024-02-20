@@ -45,13 +45,12 @@ const validateCarNameDuplicated = (inputArray) => {
 };
 
 export const validateCarNameArray = (inputArray) => {
-  console.log(inputArray);
   validateCarNameRange(inputArray);
   validateCarNameDuplicated(inputArray);
 };
 
 const validateAttemptType = (attempt) => {
-  attempt.forEach((word) => {
+  attempt.split("").forEach((word) => {
     if (!REGEXP.attempt.test(word)) {
       throw new AttemptTypeError();
     }

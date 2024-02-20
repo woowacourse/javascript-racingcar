@@ -19,3 +19,7 @@ export const printChampions = (names) => {
 export const printNewLine = () => {
   console.log("");
 };
+
+export const printError = (error) => {
+  console.error(error);
+};

@@ -1,50 +1,39 @@
-import SetGame from "./SetGame.js";
-import RacingController from "../controller/RacingController.js";
+import { printCar, printNewLine } from "../view/OutputView.js";
 
 class RacingCarGame {
-  #cars;
+  #carArray;
   #attempt;
-  #champion;
-  #controller;
 
-  constructor() {
-    this.#controller = new RacingController();
-    this.#champion = [];
+  constructor(carArray, attempt) {
+    this.#carArray = carArray;
+    this.#attempt = attempt;
   }
 
-  async init() {
-    const setGame = new SetGame(this.#controller);
-    await setGame.init();
-    this.#cars = setGame.getGameInputs().cars;
-    this.#attempt = setGame.getGameInputs().attempt;
-    this.#play();
-  }
-
-  async #play() {
+  play() {
     this.#iterateAttempt();
-    this.#setChampion();
-    this.#controller.outputChampion(this.#champion);
+    return this.#getChampion();
   }
 
   #iterateAttempt() {
     for (let i = 0; i < this.#attempt; i++) {
-      this.#cars.forEach((car) => {
+      this.#carArray.forEach((car) => {
         car.moveOn();
+        printCar(car);
       });
-      this.#controller.outputCars(this.#cars, i);
+      printNewLine();
     }
   }
 
-  #setChampion() {
+  #getChampion() {
     const champion = this.#findChampion();
-    this.#champion = champion.map((car) => car.getInfo().name);
+    return champion.map((car) => car.getInfo().name);
   }
 
   #findChampion() {
     const maxPosition = Math.max(
-      ...this.#cars.map((car) => car.getInfo().position),
+      ...this.#carArray.map((car) => car.getInfo().position),
     );
-    const result = this.#cars.filter(
+    const result = this.#carArray.filter(
       (car) => car.getInfo().position === maxPosition,
     );
 
