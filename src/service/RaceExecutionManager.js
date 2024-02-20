@@ -27,7 +27,7 @@ export default class RaceExecutionManager {
 
   getCarRaceRecords() {
     return this.#cars.map(
-      (car) => ({ name: car.getInfo().name, records: car.getDistanceRecords() }), //
+      (car) => ({ name: car.getName(), records: car.getDistanceRecords() }), //
     );
   }
 

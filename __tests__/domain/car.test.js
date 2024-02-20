@@ -13,12 +13,12 @@ describe('Car 객체 테스트', () => {
   describe(`랜덤 숫자가 ${MIN_MOVE_THRESHOLD}이상이면 ${MOVE_DISTANCE}칸 전진해야한다.`, () => {
     test.each([[MIN_MOVE_THRESHOLD]])(`엣지) 랜덤 숫자가 %d일 때 Car는 ${MOVE_DISTANCE}칸 전진해야한다.`, (num) => {
       car.move(num);
-      expect(car.getInfo().distance).toBe(MOVE_DISTANCE);
+      expect(car.getDistance()).toBe(MOVE_DISTANCE);
     });
 
     test.each([[MIN_MOVE_THRESHOLD - 1]])(`랜덤 숫자가 %d보다 작을 때 Car는 전진하지 않아야한다.`, (num) => {
       car.move(num);
-      expect(car.getInfo().distance).toBe(INITIAL_DISTANCE);
+      expect(car.getDistance()).toBe(INITIAL_DISTANCE);
     });
   });
 

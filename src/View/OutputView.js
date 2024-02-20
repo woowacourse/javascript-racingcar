@@ -5,14 +5,15 @@ const { DIVIDE_SYMBOL, BLANK } = SYMBOL;
 
 const OutputView = {
   printCarCurrentDistance(car) {
-    const { name, distance } = car.getInfo();
+    const name = car.getName();
+    const distance = car.getDistance();
 
     console.log(DISPLAY_CURRENT_DISTANCE(name, distance));
   },
 
   printRaceResult(winners) {
     console.log(`${VIEW_MESSAGES.RESULT_MESSAGE}`);
-    console.log(WINNER_PREFIX + winners.map((car) => car.getInfo().name).join(DIVIDE_SYMBOL));
+    console.log(WINNER_PREFIX + winners.map((car) => car.getName()).join(DIVIDE_SYMBOL));
     this.printBlankLine();
   },
 
