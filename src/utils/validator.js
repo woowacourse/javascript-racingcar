@@ -68,7 +68,7 @@ const Validator = {
     ValidatorCondtion.tryCountRange(tryCount);
   },
 
-  carInstanceName(carName) {
+  initCarInstanceName(carName) {
     const carNameArr = [carName];
 
     ValidatorCondtion.carNameEmpty(carNameArr);

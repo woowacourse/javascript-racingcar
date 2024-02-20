@@ -6,7 +6,7 @@ class Car {
   #distance;
 
   constructor(name) {
-    Validator.carInstanceName(name);
+    Validator.initCarInstanceName(name);
     this.#name = name;
     this.#distance = 0;
   }
