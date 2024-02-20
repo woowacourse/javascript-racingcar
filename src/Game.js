@@ -7,7 +7,7 @@ import Car from './domain/Car';
 export default class Game {
   async play() {
     const carNames = await Game.getCarNamesArray();
-    const cars = this.createCars(carNames);
+    const cars = this.createRaceProgress(carNames);
     const tryCount = await Game.getTryCount();
     const eachStepCarsResults = Game.getMovingCarsResults(cars, tryCount);
     OutputView.printEachStepResult(eachStepCarsResults);
@@ -41,17 +41,15 @@ export default class Game {
     return carNames.split(',');
   }
 
-  createCars(carNames = []) {
+  createRaceProgress(carNames = []) {
     const carArray = carNames.map((carName) => new Car(carName));
     return new RaceProgress(carArray);
   }
 
   static getMovingCarsResults(cars = {}, tryCount = 0) {
-    const movingCarsResults = [];
-    for (let i = 0; i < tryCount; i++) {
+    return Array.from({ length: tryCount }, () => {
       cars.moveAllCars();
-      movingCarsResults.push(cars.getEachStepString());
-    }
-    return [...movingCarsResults];
+      return cars.getEachStepString();
+    });
   }
 }
