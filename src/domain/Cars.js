@@ -33,7 +33,7 @@ class Cars {
       .map((car) => car.getName());
   }
 
-  static carNamesValidate(carNames = []) {
+  static validateCarNames(carNames = []) {
     carNames.forEach((carName) => {
       if (
         carName.length < NUMBERS.CAR_NAME_MINIMUM_LENGTH ||
@@ -46,7 +46,7 @@ class Cars {
     });
   }
 
-  static tryCountValidate(tryCountString = '') {
+  static validateTryCount(tryCountString = '') {
     if (
       !Number.isInteger(Number(tryCountString)) ||
       Number(tryCountString) < NUMBERS.TRY_COUNT_MINIMUM_COUNT
