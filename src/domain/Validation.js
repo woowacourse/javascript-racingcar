@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "../constant/constant.js";
+import { ERROR_MESSAGES, CAR } from "../constant/constant.js";
 
 class Validation {
   static #isDuplicate(carNames) {
@@ -9,7 +9,7 @@ class Validation {
   }
 
   static #isRange(carName) {
-    if (1 <= carName.length && carName.length <= 5) {
+    if (CAR.MIN_LENGTH <= carName.length && carName.length <= CAR.MAX_LENGTH) {
       return;
     }
     throw new Error(ERROR_MESSAGES.NAME_RANGE);

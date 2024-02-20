@@ -13,4 +13,6 @@ export const ERROR_MESSAGES = Object.freeze({
 
 export const CAR = Object.freeze({
   MOVE_THRESHOLD: 4,
+  MIN_LENGTH: 1,
+  MAX_LENGTH: 5,
 });
