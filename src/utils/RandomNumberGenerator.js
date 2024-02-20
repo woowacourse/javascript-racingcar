@@ -1,7 +1,7 @@
 class RandomNumberGenerator {
   constructor() {}
-  static pickRandomNumber() {
-    return Math.floor(Math.random() * 10);
+  static pickRandomNumber(start = 0, end = 0) {
+    return Math.floor(Math.random() * (end - 1)) + start;
   }
 }
 

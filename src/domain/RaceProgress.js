@@ -8,7 +8,7 @@ class RaceProgress {
 
   moveAllCars() {
     this.#carList.forEach((car) => {
-      if (Car.canMove(RandomNumberGenerator.pickRandomNumber())) {
+      if (Car.canMove(RandomNumberGenerator.pickRandomNumber(1, 9))) {
         car.move();
       }
     });
