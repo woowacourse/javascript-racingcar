@@ -23,45 +23,45 @@ describe("Car 클래스 테스트", () => {
 
   test("getPositionWhen(round) 메소드를 호출하면 해당 round의 자동차 위치를 반환한다.", () => {
     // Arrange
+    const tryCount = 3;
     const randomNumbers = [0, 4, 9];
     const expectedPositions = [0, 1, 2];
 
     mockRandom(randomNumbers);
 
-    const car = new Car("suya", 3);
-    for (let i = 0; i < 3; i++) {
+    const car = new Car("suya", tryCount);
+    for (let i = 0; i < tryCount; i++) {
       car.tryMove(i);
     }
 
     // Act
     const result = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < tryCount; i++) {
       const position = car.getPositionWhen(i);
       result.push(position);
     }
 
-    console.log(expectedPositions);
-    console.log(result);
     // Assert
     expect(result).toEqual(expectedPositions);
   });
 
   test(`getPositionWhen(round) 메소드를 호출하면 해당 round의 자동차 위치(전진한 횟수)를 반환한다.`, () => {
     // Arrange
+    const tryCount = 10;
     const randomNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const expectedPositions = [0, 0, 0, 0, 1, 2, 3, 4, 5, 6];
 
     mockRandom(randomNumbers);
 
-    const car = new Car("suya", 10);
+    const car = new Car("suya", tryCount);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < tryCount; i++) {
       car.tryMove(i);
     }
 
     // Act
     const result = [];
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < tryCount; i++) {
       result.push(car.getPositionWhen(i));
     }
 
@@ -71,14 +71,15 @@ describe("Car 클래스 테스트", () => {
 
   test("getFinalPosition() 메소드는 최종 위치(전진 횟수)를 반환한다.", () => {
     // Arrange
+    const tryCount = 10;
     const randomNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const expectedFinalPosition = 6;
 
     mockRandom(randomNumbers);
 
-    const car = new Car("suya", 10);
+    const car = new Car("suya", tryCount);
 
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < tryCount; i++) {
       car.tryMove(i);
     }
 
