@@ -1,4 +1,4 @@
-class CarPosition {
+class Car {
   #name;
   #position;
 
@@ -30,4 +30,4 @@ class CarPosition {
     );
   }
 }
-export default CarPosition;
+export default Car;
