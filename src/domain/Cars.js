@@ -3,6 +3,9 @@ import Car from "./Car.js";
 import createRandom from "../utils/createRandom.js";
 
 const SEPARATOR = ",";
+const MIN_RANDOM_RANGE = 0;
+const MAX_RANDOM_RANGE = 9;
+
 class Cars {
   #cars;
 
@@ -24,7 +27,7 @@ class Cars {
 
   play() {
     this.#cars.forEach((car) => {
-      const randomNumber = createRandom();
+      const randomNumber = createRandom(MIN_RANDOM_RANGE, MAX_RANDOM_RANGE);
       car.forward(randomNumber);
     });
 
