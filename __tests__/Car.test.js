@@ -1,5 +1,5 @@
 import randomNumber from "../src/utils/randomNumber.js";
-import Car from "../src/RacingCarGame/Car.js";
+import Car from "../src/domain/Car.js";
 
 // randomNumber mocking
 jest.mock("../src/utils/randomNumber");
@@ -45,7 +45,6 @@ describe("Car 객체 info method test", () => {
     const car = new Car('testCar');
     randomNumber.mockImplementation(() => 4);
 
-    // 초기 상태 테스트
     let info = car.getInfo();
     expect(info.name).toBe('testCar');
     expect(info.position).toBe(0);

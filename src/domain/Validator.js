@@ -50,9 +50,11 @@ export const validateCarNameArray = (inputArray) => {
 };
 
 const validateAttemptType = (attempt) => {
-  if (Number.isNaN(attempt) || attempt === "") {
-    throw new AttemptTypeError();
-  }
+  attempt.split("").forEach((word) => {
+    if (!REGEXP.attempt.test(word)) {
+      throw new AttemptTypeError();
+    }
+  });
 };
 
 const validateAttemptRange = (attempt) => {
