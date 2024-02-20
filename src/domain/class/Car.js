@@ -1,3 +1,7 @@
+import CONSTANTS from '../../CONSTANTS';
+
+const { numeric } = CONSTANTS;
+
 class Car {
   #name;
   #positions;
@@ -5,8 +9,7 @@ class Car {
 
   constructor(name) {
     this.#name = name;
-    //TODO: positions의 최대값(99)에 맞게 Validator 변경
-    this.#positions = new Array(100).fill(0);
+    this.#positions = new Array(numeric.MAX_MAX_TRY_COUNT + 1).fill(0);
     this.#lastPositionsIndex = 0;
   }
 

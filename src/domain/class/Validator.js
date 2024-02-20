@@ -28,7 +28,23 @@ class Validator {
   }
 
   static #isValidMaxTryCountString(maxTryCountString) {
-    return /^[0-9]+$/.test(maxTryCountString);
+    const isNumberString = this.#isNumberString(maxTryCountString);
+    const isMaxTryCountInRange = this.#isMaxTryCountInRange(
+      Number(maxTryCountString)
+    );
+
+    return isNumberString && isMaxTryCountInRange;
+  }
+
+  static #isNumberString(string) {
+    return /^[0-9]+$/.test(string);
+  }
+
+  static #isMaxTryCountInRange(maxTryCount) {
+    const isLargerThanMin = numeric.MIN_MAX_TRY_COUNT <= maxTryCount;
+    const isSmallerThanMax = maxTryCount <= numeric.MAX_MAX_TRY_COUNT;
+
+    return isLargerThanMin && isSmallerThanMax;
   }
 }
 
