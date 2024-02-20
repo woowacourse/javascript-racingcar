@@ -1,47 +1,49 @@
-import InputView from './UI/InputView.js';
-import OutputView from './UI/OutputView.js';
-import Validator from './class/Validator.js';
-import RaceManager from './class/RaceManager.js';
-import CONSTANT from './CONSTANTS/index.js';
-import retryWhenErrorOccurs from './utils/retryWhenErrorOccurs.js';
+import RaceGame from "./domain/RaceGame";
+import InputView from "./view/InputView";
+import OutputView from "./view/OutputView";
+import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs";
+import CONSTANT from "./constants";
 
-const { MESSAGE, SEPARATOR } = CONSTANT;
+const { SEPARATOR } = CONSTANT;
 
 class App {
-  #raceManger;
-
   async run() {
-    const carNames = await retryWhenErrorOccurs(() => this.readCarNames());
-    const tryCount = await retryWhenErrorOccurs(() => this.readTryCount());
-    this.#raceManger = new RaceManager(carNames, tryCount);
-    this.#raceManger.setResult();
-    this.printResult();
+    const carNames = await this.#readCarNames();
+    const tryCount = await this.#readTryCount();
+
+    const { cars, winners } = this.#startRaceGame(carNames, tryCount);
+
+    this.#printResult(tryCount, cars);
+    this.#printWinners(winners);
   }
 
-  async readCarNames() {
-    const answer = await InputView.readLineAsync(MESSAGE.carNameInput).then(
-      names => names.split(SEPARATOR.carName).map(string => string.trim())
-    );
-    const result = Validator.validateCars(answer);
-    if (!result) throw new Error(MESSAGE.invalidCarName);
-    return answer;
+  async #readCarNames() {
+    const answer = await retryWhenErrorOccurs(() => InputView.readCarNames());
+
+    const carNames = answer
+      .split(SEPARATOR.carName)
+      .map((string) => string.trim());
+
+    return carNames;
   }
 
-  async readTryCount() {
-    const answer = await InputView.readLineAsync(MESSAGE.tryCountInput);
+  async #readTryCount() {
+    const answer = await retryWhenErrorOccurs(() => InputView.readTryCount());
 
-    const result = Validator.validateTryCount(answer);
-    if (!result) throw new Error(MESSAGE.invalidTryCount);
     return Number(answer);
   }
 
-  printResult(isLineBreak = true) {
-    if (isLineBreak) OutputView.lineBreak();
-    OutputView.print(MESSAGE.resultOutput);
+  #startRaceGame(carNames, tryCount) {
+    return new RaceGame(carNames, tryCount).start();
+  }
 
-    OutputView.print(this.#raceManger.getResultString());
-    OutputView.lineBreak();
-    OutputView.print(this.#raceManger.getWinnerString());
+  #printResult(tryCount, cars) {
+    OutputView.printResult(tryCount, cars);
+  }
+
+  #printWinners(winners) {
+    OutputView.printWinners(winners);
   }
 }
+
 export default App;
