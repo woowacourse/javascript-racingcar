@@ -25,8 +25,8 @@ export default class RacingGameController {
   }
 
   async #setupCarsAndTryNum() {
-    const cars = await executeOrRetryAsync(this.#setupCarsFromInput);
-    const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput);
+    const cars = await executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
+    const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
 
     return { cars, tryNum };
   }
