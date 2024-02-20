@@ -1,4 +1,4 @@
-import Car from './Car';
+import validateCarInstance from './utils/validateCarInstance';
 
 class RaceResult {
   #result;
@@ -12,10 +12,10 @@ class RaceResult {
   }
 
   pushCar(car) {
-    if (!(car instanceof Car)) throw new Error('[ERROR]Car이 아님');
+    validateCarInstance(car);
     this.#result.push(car);
-    this.#updateMaxTryCount(car);
-    this.#updateMaxPosition(car);
+    this.#updateMaxTryCount(car.getLastTryCount());
+    this.#updateMaxPosition(car.getLastPosition());
   }
 
   getAllProgressMap() {
@@ -40,12 +40,12 @@ class RaceResult {
       car => car.getLastPosition() === this.#maxPosition
     );
   }
-  #updateMaxTryCount(car) {
-    this.#maxTryCount = Math.max(this.#maxTryCount, car.getLastTryCount());
+  #updateMaxTryCount(tryCount) {
+    this.#maxTryCount = Math.max(this.#maxTryCount, tryCount);
   }
 
-  #updateMaxPosition(car) {
-    this.#maxPosition = Math.max(this.#maxPosition, car.getLastPosition());
+  #updateMaxPosition(position) {
+    this.#maxPosition = Math.max(this.#maxPosition, position);
   }
 }
 

@@ -1,4 +1,4 @@
-import Car from './Car';
+import validateCarInstance from './utils/validateCarInstance';
 
 class CarMover {
   #moveFunction;
@@ -24,9 +24,10 @@ class CarMover {
   }
 
   #giveOneTry(car) {
-    if (!(car instanceof Car)) throw new Error('[ERROR] Car가 아님');
+    validateCarInstance(car);
     const canGo = this.#moveFunction();
-    car.grantTry(canGo ? this.#moveDistance : 0);
+    const moveDistance = canGo ? this.#moveDistance : 0;
+    car.grantTry(moveDistance);
   }
 
   #validateTryCount(tryCount) {
