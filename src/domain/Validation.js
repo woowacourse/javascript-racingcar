@@ -1,19 +1,18 @@
-import { ERROR } from "../constant/constant.js";
-const { DUPLICATE, NAME_RANGE, NATURAL_NUMBER } = ERROR;
+import { ERROR_MESSAGES } from "../constant/constant.js";
 
 class Validation {
   static #isDuplicate(carNames) {
     if (carNames.length === new Set(carNames).size) {
       return;
     }
-    throw new Error(DUPLICATE);
+    throw new Error(ERROR_MESSAGES.DUPLICATE);
   }
 
   static #isRange(carName) {
     if (1 <= carName.length && carName.length <= 5) {
       return;
     }
-    throw new Error(NAME_RANGE);
+    throw new Error(ERROR_MESSAGES.NAME_RANGE);
   }
 
   static #checkRange(carNames) {
@@ -24,7 +23,7 @@ class Validation {
 
   static #isNaturalNumber(tryNumber) {
     if (Number.isInteger(tryNumber)) return;
-    throw new Error(NATURAL_NUMBER);
+    throw new Error(ERROR_MESSAGES.NATURAL_NUMBER);
   }
 
   static validateCarNames(carNames) {

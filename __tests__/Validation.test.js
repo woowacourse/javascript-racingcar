@@ -1,4 +1,4 @@
-import { ERROR } from "../src/constant/constant";
+import { ERROR_MESSAGES } from "../src/constant/constant";
 import Validation from "./../src/domain/Validation";
 
 describe("유효성 검사", () => {
@@ -9,7 +9,7 @@ describe("유효성 검사", () => {
     // Assert
     expect(() => {
       Validation.validateCarNames(carNames);
-    }).toThrow(ERROR.DUPLICATE);
+    }).toThrow(ERROR_MESSAGES.DUPLICATE);
   });
   test("자동차 이름 중 5글자 이하가 아닌 이름이 들어간 경우 에러를 반환한다", () => {
     // Arrange
@@ -18,7 +18,7 @@ describe("유효성 검사", () => {
     // Assert
     expect(() => {
       Validation.validateCarNames(carNames);
-    }).toThrow(ERROR.NAME_RANGE);
+    }).toThrow(ERROR_MESSAGES.NAME_RANGE);
   });
 
   test("시도 횟수에 자연수가 아닌 값을 넣은 경우 에러를 반환한다", () => {
@@ -28,6 +28,6 @@ describe("유효성 검사", () => {
     // Assert
     expect(() => {
       Validation.validateTryNumber(tryNumber);
-    }).toThrow(ERROR.NATURAL_NUMBER);
+    }).toThrow(ERROR_MESSAGES.NATURAL_NUMBER);
   });
 });
