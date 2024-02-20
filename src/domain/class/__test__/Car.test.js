@@ -17,7 +17,7 @@ const moveCase = [
 
 describe('Car 테스트', () => {
   test.each(moveCase)(
-    'granTry가 각 케이스 별로 잘 가는 지 확인',
+    'grantTry에 특정한 값을 줬을 경우, 그 값만큼 마지막 위치 값이 움직이는지 확인한다.',
     (moveDistance, expectedPostion) => {
       //Arrange
       const car = new Car();
