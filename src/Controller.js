@@ -1,25 +1,25 @@
 import Input from "./view/Input.js";
-import Move from "./Move.js";
+import Move from "./domain/Move.js";
 import Output from "./view/Output.js";
 import { count } from "./util/count.js";
 import { MESSAGES } from "./constant/constant.js";
 
-class RaceController {
+export default class Controller {
   #moveInstanceList = [];
 
-  async race() {
-    const { cars, tryNumber } = await this.input();
-    cars.map((car) => this.#moveInstanceList.push(new Move(car)));
+  async start() {
+    const { carNames, tryNumber } = await this.input();
+    carNames.map((carName) => this.#moveInstanceList.push(new Move(carName)));
     this.calculateResult(tryNumber);
     this.printResult(tryNumber);
-    const winner = this.calculateWinner();
+    const winner = this.getWinners();
     Output.printWinner(winner);
   }
 
   async input() {
-    const cars = await Input.carNameInput();
-    const tryNumber = await Input.tryInput();
-    return { cars, tryNumber };
+    const carNames = await Input.inputCarNames();
+    const tryNumber = await Input.inputTryInput();
+    return { carNames, tryNumber };
   }
 
   printResult(tryNumber) {
@@ -41,23 +41,16 @@ class RaceController {
   }
 
   calculateMaxMove() {
-    const maxMove = Math.max(
-      ...this.#moveInstanceList.map((moveInstance) =>
-        count(moveInstance.getInfo().moveTrace)
-      )
+    return Math.max(
+      ...this.#moveInstanceList.map((moveInstance) => count(moveInstance.getInfo().moveTrace))
     );
-    return maxMove;
   }
 
-  calculateWinner() {
+  getWinners() {
     const maxMove = this.calculateMaxMove();
-    const result = this.#moveInstanceList
-      .filter(
-        (moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove
-      )
+    const winners = this.#moveInstanceList
+      .filter((moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove)
       .map((moveInstance) => moveInstance.getInfo().carName);
-    return result;
+    return winners;
   }
 }
-
-export default RaceController;

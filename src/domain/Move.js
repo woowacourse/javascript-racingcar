@@ -1,5 +1,5 @@
-import Random from "./util/random.js";
-import { CAR } from "./constant/constant.js";
+import Random from "../util/random.js";
+import { CAR } from "../constant/constant.js";
 
 class Move {
   #carName;
