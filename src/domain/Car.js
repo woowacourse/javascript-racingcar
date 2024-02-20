@@ -1,5 +1,5 @@
 import { RandomNumber } from '../utils/index.js';
-import { RANDOM_BOUNDARY } from '../constants/index.js';
+import { MOVE_FORWARD_THRESHOLD } from '../constants/index.js';
 
 class Car {
   #name = '';
@@ -11,7 +11,7 @@ class Car {
   }
 
   movement() {
-    if (RandomNumber.pickNumber() >= RANDOM_BOUNDARY) this.#step += 1;
+    if (RandomNumber.pickNumber() >= MOVE_FORWARD_THRESHOLD) this.#step += 1;
   }
 
   getCarInfo() {
