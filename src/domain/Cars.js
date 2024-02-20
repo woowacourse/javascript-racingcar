@@ -49,7 +49,7 @@ class Cars {
   static validateTryCount(tryCountString = '') {
     if (
       !Number.isInteger(Number(tryCountString)) ||
-      Number(tryCountString) < NUMBERS.TRY_COUNT_MINIMUM_COUNT
+      Number(tryCountString) < NUMBERS.TRY_MINIMUM_COUNT
     ) {
       throw new Error(
         ERROR_MESSAGE.TRY_COUNT_INPUT_ERROR.SHOULD_BE_POSITIVE

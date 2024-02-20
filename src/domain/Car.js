@@ -9,7 +9,7 @@ class Car {
   }
 
   canMove(randomValue) {
-    return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
+    return randomValue >= NUMBERS.MOVEMENT_MINIMUM_THRESHOLD;
   }
 
   move(randomValue) {
