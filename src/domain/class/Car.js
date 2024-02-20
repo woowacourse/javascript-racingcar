@@ -32,6 +32,11 @@ class Car {
   }
 
   grantTry(moveDistance) {
+    const isOverMaxTryCount =
+      numeric.MAX_MAX_TRY_COUNT <= this.#lastPositionsIndex;
+    if (isOverMaxTryCount)
+      throw new Error('[ERROR] Car가 시도할 수 있는 횟수를 모두 사용함');
+
     this.#positions[this.#lastPositionsIndex + 1] =
       this.#positions[this.#lastPositionsIndex] + moveDistance;
     this.#lastPositionsIndex++;
