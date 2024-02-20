@@ -43,6 +43,7 @@ export default class Car {
   getDistance() {
     return this.#distance;
   }
+
   getDistanceRecords() {
     return this.#distanceRecords;
   }
