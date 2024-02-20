@@ -42,9 +42,9 @@ class InputView {
         name.length >= NUMERIC.carNameLengthLower &&
         name.length <= NUMERIC.carNameLengthUpper
     );
-    const isNotDuplicated = carNames.length === new Set(carNames).size;
+    const isUnique = carNames.length === new Set(carNames).size;
 
-    return isValidLengthsOfNames && isNotDuplicated;
+    return isValidLengthsOfNames && isUnique;
   }
 
   static #isValidTryCount(tryCount) {
