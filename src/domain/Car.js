@@ -1,5 +1,4 @@
 import { NUMBERS } from '../constants/constants';
-import RandomNumberGenerator from '../utils/RandomNumberGenerator';
 
 class Car {
   #name;
