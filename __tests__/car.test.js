@@ -1,7 +1,7 @@
 const Car = require('../src/domain/Car.js');
 
-describe('자동차 객체 테스트', () => {
-  test('자동차 이동 테스트', () => {
+describe('Car 클래스 동작 테스트', () => {
+  test('입력받은 값에 따른 자동차 이동 유무 테스트', () => {
     const carName = '붕붕이';
     const car = new Car(carName);
     const randoms = [4, 3, 2, 5, 9];
@@ -13,7 +13,7 @@ describe('자동차 객체 테스트', () => {
     });
   });
 
-  test('우승 자동차 테스트 1', () => {
+  test('자동차가 우승하지 않은 경우 반환값 테스트', () => {
     const carName = '붕붕이';
     const car = new Car(carName);
     const winner = undefined;
@@ -27,7 +27,7 @@ describe('자동차 객체 테스트', () => {
     expect(car.isWinner(winningDistance)).toBe(winner);
   });
 
-  test('우승 자동차 테스트 2', () => {
+  test('자동차가 우승한 경우 반환값 테스트', () => {
     const carName = '빵빵이';
     const car = new Car(carName);
     const winner = '빵빵이';
