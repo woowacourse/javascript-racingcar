@@ -4,34 +4,34 @@ import { pickRandomNumInRange } from '../utils';
 const { RANDOM_NUM_RAGE } = SYSTEM_CONSTANTS;
 
 export default class RaceExecutionManager {
-  #raceInfo;
+  #cars;
 
-  #output;
+  #tryNum;
 
-  constructor(raceInfo, outputView) {
-    this.#raceInfo = raceInfo;
-    this.#output = outputView;
+  constructor({ cars, tryNum }) {
+    this.#cars = cars;
+    this.#tryNum = tryNum;
   }
 
-  executeRace() {
-    this.#runRace();
-    return this.#findWinners();
-  }
-
-  #runRace() {
-    this.#output.printBlankLine();
-    for (let i = 0; i < this.#raceInfo.tryNum; i += 1) {
-      this.#raceInfo.cars.forEach((car) => this.#moveCarAndPrintDistance(car));
-      this.#output.printBlankLine();
+  runRace() {
+    for (let i = 0; i < this.#tryNum; i += 1) {
+      this.#cars.forEach((car) => {
+        this.#moveCar(car);
+      });
     }
   }
 
-  #moveCarAndPrintDistance(car) {
+  #moveCar(car) {
     car.move(pickRandomNumInRange(RANDOM_NUM_RAGE.min, RANDOM_NUM_RAGE.max));
-    this.#output.printCarCurrentDistance(car);
   }
 
-  #findWinners() {
-    return this.#raceInfo.cars.filter((car) => car.isWinner());
+  getCarRaceRecords() {
+    return this.#cars.map(
+      (car) => ({ name: car.getInfo().name, records: car.getDistanceRecords() }), //
+    );
+  }
+
+  findWinners() {
+    return this.#cars.filter((car) => car.isWinner());
   }
 }

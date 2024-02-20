@@ -19,6 +19,17 @@ const OutputView = {
   printBlankLine() {
     console.log(BLANK);
   },
+
+  printRaceRecords(recordsArray, tryNum) {
+    for (let i = 0; i < tryNum; i += 1) {
+      let output = '';
+      recordsArray.forEach(({ name, records }) => {
+        const record = records[i] || 0;
+        output += `${name}: ${'-'.repeat(record)}\n`;
+      });
+      console.log(output);
+    }
+  },
 };
 
 export default OutputView;

@@ -9,6 +9,8 @@ export default class Car {
 
   #distance = INITIAL_DISTANCE;
 
+  #distanceRecords = [];
+
   constructor(name) {
     this.#name = name;
   }
@@ -18,6 +20,7 @@ export default class Car {
       this.#distance += MOVE_DISTANCE;
     }
     this.#updateMaxDistance();
+    this.#distanceRecords.push(this.#distance);
   }
 
   #updateMaxDistance() {
@@ -35,5 +38,9 @@ export default class Car {
 
   getInfo() {
     return { name: this.#name, distance: this.#distance };
+  }
+
+  getDistanceRecords() {
+    return this.#distanceRecords;
   }
 }

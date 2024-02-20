@@ -1,5 +1,4 @@
-import { InputView, OutputView } from '../view';
-import { GameSetupManager, RaceExecutionManager } from '../service';
+import RaceExecutionManager from '../service/raceExecutionManager';
 import { executeOrRetryAsync } from '../utils';
 import { CarValidator, CommonValidator, TryNumValidator } from '../validator';
 import Car from '../domain/car';
@@ -15,15 +14,17 @@ export default class RacingGameController {
   }
 
   async run() {
-    const raceInfo = await this.#setup();
+    const { cars, tryNum } = await this.#setupCarsAndTryNum();
+    const raceExecuteManager = new RaceExecutionManager({ cars, tryNum });
+    raceExecuteManager.runRace();
 
-    const raceExecuteManager = new RaceExecutionManager(raceInfo, OutputView);
-    const winner = raceExecuteManager.executeRace();
-
-    OutputView.printRaceResult(winner);
+    const winner = raceExecuteManager.findWinners();
+    const dd = raceExecuteManager.getCarRaceRecords();
+    this.#output.printRaceRecords(dd, tryNum);
+    this.#output.printRaceResult(winner);
   }
 
-  async #setup() {
+  async #setupCarsAndTryNum() {
     const cars = await executeOrRetryAsync(this.#setupCarsFromInput.bind(this));
     const tryNum = await executeOrRetryAsync(this.#setupTryNumFromInput.bind(this));
 
