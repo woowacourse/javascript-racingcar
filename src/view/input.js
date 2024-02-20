@@ -4,7 +4,7 @@ import Validation from "../domain/Validation.js";
 import { MESSAGES } from "../constant/constant.js";
 
 class Input {
-  static inputCarNames = async () => {
+  static readCarNames = async () => {
     try {
       const carNames = (await ReadLine.readLineAsync(MESSAGES.INPUT_CAR_NAMES)).split(",");
       Validation.validateCarNames(carNames);
@@ -12,18 +12,18 @@ class Input {
       return car.getCarNames;
     } catch (error) {
       console.log(error.message);
-      return Input.inputCarNames();
+      return Input.readCarNames();
     }
   };
 
-  static inputTryInput = async () => {
+  static readTryInput = async () => {
     try {
       const tryNumber = Number(await ReadLine.readLineAsync(MESSAGES.INPUT_TRY_NUMBER));
       Validation.validateTryNumber(tryNumber);
       return tryNumber;
     } catch (error) {
       console.log(error.message);
-      return Input.inputTryInput();
+      return Input.readTryInput();
     }
   };
 }
