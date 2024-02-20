@@ -12,7 +12,7 @@ export default class Controller {
     carNames.map((carName) => this.#moveInstanceList.push(new Move(carName)));
     this.calculateResult(tryNumber);
     this.printResult(tryNumber);
-    const winner = this.calculateWinner();
+    const winner = this.getWinners();
     Output.printWinner(winner);
   }
 
@@ -46,11 +46,11 @@ export default class Controller {
     );
   }
 
-  calculateWinner() {
+  getWinners() {
     const maxMove = this.calculateMaxMove();
-    const result = this.#moveInstanceList
+    const winners = this.#moveInstanceList
       .filter((moveInstance) => count(moveInstance.getInfo().moveTrace) === maxMove)
       .map((moveInstance) => moveInstance.getInfo().carName);
-    return result;
+    return winners;
   }
 }
