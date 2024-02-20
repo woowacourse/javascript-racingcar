@@ -1,6 +1,7 @@
 import InputView from './view/InputView';
 import OutputView from './view/OutputView';
 import Cars from './domain/Cars';
+import StringHandler from './utils/StringHandler';
 
 export class Game {
   async play() {
@@ -18,8 +19,9 @@ export class Game {
   async getCarNames() {
     while(true){
       try {
-        const carNames = await this.carNamesStringToCarNamesArray();
-        Cars.carNamesValidate(carNames);
+        const carNamesSting = await InputView.queryCarName();
+        const carNames = StringHandler.stringToArray(carNamesSting);
+        Cars.validateCarNames(carNames);
         return carNames;
       } catch (error) {
         OutputView.printError(error);
@@ -32,17 +34,12 @@ export class Game {
     while(true) {
       try {
         const tryCountString = await InputView.queryTryCount();
-        Cars.tryCountValidate(tryCountString);
+        Cars.validateTryCount(tryCountString);
         return Number(tryCountString);
       } catch (error) {
         OutputView.printError(error);
         continue;
       }
     }
-  }
-
-  async carNamesStringToCarNamesArray() {
-    const carNames = await InputView.queryCarName();
-    return carNames.split(',');
   }
 }
