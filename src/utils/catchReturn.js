@@ -1,14 +1,12 @@
-import Console from './Console.js';
+import errorHandler from "./errorHandler";
 
 const catchReturn = async (callback) => {
-  let result;
-
-  while (1) {
+  while (true) {
     try {
-      result = await callback();
+      const result = await callback();
       return result;
-    } catch (e) {
-      Console.print(e.message);
+    } catch (err) {
+      errorHandler(err);
     }
   }
 };
