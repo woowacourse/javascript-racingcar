@@ -1,6 +1,8 @@
 import getRandomNumberInRange from "../utils/getRandomNumberInRange";
 import CONSTANT from "../constants/index";
 
+const { NUMERIC } = CONSTANT;
+
 class Car {
   #name;
   #positions;
@@ -32,12 +34,12 @@ class Car {
 
   #move(currentRound) {
     if (currentRound === 0) {
-      this.#positions[currentRound] = CONSTANT.NUMERIC.moveDistance;
+      this.#positions[currentRound] = NUMERIC.moveDistance;
       return;
     }
 
     this.#positions[currentRound] =
-      this.#positions[currentRound - 1] + CONSTANT.NUMERIC.moveDistance;
+      this.#positions[currentRound - 1] + NUMERIC.moveDistance;
   }
 
   #stop(currentRound) {
@@ -50,11 +52,11 @@ class Car {
 
   #shouldGo() {
     const randomNumber = getRandomNumberInRange(
-      CONSTANT.NUMERIC.randomNumberLower,
-      CONSTANT.NUMERIC.randomNumberUpper
+      NUMERIC.randomNumberLower,
+      NUMERIC.randomNumberUpper
     );
 
-    return randomNumber >= CONSTANT.NUMERIC.moveStandard;
+    return randomNumber >= NUMERIC.moveStandard;
   }
 }
 

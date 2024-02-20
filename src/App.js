@@ -4,6 +4,8 @@ import OutputView from "./view/OutputView";
 import retryWhenErrorOccurs from "./utils/retryWhenErrorOccurs";
 import CONSTANT from "./constants";
 
+const { SEPARATOR } = CONSTANT;
+
 class App {
   async run() {
     const carNames = await this.#readCarNames();
@@ -19,7 +21,7 @@ class App {
     const answer = await retryWhenErrorOccurs(() => InputView.readCarNames());
 
     const carNames = answer
-      .split(CONSTANT.SEPARATOR.carName)
+      .split(SEPARATOR.carName)
       .map((string) => string.trim());
 
     return carNames;

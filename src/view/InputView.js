@@ -1,9 +1,11 @@
 import Console from "../utils/Console";
 import CONSTANT from "../constants";
 
+const { MESSAGE, NUMERIC, SEPARATOR } = CONSTANT;
+
 class InputView {
   static async readCarNames() {
-    const answer = await Console.readLineAsync(CONSTANT.MESSAGE.carNameInput);
+    const answer = await Console.readLineAsync(MESSAGE.carNameInput);
 
     this.#validateCarNames(answer);
 
@@ -11,7 +13,7 @@ class InputView {
   }
 
   static async readTryCount() {
-    const answer = await Console.readLineAsync(CONSTANT.MESSAGE.tryCountInput);
+    const answer = await Console.readLineAsync(MESSAGE.tryCountInput);
 
     this.#validateTryCount(answer);
 
@@ -20,25 +22,25 @@ class InputView {
 
   static #validateCarNames(answer) {
     const carNames = answer
-      .split(CONSTANT.SEPARATOR.carName)
+      .split(SEPARATOR.carName)
       .map((string) => string.trim());
 
     if (!this.#isValidCarNames(carNames)) {
-      throw new Error(CONSTANT.MESSAGE.invalidCarName);
+      throw new Error(MESSAGE.invalidCarName);
     }
   }
 
   static #validateTryCount(answer) {
     if (!this.#isValidTryCount(answer)) {
-      throw new Error(CONSTANT.MESSAGE.invalidTryCount);
+      throw new Error(MESSAGE.invalidTryCount);
     }
   }
 
   static #isValidCarNames(carNames) {
     const isValidLengthsOfNames = carNames.every(
       (name) =>
-        name.length >= CONSTANT.NUMERIC.carNameLengthLower &&
-        name.length <= CONSTANT.NUMERIC.carNameLengthUpper
+        name.length >= NUMERIC.carNameLengthLower &&
+        name.length <= NUMERIC.carNameLengthUpper
     );
     const isNotDuplicated = carNames.length === new Set(carNames).size;
 
