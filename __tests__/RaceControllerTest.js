@@ -13,17 +13,6 @@ describe('게임 컨트롤러 테스트', () => {
 		carList = new CarList(['시모', '리안']);
 	});
 
-	// test('한턴에서 전진 결과에 따라 자동차가 잘 이동되는지 확인', () => {
-	// 	const outputMock = [true, false];
-	// 	outputMock.forEach(output => {
-	// 		mockIsForward.mockReturnValueOnce(output);
-	// 	});
-
-	// 	raceController.playOneTurn(carList);
-	// 	// Act & Assert
-	// 	expect(carList.getDistance()).toEqual([1, 0]);
-	// });
-
 	test('한턴에서 차들의 전진 여부 배열을 잘 반환하는지 확인', () => {
 		const outputMock = [true, false];
 		outputMock.forEach(output => {
