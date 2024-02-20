@@ -5,8 +5,8 @@ const OutputView = {
     console.log(error.message);
   },
 
-  printEachStepResult(eachStepCarsResults = []) {
-    eachStepCarsResults.forEach((result) => {
+  printEachStepResult(eachStepResults = []) {
+    eachStepResults.forEach((result) => {
       console.log(result);
     });
   },
