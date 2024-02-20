@@ -25,7 +25,7 @@ class InputView {
       .split(SEPARATOR.carName)
       .map((string) => string.trim());
 
-    if (!this.#isValidCarNames(carNames)) {
+    if (!this.#areValidCarNames(carNames)) {
       throw new Error(MESSAGE.invalidCarName);
     }
   }
@@ -36,7 +36,7 @@ class InputView {
     }
   }
 
-  static #isValidCarNames(carNames) {
+  static #areValidCarNames(carNames) {
     const isValidLengthsOfNames = carNames.every(
       (name) =>
         name.length >= NUMERIC.carNameLengthLower &&
