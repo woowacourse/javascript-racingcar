@@ -1,4 +1,14 @@
-import Controller from "./Controller/Controller.js";
+import RacingGameController from './controller/racingGameController';
+import { InputView, OutputView } from './view';
 
-const controller = new Controller();
-controller.run();
+class App {
+  async run() {
+    const racingGameController = new RacingGameController(
+      { inputView: InputView, outputView: OutputView }, //
+    );
+    await racingGameController.run();
+  }
+}
+
+const app = new App();
+app.run();
