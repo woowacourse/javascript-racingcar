@@ -26,8 +26,8 @@ class CarMover {
   #giveOneTry(car) {
     validateCarInstance(car);
     const canGo = this.#moveFunction();
-    const moveDistance = canGo ? this.#moveDistance : 0;
-    car.grantTry(moveDistance);
+    const nowMoveDistance = canGo ? this.#moveDistance : 0;
+    car.grantTry(nowMoveDistance);
   }
 
   #validateTryCount(tryCount) {

@@ -17,6 +17,7 @@ const moveByRandom = () => {
   );
   return randomNumber >= numeric.MOVE_STANDARD;
 };
+
 class App {
   #carMover;
 
