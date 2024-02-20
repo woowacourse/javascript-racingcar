@@ -1,10 +1,13 @@
 class Car {
   #name;
-  #position;
+  #positions;
+  #lastPositionsIndex;
 
   constructor(name) {
     this.#name = name;
-    this.#position = [0];
+    //TODO: positions의 최대값(99)에 맞게 Validator 변경
+    this.#positions = new Array(100).fill(0);
+    this.#lastPositionsIndex = 0;
   }
 
   getName() {
@@ -12,22 +15,23 @@ class Car {
   }
 
   getPositionWhen(count) {
-    if (count + 1 < this.#position.length) return this.#position[count + 1];
-    return this.#position[this.#position.length - 1];
+    const isUnderLastPosition = count <= this.#lastPositionsIndex;
+    if (isUnderLastPosition) return this.#positions[count + 1];
+    return this.getLastPosition();
   }
 
   getLastTryCount() {
-    return this.#position.length - 2;
+    return this.#lastPositionsIndex;
   }
 
   getLastPosition() {
-    return this.#position[this.#position.length - 1];
+    return this.#positions[this.#lastPositionsIndex];
   }
 
   grantTry(moveDistance) {
-    this.#position.push(
-      this.#position[this.#position.length - 1] + moveDistance
-    );
+    this.#positions[this.#lastPositionsIndex + 1] =
+      this.#positions[this.#lastPositionsIndex] + moveDistance;
+    this.#lastPositionsIndex++;
   }
 }
 export default Car;
