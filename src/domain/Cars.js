@@ -2,11 +2,12 @@ import ERROR_MESSAGE from "../error/message.js";
 import Car from "./Car.js";
 import createRandom from "../utils/createRandom.js";
 
+const SEPARATOR = ",";
 class Cars {
   #cars;
 
   constructor(names) {
-    const parsedNames = names.split(",").map((name) => name.trim());
+    const parsedNames = names.split(SEPARATOR).map((name) => name.trim());
 
     this.#validate(parsedNames);
 

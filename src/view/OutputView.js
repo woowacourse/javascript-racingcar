@@ -3,6 +3,8 @@ import handleIO from "../utils/handleIO.js";
 const RESULT_TITLE = "\n실행 결과";
 const ADVANCE = "-";
 const WINNER_TITLE = "최종 우승자";
+const SEPARATOR = ",";
+const DELIMITER = ":";
 
 const OutputView = {
   printResultTitle() {
@@ -10,7 +12,7 @@ const OutputView = {
   },
 
   printCarResult(carName, carAdvance) {
-    handleIO.print(`${carName} : ${ADVANCE.repeat(carAdvance)}`);
+    handleIO.print(`${carName} ${DELIMITER} ${ADVANCE.repeat(carAdvance)}`);
   },
 
   printRacingResult(cars) {
@@ -21,7 +23,7 @@ const OutputView = {
   },
 
   printWinners(names) {
-    handleIO.print(`${WINNER_TITLE}: ${names.join(", ")}`);
+    handleIO.print(`${WINNER_TITLE}${DELIMITER} ${names.join(SEPARATOR + " ")}`);
   },
 };
 
