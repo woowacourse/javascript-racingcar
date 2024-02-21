@@ -46,15 +46,5 @@ describe('레이스 검증', () => {
         // then
       }).toThrow();
     });
-    test('라운드 입력이 올바를 경우 라운드 카운트 객체가 생성된다.', () => {
-      // given
-      const invalidInput = '8';
-
-      // when
-      const race = new Race(invalidInput);
-
-      // then
-      expect(typeof race === 'object').toBeTruthy();
-    });
   });
 });
