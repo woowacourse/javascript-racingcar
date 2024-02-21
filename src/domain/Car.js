@@ -1,6 +1,5 @@
 import { CAR } from '../constants/setting';
 import isForward from '../utils/isForward';
-import discriminator from '../utils/isForward';
 import randomNumberGenerator from '../utils/randomNumberGenerator';
 
 class Car {
