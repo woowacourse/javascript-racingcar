@@ -17,3 +17,7 @@ export const MESSAGE = {
 	BLANK: '',
 	PRINT_CHAR: '-',
 };
+
+export const GAME = {
+	FORWARD_MIN_NUM: 4,
+};
