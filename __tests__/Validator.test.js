@@ -1,8 +1,18 @@
-import Validator from '../src/Validator';
-import { ERROR_MESSAGE } from '../src/constants/message';
-import { VALIDATOR_TEST_MESSAGE } from '../src/constants/testMessage';
+import Validator from '../src/validator/Validator';
+import { ERROR_MESSAGE } from '../src/constant/message';
+import { VALIDATOR_TEST_MESSAGE } from '../src/constant/testMessage';
 
 describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
+  test.each([[], 234, { carName: 'test' }])(VALIDATOR_TEST_MESSAGE.CAR_NAME_INPUT_FORMAT, (condition) => {
+    // Act
+    const mockFn = () => {
+      Validator.validateCarNameListInput(condition);
+    };
+
+    // Assert
+    expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_INPUT_FORMAT);
+  });
+
   test(VALIDATOR_TEST_MESSAGE.MAX_CAR_NAME_LENGTH, () => {
     // Arrange
     const input = ['마루', '아르르르르르'];
@@ -14,7 +24,7 @@ describe(VALIDATOR_TEST_MESSAGE.TITLE, () => {
       });
     };
 
-    /// Assert
+    // Assert
     expect(mockFn).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
   });
 

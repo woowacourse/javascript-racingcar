@@ -1,5 +1,5 @@
-import Car from '../src/Car';
-import { CAR_TEST_MESSAGE } from '../src/constants/testMessage';
+import Car from '../src/domain/Car';
+import { CAR_TEST_MESSAGE } from '../src/constant/testMessage';
 
 describe(CAR_TEST_MESSAGE.TITLE, () => {
   test(CAR_TEST_MESSAGE.MOVE_FORWARD, () => {

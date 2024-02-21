@@ -1,24 +1,27 @@
-import Race from './Race';
-import InputView from './views/InputView';
-import OutputView from './views/OutputView';
-import Validator from './Validator';
+import Race from './domain/Race';
+import InputView from './view/InputView';
+import OutputView from './view/OutputView';
+import Validator from './validator/Validator';
 
 class App {
   async play() {
     const carNameList = await this.#readCarNameList();
     const turnCount = await this.#readTurnCount();
-
     const race = new Race(carNameList);
-    race.runRace(turnCount);
 
-    OutputView.printWinners(race.getWinner());
+    OutputView.printRaceHeader();
+    Array.from({ length: turnCount }).forEach(() => {
+      race.proceedTurn();
+      OutputView.printTurnResult(race.getTurnResult());
+    });
+    OutputView.printRaceWinner(race.getWinner());
   }
 
   async #readCarNameList() {
     try {
-      const carNameList = await InputView.readCarNameList();
-      Validator.validateCarNameList(carNameList);
-      return carNameList;
+      const carNameListInput = await InputView.readCarNameList();
+      Validator.validateCarNameListInput(carNameListInput);
+      return carNameListInput.split(',').map((car) => car.trim());
     } catch (error) {
       OutputView.print(error.message);
       return this.#readCarNameList();

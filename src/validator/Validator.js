@@ -1,12 +1,21 @@
-import CONFIG from './constants/config';
-import { ERROR_MESSAGE } from './constants/message';
+import CONFIG from '../constant/config';
+import { ERROR_MESSAGE } from '../constant/message';
 
 const Validator = {
-  validateCarNameList(carNameList) {
+  validateCarNameListInput(carNameListInput) {
+    this.validateCarNameListInputType(carNameListInput);
+    const carNameList = carNameListInput.split(',').map((car) => car.trim());
+
     this.validateCarNameListLength(carNameList.length);
     carNameList.forEach((carName) => {
       this.validateCarNameLength(carName.length);
     });
+  },
+
+  validateCarNameListInputType(carNameListInput) {
+    if (typeof carNameListInput !== 'string') {
+      throw new Error(ERROR_MESSAGE.CAR_NAME_INPUT_FORMAT);
+    }
   },
 
   validateTurnCount(turnCountInput) {
