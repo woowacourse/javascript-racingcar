@@ -1,10 +1,13 @@
-import getRandomNumberInRange from '../../src/utils/getRandomNumberInRange.js';
+import getRandomNumberInRange from '../getRandomNumberInRange.js';
 
 const rangeCheckCase = [
   [0, 9],
-  // [-Infinity, Infinity], *TODO: (-Infinity + Infinity) -> NaN
   [1, 1],
   [-1.123123123, -1.123123123],
+  [-Infinity, 0],
+  [-Infinity, -Infinity],
+  [0, Infinity],
+  [Infinity, Infinity],
 ];
 const typeCheckCase = [
   ['1', '1'],
@@ -16,7 +19,9 @@ const typeCheckCase = [
   [{}, {}],
   [[], []],
 ];
+
 const lowerAndUpperCheckCase = [9, 0];
+
 describe('utils: getRandomNumberInRange 검증', () => {
   test.each(rangeCheckCase)(
     '범위 내 숫자 나오는지 1만회 검증',

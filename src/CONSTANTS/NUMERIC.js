@@ -5,6 +5,9 @@ const numeric = Object.freeze({
   RANDOM_NUMBER_UPPER: 9,
   MOVE_STANDARD: 4,
   MOVE_DISTANCE: 1,
+
+  MIN_MAX_TRY_COUNT: 1,
+  MAX_MAX_TRY_COUNT: 100,
 });
 
 export default numeric;
