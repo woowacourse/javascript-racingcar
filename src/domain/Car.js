@@ -1,6 +1,6 @@
 import { CAR } from '../constants/setting';
-import Validator from '../utils/Validator';
-import discriminator from '../utils/discriminator';
+import isForward from '../utils/isForward';
+import discriminator from '../utils/isForward';
 import randomNumberGenerator from '../utils/randomNumberGenerator';
 
 class Car {
@@ -14,16 +14,15 @@ class Car {
     return this.#name;
   }
 
-  setCar(randomNumber) {
-    const isForward = discriminator(randomNumber);
-    return isForward
+  calculateScore(randomNumber) {
+    return isForward(randomNumber)
       ? { name: this.#name, score: CAR.FORWARD_SYMBOL }
       : { name: this.#name, score: CAR.STOP_SYMBOL };
   }
 
   actCar() {
     const randomNumber = randomNumberGenerator();
-    return this.setCar(randomNumber);
+    return this.calculateScore(randomNumber);
   }
 }
 
