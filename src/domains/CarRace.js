@@ -1,13 +1,15 @@
-import deepFreeze from '../utils/deepFreeze';
 import Car from './Car';
+import deepFreeze from '../utils/deepFreeze';
 import pickNumberInRange from '../utils/pickNumberInRange';
 import { RULES } from '../constants/car-race';
 
 class CarRace {
   #cars;
+  #tryCount;
 
-  constructor(cars) {
+  constructor(cars, tryCount) {
     this.#cars = this.#initRaceCars(cars);
+    this.#tryCount = tryCount;
   }
 
   #initRaceCars(cars) {
@@ -19,35 +21,34 @@ class CarRace {
     return maxPosition;
   }
 
-  #canMove() {
+  #moveCar(car) {
     const randomNumber = pickNumberInRange(
       RULES.minRandomNumber,
       RULES.maxRandomNumber,
     );
-    return randomNumber >= RULES.moveStandard;
-  }
 
-  #moveCars() {
-    this.#cars.forEach((car) => {
-      if (this.#canMove()) {
-        car.move();
-      }
-    });
+    car.move(randomNumber);
   }
 
   #makeRoundResult() {
-    const result = {};
+    const roundResult = {};
 
     this.#cars.forEach((car) => {
-      result[car.name] = car.position;
+      this.#moveCar(car);
+      roundResult[car.name] = car.position;
     });
 
-    return deepFreeze(result);
+    return roundResult;
   }
 
-  makesRoundResult() {
-    this.#moveCars();
-    return this.#makeRoundResult();
+  makeTotalRoundResult() {
+    const results = [];
+
+    for (let count = 0; count < this.#tryCount; count++) {
+      const roundResult = this.#makeRoundResult();
+      results.push(roundResult);
+    }
+    return deepFreeze(results);
   }
 
   judgeWinners() {

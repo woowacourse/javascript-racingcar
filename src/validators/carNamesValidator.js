@@ -14,15 +14,15 @@ const carNamesValidator = {
   },
 
   isValidLength(carNames) {
-    return carNames.every(
+    return carNames.some(
       (name) =>
-        name.length >= RULES.minCarNameLength &&
-        name.length <= RULES.maxCarNameLength,
+        name.length < RULES.minCarNameLength ||
+        name.length > RULES.maxCarNameLength,
     );
   },
 
   validateLength(carNames) {
-    if (!this.isValidLength(carNames)) {
+    if (this.isValidLength(carNames)) {
       throw new InvalidInputException(ERROR_MESSAGES.carNameLength);
     }
   },

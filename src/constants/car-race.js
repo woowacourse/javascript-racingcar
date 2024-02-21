@@ -3,6 +3,7 @@ export const RULES = {
   maxRandomNumber: 9,
   minCarNameLength: 1,
   maxCarNameLength: 5,
+  minTryCount: 1,
   moveStandard: 4,
   initialPosition: 0,
   movingUnit: 1,
@@ -23,7 +24,7 @@ export const ERROR_MESSAGES = {
   prefix: '[ERROR]',
   carNameLength: `경주할 자동차 이름은 ${RULES.minCarNameLength}자 이상 ${RULES.maxCarNameLength}자 이하만 가능합니다.`,
   carNameUniqueness: '자동차 이름은 중복될 수 없습니다.',
-  tryCount: '시도할 횟수는 1이상의 숫자만 가능합니다.',
+  tryCount: `시도할 횟수는 ${RULES.minTryCount} 이상의 숫자만 가능합니다.`,
   invalidNumberRange: '최솟값은 최대값보다 작거나 같아야 합니다.',
   invalidNumberType: '숫자만 입력 가능합니다.',
 };
