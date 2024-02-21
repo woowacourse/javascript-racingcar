@@ -1,5 +1,4 @@
-import { NUMBERS } from './constants';
-import RandomNumberGenerator from './utils/RandomNumberGenerator';
+import { NUMBERS } from '../constants/constants';
 
 class Car {
   #name;
@@ -9,15 +8,18 @@ class Car {
     this.#distance = NUMBERS.DEFAULT_CAR_DISTANCE;
   }
 
-  static canMove() {
-    const randomValue = RandomNumberGenerator.pickRandomNumber();
-    return randomValue >= NUMBERS.MINIMUM_MOVEMENT_THRESHOLD;
+  canMove(randomValue) {
+    return randomValue >= NUMBERS.MOVEMENT_MINIMUM_THRESHOLD;
   }
 
-  move() {
-    if (Car.canMove()) {
-      this.#distance += NUMBERS.MOVE_INCREMENT;
+  move(randomValue) {
+    if (this.canMove(randomValue)) {
+      this.setDistance(this.#distance + NUMBERS.MOVE_INCREMENT);
     }
+  }
+
+  setDistance(distance) {
+    this.#distance = distance;
   }
 
   getName() {
