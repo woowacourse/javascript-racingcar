@@ -1,6 +1,6 @@
 import { ERROR_INPUT_COUNT } from '../constants/message';
 import { ROUND, SYMBOLS } from '../constants/setting';
-import OutputView from '../views/OutputView';
+import OutputView from '../view/OutputView';
 
 async function runMethod(method, params) {
   try {

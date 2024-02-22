@@ -10,14 +10,7 @@ class Race {
   constructor(count) {
     this.#roundCount = 0;
     this.#raceResult = [];
-    this.#validate(count);
-    this.#roundCount = Number(count);
-  }
-
-  #validate(count) {
-    Validator.isValidRoundCountExist(count);
-    Validator.isValidRoundCountRule(count);
-    Validator.isValidRoundCountRange(count);
+    this.#roundCount = count;
   }
 
   start(cars) {

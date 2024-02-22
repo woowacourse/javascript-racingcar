@@ -1,26 +1,25 @@
 import { SYMBOLS } from '../constants/setting';
-import consolePrint from '../utils/consolePrint';
 
 const OutputView = {
   printError(error) {
-    consolePrint(error.message);
+    console.log(error.message);
   },
 
   printRaceResult(raceResult) {
     raceResult.forEach((roundResult) => {
       this.printRoundResult(roundResult);
-      consolePrint(SYMBOLS.EMPTY);
+      console.log(SYMBOLS.EMPTY);
     });
   },
 
   printRoundResult(roundResult) {
     roundResult.forEach((car) => {
-      consolePrint(car);
+      console.log(car);
     });
   },
 
   printWinners(winners) {
-    consolePrint(winners);
+    console.log(winners);
   },
 };
 
