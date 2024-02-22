@@ -1,6 +1,11 @@
 export const CAR = {
 	MAX_NAME_LEN: 5,
-	MIN_CAR_LEN: 1,
+	MIN_NAME_LEN: 0,
+	MIN_CAR_ARRAY_LEN: 1,
+};
+
+export const TRY_NUMBER = {
+	MAX_NUMBER: 0,
 };
 
 export const ERROR = {
