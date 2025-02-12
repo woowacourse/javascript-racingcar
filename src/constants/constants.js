@@ -1,3 +1,5 @@
+export const ERROR_PREFIX = "[ERROR] ";
+
 export const ERROR_MESSAGE = {
   INVALID_NAME_SEPARATOR: "자동차 이름을 쉼표(,)로 구분하여 작성해주세요.",
   DUPLICATE_NAME: "중복되지 않은 자동차 이름을 입력해주세요.",
