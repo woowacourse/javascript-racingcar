@@ -1,14 +1,6 @@
 import { InputView } from "./view/InputView.js";
 import { parsingService } from "./Service/parsingService.js";
 
-const carInput = await InputView.getCarName();
-let parsedCars;
-// try {
-//   parsedCars = parsingService.parseNames(carInput);
-// } catch (error) {
-//   console.error(error.message);
-// }
-
 function printError(parser, input) {
   let parsedValue;
   try {
@@ -19,5 +11,20 @@ function printError(parser, input) {
   return parsedValue;
 }
 
-// const roundInput = await InputView.getRound();
-// const parsedRound = parsingService.parseRound(roundInput);
+while (true) {
+  const carInput = await InputView.getCarName();
+  let parsedCars = printError(parsingService.parseNames, carInput);
+  if (!parsedCars) {
+    continue;
+  }
+  break;
+}
+
+while (true) {
+  const roundInput = await InputView.getRound();
+  let parsedRound = printError(parsingService.parseRound, roundInput);
+  if (!parsedRound) {
+    continue;
+  }
+  break;
+}
