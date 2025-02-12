@@ -1,3 +1,5 @@
+import CarNameValidator from "../validators/CarNameValidator.js";
+
 class RaceController {
     #inputView;
 
@@ -8,6 +10,8 @@ class RaceController {
     async race() {
         const carNames = await this.#inputView.getCarNames();
         const parseCarNames = carNames.split(",");
+        CarNameValidator.valiateCarNameLength(parseCarNames);
+
         
     }
 }
