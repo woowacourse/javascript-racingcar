@@ -1,12 +1,13 @@
 import readLineAsync from "../utils/readLineAsync.js";
+import validateCarNames from "../validation/validateCarNames.js";
 
 const Input = {
-  carName() {
+  async carName() {
     try {
-      const input = readLineAsync(
+      const input = await readLineAsync(
         "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
       );
-      return validateCarName(input);
+      return validateCarNames(input);
     } catch (error) {
       console.log(error.message);
       return this.carName();
