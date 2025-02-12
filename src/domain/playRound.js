@@ -6,7 +6,6 @@ const playRound = (cars) => {
         const randomNumber = generateRandomNumber()
         return moveCar(car, randomNumber)
     })
-
     return updatedCars
 }
 

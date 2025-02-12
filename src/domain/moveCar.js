@@ -4,7 +4,7 @@
 
 const moveCar = (car, randomNumber) => {
     if (randomNumber >= 4){
-      car.count++;
+        return { ...car, count: car.count + 1 };
     }
     return car;
 }
