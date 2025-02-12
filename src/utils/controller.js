@@ -1,4 +1,4 @@
-import { RULE, VIEW_MESSAGE } from "../constants/index.js";
+import { RULE } from "../constants/index.js";
 import { randomNumberGenerator } from "./math.js";
 
 export const racingCarController = (carNames) => {
@@ -17,7 +17,7 @@ export const racingCarController = (carNames) => {
     }
   };
 
-  const getRacingCarText = () => {
+  const getRacingCarTextFormat = () => {
     return Object.entries(racingCar).reduce((acc, [carName, distance]) => {
       acc += `${carName}: ${RULE.ADVANCE_EXPRESSION.repeat(distance)}\n`;
       return acc;
@@ -25,17 +25,20 @@ export const racingCarController = (carNames) => {
   };
 
   const startRace = (attemptCount) => {
-    console.log(VIEW_MESSAGE.EXECUTION_RESULT);
+    const result = [];
 
     const carNames = Object.keys(racingCar);
     for (let i = 0; i < attemptCount; i++) {
       carNames.forEach((carName) => advanceRacingCar(carName));
-      console.log(getRacingCarText());
+      result.push(getRacingCarTextFormat());
     }
+
+    return result;
   };
 
   const getWinner = () => {
     const maxDistance = Math.max(...Object.values(racingCar));
+
     return Object.keys(racingCar).filter(
       (carName) => racingCar[carName] === maxDistance
     );

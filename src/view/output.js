@@ -5,3 +5,11 @@ export const printWinner = (getWinner) => {
     VIEW_MESSAGE.WINNER_RESULT + getWinner().join(`${RULE.CAR_NAME_SEPARATOR}`)
   );
 };
+
+export const printExecutionText = () => {
+  console.log(VIEW_MESSAGE.EXECUTION_RESULT);
+};
+
+export const printRaceResult = (raceResults) => {
+  raceResults.forEach((result) => console.log(result));
+};
