@@ -1,4 +1,4 @@
-class OuputView{
+class OutputView{
     printResultHeader(){
         console.log("실행 결과");
     }
@@ -8,4 +8,10 @@ class OuputView{
             console.log(`${car.name} : ${"-".repeat(car.position)}`);
         });
     }
+
+    printWinners(winners) {
+        console.log(`최종 우승자: ${winners.join(', ')}`);
+    }
 }
+
+export default OutputView;

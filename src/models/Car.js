@@ -16,7 +16,9 @@ class Car {
         return this.#position <= maxPosition;
     }
 
-    get position() {return this.#position};
+    get position() {
+        return this.#position
+    };
 }
 
 export default Car;
