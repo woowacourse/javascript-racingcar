@@ -1,5 +1,4 @@
-import Car from './Car';
-import { getRandomValue } from './utils/random';
+import { getRandomValue } from './utils/random.js';
 
 class Racing {
   carList;
@@ -19,7 +18,7 @@ class Racing {
   }
 
   start() {
-    console.log('실행 결과');
+    console.log('\n실행 결과');
     for (let i = 0; i < this.count; i++) {
       this.carList.forEach((car) => {
         car.move(getRandomValue());
