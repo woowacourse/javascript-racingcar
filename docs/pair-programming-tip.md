@@ -23,6 +23,7 @@
     
     - ⚠ 충돌이 발생하면 해결 후 `git rebase --continue`를 실행해야 한다.
     - ⚠ 만약 충돌 해결이 어렵다면 `git rebase --abort` 로 되돌릴 수 있다.
+    - ⚠ 강제로 모든 내용을 100% 동일하게 옮기려면 `git reset --hard sooyeoniya/step-1`을 사용하면 된다.
 
 ## 커밋 시 공동 기여자 설정 방법
 
