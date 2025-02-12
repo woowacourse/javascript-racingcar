@@ -32,3 +32,14 @@ test('4 이상 9 이하의 값이 나오면 1칸을 전진한다.', () => {
   // then
   expect(car.position).toBe(1);
 });
+
+test('4 이상 9 이하의 값이 나오지 않으면 1칸을 전진하지 않는다.', () => {
+  // given
+  const car = new Car();
+
+  // when
+  carManager.moveForwardCar(car, 3);
+
+  // then
+  expect(car.position).toBe(0);
+});
