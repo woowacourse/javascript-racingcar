@@ -29,6 +29,14 @@ class CarManager {
       return car.move();
     }
   }
+
+  race(attempts) {
+    for (let i = 0; i < attempts; i++) {
+      this.cars.forEach((car) => {
+        this.moveForwardCar(car, pickRandomNumber());
+      });
+    }
+  }
 }
 
 export default CarManager;
