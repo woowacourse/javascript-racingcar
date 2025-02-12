@@ -6,7 +6,9 @@ class RaceController {
     }
 
     async race() {
-        const name = await this.#inputView.getCarNames();
+        const carNames = await this.#inputView.getCarNames();
+        const parseCarNames = carNames.split(",");
+        
     }
 }
 

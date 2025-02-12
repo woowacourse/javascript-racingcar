@@ -2,7 +2,9 @@ import RaceController from "./controllers/RaceController";
 
 class App {
     async run(){
-        await RaceController.race();
+        const views = {inputView : new InputView()}
+
+        await RaceController.race(views);
     }
 }
 
