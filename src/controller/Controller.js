@@ -2,13 +2,12 @@ import InputView from "../view/InputView.js";
 import Car from "../model/Car.js";
 import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
 import { CAR } from "../constants/constants.js";
-import { validateCarNames } from "../utils/validation.js";
+import { validateCarNames, validateTryCount } from "../utils/validation.js";
 export default class Controller {
   async run() {
-    const inputView = new InputView();
     const carNameInput = await this.validateCarNamesAndRetry();
     const carNames = carNameInput.split(",").map((carName) => carName.trim());
-    const tryCount = await inputView.readLineAsync(INPUT_MESSAGE.TRY_COUNT);
+    const tryCount = await this.validateTryCountAndRetry();
 
     const cars = [];
     carNames.forEach((carName) => {
@@ -26,6 +25,20 @@ export default class Controller {
     } catch (e) {
       console.log(e.message);
       return this.validateCarNamesAndRetry();
+    }
+  }
+
+  async validateTryCountAndRetry() {
+    try {
+      const inputView = new InputView();
+      const tryCountInput = await inputView.readLineAsync(
+        INPUT_MESSAGE.TRY_COUNT,
+      );
+      validateTryCount(tryCountInput);
+      return tryCountInput;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateTryCountAndRetry();
     }
   }
 
