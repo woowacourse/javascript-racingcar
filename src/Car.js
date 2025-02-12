@@ -1,16 +1,11 @@
 class Car {
-  #position;
-
-  constructor() {
-    this.#position = 0;
+  constructor(name) {
+    this.position = 0;
+    this.name = name;
   }
 
   moveOneStep() {
-    this.#position += 1;
-  }
-
-  get position() {
-    return this.#position;
+    this.position += 1;
   }
 }
 
