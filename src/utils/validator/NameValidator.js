@@ -13,10 +13,12 @@ class NameValidator {
     }
   }
 
-  static isBelowFive(carName) {
-    if (carName.length > 5) {
-      throw new Error(ErrorMessage.isLongerThanFive);
-    }
+  static isBelowFive(parsedCarName) {
+    parsedCarName.forEach((carName) => {
+      if (carName.length > 5) {
+        throw new Error(ErrorMessage.isLongerThanFive);
+      }
+    });
   }
 
   static isNotDuplicated(parsedCarName) {
