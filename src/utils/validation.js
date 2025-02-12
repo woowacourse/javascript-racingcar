@@ -24,3 +24,15 @@ export const validateCarNames = (carNames) => {
     throw new CustomError(INVALID_MESSAGE.DUPLICATE_CAR_NAME);
   }
 };
+
+export const validateAttemptCount = (attemptCount) => {
+  if (!Number.isSafeInteger(attemptCount)) {
+    throw new CustomError(INVALID_MESSAGE.INTEGER_FORMAT);
+  }
+
+  if (
+    !isInRange(RULE.MIN_ATTEMPT_COUNT, RULE.MAX_ATTEMPT_COUNT, attemptCount)
+  ) {
+    throw new CustomError(INVALID_MESSAGE.ATTEMPT_COUNT);
+  }
+};

@@ -1,9 +1,12 @@
-import { getCarName, retryUntilValid } from "./view/input.js";
-import { validateCarNames } from "./utils/validation.js";
+import { retryUntilValid, getCarName, getAttemptCount } from "./view/input.js";
+import { validateCarNames, validateAttemptCount } from "./utils/validation.js";
 
 async function run() {
   const carNames = await retryUntilValid(getCarName, validateCarNames);
-  console.log(carNames);
+  const attemptCount = await retryUntilValid(
+    getAttemptCount,
+    validateAttemptCount
+  );
 }
 
 run();
