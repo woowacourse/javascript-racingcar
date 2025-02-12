@@ -2,12 +2,12 @@ import InputView from "../view/InputView.js";
 import Car from "../model/Car.js";
 import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
 import { CAR } from "../constants/constants.js";
+import { validateCarNames } from "../utils/validation.js";
 export default class Controller {
   async run() {
     const inputView = new InputView();
-    const carsInput = await inputView.readLineAsync(INPUT_MESSAGE.CAR_NAMES);
-    const carNames = carsInput.split(",").map((carName) => carName.trim());
-
+    const carNameInput = await this.validateCarNamesAndRetry();
+    const carNames = carNameInput.split(",").map((carName) => carName.trim());
     const tryCount = await inputView.readLineAsync(INPUT_MESSAGE.TRY_COUNT);
 
     const cars = [];
@@ -16,6 +16,17 @@ export default class Controller {
     });
     this.runRace(cars, tryCount);
     this.findWinner(cars);
+  }
+  async validateCarNamesAndRetry() {
+    try {
+      const inputView = new InputView();
+      const carsInput = await inputView.readLineAsync(INPUT_MESSAGE.CAR_NAMES);
+      validateCarNames(carsInput);
+      return carsInput;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateCarNamesAndRetry();
+    }
   }
 
   runRace(cars, tryCount) {

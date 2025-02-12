@@ -10,7 +10,7 @@ export const validateCarNames = (input) => {
   if (cars.length !== new Set(cars).size) {
     createError(ERROR_MESSAGE.DUPLICATE_NAME);
   }
-  if (cars.every((car) => car.length >= 1 && car.length <= 5)) {
+  if (cars.some((car) => car.length < 1 || car.length > 5)) {
     createError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
   }
 };
