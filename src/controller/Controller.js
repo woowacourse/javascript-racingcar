@@ -1,4 +1,5 @@
 import InputView from "../view/InputView.js";
+import Car from "../model/Car.js";
 
 export default class Controller {
   async run() {
@@ -11,5 +12,18 @@ export default class Controller {
     const tryCount = await inputView.readLineAsync(
       "시도할 횟수는 몇 회인가요?"
     );
+
+    this.runRace(carNames, tryCount);
+  }
+
+  runRace(carNames, tryCount) {
+    const cars = [];
+    carNames.forEach((carName) => {
+      cars.push(new Car(carName));
+    });
+    console.log("실행 결과");
+    for (let i = 0; i < tryCount; i++) {
+      this.gameRound(cars);
+    }
   }
 }
