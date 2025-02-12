@@ -1,5 +1,5 @@
-import { readLineAsync } from './utils.js';
-import Validator from './validator.js';
+import { readLineAsync } from './src/utils.js';
+import Validator from './src/validator.js';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -54,10 +54,10 @@ async function run() {
 
 async function getNameList() {
   return retryUntilSuccess(async () => {
-    const rawName = await readLineAsync(
-      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
-    );
-    Validator.validateCarName(rawName);
+    // const rawName = await readLineAsync(
+    //   '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
+    // );
+    // Validator.validateCarName(rawName);
     return rawName.split(',');
   });
 }

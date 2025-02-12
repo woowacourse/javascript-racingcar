@@ -8,7 +8,7 @@ export default class Validator {
 
   static validateCount(rawCount) {
     const count = Number(rawCount);
-
     if (Number.isNaN(count)) throw new Error();
+    if (count <= 0) throw new Error();
   }
 }
