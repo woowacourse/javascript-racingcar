@@ -9,7 +9,7 @@ class Car {
     this.#position = 0;
   }
 
-  getCarName() {
+  getName() {
     return this.#name;
   }
 
