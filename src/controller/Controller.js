@@ -18,6 +18,7 @@ export default class Controller {
       cars.push(new Car(carName));
     });
     this.runRace(cars, tryCount);
+    this.findWinner(cars);
   }
 
   runRace(cars, tryCount) {
@@ -25,6 +26,14 @@ export default class Controller {
     for (let i = 0; i < tryCount; i++) {
       this.gameRound(cars);
     }
+  }
+
+  findWinner(cars) {
+    const max = Math.max(...cars.map((x) => x.position));
+    const winners = cars.filter((car) => car.position === max);
+    console.log(
+      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`
+    );
   }
 
   gameRound(cars) {
