@@ -1,3 +1,4 @@
+import { stringToNumber } from './utils/changeDataType.js';
 import { readLineAsync } from './utils/readLineAsync.js';
 import { splitString } from './utils/separator.js';
 import { checkCarNameLength, checkCarNameDuplicate, checkIsEmpty, checkCarCount } from './validates/carValidates.js';
@@ -12,6 +13,7 @@ class App {
     checkCarNameDuplicate(carNames);
 
     const tryCountInput = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const tryCount = stringToNumber(tryCountInput);
   }
 }
 
