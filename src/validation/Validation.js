@@ -12,4 +12,7 @@ export const Validation = {
   isNumber(input) {
     return !Number.isNaN(input);
   },
+  isNegative(input) {
+    return Number(input) > 0;
+  },
 };
