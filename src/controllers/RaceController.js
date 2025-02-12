@@ -16,6 +16,8 @@ class RaceController {
         const tryCount = await this.#inputView.getTryCount();
         TryCountValidator.validateNumber(tryCount);
         const parseTryCount = Number(tryCount);
+
+        
     }
 }
 
