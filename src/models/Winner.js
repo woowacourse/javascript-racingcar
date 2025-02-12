@@ -5,13 +5,17 @@ class Winner {
         this.#winners = [];
     }
 
-    getWinners(carList) {
-        const maxPostion = carList.getMaxPosition();
+    getWinners(cars, carList) {
+        const maxPostion = cars.getMaxPosition();
 
         carList.forEach((car) => {
-            if (maxPostion === car.postion){
+            if (maxPostion === car.position){
                 this.#winners.push(car.name);
             }
-        })
+        });
+        
+        return this.#winners;
     }
 }
+
+export default Winner;
