@@ -26,4 +26,18 @@ export default class Controller {
       this.gameRound(cars);
     }
   }
+  gameRound(cars) {
+    cars.forEach((car) => {
+      if (this.isMove(this.getRandomNumber())) car.move();
+    });
+  }
+
+  getRandomNumber() {
+    return Math.floor(Math.random() * 10);
+  }
+
+  isMove(number) {
+    if (number >= 4) return true;
+    return false;
+  }
 }
