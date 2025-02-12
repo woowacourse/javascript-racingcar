@@ -11,6 +11,7 @@ class Controller {
 
   async readyRace() {
     await this.setCarList();
+    await this.setRaceCount();
   }
 
   async setCarList() {
@@ -21,5 +22,11 @@ class Controller {
     this.#carList = carNamesArray.map((name) => {
       return new Car(name);
     });
+  }
+
+  async setRaceCount() {
+    const raceCount = await InputView.readRaceCount();
+
+    this.#raceCount = raceCount;
   }
 }
