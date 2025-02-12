@@ -2,14 +2,13 @@ import { getRandomNumber } from "./util.js";
 
 const MOVE_FORWARD = 4;
 
-class Car {
+export default class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
   }
 
-  move() {
-    const moveCondition = getRandomNumber();
+  move(moveCondition) {
     if (moveCondition >= MOVE_FORWARD) {
       this.position += 1;
       return;
