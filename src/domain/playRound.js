@@ -1,7 +1,13 @@
+import moveCar from "./moveCar.js"
+import generateRandomNumber from "../utils/generateRandomNumber.js"
+
 const playRound = (cars) => {
+    const updatedCars = cars.map(car => {
+        const randomNumber = generateRandomNumber()
+        return moveCar(car, randomNumber)
+    })
 
-    console.log('1')
-
+    return updatedCars
 }
 
 export default playRound
