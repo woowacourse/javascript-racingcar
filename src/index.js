@@ -1,11 +1,12 @@
 import { retryUntilValid, getCarName, getAttemptCount } from "./view/input.js";
 import { validateCarNames, validateAttemptCount } from "./utils/validation.js";
-import { racingCarController } from "./utils/controller.js";
+import { getWinners, initRacingCar } from "./raceState.js";
 import {
   printWinner,
   printExecutionText,
   printRaceResult,
 } from "./view/output.js";
+import { startRace } from "./raceController.js";
 
 async function run() {
   const carNames = await retryUntilValid(getCarName, validateCarNames);
@@ -14,13 +15,14 @@ async function run() {
     validateAttemptCount
   );
 
-  const { startRace, getWinner } = racingCarController(carNames);
+  const racingCar = initRacingCar(carNames);
 
   printExecutionText();
-  const raceResult = startRace(attemptCount);
+  const raceResult = startRace(attemptCount, racingCar);
   printRaceResult(raceResult);
 
-  printWinner(getWinner);
+  const winners = getWinners(racingCar);
+  printWinner(winners);
 }
 
 run();
