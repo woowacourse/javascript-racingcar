@@ -48,3 +48,7 @@ Q. 입력을 받는 `readLineAsync` 함수는 utils 폴더에 넣어야 할까? 
 - 아더: `readLineAsync` 함수는 입력 받는 코드에서 매번 가져다가 사용하는 함수이므로 utils에 들어가야 할 것 같다. view는 이러한 입출력 함수들을 사용하는 코드가 들어간다고 생각한다.
 
 - 써밋: src 폴더 루트에 있는 utils 폴더는 관심사 구분 없이 조금 더 넓은 개념으로 어디서든 사용할 수 있을 것 같다는 느낌이 드는데(like es-toolkit 같은 느낌..?) 입력을 받는 `readLineAsync` 함수는 view 폴더 안에서만 사용될 수 있다보니깐 가까운 관심사에 두는게 응집도가 올라갈 것 같다.
+
+Q. constants 폴더에 상수 범위가 그렇게 크지 않아서 한 파일에 다 넣었는데 이 때 파일명은 어떻게 하는게 좋을까요?
+
+- index.js 보다는 constants.js가 좋을 것 같다 vs constants는 폴더 명에도 적혀있어서 index.js로도 충분할 것 같다
