@@ -27,8 +27,9 @@ class InputView {
     return name;
   }
 
-  async readAttemps(){
-    const attempts = await readLineAsync("시도할 횟수는 몇 회인가요? ");
+  async readAttempts(){
+    const attempts = await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return attempts;
   }
 }
   
