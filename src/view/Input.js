@@ -1,12 +1,12 @@
+import { INPUT_MESSAGE } from "../constants/message";
+
 export class Input {
   static async carName() {
-    const name = await this.readLineAsync(
-      "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
-    );
+    const name = await this.readLineAsync(INPUT_MESSAGE.carName);
   }
 
   static async carName() {
-    const name = await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    const name = await readLineAsync(INPUT_MESSAGE.tryCount);
   }
 
   readLineAsync(query) {

@@ -15,3 +15,13 @@ export const ERROR_MESSAGE = {
   tryNumberOverHundred: `${ERROR_PREFIX} 시도 횟수는 ${TRY_NUMBER_SETTING.maxTryNumber}회 이하이어야 합니다.`,
   tryNumberNotPositiveInteger: `${ERROR_PREFIX} 시도 횟수는 양의 정수여야 합니다.`,
 };
+
+export const INPUT_MESSAGE = {
+  carName: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
+  tryCount: "시도할 횟수는 몇 회인가요?\n",
+};
+
+export const OUTPUT_MESSAGE = {
+  raceResult: "실행 결과",
+  winners: "최종 우승자:",
+};

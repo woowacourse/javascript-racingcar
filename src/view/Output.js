@@ -13,7 +13,11 @@ export default class Output {
     this.print(`pobi : ${SCORE_ICON}`);
   }
 
+  static raceResult() {
+    this.print(OUTPUT_MESSAGE.raceResult);
+  }
+
   static winners(names) {
-    this.print(`최종 우승자: ${names.join(",")}`);
+    this.print(`${OUTPUT_MESSAGE.winners} ${names.join(",")}`);
   }
 }
