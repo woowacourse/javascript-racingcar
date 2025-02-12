@@ -1,10 +1,13 @@
 class Car {
+  #name;
   constructor(name) {
-    this.name = name;
+    this.#name = name;
     this.position = 0;
   }
 
-  methodName() {}
+  get name() {
+    return this.#name;
+  }
 }
 
 export default Car;
