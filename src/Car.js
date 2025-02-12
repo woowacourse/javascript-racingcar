@@ -1,9 +1,10 @@
 class Car {
-  #name = '';
-  position = 0;
+  name;
+  position;
 
-  constructor(name) {
-    this.#name = name;
+  constructor(name, position) {
+    this.name = name;
+    this.position = position;
   }
 
   move(value) {
@@ -11,7 +12,7 @@ class Car {
   }
 
   getRacingStatus() {
-    return `${this.#name} : ${'-'.repeat(this.position)}`;
+    return `${this.name} : ${'-'.repeat(this.position)}`;
   }
 }
 
