@@ -3,9 +3,11 @@ import { readLineAsync } from './utils/util.js';
 class App {
   // 입출력 예시
   async run() {
-    const name = await readLineAsync(
+    const inputName = await readLineAsync(
       '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n'
     );
+    const names = inputName.split(',');
+    validator.carNames(names);
     const count = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 }
