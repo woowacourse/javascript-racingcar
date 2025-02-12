@@ -1,3 +1,5 @@
+import { MIN_MOVE_CONDITION, MOVE_UNIT } from "../constant/constant.js";
+
 class Car {
   #name;
   #position;
@@ -13,6 +15,12 @@ class Car {
 
   getCarPosition() {
     return this.#position;
+  }
+
+  moveCar(randomNumber) {
+    if (randomNumber >= MIN_MOVE_CONDITION) {
+      this.#position += MOVE_UNIT;
+    }
   }
 }
 
