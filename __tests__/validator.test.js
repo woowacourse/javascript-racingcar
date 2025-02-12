@@ -40,6 +40,14 @@ describe('경주에 참여하는 자동차의 이름들을 검증한다.', () =>
       validator.carNames(carNames);
     }).toThrow('두 대 이상이어야 합니다.');
   });
+
+  test('정상 입력', () => {
+    const carNames = ['asdf', 'qwer'];
+
+    expect(() => {
+      validator.carNames(carNames);
+    }).not.toThrow();
+  });
 });
 
 describe('경주를 진행할 횟수를 검증한다.', () => {
