@@ -10,4 +10,14 @@ export const validator = Object.freeze({
       throw new Error('알파벳으로 구성되어야 합니다.');
     if (carNames.length < 2) throw new Error('두 대 이상이어야 합니다.');
   },
+
+  count(count) {
+    if (count.includes(' '))
+      throw new Error('횟수는 공백을 포함하면 안됩니다.');
+    if (!/^[0-9]+$/.test(count))
+      throw new Error('횟수는 문자를 입력하면 안됩니다.');
+    if (Number(count) < 1) throw new Error('횟수는 최소 1 이상이어야 합니다.');
+    if (Number(count) > 1000)
+      throw new Error('횟수는 최대 1000 이하이어야 합니다.');
+  },
 });
