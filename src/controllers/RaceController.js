@@ -1,4 +1,5 @@
 import Cars from "../models/Cars.js";
+import Winner from "../models/Winner.js";
 import CarNameValidator from "../validators/CarNameValidator.js";
 import TryCountValidator from "../validators/TryCountValidator.js";
 
@@ -14,24 +15,24 @@ class RaceController {
     async race() {
         const carNames = await this.#inputView.getCarNames();
         const parseCarNames = carNames.split(",");
-        CarNameValidator.valiateCarNameLength(parseCarNames);
+        new CarNameValidator().valiateCarNameLength(parseCarNames);
 
         const tryCount = await this.#inputView.getTryCount();
         const parseTryCount = Number(tryCount);
-        TryCountValidator.validateNumber(parseTryCount);
-        
+        new TryCountValidator().validateNumber(parseTryCount);
 
         this.#outputView.printResultHeader();
 
         const cars = new Cars(parseCarNames);
+        const carList = cars.cars;
+
         for(let i=0; i<parseTryCount; i++) {
             cars.moveCars();
-            this.#outputView.printRaceResult(cars);
+            this.#outputView.printRaceResult(carList);
+            this.#outputView.printNewLine();
         }
 
-        this.#outputView.printWinners();
-        
-
+        this.#outputView.printWinners(new Winner().getWinners(cars, carList));
     }
 }
 

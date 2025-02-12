@@ -8,3 +8,5 @@ class TryCountValidator{
         }
     }
 }
+
+export default TryCountValidator;

@@ -12,13 +12,13 @@ class Car {
         this.#position += FOWARD;
     }
 
-    isBiggerThanMaxPosition(maxPosition) {
-        return this.#position <= maxPosition;
-    }
-
     get position() {
-        return this.#position
+        return this.#position;
     };
+
+    get name(){
+        return this.#name;
+    }
 }
 
 export default Car;

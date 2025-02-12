@@ -1,10 +1,10 @@
-import Car from "./Car";
+import Car from "./Car.js";
 
 class Cars {
     #cars;
 
     constructor(carNames) {
-        this.#cars = carNames.forEach((carName) => new Car(carName))
+        this.#cars = carNames.map((carName) => new Car(carName))
     }
 
     getRandomNumber(){
@@ -12,11 +12,14 @@ class Cars {
     }
 
     moveCars() {
+        // console.log(this.#cars);
         this.#cars.forEach((car) => {
             if (this.getRandomNumber() >= 4){
                 car.move()
             }
         });
+
+        return this.#cars;
     }
 
     getMaxPosition(){
@@ -24,11 +27,15 @@ class Cars {
 
         this.#cars.forEach((car) => {
             if (car.position > maxPosition){
-                maxPosition = car.postion;
+                maxPosition = car.position;
             }
         })
-
+        
         return maxPosition;
+    }
+
+    get cars() {
+        return this.#cars;
     }
 }
 

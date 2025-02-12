@@ -9,7 +9,7 @@ class App {
             outputView : new OutputView()
         }
 
-        await RaceController.race(views);
+        await new RaceController(views).race();
     }
 }
 
