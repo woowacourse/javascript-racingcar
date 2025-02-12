@@ -2,38 +2,40 @@ const MAX_NAME_LENGTH = 5;
 const MIN_GAME_COUNT = 0;
 const MAX_GAME_COUNT = 100;
 
-const validationInputLength = (input) => {
+export const validationInputLength = (input) => {
   if (input.length > MAX_NAME_LENGTH) {
-    throw new Error(`자동차 이름은 ${MAX_NAME_LENGTH}자 초과 안됩니다.`);
+    throw new Error(
+      `[Error] 자동차 이름은 ${MAX_NAME_LENGTH}자 초과 안됩니다.`
+    );
   }
 };
 
-const validationCarNameForm = (input) => {
+export const validationCarNameForm = (input) => {
   const commaCount = input.split("").filter((value) => value === ",").length;
   const carCount = input.split(",").length;
   if (input.trim() === "" || commaCount - 1 !== carCount) {
-    throw new Error("자동차 이름이 올바르지 않습니다.");
+    throw new Error("[Error] 자동차 이름이 올바르지 않습니다.");
   }
 };
 
-const validationDuplicatedCarName = (input) => {
+export const validationDuplicatedCarName = (input) => {
   const target = Array.from(Set(input.split(",")));
   const origin = input.split(",");
   if (target.length !== origin.length) {
-    throw new Error("중복된 자동차 이름은 안됩니다.");
+    throw new Error("[Error] 중복된 자동차 이름은 안됩니다.");
   }
 };
 
-const validationGameCountType = (input) => {
+export const validationGameCountType = (input) => {
   const isInteger = Number.isInteger(Number(input));
   if (isInteger === false) {
-    throw new Error("시도 횟수는 소수,문자열,NaN,Infinity 안됩니다.");
+    throw new Error("[Error] 시도 횟수는 소수,문자열,NaN,Infinity 안됩니다.");
   }
 };
 
-const validationGameCountRange = (input) => {
+export const validationGameCountRange = (input) => {
   const gameCount = Number(input);
   if (gameCount <= MIN_GAME_COUNT || gameCount >= MAX_GAME_COUNT) {
-    throw new Error("시도 횟수는 0이하, 100이상 안됩니다.");
+    throw new Error("[Error] 시도 횟수는 0이하, 100이상 안됩니다.");
   }
 };
