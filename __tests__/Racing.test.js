@@ -16,6 +16,6 @@ describe('자동차 경주 객체 테스트', () => {
   });
   test('우승자가 여러 명인 경우 쉼표를 이용해 구분한다', () => {
     carList.push(new Car('hij', 2));
-    expect(racing.getWinner()).toEqual('efg,hij');
+    expect(racing.getWinner()).toEqual('efg, hij');
   });
 });

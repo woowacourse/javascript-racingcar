@@ -1,4 +1,5 @@
 import Car from './Car';
+import { getRandomValue } from './utils/random';
 
 class Racing {
   carList;
@@ -14,7 +15,19 @@ class Racing {
     return this.carList
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name)
-      .join(',');
+      .join(', ');
+  }
+
+  start() {
+    console.log('실행 결과');
+    for (let i = 0; i < this.count; i++) {
+      this.carList.forEach((car) => {
+        car.move(getRandomValue());
+        console.log(car.getRacingStatus());
+      });
+      console.log();
+    }
+    console.log(`최종 우승자: ${this.getWinner()}`);
   }
 }
 
