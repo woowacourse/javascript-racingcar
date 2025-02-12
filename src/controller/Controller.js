@@ -29,7 +29,9 @@ export default class Controller {
   gameRound(cars) {
     cars.forEach((car) => {
       if (this.isMove(this.getRandomNumber())) car.move();
+      console.log(`${car.name} : ${"-".repeat(car.position)}`);
     });
+    console.log("");
   }
 
   getRandomNumber() {
