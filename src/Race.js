@@ -1,5 +1,5 @@
 import readLineAsync from "./Input.js";
-import { INFO_MESSAGE } from "./constants.js";
+import { ERROR_MESSAGE, INFO_MESSAGE } from "./constants.js";
 import Car from "./Car.js";
 
 export const start = async () => {
@@ -8,6 +8,9 @@ export const start = async () => {
     const carNames = name.split(",");
     try {
       let cars = carNames.map((name) => new Car(name));
+      if (cars.length > 10) throw Error(ERROR_MESSAGE.CAR_COUNT);
+      if (carNames.length !== new Set(carNames).size)
+        throw Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     } catch (error) {
       console.log(error.message);
     }

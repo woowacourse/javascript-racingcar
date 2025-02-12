@@ -7,4 +7,6 @@ export const INFO_MESSAGE = {
 
 export const ERROR_MESSAGE = {
   CAR_NAME_LENGTH: "자동차 이름은 5자 이하여야 합니다.",
+  CAR_COUNT: "경주 가능한 최대 자동차 개수는 10개입니다.",
+  CAR_NAME_DUPLICATE: "자동차 이름이 중복됩니다.",
 };
