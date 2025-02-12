@@ -13,14 +13,13 @@ class App {
       "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
     );
     try {
+      validationInputLength(input);
       validationCarNameForm(input); // 문자열 나눠서 배열로 알아서 검사
       validationDuplicatedCarName(input); // 문자열 나눠서 배열로 알아서 검사
-      input.split(",").forEach((carname) => {
-        validationInputLength(carname);
-      });
       return input;
     } catch (err) {
       console.log(err.message);
+      return this.getCarNameInput();
     }
   }
 
@@ -32,6 +31,7 @@ class App {
       return input;
     } catch (err) {
       console.log(err.message);
+      return this.getGameCount();
     }
   }
 
