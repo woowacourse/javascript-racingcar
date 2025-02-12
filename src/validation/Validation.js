@@ -9,8 +9,8 @@ export const Validation = {
     return parsedString.length === new Set(parsedString).size;
   },
 
-  isNumber(input) {
-    return !Number.isNaN(input);
+  isInteger(input) {
+    return Number.isInteger(Number(input));
   },
 
   isNegative(input) {
