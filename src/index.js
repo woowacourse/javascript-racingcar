@@ -1,4 +1,5 @@
 import readLineAsync from "./Input.js";
+import Validate from "./Validate.js";
 
 // 입출력 예시
 async function run() {
@@ -7,7 +8,8 @@ async function run() {
   );
 
   const names = name.split(",");
-
+  const validate = new Validate();
+  console.log(validate.carNameLength("aaaaaaaa", 3));
 }
 
 run();
