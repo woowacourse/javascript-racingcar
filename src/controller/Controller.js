@@ -16,31 +16,6 @@ export default class Controller {
     this.runRace(cars, tryCount);
     this.findWinner(cars);
   }
-  async validateCarNamesAndRetry() {
-    try {
-      const inputView = new InputView();
-      const carsInput = await inputView.readLineAsync(INPUT_MESSAGE.CAR_NAMES);
-      validateCarNames(carsInput);
-      return carsInput;
-    } catch (e) {
-      console.log(e.message);
-      return this.validateCarNamesAndRetry();
-    }
-  }
-
-  async validateTryCountAndRetry() {
-    try {
-      const inputView = new InputView();
-      const tryCountInput = await inputView.readLineAsync(
-        INPUT_MESSAGE.TRY_COUNT,
-      );
-      validateTryCount(tryCountInput);
-      return tryCountInput;
-    } catch (e) {
-      console.log(e.message);
-      return this.validateTryCountAndRetry();
-    }
-  }
 
   runRace(cars, tryCount) {
     console.log(OUTPUT_MESSAGE.RESULT);
@@ -67,12 +42,38 @@ export default class Controller {
     console.log("");
   }
 
+  isMove(number) {
+    if (number >= CAR.PROGRESS_CRITERIA) return true;
+    return false;
+  }
+
   getRandomNumber() {
     return Math.floor(Math.random() * 10);
   }
 
-  isMove(number) {
-    if (number >= CAR.PROGRESS_CRITERIA) return true;
-    return false;
+  async validateCarNamesAndRetry() {
+    try {
+      const inputView = new InputView();
+      const carsInput = await inputView.readLineAsync(INPUT_MESSAGE.CAR_NAMES);
+      validateCarNames(carsInput);
+      return carsInput;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateCarNamesAndRetry();
+    }
+  }
+
+  async validateTryCountAndRetry() {
+    try {
+      const inputView = new InputView();
+      const tryCountInput = await inputView.readLineAsync(
+        INPUT_MESSAGE.TRY_COUNT,
+      );
+      validateTryCount(tryCountInput);
+      return tryCountInput;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateTryCountAndRetry();
+    }
   }
 }
