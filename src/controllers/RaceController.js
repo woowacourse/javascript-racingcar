@@ -1,4 +1,5 @@
 import CarNameValidator from "../validators/CarNameValidator.js";
+import TryNameValidator from "../validators/CarNameValidator.js";
 
 class RaceController {
     #inputView;
@@ -13,6 +14,8 @@ class RaceController {
         CarNameValidator.valiateCarNameLength(parseCarNames);
 
         const tryCount = await this.#inputView.getTryCount();
+        TryCountValidator.validateNumber(tryCount);
+        const parseTryCount = Number(tryCount);
     }
 }
 
