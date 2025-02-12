@@ -3,7 +3,7 @@ const MIN_GAME_COUNT = 0;
 const MAX_GAME_COUNT = 100;
 
 export const validationInputLength = (input) => {
-  if (input.length > MAX_NAME_LENGTH) {
+  if (input.split(",").some((carName) => carName.length > MAX_NAME_LENGTH)) {
     throw new Error(
       `[Error] 자동차 이름은 ${MAX_NAME_LENGTH}자 초과 안됩니다.`
     );
