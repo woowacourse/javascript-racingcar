@@ -1,7 +1,10 @@
-import { getCarNames } from "./view/input.js";
+import { getCarNames, getMoveCount } from "./view/input.js";
 
-function run () {
-  getCarNames();
+async function run  () {
+  const carNames = await getCarNames();
+  const moveCount = await getMoveCount();
+
+  console.log(carNames, moveCount);
 }
 
 run();

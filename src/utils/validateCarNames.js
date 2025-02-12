@@ -5,11 +5,14 @@ export function validateCarNames(names) {
 
     // A, B, C, D
     // ,A, B
-    const namesArr = names.split(',').trim()
-    // ['A', 'B', 'C', 'D']
+    const namesArr = names.split(',').map(name => name.trim())
+    // ['A', ' B', ' C', ' D']
     // ['', 'A', 'B']
     validateEmptyString(namesArr)
-    validateCarNameLength (names)
+    validateCarNameLength (namesArr)
+
+    
+    return namesArr
 }
 
 export function validateEmptyString (names) {

@@ -1,6 +1,6 @@
-import { validateEmptyString, validateCarNameLength } from "../../src/utils/validation.js";
+import { validateEmptyString, validateCarNameLength } from "../../src/utils/validateCarNames.js";
 
-describe('utils/validation', () => {
+describe('utils/valideCarNames', () => {
     test("이름 입력에 빈 값이 들어온 경우", () => {
         // given
         const names = ['A', 'B', 'C', '']
