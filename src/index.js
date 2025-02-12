@@ -13,17 +13,18 @@ function printOneGame(nameList, positionList) {
   console.log('');
 }
 
+async function retryUntilSuccess(callbackFn) {
+  try {
+    return await callbackFn();
+  } catch {
+    return await retryUntilSuccess(callbackFn);
+  }
+}
+
 // 입출력 예시
 async function run() {
-  const rawName = await readLineAsync(
-    '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
-  );
-  Validator.validateCarName(rawName);
-  const nameList = rawName.split(',');
-
-  const rawCount = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
-  Validator.validateCount(rawCount);
-  const count = Number(rawCount);
+  const nameList = await getNameList();
+  const count = await getCount();
 
   const positionList = new Array(count).fill(0);
 
@@ -48,6 +49,23 @@ async function run() {
   const winnerOutput = winnerList.join(', ');
 
   console.log(`최종 우승자: ${winnerOutput}`);
+}
+
+async function getNameList() {
+  return retryUntilSuccess(async () => {
+    const rawName = await readLineAsync(
+      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
+    );
+    Validator.validateCarName(rawName);
+    return rawName.split(',');
+  });
+}
+async function getCount() {
+  return retryUntilSuccess(async () => {
+    const rawCount = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    Validator.validateCount(rawCount);
+    return Number(rawCount);
+  });
 }
 
 await run();
