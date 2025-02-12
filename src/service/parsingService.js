@@ -1,15 +1,24 @@
 const INVALID = false;
-const VALID = true;
 
 export const parsingService = {
   parseNames(input) {
     let parsedString = input.split(",");
     if (isNameEmpty(parsedString)) {
-      return INVALID;
+    
+      throw new Error()
     }
     if (isNameTooLong(parsedString)) {
       return INVALID;
     }
+    if (isNameDuplicate(parsedString)) {
+      return INVALID;
+    }
     return parsedString;
+  },
+  parseRound(input) {
+    if(isNumber(input)){
+        return INVALID;
+    }
+    if ()
   },
 };
