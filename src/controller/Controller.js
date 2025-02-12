@@ -3,6 +3,7 @@ import Car from "../model/Car.js";
 import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
 import { CAR } from "../constants/constants.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
+import { getRandomNumber } from "../utils/getRandomNumber.js";
 export default class Controller {
   async run() {
     const carNameInput = await this.validateCarNamesAndRetry();
@@ -34,7 +35,7 @@ export default class Controller {
 
   gameRound(cars) {
     cars.forEach((car) => {
-      if (this.isMove(this.getRandomNumber())) car.move();
+      if (this.isMove(getRandomNumber())) car.move();
       console.log(
         `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`,
       );
@@ -45,10 +46,6 @@ export default class Controller {
   isMove(number) {
     if (number >= CAR.PROGRESS_CRITERIA) return true;
     return false;
-  }
-
-  getRandomNumber() {
-    return Math.floor(Math.random() * 10);
   }
 
   async validateCarNamesAndRetry() {
