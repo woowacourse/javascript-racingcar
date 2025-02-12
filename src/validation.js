@@ -19,7 +19,7 @@ export const validationCarNameForm = (input) => {
 };
 
 export const validationDuplicatedCarName = (input) => {
-  const target = Array.from(Set(input.split(",")));
+  const target = Array.from(new Set(input.split(",")));
   const origin = input.split(",");
   if (target.length !== origin.length) {
     throw new Error("[Error] 중복된 자동차 이름은 안됩니다.");

@@ -1,6 +1,7 @@
 import {
   validationInputLength,
   validationCarNameForm,
+  validationDuplicatedCarName,
 } from "../src/validation.js";
 
 describe("자동차 이름 유효성 검사", () => {
@@ -29,6 +30,13 @@ describe("자동차 이름 유효성 검사", () => {
     const carList = "haku,";
     expect(() => {
       validationCarNameForm(carList);
+    }).toThrow("[Error]");
+  });
+
+  test("자동차 이름 중복", () => {
+    const carList = "haku,haku";
+    expect(() => {
+      validationDuplicatedCarName(carList);
     }).toThrow("[Error]");
   });
 });
