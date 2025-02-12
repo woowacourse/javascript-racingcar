@@ -18,4 +18,18 @@ class Cars {
             }
         });
     }
+
+    getMaxPosition(){
+        let maxPosition = -1;
+
+        this.#cars.forEach((car) => {
+            if (car.position > maxPosition){
+                maxPosition = car.postion;
+            }
+        })
+
+        return maxPosition;
+    }
 }
+
+export default Cars;
