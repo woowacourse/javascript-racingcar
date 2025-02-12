@@ -8,6 +8,12 @@ const InputView = {
 
     return input;
   },
+
+  async readRaceCount() {
+    const input = await readLineAsync(INPUT.RACE_COUNT);
+
+    return input;
+  },
 };
 
 export default InputView;
