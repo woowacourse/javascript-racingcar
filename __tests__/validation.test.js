@@ -27,12 +27,15 @@ describe("자동차 이름 유효성 검사", () => {
     }).not.toThrow("[Error]");
   });
 
-  test("자동차 이름 틀린 형식", () => {
-    const carList = "haku,";
-
+  test.each([
+    ["haku,", "[Error]"],
+    [" ", "[Error]"],
+    ["", "[Error]"],
+    [",", "[Error]"],
+  ])("자동차 이름 틀린 형식", (input, errorMessage) => {
     expect(() => {
-      validationCarNameForm(carList);
-    }).toThrow("[Error]");
+      validationCarNameForm(input);
+    }).toThrow(errorMessage);
   });
 
   test("자동차 이름 중복", () => {
