@@ -1,5 +1,3 @@
 class Car {
   constructor() {}
-
-  setRandomNumber() {}
 }
