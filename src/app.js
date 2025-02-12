@@ -7,6 +7,9 @@ import {
   validationInputLength,
 } from "./validation.js";
 
+import Car from "./Car.js";
+import { getRandomNumber } from "./util.js";
+
 class App {
   async getCarNameInput() {
     const input = await readLineAsync(
@@ -37,8 +40,18 @@ class App {
 
   async run() {
     const carNames = await this.getCarNameInput();
-    const cars = carNames.split(",");
+    const cars = carNames.split(",").map((carName) => new Car(carName));
     const gameCount = await this.getGameCount();
+
+    console.log("\n실행 결과");
+    for (let count = 0; count < gameCount; count += 1) {
+      cars.forEach((car) => {
+        const randomNumber = getRandomNumber();
+        car.move(randomNumber);
+        console.log(`${car.name} : ${"-".repeat(car.position)}`);
+      });
+      console.log("");
+    }
   }
 }
 
