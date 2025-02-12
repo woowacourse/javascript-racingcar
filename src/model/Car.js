@@ -13,11 +13,11 @@ class Car {
     return this.#name;
   }
 
-  getCarPosition() {
+  getPosition() {
     return this.#position;
   }
 
-  moveCar(randomNumber) {
+  move(randomNumber) {
     if (randomNumber >= MIN_MOVE_CONDITION) {
       this.#position += MOVE_UNIT;
     }
