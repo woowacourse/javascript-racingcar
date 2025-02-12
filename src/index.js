@@ -1,5 +1,6 @@
 import { retryUntilValid, getCarName, getAttemptCount } from "./view/input.js";
 import { validateCarNames, validateAttemptCount } from "./utils/validation.js";
+import { racingCarController } from "./utils/controller.js";
 
 async function run() {
   const carNames = await retryUntilValid(getCarName, validateCarNames);
@@ -7,6 +8,10 @@ async function run() {
     getAttemptCount,
     validateAttemptCount
   );
+
+  const { startRace } = racingCarController(carNames);
+
+  startRace(attemptCount);
 }
 
 run();
