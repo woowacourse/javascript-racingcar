@@ -1,0 +1,3 @@
+const MAX_RANDOM_NUMBER = 9;
+
+export { MAX_RANDOM_NUMBER };
