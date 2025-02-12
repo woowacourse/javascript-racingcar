@@ -12,7 +12,7 @@ class RaceController {
         const parseCarNames = carNames.split(",");
         CarNameValidator.valiateCarNameLength(parseCarNames);
 
-        
+        const tryCount = await this.#inputView.getTryCount();
     }
 }
 
