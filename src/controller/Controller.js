@@ -1,5 +1,6 @@
 import Car from "../model/Car.js";
 import InputView from "../view/Input.js";
+import OutputView from "../view/Output.js";
 import randomNumber from "../util/random.js";
 
 class Controller {
@@ -44,6 +45,8 @@ class Controller {
       const moveCondition = randomNumber();
 
       car.move(moveCondition);
+
+      OutputView.printRoundResult(car.getName(), car.getPosition());
     });
   }
 }
