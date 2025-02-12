@@ -10,6 +10,7 @@ class App {
 
   async run() {
     const carNames = await this.getCarNameInput();
+    const cars = carNames.split(",");
   }
 }
 
