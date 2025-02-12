@@ -10,6 +10,8 @@ class App {
     checkCarNameLength(carNames);
     checkCarCount(carNames);
     checkCarNameDuplicate(carNames);
+
+    const tryCountInput = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 }
 
