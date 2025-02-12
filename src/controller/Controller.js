@@ -1,5 +1,6 @@
 import Car from "../model/Car.js";
 import InputView from "../view/Input.js";
+import randomNumber from "../util/random.js";
 
 class Controller {
   #carList;
@@ -7,6 +8,14 @@ class Controller {
 
   constructor() {
     this.#raceCount = 0;
+  }
+
+  async play() {
+    await this.readyRace();
+
+    for (let i = 0; i < this.#raceCount; i++) {
+      this.race();
+    }
   }
 
   async readyRace() {
@@ -29,4 +38,14 @@ class Controller {
 
     this.#raceCount = raceCount;
   }
+
+  race() {
+    this.#carList.forEach((car) => {
+      const moveCondition = randomNumber();
+
+      car.move(moveCondition);
+    });
+  }
 }
+
+export default Controller;
