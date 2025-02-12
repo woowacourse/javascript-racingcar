@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import { RANDOM_NUMBER } from "../constants/Constants.js";
+import { MOVE_CONDITION, RANDOM_NUMBER } from "../constants/Constants.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 
 class Race {
@@ -23,10 +23,18 @@ class Race {
         RANDOM_NUMBER.MAX
       );
 
-      if (randomNumber >= MOVE_CONDITION) {
-        car.move();
-      }
+      this.checkMove(randomNumber, car);
     });
+  }
+
+  checkMove(randomNumber, car) {
+    if (randomNumber >= MOVE_CONDITION) {
+      car.move();
+    }
+  }
+
+  get carList() {
+    return this.#carList;
   }
 }
 
