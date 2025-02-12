@@ -1,3 +1,4 @@
+import Car from '../src/Car.js';
 import CarManager from '../src/CarManager.js';
 
 let carManager;
@@ -19,4 +20,15 @@ test('한 대의 자동차를 생성한다.', () => {
   carManager.createCars('except');
   // then
   expect(carManager.cars).toHaveLength(1);
+});
+
+test('4 이상 9 이하의 값이 나오면 1칸을 전진한다.', () => {
+  // given
+  const car = new Car();
+
+  // when
+  carManager.moveForwardCar(car, 5);
+
+  // then
+  expect(car.position).toBe(1);
 });
