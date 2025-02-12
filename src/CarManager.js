@@ -1,5 +1,6 @@
 // @ts-check
 import Car from './Car.js';
+import { CONFIG } from './constants/config.js';
 
 class CarManager {
   constructor() {
@@ -14,7 +15,7 @@ class CarManager {
   }
 
   splitCarName(names) {
-    return names.split(', ');
+    return names.split(`${CONFIG.COMMA} `);
   }
 }
 
