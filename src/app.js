@@ -8,9 +8,15 @@ class App {
     return input;
   }
 
+  async getGameCount() {
+    const input = await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    return input;
+  }
+
   async run() {
     const carNames = await this.getCarNameInput();
     const cars = carNames.split(",");
+    const gameCount = await this.getGameCount();
   }
 }
 
