@@ -17,7 +17,7 @@ class RacingcarManager{
     async start(){
         const carNames = await this.#getCarNames();
         const cars = this.createCars(carNames);
-        console.log(cars);
+        const attempts = await this.#getAttempts();
     }
     
     async #getCarNames()  {
@@ -35,6 +35,30 @@ class RacingcarManager{
 
     createCars(carNames){
         return carNames.map(name => new Car(name));
+    }
+
+    async #getAttempts()  {
+        while(true) {
+            try {
+                const attempts = await this.#inputView.readAttempts();
+                this.#validateAttempts(attempts);
+                return Number(attempts);
+            } catch (error) {
+                this.#outputView.printErrorMessage(error);
+            }
+        }
+    }
+
+    #validateAttempts(attempts) {
+        try {
+            this.#validate.isEmpty(attempts);
+            const numAttempts = Number(attempts);
+            this.#validate.isNumber(numAttempts);
+            this.#validate.isPositiveNumber(numAttempts);
+            this.#validate.isInteger(numAttempts);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 export default RacingcarManager;
