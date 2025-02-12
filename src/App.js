@@ -1,6 +1,6 @@
 import { readLineAsync } from './utils/readLineAsync.js';
 import { splitString } from './utils/separator.js';
-import { checkCarNameLength, checkCarNameDuplicate } from './validates/carValidates.js';
+import { checkCarNameLength, checkCarNameDuplicate, checkIsEmpty, checkCarCount } from './validates/carValidates.js';
 
 class App {
   async run() {
@@ -8,6 +8,7 @@ class App {
     checkIsEmpty(carNamesInput);
     const carNames = splitString(carNamesInput);
     checkCarNameLength(carNames);
+    checkCarCount(carNames);
     checkCarNameDuplicate(carNames);
   }
 }

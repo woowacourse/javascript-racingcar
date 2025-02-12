@@ -13,3 +13,7 @@ export function checkCarNameDuplicate(carNames) {
 
   if (carNameSet.size !== carNames.length) throw new Error('[ERROR] 자동차 이름은 중복되면 안됩니다.');
 }
+
+export function checkCarCount(carNames) {
+  if (carNames.length < 2) throw new Error('[ERROR] 자동차는 두 대 이상이여야 합니다.');
+}
