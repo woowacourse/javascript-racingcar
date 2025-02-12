@@ -52,6 +52,15 @@ class App {
       });
       console.log("");
     }
+
+    const carPositions = cars.map((car) => car.position);
+
+    const winnerPosition = Math.max(...carPositions);
+    const winners = cars
+      .filter((car) => car.position === winnerPosition)
+      .map((car) => car.name)
+      .join(", ");
+    console.log(`최종 우승자: ${winners}`);
   }
 }
 
