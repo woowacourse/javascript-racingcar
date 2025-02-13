@@ -6,8 +6,8 @@ async function run() {
   const carNames = await getCarNames();
   const moveCount = await getMoveCount();
 
-  const cars = playGame(carNames, moveCount);
-  displayWinner(cars);
+  const finalResult = playGame(carNames, moveCount);
+  displayWinner(finalResult);
 }
 
 run();
