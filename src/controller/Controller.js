@@ -19,6 +19,8 @@ class Controller {
       this.race();
       console.log("");
     }
+
+    const winners = this.getWinners();
   }
 
   async readyRace() {
@@ -50,6 +52,14 @@ class Controller {
 
       OutputView.printRoundResult(car.getName(), car.getPosition());
     });
+  }
+
+  getWinners() {
+    const maxPosition = Math.max(
+      ...this.#carList.map((car) => car.getPosition())
+    );
+
+    return this.#carList.filter((car) => car.getPosition() === maxPosition);
   }
 }
 
