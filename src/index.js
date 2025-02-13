@@ -1,9 +1,10 @@
+import CarModel from './model/CarModel.js';
 import { getRandomInt } from './utils.js';
 import InputView from './view/InputView.js';
 
-function printOneGame(nameList, positionList) {
+function printOneGame(nameList, cars) {
   for (let i = 0; i < nameList.length; i++) {
-    const carOutput = '-'.repeat(positionList[i]);
+    const carOutput = '-'.repeat(cars[i].position);
     console.log(`${nameList[i]} : ${carOutput}`);
   }
   console.log('');
@@ -11,26 +12,33 @@ function printOneGame(nameList, positionList) {
 
 // 입출력 예시
 export async function run() {
+  const cars = [];
+
   const nameList = await InputView.getNameList();
   const count = await InputView.getCount();
 
-  const positionList = new Array(count).fill(0);
+  nameList.forEach(name => {
+    const car = new CarModel(name);
+    cars.push(car);
+  });
 
   console.log('\n실행 결과');
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < nameList.length; j++) {
       const randomNumber = getRandomInt(10);
-
-      if (randomNumber >= 4) positionList[j] += 1;
+      if (randomNumber >= 4) cars[j].go();
     }
-    printOneGame(nameList, positionList, nameList);
+    printOneGame(nameList, cars);
   }
 
-  const winnerPosition = [...positionList].sort().reverse().at(0);
+  let winnerPosition = 0;
+  cars.forEach(car => {
+    winnerPosition = Math.max(car.position, winnerPosition);
+  });
 
   const winnerList = [];
-  for (let i = 0; i < count; i++) {
-    const position = positionList[i];
+  for (let i = 0; i < nameList.length; i++) {
+    const position = cars[i].position;
     if (position === winnerPosition) winnerList.push(nameList[i]);
   }
 
