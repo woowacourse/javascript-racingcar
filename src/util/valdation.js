@@ -8,6 +8,7 @@ const validateRaceCount = (raceCountInput) => {
   const raceCount = Number(raceCountInput);
 
   validateNumber(raceCount);
+  validateInteger(raceCount);
   validateRange(raceCount);
 };
 
@@ -34,6 +35,12 @@ const validateRange = (raceCount) => {
 const validateNumber = (raceCount) => {
   if (isNaN(raceCount)) {
     throw new Error("횟수는 숫자여야 합니다.");
+  }
+};
+
+const validateInteger = (raceCount) => {
+  if (!Number.isInteger(raceCount)) {
+    throw new Error("횟수는 정수여야 합니다.");
   }
 };
 
