@@ -1,5 +1,8 @@
+import Output from "./view/Output.js";
+import { ERROR_MESSAGE } from "./constants/message.js";
+
 export default class Validator {
-  carNamesAndCount(carNames) {
+  static carNamesAndCount(carNames) {
     this.#carNameLengthOverFive(carNames);
     this.#carNameLengthUnderOne(carNames);
     this.#carCountUnderTwo(carNames.length);
@@ -7,60 +10,60 @@ export default class Validator {
     this.#duplicateCarName(carNames);
   }
 
-  tryNumber(tryNumber) {
+  static tryCount(tryNumber) {
     this.#tryNumberUnderOne(tryNumber);
     this.#tryNumberOverHundred(tryNumber);
     this.#tryNumberNotPositiveInteger(tryNumber);
   }
 
   // 자동차
-  #carNameLengthOverFive = (carNames) => {
+  static #carNameLengthOverFive = (carNames) => {
     carNames.forEach((carName) => {
       if (carName.length > 5) {
         Output.error(ERROR_MESSAGE.carNameLengthOverFive);
       }
     });
   };
-  #carNameLengthUnderOne = (carNames) => {
+  static #carNameLengthUnderOne = (carNames) => {
     carNames.forEach((carName) => {
-      if (carName.length > 1) {
+      if (carName.length < 1) {
         Output.error(ERROR_MESSAGE.carNameLengthUnderOne);
       }
     });
   };
 
-  #carCountUnderTwo = (carCount) => {
+  static #carCountUnderTwo = (carCount) => {
     if (carCount < 2) {
       Output.error(ERROR_MESSAGE.carCountUnderTwo);
     }
   };
 
-  #carCountOverHundred = (carCount) => {
+  static #carCountOverHundred = (carCount) => {
     if (carCount > 100) {
       Output.error(ERROR_MESSAGE.carCountOverHundred);
     }
   };
 
-  #duplicateCarName = (carNames) => {
+  static #duplicateCarName = (carNames) => {
     if (new Set(carNames).size !== carNames.length) {
       Output.error(ERROR_MESSAGE.duplicateCarName);
     }
   };
 
   //시도 횟수
-  #tryNumberUnderOne = (tryNumber) => {
+  static #tryNumberUnderOne = (tryNumber) => {
     if (tryNumber < 1) {
       Output.error(ERROR_MESSAGE.tryNumberUnderOne);
     }
   };
 
-  #tryNumberOverHundred = (tryNumber) => {
+  static #tryNumberOverHundred = (tryNumber) => {
     if (tryNumber > 100) {
       Output.error(ERROR_MESSAGE.tryNumberOverHundred);
     }
   };
 
-  #tryNumberNotPositiveInteger = (tryNumber) => {
+  static #tryNumberNotPositiveInteger = (tryNumber) => {
     if (!Number.isInteger(tryNumber)) {
       Output.error(ERROR_MESSAGE.tryNumberNotPositiveInteger);
     }

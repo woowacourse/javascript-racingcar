@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from "../src/constants/message";
-import Validator from "../src/Validator";
+import { ERROR_MESSAGE } from "../src/constants/message.js";
+import Validator from "../src/Validator.js";
 
 describe("Validator 자동차 이름, 자동차 갯수 테스트", () => {
   const validator = new Validator();

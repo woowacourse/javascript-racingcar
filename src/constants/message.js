@@ -1,4 +1,4 @@
-import { TRY_NUMBER_SETTING } from "./setting";
+import { TRY_NUMBER_SETTING, CAR_SETTING } from "./setting.js";
 
 const ERROR_PREFIX = "[ERROR]";
 

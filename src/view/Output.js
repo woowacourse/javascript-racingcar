@@ -1,12 +1,12 @@
-import { SCORE_ICON } from "../constants/setting";
+import { SCORE_ICON } from "../constants/setting.js";
 
 export default class Output {
-  print(message) {
+  static print(message) {
     console.log(message);
   }
 
   static error(errorMessage) {
-    this.print(errorMessage);
+    throw new Error(errorMessage);
   }
 
   static scoreByRace(car) {

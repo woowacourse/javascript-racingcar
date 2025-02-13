@@ -1,15 +1,9 @@
-import { INPUT_MESSAGE } from "../constants/message";
+import { INPUT_MESSAGE } from "../constants/message.js";
+
+import readline from "readline";
 
 export default class Input {
-  static async carName() {
-    const name = await this.readLineAsync(INPUT_MESSAGE.carName);
-  }
-
-  static async carName() {
-    const name = await readLineAsync(INPUT_MESSAGE.tryCount);
-  }
-
-  readLineAsync(query) {
+  static readLineAsync(query) {
     return new Promise((resolve, reject) => {
       if (arguments.length !== 1) {
         reject(new Error("arguments must be 1"));
@@ -29,5 +23,15 @@ export default class Input {
         resolve(input);
       });
     });
+  }
+
+  static async carName() {
+    const name = await this.readLineAsync(INPUT_MESSAGE.carName);
+    return name;
+  }
+
+  static async tryCount() {
+    const tryCount = await this.readLineAsync(INPUT_MESSAGE.tryCount);
+    return tryCount;
   }
 }
