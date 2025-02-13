@@ -18,10 +18,7 @@ class Race {
 
   executeTurn() {
     this.#carList.forEach((car) => {
-      const randomNumber = getRandomNumber(
-        RANDOM_NUMBER.MIN,
-        RANDOM_NUMBER.MAX
-      );
+      const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
 
       this.checkMove(randomNumber, car);
     });
@@ -31,6 +28,26 @@ class Race {
     if (randomNumber >= MOVE_CONDITION) {
       car.move();
     }
+  }
+
+  //   getWinnerName() {
+  //     const winnerPosition = Math.max(...this.#carList.map((car) => car.position));
+  //     const winnerCar = this.#carList.filter((car) => car.position === winnerPosition);
+
+  //     const winnerName = winnerCar.map((car) => car.name);
+  //     return winnerName;
+  //   }
+
+  getCarNamePosition() {
+    const raceResult = this.#carList.map((car) => {
+      return { name: car.name, position: car.position };
+    });
+    return this.getWinner(raceResult);
+  }
+
+  getWinner(raceResult) {
+    const maxPosition = Math.max(...raceResult.map((car) => car.position));
+    return raceResult.filter((car) => car.position === maxPosition).map((car) => car.name);
   }
 
   get carList() {
