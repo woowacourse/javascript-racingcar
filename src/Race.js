@@ -24,5 +24,16 @@ export default class Race {
     const parseTryCount = parseInt(tryCount);
 
     Validator.tryCount(parseTryCount);
+
+    // 레이스
+    Output.newLine();
+    Output.raceResult();
+    for (let i = 0; i < parseTryCount; i += 1) {
+      this.#cars.forEach((car) => {
+        car.move();
+        Output.scoreByRace(car.name, car.position);
+      });
+      Output.newLine();
+    }
   }
 }
