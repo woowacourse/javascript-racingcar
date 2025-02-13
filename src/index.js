@@ -1,10 +1,9 @@
 import Game from './controllers/Game.js';
 
 class Index {
-  start() {
-    console.log('실행됨');
+  async start() {
     const game = new Game();
-    game.start();
+    await game.start();
   }
 }
 
