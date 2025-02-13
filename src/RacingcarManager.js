@@ -18,6 +18,7 @@ class RacingcarManager{
         const carNames = await this.#getCarNames();
         const cars = this.createCars(carNames);
         const attempts = await this.#getAttempts();
+        this.roundOfRacing(cars);
     }
     
     async #getCarNames()  {
@@ -62,13 +63,19 @@ class RacingcarManager{
     }
 
     getRandomNumber() {
-        return Math.random * 10;
+        return Math.floor(Math.random() * 10);
     }
-
+    
     oneRound(cars){
         cars.forEach(car => {
             car.move(this.getRandomNumber());            
         });
+    }
+
+    roundOfRacing(cars){
+        this.#outputView.printResultMessage();
+        this.oneRound(cars);
+        this.#outputView.printOneRoundResult(cars);
     }
 
 }
