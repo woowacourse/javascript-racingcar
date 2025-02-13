@@ -1,13 +1,14 @@
 import Car from '../src/Models/Car.js';
-import CarController from '../src/Controllers/CarController.js';
 import { getRandomNumber } from '../src/utils/randomNumber.js';
 
-jest.mock('../src/utils/randomNumber.js', () => ({
-  getRandomNumber: jest.fn(),
-}));
+export function mockRandom(numbers) {
+  const mockRandomFunction = jest.spyOn(Math, 'random');
 
-export function mockRandom(number) {
-  getRandomNumber.mockReturnValueOnce(number);
+  numbers.forEach((number) => {
+    const randomNumber = number / 10;
+
+    mockRandomFunction.mockReturnValueOnce(randomNumber);
+  });
 }
 
 describe('Car 객체를 테스트', () => {
