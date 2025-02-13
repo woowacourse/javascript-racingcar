@@ -23,7 +23,6 @@ class Racing {
     }
   }
 
-  // 테스트를 해야 하는가?, 어떻게 해야하는가?
   runRace(tryCount) {
     let currentCount = 0;
 
