@@ -6,17 +6,17 @@ import { STEP } from "./constants/setting.js";
 
 export default class Race {
   #cars = [];
-  #parseTryCount = 0;
+  #parseTryNumber = 0;
 
   async play(step = STEP.carName) {
     try {
       if (step === STEP.carName) {
         await this.readCarNames();
-        step = STEP.tryCount;
+        step = STEP.tryNumber;
       }
 
-      if (step === STEP.tryCount) {
-        await this.readTryCount();
+      if (step === STEP.tryNumber) {
+        await this.readTryNumber();
         step = STEP.racing;
       }
 
@@ -45,17 +45,17 @@ export default class Race {
       this.#cars.push(new Car(carName));
     });
   }
-  async readTryCount() {
-    const tryCount = await Input.tryCount();
-    this.#parseTryCount = parseInt(tryCount);
+  async readTryNumber() {
+    const tryNumber = await Input.tryNumber();
+    this.#parseTryNumber = parseInt(tryNumber);
 
-    Validator.tryCount(this.#parseTryCount);
+    Validator.tryNumber(this.#parseTryNumber);
   }
 
   racing() {
     Output.newLine();
     Output.raceResult();
-    for (let i = 0; i < this.#parseTryCount; i += 1) {
+    for (let i = 0; i < this.#parseTryNumber; i += 1) {
       this.#cars.forEach((car) => {
         car.move();
         Output.scoreByRace(car.name, car.position);

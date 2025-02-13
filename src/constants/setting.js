@@ -2,7 +2,7 @@ export const SCORE_ICON = "-";
 
 export const STEP = {
   carName: "carName",
-  tryCount: "tryCount",
+  tryNumber: "tryNumber",
   racing: "racing",
   result: "result",
 };
@@ -19,3 +19,5 @@ export const TRY_NUMBER_SETTING = {
   minTryNumber: 1,
   maxTryNumber: 100,
 };
+
+export const MOVE_CONDITION = 4;

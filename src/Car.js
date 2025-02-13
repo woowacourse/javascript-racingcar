@@ -1,3 +1,4 @@
+import { MOVE_CONDITION } from "./constants/setting.js";
 import { generateRandomNumber } from "./utils.js";
 
 export default class Car {
@@ -7,7 +8,7 @@ export default class Car {
   }
 
   move() {
-    const isMoving = generateRandomNumber() >= 4;
+    const isMoving = generateRandomNumber() >= MOVE_CONDITION;
     if (isMoving) {
       this.position += 1;
     }

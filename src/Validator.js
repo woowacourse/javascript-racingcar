@@ -1,5 +1,6 @@
 import Output from "./view/Output.js";
 import { ERROR_MESSAGE } from "./constants/message.js";
+import { CAR_SETTING } from "./constants/setting.js";
 
 export default class Validator {
   static carNamesAndCount(carNames) {
@@ -10,7 +11,7 @@ export default class Validator {
     this.#duplicateCarName(carNames);
   }
 
-  static tryCount(tryNumber) {
+  static tryNumber(tryNumber) {
     this.#tryNumberUnderOne(tryNumber);
     this.#tryNumberOverHundred(tryNumber);
     this.#tryNumberNotPositiveInteger(tryNumber);
@@ -19,27 +20,27 @@ export default class Validator {
   // 자동차
   static #carNameLengthOverFive = (carNames) => {
     carNames.forEach((carName) => {
-      if (carName.length > 5) {
+      if (carName.length > CAR_SETTING.maxCarName) {
         Output.error(ERROR_MESSAGE.carNameLengthOverFive);
       }
     });
   };
   static #carNameLengthUnderOne = (carNames) => {
     carNames.forEach((carName) => {
-      if (carName.length < 1) {
+      if (carName.length < CAR_SETTING.minCarName) {
         Output.error(ERROR_MESSAGE.carNameLengthUnderOne);
       }
     });
   };
 
   static #carCountUnderTwo = (carCount) => {
-    if (carCount < 2) {
+    if (carCount < CAR_SETTING.minCarCount) {
       Output.error(ERROR_MESSAGE.carCountUnderTwo);
     }
   };
 
   static #carCountOverHundred = (carCount) => {
-    if (carCount > 100) {
+    if (carCount > CAR_SETTING.maxCarCount) {
       Output.error(ERROR_MESSAGE.carCountOverHundred);
     }
   };
@@ -52,13 +53,13 @@ export default class Validator {
 
   //시도 횟수
   static #tryNumberUnderOne = (tryNumber) => {
-    if (tryNumber < 1) {
+    if (tryNumber < TRY_NUMBER_SETTING.minTryNumber) {
       Output.error(ERROR_MESSAGE.tryNumberUnderOne);
     }
   };
 
   static #tryNumberOverHundred = (tryNumber) => {
-    if (tryNumber > 100) {
+    if (tryNumber > TRY_NUMBER_SETTING.maxTryNumber) {
       Output.error(ERROR_MESSAGE.tryNumberOverHundred);
     }
   };
