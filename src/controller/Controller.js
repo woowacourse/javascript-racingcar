@@ -3,7 +3,7 @@ import InputView from "../view/Input.js";
 import OutputView from "../view/Output.js";
 import randomNumber from "../util/random.js";
 import tryInput from "../util/tryInput.js";
-import { validateCarNames, validateRaceCount } from "../util/valdation.js";
+import { validateCarNames, validateRaceCount } from "../util/validation.js";
 import { SPLITTER } from "../constant/constant.js";
 
 class Controller {
@@ -23,7 +23,7 @@ class Controller {
       console.log("");
     }
 
-    const winners = this.getWinners();
+    const winners = this.getWinners(this.#carList);
     OutputView.printWinners(winners);
   }
 
@@ -61,12 +61,12 @@ class Controller {
     });
   }
 
-  getWinners() {
-    const maxPosition = Math.max(
-      ...this.#carList.map((car) => car.getPosition())
-    );
+  getWinners(carList) {
+    const maxPosition = Math.max(...carList.map((car) => car.getPosition()));
 
-    return this.#carList.filter((car) => car.getPosition() === maxPosition);
+    return carList
+      .filter((car) => car.getPosition() === maxPosition)
+      .map((winner) => winner.getName());
   }
 }
 

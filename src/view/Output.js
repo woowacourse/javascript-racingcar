@@ -8,11 +8,8 @@ const OutputView = {
   printRoundResult(name, position) {
     console.log(`${name} : ${positionToStr(position)}`);
   },
-
   printWinners(winners) {
-    console.log(
-      `${OUTPUT.WINNER}${winners.map((winner) => winner.getName()).join(", ")}`
-    );
+    console.log(`${OUTPUT.WINNER}${winners.join(", ")}`);
   },
 };
 
