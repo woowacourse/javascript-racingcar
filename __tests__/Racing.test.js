@@ -25,6 +25,18 @@ describe('랜덤 숫자에 따른 자동차 경주 테스트', () => {
       expect(positionResult).toEqual(positions);
     },
   );
+
+  test('시도 횟수만큼 raceTurn을 호출하는지 runRace 메서드를 테스트한다.', () => {
+    const NAMES = ['jenna', 'mato'];
+    const TRY_COUNT = 5;
+    const cars = NAMES.map((name) => new Car(name));
+
+    const racing = new Racing(cars);
+    const raceTurnSpy = jest.spyOn(racing, 'raceTurn');
+    racing.runRace(TRY_COUNT);
+
+    expect(raceTurnSpy).toHaveBeenCalledTimes(TRY_COUNT);
+  });
 });
 
 describe('우승자 판단 메서드 테스트', () => {
