@@ -2,7 +2,15 @@ const Output = {
   print(arg) {
     console.log(arg);
   },
-  // TODO: 추후 출력 로직 구현
+  printLineBreak() {
+    console.log();
+  },
+  printRaceStart() {
+    console.log("\n실행 결과");
+  },
+  printRace(name, count) {
+    console.log(`${name} : ${"-".repeat(count)}`);
+  },
 };
 
 export default Output;
