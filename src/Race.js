@@ -10,6 +10,7 @@ export const start = async () => {
     moveCars(cars);
     displayRaceResult(cars);
   }
+  displayWinner(cars);
 };
 
 const moveCars = (cars) => {
@@ -27,6 +28,14 @@ const displayRaceResult = (cars) => {
     console.log(`${c.name} : ${c.position}`);
   }
   console.log();
+};
+
+const displayWinner = (cars) => {
+  const maxPosition = Math.max(...cars.map((car) => car.position.length));
+  const winners = cars
+    .filter((car) => car.position.length === maxPosition)
+    .map((car) => car.name);
+  console.log(`최종 우승자: ${winners.join(", ")}`);
 };
 
 const getCarNames = async () => {
