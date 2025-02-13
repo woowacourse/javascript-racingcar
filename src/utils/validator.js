@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '../constants/systemMessages';
+import { ERROR_MESSAGE } from '../constants/systemMessages.js';
 
 const validator = Object.freeze({
   carNames(carNames) {
