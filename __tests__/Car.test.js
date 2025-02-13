@@ -1,4 +1,4 @@
-import Car from "../src/Car.js";
+import Car from "../src/Model/Car.js";
 
 const MOVE_FORWARD = 4;
 const MOVE_STOP = 3;

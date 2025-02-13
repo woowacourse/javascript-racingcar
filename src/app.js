@@ -1,14 +1,16 @@
-import readLineAsync from "./readLine.js";
+import readLineAsync from "./View/input.js";
 import {
   validateCarsNameForm,
   validateDuplicatedCarName,
+  validateCarsNameLength,
+} from "./Validation/carName.js";
+import {
   validateGameCountRange,
   validateGameCountType,
-  validateCarsNameLength,
-} from "./Validation/validation.js";
+} from "./Validation/gameCount.js";
 
-import Car from "./Car.js";
-import { getRandomNumber } from "./util.js";
+import Car from "./Model/Car.js";
+import outputView from "./View/output.js";
 
 class App {
   async getCarsName() {
@@ -43,24 +45,9 @@ class App {
     const cars = carNames.split(",").map((carName) => new Car(carName));
     const gameCount = await this.getGameCount(); // TODO: Number로 변환
 
-    console.log("\n실행 결과");
-    for (let count = 0; count < gameCount; count += 1) {
-      cars.forEach((car) => {
-        const randomNumber = getRandomNumber();
-        car.move(randomNumber);
-        console.log(`${car.name} : ${"-".repeat(car.position)}`);
-      });
-      console.log("");
-    }
+    outputView.printGameResult(gameCount, cars);
 
-    const carPositions = cars.map((car) => car.position);
-
-    const winnerPosition = Math.max(...carPositions);
-    const winners = cars
-      .filter((car) => car.position === winnerPosition)
-      .map((car) => car.name)
-      .join(", ");
-    console.log(`최종 우승자: ${winners}`);
+    outputView.printWinners(cars);
   }
 }
 

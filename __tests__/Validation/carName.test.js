@@ -20,9 +20,9 @@ describe("자동차 이름 유효성 검사", () => {
   });
 
   test("자동차 이름 올바른 형식", () => {
-    const carList = "haku,logun";
+    const carsName = "haku,logun";
     expect(() => {
-      validateCarsNameForm(carList);
+      validateCarsNameForm(carsName);
     }).not.toThrow("[Error]");
   });
 
@@ -38,9 +38,9 @@ describe("자동차 이름 유효성 검사", () => {
   });
 
   test("자동차 이름 중복", () => {
-    const carList = "haku,haku";
+    const carsName = "haku,haku";
     expect(() => {
-      validateDuplicatedCarName(carList);
+      validateDuplicatedCarName(carsName);
     }).toThrow("[Error]");
   });
 });

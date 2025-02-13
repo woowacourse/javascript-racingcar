@@ -1,5 +1,3 @@
-import { getRandomNumber } from "./util.js";
-
 const MOVE_FORWARD = 4;
 
 export default class Car {
