@@ -11,6 +11,14 @@ class Output {
     }
     console.log(positionStick);
   }
+
+  printWinnerList(winnerList) {
+    console.log(`최종 우승자: ${winnerList.join(", ")}`);
+  }
+
+  printLine(message) {
+    console.log(message);
+  }
 }
 
 export default Output;

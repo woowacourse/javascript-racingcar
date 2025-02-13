@@ -7,9 +7,17 @@ describe("validate 테스트", () => {
     validate = new Validate();
   });
 
-  test("차 이름의 길이가 5자 이하인지 확인한다.", () => {
-    expect(() => validate.isBelowLimit("aaaaa")).not.toThrow();
-    expect(() => validate.isBelowLimit("aaaaaaa")).toThrow();
+  test.each([
+    ["aaaa", true],
+    ["aaaaa", true],
+    ["aaaaaa", false],
+    ["aaaaaaaaaa", false],
+  ])("차 이름의 길이가 5자 이하인지 확인한다.", (carName, result) => {
+    if (result) {
+      expect(() => validate.isBelowLimit(carName)).not.toThrow();
+    } else {
+      expect(() => validate.isBelowLimit(carName)).toThrow();
+    }
   });
 
   test("차 이름이 빈값이 아닌지 확인한다", () => {

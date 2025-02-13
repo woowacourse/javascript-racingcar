@@ -1,4 +1,5 @@
 import Car from "./Car.js";
+import { OUTPUT_MESSAGE } from "./Const.js";
 import Output from "./Output.js";
 class Race {
   #cars;
@@ -11,7 +12,7 @@ class Race {
 
   raceCar() {
     const output = new Output();
-    console.log("\n실행 결과");
+    output.printLine(OUTPUT_MESSAGE.result);
     for (let i = 0; i < this.#count; i++) {
       this.#cars.forEach((car) => {
         car.tryMove();
