@@ -30,8 +30,8 @@ export default class Input {
     return name;
   }
 
-  static async tryCount() {
-    const tryCount = await this.readLineAsync(INPUT_MESSAGE.tryCount);
-    return tryCount;
+  static async tryNumber() {
+    const tryNumber = await this.readLineAsync(INPUT_MESSAGE.tryNumber);
+    return tryNumber;
   }
 }
