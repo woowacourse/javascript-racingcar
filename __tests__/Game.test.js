@@ -1,29 +1,47 @@
 import Game from '../src/controllers/Game.js';
+import { createRandom } from '../src/utils/Random.js';
+import Car from '../src/models/Car.js';
+import InputController from '../src/controllers/InputController.js';
 
-test('우승자를 제대로 출력하는가?', () => {
-  //given
-  const carList = [
-    { name: 'beomtae', position: 1 },
-    { name: 'camel', position: 0 },
-  ];
+jest.mock('../src/utils/Random.js', () => ({
+  createRandom: jest.fn(),
+}));
 
-  //when
-  const game = new Game();
+jest.mock('../src/controllers/InputController.js');
 
-  //then
-  expect(game.judgeWinner()).toBe('beomtae');
+beforeEach(() => {
+  jest.clearAllMocks();
 });
 
-test('우승자가 여러명일 경우 모두 출력하는가?', () => {
-  //given
-  const carList = [
-    { name: 'beomtae', position: 1 },
-    { name: 'camel', position: 1 },
-  ];
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-  //when
-  const game = new Game();
+describe('우승자 판단 테스트', () => {
+  test('judgeWinner() 메서드 테스트 - 우승자가 둘일 경우', async () => {
+    //given
+    InputController.inputName.mockReturnValueOnce(['Beom', 'Camel']);
+    InputController.inputTryNumber.mockReturnValueOnce(2);
+    createRandom.mockReturnValueOnce(5).mockReturnValueOnce(1).mockReturnValueOnce(1).mockReturnValueOnce(5);
 
-  //then
-  expect(game.judgeWinner()).toEqual(['beomtae', 'camel']);
+    //when
+    const game = new Game();
+    const winnerSpy = jest.spyOn(game, 'judgeWinner');
+    await game.start();
+
+    //then
+    expect(winnerSpy).toHaveReturnedWith(['Beom', 'Camel']);
+  });
+  test('judgeWinner() 메서드 테스트 - 단일 우승자일 경우', async () => {
+    //given
+    InputController.inputName.mockReturnValueOnce(['pobi', 'Beom', 'Camel']);
+    InputController.inputTryNumber.mockReturnValueOnce(2);
+    [5, 1, 1, 5, 1, 1].forEach(data => createRandom.mockReturnValueOnce(data));
+    //when
+    const game = new Game();
+    const winnerSpy = jest.spyOn(game, 'judgeWinner');
+    await game.start();
+    //then
+    expect(winnerSpy).toHaveReturnedWith(['pobi']);
+  });
 });
