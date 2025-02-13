@@ -1,4 +1,4 @@
-import { ERROR } from '../constants/messages';
+import { ERROR } from '../constants/messages.js';
 
 const CarNameValidator = {
   checkCarNameLength(carName) {
@@ -12,6 +12,12 @@ const CarNameValidator = {
       throw new Error(ERROR.BLANK);
     }
     return carName;
+  },
+  checkDuplicatedCarName(carNames) {
+    if (carNames.length !== new Set(carNames).size) {
+      throw new Error(ERROR.DUPLICATED_CAR_NAME);
+    }
+    return carNames;
   },
 };
 
