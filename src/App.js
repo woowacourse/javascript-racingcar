@@ -1,6 +1,5 @@
-import CarModel from './models/CarModel.js';
-import InputView from './views/InputView.js';
-import OutputView from './views/OutputView.js';
+import { CarModel } from './models/index.js';
+import { InputView, OutputView } from './views/index.js';
 
 export default class App {
   async run() {
