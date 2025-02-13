@@ -5,11 +5,25 @@ import Output from "./view/Output.js";
 
 export default class Race {
   #cars = [];
+  #parseTryCount = 0;
   // 우승자 계산
   // 출력
 
   async play() {
     // 자동차 입력
+    await this.readCarNames();
+
+    // 시도 횟수 입력
+    await this.readTryCount();
+
+    // 레이스
+    this.racing();
+
+    // 우승자 출력
+    this.getWinner();
+  }
+
+  async readCarNames() {
     const carNames = await Input.carName();
     const parseCars = carNames.toString().split(",");
 
@@ -18,25 +32,28 @@ export default class Race {
     parseCars.forEach((carName) => {
       this.#cars.push(new Car(carName));
     });
+  }
 
-    // 시도 횟수 입력
+  async readTryCount() {
     const tryCount = await Input.tryCount();
-    const parseTryCount = parseInt(tryCount);
+    this.#parseTryCount = parseInt(tryCount);
 
-    Validator.tryCount(parseTryCount);
+    Validator.tryCount(this.#parseTryCount);
+  }
 
-    // 레이스
+  racing() {
     Output.newLine();
     Output.raceResult();
-    for (let i = 0; i < parseTryCount; i += 1) {
+    for (let i = 0; i < this.#parseTryCount; i += 1) {
       this.#cars.forEach((car) => {
         car.move();
         Output.scoreByRace(car.name, car.position);
       });
       Output.newLine();
     }
+  }
 
-    // 우승자 출력
+  async getWinner() {
     const positions = this.#cars.map((car) => car.position);
     const maxPosition = Math.max(...positions);
     const winnerCars = this.#cars.filter((car) => car.position === maxPosition);
