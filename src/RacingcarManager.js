@@ -19,6 +19,7 @@ class RacingcarManager{
         const cars = this.createCars(carNames);
         const attempts = await this.#getAttempts();
         this.roundOfRacing(cars, attempts);
+        const winners = this.getWinners(cars);
     }
     
     async #getCarNames()  {
@@ -78,6 +79,27 @@ class RacingcarManager{
             this.oneRound(cars);
             this.#outputView.printOneRoundResult(cars);
         }
+    }
+
+    getMaxPosition(cars) {
+        return cars.reduce((prev, value) => {
+            if(prev.position >= value.position){
+                return prev.position;
+            } else {
+                return value.position;
+            }  
+        })
+    }
+
+    getWinners(cars) {
+        const maxPositon = this.getMaxPosition(cars);
+        const winners = [];
+        cars.forEach(car => {
+            if(car.position === maxPositon){
+                winners.push(car.name);
+            }
+        });
+        return winners;
     }
 
 }
