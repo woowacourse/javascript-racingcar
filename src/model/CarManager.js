@@ -1,7 +1,7 @@
 // @ts-check
 import Car from './Car.js';
-import pickRandomNumber from './utils/pickRandomNumber.js';
-import OutputView from './views/OutputView.js';
+import pickRandomNumber from '../utils/pickRandomNumber.js';
+import OutputView from '../views/OutputView.js';
 
 class CarManager {
   constructor() {
