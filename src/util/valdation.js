@@ -1,5 +1,8 @@
+import ERROR from "../constant/error.js";
+import { SPLITTER, MIN, MAX } from "../constant/constant.js";
+
 const validateCarNames = (carNames) => {
-  const names = carNames.split(",");
+  const names = carNames.split(SPLITTER);
 
   validateLength(names);
 };
@@ -13,34 +16,32 @@ const validateRaceCount = (raceCountInput) => {
 };
 
 const validateLength = (names) => {
-  if (names.length < 2) {
-    throw new Error(
-      "자동차는 최소 2대 이상 필요합니다. 쉼표(,)를 기준으로 구분해주세요."
-    );
+  if (names.length < MIN.CAR_COUNT) {
+    throw new Error(ERROR.MIN_CAR_COUNT);
   }
 
   names.forEach((name) => {
-    if (name.length < 1 || name.length > 5) {
-      throw new Error("이름은 1자 이상 5자 이하만 가능합니다.");
+    if (name.length < MIN.NAME_LENGTH || name.length > MAX.NAME_LENGTH) {
+      throw new Error(ERROR.NAME_LENGTH);
     }
   });
 };
 
 const validateRange = (raceCount) => {
-  if (raceCount < 1) {
-    throw new Error("횟수는 1이상 필요합니다.");
+  if (raceCount < MIN.RACE_COUNT) {
+    throw new Error(ERROR.RACE_COUNT);
   }
 };
 
 const validateNumber = (raceCount) => {
   if (isNaN(raceCount)) {
-    throw new Error("횟수는 숫자여야 합니다.");
+    throw new Error(ERROR.RACE_COUNT_NUMBER);
   }
 };
 
 const validateInteger = (raceCount) => {
   if (!Number.isInteger(raceCount)) {
-    throw new Error("횟수는 정수여야 합니다.");
+    throw new Error(ERROR.RACE_COUNT_INTEGER);
   }
 };
 

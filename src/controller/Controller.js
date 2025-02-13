@@ -4,6 +4,7 @@ import OutputView from "../view/Output.js";
 import randomNumber from "../util/random.js";
 import tryInput from "../util/tryInput.js";
 import { validateCarNames, validateRaceCount } from "../util/valdation.js";
+import { SPLITTER } from "../constant/constant.js";
 
 class Controller {
   #carList;
@@ -34,7 +35,7 @@ class Controller {
   async setCarList() {
     const carNames = await tryInput(InputView.readCarNames, validateCarNames);
 
-    const carNamesArray = carNames.split(",");
+    const carNamesArray = carNames.split(SPLITTER);
 
     this.#carList = carNamesArray.map((name) => {
       return new Car(name);

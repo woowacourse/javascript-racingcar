@@ -1,6 +1,17 @@
-const MAX_RANDOM_NUMBER = 9;
-const MIN_MOVE_CONDITION = 4;
 const MOVE_UNIT = 1;
-const ERROR_HEADER = "[⛔️WARNING⛔️]";
+const SPLITTER = ",";
+const POSITION_SYMBOL = "-";
 
-export { MAX_RANDOM_NUMBER, MIN_MOVE_CONDITION, MOVE_UNIT, ERROR_HEADER };
+const MIN = Object.freeze({
+  CAR_COUNT: 2,
+  RACE_COUNT: 1,
+  NAME_LENGTH: 1,
+  MOVE_CONDITION: 4,
+});
+
+const MAX = Object.freeze({
+  NAME_LENGTH: 5,
+  RANDOM_NUMBER: 9,
+});
+
+export { MOVE_UNIT, SPLITTER, MIN, MAX, POSITION_SYMBOL };

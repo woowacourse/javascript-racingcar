@@ -1,8 +1,9 @@
 import positionToStr from "../util/positionToStr.js";
+import OUTPUT from "../constant/output.js";
 
 const OutputView = {
   printBeforeResult() {
-    console.log("\n실행 결과");
+    console.log(OUTPUT.BEFORE_RESULT);
   },
   printRoundResult(name, position) {
     console.log(`${name} : ${positionToStr(position)}`);
@@ -10,7 +11,7 @@ const OutputView = {
 
   printWinners(winners) {
     console.log(
-      `최종 우승자: ${winners.map((winner) => winner.getName()).join(", ")}`
+      `${OUTPUT.WINNER}${winners.map((winner) => winner.getName()).join(", ")}`
     );
   },
 };

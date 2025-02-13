@@ -1,7 +1,7 @@
-import { ERROR_HEADER } from "../constant/constant.js";
+import ERROR from "../constant/error.js";
 
 const errorHandler = (error) => {
-  console.log(`${ERROR_HEADER} ${error.message}\n`);
+  console.log(`${ERROR.HEADER} ${error.message}\n`);
 };
 
 export default errorHandler;
