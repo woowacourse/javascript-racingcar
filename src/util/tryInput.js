@@ -1,3 +1,5 @@
+import errorHandler from "./errorHandler.js";
+
 const tryInput = async (inputFn, validateFn) => {
   try {
     const input = await inputFn();
@@ -5,7 +7,7 @@ const tryInput = async (inputFn, validateFn) => {
 
     return input;
   } catch (error) {
-    console.log(error.message);
+    errorHandler(error);
     return tryInput(inputFn, validateFn);
   }
 };
