@@ -43,6 +43,7 @@
 - [x] 함수 길이 15 제한
 - [x] indent depth 2 제한
 - [x] 상수 처리
+- [x] Controller 분리 (Game, Race)
 
 ## 단위 테스트
 

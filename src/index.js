@@ -1,4 +1,4 @@
-import Controller from "./controllers/Controller.js";
+import GameController from "./controllers/GameController.js";
 
-const controller = new Controller();
-await controller.play();
+const gameController = new GameController();
+await gameController.play();
