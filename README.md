@@ -35,7 +35,6 @@
 - 사람 이름 중복 시 처리
 - 빈값일때
 
-
 ## Models
 
 - Car.js는 name, position 속성을 가진 생성자
