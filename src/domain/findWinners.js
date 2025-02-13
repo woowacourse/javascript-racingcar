@@ -14,15 +14,10 @@
 // ];
 function findWinners(cars) {
   const maxAdvanceCount = Math.max(...cars.map((cars) => cars.count));
-  const winners = cars.filter((car) => car.count === maxAdvanceCount);
 
-  let winnersName = [];
-
-  for (let winner of winners) {
-    winnersName.push(winner.name);
-  }
-
-  return winnersName;
+  return cars
+    .filter((car) => car.count === maxAdvanceCount)
+    .map((car) => car.name);
 }
 
 export default findWinners;
