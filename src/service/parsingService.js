@@ -1,5 +1,6 @@
 import { errorMessage } from "../settings/ErrorMessage.js";
 import { Validation } from "../validation/Validation.js";
+import { OutputView } from "../view/OutputView.js";
 
 export const parsingService = {
   parseNames(input) {
@@ -24,5 +25,12 @@ export const parsingService = {
       throw new Error(errorMessage.NOT_POSITIVE);
     }
     return Number(input);
+  },
+  async parseInput(getInput, parser) {
+    while (true) {
+      const input = await getInput();
+      let parsedInput = OutputView.printError(parser, input);
+      if (parsedInput) return parsedInput;
+    }
   },
 };
