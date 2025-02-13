@@ -23,3 +23,21 @@ describe('자동차 이름 입력 검증 테스트', () => {
     expect(() => carController.validateCarName(carName)).toThrow('[ERROR]');
   });
 });
+
+describe('시도 횟수 입력 검증 테스트', () => {
+  const FAIL_CASE = ['50', '', '3.4'];
+  const SUCCESS_CASE = ['15', '5'];
+  test.each(SUCCESS_CASE)('시도 횟수 성공 테스트', (tryCount) => {
+    // when
+    const carController = new CarController();
+    // then
+    expect(carController.validateTryCount(tryCount)).toEqual(Number(tryCount));
+  });
+
+  test.each(FAIL_CASE)('시도 횟수 실패 테스트', (tryCount) => {
+    // when
+    const carController = new CarController();
+    // then
+    expect(() => carController.validateTryCount(tryCount)).toThrow('[ERROR]');
+  });
+});
