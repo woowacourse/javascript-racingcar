@@ -2,7 +2,7 @@ import Car from "../model/Car.js";
 import InputView from "../view/Input.js";
 import OutputView from "../view/Output.js";
 import randomNumber from "../util/random.js";
-
+import { validateCarNames, validateRaceCount } from "../util/valdation.js";
 class Controller {
   #carList;
   #raceCount;
@@ -31,6 +31,7 @@ class Controller {
 
   async setCarList() {
     const carNames = await InputView.readCarNames();
+    validateCarNames(carNames);
 
     const carNamesArray = carNames.split(",");
 
@@ -41,6 +42,8 @@ class Controller {
 
   async setRaceCount() {
     const raceCount = await InputView.readRaceCount();
+
+    validateRaceCount(raceCount);
 
     this.#raceCount = raceCount;
   }
