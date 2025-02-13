@@ -1,6 +1,6 @@
 class OutputView {
     printErrorMessage(errorMessage){
-        console.log(errorMessage);
+        console.log(`${errorMessage}\n`);
     }
 
     printResultMessage(){
