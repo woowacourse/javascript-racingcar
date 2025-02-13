@@ -83,13 +83,14 @@ class RacingcarManager{
     }
 
     getMaxPosition(cars) {
-        return cars.reduce((prev, value) => {
+        const hasMaxPositionCar = cars.reduce((prev, value) => {
             if(prev.position >= value.position){
-                return prev.position;
+                return prev;
             } else {
-                return value.position;
+                return value;
             }  
-        })
+        });
+        return hasMaxPositionCar.position;
     }
 
     getWinners(cars) {
