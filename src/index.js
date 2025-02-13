@@ -2,7 +2,7 @@ import { InputView } from "./view/InputView.js";
 import { parsingService } from "./Service/parsingService.js";
 import Car from "./model/Car.js";
 import { raceService } from "./service/raceService.js";
-
+import { OutputView } from "./view/OutputView.js";
 const cars = [];
 
 function printError(parser, input) {
@@ -35,6 +35,13 @@ for (const carName of carNames) {
 
 raceService.moveCar(cars, round);
 
-cars.forEach((car) => console.log(car.toString()));
+cars.forEach((car) => OutputView.printMessage(car.toString()));
 
 const maxPosition = Math.max(...cars.map((car) => car.position));
+
+const winner = cars
+  .filter((car) => car.position === maxPosition)
+  .map((car) => car.name)
+  .join(", ");
+
+OutputView.printMessage(winner);
