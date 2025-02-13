@@ -23,6 +23,6 @@ export default class Output {
   }
 
   static winners(names) {
-    this.print(`${OUTPUT_MESSAGE.winners} ${names.join(",")}`);
+    this.print(`${OUTPUT_MESSAGE.winners} ${names.join(", ")}`);
   }
 }
