@@ -8,16 +8,16 @@ class Validate {
     return this;
   }
 
-  isBelowLimit(carName) {
+  isBelowLimit(name) {
     return this.#throwIfInValid(
-      carName.length > MAX_CAR_LENGTH,
+      name.length > MAX_CAR_LENGTH,
       ERROR_MESSAGE.belowLimit
     );
   }
 
-  isPositiveLength(carName) {
+  isPositiveLength(name) {
     return this.#throwIfInValid(
-      carName.length <= 0,
+      name.length <= 0,
       ERROR_MESSAGE.positiveLength
     );
   }

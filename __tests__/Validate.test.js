@@ -12,11 +12,11 @@ describe("validate 테스트", () => {
     ["aaaaa", true],
     ["aaaaaa", false],
     ["aaaaaaaaaa", false],
-  ])("차 이름의 길이가 5자 이하인지 확인한다.", (carName, result) => {
+  ])("차 이름의 길이가 5자 이하인지 확인한다.", (raceCarName, result) => {
     if (result) {
-      expect(() => validate.isBelowLimit(carName)).not.toThrow();
+      expect(() => validate.isBelowLimit(raceCarName)).not.toThrow();
     } else {
-      expect(() => validate.isBelowLimit(carName)).toThrow();
+      expect(() => validate.isBelowLimit(raceCarName)).toThrow();
     }
   });
 

@@ -3,17 +3,17 @@ import { OUTPUT_MESSAGE } from "../Const.js";
 import Output from "../ui/Output.js";
 class Race {
   #cars;
-  #count;
+  #raceCount;
 
-  constructor(names, count) {
-    this.#cars = names.map((carName) => new Car(carName));
-    this.#count = count;
+  constructor(names, raceCount) {
+    this.#cars = names.map((raceCarName) => new Car(raceCarName));
+    this.#raceCount = raceCount;
   }
 
   raceCar() {
     const output = new Output();
     output.printLine(OUTPUT_MESSAGE.result);
-    for (let i = 0; i < this.#count; i++) {
+    for (let i = 0; i < this.#raceCount; i++) {
       this.#cars.forEach((car) => {
         car.tryMove();
         output.printCarPosition(car);
@@ -29,9 +29,9 @@ class Race {
     this.#cars.forEach((car) => {
       if (car.position > maxNum) {
         maxNum = car.position;
-        winnerList = [car.name];
+        winnerList = [car.raceCarName];
       } else if (car.position === maxNum) {
-        winnerList.push(car.name);
+        winnerList.push(car.raceCarName);
       }
     });
     return winnerList;

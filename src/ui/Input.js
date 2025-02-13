@@ -6,28 +6,31 @@ class Input {
   #validate = new Validate();
   #output = new Output();
 
-  async carNames() {
+  async raceCarNames() {
     try {
-      const name = await readLineAsync(INPUT_MESSAGE.carNames);
-      const names = name.split(",");
+      const raceCarName = await readLineAsync(INPUT_MESSAGE.raceCarNames);
+      const raceCarNames = raceCarName.split(",");
 
-      names.forEach((name) => {
-        this.#validate.isBelowLimit(name).isPositiveLength(name);
+      raceCarNames.forEach((raceCarName) => {
+        this.#validate.isBelowLimit(raceCarName).isPositiveLength(raceCarName);
       });
 
-      return names;
+      return raceCarNames;
     } catch (e) {
       this.#output.printLine(e.message);
-      return await this.carNames();
+      return await this.raceCarNames();
     }
   }
 
   async raceCount() {
     try {
-      const count = Number(await readLineAsync(INPUT_MESSAGE.raceCount));
-      this.#validate.isPositiveNumber(count).isNumeric(count).isInteger(count);
+      const raceCount = Number(await readLineAsync(INPUT_MESSAGE.raceCount));
+      this.#validate
+        .isPositiveNumber(raceCount)
+        .isNumeric(raceCount)
+        .isInteger(raceCount);
 
-      return count;
+      return raceCount;
     } catch (e) {
       this.#output.printLine(e.message);
       return await this.raceCount();

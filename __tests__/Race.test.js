@@ -11,8 +11,8 @@ test("우승자를 올바르게 반환하는지 테스트", () => {
   });
 
   const CARS = ["aaa", "bbb", "ccc"];
-  const COUNT = 2;
-  const race = new Race(CARS, COUNT);
+  const RACECOUNT = 2;
+  const race = new Race(CARS, RACECOUNT);
   race.raceCar();
   const WinnerList = race.getWinner();
 

@@ -2,9 +2,9 @@ import { MOVE_THRESHOLD } from "../Const.js";
 import { getRandomNumber } from "../Util.js";
 
 class Car {
-  constructor(name) {
+  constructor(raceCarName) {
     this.position = 0;
-    this.name = name;
+    this.raceCarName = raceCarName;
   }
 
   #moveOneStep() {

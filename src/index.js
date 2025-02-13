@@ -6,10 +6,10 @@ const input = new Input();
 const output = new Output();
 
 async function run() {
-  const names = await input.carNames();
-  const count = await input.raceCount();
+  const raceCarNames = await input.raceCarNames();
+  const raceCount = await input.raceCount();
 
-  const race = new Race(names, count);
+  const race = new Race(raceCarNames, raceCount);
   race.raceCar();
   const winnerList = race.getWinner();
 
