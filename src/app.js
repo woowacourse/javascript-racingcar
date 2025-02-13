@@ -5,7 +5,7 @@ import {
   validateGameCountRange,
   validateGameCountType,
   validateCarsNameLength,
-} from "./validate.js";
+} from "./Validation/validation.js";
 
 import Car from "./Car.js";
 import { getRandomNumber } from "./util.js";

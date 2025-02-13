@@ -2,9 +2,7 @@ import {
   validateCarsNameLength,
   validateCarsNameForm,
   validateDuplicatedCarName,
-  validateGameCountType,
-  validateGameCountRange,
-} from "../src/validate.js";
+} from "../../src/Validation/carName.js";
 
 describe("자동차 이름 유효성 검사", () => {
   test("자동차 이름 길이 5자 이하", () => {
@@ -44,27 +42,5 @@ describe("자동차 이름 유효성 검사", () => {
     expect(() => {
       validateDuplicatedCarName(carList);
     }).toThrow("[Error]");
-  });
-});
-
-describe("시도 횟수 유효성 검사", () => {
-  test.each([
-    [0.1, "[Error]"],
-    ["abc", "[Error]"],
-    [NaN, "[Error]"],
-    [Infinity, "[Error]"],
-  ])("시도 횟수 타입", (input, errorMessage) => {
-    expect(() => {
-      validateGameCountType(input);
-    }).toThrow(errorMessage);
-  });
-
-  test.each([
-    [0, "[Error]"],
-    [100, "[Error]"],
-  ])("시도 횟수 범위", (input, errorMessage) => {
-    expect(() => {
-      validateGameCountRange(input);
-    }).toThrow(errorMessage);
   });
 });
