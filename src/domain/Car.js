@@ -24,10 +24,6 @@ class Car {
   get position() {
     return this.#position;
   }
-
-  set position(value) {
-    this.#position = value;
-  }
 }
 
 export default Car;

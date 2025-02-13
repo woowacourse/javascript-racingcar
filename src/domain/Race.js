@@ -37,28 +37,12 @@ class Race {
     }
   }
 
-  // printResult() {
-  //   OutputView.print(OUTPUT_MESSAGE.RESULT);
-  // }
+  getWinnerName() {
+    const winnerPosition = Math.max(...this.#carList.map((car) => car.position));
+    const winnerCar = this.#carList.filter((car) => car.position === winnerPosition);
 
-  //   getWinnerName() {
-  //     const winnerPosition = Math.max(...this.#carList.map((car) => car.position));
-  //     const winnerCar = this.#carList.filter((car) => car.position === winnerPosition);
-
-  //     const winnerName = winnerCar.map((car) => car.name);
-  //     return winnerName;
-  //   }
-
-  getCarNamePosition() {
-    const raceResult = this.#carList.map((car) => {
-      return { name: car.name, position: car.position };
-    });
-    return this.getWinner(raceResult);
-  }
-
-  getWinner(raceResult) {
-    const maxPosition = Math.max(...raceResult.map((car) => car.position));
-    return raceResult.filter((car) => car.position === maxPosition).map((car) => car.name);
+    const winnerName = winnerCar.map((car) => car.name);
+    return winnerName;
   }
 
   get carList() {

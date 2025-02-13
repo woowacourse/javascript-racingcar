@@ -1,6 +1,6 @@
 import InputView from "../views/InputView.js";
 import { INPUT_MESSAGE } from "../constants/Constants.js";
-import parseInput from "../utils/parseInput.js";
+import InputParser from "../utils/InputParser.js";
 import validateCarNameList from "../validation/validateCarNameList.js";
 import validateAttemptCount from "../validation/validateAttemptCount.js";
 import OutputView from "../views/OutputView.js";
@@ -10,7 +10,7 @@ const InputHandler = {
     while (true) {
       try {
         const carInput = await InputView.readUserInput(INPUT_MESSAGE.CAR);
-        const carNameList = parseInput.car(carInput);
+        const carNameList = InputParser.car(carInput);
         validateCarNameList(carNameList);
         return carNameList;
       } catch (e) {
@@ -22,7 +22,7 @@ const InputHandler = {
     while (true) {
       try {
         const attemptInput = await InputView.readUserInput(INPUT_MESSAGE.ATTEMPT);
-        const attemptCount = parseInput.attempt(attemptInput);
+        const attemptCount = InputParser.attempt(attemptInput);
         validateAttemptCount(attemptCount);
         return attemptCount;
       } catch (e) {

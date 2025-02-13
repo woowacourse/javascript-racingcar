@@ -1,6 +1,6 @@
 import { NAME_DELIMITER } from "../constants/Constants.js";
 
-const parseInput = {
+const InputParser = {
   car(carNameList) {
     return carNameList.split(NAME_DELIMITER).map((car) => car.trim());
   },
@@ -9,4 +9,4 @@ const parseInput = {
   },
 };
 
-export default parseInput;
+export default InputParser;
