@@ -47,4 +47,7 @@
 
 ## 단위 테스트
 
-- [ ]
+- [x] Car 클래스 테스트
+- [ ] RaceController 클래스 테스트
+- [ ] validateCarNames 테스트
+- [ ] validateTryCount 테스트
