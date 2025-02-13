@@ -14,4 +14,9 @@ class Car {
   get name() {
     return this.#name;
   }
+  toString() {
+    return `${this.#name} : ${this.getPosition()}`;
+  }
 }
+
+export default Car;
