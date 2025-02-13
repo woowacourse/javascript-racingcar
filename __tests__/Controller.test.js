@@ -6,6 +6,31 @@ jest.mock("../src/utils/getRandomNumber", () => ({
   getRandomNumber: jest.fn(),
 }));
 
+describe("자동차 경주 테스트", () => {
+  test("경주 완료 후 전진 정도가 변화한다.", () => {
+    // given
+    getRandomNumber
+      .mockReturnValueOnce(5)
+      .mockReturnValueOnce(3)
+      .mockReturnValueOnce(1)
+      .mockReturnValueOnce(2);
+
+    const CARS = [new Car("머핀"), new Car("데이지")];
+    const RESULT = [1, 0];
+    const TRY_COUNT = 2;
+
+    const controller = new Controller();
+
+    //when
+    controller.runRace(CARS, TRY_COUNT);
+
+    //then
+    CARS.forEach((car, index) => {
+      expect(car.position).toEqual(RESULT[index]);
+    });
+  });
+});
+
 describe("자동차 경주 한 라운드 테스트", () => {
   test("자동차 한 라운드 진행 후 결과 출력한다.(한대일 경우)", () => {
     getRandomNumber.mockReturnValue(5);
