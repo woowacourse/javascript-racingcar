@@ -5,4 +5,13 @@ export const OutputView = {
   printMessage(message) {
     console.log(message);
   },
+  printError(parser, input) {
+    let parsedValue;
+    try {
+      parsedValue = parser(input);
+    } catch (error) {
+      console.error(error.message);
+    }
+    return parsedValue;
+  },
 };
