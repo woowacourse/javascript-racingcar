@@ -1,5 +1,6 @@
 import getRandomNumber from './utils/getRandomNumber.js';
 import Printer from './Printer.js';
+import OutputView from './view/OutputView.js';
 
 class Racing {
   #cars;
@@ -18,8 +19,11 @@ class Racing {
     }
   }
 
+  // 테스트를 해야 하는가?, 어떻게 해야하는가?
   runRace(tryCount) {
     let currentCount = 0;
+
+    Printer.printHeader('\n실행 결과');
 
     while (currentCount < tryCount) {
       this.raceTurn();

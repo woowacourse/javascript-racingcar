@@ -1,6 +1,10 @@
 import OutputView from './view/OutputView.js';
 
 class Printer {
+  static printHeader(message) {
+    OutputView.print(message);
+  }
+
   static printRacingResult(results) {
     results.forEach((result) => {
       const { name, position } = result;
