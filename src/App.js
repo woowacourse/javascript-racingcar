@@ -4,17 +4,12 @@ import OutputView from './views/OutputView.js';
 
 export default class App {
   async run() {
-    const cars = [];
-
     const nameList = await InputView.getNameList();
     const count = await InputView.getCount();
 
-    nameList.forEach(name => {
-      const car = new CarModel(name);
-      cars.push(car);
-    });
+    const cars = nameList.map(name => new CarModel(name));
 
-    console.log('\n실행 결과');
+    OutputView.print('\n실행 결과');
     for (let i = 0; i < count; i++) {
       for (let j = 0; j < nameList.length; j++) {
         const currentCar = cars[j];
@@ -37,6 +32,6 @@ export default class App {
     const winnerOutput = winnerList.join(', ');
 
     // FIX: 한 자동차가 0의 스코어일때 최종우승자가 뜨지 않는 오류
-    console.log(`최종 우승자: ${winnerOutput}`);
+    OutputView.print(`최종 우승자: ${winnerOutput}`);
   }
 }

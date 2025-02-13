@@ -1,9 +1,17 @@
 export default class OutputView {
+  static print(message) {
+    console.log(message);
+  }
+
+  static printBlank() {
+    this.print('');
+  }
+
   static printOneGame(nameList, cars) {
     for (let i = 0; i < nameList.length; i++) {
       const carOutput = '-'.repeat(cars[i].position);
-      console.log(`${nameList[i]} : ${carOutput}`);
+      this.print(`${nameList[i]} : ${carOutput}`);
     }
-    console.log('');
+    this.printBlank();
   }
 }
