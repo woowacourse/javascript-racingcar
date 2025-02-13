@@ -9,11 +9,12 @@ class Input {
       );
       const names = name.split(",");
       names.forEach((name) => {
-        validate.isBelowLimit(name, 4).isPositiveLength(name);
+        validate.isBelowLimit(name).isPositiveLength(name);
       });
 
       return names;
     } catch (e) {
+      console.log(e.message);
       return await this.raceCarNames();
     }
   }
@@ -26,7 +27,8 @@ class Input {
       validate.isPositiveNumber(count).isNumeric(count).isInteger(count);
 
       return count;
-    } catch (error) {
+    } catch (e) {
+      console.log(e.message);
       return await this.raceCount();
     }
   }

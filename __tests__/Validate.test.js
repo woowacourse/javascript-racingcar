@@ -1,4 +1,4 @@
-import Validate from "../src/Validate";
+import Validate from "../src/Validate.js";
 
 describe("validate 테스트", () => {
   let validate;
@@ -8,8 +8,8 @@ describe("validate 테스트", () => {
   });
 
   test("차 이름의 길이가 5자 이하인지 확인한다.", () => {
-    expect(() => validate.isBelowLimit("aaaaa", 5)).not.toThrow();
-    expect(() => validate.isBelowLimit("aaaaaaa", 5)).toThrow();
+    expect(() => validate.isBelowLimit("aaaaa")).not.toThrow();
+    expect(() => validate.isBelowLimit("aaaaaaa")).toThrow();
   });
 
   test("차 이름이 빈값이 아닌지 확인한다", () => {

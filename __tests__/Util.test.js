@@ -1,4 +1,4 @@
-import { getRandomNumber } from "../src/Util";
+import { getRandomNumber } from "../src/Util.js";
 
 test("0-9까지의 랜덤 숫자를 반환한다", () => {
   //when
