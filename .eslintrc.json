@@ -11,7 +11,8 @@
     "no-console": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/extensions": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-await-in-loop": "off"
   },
   "env": {
     "es6": true,

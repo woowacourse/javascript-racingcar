@@ -1,4 +1,4 @@
-import getRandomValue from './utils/random.js';
+import getRandomValue from './utils/getRandomValue.js';
 
 class Racing {
   carList;
