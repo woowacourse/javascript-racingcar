@@ -14,8 +14,10 @@ class Controller {
   async play() {
     await this.readyRace();
 
+    OutputView.printBeforeResult();
     for (let i = 0; i < this.#raceCount; i++) {
       this.race();
+      console.log("");
     }
   }
 
