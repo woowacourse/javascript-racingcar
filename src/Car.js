@@ -3,7 +3,7 @@ import { ERROR_MESSAGE } from "./constants.js";
 
 class Car {
   #name = "";
-  #position = 0;
+  #position = "";
 
   constructor(name) {
     this.#name = this.#validate(name);
@@ -24,7 +24,7 @@ class Car {
 
   move(number) {
     if (number >= MOVE_THRESHOLD) {
-      this.#position += 1;
+      this.#position += "-";
     }
   }
 }
