@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE } from '../constants.js';
+import { OUTPUT_MESSAGE } from '../helpers/constants.js';
 
 export default class OutputView {
   static print(message) {

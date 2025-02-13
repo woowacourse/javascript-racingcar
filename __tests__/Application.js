@@ -1,15 +1,5 @@
-import readline from 'readline';
-import { mockRandoms } from './CarModel.js';
 import App from '../src/App.js';
-
-const mockQuestions = inputs => {
-  readline.createInterface = jest.fn().mockImplementation(() => ({
-    question: (query, callback) => {
-      callback(inputs.shift());
-    },
-    close: () => {},
-  }));
-};
+import { mockQuestions, mockRandoms } from '../src/helpers/testUtils.js';
 
 describe('애플리케이션 테스트', () => {
   test('우승자가 한명일때', async () => {

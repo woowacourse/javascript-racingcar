@@ -1,14 +1,5 @@
+import { mockRandom } from '../src/helpers/testUtils.js';
 import { CarModel } from '../src/models/index.js';
-
-export function mockRandom(value) {
-  jest.spyOn(Math, 'random').mockReturnValue(value / 10);
-}
-
-export function mockRandoms(values) {
-  values.forEach(value =>
-    jest.spyOn(Math, 'random').mockReturnValueOnce(value / 10),
-  );
-}
 
 describe('CarModel', () => {
   test('CarModel을 생성한다.', () => {

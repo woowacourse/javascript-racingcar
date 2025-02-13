@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from './constants.js';
+import { ERROR_MESSAGES } from './helpers/constants.js';
 
 export default class Validator {
   static validateCarName(rawName) {
