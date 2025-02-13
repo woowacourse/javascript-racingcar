@@ -17,7 +17,6 @@ export default class Validator {
     this.#tryNumberNotPositiveInteger(tryNumber);
   }
 
-  // 자동차
   static #carNameLengthOverFive = (carNames) => {
     carNames.forEach((carName) => {
       if (carName.length > CAR_SETTING.maxCarName) {
@@ -25,6 +24,7 @@ export default class Validator {
       }
     });
   };
+
   static #carNameLengthUnderOne = (carNames) => {
     carNames.forEach((carName) => {
       if (carName.length < CAR_SETTING.minCarName) {
@@ -51,7 +51,6 @@ export default class Validator {
     }
   };
 
-  //시도 횟수
   static #tryNumberUnderOne = (tryNumber) => {
     if (tryNumber < TRY_NUMBER_SETTING.minTryNumber) {
       Output.error(ERROR_MESSAGE.tryNumberUnderOne);
