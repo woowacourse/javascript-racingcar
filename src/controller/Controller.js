@@ -5,6 +5,7 @@ import OutputView from '../views/OutputView.js';
 import CarNameValidator from '../validator/CarNameValidator.js';
 import splitStringToArray from '../utils/utils.js';
 import { CONFIG } from '../constants/config.js';
+import AttemptsValidator from '../validator/AttemptsValidator.js';
 
 class Controller {
   constructor() {
@@ -30,7 +31,7 @@ class Controller {
 
   async readAttempts() {
     const attempts = await readLineAsync(INPUT.ATTEMPTS);
-    /** @todo 시도할 횟수 유효성검증 추가 */
+    AttemptsValidator.checkPositiveNumber(attempts);
     return attempts;
   }
 }
