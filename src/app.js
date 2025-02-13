@@ -11,7 +11,7 @@ import Car from "./Car.js";
 import { getRandomNumber } from "./util.js";
 
 class App {
-  async getCarNameInput() {
+  async getCarsName() {
     const input = await readLineAsync(
       "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
     );
@@ -22,7 +22,7 @@ class App {
       return input;
     } catch (err) {
       console.log(err.message);
-      return this.getCarNameInput();
+      return this.getCarsName();
     }
   }
 
@@ -39,9 +39,9 @@ class App {
   }
 
   async run() {
-    const carNames = await this.getCarNameInput();
+    const carNames = await this.getCarsName();
     const cars = carNames.split(",").map((carName) => new Car(carName));
-    const gameCount = await this.getGameCount();
+    const gameCount = await this.getGameCount(); // TODO: Number로 변환
 
     console.log("\n실행 결과");
     for (let count = 0; count < gameCount; count += 1) {

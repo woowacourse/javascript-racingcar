@@ -27,6 +27,7 @@ export const validateDuplicatedCarName = (input) => {
 };
 
 export const validateGameCountType = (input) => {
+  // TODO: '' 잡아내기
   const isInteger = Number.isInteger(Number(input));
   if (isInteger === false) {
     throw new Error("[Error] 시도 횟수는 소수,문자열,NaN,Infinity 안됩니다.");
