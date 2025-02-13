@@ -1,10 +1,10 @@
 import { ERROR } from "../constants/messages.js";
 
-const isArrEmpty = (arr) => {
+export const isArrEmpty = (arr) => {
   return arr.some((item) => item === "");
 };
 
-const isLengthLongerThanFive = (arr) => {
+export const isLengthLongerThanFive = (arr) => {
   return arr.every((item) => item.length < 5);
 };
 
