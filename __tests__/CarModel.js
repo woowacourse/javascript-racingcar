@@ -1,4 +1,4 @@
-import CarModel from '../src/model/CarModel.js';
+import CarModel from '../src/models/CarModel.js';
 import { getRandomInt } from '../src/utils.js';
 
 export function mockRandom(value) {
