@@ -1,5 +1,3 @@
-import findWinners from "../domain/findWinners";
-
 export const printResultHeader = () => {
   console.log("\n실행 결과");
 };

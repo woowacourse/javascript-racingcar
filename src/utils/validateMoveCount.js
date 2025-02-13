@@ -1,4 +1,4 @@
-import { ERROR } from "../constants/messages";
+import { ERROR } from "../constants/messages.js";
 
 export function validateMoveCount(moveCount) {
   const regex = /^(?:[1-9]\d*)$/;
