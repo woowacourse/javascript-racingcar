@@ -5,6 +5,6 @@ export default class Car {
   }
 
   move() {
-    this.position++;
+    this.position += 1;
   }
 }
