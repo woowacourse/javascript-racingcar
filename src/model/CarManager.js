@@ -33,7 +33,7 @@ class CarManager {
         this.moveForwardCar(car, pickRandomNumber());
         this.showRaceResult(car.name, car.position);
       });
-      console.log(CONFIG.LINE_BREAK);
+      console.log();
     }
   }
 
