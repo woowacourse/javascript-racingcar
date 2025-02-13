@@ -15,6 +15,7 @@ async function run() {
   // const validate = new Validate();
 
   const count = await input.raceCount();
+  // const count = 3;
 
   console.log("\n실행 결과");
   for (let i = 0; i < count; i++) {

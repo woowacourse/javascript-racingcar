@@ -9,16 +9,23 @@ class Input {
       );
       const names = name.split(",");
       names.forEach((name) => {
-        validate.carNameLength(name, 4);
+        validate.isBelowLimit(name, 4).isPositiveLength(name);
       });
       return names;
     } catch (e) {
-      return this.raceCarNames();
+      return await this.raceCarNames();
     }
   }
 
   async raceCount() {
-    return await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    try {
+      const validate = new Validate();
+      const count = Number(await readLineAsync("시도할 횟수는 몇 회인가요?\n"));
+      validate.isPositiveNumber(count).isNumeric(count).isInteger(count);
+      return count;
+    } catch (error) {
+      return await this.raceCount();
+    }
   }
 }
 
