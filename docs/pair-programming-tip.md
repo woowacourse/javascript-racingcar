@@ -21,10 +21,18 @@
 
 # 🖨️ 커밋 시 공동 기여자 설정 방법
 
+**참조:** [GitHub Docs - 여러 작성자와 커밋 만들기
+](https://docs.github.com/ko/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors), [GitHub Docs - 커밋 메일 주소 설정](https://docs.github.com/ko/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-email-preferences/setting-your-commit-email-address)
+
 ```bash
 git commit -m "feat: xxxx
 >
->
+> Co-authored-by: hoyyChoi <hoyeon8165@gmail.com>
 > Co-authored-by: hoyyChoi <hoyyChoi@users.noreply.github.com>
 > "
 ```
+
+- 커밋에 공동 기여자를 추가할 때는 공동 기여자 대한 이메일을 알고 있어야 함.
+- GitHub.com에서 해당 작성자의 계정과 연결된 이메일을 사용해야 함.
+- 메일 주소 공개하지 않기로 한 사용자의 경우, 개인 정보 보호를 위해 GitHub 제공 no-reply 메일을 사용해야 함.
+- 그렇지 않은 경우 공동 작성자의 이메일은 커밋 메시지에 공개됨.
