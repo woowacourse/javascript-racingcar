@@ -8,12 +8,12 @@ describe("자동차 움직임", () => {
     const car = new Car("테스트");
 
     car.move(MOVE_FORWARD);
-    expect(car.position).toBe(1);
+    expect(car.getPosition()).toBe(1);
   });
 
   test("자동차 정지하기", () => {
     const car = new Car("테스트");
     car.move(MOVE_STOP);
-    expect(car.position).toBe(0);
+    expect(car.getPosition()).toBe(0);
   });
 });

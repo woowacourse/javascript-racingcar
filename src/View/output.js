@@ -7,17 +7,17 @@ const outputView = {
       cars.forEach((car) => {
         const randomNumber = getRandomNumber();
         car.move(randomNumber);
-        console.log(`${car.name} : ${"-".repeat(car.position)}`);
+        console.log(`${car.getName()} : ${"-".repeat(car.getPosition())}`);
       });
       console.log("");
     }
   },
   printWinners(cars) {
-    const carPositions = cars.map((car) => car.position);
+    const carPositions = cars.map((car) => car.getPosition());
     const winnerPosition = Math.max(...carPositions);
     const winners = cars
-      .filter((car) => car.position === winnerPosition)
-      .map((car) => car.name)
+      .filter((car) => car.getPosition() === winnerPosition)
+      .map((car) => car.getName())
       .join(", ");
     console.log(`최종 우승자: ${winners}`);
   },
