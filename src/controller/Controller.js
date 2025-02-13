@@ -21,6 +21,7 @@ class Controller {
     }
 
     const winners = this.getWinners();
+    OutputView.printWinners(winners);
   }
 
   async readyRace() {
