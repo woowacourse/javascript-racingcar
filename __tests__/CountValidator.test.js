@@ -13,7 +13,7 @@ test('시도횟수가 숫자가 아니면 에러 처리한다.', () => {
 test('시도횟수가 0 이하이면 에러 처리한다.', () => {
   const TRY_COUNT = 0;
 
-  expect(() => CountValidator.isMoreThanZero(TRY_COUNT)).toThrow(
+  expect(() => CountValidator.isAtLeastOne(TRY_COUNT)).toThrow(
     ErrorMessage.isInvalidNumber,
   );
 });

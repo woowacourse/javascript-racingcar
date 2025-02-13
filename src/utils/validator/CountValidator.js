@@ -8,7 +8,7 @@ class CountValidator {
     }
   }
 
-  static isMoreThanZero(parsedTryCount) {
+  static isAtLeastOne(parsedTryCount) {
     if (parsedTryCount < MIN_TRY_COUNT) {
       throw new Error(ErrorMessage.isInvalidNumber);
     }
@@ -28,7 +28,7 @@ class CountValidator {
 
   static isValid(parsedTryCount) {
     this.isNumber(parsedTryCount);
-    this.isMoreThanZero(parsedTryCount);
+    this.isAtLeastOne(parsedTryCount);
     this.isInteger(parsedTryCount);
     this.isNotBigNumber(parsedTryCount);
   }
