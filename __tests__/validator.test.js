@@ -65,7 +65,7 @@ describe('경주를 진행할 횟수를 검증한다.', () => {
     }).toThrow('횟수는 공백을 포함하면 안됩니다.');
   });
 
-  test('횟수가 1보라 작으면 안된다.', () => {
+  test('횟수가 1보다 작으면 안된다.', () => {
     const count = '0';
     expect(() => {
       validator.count(count);
