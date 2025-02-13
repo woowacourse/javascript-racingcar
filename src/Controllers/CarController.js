@@ -3,6 +3,7 @@ import { checkTryCountRange, checkIsInteger } from '../validates/tryCountValidat
 import { checkIsEmpty, checkCarNameLength, checkCarCount, checkCarNameDuplicate } from '../validates/carValidates.js';
 import { splitString } from '../utils/separator.js';
 import { stringToNumber } from '../utils/changeDataType.js';
+import Car from '../Models/Car.js';
 
 class CarController {
   async run() {
@@ -11,6 +12,12 @@ class CarController {
 
     const tryCountInput = await this.getTryCount();
     const tryCount = this.validateTryCount(tryCountInput);
+
+    const cars = carNames.map((car) => {
+      return new Car(car);
+    });
+
+    tryMove(cars);
   }
 
   getCarName() {
@@ -45,6 +52,14 @@ class CarController {
     const randomNumber = this.getRandomNumber();
 
     return randomNumber >= 4;
+  }
+
+  tryMove(cars) {
+    for (let i = 0; i < tryCount; i++) {
+      cars.forEach((car) => {
+        if (this.canMove()) car.movePosition();
+      });
+    }
   }
 }
 
