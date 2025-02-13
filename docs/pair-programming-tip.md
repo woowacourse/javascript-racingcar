@@ -25,6 +25,6 @@
 git commit -m "feat: xxxx
 >
 >
-> Co-authored-by: hoyyChoi <hoyeon8165@gmail.com>
+> Co-authored-by: hoyyChoi <hoyyChoi@users.noreply.github.com>
 > "
 ```
