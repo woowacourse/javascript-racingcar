@@ -3,10 +3,15 @@ describe("차 객체 유닛 테스트", () => {
   test("차 객체를 만들면 차가 생성되어야 함", () => {
     //given
     //when
-    const car = new Car("블루");
+    const car = new Car();
     expect(car).toBeDefined();
   });
-
+  test("차 객체의 이름을 생성하면 이름이 동일해야함", () => {
+    //given
+    //when
+    const car = new Car("블루");
+    expect(car.name).toBe("블루");
+  });
   test("차를 2번 움직이면 차가 2번 움직여아함", () => {
     //given
     const car = new Car("마빈");
