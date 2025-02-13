@@ -15,17 +15,14 @@ class Validate {
   }
 
   isPositiveNumber(number) {
-    console.log("양수");
     return this.#throwIfInValid(number <= 0);
   }
 
   isNumeric(number) {
-    console.log("숫자");
     return this.#throwIfInValid(Number.isNaN(number));
   }
 
   isInteger(number) {
-    console.log("정수");
     return this.#throwIfInValid(!Number.isInteger(number));
   }
 }

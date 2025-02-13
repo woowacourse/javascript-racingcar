@@ -11,6 +11,7 @@ class Input {
       names.forEach((name) => {
         validate.isBelowLimit(name, 4).isPositiveLength(name);
       });
+
       return names;
     } catch (e) {
       return await this.raceCarNames();
@@ -21,7 +22,9 @@ class Input {
     try {
       const validate = new Validate();
       const count = Number(await readLineAsync("시도할 횟수는 몇 회인가요?\n"));
+
       validate.isPositiveNumber(count).isNumeric(count).isInteger(count);
+
       return count;
     } catch (error) {
       return await this.raceCount();
