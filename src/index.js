@@ -36,3 +36,5 @@ for (const carName of carNames) {
 raceService.moveCar(cars, round);
 
 cars.forEach((car) => console.log(car.toString()));
+
+const maxPosition = Math.max(...cars.map((car) => car.position));

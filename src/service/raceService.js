@@ -1,4 +1,5 @@
 import randomNumberGenerator from "../model/RandomNumberGenerator.js";
+import { OutputView } from "../view/OutputView.js";
 
 export const raceService = {
   isMovable(randomNumber) {
@@ -11,7 +12,10 @@ export const raceService = {
         if (raceService.isMovable(randomNumber)) {
           car.goForward();
         }
+        OutputView.printMessage(car.toString());
       }
+
+      OutputView.printMessage("\n");
     }
   },
 };
