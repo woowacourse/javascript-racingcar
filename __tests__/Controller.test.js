@@ -31,6 +31,39 @@ describe("자동차 경주 테스트", () => {
   });
 });
 
+describe("최종 우승자 선별 테스트", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+  test("최종 우승자를 뽑고 출력한다.(우승자가 1명인 경우)", () => {
+    const logSpy = jest.spyOn(console, "log");
+
+    const CARS = [
+      { name: "데이지", position: 3 },
+      { name: "머핀", position: 1 },
+    ];
+
+    const controller = new Controller();
+    controller.findWinner(CARS);
+
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자: 데이지");
+  });
+
+  test("최종 우승자를 뽑고 출력한다.(우승자가 2명 이상인 경우", () => {
+    const logSpy = jest.spyOn(console, "log");
+
+    const CARS = [
+      { name: "데이지", position: 5 },
+      { name: "머핀", position: 5 },
+      { name: "메리", position: 2 },
+    ];
+
+    const controller = new Controller();
+    controller.findWinner(CARS);
+
+    expect(logSpy).toHaveBeenCalledWith("최종 우승자: 데이지, 머핀");
+  });
+});
 describe("자동차 경주 한 라운드 테스트", () => {
   test("자동차 한 라운드 진행 후 결과 출력한다.(한대일 경우)", () => {
     getRandomNumber.mockReturnValue(5);
