@@ -20,6 +20,8 @@ class CarController {
 
     this.tryMove(cars, tryCount);
     this.printResult(cars, tryCount);
+
+    const winners = this.getWinner(cars);
   }
 
   getCarName() {
@@ -72,6 +74,15 @@ class CarController {
       });
       OutputView.printMessage('');
     }
+  }
+
+  getWinner(cars) {
+    const finalPosition = cars.map((car) => car.position);
+    const maxPosition = Math.max(...finalPosition);
+
+    const winner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+
+    return winner;
   }
 }
 
