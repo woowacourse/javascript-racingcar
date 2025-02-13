@@ -1,4 +1,5 @@
 import InputView from '../Views/InputView.js';
+import OutputView from '../Views/OutputView.js';
 import { checkTryCountRange, checkIsInteger } from '../validates/tryCountValidates.js';
 import { checkIsEmpty, checkCarNameLength, checkCarCount, checkCarNameDuplicate } from '../validates/carValidates.js';
 import { splitString } from '../utils/separator.js';
@@ -18,7 +19,7 @@ class CarController {
     });
 
     this.tryMove(cars, tryCount);
-    this.printResult(cars);
+    this.printResult(cars, tryCount);
   }
 
   getCarName() {
@@ -63,10 +64,14 @@ class CarController {
     }
   }
 
-  printResult(cars) {
-    cars.forEach((car) => {
-      console.log(car.history);
-    });
+  printResult(cars, tryCount) {
+    console.log('실행 결과');
+    for (let i = 0; i < tryCount; i++) {
+      cars.forEach((car) => {
+        OutputView.printEachResult(car.name, car.history[i]);
+      });
+      console.log();
+    }
   }
 }
 

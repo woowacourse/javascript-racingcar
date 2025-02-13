@@ -1,5 +1,9 @@
 class OutputView {
-  static printEachResult() {}
+  static printEachResult(carName, position) {
+    const positionString = '-'.repeat(position);
+
+    console.log(`${carName} : ${positionString}`);
+  }
 }
 
 export default OutputView;
