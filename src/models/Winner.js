@@ -7,12 +7,16 @@ class Winner {
 
     getWinners(carList, maxPosition) {
         carList.forEach ((car) => {
-            if (maxPosition === car.position){
-                this.#winners.push(car.name);
-            }
+            this.#checkIsWinner(car, maxPosition);
         });
         
         return this.#winners;
+    }
+
+    #checkIsWinner(car, maxPosition) {
+        if (maxPosition === car.position){
+            this.#winners.push(car.name);
+        }
     }
 }
 

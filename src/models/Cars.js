@@ -13,10 +13,14 @@ class Cars {
 
     moveCars() {
         this.#cars.forEach((car) => {
-            if (this.getRandomNumber() >= 4){
-                car.move()
-            }
+            this.#processMoveCars(car);
         });
+    }
+
+    #processMoveCars (car) {
+        if (this.getRandomNumber() >= 4){
+            car.move();
+        }
     }
 
     getMaxPosition() {

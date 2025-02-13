@@ -26,9 +26,7 @@ class RaceController {
     while(true) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parseCarNames = carNames
-          .split(",")
-          .map((carName) => carName.trim());
+        const parseCarNames = carNames.split(",").map((carName) => carName.trim());
         new CarNameValidator().valiateNames(parseCarNames);
   
         return parseCarNames;
