@@ -13,6 +13,7 @@ const ERROR = Object.freeze({
   CAR_NAME_LENGTH: '[ERROR] 자동차 이름은 1자 이상 5자 이하입니다.',
   BLANK: '[ERROR] 자동차 이름에 공백이 포함되어 있습니다.',
   DUPLICATED_CAR_NAME: '[ERROR] 자동차 이름이 중복되었습니다.',
+  NOT_POSITIVE_NUMBER: '[ERROR] 시도할 횟수는 양의 정수여야 합니다.',
 });
 
 export { INPUT, OUTPUT, ERROR };
