@@ -14,8 +14,8 @@ class RaceController {
 
     async race() {
         const carNames = await this.#inputView.getCarNames();
-        const parseCarNames = carNames.split(",");
-        new CarNameValidator().valiateCarNameLength(parseCarNames);
+        const parseCarNames = carNames.split(",").map(carName => carName.trim());
+        new CarNameValidator().valiateNames(parseCarNames);
 
         const tryCount = await this.#inputView.getTryCount();
         const parseTryCount = Number(tryCount);
@@ -32,7 +32,8 @@ class RaceController {
             this.#outputView.printNewLine();
         }
 
-        this.#outputView.printWinners(new Winner().getWinners(cars, carList));
+        const maxPosition = cars.getMaxPosition();
+        this.#outputView.printWinners(new Winner().getWinners(carList, maxPosition));
     }
 }
 
