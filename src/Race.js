@@ -35,5 +35,12 @@ export default class Race {
       });
       Output.newLine();
     }
+
+    // 우승자 출력
+    const positions = this.#cars.map((car) => car.position);
+    const maxPosition = Math.max(...positions);
+    const winnerCars = this.#cars.filter((car) => car.position === maxPosition);
+    const winnerNames = winnerCars.map((car) => car.name);
+    Output.winners(winnerNames);
   }
 }
