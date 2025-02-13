@@ -1,6 +1,9 @@
 class Validate {
   carNameLength(carName, limit) {
-    return carName.length <= limit && carName.length > 0;
+    if (carName.length > limit || carName.length <= 0) {
+  
+      throw new Error();
+    }
   }
 }
 

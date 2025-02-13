@@ -29,3 +29,8 @@
 ## Validate
 
 - [x] [VALIDATE] 자동차 이름은 5자이하만 가능하다
+- [ ] [VALIDATE] 시도할 횟수는 숫자여야한다
+- [ ] [VALIDATE] 시도할 횟수는 양수여야한다
+- [ ] [VALIDATE] 시도할 횟수는 정수여야한다
+
+ 

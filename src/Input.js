@@ -1,25 +1,25 @@
-import readline from "readline";
-
-function readLineAsync(query) {
-  return new Promise((resolve, reject) => {
-    if (arguments.length !== 1) {
-      reject(new Error("arguments must be 1"));
+import { readLineAsync } from "./Util.js";
+import Validate from "./Validate.js";
+class Input {
+  async raceCarNames() {
+    const validate = new Validate();
+    try {
+      const name = await readLineAsync(
+        "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
+      );
+      const names = name.split(",");
+      names.forEach((name) => {
+        validate.carNameLength(name, 4);
+      });
+      return names;
+    } catch (e) {
+      return this.raceCarNames();
     }
+  }
 
-    if (typeof query !== "string") {
-      reject(new Error("query must be string"));
-    }
-
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
+  async raceCount() {
+    return await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+  }
 }
 
-export default readLineAsync;
+export default Input;
