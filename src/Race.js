@@ -11,22 +11,22 @@ export default class Race {
   async play(step = STEP.carName) {
     try {
       if (step === STEP.carName) {
-        await this.readCarNames();
+        await this.#readCarNames();
         step = STEP.tryNumber;
       }
 
       if (step === STEP.tryNumber) {
-        await this.readTryNumber();
+        await this.#readTryNumber();
         step = STEP.racing;
       }
 
       if (step === STEP.racing) {
-        this.racing();
+        this.#racing();
         step = STEP.winner;
       }
 
       if (step === STEP.winner) {
-        this.getWinner();
+        this.#getWinner();
         return;
       }
     } catch (e) {
@@ -35,7 +35,7 @@ export default class Race {
     }
   }
 
-  async readCarNames() {
+  async #readCarNames() {
     const carNames = await Input.carName();
     const parseCars = carNames.toString().split(",");
 
@@ -45,30 +45,32 @@ export default class Race {
       this.#cars.push(new Car(carName));
     });
   }
-  async readTryNumber() {
+  async #readTryNumber() {
     const tryNumber = await Input.tryNumber();
     this.#parseTryNumber = parseInt(tryNumber);
 
     Validator.tryNumber(this.#parseTryNumber);
   }
 
-  racing() {
+  #racing() {
     Output.newLine();
     Output.raceResult();
     for (let i = 0; i < this.#parseTryNumber; i += 1) {
       this.#cars.forEach((car) => {
         car.move();
-        Output.scoreByRace(car.name, car.position);
+        Output.scoreByRace(car.getName(), car.getPosition());
       });
       Output.newLine();
     }
   }
 
-  async getWinner() {
-    const positions = this.#cars.map((car) => car.position);
+  async #getWinner() {
+    const positions = this.#cars.map((car) => car.getPosition());
     const maxPosition = Math.max(...positions);
-    const winnerCars = this.#cars.filter((car) => car.position === maxPosition);
-    const winnerNames = winnerCars.map((car) => car.name);
+    const winnerCars = this.#cars.filter(
+      (car) => car.getPosition() === maxPosition
+    );
+    const winnerNames = winnerCars.map((car) => car.getName());
     Output.winners(winnerNames);
   }
 }

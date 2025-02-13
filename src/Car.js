@@ -6,15 +6,26 @@ import {
 import { generateRandomNumber } from "./utils.js";
 
 export default class Car {
+  #name;
+  #position;
+
   constructor(name) {
-    this.name = name;
-    this.position = START_POSITION;
+    this.#name = name;
+    this.#position = START_POSITION;
   }
 
   move() {
     const isMoving = generateRandomNumber() >= MOVE_CONDITION;
     if (isMoving) {
-      this.position += MOVE_COUNT;
+      this.#position += MOVE_COUNT;
     }
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getPosition() {
+    return this.#position;
   }
 }
