@@ -1,6 +1,5 @@
 import getRandomNumber from './utils/getRandomNumber.js';
 import Printer from './Printer.js';
-import OutputView from './view/OutputView.js';
 
 class Racing {
   #cars;
