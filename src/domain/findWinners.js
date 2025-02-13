@@ -1,6 +1,19 @@
-import playGame from "./playGame.js";
-
-export function displayWinner(cars) {
+import { displayWinner } from "../view/output";
+// [
+//   {
+//     name: "A",
+//     count: 2
+//   },
+//   {
+//     name: "B",
+//     count: 1
+//   },
+//   {
+//     name: "C",
+//     count: 3
+//   }
+// ];
+function findWinners(cars) {
   const maxAdvanceCount = Math.max(...cars.map((cars) => cars.count));
   const winners = cars.filter((car) => car.count === maxAdvanceCount);
 
@@ -9,5 +22,8 @@ export function displayWinner(cars) {
   for (let winner of winners) {
     winnersName.push(winner.name);
   }
-  console.log("우승자: " + winnersName.join(","));
+
+  return winnersName;
 }
+
+export default findWinners;
