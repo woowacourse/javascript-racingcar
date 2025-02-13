@@ -9,4 +9,9 @@ const OUTPUT = Object.freeze({
   WINNERS: '최종 우승자',
 });
 
-export { INPUT, OUTPUT };
+const ERROR = Object.freeze({
+  CAR_NAME_LENGTH: '[ERROR] 자동차 이름은 1자 이상 5자 이하입니다.',
+
+});
+
+export { INPUT, OUTPUT, ERROR };
