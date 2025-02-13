@@ -1,7 +1,7 @@
 import Car from "./Car.js";
-import { MOVE_CONDITION, RANDOM_NUMBER } from "../constants/Constants.js";
+import { LINE_BREAK, MOVE_CONDITION, OUTPUT_MESSAGE, RANDOM_NUMBER } from "../constants/Constants.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
-
+import OutputView from "../views/OutputView.js";
 class Race {
   #carList = [];
 
@@ -11,9 +11,15 @@ class Race {
   }
 
   play() {
+    OutputView.print(OUTPUT_MESSAGE.RESULT);
     for (let i = 0; i < this.attemptCount; i++) {
       this.executeTurn();
+      OutputView.print(LINE_BREAK);
     }
+
+    const winners = this.getCarNamePosition();
+
+    OutputView.print(`${OUTPUT_MESSAGE.WINNER} ${winners.join(", ")}`);
   }
 
   executeTurn() {
@@ -21,6 +27,7 @@ class Race {
       const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
 
       this.checkMove(randomNumber, car);
+      car.printStatus();
     });
   }
 
@@ -29,6 +36,10 @@ class Race {
       car.move();
     }
   }
+
+  // printResult() {
+  //   OutputView.print(OUTPUT_MESSAGE.RESULT);
+  // }
 
   //   getWinnerName() {
   //     const winnerPosition = Math.max(...this.#carList.map((car) => car.position));

@@ -1,3 +1,5 @@
+import OutputView from "../views/OutputView.js";
+
 class Car {
   #name;
   #position;
@@ -9,6 +11,10 @@ class Car {
 
   move() {
     this.#position++;
+  }
+
+  printStatus() {
+    OutputView.print(`${this.name} : ${"-".repeat(this.position)}`);
   }
 
   get name() {
