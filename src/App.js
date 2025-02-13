@@ -2,12 +2,12 @@ import Racing from './Racing.js';
 import readLineAsync from './utils/readLineAsync.js';
 import validator from './utils/validator.js';
 import Car from './Car.js';
+import loopWhileValid from './utils/loopWhileValid.js';
 
 class App {
-  // 입출력 예시
   async run() {
-    const carList = await this.enterCarNames();
-    const count = await this.enterCount();
+    const carList = await loopWhileValid(this.enterCarNames);
+    const count = await loopWhileValid(this.enterCount);
     const racing = new Racing(carList, count);
 
     racing.start();
