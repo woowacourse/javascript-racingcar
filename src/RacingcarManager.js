@@ -20,6 +20,7 @@ class RacingcarManager{
         const attempts = await this.#getAttempts();
         this.roundOfRacing(cars, attempts);
         const winners = this.getWinners(cars);
+        this.#outputView.printWinners(winners);
     }
     
     async #getCarNames()  {
