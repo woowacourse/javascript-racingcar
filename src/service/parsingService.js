@@ -19,7 +19,7 @@ export const parsingService = {
   },
   parseRound(input) {
     if (!Validation.isInteger(input)) {
-      throw new Error(errorMessage.NOT_A_NUMBER);
+      throw new Error(errorMessage.NOT_INTEGER);
     }
     if (!Validation.isNegative(input)) {
       throw new Error(errorMessage.NOT_POSITIVE);
@@ -31,7 +31,7 @@ export const parsingService = {
     try {
       parsedValue = parser(input);
     } catch (error) {
-      OutputView.printError(error.message);
+      OutputView.printError(error);
     }
     return parsedValue;
   },
