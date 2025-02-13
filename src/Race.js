@@ -5,16 +5,28 @@ import Car from "./Car.js";
 export const start = async () => {
   const cars = await getCarNames();
   const attempt = await getAttempt();
+  displayResultTitle();
   for (let i = 0; i < attempt; i++) {
     moveCars(cars);
+    displayRaceResult(cars);
   }
 };
 
 const moveCars = (cars) => {
   for (const c of cars) {
     c.move(getRandomNumber());
-    console.log(c.position);
   }
+};
+
+const displayResultTitle = () => {
+  console.log(INFO_MESSAGE.RACE_RESULT_TITLE);
+};
+
+const displayRaceResult = (cars) => {
+  for (const c of cars) {
+    console.log(`${c.name} : ${c.position}`);
+  }
+  console.log();
 };
 
 const getCarNames = async () => {
