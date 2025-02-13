@@ -4,6 +4,9 @@ const parseInput = {
   car(carNameList) {
     return carNameList.split(NAME_DELIMITER).map((car) => car.trim());
   },
+  attempt(attemptInput) {
+    return Number(attemptInput);
+  },
 };
 
 export default parseInput;
