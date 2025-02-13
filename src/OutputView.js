@@ -1,10 +1,15 @@
+const MESSAGE = {
+    RACING_RESULT_TITLE: '\n실행 결과',
+    WINNER_RESULT_TITLE: '최종 우승자:',
+}
+
 class OutputView {
     printErrorMessage(errorMessage){
         console.log(`${errorMessage}\n`);
     }
 
     printResultMessage(){
-        console.log("\n실행 결과");
+        console.log(MESSAGE.RACING_RESULT_TITLE);
     }
 
     printOneRoundResult(cars){
@@ -15,7 +20,7 @@ class OutputView {
     }
 
     printWinners(winners){
-        console.log(`최종 우승자: ${winners.join(', ')}`);
+        console.log(`${MESSAGE.WINNER_RESULT_TITLE} ${winners.join(', ')}`);
     }
 }
 

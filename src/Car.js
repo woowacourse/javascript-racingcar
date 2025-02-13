@@ -1,3 +1,5 @@
+const MOVE_CONDITION = 4
+const MOVE_FORWARD = 1;
 class Car {
     name
     position
@@ -7,11 +9,10 @@ class Car {
     }
 
     move(randomNumber) {
-        if(randomNumber > 3) {
-            this.position += 1;
+        if(randomNumber >= MOVE_CONDITION) {
+            this.position += MOVE_FORWARD;
         }
     }
 
 }
-
 export default Car;
