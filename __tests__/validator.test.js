@@ -1,5 +1,5 @@
-import validator from '../src/utils/validator';
-import { ERROR_MESSAGE } from '../src/constants/systemMessages';
+import validator from '../src/utils/validator.js';
+import { ERROR_MESSAGE } from '../src/constants/systemMessages.js';
 
 describe('경주에 참여하는 자동차의 이름들을 검증한다.', () => {
   test('중복이 되면 안된다.', () => {
