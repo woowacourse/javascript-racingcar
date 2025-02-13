@@ -38,6 +38,8 @@ async function run() {
     }
     return;
   });
+
+  console.log(`최종 우승자: ${carList.join(", ")}`);
 }
 
 run();
