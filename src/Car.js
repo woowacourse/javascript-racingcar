@@ -1,4 +1,4 @@
-import { MOVE_THRESHOLD } from "./constants.js";
+import { CAR_NAME_MAX_LENGTH, MOVE_THRESHOLD } from "./constants.js";
 import { ERROR_MESSAGE } from "./constants.js";
 
 class Car {
@@ -10,7 +10,8 @@ class Car {
   }
 
   #validate(name) {
-    if (name.length > 5) throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
+    if (name.length > CAR_NAME_MAX_LENGTH)
+      throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
     return name;
   }
 

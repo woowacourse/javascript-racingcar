@@ -1,10 +1,14 @@
 export const MOVE_THRESHOLD = 4;
+export const CAR_NAME_MAX_LENGTH = 5;
+export const MIN_RANDOM_VALUE = 0;
+export const MAX_RANDOM_VALUE = 9;
 
 export const INFO_MESSAGE = {
   CAR_NAMR_INPUT:
     "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
   ATTEMPT_INPUT: "시도할 횟수는 몇 회인가요?\n",
   RACE_RESULT_TITLE: "\n실행 결과",
+  WINNER_TITLE: "최종 우승자: ",
 };
 
 export const ERROR_MESSAGE = {

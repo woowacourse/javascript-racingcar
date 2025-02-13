@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants.jsç";
+import { ERROR_MESSAGE } from "./constants.js";
 
 export const validateCarNames = (cars, carNames) => {
   if (cars.length > 10) throw Error(ERROR_MESSAGE.CAR_COUNT);

@@ -16,5 +16,5 @@ export const displayWinner = (cars) => {
   const winners = cars
     .filter((car) => car.position.length === maxPosition)
     .map((car) => car.name);
-  console.log(`최종 우승자: ${winners.join(", ")}`);
+  console.log(`${INFO_MESSAGE.WINNER_TITLE}${winners.join(", ")}`);
 };

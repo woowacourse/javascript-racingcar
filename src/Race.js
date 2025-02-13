@@ -1,3 +1,4 @@
+import { MAX_RANDOM_VALUE, MIN_RANDOM_VALUE } from "./constants.js";
 import { getAttempt, getCarNames } from "./InputHandler.js";
 import {
   displayRaceResult,
@@ -23,5 +24,5 @@ const moveCars = (cars) => {
 };
 
 const getRandomNumber = () => {
-  return Math.floor(Math.random() * 10);
+  return Math.floor(Math.random() * (MAX_RANDOM_VALUE - MIN_RANDOM_VALUE + 1));
 };
