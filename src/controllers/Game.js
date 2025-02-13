@@ -1,6 +1,7 @@
-import { Parser } from '../utils/Parser.js';
 import { createRandom } from '../utils/Random.js';
 import Car from '../models/Car.js';
+import OutputView from '../views/OutputView.js';
+import InputController from './InputController.js';
 
 export default class Game {
   #carList;
@@ -9,8 +10,7 @@ export default class Game {
     this.#carList = [];
   }
 
-  createCarList(userInput) {
-    const names = Parser.splitName(userInput);
+  createCarList(names) {
     names.forEach(name => {
       this.#carList.push(new Car(name));
     });
@@ -26,27 +26,26 @@ export default class Game {
     });
 
     this.#carList.forEach(car => {
-      console.log('car postion/maxposition>>>', `${car.position}, ${maxPosition}`);
       if (car.position === maxPosition) {
         winnerNames.push(car.name);
-        console.log('이프문 안에서 카네임>>>>>', car.name);
       }
     });
-
-    console.log('위너네임들 테스트>>>>', winnerNames);
-
     return winnerNames;
   }
 
-  start() {
-    this.createCarList('beomtae, camel');
-    this.#carList.forEach(car => {
-      for (let i = 0; i < 5; i++) {
+  async start() {
+    const inputName = await InputController.inputName();
+    const inputTryNumber = await InputController.inputTryNumber();
+    this.createCarList(inputName);
+    for (let i = 0; i < inputTryNumber; i++) {
+      this.#carList.forEach(car => {
         const randomValue = createRandom();
         car.moveForward(randomValue);
-      }
-    });
+        OutputView.roundResult(car.name, car.position);
+      });
+      OutputView.break();
+    }
     const winnerNames = this.judgeWinner();
-    console.log(winnerNames);
+    OutputView.gameResult(winnerNames);
   }
 }
