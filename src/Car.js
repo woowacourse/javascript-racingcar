@@ -1,3 +1,5 @@
+import { DEFAULT_POSITION, UNIT_POSITION } from './constants/MagicNumber';
+
 class Car {
   #name;
 
@@ -5,11 +7,11 @@ class Car {
 
   constructor(name) {
     this.#name = name;
-    this.#position = 0;
+    this.#position = DEFAULT_POSITION;
   }
 
   move() {
-    this.#position += 1;
+    this.#position += UNIT_POSITION;
   }
 
   getCarPosition() {

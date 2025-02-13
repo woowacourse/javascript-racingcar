@@ -1,5 +1,11 @@
 import getRandomNumber from './utils/getRandomNumber.js';
 import Printer from './Printer.js';
+import IOMessage from './constants/IOMessage.js';
+import {
+  MIN_RANDOM_NUMBER,
+  MAX_RANDOM_NUMBER,
+  MOVE_NUMBER,
+} from './constants/MagicNumber.js';
 
 class Racing {
   #cars;
@@ -9,9 +15,8 @@ class Racing {
   }
 
   raceTurn() {
-    // todo: magic number처리
-    const randomNum = getRandomNumber(0, 9);
-    if (randomNum >= 4) {
+    const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+    if (randomNum >= MOVE_NUMBER) {
       this.#cars.forEach((car) => {
         car.move();
       });
@@ -22,7 +27,7 @@ class Racing {
   runRace(tryCount) {
     let currentCount = 0;
 
-    Printer.printHeader('\n실행 결과');
+    Printer.printHeader(IOMessage.resultHeader);
 
     while (currentCount < tryCount) {
       this.raceTurn();

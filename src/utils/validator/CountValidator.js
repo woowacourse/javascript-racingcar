@@ -1,4 +1,5 @@
 import ErrorMessage from '../../constants/ErrorMessage.js';
+import { MAXIMUM_COUNT, MIN_TRY_COUNT } from '../../constants/MagicNumber.js';
 
 class CountValidator {
   static isNumber(parsedTryCount) {
@@ -8,7 +9,7 @@ class CountValidator {
   }
 
   static isMoreThanZero(parsedTryCount) {
-    if (parsedTryCount <= 0) {
+    if (parsedTryCount < MIN_TRY_COUNT) {
       throw new Error(ErrorMessage.isInvalidNumber);
     }
   }
@@ -20,7 +21,6 @@ class CountValidator {
   }
 
   static isNotBigNumber(parsedTryCount) {
-    const MAXIMUM_COUNT = 1000000;
     if (parsedTryCount > MAXIMUM_COUNT) {
       throw new Error(ErrorMessage.isBigNumber);
     }

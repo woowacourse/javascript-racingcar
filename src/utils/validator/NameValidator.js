@@ -1,4 +1,5 @@
 import ErrorMessage from '../../constants/ErrorMessage.js';
+import { MIN_CAR_NUMBER, MAX_CAR_LENGTH } from '../../constants/MagicNumber.js';
 
 class NameValidator {
   static isNotEmpty(parsedCarName) {
@@ -8,14 +9,14 @@ class NameValidator {
   }
 
   static isMoreThanTwo(parsedCarName) {
-    if (parsedCarName.length < 2) {
+    if (parsedCarName.length < MIN_CAR_NUMBER) {
       throw new Error(ErrorMessage.isLessThanTwo);
     }
   }
 
   static isBelowFive(parsedCarName) {
     parsedCarName.forEach((carName) => {
-      if (carName.length > 5) {
+      if (carName.length > MAX_CAR_LENGTH) {
         throw new Error(ErrorMessage.isLongerThanFive);
       }
     });
