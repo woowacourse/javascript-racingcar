@@ -8,3 +8,11 @@ test('자동차 이름은 1자 이상 5자 이하가 아니면 에러를 띄운�
 
   expect(() => CarNameValidator.checkCarNameLength(carName)).toThrow('[ERROR]');
 });
+
+test('자동차 이름에 공백이 들어가면 에러를 띄운다', () => {
+  // given
+  const carName = 'po bi';
+
+  // then
+  expect(() => CarNameValidator.checkBlank(carName)).toThrow('[ERROR]');
+});
