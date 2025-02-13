@@ -26,10 +26,19 @@ export const parsingService = {
     }
     return Number(input);
   },
+  tryParse(parser, input) {
+    let parsedValue;
+    try {
+      parsedValue = parser(input);
+    } catch (error) {
+      OutputView.printError(error.message);
+    }
+    return parsedValue;
+  },
   async parseInput(getInput, parser) {
     while (true) {
       const input = await getInput();
-      let parsedInput = OutputView.printError(parser, input);
+      let parsedInput = this.tryParse(parser, input);
       if (parsedInput) return parsedInput;
     }
   },
