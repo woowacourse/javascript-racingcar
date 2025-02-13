@@ -13,7 +13,12 @@ class Printer {
     OutputView.print('');
   }
 
-  // 최종 우승자 출력
+  //   // 최종 우승자 출력
+  static printWinner(results) {
+    const winner = results.map((result) => result.name).join(', ');
+
+    OutputView.print(`최종 우승자: ${winner}`);
+  }
 }
 
 export default Printer;
