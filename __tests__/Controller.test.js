@@ -6,7 +6,7 @@ jest.mock("../src/utils/getRandomNumber", () => ({
   getRandomNumber: jest.fn(),
 }));
 
-describe("자동차 경주 테스트", () => {
+describe("자동차 경주 한 라운드 테스트", () => {
   test("자동차 한 라운드 진행 후 결과 출력한다.(한대일 경우)", () => {
     getRandomNumber.mockReturnValue(5);
     const logSpy = jest.spyOn(console, "log");
