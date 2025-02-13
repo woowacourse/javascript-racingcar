@@ -4,6 +4,7 @@ import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
 import { CAR } from "../constants/constants.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
+
 export default class Controller {
   async run() {
     const carNameInput = await this.validateAndRetry(
@@ -48,6 +49,7 @@ export default class Controller {
     });
     console.log("");
   }
+
   async validateAndRetry(message, validateFn) {
     try {
       const inputView = new InputView();
