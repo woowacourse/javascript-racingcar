@@ -1,5 +1,8 @@
 import { InputView } from "./view/InputView.js";
 import { parsingService } from "./Service/parsingService.js";
+import Car from "./model/Car.js";
+
+const cars = [];
 
 function printError(parser, input) {
   let parsedValue;
@@ -19,8 +22,14 @@ async function parseInput(getInput, parser) {
   }
 }
 
-const carName = await parseInput(
+const carNames = await parseInput(
   InputView.getCarName,
   parsingService.parseNames
 );
-const round = await parseInput(InputView.getRound, parsingService.parseRound);
+// const round = await parseInput(InputView.getRound, parsingService.parseRound);
+
+for (const carName of carNames) {
+  cars.push(new Car(carName));
+}
+
+cars.forEach((car) => console.log(car.toString()));
