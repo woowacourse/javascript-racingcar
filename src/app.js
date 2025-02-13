@@ -19,8 +19,8 @@ class App {
     );
     try {
       validateCarsNameLength(input);
-      validateCarsNameForm(input); // 문자열 나눠서 배열로 알아서 검사
-      validateDuplicatedCarName(input); // 문자열 나눠서 배열로 알아서 검사
+      validateCarsNameForm(input);
+      validateDuplicatedCarName(input);
       return input;
     } catch (err) {
       console.log(err.message);

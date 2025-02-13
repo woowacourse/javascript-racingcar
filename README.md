@@ -1,7 +1,29 @@
 # javascript-racingcar
-
-자동차, 콘트롤러
-
+```
+javascript-racingcar
+├─ .eslintrc.json
+├─ .prettierrc
+├─ README.md
+├─ __tests__
+│  ├─ Car.test.js : 자동차 클래스 테스트
+│  └─ Validation : 유효성 검사 테스트
+│     ├─ carName.test.js : 자동차 이름 테스트
+│     └─ gameCount.test.js : 시도 횟수 테스트
+├─ package-lock.json
+├─ package.json
+└─ src
+  ├─ Model
+  │  └─ Car.js
+  ├─ Validation : 유효성 검사
+  │  ├─ carName.js
+  │  └─ gameCount.js
+  ├─ View
+  │  ├─ input.js
+  │  └─ output.js
+  ├─ app.js : 컨트롤러
+  ├─ index.js : 진입점
+  └─ util.js
+```
 ## 자동차
 
 1. 자동차에 5자 이하로 이름을 부여할 수 있다.
