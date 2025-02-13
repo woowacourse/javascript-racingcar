@@ -24,7 +24,7 @@ describe('애플리케이션 테스트', () => {
     const app = new App();
     await app.run();
 
-    expect(consoleSpy).toHaveBeenCalledWith('\n실행 결과');
+    expect(consoleSpy).toHaveBeenCalledWith('실행 결과');
     expect(consoleSpy).toHaveBeenCalledWith('a : ');
     expect(consoleSpy).toHaveBeenCalledWith('b : ');
     expect(consoleSpy).toHaveBeenCalledWith('c : -');

@@ -12,10 +12,7 @@ export function mockRandoms(values) {
 
 describe('CarModel', () => {
   test('CarModel을 생성한다.', () => {
-    // given
-    // when
     const car = new CarModel();
-    // then
     expect(car).toBeDefined();
   });
 
@@ -26,8 +23,6 @@ describe('CarModel', () => {
   });
 
   test('CarModel은 랜덤 숫자가 4이상일 시 앞으로 전진한다.', () => {
-    //given
-    //when
     const car = new CarModel();
     for (let value = 4; value <= 9; value++) {
       mockRandom(value);
@@ -38,8 +33,6 @@ describe('CarModel', () => {
   });
 
   test('CarModel은 랜덤 숫자가 4이하일시 정지한다.', () => {
-    //given
-    //when
     const car = new CarModel();
 
     for (let value = 0; value < 4; value++) {

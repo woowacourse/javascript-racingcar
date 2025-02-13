@@ -1,3 +1,4 @@
+import { OUTPUT_MESSAGE } from './constants.js';
 import { CarModel } from './models/index.js';
 import { InputView, OutputView } from './views/index.js';
 
@@ -8,7 +9,7 @@ export default class App {
 
     const cars = names.map(name => new CarModel(name));
 
-    OutputView.print('\n실행 결과');
+    OutputView.printResult();
 
     for (let currentCount = 0; currentCount < count; currentCount++) {
       cars.forEach(car => {
@@ -23,8 +24,6 @@ export default class App {
       .filter(car => car.position === winnerPosition)
       .map(car => car.name);
 
-    const winnerOutput = winners.join(', ');
-
-    OutputView.print(`최종 우승자: ${winnerOutput}`);
+    OutputView.printWinner(winners);
   }
 }
