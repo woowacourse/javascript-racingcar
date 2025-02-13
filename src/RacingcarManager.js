@@ -18,7 +18,7 @@ class RacingcarManager{
         const carNames = await this.#getCarNames();
         const cars = this.createCars(carNames);
         const attempts = await this.#getAttempts();
-        this.roundOfRacing(cars);
+        this.roundOfRacing(cars, attempts);
     }
     
     async #getCarNames()  {
@@ -72,10 +72,12 @@ class RacingcarManager{
         });
     }
 
-    roundOfRacing(cars){
+    roundOfRacing(cars, attempts){
         this.#outputView.printResultMessage();
-        this.oneRound(cars);
-        this.#outputView.printOneRoundResult(cars);
+        for(let i = 0; i< attempts; i++) {
+            this.oneRound(cars);
+            this.#outputView.printOneRoundResult(cars);
+        }
     }
 
 }

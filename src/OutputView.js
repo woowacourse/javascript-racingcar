@@ -4,7 +4,7 @@ class OutputView {
     }
 
     printResultMessage(){
-        console.log("실행 결과");
+        console.log("\n실행 결과");
     }
 
     printOneRoundResult(cars){
