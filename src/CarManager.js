@@ -2,6 +2,7 @@
 import Car from './Car.js';
 import { CONFIG } from './constants/config.js';
 import pickRandomNumber from './utils/pickRandomNumber.js';
+import OutputView from './views/OutputView.js';
 
 class CarManager {
   constructor() {
@@ -12,6 +13,7 @@ class CarManager {
     const carNames = this.splitCarName(names);
 
     this.cars = carNames.map((carName) => new Car(carName));
+    console.log(this.cars);
     return this.cars;
   }
 
@@ -31,11 +33,18 @@ class CarManager {
   }
 
   race(attempts) {
+    OutputView.printResultGreeting();
     for (let i = 0; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
+        this.showRaceResult(car.name, car.position);
       });
+      console.log('\n');
     }
+  }
+
+  showRaceResult(name, position) {
+    OutputView.printRaceResult(name, position);
   }
 }
 

@@ -3,6 +3,7 @@ const CONFIG = Object.freeze({
   MINIMUM_RANDOM_NUMBER: 4,
   MAXIMUM_RANDOM_NUMBER: 9,
   COMMA: ',',
+  RACE_STEP: '-',
 });
 
 export {

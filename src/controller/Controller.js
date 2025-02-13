@@ -1,5 +1,6 @@
 import CarManager from '../CarManager.js';
 import readLineAsync from '../views/InputView.js';
+import OutputView from '../views/OutputView.js';
 
 class Controller {
   constructor() {
