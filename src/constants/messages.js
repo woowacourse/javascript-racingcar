@@ -11,7 +11,7 @@ const OUTPUT = Object.freeze({
 
 const ERROR = Object.freeze({
   CAR_NAME_LENGTH: '[ERROR] 자동차 이름은 1자 이상 5자 이하입니다.',
-
+  BLANK: '[ERROR] 자동차 이름에 공백이 포함되어 있습니다.',
 });
 
 export { INPUT, OUTPUT, ERROR };
