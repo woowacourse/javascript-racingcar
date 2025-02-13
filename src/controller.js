@@ -10,10 +10,6 @@ export const racingCarController = (carNames) => {
     carsInfo[carName] += 1;
   };
 
-  const getCarNames = () => {
-    return Object.keys(carsInfo);
-  };
-
   const getRacingCarResult = () => {
     return Object.entries(carsInfo).reduce((acc, [carName, distance]) => {
       acc += formatRacingResult(carName, distance);
@@ -29,5 +25,5 @@ export const racingCarController = (carNames) => {
     );
   };
 
-  return { advanceRacingCar, getCarNames, getRacingCarResult, getWinners };
+  return { advanceRacingCar, getRacingCarResult, getWinners };
 };
