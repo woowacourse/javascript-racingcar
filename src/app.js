@@ -1,21 +1,21 @@
-import readLineAsync from "./View/input.js";
+import readLineAsync from './View/input.js';
 import {
   validateCarsNameForm,
   validateDuplicatedCarName,
   validateCarsNameLength,
-} from "./Validation/carName.js";
+} from './Validation/carName.js';
 import {
   validateGameCountRange,
   validateGameCountType,
-} from "./Validation/gameCount.js";
+} from './Validation/gameCount.js';
 
-import Car from "./Model/Car.js";
-import outputView from "./View/output.js";
+import Car from './Model/Car.js';
+import outputView from './View/output.js';
 
 class App {
   async getCarsName() {
     const input = await readLineAsync(
-      "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n"
+      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
     );
     try {
       validateCarsNameLength(input);
@@ -29,7 +29,7 @@ class App {
   }
 
   async getGameCount() {
-    const input = await readLineAsync("시도할 횟수는 몇 회인가요?\n");
+    const input = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
     try {
       validateGameCountType(input);
       validateGameCountRange(input);
@@ -42,7 +42,7 @@ class App {
 
   async run() {
     const carNames = await this.getCarsName();
-    const cars = carNames.split(",").map((carName) => new Car(carName));
+    const cars = carNames.split(',').map((carName) => new Car(carName));
     const gameCount = Number(await this.getGameCount());
 
     outputView.printGameResult(gameCount, cars);
