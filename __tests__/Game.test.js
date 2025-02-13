@@ -44,4 +44,3 @@ describe('우승자 판단 테스트', () => {
     //then
     expect(winnerSpy).toHaveReturnedWith(['pobi']);
   });
-});
