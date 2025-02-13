@@ -1,4 +1,4 @@
-export const validator = Object.freeze({
+const validator = Object.freeze({
   carNames(carNames) {
     if (carNames.length !== new Set(carNames).size)
       throw new Error('중복된 이름이 존재합니다.');
@@ -21,3 +21,5 @@ export const validator = Object.freeze({
       throw new Error('횟수는 최대 1000 이하이어야 합니다.');
   },
 });
+
+export default validator;

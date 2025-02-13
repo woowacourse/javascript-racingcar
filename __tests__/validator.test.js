@@ -1,4 +1,4 @@
-import { validator } from '../src/utils/validator';
+import validator from '../src/utils/validator';
 
 describe('경주에 참여하는 자동차의 이름들을 검증한다.', () => {
   test('중복이 되면 안된다.', () => {

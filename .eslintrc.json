@@ -1,5 +1,18 @@
 {
-  "rules": {},
+  "rules": {
+    "max-lines-per-function": ["error", 15],
+    "max-depth": ["error", 2],
+    "prettier/prettier": ["error"],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    "no-console": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/extensions": "off",
+    "class-methods-use-this": "off"
+  },
   "env": {
     "es6": true,
     "node": true
@@ -8,5 +21,19 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["__tests__/**"],
+      "rules": {
+        "max-lines-per-function": "off",
+        "max-depth": "off",
+        "prettier/prettier": "off"
+      }
+    }
+  ]
 }

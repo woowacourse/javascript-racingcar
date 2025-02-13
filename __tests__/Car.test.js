@@ -1,4 +1,4 @@
-import Car from '../src/Car';
+import Car from '../src/Car.js';
 
 describe('자동차 객체 테스트', () => {
   test.each([4, 5, 6, 7, 8, 9, 10])(
@@ -12,7 +12,7 @@ describe('자동차 객체 테스트', () => {
 
       // then
       expect(car.position).toBe(1);
-    }
+    },
   );
 
   test.each([1, 2, 3])('그 외의 경우 움직이지 않는다.', (value) => {
