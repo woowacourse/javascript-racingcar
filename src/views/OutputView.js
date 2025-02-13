@@ -23,6 +23,6 @@ export default class OutputView {
 
   static printWinner(winners) {
     const winnerOutput = winners.join(', ');
-    this.#print(`${winnerOutput}${OUTPUT_MESSAGE.winner}`);
+    this.#print(`${OUTPUT_MESSAGE.winner}${winnerOutput}`);
   }
 }
