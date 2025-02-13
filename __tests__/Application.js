@@ -1,6 +1,6 @@
-import { run } from '../src/index.js';
 import readline from 'readline';
-import { mockRandom, mockRandoms } from './CarModel.js';
+import { mockRandoms } from './CarModel.js';
+import App from '../src/App.js';
 
 const mockQuestions = inputs => {
   readline.createInterface = jest.fn().mockImplementation(() => ({
@@ -21,12 +21,12 @@ describe('애플리케이션 테스트', () => {
 
     const consoleSpy = jest.spyOn(console, 'log');
 
-    await run();
+    const app = new App();
+    await app.run();
 
     expect(consoleSpy).toHaveBeenCalledWith('\n실행 결과');
     expect(consoleSpy).toHaveBeenCalledWith('a : ');
     expect(consoleSpy).toHaveBeenCalledWith('b : ');
     expect(consoleSpy).toHaveBeenCalledWith('c : -');
   });
-  // test('우승자가 두명일때', () => {});
 });
