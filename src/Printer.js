@@ -1,4 +1,5 @@
 import OutputView from './view/OutputView.js';
+import IOMessage from './constants/IOMessage.js';
 
 class Printer {
   static printHeader(message) {
@@ -10,7 +11,7 @@ class Printer {
       const { name, position } = result;
       const raceResult = '-'.repeat(position);
 
-      OutputView.print(`${name} : ${raceResult}`);
+      OutputView.print(IOMessage.getRaceResult(name, raceResult));
     });
 
     OutputView.print('');
@@ -19,7 +20,7 @@ class Printer {
   static printWinner(results) {
     const winner = results.map((result) => result.name).join(', ');
 
-    OutputView.print(`최종 우승자: ${winner}`);
+    OutputView.print(IOMessage.getWinner(winner));
   }
 }
 
