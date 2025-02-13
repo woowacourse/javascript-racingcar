@@ -3,7 +3,7 @@ import { readLineAsync, retryUntilSuccess } from '../utils.js';
 import Validator from '../validator.js';
 
 export default class InputView {
-  static async getNameList() {
+  static async getNames() {
     return retryUntilSuccess(async () => {
       const rawName = await readLineAsync(INPUT_MESSAGES.carName);
       Validator.validateCarName(rawName);

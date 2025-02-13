@@ -4,18 +4,18 @@ import OutputView from './views/OutputView.js';
 
 export default class App {
   async run() {
-    const nameList = await InputView.getNameList();
+    const names = await InputView.getNames();
     const count = await InputView.getCount();
 
-    const cars = nameList.map(name => new CarModel(name));
+    const cars = names.map(name => new CarModel(name));
 
     OutputView.print('\n실행 결과');
     for (let i = 0; i < count; i++) {
-      for (let j = 0; j < nameList.length; j++) {
+      for (let j = 0; j < names.length; j++) {
         const currentCar = cars[j];
         currentCar.go();
       }
-      OutputView.printOneGame(nameList, cars);
+      OutputView.printOneGame(names, cars);
     }
 
     let winnerPosition = 0;
@@ -23,15 +23,14 @@ export default class App {
       winnerPosition = Math.max(car.position, winnerPosition);
     });
 
-    const winnerList = [];
-    for (let i = 0; i < nameList.length; i++) {
+    const winners = [];
+    for (let i = 0; i < names.length; i++) {
       const position = cars[i].position;
-      if (position === winnerPosition) winnerList.push(nameList[i]);
+      if (position === winnerPosition) winners.push(names[i]);
     }
 
-    const winnerOutput = winnerList.join(', ');
+    const winnerOutput = winners.join(', ');
 
-    // FIX: 한 자동차가 0의 스코어일때 최종우승자가 뜨지 않는 오류
     OutputView.print(`최종 우승자: ${winnerOutput}`);
   }
 }
