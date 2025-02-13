@@ -22,17 +22,30 @@ class Controller {
   }
 
   async readCarNames() {
-    const input = await readLineAsync(INPUT.CAR_NAMES);
-    const carNames = splitStringToArray(input, CONFIG.COMMA);
-
-    CarNameValidator.checkDuplicatedCarName(carNames);
-    return carNames;
+    try {
+      const input = await readLineAsync(INPUT.CAR_NAMES);
+      const carNames = splitStringToArray(input, CONFIG.COMMA);
+      carNames.forEach((carName) => {
+        CarNameValidator.checkCarNameLength(carName);
+        CarNameValidator.checkBlank(carName);
+      });
+      CarNameValidator.checkDuplicatedCarName(carNames);
+      return carNames;
+    } catch (err) {
+      console.log(err.message);
+      return this.readCarNames();
+    }
   }
 
   async readAttempts() {
-    const attempts = await readLineAsync(INPUT.ATTEMPTS);
-    AttemptsValidator.checkPositiveNumber(attempts);
-    return attempts;
+    try {
+      const attempts = await readLineAsync(INPUT.ATTEMPTS);
+      AttemptsValidator.checkPositiveNumber(attempts);
+      return attempts;
+    } catch (err) {
+      console.log(err.message);
+      return this.readAttempts();
+    }
   }
 }
 
