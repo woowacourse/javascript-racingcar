@@ -43,7 +43,7 @@ class App {
   async run() {
     const carNames = await this.getCarsName();
     const cars = carNames.split(",").map((carName) => new Car(carName));
-    const gameCount = await this.getGameCount(); // TODO: Number로 변환
+    const gameCount = Number(await this.getGameCount());
 
     outputView.printGameResult(gameCount, cars);
 
