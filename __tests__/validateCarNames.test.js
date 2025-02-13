@@ -1,4 +1,4 @@
-import validateCarNames from "../src/validation/validateCarNames.js";
+import validateCarNames from "../src/validations/validateCarNames.js";
 import { ERROR_CAR_NAMES_MESSAGE } from "../src/constants/constants.js";
 
 describe("CarNames 유효성 테스트", () => {

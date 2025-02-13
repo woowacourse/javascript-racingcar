@@ -1,6 +1,6 @@
 import Console from "../utils/Console.js";
-import validateCarNames from "../validation/validateCarNames.js";
-import validateTryCount from "../validation/validateTryCount.js";
+import validateCarNames from "../validations/validateCarNames.js";
+import validateTryCount from "../validations/validateTryCount.js";
 import { INPUT_PROMPT_MESSAGE } from "../constants/constants.js";
 
 const Input = {
