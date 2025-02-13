@@ -28,14 +28,12 @@ const carNames = await parseInput(
   parsingService.parseNames
 );
 const round = await parseInput(InputView.getRound, parsingService.parseRound);
-
+OutputView.printMessage("");
 for (const carName of carNames) {
   cars.push(new Car(carName));
 }
 
 raceService.moveCar(cars, round);
-
-cars.forEach((car) => OutputView.printMessage(car.toString()));
 
 const maxPosition = Math.max(...cars.map((car) => car.position));
 
@@ -44,4 +42,4 @@ const winner = cars
   .map((car) => car.name)
   .join(", ");
 
-OutputView.printMessage(winner);
+OutputView.printMessage(`최종 우승자: ${winner}`);
