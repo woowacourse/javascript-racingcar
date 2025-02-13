@@ -6,6 +6,7 @@ const INPUT = Object.freeze({
 
 const OUTPUT = Object.freeze({
   RESULT_GREETING: '실행 결과',
+  WINNERS: '최종 우승자',
 });
 
 export { INPUT, OUTPUT };

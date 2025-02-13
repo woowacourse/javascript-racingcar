@@ -1,6 +1,7 @@
 import CarManager from '../CarManager.js';
 import readLineAsync from '../views/InputView.js';
 import { INPUT } from '../constants/messages.js';
+import OutputView from '../views/OutputView.js';
 
 class Controller {
   constructor() {
@@ -12,7 +13,8 @@ class Controller {
     this.carManager.createCars(carNames);
     const attempts = await this.readAttempts();
     this.carManager.race(attempts);
-    this.carManager.determineWinners();
+    const winners = this.carManager.determineWinners();
+    OutputView.printWinners(winners);
   }
 
   async readCarNames() {
