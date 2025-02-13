@@ -3,6 +3,7 @@ import readLineAsync from './utils/readLineAsync.js';
 import validator from './utils/validator.js';
 import Car from './Car.js';
 import loopWhileValid from './utils/loopWhileValid.js';
+import { GAME_MESSAGE, SEPERATOR } from './constants/systemMessages.js';
 
 class App {
   async run() {
@@ -14,17 +15,15 @@ class App {
   }
 
   async enterCarNames() {
-    const inputName = await readLineAsync(
-      '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
-    );
-    const names = inputName.split(',');
+    const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
+    const names = inputName.split(SEPERATOR);
     validator.carNames(names);
 
     return names.map((name) => new Car(name, 0));
   }
 
   async enterCount() {
-    const count = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const count = await readLineAsync(GAME_MESSAGE.ENTER_COUNT);
     validator.count(count);
 
     return count;

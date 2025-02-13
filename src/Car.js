@@ -1,3 +1,6 @@
+import { MOVING_DISTANCE, MOVING_THRESHOLD } from './constants/configurations';
+import { FORWARD_DASH } from './constants/systemMessages';
+
 class Car {
   name;
   position;
@@ -8,11 +11,11 @@ class Car {
   }
 
   move(value) {
-    if (value >= 4) this.position += 1;
+    if (value >= MOVING_THRESHOLD) this.position += MOVING_DISTANCE;
   }
 
   getRacingStatus() {
-    return `${this.name} : ${'-'.repeat(this.position)}`;
+    return `${this.name} : ${FORWARD_DASH.repeat(this.position)}`;
   }
 }
 

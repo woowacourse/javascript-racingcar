@@ -1,4 +1,5 @@
 import getRandomValue from './utils/getRandomValue.js';
+import { GAME_MESSAGE, SEPERATOR } from './constants/systemMessages.js';
 
 class Racing {
   carList;
@@ -14,11 +15,11 @@ class Racing {
     return this.carList
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name)
-      .join(', ');
+      .join(`${SEPERATOR} `);
   }
 
   start() {
-    console.log('\n실행 결과');
+    console.log(GAME_MESSAGE.RACING_RESULT);
     for (let i = 0; i < this.count; i++) {
       this.carList.forEach((car) => {
         car.move(getRandomValue());
@@ -26,7 +27,7 @@ class Racing {
       });
       console.log();
     }
-    console.log(`최종 우승자: ${this.getWinner()}`);
+    console.log(`${GAME_MESSAGE.WINNER} ${this.getWinner()}`);
   }
 }
 
