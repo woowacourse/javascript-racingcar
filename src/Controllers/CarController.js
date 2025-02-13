@@ -1,18 +1,23 @@
-import { InputView } from '../Views/InputView.js';
+import InputView from '../Views/InputView.js';
+import { checkTryCountRange, checkIsInteger } from '../validates/tryCountValidates.js';
+import { checkIsEmpty, checkCarNameLength, checkCarCount, checkCarNameDuplicate } from '../validates/carValidates.js';
+import { splitString } from '../utils/separator.js';
+import { stringToNumber } from '../utils/changeDataType.js';
+
 class CarController {
   async run() {
     const carNamesInput = await this.getCarName();
-    const carNames = this.validateCarName();
+    const carNames = this.validateCarName(carNamesInput);
 
     const tryCountInput = await this.getTryCount();
-    const tryCount = this.validateTryCount();
+    const tryCount = this.validateTryCount(tryCountInput);
   }
 
   getCarName() {
     return InputView.inputCarName();
   }
 
-  validateCarName() {
+  validateCarName(carNamesInput) {
     checkIsEmpty(carNamesInput);
     const carNames = splitString(carNamesInput);
     checkCarNameLength(carNames);
@@ -25,7 +30,7 @@ class CarController {
     return InputView.inputTryCount();
   }
 
-  validateTryCount() {
+  validateTryCount(tryCountInput) {
     const tryCount = stringToNumber(tryCountInput);
     checkTryCountRange(tryCount);
     checkIsInteger(tryCount);
