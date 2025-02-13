@@ -11,20 +11,16 @@ function printError(parser, input) {
   return parsedValue;
 }
 
-while (true) {
-  const carInput = await InputView.getCarName();
-  let parsedCars = printError(parsingService.parseNames, carInput);
-  if (!parsedCars) {
-    continue;
+async function parseInput(getInput, parser) {
+  while (true) {
+    const input = await getInput();
+    let parsedInput = printError(parser, input);
+    if (parsedInput) return parsedInput;
   }
-  break;
 }
 
-while (true) {
-  const roundInput = await InputView.getRound();
-  let parsedRound = printError(parsingService.parseRound, roundInput);
-  if (!parsedRound) {
-    continue;
-  }
-  break;
-}
+const carName = await parseInput(
+  InputView.getCarName,
+  parsingService.parseNames
+);
+const round = await parseInput(InputView.getRound, parsingService.parseRound);
