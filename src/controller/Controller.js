@@ -25,7 +25,10 @@ class Controller {
     try {
       const input = await readLineAsync(INPUT.CAR_NAMES);
       const carNames = splitStringToArray(input, CONFIG.COMMA);
-
+      carNames.forEach((carName) => {
+        CarNameValidator.checkCarNameLength(carName);
+        CarNameValidator.checkBlank(carName);
+      });
       CarNameValidator.checkDuplicatedCarName(carNames);
       return carNames;
     } catch (err) {
