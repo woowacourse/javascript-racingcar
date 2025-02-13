@@ -8,7 +8,7 @@ class Validate {
     return this;
   }
 
-  isBelowLimit(name) {
+  isLiminLength(name) {
     return this.#throwIfInValid(
       name.length > MAX_CAR_LENGTH,
       ERROR_MESSAGE.belowLimit
@@ -16,10 +16,7 @@ class Validate {
   }
 
   isPositiveLength(name) {
-    return this.#throwIfInValid(
-      name.length <= 0,
-      ERROR_MESSAGE.positiveLength
-    );
+    return this.#throwIfInValid(name.length <= 0, ERROR_MESSAGE.positiveLength);
   }
 
   isPositiveNumber(number) {
@@ -36,6 +33,7 @@ class Validate {
       ERROR_MESSAGE.integer
     );
   }
+  
 }
 
 export default Validate;

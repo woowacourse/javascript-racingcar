@@ -12,7 +12,7 @@ class Input {
       const raceCarNames = raceCarName.split(",");
 
       raceCarNames.forEach((raceCarName) => {
-        this.#validate.isBelowLimit(raceCarName).isPositiveLength(raceCarName);
+        this.#validate.isLiminLength(raceCarName).isPositiveLength(raceCarName);
       });
 
       return raceCarNames;
