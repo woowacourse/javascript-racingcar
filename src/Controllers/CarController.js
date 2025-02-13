@@ -5,6 +5,7 @@ import { checkIsEmpty, checkCarNameLength, checkCarCount, checkCarNameDuplicate 
 import { splitString } from '../utils/separator.js';
 import { stringToNumber } from '../utils/changeDataType.js';
 import Car from '../Models/Car.js';
+import { getRandomNumber } from '../utils/randomNumber.js';
 
 class CarController {
   async run() {
@@ -49,12 +50,8 @@ class CarController {
     return tryCount;
   }
 
-  getRandomNumber() {
-    return Math.floor(Math.random() * 10);
-  }
-
   canMove() {
-    const randomNumber = this.getRandomNumber();
+    const randomNumber = getRandomNumber();
 
     return randomNumber >= 4;
   }
