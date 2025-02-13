@@ -7,9 +7,6 @@ import randomNumber from "../utils/randomNumber.js";
 class Controller {
   #carsInstance = [];
 
-  /**
-   * 자동차 경주 전체 로직 관리
-   */
   async play() {
     const { names, tryCount } = await this.#readAndValidateInputs();
 
