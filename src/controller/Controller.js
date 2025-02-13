@@ -32,7 +32,7 @@ export default class Controller {
   }
 
   findWinner(cars) {
-    const max = Math.max(...cars.map((x) => x.position));
+    const max = Math.max(...cars.map((car) => car.position));
     const winners = cars.filter((car) => car.position === max);
     console.log(
       `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`,
