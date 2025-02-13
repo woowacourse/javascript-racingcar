@@ -1,5 +1,4 @@
 import readLineAsync from "../util/readLine.js";
-
 import INPUT from "../constant/input.js";
 
 const InputView = {
