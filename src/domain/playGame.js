@@ -1,6 +1,9 @@
 import playRound from "./playRound.js";
 import { printResultHeader, printRoundScore } from "../view/output.js";
 
+// ['A', 'B', 'C']
+// 3
+
 const playGame = (carNames, rounds) => {
   let cars = [];
   for (let name of carNames) {
