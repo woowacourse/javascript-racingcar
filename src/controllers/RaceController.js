@@ -13,42 +13,46 @@ class RaceController {
   }
 
   async race() {
-    const parseCarNames = this.#initCarNames();
-    const parseTryCount = this.#initTryCount();
+    const parseCarNames = await this.#initCarNames();
+    const parseTryCount = await this.#initTryCount();
 
     const cars = new Cars(parseCarNames);
 
-    this.#processRacing(cars);
+    this.#processRacing(cars, parseTryCount);
     this.#processWinner(cars);
   }
 
   async #initCarNames() {
-    try {
-      const carNames = await this.#inputView.getCarNames();
-      const parseCarNames = carNames
-        .split(",")
-        .map((carName) => carName.trim());
-      new CarNameValidator().valiateNames(parseCarNames);
-
-      return parseCarNames;
-    } catch (error) {
-      console.log(error);
+    while(true) {
+      try {
+        const carNames = await this.#inputView.getCarNames();
+        const parseCarNames = carNames
+          .split(",")
+          .map((carName) => carName.trim());
+        new CarNameValidator().valiateNames(parseCarNames);
+  
+        return parseCarNames;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
   async #initTryCount() {
-    try {
-      const tryCount = await this.#inputView.getTryCount();
-      const parseTryCount = Number(tryCount);
-      new TryCountValidator().validateNumber(parseTryCount);
-
-      return parseTryCount;
-    } catch (error) {
-      console.log(error);
+    while(true) {
+      try {
+        const tryCount = await this.#inputView.getTryCount();
+        const parseTryCount = Number(tryCount);
+        new TryCountValidator().validateNumber(parseTryCount);
+  
+        return parseTryCount;
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
-  #processRacing(cars) {
+  #processRacing(cars, parseTryCount) {
     this.#outputView.printResultHeader();
     const carList = cars.cars;
 
@@ -61,6 +65,7 @@ class RaceController {
 
   #processWinner(cars) {
     const maxPosition = cars.getMaxPosition();
+    const carList = cars.cars;
 
     this.#outputView.printWinners(
       new Winner().getWinners(carList, maxPosition)
