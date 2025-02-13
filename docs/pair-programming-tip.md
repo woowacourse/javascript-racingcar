@@ -1,4 +1,4 @@
-## 페어 프로그래밍 코드 동기화 하는 방법
+# 💻 페어 프로그래밍 코드 동기화 하는 방법
 
 - 우선 니야와 호이초이는 woowacourse/javascript-racingcar 에서 fork를 따서 각자 step-1 브랜치를 생성한다.
 - 니야 로컬에서 live share를 통해 페어 프로그래밍을 진행한다.
@@ -19,7 +19,7 @@
   - ⚠ 만약 충돌 해결이 어렵다면 `git rebase --abort` 로 되돌릴 수 있다.
   - ⚠ 강제로 모든 내용을 100% 동일하게 옮기려면 `git reset --hard sooyeoniya/step-1`을 사용하면 된다.
 
-## 커밋 시 공동 기여자 설정 방법
+# 🖨️ 커밋 시 공동 기여자 설정 방법
 
 ```bash
 git commit -m "feat: xxxx
