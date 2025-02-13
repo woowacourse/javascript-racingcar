@@ -33,7 +33,7 @@ for (const carName of carNames) {
   cars.push(new Car(carName));
 }
 
-raceService.moveCar(cars, round);
+raceService.startRace(cars, round);
 
 const maxPosition = Math.max(...cars.map((car) => car.position));
 
