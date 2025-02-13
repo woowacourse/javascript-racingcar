@@ -65,12 +65,12 @@ class CarController {
   }
 
   printResult(cars, tryCount) {
-    console.log('\n실행 결과');
+    OutputView.printMessage('\n실행 결과');
     for (let i = 0; i < tryCount; i++) {
       cars.forEach((car) => {
         OutputView.printEachResult(car.name, car.history[i]);
       });
-      console.log();
+      OutputView.printMessage('');
     }
   }
 }

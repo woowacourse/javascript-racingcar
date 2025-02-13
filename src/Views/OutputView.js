@@ -4,6 +4,10 @@ class OutputView {
 
     console.log(`${carName} : ${positionString}`);
   }
+
+  static printMessage(message) {
+    console.log(message);
+  }
 }
 
 export default OutputView;
