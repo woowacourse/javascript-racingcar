@@ -17,7 +17,8 @@ class CarController {
       return new Car(car);
     });
 
-    tryMove(cars);
+    this.tryMove(cars, tryCount);
+    this.printResult(cars);
   }
 
   getCarName() {
@@ -54,12 +55,18 @@ class CarController {
     return randomNumber >= 4;
   }
 
-  tryMove(cars) {
+  tryMove(cars, tryCount) {
     for (let i = 0; i < tryCount; i++) {
       cars.forEach((car) => {
-        if (this.canMove()) car.movePosition();
+        car.updateHistory(this.canMove());
       });
     }
+  }
+
+  printResult(cars) {
+    cars.forEach((car) => {
+      console.log(car.history);
+    });
   }
 }
 
