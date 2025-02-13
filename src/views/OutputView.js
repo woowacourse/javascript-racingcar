@@ -7,7 +7,7 @@ export default class OutputView {
     this.print('');
   }
 
-  static printOneGame(nameList, cars) {
+  static printEachGame(nameList, cars) {
     for (let i = 0; i < nameList.length; i++) {
       const carOutput = '-'.repeat(cars[i].position);
       this.print(`${nameList[i]} : ${carOutput}`);

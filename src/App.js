@@ -10,24 +10,19 @@ export default class App {
     const cars = names.map(name => new CarModel(name));
 
     OutputView.print('\n실행 결과');
-    for (let i = 0; i < count; i++) {
-      for (let j = 0; j < names.length; j++) {
-        const currentCar = cars[j];
-        currentCar.go();
-      }
-      OutputView.printOneGame(names, cars);
+
+    for (let currentCount = 0; currentCount < count; currentCount++) {
+      cars.forEach(car => {
+        car.go();
+      });
+      OutputView.printEachGame(names, cars);
     }
 
-    let winnerPosition = 0;
-    cars.forEach(car => {
-      winnerPosition = Math.max(car.position, winnerPosition);
-    });
+    const winnerPosition = Math.max(...cars.map(car => car.position));
 
-    const winners = [];
-    for (let i = 0; i < names.length; i++) {
-      const position = cars[i].position;
-      if (position === winnerPosition) winners.push(names[i]);
-    }
+    const winners = cars
+      .filter(car => car.position === winnerPosition)
+      .map(car => car.name);
 
     const winnerOutput = winners.join(', ');
 
