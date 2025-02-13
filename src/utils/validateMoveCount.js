@@ -1,9 +1,11 @@
-export function validateMoveCount(moveCount){
-    const regex = /^(?:[1-9]\d*)$/;
+import { ERROR } from "../constants/messages";
+
+export function validateMoveCount(moveCount) {
+  const regex = /^(?:[1-9]\d*)$/;
 
   if (!regex.test(moveCount)) {
-    throw new Error("1 이상의 숫자를 입력해주세요.");
+    throw new Error(ERROR.INVALID_NUMBER);
   }
 
-  return Number(moveCount)
+  return Number(moveCount);
 }
