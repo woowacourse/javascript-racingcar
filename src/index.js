@@ -1,12 +1,12 @@
-import Output from "./Output.js";
-import Input from "./Input.js";
-import Race from "./Race.js";
+import Output from "./ui/Output.js";
+import Input from "./ui/Input.js";
+import Race from "./domain/Race.js";
 
 const input = new Input();
 const output = new Output();
 
 async function run() {
-  const names = await input.raceCarNames();
+  const names = await input.carNames();
   const count = await input.raceCount();
 
   const race = new Race(names, count);

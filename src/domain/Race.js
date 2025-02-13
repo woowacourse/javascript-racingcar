@@ -1,6 +1,6 @@
 import Car from "./Car.js";
-import { OUTPUT_MESSAGE } from "./Const.js";
-import Output from "./Output.js";
+import { OUTPUT_MESSAGE } from "../Const.js";
+import Output from "../ui/Output.js";
 class Race {
   #cars;
   #count;
@@ -33,9 +33,7 @@ class Race {
       } else if (car.position === maxNum) {
         winnerList.push(car.name);
       }
-      return;
     });
-
     return winnerList;
   }
 }

@@ -1,4 +1,4 @@
-import Car from "../src/Car.js";
+import Car from "../src/domain/Car.js";
 import * as Util from "../src/Util.js";
 
 jest.mock("../src/Util.js");

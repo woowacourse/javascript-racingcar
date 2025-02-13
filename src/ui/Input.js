@@ -1,14 +1,14 @@
-import { INPUT_MESSAGE } from "./Const.js";
+import { INPUT_MESSAGE } from "../Const.js";
 import Output from "./Output.js";
-import { readLineAsync } from "./Util.js";
-import Validate from "./Validate.js";
+import { readLineAsync } from "../Util.js";
+import Validate from "../Validate.js";
 class Input {
   #validate = new Validate();
   #output = new Output();
 
-  async raceCarNames() {
+  async carNames() {
     try {
-      const name = await readLineAsync(INPUT_MESSAGE.raceCarNames);
+      const name = await readLineAsync(INPUT_MESSAGE.carNames);
       const names = name.split(",");
 
       names.forEach((name) => {
@@ -18,7 +18,7 @@ class Input {
       return names;
     } catch (e) {
       this.#output.printLine(e.message);
-      return await this.raceCarNames();
+      return await this.carNames();
     }
   }
 
