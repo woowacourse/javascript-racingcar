@@ -1,8 +1,11 @@
 import Car from '../src/Car';
 
-test("자동차를 만들 수 있다.", ()=>{
+test("이름을 가진 자동차를 만들 수 있다.", ()=>{
     const car = new Car("자동차");
-    expect(car).toBeDefined(); 
+    expect(car).toEqual({
+        name: "자동차",
+        position: 0,
+    })
 });
 
 test("무작위 값이 4이상일 때 자동차가 전진한다.", ()=>{
