@@ -1,5 +1,5 @@
 import retryUntilValid from "../utils/retryUntilValid.js";
-import { validateCarNames } from "../utils/validateCarNames.js";
+import validateCarNames from "../utils/validateCarNames.js";
 import { validateMoveCount } from "../utils/validateMoveCount.js";
 
 const PROMPT = {

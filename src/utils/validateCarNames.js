@@ -1,12 +1,9 @@
-export function validateCarNames(names) {
-  // 글자 수 5개 초과 금지
-  // 구분자는 쉼표
+import { ERROR } from "../constants/messages.js";
 
-  // A, B, C, D
-  // ,A, B
+export default function validateCarNames(names) {
   const namesArr = names.split(",").map((name) => name.trim());
-  // ['A', ' B', ' C', ' D']
-  // ['', 'A', 'B']
+
+  validateLeastCars(namesArr);
   validateEmptyString(namesArr);
   validateCarNameLength(namesArr);
   validateDuplicate(namesArr);
@@ -14,10 +11,16 @@ export function validateCarNames(names) {
   return namesArr;
 }
 
+export function validateLeastCars(names) {
+  if (names.length <= 1) {
+    throw new Error(ERROR.INVALID_CARS_LENGTH);
+  }
+}
+
 export function validateEmptyString(names) {
   names.forEach((name) => {
     if (name.length === 0) {
-      throw new Error("이름이 비어있습니다.");
+      throw new Error(ERROR.EMPTY_STRING);
     }
   });
 }
@@ -25,7 +28,7 @@ export function validateEmptyString(names) {
 export function validateCarNameLength(names) {
   names.forEach((name) => {
     if (name.length > 5) {
-      throw new Error("5자 이하로 설정해주세요.");
+      throw new Error(ERROR.INVALID_CARNAME_LENGTH);
     }
   });
 }
@@ -36,7 +39,7 @@ export function validateDuplicate(names) {
   for (let name of names) {
     if (uniqueCars.includes(name)) {
       // 중복일 때
-      throw new Error("중복된 이름은 사용할 수 없습니다.");
+      throw new Error(ERROR.DUPLICATE_NAME);
     }
     uniqueCars.push(name);
   }
