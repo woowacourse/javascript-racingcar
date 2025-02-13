@@ -27,3 +27,9 @@ export const CAR_NAME_LIST_ERROR_MESSAGES = {
   SINGLE_CAR_NAME: "두 대 이상의 자동차 이름을 입력해 주세요.",
   DUPLICATE_CAR_NAME: "자동차 이름이 중복되었습니다.",
 };
+
+export const ATTEMPT_ERROR_MESSAGES = {
+  EMPTY_INPUT: "입력이 비어 있습니다.",
+  NOT_INTEGER_INPUT: "정수를 입력해주세요.",
+  MINUS_INPUT: "0보다 큰 수를 입력해주세요.",
+};

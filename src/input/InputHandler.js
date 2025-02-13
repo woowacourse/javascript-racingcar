@@ -1,9 +1,9 @@
 import InputView from "../views/InputView.js";
 import { INPUT_MESSAGE } from "../constants/Constants.js";
-import InputParser from "../utils/InputParser.js";
 import validateCarNameList from "../validation/validateCarNameList.js";
 import validateAttemptCount from "../validation/validateAttemptCount.js";
 import OutputView from "../views/OutputView.js";
+import InputParser from "./InputParser.js";
 
 const InputHandler = {
   async getCarNameList() {

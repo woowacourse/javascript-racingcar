@@ -17,7 +17,7 @@ class Race {
       OutputView.print(LINE_BREAK);
     }
 
-    const winners = this.getCarNamePosition();
+    const winners = this.getWinnerName();
 
     OutputView.print(`${OUTPUT_MESSAGE.WINNER} ${winners.join(", ")}`);
   }
