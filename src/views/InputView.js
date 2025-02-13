@@ -1,6 +1,6 @@
 import { INPUT_MESSAGES } from '../helpers/constants.js';
 import { readLineAsync, retryUntilSuccess } from '../helpers/utils.js';
-import Validator from '../validator.js';
+import Validator from '../helpers/Validator.js';
 
 export default class InputView {
   static async getNames() {

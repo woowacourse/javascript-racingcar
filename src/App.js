@@ -1,4 +1,3 @@
-import { OUTPUT_MESSAGE } from './helpers/constants.js';
 import { CarModel } from './models/index.js';
 import { InputView, OutputView } from './views/index.js';
 
