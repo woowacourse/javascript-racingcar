@@ -1,4 +1,5 @@
 import { CONFIG } from '../constants/config.js';
+import { OUTPUT } from '../constants/messages.js';
 
 const OutputView = {
   printRaceResult(name, position) {
@@ -6,7 +7,7 @@ const OutputView = {
   },
 
   printResultGreeting() {
-    console.log('실행 결과');
+    console.log(OUTPUT.RESULT_GREETING);
   },
 };
 

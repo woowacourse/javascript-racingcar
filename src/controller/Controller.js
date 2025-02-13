@@ -1,6 +1,6 @@
 import CarManager from '../CarManager.js';
 import readLineAsync from '../views/InputView.js';
-import OutputView from '../views/OutputView.js';
+import { INPUT } from '../constants/messages.js';
 
 class Controller {
   constructor() {
@@ -15,12 +15,12 @@ class Controller {
   }
 
   async readCarNames() {
-    const carNames = await readLineAsync('경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n');
+    const carNames = await readLineAsync(INPUT.CAR_NAMES);
     return carNames;
   }
 
   async readAttempts() {
-    const attempts = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attempts = await readLineAsync(INPUT.ATTEMPTS);
     return attempts;
   }
 }
