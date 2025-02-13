@@ -1,13 +1,11 @@
 import { InputView } from '../Views/InputView.js';
 class CarController {
-  run() {
-    const carNamesInput = this.getCarName();
+  async run() {
+    const carNamesInput = await this.getCarName();
     const carNames = this.validateCarName();
 
-    // const tryCountInput = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
-    // const tryCount = stringToNumber(tryCountInput);
-    // checkTryCountRange(tryCount);
-    // checkIsInteger(tryCount)
+    const tryCountInput = await this.getTryCount();
+    const tryCount = this.validateTryCount();
   }
 
   getCarName() {
@@ -21,6 +19,17 @@ class CarController {
     checkCarCount(carNames);
     checkCarNameDuplicate(carNames);
     return carNames;
+  }
+
+  getTryCount() {
+    return InputView.inputTryCount();
+  }
+
+  validateTryCount() {
+    const tryCount = stringToNumber(tryCountInput);
+    checkTryCountRange(tryCount);
+    checkIsInteger(tryCount);
+    return tryCount;
   }
 
   getRandomNumber() {
