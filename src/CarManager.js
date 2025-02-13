@@ -13,7 +13,6 @@ class CarManager {
     const carNames = this.splitCarName(names);
 
     this.cars = carNames.map((carName) => new Car(carName));
-    console.log(this.cars);
     return this.cars;
   }
 
@@ -45,6 +44,20 @@ class CarManager {
 
   showRaceResult(name, position) {
     OutputView.printRaceResult(name, position);
+  }
+
+  determineWinners() {
+    const carsPosition = this.cars.map((car) => (
+      car.position
+    ));
+
+    const maxPosition = Math.max(...carsPosition);
+
+    const winners = this.cars.filter((car) => (
+      car.position === maxPosition
+    )).map((car) => car.name);
+
+    return winners;
   }
 }
 

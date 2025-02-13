@@ -12,6 +12,7 @@ class Controller {
     this.carManager.createCars(carNames);
     const attempts = await this.readAttempts();
     this.carManager.race(attempts);
+    this.carManager.determineWinners();
   }
 
   async readCarNames() {
