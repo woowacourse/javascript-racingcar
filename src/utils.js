@@ -21,3 +21,15 @@ export async function readLineAsync(query) {
     });
   });
 }
+
+export async function retryUntilSuccess(callbackFn) {
+  try {
+    return await callbackFn();
+  } catch {
+    return await retryUntilSuccess(callbackFn);
+  }
+}
+
+export function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}

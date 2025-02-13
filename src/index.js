@@ -1,10 +1,5 @@
-import { readLineAsync } from './utils.js';
-import Validator from './validator.js';
+import { getRandomInt } from './utils.js';
 import InputView from './view/InputView.js';
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
 
 function printOneGame(nameList, positionList) {
   for (let i = 0; i < nameList.length; i++) {
@@ -16,9 +11,7 @@ function printOneGame(nameList, positionList) {
 
 // 입출력 예시
 export async function run() {
-  console.log(1);
   const nameList = await InputView.getNameList();
-  console.log(2);
   const count = await InputView.getCount();
 
   const positionList = new Array(count).fill(0);
