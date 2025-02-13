@@ -31,7 +31,7 @@ class RacingcarManager{
                 this.#validate.carNameLength(carNames);
                 return carNames.split(',');
             } catch (error) {
-                this.#outputView.printErrorMessage(error);
+                this.#outputView.printErrorMessage(error.message);
             }
         }
     }
@@ -47,7 +47,7 @@ class RacingcarManager{
                 this.#validateAttempts(attempts);
                 return Number(attempts);
             } catch (error) {
-                this.#outputView.printErrorMessage(error);
+                this.#outputView.printErrorMessage(error.message);
             }
         }
     }
