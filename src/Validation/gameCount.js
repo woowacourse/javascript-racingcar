@@ -3,8 +3,10 @@ const MAX_GAME_COUNT = 100;
 
 export const validateGameCountType = (input) => {
   const isInteger = Number.isInteger(Number(input));
-  if (typeof input === "string" || isInteger === false) {
-    throw new Error("[Error] 시도 횟수는 소수,문자열,NaN,Infinity 안됩니다.");
+  if (input.trim() === "" || isInteger === false) {
+    throw new Error(
+      "[Error] 시도 횟수는 공백,소수,문자열,NaN,Infinity 안됩니다."
+    );
   }
 };
 
