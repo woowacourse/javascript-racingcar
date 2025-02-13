@@ -1,8 +1,6 @@
 import { errorMessage } from "../settings/ErrorMessage.js";
 import { Validation } from "../validation/Validation.js";
 
-const INVALID = false;
-
 export const parsingService = {
   parseNames(input) {
     let parsedString = input.split(",");
