@@ -15,6 +15,10 @@ class Car {
   getCarPosition() {
     return this.#position;
   }
+
+  getName() {
+    return this.#name;
+  }
 }
 
 export default Car;
