@@ -19,9 +19,10 @@ class CarController {
     });
 
     this.tryMove(cars, tryCount);
-    this.printResult(cars, tryCount);
+    this.outputResult(cars, tryCount);
 
     const winners = this.getWinner(cars);
+    this.outputWinner(winners);
   }
 
   getCarName() {
@@ -66,7 +67,7 @@ class CarController {
     }
   }
 
-  printResult(cars, tryCount) {
+  outputResult(cars, tryCount) {
     OutputView.printMessage('\n실행 결과');
     for (let i = 0; i < tryCount; i++) {
       cars.forEach((car) => {
@@ -83,6 +84,10 @@ class CarController {
     const winner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
 
     return winner;
+  }
+
+  outputWinner(winners) {
+    OutputView.printWinner(winners);
   }
 }
 
