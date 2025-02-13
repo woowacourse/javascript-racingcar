@@ -60,5 +60,16 @@ class RacingcarManager{
             throw error;
         }
     }
+
+    getRandomNumber() {
+        return Math.random * 10;
+    }
+
+    oneRound(cars){
+        cars.forEach(car => {
+            car.move(this.getRandomNumber());            
+        });
+    }
+
 }
 export default RacingcarManager;
