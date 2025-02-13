@@ -17,6 +17,7 @@ export const OUTPUT_MESSAGE = {
 
 export const NAME_DELIMITER = ",";
 
+export const CAR_NAME_LENGTH_MAX = 5;
 export const CAR_NAME_LIST_ERROR_MESSAGES = {
   EMPTY_INPUT: "입력이 비어 있습니다.",
   EMPTY_CAR_NAME: "자동차 이름에 빈 값이 포함되어 있습니다.",
@@ -24,5 +25,3 @@ export const CAR_NAME_LIST_ERROR_MESSAGES = {
   SINGLE_CAR_NAME: "두 대 이상의 자동차 이름을 입력해 주세요.",
   DUPLICATE_CAR_NAME: "자동차 이름이 중복되었습니다.",
 };
-
-export const CAR_NAME_LENGTH_MAX = 5;
