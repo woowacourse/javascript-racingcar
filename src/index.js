@@ -1,5 +1,4 @@
 import CarModel from './model/CarModel.js';
-import { getRandomInt } from './utils.js';
 import InputView from './view/InputView.js';
 
 function printOneGame(nameList, cars) {
@@ -25,8 +24,8 @@ export async function run() {
   console.log('\n실행 결과');
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < nameList.length; j++) {
-      const randomNumber = getRandomInt(10);
-      if (randomNumber >= 4) cars[j].go();
+      const currentCar = cars[j];
+      currentCar.go();
     }
     printOneGame(nameList, cars);
   }
@@ -48,4 +47,4 @@ export async function run() {
   console.log(`최종 우승자: ${winnerOutput}`);
 }
 
-await run();
+// await run();

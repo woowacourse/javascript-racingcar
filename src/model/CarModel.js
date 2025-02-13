@@ -1,3 +1,5 @@
+import { getRandomInt } from '../utils.js';
+
 export default class CarModel {
   position;
   name;
@@ -8,6 +10,7 @@ export default class CarModel {
   }
 
   go() {
-    this.position++;
+    const randomNumber = getRandomInt(10);
+    if (randomNumber >= 4) this.position++;
   }
 }
