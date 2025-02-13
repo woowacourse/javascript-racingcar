@@ -7,6 +7,7 @@ const CONFIG = Object.freeze({
   COMMA: ',',
   RACE_STEP: '-',
   BLANK: ' ',
+  LINE_BREAK: '\n',
 });
 
 export {
