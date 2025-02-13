@@ -1,6 +1,5 @@
 // @ts-check
 import Car from './Car.js';
-import { CONFIG } from './constants/config.js';
 import pickRandomNumber from './utils/pickRandomNumber.js';
 import OutputView from './views/OutputView.js';
 
@@ -9,15 +8,9 @@ class CarManager {
     this.cars = [];
   }
 
-  createCars(names) {
-    const carNames = this.splitCarName(names);
-
+  createCars(carNames) {
     this.cars = carNames.map((carName) => new Car(carName));
     return this.cars;
-  }
-
-  splitCarName(names) {
-    return names.split(CONFIG.COMMA);
   }
 
   isMoveCondition(pickedRandomNumber) {
