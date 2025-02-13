@@ -1,6 +1,6 @@
 import { generateRandomNumber } from "./utils";
 
-class Car {
+export default class Car {
   constructor(name) {
     this.name = name;
     this.position = 0;
@@ -13,5 +13,3 @@ class Car {
     }
   }
 }
-
-export default Car;
