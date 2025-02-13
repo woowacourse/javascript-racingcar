@@ -17,7 +17,7 @@ class CarManager {
   }
 
   splitCarName(names) {
-    return names.split(`${CONFIG.COMMA} `);
+    return names.split(CONFIG.COMMA);
   }
 
   isMoveCondition(pickedRandomNumber) {
