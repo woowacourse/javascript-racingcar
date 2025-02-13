@@ -1,4 +1,4 @@
-import CarManager from '../CarManager.js';
+import CarManager from '../model/CarManager.js';
 import readLineAsync from '../views/InputView.js';
 import { INPUT } from '../constants/messages.js';
 import OutputView from '../views/OutputView.js';
