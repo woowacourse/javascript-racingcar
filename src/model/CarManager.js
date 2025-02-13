@@ -2,6 +2,7 @@
 import Car from './Car.js';
 import pickRandomNumber from '../utils/pickRandomNumber.js';
 import OutputView from '../views/OutputView.js';
+import { CONFIG } from '../constants/config.js';
 
 class CarManager {
   constructor() {
@@ -14,7 +15,8 @@ class CarManager {
   }
 
   isMoveCondition(pickedRandomNumber) {
-    return pickedRandomNumber >= 4 && pickedRandomNumber <= 9;
+    return pickedRandomNumber >= CONFIG.MINIMUM_RANDOM_NUMBER
+    && pickedRandomNumber <= CONFIG.MAXIMUM_RANDOM_NUMBER;
   }
 
   moveForwardCar(car, pickedRandomNumber) {
@@ -26,7 +28,7 @@ class CarManager {
 
   race(attempts) {
     OutputView.printResultGreeting();
-    for (let i = 0; i < attempts; i++) {
+    for (let i = CONFIG.ZERO; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
         this.showRaceResult(car.name, car.position);
