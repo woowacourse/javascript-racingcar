@@ -21,3 +21,7 @@ export const TRY_NUMBER_SETTING = {
 };
 
 export const MOVE_CONDITION = 4;
+
+export const START_POSITION = 0;
+
+export const MOVE_COUNT = 1;
