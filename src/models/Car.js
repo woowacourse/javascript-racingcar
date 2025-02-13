@@ -12,6 +12,10 @@ class Car {
         this.#position += FOWARD;
     }
 
+    comparePosition(otherPosition) {
+        return Math.max(this.#position, otherPosition);
+    }
+
     get position() {
         return this.#position;
     };

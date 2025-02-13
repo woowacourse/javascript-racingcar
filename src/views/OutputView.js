@@ -4,6 +4,7 @@ class OutputView{
     }
     
     printRaceResult(carList){
+        // UI를 위한 get은 허용한다.
         carList.forEach((car) => {
             console.log(`${car.name} : ${"-".repeat(car.position)}`);
         });

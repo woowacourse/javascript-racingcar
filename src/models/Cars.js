@@ -12,26 +12,17 @@ class Cars {
     }
 
     moveCars() {
-        // console.log(this.#cars);
         this.#cars.forEach((car) => {
             if (this.getRandomNumber() >= 4){
                 car.move()
             }
         });
-
-        return this.#cars;
     }
 
-    getMaxPosition(){
-        let maxPosition = -1;
-
-        this.#cars.forEach((car) => {
-            if (car.position > maxPosition){
-                maxPosition = car.position;
-            }
-        })
-        
-        return maxPosition;
+    getMaxPosition() {
+        return this.#cars.reduce((maxPosition, car) => {
+            return car.comparePosition(maxPosition);
+        }, -1);
     }
 
     get cars() {
