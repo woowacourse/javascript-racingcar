@@ -6,9 +6,15 @@ import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 export default class Controller {
   async run() {
-    const carNameInput = await this.validateCarNamesAndRetry();
+    const carNameInput = await this.validateAndRetry(
+      INPUT_MESSAGE.CAR_NAMES,
+      validateCarNames,
+    );
     const carNames = carNameInput.split(",").map((carName) => carName.trim());
-    const tryCount = await this.validateTryCountAndRetry();
+    const tryCount = await this.validateAndRetry(
+      INPUT_MESSAGE.TRY_COUNT,
+      validateTryCount,
+    );
 
     const cars = [];
     carNames.forEach((carName) => {
@@ -42,35 +48,20 @@ export default class Controller {
     });
     console.log("");
   }
+  async validateAndRetry(message, validateFn) {
+    try {
+      const inputView = new InputView();
+      const input = await inputView.readLineAsync(message);
+      validateFn(input);
+      return input;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateAndRetry(message, validateFn);
+    }
+  }
 
   isMove(number) {
     if (number >= CAR.PROGRESS_CRITERIA) return true;
     return false;
-  }
-
-  async validateCarNamesAndRetry() {
-    try {
-      const inputView = new InputView();
-      const carsInput = await inputView.readLineAsync(INPUT_MESSAGE.CAR_NAMES);
-      validateCarNames(carsInput);
-      return carsInput;
-    } catch (e) {
-      console.log(e.message);
-      return this.validateCarNamesAndRetry();
-    }
-  }
-
-  async validateTryCountAndRetry() {
-    try {
-      const inputView = new InputView();
-      const tryCountInput = await inputView.readLineAsync(
-        INPUT_MESSAGE.TRY_COUNT,
-      );
-      validateTryCount(tryCountInput);
-      return tryCountInput;
-    } catch (e) {
-      console.log(e.message);
-      return this.validateTryCountAndRetry();
-    }
   }
 }
