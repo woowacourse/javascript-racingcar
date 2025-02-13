@@ -50,4 +50,4 @@
 - [x] Car 클래스 테스트
 - [ ] RaceController 클래스 테스트
 - [x] validateCarNames 테스트
-- [ ] validateTryCount 테스트
+- [x] validateTryCount 테스트
