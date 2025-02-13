@@ -1,6 +1,6 @@
 import { INPUT_MESSAGE } from "../constants/message";
 
-export class Input {
+export default class Input {
   static async carName() {
     const name = await this.readLineAsync(INPUT_MESSAGE.carName);
   }
