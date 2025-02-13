@@ -1,3 +1,3 @@
 export function splitString(string) {
-  return string.split(',');
+  return string.split(',').map((str) => str.trim());
 }
