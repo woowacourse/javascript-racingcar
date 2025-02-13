@@ -2,25 +2,37 @@ import Input from "./view/Input.js";
 import Car from "./Car.js";
 import Validator from "./Validator.js";
 import Output from "./view/Output.js";
+import { STEP } from "./constants/setting.js";
 
 export default class Race {
   #cars = [];
   #parseTryCount = 0;
-  // 우승자 계산
-  // 출력
 
-  async play() {
-    // 자동차 입력
-    await this.readCarNames();
+  async play(step = STEP.carName) {
+    try {
+      if (step === STEP.carName) {
+        await this.readCarNames();
+        step = STEP.tryCount;
+      }
 
-    // 시도 횟수 입력
-    await this.readTryCount();
+      if (step === STEP.tryCount) {
+        await this.readTryCount();
+        step = STEP.racing;
+      }
 
-    // 레이스
-    this.racing();
+      if (step === STEP.racing) {
+        this.racing();
+        step = STEP.winner;
+      }
 
-    // 우승자 출력
-    this.getWinner();
+      if (step === STEP.winner) {
+        this.getWinner();
+        return;
+      }
+    } catch (e) {
+      Output.print(e.message);
+      return this.play(step);
+    }
   }
 
   async readCarNames() {
@@ -33,7 +45,6 @@ export default class Race {
       this.#cars.push(new Car(carName));
     });
   }
-
   async readTryCount() {
     const tryCount = await Input.tryCount();
     this.#parseTryCount = parseInt(tryCount);
