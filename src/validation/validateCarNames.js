@@ -5,9 +5,9 @@ const validateCarNames = (input) => {
     if (car === "") {
       throw new Error("[ERROR] 자동차 이름이 존재하지 않습니다.");
     }
-    if (!value.test(/([a-zA-Zㄱ-ㅎ가-힣\S])+/)) {
-      throw new Error("[ERROR] 자동차 이름의 형식이 올바르지 않습니다.");
-    }
+    // if (!/([a-zA-Zㄱ-ㅎ가-힣\S])+/.test(car)) {
+    //   throw new Error("[ERROR] 자동차 이름의 형식이 올바르지 않습니다.");
+    // }
     if (car.length > 5) {
       throw new Error("[ERROR] 자동차 이름이 5글자가 넘습니다.");
     }

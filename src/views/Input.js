@@ -1,5 +1,6 @@
 import readLineAsync from "../utils/readLineAsync.js";
 import validateCarNames from "../validation/validateCarNames.js";
+import validateTryCount from "../validation/validateTryCount.js";
 
 const Input = {
   async carName() {
@@ -13,9 +14,9 @@ const Input = {
       return this.carName();
     }
   },
-  tryCount() {
+  async tryCount() {
     try {
-      const input = readLineAsync("시도할 횟수는 몇 회인가요?\n");
+      const input = await readLineAsync("시도할 횟수는 몇 회인가요?\n");
       return validateTryCount(input);
     } catch (error) {
       console.log(error.message);

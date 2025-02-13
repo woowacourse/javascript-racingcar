@@ -9,15 +9,15 @@ class Controller {
    * 각 자동차별로 인스턴스 생성해서 각 경주별 시도 횟수 관리
    */
   async play() {
-    await this.#readAndValidateInputs();
+    const { names, tryCount } = await this.#readAndValidateInputs();
+    console.log(names, tryCount);
   }
 
   async #readAndValidateInputs() {
     const names = await Input.carName();
-    console.log(names);
-    // const tryCount = await Input.tryCount();
+    const tryCount = await Input.tryCount();
 
-    // return { names, tryCount };
+    return { names, tryCount };
   }
 }
 
