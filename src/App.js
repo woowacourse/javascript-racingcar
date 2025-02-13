@@ -13,7 +13,7 @@ export default class App {
 
     for (let currentCount = 0; currentCount < count; currentCount++) {
       cars.forEach(car => {
-        car.go();
+        car.moveForward();
       });
       OutputView.printEachGame(names, cars);
     }

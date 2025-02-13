@@ -9,7 +9,7 @@ export default class CarModel {
     this.position = 0;
   }
 
-  go() {
+  moveForward() {
     const randomNumber = getRandomInt(10);
     if (randomNumber >= 4) this.position++;
   }
