@@ -7,7 +7,7 @@ jest.mock('../src/utils/randomNumber.js', () => ({
 }));
 
 export function mockRandom(number) {
-  getRandomNumber.mockReturnValue(number);
+  getRandomNumber.mockReturnValueOnce(number);
 }
 
 describe('Car 객체를 테스트', () => {
