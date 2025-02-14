@@ -5,40 +5,40 @@ import {
 } from '../../constants/ValidatorConstants.js';
 
 class NameValidator {
-  static isNotEmpty(parsedCarName) {
-    parsedCarName.forEach((carName) => {
+  static isNotEmpty(parsedCarNameList) {
+    parsedCarNameList.forEach((carName) => {
       if (carName === '') {
         throw new Error(ErrorMessage.emptyInput);
       }
     });
   }
 
-  static isMoreThanTwo(parsedCarName) {
-    if (parsedCarName.length < MIN_CAR_NUMBER) {
+  static isMoreThanTwo(parsedCarNameList) {
+    if (parsedCarNameList.length < MIN_CAR_NUMBER) {
       throw new Error(ErrorMessage.lessThanTwo);
     }
   }
 
-  static isBelowFive(parsedCarName) {
-    parsedCarName.forEach((carName) => {
+  static isBelowFive(parsedCarNameList) {
+    parsedCarNameList.forEach((carName) => {
       if (carName.length > MAX_CAR_LENGTH) {
         throw new Error(ErrorMessage.longerThanFive);
       }
     });
   }
 
-  static isNotDuplicated(parsedCarName) {
-    const nameSet = new Set(parsedCarName);
-    if (nameSet.size !== parsedCarName.length) {
+  static isNotDuplicated(parsedCarNameList) {
+    const nameSet = new Set(parsedCarNameList);
+    if (nameSet.size !== parsedCarNameList.length) {
       throw new Error(ErrorMessage.duplicatedName);
     }
   }
 
-  static isValid(parsedCarName) {
-    this.isNotEmpty(parsedCarName);
-    this.isMoreThanTwo(parsedCarName);
-    this.isBelowFive(parsedCarName);
-    this.isNotDuplicated(parsedCarName);
+  static isValid(parsedCarNameList) {
+    this.isNotEmpty(parsedCarNameList);
+    this.isMoreThanTwo(parsedCarNameList);
+    this.isBelowFive(parsedCarNameList);
+    this.isNotDuplicated(parsedCarNameList);
   }
 }
 
