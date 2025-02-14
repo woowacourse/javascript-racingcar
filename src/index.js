@@ -17,13 +17,10 @@ export async function run() {
   const cars = nameList.map(name => new CarModel(name));
 
   console.log('\n실행 결과');
-  for (let i = 0; i < count; i++) {
-    for (let j = 0; j < nameList.length; j++) {
-      const currentCar = cars[j];
-      currentCar.go();
-    }
+  Array.from({ length: count }, () => {
+    cars.forEach(car => car.go());
     printOneGame(nameList, cars);
-  }
+  });
 
   const winnerPosition = cars.reduce((maxPosition, car) => 
     Math.max(car.position, maxPosition), 0);
