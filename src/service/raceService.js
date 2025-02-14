@@ -44,4 +44,5 @@ export function startRace(cars, round) {
     moveCar(cars);
     OutputView.printMessage("\n");
   }
+  return cars;
 }
