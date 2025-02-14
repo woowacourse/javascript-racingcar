@@ -20,6 +20,7 @@ export const playRacing = (cars, tryCount) => {
 };
 
 export const getWinnersByPosition = (cars) => {
-  const maxPosition = getMaxPosition(cars[cars.length - 1]);
-  return cars[cars.length - 1].filter((car) => car.position === maxPosition);
+  const carPlayResult = cars.at(-1);
+  const maxPosition = getMaxPosition(carPlayResult);
+  return carPlayResult.filter((car) => car.position === maxPosition);
 };
