@@ -5,4 +5,7 @@ export const OutputView = {
   printError(error) {
     console.error(error.message);
   },
+  printCar(car) {
+    console.log(`${car.name} : ${"-".repeat(car.position)}`);
+  },
 };

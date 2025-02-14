@@ -42,7 +42,7 @@ export const raceManager = {
       if (this.isMovable(randomNumber)) {
         car.goForward();
       }
-      OutputView.printMessage(car.toString());
+      OutputView.printCar(car);
     }
   },
 };
