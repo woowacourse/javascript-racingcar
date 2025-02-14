@@ -3,13 +3,11 @@ import { getMaxPosition } from "../utils/findMax.js";
 import { getRandomNumber } from "../utils/random.js";
 
 export const playRound = (cars) => {
-  return cars.map((car) => {
-    const randomNum = getRandomNumber();
-    if (randomNum >= MAX_MOVABLE_NUMBER) {
-      return { ...car, position: car.position + 1 };
-    }
-    return car;
-  });
+  return cars.map((car) =>
+    getRandomNumber() >= MAX_MOVABLE_NUMBER
+      ? { ...car, position: car.position + 1 }
+      : car
+  );
 };
 
 export const playRacing = (cars, tryCount) => {
