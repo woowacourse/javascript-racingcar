@@ -20,10 +20,15 @@ describe("자동차 이름 목록 유효성 검사", () => {
   });
 
   test.each([[["수이이이이이이이이", "수이", "메타"]], [["메롱로올오롱로ㅗㄹㅇ타타타타타타타타", "수이바보멍청이"]]])(
-    "이름이 다섯글자 이상인 경우 에러 발생",
+    `이름이 ${CAR_NAME_LENGTH_MAX}글자 이상인 경우 에러 발생`,
     (input) => {
       expect(() => validateCarNameList(input)).toThrow(`자동차 이름은 ${CAR_NAME_LENGTH_MAX}자를 넘을 수 없습니다.`);
     })
+
+  test(`중복없는 ${CAR_NAME_LENGTH_MAX}글자 이하 이름인 경우 에러 발생x`, () => {
+     expect(() => validateCarNameList(["수이","메타","동키콩콩콩"])).not.toThrow();
+  });
+  
 })
 
 describe("시도 횟수 유효성 검사", () => {
@@ -37,5 +42,9 @@ describe("시도 횟수 유효성 검사", () => {
   
   test.each([-3, -5, 0])("시도 횟수가 정수가 아닌 경우 에러 발생", (input) => {
     expect(() => validateAttemptCount(input)).toThrow("[ERROR] 0보다 큰 수를 입력해주세요.");
+  })
+
+  test.each([1,2,30])("시도 횟수가 자연수인 경우 에러 미발생", (input) => {
+    expect(() => validateAttemptCount(input)).not.toThrow();
   })
 })
