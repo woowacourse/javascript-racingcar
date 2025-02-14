@@ -19,7 +19,7 @@ export const validateCarNames = (input) => {
 export const validateTryCount = (input) => {
   if (input === "") createError(ERROR_MESSAGE.EMPTY_INPUT);
 
-  if (isNaN(Number(input))) {
+  if (isNaN(input)) {
     createError(ERROR_MESSAGE.INVALID_TRY_COUNT);
   }
   if (input < 1) {
