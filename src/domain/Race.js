@@ -29,10 +29,6 @@ class Race {
     const winnerName = winnerCar.map((car) => car.name);
     return winnerName;
   }
-
-  get carList() {
-    return this.#carList;
-  }
 }
 
 export default Race;
