@@ -1,12 +1,12 @@
 import {
-  isArrEmpty,
+  hasEmptyString,
   isLengthLongerThanFive,
   validateCount,
 } from "../src/utils/validation.js";
 
 describe("유효성 검사 테스트", () => {
-  test("빈 배열이 들어오면 false를 반환한다.", () => {
-    const result = isArrEmpty([""]);
+  test("배열에 빈 문자열이 들어오면 false를 반환한다.", () => {
+    const result = hasEmptyString([""]);
     expect(result).toBeTruthy();
   });
 
