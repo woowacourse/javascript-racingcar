@@ -1,31 +1,28 @@
-import { getRandomNumber } from "../src/utils/getRandomNumber.js";
 import Race from "../src/domain/Race.js";
 import Car from "../src/domain/Car.js";
+import { MOVE_CONDITION } from "../src/constants/Constants.js";
 
-jest.mock("../src/utils/getRandomNumber.js", () => ({
-  getRandomNumber: jest.fn(),
-}));
 
 describe("조건에 따른 자동차 이동 테스트", () => {
-  test("randomNumber가 4 이상이면 자동차가 움직여야 한다.", () => {
-    getRandomNumber.mockReturnValue(4);
-    const race = new Race(["Tesla"], 1);
-    const car = race.carList[0];
+  test(`randomNumber가 ${MOVE_CONDITION}  이상이면 자동차가 움직여야 한다.`, () => {
+    const sui = new Car("수이")
+    const suii = new Car("수이이")
+    const race = new Race([sui,suii])
+  
+    race.checkMove(MOVE_CONDITION ,sui)
 
-    race.executeTurn();
-
-    expect(car.position).toBe(1);
+    expect(sui.position).toBe(1);
   });
 
-  test("randomNumber가 3 이하이면 자동차가 움직이지 않아야 한다.", () => {
-    getRandomNumber.mockReturnValue(3);
+  test(`randomNumber가 ${MOVE_CONDITION} 미만이면 자동차가 움직이지 않아야 한다.`, () => {
+    const sui = new Car("수이")
+    const suii = new Car("수이이")
+    const race = new Race([sui,suii])
+  
+    race.checkMove(MOVE_CONDITION-1,sui)
 
-    const race = new Race(["Tesla"], 1);
-    const car = race.carList[0];
-    race.executeTurn();
-
-    expect(car.position).toBe(0);
-  })
+    expect(sui.position).toBe(0);
+  });
 })
 
 
