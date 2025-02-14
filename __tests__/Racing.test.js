@@ -8,7 +8,7 @@ describe('자동차 경주 객체 테스트', () => {
   const racing = new Racing(carList, count);
 
   test('자동차 객체 정보를 담는다.', () => {
-    expect(racing.carList.map((car) => car.name)).toEqual(carNames);
+    expect(racing.getCarList().map((car) => car.getName())).toEqual(carNames);
   });
 
   test('자동차 객체 중 가장 멀리 간 자동차를 선정할 수 있다.', () => {

@@ -7,14 +7,14 @@ import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 
 class App {
   async run() {
-    const carList = await loopWhileValid(this.enterCarNames);
-    const count = await loopWhileValid(this.enterCount);
+    const carList = await loopWhileValid(this.#enterCarNames);
+    const count = await loopWhileValid(this.#enterCount);
     const racing = new Racing(carList, count);
 
     racing.start();
   }
 
-  async enterCarNames() {
+  async #enterCarNames() {
     const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
     const names = inputName.split(SEPARATOR);
     validator.carNames(names);
@@ -22,7 +22,7 @@ class App {
     return names.map((name) => new Car(name, 0));
   }
 
-  async enterCount() {
+  async #enterCount() {
     const count = await readLineAsync(GAME_MESSAGE.ENTER_COUNT);
     validator.count(count);
 

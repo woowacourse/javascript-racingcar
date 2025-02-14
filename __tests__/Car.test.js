@@ -11,7 +11,7 @@ describe('자동차 객체 테스트', () => {
       car.move(value);
 
       // then
-      expect(car.position).toBe(1);
+      expect(car.getPosition()).toBe(1);
     },
   );
 
@@ -20,7 +20,7 @@ describe('자동차 객체 테스트', () => {
 
     car.move(value);
 
-    expect(car.position).toBe(0);
+    expect(car.getPosition()).toBe(0);
   });
 
   test('자동차의 현재 이동 거리를 문자열로 반환한다.', () => {
