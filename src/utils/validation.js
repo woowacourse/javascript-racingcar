@@ -8,7 +8,9 @@ export const isLengthLongerThanFive = (arr) => {
   return arr.every((item) => item.length < 5);
 };
 
-export const validateCarNames = (carNamesArr) => {
+export const validateCarNames = (stringOfCarNames) => {
+  const carNamesArr = stringOfCarNames.split(",");
+
   if (isArrEmpty(carNamesArr)) {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
   }
