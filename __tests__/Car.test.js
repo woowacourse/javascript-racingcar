@@ -23,7 +23,7 @@ describe("Car 로직 테스트", () => {
     jest.clearAllMocks();
   });
 
-  test("4 이상일 경우 position 값이 1 증가한다.", () => {
+  test("자동차 경주 진행 시, 랜덤 값이 4이상일 경우 Car 배열의 position 값이 1증가한다.", () => {
     // when
     jest.spyOn(Math, "random").mockReturnValue(0.5);
 
