@@ -21,7 +21,7 @@ class App {
     const tryCount = await this.getTryCount();
 
     const racing = new Racing(cars);
-    racing.runRace(tryCount, App.getIsMoveList(cars));
+    racing.runRace(App.getTotalRaceMoves(tryCount, cars));
 
     const raceResult = racing.decideWinner();
     Printer.printWinner(raceResult);
@@ -57,10 +57,14 @@ class App {
     }
   }
 
-  static getIsMoveList(cars) {
-    const isMoveList = Array.from({ length: cars.length });
+  static getTotalRaceMoves(tryCount, cars) {
+    const turns = Array.from({ length: tryCount });
+    return turns.map(() => this.getIsMoveList(cars));
+  }
 
-    return isMoveList.map(() => {
+  static getIsMoveList(cars) {
+    const carsMoveList = Array.from({ length: cars.length });
+    return carsMoveList.map(() => {
       const randomNumber = getRandomNumber(
         MIN_RANDOM_NUMBER,
         MAX_RANDOM_NUMBER,

@@ -8,21 +8,20 @@ class Racing {
     this.#cars = cars;
   }
 
-  raceTurn(isMoveList) {
+  raceTurn(carsMoveList) {
     this.#cars.forEach((car, carIndex) => {
-      const isMove = isMoveList[carIndex];
+      const isMove = carsMoveList[carIndex];
       if (isMove) {
         car.move();
       }
     });
   }
 
-  runRace(tryCount, isMoveList) {
+  runRace(totalRaceMoves) {
     Printer.printHeader(OutputMessage.resultHeader);
 
-    const turns = Array.from({ length: tryCount });
-    turns.forEach(() => {
-      this.raceTurn(isMoveList);
+    totalRaceMoves.forEach((carsMoveList) => {
+      this.raceTurn(carsMoveList);
       const result = this.getCarInfo(this.#cars);
 
       Printer.printRacingResult(result);
