@@ -1,10 +1,10 @@
+import Car from '../src/domain/Car.js';
 import { mockRandom } from '../src/helpers/testUtils.js';
-import { CarModel } from '../src/models/index.js';
 
-describe('CarModel', () => {
+describe('Car', () => {
   let car;
   beforeEach(() => {
-    car = new CarModel();
+    car = new Car();
   });
 
   test('CarModel을 생성한다.', () => {

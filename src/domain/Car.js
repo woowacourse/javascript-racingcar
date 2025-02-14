@@ -1,6 +1,6 @@
 import { getRandomInt } from '../helpers/utils.js';
 
-export default class CarModel {
+export default class Car {
   position;
   name;
 

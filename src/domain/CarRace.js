@@ -1,7 +1,7 @@
-import { CarModel } from './models/index.js';
-import { InputView, OutputView } from './views/index.js';
+import { InputView, OutputView } from '../view/index.js';
+import CarModel from './Car.js';
 
-export default class App {
+export default class CarRace {
   async run() {
     const names = await InputView.getNames();
     const count = await InputView.getCount();

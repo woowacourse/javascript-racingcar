@@ -1,1 +1,1 @@
-export { default as CarModel } from './CarModel.js';
+export { default as CarModel } from '../domain/Car.js';
