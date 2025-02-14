@@ -11,15 +11,10 @@ function printOneGame(nameList, cars) {
 
 // 입출력 예시
 export async function run() {
-  const cars = [];
-
   const nameList = await InputView.getNameList();
   const count = await InputView.getCount();
 
-  nameList.forEach(name => {
-    const car = new CarModel(name);
-    cars.push(car);
-  });
+  const cars = nameList.map(name => new CarModel(name));
 
   console.log('\n실행 결과');
   for (let i = 0; i < count; i++) {
