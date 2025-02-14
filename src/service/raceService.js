@@ -1,25 +1,23 @@
 import Car from "../model/Car.js";
-import { InputView } from "../view/InputView.js";
 import { OutputView } from "../view/OutputView.js";
-import { parsingService } from "./parsingService.js";
 import randomNumberGenerator from "../model/RandomNumberGenerator.js";
 import { systemSetting } from "../settings/systemSetting.js";
+import { getCarStatus } from "../util/carUtil.js";
 
-export async function raceInit() {
+export async function raceInit(inputProvider, parser) {
   const cars = [];
 
-  const carNames = await parsingService.parseInput(
-    InputView.getCarName,
-    parsingService.parseNames
+  const carNames = await parser.parseInput(
+    inputProvider.getCarName,
+    parser.parseNames
   );
-  const round = await parsingService.parseInput(
-    InputView.getRound,
-    parsingService.parseRound
+  const round = await parser.parseInput(
+    inputProvider.getRound,
+    parser.parseRound
   );
 
-  for (const carName of carNames) {
-    cars.push(new Car(carName));
-  }
+  carNames.forEach((carName) => cars.push(new Car(carName)));
+
   return { cars, round };
 }
 
@@ -42,7 +40,8 @@ export const raceManager = {
       if (this.isMovable(randomNumber)) {
         car.goForward();
       }
-      OutputView.printCar(car);
+      const carStatus = getCarStatus(car);
+      OutputView.printMessage(carStatus);
     }
   },
 };
