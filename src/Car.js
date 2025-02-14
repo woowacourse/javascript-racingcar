@@ -1,4 +1,4 @@
-import { MOVING_DISTANCE, MOVING_THRESHOLD } from './constants/configurations.js';
+import { MOVE_DISTANCE, MOVE_THRESHOLD } from './constants/configurations.js';
 import { FORWARD_DASH } from './constants/systemMessages.js';
 
 class Car {
@@ -19,7 +19,7 @@ class Car {
   }
 
   move(value) {
-    if (value >= MOVING_THRESHOLD) this.#position += MOVING_DISTANCE;
+    if (value >= MOVE_THRESHOLD) this.#position += MOVE_DISTANCE;
   }
 
   getRacingStatus() {

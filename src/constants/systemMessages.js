@@ -10,7 +10,7 @@ const ERROR_MESSAGE = Object.freeze({
   INVALID_NAME_LENGTH: '이름은 5자 이하여야 합니다.',
   INVALID_NAME_SPACE: '공백이 포함된 이름이 존재합니다.',
   INVALID_NAME_CHARACTER: '알파벳으로 구성되어야 합니다.',
-  INVALID_CAR_COUNT: '두 대 이상이어야 합니다.',
+  INVALID_CAR_COUNT: '자동차는 두 대 이상이어야 합니다.',
   INVALID_COUNT_SPACE: '횟수는 공백을 포함하면 안됩니다.',
   INVALID_COUNT_CHARACTER: '횟수는 문자를 입력하면 안됩니다.',
   INVALID_COUNT_MIN: '횟수는 최소 1 이상이어야 합니다.',
