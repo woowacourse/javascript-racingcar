@@ -5,31 +5,27 @@ import validateAttemptCount from "../validation/validateAttemptCount.js";
 import OutputView from "../views/OutputView.js";
 import InputParser from "./InputParser.js";
 
+const getInput = async (message, parseFunction, validateFunction) => {
+  while (true) {
+    try {
+      const userInput = await InputView.readUserInput(message);
+      const parsedInput = parseFunction(userInput);
+      validateFunction(parsedInput);
+      return parsedInput;
+    } catch (e) {
+      OutputView.print(e.message);
+    }
+  }
+};
+
 const InputHandler = {
-  async getCarNameList() {
-    while (true) {
-      try {
-        const carInput = await InputView.readUserInput(INPUT_MESSAGE.CAR);
-        const carNameList = InputParser.car(carInput);
-        validateCarNameList(carNameList);
-        return carNameList;
-      } catch (e) {
-        OutputView.print(e.message);
-      }
-    }
+  getCarNameList() {
+    return getInput(INPUT_MESSAGE.CAR, InputParser.car, validateCarNameList);
   },
-  async getAttemptCount() {
-    while (true) {
-      try {
-        const attemptInput = await InputView.readUserInput(INPUT_MESSAGE.ATTEMPT);
-        const attemptCount = InputParser.attempt(attemptInput);
-        validateAttemptCount(attemptCount);
-        return attemptCount;
-      } catch (e) {
-        OutputView.print(e.message);
-      }
-    }
+  getAttemptCount() {
+    return getInput(INPUT_MESSAGE.ATTEMPT, InputParser.attempt, validateAttemptCount);
   },
 };
 
 export default InputHandler;
+
