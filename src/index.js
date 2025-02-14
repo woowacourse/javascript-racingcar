@@ -30,10 +30,8 @@ export async function run() {
     printOneGame(nameList, cars);
   }
 
-  let winnerPosition = 0;
-  cars.forEach(car => {
-    winnerPosition = Math.max(car.position, winnerPosition);
-  });
+    const winnerPosition = cars.reduce((maxPosition, car) => 
+    Math.max(car.position, maxPosition), 0);
 
   const winnerList = [];
   for (let i = 0; i < nameList.length; i++) {
@@ -47,4 +45,4 @@ export async function run() {
   console.log(`최종 우승자: ${winnerOutput}`);
 }
 
-// await run();
+await run();
