@@ -1,4 +1,4 @@
-export const ERROR_PREFIX = "[ERROR] ";
+export const ERROR_PREFIX = "[ERROR]";
 
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_NAME_SEPARATOR: "자동차 이름을 쉼표(,)로 구분하여 작성해주세요.",
