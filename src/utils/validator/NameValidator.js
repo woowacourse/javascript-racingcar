@@ -6,9 +6,11 @@ import {
 
 class NameValidator {
   static isNotEmpty(parsedCarName) {
-    if (parsedCarName === '') {
-      throw new Error(ErrorMessage.emptyInput);
-    }
+    parsedCarName.forEach((carName) => {
+      if (carName === '') {
+        throw new Error(ErrorMessage.emptyInput);
+      }
+    });
   }
 
   static isMoreThanTwo(parsedCarName) {
