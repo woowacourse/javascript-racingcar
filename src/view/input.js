@@ -1,32 +1,6 @@
-import readline from "readline";
 import { VIEW_MESSAGE } from "../constants/message/view.js";
 import { CAR_RULE } from "../constants/rule/car.js";
-
-const readLineAsync = (query = "") => {
-  return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
-};
-
-export const retryUntilValid = async (getInputFn, validator) => {
-  while (true) {
-    try {
-      const userInput = await getInputFn();
-      validator(userInput);
-      return userInput;
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
-};
+import { readLineAsync } from "../utils/input.js";
 
 export const getCarName = async () => {
   const carName = await readLineAsync(VIEW_MESSAGE.CAR_NAME_INPUT + "\n");
