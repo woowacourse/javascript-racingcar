@@ -4,7 +4,7 @@ export const INPUT = Object.freeze({
 });
 
 export const OUTPUT = Object.freeze({
-  RESULT: `실행 결과\n`,
+  RESULT: `\n실행 결과`,
   FINAL_WINNER: "최종 우승자:",
 });
 

@@ -1,11 +1,11 @@
-import { INPUT } from "./constants/messages.js";
+import { INPUT, OUTPUT } from "./constants/messages.js";
 import { createCars } from "./domain/car.js";
 import { getWinnersByPosition, playRacing } from "./domain/play.js";
 import { retryInput } from "./utils/retryInput.js";
 import { splitByDelimiter } from "./utils/split.js";
 import { validateCarNames, validateCount } from "./utils/validation.js";
 import { readLineAsync } from "./view/input.js";
-import { printProcess, printWinners } from "./view/output.js";
+import { print, printProcess, printWinners } from "./view/output.js";
 
 async function run() {
   let carNames, tryNumber;
@@ -23,6 +23,7 @@ async function run() {
 
   const cars = createCars(carNames);
 
+  print(OUTPUT.RESULT);
   const playResult = playRacing(cars, tryNumber);
   playResult.forEach(printProcess);
 
