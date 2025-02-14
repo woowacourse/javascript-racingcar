@@ -1,5 +1,6 @@
 import getRandomValue from './utils/getRandomValue.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
+import printMessage from './utils/printMessage.js';
 
 class Racing {
   carList;
@@ -19,18 +20,18 @@ class Racing {
   }
 
   start() {
-    console.log(GAME_MESSAGE.RACING_RESULT);
+    printMessage(GAME_MESSAGE.RACING_RESULT);
     for (let i = 0; i < this.count; i++) {
       this.raceOnce();
-      console.log();
+      printMessage();
     }
-    console.log(`${GAME_MESSAGE.WINNER} ${this.getWinner()}`);
+    printMessage(`${GAME_MESSAGE.WINNER} ${this.getWinner()}`);
   }
 
   raceOnce() {
     this.carList.forEach((car) => {
       car.move(getRandomValue());
-      console.log(car.getRacingStatus());
+      printMessage(car.getRacingStatus());
     });
   }
 }
