@@ -17,7 +17,7 @@ export const OUTPUT_MESSAGE = {
 
 export const NAME_DELIMITER = ",";
 
-export const LINE_BREAK = "\n";
+export const LINE_BREAK = "";
 
 export const CAR_NAME_LENGTH_MAX = 5;
 export const CAR_NAME_LIST_ERROR_MESSAGES = {
