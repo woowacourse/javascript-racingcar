@@ -13,11 +13,11 @@ class Cars {
 
     moveCars() {
         this.#cars.forEach((car) => {
-            this.#processMoveCars(car);
+            this.#checkMoveCondition(car);
         });
     }
 
-    #processMoveCars (car) {
+    #checkMoveCondition (car) {
         if (this.getRandomNumber() >= 4){
             car.move();
         }
