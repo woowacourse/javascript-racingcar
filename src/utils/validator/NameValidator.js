@@ -1,5 +1,8 @@
 import ErrorMessage from '../../constants/ErrorMessage.js';
-import { MIN_CAR_NUMBER, MAX_CAR_LENGTH } from '../../constants/MagicNumber.js';
+import {
+  MIN_CAR_NUMBER,
+  MAX_CAR_LENGTH,
+} from '../../constants/ValidatorConstants.js';
 
 class NameValidator {
   static isNotEmpty(parsedCarName) {

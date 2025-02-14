@@ -4,7 +4,7 @@ import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
-} from './constants/MagicNumber.js';
+} from './constants/RacingConstants.js';
 import { OutputMessage } from './constants/OutputMessage.js';
 
 class Racing {

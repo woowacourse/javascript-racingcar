@@ -1,5 +1,5 @@
 import OutputView from './view/OutputView.js';
-import { RESULT_MARK, WINNER_DELIMITER } from './constants/MagicNumber.js';
+import { RESULT_MARK, WINNER_DELIMITER } from './constants/PrinterConstants.js';
 import { OutputFormat, OutputMessage } from './constants/OutputMessage.js';
 
 class Printer {
