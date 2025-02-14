@@ -26,6 +26,8 @@ export async function retryUntilSuccess(callbackFn) {
   try {
     return await callbackFn();
   } catch {
+    console.log('잘못된 입력입니다! 이유 : ~~~~');
+  
     return await retryUntilSuccess(callbackFn);
   }
 }
