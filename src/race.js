@@ -19,13 +19,13 @@ export const startRace = (
   attemptCount,
   carNames,
   advanceRacingCar,
-  getRacingCarResult
+  getRacingCarResultEntries
 ) => {
   const snapShots = [];
 
   for (let i = 0; i < attemptCount; i++) {
     moveRacingCars(carNames, advanceRacingCar);
-    snapShots.push(getRacingCarResult());
+    snapShots.push(getRacingCarResultEntries());
   }
 
   return snapShots;

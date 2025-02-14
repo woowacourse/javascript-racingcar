@@ -1,5 +1,3 @@
-import { formatRacingResult } from "./utils/format.js";
-
 export const racingCarController = (carNames) => {
   const carsInfo = carNames.reduce((acc, carName) => {
     acc[carName] = 0;
@@ -10,11 +8,8 @@ export const racingCarController = (carNames) => {
     carsInfo[carName] += 1;
   };
 
-  const getRacingCarResult = () => {
-    return Object.entries(carsInfo).reduce((acc, [carName, distance]) => {
-      acc += formatRacingResult(carName, distance);
-      return acc;
-    }, "");
+  const getRacingCarResultEntries = () => {
+    return Object.entries(carsInfo);
   };
 
   const getWinners = () => {
@@ -25,5 +20,9 @@ export const racingCarController = (carNames) => {
     );
   };
 
-  return { advanceRacingCar, getRacingCarResult, getWinners };
+  return {
+    advanceRacingCar,
+    getRacingCarResultEntries,
+    getWinners,
+  };
 };

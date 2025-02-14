@@ -15,7 +15,7 @@ async function run() {
     validateAttemptCount
   );
 
-  const { advanceRacingCar, getRacingCarResult, getWinners } =
+  const { advanceRacingCar, getRacingCarResultEntries, getWinners } =
     racingCarController(carNames);
 
   printExecutionText();
@@ -23,7 +23,7 @@ async function run() {
     attemptCount,
     carNames,
     advanceRacingCar,
-    getRacingCarResult
+    getRacingCarResultEntries
   );
   printRaceResult(raceResult);
 

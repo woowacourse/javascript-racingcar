@@ -1,5 +1,6 @@
 import { VIEW_MESSAGE } from "../constants/message/view.js";
 import { CAR_RULE } from "../constants/rule/car.js";
+import { formatRacingResult } from "../utils/format.js";
 
 export const printWinner = (winners) => {
   console.log(
@@ -12,5 +13,12 @@ export const printExecutionText = () => {
 };
 
 export const printRaceResult = (raceResults) => {
-  raceResults.forEach((result) => console.log(result));
+  raceResults.forEach((result) => {
+    const racingResultText = result.reduce((acc, [carName, distance]) => {
+      acc += formatRacingResult(carName, distance);
+      return acc;
+    }, "");
+
+    console.log(racingResultText);
+  });
 };
