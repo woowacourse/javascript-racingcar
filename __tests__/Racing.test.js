@@ -1,5 +1,5 @@
-import Car from '../src/Car.js';
-import Racing from '../src/Racing.js';
+import Car from '../src/domain/Car.js';
+import Racing from '../src/domain/Racing.js';
 
 describe('랜덤 숫자에 따른 자동차 경주 테스트', () => {
   test.each([
