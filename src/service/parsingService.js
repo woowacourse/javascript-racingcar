@@ -1,8 +1,10 @@
-import { ERROR_MESSAGE } from "../settings/ErrorMessage.js";
+import { withTryCatch } from "../util/errorHandler.js";
 import { Validation } from "../validation/Validation.js";
-import { OutputView } from "../view/OutputView.js";
+import { ERROR_MESSAGE } from "../settings/ErrorMessage.js";
 
 export const parsingService = {
+  tryParse: (parser) => withTryCatch(parser),
+
   parseNames(input) {
     let nameList = input.split(",");
 
@@ -17,6 +19,7 @@ export const parsingService = {
     }
     return nameList;
   },
+
   parseRound(input) {
     if (!Validation.isInteger(input)) {
       throw new Error(ERROR_MESSAGE.NOT_INTEGER);
@@ -26,20 +29,14 @@ export const parsingService = {
     }
     return Number(input);
   },
-  tryParse(parser, input) {
-    let parsedValue;
-    try {
-      parsedValue = parser(input);
-    } catch (error) {
-      OutputView.printError(error);
-    }
-    return parsedValue;
-  },
+
   async parseInput(getInput, parser) {
+    const safeParser = this.tryParse(parser);
     while (true) {
       const input = await getInput();
-      let parsedInput = this.tryParse(parser, input);
-      if (parsedInput) return parsedInput;
+      const result = safeParser(input);
+      //!result를 쓰는것은 조금 위험해서..
+      if (result !== undefined) return result;
     }
   },
 };
