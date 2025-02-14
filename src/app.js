@@ -8,13 +8,19 @@ import Car from './Car.js';
 import Racing from './Racing.js';
 import Printer from './Printer.js';
 import InputMessage from './constants/InputMessage.js';
+import getRandomNumber from './utils/getRandomNumber.js';
+import {
+  MIN_RANDOM_NUMBER,
+  MAX_RANDOM_NUMBER,
+  MOVE_NUMBER,
+} from './constants/RacingConstants.js';
 
 class App {
   async run() {
     const cars = await this.getCar();
     const tryCount = await this.getTryCount();
     const racing = new Racing(cars);
-    racing.runRace(tryCount);
+    racing.runRace(tryCount, App.getIsMoveList(cars));
     const raceResult = racing.decideWinner();
     Printer.printWinner(raceResult);
   }
@@ -43,6 +49,19 @@ class App {
       OutputView.print(error.message);
       return this.getTryCount();
     }
+  }
+
+  static getIsMoveList(cars) {
+    const isMoveList = Array.from({ length: cars.length });
+
+    return isMoveList.map(() => {
+      const randomNumber = getRandomNumber(
+        MIN_RANDOM_NUMBER,
+        MAX_RANDOM_NUMBER,
+      );
+
+      return randomNumber >= MOVE_NUMBER;
+    });
   }
 }
 

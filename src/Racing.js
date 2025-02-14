@@ -1,10 +1,4 @@
-import getRandomNumber from './utils/getRandomNumber.js';
 import Printer from './Printer.js';
-import {
-  MIN_RANDOM_NUMBER,
-  MAX_RANDOM_NUMBER,
-  MOVE_NUMBER,
-} from './constants/RacingConstants.js';
 import { OutputMessage } from './constants/OutputMessage.js';
 
 class Racing {
@@ -14,21 +8,21 @@ class Racing {
     this.#cars = cars;
   }
 
-  raceTurn() {
-    this.#cars.forEach((car) => {
-      const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-      if (randomNum >= MOVE_NUMBER) {
+  raceTurn(isMoveList) {
+    this.#cars.forEach((car, carIndex) => {
+      const isMove = isMoveList[carIndex];
+      if (isMove) {
         car.move();
       }
     });
   }
 
-  runRace(tryCount) {
+  runRace(tryCount, isMoveList) {
     Printer.printHeader(OutputMessage.resultHeader);
 
     const turns = Array.from({ length: tryCount });
     turns.forEach(() => {
-      this.raceTurn();
+      this.raceTurn(isMoveList);
       const result = this.getCarInfo(this.#cars);
 
       Printer.printRacingResult(result);
