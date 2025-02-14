@@ -1,0 +1,29 @@
+const MOVE_THRESHOLD = 4;
+
+const MOVE_DISTANCE = 1;
+
+const MAX_NAME_LENGTH = 5;
+
+const MIN_CAR_COUNT = 2;
+
+const MIN_RACE_COUNT = 1;
+
+const MAX_RACE_COUNT = 1_000;
+
+const MAX_RANDOM_NUMBER = 10;
+
+const NAME_PATTERN = /^[a-zA-Z]+$/;
+
+const NUMBER_PATTERN = /^[0-9]+$/;
+
+export {
+  MOVE_THRESHOLD,
+  MOVE_DISTANCE,
+  MAX_NAME_LENGTH,
+  MIN_CAR_COUNT,
+  MIN_RACE_COUNT,
+  MAX_RACE_COUNT,
+  NAME_PATTERN,
+  NUMBER_PATTERN,
+  MAX_RANDOM_NUMBER,
+};
