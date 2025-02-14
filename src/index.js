@@ -33,11 +33,7 @@ export async function run() {
   const winnerPosition = cars.reduce((maxPosition, car) => 
     Math.max(car.position, maxPosition), 0);
 
-  const winnerList = [];
-  for (let i = 0; i < nameList.length; i++) {
-    const position = cars[i].position;
-    if (position === winnerPosition) winnerList.push(nameList[i]);
-  }
+  const winnerList = cars.filter(car => car.position === winnerPosition);
 
   const winnerOutput = winnerList.join(', ');
 
