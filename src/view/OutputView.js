@@ -13,11 +13,12 @@ export default class OutputView {
     OutputView.#print(OUTPUT_MESSAGE.result);
   }
 
-  static printEachGame(nameList, cars) {
-    for (let i = 0; i < nameList.length; i++) {
-      const carOutput = '-'.repeat(cars[i].position);
-      this.#print(`${nameList[i]} : ${carOutput}`);
-    }
+  static printEachGame(cars) {
+    cars.forEach(car => {
+      const carOutput = '-'.repeat(car.position);
+      this.#print(`${car.name} : ${carOutput}`);
+    });
+
     this.printBlank();
   }
 

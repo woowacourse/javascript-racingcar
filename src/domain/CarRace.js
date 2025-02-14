@@ -1,3 +1,4 @@
+import { getRandomInt } from '../helpers/utils.js';
 import { InputView, OutputView } from '../view/index.js';
 import CarModel from './Car.js';
 
@@ -15,7 +16,7 @@ export default class CarRace {
         const randomNumber = getRandomInt(10);
         if (randomNumber >= 4) car.go();
       });
-      OutputView.printEachGame(names, cars);
+      OutputView.printEachGame(cars);
     }
 
     const winnerPosition = Math.max(...cars.map(car => car.position));
