@@ -1,4 +1,6 @@
 import Car from "../src/model/Car.js";
+import { OutputView } from "../src/view/OutputView.js";
+import { getCarStatus } from "../src/util/carUtil.js";
 describe("차 객체 유닛 테스트", () => {
   test("차 객체를 만들면 차가 생성되어야 함", () => {
     //given
@@ -34,7 +36,7 @@ describe("차 객체 유닛 테스트", () => {
 
     expect(car.getPosition()).toBe(EXPECTED_RESULT);
   });
-  test("toString이 정확히 이름과 위치를 표기해야함.", () => {
+  test("printCar 함수가 정확히 이름과 위치를 표기해야함.", () => {
     //given
     const NAME = "제로콜라";
 
@@ -45,6 +47,6 @@ describe("차 객체 유닛 테스트", () => {
       car.goForward();
     }
 
-    expect(car.toString()).toBe(EXPECTED_RESULT);
+    expect(getCarStatus(car)).toBe(EXPECTED_RESULT);
   });
 });
