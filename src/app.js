@@ -59,11 +59,12 @@ class App {
 
   static getTotalRaceMoves(tryCount, cars) {
     const turns = Array.from({ length: tryCount });
-    return turns.map(() => this.getIsMoveList(cars));
+    const totalCarNumbers = cars.length;
+    return turns.map(() => this.getIsMoveList(totalCarNumbers));
   }
 
-  static getIsMoveList(cars) {
-    const carsMoveList = Array.from({ length: cars.length });
+  static getIsMoveList(totalCarNumbers) {
+    const carsMoveList = Array.from({ length: totalCarNumbers });
     return carsMoveList.map(() => {
       const randomNumber = getRandomNumber(
         MIN_RANDOM_NUMBER,
