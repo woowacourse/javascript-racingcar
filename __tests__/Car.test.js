@@ -1,5 +1,5 @@
-import Car from "../src/model/Car.js";
-import { OutputView } from "../src/view/OutputView.js";
+import Car from "../src/domain/Car.js";
+
 import { getCarStatus } from "../src/util/carUtil.js";
 describe("차 객체 유닛 테스트", () => {
   test("차 객체를 만들면 차가 생성되어야 함", () => {

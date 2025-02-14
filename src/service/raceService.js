@@ -1,6 +1,6 @@
-import Car from "../model/Car.js";
+import Car from "../domain/Car.js";
 import { OutputView } from "../view/OutputView.js";
-import randomNumberGenerator from "../model/RandomNumberGenerator.js";
+import randomNumberGenerator from "../domain/RandomNumberGenerator.js";
 import { systemSetting } from "../settings/systemSetting.js";
 import { getCarStatus } from "../util/carUtil.js";
 

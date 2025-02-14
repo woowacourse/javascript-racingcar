@@ -1,4 +1,4 @@
-import randomNumberGenerator from "../src/model/RandomNumberGenerator.js";
+import randomNumberGenerator from "../src/domain/RandomNumberGenerator.js";
 import { systemSetting } from "../src/settings/systemSetting.js";
 test("randomNumberGenerator는 0~9 사이 수를 생성해야 한다", () => {
   //given
