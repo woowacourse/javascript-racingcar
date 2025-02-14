@@ -7,7 +7,7 @@ describe("자동차 이름 목록 유효성 검사", () => {
     expect(() => validateCarNameList([])).toThrow("[ERROR] 입력이 비어 있습니다.");
   });
 
-  test.each([[["수이", "", "메타"]], [["수이", "", "", "메타"]]])("차 이름에 빈 값이 존재하는 경우 에러 발생", (input) => {
+  test.each([[["수이", "", "메타"]], [["수이", "\n", "메타"],[" ","수이","메타"]]])("차 이름에 빈 값이 존재하는 경우 에러 발생", (input) => {
     expect(() => validateCarNameList(input)).toThrow("[ERROR] 자동차 이름에 빈 값이 포함되어 있습니다.");
   });
 
