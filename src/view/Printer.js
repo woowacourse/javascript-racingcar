@@ -1,4 +1,3 @@
-import OutputView from './OutputView.js';
 import {
   RESULT_MARK,
   WINNER_DELIMITER,
@@ -6,8 +5,12 @@ import {
 import { OutputFormat, OutputMessage } from '../constants/OutputMessage.js';
 
 class Printer {
+  static print(message) {
+    console.log(message);
+  }
+
   static printHeader(message) {
-    OutputView.print(message);
+    this.print(message);
   }
 
   static printRacingResult(results) {
@@ -15,16 +18,16 @@ class Printer {
       const { name, position } = result;
       const raceResult = RESULT_MARK.repeat(position);
 
-      OutputView.print(OutputFormat.getRaceResult(name, raceResult));
+      this.print(OutputFormat.getRaceResult(name, raceResult));
     });
 
-    OutputView.print(OutputMessage.lineBreak);
+    this.print(OutputMessage.lineBreak);
   }
 
   static printWinner(results) {
     const winner = results.map((result) => result.name).join(WINNER_DELIMITER);
 
-    OutputView.print(OutputFormat.getWinner(winner));
+    this.print(OutputFormat.getWinner(winner));
   }
 }
 
