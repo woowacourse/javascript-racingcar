@@ -13,7 +13,7 @@ export const Validation = {
     return Number.isInteger(Number(input));
   },
 
-  isNegative(input) {
+  isPositive(input) {
     return Number(input) > 0;
   },
 };

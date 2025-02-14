@@ -56,7 +56,7 @@ describe("input validation test", () => {
     const INPUT_VALUE = "-1";
 
     //when
-    const RESULT = Validation.isNegative(INPUT_VALUE);
+    const RESULT = Validation.isPositive(INPUT_VALUE);
 
     //then
     expect(RESULT).toBe(false);

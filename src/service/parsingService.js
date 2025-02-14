@@ -21,7 +21,7 @@ export const parsingService = {
     if (!Validation.isInteger(input)) {
       throw new Error(ERROR_MESSAGE.NOT_INTEGER);
     }
-    if (!Validation.isNegative(input)) {
+    if (!Validation.isPositive(input)) {
       throw new Error(ERROR_MESSAGE.NOT_POSITIVE);
     }
     return Number(input);
