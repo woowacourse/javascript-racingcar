@@ -1,11 +1,11 @@
 import getRandomNumber from './utils/getRandomNumber.js';
 import Printer from './Printer.js';
-import IOMessage from './constants/IOMessage.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
 } from './constants/MagicNumber.js';
+import { OutputMessage } from './constants/OutputMessage.js';
 
 class Racing {
   #cars;
@@ -26,7 +26,7 @@ class Racing {
   runRace(tryCount) {
     let currentCount = 0;
 
-    Printer.printHeader(IOMessage.resultHeader);
+    Printer.printHeader(OutputMessage.resultHeader);
 
     while (currentCount < tryCount) {
       this.raceTurn();
