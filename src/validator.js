@@ -1,6 +1,6 @@
 export default class Validator {
   static validateCarName(rawName) {
-    const nameList = rawName.trim().split(',');
+    const nameList = rawName.split(',').map(name => name.trim());
     if(nameList.length < 2)throw new Error("[ERROR] 2개 이상의 자동차 이름을 입력해야합니다.");
     for (const name of nameList) {
       if (name.length > 5) throw new Error("[ERROR] 자동차의 이름은 5자 이하만 가능합니다.");

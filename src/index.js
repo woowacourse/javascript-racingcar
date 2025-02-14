@@ -25,7 +25,9 @@ export async function run() {
   const winnerPosition = cars.reduce((maxPosition, car) => 
     Math.max(car.position, maxPosition), 0);
 
-  const winnerList = cars.filter(car => car.position === winnerPosition);
+  const winnerList = cars.filter(car => car.position === winnerPosition).map(car => car.name);
+
+  console.log(winnerList);
 
   const winnerOutput = winnerList.join(', ');
 
