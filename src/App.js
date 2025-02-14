@@ -11,7 +11,10 @@ class App {
 
     OutputView.print(OUTPUT_MESSAGE.RESULT);
     for(let i = 0; i < attemptCount; i++){
-      race.executeTurn();
+      const carListStatus = race.executeTurn();
+      carListStatus.forEach((car)=>{
+        OutputView.print(`${car[0]} : ${"-".repeat(car[1])}`);
+      })
       OutputView.print(LINE_BREAK)
     }
 

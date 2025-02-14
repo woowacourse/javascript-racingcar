@@ -9,13 +9,13 @@ class Race {
   }
 
   executeTurn() {
-    this.#carList.forEach((car) => {
+    return this.#carList.map((car) => {
       const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
-
       this.checkMove(randomNumber, car);
-      car.printStatus();
+      return [car.name, car.position];
     });
-  }
+}
+
 
   checkMove(randomNumber, car) {
     if (randomNumber >= MOVE_CONDITION) {

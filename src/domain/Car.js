@@ -13,10 +13,6 @@ class Car {
     this.#position++;
   }
 
-  printStatus() {
-    OutputView.print(`${this.name} : ${"-".repeat(this.position)}`);
-  }
-
   get name() {
     return this.#name;
   }
