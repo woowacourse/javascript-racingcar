@@ -21,27 +21,27 @@ export async function raceInit(inputProvider, parser) {
   return { cars, round };
 }
 
-export const raceManager = {
-  isMovable(randomNumber) {
-    return randomNumber >= systemSetting.MOVABLE_NUMBER;
-  },
-  startRace(cars, round) {
-    for (let i = 0; i < round; i++) {
-      this.moveCar(cars);
-      OutputView.printMessage("\n");
+export function isMovable(randomNumber) {
+  return randomNumber >= systemSetting.MOVABLE_NUMBER;
+}
+
+export function moveCar(cars) {
+  cars.forEach((car) => {
+    const randomNumber = randomNumberGenerator(
+      systemSetting.MINIMUM_RANDOM_NUMBER,
+      systemSetting.MAXIMUM_RANDOM_NUMBER
+    );
+    if (isMovable(randomNumber)) {
+      car.goForward();
     }
-  },
-  moveCar(cars) {
-    for (const car of cars) {
-      const randomNumber = randomNumberGenerator(
-        systemSetting.MINIMUM_RANDOM_NUMBER,
-        systemSetting.MAXIMUM_RANDOM_NUMBER
-      );
-      if (this.isMovable(randomNumber)) {
-        car.goForward();
-      }
-      const carStatus = getCarStatus(car);
-      OutputView.printMessage(carStatus);
-    }
-  },
-};
+    const carStatus = getCarStatus(car);
+    OutputView.printMessage(carStatus);
+  });
+}
+
+export function startRace(cars, round) {
+  for (let i = 0; i < round; i++) {
+    moveCar(cars);
+    OutputView.printMessage("\n");
+  }
+}
