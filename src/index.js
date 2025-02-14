@@ -14,4 +14,4 @@ startRace(cars, round);
 
 const winner = getWinner(cars);
 
-OutputView.printMessage(SystemMessage.WINNER_MESSAGE(winner));
+OutputView.printMessage(SystemMessage.WINNER_MESSAGE(winner.join(", ")));
