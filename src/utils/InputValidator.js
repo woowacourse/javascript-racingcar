@@ -6,7 +6,7 @@ import {
 } from '../constants/configurations.js';
 import { ERROR_MESSAGE } from '../constants/systemMessages.js';
 
-const validator = Object.freeze({
+const InputValidator = Object.freeze({
   carNames(carNames) {
     if (carNames.length !== new Set(carNames).size)
       throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
@@ -31,4 +31,4 @@ const validator = Object.freeze({
   },
 });
 
-export default validator;
+export default InputValidator;
