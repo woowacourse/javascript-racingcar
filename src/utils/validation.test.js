@@ -1,4 +1,4 @@
-import { INVALID_MESSAGE } from "../constants/index.js";
+import { INVALID_MESSAGE } from "../constants/message/invalid.js";
 import CustomError from "../CustomError.js";
 import { validateCarNames, validateAttemptCount } from "./validation.js";
 

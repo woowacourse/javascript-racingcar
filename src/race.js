@@ -1,14 +1,15 @@
 import { randomNumberGenerator } from "./utils/math.js";
-import { RULE } from "./constants/index.js";
+import { RANDOM_NUMBER_RULE } from "./constants/rule/randomNumber.js";
+import { ADVANCE_RULE } from "./constants/rule/advance.js";
 
 const moveRacingCars = (carNames, advanceRacingCar) => {
   carNames.forEach((carName) => {
     const randomNumber = randomNumberGenerator(
-      RULE.MIN_RANDOM_NUMBER,
-      RULE.MAX_RANDOM_NUMBER
+      RANDOM_NUMBER_RULE.MIN_NUMBER,
+      RANDOM_NUMBER_RULE.MAX_NUMBER
     );
 
-    if (randomNumber >= RULE.ADVANCE_CONDITION) {
+    if (randomNumber >= ADVANCE_RULE.CONDITION) {
       advanceRacingCar(carName);
     }
   });

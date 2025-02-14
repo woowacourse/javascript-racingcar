@@ -1,8 +1,9 @@
-import { VIEW_MESSAGE, RULE } from "../constants/index.js";
+import { VIEW_MESSAGE } from "../constants/message/view.js";
+import { CAR_RULE } from "../constants/rule/car.js";
 
 export const printWinner = (winners) => {
   console.log(
-    VIEW_MESSAGE.WINNER_RESULT + winners.join(`${RULE.CAR_NAME_SEPARATOR}`)
+    VIEW_MESSAGE.WINNER_RESULT + winners.join(`${CAR_RULE.NAME_SEPARATOR}`)
   );
 };
 

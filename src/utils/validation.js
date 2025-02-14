@@ -1,17 +1,19 @@
 import { isInRange, isDuplicate } from "./predicate.js";
-import { INVALID_MESSAGE, RULE } from "../constants/index.js";
+import { INVALID_MESSAGE } from "../constants/message/invalid.js";
+import { CAR_RULE } from "../constants/rule/car.js";
+import { ATTEMPT_RULE } from "../constants/rule/attempt.js";
 import CustomError from "../CustomError.js";
 
 export const validateCarNames = (carNames) => {
-  if (!isInRange(RULE.MIN_CAR_COUNT, RULE.MAX_CAR_COUNT, carNames.length)) {
+  if (!isInRange(CAR_RULE.MIN_COUNT, CAR_RULE.MAX_COUNT, carNames.length)) {
     throw new CustomError(INVALID_MESSAGE.CAR_COUNT);
   }
 
   const isInvalidCarNames = carNames.some(
     (carName) =>
       !isInRange(
-        RULE.MIN_CAR_NAME_LENGTH,
-        RULE.MAX_CAR_NAME_LENGTH,
+        CAR_RULE.MIN_NAME_LENGTH,
+        CAR_RULE.MAX_NAME_LENGTH,
         carName.length
       )
   );
@@ -31,7 +33,7 @@ export const validateAttemptCount = (attemptCount) => {
   }
 
   if (
-    !isInRange(RULE.MIN_ATTEMPT_COUNT, RULE.MAX_ATTEMPT_COUNT, attemptCount)
+    !isInRange(ATTEMPT_RULE.MIN_COUNT, ATTEMPT_RULE.MAX_COUNT, attemptCount)
   ) {
     throw new CustomError(INVALID_MESSAGE.ATTEMPT_COUNT);
   }

@@ -1,5 +1,6 @@
 import readline from "readline";
-import { RULE, VIEW_MESSAGE } from "../constants/index.js";
+import { VIEW_MESSAGE } from "../constants/message/view.js";
+import { CAR_RULE } from "../constants/rule/car.js";
 
 const readLineAsync = (query = "") => {
   return new Promise((resolve) => {
@@ -29,7 +30,7 @@ export const retryUntilValid = async (getInputFn, validator) => {
 
 export const getCarName = async () => {
   const carName = await readLineAsync(VIEW_MESSAGE.CAR_NAME_INPUT);
-  const carNames = carName.split(RULE.CAR_NAME_SEPARATOR);
+  const carNames = carName.split(CAR_RULE.NAME_SEPARATOR);
   return carNames.map((carName) => carName.trim());
 };
 
