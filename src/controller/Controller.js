@@ -32,7 +32,7 @@ export default class Controller {
   runRace(cars, tryCount) {
     console.log(OUTPUT_MESSAGE.RESULT);
     for (let i = 0; i < tryCount; i++) {
-      this.gameRound(cars);
+      this.runRound(cars);
     }
   }
 
@@ -42,9 +42,11 @@ export default class Controller {
     this.outputView.printWinner(winners);
   }
 
-  gameRound(cars) {
+  runRound(cars) {
     cars.forEach((car) => {
-      if (this.isMove(getRandomNumber())) car.move();
+      if (this.isMove(getRandomNumber())) {
+        car.move();
+      }
       this.outputView.printProgressResult(car.name, car.position);
     });
     console.log("");

@@ -73,7 +73,7 @@ describe("자동차 경주 한 라운드 테스트", () => {
 
     const controller = new Controller();
 
-    controller.gameRound(CARS);
+    controller.runRound(CARS);
 
     expect(logSpy).toHaveBeenCalledWith("머핀 : -");
   });
@@ -87,7 +87,7 @@ describe("자동차 경주 한 라운드 테스트", () => {
 
     const controller = new Controller();
 
-    controller.gameRound(CARS);
+    controller.runRound(CARS);
 
     logs.forEach((log) => {
       expect(logSpy).toHaveBeenCalledWith(log);
