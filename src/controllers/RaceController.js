@@ -14,11 +14,11 @@ class RaceController {
 
   async race() {
     const parseCarNames = await this.#initCarNames();
-    const parseTryCount = await this.#initTryCount();
+    const parsedTryCount = await this.#initTryCount();
 
     const cars = new Cars(parseCarNames);
 
-    this.#processRacing(cars, parseTryCount);
+    this.#processRacing(cars, parsedTryCount);
     this.#processWinner(cars);
   }
 
@@ -40,21 +40,21 @@ class RaceController {
     while(true) {
       try {
         const tryCount = await this.#inputView.getTryCount();
-        const parseTryCount = Number(tryCount);
-        new TryCountValidator().validateNumber(parseTryCount);
+        const parsedTryCount = Number(tryCount);
+        new TryCountValidator().validateNumber(parsedTryCount);
   
-        return parseTryCount;
+        return parsedTryCount;
       } catch (error) {
         console.log(error.message);
       }
     }
   }
 
-  #processRacing(cars, parseTryCount) {
+  #processRacing(cars, parsedTryCount) {
     this.#outputView.printResultHeader();
     const carList = cars.cars;
 
-    for (let i = 0; i < parseTryCount; i++) {
+    for (let i = 0; i < parsedTryCount; i++) {
       cars.moveCars();
       this.#outputView.printRaceResult(carList);
       this.#outputView.printNewLine();
