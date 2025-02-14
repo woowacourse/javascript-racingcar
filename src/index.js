@@ -10,6 +10,7 @@ import { getWinner } from "./service/statisticsService.js";
 const { cars, round } = await raceInit(InputView, parsingService);
 
 OutputView.printMessage(systemMessage.RESULT_MESSAGE);
+
 const carAfterRace = startRace(cars, round);
 
 const winner = getWinner(carAfterRace);
