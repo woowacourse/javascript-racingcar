@@ -22,8 +22,8 @@ function readLineAsync(query) {
   });
 }
 
-const getRandomNumber = () => {
-  return Math.floor(Math.random() * 10);
+const getRandomIntBetween = (min, max) => {
+  return min + Math.floor(Math.random() * (max - min + 1));
 };
 
-export { getRandomNumber, readLineAsync };
+export { getRandomIntBetween, readLineAsync };

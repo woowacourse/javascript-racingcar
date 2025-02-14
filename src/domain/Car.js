@@ -1,5 +1,5 @@
 import { MOVE_THRESHOLD } from "../Const.js";
-import { getRandomNumber } from "../Util.js";
+import { getRandomIntBetween } from "../Util.js";
 
 class Car {
   constructor(raceCarName) {
@@ -12,7 +12,7 @@ class Car {
   }
 
   tryMove() {
-    if (getRandomNumber() >= MOVE_THRESHOLD) {
+    if (getRandomIntBetween(0, 9) >= MOVE_THRESHOLD) {
       this.#moveOneStep();
     }
   }

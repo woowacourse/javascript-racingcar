@@ -5,7 +5,7 @@ jest.mock("../src/Util.js");
 
 test("랜덤값이 4이상이면 앞으로 한칸 전진한다", () => {
   //givin
-  Util.getRandomNumber
+  Util.getRandomIntBetween
     .mockReturnValueOnce(4)
     .mockReturnValueOnce(2)
     .mockReturnValueOnce(9);

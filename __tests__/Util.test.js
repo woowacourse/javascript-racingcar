@@ -1,8 +1,8 @@
-import { getRandomNumber } from "../src/Util.js";
+import { getRandomIntBetween } from "../src/Util.js";
 
 test("0-9까지의 랜덤 숫자를 반환한다", () => {
   //when
-  const randomNum = getRandomNumber();
+  const randomNum = getRandomIntBetween(0, 9);
 
   //then
   expect(randomNum).toBeLessThanOrEqual(9);

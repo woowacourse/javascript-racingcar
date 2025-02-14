@@ -8,7 +8,7 @@ class Validate {
     return this;
   }
 
-  isLiminLength(name) {
+  isLimitLength(name) {
     return this.#throwIfInValid(
       name.length > MAX_CAR_LENGTH,
       ERROR_MESSAGE.belowLimit
@@ -33,7 +33,6 @@ class Validate {
       ERROR_MESSAGE.integer
     );
   }
-  
 }
 
 export default Validate;
