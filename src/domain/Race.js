@@ -4,8 +4,8 @@ import { getRandomNumber } from "../utils/getRandomNumber.js";
 class Race {
   #carList = [];
 
-  constructor(nameList) {
-    this.#carList = nameList.map((name) => new Car(name));
+  constructor(carList) {
+    this.#carList = carList
   }
 
   executeTurn() {
@@ -15,7 +15,6 @@ class Race {
       return [car.name, car.position];
     });
 }
-
 
   checkMove(randomNumber, car) {
     if (randomNumber >= MOVE_CONDITION) {

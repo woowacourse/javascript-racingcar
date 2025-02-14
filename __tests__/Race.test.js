@@ -1,5 +1,6 @@
 import { getRandomNumber } from "../src/utils/getRandomNumber.js";
 import Race from "../src/domain/Race.js";
+import Car from "../src/domain/Car.js";
 
 jest.mock("../src/utils/getRandomNumber.js", () => ({
   getRandomNumber: jest.fn(),
@@ -27,14 +28,18 @@ describe("조건에 따른 자동차 이동 테스트", () => {
   })
 })
 
-test("공동 우승자 출력", () => {
-  const race = new Race(["수이", "메타", "메이토"], 2);
 
-  Object.defineProperty(race.carList[0], "position", { get: () => 2 });
-  Object.defineProperty(race.carList[1], "position", { get: () => 2 });
-  Object.defineProperty(race.carList[2], "position", { get: () => 0 });
+test("공동 우승자 출력", () => {
+  const suiCar = new Car("수이")
+  const susuCar = new Car("수수")
+  const iiCar = new Car("이이")
+  
+  suiCar.move()
+  susuCar.move()
+
+  const race = new Race([suiCar, susuCar, iiCar]);
 
   const winners = race.getWinnerName();
 
-  expect(winners).toEqual(["수이", "메타"]);
+  expect(winners).toEqual(["수이", "수수"]);
 });
