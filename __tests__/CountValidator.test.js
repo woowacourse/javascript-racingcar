@@ -27,7 +27,7 @@ describe('시도 횟수의 예외 상황 테스트', () => {
   });
 
   test(`시도횟수가 100만 번 이하인 경우 ${ErrorMessage.isBigNumber} 메시지를 포함한 에러를 throw 한다.`, () => {
-    const TRY_COUNT = 2000000;
+    const TRY_COUNT = 1_000_001;
 
     expect(() => CountValidator.isNotBigNumber(TRY_COUNT)).toThrow(
       ErrorMessage.isBigNumber,
