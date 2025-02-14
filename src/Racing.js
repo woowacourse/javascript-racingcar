@@ -15,12 +15,12 @@ class Racing {
   }
 
   raceTurn() {
-    const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-    if (randomNum >= MOVE_NUMBER) {
-      this.#cars.forEach((car) => {
+    this.#cars.forEach((car) => {
+      const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
+      if (randomNum >= MOVE_NUMBER) {
         car.move();
-      });
-    }
+      }
+    });
   }
 
   runRace(tryCount) {
