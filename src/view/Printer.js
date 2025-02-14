@@ -2,11 +2,11 @@ import {
   RESULT_MARK,
   WINNER_DELIMITER,
 } from '../constants/PrinterConstants.js';
-import { OutputFormat, OutputMessage } from '../constants/OutputMessage.js';
+import { OUTPUT_MESSAGE, OUTPUT_FORMAT } from '../constants/OutputMessage.js';
 
 class Printer {
   static printHeader() {
-    console.log(OutputMessage.raceResultHeader);
+    console.log(OUTPUT_MESSAGE.raceResultHeader);
   }
 
   static printRacingResult(results) {
@@ -14,16 +14,16 @@ class Printer {
       const { name, position } = result;
       const raceResult = RESULT_MARK.repeat(position);
 
-      console.log(OutputFormat.getRaceResult(name, raceResult));
+      console.log(OUTPUT_FORMAT.getRaceResult(name, raceResult));
     });
 
-    console.log(OutputMessage.lineBreak);
+    console.log(OUTPUT_MESSAGE.lineBreak);
   }
 
   static printWinner(results) {
     const winner = results.map((result) => result.name).join(WINNER_DELIMITER);
 
-    console.log(OutputFormat.getWinner(winner));
+    console.log(OUTPUT_FORMAT.getWinner(winner));
   }
 }
 
