@@ -21,7 +21,7 @@ export const validateCarNames = (stringOfCarNames) => {
 };
 
 export const validateCount = (number) => {
-  if (isNaN(number)) {
+  if (Number.isNaN(number)) {
     throw new Error(ERROR.IS_NOT_NUMBER);
   }
 
