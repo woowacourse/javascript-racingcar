@@ -1,4 +1,4 @@
-# javascript-racingcar
+# javascript-racingcar (step2)
 
 ## 📍프로그램 개요
 
