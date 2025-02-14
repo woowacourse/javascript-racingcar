@@ -3,7 +3,7 @@ import { CAR_RULE } from "../constants/rule/car.js";
 
 export const printWinner = (winners) => {
   console.log(
-    VIEW_MESSAGE.WINNER_RESULT + winners.join(`${CAR_RULE.NAME_SEPARATOR}`)
+    VIEW_MESSAGE.WINNER_RESULT + winners.join(CAR_RULE.NAME_SEPARATOR)
   );
 };
 
