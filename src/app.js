@@ -4,9 +4,9 @@ import CountValidator from './utils/validator/CountValidator.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import parseToNumber from './utils/parseToNumber.js';
-import Car from './Car.js';
-import Racing from './Racing.js';
-import Printer from './Printer.js';
+import Car from './domain/Car.js';
+import Racing from './domain/Racing.js';
+import Printer from './view/Printer.js';
 import InputMessage from './constants/InputMessage.js';
 import getRandomNumber from './utils/getRandomNumber.js';
 import {

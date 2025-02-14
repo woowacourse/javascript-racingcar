@@ -1,4 +1,4 @@
-import { DEFAULT_POSITION, UNIT_POSITION } from './constants/CarConstants.js';
+import { DEFAULT_POSITION, UNIT_POSITION } from '../constants/CarConstants.js';
 
 class Car {
   #name;

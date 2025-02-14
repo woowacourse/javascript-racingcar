@@ -1,5 +1,5 @@
-import Printer from './Printer.js';
-import { OutputMessage } from './constants/OutputMessage.js';
+import Printer from '../view/Printer.js';
+import { OutputMessage } from '../constants/OutputMessage.js';
 
 class Racing {
   #cars;
