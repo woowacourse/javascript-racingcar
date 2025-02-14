@@ -14,7 +14,7 @@ const checkSingleCar = (carNameList) => {
 };
 
 const checkEmptyValue = (carNameList) => {
-  if (carNameList.some((carName) => carName.length === 0)) {
+  if (carNameList.some((carName) => carName.trim().length === 0)) {
     throwError(CAR_NAME_LIST_ERROR_MESSAGES.EMPTY_CAR_NAME);
   }
 };
