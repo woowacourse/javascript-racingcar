@@ -12,7 +12,8 @@ export default class CarRace {
 
     for (let currentCount = 0; currentCount < count; currentCount++) {
       cars.forEach(car => {
-        car.moveForward();
+        const randomNumber = getRandomInt(10);
+        if (randomNumber >= 4) car.go();
       });
       OutputView.printEachGame(names, cars);
     }
