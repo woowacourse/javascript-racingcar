@@ -2,7 +2,7 @@ import Car from "../domain/Car.js";
 import { OutputView } from "../view/OutputView.js";
 import randomNumberGenerator from "../domain/RandomNumberGenerator.js";
 import { systemSetting } from "../settings/systemSetting.js";
-import { getCarStatus } from "../util/carUtil.js";
+import { getCarStatus } from "./carService.js";
 
 export async function raceInit(inputProvider, parser) {
   const cars = [];
