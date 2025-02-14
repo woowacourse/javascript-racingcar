@@ -4,10 +4,12 @@ import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
 import { CAR } from "../constants/constants.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
+import OutputView from "../view/OutputView.js";
 
 export default class Controller {
   constructor() {
     this.inputView = new InputView();
+    this.outputView = new OutputView();
   }
 
   async run() {
@@ -37,17 +39,13 @@ export default class Controller {
   findWinner(cars) {
     const max = Math.max(...cars.map((car) => car.position));
     const winners = cars.filter((car) => car.position === max);
-    console.log(
-      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`,
-    );
+    this.outputView.printWinner(winners);
   }
 
   gameRound(cars) {
     cars.forEach((car) => {
       if (this.isMove(getRandomNumber())) car.move();
-      console.log(
-        `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`,
-      );
+      this.outputView.printProgressResult(car.name, car.position);
     });
     console.log("");
   }
