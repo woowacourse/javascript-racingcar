@@ -1,4 +1,5 @@
 import { ERROR } from "../constants/messages.js";
+import { MAX_CAR_NAME_LENGTH } from "../constants/race.js";
 
 export const hasEmptyString = (arr) => {
   return arr.some((item) => item === "");
@@ -15,7 +16,7 @@ export const validateCarNames = (stringOfCarNames) => {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
   }
 
-  if (!isLongerThanMaxLength(carNamesArr, 5)) {
+  if (!isLongerThanMaxLength(carNamesArr, MAX_CAR_NAME_LENGTH)) {
     throw new Error(ERROR.IS_LENGTH_LONGER_THAN_FIVE);
   }
 };
