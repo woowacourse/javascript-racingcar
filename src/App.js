@@ -3,7 +3,7 @@ import readLineAsync from './utils/readLineAsync.js';
 import validator from './utils/validator.js';
 import Car from './Car.js';
 import loopWhileValid from './utils/loopWhileValid.js';
-import { GAME_MESSAGE, SEPERATOR } from './constants/systemMessages.js';
+import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 
 class App {
   async run() {
@@ -16,7 +16,7 @@ class App {
 
   async enterCarNames() {
     const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
-    const names = inputName.split(SEPERATOR);
+    const names = inputName.split(SEPARATOR);
     validator.carNames(names);
 
     return names.map((name) => new Car(name, 0));

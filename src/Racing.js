@@ -1,5 +1,5 @@
 import getRandomValue from './utils/getRandomValue.js';
-import { GAME_MESSAGE, SEPERATOR } from './constants/systemMessages.js';
+import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 
 class Racing {
   carList;
@@ -15,7 +15,7 @@ class Racing {
     return this.carList
       .filter((car) => car.position === maxPosition)
       .map((car) => car.name)
-      .join(`${SEPERATOR} `);
+      .join(`${SEPARATOR} `);
   }
 
   start() {

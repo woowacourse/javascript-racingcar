@@ -19,6 +19,6 @@ const ERROR_MESSAGE = Object.freeze({
 
 const FORWARD_DASH = '-';
 
-const SEPERATOR = ',';
+const SEPARATOR = ',';
 
-export { GAME_MESSAGE, ERROR_MESSAGE, FORWARD_DASH, SEPERATOR };
+export { GAME_MESSAGE, ERROR_MESSAGE, FORWARD_DASH, SEPARATOR };
