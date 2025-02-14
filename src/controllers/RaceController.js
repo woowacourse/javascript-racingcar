@@ -31,7 +31,7 @@ class RaceController {
   
         return parseCarNames;
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     }
   }
@@ -45,7 +45,7 @@ class RaceController {
   
         return parseTryCount;
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     }
   }
