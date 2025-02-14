@@ -1,4 +1,4 @@
-import { errorMessage } from "../settings/ErrorMessage.js";
+import { errorMessage } from "../constants/ErrorMessage.js";
 import { Validation } from "../validation/Validation.js";
 import { OutputView } from "../view/OutputView.js";
 

@@ -1,6 +1,6 @@
 import { raceInit, raceManager } from "./service/raceService.js";
 import { OutputView } from "./view/OutputView.js";
-import { SystemMessage } from "./settings/SystemMessage.js";
+import { SystemMessage } from "./constants/SystemMessage.js";
 import { getWinner } from "./service/statisticsService.js";
 
 const { cars, round } = await raceInit();

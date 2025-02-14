@@ -18,7 +18,7 @@
 │ ├── 📄 raceService.js
 │ ├── 📄 statisticsService.js
 │
-├── 📂 settings
+├── 📂 constants
 │ ├── 📄 ErrorMessage.js
 │ ├── 📄 SystemMessage.js
 │
