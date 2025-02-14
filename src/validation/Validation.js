@@ -1,12 +1,12 @@
-import { systemSetting } from "../settings/systemSetting.js";
+import { systemSetting } from '../settings/systemSetting.js';
 
 export const Validation = {
   isNameNotEmpty(parsedString) {
-    return parsedString.every((name) => name.length > 0);
+    return parsedString.every((name) => name.trim().length > 0);
   },
   isNameTooLong(parsedString) {
     return parsedString.every(
-      (name) => name.length <= systemSetting.MAX_NAME_LENGTH
+      (name) => name.length <= systemSetting.MAX_NAME_LENGTH,
     );
   },
   isNameDuplicate(parsedString) {

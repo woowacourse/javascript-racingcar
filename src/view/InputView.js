@@ -1,5 +1,5 @@
-import { readLineAsync } from "./ReadLineAsync.js";
-import { systemMessage } from "../settings/SystemMessage.js";
+import { readLineAsync } from './ReadLineAsync.js';
+import { systemMessage } from '../settings/SystemMessage.js';
 
 export const InputView = {
   async getCarName() {
