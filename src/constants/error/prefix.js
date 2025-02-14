@@ -1,1 +1,1 @@
-export const ERROR_PREFIX = "[ERROR] ";
+export const ERROR_PREFIX = "[ERROR]";
