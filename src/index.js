@@ -27,7 +27,6 @@ export async function run() {
 
   const winnerList = cars.filter(car => car.position === winnerPosition).map(car => car.name);
 
-  console.log(winnerList);
 
   const winnerOutput = winnerList.join(', ');
 
