@@ -1,5 +1,11 @@
-function printMessage(content) {
-  console.log(content);
-}
+const Printer = Object.freeze({
+  printMessage(content) {
+    console.log(content);
+  },
 
-export default printMessage;
+  printBlank() {
+    console.log();
+  },
+});
+
+export default Printer;

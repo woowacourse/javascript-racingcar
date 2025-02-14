@@ -1,6 +1,6 @@
 import getRandomValueInRange from './utils/getRandomValueInRange.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
-import printMessage from './utils/printMessage.js';
+import Printer from './utils/printMessage.js';
 
 class Racing {
   carList;
@@ -20,18 +20,18 @@ class Racing {
   }
 
   start() {
-    printMessage(GAME_MESSAGE.RACING_RESULT);
+    Printer.printMessage(GAME_MESSAGE.RACING_RESULT);
     for (let i = 0; i < this.count; i++) {
       this.raceOnce();
-      printMessage();
+      Printer.printBlank();
     }
-    printMessage(`${GAME_MESSAGE.WINNER} ${this.getWinner()}`);
+    Printer.printMessage(`${GAME_MESSAGE.WINNER} ${this.getWinner()}`);
   }
 
   raceOnce() {
     this.carList.forEach((car) => {
       car.move(getRandomValueInRange(0, 9));
-      printMessage(car.getRacingStatus());
+      Printer.printMessage(car.getRacingStatus());
     });
   }
 }

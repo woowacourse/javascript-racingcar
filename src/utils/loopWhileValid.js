@@ -1,12 +1,12 @@
-import printMessage from './printMessage.js';
+import Printer from './printMessage.js';
 
 async function loopWhileValid(fn, ...args) {
   while (true) {
     try {
       return await fn(...args);
     } catch (error) {
-      printMessage(error.message);
-      printMessage();
+      Printer.printMessage(error.message);
+      Printer.printBlank();
     }
   }
 }
