@@ -1,11 +1,12 @@
 import { ERROR } from "../constants/messages.js";
+import { MAX_MOVABLE_NUMBER } from "../constants/race.js";
 
 export const hasEmptyString = (arr) => {
   return arr.some((item) => item === "");
 };
 
 export const isLengthLongerThanFive = (arr) => {
-  return arr.every((item) => item.length < 5);
+  return arr.some((item) => item.length > MAX_MOVABLE_NUMBER);
 };
 
 export const validateCarNames = (carNamesArr) => {
@@ -13,7 +14,7 @@ export const validateCarNames = (carNamesArr) => {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
   }
 
-  if (!isLengthLongerThanFive(carNamesArr)) {
+  if (isLengthLongerThanFive(carNamesArr)) {
     throw new Error(ERROR.IS_LENGTH_LONGER_THAN_FIVE);
   }
 };
