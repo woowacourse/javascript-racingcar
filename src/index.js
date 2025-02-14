@@ -1,25 +1,20 @@
 import { INPUT } from "./constants/messages.js";
 import { createCars } from "./domain/car.js";
 import { getWinnersByPosition, playRacing } from "./domain/play.js";
-import { retryInput } from "./utils/retryInput.js";
-import { splitByDelimiter } from "./utils/split.js";
 import { validateCarNames, validateCount } from "./utils/validation.js";
-import { readLineAsync } from "./view/input.js";
+import handleUserInput from "./view/handleUserInput.js";
 import { printProcess, printWinners } from "./view/output.js";
 
 async function run() {
-  let carNames, tryNumber;
+  const stringOfCarNames = await handleUserInput(
+    INPUT.CAR_NAMES,
+    validateCarNames
+  );
+  const carNames = stringOfCarNames.split(",");
 
-  await retryInput(async () => {
-    const stringOfCarNames = await readLineAsync(INPUT.CAR_NAMES);
-    carNames = splitByDelimiter(stringOfCarNames, ",");
-    validateCarNames(carNames);
-  });
-
-  await retryInput(async () => {
-    tryNumber = await readLineAsync(INPUT.TRY_COUNT);
-    validateCount(tryNumber);
-  });
+  const tryNumber = Number(
+    await handleUserInput(INPUT.TRY_COUNT, validateCount)
+  );
 
   const cars = createCars(carNames);
 
