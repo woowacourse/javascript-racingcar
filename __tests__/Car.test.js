@@ -6,7 +6,7 @@ describe("차 객체 유닛 테스트", () => {
     //given
     //when
     const car = new Car();
-    expect(car).toBeDefined();
+    expect(car).toBeInstanceOf(Car);
   });
   test("차 객체의 이름을 생성하면 이름이 동일해야함", () => {
     //given
