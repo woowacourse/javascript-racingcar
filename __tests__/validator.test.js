@@ -2,7 +2,7 @@ import validator from '../src/utils/validator.js';
 import { ERROR_MESSAGE } from '../src/constants/systemMessages.js';
 
 describe('경주에 참여하는 자동차의 이름들을 검증한다.', () => {
-  test('중복이 되면 안된다.', () => {
+  test('자동차 이름에 중복이 있으면 안된다.', () => {
     const carNames = ['a', 'b', 'a'];
 
     expect(() => {
@@ -10,7 +10,7 @@ describe('경주에 참여하는 자동차의 이름들을 검증한다.', () =>
     }).toThrow(ERROR_MESSAGE.DUPLICATE_NAME);
   });
 
-  test('5자 이상이면 안된다.', () => {
+  test('자동차 이름이 5자 이상이면 안된다.', () => {
     const carNames = ['a', 'b', 'cdefgd'];
 
     expect(() => {
@@ -42,7 +42,7 @@ describe('경주에 참여하는 자동차의 이름들을 검증한다.', () =>
     }).toThrow(ERROR_MESSAGE.INVALID_CAR_COUNT);
   });
 
-  test('정상 입력', () => {
+  test('자동차 입력을 정상적으로 입력한 경우 에러를 내지 않는다.', () => {
     const carNames = ['asdf', 'qwer'];
 
     expect(() => {
