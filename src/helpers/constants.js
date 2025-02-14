@@ -14,3 +14,5 @@ export const OUTPUT_MESSAGE = {
   result: '실행 결과',
   winner: '최종 우승자: ',
 };
+
+export const CAR_MOVE_STANDARD = 4;

@@ -9,7 +9,7 @@ export default class OutputView {
     this.#print('');
   }
 
-  static printResult() {
+  static printResultOutput() {
     OutputView.#print(OUTPUT_MESSAGE.result);
   }
 

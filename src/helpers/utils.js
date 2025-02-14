@@ -31,6 +31,6 @@ export async function retryUntilSuccess(callbackFn) {
   }
 }
 
-export function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+export function getRandomInteger(maxValue) {
+  return Math.floor(Math.random() * (maxValue + 1));
 }
