@@ -3,7 +3,7 @@ import ErrorMessage from '../src/constants/ErrorMessage.js';
 
 describe('자동차 이름의 예외 상황 테스트', () => {
   test(`자동차 이름이 빈 값이면 ${ErrorMessage.emptyInput} 메시지를 포함한 에러를 throw 한다.`, () => {
-    const CAR_NAME = '';
+    const CAR_NAME = ['', 'jenna'];
 
     expect(() => NameValidator.isNotEmpty(CAR_NAME)).toThrow(
       ErrorMessage.emptyInput,
