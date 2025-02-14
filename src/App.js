@@ -2,7 +2,7 @@ import Racing from './Racing.js';
 import readLineAsync from './utils/readLineAsync.js';
 import validator from './utils/validator.js';
 import Car from './Car.js';
-import loopWhileValid from './utils/loopWhileValid.js';
+import loopWhileValid from './utils/retryUntilSuccess.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 
 class App {

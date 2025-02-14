@@ -1,4 +1,4 @@
-import getRandomValue from './utils/getRandomValue.js';
+import getRandomNumber0to9 from './utils/getRandomNumber0to9.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 
 class Racing {
@@ -29,7 +29,7 @@ class Racing {
 
   raceOnce() {
     this.carList.forEach((car) => {
-      car.move(getRandomValue());
+      car.move(getRandomNumber0to9());
       console.log(car.getRacingStatus());
     });
   }

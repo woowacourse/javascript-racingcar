@@ -1,7 +1,4 @@
-import {
-  MOVING_DISTANCE,
-  MOVING_THRESHOLD,
-} from './constants/configurations.js';
+import { MOVING_DISTANCE, MOVING_THRESHOLD } from './constants/configurations.js';
 import { FORWARD_DASH } from './constants/systemMessages.js';
 
 class Car {
