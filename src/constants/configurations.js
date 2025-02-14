@@ -10,6 +10,8 @@ const MIN_RACE_COUNT = 1;
 
 const MAX_RACE_COUNT = 1_000;
 
+const MAX_RANDOM_NUMBER = 10;
+
 const NAME_PATTERN = /^[a-zA-Z]+$/;
 
 const NUMBER_PATTERN = /^[0-9]+$/;
@@ -23,4 +25,5 @@ export {
   MAX_RACE_COUNT,
   NAME_PATTERN,
   NUMBER_PATTERN,
+  MAX_RANDOM_NUMBER,
 };
