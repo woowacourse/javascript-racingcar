@@ -1,5 +1,5 @@
 export const OutputMessage = Object.freeze({
-  resultHeader: '\n실행 결과',
+  raceResultHeader: '\n실행 결과',
   lineBreak: '',
 });
 

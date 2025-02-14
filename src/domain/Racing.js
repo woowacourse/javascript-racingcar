@@ -1,5 +1,4 @@
 import Printer from '../view/Printer.js';
-import { OutputMessage } from '../constants/OutputMessage.js';
 
 class Racing {
   #cars;
@@ -18,7 +17,7 @@ class Racing {
   }
 
   runRace(totalRaceMoves) {
-    Printer.printHeader(OutputMessage.resultHeader);
+    Printer.printHeader();
 
     totalRaceMoves.forEach((carsMoveList) => {
       this.raceTurn(carsMoveList);

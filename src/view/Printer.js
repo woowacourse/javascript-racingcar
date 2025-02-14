@@ -5,8 +5,8 @@ import {
 import { OutputFormat, OutputMessage } from '../constants/OutputMessage.js';
 
 class Printer {
-  static printHeader(message) {
-    console.log(message);
+  static printHeader() {
+    console.log(OutputMessage.raceResultHeader);
   }
 
   static printRacingResult(results) {
