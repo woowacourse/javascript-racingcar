@@ -2,7 +2,6 @@ import splitInput from './utils/splitInput.js';
 import NameValidator from './utils/validator/NameValidator.js';
 import CountValidator from './utils/validator/CountValidator.js';
 import InputView from './view/InputView.js';
-import OutputView from './view/OutputView.js';
 import parseToNumber from './utils/parseToNumber.js';
 import Car from './domain/Car.js';
 import Racing from './domain/Racing.js';
@@ -38,7 +37,7 @@ class App {
 
       return parsedCarName.map((carName) => new Car(carName));
     } catch (error) {
-      OutputView.print(error.message);
+      console.log(error.message);
       return this.getCar();
     }
   }
@@ -52,7 +51,7 @@ class App {
 
       return parsedTryCount;
     } catch (error) {
-      OutputView.print(error.message);
+      console.log(error.message);
       return this.getTryCount();
     }
   }
