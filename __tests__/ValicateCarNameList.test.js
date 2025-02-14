@@ -40,7 +40,7 @@ describe("시도 횟수 유효성 검사", () => {
     expect(() => validateAttemptCount(input)).toThrow("[ERROR] 정수를 입력해주세요.");
   });
   
-  test.each([-3, -5, 0])("시도 횟수가 정수가 아닌 경우 에러 발생", (input) => {
+  test.each([-3, -5, 0])("양의 정수가 아닌 경우 에러 발생", (input) => {
     expect(() => validateAttemptCount(input)).toThrow("[ERROR] 0보다 큰 수를 입력해주세요.");
   })
 
