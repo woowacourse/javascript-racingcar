@@ -1,6 +1,6 @@
 import { ERROR } from "../constants/messages.js";
 
-export const isArrEmpty = (arr) => {
+export const hasEmptyString = (arr) => {
   return arr.some((item) => item === "");
 };
 
@@ -11,7 +11,7 @@ export const isLongerThanMaxLength = (arr, maxLength) => {
 export const validateCarNames = (stringOfCarNames) => {
   const carNamesArr = stringOfCarNames.split(",");
 
-  if (isArrEmpty(carNamesArr)) {
+  if (hasEmptyString(carNamesArr)) {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
   }
 
