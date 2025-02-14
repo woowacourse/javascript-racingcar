@@ -4,18 +4,18 @@ import { OutputView } from "../view/OutputView.js";
 
 export const parsingService = {
   parseNames(input) {
-    let parsedString = input.split(",");
+    let nameList = input.split(",");
 
-    if (!Validation.isNameNotEmpty(parsedString)) {
+    if (!Validation.isNameNotEmpty(nameList)) {
       throw new Error(ERROR_MESSAGE.HAS_EMPTY_NAME);
     }
-    if (!Validation.isNameTooLong(parsedString)) {
+    if (!Validation.isNameTooLong(nameList)) {
       throw new Error(ERROR_MESSAGE.NAME_TOO_LONG);
     }
-    if (!Validation.isNameDuplicate(parsedString)) {
+    if (!Validation.isNameDuplicate(nameList)) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_NAME);
     }
-    return parsedString;
+    return nameList;
   },
   parseRound(input) {
     if (!Validation.isInteger(input)) {
