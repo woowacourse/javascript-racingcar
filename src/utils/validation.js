@@ -1,5 +1,5 @@
 import { ERROR } from "../constants/messages.js";
-import { MAX_CAR_NAME_LENGTH } from "../constants/race.js";
+import { MAX_CAR_NAME_LENGTH, MIN_TRY_COUNT_NUM } from "../constants/race.js";
 
 export const hasEmptyString = (arr) => {
   return arr.some((item) => item === "");
@@ -7,6 +7,10 @@ export const hasEmptyString = (arr) => {
 
 export const isLengthLongerThanFive = (arr) => {
   return arr.some((item) => item.length > MAX_CAR_NAME_LENGTH);
+};
+
+export const isNumberZero = (number) => {
+  return number === MIN_TRY_COUNT_NUM;
 };
 
 export const validateCarNames = (carNamesArr) => {
@@ -20,6 +24,10 @@ export const validateCarNames = (carNamesArr) => {
 };
 
 export const validateCount = (number) => {
+  if (isNumberZero(number)) {
+    throw new Error(ERROR.IS_NOT_ZERO);
+  }
+
   if (isNaN(number)) {
     throw new Error(ERROR.IS_NOT_NUMBER);
   }
