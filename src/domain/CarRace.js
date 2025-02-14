@@ -4,28 +4,43 @@ import { InputView, OutputView } from '../view/index.js';
 import Car from './Car.js';
 
 export default class CarRace {
-  async run() {
+  #cars;
+  #count;
+
+  async init() {
     const names = await InputView.getNames();
-    const count = await InputView.getCount();
+    this.#cars = this.#makeCars(names);
 
-    const cars = names.map(name => new Car(name));
+    this.#count = await InputView.getCount();
+  }
 
+  #makeCars(names) {
+    return names.map(name => new Car(name));
+  }
+
+  async run() {
     OutputView.printResultOutput();
 
-    for (let currentCount = 0; currentCount < count; currentCount++) {
-      cars.forEach(car => {
+    this.#runRace(this.#cars, this.#count);
+    const winners = this.#getWinners(this.#cars);
+
+    OutputView.printWinner(winners);
+  }
+
+  #runRace() {
+    for (let currentCount = 0; currentCount < this.#count; currentCount++) {
+      this.#cars.forEach(car => {
         const randomNumber = getRandomInteger(9);
         if (randomNumber >= CAR_MOVE_STANDARD) car.go();
       });
-      OutputView.printEachGame(cars);
+      OutputView.printEachGame(this.#cars);
     }
+  }
 
-    const winnerPosition = Math.max(...cars.map(car => car.position));
-
-    const winners = cars
+  #getWinners() {
+    const winnerPosition = Math.max(...this.#cars.map(car => car.position));
+    return this.#cars
       .filter(car => car.position === winnerPosition)
       .map(car => car.name);
-
-    OutputView.printWinner(winners);
   }
 }
