@@ -6,6 +6,10 @@ import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 
 export default class Controller {
+  constructor() {
+    this.inputView = new InputView();
+  }
+
   async run() {
     const carNameInput = await this.validateAndRetry(
       INPUT_MESSAGE.CAR_NAMES,
@@ -17,10 +21,8 @@ export default class Controller {
       validateTryCount,
     );
 
-    const cars = [];
-    carNames.forEach((carName) => {
-      cars.push(new Car(carName));
-    });
+    const cars = carNames.map((carName) => new Car(carName));
+
     this.runRace(cars, tryCount);
     this.findWinner(cars);
   }
@@ -52,8 +54,7 @@ export default class Controller {
 
   async validateAndRetry(message, validateFn) {
     try {
-      const inputView = new InputView();
-      const input = await inputView.readLineAsync(message);
+      const input = await this.inputView.readLineAsync(message);
       validateFn(input);
       return input;
     } catch (e) {
@@ -63,7 +64,6 @@ export default class Controller {
   }
 
   isMove(number) {
-    if (number >= CAR.PROGRESS_CRITERIA) return true;
-    return false;
+    return number >= CAR.PROGRESS_CRITERIA;
   }
 }
