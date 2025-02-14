@@ -7,25 +7,25 @@ import {
 class CountValidator {
   static isNumber(parsedTryCount) {
     if (Number.isNaN(parsedTryCount)) {
-      throw new Error(ErrorMessage.isNotNumber);
+      throw new Error(ErrorMessage.NaNTryCount);
     }
   }
 
   static isAtLeastOne(parsedTryCount) {
     if (parsedTryCount < MIN_TRY_COUNT) {
-      throw new Error(ErrorMessage.isInvalidNumber);
+      throw new Error(ErrorMessage.invalidRangeTryCount);
     }
   }
 
   static isInteger(parsedTryCount) {
     if (!Number.isInteger(parsedTryCount)) {
-      throw new Error(ErrorMessage.isNotInteger);
+      throw new Error(ErrorMessage.notInteger);
     }
   }
 
   static isNotBigNumber(parsedTryCount) {
     if (parsedTryCount > MAX_TRY_COUNT) {
-      throw new Error(ErrorMessage.isBigNumber);
+      throw new Error(ErrorMessage.exceedTryCount);
     }
   }
 

@@ -7,20 +7,20 @@ import {
 class NameValidator {
   static isNotEmpty(parsedCarName) {
     if (parsedCarName === '') {
-      throw new Error(ErrorMessage.isEmpty);
+      throw new Error(ErrorMessage.emptyInput);
     }
   }
 
   static isMoreThanTwo(parsedCarName) {
     if (parsedCarName.length < MIN_CAR_NUMBER) {
-      throw new Error(ErrorMessage.isLessThanTwo);
+      throw new Error(ErrorMessage.lessThanTwo);
     }
   }
 
   static isBelowFive(parsedCarName) {
     parsedCarName.forEach((carName) => {
       if (carName.length > MAX_CAR_LENGTH) {
-        throw new Error(ErrorMessage.isLongerThanFive);
+        throw new Error(ErrorMessage.longerThanFive);
       }
     });
   }
@@ -28,7 +28,7 @@ class NameValidator {
   static isNotDuplicated(parsedCarName) {
     const nameSet = new Set(parsedCarName);
     if (nameSet.size !== parsedCarName.length) {
-      throw new Error(ErrorMessage.isDuplicated);
+      throw new Error(ErrorMessage.duplicatedName);
     }
   }
 
