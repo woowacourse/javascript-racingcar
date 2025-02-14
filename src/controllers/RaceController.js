@@ -13,10 +13,10 @@ class RaceController {
   }
 
   async race() {
-    const parseCarNames = await this.#initCarNames();
+    const parsedCarNames = await this.#initCarNames();
     const parsedTryCount = await this.#initTryCount();
 
-    const cars = new Cars(parseCarNames);
+    const cars = new Cars(parsedCarNames);
 
     this.#processRacing(cars, parsedTryCount);
     this.#processWinner(cars);
@@ -26,10 +26,10 @@ class RaceController {
     while(true) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parseCarNames = carNames.split(",").map((carName) => carName.trim());
-        new CarNameValidator().valiateNames(parseCarNames);
+        const parsedCarNames = carNames.split(",").map((carName) => carName.trim());
+        new CarNameValidator().valiateNames(parsedCarNames);
   
-        return parseCarNames;
+        return parsedCarNames;
       } catch (error) {
         console.log(error.message);
       }
