@@ -24,17 +24,15 @@ class Racing {
   }
 
   runRace(tryCount) {
-    let currentCount = 0;
-
     Printer.printHeader(OutputMessage.resultHeader);
 
-    while (currentCount < tryCount) {
+    const turns = Array.from({ length: tryCount });
+    turns.forEach(() => {
       this.raceTurn();
       const result = this.getCarInfo(this.#cars);
 
       Printer.printRacingResult(result);
-      currentCount += 1;
-    }
+    });
   }
 
   getCarInfo() {
