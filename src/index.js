@@ -11,33 +11,21 @@ function printOneGame(nameList, cars) {
 
 // 입출력 예시
 export async function run() {
-  const cars = [];
-
   const nameList = await InputView.getNameList();
   const count = await InputView.getCount();
 
-  nameList.forEach(name => {
-    const car = new CarModel(name);
-    cars.push(car);
-  });
+  const cars = nameList.map(name => new CarModel(name));
 
   console.log('\n실행 결과');
-  for (let i = 0; i < count; i++) {
-    for (let j = 0; j < nameList.length; j++) {
-      const currentCar = cars[j];
-      currentCar.go();
-    }
+  Array.from({ length: count }, () => {
+    cars.forEach(car => car.go());
     printOneGame(nameList, cars);
-  }
+  });
 
-    const winnerPosition = cars.reduce((maxPosition, car) => 
+  const winnerPosition = cars.reduce((maxPosition, car) => 
     Math.max(car.position, maxPosition), 0);
 
-  const winnerList = [];
-  for (let i = 0; i < nameList.length; i++) {
-    const position = cars[i].position;
-    if (position === winnerPosition) winnerList.push(nameList[i]);
-  }
+  const winnerList = cars.filter(car => car.position === winnerPosition);
 
   const winnerOutput = winnerList.join(', ');
 
