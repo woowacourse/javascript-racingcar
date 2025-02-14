@@ -1,4 +1,4 @@
-import getRandomValue from './utils/getRandomValue.js';
+import getRandomValueInRange from './utils/getRandomValueInRange.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 import printMessage from './utils/printMessage.js';
 
@@ -30,7 +30,7 @@ class Racing {
 
   raceOnce() {
     this.carList.forEach((car) => {
-      car.move(getRandomValue());
+      car.move(getRandomValueInRange(0, 9));
       printMessage(car.getRacingStatus());
     });
   }
