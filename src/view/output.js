@@ -8,7 +8,7 @@ export const printWinner = (winners) => {
 };
 
 export const printExecutionText = () => {
-  console.log(VIEW_MESSAGE.EXECUTION_RESULT);
+  console.log("\n" + VIEW_MESSAGE.EXECUTION_RESULT);
 };
 
 export const printRaceResult = (raceResults) => {
