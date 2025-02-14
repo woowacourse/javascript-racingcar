@@ -1,4 +1,4 @@
-export const errorMessage = {
+export const ERROR_MESSAGE = {
   HAS_EMPTY_NAME: "공백인 이름이 존재합니다. 다시 입력해주세요.",
   DUPLICATE_NAME: "중복인 이름이 존재합니다. 다시 입력해주세요.",
   NAME_TOO_LONG:
