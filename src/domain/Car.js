@@ -10,7 +10,7 @@ class Car {
     this.#position++;
   }
   getPosition() {
-    return "-".repeat(this.#position);
+    return '-'.repeat(this.#position);
   }
   get name() {
     return this.#name;

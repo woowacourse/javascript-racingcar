@@ -1,12 +1,12 @@
-import { withTryCatch } from "../util/errorHandler.js";
-import { Validation } from "../validation/Validation.js";
-import { ERROR_MESSAGE } from "../settings/ErrorMessage.js";
+import { withTryCatch } from '../util/errorHandler.js';
+import { Validation } from '../validation/Validation.js';
+import { ERROR_MESSAGE } from '../settings/ErrorMessage.js';
 
 export const parsingService = {
   tryParse: (parser) => withTryCatch(parser),
 
   parseNames(input) {
-    let nameList = input.split(",");
+    let nameList = input.split(',');
 
     if (!Validation.isNameNotEmpty(nameList)) {
       throw new Error(ERROR_MESSAGE.HAS_EMPTY_NAME);

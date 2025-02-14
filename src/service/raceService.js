@@ -1,19 +1,19 @@
-import Car from "../domain/Car.js";
-import { OutputView } from "../view/OutputView.js";
-import randomNumberGenerator from "../domain/RandomNumberGenerator.js";
-import { systemSetting } from "../settings/systemSetting.js";
-import { getCarStatus } from "./carService.js";
+import Car from '../domain/Car.js';
+import { OutputView } from '../view/OutputView.js';
+import randomNumberGenerator from '../domain/RandomNumberGenerator.js';
+import { systemSetting } from '../settings/systemSetting.js';
+import { getCarStatus } from './carService.js';
 
 export async function raceInit(inputProvider, parser) {
   const cars = [];
 
   const carNames = await parser.parseInput(
     inputProvider.getCarName,
-    parser.parseNames
+    parser.parseNames,
   );
   const round = await parser.parseInput(
     inputProvider.getRound,
-    parser.parseRound
+    parser.parseRound,
   );
 
   carNames.forEach((carName) => cars.push(new Car(carName)));
@@ -29,7 +29,7 @@ export function moveCar(cars) {
   cars.forEach((car) => {
     const randomNumber = randomNumberGenerator(
       systemSetting.MINIMUM_RANDOM_NUMBER,
-      systemSetting.MAXIMUM_RANDOM_NUMBER
+      systemSetting.MAXIMUM_RANDOM_NUMBER,
     );
     if (isMovable(randomNumber)) {
       car.goForward();
@@ -42,7 +42,7 @@ export function moveCar(cars) {
 export function startRace(cars, round) {
   for (let i = 0; i < round; i++) {
     moveCar(cars);
-    OutputView.printMessage("\n");
+    OutputView.printMessage('\n');
   }
   return cars;
 }

@@ -1,4 +1,4 @@
-import { OutputView } from "../view/OutputView.js";
+import { OutputView } from '../view/OutputView.js';
 export const withTryCatch = (fn) => (input) => {
   try {
     return fn(input);
