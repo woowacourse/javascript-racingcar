@@ -1,6 +1,6 @@
 import {
   isArrEmpty,
-  isLengthLongerThanFive,
+  isLongerThanMaxLength,
   validateCount,
 } from "../src/utils/validation.js";
 
@@ -15,7 +15,7 @@ describe("유효성 검사 테스트", () => {
   });
 
   test("자동차 이름이 5글자가 넘을 경우 에러를 반환한다.", () => {
-    const carArr = isLengthLongerThanFive(["abcdef"]);
+    const carArr = isLongerThanMaxLength(["abcdef"], 5);
     expect(carArr).toBeFalsy();
   });
 

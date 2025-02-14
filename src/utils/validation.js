@@ -4,8 +4,8 @@ export const isArrEmpty = (arr) => {
   return arr.some((item) => item === "");
 };
 
-export const isLengthLongerThanFive = (arr) => {
-  return arr.every((item) => item.length < 5);
+export const isLongerThanMaxLength = (arr, maxLength) => {
+  return arr.every((item) => item.length < maxLength);
 };
 
 export const validateCarNames = (stringOfCarNames) => {
@@ -15,7 +15,7 @@ export const validateCarNames = (stringOfCarNames) => {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
   }
 
-  if (!isLengthLongerThanFive(carNamesArr)) {
+  if (!isLongerThanMaxLength(carNamesArr, 5)) {
     throw new Error(ERROR.IS_LENGTH_LONGER_THAN_FIVE);
   }
 };
