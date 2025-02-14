@@ -52,7 +52,7 @@ class RaceController {
 
   #processRacing(cars, parsedTryCount) {
     this.#outputView.printResultHeader();
-    const carList = cars.cars;
+    const carList = cars.getCars();
 
     for (let i = 0; i < parsedTryCount; i++) {
       cars.moveCars();
@@ -63,7 +63,7 @@ class RaceController {
 
   #processWinner(cars) {
     const maxPosition = cars.getMaxPosition();
-    const carList = cars.cars;
+    const carList = cars.getCars();
 
     this.#outputView.printWinners(
       new Winner().getWinners(carList, maxPosition)

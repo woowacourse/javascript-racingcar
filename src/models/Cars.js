@@ -29,8 +29,9 @@ class Cars {
         }, -1);
     }
 
-    get cars() {
-        return this.#cars;
+    getCars() {
+        const carList = [...this.#cars];
+        return carList;
     }
 }
 
