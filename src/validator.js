@@ -15,6 +15,7 @@ export default class Validator {
     const count = Number(rawCount);
     if (Number.isNaN(count))
       throw new Error('[ERROR] 횟수는 숫자만 입력하실 수 있습니다.');
-    if (count <= 0) throw new Error('[ERROR] 0번은 시도하실수 없습니다.');
+    if (count < 0) throw new Error('[ERROR] 시도 횟수는 양수여야 합니다.');
+    if (count === 0) throw new Error('[ERROR] 0번은 시도하실수 없습니다.');
   }
 }

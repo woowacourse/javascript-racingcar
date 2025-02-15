@@ -1,11 +1,16 @@
+import { getRandomInt } from '../utils.js';
+
 class Race {
   constructor(cars) {
     this.cars = cars;
   }
 
   playOneRound() {
-    this.cars.forEach(car => car.go());
-    return [...this.cars]; // 현재 라운드의 상태 반환
+    this.cars.forEach(car => {
+      const randomNumber = getRandomInt(10);
+      car.go(randomNumber);
+    });
+    return [...this.cars];
   }
 
   playAllRounds(count) {

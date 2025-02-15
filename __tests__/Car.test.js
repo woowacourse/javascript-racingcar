@@ -1,52 +1,29 @@
-import CarModel from '../src/domain/Car.js';
-import { getRandomInt } from '../src/utils.js';
+import Car from '../src/domain/Car.js';
 
-export function mockRandom(value) {
-  jest.spyOn(Math, 'random').mockReturnValue(value / 10);
-}
-
-export function mockRandoms(values) {
-  values.forEach(value =>
-    jest.spyOn(Math, 'random').mockReturnValueOnce(value / 10),
-  );
-}
-
-describe('CarModel', () => {
-  test('CarModel을 생성한다.', () => {
-    // given
-    // when
-    const car = new CarModel();
+describe('자동차 테스트', () => {
+  test('자동차는 만들어질수 있다.', () => {
+    const car = new Car();
     // then
     expect(car).toBeDefined();
   });
 
-  test('CarModel은 초기에 position은 0이다.', () => {
-    const car = new CarModel();
+  test('자동차는 초기에 0에 위치한다.', () => {
+    const car = new Car();
 
     expect(car.position).toBe(0);
   });
 
-  test('CarModel은 랜덤 숫자가 4이상일 시 앞으로 전진한다.', () => {
-    //given
-    //when
-    const car = new CarModel();
-    for (let value = 4; value <= 9; value++) {
-      mockRandom(value);
-      car.go();
-      expect(car.position).toBe(1);
-      car.position = 0;
-    }
+  test('자동차는 랜덤 숫자가 3일때 전진하지 않는다', () => {
+    const car = new Car();
+    car.go(3);
+    expect(car.position).toBe(0);
   });
 
-  test('CarModel은 랜덤 숫자가 4이하일시 정지한다.', () => {
-    //given
-    //when
-    const car = new CarModel();
-
-    for (let value = 0; value < 4; value++) {
-      mockRandom(value);
-      car.go();
-      expect(car.position).toBe(0);
-    }
+  test('자동차는 랜덤 숫자가 4일때 전진한다.', () => {
+    // given
+    // when
+    const car = new Car();
+    car.go(4);
+    expect(car.position).toBe(1);
   });
 });
