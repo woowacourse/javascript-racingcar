@@ -24,18 +24,18 @@ class Race {
   }
 
   getWinner() {
-    let maxNum = 0;
-    let winnerList = [];
-
-    this.#cars.forEach((car) => {
-      if (car.position > maxNum) {
-        maxNum = car.position;
-        winnerList = [car.raceCarName];
-      } else if (car.position === maxNum) {
-        winnerList.push(car.raceCarName);
-      }
-    });
-    return winnerList;
+    return this.#cars.reduce(
+      (acc, car) => {
+        if (car.position > acc.maxNum) {
+          return { maxNum: car.position, winners: [car.raceCarName] };
+        }
+        if (car.position === acc.maxNum) {
+          acc.winners.push(car.raceCarName);
+        }
+        return acc;
+      },
+      { maxNum: 0, winners: [] }
+    ).winners;
   }
 }
 
