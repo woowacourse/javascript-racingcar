@@ -1,4 +1,4 @@
-import { isInRange } from '../utils/validations';
+import { isInRange } from '../utils/validations.js';
 
 class Car {
   name;
