@@ -2,10 +2,10 @@ export const Validation = {
   isNameNotEmpty(parsedString) {
     return !parsedString.some((name) => name.length === 0);
   },
-  isNameTooLong(parsedString) {
+  isNameLengthValid(parsedString) {
     return !parsedString.some((name) => name.length > 5);
   },
-  isNameDuplicate(parsedString) {
+  isNameNotDuplicate(parsedString) {
     return parsedString.length === new Set(parsedString).size;
   },
 
@@ -13,7 +13,7 @@ export const Validation = {
     return Number.isInteger(Number(input));
   },
 
-  isNegative(input) {
+  isPositive(input) {
     return Number(input) > 0;
   },
 };

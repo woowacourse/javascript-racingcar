@@ -10,10 +10,10 @@ export const parsingService = {
     if (!Validation.isNameNotEmpty(parsedString)) {
       throw new Error(errorMessage.HAS_EMPTY_NAME);
     }
-    if (!Validation.isNameTooLong(parsedString)) {
+    if (!Validation.isNameLengthValid(parsedString)) {
       throw new Error(errorMessage.NAME_TOO_LONG(systemSetting.NAME_LIMIT));
     }
-    if (!Validation.isNameDuplicate(parsedString)) {
+    if (!Validation.isNameNotDuplicate(parsedString)) {
       throw new Error(errorMessage.DUPLICATE_NAME);
     }
     return parsedString;
@@ -22,7 +22,7 @@ export const parsingService = {
     if (!Validation.isInteger(input)) {
       throw new Error(errorMessage.NOT_INTEGER);
     }
-    if (!Validation.isNegative(input)) {
+    if (!Validation.isPositive(input)) {
       throw new Error(errorMessage.NOT_POSITIVE);
     }
     return Number(input);
