@@ -1,6 +1,6 @@
 import chooseRandomNumber from '../src/domain/utils/chooseRandomNumber.js';
 
-describe('유틸함수의 동작 테스트', () => {
+describe('랜덤으로 특정 범위의 정수를 반환하는 chooseRandomNumber 유틸함수의 동작 테스트', () => {
   test.each([
     [
       { minNumber: 0, maxNumber: 9 },
@@ -17,7 +17,7 @@ describe('유틸함수의 동작 테스트', () => {
     },
   );
 
-  test('chooseRandomNumber 정수인 숫자만 반환한다.', () => {
+  test('chooseRandomNumber 함수는 정수인 숫자만 반환한다.', () => {
     const MIN_NUMBER = 0;
     const MAX_NUMBER = 9;
 
