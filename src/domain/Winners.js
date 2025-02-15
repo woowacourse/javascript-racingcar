@@ -10,7 +10,7 @@ class Winners {
   }
 
   getNames() {
-    return this.#names;
+    return this.#names.join(', ');
   }
 }
 
