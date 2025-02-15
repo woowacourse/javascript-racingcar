@@ -1,6 +1,6 @@
-import { INPUT_MESSAGE } from "../Const.js";
+import { INPUT_MESSAGE } from "../const.js";
 import Output from "./Output.js";
-import { readLineAsync } from "../Util.js";
+import { readLineAsync } from "../util.js";
 import Validate from "../Validate.js";
 class Input {
   #validate = new Validate();

@@ -1,5 +1,5 @@
-import { MOVE_THRESHOLD } from "../Const.js";
-import { getRandomIntBetween } from "../Util.js";
+import { MOVE_THRESHOLD } from "../const.js";
+import { getRandomIntBetween } from "../util.js";
 
 class Car {
   constructor(raceCarName) {

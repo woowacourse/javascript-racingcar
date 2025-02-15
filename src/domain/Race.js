@@ -1,5 +1,5 @@
 import Car from "./Car.js";
-import { OUTPUT_MESSAGE } from "../Const.js";
+import { OUTPUT_MESSAGE } from "../const.js";
 import Output from "../ui/Output.js";
 class Race {
   #cars;
