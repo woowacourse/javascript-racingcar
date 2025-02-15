@@ -1,6 +1,4 @@
-import Console from "../utils/Console.js";
 import generateRandomNumberBetween0And9 from "../utils/generateRandomNumberBetween0And9.js";
-import Output from "../views/Output.js";
 
 class Race {
   #carsInstance = [];
