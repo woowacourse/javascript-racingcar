@@ -5,15 +5,16 @@ import { parsingService } from "./parsingService.js";
 import randomNumberGenerator from "../util/RandomNumberGenerator.js";
 import { systemSetting } from "../constants/systemSetting.js";
 import { SystemMessage } from "../constants/SystemMessage.js";
+import { getValidInput } from "../util/GetValidInput.js";
 
 export async function raceInit() {
   const cars = [];
 
-  const carNames = await parsingService.parseInput(
+  const carNames = await getValidInput(
     InputView.getCarName,
     parsingService.parseNames
   );
-  const round = await parsingService.parseInput(
+  const round = await getValidInput(
     InputView.getRound,
     parsingService.parseRound
   );

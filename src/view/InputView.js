@@ -3,11 +3,9 @@ import { SystemMessage } from "../constants/SystemMessage.js";
 
 export const InputView = {
   async getCarName() {
-    const nameInput = await readLineAsync(SystemMessage.CAR_NAME_MESSAGE);
-    return nameInput;
+    return await readLineAsync(SystemMessage.CAR_NAME_MESSAGE);
   },
   async getRound() {
-    const round = await readLineAsync(SystemMessage.ROUND_MESSAGE);
-    return round;
+    return await readLineAsync(SystemMessage.ROUND_MESSAGE);
   },
 };

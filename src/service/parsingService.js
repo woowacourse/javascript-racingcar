@@ -27,20 +27,15 @@ export const parsingService = {
     }
     return Number(input);
   },
-  tryParse(parser, input) {
-    let parsedValue;
+};
+
+export async function getValidInput(getInput, parser) {
+  while (true) {
     try {
-      parsedValue = parser(input);
+      const input = await getInput();
+      return parser(input);
     } catch (error) {
       OutputView.printError(error);
     }
-    return parsedValue;
-  },
-  async parseInput(getInput, parser) {
-    while (true) {
-      const input = await getInput();
-      let parsedInput = this.tryParse(parser, input);
-      if (parsedInput) return parsedInput;
-    }
-  },
-};
+  }
+}
