@@ -28,8 +28,7 @@ class App {
 
     this.#playRacing(tryCount);
 
-    const raceResult = racing.decideWinner();
-    Printer.printWinner(raceResult);
+    this.#announceWinner();
   }
 
   async #createCars() {
@@ -91,6 +90,12 @@ class App {
 
       return randomNumber >= MOVE_NUMBER;
     });
+  }
+
+  #announceWinner() {
+    const raceResult = this.#racing.decideWinner();
+
+    Printer.printWinner(raceResult);
   }
 
   static parseNames(names) {
