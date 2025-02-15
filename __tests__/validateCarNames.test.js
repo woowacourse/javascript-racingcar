@@ -14,6 +14,11 @@ describe("CarNames 유효성 테스트", () => {
       input: "Niya,Niya",
       errorMessage: ERROR_CAR_NAMES_MESSAGE.DUPLICATE,
     },
+    {
+      description: "자동차가 1대인 경우",
+      input: "Niya",
+      errorMessage: ERROR_CAR_NAMES_MESSAGE.NOT_ENOUGH_PLAYERS,
+    },
   ])("%s 에러가 발생한다.", ({ input, errorMessage }) => {
     // given
     // when & then

@@ -16,6 +16,7 @@ export const ERROR_CAR_NAMES_MESSAGE = Object.freeze({
   NOT_EXIST: "자동차 이름이 존재하지 않습니다.",
   OVER: "자동차 이름이 5글자가 넘습니다.",
   DUPLICATE: "자동차 이름이 중복됩니다.",
+  NOT_ENOUGH_PLAYERS: "자동차는 2대 이상이어야 합니다.",
 });
 
 export const ERROR_TRY_COUNT_MESSAGE = Object.freeze({

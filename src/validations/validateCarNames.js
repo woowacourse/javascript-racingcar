@@ -8,6 +8,8 @@ const validateCarNames = (input) => {
     if (car.length > CAR_NAME_BOUNDARY_LENGTH) throw new Error(ERROR_CAR_NAMES_MESSAGE.OVER);
   });
 
+  if (carNames.length === 1) throw new Error(ERROR_CAR_NAMES_MESSAGE.NOT_ENOUGH_PLAYERS);
+
   if (new Set(carNames).size !== carNames.length) throw new Error(ERROR_CAR_NAMES_MESSAGE.DUPLICATE);
 
   return carNames;
