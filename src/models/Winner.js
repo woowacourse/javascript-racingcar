@@ -6,6 +6,8 @@ class Winner {
   }
 
   getWinners(carList, maxPosition) {
+    this.#winners = [];
+
     carList.forEach((car) => {
       this.#checkIsWinner(car, maxPosition);
     });
