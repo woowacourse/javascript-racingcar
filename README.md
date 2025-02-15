@@ -8,10 +8,10 @@
 
 ## 📁 파일구조
 
+```bash
 📂 src
-├── 📂 model
+├── 📂 domain
 │ ├── 📄 Car.js
-│ ├── 📄 RandomNumberGenerator.js
 │
 ├── 📂 service
 │ ├── 📄 parsingService.js
@@ -31,6 +31,7 @@
 │ ├── 📄 ReadLineAsync.js
 │
 ├── 📄 index.js
+```
 
 ## 🛠️ 기능구현
 
