@@ -1,5 +1,5 @@
-import { GAME_COUNT } from '../Constants/errorMessage';
-import { MAX, MIN } from '../Constants/rules';
+import { GAME_COUNT } from '../Constants/errorMessage.js';
+import { MAX, MIN } from '../Constants/rules.js';
 
 export const validateGameCountType = (input) => {
   const isInteger = Number.isInteger(Number(input));
