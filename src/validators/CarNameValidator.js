@@ -41,7 +41,7 @@ class CarNameValidator {
   }
 
   #validateCarNamesLength(carNames) {
-    if (carNames.length === 1 || carNames.length === 101) {
+    if (carNames.length <= 1 || carNames.length > 100) {
       throw new Error("자동차 수는 1이상 100이하여야 합니다.");
     }
   }
