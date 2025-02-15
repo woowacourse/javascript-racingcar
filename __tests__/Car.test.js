@@ -29,3 +29,12 @@ test('랜덤 값이 4이하일 때 멈추는가?', () => {
   //then
   expect(car.position).toBe(0);
 });
+
+test('자동차는 이름을 가져야 한다.', () => {
+  // given
+  const name = 'Tae';
+  // when
+  const car = new Car(name);
+  // then
+  expect(car.name).toBe(name);
+});
