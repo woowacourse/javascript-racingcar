@@ -29,7 +29,7 @@ class App {
   async createCars() {
     try {
       const carNameInput = await InputView.readLineAsync(
-        InputMessage.getCarName,
+        InputMessage.carNameQuestion,
       );
       const parsedCarName = splitInput(carNameInput);
 
@@ -44,7 +44,9 @@ class App {
 
   async askTryCount() {
     try {
-      const tryCount = await InputView.readLineAsync(InputMessage.getTryCount);
+      const tryCount = await InputView.readLineAsync(
+        InputMessage.tryCountQuestion,
+      );
       const parsedTryCount = parseToNumber(tryCount);
 
       CountValidator.isValid(parsedTryCount);

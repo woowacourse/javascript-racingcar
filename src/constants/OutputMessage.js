@@ -4,6 +4,6 @@ export const OUTPUT_MESSAGE = Object.freeze({
 });
 
 export const OUTPUT_FORMAT = Object.freeze({
-  getRaceResult: (name, raceResult) => `${name} : ${raceResult}`,
-  getWinner: (winner) => `최종 우승자: ${winner}`,
+  raceResultPhrase: (name, raceResult) => `${name} : ${raceResult}`,
+  winnerPhrase: (winner) => `최종 우승자: ${winner}`,
 });
