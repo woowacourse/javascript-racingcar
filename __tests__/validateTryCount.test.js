@@ -3,7 +3,11 @@ import { ERROR_TRY_COUNT_MESSAGE } from "../src/constants/constants.js";
 
 describe("TryCount 유효성 테스트", () => {
   test.each([
-    { description: "시도 횟수가 숫자가 아닌 경우", input: "Niya", errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_NUMBER },
+    {
+      description: "시도 횟수가 숫자가 아닌 경우",
+      input: "Niya",
+      errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_NUMBER,
+    },
     {
       description: "시도 횟수가 정수가 아닌 경우",
       input: "1.1",

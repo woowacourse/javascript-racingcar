@@ -12,8 +12,23 @@ describe("RaceController 클래스 테스트", () => {
   const STOP = 3;
 
   test.each([
-    ["Niya만 우승하는 경우", [MOVING_FORWARD, STOP, MOVING_FORWARD, STOP, MOVING_FORWARD, STOP], ["Niya"]],
-    ["Niya와 Hoyy가 공동 우승하는 경우", [MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD], ["Niya", "Hoyy"]],
+    [
+      "Niya만 우승하는 경우",
+      [MOVING_FORWARD, STOP, MOVING_FORWARD, STOP, MOVING_FORWARD, STOP],
+      ["Niya"],
+    ],
+    [
+      "Niya와 Hoyy가 공동 우승하는 경우",
+      [
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+        MOVING_FORWARD,
+      ],
+      ["Niya", "Hoyy"],
+    ],
   ])("%s", (_, randomNumbers, expectedWinners) => {
     // given
     const names = ["Niya", "Hoyy"];
