@@ -11,9 +11,7 @@ export default class Game {
   }
 
   createCarList(names) {
-    names.forEach(name => {
-      this.#carList.push(new Car(name));
-    });
+    this.#carList = names.map(name => new Car(name));
   }
 
   judgeWinner() {
