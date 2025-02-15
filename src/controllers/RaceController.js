@@ -13,12 +13,12 @@ class RaceController {
   }
 
   async race() {
-    const parseCarNames = await this.#initCarNames();
-    const parseTryCount = await this.#initTryCount();
+    const carNames = await this.#initCarNames();
+    const tryCount = await this.#initTryCount();
 
-    const cars = new Cars(parseCarNames);
+    const cars = new Cars(carNames);
 
-    this.#processRacing(cars, parseTryCount);
+    this.#processRacing(cars, tryCount);
     this.#processWinner(cars);
   }
 
@@ -26,14 +26,14 @@ class RaceController {
     while (true) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parseCarNames = carNames
+        const parsedCarNames = carNames
           .split(",")
           .map((carName) => carName.trim());
-        new CarNameValidator().valiateNames(parseCarNames);
+        new CarNameValidator().valiateNames(parsedCarNames);
 
-        return parseCarNames;
+        return parsedCarNames;
       } catch (error) {
-        console.log(error);
+        console.log(error.message + "\n");
       }
     }
   }
@@ -42,21 +42,21 @@ class RaceController {
     while (true) {
       try {
         const tryCount = await this.#inputView.getTryCount();
-        const parseTryCount = Number(tryCount);
-        new TryCountValidator().validateNumber(parseTryCount);
+        const parsedTryCount = Number(tryCount);
+        new TryCountValidator().validateNumber(parsedTryCount);
 
-        return parseTryCount;
+        return parsedTryCount;
       } catch (error) {
-        console.log(error);
+        console.log(error.message + "\n");
       }
     }
   }
 
-  #processRacing(cars, parseTryCount) {
+  #processRacing(cars, tryCount) {
     this.#outputView.printResultHeader();
     const carList = cars.cars;
 
-    for (let i = 0; i < parseTryCount; i++) {
+    for (let i = 0; i < tryCount; i++) {
       cars.moveCars();
       this.#outputView.printRaceResult(carList);
       this.#outputView.printNewLine();
