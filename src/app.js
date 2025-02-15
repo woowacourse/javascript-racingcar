@@ -11,7 +11,7 @@ class App {
 
     const race = new Race(gameCount, cars);
     race.startRace();
-    // outputView.printGameResult(gameCount, cars);
+    outputView.printRaceResult(race.getRaceResult());
 
     outputView.printWinners(cars);
   }
