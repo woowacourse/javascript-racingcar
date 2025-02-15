@@ -10,8 +10,8 @@ class App {
     const gameCount = Number(await getGameCount());
 
     const race = new Race(gameCount, cars);
-
-    outputView.printGameResult(gameCount, cars);
+    race.startRace();
+    // outputView.printGameResult(gameCount, cars);
 
     outputView.printWinners(cars);
   }
