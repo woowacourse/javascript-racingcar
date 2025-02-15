@@ -61,7 +61,7 @@
 - [x] race 도메인 생성하기
 - [x] race -> round 메소드명 변경
 - [x] race -> getWinners 메소드 내부 분리 (함수는 한가지 일만 한다.)
-- [ ] randomNumber 함수명 변경
+- [x] randomNumber 함수명 변경
 - [x] output -> printWinner 메소드명 변경 (복수형태)
 - [ ] (응집도) `EXPRESSION_FLAG` 상수 선언 및 할당 위치 변경
 - [ ] 테스트) '무엇인가'에 초점을 두고, 테스트 서술 내용 변경

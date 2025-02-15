@@ -1,5 +1,5 @@
 import Console from "../utils/Console.js";
-import randomNumber from "../utils/randomNumber.js";
+import generateRandomNumberBetween0And9 from "../utils/generateRandomNumberBetween0And9.js";
 import Output from "../views/Output.js";
 
 class Race {
@@ -26,7 +26,7 @@ class Race {
 
   #playRound() {
     this.#carsInstance.forEach((carInstance) => {
-      carInstance.move(randomNumber());
+      carInstance.move(generateRandomNumberBetween0And9());
       Output.printRace(carInstance.name, carInstance.count);
     });
   }
