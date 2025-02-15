@@ -24,9 +24,13 @@ class Race {
     }
   }
 
+  getMaxPosition() {
+    const positions = this.cars.map((car) => car.getPosition());
+    return Math.max(...positions);
+  }
+
   getWinner() {
-    const finalPosition = this.cars.map((car) => car.getPosition());
-    const maxPosition = Math.max(...finalPosition);
+    const maxPosition = this.getMaxPosition();
     const winner = this.cars.filter((car) => car.getPosition() === maxPosition).map((car) => car.name);
 
     return winner;
