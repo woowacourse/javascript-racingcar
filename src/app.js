@@ -1,4 +1,3 @@
-import splitInput from './utils/splitInput.js';
 import NameValidator from './utils/validator/NameValidator.js';
 import CountValidator from './utils/validator/CountValidator.js';
 import InputView from './view/InputView.js';
@@ -13,6 +12,7 @@ import {
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
 } from './constants/RacingConstants.js';
+import { NAME_DELIMITER } from './constants/ValidatorConstants.js';
 
 class App {
   async run() {
@@ -28,14 +28,14 @@ class App {
 
   async createCars() {
     try {
-      const carNameInput = await InputView.readLineAsync(
+      const carNamesInput = await InputView.readLineAsync(
         InputMessage.carNameQuestion,
       );
-      const parsedCarName = splitInput(carNameInput);
+      const parsedCarNames = App.parseNames(carNamesInput);
 
-      NameValidator.isValid(parsedCarName);
+      NameValidator.isValid(parsedCarNames);
 
-      return parsedCarName.map((carName) => new Car(carName));
+      return parsedCarNames.map((carName) => new Car(carName));
     } catch (error) {
       console.log(error.message);
       return this.createCars();
@@ -74,6 +74,10 @@ class App {
 
       return randomNumber >= MOVE_NUMBER;
     });
+  }
+
+  static parseNames(names) {
+    return names.split(NAME_DELIMITER).map((name) => name.trim());
   }
 }
 
