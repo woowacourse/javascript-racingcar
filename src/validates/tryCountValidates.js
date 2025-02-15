@@ -1,7 +1,10 @@
+import { MAX_TRY_COUNT, MIN_TRY_COUNT } from '../constants/common.js';
+import { ERROR_MESSAGE } from '../constants/message.js';
+
 export function checkTryCountRange(tryCount) {
-  if (tryCount < 1 || tryCount > 20) throw new Error('[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.');
+  if (tryCount < MIN_TRY_COUNT || tryCount > MAX_TRY_COUNT) throw new Error(ERROR_MESSAGE.TRY_COUNT_RANGE);
 }
 
 export function checkIsInteger(tryCount) {
-  if (!Number.isInteger(tryCount)) throw new Error('[ERROR] 시도 횟수는 자연수로 입력되어야 합니다.');
+  if (!Number.isInteger(tryCount)) throw new Error(ERROR_MESSAGE.TRY_COUNT_INTEGER);
 }
