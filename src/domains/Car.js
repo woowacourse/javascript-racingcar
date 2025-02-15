@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "../constants/message.js";
+import { CAR_SETTING } from "../constants/setting.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
@@ -16,7 +17,10 @@ export default class Car {
   }
 
   #validateCarName(name) {
-    if (name.length < 1 || name.length > 5) {
+    if (
+      name.length < CAR_SETTING.minCarName ||
+      name.length > CAR_SETTING.maxCarName
+    ) {
       throw new Error(ERROR_MESSAGE.carNameLength);
     }
   }
