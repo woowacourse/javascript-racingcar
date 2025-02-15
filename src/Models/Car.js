@@ -17,7 +17,11 @@ class Car {
   }
 
   getHistory(index) {
-    return this.#history[index];
+    if (index) {
+      return this.#history[index];
+    } else {
+      return this.#history;
+    }
   }
 
   movePosition(isMove) {
