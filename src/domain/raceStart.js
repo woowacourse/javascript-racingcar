@@ -1,12 +1,12 @@
 import Car from "./Car.js";
 import { MAX_RANDOM_VALUE, MIN_RANDOM_VALUE } from "../config/constants.js";
-import { getAttempt, getCarNames } from "../io/inputHandler.js";
+import { validateCars } from "../utils/validate.js";
+import { getAttempt, getCarNames } from "../view/inputHandler.js";
 import {
   displayRaceResult,
   displayResultTitle,
   displayWinners,
-} from "../io/outputHandler.js";
-import { validateCars } from "../utils/validate.js";
+} from "../view/outputHandler.js";
 
 export const raceStart = async () => {
   const cars = await getCars();
