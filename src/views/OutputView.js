@@ -8,8 +8,8 @@ class OutputView {
   }
 
   static gameResult(winnerNames) {
-    const winnerMessge = winnerNames.join(', ');
-    const resultMessage = `최종 우승자: ${winnerMessge}`;
+    const winnerMessage = winnerNames.join(', ');
+    const resultMessage = `최종 우승자: ${winnerMessage}`;
     console.log(resultMessage);
   }
 }

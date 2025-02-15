@@ -9,13 +9,13 @@ class InputController {
     try {
       const inputName = await InputView.readLineAsync(MESSAGE.INPUT.NAME);
       Validator.isEmpty(inputName);
-      const splitedName = Parser.splitName(inputName);
-      Validator.isArrayLengthOver(splitedName, DEFINITION.MAX_NAME_LENGTH);
-      Validator.isDuplicate(splitedName);
-      splitedName.forEach(name => {
+      const splittedName = Parser.splitName(inputName);
+      Validator.isArrayLengthOver(splittedName, DEFINITION.MAX_NAME_LENGTH);
+      Validator.isDuplicate(splittedName);
+      splittedName.forEach(name => {
         Validator.isStringLengthOver(name);
       });
-      return splitedName;
+      return splittedName;
     } catch (error) {
       console.log(error.message);
       await this.inputName();
