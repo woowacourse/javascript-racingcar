@@ -6,7 +6,7 @@ import {
 } from '../domain/constants/PrinterConstants.js';
 
 class Printer {
-  static printHeader() {
+  static printRacingResultHeader() {
     console.log(OUTPUT_DESCRIPTION.raceResultHeader);
   }
 

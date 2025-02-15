@@ -64,7 +64,7 @@ class App {
   }
 
   #playRacing(tryCount) {
-    Printer.printHeader();
+    Printer.printRacingResultHeader();
 
     const totalRaceMoves = this.#generateTotalRaceMoves(tryCount);
     const results = this.#racing.runRace(totalRaceMoves);
