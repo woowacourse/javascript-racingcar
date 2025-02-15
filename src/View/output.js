@@ -1,23 +1,9 @@
-import { getRandomNumber } from '../Utils/math.js';
-import { MAX, MIN } from '../Constants/rules.js';
 import { RACE } from '../Constants/message.js';
 
 const outputView = {
-  printGameResult(gameCount, cars) {
+  printRaceResult(raceResult) {
     console.log(`\n${RACE.RESULT_INSTRUCTION}`);
-    for (let count = 0; count < gameCount; count += 1) {
-      cars.forEach((car) => {
-        const randomNumber = getRandomNumber(
-          MAX.RANDOM_NUMBER,
-          MIN.RANDOM_NUMBER,
-        );
-        car.move(randomNumber);
-        console.log(
-          `${car.getName()} : ${RACE.MOVEMENT.repeat(car.getPosition())}`,
-        );
-      });
-      console.log('');
-    }
+    console.log(raceResult);
   },
   printWinners(cars) {
     const carPositions = cars.map((car) => car.getPosition());
