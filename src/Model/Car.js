@@ -1,4 +1,4 @@
-const MOVE_FORWARD = 4;
+import { CAR_MOVE_FORWARD } from '../Constants/rules.js';
 
 export default class Car {
   #name;
@@ -11,7 +11,8 @@ export default class Car {
   }
 
   move(moveCondition) {
-    if (moveCondition >= MOVE_FORWARD) {
+    if (moveCondition >= CAR_MOVE_FORWARD) {
+      // TODO: 외부에서 처리
       this.#position += 1;
     }
   }

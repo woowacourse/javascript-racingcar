@@ -8,3 +8,5 @@ export const MAX = {
   RANDOM_NUMBER: 9,
   GAME_COUNT: 100,
 };
+
+export const CAR_MOVE_FORWARD = 4;
