@@ -1,7 +1,8 @@
 import {
-  CAR_NAME_MAX_LENGTH,
   MOVE_THRESHOLD,
   ERROR_MESSAGE,
+  CAR_NAME_MAX_LENGTH,
+  CAR_NAME_MIN_LENGTH,
 } from "../config/constants.js";
 
 class Car {
@@ -15,7 +16,11 @@ class Car {
 
   #validate(name) {
     if (name.length > CAR_NAME_MAX_LENGTH)
-      throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
+      throw Error(ERROR_MESSAGE.CAR_NAME_MAX_LENGTH);
+    if (name.length < CAR_NAME_MIN_LENGTH)
+      throw Error(ERROR_MESSAGE.CAR_NAME_MIN_LENGTH);
+    if (!Number.isNaN(Number(name)))
+      throw Error(ERROR_MESSAGE.CAR_NAME_INVALID_NUMBER);
   }
 
   get name() {
