@@ -3,7 +3,7 @@ import {
   MOVE_COUNT,
   START_POSITION,
 } from "./constants/setting.js";
-import { generateRandomNumber } from "./utils.js";
+import { generateRandomDigit } from "./utils.js";
 
 export default class Car {
   #name;
@@ -15,7 +15,7 @@ export default class Car {
   }
 
   move() {
-    const isMoving = generateRandomNumber() >= MOVE_CONDITION;
+    const isMoving = generateRandomDigit() >= MOVE_CONDITION;
     if (isMoving) {
       this.#position += MOVE_COUNT;
     }
