@@ -1,6 +1,7 @@
 import Car from "../src/model/Car.js";
 import { MIN } from "../src/constant/range.js";
 
+
 describe("Car", () => {
   let car;
 
@@ -17,6 +18,7 @@ describe("Car", () => {
   });
 
   test(`${MIN.MOVE_CONDITION}이상의 숫자가 나오면 자동차는 전진할 수 있다.`, () => {
+
     const randomNumber = 4;
 
     car.move(randomNumber);
@@ -25,6 +27,7 @@ describe("Car", () => {
   });
 
   test(`${MIN.MOVE_CONDITION}미만의 숫자가 나오면 자동차는 전진하지 않는다.`, () => {
+
     const randomNumber = 3;
 
     car.move(randomNumber);

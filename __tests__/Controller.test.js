@@ -1,3 +1,4 @@
+
 import CarRacingController from "../src/controller/CarRacingController.js";
 import Car from "../src/model/Car.js";
 
@@ -10,6 +11,7 @@ describe("controller", () => {
     car1 = new Car("seo");
     car2 = new Car("ohgus");
     controller = new CarRacingController();
+
   });
 
   test("우승자 리스트를 가져올 수 있다.", () => {
