@@ -3,6 +3,7 @@ const DEFINITION = {
   MAX_NAME_LENGTH: 5,
   MIN_GAME: 0,
   MAX_GAME: 100,
+  MOVE_CONDITION: 4,
 };
 
 export default DEFINITION;
