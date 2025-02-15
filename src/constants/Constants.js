@@ -35,6 +35,6 @@ export const ATTEMPT_ERROR_MESSAGES = {
 };
 
 export const RANDOM_ERROR_MESSAGES = {
-  NOT_INTEGER : "정수가 아닌 값이 범위에 포함되어 있습니다.",
+  NOT_INTEGER : "정수를 입력해주세요.",
   MIN_GREATER_THAN_MAX : "최솟값은 최댓값보다 클 수 없습니다.",
 }

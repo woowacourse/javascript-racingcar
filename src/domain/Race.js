@@ -12,7 +12,7 @@ class Race {
     return this.#carList.map((car) => {
       const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
       this.checkMove(randomNumber, car);
-      return [car.name, car.position];
+      return {name:car.name, position:car.position};
     });
 }
 

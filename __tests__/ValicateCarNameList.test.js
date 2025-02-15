@@ -1,6 +1,6 @@
 import validateCarNameList from "../src/validation/validateCarNameList.js";
 import { CAR_NAME_LENGTH_MAX } from "../src/constants/Constants.js";
-import validateAttemptCount from "../src/validation/validateAttemptCount.js";
+import validateRandomNumberArrange from "../src/validation/validateRandomNumberArrange.js";
 
 describe("자동차 이름 목록 유효성 검사", () => {
   test(`빈 값을 입력할 경우 에러 발생`, () => {
@@ -30,25 +30,28 @@ describe("자동차 이름 목록 유효성 검사", () => {
   });
   
 })
-
-describe("시도 횟수 유효성 검사", () => {
-  test("빈 값을 입력할 경우 에러 발생", () => {
-    expect(() => validateAttemptCount("")).toThrow("[ERROR] 입력이 비어 있습니다.");
+describe("랜덤 숫자 생성 범위 유효성 검사", () => {
+  test.each([[{min:"hi", max:0}, {min:0, max:"hi"}]])("문자열인 경우 에러 발생", (value) => {
+    expect(() => validateRandomNumberArrange(value)).toThrow("[ERROR] 정수를 입력해주세요.");
   });
 
-  test.each(["도레미도레미도", "마이턴"])("시도 횟수가 문자열인 경우 에러 발생", (input) => {
-    expect(() => validateAttemptCount(input)).toThrow("[ERROR] 정수를 입력해주세요.");
+  test.each([[{min:-1.5,max:3},{min:2,max:2.5},{min:1.2,max:12.2}]])("정수가 아닌 경우 에러 발생", (value) => {
+    expect(() => validateRandomNumberArrange(value)).toThrow("[ERROR] 정수를 입력해주세요.");
   });
-  
-  test.each([-1.3, 342.3])("시도 횟수가 정수가 아닌 경우 에러 발생", (input) => {
-    expect(() => validateAttemptCount(input)).toThrow("[ERROR] 정수를 입력해주세요.");
-  });
-  
-  test.each([-3, -5, 0])("양의 정수가 아닌 경우 에러 발생", (input) => {
-    expect(() => validateAttemptCount(input)).toThrow("[ERROR] 0보다 큰 수를 입력해주세요.");
-  })
 
-  test.each([1,2,30])("시도 횟수가 자연수인 경우 에러 미발생", (input) => {
-    expect(() => validateAttemptCount(input)).not.toThrow();
-  })
-})
+  test.each([
+    {min:3,max:2},
+    {min:11,max:2},
+    {min:-1,max:-3}
+  ])("최솟값이 최댓값보다 큰 경우 에러 발생", (value) => {
+    expect(() => validateRandomNumberArrange(value)).toThrow("[ERROR] 최솟값은 최댓값보다 클 수 없습니다.");
+  });
+
+  test.each([
+    {min:1,max:5},
+    {min:0,max:100},
+    {min:-10,max:-5}
+  ])("유효한 범위인 경우 에러 미발생", (value) => {
+    expect(() => validateRandomNumberArrange(value)).not.toThrow();
+  });
+});
