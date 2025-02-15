@@ -1,20 +1,23 @@
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
-import RaceController from "./RaceController.js";
+import Race from "../domains/Race.js";
 import validateCarNames from "../validations/validateCarNames.js";
 import validateTryCount from "../validations/validateTryCount.js";
 import Console from "../utils/Console.js";
+import Car from "../domains/Car.js";
 
 class GameController {
   async play() {
     const { names, tryCount } = await this.#readAndValidateInputs();
 
-    const raceController = new RaceController(names, tryCount);
+    const carsInstance = names.map((name) => new Car(name));
+
+    const race = new Race(carsInstance, tryCount);
 
     Output.printRaceStart();
-    raceController.race();
+    race.race();
 
-    const winners = raceController.getWinners();
+    const winners = race.getWinners();
     Output.printWinner(winners);
   }
 

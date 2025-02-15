@@ -1,14 +1,14 @@
 import Console from "../utils/Console.js";
-import Car from "../models/Car.js";
+import Car from "./Car.js";
 import randomNumber from "../utils/randomNumber.js";
 import Output from "../views/Output.js";
 
-class RaceController {
+class Race {
   #carsInstance = [];
   #tryCount = 0;
 
-  constructor(names, tryCount) {
-    this.#carsInstance = names.map((name) => new Car(name));
+  constructor(carsInstance, tryCount) {
+    this.#carsInstance = carsInstance;
     this.#tryCount = tryCount;
   }
 
@@ -35,4 +35,4 @@ class RaceController {
   }
 }
 
-export default RaceController;
+export default Race;
