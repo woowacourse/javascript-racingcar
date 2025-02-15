@@ -14,8 +14,8 @@ export default class Car {
     this.#position = START_POSITION;
   }
 
-  move() {
-    const isMoving = generateRandomDigit() >= MOVE_CONDITION;
+  move(randomDigit = generateRandomDigit()) {
+    const isMoving = randomDigit >= MOVE_CONDITION;
     if (isMoving) {
       this.#position += MOVE_COUNT;
     }
