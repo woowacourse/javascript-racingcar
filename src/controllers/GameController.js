@@ -14,7 +14,14 @@ class GameController {
     const race = new Race(carsInstance, tryCount);
 
     Output.printRaceStart();
-    race.raceStart();
+    const raceResults = race.raceStart();
+
+    raceResults.forEach((race) => {
+      race.forEach(({ name, count }) => {
+        Output.printRace(name, count);
+      });
+      Console.printLineBreak();
+    });
 
     const winners = race.getWinners();
     Output.printWinners(winners);

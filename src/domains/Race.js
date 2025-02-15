@@ -5,6 +5,7 @@ import Output from "../views/Output.js";
 class Race {
   #carsInstance = [];
   #tryCount = 0;
+  #raceResults = [];
 
   constructor(carsInstance, tryCount) {
     this.#carsInstance = carsInstance;
@@ -13,9 +14,9 @@ class Race {
 
   raceStart() {
     for (let i = 1; i <= this.#tryCount; i++) {
-      this.#playRound();
-      Console.printLineBreak();
+      this.#raceResults.push(this.#playRound());
     }
+    return this.#raceResults;
   }
 
   getWinners() {
@@ -27,8 +28,11 @@ class Race {
   #playRound() {
     this.#carsInstance.forEach((carInstance) => {
       carInstance.move(generateRandomNumberBetween0And9());
-      Output.printRace(carInstance.name, carInstance.count);
     });
+    return this.#carsInstance.map((car) => ({
+      name: car.name,
+      count: car.count,
+    }));
   }
 
   #getMaxCount() {
