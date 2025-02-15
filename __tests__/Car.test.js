@@ -1,5 +1,4 @@
 import Car from '../src/Models/Car.js';
-import { getRandomNumber } from '../src/utils/randomNumber.js';
 
 export function mockRandom(numbers) {
   const mockRandomFunction = jest.spyOn(Math, 'random');
