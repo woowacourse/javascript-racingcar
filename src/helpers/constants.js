@@ -10,9 +10,11 @@ export const INPUT_MESSAGES = {
   count: '시도할 횟수는 몇 회인가요?\n',
 };
 
-export const OUTPUT_MESSAGE = {
+export const OUTPUT_MESSAGES = {
   result: '실행 결과',
   winner: '최종 우승자: ',
 };
 
 export const CAR_MOVE_STANDARD = 4;
+export const POSITION_STRING = '-';
+export const WINNER_SEPERATOR = ', ';

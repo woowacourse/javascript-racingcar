@@ -21,18 +21,19 @@ export default class CarRace {
   async run() {
     OutputView.printResultOutput();
 
-    this.#runRace(this.#cars, this.#count);
-    const winners = this.#getWinners(this.#cars);
+    this.#runRace();
+    const winners = this.#getWinners();
 
     OutputView.printWinner(winners);
   }
 
   #runRace() {
-    for (let currentCount = 0; currentCount < this.#count; currentCount++) {
+    for (let round = 0; round < this.#count; round++) {
       this.#cars.forEach(car => {
         const randomNumber = getRandomInteger(9);
         if (randomNumber >= CAR_MOVE_STANDARD) car.go();
       });
+
       OutputView.printEachGame(this.#cars);
     }
   }

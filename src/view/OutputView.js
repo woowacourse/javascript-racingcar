@@ -1,4 +1,8 @@
-import { OUTPUT_MESSAGE } from '../helpers/constants.js';
+import {
+  OUTPUT_MESSAGES,
+  POSITION_STRING,
+  WINNER_SEPERATOR,
+} from '../helpers/constants.js';
 
 export default class OutputView {
   static #print(message) {
@@ -10,12 +14,12 @@ export default class OutputView {
   }
 
   static printResultOutput() {
-    OutputView.#print(OUTPUT_MESSAGE.result);
+    OutputView.#print(OUTPUT_MESSAGES.result);
   }
 
   static printEachGame(cars) {
     cars.forEach(car => {
-      const carOutput = '-'.repeat(car.position);
+      const carOutput = POSITION_STRING.repeat(car.position);
       this.#print(`${car.name} : ${carOutput}`);
     });
 
@@ -23,7 +27,7 @@ export default class OutputView {
   }
 
   static printWinner(winners) {
-    const winnerOutput = winners.join(', ');
-    this.#print(`${OUTPUT_MESSAGE.winner}${winnerOutput}`);
+    const winnerOutput = winners.join(WINNER_SEPERATOR);
+    this.#print(`${OUTPUT_MESSAGES.winner}${winnerOutput}`);
   }
 }
