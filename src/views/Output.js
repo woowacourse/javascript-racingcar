@@ -1,5 +1,7 @@
-import { OUTPUT_PROMPT_MESSAGE, EXPRESSION_FLAG } from "../constants/constants.js";
+import { OUTPUT_PROMPT_MESSAGE } from "../constants/constants.js";
 import Console from "../utils/Console.js";
+
+const EXPRESSION_FLAG = "-";
 
 const Output = {
   printRaceStart() {
