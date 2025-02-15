@@ -6,7 +6,7 @@ import OutputView from './view/OutputView.js';
 import parseToNumber from './utils/parseToNumber.js';
 import Car from './Car.js';
 import Racing from './Racing.js';
-import Printer from './Printer.js';
+import Printer from './view/Printer.js';
 import IOMessage from './constants/IOMessage.js';
 
 class App {

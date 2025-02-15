@@ -1,5 +1,5 @@
 import getRandomNumber from '../utils/getRandomNumber.js';
-import Printer from '../Printer.js';
+import Printer from '../view/Printer.js';
 import IOMessage from '../constants/IOMessage.js';
 import {
   MIN_RANDOM_NUMBER,
