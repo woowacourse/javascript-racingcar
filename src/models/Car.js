@@ -7,8 +7,8 @@ class Car {
     this.#name = name;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= RANDOM_BOUNDARY_NUMBER) this.#count++;
+  move(number) {
+    if (number >= RANDOM_BOUNDARY_NUMBER) this.#count++;
   }
 
   get name() {
