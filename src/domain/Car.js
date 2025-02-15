@@ -1,7 +1,8 @@
-import { getRandomInt } from '../utils.js'
+import { getRandomInt } from '../utils.js';
 
 export default class Car {
   position;
+
   name;
 
   constructor(name) {
@@ -11,6 +12,6 @@ export default class Car {
 
   go() {
     const randomNumber = getRandomInt(10);
-    if (randomNumber >= 4) this.position++;
+    if (randomNumber >= 4) this.position += 1;
   }
 }
