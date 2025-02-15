@@ -15,7 +15,7 @@ class GameController {
     const race = new Race(carsInstance, tryCount);
 
     Output.printRaceStart();
-    race.race();
+    race.raceStart();
 
     const winners = race.getWinners();
     Output.printWinners(winners);
