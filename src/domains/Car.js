@@ -1,3 +1,4 @@
+import { ERROR_MESSAGE } from "../constants/message.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
@@ -16,7 +17,7 @@ export default class Car {
 
   #validateCarName(name) {
     if (name.length < 1 || name.length > 5) {
-      throw new Error("Car name length must be between 1 and 5");
+      throw new Error(ERROR_MESSAGE.carNameLength);
     }
   }
 
