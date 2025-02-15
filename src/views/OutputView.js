@@ -1,22 +1,22 @@
-class OutputView{
-    printResultHeader(){
-        console.log("실행 결과");
-    }
-    
-    printRaceResult(carList){
-        // UI를 위한 get은 허용한다.
-        carList.forEach((car) => {
-            console.log(`${car.name} : ${"-".repeat(car.position)}`);
-        });
-    }
+class OutputView {
+  printResultHeader() {
+    console.log("실행 결과");
+  }
 
-    printWinners(winners) {
-        console.log(`최종 우승자: ${winners.join(', ')}`);
-    }
+  printRaceResult(carList) {
+    // UI를 위한 get은 허용한다.
+    carList.forEach((car) => {
+      console.log(`${car.name} : ${"-".repeat(car.position)}`);
+    });
+  }
 
-    printNewLine(){
-        console.log();
-    }
+  printWinners(winners) {
+    console.log(`최종 우승자: ${winners.join(", ")}`);
+  }
+
+  printNewLine() {
+    console.log();
+  }
 }
 
 export default OutputView;

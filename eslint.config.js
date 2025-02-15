@@ -10,6 +10,7 @@ export default [
       "no-multi-spaces": "error",
       "comma-dangle": ["error", "never"],
     },
+    plugins: ["jest"],
     languageOptions: { globals: globals.browser },
   },
   pluginJs.configs.recommended,

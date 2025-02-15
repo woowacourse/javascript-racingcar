@@ -23,12 +23,14 @@ class RaceController {
   }
 
   async #initCarNames() {
-    while(true) {
+    while (true) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parsedCarNames = carNames.split(",").map((carName) => carName.trim());
+        const parsedCarNames = carNames
+          .split(",")
+          .map((carName) => carName.trim());
         new CarNameValidator().valiateNames(parsedCarNames);
-  
+
         return parsedCarNames;
       } catch (error) {
         console.log(error.message);
@@ -37,12 +39,12 @@ class RaceController {
   }
 
   async #initTryCount() {
-    while(true) {
+    while (true) {
       try {
         const tryCount = await this.#inputView.getTryCount();
         const parsedTryCount = Number(tryCount);
         new TryCountValidator().validateNumber(parsedTryCount);
-  
+
         return parsedTryCount;
       } catch (error) {
         console.log(error.message);
@@ -66,7 +68,7 @@ class RaceController {
     const carList = cars.getCars();
 
     this.#outputView.printWinners(
-      new Winner().getWinners(carList, maxPosition)
+      new Winner().getWinners(carList, maxPosition),
     );
   }
 }
