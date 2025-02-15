@@ -9,8 +9,15 @@ export default class Car {
   static MOVE_COUNT = 1;
 
   constructor(name) {
+    this.#validateCarName(name);
     this.#name = name;
     this.#position = Car.START_POSITION;
+  }
+
+  #validateCarName(name) {
+    if (name.length < 1 || name.length > 5) {
+      throw new Error("Car name length must be between 1 and 5");
+    }
   }
 
   move(isCanMove) {

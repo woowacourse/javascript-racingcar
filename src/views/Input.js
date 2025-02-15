@@ -1,4 +1,4 @@
-import { INPUT_MESSAGE } from "../constants/message.js";
+import { INPUT_MESSAGE, ERROR_MESSAGE } from "../constants/message.js";
 
 import readline from "readline";
 
@@ -26,12 +26,41 @@ export default class Input {
   }
 
   static async carName() {
-    const name = await this.readLineAsync(INPUT_MESSAGE.carName);
-    return name;
+    const names = await this.readLineAsync(INPUT_MESSAGE.carName);
+    const parsedNames = names.split(",");
+    this.#validateCarCount(parsedNames);
+    this.#validateDuplicateCarName(parsedNames);
+    return parsedNames;
+  }
+
+  static #validateCarCount(names) {
+    if (names.length < 2 || names.length > 100) {
+      throw new Error("자동차 갯수는 최소 2개 이상, 100이하 이어야 합니다.");
+    }
+  }
+
+  static #validateDuplicateCarName(names) {
+    if (new Set(names).size !== names.length) {
+      throw new Error(ERROR_MESSAGE.duplicateCarName);
+    }
   }
 
   static async tryNumber() {
-    const tryNumber = await this.readLineAsync(INPUT_MESSAGE.tryNumber);
+    const tryNumber = Number(await this.readLineAsync(INPUT_MESSAGE.tryNumber));
+    this.#validateTryNumberSize(tryNumber);
+    this.#validateTryNumberPositiveInteger(tryNumber);
     return tryNumber;
+  }
+
+  static #validateTryNumberSize(tryNumber) {
+    if (tryNumber < 2 || tryNumber > 100) {
+      throw new Error("시도 횟수는 2개 이상, 100 이하 이어야 합니다.");
+    }
+  }
+
+  static #validateTryNumberPositiveInteger(tryNumber) {
+    if (!Number.isInteger(tryNumber)) {
+      throw new Error("시도 횟수는 양의 정수여야 합니다.");
+    }
   }
 }
