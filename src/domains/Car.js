@@ -13,11 +13,14 @@ export default class Car {
     this.#position = Car.START_POSITION;
   }
 
-  move() {
-    const isMoving = generateRandomNumber() >= MOVE_CONDITION;
-    if (isMoving) {
+  move(isCanMove) {
+    if (isCanMove) {
       this.#position += Car.MOVE_COUNT;
     }
+  }
+
+  static isCanMove() {
+    return generateRandomNumber() >= MOVE_CONDITION;
   }
 
   getName() {

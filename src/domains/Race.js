@@ -57,7 +57,8 @@ export default class Race {
     Output.raceResult();
     for (let i = 0; i < this.#parseTryNumber; i += 1) {
       this.#cars.forEach((car) => {
-        car.move();
+        const isCanMove = Car.isCanMove();
+        car.move(isCanMove);
         Output.scoreByRace(car.getName(), car.getPosition());
       });
       Output.newLine();

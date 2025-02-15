@@ -1,19 +1,12 @@
 import Car from "../src/domains/Car.js";
 
-test("랜덤 숫자가 4 이상일 경우 자동차는 움직인다.", () => {
+test.each([
+  ["자동차는 움직인다.", true, 1],
+  ["자동차는 움직이지 않는다.", false, 0],
+])("%s", (_, isCanMove, expectedPosition) => {
   const car = new Car();
 
-  jest.spyOn(Math, "random").mockReturnValue(0.5);
-  car.move();
+  car.move(isCanMove);
 
-  expect(car.getPosition()).toBe(1);
-});
-
-test("랜덤 숫자가 4 미만일 경우 자동차는 움직일 수 없다.", () => {
-  const car = new Car();
-
-  jest.spyOn(Math, "random").mockReturnValue(0.2);
-  car.move();
-
-  expect(car.getPosition()).toBe(0);
+  expect(car.getPosition()).toBe(expectedPosition);
 });
