@@ -32,9 +32,10 @@ class CarNameValidator {
   }
 
   #validateSpecialSymbol(carNames) {
-    const regExp = /^[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]$/g;
+    const specialSymbolRegExp =
+      /^[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]$/g;
 
-    if (regExp.test(carNames)) {
+    if (specialSymbolRegExp.test(carNames)) {
       throw new Error("자동차 이름은 특수기호 만으로 구성될 수 없습니다.");
     }
   }
