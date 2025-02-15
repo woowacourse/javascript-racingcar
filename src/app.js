@@ -5,7 +5,7 @@ import Car from './domain/Car.js';
 import Racing from './domain/Racing.js';
 import Printer from './view/Printer.js';
 import InputMessage from './constants/InputMessage.js';
-import getRandomNumber from './utils/getRandomNumber.js';
+import chooseRandomNumber from './utils/chooseRandomNumber.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
@@ -66,7 +66,7 @@ class App {
   static generateIsMoveList(totalCarNumbers) {
     const isMoveList = Array.from({ length: totalCarNumbers });
     return isMoveList.map(() => {
-      const randomNumber = getRandomNumber(
+      const randomNumber = chooseRandomNumber(
         MIN_RANDOM_NUMBER,
         MAX_RANDOM_NUMBER,
       );
