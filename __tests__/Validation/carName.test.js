@@ -5,6 +5,13 @@ import {
 } from '../../src/Validation/carName.js';
 
 describe('자동차 이름 유효성 검사', () => {
+  test('자동차 이름 길이 0자 이하', () => {
+    const carName = ' ,  ';
+    expect(() => {
+      validateCarsNameLength(carName);
+    }).toThrow('[Error]');
+  });
+
   test('자동차 이름 길이 5자 이하', () => {
     const carName = 'hakuu';
     expect(() => {
