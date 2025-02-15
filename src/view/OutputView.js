@@ -6,16 +6,17 @@ class OutputView {
   }
 
   printRaceResult(carList) {
-    // UI를 위한 get은 허용한다.
     carList.forEach((car) => {
       console.log(
-        `${car.name} : ${SYSTEM_MESSAGE.OUTPUT_CAR_MARK.repeat(car.position)}`,
+        `${car.getName()} : ${SYSTEM_MESSAGE.OUTPUT_CAR_MARK.repeat(car.getPosition())}`,
       );
     });
   }
 
   printWinners(winners) {
-    console.log(`${SYSTEM_MESSAGE.OUTPUT_WINNER}${winners.join(", ")}`);
+    console.log(
+      `${SYSTEM_MESSAGE.OUTPUT_WINNER}${winners.join(SYSTEM_MESSAGE.OUTPUT_WINNER_SEPERATOR)}`,
+    );
   }
 
   printNewLine() {

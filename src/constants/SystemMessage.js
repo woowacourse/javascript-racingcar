@@ -5,4 +5,5 @@ export const SYSTEM_MESSAGE = Object.freeze({
   OUTPUT_RACE_HEADER: "\n실행 결과",
   OUTPUT_CAR_MARK: "-",
   OUTPUT_WINNER: "최종 우승자: ",
+  OUTPUT_WINNER_SEPERATOR: ", ",
 });
