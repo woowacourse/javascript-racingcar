@@ -1,7 +1,8 @@
 import { ERROR_MESSAGE } from "./constants.js";
 
-export const validateCarNames = (cars, carNames) => {
-  if (cars.length > 10) throw Error(ERROR_MESSAGE.CAR_COUNT);
+export const validateCarNames = (carNames) => {
+  if (carNames.some(name => name.length > 5)) throw new Error(ERROR_MESSAGE.CAR_NAME_TOO_LONG);
+  if (carNames.length > 10) throw Error(ERROR_MESSAGE.TOO_MANY_CARS);
   if (carNames.length !== new Set(carNames).size)
     throw Error(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
 };

@@ -1,18 +1,11 @@
-import { CAR_NAME_MAX_LENGTH, MOVE_THRESHOLD } from "./constants.js";
-import { ERROR_MESSAGE } from "./constants.js";
+import { MOVE_THRESHOLD } from "./constants.js";
 
 class Car {
   #name = "";
   #position = "";
 
   constructor(name) {
-    this.#name = this.#validate(name);
-  }
-
-  #validate(name) {
-    if (name.length > CAR_NAME_MAX_LENGTH)
-      throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
-    return name;
+    this.#name = name;
   }
 
   get name() {
