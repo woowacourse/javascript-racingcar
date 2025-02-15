@@ -1,7 +1,7 @@
 import Car from '../src/domain/Car.js';
 import Racing from '../src/domain/Racing.js';
 
-describe('랜덤 숫자에 따른 자동차 경주 테스트', () => {
+describe('이동 여부(Boolean)에 따른 자동차 경주 테스트', () => {
   test.each([
     [[[true, false]], [[1, 0]]],
     [[[false, false]], [[0, 0]]],
