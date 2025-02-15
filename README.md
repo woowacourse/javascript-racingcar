@@ -52,6 +52,21 @@
 - [x] validateCarNames 테스트
 - [x] validateTryCount 테스트
 
+### ✅ 1차 리뷰 수정사항
+
+- [ ] input UI 모듈에서 validate 관련 도메인 로직 분리
+- [ ] validate 관련 도메인 -> if condition 함수화 (가독성)
+- [ ] race 컨트롤러 역할 분리
+- [ ] race 도메인 생성하기
+- [ ] race -> round 메소드명 변경
+- [ ] race -> move 매개변수명 변경
+- [ ] race -> getWinners 메소드 내부 분리 (함수는 한가지 일만 한다.)
+- [ ] randomNumber 함수명 변경
+- [ ] output -> printWinner 메소드명 변경 (복수형태)
+- [ ] (응집도) `EXPRESSION_FLAG` 상수 선언 및 할당 위치 변경
+- [ ] 테스트) '무엇인가'에 초점을 두고, 테스트 서술 내용 변경
+- [ ] 테스트) raceController 분리 후, -> 도메인에 대한 단위 테스트 작성
+
 ## ⚙️ 폴더 구조
 
 ```
