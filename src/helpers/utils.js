@@ -1,4 +1,5 @@
 import readline from 'readline';
+import OutputView from '../view/OutputView.js';
 
 export async function readLineAsync(query) {
   return new Promise((resolve, reject) => {
@@ -26,7 +27,7 @@ export async function retryUntilSuccess(callbackFn) {
   try {
     return await callbackFn();
   } catch (error) {
-    console.log(error.message);
+    OutputView.printErrorMessage(error);
     return retryUntilSuccess(callbackFn);
   }
 }

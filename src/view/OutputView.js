@@ -1,4 +1,5 @@
 import {
+  DEFAULT_ERROR_MESSAGE,
   OUTPUT_MESSAGES,
   POSITION_STRING,
   WINNER_SEPERATOR,
@@ -29,5 +30,9 @@ export default class OutputView {
   static printWinner(winners) {
     const winnerOutput = winners.join(WINNER_SEPERATOR);
     this.#print(`${OUTPUT_MESSAGES.winner}${winnerOutput}`);
+  }
+
+  static printErrorMessage(error) {
+    this.#print(`${DEFAULT_ERROR_MESSAGE} ${error.message}`);
   }
 }
