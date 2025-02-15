@@ -13,7 +13,7 @@ class App {
     race.startRace();
     outputView.printRaceResult(race.getRaceResult());
 
-    outputView.printWinners(cars);
+    outputView.printWinners(race.getWinners());
   }
 }
 

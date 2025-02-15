@@ -1,4 +1,3 @@
-import { RACE } from '../Constants/message.js';
 import { CAR_MOVE_FORWARD, MAX, MIN } from '../Constants/rules.js';
 import { getRandomNumber } from '../Utils/math.js';
 
@@ -38,18 +37,18 @@ export default class Race {
   }
 
   getRaceResult() {
-    const raceResult = this.#raceResult
-      .map(
-        (round) =>
-          `${round
-            .map(
-              ({ name, position }) =>
-                `${name} : ${RACE.MOVEMENT.repeat(position)}`,
-            )
-            .join('\n')}\n`,
-      )
-      .join('\n');
+    return this.#raceResult;
+  }
 
-    return raceResult;
+  getWinners() {
+    const lastRound = this.#gameCount - 1;
+    const winnerPosition = Math.max(
+      ...this.#raceResult[lastRound].map(({ position }) => position),
+    );
+    const winners = this.#raceResult[lastRound]
+      .filter(({ position }) => position === winnerPosition)
+      .map(({ name }) => name);
+
+    return winners;
   }
 }
