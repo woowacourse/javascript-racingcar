@@ -50,7 +50,7 @@ class CarController {
   }
 
   canMove() {
-    const randomNumber = getRandomNumber();
+    const randomNumber = getRandomNumber(0, 9);
 
     return randomNumber >= 4;
   }
