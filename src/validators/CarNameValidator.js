@@ -1,4 +1,5 @@
 import { ERROR_MESSAGE } from "../constants/ErrorMessage.js";
+import { NUMBER } from "../constants/Number.js";
 class CarNameValidator {
   valiateNames(carNames) {
     for (let carName of carNames) {
@@ -11,7 +12,10 @@ class CarNameValidator {
   }
 
   #valiateCarNameLength(carName) {
-    if (carName.length < 1 || carName.length > 5) {
+    if (
+      carName.length < NUMBER.MIN_CAR_NAME_LENGTH ||
+      carName.length > NUMBER.MAX_CAR_NAME_LENGTH
+    ) {
       throw new Error(ERROR_MESSAGE.INVALID_NAME_LENGTH);
     }
   }
@@ -41,7 +45,10 @@ class CarNameValidator {
   }
 
   #validateCarNamesLength(carNames) {
-    if (carNames.length < 2 || carNames.length === 101) {
+    if (
+      carNames.length < NUMBER.MIN_CAR_LIST_LENGTH ||
+      carNames.length > NUMBER.MAX_CAR_LIST_LENGTH
+    ) {
       throw new Error(ERROR_MESSAGE.INVALID_CARS_LENGTH);
     }
   }

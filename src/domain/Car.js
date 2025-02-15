@@ -1,14 +1,16 @@
+import { NUMBER } from "../constants/Number";
+
 class Car {
   #name;
   #position;
 
   constructor(name) {
     this.#name = name;
-    this.#position = 0;
+    this.#position = NUMBER.INIT_POSITION;
   }
 
   move() {
-    const FOWARD = 1;
+    const FOWARD = NUMBER.MOVE_POSITION;
     this.#position += FOWARD;
   }
 

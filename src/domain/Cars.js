@@ -1,3 +1,4 @@
+import { NUMBER } from "../constants/Number.js";
 import Car from "./Car.js";
 
 class Cars {
@@ -18,7 +19,7 @@ class Cars {
   }
 
   #checkMoveCondition(car) {
-    if (this.getRandomNumber() >= 4) {
+    if (this.getRandomNumber() >= NUMBER.MIN_NUMBER_TO_MOVE) {
       car.move();
     }
   }
