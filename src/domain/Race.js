@@ -13,6 +13,14 @@ class Race {
     this.#moveResult = "";
   }
 
+  #formatCarPosition(car) {
+    let positionStick = `${car.raceCarName} : `;
+    for (let i = 0; i < car.position; i++) {
+      positionStick += "-";
+    }
+    return positionStick;
+  }
+
   #tryMove(car) {
     const randomNumber = getRandomNumber();
     if (randomNumber >= MOVE_THRESHOLD) {
@@ -40,12 +48,10 @@ class Race {
   }
 
   raceCar() {
-    const output = new Output();
-    output.printLine(OUTPUT_MESSAGE.result);
     for (let i = 0; i < this.#raceCount; i++) {
       this.#cars.forEach((car) => {
         this.#tryMove(car);
-        this.#moveResult += output.carPosition(car) + "\n";
+        this.#moveResult += this.#formatCarPosition(car) + "\n";
       });
       this.#moveResult += "\n";
     }

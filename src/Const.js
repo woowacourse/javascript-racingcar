@@ -15,7 +15,7 @@ const INPUT_MESSAGE = {
 };
 
 const OUTPUT_MESSAGE = {
-  result: "\n실행 결과",
+  result: "\n실행 결과\n",
 };
 
 export {
