@@ -25,7 +25,7 @@ class User {
   async readAttempts() {
     try {
       const attempts = await readLineAsync(INPUT.ATTEMPTS);
-      AttemptsValidator.checkPositiveNumber(attempts);
+      AttemptsValidator.checkPositiveNumber(Number(attempts));
       return attempts;
     } catch (err) {
       console.log(err.message);
