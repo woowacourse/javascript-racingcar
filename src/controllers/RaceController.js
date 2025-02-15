@@ -29,7 +29,7 @@ class RaceController {
         const parsedCarNames = carNames
           .split(",")
           .map((carName) => carName.trim());
-        new CarNameValidator().valiateNames(parsedCarNames);
+        new CarNameValidator().validateNames(parsedCarNames);
 
         return parsedCarNames;
       } catch (error) {
