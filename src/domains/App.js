@@ -46,6 +46,7 @@ export default class App {
   }
 
   #race() {
+    Output.newLine();
     Output.raceResult();
     for (let i = 0; i < this.tryNumber; i++) {
       this.race.race(this.cars);
