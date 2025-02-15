@@ -1,0 +1,8 @@
+const DEFINITION = {
+  MAX_CAR_RACERS: 40,
+  MAX_NAME_LENGTH: 5,
+  MIN_GAME: 0,
+  MAX_GAME: 100,
+};
+
+export default DEFINITION;
