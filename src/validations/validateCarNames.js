@@ -1,4 +1,4 @@
-import { ERROR_CAR_NAMES_MESSAGE, CAR_NAME_BOUNDARY_LENGTH } from "../constants/constants.js";
+import { ERROR_CAR_NAMES_MESSAGE, MAX_CAR_NAME_LENGTH } from "../constants/constants.js";
 
 const validateCarNames = (input) => {
   const carNames = input.split(",").map((el) => el.trim());
@@ -7,7 +7,7 @@ const validateCarNames = (input) => {
     if (car === "") {
       throw new Error(ERROR_CAR_NAMES_MESSAGE.NOT_EXIST);
     }
-    if (car.length > CAR_NAME_BOUNDARY_LENGTH) {
+    if (car.length > MAX_CAR_NAME_LENGTH) {
       throw new Error(ERROR_CAR_NAMES_MESSAGE.OVER);
     }
   });

@@ -1,5 +1,5 @@
-export const RANDOM_BOUNDARY_NUMBER = 4;
-export const CAR_NAME_BOUNDARY_LENGTH = 5;
+export const MOVE_THRESHOLD = 4;
+export const MAX_CAR_NAME_LENGTH = 5;
 export const EXPRESSION_FLAG = "-";
 
 export const INPUT_PROMPT_MESSAGE = Object.freeze({

@@ -1,4 +1,4 @@
-import { RANDOM_BOUNDARY_NUMBER } from "../constants/constants.js";
+import { MOVE_THRESHOLD } from "../constants/constants.js";
 class Car {
   #name;
   #count = 0;
@@ -8,7 +8,7 @@ class Car {
   }
 
   move(number) {
-    if (number >= RANDOM_BOUNDARY_NUMBER) this.#count++;
+    if (number >= MOVE_THRESHOLD) this.#count++;
   }
 
   get name() {
