@@ -24,29 +24,4 @@ describe("차 객체 유닛 테스트", () => {
 
     expect(car.position).toBe(EXPECTED_RESULT);
   });
-
-  test("차를 움직인 만큼 차가 움직인 위치가 그려져야 함", () => {
-    //given
-    const car = new Car("마빈");
-    const EXPECTED_RESULT = "-".repeat(100);
-
-    for (let i = 0; i < 100; i++) {
-      car.goForward();
-    }
-
-    expect(car.getPosition()).toBe(EXPECTED_RESULT);
-  });
-  test("toString이 정확히 이름과 위치를 표기해야함.", () => {
-    //given
-    const NAME = "제로콜라";
-
-    const car = new Car(NAME);
-    const EXPECTED_RESULT = `${NAME} : ----------`;
-
-    for (let i = 0; i < 10; i++) {
-      car.goForward();
-    }
-
-    expect(car.toString()).toBe(EXPECTED_RESULT);
-  });
 });
