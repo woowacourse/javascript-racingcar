@@ -1,5 +1,3 @@
-import Printer from '../view/Printer.js';
-
 class Racing {
   #cars;
 
@@ -17,13 +15,11 @@ class Racing {
   }
 
   runRace(totalRaceMoves) {
-    Printer.printHeader();
-
-    totalRaceMoves.forEach((carsMoveList) => {
+    return totalRaceMoves.map((carsMoveList) => {
       this.raceTurn(carsMoveList);
-      const result = this.#cars.map((car) => car.getCarInfo());
 
-      Printer.printRacingResult(result);
+      const result = this.#cars.map((car) => car.getCarInfo());
+      return result;
     });
   }
 

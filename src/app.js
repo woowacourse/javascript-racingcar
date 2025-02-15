@@ -14,12 +14,19 @@ import {
 import { NAME_DELIMITER } from './domain/constants/ValidatorConstants.js';
 
 class App {
+  #cars;
+
+  #racing;
+
   async run() {
     const cars = await this.createCars();
     const tryCount = await this.askTryCount();
 
     const racing = new Racing(cars);
-    racing.runRace(App.generateTotalRaceMoves(tryCount, cars));
+    this.#cars = cars;
+    this.#racing = racing;
+
+    App.playRacing(tryCount);
 
     const raceResult = racing.decideWinner();
     Printer.printWinner(raceResult);
@@ -57,10 +64,21 @@ class App {
     }
   }
 
-  static generateTotalRaceMoves(tryCount, cars) {
+  playRacing(tryCount) {
+    Printer.printHeader();
+
+    const totalRaceMoves = this.generateTotalRaceMoves(tryCount);
+    const results = this.#racing.runRace(totalRaceMoves);
+
+    results.forEach((result) => {
+      Printer.printRacingResult(result);
+    });
+  }
+
+  generateTotalRaceMoves(tryCount) {
     const turns = Array.from({ length: tryCount });
-    const totalCarNumbers = cars.length;
-    return turns.map(() => this.generateIsMoveList(totalCarNumbers));
+    const totalCarNumbers = this.#cars.length;
+    return turns.map(() => App.generateIsMoveList(totalCarNumbers));
   }
 
   static generateIsMoveList(totalCarNumbers) {
