@@ -1,4 +1,4 @@
-import { DEFAULT_POSITION, UNIT_POSITION } from '../constants/MagicNumber.js';
+import { DEFAULT_POSITION, UNIT_POSITION } from '../constants/MAGIC_NUMBER.js';
 
 class Car {
   #name;

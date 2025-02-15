@@ -1,28 +1,28 @@
-import ErrorMessage from '../../constants/ErrorMessage.js';
-import { MAXIMUM_COUNT, MIN_TRY_COUNT } from '../../constants/MagicNumber.js';
+import ERROR_MESSAGE from '../../constants/ERROR_MESSAGE.js';
+import { MAXIMUM_COUNT, MIN_TRY_COUNT } from '../../constants/MAGIC_NUMBER.js';
 
 class CountValidator {
   static isNumber(parsedTryCount) {
     if (Number.isNaN(parsedTryCount)) {
-      throw new Error(ErrorMessage.isNotNumber);
+      throw new Error(ERROR_MESSAGE.isNotNumber);
     }
   }
 
   static isAtLeastOne(parsedTryCount) {
     if (parsedTryCount < MIN_TRY_COUNT) {
-      throw new Error(ErrorMessage.isInvalidNumber);
+      throw new Error(ERROR_MESSAGE.isInvalidNumber);
     }
   }
 
   static isInteger(parsedTryCount) {
     if (!Number.isInteger(parsedTryCount)) {
-      throw new Error(ErrorMessage.isNotInteger);
+      throw new Error(ERROR_MESSAGE.isNotInteger);
     }
   }
 
   static isNotBigNumber(parsedTryCount) {
     if (parsedTryCount > MAXIMUM_COUNT) {
-      throw new Error(ErrorMessage.isBigNumber);
+      throw new Error(ERROR_MESSAGE.isBigNumber);
     }
   }
 

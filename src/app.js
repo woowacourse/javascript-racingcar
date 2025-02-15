@@ -7,7 +7,7 @@ import parseToNumber from './utils/parseToNumber.js';
 import Car from './Car.js';
 import Racing from './Racing.js';
 import Printer from './view/Printer.js';
-import IOMessage from './constants/IOMessage.js';
+import IO_MESSAGE from './constants/IO_MESSAGE.js';
 
 class App {
   async run() {
@@ -15,7 +15,7 @@ class App {
     const tryCount = await this.getTryCount();
     const racing = new Racing(cars, tryCount);
 
-    Printer.printHeader(IOMessage.resultHeader);
+    Printer.printHeader(IO_MESSAGE.resultHeader);
     racing.runRace();
 
     const raceResult = racing.decideWinner();
@@ -24,7 +24,7 @@ class App {
 
   async getCar() {
     try {
-      const carNameInput = await InputView.readLineAsync(IOMessage.getCarName);
+      const carNameInput = await InputView.readLineAsync(IO_MESSAGE.getCarName);
       const parsedCarName = splitInput(carNameInput);
       NameValidator.isValid(parsedCarName);
       return parsedCarName.map((carName) => new Car(carName));
@@ -36,7 +36,7 @@ class App {
 
   async getTryCount() {
     try {
-      const tryCount = await InputView.readLineAsync(IOMessage.getTryCount);
+      const tryCount = await InputView.readLineAsync(IO_MESSAGE.getTryCount);
       const parsedTryCount = parseToNumber(tryCount);
       CountValidator.isValid(parsedTryCount);
       return parsedTryCount;

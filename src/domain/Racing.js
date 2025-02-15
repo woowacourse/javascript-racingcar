@@ -1,11 +1,11 @@
 import getRandomNumber from '../utils/getRandomNumber.js';
 import Printer from '../view/Printer.js';
-import IOMessage from '../constants/IOMessage.js';
+import IO_MESSAGE from '../constants/IO_MESSAGE.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
-} from '../constants/MagicNumber.js';
+} from '../constants/MAGIC_NUMBER.js';
 
 class Racing {
   #cars;

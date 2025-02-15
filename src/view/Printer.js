@@ -1,6 +1,6 @@
 import OutputView from './OutputView.js';
-import IOMessage from '../constants/IOMessage.js';
-import { RESULT_MARK, WINNER_DELIMITER } from '../constants/MagicNumber.js';
+import IO_MESSAGE from '../constants/IO_MESSAGE.js';
+import { RESULT_MARK, WINNER_DELIMITER } from '../constants/MAGIC_NUMBER.js';
 
 class Printer {
   static printHeader(message) {
@@ -12,16 +12,16 @@ class Printer {
       const { name, position } = result;
       const raceResult = RESULT_MARK.repeat(position);
 
-      OutputView.print(IOMessage.getRaceResult(name, raceResult));
+      OutputView.print(IO_MESSAGE.getRaceResult(name, raceResult));
     });
 
-    OutputView.print(IOMessage.lineBreak);
+    OutputView.print(IO_MESSAGE.lineBreak);
   }
 
   static printWinner(results) {
     const winner = results.map((result) => result.name).join(WINNER_DELIMITER);
 
-    OutputView.print(IOMessage.getWinner(winner));
+    OutputView.print(IO_MESSAGE.getWinner(winner));
   }
 }
 
