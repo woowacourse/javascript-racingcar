@@ -16,12 +16,7 @@ class GameController {
     Output.printRaceStart();
     const raceResults = race.raceStart();
 
-    raceResults.forEach((race) => {
-      race.forEach(({ name, count }) => {
-        Output.printRace(name, count);
-      });
-      Console.printLineBreak();
-    });
+    this.#printRaceResults(raceResults);
 
     const winners = race.getWinners();
     Output.printWinners(winners);
@@ -49,6 +44,15 @@ class GameController {
         Console.printErrorMessage(error);
       }
     }
+  }
+
+  #printRaceResults(raceResults) {
+    raceResults.forEach((roundResult) => {
+      roundResult.forEach(({ name, count }) => {
+        Output.printRace(name, count);
+      });
+      Console.printLineBreak();
+    });
   }
 }
 
