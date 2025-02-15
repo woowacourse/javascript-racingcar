@@ -3,18 +3,18 @@ import OutputView from './OutputView.js';
 import Validate from './Validate.js'
 import Car from './Car.js';
 
-class RacingcarManager{
+class RacingcarManager {
     #inputView
     #outputView
     #validate
 
-    constructor(){
+    constructor() {
         this.#inputView = new InputView();
         this.#outputView = new OutputView();
         this.#validate = new Validate();
     }
 
-    async start(){
+    async start() {
         const carNames = await this.#getCarNames();
         const cars = this.createCars(carNames);
         const attempts = await this.#getAttempts();
@@ -22,13 +22,12 @@ class RacingcarManager{
         const winners = this.getWinners(cars);
         this.#outputView.printWinners(winners);
     }
-    
-    async #getCarNames()  {
-        while(true) {
+
+    async #getCarNames() {
+        while (true) {
             try {
                 const carNames = await this.#inputView.readCarNames();
-                this.#validate.isEmpty(carNames);
-                this.#validate.carNameLength(carNames);
+                this.#validateCarName(carNames);
                 return carNames.split(',');
             } catch (error) {
                 this.#outputView.printErrorMessage(error.message);
@@ -36,12 +35,25 @@ class RacingcarManager{
         }
     }
 
-    createCars(carNames){
+    #validateCarName(carNames) {
+        try {
+            this.#validate.isEmpty(carNames);
+            const carNamesList = carNames.split(',');
+            carNamesList.forEach(carName => {
+                this.#validate.isEmpty(carName);
+                this.#validate.carNameLength(carName);
+            });
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    createCars(carNames) {
         return carNames.map(name => new Car(name));
     }
 
-    async #getAttempts()  {
-        while(true) {
+    async #getAttempts() {
+        while (true) {
             try {
                 const attempts = await this.#inputView.readAttempts();
                 this.#validateAttempts(attempts);
@@ -67,16 +79,16 @@ class RacingcarManager{
     getRandomNumber() {
         return Math.floor(Math.random() * 10);
     }
-    
-    oneRound(cars){
+
+    oneRound(cars) {
         cars.forEach(car => {
-            car.move(this.getRandomNumber());            
+            car.move(this.getRandomNumber());
         });
     }
 
-    roundOfRacing(cars, attempts){
+    roundOfRacing(cars, attempts) {
         this.#outputView.printResultMessage();
-        for(let i = 0; i< attempts; i++) {
+        for (let i = 0; i < attempts; i++) {
             this.oneRound(cars);
             this.#outputView.printOneRoundResult(cars);
         }
@@ -84,11 +96,11 @@ class RacingcarManager{
 
     getMaxPosition(cars) {
         const hasMaxPositionCar = cars.reduce((prev, value) => {
-            if(prev.position >= value.position){
+            if (prev.position >= value.position) {
                 return prev;
             } else {
                 return value;
-            }  
+            }
         });
         return hasMaxPositionCar.position;
     }
@@ -97,7 +109,7 @@ class RacingcarManager{
         const maxPositon = this.getMaxPosition(cars);
         const winners = [];
         cars.forEach(car => {
-            if(car.position === maxPositon){
+            if (car.position === maxPositon) {
                 winners.push(car.name);
             }
         });
