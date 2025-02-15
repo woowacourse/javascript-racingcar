@@ -1,6 +1,5 @@
 import { errorMessage } from "../constants/ErrorMessage.js";
 import { Validation } from "../validation/Validation.js";
-import { OutputView } from "../view/OutputView.js";
 import { systemSetting } from "../constants/systemSetting.js";
 
 export const parsingService = {
@@ -28,14 +27,3 @@ export const parsingService = {
     return Number(input);
   },
 };
-
-export async function getValidInput(getInput, parser) {
-  while (true) {
-    try {
-      const input = await getInput();
-      return parser(input);
-    } catch (error) {
-      OutputView.printError(error);
-    }
-  }
-}
