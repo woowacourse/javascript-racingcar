@@ -1,9 +1,9 @@
-import Car from "../model/Car.js";
+import Car from "./Car.js";
+import randomNumber from "./random.js";
 import InputView from "../view/Input.js";
 import OutputView from "../view/Output.js";
-import randomNumber from "../util/random.js";
-import tryInput from "../util/tryInput.js";
-import { validateCarNames, validateRaceCount } from "../util/validation.js";
+import tryInput from "../view/tryInput.js";
+import { validateCarNames, validateRaceCount } from "./validation.js";
 import { SPLITTER } from "../constant/constant.js";
 
 class Controller {

@@ -1,4 +1,4 @@
-import positionToStr from "../util/positionToStr.js";
+import positionToStr from "../domain/positionToStr.js";
 import OUTPUT from "../constant/output.js";
 
 const OutputView = {
