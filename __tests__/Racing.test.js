@@ -23,7 +23,11 @@ describe('랜덤 숫자에 따른 자동차 경주 테스트', () => {
       const racing = new Racing(cars);
       racing.raceTurn(carsMoveList);
 
-      const positionResult = cars.map((car) => car.getCarPosition());
+      const positionResult = cars.map((car) => {
+        const { position } = car.getCarInfo();
+        return position;
+      });
+
       expect(positionResult).toEqual(positions);
     },
   );
@@ -61,14 +65,13 @@ describe('랜덤 숫자에 따른 자동차 경주 테스트', () => {
 
 describe('우승자 판단 메서드 테스트', () => {
   test('우승자가 한 명일 수 있다.', () => {
-    const NAMES = ['jenna', 'mato'];
-    const cars = NAMES.map((name) => new Car(name));
+    const car1 = new Car('jenna');
+    const car2 = new Car('mato');
 
-    const racing = new Racing(cars);
-    racing.getCarInfo = jest.fn().mockReturnValue([
-      { name: 'jenna', position: 3 },
-      { name: 'mato', position: 2 },
-    ]);
+    const racing = new Racing([car1, car2]);
+
+    car1.getCarInfo = jest.fn().mockReturnValue({ name: 'jenna', position: 3 });
+    car2.getCarInfo = jest.fn().mockReturnValue({ name: 'mato', position: 2 });
 
     const winners = racing.decideWinner();
 
@@ -78,14 +81,14 @@ describe('우승자 판단 메서드 테스트', () => {
   });
 
   test('우승자가 두 명 이상일 수 있다.', () => {
-    const NAMES = ['jenna', 'mato'];
-    const cars = NAMES.map((name) => new Car(name));
+    const car1 = new Car('jenna');
+    const car2 = new Car('mato');
 
-    const racing = new Racing(cars);
-    racing.getCarInfo = jest.fn().mockReturnValue([
-      { name: 'jenna', position: 2 },
-      { name: 'mato', position: 2 },
-    ]);
+    const racing = new Racing([car1, car2]);
+
+    car1.getCarInfo = jest.fn().mockReturnValue({ name: 'jenna', position: 2 });
+    car2.getCarInfo = jest.fn().mockReturnValue({ name: 'mato', position: 2 });
+
     const winners = racing.decideWinner();
 
     const expectedWinner = [
