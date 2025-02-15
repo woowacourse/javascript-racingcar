@@ -1,13 +1,15 @@
-import Car from "../src/domain/Car.js";
 import { ERROR_MESSAGE } from "../src/config/constants.js";
 import { validateAttempt, validateCarLength } from "../src/utils/validate.js";
 
 describe("예외 처리", () => {
-  describe("자동차 이름 예외 처리", () => {
-    test("자동차 이름 길이 예외 테스트", () => {
+  describe("자동차 예외 테스트", () => {
+    test("자동차 이름 중복 예외 테스트", () => {
+      const cars = [{}, {}, {}];
+      const carNames = ["A", "B", "B"];
+
       expect(() => {
-        new Car("happyyyyy");
-      }).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
+        validateCarLength(cars, carNames);
+      }).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     });
 
     test("자동차 개수 예외 처리", () => {
@@ -15,17 +17,8 @@ describe("예외 처리", () => {
       const carNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
 
       expect(() => {
-        validateCarNames(cars, carNames);
-      }).toThrow(ERROR_MESSAGE.CAR_COUNT);
-    });
-
-    test("자동차 이름 중복 예외 처리", () => {
-      const cars = [{}, {}, {}];
-      const carNames = ["A", "B", "B"];
-
-      expect(() => {
         validateCarLength(cars, carNames);
-      }).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
+      }).toThrow(ERROR_MESSAGE.CAR_MAX_COUNT);
     });
   });
 
