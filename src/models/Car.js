@@ -1,4 +1,4 @@
-import DEFINITION from '../constants/Definition';
+import DEFINITION from '../constants/Definition.js';
 
 class Car {
   constructor(name) {

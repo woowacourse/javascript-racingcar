@@ -31,11 +31,15 @@ export default class Game {
     return winnerNames;
   }
 
-  async start() {
+  async prepareRace() {
     const inputName = await InputController.inputName();
     const inputTryNumber = await InputController.inputTryNumber();
     this.createCarList(inputName);
-    for (let i = 0; i < inputTryNumber; i++) {
+    this.inputTryNumber = inputTryNumber;
+  }
+
+  startRace() {
+    for (let i = 0; i < this.inputTryNumber; i++) {
       this.#carList.forEach(car => {
         const randomValue = createRandom();
         car.moveForward(randomValue);
@@ -45,5 +49,10 @@ export default class Game {
     }
     const winnerNames = this.judgeWinner();
     OutputView.gameResult(winnerNames);
+  }
+
+  async start() {
+    await this.prepareRace();
+    this.startRace();
   }
 }
