@@ -1,41 +1,48 @@
 import MESSAGE from '../constants/Message.js';
 
 export const Validator = {
-  isArrayLengthOver: (array, max) => {
-    if (array.length > max) {
+  // Boolean 반환 함수
+  isArrayLengthOver: (array, max) => array.length > max,
+  isStringLengthOver: (string, max) => [...string].length > max,
+  isRangeOver: (number, min, max) => number < min || number > max,
+  isDecimal: number => number % 1 !== 0,
+  isDuplicate: array => new Set(array).size !== array.length,
+  isNumber: number => number !== null && typeof number === 'number' && !Number.isNaN(number),
+  isEmpty: string => string.trim().length === 0 || string === null,
+
+  // 예외를 던지는 함수
+  validateArrayLength: (array, max) => {
+    if (Validator.isArrayLengthOver(array, max)) {
       throw new Error(MESSAGE.ERROR.IS_ARRAY_LENGTH_OVER);
     }
   },
-  isStringLengthOver: (string, max) => {
-    const arrayString = [...string];
-    if (arrayString.length > max) {
+  validateStringLength: (string, max) => {
+    if (Validator.isStringLengthOver(string, max)) {
       throw new Error(MESSAGE.ERROR.IS_STRING_LENGTH_OVER);
     }
   },
-  isRangeOver: (number, min, max) => {
-    if (number < min || number > max) {
+  validateRange: (number, min, max) => {
+    if (Validator.isRangeOver(number, min, max)) {
       throw new Error(MESSAGE.ERROR.IS_RANGE_OVER(min, max));
     }
   },
-  isDecimal: number => {
-    if (number % 1 !== 0) {
+  validateDecimal: number => {
+    if (Validator.isDecimal(number)) {
       throw new Error(MESSAGE.ERROR.IS_DECIMAL);
     }
   },
-  isDuplicate: array => {
-    const set = new Set(array);
-    if (set.size !== array.length) {
+  validateDuplicate: array => {
+    if (Validator.isDuplicate(array)) {
       throw new Error(MESSAGE.ERROR.IS_DUPLICATE);
     }
   },
-  isNumber: number => {
-    if (number === null || typeof number !== 'number' || Number.isNaN(number)) {
+  validateNumber: number => {
+    if (!Validator.isNumber(number)) {
       throw new Error(MESSAGE.ERROR.IS_NUMBER);
     }
   },
-
-  isEmpty: string => {
-    if (string.trim().length === 0 || string === null) {
+  validateEmpty: string => {
+    if (Validator.isEmpty(string)) {
       throw new Error(MESSAGE.ERROR.IS_EMPTY);
     }
   },

@@ -8,12 +8,12 @@ class InputController {
   static async inputName() {
     try {
       const inputName = await InputView.readLineAsync(MESSAGE.INPUT.NAME);
-      Validator.isEmpty(inputName);
+      Validator.validateEmpty(inputName);
       const splittedName = Parser.splitName(inputName);
-      Validator.isArrayLengthOver(splittedName, DEFINITION.MAX_NAME_LENGTH);
-      Validator.isDuplicate(splittedName);
+      Validator.validateArrayLength(splittedName, DEFINITION.MAX_NAME_LENGTH);
+      Validator.validateDuplicate(splittedName);
       splittedName.forEach(name => {
-        Validator.isStringLengthOver(name);
+        Validator.validateStringLength(name);
       });
       return splittedName;
     } catch (error) {
@@ -28,9 +28,9 @@ class InputController {
       Validator.isEmpty(inputTryNumber);
       console.log(inputTryNumber);
       const parsedNumber = Number(inputTryNumber.trim());
-      Validator.isNumber(parsedNumber);
-      Validator.isRangeOver(parsedNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME);
-      Validator.isDecimal(parsedNumber);
+      Validator.validateNumber(parsedNumber);
+      Validator.validateRange(parsedNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME);
+      Validator.validateDecimal(parsedNumber);
       return inputTryNumber;
     } catch (error) {
       console.log(error.message);
