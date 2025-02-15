@@ -14,8 +14,8 @@ export const printExecutionText = () => {
 
 export const printRaceResult = (raceResults) => {
   raceResults.forEach((result) => {
-    const racingResultText = result.reduce((acc, [carName, distance]) => {
-      acc += formatRacingResult(carName, distance);
+    const racingResultText = result.reduce((acc, [carName, info]) => {
+      acc += formatRacingResult(carName, info.distance);
       return acc;
     }, "");
 
