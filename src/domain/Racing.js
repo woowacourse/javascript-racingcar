@@ -1,41 +1,36 @@
-import getRandomNumber from './utils/getRandomNumber.js';
-import Printer from './Printer.js';
-import IOMessage from './constants/IOMessage.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
+import Printer from '../Printer.js';
+import IOMessage from '../constants/IOMessage.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
-} from './constants/MagicNumber.js';
+} from '../constants/MagicNumber.js';
 
 class Racing {
   #cars;
+  #tryCount;
 
-  constructor(cars) {
+  constructor(cars, tryCount) {
     this.#cars = cars;
+    this.#tryCount = tryCount;
   }
 
   raceTurn() {
     const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-    
-      this.#cars.forEach((car) => {
-        if (randomNum >= MOVE_NUMBER) {
+
+    this.#cars.forEach((car) => {
+      if (randomNum >= MOVE_NUMBER) {
         car.move();
       }
-      });
-    
+    });
+    return this.getCarInfo(this.#cars);
   }
 
-  runRace(tryCount) {
-    let currentCount = 0;
-
-    Printer.printHeader(IOMessage.resultHeader);
-
-    while (currentCount < tryCount) {
-      this.raceTurn();
-      const result = this.getCarInfo(this.#cars);
-
+  runRace() {
+    for (let count = 0; count < this.#tryCount; count++) {
+      const result = this.raceTurn();
       Printer.printRacingResult(result);
-      currentCount += 1;
     }
   }
 
