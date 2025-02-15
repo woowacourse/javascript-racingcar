@@ -56,8 +56,8 @@
 
 - [x] input UI 모듈에서 validate 관련 도메인 로직 분리
 - [x] validate 관련 도메인 -> if condition 함수화 (가독성)
-- [x] car -> move 매개변수명 변경
-- [ ] race 컨트롤러 역할 분리
+- [ ] car -> move 매개변수명 변경
+- [x] race 컨트롤러 역할 분리
 - [x] race 도메인 생성하기
 - [x] race -> round 메소드명 변경
 - [x] race -> getWinners 메소드 내부 분리 (함수는 한가지 일만 한다.)
