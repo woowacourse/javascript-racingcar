@@ -80,7 +80,7 @@ class App {
   }
 
   static parseTryCount(tryCount) {
-    if (tryCount === '') {
+    if (tryCount === '' || tryCount === null) {
       return NaN;
     }
 
