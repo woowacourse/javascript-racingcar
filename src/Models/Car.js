@@ -1,15 +1,28 @@
-class Car {
-  position = 0;
-  history = [];
+import { checkIsEmpty, checkCarNameLength, checkCarNameDuplicate, checkCarCount } from '../validates/carValidates.js';
 
-  constructor(name) {
+class Car {
+  #position = 0;
+  #history = [];
+
+  constructor(name, names) {
+    checkIsEmpty(name);
+    checkCarNameLength(name);
+    checkCarCount(names);
+    checkCarNameDuplicate(names);
     this.name = name;
   }
 
-  updateHistory(isMove) {
-    this.position += Number(isMove);
+  getPosition() {
+    return this.#position;
+  }
 
-    this.history.push(this.position);
+  getHistory(index) {
+    return this.#history[index];
+  }
+
+  movePosition(isMove) {
+    this.#position += Number(isMove);
+    this.#history.push(this.#position);
   }
 }
 

@@ -12,8 +12,6 @@ export function mockRandom(numbers) {
 
 describe('Car 객체를 테스트', () => {
   test('객체가 잘 생성됐는지 확인한다.', () => {
-    // given
-
     // when
     const car = new Car('재오');
 

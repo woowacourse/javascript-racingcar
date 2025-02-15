@@ -1,5 +1,5 @@
-import Car from '../domain/Car.js';
-import Race from '../domain/Race.js';
+import Car from '../Models/Car.js';
+import Race from '../Models/Race.js';
 import InputView from '../Views/InputView.js';
 import OutputView from '../Views/OutputView.js';
 import { PRINT_MESSAGE } from '../constants/message.js';

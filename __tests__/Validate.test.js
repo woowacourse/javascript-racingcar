@@ -1,5 +1,5 @@
-import Car from '../src/domain/Car.js';
-import Race from '../src/domain/Race.js';
+import Car from '../src/Models/Car.js';
+import Race from '../src/Models/Race.js';
 
 export const getLogSpy = () => {
   const logSpy = jest.spyOn(console, 'log');
