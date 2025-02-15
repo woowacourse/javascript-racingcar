@@ -6,10 +6,10 @@ import { MIN } from '../constant/constant.js';
 
 class Race {
   async play() {
-    const raceSetup = new RaceSetup();
-    await raceSetup.carList();
-    await raceSetup.raceCount();
-    this.start(raceSetup.getCarList(), raceSetup.getRaceCount());
+    const initializeRace = new RaceSetup();
+    await initializeRace.carList();
+    await initializeRace.raceCount();
+    this.start(initializeRace.getCarList(), initializeRace.getRaceCount());
   }
 
   start(carList, raceCount) {
