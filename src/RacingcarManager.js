@@ -28,7 +28,7 @@ class RacingcarManager{
             try {
                 const carNames = await this.#inputView.readCarNames();
                 this.#validate.isEmpty(carNames);
-                this.#validate.carNameLength(carNames);
+                this.#validate.isValidCarNames(carNames);
                 return carNames.split(',');
             } catch (error) {
                 this.#outputView.printErrorMessage(error.message);

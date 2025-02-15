@@ -13,7 +13,7 @@ class Validate {
             throw new Error(ERROR_MESSAGE.IS_EMPTY);
     }
 
-    carNameLength(input){
+    isValidCarNames(input){
         const names = input.split(',');
         names.forEach(name => {
             if(name.trim().length > MAX_NAME_LENGTH)

@@ -10,7 +10,7 @@ test("공백 입력 시 에러 발생", () => {
 test("자동차 이름 글자수 5자 초과시 에러 발생", () =>{
     const validate = new Validate();
     expect(() => {
-        validate.carNameLength('ABCDEF');
+        validate.isValidCarNames('ABCDEF');
     }).toThrow("[ERROR] 이름 글자수가 5자를 초과하였습니다.");
 })
 
