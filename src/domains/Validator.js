@@ -1,6 +1,6 @@
-import Output from "./view/Output.js";
-import { ERROR_MESSAGE } from "./constants/message.js";
-import { CAR_SETTING, TRY_NUMBER_SETTING } from "./constants/setting.js";
+import Output from "../views/Output.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
+import { CAR_SETTING, TRY_NUMBER_SETTING } from "../constants/setting.js";
 
 export default class Validator {
   static carNamesAndCount(carNames) {

@@ -1,8 +1,8 @@
-import Input from "./view/Input.js";
+import Input from "../views/Input.js";
 import Car from "./Car.js";
 import Validator from "./Validator.js";
-import Output from "./view/Output.js";
-import { STEP } from "./constants/setting.js";
+import Output from "../views/Output.js";
+import { STEP } from "../constants/setting.js";
 
 export default class Race {
   #cars = [];

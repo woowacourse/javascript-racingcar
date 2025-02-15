@@ -2,8 +2,8 @@ import {
   MOVE_CONDITION,
   MOVE_COUNT,
   START_POSITION,
-} from "./constants/setting.js";
-import { generateRandomNumber } from "./utils.js";
+} from "../constants/setting.js";
+import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
   #name;
