@@ -14,10 +14,10 @@ export const readLineAsync = (query = "") => {
   });
 };
 
-export const retryUntilValid = async (getInputFn, validator) => {
+export const retryUntilValidInput = async ({ readUserInput, validator }) => {
   while (true) {
     try {
-      const userInput = await getInputFn();
+      const userInput = await readUserInput();
       validator(userInput);
       return userInput;
     } catch (error) {
