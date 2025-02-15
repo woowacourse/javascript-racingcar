@@ -47,7 +47,7 @@ class App {
   #race() {
     Output.raceResult();
     for (let i = 0; i < this.tryNumber; i++) {
-      const racedCar = this.race.race(this.cars);
+      const racedCar = this.race.race();
       racedCar.forEach((car) => {
         Output.scoreByRace(car.getName(), car.getPosition());
       });
