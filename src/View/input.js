@@ -1,25 +1,41 @@
-import readline from 'readline';
+import { INPUT } from '../Constants/message.js';
 
-function readLineAsync(query) {
-  return new Promise((resolve, reject) => {
-    if (arguments.length !== 1) {
-      reject(new Error('arguments must be 1'));
-    }
+import {
+  validateCarsNameLength,
+  validateCarsNameForm,
+  validateDuplicatedCarName,
+} from '../Validation/carName.js';
 
-    if (typeof query !== 'string') {
-      reject(new Error('query must be string'));
-    }
+import {
+  validateGameCountRange,
+  validateGameCountType,
+} from '../Validation/gameCount.js';
 
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
+import readLineAsync from './utils.js';
 
-    rl.question(query, (input) => {
-      rl.close();
-      resolve(input);
-    });
-  });
-}
+export const getCarsName = async () => {
+  const input = await readLineAsync(`${INPUT.CARS_NAME}\n`);
 
-export default readLineAsync;
+  try {
+    validateCarsNameLength(input);
+    validateCarsNameForm(input);
+    validateDuplicatedCarName(input);
+    return input;
+  } catch (error) {
+    console.error(error.message);
+    return getCarsName();
+  }
+};
+
+export const getGameCount = async () => {
+  const input = await readLineAsync(`${INPUT.GAME_COUNT}\n`);
+
+  try {
+    validateGameCountType(input);
+    validateGameCountRange(input);
+    return input;
+  } catch (error) {
+    console.error(error.message);
+    return getGameCount();
+  }
+};
