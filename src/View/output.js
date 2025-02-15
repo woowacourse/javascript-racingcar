@@ -1,11 +1,15 @@
 import { getRandomNumber } from '../Utils/math.js';
+import { MAX, MIN } from '../Constants/rules.js';
 
 const outputView = {
   printGameResult(gameCount, cars) {
     console.log('\n실행 결과');
     for (let count = 0; count < gameCount; count += 1) {
       cars.forEach((car) => {
-        const randomNumber = getRandomNumber();
+        const randomNumber = getRandomNumber(
+          MAX.RANDOM_NUMBER,
+          MIN.RANDOM_NUMBER,
+        );
         car.move(randomNumber);
         console.log(`${car.getName()} : ${'-'.repeat(car.getPosition())}`);
       });
