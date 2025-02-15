@@ -5,10 +5,10 @@ export const displayResultTitle = () => {
 };
 
 export const displayRaceResult = (cars) => {
-  for (const car of cars) {
-    console.log(`${car.name} : ${"-".repeat(car.position)}`);
-  }
-  console.log();
+  console.log(
+    cars.map((car) => `${car.name} : ${"-".repeat(car.position)}`).join("\n") +
+      "\n"
+  );
 };
 
 export const displayWinner = (winners) => {
