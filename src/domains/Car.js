@@ -1,4 +1,4 @@
-import { RANDOM_BOUNDARY_NUMBER } from "../constants/constants.js";
+import { MOVE_CONDITION_BOUNDARY } from "../constants/constants.js";
 class Car {
   #name;
   #count = 0;
@@ -7,8 +7,8 @@ class Car {
     this.#name = name;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= RANDOM_BOUNDARY_NUMBER) this.#count++;
+  move(shouldMove) {
+    if (shouldMove >= MOVE_CONDITION_BOUNDARY) this.#count++;
   }
 
   get name() {
