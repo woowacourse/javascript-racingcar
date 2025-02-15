@@ -14,7 +14,7 @@ export const raceStart = async () => {
 
   displayResultTitle();
   for (let i = 0; i < attempt; i++) {
-    moveCars(cars, moveCondition);
+    moveCars(cars);
     displayRaceResult(cars);
   }
 
