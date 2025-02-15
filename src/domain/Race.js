@@ -6,7 +6,7 @@ import tryInput from "../view/tryInput.js";
 import { validateCarNames, validateRaceCount } from "./validation.js";
 import { SPLITTER } from "../constant/constant.js";
 
-class Controller {
+class Race {
   #carList;
   #raceCount;
 
@@ -70,4 +70,4 @@ class Controller {
   }
 }
 
-export default Controller;
+export default Race;
