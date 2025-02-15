@@ -1,11 +1,11 @@
-import NameValidator from './utils/validator/NameValidator.js';
-import CountValidator from './utils/validator/CountValidator.js';
+import NameValidator from './domain/validator/NameValidator.js';
+import CountValidator from './domain/validator/CountValidator.js';
 import InputView from './view/InputView.js';
 import Car from './domain/Car.js';
 import Racing from './domain/Racing.js';
 import Printer from './view/Printer.js';
 import InputMessage from './constants/InputMessage.js';
-import chooseRandomNumber from './utils/chooseRandomNumber.js';
+import chooseRandomNumber from './domain/utils/chooseRandomNumber.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
