@@ -7,6 +7,13 @@ test("공백 입력 시 에러 발생", () => {
   }).toThrow("[ERROR] 공백이 입력되었습니다.");
 })
 
+test("',' 입력 시 에러 발생", () => {
+  const validate = new Validate();
+  expect(() => {
+    validate.isValidCarNames(',');
+  }).toThrow("[ERROR] 공백이 입력되었습니다.");
+})
+
 test("자동차 이름 글자수 5자 초과시 에러 발생", () =>{
     const validate = new Validate();
     expect(() => {
