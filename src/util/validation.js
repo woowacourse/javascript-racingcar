@@ -1,5 +1,6 @@
 import ERROR from "../constant/error.js";
-import { SPLITTER, MIN, MAX } from "../constant/constant.js";
+import { SPLITTER } from "../constant/constant.js";
+import { MIN, MAX } from "../constant/range.js";
 
 const validateCarNames = (carNames) => {
   const names = carNames.split(SPLITTER);
