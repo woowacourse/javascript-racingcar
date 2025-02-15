@@ -1,23 +1,23 @@
 class Winner {
-    #winners;
+  #winners;
 
-    constructor() {
-        this.#winners = [];
-    }
+  constructor() {
+    this.#winners = [];
+  }
 
-    getWinners(carList, maxPosition) {
-        carList.forEach ((car) => {
-            this.#checkIsWinner(car, maxPosition);
-        });
-        
-        return this.#winners;
-    }
+  getWinners(carList, maxPosition) {
+    carList.forEach((car) => {
+      this.#checkIsWinner(car, maxPosition);
+    });
 
-    #checkIsWinner(car, maxPosition) {
-        if (maxPosition === car.position){
-            this.#winners.push(car.name);
-        }
+    return this.#winners;
+  }
+
+  #checkIsWinner(car, maxPosition) {
+    if (maxPosition === car.position) {
+      this.#winners.push(car.name);
     }
+  }
 }
 
 export default Winner;
