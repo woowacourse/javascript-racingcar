@@ -26,7 +26,6 @@ class InputController {
     try {
       const inputTryNumber = await InputView.readLineAsync(MESSAGE.INPUT.TRY_NUMBER);
       Validator.isEmpty(inputTryNumber);
-      console.log(inputTryNumber);
       const parsedNumber = Number(inputTryNumber.trim());
       Validator.validateNumber(parsedNumber);
       Validator.validateRange(parsedNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME);
