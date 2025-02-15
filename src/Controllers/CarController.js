@@ -1,17 +1,13 @@
 import Race from '../Models/Race.js';
 import InputView from '../Views/InputView.js';
 import OutputView from '../Views/OutputView.js';
-import { stringToNumber } from '../utils/changeDataType.js';
 import { getRandomNumber } from '../utils/randomNumber.js';
 import ValidateModule from '../validates/ValidatorModule.js';
-import { checkIsInteger, checkTryCountRange } from '../validates/tryCountValidates.js';
 
 class CarController {
   async run() {
     const carNames = await this.getValidatedCarNames();
-
-    const tryCountInput = await this.getTryCount();
-    const tryCount = this.validateTryCount(tryCountInput);
+    const tryCount = await this.getValidatedTryCount();
 
     const race = new Race(carNames, tryCount);
 
@@ -29,14 +25,10 @@ class CarController {
     return carNames;
   }
 
-  getTryCount() {
-    return InputView.inputTryCount();
-  }
-
-  validateTryCount(tryCountInput) {
-    const tryCount = stringToNumber(tryCountInput);
-    checkTryCountRange(tryCount);
-    checkIsInteger(tryCount);
+  async getValidatedTryCount() {
+    const input = await InputView.inputTryCount();
+    ValidateModule.validateTryCountInput(input);
+    const tryCount = Number(input);
     return tryCount;
   }
 
