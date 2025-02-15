@@ -1,6 +1,6 @@
-import Car from "../src/Car";
-import { ERROR_MESSAGE } from "../src/constants";
-import { validateAttempt, validateCarNames } from "../src/validate";
+import Car from "../src/domain/Car.js";
+import { ERROR_MESSAGE } from "../src/config/constants.js";
+import { validateAttempt, validateCarLength } from "../src/utils/validate.js";
 
 describe("예외 처리", () => {
   describe("자동차 이름 예외 처리", () => {
@@ -24,7 +24,7 @@ describe("예외 처리", () => {
       const carNames = ["A", "B", "B"];
 
       expect(() => {
-        validateCarNames(cars, carNames);
+        validateCarLength(cars, carNames);
       }).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     });
   });
