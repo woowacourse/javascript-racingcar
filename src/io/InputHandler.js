@@ -1,20 +1,9 @@
-import Car from "../domain/Car.js";
 import { INFO_MESSAGE } from "../config/constants.js";
-import { validateCarNames, validateAttempt } from "../utils/validate.js";
+import { validateAttempt } from "../utils/validate.js";
 import readLineAsync from "./Input.js";
 
 export const getCarNames = async () => {
-  while (true) {
-    const name = await readLineAsync(INFO_MESSAGE.CAR_NAMR_INPUT);
-    const carNames = name.split(",");
-    try {
-      let cars = carNames.map((name) => new Car(name));
-      validateCarNames(cars, carNames);
-      return cars;
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+  return await readLineAsync(INFO_MESSAGE.CAR_NAMR_INPUT);
 };
 
 export const getAttempt = async () => {
