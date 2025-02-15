@@ -1,11 +1,11 @@
+import Race from '../Models/Race.js';
 import InputView from '../Views/InputView.js';
 import OutputView from '../Views/OutputView.js';
-import { checkTryCountRange, checkIsInteger } from '../validates/tryCountValidates.js';
-import { checkIsEmpty, checkCarCount, checkCarNameDuplicate } from '../validates/carValidates.js';
-import { splitString } from '../utils/separator.js';
 import { stringToNumber } from '../utils/changeDataType.js';
-import Car from '../Models/Car.js';
 import { getRandomNumber } from '../utils/randomNumber.js';
+import { splitString } from '../utils/separator.js';
+import { checkCarCount, checkCarNameDuplicate, checkIsEmpty } from '../validates/carValidates.js';
+import { checkIsInteger, checkTryCountRange } from '../validates/tryCountValidates.js';
 
 class CarController {
   async run() {
@@ -15,14 +15,12 @@ class CarController {
     const tryCountInput = await this.getTryCount();
     const tryCount = this.validateTryCount(tryCountInput);
 
-    const cars = carNames.map((car) => {
-      return new Car(car);
-    });
+    const race = new Race(carNames, tryCount);
 
-    this.tryMove(cars, tryCount);
-    this.outputResult(cars, tryCount);
+    this.tryMove(race.cars, tryCount);
+    this.outputResult(race.cars, tryCount);
 
-    const winners = this.getWinner(cars);
+    const winners = this.getWinner(race.cars);
     this.outputWinner(winners);
   }
 
