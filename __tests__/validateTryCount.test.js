@@ -14,6 +14,11 @@ describe("TryCount 유효성 테스트", () => {
       input: "-1",
       errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_RANGE,
     },
+    {
+      description: "시도 횟수가 50 초과인 경우",
+      input: "51",
+      errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_RANGE,
+    },
   ])("%s 에러가 발생한다.", ({ input, errorMessage }) => {
     // given
     // when & then
