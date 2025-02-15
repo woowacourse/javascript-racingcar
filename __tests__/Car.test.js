@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from "../src/config/constants.js";
 import Car from "../src/domain/Car.js";
+import { ERROR_MESSAGE } from "../src/config/constants.js";
 
 describe("Car 객체 테스트", () => {
   test.each(["happy", "h"])("자동차 생성 테스트", (name) => {

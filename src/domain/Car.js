@@ -32,9 +32,7 @@ class Car {
   }
 
   move(number) {
-    if (number >= MOVE_THRESHOLD) {
-      ++this.#position;
-    }
+    if (number >= MOVE_THRESHOLD) ++this.#position;
   }
 }
 

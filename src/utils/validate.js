@@ -8,6 +8,6 @@ export const validateCars = (cars, carNames) => {
 
 export const validateAttempt = (attempt) => {
   if (Number.isNaN(attempt)) throw Error(ERROR_MESSAGE.INVALID_ATTEMPT_NUMBER);
-  else if (attempt <= 0) throw Error(ERROR_MESSAGE.ATTEMPT_TOO_LOW);
-  else if (attempt > 50) throw Error(ERROR_MESSAGE.ATTEMPT_TOO_HIGH);
+  if (attempt <= 0) throw Error(ERROR_MESSAGE.ATTEMPT_TOO_LOW);
+  if (attempt > 50) throw Error(ERROR_MESSAGE.ATTEMPT_TOO_HIGH);
 };
