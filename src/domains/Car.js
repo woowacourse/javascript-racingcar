@@ -1,23 +1,22 @@
-import {
-  MOVE_CONDITION,
-  MOVE_COUNT,
-  START_POSITION,
-} from "../constants/setting.js";
+import { MOVE_CONDITION } from "../constants/setting.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
   #name;
   #position;
 
+  static START_POSITION = 0;
+  static MOVE_COUNT = 1;
+
   constructor(name) {
     this.#name = name;
-    this.#position = START_POSITION;
+    this.#position = Car.START_POSITION;
   }
 
   move() {
     const isMoving = generateRandomNumber() >= MOVE_CONDITION;
     if (isMoving) {
-      this.#position += MOVE_COUNT;
+      this.#position += Car.MOVE_COUNT;
     }
   }
 
