@@ -1,9 +1,9 @@
 import { INFO_MESSAGE } from "../config/constants.js";
 import { validateAttempt } from "../utils/validate.js";
-import readLineAsync from "./Input.js";
+import readLineAsync from "./input.js";
 
 export const getCarNames = async () => {
-  return await readLineAsync(INFO_MESSAGE.CAR_NAMR_INPUT);
+  return await readLineAsync(INFO_MESSAGE.CAR_NAME_INPUT);
 };
 
 export const getAttempt = async () => {
