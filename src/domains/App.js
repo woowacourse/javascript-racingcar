@@ -1,31 +1,37 @@
 import Race from "./Race.js";
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
-import { STEP } from "../constants/setting.js";
 
 export default class App {
   race = new Race();
   tryNumber = 0;
   cars = [];
 
-  async play(step = STEP.carName) {
+  static STEP = {
+    carName: "carName",
+    tryNumber: "tryNumber",
+    racing: "racing",
+    result: "result",
+  };
+
+  async play(step = App.STEP.carName) {
     try {
-      if (step === STEP.carName) {
+      if (step === App.STEP.carName) {
         await this.#readCarNames();
-        step = STEP.tryNumber;
+        step = App.STEP.tryNumber;
       }
 
-      if (step === STEP.tryNumber) {
+      if (step === App.STEP.tryNumber) {
         await this.#readTryNumber();
-        step = STEP.racing;
+        step = App.STEP.racing;
       }
 
-      if (step === STEP.racing) {
+      if (step === App.STEP.racing) {
         this.#race();
-        step = STEP.winner;
+        step = App.STEP.winner;
       }
 
-      if (step === STEP.winner) {
+      if (step === App.STEP.winner) {
         this.#printWinner();
         return;
       }

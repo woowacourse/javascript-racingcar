@@ -21,7 +21,7 @@ export default class Car {
   }
 
   static isCanMove() {
-    return generateRandomNumber() >= MOVE_CONDITION;
+    return generateRandomNumber() >= Car.MOVE_CONDITION;
   }
 
   move(isCanMove) {

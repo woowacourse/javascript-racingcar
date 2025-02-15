@@ -1,12 +1,5 @@
 export const SCORE_ICON = "-";
 
-export const STEP = {
-  carName: "carName",
-  tryNumber: "tryNumber",
-  racing: "racing",
-  result: "result",
-};
-
 export const CAR_SETTING = {
   maxCarName: 5,
   minCarName: 1,
