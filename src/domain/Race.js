@@ -1,72 +1,36 @@
-import Car from "./Car.js";
-import randomNumber from "./random.js";
-import InputView from "../view/Input.js";
-import OutputView from "../view/Output.js";
-import tryInput from "../view/tryInput.js";
-import { validateCarNames, validateRaceCount } from "./validation.js";
-import { SPLITTER } from "../constant/constant.js";
+import RaceSetup from './RaceSetup.js';
+import randomNumber from './random.js';
+import OutputView from '../view/Output.js';
+import Winners from './Winners.js';
 
 class Race {
-  #carList;
-  #raceCount;
-
-  constructor() {
-    this.#raceCount = 0;
+  async play() {
+    const raceSetup = new RaceSetup();
+    await raceSetup.carList();
+    await raceSetup.raceCount();
+    this.start(raceSetup.getCarList(), raceSetup.getRaceCount());
   }
 
-  async play() {
-    await this.readyRace();
-
+  start(carList, raceCount) {
     OutputView.printBeforeResult();
-    for (let i = 0; i < this.#raceCount; i++) {
-      this.race();
-      console.log("");
+    for (let i = 0; i < raceCount; i++) {
+      this.progressRace(carList);
+      console.log('');
     }
 
-    const winners = this.getWinners(this.#carList);
-    OutputView.printWinners(winners);
+    const winners = new Winners();
+    winners.determine(carList);
+    OutputView.printWinners(winners.getNames());
   }
 
-  async readyRace() {
-    await this.setCarList();
-    await this.setRaceCount();
-  }
-
-  async setCarList() {
-    const carNames = await tryInput(InputView.readCarNames, validateCarNames);
-
-    const carNamesArray = carNames.split(SPLITTER);
-
-    this.#carList = carNamesArray.map((name) => {
-      return new Car(name);
-    });
-  }
-
-  async setRaceCount() {
-    const raceCount = await tryInput(
-      InputView.readRaceCount,
-      validateRaceCount
-    );
-
-    this.#raceCount = raceCount;
-  }
-
-  race() {
-    this.#carList.forEach((car) => {
+  progressRace(carList) {
+    carList.forEach((car) => {
       const moveCondition = randomNumber();
 
       car.move(moveCondition);
 
       OutputView.printRoundResult(car.getName(), car.getPosition());
     });
-  }
-
-  getWinners(carList) {
-    const maxPosition = Math.max(...carList.map((car) => car.getPosition()));
-
-    return carList
-      .filter((car) => car.getPosition() === maxPosition)
-      .map((winner) => winner.getName());
   }
 }
 
