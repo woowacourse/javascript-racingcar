@@ -1,8 +1,8 @@
-import { ERROR_MESSAGES } from '../helpers/constants.js';
+import { ERROR_MESSAGES, SEPERATOR } from '../helpers/constants.js';
 
 export default class Validator {
   static validateCarName(rawName) {
-    const nameList = rawName.split(',');
+    const nameList = rawName.split(SEPERATOR);
     for (const name of nameList) {
       if (name.length > 5 || name.length === 0)
         throw new Error(ERROR_MESSAGES.carName);

@@ -17,4 +17,4 @@ export const OUTPUT_MESSAGES = {
 
 export const CAR_MOVE_STANDARD = 4;
 export const POSITION_STRING = '-';
-export const WINNER_SEPERATOR = ', ';
+export const SEPERATOR = ',';

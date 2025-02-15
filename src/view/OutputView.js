@@ -2,7 +2,7 @@ import {
   DEFAULT_ERROR_MESSAGE,
   OUTPUT_MESSAGES,
   POSITION_STRING,
-  WINNER_SEPERATOR,
+  SEPERATOR,
 } from '../helpers/constants.js';
 
 export default class OutputView {
@@ -28,7 +28,7 @@ export default class OutputView {
   }
 
   static printWinner(winners) {
-    const winnerOutput = winners.join(WINNER_SEPERATOR);
+    const winnerOutput = winners.join(`${SEPERATOR} `);
     this.#print(`${OUTPUT_MESSAGES.winner}${winnerOutput}`);
   }
 
