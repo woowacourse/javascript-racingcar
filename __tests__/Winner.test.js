@@ -1,5 +1,5 @@
-import Race from '../src/domain/Race.js';
-import Car from '../src/domain/Car.js';
+import Car from '../src/Models/Car.js';
+import Race from '../src/Models/Race.js';
 import { mockRandom } from './Car.test.js';
 
 describe('우승자 선별 테스트', () => {
