@@ -1,8 +1,8 @@
-import { ERROR } from "../constants/messages.js";
-import { MAX_CAR_NAME_LENGTH } from "../constants/race.js";
+import { ERROR } from '../constants/messages.js';
+import { MAX_CAR_NAME_LENGTH } from '../constants/race.js';
 
 export const hasEmptyString = (arr) => {
-  return arr.some((item) => item === "");
+  return arr.some((item) => item === '');
 };
 
 export const isLongerThanMaxLength = (arr, maxLength) => {
@@ -10,7 +10,7 @@ export const isLongerThanMaxLength = (arr, maxLength) => {
 };
 
 export const validateCarNames = (stringOfCarNames) => {
-  const carNamesArr = stringOfCarNames.split(",");
+  const carNamesArr = stringOfCarNames.split(',');
 
   if (hasEmptyString(carNamesArr)) {
     throw new Error(ERROR.IS_CAR_NAME_EMPTY);
@@ -22,11 +22,11 @@ export const validateCarNames = (stringOfCarNames) => {
 };
 
 export const validateCount = (number) => {
-  if (Number.isNaN(number)) {
+  if (isNaN(number)) {
     throw new Error(ERROR.IS_NOT_NUMBER);
   }
 
-  if (number === "") {
+  if (number === '') {
     throw new Error(ERROR.IS_TRY_COUNT_EMPTY);
   }
 };
