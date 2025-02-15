@@ -1,5 +1,4 @@
-import Car from '../src/models/Car.js';
-
+import Car from '../src/domain/Car';
 test('Car.js의 객체가 잘 생성되는가?', () => {
   //given
 

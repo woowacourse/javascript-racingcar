@@ -1,7 +1,7 @@
-import Game from '../src/controllers/Game.js';
+import Game from '../src/domain/Game.js';
 import { createRandom } from '../src/utils/Random.js';
-import Car from '../src/models/Car.js';
-import InputController from '../src/controllers/InputController.js';
+import Car from '../src/domain/Car.js';
+import InputController from '../src/views/InputView.js';
 
 jest.mock('../src/utils/Random.js', () => ({
   createRandom: jest.fn(),

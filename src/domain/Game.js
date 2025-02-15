@@ -1,13 +1,16 @@
 import { createRandom } from '../utils/Random.js';
-import Car from '../models/Car.js';
-import OutputView from '../views/OutputView.js';
-import InputController from './InputController.js';
+import Car from './Car.js';
 
 export default class Game {
   #carList;
+  inputTryNumber;
 
   constructor() {
     this.#carList = [];
+  }
+
+  setInputTryNumber(number) {
+    this.inputTryNumber = number;
   }
 
   createCarList(names) {
@@ -32,28 +35,16 @@ export default class Game {
     return this.getWinner(maxPosition);
   }
 
-  async prepareRace() {
-    const inputName = await InputController.inputName();
-    const inputTryNumber = await InputController.inputTryNumber();
-    this.createCarList(inputName);
-    this.inputTryNumber = inputTryNumber;
-  }
-
-  startRace() {
+  race() {
+    const roundResults = [];
     for (let i = 0; i < this.inputTryNumber; i++) {
-      this.#carList.forEach(car => {
+      const roundResult = this.#carList.map(car => {
         const randomValue = createRandom();
         car.moveForward(randomValue);
-        OutputView.roundResult(car.name, car.position);
+        return { name: car.name, position: car.position };
       });
-      OutputView.break();
+      roundResults.push(roundResult);
     }
-    const winnerNames = this.judgeWinner();
-    OutputView.gameResult(winnerNames);
-  }
-
-  async start() {
-    await this.prepareRace();
-    this.startRace();
+    return { winners: this.judgeWinner(), roundResults };
   }
 }

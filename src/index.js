@@ -1,8 +1,8 @@
-import Game from './controllers/Game.js';
+import Controller from './controllers/Controller.js';
 
 const start = async () => {
-  const game = new Game();
-  await game.start();
+  const controller = new Controller();
+  await controller.start();
 };
 
 start();
