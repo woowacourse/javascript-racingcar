@@ -1,6 +1,6 @@
-import OutputView from './view/OutputView.js';
-import IOMessage from './constants/IOMessage.js';
-import { RESULT_MARK, WINNER_DELIMITER } from './constants/MagicNumber.js';
+import OutputView from './OutputView.js';
+import IOMessage from '../constants/IOMessage.js';
+import { RESULT_MARK, WINNER_DELIMITER } from '../constants/MagicNumber.js';
 
 class Printer {
   static printHeader(message) {
