@@ -36,3 +36,30 @@ test('경기 횟수가 0회 미만이면 true를 반환한다. ', () => {
   //then
   expect(result).toBe(true);
 });
+
+test('경기 횟수가 정수이면 true를 반환한다. ', () => {
+  //given
+  const inputValue = 10.5;
+  //when
+  const result = Validator.isDecimal(inputValue);
+  //then
+  expect(result).toBe(true);
+});
+
+test('사용자 이름이 중복되면 true를 반환한다. ', () => {
+  //given
+  const inputValue = 'beomtae,beomtae'.split(',');
+  //when
+  const result = Validator.isDuplicate(inputValue);
+  //then
+  expect(result).toBe(true);
+});
+
+test('경기 횟수가 숫자라면 true를 반환한다. ', () => {
+  //given
+  const inputValue = 3;
+  //when
+  const result = Validator.isNumber(inputValue);
+  //then
+  expect(result).toBe(true);
+});
