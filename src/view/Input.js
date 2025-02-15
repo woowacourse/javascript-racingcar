@@ -1,5 +1,5 @@
-import readLineAsync from "./readLine.js";
-import INPUT from "../constant/input.js";
+import readLineAsync from '../utils/readLine.js';
+import INPUT from '../constant/input.js';
 
 const InputView = {
   async readCarNames() {

@@ -2,7 +2,7 @@ import ERROR from '../src/constant/error.js';
 import {
   validateCarNames,
   validateRaceCount,
-} from '../src/domain/validation.js';
+} from '../src/validation/validation.js';
 
 describe('validation', () => {
   describe('자동차 이름', () => {

@@ -1,7 +1,10 @@
 import Car from './Car.js';
-import tryInput from '../view/tryInput.js';
+import tryInput from '../utils/tryInput.js';
 import InputView from '../view/Input.js';
-import { validateCarNames, validateRaceCount } from './validation.js';
+import {
+  validateCarNames,
+  validateRaceCount,
+} from '../validation/validation.js';
 import { SPLITTER } from '../constant/constant.js';
 
 class RaceSetup {

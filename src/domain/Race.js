@@ -1,7 +1,7 @@
 import RaceSetup from './RaceSetup.js';
-import randomNumber from './random.js';
-import OutputView from '../view/Output.js';
 import Winners from './Winners.js';
+import randomNumber from '../utils/random.js';
+import OutputView from '../view/Output.js';
 import { MIN } from '../constant/constant.js';
 
 class Race {
