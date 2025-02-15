@@ -1,4 +1,4 @@
-import Controller from "../src/domain/Controller.js";
+import Controller from "../src/domain/Race.js";
 import Car from "../src/domain/Car.js";
 
 describe("controller", () => {
