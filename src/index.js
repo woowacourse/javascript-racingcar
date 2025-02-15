@@ -6,6 +6,7 @@ import { STEP } from "./constants/setting.js";
 class App {
   race = new Race();
   tryNumber = 0;
+  cars = [];
 
   async play(step = STEP.carName) {
     try {
@@ -37,7 +38,7 @@ class App {
   async #readCarNames() {
     const carNames = await Input.carName();
 
-    this.race.createCars(carNames);
+    this.cars = this.race.createCars(carNames);
   }
 
   async #readTryNumber() {
@@ -47,8 +48,8 @@ class App {
   #race() {
     Output.raceResult();
     for (let i = 0; i < this.tryNumber; i++) {
-      const racedCar = this.race.race();
-      racedCar.forEach((car) => {
+      this.race.race(this.cars);
+      this.cars.forEach((car) => {
         Output.scoreByRace(car.getName(), car.getPosition());
       });
       Output.newLine();
@@ -56,7 +57,7 @@ class App {
   }
 
   #printWinner() {
-    const winners = this.race.getWinner();
+    const winners = this.race.getWinner(this.cars);
     Output.winners(winners);
   }
 }
