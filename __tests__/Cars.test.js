@@ -1,4 +1,4 @@
-import Cars from "../src/models/Cars.js";
+import Cars from "../src/domain/Cars.js";
 
 describe("자동차 리스트 클래스 테스트", () => {
   describe("자동차 리스트 클래스 정상 케이스", () => {
@@ -10,7 +10,7 @@ describe("자동차 리스트 클래스 테스트", () => {
     });
 
     test("자동차 경주를 한 라운드 실행하면, 전진 또는 멈춘다.", () => {
-      cars.cars.forEach((car) => {
+      cars.getCars().forEach((car) => {
         expect(car.position).toBeLessThan(2);
       });
     });

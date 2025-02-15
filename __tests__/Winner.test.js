@@ -1,4 +1,4 @@
-import Winner from "../src/models/Winner";
+import Winner from "../src/domain/Winner";
 
 describe("자동차 리스트 클래스 테스트", () => {
   describe("자동차 리스트 클래스 정상 케이스", () => {
