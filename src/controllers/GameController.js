@@ -11,7 +11,6 @@ class GameController {
     const { names, tryCount } = await this.#readAndValidateInputs();
 
     const carsInstance = names.map((name) => new Car(name));
-
     const race = new Race(carsInstance, tryCount);
 
     Output.printRaceStart();
