@@ -1,10 +1,10 @@
-import Controller from "./domain/Controller.js";
+import Race from './domain/Race.js';
 
 class App {
   async run() {
-    const controller = new Controller();
+    const race = new Race();
 
-    await controller.play();
+    await race.play();
   }
 }
 
