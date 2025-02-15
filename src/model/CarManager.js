@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 // @ts-check
 import pickRandomNumber from '../utils/pickRandomNumber.js';
 import OutputView from '../views/OutputView.js';
@@ -23,8 +24,10 @@ class CarManager {
   moveForwardCar(car, pickedRandomNumber) {
     const moveCondition = this.isMoveCondition(pickedRandomNumber);
     if (moveCondition) {
-      return car.move();
+      car.move();
+      return 1;
     }
+    return 0;
   }
 
   race(attempts) {

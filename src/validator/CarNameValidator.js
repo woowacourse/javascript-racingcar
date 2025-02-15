@@ -1,10 +1,13 @@
+/* eslint-disable operator-linebreak */
 import { CONFIG } from '../constants/config.js';
 import { ERROR } from '../constants/messages.js';
 
 const CarNameValidator = {
   checkCarNameLength(carName) {
-    if (carName.length > CONFIG.MAXIMUM_CAR_NAME
-        || carName.length < CONFIG.MINIMUM_CAR_NAME) {
+    if (
+      carName.length > CONFIG.MAXIMUM_CAR_NAME ||
+      carName.length < CONFIG.MINIMUM_CAR_NAME
+    ) {
       throw new Error(ERROR.CAR_NAME_LENGTH);
     }
     return carName;
