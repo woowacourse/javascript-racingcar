@@ -12,6 +12,6 @@ export const displayRaceResult = (cars) => {
   );
 };
 
-export const displayWinner = (winners) => {
+export const displayWinners = (winners) => {
   console.log(`${INFO_MESSAGE.WINNER_TITLE}${winners.join(", ")}`);
 };

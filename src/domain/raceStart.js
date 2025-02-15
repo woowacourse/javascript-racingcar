@@ -3,7 +3,7 @@ import { getAttempt, getCarNames } from "../io/inputHandler.js";
 import {
   displayRaceResult,
   displayResultTitle,
-  displayWinner,
+  displayWinners,
 } from "../io/outputHandler.js";
 import { validateCarLength } from "../utils/validate.js";
 import Car from "./Car.js";
@@ -19,13 +19,14 @@ export const raceStart = async () => {
   }
 
   const winners = determineWinners(cars);
-  displayWinner(winners);
+  displayWinners(winners);
 };
 
 const getCars = async () => {
   while (true) {
-    const name = await getCarNames();
-    const carNames = name.split(",");
+    const carNames = (await getCarNames())
+      .split(",")
+      .map((name) => name.trim());
     try {
       let cars = carNames.map((name) => new Car(name));
       validateCarLength(cars, carNames);
