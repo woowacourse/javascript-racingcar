@@ -4,11 +4,11 @@ import randomNumber from "../utils/randomNumber.js";
 import Output from "../views/Output.js";
 
 class RaceController {
-  #carsInstance = [];
+  #cars = [];
   #tryCount = 0;
 
   constructor(names, tryCount) {
-    this.#carsInstance = names.map((name) => new Car(name));
+    this.#cars = names.map((name) => new Car(name));
     this.#tryCount = tryCount;
   }
 
@@ -20,17 +20,17 @@ class RaceController {
   }
 
   getWinners() {
-    const countArray = this.#carsInstance.map((carInstance) => carInstance.count);
+    const countArray = this.#cars.map((car) => car.count);
     const maxCount = Math.max(...countArray);
 
-    const winnersInstance = this.#carsInstance.filter((carInstance) => carInstance.count === maxCount);
-    return winnersInstance.map((winnerInstance) => winnerInstance.name);
+    const winners = this.#cars.filter((car) => car.count === maxCount);
+    return winners.map((winner) => winner.name);
   }
 
   #round() {
-    this.#carsInstance.forEach((carInstance) => {
-      carInstance.move(randomNumber());
-      Output.printRace(carInstance.name, carInstance.count);
+    this.#cars.forEach((car) => {
+      car.move(randomNumber());
+      Output.printRace(car.name, car.count);
     });
   }
 }
