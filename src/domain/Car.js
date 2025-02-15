@@ -19,11 +19,13 @@ class Car {
   }
 
   get position() {
-    return this.#position;
+    const copyPosition = this.#position;
+    return copyPosition;
   }
 
   get name() {
-    return this.#name;
+    const copyName = this.#name;
+    return copyName;
   }
 }
 
