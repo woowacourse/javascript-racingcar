@@ -1,13 +1,21 @@
 export default class Car {
-  position;
-  name;
+  #name;
+  #position;
 
   constructor(name) {
-    this.name = name;
-    this.position = 0;
+    this.#name = name;
+    this.#position = 0;
   }
 
   go() {
-    this.position++;
+    this.#position++;
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  get position() {
+    return this.#position;
   }
 }
