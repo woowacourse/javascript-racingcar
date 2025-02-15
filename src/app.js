@@ -13,8 +13,11 @@ class App {
   async run() {
     const cars = await this.getCar();
     const tryCount = await this.getTryCount();
-    const racing = new Racing(cars);
-    racing.runRace(tryCount);
+    const racing = new Racing(cars, tryCount);
+
+    Printer.printHeader(IOMessage.resultHeader);
+    racing.runRace();
+
     const raceResult = racing.decideWinner();
     Printer.printWinner(raceResult);
   }
