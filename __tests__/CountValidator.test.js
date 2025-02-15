@@ -1,5 +1,6 @@
 import CountValidator from '../src/utils/validator/CountValidator.js';
 import ErrorMessage from '../src/constants/ErrorMessage.js';
+import { MIN_TRY_COUNT, MAXIMUM_COUNT } from '../src/constants/MagicNumber.js';
 
 test('시도횟수가 숫자가 아니면 에러 처리한다.', () => {
   const TRY_COUNT = NaN;
