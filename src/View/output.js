@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../util.js';
+import { getRandomNumber } from '../Utils/math.js';
 
 const outputView = {
   printGameResult(gameCount, cars) {
