@@ -1,7 +1,4 @@
 import Car from "../src/domain/Car.js";
-import * as Util from "../src/Util.js";
-
-jest.mock("../src/Util.js");
 
 test("자동차는 앞으로 전진할 수 있다.", () => {
   //when

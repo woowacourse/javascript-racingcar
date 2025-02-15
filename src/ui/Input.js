@@ -1,14 +1,15 @@
 import { INPUT_MESSAGE } from "../Const.js";
 import Output from "./Output.js";
-import { readLineAsync } from "../Util.js";
 import Validate from "../Validate.js";
+import readLineAsync from "../ReadLineAsync.js";
 class Input {
   #validate = new Validate();
-  #output = new Output();
 
   async raceCarNames() {
     try {
-      const raceCarName = await readLineAsync(INPUT_MESSAGE.raceCarNames);
+      const raceCarName = await readLineAsync(
+        INPUT_MESSAGE.raceCarNames + Output.printNewLine()
+      );
       const raceCarNames = raceCarName.split(",");
 
       raceCarNames.forEach((raceCarName) => {
@@ -17,14 +18,16 @@ class Input {
 
       return raceCarNames;
     } catch (e) {
-      this.#output.printLine(e.message);
+      Output.printLine(e.message);
       return await this.raceCarNames();
     }
   }
 
   async raceCount() {
     try {
-      const raceCount = Number(await readLineAsync(INPUT_MESSAGE.raceCount));
+      const raceCount = Number(
+        await readLineAsync(INPUT_MESSAGE.raceCount + Output.printNewLine())
+      );
       this.#validate
         .isPositiveNumber(raceCount)
         .isNumeric(raceCount)
@@ -32,7 +35,7 @@ class Input {
 
       return raceCount;
     } catch (e) {
-      this.#output.printLine(e.message);
+      Output.printLine(e.message);
       return await this.raceCount();
     }
   }

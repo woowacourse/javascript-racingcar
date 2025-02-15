@@ -10,12 +10,12 @@ const ERROR_MESSAGE = {
 
 const INPUT_MESSAGE = {
   raceCarNames:
-    "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
-  raceCount: "시도할 횟수는 몇 회인가요?\n",
+    "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
+  raceCount: "시도할 횟수는 몇 회인가요?",
 };
 
 const OUTPUT_MESSAGE = {
-  result: "\n실행 결과\n",
+  result: "실행 결과",
 };
 
 export {

@@ -1,7 +1,5 @@
 import Car from "./Car.js";
-import { MOVE_THRESHOLD, OUTPUT_MESSAGE } from "../Const.js";
-import Output from "../ui/Output.js";
-import { getRandomNumber } from "../Util.js";
+import { MOVE_THRESHOLD } from "../Const.js";
 class Race {
   #cars;
   #raceCount;
@@ -12,6 +10,9 @@ class Race {
     this.#raceCount = raceCount;
     this.#moveResult = "";
   }
+  #getRandomNumber = () => {
+    return Math.floor(Math.random() * 10);
+  };
 
   #formatCarPosition(car) {
     let positionStick = `${car.raceCarName} : `;
@@ -22,7 +23,7 @@ class Race {
   }
 
   #tryMove(car) {
-    const randomNumber = getRandomNumber();
+    const randomNumber = this.#getRandomNumber();
     if (randomNumber >= MOVE_THRESHOLD) {
       car.moveOneStep();
     }
