@@ -1,4 +1,4 @@
-import CountValidator from '../src/utils/validator/CountValidator.js';
+import CountValidator from '../src/domain/validator/CountValidator.js';
 import ErrorMessage from '../src/constants/ErrorMessage.js';
 
 describe('시도 횟수의 예외 상황 테스트', () => {

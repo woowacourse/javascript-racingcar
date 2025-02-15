@@ -1,4 +1,4 @@
-import NameValidator from '../src/utils/validator/NameValidator.js';
+import NameValidator from '../src/domain/validator/NameValidator.js';
 import ErrorMessage from '../src/constants/ErrorMessage.js';
 
 describe('자동차 이름의 예외 상황 테스트', () => {
