@@ -1,5 +1,5 @@
-import ERROR from "../constant/error.js";
-import { SPLITTER, MIN, MAX } from "../constant/constant.js";
+import ERROR from '../constant/error.js';
+import { SPLITTER, MIN, MAX } from '../constant/constant.js';
 
 const validateCarNames = (carNames) => {
   const names = carNames.split(SPLITTER);
@@ -18,6 +18,10 @@ const validateRaceCount = (raceCountInput) => {
 const validateLength = (names) => {
   if (names.length < MIN.CAR_COUNT) {
     throw new Error(ERROR.MIN_CAR_COUNT);
+  }
+
+  if (names.length > MIN.CAR_COUNT) {
+    throw new Error(ERROR.MAX_CAR_COUNT);
   }
 
   names.forEach((name) => {
@@ -42,6 +46,10 @@ const validateNumber = (raceCount) => {
 const validateInteger = (raceCount) => {
   if (!Number.isInteger(raceCount)) {
     throw new Error(ERROR.RACE_COUNT_INTEGER);
+  }
+
+  if (typeof raceCount === 'number' && Number.MAX_SAFE_INTEGER < raceCount) {
+    throw new Error(ERROR.RACE_COUNT_OVER_MAX_SAFE_INTEGER);
   }
 };
 
