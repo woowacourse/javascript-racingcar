@@ -14,11 +14,12 @@ export default class Controller {
     const { winners, roundResults } = game.race();
 
     // 결과 출력
+    OutputView.printInput(`\n실행결과`);
     roundResults.forEach(round => {
       round.forEach(car => {
         OutputView.roundResult(car.name, car.position);
       });
-      OutputView.break();
+      OutputView.printInput('');
     });
     OutputView.gameResult(winners);
   }
