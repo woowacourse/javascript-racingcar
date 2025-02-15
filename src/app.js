@@ -93,7 +93,8 @@ class App {
   }
 
   #announceWinner() {
-    const raceResult = this.#racing.decideWinner();
+    const results = this.#cars.map((car) => car.getCarInfo());
+    const raceResult = Racing.decideWinner(results);
 
     Printer.printWinner(raceResult);
   }

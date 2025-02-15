@@ -23,8 +23,7 @@ class Racing {
     });
   }
 
-  decideWinner() {
-    const results = this.#cars.map((car) => car.getCarInfo());
+  static decideWinner(results) {
     const positions = results.map((result) => result.position);
     const maxPosition = Math.max(...positions);
     return results.filter((result) => result.position === maxPosition);
