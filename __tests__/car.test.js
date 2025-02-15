@@ -1,6 +1,6 @@
 import Car from "../src/domains/Car";
 
-describe("Car 모델 클래스 테스트", () => {
+describe("Car 단위 테스트", () => {
   test("자동차가 생성되는지 확인한다.", () => {
     const car = new Car();
     expect(car).toBeInstanceOf(Car);
