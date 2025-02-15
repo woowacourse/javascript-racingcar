@@ -1,4 +1,5 @@
-import Winner from "../src/domain/Winner";
+import Car from "../src/domain/Car.js";
+import Winner from "../src/domain/Winner.js";
 
 describe("자동차 리스트 클래스 테스트", () => {
   describe("자동차 리스트 클래스 정상 케이스", () => {
@@ -14,43 +15,26 @@ describe("자동차 리스트 클래스 테스트", () => {
     });
 
     test("우승자가 한 명일 수 있다.", () => {
-      const carList = [];
+      const carList = [new Car("목성이"), new Car("수성이")];
 
-      const raceData = [
-        {
-          name: "목성이",
-          position: 2,
-        },
-        {
-          name: "수성이",
-          position: 3,
-        },
-      ];
+      carList[1].move();
+      carList[1].move();
+      carList[0].move();
 
-      raceData.forEach((data) => carList.push(data));
-
-      const winners = winner.getWinners(carList, 3);
+      const winners = winner.getWinners(carList, 2);
       expect(winners).toEqual(["수성이"]);
       expect(winners.length).toBe(1);
     });
 
     test("우승자가 한 명 이상일 수 있다.", () => {
-      const carList = [];
+      const carList = [new Car("목성이"), new Car("수성이")];
 
-      const raceData = [
-        {
-          name: "목성이1",
-          position: 3,
-        },
-        {
-          name: "수성이1",
-          position: 3,
-        },
-      ];
+      carList[1].move();
+      carList[1].move();
+      carList[0].move();
+      carList[0].move();
 
-      raceData.forEach((data) => carList.push(data));
-
-      const winners = winner.getWinners(carList, 3);
+      const winners = winner.getWinners(carList, 2);
       expect(winners.length).toBe(2);
     });
   });

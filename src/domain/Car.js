@@ -18,12 +18,12 @@ class Car {
     return Math.max(this.#position, otherPosition);
   }
 
-  get position() {
+  getPosition() {
     const copyPosition = this.#position;
     return copyPosition;
   }
 
-  get name() {
+  getName() {
     const copyName = this.#name;
     return copyName;
   }

@@ -12,7 +12,7 @@ describe("자동차 클래스 테스트", () => {
     test("자동차가 이동하면 위치가 1만큼 증가한다.", () => {
       car.move();
 
-      expect(car.position).toBe(1);
+      expect(car.getPosition()).toBe(1);
     });
   });
 });

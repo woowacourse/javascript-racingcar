@@ -14,8 +14,8 @@ class Winner {
   }
 
   #checkIsWinner(car, maxPosition) {
-    if (maxPosition === car.position) {
-      this.#winners.push(car.name);
+    if (maxPosition === car.getPosition()) {
+      this.#winners.push(car.getName());
     }
   }
 }
