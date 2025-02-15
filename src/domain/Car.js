@@ -1,5 +1,8 @@
-import { CAR_NAME_MAX_LENGTH, MOVE_THRESHOLD } from "./constants.js";
-import { ERROR_MESSAGE } from "./constants.js";
+import {
+  CAR_NAME_MAX_LENGTH,
+  MOVE_THRESHOLD,
+  ERROR_MESSAGE,
+} from "../config/constants.js";
 
 class Car {
   #name = "";

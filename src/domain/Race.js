@@ -1,10 +1,10 @@
-import { MAX_RANDOM_VALUE, MIN_RANDOM_VALUE } from "./constants.js";
-import { getAttempt, getCarNames } from "./InputHandler.js";
+import { MAX_RANDOM_VALUE, MIN_RANDOM_VALUE } from "../config/constants.js";
+import { getAttempt, getCarNames } from "../io/InputHandler.js";
 import {
   displayRaceResult,
   displayResultTitle,
   displayWinner,
-} from "./OutputHandler.js";
+} from "../io/OutputHandler.js";
 
 export const start = async () => {
   const cars = await getCarNames();

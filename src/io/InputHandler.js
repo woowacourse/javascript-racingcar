@@ -1,8 +1,7 @@
-import Car from "./Car.js";
-import { INFO_MESSAGE } from "./constants.js";
-import { validateCarNames } from "./validate.js";
+import Car from "../domain/Car.js";
+import { INFO_MESSAGE } from "../config/constants.js";
+import { validateCarNames, validateAttempt } from "../utils/validate.js";
 import readLineAsync from "./Input.js";
-import { validateAttempt } from "./validate.js";
 
 export const getCarNames = async () => {
   while (true) {

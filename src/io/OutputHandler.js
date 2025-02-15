@@ -1,4 +1,4 @@
-import { INFO_MESSAGE } from "./constants.js";
+import { INFO_MESSAGE } from "../config/constants.js";
 
 export const displayResultTitle = () => {
   console.log(INFO_MESSAGE.RACE_RESULT_TITLE);
