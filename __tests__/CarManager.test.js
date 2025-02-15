@@ -1,22 +1,16 @@
+/* eslint-disable comma-dangle */
 import Car from '../src/model/Car.js';
 import CarManager from '../src/model/CarManager.js';
 
-let carManager;
-beforeEach(() => {
-  carManager = new CarManager([]);
-});
+test.each([
+  [5, 1],
+  [3, 0],
+])(
+  'moveForwardCar 함수는 4 이상 9이하의 값이 나와야 한 칸 전진시킨다.',
+  (attempts, result) => {
+    const carManager = new CarManager([]);
+    const car = new Car();
 
-test('4 이상 9 이하의 값이 나오면 1칸을 전진한다.', () => {
-  const car = new Car();
-  console.log('car', car);
-  carManager.moveForwardCar(car, 5);
-
-  expect(car.position).toBe(1);
-});
-
-test('4 이상 9 이하의 값이 나오지 않으면 1칸을 전진하지 않는다.', () => {
-  const car = new Car();
-  carManager.moveForwardCar(car, 3);
-
-  expect(car.position).toBe(0);
-});
+    expect(carManager.moveForwardCar(car, attempts)).toBe(result);
+  }
+);
