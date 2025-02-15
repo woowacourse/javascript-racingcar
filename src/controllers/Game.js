@@ -14,21 +14,22 @@ export default class Game {
     this.#carList = names.map(name => new Car(name));
   }
 
-  judgeWinner() {
+  getMaxPosition() {
+    return Math.max(...this.#carList.map(car => car.position));
+  }
+  getWinner(maxPosition) {
     const winnerNames = [];
-    let maxPosition = 0;
-    this.#carList.forEach(car => {
-      if (car.position > maxPosition) {
-        maxPosition = car.position;
-      }
-    });
-
     this.#carList.forEach(car => {
       if (car.position === maxPosition) {
         winnerNames.push(car.name);
       }
     });
     return winnerNames;
+  }
+
+  judgeWinner() {
+    const maxPosition = this.getMaxPosition();
+    return this.getWinner(maxPosition);
   }
 
   async prepareRace() {
