@@ -3,14 +3,12 @@ import InputView from '../Views/InputView.js';
 import OutputView from '../Views/OutputView.js';
 import { stringToNumber } from '../utils/changeDataType.js';
 import { getRandomNumber } from '../utils/randomNumber.js';
-import { splitString } from '../utils/separator.js';
-import { checkCarCount, checkCarNameDuplicate, checkIsEmpty } from '../validates/carValidates.js';
+import ValidateModule from '../validates/ValidatorModule.js';
 import { checkIsInteger, checkTryCountRange } from '../validates/tryCountValidates.js';
 
 class CarController {
   async run() {
-    const carNamesInput = await this.getCarName();
-    const carNames = this.validateCarName(carNamesInput);
+    const carNames = await this.getValidatedCarNames();
 
     const tryCountInput = await this.getTryCount();
     const tryCount = this.validateTryCount(tryCountInput);
@@ -24,15 +22,10 @@ class CarController {
     this.outputWinner(winners);
   }
 
-  getCarName() {
-    return InputView.inputCarName();
-  }
-
-  validateCarName(carNamesInput) {
-    checkIsEmpty(carNamesInput);
-    const carNames = splitString(carNamesInput);
-    checkCarCount(carNames);
-    checkCarNameDuplicate(carNames);
+  async getValidatedCarNames() {
+    const input = await InputView.inputCarName();
+    ValidateModule.validateCarInput(input);
+    const carNames = input.split(',').map((str) => str.trim());
     return carNames;
   }
 
