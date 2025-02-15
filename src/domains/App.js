@@ -64,7 +64,7 @@ export default class App {
   }
 
   #printWinner() {
-    const winners = this.#raceModel.getWinner(this.cars);
+    const winners = this.#raceModel.getWinner(this.#cars);
     Output.winners(winners);
   }
 }

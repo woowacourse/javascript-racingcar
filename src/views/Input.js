@@ -8,7 +8,7 @@ export default class Input {
 
   static async carName() {
     const names = await this.readLineAsync(INPUT_MESSAGE.carName);
-    const parsedNames = names.split(SEPARATOR);
+    const parsedNames = names.split(Input.SEPARATOR);
     this.#validateCarCount(parsedNames);
     this.#validateDuplicateCarName(parsedNames);
     return parsedNames;
