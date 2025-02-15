@@ -1,6 +1,7 @@
 import { errorMessage } from "../constants/ErrorMessage.js";
 import { Validation } from "../validation/Validation.js";
 import { OutputView } from "../view/OutputView.js";
+import { systemSetting } from "../constants/systemSetting.js";
 
 export const parsingService = {
   parseNames(input) {
@@ -10,7 +11,7 @@ export const parsingService = {
       throw new Error(errorMessage.HAS_EMPTY_NAME);
     }
     if (!Validation.isNameTooLong(parsedString)) {
-      throw new Error(errorMessage.NAME_TOO_LONG);
+      throw new Error(errorMessage.NAME_TOO_LONG(systemSetting.NAME_LIMIT));
     }
     if (!Validation.isNameDuplicate(parsedString)) {
       throw new Error(errorMessage.DUPLICATE_NAME);

@@ -1,3 +1,5 @@
+import { SystemMessage } from "../constants/SystemMessage.js";
+
 export const OutputView = {
   printMessage(message) {
     console.log(message);

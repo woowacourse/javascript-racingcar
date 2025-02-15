@@ -4,6 +4,7 @@ import { OutputView } from "../view/OutputView.js";
 import { parsingService } from "./parsingService.js";
 import randomNumberGenerator from "../domain/RandomNumberGenerator.js";
 import { systemSetting } from "../constants/systemSetting.js";
+import { SystemMessage } from "../constants/SystemMessage.js";
 
 export async function raceInit() {
   const cars = [];
