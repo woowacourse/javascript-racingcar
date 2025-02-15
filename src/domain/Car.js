@@ -1,4 +1,4 @@
-import { NUMBER } from "../constants/Number";
+import { NUMBER } from "../constants/Number.js";
 
 class Car {
   #name;
