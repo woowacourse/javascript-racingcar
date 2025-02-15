@@ -7,14 +7,8 @@ class Car {
     this.raceCarName = raceCarName;
   }
 
-  #moveOneStep() {
+  moveOneStep() {
     this.position += 1;
-  }
-
-  tryMove() {
-    if (getRandomNumber() >= MOVE_THRESHOLD) {
-      this.#moveOneStep();
-    }
   }
 }
 

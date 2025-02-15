@@ -1,14 +1,14 @@
 class Output {
-  printCarPosition(car) {
+  carPosition(car) {
     let positionStick = `${car.raceCarName} : `;
     for (let i = 0; i < car.position; i++) {
       positionStick += "-";
     }
-    console.log(positionStick);
+    return positionStick;
   }
 
-  printWinnerList(winnerList) {
-    console.log(`최종 우승자: ${winnerList.join(", ")}`);
+  printResult(moveResult, winnerList) {
+    console.log(moveResult + `최종 우승자: ${winnerList.join(", ")}`);
   }
 
   printLine(message) {

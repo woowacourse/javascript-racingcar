@@ -1,25 +1,27 @@
 import Car from "./Car.js";
-import { OUTPUT_MESSAGE } from "../Const.js";
+import { MOVE_THRESHOLD, OUTPUT_MESSAGE } from "../Const.js";
 import Output from "../ui/Output.js";
+import { getRandomNumber } from "../Util.js";
 class Race {
   #cars;
   #raceCount;
+  #moveResult;
 
   constructor(names, raceCount) {
     this.#cars = names.map((raceCarName) => new Car(raceCarName));
     this.#raceCount = raceCount;
+    this.#moveResult = "";
   }
 
-  raceCar() {
-    const output = new Output();
-    output.printLine(OUTPUT_MESSAGE.result);
-    for (let i = 0; i < this.#raceCount; i++) {
-      this.#cars.forEach((car) => {
-        car.tryMove();
-        output.printCarPosition(car);
-      });
-      console.log();
+  #tryMove(car) {
+    const randomNumber = getRandomNumber();
+    if (randomNumber >= MOVE_THRESHOLD) {
+      car.moveOneStep();
     }
+  }
+
+  getMoveResult() {
+    return this.#moveResult;
   }
 
   getWinner() {
@@ -35,6 +37,18 @@ class Race {
       }
     });
     return winnerList;
+  }
+
+  raceCar() {
+    const output = new Output();
+    output.printLine(OUTPUT_MESSAGE.result);
+    for (let i = 0; i < this.#raceCount; i++) {
+      this.#cars.forEach((car) => {
+        this.#tryMove(car);
+        this.#moveResult += output.carPosition(car) + "\n";
+      });
+      this.#moveResult += "\n";
+    }
   }
 }
 
