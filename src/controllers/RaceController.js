@@ -33,7 +33,7 @@ class RaceController {
 
         return parsedCarNames;
       } catch (error) {
-        console.log(error.message + "\n");
+        this.#outputView.printValue(error.message + "\n");
       }
     }
   }
@@ -47,7 +47,7 @@ class RaceController {
 
         return parsedTryCount;
       } catch (error) {
-        console.log(error.message + "\n");
+        this.#outputView.printValue(error.message + "\n");
       }
     }
   }
