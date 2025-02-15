@@ -5,7 +5,7 @@ class Racing {
     this.#cars = cars;
   }
 
-  raceTurn(carsMoveList) {
+  #raceTurn(carsMoveList) {
     this.#cars.forEach((car, carIndex) => {
       const isMove = carsMoveList[carIndex];
       if (isMove) {
@@ -16,7 +16,7 @@ class Racing {
 
   runRace(totalRaceMoves) {
     return totalRaceMoves.map((carsMoveList) => {
-      this.raceTurn(carsMoveList);
+      this.#raceTurn(carsMoveList);
 
       const result = this.#cars.map((car) => car.getCarInfo());
       return result;
