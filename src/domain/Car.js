@@ -1,3 +1,5 @@
+import DEFINITION from '../constants/Definition.js';
+
 class Car {
   constructor(name) {
     this.name = name;
@@ -5,7 +7,7 @@ class Car {
   }
 
   moveForward(randomValue) {
-    if (randomValue < 4) {
+    if (randomValue < DEFINITION.MOVE_CONDITION) {
       return;
     }
     this.position++;
