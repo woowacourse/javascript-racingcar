@@ -1,8 +1,9 @@
 // @ts-check
 
-import CarManager from '../model/CarManager.js';
+import CarManager from '../domain/CarManager.js';
 import OutputView from '../views/OutputView.js';
 import User from '../user/User.js';
+import RaceResult from '../domain/RaceResult.js';
 
 class Controller {
   constructor() {
@@ -17,7 +18,8 @@ class Controller {
     OutputView.printResultGreeting();
     this.carManager.race(attempts);
 
-    const winners = this.carManager.determineWinners();
+    const raceResult = new RaceResult(this.carManager.cars);
+    const winners = raceResult.determineWinners();
     OutputView.printWinners(winners);
   }
 }

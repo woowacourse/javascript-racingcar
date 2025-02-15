@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
-import Car from '../src/model/Car.js';
-import CarManager from '../src/model/CarManager.js';
+import Car from '../src/domain/Car.js';
+import CarManager from '../src/domain/CarManager.js';
 
 test.each([
   [5, 1],
