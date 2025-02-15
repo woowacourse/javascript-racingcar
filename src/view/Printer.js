@@ -3,7 +3,7 @@ import {
   WINNER_DELIMITER,
   OUTPUT_DESCRIPTION,
   OUTPUT_FORMAT,
-} from '../constants/PrinterConstants.js';
+} from '../domain/constants/PrinterConstants.js';
 
 class Printer {
   static printHeader() {

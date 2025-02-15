@@ -1,5 +1,5 @@
 import NameValidator from '../src/domain/validator/NameValidator.js';
-import ErrorMessage from '../src/constants/ErrorMessage.js';
+import ErrorMessage from '../src/domain/constants/ErrorMessage.js';
 
 describe('자동차 이름의 예외 상황 테스트', () => {
   test(`자동차 이름이 빈 값이면 ${ErrorMessage.emptyInput} 메시지를 포함한 에러를 throw 한다.`, () => {

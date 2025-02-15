@@ -1,8 +1,8 @@
-import ERROR_MESSAGE from '../../constants/ErrorMessage.js';
+import ERROR_MESSAGE from '../constants/ErrorMessage.js';
 import {
   MAX_TRY_COUNT,
   MIN_TRY_COUNT,
-} from '../../constants/ValidatorConstants.js';
+} from '../constants/ValidatorConstants.js';
 
 class CountValidator {
   static isNumber(parsedTryCount) {

@@ -4,14 +4,14 @@ import InputView from './view/InputView.js';
 import Car from './domain/Car.js';
 import Racing from './domain/Racing.js';
 import Printer from './view/Printer.js';
-import InputMessage from './constants/InputMessage.js';
+import InputMessage from './domain/constants/InputMessage.js';
 import chooseRandomNumber from './domain/utils/chooseRandomNumber.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
-} from './constants/RacingConstants.js';
-import { NAME_DELIMITER } from './constants/ValidatorConstants.js';
+} from './domain/constants/RacingConstants.js';
+import { NAME_DELIMITER } from './domain/constants/ValidatorConstants.js';
 
 class App {
   async run() {
