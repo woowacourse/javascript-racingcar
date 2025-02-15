@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from "../src/config/constants.js";
-import { validateAttempt, validateCarLength } from "../src/utils/validate.js";
+import { validateAttempt, validateCars } from "../src/utils/validate.js";
 
 describe("예외 처리", () => {
   describe("자동차 예외 테스트", () => {
@@ -8,7 +8,7 @@ describe("예외 처리", () => {
       const carNames = ["A", "B", "B"];
 
       expect(() => {
-        validateCarLength(cars, carNames);
+        validateCars(cars, carNames);
       }).toThrow(ERROR_MESSAGE.CAR_NAME_DUPLICATE);
     });
 
@@ -17,7 +17,7 @@ describe("예외 처리", () => {
       const carNames = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"];
 
       expect(() => {
-        validateCarLength(cars, carNames);
+        validateCars(cars, carNames);
       }).toThrow(ERROR_MESSAGE.CAR_MAX_COUNT);
     });
   });

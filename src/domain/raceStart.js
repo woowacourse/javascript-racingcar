@@ -5,7 +5,7 @@ import {
   displayResultTitle,
   displayWinners,
 } from "../io/outputHandler.js";
-import { validateCarLength } from "../utils/validate.js";
+import { validateCars } from "../utils/validate.js";
 import Car from "./Car.js";
 
 export const raceStart = async () => {
@@ -29,7 +29,7 @@ const getCars = async () => {
       .map((name) => name.trim());
     try {
       let cars = carNames.map((name) => new Car(name));
-      validateCarLength(cars, carNames);
+      validateCars(cars, carNames);
       return cars;
     } catch (error) {
       console.log(error.message);
