@@ -1,4 +1,5 @@
-import CarModel from './model/CarModel.js';
+import Car from './domain/Car.js';
+import Validator from './validator.js';
 import InputView from './view/InputView.js';
 
 function printOneGame(nameList, cars) {
@@ -11,10 +12,17 @@ function printOneGame(nameList, cars) {
 
 // 입출력 예시
 export async function run() {
-  const nameList = await InputView.getNameList();
-  const count = await InputView.getCount();
 
-  const cars = nameList.map(name => new CarModel(name));
+  const rawNameList = await InputView.getNameList();
+  Validator.validateCarName(rawNameList);
+  const nameList = rawNameList.split(',').map(name => name.trim());
+  
+  const rawCount = await InputView.getCount();
+  Validator.validateCount(rawCount);
+  const count = Number(rawCount);
+
+
+  const cars = nameList.map(name => new Car(name));
 
   console.log('\n실행 결과');
   Array.from({ length: count }, () => {

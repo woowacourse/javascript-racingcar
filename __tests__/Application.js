@@ -1,6 +1,6 @@
 import { run } from '../src/index.js';
 import readline from 'readline';
-import { mockRandom, mockRandoms } from './CarModel.js';
+import { mockRandom, mockRandoms } from './Car.test.js';
 
 const mockQuestions = inputs => {
   readline.createInterface = jest.fn().mockImplementation(() => ({
