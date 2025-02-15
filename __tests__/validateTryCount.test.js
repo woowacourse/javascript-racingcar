@@ -15,7 +15,7 @@ describe("TryCount 유효성 테스트", () => {
     },
     {
       description: "시도 횟수가 0 이하인 경우",
-      input: "-1",
+      input: "0",
       errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_RANGE,
     },
     {
@@ -23,16 +23,23 @@ describe("TryCount 유효성 테스트", () => {
       input: "51",
       errorMessage: ERROR_TRY_COUNT_MESSAGE.INVALID_RANGE,
     },
-  ])("%s 에러가 발생한다.", ({ input, errorMessage }) => {
+  ])("$description 에러가 발생한다.", ({ input, errorMessage }) => {
     // given
     // when & then
     expect(() => validateTryCount(input)).toThrow(errorMessage);
   });
 
-  test("올바른 입력 값을 받는 경우 에러가 발생하지 않는다.", () => {
+  test.each([
+    {
+      description: "시도 횟수가 숫자 및 정수이며, 0 초과인 경우",
+      input: "1",
+    },
+    {
+      description: "시도 횟수가 숫자 및 정수이며, 50 이하인 경우",
+      input: "50",
+    },
+  ])("$description 정상적으로 통과한다.", ({ input }) => {
     // given
-    const input = "1";
-
     // when & then
     expect(() => validateTryCount(input)).not.toThrow();
   });

@@ -23,16 +23,23 @@ describe("CarNames 유효성 테스트", () => {
       input: "Niya",
       errorMessage: ERROR_CAR_NAMES_MESSAGE.NOT_ENOUGH_PLAYERS,
     },
-  ])("%s 에러가 발생한다.", ({ input, errorMessage }) => {
+  ])("$description 에러가 발생한다.", ({ input, errorMessage }) => {
     // given
     // when & then
     expect(() => validateCarNames(input)).toThrow(errorMessage);
   });
 
-  test("올바른 입력 값을 받는 경우 에러가 발생하지 않는다.", () => {
+  test.each([
+    {
+      description: "자동차 이름이 2개 이상이고, 각 이름이 1~5글자이며, 중복되지 않는 경우",
+      input: "Niya,Hoyy,Choi",
+    },
+    {
+      description: "자동차 이름이 2개 이상이며, 1글자짜리 이름도 포함되었을 경우",
+      input: "A,B,C",
+    },
+  ])("$description 정상적으로 통과한다.", ({ input }) => {
     // given
-    const input = "Niya,Hoyy,Choi";
-
     // when & then
     expect(() => validateCarNames(input)).not.toThrow();
   });
