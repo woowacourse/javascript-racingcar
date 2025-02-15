@@ -1,25 +1,12 @@
-import { ERROR_MESSAGE, MAX_CAR_LENGTH } from "./const.js";
+import { ERROR_MESSAGE, MAX_CAR_LENGTH } from "../const.js";
+import throwIfInValid from "./throwIfInvalid.js";
 
-class Validate {
+class NumberValidate {
   #throwIfInValid({ condition, errorMessage }) {
     if (condition) {
       throw new Error(errorMessage);
     }
     return this;
-  }
-
-  isLimitLength(name) {
-    return this.#throwIfInValid({
-      condition: name.length > MAX_CAR_LENGTH,
-      errorMessage: ERROR_MESSAGE.belowLimit,
-    });
-  }
-
-  isPositiveLength(name) {
-    return this.#throwIfInValid({
-      condition: name.length <= 0,
-      errorMessage: ERROR_MESSAGE.positiveLength,
-    });
   }
 
   isPositiveNumber(number) {
@@ -44,4 +31,4 @@ class Validate {
   }
 }
 
-export default Validate;
+export default NumberValidate;

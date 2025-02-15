@@ -1,13 +1,15 @@
-import Validate from "../src/Validate.js";
+import NameValidate from "../src/validate/NameValidate.js";
+import NumberValidate from "../src/validate/NumberValidate.js";
 
-describe("Validate 클래스 테스트", () => {
-  let validate;
-
-  beforeAll(() => {
-    validate = new Validate();
-  });
+describe("Validate  테스트", () => {
+  let nameValidate;
+  let numberValidate;
 
   describe("차 이름 테스트", () => {
+    beforeAll(() => {
+      nameValidate = new NameValidate();
+    });
+
     test.each([
       ["aaaa", true],
       ["aaaaa", true],
@@ -15,32 +17,36 @@ describe("Validate 클래스 테스트", () => {
       ["aaaaaaaaaa", false],
     ])("차 이름의 길이가 5자 이하인지 확인한다.", (raceCarName, result) => {
       if (result) {
-        expect(() => validate.isLimitLength(raceCarName)).not.toThrow();
+        expect(() => nameValidate.isLimitLength(raceCarName)).not.toThrow();
       } else {
-        expect(() => validate.isLimitLength(raceCarName)).toThrow();
+        expect(() => nameValidate.isLimitLength(raceCarName)).toThrow();
       }
     });
 
     test("차 이름이 빈값이 아닌지 확인한다", () => {
-      expect(() => validate.isPositiveLength("")).toThrow();
-      expect(() => validate.isPositiveLength("aa")).not.toThrow();
+      expect(() => nameValidate.isPositiveLength("")).toThrow();
+      expect(() => nameValidate.isPositiveLength("aa")).not.toThrow();
     });
   });
 
   describe("실행 횟수 테스트", () => {
+    beforeAll(() => {
+      numberValidate = new NumberValidate();
+    });
+
     test("실행횟수가 양수인지 확인한다", () => {
-      expect(() => validate.isPositiveNumber(-1)).toThrow();
-      expect(() => validate.isPositiveNumber(1)).not.toThrow();
+      expect(() => numberValidate.isPositiveNumber(-1)).toThrow();
+      expect(() => numberValidate.isPositiveNumber(1)).not.toThrow();
     });
 
     test("실행횟수가 숫자인지 확인한다", () => {
-      expect(() => validate.isNumeric(2)).not.toThrow();
-      expect(() => validate.isNumeric(NaN)).toThrow();
+      expect(() => numberValidate.isNumeric(2)).not.toThrow();
+      expect(() => numberValidate.isNumeric(NaN)).toThrow();
     });
 
     test("실행횟수가 정수인지 확인한다", () => {
-      expect(() => validate.isInteger(1.1)).toThrow();
-      expect(() => validate.isInteger(2)).not.toThrow();
+      expect(() => numberValidate.isInteger(1.1)).toThrow();
+      expect(() => numberValidate.isInteger(2)).not.toThrow();
     });
   });
 });
