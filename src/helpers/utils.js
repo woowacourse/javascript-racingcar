@@ -27,7 +27,7 @@ export async function retryUntilSuccess(callbackFn) {
     return await callbackFn();
   } catch (error) {
     console.log(error.message);
-    return await retryUntilSuccess(callbackFn);
+    return retryUntilSuccess(callbackFn);
   }
 }
 
