@@ -12,10 +12,11 @@ describe("차 객체 유닛 테스트", () => {
     const car = new Car("블루");
     expect(car.name).toBe("블루");
   });
-  test("차를 2번 움직이면 차가 2번 움직여아함", () => {
+  test("차를 2번 움직이면 차의 위치가 2 증가해야함", () => {
     //given
     const car = new Car("마빈");
-    const EXPECTED_RESULT = 2;
+    const initialPosition = 0;
+    const EXPECTED_RESULT = initialPosition + 2;
     //when
     car.goForward();
     car.goForward();
