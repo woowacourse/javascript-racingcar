@@ -1,5 +1,4 @@
 import Console from "../utils/Console.js";
-import Car from "./Car.js";
 import randomNumber from "../utils/randomNumber.js";
 import Output from "../views/Output.js";
 
@@ -12,26 +11,37 @@ class Race {
     this.#tryCount = tryCount;
   }
 
-  race() {
+  raceStart() {
     for (let i = 1; i <= this.#tryCount; i++) {
-      this.#round();
+      this.#playRound();
       Console.printLineBreak();
     }
   }
 
   getWinners() {
-    const countArray = this.#carsInstance.map((carInstance) => carInstance.count);
-    const maxCount = Math.max(...countArray);
-
-    const winnersInstance = this.#carsInstance.filter((carInstance) => carInstance.count === maxCount);
-    return winnersInstance.map((winnerInstance) => winnerInstance.name);
+    const maxCount = this.#getMaxCount();
+    const winners = this.#getWinnersCount(maxCount);
+    return this.#extractWinnerNames(winners);
   }
 
-  #round() {
+  #playRound() {
     this.#carsInstance.forEach((carInstance) => {
       carInstance.move(randomNumber());
       Output.printRace(carInstance.name, carInstance.count);
     });
+  }
+
+  #getMaxCount() {
+    const countArray = this.#carsInstance.map((carInstance) => carInstance.count);
+    return Math.max(...countArray);
+  }
+
+  #getWinnersCount(maxCount) {
+    return this.#carsInstance.filter((carInstance) => carInstance.count === maxCount);
+  }
+
+  #extractWinnerNames(winnersInstance) {
+    return winnersInstance.map((winnerInstance) => winnerInstance.name);
   }
 }
 
