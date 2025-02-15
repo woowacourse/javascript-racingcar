@@ -19,20 +19,20 @@ class App {
   #racing;
 
   async run() {
-    const cars = await this.createCars();
-    const tryCount = await this.askTryCount();
+    const cars = await this.#createCars();
+    const tryCount = await this.#askTryCount();
 
     const racing = new Racing(cars);
     this.#cars = cars;
     this.#racing = racing;
 
-    App.playRacing(tryCount);
+    this.#playRacing(tryCount);
 
     const raceResult = racing.decideWinner();
     Printer.printWinner(raceResult);
   }
 
-  async createCars() {
+  async #createCars() {
     try {
       const carNamesInput = await InputView.readLineAsync(
         InputMessage.carNameQuestion,
@@ -44,11 +44,11 @@ class App {
       return parsedCarNames.map((carName) => new Car(carName));
     } catch (error) {
       console.log(error.message);
-      return this.createCars();
+      return this.#createCars();
     }
   }
 
-  async askTryCount() {
+  async #askTryCount() {
     try {
       const tryCount = await InputView.readLineAsync(
         InputMessage.tryCountQuestion,
@@ -60,14 +60,14 @@ class App {
       return parsedTryCount;
     } catch (error) {
       console.log(error.message);
-      return this.askTryCount();
+      return this.#askTryCount();
     }
   }
 
-  playRacing(tryCount) {
+  #playRacing(tryCount) {
     Printer.printHeader();
 
-    const totalRaceMoves = this.generateTotalRaceMoves(tryCount);
+    const totalRaceMoves = this.#generateTotalRaceMoves(tryCount);
     const results = this.#racing.runRace(totalRaceMoves);
 
     results.forEach((result) => {
@@ -75,7 +75,7 @@ class App {
     });
   }
 
-  generateTotalRaceMoves(tryCount) {
+  #generateTotalRaceMoves(tryCount) {
     const turns = Array.from({ length: tryCount });
     const totalCarNumbers = this.#cars.length;
     return turns.map(() => App.generateIsMoveList(totalCarNumbers));
