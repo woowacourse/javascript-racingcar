@@ -2,9 +2,12 @@ export const MOVE_THRESHOLD = 4;
 export const CAR_NAME_MAX_LENGTH = 5;
 export const MIN_RANDOM_VALUE = 0;
 export const MAX_RANDOM_VALUE = 9;
+export const MOVE_DEFAULT = "forward 1 step";
+export const CAR_PROGRESS_MARK = "-";
 
 export const DELIMITERS = {
   CAR_NAME: ",",
+  WINNER: ", ",
 }
 
 export const INFO_MESSAGE = {

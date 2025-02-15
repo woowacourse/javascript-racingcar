@@ -1,8 +1,8 @@
-import { MOVE_THRESHOLD } from "./constants.js";
+import { MOVE_DEFAULT, MOVE_THRESHOLD } from "./constants.js";
 
 class Car {
   #name = "";
-  #position = "";
+  #position = 0;
 
   constructor(name) {
     this.#name = name;
@@ -16,9 +16,11 @@ class Car {
     return this.#position;
   }
 
-  move(number) {
+  move(number, type) {
     if (number >= MOVE_THRESHOLD) {
-      this.#position += "-";
+      if (type === MOVE_DEFAULT) {
+        this.#position += 1;
+      }
     }
   }
 }

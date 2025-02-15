@@ -1,10 +1,10 @@
-import { DELIMITERS, MAX_RANDOM_VALUE, MIN_RANDOM_VALUE } from "./constants.js";
-import { getAttempt, getCarNames } from "./InputHandler.js";
+import { DELIMITERS, MAX_RANDOM_VALUE, MIN_RANDOM_VALUE, MOVE_DEFAULT } from "./constants.js";
+import { getAttempt, getCarNames } from "../ui/InputHandler.js";
 import {
   displayRaceResult,
   displayResultTitle,
   displayWinner,
-} from "./OutputHandler.js";
+} from "../ui/OutputHandler.js";
 import Car from "./Car.js";
 import { validateAttempt, validateCarNames } from "./validate.js";
 
@@ -12,7 +12,6 @@ export const startRace = async () => {
   const carNames = await getValidCarNames();
   const cars = createCars(carNames);
   const attempt = await getValidAttempt();
-  // 체크포인트 ✅
   displayResultTitle();
   for (let i = 0; i < attempt; i++) {
     moveCars(cars);
@@ -55,10 +54,10 @@ const getValidAttempt = async () => {
 
 const moveCars = (cars) => {
   for (const c of cars) {
-    c.move(getRandomNumber());
+    c.move(getRandomNumber(), MOVE_DEFAULT);
   }
 };
 
 const getRandomNumber = () => {
-  return Math.floor(Math.random() * (MAX_RANDOM_VALUE - MIN_RANDOM_VALUE + 1));
+  return Math.floor(Math.random() * (MAX_RANDOM_VALUE - MIN_RANDOM_VALUE + 1)) + MIN_RANDOM_VALUE;
 };

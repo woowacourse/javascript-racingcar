@@ -1,6 +1,6 @@
-import { INFO_MESSAGE } from "./constants.js";
+import { INFO_MESSAGE } from "../domain/constants.js";
 import readLineAsync from "./Input.js";
-import { validateAttempt } from "./validate.js";
+import { validateAttempt } from "../domain/validate.js";
 
 export const getCarNames = async () => {
   return await readLineAsync(INFO_MESSAGE.CAR_NAME_PROMPT);
