@@ -8,7 +8,7 @@ export const Validator = {
   isDecimal: number => number % 1 !== 0,
   isDuplicate: array => new Set(array).size !== array.length,
   isNumber: number => number !== null && typeof number === 'number' && !Number.isNaN(number),
-  isEmpty: string => string.trim().length === 0 || string === null,
+  isEmpty: string => typeof string === 'string' && string.trim().length === 0,
 
   // 예외를 던지는 함수
   validateArrayLength: (array, max) => {
@@ -45,5 +45,20 @@ export const Validator = {
     if (Validator.isEmpty(string)) {
       throw new Error(MESSAGE.ERROR.IS_EMPTY);
     }
+  },
+  validateName: (names, maxNameLength) => {
+    Validator.validateArrayLength(names, maxNameLength);
+    Validator.validateDuplicate(names);
+    names.forEach(name => {
+      Validator.validateEmpty(name);
+      Validator.validateStringLength(name, maxNameLength);
+    });
+  },
+
+  validateTryNumber: (number, minGame, maxGame) => {
+    Validator.validateEmpty(number);
+    Validator.validateNumber(number);
+    Validator.validateRange(number, minGame, maxGame);
+    Validator.validateDecimal(number);
   },
 };
