@@ -18,9 +18,7 @@ class Race {
       console.log('');
     }
 
-    const winners = new Winners();
-    winners.determine(carList);
-    OutputView.printWinners(winners.getNames());
+    this.printWinners(carList);
   }
 
   progressRace(carList) {
@@ -31,6 +29,12 @@ class Race {
 
       OutputView.printRoundResult(car.getName(), car.getPosition());
     });
+  }
+
+  printWinners(carList) {
+    const winners = new Winners();
+    winners.determine(carList);
+    OutputView.printWinners(winners.getNames());
   }
 }
 
