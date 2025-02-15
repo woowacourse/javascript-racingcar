@@ -1,10 +1,10 @@
-import { randomNumberGenerator } from "./utils/math.js";
+import { generateRandomNumber } from "./utils/math.js";
 import { RANDOM_NUMBER_RULE } from "./constants/rule/randomNumber.js";
 import { ADVANCE_RULE } from "./constants/rule/advance.js";
 
 const moveRacingCars = (carNames, advanceRacingCar) => {
   carNames.forEach((carName) => {
-    const randomNumber = randomNumberGenerator(
+    const randomNumber = generateRandomNumber(
       RANDOM_NUMBER_RULE.MIN_NUMBER,
       RANDOM_NUMBER_RULE.MAX_NUMBER
     );
