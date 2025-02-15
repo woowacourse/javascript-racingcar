@@ -11,4 +11,15 @@ describe('Car 클래스의 자동차 기능 테스트', () => {
 
     expect(position).toBe(1);
   });
+
+  test.each([['jenna'], ['mato']])(
+    'getCarInfo가 호출되면 자동차의 이름과 위치를 반환한다.',
+    (name) => {
+      const car = new Car(name);
+
+      const carInfo = car.getCarInfo();
+
+      expect(carInfo).toEqual({ name, position: 0 });
+    },
+  );
 });
