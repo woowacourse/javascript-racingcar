@@ -11,8 +11,8 @@ class Car {
     this.position += 1;
   }
 
-  tryMove() {
-    if (getRandomIntBetween(0, 9) >= MOVE_THRESHOLD) {
+  tryMove(number) {
+    if (number >= MOVE_THRESHOLD) {
       this.#moveOneStep();
     }
   }

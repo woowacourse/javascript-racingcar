@@ -1,6 +1,7 @@
 import Car from "./Car.js";
 import { OUTPUT_MESSAGE } from "../const.js";
 import Output from "../ui/Output.js";
+import { getRandomIntBetween } from "../util.js";
 class Race {
   #cars;
   #raceCount;
@@ -15,7 +16,7 @@ class Race {
     output.printLine(OUTPUT_MESSAGE.result);
     for (let i = 0; i < this.#raceCount; i++) {
       this.#cars.forEach((car) => {
-        car.tryMove();
+        car.tryMove(getRandomIntBetween(0, 9));
         output.printCarPosition(car);
       });
       console.log();

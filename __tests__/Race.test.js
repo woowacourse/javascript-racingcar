@@ -1,5 +1,5 @@
 import Race from "../src/domain/Race.js";
-import * as Util from "../src/Util.js";
+import * as Util from "../src/util.js";
 
 jest.mock("../src/Util.js");
 
