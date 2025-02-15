@@ -5,4 +5,14 @@ export const OutputView = {
   printError(error) {
     console.error(error.message);
   },
+  printStringPosition(position) {
+    return "-".repeat(position);
+  },
+  printRound(name, position) {
+    const stringPosition = this.printStringPosition(position);
+    console.log(`${name} : ${stringPosition}`);
+  },
+  printWinner(winner) {
+    console.log(SystemMessage.WINNER_MESSAGE(winner));
+  },
 };

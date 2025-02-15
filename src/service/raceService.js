@@ -28,6 +28,7 @@ export const raceManager = {
     return randomNumber >= systemSetting.MOVABLE_NUMBER;
   },
   startRace(cars, round) {
+    OutputView.printMessage(SystemMessage.RESULT_MESSAGE);
     for (let i = 0; i < round; i++) {
       this.moveCar(cars);
       OutputView.printMessage("\n");
@@ -42,7 +43,8 @@ export const raceManager = {
       if (this.isMovable(randomNumber)) {
         car.goForward();
       }
-      OutputView.printMessage(car.toString());
+      OutputView.printRound(car.name, car.position);
     }
+    OutputView.printMessage("\n");
   },
 };

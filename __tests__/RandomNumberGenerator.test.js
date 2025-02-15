@@ -6,7 +6,6 @@ test("randomNumberGenerator는 0~9 사이 수를 생성해야 한다", () => {
     systemSetting.MINIMUM_RANDOM_NUMBER,
     systemSetting.MAXIMUM_RANDOM_NUMBER
   );
-  //   console.log(number);
 
   //then
   expect(Number.isInteger(number)).toBe(true);

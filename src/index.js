@@ -5,9 +5,8 @@ import { getWinner } from "./service/statisticsService.js";
 
 const { cars, round } = await raceInit();
 
-OutputView.printMessage(SystemMessage.RESULT_MESSAGE);
 raceManager.startRace(cars, round);
 
 const winner = getWinner(cars);
 
-OutputView.printMessage(SystemMessage.WINNER_MESSAGE(winner));
+OutputView.printWinner(winner);
