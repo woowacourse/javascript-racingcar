@@ -5,16 +5,16 @@ export const displayResultTitle = () => {
 };
 
 export const displayRaceResult = (cars) => {
-  for (const c of cars) {
-    console.log(`${c.name} : ${c.position}`);
+  for (const car of cars) {
+    console.log(`${car.name} : ${"-".repeat(car.position)}`);
   }
   console.log();
 };
 
 export const displayWinner = (cars) => {
-  const maxPosition = Math.max(...cars.map((car) => car.position.length));
+  const maxPosition = Math.max(...cars.map((car) => car.position));
   const winners = cars
-    .filter((car) => car.position.length === maxPosition)
+    .filter((car) => car.position === maxPosition)
     .map((car) => car.name);
   console.log(`${INFO_MESSAGE.WINNER_TITLE}${winners.join(", ")}`);
 };

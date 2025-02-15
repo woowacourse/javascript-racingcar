@@ -6,16 +6,16 @@ import {
 
 class Car {
   #name = "";
-  #position = "";
+  #position = 0;
 
   constructor(name) {
-    this.#name = this.#validate(name);
+    this.#validate(name);
+    this.#name = name;
   }
 
   #validate(name) {
     if (name.length > CAR_NAME_MAX_LENGTH)
       throw Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
-    return name;
   }
 
   get name() {
@@ -28,7 +28,7 @@ class Car {
 
   move(number) {
     if (number >= MOVE_THRESHOLD) {
-      this.#position += "-";
+      ++this.#position;
     }
   }
 }
