@@ -6,13 +6,13 @@ import {
   displayWinner,
 } from "./OutputHandler.js";
 import Car from "./Car.js";
-import { validateCarNames } from "./validate.js";
+import { validateAttempt, validateCarNames } from "./validate.js";
 
 export const startRace = async () => {
   const carNames = await getValidCarNames();
   const cars = createCars(carNames);
+  const attempt = await getValidAttempt();
   // 체크포인트 ✅
-  const attempt = await getAttempt();
   displayResultTitle();
   for (let i = 0; i < attempt; i++) {
     moveCars(cars);
@@ -35,6 +35,18 @@ const getValidCarNames = async () => {
       const carNames = parseCarNames(await getCarNames());
       validateCarNames(carNames);
       return carNames;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+};
+
+const getValidAttempt = async () => {
+  while (true) {
+    try {
+      const attempt = await getAttempt();
+      validateAttempt(attempt);
+      return attempt;
     } catch (error) {
       console.log(error.message);
     }
