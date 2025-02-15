@@ -54,7 +54,7 @@
 
 ### ✅ 1차 리뷰 수정사항
 
-- [ ] input UI 모듈에서 validate 관련 도메인 로직 분리
+- [x] input UI 모듈에서 validate 관련 도메인 로직 분리
 - [ ] validate 관련 도메인 -> if condition 함수화 (가독성)
 - [ ] race 컨트롤러 역할 분리
 - [ ] race 도메인 생성하기
