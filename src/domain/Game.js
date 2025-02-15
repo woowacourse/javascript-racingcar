@@ -21,13 +21,7 @@ export default class Game {
     return Math.max(...this.#carList.map(car => car.position));
   }
   getWinner(maxPosition) {
-    const winnerNames = [];
-    this.#carList.forEach(car => {
-      if (car.position === maxPosition) {
-        winnerNames.push(car.name);
-      }
-    });
-    return winnerNames;
+    return this.#carList.filter(car => car.position === maxPosition).map(car => car.name);
   }
 
   judgeWinner() {
