@@ -29,4 +29,13 @@ describe("controller", () => {
 
     expect(winners.length).toBe(2);
   });
+
+  test("우승자의 위치를 가져올 수 있다.", () => {
+    car1.move(4);
+    car1.move(4);
+
+    const winnerPosition = controller.getWinnerPosition([car1, car2]);
+
+    expect(winnerPosition).toBe(2);
+  });
 });
