@@ -41,6 +41,7 @@ class RacingcarManager {
             const carNamesList = carNames.split(',');
             carNamesList.forEach(carName => {
                 this.#validate.isEmpty(carName);
+                this.#validate.carCount(carNamesList);
                 this.#validate.carNameLength(carName);
             });
         } catch (error) {
