@@ -2,6 +2,7 @@ import RaceSetup from './RaceSetup.js';
 import randomNumber from './random.js';
 import OutputView from '../view/Output.js';
 import Winners from './Winners.js';
+import { MIN } from '../constant/constant.js';
 
 class Race {
   async play() {
@@ -24,8 +25,9 @@ class Race {
   progressRace(carList) {
     carList.forEach((car) => {
       const moveCondition = randomNumber();
-
-      car.move(moveCondition);
+      if (moveCondition >= MIN.MOVE_CONDITION) {
+        car.moveForward();
+      }
 
       OutputView.printRoundResult(car.getName(), car.getPosition());
     });
