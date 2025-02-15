@@ -21,24 +21,14 @@ class Racing {
 
     totalRaceMoves.forEach((carsMoveList) => {
       this.raceTurn(carsMoveList);
-      const result = this.getCarInfo(this.#cars);
+      const result = this.#cars.map((car) => car.getCarInfo());
 
       Printer.printRacingResult(result);
     });
   }
 
-  getCarInfo() {
-    const result = this.#cars.map((car) => {
-      const position = car.getCarPosition();
-      const name = car.getName();
-      return { name, position };
-    });
-
-    return result;
-  }
-
   decideWinner() {
-    const results = this.getCarInfo();
+    const results = this.#cars.map((car) => car.getCarInfo());
     const positions = results.map((result) => result.position);
     const maxPosition = Math.max(...positions);
     return results.filter((result) => result.position === maxPosition);
