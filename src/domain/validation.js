@@ -5,6 +5,7 @@ const validateCarNames = (carNames) => {
   const names = carNames.split(SPLITTER);
 
   validateLength(names);
+  validateNameOverlap(names);
 };
 
 const validateRaceCount = (raceCountInput) => {
@@ -20,7 +21,7 @@ const validateLength = (names) => {
     throw new Error(ERROR.MIN_CAR_COUNT);
   }
 
-  if (names.length > MIN.CAR_COUNT) {
+  if (names.length > MAX.CAR_COUNT) {
     throw new Error(ERROR.MAX_CAR_COUNT);
   }
 
@@ -29,6 +30,12 @@ const validateLength = (names) => {
       throw new Error(ERROR.NAME_LENGTH);
     }
   });
+};
+
+const validateNameOverlap = (names) => {
+  if (names.length !== new Set(names).size) {
+    throw new Error(ERROR.NAME_OVERLAP);
+  }
 };
 
 const validateRange = (raceCount) => {
