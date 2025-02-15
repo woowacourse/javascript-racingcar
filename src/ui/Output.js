@@ -1,10 +1,6 @@
 class Output {
   printCarPosition(car) {
-    let positionStick = `${car.raceCarName} : `;
-    for (let i = 0; i < car.position; i++) {
-      positionStick += "-";
-    }
-    console.log(positionStick);
+    console.log(`${car.raceCarName}: ${"-".repeat(car.position)}`);
   }
 
   printWinnerList(winnerList) {
