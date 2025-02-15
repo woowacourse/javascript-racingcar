@@ -14,6 +14,7 @@ class Controller {
     this.carManager = new CarManager(carNames);
 
     const attempts = await this.user.readAttempts();
+    OutputView.printResultGreeting();
     this.carManager.race(attempts);
 
     const winners = this.carManager.determineWinners();
