@@ -1,4 +1,3 @@
-import { MOVE_CONDITION } from "../constants/setting.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
@@ -7,6 +6,7 @@ export default class Car {
 
   static START_POSITION = 0;
   static MOVE_COUNT = 1;
+  static MOVE_CONDITION = 4;
 
   constructor(name) {
     this.#validateCarName(name);
@@ -20,14 +20,14 @@ export default class Car {
     }
   }
 
+  static isCanMove() {
+    return generateRandomNumber() >= MOVE_CONDITION;
+  }
+
   move(isCanMove) {
     if (isCanMove) {
       this.#position += Car.MOVE_COUNT;
     }
-  }
-
-  static isCanMove() {
-    return generateRandomNumber() >= MOVE_CONDITION;
   }
 
   getName() {
