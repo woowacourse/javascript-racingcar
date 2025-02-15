@@ -3,9 +3,9 @@ import Input from "../views/Input.js";
 import Output from "../views/Output.js";
 
 export default class App {
-  race = new Race();
-  tryNumber = 0;
-  cars = [];
+  #raceModel = new Race();
+  #tryNumber = 0;
+  #cars = [];
 
   static STEP = {
     carName: "carName",
@@ -44,19 +44,19 @@ export default class App {
   async #readCarNames() {
     const carNames = await Input.carName();
 
-    this.cars = this.race.createCars(carNames);
+    this.#cars = this.#raceModel.createCars(carNames);
   }
 
   async #readTryNumber() {
-    this.tryNumber = await Input.tryNumber();
+    this.#tryNumber = await Input.tryNumber();
   }
 
   #race() {
     Output.newLine();
     Output.raceResult();
-    for (let i = 0; i < this.tryNumber; i++) {
-      this.race.race(this.cars);
-      this.cars.forEach((car) => {
+    for (let i = 0; i < this.#tryNumber; i++) {
+      this.#raceModel.race(this.#cars);
+      this.#cars.forEach((car) => {
         Output.scoreByRace(car.getName(), car.getPosition());
       });
       Output.newLine();
@@ -64,7 +64,7 @@ export default class App {
   }
 
   #printWinner() {
-    const winners = this.race.getWinner(this.cars);
+    const winners = this.#raceModel.getWinner(this.cars);
     Output.winners(winners);
   }
 }
