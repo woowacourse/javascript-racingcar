@@ -2,7 +2,7 @@ import Car from "../domain/Car.js";
 import { InputView } from "../view/InputView.js";
 import { OutputView } from "../view/OutputView.js";
 import { parsingService } from "./parsingService.js";
-import randomNumberGenerator from "../domain/RandomNumberGenerator.js";
+import randomNumberGenerator from "../util/RandomNumberGenerator.js";
 import { systemSetting } from "../constants/systemSetting.js";
 import { SystemMessage } from "../constants/SystemMessage.js";
 
