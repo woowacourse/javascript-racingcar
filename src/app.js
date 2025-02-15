@@ -1,7 +1,6 @@
 import NameValidator from './utils/validator/NameValidator.js';
 import CountValidator from './utils/validator/CountValidator.js';
 import InputView from './view/InputView.js';
-import parseToNumber from './utils/parseToNumber.js';
 import Car from './domain/Car.js';
 import Racing from './domain/Racing.js';
 import Printer from './view/Printer.js';
@@ -47,7 +46,7 @@ class App {
       const tryCount = await InputView.readLineAsync(
         InputMessage.tryCountQuestion,
       );
-      const parsedTryCount = parseToNumber(tryCount);
+      const parsedTryCount = App.parseTryCount(tryCount);
 
       CountValidator.isValid(parsedTryCount);
 
@@ -78,6 +77,14 @@ class App {
 
   static parseNames(names) {
     return names.split(NAME_DELIMITER).map((name) => name.trim());
+  }
+
+  static parseTryCount(tryCount) {
+    if (tryCount === '') {
+      return NaN;
+    }
+
+    return Number(tryCount);
   }
 }
 
