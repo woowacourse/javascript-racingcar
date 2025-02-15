@@ -26,15 +26,12 @@ describe('이동 여부(Boolean)에 따른 자동차 경주 테스트', () => {
 
 describe('우승자 판단 메서드 테스트', () => {
   test('우승자가 한 명일 수 있다.', () => {
-    const car1 = new Car('jenna');
-    const car2 = new Car('mato');
+    const RESULTS = [
+      { name: 'jenna', position: 3 },
+      { name: 'mato', position: 2 },
+    ];
 
-    const racing = new Racing([car1, car2]);
-
-    car1.getCarInfo = jest.fn().mockReturnValue({ name: 'jenna', position: 3 });
-    car2.getCarInfo = jest.fn().mockReturnValue({ name: 'mato', position: 2 });
-
-    const winners = racing.decideWinner();
+    const winners = Racing.decideWinner(RESULTS);
 
     const expectedWinner = [{ name: 'jenna', position: 3 }];
 
@@ -42,15 +39,12 @@ describe('우승자 판단 메서드 테스트', () => {
   });
 
   test('우승자가 두 명 이상일 수 있다.', () => {
-    const car1 = new Car('jenna');
-    const car2 = new Car('mato');
+    const RESULTS = [
+      { name: 'jenna', position: 2 },
+      { name: 'mato', position: 2 },
+    ];
 
-    const racing = new Racing([car1, car2]);
-
-    car1.getCarInfo = jest.fn().mockReturnValue({ name: 'jenna', position: 2 });
-    car2.getCarInfo = jest.fn().mockReturnValue({ name: 'mato', position: 2 });
-
-    const winners = racing.decideWinner();
+    const winners = Racing.decideWinner(RESULTS);
 
     const expectedWinner = [
       { name: 'jenna', position: 2 },
