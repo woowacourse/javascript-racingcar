@@ -1,12 +1,13 @@
 import {
   RESULT_MARK,
   WINNER_DELIMITER,
+  OUTPUT_DESCRIPTION,
+  OUTPUT_FORMAT,
 } from '../constants/PrinterConstants.js';
-import { OUTPUT_MESSAGE, OUTPUT_FORMAT } from '../constants/OutputMessage.js';
 
 class Printer {
   static printHeader() {
-    console.log(OUTPUT_MESSAGE.raceResultHeader);
+    console.log(OUTPUT_DESCRIPTION.raceResultHeader);
   }
 
   static printRacingResult(results) {
@@ -17,7 +18,7 @@ class Printer {
       console.log(OUTPUT_FORMAT.raceResultPhrase(name, raceResult));
     });
 
-    console.log(OUTPUT_MESSAGE.lineBreak);
+    console.log(OUTPUT_DESCRIPTION.lineBreak);
   }
 
   static printWinner(results) {
