@@ -3,6 +3,7 @@ export const CAR_NAME_MAX_LENGTH = 5;
 export const CAR_NAME_MIN_LENGTH = 1;
 export const MIN_RANDOM_VALUE = 0;
 export const MAX_RANDOM_VALUE = 9;
+export const CAR_MOVE_SYMBOL = "-";
 
 export const INFO_MESSAGE = {
   CAR_NAME_INPUT:
