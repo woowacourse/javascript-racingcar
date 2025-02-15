@@ -65,7 +65,7 @@
 - [x] output -> printWinner 메소드명 변경 (복수형태)
 - [x] (응집도) `EXPRESSION_FLAG` 상수 선언 및 할당 위치 변경
 - [x] 테스트) '무엇인가'에 초점을 두고, 테스트 서술 내용 변경
-- [ ] 테스트) raceController 분리 후, -> 도메인에 대한 단위 테스트 작성
+- [x] 테스트) raceController 분리 후, -> 도메인에 대한 단위 테스트 작성
 
 ## ⚙️ 폴더 구조
 
