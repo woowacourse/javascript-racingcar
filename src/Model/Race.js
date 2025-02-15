@@ -1,4 +1,4 @@
-import { MAX, MIN } from '../Constants/rules.js';
+import { CAR_MOVE_FORWARD, MAX, MIN } from '../Constants/rules.js';
 import { getRandomNumber } from '../Utils/math.js';
 import { RACE } from '../Constants/message.js';
 
@@ -26,8 +26,9 @@ export default class Race {
         MAX.RANDOM_NUMBER,
         MIN.RANDOM_NUMBER,
       );
-
-      car.move(randomNumber);
+      if (randomNumber >= CAR_MOVE_FORWARD) {
+        car.move();
+      }
       console.log(
         `${car.getName()} : ${RACE.MOVEMENT.repeat(car.getPosition())}`,
       );
