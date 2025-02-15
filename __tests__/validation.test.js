@@ -1,5 +1,8 @@
 import ERROR from "../src/constant/error.js";
-import { validateCarNames, validateRaceCount } from "../src/util/validation.js";
+import {
+  validateCarNames,
+  validateRaceCount,
+} from "../src/domain/validation.js";
 
 describe("validation", () => {
   describe("자동차 이름", () => {

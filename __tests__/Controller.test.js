@@ -1,5 +1,5 @@
-import Controller from "../src/controller/Controller.js";
-import Car from "../src/model/Car.js";
+import Controller from "../src/domain/Controller.js";
+import Car from "../src/domain/Car.js";
 
 describe("controller", () => {
   let controller;
