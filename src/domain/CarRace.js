@@ -1,5 +1,5 @@
-import { CAR_MOVE_STANDARD } from '../helpers/constants.js';
-import { getRandomInteger } from '../helpers/utils.js';
+import { CAR_MOVE_STANDARD } from '../lib/constants.js';
+import { getRandomInteger } from '../lib/utils.js';
 import { InputView, OutputView } from '../view/index.js';
 import Car from './Car.js';
 
