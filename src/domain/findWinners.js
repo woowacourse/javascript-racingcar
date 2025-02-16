@@ -1,4 +1,4 @@
-import { pipe } from "../utils/pipe.js";
+import pipe from "../utils/pipe.js";
 
 const getMaxCount = (cars) => Math.max(...cars.map((cars) => cars.count));
 
