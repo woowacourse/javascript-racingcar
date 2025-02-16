@@ -1,22 +1,32 @@
 import { ERROR_CAR_NAMES_MESSAGE, MAX_CAR_NAME_LENGTH } from "../constants/constants.js";
 
-const validateCarNames = (input) => {
-  const carNames = input
+const parseCarNames = (input) => {
+  return input
     .split(",")
     .map((el) => el.trim())
     .filter((el) => el !== "");
+};
 
-  carNames.forEach((car) => {
-    if (car.length > MAX_CAR_NAME_LENGTH) {
-      throw new Error(ERROR_CAR_NAMES_MESSAGE.OVER);
-    }
-  });
+const hasOverlengthName = (carNames) => {
+  return carNames.some((car) => car.length > MAX_CAR_NAME_LENGTH);
+};
+const hasOnlyOnePlayer = (carNames) => {
+  return carNames.length === 1;
+};
+const hasDuplicateNames = (carNames) => {
+  return new Set(carNames).size !== carNames.length;
+};
 
-  if (carNames.length === 1) {
+const validateCarNames = (input) => {
+  const carNames = parseCarNames(input);
+
+  if (hasOverlengthName(carNames)) {
+    throw new Error(ERROR_CAR_NAMES_MESSAGE.OVER);
+  }
+  if (hasOnlyOnePlayer(carNames)) {
     throw new Error(ERROR_CAR_NAMES_MESSAGE.NOT_ENOUGH_PLAYERS);
   }
-
-  if (new Set(carNames).size !== carNames.length) {
+  if (hasDuplicateNames(carNames)) {
     throw new Error(ERROR_CAR_NAMES_MESSAGE.DUPLICATE);
   }
 
