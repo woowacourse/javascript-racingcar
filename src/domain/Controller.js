@@ -20,6 +20,7 @@ export default class Controller {
     const race = new Race();
     race.runRace(cars, tryCount);
 
-    const winner = new Winner(cars);
+    const winner = new Winner();
+    winner.findWinner(cars);
   }
 }
