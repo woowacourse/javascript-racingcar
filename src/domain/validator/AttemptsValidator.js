@@ -1,10 +1,10 @@
-import { CONFIG } from '../constants/config.js';
-import { ERROR } from '../constants/messages.js';
+import { CONFIG } from '../../constants/config';
+import { ERROR } from '../../constants/messages';
 
 const AttemptsValidator = {
   checkPositiveNumber(input) {
     const attempts = Number(input);
-    if (!Number.isInteger(attempts) || attempts <= CONFIG.ZERO) {
+    if (!Number.isInteger(attempts) || attempts <= CONFIG.MINIMUM_ATTEMPTS_NUMBER) {
       throw new Error(ERROR.NOT_POSITIVE_NUMBER);
     }
 

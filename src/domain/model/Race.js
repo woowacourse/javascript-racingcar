@@ -1,17 +1,16 @@
 // @ts-check
 import Car from './Car.js';
-import pickRandomNumber from '../utils/pickRandomNumber.js';
-import OutputView from '../views/OutputView.js';
-import { CONFIG } from '../constants/config.js';
+import pickRandomNumber from '../../utils/pickRandomNumber.js';
+import OutputView from '../../views/OutputView.js';
+import { CONFIG } from '../../constants/config.js';
 
-class CarManager {
+class Race {
   constructor() {
     this.cars = [];
   }
 
   createCars(carNames) {
     this.cars = carNames.map((carName) => new Car(carName));
-    return this.cars;
   }
 
   isMoveCondition(pickedRandomNumber) {
@@ -19,26 +18,19 @@ class CarManager {
     && pickedRandomNumber <= CONFIG.MAXIMUM_RANDOM_NUMBER;
   }
 
-  moveForwardCar(car, pickedRandomNumber) {
-    const moveCondition = this.isMoveCondition(pickedRandomNumber);
-    if (moveCondition) {
-      return car.move();
-    }
-  }
-
   race(attempts) {
-    OutputView.printResultGreeting();
-    for (let i = CONFIG.ZERO; i < attempts; i++) {
+    for (let i = CONFIG.INITIAL_NUMBER; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
-        this.showRaceResult(car.name, car.position);
+        OutputView.printRaceResult(car.name, car.position);
       });
       console.log();
     }
   }
 
-  showRaceResult(name, position) {
-    OutputView.printRaceResult(name, position);
+  moveForwardCar(car, pickedRandomNumber) {
+    const condition = this.isMoveCondition(pickedRandomNumber);
+    car.move(condition);
   }
 
   determineWinners() {
@@ -56,4 +48,4 @@ class CarManager {
   }
 }
 
-export default CarManager;
+export default Race;

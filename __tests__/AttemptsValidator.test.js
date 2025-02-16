@@ -1,4 +1,4 @@
-import AttemptsValidator from '../src/validator/AttemptsValidator.js';
+import AttemptsValidator from '../src/domain/validator/AttemptsValidator';
 
 test.each([
   [-1],
