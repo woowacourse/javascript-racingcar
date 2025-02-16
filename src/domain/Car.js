@@ -1,4 +1,4 @@
-import RacingcarConstants from "../constants/RacingCarConstants.js";
+import DEFINITION from "../constants/Definition.js";
 
 class Car {
     constructor(name) {
@@ -7,8 +7,8 @@ class Car {
     }
 
     move(randomNumber) {
-        if(randomNumber >= RacingcarConstants.MOVE_CONDITION) {
-            this.position += RacingcarConstants.MOVE_FORWARD;
+        if(randomNumber >= DEFINITION.MOVE_CONDITION) {
+            this.position += DEFINITION.MOVE_FORWARD;
         }
     }
 }

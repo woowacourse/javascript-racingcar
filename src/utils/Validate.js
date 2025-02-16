@@ -1,4 +1,4 @@
-import RacingcarConstants from "../constants/RacingCarConstants.js";
+import DEFINITION from "../constants/Definition.js";
 import ERROR_MESSAGE from "../constants/RacingErrorMessage.js";
 
 class Validate {
@@ -11,7 +11,7 @@ class Validate {
         const names = input.split(',');
         names.forEach(name => {
             this.isEmpty(name)
-            if(name.trim().length > RacingcarConstants.MAX_NAME_LENGTH)
+            if(name.trim().length > DEFINITION.MAX_NAME_LENGTH)
                 throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
         });
     }
