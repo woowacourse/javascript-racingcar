@@ -17,14 +17,13 @@ class Racing {
   }
 
   raceTurn() {
-    const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
-
     this.#cars.forEach((car) => {
+      const randomNum = getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
       if (randomNum >= MOVE_NUMBER) {
         car.move();
       }
     });
-    return this.getCarInfo(this.#cars);
+    return this.getCarInfo();
   }
 
   runRace() {
@@ -35,13 +34,7 @@ class Racing {
   }
 
   getCarInfo() {
-    const result = this.#cars.map((car) => {
-      const position = car.getCarPosition();
-      const name = car.getName();
-      return { name, position };
-    });
-
-    return result;
+    return this.#cars.map((car) => car.getInfo());
   }
 
   decideWinner() {
