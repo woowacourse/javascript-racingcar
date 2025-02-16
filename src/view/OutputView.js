@@ -1,4 +1,8 @@
-import { FORWARD_DASH, GAME_MESSAGE } from '../constants/systemMessages.js';
+import {
+  FORWARD_DASH,
+  GAME_MESSAGE,
+  SEPARATOR,
+} from '../constants/systemMessages.js';
 
 const OutputView = Object.freeze({
   printMessage(content) {
@@ -17,7 +21,9 @@ const OutputView = Object.freeze({
   },
 
   printRaceWinner(racing) {
-    OutputView.printMessage(`${GAME_MESSAGE.WINNER} ${racing.getWinner()}`);
+    OutputView.printMessage(
+      `${GAME_MESSAGE.WINNER} ${racing.getWinner().join(`${SEPARATOR} `)}`,
+    );
   },
 });
 
