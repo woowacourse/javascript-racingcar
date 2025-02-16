@@ -7,12 +7,10 @@ export const validateCarNames = (input) => {
   if (input.replace(/[^,a-zA-Z가-힣]/g, "").length !== input.length) {
     createError(ERROR_MESSAGE.INVALID_NAME_SEPARATOR);
   }
+
   const cars = input.split(",");
   if (cars.length !== new Set(cars).size) {
     createError(ERROR_MESSAGE.DUPLICATE_NAME);
-  }
-  if (cars.some((car) => car.length < 1 || car.length > 5)) {
-    createError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
   }
 };
 
