@@ -15,7 +15,6 @@ export default class Car {
   }
 
   move(number) {
-    console.log(number);
     if (this.isMove(number)) {
       this.#position += 1;
     }
