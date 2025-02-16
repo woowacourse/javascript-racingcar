@@ -7,6 +7,10 @@ import Winners from "../domain/Winners.js";
 import OutputView from "../view/OutputView.js";
 
 export default class Controller {
+  constructor() {
+    this.inputView = new InputView();
+  }
+
   async run() {
     const cars = await this.getCars();
     const race = await this.getRace(cars);
@@ -22,8 +26,9 @@ export default class Controller {
 
   async getRace(cars) {
     try {
-      const inputView = new InputView();
-      const tryCount = await inputView.readLineAsync(INPUT_MESSAGE.TRY_COUNT);
+      const tryCount = await this.inputView.readLineAsync(
+        INPUT_MESSAGE.TRY_COUNT
+      );
       const race = new Race(cars, tryCount);
       return race;
     } catch (e) {
@@ -33,8 +38,7 @@ export default class Controller {
   }
 
   async getCars() {
-    const inputView = new InputView();
-    const carNameInput = await inputView.validateAndRetry(
+    const carNameInput = await this.inputView.validateAndRetry(
       INPUT_MESSAGE.CAR_NAMES,
       validateCarNames
     );
