@@ -16,6 +16,20 @@ export default class Car {
   }
 
   move() {
-    this.position += 1;
+    if (this.isMove(getRandomNumber(10))) {
+      this.#position += 1;
+    }
+  }
+
+  isMove(number) {
+    return number >= CAR.PROGRESS_CRITERIA;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getPosition() {
+    return this.#position;
   }
 }

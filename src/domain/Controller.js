@@ -1,7 +1,5 @@
 import InputView from "../view/InputView.js";
 import Car from "../domain/Car.js";
-import { CAR } from "../constants/domain.js";
-import { getRandomNumber } from "../utils/getRandomNumber.js";
 import OutputView from "../view/OutputView.js";
 
 export default class Controller {
@@ -36,15 +34,9 @@ export default class Controller {
 
   runRound(cars) {
     cars.forEach((car) => {
-      if (this.isMove(getRandomNumber(10))) {
-        car.move();
-      }
-      this.outputView.printProgressResult(car.name, car.position);
+      car.move();
+      this.outputView.printProgressResult(car.getName(), car.getPosition());
     });
     this.outputView.printNewLine();
-  }
-
-  isMove(number) {
-    return number >= CAR.PROGRESS_CRITERIA;
   }
 }
