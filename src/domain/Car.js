@@ -1,4 +1,4 @@
-import { DEFAULT_POSITION, UNIT_POSITION } from './constants/MagicNumber.js';
+import { DEFAULT_POSITION, UNIT_POSITION } from '../constants/MAGIC_NUMBER.js';
 
 class Car {
   #name;
@@ -20,6 +20,10 @@ class Car {
 
   getName() {
     return this.#name;
+  }
+
+  getInfo() {
+    return { name: this.#name, position: this.#position };
   }
 }
 
