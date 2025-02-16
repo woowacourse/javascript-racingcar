@@ -6,7 +6,7 @@ export default class InputView {
   static async getCarNames() {
     return retryUntilSuccess(async () => {
       const rawCarNames = await readLineAsync(INPUT_MESSAGES.carName);
-      const carNames = rawCarNames.split(',');
+      const carNames = rawCarNames.split(',').map(carName => carName.trim());
       InputValidator.validateCarNames(carNames);
 
       return carNames;
