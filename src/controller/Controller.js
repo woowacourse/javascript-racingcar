@@ -1,6 +1,6 @@
 import InputView from "../view/InputView.js";
 import Car from "../model/Car.js";
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/constants.js";
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/message.js";
 import { CAR } from "../constants/constants.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
@@ -9,12 +9,12 @@ export default class Controller {
   async run() {
     const carNameInput = await this.validateAndRetry(
       INPUT_MESSAGE.CAR_NAMES,
-      validateCarNames,
+      validateCarNames
     );
     const carNames = carNameInput.split(",").map((carName) => carName.trim());
     const tryCount = await this.validateAndRetry(
       INPUT_MESSAGE.TRY_COUNT,
-      validateTryCount,
+      validateTryCount
     );
 
     const cars = [];
@@ -36,7 +36,7 @@ export default class Controller {
     const max = Math.max(...cars.map((car) => car.position));
     const winners = cars.filter((car) => car.position === max);
     console.log(
-      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`,
+      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`
     );
   }
 
@@ -44,7 +44,7 @@ export default class Controller {
     cars.forEach((car) => {
       if (this.isMove(getRandomNumber())) car.move();
       console.log(
-        `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`,
+        `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`
       );
     });
     console.log("");
