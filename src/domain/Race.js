@@ -1,4 +1,4 @@
-import { DELIMITERS, MAX_RANDOM_VALUE, MIN_RANDOM_VALUE, MOVE_DEFAULT } from "./constants.js";
+import { DELIMITERS, MAX_RANDOM_VALUE, MIN_RANDOM_VALUE, MOVE_DEFAULT } from "../constants.js";
 import { getAttempt, getCarNames } from "../ui/InputHandler.js";
 import {
   displayRaceResult,

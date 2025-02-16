@@ -1,4 +1,4 @@
-import { MOVE_DEFAULT, MOVE_THRESHOLD } from "./constants.js";
+import { MOVE_DEFAULT, MOVE_THRESHOLD } from "../constants.js";
 
 class Car {
   #name = "";

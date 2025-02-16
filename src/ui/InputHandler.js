@@ -1,4 +1,4 @@
-import { INFO_MESSAGE } from "../domain/constants.js";
+import { INFO_MESSAGE } from "../constants.js";
 import readLineAsync from "./Input.js";
 import { validateAttempt } from "../domain/validate.js";
 

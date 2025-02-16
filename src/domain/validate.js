@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "./constants.js";
+import { ERROR_MESSAGE } from "../constants.js";
 
 export const validateCarNames = (carNames) => {
   if (carNames.some(name => name.length == 0)) throw new Error(ERROR_MESSAGE.CAR_NAME_TOO_SHORT);

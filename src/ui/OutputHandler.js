@@ -1,4 +1,4 @@
-import { INFO_MESSAGE, CAR_PROGRESS_MARK, DELIMITERS } from "../domain/constants.js";
+import { INFO_MESSAGE, CAR_PROGRESS_MARK, DELIMITERS } from "../constants.js";
 
 export const displayResultTitle = () => {
   console.log(INFO_MESSAGE.RACE_RESULT_TITLE);
