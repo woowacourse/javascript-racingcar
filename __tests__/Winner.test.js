@@ -28,7 +28,7 @@ describe('우승자 선별 테스트', () => {
     mockRandom([3, 4, 3, 3, 4, 3]);
 
     // when
-    race.movePosition();
+    race.moveForward();
 
     // then
     expect(race.getMaxPosition()).toEqual(2);
@@ -39,7 +39,7 @@ describe('우승자 선별 테스트', () => {
     mockRandom([3, 4, 3, 3, 4, 3]);
 
     // when
-    race.movePosition();
+    race.moveForward();
 
     // then
     expect(race.getWinner()).toEqual(['앵버']);

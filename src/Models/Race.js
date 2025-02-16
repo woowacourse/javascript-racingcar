@@ -16,7 +16,7 @@ class Race {
     return randomNumber >= MIN_FORWARD_NUMBER;
   }
 
-  movePosition() {
+  moveForward() {
     for (let i = 0; i < this.tryCount; i++) {
       this.cars.forEach((car) => {
         car.movePosition(this.canMove());
