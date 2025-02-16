@@ -1,6 +1,7 @@
 import InputView from "../view/InputView.js";
 import Car from "../domain/Car.js";
 import OutputView from "../view/OutputView.js";
+import Race from "./Race.js";
 
 export default class Controller {
   constructor() {
@@ -15,28 +16,15 @@ export default class Controller {
 
     const cars = carNames.map((carName) => new Car(carName));
 
-    this.runRace(cars, tryCount);
-    this.findWinner(cars);
-  }
+    const race = new Race();
+    race.runRace(cars, tryCount);
 
-  runRace(cars, tryCount) {
-    this.outputView.printResultText();
-    for (let i = 0; i < tryCount; i++) {
-      this.runRound(cars);
-    }
+    this.findWinner(cars);
   }
 
   findWinner(cars) {
     const max = Math.max(...cars.map((car) => car.getPosition()));
     const winners = cars.filter((car) => car.getPosition() === max);
     this.outputView.printWinner(winners);
-  }
-
-  runRound(cars) {
-    cars.forEach((car) => {
-      car.move();
-      this.outputView.printProgressResult(car.getName(), car.getPosition());
-    });
-    this.outputView.printNewLine();
   }
 }
