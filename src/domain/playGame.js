@@ -1,6 +1,6 @@
 import playRound from "./playRound.js";
 import { printResultHeader, printRoundScore } from "../view/output.js";
-import { pipe } from "../utils/functional.js";
+import { pipe } from "../utils/pipe.js";
 
 const initializeCars = (carNames) =>
   carNames.map((name) => ({ name, count: 0 }));
