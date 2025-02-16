@@ -60,7 +60,7 @@ export default class Controller {
       return Array.from(carNames, (carName) => new Car(carName));
     } catch (e) {
       console.log(e.message);
-      return await this.getCars();
+      return await this.getValidatedCars();
     }
   }
 }
