@@ -10,12 +10,16 @@ class Race {
   executeTurn() {
     return this.#carList.map((car) => {
       const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
-      if(this.checkMove(randomNumber))car.move();
+      this.moveCar(randomNumber, car)
       return {name:car.name, position:car.position};
     });
-}
+  }
 
-  checkMove(randomNumber) {
+  moveCar(randomNumber, car){
+    if(this.#checkMoveCondition(randomNumber))car.move()
+  }
+
+  #checkMoveCondition(randomNumber) {
     return randomNumber >= MOVE_CONDITION;
   }
 

@@ -9,7 +9,7 @@ describe("조건에 따른 자동차 이동 테스트", () => {
     const suii = new Car("수이이")
     const race = new Race([sui,suii])
   
-    race.checkMove(MOVE_CONDITION ,sui)
+    race.moveCar(MOVE_CONDITION,sui)
 
     expect(sui.position).toBe(1);
   });
@@ -19,7 +19,7 @@ describe("조건에 따른 자동차 이동 테스트", () => {
     const suii = new Car("수이이")
     const race = new Race([sui,suii])
   
-    race.checkMove(MOVE_CONDITION-1,sui)
+    race.moveCar(MOVE_CONDITION-1,sui)
 
     expect(sui.position).toBe(0);
   });
