@@ -28,7 +28,7 @@ export default class Race {
   getGameRoundResult() {
     const result = [];
     this.#cars.forEach((car) => {
-      if (this.isMove(getRandomNumber())) car.move();
+      if (this.isMove(getRandomNumber(0, 9))) car.move();
       result.push({ name: car.getName(), position: car.getPosition() });
     });
     return result;
