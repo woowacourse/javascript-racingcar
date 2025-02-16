@@ -19,8 +19,8 @@ class Car {
     return this.#position;
   }
 
-  moveForward(randomValue) {
-    if (randomValue < DEFINITION.MOVE_CONDITION) {
+  moveForward(inputNumber) {
+    if (inputNumber < DEFINITION.MOVE_CONDITION) {
       return;
     }
     this.#position++;
