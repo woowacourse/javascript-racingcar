@@ -1,5 +1,5 @@
-import InputView from './InputView.js';
-import OutputView from './OutputView.js';
+import InputView from './ui/InputView.js';
+import OutputView from './ui/OutputView.js';
 import Validate from './Validate.js'
 import Car from './Car.js';
 
