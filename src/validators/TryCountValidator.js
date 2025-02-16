@@ -6,7 +6,7 @@ class TryCountValidator {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_NOT_NUMBERIC);
     }
 
-    if (Number(tryCount) > 100) {
+    if (Number(tryCount) > NUMBER.MAX_TRY_COUNT) {
       throw new Error(ERROR_MESSAGE.TRY_COUNT_NOT_UPPER_THEN_100);
     }
 

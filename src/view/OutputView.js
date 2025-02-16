@@ -8,7 +8,7 @@ class OutputView {
   printRaceResult(carList) {
     carList.forEach((car) => {
       console.log(
-        `${car.getName()} : ${SYSTEM_MESSAGE.OUTPUT_CAR_MARK.repeat(car.getPosition())}`,
+        `${car.getName()}${SYSTEM_MESSAGE.OUTPUT_RACE_DELIMITER}${SYSTEM_MESSAGE.OUTPUT_CAR_MARK.repeat(car.getPosition())}`,
       );
     });
   }
