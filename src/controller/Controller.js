@@ -1,9 +1,10 @@
 import InputView from "../view/InputView.js";
 import Car from "../domain/Car.js";
-import { INPUT_MESSAGE } from "../constants/message.js";
+import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/message.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import Race from "../domain/Race.js";
 import Winners from "../domain/Winners.js";
+import OutputView from "../view/OutputView.js";
 
 export default class Controller {
   async run() {
@@ -14,12 +15,14 @@ export default class Controller {
       validateTryCount
     );
 
+    const outputView = new OutputView();
     const race = new Race(cars, tryCount);
-    race.runRace();
+    const raceResult = race.getRaceResult();
+    outputView.printExecutionResult(raceResult);
 
     const winners = new Winners(cars);
     const winnerNames = winners.getWinners();
-    console.log(`최종 우승자: ${winnerNames.join(", ")}`);
+    outputView.printWinners(winnerNames);
   }
 
   async getCars() {

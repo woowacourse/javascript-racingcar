@@ -9,22 +9,26 @@ export default class Race {
   }
 
   runRace() {
-    console.log(OUTPUT_MESSAGE.RESULT);
     for (let i = 0; i < this.tryCount; i++) {
       this.gameRound();
     }
   }
 
-  gameRound() {
+  getRaceResult() {
+    const results = [];
+    for (let i = 0; i < this.tryCount; i++) {
+      results.push(this.getGameRoundResult());
+    }
+    return results;
+  }
+
+  getGameRoundResult() {
+    const result = [];
     this.cars.forEach((car) => {
       if (this.isMove(getRandomNumber())) car.move();
-      console.log(
-        `${car.getName()} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(
-          car.getPosition()
-        )}`
-      );
+      result.push({ name: car.getName(), position: car.getPosition() });
     });
-    console.log("");
+    return result;
   }
 
   isMove(number) {
