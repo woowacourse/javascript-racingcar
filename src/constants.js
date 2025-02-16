@@ -21,6 +21,7 @@ export const INFO_MESSAGE = {
 export const ERROR_MESSAGE = {
   CAR_NAME_TOO_SHORT: "[ERROR] 모든 자동차 이름은 1자 이상이어야 합니다.",
   CAR_NAME_TOO_LONG: "[ERROR] 모든 자동차 이름은 5자 이하여야 합니다.",
+  TOO_FEW_CARS: "[ERROR] 경주 가능한 최소 자동차 개수는 2개입니다.",
   TOO_MANY_CARS: "[ERROR] 경주 가능한 최대 자동차 개수는 10개입니다.",
   CAR_NAME_DUPLICATE: "[ERROR] 중복되는 자동차 이름이 있습니다.",
 

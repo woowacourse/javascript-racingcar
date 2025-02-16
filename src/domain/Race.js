@@ -6,7 +6,7 @@ import {
   displayWinner,
 } from "../ui/OutputHandler.js";
 import Car from "./Car.js";
-import { validateAttempt, validateCarNames } from "./validate.js";
+import { validateAttempt, validateCarCount, validateCarNames } from "./validate.js";
 
 export const startRace = async () => {
   const carNames = await getValidCarNames();
@@ -32,6 +32,7 @@ const getValidCarNames = async () => {
   while (true) {
     try {
       const carNames = parseCarNames(await getCarNames());
+      validateCarCount(carNames);
       validateCarNames(carNames);
       return carNames;
     } catch (error) {
