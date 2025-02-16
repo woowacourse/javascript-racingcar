@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "../src/constants/constants.js";
+import { ERROR_MESSAGE } from "../src/constants/error.js";
 import { validateCarNames, validateTryCount } from "../src/utils/validation.js";
 
 describe("자동차 이름 잘못 입력시 예외 테스트", () => {
