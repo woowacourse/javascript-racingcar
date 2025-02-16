@@ -1,4 +1,6 @@
-import { MIN, MOVE_UNIT } from "../constant/constant.js";
+import { MOVE_UNIT } from "../constant/constant.js";
+import { MIN } from "../constant/range.js";
+
 
 class Car {
   #name;

@@ -5,8 +5,11 @@ const OutputView = {
   printBeforeResult() {
     console.log(OUTPUT.BEFORE_RESULT);
   },
-  printRoundResult(name, position) {
-    console.log(`${name} : ${positionToStr(position)}`);
+  printRoundResult(carList) {
+    carList.forEach((car) => {
+      console.log(`${car.getName()} : ${positionToStr(car.getPosition())}`);
+    });
+    console.log("");
   },
   printWinners(winners) {
     console.log(`${OUTPUT.WINNER}${winners.join(", ")}`);

@@ -15,9 +15,23 @@ describe("validation", () => {
 
         expect(() => validateCarNames(carNames)).toThrow(ERROR.NAME_LENGTH);
       });
+
+      test("중복된 이름이 있으면 에러가 발생한다.", () => {
+        const carNames = "ohgus,ohgus";
+
+        expect(() => validateCarNames(carNames)).toThrow(
+          ERROR.DUPLICATE_CAR_NAME
+        );
+      });
     });
     describe("정상 케이스", () => {
       test("자동차는 최소 2대 이상 각 자동차의 이름은 1자 이상 혹은 5자 이하여야 한다.", () => {
+        const carNames = "seo,ohgus";
+
+        expect(() => validateCarNames(carNames)).not.toThrow();
+      });
+
+      test("중복된 이름이 없으면 통과한다.", () => {
         const carNames = "seo,ohgus";
 
         expect(() => validateCarNames(carNames)).not.toThrow();

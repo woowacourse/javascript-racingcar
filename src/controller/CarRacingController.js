@@ -1,13 +1,14 @@
 import Car from "../model/Car.js";
+import CarRacing from "../model/CarRacing.js";
 import InputView from "../view/Input.js";
 import OutputView from "../view/Output.js";
-import randomNumber from "../util/random.js";
 import tryInput from "../util/tryInput.js";
 import { validateCarNames, validateRaceCount } from "../util/validation.js";
 import { SPLITTER } from "../constant/constant.js";
+import { getWinners } from "../util/winner.js";
 
-class Controller {
-  #carList;
+class CarRacingController {
+  #carRacing;
   #raceCount;
 
   constructor() {
@@ -18,13 +19,8 @@ class Controller {
     await this.readyRace();
 
     OutputView.printBeforeResult();
-    for (let i = 0; i < this.#raceCount; i++) {
-      this.race();
-      console.log("");
-    }
-
-    const winners = this.getWinners(this.#carList);
-    OutputView.printWinners(winners);
+    this.startRacing(this.#raceCount);
+    this.endRacing(this.#carRacing.getCarList());
   }
 
   async readyRace() {
@@ -37,9 +33,11 @@ class Controller {
 
     const carNamesArray = carNames.split(SPLITTER);
 
-    this.#carList = carNamesArray.map((name) => {
-      return new Car(name);
-    });
+    this.#carRacing = new CarRacing(
+      carNamesArray.map((name) => {
+        return new Car(name);
+      })
+    );
   }
 
   async setRaceCount() {
@@ -51,23 +49,17 @@ class Controller {
     this.#raceCount = raceCount;
   }
 
-  race() {
-    this.#carList.forEach((car) => {
-      const moveCondition = randomNumber();
-
-      car.move(moveCondition);
-
-      OutputView.printRoundResult(car.getName(), car.getPosition());
-    });
+  startRacing(raceCount) {
+    for (let i = 0; i < raceCount; i++) {
+      this.#carRacing.raceOneRound();
+      OutputView.printRoundResult(this.#carRacing.getCarList());
+    }
   }
 
-  getWinners(carList) {
-    const maxPosition = Math.max(...carList.map((car) => car.getPosition()));
-
-    return carList
-      .filter((car) => car.getPosition() === maxPosition)
-      .map((winner) => winner.getName());
+  endRacing(carList) {
+    const winners = getWinners(carList);
+    OutputView.printWinners(winners);
   }
 }
 
-export default Controller;
+export default CarRacingController;

@@ -1,17 +1,6 @@
 const MOVE_UNIT = 1;
 const SPLITTER = ",";
 const POSITION_SYMBOL = "-";
+const EMPTY_SPACE_REGEX = /\s/g;
 
-const MIN = Object.freeze({
-  CAR_COUNT: 2,
-  RACE_COUNT: 1,
-  NAME_LENGTH: 1,
-  MOVE_CONDITION: 4,
-});
-
-const MAX = Object.freeze({
-  NAME_LENGTH: 5,
-  RANDOM_NUMBER: 9,
-});
-
-export { MOVE_UNIT, SPLITTER, MIN, MAX, POSITION_SYMBOL };
+export { MOVE_UNIT, SPLITTER, POSITION_SYMBOL, EMPTY_SPACE_REGEX };
