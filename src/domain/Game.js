@@ -27,15 +27,19 @@ export default class Game {
     return this.getWinner(maxPosition);
   }
 
+  raceOneTime(roundResults) {
+    const roundResult = this.#carList.map(car => {
+      const randomValue = createRandom();
+      car.moveForward(randomValue);
+      return { name: car.name, position: car.position };
+    });
+    roundResults.push(roundResult);
+  }
+
   race() {
     const roundResults = [];
     for (let i = 0; i < this.inputTryNumber; i++) {
-      const roundResult = this.#carList.map(car => {
-        const randomValue = createRandom();
-        car.moveForward(randomValue);
-        return { name: car.name, position: car.position };
-      });
-      roundResults.push(roundResult);
+      this.raceOneTime(roundResults);
     }
     return { winners: this.judgeWinner(), roundResults };
   }
