@@ -3,7 +3,7 @@ import DEFINITION from "../constants/Definition.js";
 class Car {
     constructor(name) {
         this.name = name;
-        this.position = 0;
+        this.position = DEFINITION.DEAFULT_POSITION;
     }
 
     move(randomNumber) {
