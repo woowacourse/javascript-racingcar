@@ -1,10 +1,11 @@
 import getRandomValueInRange from '../utils/getRandomValueInRange.js';
+import Car from './Car.js';
 
 class Racing {
   carList;
 
-  constructor(carList) {
-    this.carList = carList;
+  constructor(carNames) {
+    this.carList = carNames.map((name) => new Car(name, 0));
   }
 
   getWinner() {

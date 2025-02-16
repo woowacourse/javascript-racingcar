@@ -6,9 +6,9 @@ import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
-    const carList = await loopWhileValid(InputView.enterCarNames);
+    const carNames = await loopWhileValid(InputView.enterCarNames);
     const count = await loopWhileValid(InputView.enterCount);
-    const racing = new Racing(carList, count);
+    const racing = new Racing(carNames, count);
 
     OutputView.printMessage(GAME_MESSAGE.RACING_RESULT);
     for (let i = 0; i < count; i++) {
