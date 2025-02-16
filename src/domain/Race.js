@@ -7,13 +7,16 @@ class Race {
   #tryCount;
   #raceHistory;
 
-  constructor(carNames, tryCount) {
+  initCars(carNames) {
     this.#validateCarNames(carNames);
-    this.#validateTryCount(tryCount);
-
     this.#cars = carNames.map((car) => new Car(car));
-    this.#tryCount = tryCount;
+
     this.#raceHistory = new Map(carNames.map((name) => [name, []]));
+  }
+
+  initTryCount(tryCount) {
+    this.#validateTryCount(tryCount);
+    this.#tryCount = tryCount;
   }
 
   #validateCarNames(carNames) {

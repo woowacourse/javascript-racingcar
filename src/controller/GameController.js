@@ -5,19 +5,25 @@ import ValidateModule from '../validator/ValidatorModule.js';
 import WinnerSelector from '../domain/WinnerSelector.js';
 
 class GameController {
+  #race;
+  #winnerSelector;
+
+  constructor() {
+    this.#race = new Race();
+    this.#winnerSelector = new WinnerSelector();
+  }
   async run() {
     const carNames = await this.getValidatedCarNames();
+    this.#race.initCars(carNames);
+
     const tryCount = await this.getValidatedTryCount();
+    this.#race.initTryCount(tryCount);
 
-    const race = new Race(carNames, tryCount);
-    race.raceStart();
-    this.outputRaceResult(race.raceHistory);
+    this.#race.raceStart();
+    this.outputRaceResult();
 
-    const winnerSelector = new WinnerSelector();
-    winnerSelector.calculateWinners(race.cars);
-    const winners = winnerSelector.winners;
-
-    this.outputWinner(winners);
+    this.#winnerSelector.calculateWinners(this.#race.cars);
+    this.outputWinner();
   }
 
   async getValidatedCarNames() {
@@ -34,7 +40,8 @@ class GameController {
     return tryCount;
   }
 
-  outputRaceResult(raceHistory) {
+  outputRaceResult() {
+    const raceHistory = this.#race.raceHistory;
     const maxRounds = Math.max(...Array.from(raceHistory.values()).map((arr) => arr.length));
 
     OutputView.printResultStartMessage();
@@ -48,8 +55,8 @@ class GameController {
     }
   }
 
-  outputWinner(winners) {
-    const winnerNames = winners.map((winner) => winner.name);
+  outputWinner() {
+    const winnerNames = this.#winnerSelector.winners.map((winner) => winner.name);
 
     OutputView.printWinner(winnerNames);
   }
