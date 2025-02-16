@@ -36,7 +36,7 @@ export default class Controller {
 
   runRound(cars) {
     cars.forEach((car) => {
-      if (this.isMove(getRandomNumber())) {
+      if (this.isMove(getRandomNumber(10))) {
         car.move();
       }
       this.outputView.printProgressResult(car.name, car.position);
