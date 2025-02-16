@@ -1,6 +1,5 @@
 import Car from "./Car.js";
 import { getRandomIntBetween } from "../util.js";
-import RaceRecord from "./RaceRecord.js";
 class Race {
   #cars;
   #raceCount;
