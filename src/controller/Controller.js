@@ -3,6 +3,7 @@ import Car from "../domain/Car.js";
 import { INPUT_MESSAGE } from "../constants/message.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 import Race from "../domain/Race.js";
+import Winners from "../domain/Winners.js";
 
 export default class Controller {
   async run() {
@@ -22,15 +23,10 @@ export default class Controller {
     });
     const race = new Race(cars, tryCount);
     race.runRace();
-    this.findWinner(cars);
-  }
 
-  findWinner(cars) {
-    const max = Math.max(...cars.map((car) => car.position));
-    const winners = cars.filter((car) => car.position === max);
-    console.log(
-      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`
-    );
+    const winners = new Winners(cars);
+    const winnerNames = winners.getWinners();
+    console.log(`최종 우승자: ${winnerNames.join(", ")}`);
   }
 
   async validateAndRetry(message, validateFn) {
