@@ -1,13 +1,16 @@
 import { CONFIG } from '../constants/config.js';
 
 class Car {
+  #position = CONFIG.INITIAL_NUMBER;
+
   constructor(name) {
     this.name = name;
-    this.position = CONFIG.INITIAL_NUMBER;
   }
 
-  move() {
-    this.position++;
+  move(condition) {
+    if (condition) {
+      this.#position += 1;
+    }
   }
 }
 export default Car;

@@ -18,13 +18,6 @@ class CarManager {
     && pickedRandomNumber <= CONFIG.MAXIMUM_RANDOM_NUMBER;
   }
 
-  moveForwardCar(car, pickedRandomNumber) {
-    const moveCondition = this.isMoveCondition(pickedRandomNumber);
-    if (moveCondition) {
-      return car.move();
-    }
-  }
-
   race(attempts) {
     OutputView.printResultGreeting();
     for (let i = CONFIG.INITIAL_NUMBER; i < attempts; i++) {
@@ -34,6 +27,11 @@ class CarManager {
       });
       console.log();
     }
+  }
+
+  moveForwardCar(car, pickedRandomNumber) {
+    const condition = this.isMoveCondition(pickedRandomNumber);
+    car.move(condition);
   }
 
   determineWinners() {
