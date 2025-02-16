@@ -12,5 +12,9 @@ class Car {
       this.#position += 1;
     }
   }
+
+  getPosition() {
+    return this.#position;
+  }
 }
 export default Car;
