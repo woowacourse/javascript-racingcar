@@ -9,24 +9,12 @@ const validateCarCount = (carNameList) => {
   }
 }
 
-const validateNameLengthMin = (carNameList) => {
-    if(!IsValidCarNameList.nameLengthMin(carNameList)){
-    throwError(CAR_NAME_LIST_ERROR_MESSAGES.NAME_LENGTH_MIN)
-  }
-}
-
-const validateNameLengthMax = (carNameList) => {
-    if(!IsValidCarNameList.nameLengthMax(carNameList)){
-    throwError(CAR_NAME_LIST_ERROR_MESSAGES.NAME_LENGTH_MAX)
-  }
-}
-
 const validateDuplicate = (carNameList) => {
     if(IsValidCarNameList.duplicate(carNameList)){
     throwError(CAR_NAME_LIST_ERROR_MESSAGES.DUPLICATE_CAR_NAME)
   }
 }
 
-const validateCarNameList = (carNameList) => runValidators([validateCarCount, validateNameLengthMin, validateNameLengthMax, validateDuplicate], carNameList);
+const validateCarNameList = (carNameList) => runValidators([validateCarCount, validateDuplicate], carNameList);
 
 export default validateCarNameList;

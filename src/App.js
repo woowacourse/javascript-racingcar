@@ -6,8 +6,7 @@ import Car from "./domain/Car.js";
 
 class App {
   async run() {
-    const carNameList = await InputHandler.getCarNameList();
-    const carList = carNameList.map((carName)=>new Car(carName))
+    const carList = await InputHandler.getCarNameList();
     const attemptCount = await InputHandler.getAttemptCount();
     const race = new Race(carList)
 
