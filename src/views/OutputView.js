@@ -21,6 +21,10 @@ const OutputView = {
   printErrorMessage(error) {
     console.log(error.message);
   },
+
+  lineBreak() {
+    console.log();
+  },
 };
 
 export default OutputView;
