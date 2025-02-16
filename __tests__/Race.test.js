@@ -7,7 +7,7 @@ describe("Race 클래스 테스트", () => {
     race = new Race();
   });
 
-  test("createCars 메소드 테스트", () => {
+  test("입력한 사용자 이름을 통해 Car 객체를 만들 수 있다.", () => {
     const carNames = ["pobi", "crong", "honux"];
 
     const carModels = race.createCars(carNames);
@@ -17,7 +17,7 @@ describe("Race 클래스 테스트", () => {
     });
   });
 
-  test("getWinner 메소드 테스트", () => {
+  test("레이스 결과를 구할 수 있다.", () => {
     const carModels = [new Car("pobi"), new Car("woni")];
     const expectedResult = ["pobi", "woni"];
 
