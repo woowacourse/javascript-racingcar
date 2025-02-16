@@ -1,13 +1,19 @@
-class TryCountValidator{
-    validateNumber(tryCount){
-        if(isNaN(tryCount) === true){
-            throw new Error("ERROR : 시도 횟수는 숫자여야 합니다.");
-        }
-        
-        if(Number(tryCount) <= 0){
-            throw new Error("ERROR : 시도 횟수는 양의 정수여야 합니다.");
-        }
+import { ERROR_MESSAGE } from "../constants/ErrorMessage.js";
+import { NUMBER } from "../constants/Number.js";
+class TryCountValidator {
+  validateNumber(tryCount) {
+    if (isNaN(tryCount)) {
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_NOT_NUMBERIC);
     }
+
+    if (Number(tryCount) > NUMBER.MAX_TRY_COUNT) {
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_NOT_UPPER_THEN_100);
+    }
+
+    if (Number(tryCount) < NUMBER.MIN_TRY_COUNT) {
+      throw new Error(ERROR_MESSAGE.TRY_COUNT_NOT_POSITIVE);
+    }
+  }
 }
 
 export default TryCountValidator;
