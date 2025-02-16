@@ -23,6 +23,17 @@ describe('우승자 선별 테스트', () => {
     expect(race.canMove()).toBe(false);
   });
 
+  test('가장 많이 이동된 값 반환 테스트', () => {
+    // given
+    mockRandom([3, 4, 3, 3, 4, 3]);
+
+    // when
+    race.movePosition();
+
+    // then
+    expect(race.getMaxPosition()).toEqual(2);
+  });
+
   test('우승자가 잘 선별되는지 테스트', () => {
     // given;
     mockRandom([3, 4, 3, 3, 4, 3]);
