@@ -1,4 +1,4 @@
-import Validate from '../src/Validate.js'
+import Validate from '../src/utils/Validate'
 
 test("공백 입력 시 에러 발생", () => {
   const validate = new Validate();
