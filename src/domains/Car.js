@@ -1,4 +1,4 @@
-import CarNameValidator from "./CarNameValidator.js";
+import CarValidator from "./validators/CarValidator.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
@@ -10,7 +10,7 @@ export default class Car {
   static MOVE_CONDITION = 4;
 
   constructor(name) {
-    CarNameValidator.validateCarName(name);
+    CarValidator.validateCarNameLength(name);
     this.#name = name;
     this.#position = Car.START_POSITION;
   }
