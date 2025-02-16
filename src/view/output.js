@@ -9,6 +9,6 @@ export const printRoundScore = (cars) => {
   console.log("\n");
 };
 
-export const displayWinner = (winnersName) => {
+export const printWinners = (winnersName) => {
   console.log("우승자: " + winnersName.join(","));
 };
