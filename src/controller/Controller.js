@@ -16,7 +16,13 @@ class Controller {
 
     const attempts = await this.user.readAttempts();
     OutputView.printResultGreeting();
-    this.carManager.race(attempts);
+    for (let i = 0; i < attempts; i++) {
+      this.carManager.race(1);
+      this.carManager.cars.forEach((car) => {
+        OutputView.printRaceResult(car.name, car.position);
+      });
+      OutputView.lineBreak();
+    }
 
     const raceResult = new RaceResult(this.carManager.cars);
     const winners = raceResult.determineWinners();
