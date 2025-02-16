@@ -1,24 +1,26 @@
 import Game from '../domain/Game.js';
 import OutputView from '../views/OutputView.js';
 import InputView from '../views/InputView.js';
+import { Validator } from '../utils/Validator.js';
+import DEFINITION from '../constants/Definition.js';
 
 export default class Controller {
   async getValidateName() {
     while (true) {
       try {
         const inputName = await InputView.inputName();
-        new Game(inputName, 1); // 검증을 위한 임시 값 1 입니다.
+        Validator.validateName(inputName, DEFINITION.MAX_NAME_LENGTH); // 클라 검증
         return inputName;
       } catch (error) {
         OutputView.printInput(error.message);
       }
     }
   }
-  async getValidateTryNumber(inputName) {
+  async getValidateTryNumber() {
     while (true) {
       try {
         const inputTryNumber = await InputView.inputTryNumber();
-        new Game(inputName, inputTryNumber); // tryNumber 검증
+        Validator.validateTryNumber(inputTryNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME); // 클라 검증
         return inputTryNumber;
       } catch (error) {
         OutputView.printInput(error.message);
@@ -40,7 +42,7 @@ export default class Controller {
 
   async start() {
     const inputName = await this.getValidateName();
-    const inputTryNumber = await this.getValidateTryNumber(inputName);
+    const inputTryNumber = await this.getValidateTryNumber();
 
     const game = new Game(inputName, inputTryNumber);
     const { winners, roundResults } = game.race();
