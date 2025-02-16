@@ -36,3 +36,15 @@ export const validateAttemptCount = (attemptCount) => {
     throw new CustomError(INVALID_MESSAGE.ATTEMPT_COUNT);
   }
 };
+
+export const retryUntilValid = async (getInputFn, validator) => {
+  while (true) {
+    try {
+      const userInput = await getInputFn();
+      validator(userInput);
+      return userInput;
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+};
