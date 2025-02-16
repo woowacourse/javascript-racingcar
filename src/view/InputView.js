@@ -22,4 +22,15 @@ export default class InputView {
       });
     });
   }
+
+  async validateAndRetry(message, validateFn) {
+    try {
+      const input = await this.readLineAsync(message);
+      validateFn(input);
+      return input;
+    } catch (e) {
+      console.log(e.message);
+      return this.validateAndRetry(message, validateFn);
+    }
+  }
 }

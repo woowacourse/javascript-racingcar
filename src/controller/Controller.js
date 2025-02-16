@@ -33,7 +33,8 @@ export default class Controller {
   }
 
   async getCars() {
-    const carNameInput = await this.validateAndRetry(
+    const inputView = new InputView();
+    const carNameInput = await inputView.validateAndRetry(
       INPUT_MESSAGE.CAR_NAMES,
       validateCarNames
     );
@@ -48,18 +49,6 @@ export default class Controller {
     } catch (e) {
       console.log(e.message);
       return await this.getCars();
-    }
-  }
-
-  async validateAndRetry(message, validateFn) {
-    try {
-      const inputView = new InputView();
-      const input = await inputView.readLineAsync(message);
-      validateFn(input);
-      return input;
-    } catch (e) {
-      console.log(e.message);
-      return this.validateAndRetry(message, validateFn);
     }
   }
 }
