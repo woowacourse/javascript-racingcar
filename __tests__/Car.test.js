@@ -8,11 +8,19 @@ describe("자동차 모델 테스트", () => {
     expect(car.getName()).toBe(NAME);
   });
 
-  test("잘못된 자동차 이름으로 자동차 객체를 생성할 경우 오류가 발생한다.", () => {
-    const NAME = "가나다라마바사";
+  test.each([[""], ["가나다라마바"]])(
+    "잘못된 자동차 이름으로 자동차 객체를 생성할 경우 오류가 발생한다.",
+    (name) => {
+      expect(() => new Car(name)).toThrow("[ERROR]");
+    }
+  );
 
-    expect(() => new Car(NAME)).toThrow("[ERROR]");
-  });
+  test.each([["가나다라마"], ["가"]])(
+    "올바른 이름으로 자동차 객체를 생성할 경우 오류가 발생하지 않는다.",
+    () => {
+      expect(() => new Car(name)).not.toThrow("[ERROR]");
+    }
+  );
 
   test("자동차는 전진할 수 있다.", () => {
     const NAME = "머핀";
