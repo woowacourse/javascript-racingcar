@@ -19,9 +19,3 @@ export const TRY_NUMBER_SETTING = {
   minTryNumber: 1,
   maxTryNumber: 100,
 };
-
-export const MOVE_CONDITION = 4;
-
-export const START_POSITION = 0;
-
-export const MOVE_COUNT = 1;
