@@ -31,12 +31,15 @@ export default class CarRace {
   #runRace() {
     for (let round = 0; round < this.#count; round++) {
       this.#cars.forEach(car => {
-        const randomNumber = getRandomInteger(9);
-        if (randomNumber >= CarRace.#CAR_MOVE_STANDARD) car.go();
+        if (this.#checkCarGo()) car.go();
       });
 
       OutputView.printEachGame(this.#cars);
     }
+  }
+
+  #checkCarGo() {
+    return getRandomInteger(9) >= CarRace.#CAR_MOVE_STANDARD;
   }
 
   #getWinners() {
