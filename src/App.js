@@ -13,7 +13,8 @@ class App {
 
     OutputView.printResultMessage();
     for (let i = 0; i < count; i++) {
-      OutputView.printRacingResult(racing.raceOnce());
+      racing.raceOnce().forEach((car) => OutputView.printCarState(car));
+      OutputView.printNewLine();
     }
     OutputView.printWinner(racing.getWinner());
   }

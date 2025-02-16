@@ -9,8 +9,12 @@ class OutputView {
     this.#print(GAME_MESSAGE.RACING_RESULT);
   }
 
-  static printRacingResult(result) {
+  static printCarState(result) {
     this.#print(result);
+  }
+
+  static printNewLine() {
+    this.#print('');
   }
 
   static printWinner(winner) {
