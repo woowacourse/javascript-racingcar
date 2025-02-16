@@ -1,4 +1,4 @@
-import Car from "../src/domain/Car.js";
+import Car from "../../src/domains/Car.js";
 
 describe("자동차 클래스 테스트", () => {
   describe("자동차 클래스 정상 케이스", () => {

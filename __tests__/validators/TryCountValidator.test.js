@@ -1,4 +1,4 @@
-import TryCountValidator from "../src/validators/TryCountValidator.js";
+import TryCountValidator from "../../src/validators/TryCountValidator.js";
 
 describe("시도 횟수 유효성 클래스 테스트", () => {
   const tryCountValidator = new TryCountValidator();

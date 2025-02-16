@@ -1,5 +1,5 @@
-import Cars from "../domain/Cars.js";
-import Winner from "../domain/Winner.js";
+import Cars from "../domains/Cars.js";
+import Winner from "../domains/Winner.js";
 import CarNameValidator from "../validators/CarNameValidator.js";
 import TryCountValidator from "../validators/TryCountValidator.js";
 

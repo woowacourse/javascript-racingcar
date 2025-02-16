@@ -1,4 +1,4 @@
-import CarNameValidator from "../src/validators/CarNameValidator.js";
+import CarNameValidator from "../../src/validators/CarNameValidator.js";
 
 describe("자동차 이름 유효성 클래스 테스트", () => {
   const carNameValidator = new CarNameValidator();
