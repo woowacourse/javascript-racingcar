@@ -1,4 +1,5 @@
-import App from './App.js';
+import CarRace from './domain/CarRace.js';
 
-const app = new App();
-await app.run();
+const carRace = new CarRace();
+await carRace.init();
+carRace.run();

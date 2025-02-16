@@ -1,4 +1,5 @@
 import readline from 'readline';
+import OutputView from '../view/OutputView.js';
 
 export async function readLineAsync(query) {
   return new Promise((resolve, reject) => {
@@ -25,11 +26,12 @@ export async function readLineAsync(query) {
 export async function retryUntilSuccess(callbackFn) {
   try {
     return await callbackFn();
-  } catch {
-    return await retryUntilSuccess(callbackFn);
+  } catch (error) {
+    OutputView.printErrorMessage(error);
+    return retryUntilSuccess(callbackFn);
   }
 }
 
-export function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+export function getRandomInteger(maxValue) {
+  return Math.floor(Math.random() * (maxValue + 1));
 }
