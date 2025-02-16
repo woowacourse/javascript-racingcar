@@ -3,23 +3,23 @@ import { INPUT_MESSAGES } from '../lib/constants.js';
 import { readLineAsync, retryUntilSuccess } from '../lib/utils.js';
 
 export default class InputView {
-  static async getNames() {
+  static async getCarNames() {
     return retryUntilSuccess(async () => {
-      const rawName = await readLineAsync(INPUT_MESSAGES.carName);
-      const names = rawName.split(',');
-      InputValidator.validateCarName(names);
+      const rawCarNames = await readLineAsync(INPUT_MESSAGES.carName);
+      const carNames = rawCarNames.split(',');
+      InputValidator.validateCarNames(carNames);
 
-      return names;
+      return carNames;
     });
   }
 
-  static async getCount() {
+  static async getTryCount() {
     return retryUntilSuccess(async () => {
-      const rawCount = await readLineAsync(INPUT_MESSAGES.count);
-      const count = Number(rawCount);
-      InputValidator.validateCount(count);
+      const rawCount = await readLineAsync(INPUT_MESSAGES.tryCount);
+      const tryCount = Number(rawCount);
+      InputValidator.validateCount(tryCount);
 
-      return count;
+      return tryCount;
     });
   }
 }

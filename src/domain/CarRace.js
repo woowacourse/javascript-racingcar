@@ -4,15 +4,15 @@ import Car from './Car.js';
 
 export default class CarRace {
   #cars;
-  #count;
+  #tryCount;
 
   static #CAR_MOVE_STANDARD = 4;
 
   async init() {
-    const names = await InputView.getNames();
+    const names = await InputView.getCarNames();
     this.#cars = this.#makeCars(names);
 
-    this.#count = await InputView.getCount();
+    this.#tryCount = await InputView.getTryCount();
   }
 
   #makeCars(names) {
@@ -29,7 +29,7 @@ export default class CarRace {
   }
 
   #runRace() {
-    for (let round = 0; round < this.#count; round++) {
+    for (let round = 0; round < this.#tryCount; round++) {
       this.#cars.forEach(car => {
         if (this.#checkCarGo()) car.go();
       });
