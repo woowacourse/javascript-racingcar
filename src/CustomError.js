@@ -1,4 +1,4 @@
-import { ERROR_PREFIX } from "./constants/index.js";
+import { ERROR_PREFIX } from "./constants/error/prefix.js";
 
 class CustomError extends Error {
   constructor(message) {

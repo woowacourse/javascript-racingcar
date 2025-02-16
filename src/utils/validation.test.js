@@ -1,22 +1,13 @@
-import { INVALID_MESSAGE } from "../constants/index.js";
+import { INVALID_MESSAGE } from "../constants/message/invalid.js";
 import CustomError from "../CustomError.js";
 import { validateCarNames, validateAttemptCount } from "./validation.js";
 
 describe("validateCarNames 함수 테스트", () => {
   test("overMaxLimitCarNames는 최대 범위 10대보다 많아 에러가 발생한다.", () => {
-    const overMaxLimitCarNames = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10",
-      "11",
-    ];
+    const overMaxLimitCarNames = Array.from(
+      { length: 11 },
+      (_, index) => index + 1
+    );
 
     expect(() => validateCarNames(overMaxLimitCarNames)).toThrow(
       new CustomError(INVALID_MESSAGE.CAR_COUNT)

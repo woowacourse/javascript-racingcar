@@ -1,14 +1,15 @@
-import { randomNumberGenerator } from "./utils/math.js";
-import { RULE } from "./constants/index.js";
+import { generateRandomNumber } from "./utils/math.js";
+import { RANDOM_NUMBER_RULE } from "./constants/rule/randomNumber.js";
+import { ADVANCE_RULE } from "./constants/rule/advance.js";
 
 const moveRacingCars = (carNames, advanceRacingCar) => {
   carNames.forEach((carName) => {
-    const randomNumber = randomNumberGenerator(
-      RULE.MIN_RANDOM_NUMBER,
-      RULE.MAX_RANDOM_NUMBER
+    const randomNumber = generateRandomNumber(
+      RANDOM_NUMBER_RULE.MIN_NUMBER,
+      RANDOM_NUMBER_RULE.MAX_NUMBER
     );
 
-    if (randomNumber >= RULE.ADVANCE_CONDITION) {
+    if (randomNumber >= ADVANCE_RULE.CONDITION) {
       advanceRacingCar(carName);
     }
   });
@@ -18,13 +19,13 @@ export const startRace = (
   attemptCount,
   carNames,
   advanceRacingCar,
-  getRacingCarResult
+  getRacingCarResultEntries
 ) => {
   const snapShots = [];
 
   for (let i = 0; i < attemptCount; i++) {
     moveRacingCars(carNames, advanceRacingCar);
-    snapShots.push(getRacingCarResult());
+    snapShots.push(getRacingCarResultEntries());
   }
 
   return snapShots;
