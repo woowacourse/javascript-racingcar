@@ -1,6 +1,6 @@
 import { FORWARD_DASH, GAME_MESSAGE } from '../constants/systemMessages.js';
 
-const Printer = Object.freeze({
+const OutputView = Object.freeze({
   printMessage(content) {
     console.log(content);
   },
@@ -12,13 +12,13 @@ const Printer = Object.freeze({
   printRaceStatus(racing) {
     racing.carList.forEach((car) => {
       const { name, position } = car.getCarStatus();
-      Printer.printMessage(`${name} : ${FORWARD_DASH.repeat(position)}`);
+      OutputView.printMessage(`${name} : ${FORWARD_DASH.repeat(position)}`);
     });
   },
 
   printRaceWinner(racing) {
-    Printer.printMessage(`${GAME_MESSAGE.WINNER} ${racing.getWinner()}`);
+    OutputView.printMessage(`${GAME_MESSAGE.WINNER} ${racing.getWinner()}`);
   },
 });
 
-export default Printer;
+export default OutputView;
