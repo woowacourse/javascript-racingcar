@@ -1,7 +1,7 @@
-import Racing from './Racing.js';
-import readLineAsync from './utils/readLineAsync.js';
-import InputValidator from './utils/InputValidator.js';
-import Car from './Car.js';
+import Racing from './domain/Racing.js';
+import readLineAsync from './view/readLineAsync.js';
+import InputValidator from './view/InputValidator.js';
+import Car from './domain/Car.js';
 import loopWhileValid from './utils/loopWhileValid.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 

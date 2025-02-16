@@ -1,4 +1,4 @@
-import Printer from './printMessage.js';
+import Printer from '../view/printMessage.js';
 
 async function loopWhileValid(fn, ...args) {
   while (true) {

@@ -5,7 +5,11 @@ import {
   MIN_RACING_COUNT,
 } from '../constants/configurations.js';
 import { ERROR_MESSAGE } from '../constants/systemMessages.js';
-import { ListChecker, NumberChecker, StringChecker } from './Checkers.js';
+import {
+  ListChecker,
+  NumberChecker,
+  StringChecker,
+} from '../utils/Checkers.js';
 
 const InputValidator = Object.freeze({
   carNames(carNames) {
