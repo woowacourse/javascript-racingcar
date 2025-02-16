@@ -1,5 +1,5 @@
 import { CONSOLE_MESSAGE } from '../constant/message.js';
-import ValidateModule from '../validator/ValidatorModule.js';
+import ValidateModule from './ValidatorModule.js';
 import { readLineAsync } from './readLineAsync.js';
 
 class InputHandler {
