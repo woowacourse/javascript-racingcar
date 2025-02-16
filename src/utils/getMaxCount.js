@@ -5,9 +5,9 @@ import Car from "../domains/Car.js";
  * @param {Array<Car>} cars
  * @returns {number}
  */
-const getMaxDistance = (cars) => {
+const getMaxCount = (cars) => {
   const countArray = cars.map((car) => car.count);
   return Math.max(...countArray);
 };
 
-export default getMaxDistance;
+export default getMaxCount;
