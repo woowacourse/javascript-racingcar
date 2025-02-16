@@ -5,6 +5,7 @@ const CONFIG = Object.freeze({
   MAXIMUM_RANDOM_NUMBER: 9,
   MINIMUM_CAR_NAME: 1,
   MAXIMUM_CAR_NAME: 5,
+  CAR_STEP: 1,
   COMMA: ',',
   RACE_STEP: '-',
   BLANK: ' ',
