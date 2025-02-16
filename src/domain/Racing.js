@@ -23,7 +23,7 @@ class Racing {
         car.move();
       }
     });
-    return this.getCarInfo();
+    return this.getAllCarInfo();
   }
 
   runRace() {
@@ -33,12 +33,12 @@ class Racing {
     }
   }
 
-  getCarInfo() {
+  getAllCarInfo() {
     return this.#cars.map((car) => car.getInfo());
   }
 
   decideWinner() {
-    const results = this.getCarInfo();
+    const results = this.getAllCarInfo();
     const positions = results.map((result) => result.position);
     const maxPosition = Math.max(...positions);
     return results.filter((result) => result.position === maxPosition);
