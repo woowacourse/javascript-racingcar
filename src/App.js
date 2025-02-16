@@ -1,15 +1,14 @@
 import Racing from './domain/Racing.js';
-import readLineAsync from './utils/readLineAsync.js';
-import validator from './utils/validator.js';
 import Car from './domain/Car.js';
 import loopWhileValid from './utils/retryUntilSuccess.js';
-import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 import OutputView from './view/OutputView.js';
+import InputView from './view/InputView.js';
 
 class App {
   async run() {
-    const carList = await loopWhileValid(this.#enterCarNames);
-    const count = await loopWhileValid(this.#enterCount);
+    const rawCarList = await loopWhileValid(InputView.enterCarNames);
+    const carList = rawCarList.map((name) => new Car(name, 0));
+    const count = await loopWhileValid(InputView.enterCount);
     const racing = new Racing(carList);
 
     OutputView.printResultMessage();
@@ -17,21 +16,6 @@ class App {
       OutputView.printRacingResult(racing.raceOnce());
     }
     OutputView.printWinner(racing.getWinner());
-  }
-
-  async #enterCarNames() {
-    const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
-    const names = inputName.split(SEPARATOR);
-    validator.carNames(names);
-
-    return names.map((name) => new Car(name, 0));
-  }
-
-  async #enterCount() {
-    const count = await readLineAsync(GAME_MESSAGE.ENTER_COUNT);
-    validator.count(count);
-
-    return count;
   }
 }
 
