@@ -19,7 +19,9 @@ export default class Race {
     this.cars.forEach((car) => {
       if (this.isMove(getRandomNumber())) car.move();
       console.log(
-        `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`
+        `${car.getName()} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(
+          car.getPosition()
+        )}`
       );
     });
     console.log("");

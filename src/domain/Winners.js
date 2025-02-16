@@ -4,9 +4,9 @@ export default class Winners {
   }
 
   getWinners() {
-    const max = Math.max(...this.cars.map((car) => car.position));
-    const winners = this.cars.filter((car) => car.position === max);
+    const max = Math.max(...this.cars.map((car) => car.getPosition()));
+    const winners = this.cars.filter((car) => car.getPosition() === max);
 
-    return winners.map((winner) => winner.name);
+    return winners.map((winner) => winner.getName());
   }
 }
