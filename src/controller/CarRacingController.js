@@ -5,6 +5,7 @@ import randomNumber from "../util/random.js";
 import tryInput from "../util/tryInput.js";
 import { validateCarNames, validateRaceCount } from "../util/validation.js";
 import { SPLITTER } from "../constant/constant.js";
+import { getWinners } from "../util/winner.js";
 
 class CarRacingController {
   #carList;
@@ -23,7 +24,7 @@ class CarRacingController {
       console.log("");
     }
 
-    const winners = this.getWinners(this.#carList);
+    const winners = getWinners(this.#carList);
     OutputView.printWinners(winners);
   }
 
