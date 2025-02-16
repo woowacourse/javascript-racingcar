@@ -1,5 +1,5 @@
-import Car from '../src/Car';
-import RacingcarManager from "../src/RacingcarManager.js";
+import Car from '../src/domain/Car';
+import RacingcarManager from "../src/domain/RacingcarManager";
 
 test("경주에 참여할 자동차 cars 객체 배열이 생성된다.", ()=>{
     const racingcarManager = new RacingcarManager();

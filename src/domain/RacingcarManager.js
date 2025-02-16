@@ -1,7 +1,8 @@
-import InputView from './ui/InputView.js';
-import OutputView from './ui/OutputView.js';
-import Validate from './Validate.js'
+import InputView from '../ui/InputView.js';
+import OutputView from '../ui/OutputView.js';
 import Car from './Car.js';
+import Validate from '../utils/Validate.js'
+import getRandomNumber from '../utils/Random.js';
 
 class RacingcarManager{
     #inputView
@@ -63,14 +64,10 @@ class RacingcarManager{
             throw error;
         }
     }
-
-    getRandomNumber() {
-        return Math.floor(Math.random() * 10);
-    }
     
     oneRound(cars){
         cars.forEach(car => {
-            car.move(this.getRandomNumber());            
+            car.move(getRandomNumber());            
         });
     }
 
@@ -103,6 +100,6 @@ class RacingcarManager{
         });
         return winners;
     }
-
 }
+
 export default RacingcarManager;

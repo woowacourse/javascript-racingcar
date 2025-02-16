@@ -1,4 +1,4 @@
-import RacingcarManager from './RacingcarManager.js'
+import RacingcarManager from './domain/RacingcarManager.js'
 
 class App {
   async run() {

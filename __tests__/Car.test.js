@@ -1,4 +1,4 @@
-import Car from '../src/Car';
+import Car from '../src/domain/Car';
 
 test("이름을 가진 자동차를 만들 수 있다.", ()=>{
     const car = new Car("자동차");
