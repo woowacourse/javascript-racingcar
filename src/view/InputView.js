@@ -6,18 +6,20 @@ export default class InputView {
   static async getNames() {
     return retryUntilSuccess(async () => {
       const rawName = await readLineAsync(INPUT_MESSAGES.carName);
-      InputValidator.validateCarName(rawName);
+      const names = rawName.split(',');
+      InputValidator.validateCarName(names);
 
-      return rawName.split(',');
+      return names;
     });
   }
 
   static async getCount() {
     return retryUntilSuccess(async () => {
       const rawCount = await readLineAsync(INPUT_MESSAGES.count);
-      InputValidator.validateCount(rawCount);
+      const count = Number(rawCount);
+      InputValidator.validateCount(count);
 
-      return Number(rawCount);
+      return count;
     });
   }
 }
