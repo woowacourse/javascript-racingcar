@@ -9,7 +9,7 @@ export default class OutputView {
 
   printWinner(winners) {
     console.log(
-      `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`,
+      `최종 우승자: ${winners.map((winner) => winner.getName()).join(", ")}`,
     );
   }
 
