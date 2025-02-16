@@ -67,10 +67,7 @@ class RaceController {
   }
 
   #processWinner(cars) {
-    const maxPosition = cars.getMaxPosition();
-    const carList = cars.cars;
-
-    this.#outputView.printWinners(new Winner().getWinners(carList, maxPosition));
+    this.#outputView.printWinners(new Winner().getWinners(cars.cars, cars.getMaxPosition()));
   }
 }
 
