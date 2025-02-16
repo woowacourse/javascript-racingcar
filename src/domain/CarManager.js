@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 // @ts-check
 import pickRandomNumber from '../utils/pickRandomNumber.js';
 import { CONFIG } from '../constants/config.js';
