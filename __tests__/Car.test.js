@@ -8,7 +8,7 @@ test.each([
 
   car.move(isCanMove);
 
-  expect(car.getPosition()).toBe(expectedPosition);
+  expect(car.position).toBe(expectedPosition);
 });
 
 test.each([

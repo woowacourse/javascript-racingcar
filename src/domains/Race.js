@@ -55,10 +55,10 @@ export default class Race {
   }
 
   getWinner(cars) {
-    const positions = cars.map((car) => car.getPosition());
+    const positions = cars.map((car) => car.position);
     const maxPosition = Math.max(...positions);
-    const winnerCars = cars.filter((car) => car.getPosition() === maxPosition);
-    const winnerNames = winnerCars.map((car) => car.getName());
+    const winnerCars = cars.filter((car) => car.position === maxPosition);
+    const winnerNames = winnerCars.map((car) => car.name);
     return winnerNames;
   }
 }

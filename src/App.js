@@ -59,7 +59,7 @@ export default class App {
     for (let i = 0; i < this.#tryNumber; i++) {
       this.#raceModel.race(this.#cars);
       this.#cars.forEach((car) => {
-        Output.scoreByRace(car.getName(), car.getPosition());
+        Output.scoreByRace(car.name, car.position);
       });
       Output.newLine();
     }
