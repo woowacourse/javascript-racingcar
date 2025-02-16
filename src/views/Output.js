@@ -13,10 +13,6 @@ export default class Output {
     console.log(message);
   }
 
-  static error(errorMessage) {
-    throw new Error(errorMessage);
-  }
-
   static scoreByRace(carName, carPositions) {
     this.print(`${carName} : ${Output.SCORE_ICON.repeat(carPositions)}`);
   }
