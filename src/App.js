@@ -1,32 +1,46 @@
-import Racing from './Racing.js';
-import readLineAsync from './utils/readLineAsync.js';
-import InputValidator from './utils/InputValidator.js';
-import Car from './Car.js';
-import loopWhileValid from './utils/loopWhileValid.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
+import Racing from './domain/Racing.js';
+import loopWhileValid from './utils/loopWhileValid.js';
+import InputValidator from './view/InputValidator.js';
+import InputView from './domain/InputView.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
-    const carList = await loopWhileValid(this.enterCarNames);
-    const count = await loopWhileValid(this.enterCount);
-    const racing = new Racing(carList, count);
+    const carNames = await loopWhileValid(this.#getCarNames);
+    const count = await loopWhileValid(this.#getCount);
+    const racing = new Racing(carNames, count);
 
-    racing.start();
+    this.#race(racing, count);
   }
 
-  async enterCarNames() {
-    const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
-    const names = inputName.split(SEPARATOR);
+  async #getCarNames() {
+    const carNamesInput = await InputView.enterCarNames();
+    const names = carNamesInput.split(SEPARATOR);
     InputValidator.carNames(names);
-
-    return names.map((name) => new Car(name, 0));
+    return names;
   }
 
-  async enterCount() {
-    const count = await readLineAsync(GAME_MESSAGE.ENTER_COUNT);
-    InputValidator.count(count);
+  async #getCount() {
+    const countInput = await InputView.enterCount();
+    InputValidator.count(countInput);
+    return countInput;
+  }
 
-    return count;
+  #race(racing, count) {
+    OutputView.printMessage(GAME_MESSAGE.RACING_RESULT);
+
+    for (let i = 0; i < count; i++) {
+      racing.raceOnce();
+      racing.carList.forEach((car) => {
+        const { name, position } = car.getCarStatus();
+        OutputView.printRaceStatus(name, position);
+      });
+      OutputView.printBlank();
+    }
+
+    const winner = racing.getWinner();
+    OutputView.printRaceWinner(winner);
   }
 }
 
