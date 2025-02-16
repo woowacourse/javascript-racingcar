@@ -3,7 +3,7 @@ import {
   OUTPUT_MESSAGES,
   POSITION_STRING,
   SEPERATOR,
-} from '../helpers/constants.js';
+} from '../lib/constants.js';
 
 export default class OutputView {
   static #print(message) {

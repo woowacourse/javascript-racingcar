@@ -1,5 +1,5 @@
-import { INPUT_MESSAGES } from '../helpers/constants.js';
-import { readLineAsync, retryUntilSuccess } from '../helpers/utils.js';
+import { INPUT_MESSAGES } from '../lib/constants.js';
+import { readLineAsync, retryUntilSuccess } from '../lib/utils.js';
 import Validator from './Validator.js';
 
 export default class InputView {
