@@ -7,4 +7,5 @@ export const NUMBER = Object.freeze({
   INIT_POSITION: 0,
   MIN_NUMBER_TO_MOVE: 4,
   MIN_TRY_COUNT: 1,
+  MAX_TRY_COUNT: 100,
 });
