@@ -11,7 +11,6 @@ class CarManager {
 
   createCars(carNames) {
     this.cars = carNames.map((carName) => new Car(carName));
-    return this.cars;
   }
 
   isMoveCondition(pickedRandomNumber) {
