@@ -2,6 +2,7 @@ import Cars from '../domains/Cars.js';
 import Winner from '../domains/Winner.js';
 import CarNameValidator from '../validators/CarNameValidator.js';
 import TryCountValidator from '../validators/TryCountValidator.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
 
 class RaceController {
   #inputView;
@@ -16,7 +17,7 @@ class RaceController {
     const carNames = await this.#initCarNames();
     const tryCount = await this.#initTryCount();
 
-    const cars = new Cars(carNames);
+    const cars = new Cars(carNames, getRandomNumber);
 
     this.#processRacing(cars, tryCount);
     this.#processWinner(cars);

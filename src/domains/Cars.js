@@ -1,12 +1,13 @@
 import { RACE } from '../constants/race.js';
 import Car from '../domains/Car.js';
-import getRandomNumber from '../utils/getRandomNumber.js';
 
 class Cars {
   #cars;
+  #moveStrategy;
 
-  constructor(carNames) {
+  constructor(carNames, moveStrategy) {
     this.#cars = carNames.map((carName) => new Car(carName));
+    this.#moveStrategy = moveStrategy;
   }
 
   moveCars() {
@@ -16,9 +17,13 @@ class Cars {
   }
 
   #processMoveCars(car) {
-    if (getRandomNumber() >= RACE.FOWARD_THRESHOLD) {
+    if (this.#canMove()) {
       car.move();
     }
+  }
+
+  #canMove() {
+    return this.#moveStrategy() >= RACE.FOWARD_THRESHOLD;
   }
 
   getMaxPosition() {
