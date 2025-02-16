@@ -35,9 +35,9 @@ export const CAR_NAME_LIST_ERROR_MESSAGES = {
 };
 
 export const ATTEMPT_ERROR_MESSAGES = {
-  EMPTY_INPUT: "입력이 비어 있습니다.",
-  NOT_INTEGER_INPUT: "정수를 입력해주세요.",
-  MINUS_INPUT: "0보다 큰 수를 입력해주세요.",
+  EMPTY: "입력이 비어 있습니다.",
+  NOT_INTEGER: "정수를 입력해주세요.",
+  MINUS: "0보다 큰 수를 입력해주세요.",
 };
 
 export const RANDOM_ERROR_MESSAGES = {

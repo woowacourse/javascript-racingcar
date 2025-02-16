@@ -5,13 +5,13 @@ import IsValidAttemptCount from "../isValid/isValidAttemptCount.js";
 
 const validateInteger = (attemptCount) => {
   if (!IsValidAttemptCount.integer(attemptCount)) {
-    throwError(ATTEMPT_ERROR_MESSAGES.NOT_INTEGER_INPUT);
+    throwError(ATTEMPT_ERROR_MESSAGES.NOT_INTEGER);
   }
 };
 
 const validatePlus = (attemptCount) => {
   if (!IsValidAttemptCount.plus(attemptCount)) {
-    throwError(ATTEMPT_ERROR_MESSAGES.MINUS_INPUT);
+    throwError(ATTEMPT_ERROR_MESSAGES.MINUS);
   }
 };
 
