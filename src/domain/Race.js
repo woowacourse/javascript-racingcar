@@ -1,3 +1,4 @@
+import { getRandomNumber } from "../utils/getRandomNumber.js";
 import OutputView from "../view/OutputView.js";
 
 export default class Race {
@@ -14,7 +15,7 @@ export default class Race {
 
   runRound(cars) {
     cars.forEach((car) => {
-      car.move();
+      car.move(getRandomNumber(10));
       this.outputView.printProgressResult(car.getName(), car.getPosition());
     });
     this.outputView.printNewLine();

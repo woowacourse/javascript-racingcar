@@ -15,8 +15,8 @@ export default class Car {
     validateCarNames(name);
   }
 
-  move() {
-    if (this.isMove(getRandomNumber(10))) {
+  move(number) {
+    if (this.isMove(number)) {
       this.#position += 1;
     }
   }
