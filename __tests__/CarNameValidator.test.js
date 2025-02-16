@@ -1,5 +1,8 @@
 import { ERROR } from '../src/constants/messages.js';
-import carNameValidator from '../src/validator/CarNameValidator.js';
+import {
+  carNameValidator,
+  checkDuplicatedCarName,
+} from '../src/validator/CarNameValidator.js';
 
 test.each([['exceptqwer'], ['']])(
   'checkCarNameLength함수는 자동차 이름이 1자 이상 5자 이하가 아니면 에러를 띄운다.',
@@ -17,5 +20,7 @@ test('checkBlank함수는 자동차 이름에 공백이 들어가면 에러를 �
 test('checkDuplicatedCarName함수는 자동차 이름이 중복되면 에러를 띄운다.', () => {
   const carNames = ['pobi', 'pobi', 'jun'];
 
-  expect(() => carNameValidator(carNames)).toThrow(ERROR.DUPLICATED_CAR_NAME);
+  expect(() => checkDuplicatedCarName(carNames)).toThrow(
+    ERROR.DUPLICATED_CAR_NAME
+  );
 });
