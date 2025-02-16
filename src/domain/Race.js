@@ -1,9 +1,9 @@
 import Input from "../view/Input.js";
 import Car from "./Car.js";
 import Output from "../view/Output.js";
-import { STEP } from "../constants/setting.js";
 import ValidateCar from "../validator/ValidateCar.js";
 import ValidateTryNumber from "../validator/ValidateTryNumber.js";
+import { STEP } from "../constants/setting.js";
 
 export default class Race {
   #cars = [];
@@ -46,6 +46,7 @@ export default class Race {
       this.#cars.push(new Car(carName));
     });
   }
+
   async #readTryNumber() {
     const tryNumber = await Input.tryNumber();
     this.#parseTryNumber = parseInt(tryNumber);
@@ -56,13 +57,14 @@ export default class Race {
   #racing() {
     Output.newLine();
     Output.raceResult();
-    for (let i = 0; i < this.#parseTryNumber; i += 1) {
+
+    Array.from({ length: this.#parseTryNumber }).forEach(() => {
       this.#cars.forEach((car) => {
         car.move();
         Output.scoreByRace(car.getName(), car.getPosition());
       });
       Output.newLine();
-    }
+    });
   }
 
   async #getWinner() {
