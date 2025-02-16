@@ -1,6 +1,6 @@
 import Controller from "../src/controller/Controller.js";
 import { getRandomNumber } from "../src/utils/getRandomNumber.js";
-import Car from "../src/model/Car.js";
+import Car from "../src/domain/Car.js";
 
 jest.mock("../src/utils/getRandomNumber", () => ({
   getRandomNumber: jest.fn(),

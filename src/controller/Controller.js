@@ -1,8 +1,8 @@
 import InputView from "../view/InputView.js";
-import Car from "../model/Car.js";
+import Car from "../domain/Car.js";
 import { INPUT_MESSAGE } from "../constants/message.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
-import Race from "../model/Race.js";
+import Race from "../domain/Race.js";
 
 export default class Controller {
   async run() {

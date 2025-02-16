@@ -1,5 +1,5 @@
-import Race from "../src/model/Race.js";
-import Car from "../src/model/Car.js";
+import Race from "../src/domain/Race.js";
+import Car from "../src/domain/Car.js";
 import { getRandomNumber } from "../src/utils/getRandomNumber.js";
 
 jest.mock("../src/utils/getRandomNumber", () => ({
