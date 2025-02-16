@@ -31,14 +31,14 @@ class Racing {
       const result = this.raceTurn();
       Printer.printRacingResult(result);
     }
+    return this.getAllCarInfo();
   }
 
   getAllCarInfo() {
     return this.#cars.map((car) => car.getInfo());
   }
 
-  decideWinner() {
-    const results = this.getAllCarInfo();
+  decideWinner(results) {
     const positions = results.map((result) => result.position);
     const maxPosition = Math.max(...positions);
     return results.filter((result) => result.position === maxPosition);

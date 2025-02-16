@@ -16,9 +16,9 @@ class App {
     const racing = new Racing(cars, tryCount);
 
     Printer.printHeader(IO_MESSAGE.resultHeader);
-    racing.runRace();
+    const results = racing.runRace();
 
-    const raceResult = racing.decideWinner();
+    const raceResult = racing.decideWinner(results);
     Printer.printWinner(raceResult);
   }
 
