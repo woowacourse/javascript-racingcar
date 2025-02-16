@@ -16,6 +16,12 @@ class Cars {
     });
   }
 
+  getMaxPosition() {
+    return this.#cars.reduce((maxPosition, car) => {
+      return car.comparePosition(maxPosition);
+    }, -1);
+  }
+
   #processMoveCars(car) {
     if (this.#canMove()) {
       car.move();
@@ -24,12 +30,6 @@ class Cars {
 
   #canMove() {
     return this.#moveStrategy() >= RACE.FOWARD_THRESHOLD;
-  }
-
-  getMaxPosition() {
-    return this.#cars.reduce((maxPosition, car) => {
-      return car.comparePosition(maxPosition);
-    }, -1);
   }
 
   get cars() {
