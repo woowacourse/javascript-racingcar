@@ -10,9 +10,8 @@ class CarController {
     const tryCount = await this.getValidatedTryCount();
 
     const race = new Race(carNames, tryCount);
-
     race.raceStart();
-    this.outputResult(race.cars, tryCount);
+    this.outputRaceResult(race.raceHistory);
 
     const winnerSelector = new WinnerSelector();
     winnerSelector.calculateWinners(race.cars);
@@ -35,13 +34,17 @@ class CarController {
     return tryCount;
   }
 
-  outputResult(cars, tryCount) {
-    OutputView.printMessage('\n실행 결과');
-    for (let i = 0; i < tryCount; i++) {
-      cars.forEach((car) => {
-        OutputView.printEachResult(car.name, car.history[i]);
+  outputRaceResult(raceHistory) {
+    const maxRounds = Math.max(...Array.from(raceHistory.values()).map((arr) => arr.length));
+
+    OutputView.printResultStartMessage();
+    for (let round = 0; round < maxRounds; round++) {
+      raceHistory.forEach((history, carName) => {
+        if (round < history.length) {
+          OutputView.printEachResult(carName, history[round]);
+        }
       });
-      OutputView.printMessage('');
+      OutputView.printEmptyLine();
     }
   }
 

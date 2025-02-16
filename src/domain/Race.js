@@ -5,6 +5,7 @@ import Car from './Car.js';
 class Race {
   #cars;
   #tryCount;
+  #raceHistory;
 
   constructor(carNames, tryCount) {
     this.#validateCarNames(carNames);
@@ -12,6 +13,7 @@ class Race {
 
     this.#cars = carNames.map((car) => new Car(car));
     this.#tryCount = tryCount;
+    this.#raceHistory = new Map(carNames.map((name) => [name, []]));
   }
 
   #validateCarNames(carNames) {
@@ -26,12 +28,13 @@ class Race {
   raceStart() {
     Array.from({ length: this.#tryCount }).forEach(() => {
       this.#moveCars();
+      this.#updateRaceHistory();
     });
   }
 
   #moveCars() {
     this.#cars.forEach((car) => {
-      car.move(this.#canCarMove());
+      if (this.#canCarMove()) car.move();
     });
   }
 
@@ -39,8 +42,18 @@ class Race {
     return getRandomNumber(0, 9) >= 4;
   }
 
+  #updateRaceHistory() {
+    this.#cars.forEach((car) => {
+      this.#raceHistory.set(car.name, [...this.#raceHistory.get(car.name), car.position]);
+    });
+  }
+
   get cars() {
     return this.#cars;
+  }
+
+  get raceHistory() {
+    return this.#raceHistory;
   }
 }
 

@@ -5,8 +5,12 @@ class OutputView {
     console.log(`${carName} : ${positionString}`);
   }
 
-  static printMessage(message) {
-    console.log(message);
+  static printResultStartMessage() {
+    console.log('\n실행 결과');
+  }
+
+  static printEmptyLine() {
+    console.log('');
   }
 
   static printWinner(winners) {
