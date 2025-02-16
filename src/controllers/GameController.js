@@ -1,21 +1,34 @@
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
-import RaceController from "./RaceController.js";
+import Car from "../domains/Car.js";
 import validateCarNames from "../validations/validateCarNames.js";
 import getValidInput from "../utils/getValidInput.js";
 import validateTryCount from "../validations/validateTryCount.js";
+import getWinners from "../utils/getWinners.js";
+import getRandomNumber from "../utils/getRandomNumber.js";
+import Console from "../utils/Console.js";
 
 class GameController {
   async play() {
     const { carNames, tryCount } = await this.#getValidatedInputs();
+    const cars = carNames.map((carName) => new Car(carName));
+    this.#playRace(cars, tryCount);
+  }
 
-    const raceController = new RaceController(carNames, tryCount);
-
+  #playRace(cars, tryCount) {
     Output.printRaceStart();
-    raceController.race();
+    for (let cnt = 1; cnt <= tryCount; cnt++) {
+      this.#playRound(cars);
+      Console.printLineBreak();
+    }
+    Output.printWinners(getWinners(cars));
+  }
 
-    const winners = raceController.getWinners();
-    Output.printWinners(winners);
+  #playRound(cars) {
+    cars.forEach((car) => {
+      car.move(getRandomNumber(0, 9));
+      Output.printRace(car.name, car.count);
+    });
   }
 
   async #getValidatedInputs() {
