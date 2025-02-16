@@ -32,7 +32,7 @@ class RaceController {
 
   #playRound() {
     this.#cars.forEach((car) => {
-      car.move(getRandomNumber());
+      car.move(getRandomNumber(0, 9));
       Output.printRace(car.name, car.count);
     });
   }
