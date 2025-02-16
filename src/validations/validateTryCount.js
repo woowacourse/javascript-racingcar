@@ -1,7 +1,4 @@
-import { ERROR_TRY_COUNT_MESSAGE } from "../constants/constants.js";
-
-const MIN_TRY_COUNT = 1;
-const MAX_TRY_COUNT = 50;
+import { ERROR_TRY_COUNT_MESSAGE, MIN_TRY_COUNT, MAX_TRY_COUNT } from "../constants/constants.js";
 
 const parseTryCount = (input) => Number(input);
 
