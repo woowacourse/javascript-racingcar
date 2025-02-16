@@ -1,11 +1,17 @@
 import getRandomValueInRange from '../utils/getRandomValueInRange.js';
+import InputValidator from '../view/InputValidator.js';
 import Car from './Car.js';
 
 class Racing {
   carList;
 
   constructor(carNames) {
+    this.#validate(carNames);
     this.carList = carNames.map((name) => new Car(name, 0));
+  }
+
+  #validate(carNames) {
+    InputValidator.carNames(carNames);
   }
 
   getWinner() {

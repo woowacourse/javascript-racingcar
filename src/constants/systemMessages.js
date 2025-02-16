@@ -15,6 +15,8 @@ const ERROR_MESSAGE = Object.freeze({
   INVALID_COUNT_CHARACTER: '횟수는 문자를 입력하면 안됩니다.',
   INVALID_COUNT_MIN: '횟수는 최소 1 이상이어야 합니다.',
   INVALID_COUNT_MAX: '횟수는 최대 1000 이하이어야 합니다.',
+  INVALID_POSITION_MIN: '위치는 음수가 될 수 없습니다.',
+  INVALID_POSITION_CHARACTER: '위치는 문자를 입력하면 안됩니다.',
 });
 
 const FORWARD_DASH = '-';
