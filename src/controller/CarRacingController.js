@@ -60,20 +60,6 @@ class CarRacingController {
       OutputView.printRoundResult(car.getName(), car.getPosition());
     });
   }
-
-  getWinners(carList) {
-    const winnerPosition = this.getWinnerPosition(carList);
-
-    return carList
-      .filter((car) => car.getPosition() === winnerPosition)
-      .map((winner) => winner.getName());
-  }
-
-  getWinnerPosition(carList) {
-    const winnerPosition = Math.max(...carList.map((car) => car.getPosition()));
-
-    return winnerPosition;
-  }
 }
 
 export default CarRacingController;
