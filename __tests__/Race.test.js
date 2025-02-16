@@ -1,22 +1,23 @@
 import Race from '../src/domain/Race.js';
 
-const FAIL_TEST_CASE = [
+const FAIL_CAR_NAME_TEST_CASE = [
   [
     '자동차 수가 2대보다 작을 경우 예외처리한다.',
-    { carNames: ['재오'], tryCount: 3, errorMessage: '[ERROR] 자동차는 2대 이상이여야 합니다.' },
+    { carNames: ['재오'], errorMessage: '[ERROR] 자동차는 2대 이상이여야 합니다.' },
   ],
   [
     '자동차의 이름은 중복되면 안된다.',
     {
       carNames: ['재오', '상추', '앵버', '재오'],
-      tryCount: 5,
       errorMessage: '[ERROR] 자동차 이름은 중복되면 안됩니다.',
     },
   ],
+];
+
+const FAIL_TRY_COUNT_TEST_CASE = [
   [
     '시도 횟수가 1보다 작으면 안된다.',
     {
-      carNames: ['재오', '상추', '앵버'],
       tryCount: 0,
       errorMessage: '[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.',
     },
@@ -24,7 +25,6 @@ const FAIL_TEST_CASE = [
   [
     '시도 횟수가 20보다 크면 안된다.',
     {
-      carNames: ['재오', '상추', '앵버'],
       tryCount: 21,
       errorMessage: '[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.',
     },
@@ -47,18 +47,36 @@ const SUCCESS_TEST_CASE = [
 ];
 
 describe('Race 객체 생성 테스트', () => {
-  test.each(FAIL_TEST_CASE)('%s', (_, { carNames, tryCount, errorMessage }) => {
+  test.each(FAIL_CAR_NAME_TEST_CASE)('%s', (_, { carNames, errorMessage }) => {
+    // given
+    const race = new Race();
+
     // when
-    console.log(carNames, tryCount);
 
     // then
-    expect(() => new Race(carNames, tryCount)).toThrow('[ERROR]');
+    expect(() => race.initCars(carNames)).toThrow(errorMessage);
+  });
+
+  test.each(FAIL_TRY_COUNT_TEST_CASE)('%s', (_, { tryCount, errorMessage }) => {
+    // given
+    const race = new Race();
+
+    // when
+
+    // then
+    expect(() => race.initTryCount(tryCount)).toThrow(errorMessage);
   });
 
   test.each(SUCCESS_TEST_CASE)('에러 없이 Race 객체 생성', ({ carNames, tryCount }) => {
+    // given
+    const race = new Race();
+
     // when
 
     // then
-    expect(() => new Race(carNames, tryCount)).not.toThrow();
+    expect(() => {
+      race.initCars(carNames);
+      race.initTryCount(tryCount);
+    }).not.toThrow();
   });
 });
