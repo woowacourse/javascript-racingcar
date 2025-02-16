@@ -13,14 +13,3 @@ export const validateCarNames = (input) => {
     createError(ERROR_MESSAGE.DUPLICATE_NAME);
   }
 };
-
-export const validateTryCount = (input) => {
-  if (input === "") createError(ERROR_MESSAGE.EMPTY_INPUT);
-
-  if (isNaN(Number(input))) {
-    createError(ERROR_MESSAGE.INVALID_TRY_COUNT);
-  }
-  if (input < 1) {
-    createError(ERROR_MESSAGE.INVALID_TRY_COUNT);
-  }
-};
