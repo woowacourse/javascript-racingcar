@@ -11,15 +11,13 @@ class Race {
   executeTurn() {
     return this.#carList.map((car) => {
       const randomNumber = getRandomNumber(RANDOM_NUMBER.MIN, RANDOM_NUMBER.MAX);
-      this.checkMove(randomNumber, car);
+      if(this.checkMove(randomNumber))car.move();
       return {name:car.name, position:car.position};
     });
 }
 
-  checkMove(randomNumber, car) {
-    if (randomNumber >= MOVE_CONDITION) {
-      car.move();
-    }
+  checkMove(randomNumber) {
+    return randomNumber >= MOVE_CONDITION;
   }
 
   getWinnerName() {
