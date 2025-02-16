@@ -1,9 +1,9 @@
-import { randomNumberGenerator } from "./utils/math.js";
+import { generateRandomNumber } from "./utils/math.js";
 import { RULE } from "./constants/index.js";
 
 const moveRacingCars = (carNames, advanceRacingCar) => {
   carNames.forEach((carName) => {
-    const randomNumber = randomNumberGenerator(
+    const randomNumber = generateRandomNumber(
       RULE.MIN_RANDOM_NUMBER,
       RULE.MAX_RANDOM_NUMBER
     );
