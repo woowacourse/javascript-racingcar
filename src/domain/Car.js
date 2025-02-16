@@ -1,5 +1,4 @@
 import { MOVE_THRESHOLD } from "../const.js";
-import { getRandomIntBetween } from "../util.js";
 
 class Car {
   constructor(raceCarName) {
@@ -15,6 +14,10 @@ class Car {
     if (number >= MOVE_THRESHOLD) {
       this.#moveOneStep();
     }
+  }
+
+  getPositionStatus() {
+    return `${"-".repeat(this.position)}`;
   }
 }
 

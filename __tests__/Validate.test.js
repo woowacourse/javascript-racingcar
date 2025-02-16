@@ -10,19 +10,20 @@ describe("Validate  테스트", () => {
       nameValidate = new NameValidate();
     });
 
-    test.each([
-      ["aaaa", true],
-      ["aaaaa", true],
-      ["aaaaaa", false],
-      ["aaaaaaaaaa", false],
-    ])("차 이름의 길이가 5자 이하인지 확인한다.", (raceCarName, result) => {
-      if (result) {
+    test.each([["aaaa"], ["aaaaa"]])(
+      "차 이름의 길이가 5자 이하이면 예외가 발생하지 않는다. (%s)",
+      (raceCarName) => {
         expect(() => nameValidate.isLimitLength(raceCarName)).not.toThrow();
-      } else {
+      }
+    );
+
+    test.each([["aaaaaa"], ["aaaaaaaaaa"]])(
+      "차 이름의 길이가 6자 이상이면 예외가 발생한다. (%s)",
+      (raceCarName) => {
         expect(() => nameValidate.isLimitLength(raceCarName)).toThrow();
       }
-    });
-
+    );
+    
     test("차 이름이 빈값이 아닌지 확인한다", () => {
       expect(() => nameValidate.isPositiveLength("")).toThrow();
       expect(() => nameValidate.isPositiveLength("aa")).not.toThrow();

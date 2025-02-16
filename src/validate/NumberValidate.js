@@ -1,5 +1,4 @@
 import { ERROR_MESSAGE, MAX_CAR_LENGTH } from "../const.js";
-import throwIfInValid from "./throwIfInvalid.js";
 
 class NumberValidate {
   #throwIfInValid({ condition, errorMessage }) {

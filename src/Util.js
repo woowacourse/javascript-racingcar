@@ -26,4 +26,11 @@ const getRandomIntBetween = (min, max) => {
   return min + Math.floor(Math.random() * (max - min + 1));
 };
 
-export { getRandomIntBetween, readLineAsync };
+const getLongestString = (...strings) => {
+  return strings.reduce(
+    (longest, current) => (current.length > longest.length ? current : longest),
+    ""
+  );
+};
+
+export { getRandomIntBetween, readLineAsync, getLongestString };
