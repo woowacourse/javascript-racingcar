@@ -1,7 +1,7 @@
 import {
   MOVING_DISTANCE,
   MOVING_THRESHOLD,
-} from './constants/configurations.js';
+} from '../constants/configurations.js';
 
 class Car {
   #name;

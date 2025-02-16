@@ -1,4 +1,4 @@
-import Car from '../src/Car.js';
+import Car from '../src/domain/Car.js';
 import { MOVING_THRESHOLD } from '../src/constants/configurations.js';
 
 describe('자동차 객체 테스트', () => {
