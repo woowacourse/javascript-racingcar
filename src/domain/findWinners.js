@@ -1,4 +1,3 @@
-import { displayWinner } from "../view/output";
 // [
 //   {
 //     name: "A",
