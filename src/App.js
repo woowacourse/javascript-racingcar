@@ -4,14 +4,19 @@ import validator from './utils/validator.js';
 import Car from './domain/Car.js';
 import loopWhileValid from './utils/retryUntilSuccess.js';
 import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
+import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
     const carList = await loopWhileValid(this.#enterCarNames);
     const count = await loopWhileValid(this.#enterCount);
-    const racing = new Racing(carList, count);
+    const racing = new Racing(carList);
 
-    racing.start();
+    OutputView.printResultMessage();
+    for (let i = 0; i < count; i++) {
+      OutputView.printRacingResult(racing.raceOnce());
+    }
+    OutputView.printWinner(racing.getWinner());
   }
 
   async #enterCarNames() {
