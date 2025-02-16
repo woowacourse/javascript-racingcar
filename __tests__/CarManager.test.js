@@ -1,5 +1,5 @@
-import Car from '../src/model/Car.js';
-import CarManager from '../src/model/CarManager.js';
+import Car from '../src/domain/model/Car.js';
+import CarManager from '../src/domain/model/CarManager.js';
 
 let carManager;
 beforeEach(() => {

@@ -1,4 +1,4 @@
-import Validator from '../src/validator/Validator';
+import Validator from '../src/domain/validator/Validator';
 
 test('자동차 이름은 1자 이상 5자 이하가 아니면 에러를 띄운다.', () => {
   const carName = 'exceptqwer';

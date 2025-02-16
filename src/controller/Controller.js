@@ -1,10 +1,10 @@
-import CarManager from '../model/CarManager.js';
+import CarManager from '../domain/model/CarManager.js';
 import readLineAsync from '../views/InputView.js';
 import { INPUT } from '../constants/messages.js';
 import OutputView from '../views/OutputView.js';
-import Validator from '../validator/Validator.js';
+import Validator from '../domain/validator/Validator.js';
 import { CONFIG } from '../constants/config.js';
-import AttemptsValidator from '../validator/AttemptsValidator.js';
+import AttemptsValidator from '../domain/validator/AttemptsValidator.js';
 
 class Controller {
   constructor() {

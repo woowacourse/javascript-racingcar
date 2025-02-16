@@ -1,6 +1,6 @@
-import StringUtils from '../utils/StringUtils.js';
-import { CONFIG } from '../constants/config.js';
-import { ERROR } from '../constants/messages.js';
+import StringUtils from '../../utils/StringUtils.js';
+import { CONFIG } from '../../constants/config.js';
+import { ERROR } from '../../constants/messages.js';
 
 const Validator = {
   checkCarNameLength(carName) {

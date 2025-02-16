@@ -1,5 +1,5 @@
-import { CONFIG } from '../constants/config.js';
-import { ERROR } from '../constants/messages.js';
+import { CONFIG } from '../../constants/config';
+import { ERROR } from '../../constants/messages';
 
 const AttemptsValidator = {
   checkPositiveNumber(input) {

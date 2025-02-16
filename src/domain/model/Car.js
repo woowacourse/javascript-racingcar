@@ -1,4 +1,4 @@
-import { CONFIG } from '../constants/config.js';
+import { CONFIG } from '../../constants/config.js';
 
 class Car {
   #position = CONFIG.INITIAL_NUMBER;
