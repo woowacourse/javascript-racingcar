@@ -1,12 +1,12 @@
+import Validate from './Validate.js';
 import { MIN_FORWARD_NUMBER } from '../constants/common.js';
 import { getRandomNumber } from '../utils/randomNumber.js';
-import { checkIsInteger, checkTryCountRange } from '../validates/tryCountValidates.js';
 
 class Race {
   constructor(cars, tryCount) {
     const tryCountNumber = Number(tryCount);
-    checkIsInteger(tryCountNumber);
-    checkTryCountRange(tryCountNumber);
+    Validate.checkIsInteger(tryCountNumber);
+    Validate.checkTryCountRange(tryCountNumber);
     this.tryCount = tryCountNumber;
     this.cars = cars;
   }

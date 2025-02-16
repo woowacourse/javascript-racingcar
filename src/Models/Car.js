@@ -1,14 +1,14 @@
-import { checkIsEmpty, checkCarNameLength, checkCarNameDuplicate, checkCarCount } from '../validates/carValidates.js';
+import Validate from './Validate.js';
 
 class Car {
   #position = 0;
   #history = [];
 
   constructor(name, names) {
-    checkIsEmpty(name);
-    checkCarNameLength(name);
-    checkCarCount(names);
-    checkCarNameDuplicate(names);
+    Validate.checkIsEmpty(name);
+    Validate.checkCarNameLength(name);
+    Validate.checkCarCount(names);
+    Validate.checkCarNameDuplicate(names);
     this.name = name;
   }
 
