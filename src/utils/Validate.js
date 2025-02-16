@@ -1,11 +1,5 @@
-const ERROR_MESSAGE = {
-    IS_EMPTY:'[ERROR] 공백이 입력되었습니다.',
-    CAR_NAME_LENGTH:'[ERROR] 이름 글자수가 5자를 초과하였습니다.',
-    IS_NUMBER:'[ERROR] 숫자가 아닙니다.',
-    IS_POSITIVE_NUMBER:'[ERROR] 0 이하의 숫자 입니다.',
-    IS_INTEGER:'[ERROR] 정수가 아닙니다.',
-}
-const MAX_NAME_LENGTH = 5;
+import RacingcarConstants from "../constants/RacingCarConstants.js";
+import ERROR_MESSAGE from "../constants/RacingErrorMessage.js";
 
 class Validate {
     isEmpty(input) {
@@ -17,7 +11,7 @@ class Validate {
         const names = input.split(',');
         names.forEach(name => {
             this.isEmpty(name)
-            if(name.trim().length > MAX_NAME_LENGTH)
+            if(name.trim().length > RacingcarConstants.MAX_NAME_LENGTH)
                 throw new Error(ERROR_MESSAGE.CAR_NAME_LENGTH);
         });
     }

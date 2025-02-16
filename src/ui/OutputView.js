@@ -1,7 +1,4 @@
-const MESSAGE = {
-    RACING_RESULT_TITLE: '\n실행 결과',
-    WINNER_RESULT_TITLE: '최종 우승자:',
-}
+import MESSAGE from '../constants/RacingMessage.js';
 
 class OutputView {
     printErrorMessage(errorMessage){

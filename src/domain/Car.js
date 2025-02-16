@@ -1,5 +1,4 @@
-const MOVE_CONDITION = 4
-const MOVE_FORWARD = 1;
+import RacingcarConstants from "../constants/RacingCarConstants";
 
 class Car {
     name
@@ -10,8 +9,8 @@ class Car {
     }
 
     move(randomNumber) {
-        if(randomNumber >= MOVE_CONDITION) {
-            this.position += MOVE_FORWARD;
+        if(randomNumber >= RacingcarConstants.MOVE_CONDITION) {
+            this.position += RacingcarConstants.MOVE_FORWARD;
         }
     }
 }
