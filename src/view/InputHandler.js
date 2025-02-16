@@ -1,12 +1,13 @@
 import { CONSOLE_MESSAGE } from '../constant/message.js';
 import ValidateModule from './ValidatorModule.js';
+import { carNameSeparator } from './constant.js';
 import { readLineAsync } from './readLineAsync.js';
 
 class InputHandler {
   static async carNamesInput() {
     const input = await readLineAsync(CONSOLE_MESSAGE.carNamesInput);
     ValidateModule.validateCarInput(input);
-    const carNames = input.split(',').map((str) => str.trim());
+    const carNames = input.split(carNameSeparator).map((str) => str.trim());
     return carNames;
   }
 

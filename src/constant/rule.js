@@ -1,4 +1,4 @@
-export const RULE = {
+export const GAME_RULE = {
   carNameLength: {
     min: 1,
     max: 5,

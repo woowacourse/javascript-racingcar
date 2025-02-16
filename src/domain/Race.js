@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constant/message.js';
-import { RULE } from '../constant/rule.js';
+import { GAME_RULE } from '../constant/rule.js';
 import { getRandomNumber } from '../util/randomNumber.js';
 import { isDuplicated, isInRange, isLessThanMin } from '../util/validations.js';
 import Car from './Car.js';
@@ -22,12 +22,12 @@ class Race {
   }
 
   #validateCarNames(carNames) {
-    if (isLessThanMin(carNames.length, RULE.carCount.min)) throw new Error(ERROR_MESSAGE.carCount);
+    if (isLessThanMin(carNames.length, GAME_RULE.carCount.min)) throw new Error(ERROR_MESSAGE.carCount);
     if (isDuplicated(carNames)) throw new Error(ERROR_MESSAGE.carNameDuplicate);
   }
 
   #validateTryCount(tryCount) {
-    if (!isInRange(tryCount, RULE.tryCount.min, RULE.tryCount.max)) throw new Error(ERROR_MESSAGE.tryCount);
+    if (!isInRange(tryCount, GAME_RULE.tryCount.min, GAME_RULE.tryCount.max)) throw new Error(ERROR_MESSAGE.tryCount);
   }
 
   raceStart() {
@@ -44,7 +44,7 @@ class Race {
   }
 
   #canCarMove() {
-    return getRandomNumber(RULE.randomNumber.min, RULE.randomNumber.max) >= RULE.moveCondition;
+    return getRandomNumber(GAME_RULE.randomNumber.min, GAME_RULE.randomNumber.max) >= GAME_RULE.moveCondition;
   }
 
   #updateRaceHistory() {

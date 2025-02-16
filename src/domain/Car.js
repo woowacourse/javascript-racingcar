@@ -1,5 +1,5 @@
 import { ERROR_MESSAGE } from '../constant/message.js';
-import { RULE } from '../constant/rule.js';
+import { GAME_RULE } from '../constant/rule.js';
 import { isInRange } from '../util/validations.js';
 
 class Car {
@@ -12,12 +12,12 @@ class Car {
   }
 
   #validateName(name) {
-    if (!isInRange(name.length, RULE.carNameLength.min, RULE.carNameLength.max))
+    if (!isInRange(name.length, GAME_RULE.carNameLength.min, GAME_RULE.carNameLength.max))
       throw new Error(ERROR_MESSAGE.carNameLength);
   }
 
   move() {
-    this.#position += RULE.moveDistance;
+    this.#position += GAME_RULE.moveDistance;
   }
 
   get name() {

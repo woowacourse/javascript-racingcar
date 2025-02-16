@@ -1,8 +1,9 @@
 import { CONSOLE_MESSAGE } from '../constant/message.js';
+import { carPositionString } from './constant.js';
 
 class OutputHandler {
   static printEachResult(carName, position) {
-    const positionString = '-'.repeat(position);
+    const positionString = carPositionString.repeat(position);
 
     console.log(`${carName} : ${positionString}`);
   }
