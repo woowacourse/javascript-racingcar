@@ -15,6 +15,10 @@
 
 ## 🔽 프로젝트 폴더 구조
 📦 src
+ ┣ 📂constants      # 전역적으로 쓰이는 상수 관련 파일
+ ┃ ┣ RacingCarConstants.js
+ ┃ ┣ RacingErrorMessage.js
+ ┃ ┗ RacingMessage.js
  ┣ 📂domain         # 핵심 비즈니스 로직(도메인) 관련 파일
  ┃ ┣ Car.js
  ┃ ┣ RacingcarManager.js
@@ -28,7 +32,6 @@
  ┃ ┗ Random.js
  ┣ App.js           # 전체 흐름을 초기화/실행하는 진입점
  ┗ index.js         # 프로그램 시작점
-
 📦 __tests__
  ┣ Car.test.js
  ┣ RacingcarManager.test.js
