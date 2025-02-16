@@ -13,16 +13,13 @@ const OutputView = Object.freeze({
     console.log();
   },
 
-  printRaceStatus(racing) {
-    racing.carList.forEach((car) => {
-      const { name, position } = car.getCarStatus();
-      OutputView.printMessage(`${name} : ${FORWARD_DASH.repeat(position)}`);
-    });
+  printRaceStatus(name, position) {
+    OutputView.printMessage(`${name} : ${FORWARD_DASH.repeat(position)}`);
   },
 
-  printRaceWinner(racing) {
+  printRaceWinner(winner) {
     OutputView.printMessage(
-      `${GAME_MESSAGE.WINNER} ${racing.getWinner().join(`${SEPARATOR} `)}`,
+      `${GAME_MESSAGE.WINNER} ${winner.join(`${SEPARATOR} `)}`,
     );
   },
 });

@@ -10,13 +10,23 @@ class App {
     const count = await loopWhileValid(InputView.enterCount);
     const racing = new Racing(carNames, count);
 
+    this.race(racing, count);
+  }
+
+  race(racing, count) {
     OutputView.printMessage(GAME_MESSAGE.RACING_RESULT);
+
     for (let i = 0; i < count; i++) {
       racing.raceOnce();
-      OutputView.printRaceStatus(racing);
+      racing.carList.forEach((car) => {
+        const { name, position } = car.getCarStatus();
+        OutputView.printRaceStatus(name, position);
+      });
       OutputView.printBlank();
     }
-    OutputView.printRaceWinner(racing);
+
+    const winner = racing.getWinner();
+    OutputView.printRaceWinner(winner);
   }
 }
 
