@@ -7,19 +7,3 @@ export const ERROR_MESSAGE = Object.freeze({
   INVALID_TRY_COUNT: "시도 횟수를 1이상 숫자로 입력해주세요.",
   EMPTY_INPUT: "빈값은 입력할 수 없습니다.",
 });
-
-export const INPUT_MESSAGE = Object.freeze({
-  CAR_NAMES: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
-  TRY_COUNT: "시도할 횟수는 몇 회인가요?",
-});
-
-export const OUTPUT_MESSAGE = Object.freeze({
-  RESULT: "실행 결과",
-  PROGRESS_SYMBOL: "-",
-});
-
-export const CAR = Object.freeze({
-  NAME_LENGTH_MIN: 1,
-  NAME_LENGTH_MAX: 5,
-  PROGRESS_CRITERIA: 4,
-});

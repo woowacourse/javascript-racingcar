@@ -1,5 +1,5 @@
 import readline from "readline";
-import { INPUT_MESSAGE } from "../constants/constants.js";
+import { INPUT_MESSAGE } from "../constants/view.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
 
 export default class InputView {

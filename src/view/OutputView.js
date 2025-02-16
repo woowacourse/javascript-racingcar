@@ -1,4 +1,4 @@
-import { OUTPUT_MESSAGE } from "../constants/constants.js";
+import { OUTPUT_MESSAGE } from "../constants/view.js";
 
 export default class OutputView {
   printProgressResult(carName, carPosition) {

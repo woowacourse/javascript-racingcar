@@ -1,7 +1,6 @@
 import InputView from "../view/InputView.js";
 import Car from "../domain/Car.js";
-import { OUTPUT_MESSAGE } from "../constants/constants.js";
-import { CAR } from "../constants/constants.js";
+import { CAR } from "../constants/domain.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 import OutputView from "../view/OutputView.js";
 
