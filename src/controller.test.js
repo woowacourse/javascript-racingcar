@@ -1,11 +1,15 @@
 import { racingCarController } from "./controller.js";
 
 describe("racingCarController 로직 테스트", () => {
-  const carNames = ["아더", "써밋"];
-  const { advanceRacingCar, getRacingCarResult, getWinners } =
-    racingCarController(carNames);
+  let advanceRacingCar, getRacingCarResult, getWinners;
 
   beforeEach(() => {
+    const carNames = ["아더", "써밋"];
+    const controller = racingCarController(carNames);
+    advanceRacingCar = controller.advanceRacingCar;
+    getRacingCarResult = controller.getRacingCarResult;
+    getWinners = controller.getWinners;
+
     advanceRacingCar("아더");
     advanceRacingCar("아더");
     advanceRacingCar("써밋");

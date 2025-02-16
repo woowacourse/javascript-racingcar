@@ -1,6 +1,6 @@
-import { RULE } from "../constants/index.js";
+import { GAME_RULES } from "../constants/rules/game.js";
 
 export const formatRacingResult = (carName, distance) => {
-  const advanceExpression = RULE.ADVANCE_EXPRESSION.repeat(distance);
+  const advanceExpression = GAME_RULES.ADVANCE_EXPRESSION.repeat(distance);
   return `${carName}: ${advanceExpression}\n`;
 };

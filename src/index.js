@@ -1,5 +1,9 @@
-import { retryUntilValid, getCarName, getAttemptCount } from "./view/input.js";
-import { validateCarNames, validateAttemptCount } from "./utils/validation.js";
+import { getCarName, getAttemptCount } from "./view/input.js";
+import {
+  retryUntilValid,
+  validateCarNames,
+  validateAttemptCount,
+} from "./utils/validation.js";
 import {
   printWinner,
   printExecutionText,
