@@ -3,9 +3,9 @@ import Output from "../views/Output.js";
 import RaceController from "./RaceController.js";
 class GameController {
   async play() {
-    const { names, tryCount } = await this.#readAndValidateInputs();
+    const { carNames, tryCount } = await this.#getValidatedInputs();
 
-    const raceController = new RaceController(names, tryCount);
+    const raceController = new RaceController(carNames, tryCount);
 
     Output.printRaceStart();
     raceController.race();
@@ -14,11 +14,11 @@ class GameController {
     Output.printWinner(winners);
   }
 
-  async #readAndValidateInputs() {
-    const names = await Input.carName();
+  async #getValidatedInputs() {
+    const carNames = await Input.carNames();
     const tryCount = await Input.tryCount();
 
-    return { names, tryCount };
+    return { carNames, tryCount };
   }
 }
 

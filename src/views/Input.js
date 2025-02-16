@@ -4,13 +4,13 @@ import validateTryCount from "../validations/validateTryCount.js";
 import { INPUT_PROMPT_MESSAGE } from "../constants/constants.js";
 
 const Input = {
-  async carName() {
+  async carNames() {
     try {
       const input = await Console.readLineAsync(INPUT_PROMPT_MESSAGE.CAR_NAMES);
       return validateCarNames(input);
     } catch (error) {
       Console.printErrorMessage(error.message);
-      return this.carName();
+      return this.carNames();
     }
   },
   async tryCount() {

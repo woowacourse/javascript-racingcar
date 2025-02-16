@@ -1,10 +1,10 @@
 import RaceController from "../src/controllers/RaceController.js";
-import randomNumber from "../src/utils/randomNumber.js";
+import getRandomNumber from "../src/utils/getRandomNumber.js";
 
-jest.mock("../src/utils/randomNumber.js");
+jest.mock("../src/utils/getRandomNumber.js");
 
 const mockRandoms = (numbers) => {
-  randomNumber.mockImplementation(() => numbers.shift());
+  getRandomNumber.mockImplementation(() => numbers.shift());
 };
 
 describe("RaceController 클래스 테스트", () => {
