@@ -25,8 +25,9 @@ export async function readLineAsync(query) {
 export async function retryUntilSuccess(callbackFn) {
   try {
     return await callbackFn();
-  } catch(err) {
-    console.log(err.message)
+  } catch (err) {
+    console.log(err.message);
+
     return await retryUntilSuccess(callbackFn);
   }
 }

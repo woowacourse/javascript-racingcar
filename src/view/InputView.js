@@ -8,7 +8,7 @@ export default class InputView {
         '경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n',
       );
       Validator.validateCarName(rawName);
-      return rawName.split(',').map(name => name.trim());
+      return rawName;
     });
   }
 
@@ -16,7 +16,8 @@ export default class InputView {
     return retryUntilSuccess(async () => {
       const rawCount = await readLineAsync('시도할 횟수는 몇 회인가요?\n');
       Validator.validateCount(rawCount);
-      return Number(rawCount);
+      return rawCount;
+
     });
   }
 }

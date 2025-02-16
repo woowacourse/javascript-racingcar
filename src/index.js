@@ -1,37 +1,28 @@
-import CarModel from './model/CarModel.js';
+import Car from './domain/Car.js';
 import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
+import Race from './domain/Race.js';
+import Winner from './domain/Winner.js';
 
-function printOneGame(nameList, cars) {
-  for (let i = 0; i < nameList.length; i++) {
-    const carOutput = '-'.repeat(cars[i].position);
-    console.log(`${nameList[i]} : ${carOutput}`);
-  }
-  console.log('');
-}
-
-// 입출력 예시
 export async function run() {
-  const nameList = await InputView.getNameList();
-  const count = await InputView.getCount();
+  const rawNameList = await InputView.getNameList();
+  const nameList = rawNameList.split(',').map(name => name.trim());
 
-  const cars = nameList.map(name => new CarModel(name));
+  const rawCount = await InputView.getCount();
+  const count = Number(rawCount);
 
-  console.log('\n실행 결과');
-  Array.from({ length: count }, () => {
-    cars.forEach(car => car.go());
-    printOneGame(nameList, cars);
-  });
+  const cars = nameList.map(name => new Car(name));
 
-  const winnerPosition = cars.reduce((maxPosition, car) => 
-    Math.max(car.position, maxPosition), 0);
+  OutputView.printGameStart();
+  const race = new Race(cars);
+  const roundResultList = race.playAllRounds(count);
 
-  const winnerList = cars.filter(car => car.position === winnerPosition).map(car => car.name);
+  OutputView.printAllGame(roundResultList, nameList);
 
+  const winnerOutput = Winner.findWinners(cars);
 
-  const winnerOutput = winnerList.join(', ');
+  OutputView.printWinners(winnerOutput);
 
-  // FIX: 한 자동차가 0의 스코어일때 최종우승자가 뜨지 않는 오류
-  console.log(`최종 우승자: ${winnerOutput}`);
 }
 
 await run();
