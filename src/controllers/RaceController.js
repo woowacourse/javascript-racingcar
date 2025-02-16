@@ -1,5 +1,5 @@
 import Console from "../utils/Console.js";
-import Car from "../models/Car.js";
+import Car from "../domains/Car.js";
 import randomNumber from "../utils/randomNumber.js";
 import Output from "../views/Output.js";
 
