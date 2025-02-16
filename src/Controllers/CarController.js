@@ -6,17 +6,31 @@ import { PRINT_MESSAGE } from '../constants/message.js';
 
 class CarController {
   async run() {
-    const carNamesInput = await InputView.inputCarName();
+    const cars = await this.getCars();
+    const tryCount = await this.getTryCount();
+    const race = this.startRace(cars, tryCount);
+
+    this.showResult(race);
+  }
+
+  generateCar(carNamesInput) {
     const carNames = carNamesInput.split(',').map((str) => str.trim());
-    const cars = carNames.map((name) => new Car(name, carNames));
+    return carNames.map((name) => new Car(name, carNames));
+  }
 
-    const tryCountInput = await InputView.inputTryCount();
-    const race = new Race(cars, tryCountInput);
+  async getCars() {
+    const carNamesInput = await InputView.inputCarName();
+    return this.generateCar(carNamesInput);
+  }
+
+  async getTryCount() {
+    return await InputView.inputTryCount();
+  }
+
+  startRace(cars, tryCount) {
+    const race = new Race(cars, tryCount);
     race.movePosition();
-
-    this.outputResult(race.cars, race.tryCount);
-    const winners = race.getWinner();
-    OutputView.printWinner(winners);
+    return race;
   }
 
   outputResult(cars, tryCount) {
@@ -27,6 +41,12 @@ class CarController {
       });
       OutputView.printMessage('');
     }
+  }
+
+  showResult(race) {
+    this.outputResult(race.cars, race.tryCount);
+    const winners = race.getWinner();
+    OutputView.printWinner(winners);
   }
 }
 
