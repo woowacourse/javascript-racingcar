@@ -1,19 +1,33 @@
-import { GAME_MESSAGE } from './constants/systemMessages.js';
+import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
 import Racing from './domain/Racing.js';
 import loopWhileValid from './utils/loopWhileValid.js';
-import InputView from './view/InputView.js';
+import InputValidator from './view/InputValidator.js';
+import InputView from './domain/InputView.js';
 import OutputView from './view/OutputView.js';
 
 class App {
   async run() {
-    const carNames = await loopWhileValid(InputView.enterCarNames);
-    const count = await loopWhileValid(InputView.enterCount);
+    const carNames = await loopWhileValid(this.#getCarNames);
+    const count = await loopWhileValid(this.#getCount);
     const racing = new Racing(carNames, count);
 
-    this.race(racing, count);
+    this.#race(racing, count);
   }
 
-  race(racing, count) {
+  async #getCarNames() {
+    const carNamesInput = await InputView.enterCarNames();
+    const names = carNamesInput.split(SEPARATOR);
+    InputValidator.carNames(names);
+    return names;
+  }
+
+  async #getCount() {
+    const countInput = await InputView.enterCount();
+    InputValidator.count(countInput);
+    return countInput;
+  }
+
+  #race(racing, count) {
     OutputView.printMessage(GAME_MESSAGE.RACING_RESULT);
 
     for (let i = 0; i < count; i++) {
