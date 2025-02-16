@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "jest --no-cache",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
@@ -13,7 +14,12 @@
     "@babel/preset-env": "^7.26.7",
     "@types/jest": "^29.5.14",
     "babel-jest": "^29.7.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
     "jest": "^29.6.0",
+    "prettier": "^3.5.1",
     "vite": "^6.0.5"
   },
   "jest": {
