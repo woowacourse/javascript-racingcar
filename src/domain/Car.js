@@ -1,5 +1,4 @@
 import { CAR } from "../constants/domain.js";
-import { getRandomNumber } from "../utils/getRandomNumber.js";
 import { validateCarNames } from "../utils/validation.js";
 
 export default class Car {
@@ -16,6 +15,7 @@ export default class Car {
   }
 
   move(number) {
+    console.log(number);
     if (this.isMove(number)) {
       this.#position += 1;
     }
@@ -31,5 +31,9 @@ export default class Car {
 
   getPosition() {
     return this.#position;
+  }
+
+  setPostion(position) {
+    this.#position = position;
   }
 }
