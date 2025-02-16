@@ -5,8 +5,8 @@
  * @returns {Function} - 첫 번째 입력값을 받아, 모든 함수를 순차적으로 적용한 결과를 반환하는 함수
  */
 const pipe =
-  (...fns) =>
+  (firstFn, ...fns) =>
   (...args) =>
-    fns.slice(1).reduce((acc, fn) => fn(acc), fns[0](...args));
+    fns.reduce((acc, fn) => fn(acc), firstFn(...args));
 
 export default pipe;
