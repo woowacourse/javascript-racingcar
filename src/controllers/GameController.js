@@ -1,6 +1,10 @@
 import Input from "../views/Input.js";
 import Output from "../views/Output.js";
 import RaceController from "./RaceController.js";
+import validateCarNames from "../validations/validateCarNames.js";
+import getValidInput from "../utils/getValidInput.js";
+import validateTryCount from "../validations/validateTryCount.js";
+
 class GameController {
   async play() {
     const { carNames, tryCount } = await this.#getValidatedInputs();
@@ -15,8 +19,8 @@ class GameController {
   }
 
   async #getValidatedInputs() {
-    const carNames = await Input.carNames();
-    const tryCount = await Input.tryCount();
+    const carNames = await getValidInput(Input.carNames, validateCarNames);
+    const tryCount = await getValidInput(Input.tryCount, validateTryCount);
 
     return { carNames, tryCount };
   }
