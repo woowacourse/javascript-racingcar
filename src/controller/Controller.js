@@ -34,11 +34,7 @@ export default class Controller {
 
   async createCars(carNames) {
     try {
-      const cars = [];
-      carNames.forEach((carName) => {
-        cars.push(new Car(carName));
-      });
-      return cars;
+      return Array.from(carNames, (carName) => new Car(carName));
     } catch (e) {
       console.log(e.message);
       return await this.getCars();
