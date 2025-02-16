@@ -1,9 +1,8 @@
 import InputView from "../view/InputView.js";
 import Car from "../model/Car.js";
-import { INPUT_MESSAGE, OUTPUT_MESSAGE } from "../constants/message.js";
-import { CAR } from "../constants/constants.js";
+import { INPUT_MESSAGE } from "../constants/message.js";
 import { validateCarNames, validateTryCount } from "../utils/validation.js";
-import { getRandomNumber } from "../utils/getRandomNumber.js";
+import Race from "../model/Race.js";
 
 export default class Controller {
   async run() {
@@ -21,15 +20,9 @@ export default class Controller {
     carNames.forEach((carName) => {
       cars.push(new Car(carName));
     });
-    this.runRace(cars, tryCount);
+    const race = new Race(cars, tryCount);
+    race.runRace();
     this.findWinner(cars);
-  }
-
-  runRace(cars, tryCount) {
-    console.log(OUTPUT_MESSAGE.RESULT);
-    for (let i = 0; i < tryCount; i++) {
-      this.gameRound(cars);
-    }
   }
 
   findWinner(cars) {
@@ -38,16 +31,6 @@ export default class Controller {
     console.log(
       `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`
     );
-  }
-
-  gameRound(cars) {
-    cars.forEach((car) => {
-      if (this.isMove(getRandomNumber())) car.move();
-      console.log(
-        `${car.name} : ${OUTPUT_MESSAGE.PROGRESS_SYMBOL.repeat(car.position)}`
-      );
-    });
-    console.log("");
   }
 
   async validateAndRetry(message, validateFn) {
@@ -60,10 +43,5 @@ export default class Controller {
       console.log(e.message);
       return this.validateAndRetry(message, validateFn);
     }
-  }
-
-  isMove(number) {
-    if (number >= CAR.PROGRESS_CRITERIA) return true;
-    return false;
   }
 }
