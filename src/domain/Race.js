@@ -10,7 +10,7 @@ class Race {
       const randomNumber = getRandomInt(10);
       car.go(randomNumber);
     });
-    return [...this.cars];
+    return structuredClone(this.cars);
   }
 
   playAllRounds(count) {
