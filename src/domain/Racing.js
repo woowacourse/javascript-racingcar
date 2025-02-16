@@ -1,5 +1,5 @@
-import getRandomNumber0to9 from './utils/getRandomNumber0to9.js';
-import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
+import getRandomNumber0to9 from '../utils/getRandomNumber0to9.js';
+import { GAME_MESSAGE, SEPARATOR } from '../constants/systemMessages.js';
 
 class Racing {
   #carList;
