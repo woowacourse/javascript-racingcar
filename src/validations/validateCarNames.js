@@ -1,12 +1,12 @@
 import { ERROR_CAR_NAMES_MESSAGE, MAX_CAR_NAME_LENGTH } from "../constants/constants.js";
 
 const validateCarNames = (input) => {
-  const carNames = input.split(",").map((el) => el.trim());
+  const carNames = input
+    .split(",")
+    .map((el) => el.trim())
+    .filter((el) => el !== "");
 
   carNames.forEach((car) => {
-    if (car === "") {
-      throw new Error(ERROR_CAR_NAMES_MESSAGE.NOT_EXIST);
-    }
     if (car.length > MAX_CAR_NAME_LENGTH) {
       throw new Error(ERROR_CAR_NAMES_MESSAGE.OVER);
     }
