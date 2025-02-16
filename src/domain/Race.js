@@ -1,4 +1,3 @@
-import Car from "./Car.js";
 import { MOVE_CONDITION, RANDOM_NUMBER } from "../constants/Constants.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 class Race {

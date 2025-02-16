@@ -6,12 +6,12 @@ export const RANDOM_NUMBER = Object.freeze({
 export const MOVE_CONDITION = 4;
 
 export const INPUT_MESSAGE = Object.freeze({
-  CAR: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
-  ATTEMPT: "시도할 횟수는 몇 회인가요?\n",
+  CAR: "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).",
+  ATTEMPT: "시도할 횟수는 몇 회인가요?",
 });
 
 export const OUTPUT_MESSAGE = Object.freeze({
-  RESULT: "실행 결과\n",
+  RESULT: "실행 결과",
   WINNER: "최종 우승자:",
 });
 
