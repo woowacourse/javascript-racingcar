@@ -6,7 +6,7 @@ class Car {
   #position;
 
   constructor(name) {
-    Validator.validateName(name, DEFINITION.MAX_NAME_LENGTH);
+    Validator.validateStringLength(name, DEFINITION.MAX_NAME_LENGTH);
     this.#name = name;
     this.#position = 0;
   }
@@ -19,8 +19,8 @@ class Car {
     return this.#position;
   }
 
-  moveForward(randomValue) {
-    if (randomValue < DEFINITION.MOVE_CONDITION) {
+  moveForward(inputNumber) {
+    if (inputNumber < DEFINITION.MOVE_CONDITION) {
       return;
     }
     this.#position++;
