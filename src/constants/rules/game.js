@@ -1,0 +1,7 @@
+export const GAME_RULES = Object.freeze({
+  MIN_CAR_COUNT: 1,
+  MAX_CAR_COUNT: 10,
+  MIN_ATTEMPT_COUNT: 1,
+  MAX_ATTEMPT_COUNT: 100,
+  ADVANCE_CONDITION: 4,
+});
