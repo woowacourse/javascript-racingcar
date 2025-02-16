@@ -21,7 +21,7 @@ class CarRacingController {
     OutputView.printBeforeResult();
     for (let i = 0; i < this.#raceCount; i++) {
       this.race();
-      console.log("");
+      OutputView.printRoundResult(this.#carList);
     }
 
     const winners = getWinners(this.#carList);
@@ -57,8 +57,6 @@ class CarRacingController {
       const moveCondition = randomNumber();
 
       car.move(moveCondition);
-
-      OutputView.printRoundResult(car.getName(), car.getPosition());
     });
   }
 }
