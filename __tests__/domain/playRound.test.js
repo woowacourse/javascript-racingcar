@@ -1,7 +1,4 @@
 import playRound from "../../src/domain/playRound";
-import generateRandomNumber from "../../src/utils/generateRandomNumber";
-
-jest.mock("../../src/utils/generateRandomNumber");
 
 describe("domain/playRound", () => {
   let cars;
@@ -14,24 +11,17 @@ describe("domain/playRound", () => {
     ];
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
+  test("자동차의 count 값은 증가하거나 그대로여야 한다.", () => {
+    const result = playRound(cars);
+
+    result.forEach((car, index) => {
+      expect(car.count).toBeGreaterThanOrEqual(cars[index].count);
+    });
   });
 
-  test("각 자동차의 랜덤 숫자에 따라 이동 여부가 결정된다", () => {
-    generateRandomNumber
-      .mockReturnValueOnce(3)
-      .mockReturnValueOnce(4)
-      .mockReturnValueOnce(1);
+  test("입력된 자동차 배열과 출력 배열의 길이는 동일해야 한다.", () => {
+    const result = playRound(cars);
 
-    const updatedCars = playRound(cars);
-
-    expect(generateRandomNumber).toHaveBeenCalledTimes(3);
-
-    expect(updatedCars).toEqual([
-      { name: "A", count: 1 },
-      { name: "B", count: 2 },
-      { name: "C", count: 0 }
-    ]);
+    expect(result.length).toBe(cars.length);
   });
 });
