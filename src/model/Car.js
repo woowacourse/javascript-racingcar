@@ -3,7 +3,7 @@ import { CONFIG } from '../constants/config.js';
 class Car {
   constructor(name) {
     this.name = name;
-    this.position = CONFIG.ZERO;
+    this.position = CONFIG.INITIAL_NUMBER;
   }
 
   move() {

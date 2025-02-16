@@ -28,7 +28,7 @@ class CarManager {
 
   race(attempts) {
     OutputView.printResultGreeting();
-    for (let i = CONFIG.ZERO; i < attempts; i++) {
+    for (let i = CONFIG.INITIAL_NUMBER; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
         OutputView.printRaceResult(car.name, car.position);
