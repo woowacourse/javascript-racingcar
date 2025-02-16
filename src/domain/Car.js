@@ -1,4 +1,4 @@
-import RacingcarConstants from "../constants/RacingCarConstants";
+import RacingcarConstants from "../constants/RacingCarConstants.js";
 
 class Car {
     name
