@@ -1,26 +1,28 @@
 import Car from "./Car.js";
-import { OUTPUT_MESSAGE } from "../const.js";
-import Output from "../ui/Output.js";
 import { getRandomIntBetween } from "../util.js";
+import RaceRecord from "./RaceRecord.js";
 class Race {
   #cars;
   #raceCount;
+  #raceRecord;
 
-  constructor(names, raceCount) {
+  constructor(names, raceCount, raceRecord) {
     this.#cars = names.map((raceCarName) => new Car(raceCarName));
     this.#raceCount = raceCount;
+    this.#raceRecord = raceRecord;
   }
 
   raceCar() {
-    const output = new Output();
-    output.printLine(OUTPUT_MESSAGE.result);
     for (let i = 0; i < this.#raceCount; i++) {
-      this.#cars.forEach((car) => {
-        car.tryMove(getRandomIntBetween(0, 9));
-        output.printCarPosition(car);
-      });
-      console.log();
+      this.#raceOnce();
     }
+  }
+
+  #raceOnce() {
+    this.#cars.forEach((car) => {
+      car.tryMove(getRandomIntBetween(0, 9));
+      this.#raceRecord.recordStep(car);
+    });
   }
 
   getWinner() {

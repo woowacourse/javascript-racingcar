@@ -16,6 +16,10 @@ class Car {
       this.#moveOneStep();
     }
   }
+
+  getPositionStatus() {
+    return `${"-".repeat(this.position)}`;
+  }
 }
 
 export default Car;

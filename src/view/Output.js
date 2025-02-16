@@ -1,6 +1,9 @@
 class Output {
-  printCarPosition(car) {
-    console.log(`${car.raceCarName}: ${"-".repeat(car.position)}`);
+  printRace(raceRecord, raceCount) {
+    for (let i = 1; i <= raceCount; i++) {
+      console.log(raceRecord.toStringStep(i));
+      console.log();
+    }
   }
 
   printWinnerList(winnerList) {
