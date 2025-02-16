@@ -1,11 +1,13 @@
 import errorHandler from "./errorHandler.js";
+import emptySpaceEraser from "./emptySpace.js";
 
 const tryInput = async (inputFn, validateFn) => {
   try {
     const input = await inputFn();
-    validateFn(input);
+    const inputWithoutSpace = emptySpaceEraser(input);
+    validateFn(inputWithoutSpace);
 
-    return input;
+    return inputWithoutSpace;
   } catch (error) {
     errorHandler(error);
     return tryInput(inputFn, validateFn);
