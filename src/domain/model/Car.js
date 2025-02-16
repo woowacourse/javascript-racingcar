@@ -9,7 +9,7 @@ class Car {
 
   move(condition) {
     if (condition) {
-      this.#position += 1;
+      this.#position += CONFIG.CAR_STEP;
     }
   }
 

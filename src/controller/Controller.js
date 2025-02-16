@@ -28,7 +28,7 @@ class Controller {
         Validator.checkCarNameLength(carName);
         Validator.checkBlank(carName);
       });
-      CarNameValidator.checkDuplicatedCarName(carNames);
+      Validator.checkDuplicatedCarName(carNames);
       return carNames;
     } catch (err) {
       console.log(err.message);
