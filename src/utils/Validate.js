@@ -33,5 +33,22 @@ class Validate {
             throw new Error(ERROR_MESSAGE.IS_INTEGER);
         }
     }
+
+    validateCarNames(carNamesInput) {
+        this.isEmpty(carNamesInput);
+        this.isValidCarNames(carNamesInput);
+    }
+
+    validateAttempts(attempts) {
+        try {
+            this.isEmpty(attempts);
+            const numAttempts = Number(attempts);
+            this.isNumber(numAttempts);
+            this.isPositiveNumber(numAttempts);
+            this.isInteger(numAttempts);
+        } catch (error) {
+            throw error;
+        }
+      }
 }
 export default Validate;

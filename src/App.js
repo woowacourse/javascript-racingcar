@@ -36,43 +36,25 @@ class App {
     while (true) {
       try {
         const carNamesInput = await this.#inputView.readCarNames();
-        this.#validateCarNames(carNamesInput);
+        this.#validate.validateCarNames(carNamesInput);
         return carNamesInput.split(',');
       } catch (error) {
         this.#outputView.printErrorMessage(error.message);
       }
     }
   }
-  
-  #validateCarNames(carNamesInput) {
-    this.#validate.isEmpty(carNamesInput);
-    this.#validate.isValidCarNames(carNamesInput);
-  }
 
   async #getAttempts()  {
     while(true) {
         try {
             const attempts = await this.#inputView.readAttempts();
-            this.#validateAttempts(attempts);
+            this.#validate.validateAttempts(attempts);
             return Number(attempts);
         } catch (error) {
             this.#outputView.printErrorMessage(error.message);
         }
     }
   }
-
-  #validateAttempts(attempts) {
-    try {
-        this.#validate.isEmpty(attempts);
-        const numAttempts = Number(attempts);
-        this.#validate.isNumber(numAttempts);
-        this.#validate.isPositiveNumber(numAttempts);
-        this.#validate.isInteger(numAttempts);
-    } catch (error) {
-        throw error;
-    }
-  }
-
 }
 
 export default App;
