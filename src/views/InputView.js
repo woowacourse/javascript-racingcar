@@ -1,26 +1,24 @@
-import readline from 'readline';
+import ReadLineAsync from './ReadLineAsync.js';
+import { Parser } from '../utils/Parser.js';
+import MESSAGE from '../constants/Message.js';
 
 class InputView {
-  static readLineAsync(query) {
-    return new Promise((resolve, reject) => {
-      if (arguments.length !== 1) {
-        reject(new Error('arguments must be 1'));
-      }
+  static async inputName() {
+    const inputName = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.NAME);
+    const splittedName = Parser.splitName(inputName);
+    return splittedName;
+  }
+  catch(error) {
+    console.log(error.message);
+  }
 
-      if (typeof query !== 'string') {
-        reject(new Error('query must be string'));
-      }
-
-      const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-      });
-
-      rl.question(query, input => {
-        rl.close();
-        resolve(input);
-      });
-    });
+  static async inputTryNumber() {
+    const inputTryNumber = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.TRY_NUMBER);
+    const parsedNumber = Number(inputTryNumber.trim());
+    return parsedNumber;
+  }
+  catch(error) {
+    console.log(error.message);
   }
 }
 

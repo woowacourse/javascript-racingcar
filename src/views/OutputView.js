@@ -3,8 +3,8 @@ class OutputView {
     console.log(`${name} : ${'-'.repeat(position)}`);
   }
 
-  static break() {
-    console.log();
+  static printInput(input) {
+    console.log(input);
   }
 
   static gameResult(winnerNames) {
