@@ -1,5 +1,5 @@
-import CountValidator from '../src/utils/validator/CountValidator.js';
-import ErrorMessage from '../src/constants/ErrorMessage.js';
+import CountValidator from '../src/domain/validator/CountValidator.js';
+import ErrorMessage from '../src/domain/constants/ErrorMessage.js';
 
 describe('시도 횟수의 예외 상황 테스트', () => {
   test(`시도 횟수가 숫자가 아닌 경우 ${ErrorMessage.NaNTryCount} 메시지를 포함한 에러를 throw 한다.`, () => {

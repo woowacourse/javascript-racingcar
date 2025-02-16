@@ -1,4 +1,4 @@
-const ErrorMessage = Object.freeze({
+const ERROR_MESSAGE = Object.freeze({
   emptyInput: '[ERROR] 빈 값은 입력할 수 없습니다. 다시 입력해주세요.',
   lessThanTwo: '[ERROR] 자동차는 2대 이상 입력해야 합니다. 다시 입력해주세요.',
   longerThanFive:
@@ -13,4 +13,4 @@ const ErrorMessage = Object.freeze({
     '[ERROR] 시도 횟수는 백 만 번을 초과할 수 없습니다. 다시 입력해주세요.',
 });
 
-export default ErrorMessage;
+export default ERROR_MESSAGE;

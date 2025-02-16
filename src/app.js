@@ -1,78 +1,114 @@
-import splitInput from './utils/splitInput.js';
-import NameValidator from './utils/validator/NameValidator.js';
-import CountValidator from './utils/validator/CountValidator.js';
+import NameValidator from './domain/validator/NameValidator.js';
+import CountValidator from './domain/validator/CountValidator.js';
 import InputView from './view/InputView.js';
-import OutputView from './view/OutputView.js';
-import parseToNumber from './utils/parseToNumber.js';
-import Car from './Car.js';
-import Racing from './Racing.js';
-import Printer from './Printer.js';
-import InputMessage from './constants/InputMessage.js';
-import getRandomNumber from './utils/getRandomNumber.js';
+import Car from './domain/Car.js';
+import Racing from './domain/Racing.js';
+import Printer from './view/Printer.js';
+import InputMessage from './domain/constants/InputMessage.js';
+import chooseRandomNumber from './domain/utils/chooseRandomNumber.js';
 import {
   MIN_RANDOM_NUMBER,
   MAX_RANDOM_NUMBER,
   MOVE_NUMBER,
-} from './constants/RacingConstants.js';
+} from './domain/constants/RacingConstants.js';
+import { NAME_DELIMITER } from './domain/constants/ValidatorConstants.js';
 
 class App {
+  #cars;
+
+  #racing;
+
   async run() {
-    const cars = await this.getCar();
-    const tryCount = await this.getTryCount();
+    const cars = await this.#createCars();
+    const tryCount = await this.#askTryCount();
 
     const racing = new Racing(cars);
-    racing.runRace(App.getTotalRaceMoves(tryCount, cars));
+    this.#cars = cars;
+    this.#racing = racing;
 
-    const raceResult = racing.decideWinner();
-    Printer.printWinner(raceResult);
+    this.#playRacing(tryCount);
+
+    this.#announceWinner();
   }
 
-  async getCar() {
+  async #createCars() {
     try {
-      const carNameInput = await InputView.readLineAsync(
-        InputMessage.getCarName,
+      const carNamesInput = await InputView.readLineAsync(
+        InputMessage.carNameQuestion,
       );
-      const parsedCarName = splitInput(carNameInput);
+      const parsedCarNames = App.parseNames(carNamesInput);
 
-      NameValidator.isValid(parsedCarName);
+      NameValidator.isValid(parsedCarNames);
 
-      return parsedCarName.map((carName) => new Car(carName));
+      return parsedCarNames.map((carName) => new Car(carName));
     } catch (error) {
-      OutputView.print(error.message);
-      return this.getCar();
+      console.log(error.message);
+      return this.#createCars();
     }
   }
 
-  async getTryCount() {
+  async #askTryCount() {
     try {
-      const tryCount = await InputView.readLineAsync(InputMessage.getTryCount);
-      const parsedTryCount = parseToNumber(tryCount);
+      const tryCount = await InputView.readLineAsync(
+        InputMessage.tryCountQuestion,
+      );
+      const parsedTryCount = App.parseTryCount(tryCount);
 
       CountValidator.isValid(parsedTryCount);
 
       return parsedTryCount;
     } catch (error) {
-      OutputView.print(error.message);
-      return this.getTryCount();
+      console.log(error.message);
+      return this.#askTryCount();
     }
   }
 
-  static getTotalRaceMoves(tryCount, cars) {
-    const turns = Array.from({ length: tryCount });
-    const totalCarNumbers = cars.length;
-    return turns.map(() => this.getIsMoveList(totalCarNumbers));
+  #playRacing(tryCount) {
+    Printer.printRacingResultHeader();
+
+    const totalRaceMoves = this.#generateTotalRaceMoves(tryCount);
+    const results = this.#racing.runRace(totalRaceMoves);
+
+    results.forEach((result) => {
+      Printer.printRacingResult(result);
+    });
   }
 
-  static getIsMoveList(totalCarNumbers) {
-    const carsMoveList = Array.from({ length: totalCarNumbers });
-    return carsMoveList.map(() => {
-      const randomNumber = getRandomNumber(
+  #generateTotalRaceMoves(tryCount) {
+    const totalCarNumbers = this.#cars.length;
+    return Array.from({ length: tryCount }).map(() =>
+      App.generateIsMoveList(totalCarNumbers),
+    );
+  }
+
+  static generateIsMoveList(totalCarNumbers) {
+    return Array.from({ length: totalCarNumbers }).map(() => {
+      const randomNumber = chooseRandomNumber(
         MIN_RANDOM_NUMBER,
         MAX_RANDOM_NUMBER,
       );
 
       return randomNumber >= MOVE_NUMBER;
     });
+  }
+
+  #announceWinner() {
+    const results = this.#cars.map((car) => car.getCarInfo());
+    const raceResult = Racing.decideWinner(results);
+
+    Printer.printWinner(raceResult);
+  }
+
+  static parseNames(names) {
+    return names.split(NAME_DELIMITER).map((name) => name.trim());
+  }
+
+  static parseTryCount(tryCount) {
+    if (tryCount === '' || tryCount === null) {
+      return NaN;
+    }
+
+    return Number(tryCount);
   }
 }
 
