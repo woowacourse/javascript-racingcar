@@ -1,6 +1,6 @@
 import Validate from './Validate.js';
 import { MIN_FORWARD_NUMBER } from '../constants/common.js';
-import { getRandomNumber } from '../utils/randomNumber.js';
+import { getRandomNumberInRange } from '../utils/randomNumber.js';
 
 class Race {
   constructor(cars, tryCount) {
@@ -12,7 +12,7 @@ class Race {
   }
 
   canMove() {
-    const randomNumber = getRandomNumber();
+    const randomNumber = getRandomNumberInRange(0, 9);
     return randomNumber >= MIN_FORWARD_NUMBER;
   }
 

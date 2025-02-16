@@ -1,4 +1,3 @@
-/** 0~9 랜덤 숫자 반환*/
-export function getRandomNumber() {
-  return Math.floor(Math.random() * 10);
+export function getRandomNumberInRange(min = 0, max = 9) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
