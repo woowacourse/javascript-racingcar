@@ -20,11 +20,14 @@ class RaceController {
   }
 
   getWinners() {
-    const countArray = this.#cars.map((car) => car.count);
-    const maxCount = Math.max(...countArray);
-
+    const maxCount = this.#getMaxCount();
     const winners = this.#cars.filter((car) => car.count === maxCount);
     return winners.map((winner) => winner.name);
+  }
+
+  #getMaxCount() {
+    const countArray = this.#cars.map((car) => car.count);
+    return Math.max(...countArray);
   }
 
   #playRound() {
