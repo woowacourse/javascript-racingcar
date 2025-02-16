@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from '../constant/message.js';
+import { RULE } from '../constant/rule.js';
 import { getRandomNumber } from '../util/randomNumber.js';
 import { isDuplicated, isInRange, isLessThanMin } from '../util/validations.js';
 import Car from './Car.js';
@@ -20,12 +22,12 @@ class Race {
   }
 
   #validateCarNames(carNames) {
-    if (isLessThanMin(carNames.length, 2)) throw new Error('[ERROR] 자동차는 2대 이상이여야 합니다.');
-    if (isDuplicated(carNames)) throw new Error('[ERROR] 자동차 이름은 중복되면 안됩니다.');
+    if (isLessThanMin(carNames.length, RULE.carCount.min)) throw new Error(ERROR_MESSAGE.carCount);
+    if (isDuplicated(carNames)) throw new Error(ERROR_MESSAGE.carNameDuplicate);
   }
 
   #validateTryCount(tryCount) {
-    if (!isInRange(tryCount, 1, 20)) throw new Error('[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.');
+    if (!isInRange(tryCount, RULE.tryCount.min, RULE.tryCount.max)) throw new Error(ERROR_MESSAGE.tryCount);
   }
 
   raceStart() {
@@ -42,7 +44,7 @@ class Race {
   }
 
   #canCarMove() {
-    return getRandomNumber(0, 9) >= 4;
+    return getRandomNumber(RULE.randomNumber.min, RULE.randomNumber.max) >= RULE.moveCondition;
   }
 
   #updateRaceHistory() {

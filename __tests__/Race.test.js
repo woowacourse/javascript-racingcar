@@ -1,15 +1,13 @@
+import { ERROR_MESSAGE } from '../src/constant/message.js';
 import Race from '../src/domain/Race.js';
 
 const FAIL_CAR_NAME_TEST_CASE = [
-  [
-    '자동차 수가 2대보다 작을 경우 예외처리한다.',
-    { carNames: ['재오'], errorMessage: '[ERROR] 자동차는 2대 이상이여야 합니다.' },
-  ],
+  ['자동차 수가 2대보다 작을 경우 예외처리한다.', { carNames: ['재오'], errorMessage: ERROR_MESSAGE.carCount }],
   [
     '자동차의 이름은 중복되면 안된다.',
     {
       carNames: ['재오', '상추', '앵버', '재오'],
-      errorMessage: '[ERROR] 자동차 이름은 중복되면 안됩니다.',
+      errorMessage: ERROR_MESSAGE.carNameDuplicate,
     },
   ],
 ];
@@ -19,14 +17,14 @@ const FAIL_TRY_COUNT_TEST_CASE = [
     '시도 횟수가 1보다 작으면 안된다.',
     {
       tryCount: 0,
-      errorMessage: '[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.',
+      errorMessage: ERROR_MESSAGE.tryCount,
     },
   ],
   [
     '시도 횟수가 20보다 크면 안된다.',
     {
       tryCount: 21,
-      errorMessage: '[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.',
+      errorMessage: ERROR_MESSAGE.tryCount,
     },
   ],
 ];

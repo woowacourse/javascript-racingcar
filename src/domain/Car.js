@@ -1,3 +1,5 @@
+import { ERROR_MESSAGE } from '../constant/message.js';
+import { RULE } from '../constant/rule.js';
 import { isInRange } from '../util/validations.js';
 
 class Car {
@@ -10,11 +12,12 @@ class Car {
   }
 
   #validateName(name) {
-    if (!isInRange(name.length, 1, 5)) throw new Error(`[ERROR] 자동차 이름은 1에서 5자 사이여야 합니다.`);
+    if (!isInRange(name.length, RULE.carNameLength.min, RULE.carNameLength.max))
+      throw new Error(ERROR_MESSAGE.carNameLength);
   }
 
   move() {
-    this.#position += 1;
+    this.#position += RULE.moveDistance;
   }
 
   get name() {

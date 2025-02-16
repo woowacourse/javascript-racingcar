@@ -1,3 +1,5 @@
+import { CONSOLE_MESSAGE } from '../constant/message.js';
+
 class OutputView {
   static printEachResult(carName, position) {
     const positionString = '-'.repeat(position);
@@ -6,7 +8,7 @@ class OutputView {
   }
 
   static printResultStartMessage() {
-    console.log('\n실행 결과');
+    console.log(CONSOLE_MESSAGE.resultStartMessage);
   }
 
   static printEmptyLine() {
@@ -14,7 +16,7 @@ class OutputView {
   }
 
   static printWinner(winnerNames) {
-    console.log(`최종 우승자: ${winnerNames.join(', ')}`);
+    console.log(`${CONSOLE_MESSAGE.winnerStartMessage}${winnerNames.join(', ')}`);
   }
 }
 
