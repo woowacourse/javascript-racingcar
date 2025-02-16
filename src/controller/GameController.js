@@ -4,7 +4,7 @@ import OutputView from '../view/OutputView.js';
 import ValidateModule from '../validator/ValidatorModule.js';
 import WinnerSelector from '../domain/WinnerSelector.js';
 
-class CarController {
+class GameController {
   async run() {
     const carNames = await this.getValidatedCarNames();
     const tryCount = await this.getValidatedTryCount();
@@ -53,4 +53,4 @@ class CarController {
   }
 }
 
-export default CarController;
+export default GameController;
