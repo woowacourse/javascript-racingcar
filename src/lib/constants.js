@@ -3,6 +3,7 @@ export const ERROR_MESSAGES = {
   carName: '1글자 이상 5글자 이하의 자동차를 입력해주세요.',
   countNotANumber: '숫자를 입력해주세요.',
   countNotPositive: '양의 정수를 입력해주세요.',
+  countNotInteger: '정수를 입력해주세요.',
 };
 
 export const INPUT_MESSAGES = {

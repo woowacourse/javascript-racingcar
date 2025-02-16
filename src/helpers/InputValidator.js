@@ -11,7 +11,10 @@ export default class Validator {
 
   static validateCount(rawCount) {
     const count = Number(rawCount);
+
     if (Number.isNaN(count)) throw new Error(ERROR_MESSAGES.countNotANumber);
     if (count <= 0) throw new Error(ERROR_MESSAGES.countNotPositive);
+    if (!Number.isInteger(count))
+      throw new Error(ERROR_MESSAGES.countNotInteger);
   }
 }
