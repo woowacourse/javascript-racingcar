@@ -1,4 +1,5 @@
 import Validate from '../src/utils/Validate'
+import ERROR_MESSAGE from '../src/constants/RacingErrorMessage';
 
 test("공백 입력 시 에러 발생", () => {
   const validate = new Validate();
@@ -19,6 +20,13 @@ test("자동차 이름 글자수 5자 초과시 에러 발생", () =>{
     expect(() => {
         validate.isValidCarNames('ABCDEF');
     }).toThrow("[ERROR] 이름 글자수가 5자를 초과하였습니다.");
+})
+
+test("경주 자동차 2대 미만일 시 에러 발생", () => {
+  const validate = new Validate();
+  expect(()=>{
+    validate.isEnoughCars(['car1']);
+  }).toThrow(ERROR_MESSAGE.NOT_ENOUGH_CARS);
 })
 
 test("숫자가 아닌 입력 시 에러 발생", () =>{
