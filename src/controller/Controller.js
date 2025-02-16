@@ -13,7 +13,7 @@ export default class Controller {
   }
 
   async run() {
-    const cars = await this.getCars();
+    const cars = await this.getValidatedCars();
     const { race, tryCount } = await this.getValidatedRaceAndTryCount(cars);
     const randomNumbers = this.getRandomNumbers(tryCount, cars.length);
 
@@ -45,7 +45,7 @@ export default class Controller {
     }
   }
 
-  async getCars() {
+  async getValidatedCars() {
     const carNameInput = await this.inputView.validateAndRetry(
       INPUT_MESSAGE.CAR_NAMES,
       validateCarNames
