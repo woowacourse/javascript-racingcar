@@ -4,8 +4,8 @@ import CountValidator from './utils/validator/CountValidator.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import parseToNumber from './utils/parseToNumber.js';
-import Car from './Car.js';
-import Racing from './Racing.js';
+import Car from '../src/domain/Car.js';
+import Racing from '../src/domain/Racing.js';
 import Printer from './view/Printer.js';
 import IO_MESSAGE from './constants/IO_MESSAGE.js';
 
