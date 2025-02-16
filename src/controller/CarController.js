@@ -2,6 +2,7 @@ import Race from '../domain/Race.js';
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import ValidateModule from '../validator/ValidatorModule.js';
+import WinnerSelector from '../domain/WinnerSelector.js';
 
 class CarController {
   async run() {
@@ -13,7 +14,10 @@ class CarController {
     race.raceStart();
     this.outputResult(race.cars, tryCount);
 
-    const winners = this.getWinner(race.cars);
+    const winnerSelector = new WinnerSelector();
+    winnerSelector.calculateWinners(race.cars);
+    const winners = winnerSelector.winners;
+
     this.outputWinner(winners);
   }
 
@@ -39,15 +43,6 @@ class CarController {
       });
       OutputView.printMessage('');
     }
-  }
-
-  getWinner(cars) {
-    const finalPosition = cars.map((car) => car.position);
-    const maxPosition = Math.max(...finalPosition);
-
-    const winner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
-
-    return winner;
   }
 
   outputWinner(winners) {

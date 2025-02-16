@@ -3,14 +3,14 @@ import { isDuplicated, isInRange, isLessThanMin } from '../util/validations.js';
 import Car from './Car.js';
 
 class Race {
-  cars;
+  #cars;
   #tryCount;
 
   constructor(carNames, tryCount) {
     this.#validateCarNames(carNames);
     this.#validateTryCount(tryCount);
 
-    this.cars = carNames.map((car) => new Car(car));
+    this.#cars = carNames.map((car) => new Car(car));
     this.#tryCount = tryCount;
   }
 
@@ -30,13 +30,17 @@ class Race {
   }
 
   #moveCars() {
-    this.cars.forEach((car) => {
+    this.#cars.forEach((car) => {
       car.move(this.#canCarMove());
     });
   }
 
   #canCarMove() {
     return getRandomNumber(0, 9) >= 4;
+  }
+
+  get cars() {
+    return this.#cars;
   }
 }
 
