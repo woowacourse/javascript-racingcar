@@ -1,3 +1,4 @@
+import DEFINITION from '../src/constants/Definition';
 import Car from '../src/domain/Car';
 test('Car.js의 객체가 잘 생성되는가?', () => {
   //given
@@ -8,24 +9,22 @@ test('Car.js의 객체가 잘 생성되는가?', () => {
   expect(car).not.toBeUndefined();
 });
 
-test('랜덤 값이 4 이상일때 자동차가 전진을 하는가?', () => {
+test(`자동차가 ${DEFINITION.MOVE_CONDITION}을 만족하면 1만큼 전진 해야한다.`, () => {
   //given
   const car = new Car();
-  const randomValue = 4;
 
   //when
-  car.moveForward(randomValue);
+  car.moveForward(DEFINITION.MOVE_CONDITION);
 
   //then
   expect(car.position).toBe(1);
 });
 
-test('랜덤 값이 4이하일 때 멈추는가?', () => {
+test('자동차가 전진 조건을 만족하지 못하면 멈춰야한다.', () => {
   //given
   const car = new Car();
-  const randomValue = 3;
   //when
-  car.moveForward(randomValue);
+  car.moveForward(3);
   //then
   expect(car.position).toBe(0);
 });

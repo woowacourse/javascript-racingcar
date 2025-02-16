@@ -1,34 +1,24 @@
 import ReadLineAsync from './ReadLineAsync.js';
 import { Parser } from '../utils/Parser.js';
-import { Validator } from '../utils/Validator.js';
-import DEFINITION from '../constants/Definition.js';
 import MESSAGE from '../constants/Message.js';
 
 class InputView {
   static async inputName() {
-    while (true) {
-      try {
-        const inputName = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.NAME);
-        const splittedName = Parser.splitName(inputName);
-        Validator.validateName(splittedName, DEFINITION.MAX_NAME_LENGTH);
-        return splittedName;
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
+    const inputName = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.NAME);
+    const splittedName = Parser.splitName(inputName);
+    return splittedName;
+  }
+  catch(error) {
+    console.log(error.message);
   }
 
   static async inputTryNumber() {
-    while (true) {
-      try {
-        const inputTryNumber = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.TRY_NUMBER);
-        const parsedNumber = Number(inputTryNumber.trim());
-        Validator.validateTryNumber(parsedNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME);
-        return parsedNumber;
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
+    const inputTryNumber = await ReadLineAsync.readLineAsync(MESSAGE.INPUT.TRY_NUMBER);
+    const parsedNumber = Number(inputTryNumber.trim());
+    return parsedNumber;
+  }
+  catch(error) {
+    console.log(error.message);
   }
 }
 
