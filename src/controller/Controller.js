@@ -4,6 +4,7 @@ import Race from "../domain/Race.js";
 import Winners from "../domain/Winners.js";
 import OutputView from "../view/OutputView.js";
 import { validateCarNames } from "../utils/validation.js";
+import { getRandomNumber } from "../utils/getRandomNumber.js";
 import { INPUT_MESSAGE } from "../constants/message.js";
 
 export default class Controller {
@@ -13,10 +14,11 @@ export default class Controller {
 
   async run() {
     const cars = await this.getCars();
-    const race = await this.getRace(cars);
+    const { race, tryCount } = await this.getValidatedRaceAndTryCount(cars);
+    const randomNumbers = this.getRandomNumbers(tryCount, cars.length);
 
+    const raceResult = race.getRaceResult(randomNumbers);
     const outputView = new OutputView();
-    const raceResult = race.getRaceResult();
     outputView.printExecutionResult(raceResult);
 
     const winners = new Winners(cars);
@@ -24,16 +26,22 @@ export default class Controller {
     outputView.printWinners(winnerNames);
   }
 
-  async getRace(cars) {
+  getRandomNumbers(tryCount, carsLength) {
+    return Array.from({ length: tryCount }, () => [
+      ...Array.from({ length: carsLength }, () => getRandomNumber(0, 9)),
+    ]);
+  }
+
+  async getValidatedRaceAndTryCount(cars) {
     try {
       const tryCount = await this.inputView.readLineAsync(
         INPUT_MESSAGE.TRY_COUNT
       );
       const race = new Race(cars, tryCount);
-      return race;
+      return { race, tryCount };
     } catch (e) {
       console.log(e.message);
-      return await this.getRace(cars);
+      return await this.getValidatedRaceAndTryCount(cars);
     }
   }
 

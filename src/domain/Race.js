@@ -25,24 +25,18 @@ export default class Race {
     }
   }
 
-  runRace() {
-    for (let i = 0; i < this.#tryCount; i++) {
-      this.gameRound();
-    }
-  }
-
-  getRaceResult() {
+  getRaceResult(randomNumbers) {
     const results = [];
     for (let i = 0; i < this.#tryCount; i++) {
-      results.push(this.getGameRoundResult());
+      results.push(this.getGameRoundResult(randomNumbers[i]));
     }
     return results;
   }
 
-  getGameRoundResult() {
+  getGameRoundResult(randomNumbers) {
     const result = [];
-    this.#cars.forEach((car) => {
-      if (this.isMove(getRandomNumber(0, 9))) car.move();
+    this.#cars.forEach((car, index) => {
+      if (this.isMove(randomNumbers[index])) car.move();
       result.push({ name: car.getName(), position: car.getPosition() });
     });
     return result;
