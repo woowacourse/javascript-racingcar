@@ -1,7 +1,7 @@
-import { start } from "./Race.js";
-// 입출력 예시
+import { startRace } from "./domain/Race.js";
+
 async function run() {
-  await start();
+  await startRace();
 }
 
 run();
