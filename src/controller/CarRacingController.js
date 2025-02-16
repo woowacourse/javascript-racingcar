@@ -1,14 +1,14 @@
 import Car from "../model/Car.js";
+import CarRacing from "../model/CarRacing.js";
 import InputView from "../view/Input.js";
 import OutputView from "../view/Output.js";
-import randomNumber from "../util/random.js";
 import tryInput from "../util/tryInput.js";
 import { validateCarNames, validateRaceCount } from "../util/validation.js";
 import { SPLITTER } from "../constant/constant.js";
 import { getWinners } from "../util/winner.js";
 
 class CarRacingController {
-  #carList;
+  #carRacing;
   #raceCount;
 
   constructor() {
@@ -19,13 +19,8 @@ class CarRacingController {
     await this.readyRace();
 
     OutputView.printBeforeResult();
-    for (let i = 0; i < this.#raceCount; i++) {
-      this.race();
-      OutputView.printRoundResult(this.#carList);
-    }
-
-    const winners = getWinners(this.#carList);
-    OutputView.printWinners(winners);
+    this.startRacing(this.#raceCount);
+    this.endRacing(this.#carRacing.getCarList());
   }
 
   async readyRace() {
@@ -38,9 +33,11 @@ class CarRacingController {
 
     const carNamesArray = carNames.split(SPLITTER);
 
-    this.#carList = carNamesArray.map((name) => {
-      return new Car(name);
-    });
+    this.#carRacing = new CarRacing(
+      carNamesArray.map((name) => {
+        return new Car(name);
+      })
+    );
   }
 
   async setRaceCount() {
@@ -52,12 +49,16 @@ class CarRacingController {
     this.#raceCount = raceCount;
   }
 
-  race() {
-    this.#carList.forEach((car) => {
-      const moveCondition = randomNumber();
+  startRacing(raceCount) {
+    for (let i = 0; i < raceCount; i++) {
+      this.#carRacing.raceOneRound();
+      OutputView.printRoundResult(this.#carRacing.getCarList());
+    }
+  }
 
-      car.move(moveCondition);
-    });
+  endRacing(carList) {
+    const winners = getWinners(carList);
+    OutputView.printWinners(winners);
   }
 }
 
