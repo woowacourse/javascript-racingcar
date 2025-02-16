@@ -1,10 +1,10 @@
 import InputView from "../view/InputView.js";
 import Car from "../domain/Car.js";
-import { INPUT_MESSAGE } from "../constants/message.js";
-import { validateCarNames } from "../utils/validation.js";
 import Race from "../domain/Race.js";
 import Winners from "../domain/Winners.js";
 import OutputView from "../view/OutputView.js";
+import { validateCarNames } from "../utils/validation.js";
+import { INPUT_MESSAGE } from "../constants/message.js";
 
 export default class Controller {
   constructor() {

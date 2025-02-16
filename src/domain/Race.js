@@ -1,7 +1,7 @@
-import { ERROR_MESSAGE } from "../constants/message.js";
 import { createError } from "../utils/createError.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 import { CAR } from "../constants/constants.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
 
 export default class Race {
   #cars;
