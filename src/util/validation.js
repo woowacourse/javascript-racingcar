@@ -6,6 +6,7 @@ const validateCarNames = (carNames) => {
   const names = carNames.split(SPLITTER);
 
   validateLength(names);
+  validateDuplicate(names);
 };
 
 const validateRaceCount = (raceCountInput) => {
@@ -43,6 +44,14 @@ const validateNumber = (raceCount) => {
 const validateInteger = (raceCount) => {
   if (!Number.isInteger(raceCount)) {
     throw new Error(ERROR.RACE_COUNT_INTEGER);
+  }
+};
+
+const validateDuplicate = (carList) => {
+  const uniqueCarNames = new Set(carList);
+
+  if (uniqueCarNames.size !== carList.length) {
+    throw new Error(ERROR.DUPLICATE_CAR_NAME);
   }
 };
 
