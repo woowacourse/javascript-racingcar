@@ -57,13 +57,16 @@ class RaceController {
 
   #processRacing(cars, tryCount) {
     this.#outputView.printResultHeader();
-    const carList = cars.cars;
 
-    for (let i = 0; i < tryCount; i++) {
-      cars.moveCars();
-      this.#outputView.printRaceResult(carList);
-      this.#outputView.printNewLine();
-    }
+    Array.from({ length: tryCount }).forEach(() => {
+      this.#processRound(cars);
+    });
+  }
+
+  #processRound(cars) {
+    cars.moveCars();
+    this.#outputView.printRaceResult(cars.cars);
+    this.#outputView.printNewLine();
   }
 
   #processWinner(cars) {
