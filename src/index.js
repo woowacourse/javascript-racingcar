@@ -14,7 +14,8 @@ async function run() {
 
   const race = new Race(raceCarNames, raceCount, raceRecord);
   race.raceCar();
-  const winnerList = race.getWinner();
+
+  const winnerList = raceRecord.getWinner();
 
   output.printLine(OUTPUT_MESSAGE.result);
   output.printRace(raceRecord, raceCount);

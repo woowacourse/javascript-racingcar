@@ -1,3 +1,5 @@
+import { getLongestString } from "../util.js";
+
 class RaceRecord {
   #record = {};
 
@@ -15,6 +17,24 @@ class RaceRecord {
         return `${raceCarName} : ${result[step - 1]}`;
       })
       .join("\n");
+  }
+
+  #getLastPositions() {
+    return Object.values(this.#record).map((arr) => arr.at(-1));
+  }
+
+  getWinner() {
+    const longestString = getLongestString(...this.#getLastPositions());
+
+    const winnerList = [];
+
+    for (let raceCarName in this.#record) {
+      if (this.#record[raceCarName].at(-1) === longestString) {
+        winnerList.push(raceCarName);
+      }
+    }
+
+    return winnerList;
   }
 }
 

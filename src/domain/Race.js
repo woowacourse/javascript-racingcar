@@ -24,21 +24,6 @@ class Race {
       this.#raceRecord.recordStep(car);
     });
   }
-
-  getWinner() {
-    return this.#cars.reduce(
-      (acc, car) => {
-        if (car.position > acc.maxNum) {
-          return { maxNum: car.position, winners: [car.raceCarName] };
-        }
-        if (car.position === acc.maxNum) {
-          acc.winners.push(car.raceCarName);
-        }
-        return acc;
-      },
-      { maxNum: 0, winners: [] }
-    ).winners;
-  }
 }
 
 export default Race;
