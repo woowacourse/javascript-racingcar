@@ -29,12 +29,10 @@ class CarManager {
     return 0;
   }
 
-  race(attempts) {
-    for (let i = CONFIG.ZERO; i < attempts; i++) {
-      this.cars.forEach((car) => {
-        this.moveForwardCar(car, pickRandomNumber());
-      });
-    }
+  race() {
+    this.cars.forEach((car) => {
+      this.moveForwardCar(car, pickRandomNumber());
+    });
   }
 }
 

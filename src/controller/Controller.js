@@ -11,20 +11,28 @@ class Controller {
   }
 
   async process() {
+    await this.initialize();
+    await this.executeRace();
+    this.announceWinners();
+  }
+
+  async initialize() {
     const carNames = await this.user.readCarNames();
     this.carManager = new CarManager(carNames);
+  }
 
+  async executeRace() {
     const attempts = await this.user.readAttempts();
     OutputView.printResultGreeting();
-    for (let i = 0; i < attempts; i++) {
-      this.carManager.race(1);
-      this.carManager.cars.forEach((car) => {
-        OutputView.printRaceResult(car.name, car.position);
-      });
-      OutputView.lineBreak();
-    }
 
-    const raceResult = new RaceResult(this.carManager.cars);
+    for (let i = 0; i < attempts; i++) {
+      this.carManager?.race();
+      OutputView.printRaceStatus(this.carManager?.cars);
+    }
+  }
+
+  announceWinners() {
+    const raceResult = new RaceResult(this.carManager?.cars);
     const winners = raceResult.determineWinners();
     OutputView.printWinners(winners);
   }
