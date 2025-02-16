@@ -2,7 +2,7 @@ import CarManager from '../model/CarManager.js';
 import readLineAsync from '../views/InputView.js';
 import { INPUT } from '../constants/messages.js';
 import OutputView from '../views/OutputView.js';
-import CarNameValidator from '../validator/CarNameValidator.js';
+import Validator from '../validator/Validator.js';
 import { CONFIG } from '../constants/config.js';
 import AttemptsValidator from '../validator/AttemptsValidator.js';
 
@@ -25,8 +25,8 @@ class Controller {
       const input = await readLineAsync(INPUT.CAR_NAMES);
       const carNames = input.split(CONFIG.COMMA);
       carNames.forEach((carName) => {
-        CarNameValidator.checkCarNameLength(carName);
-        CarNameValidator.checkBlank(carName);
+        Validator.checkCarNameLength(carName);
+        Validator.checkBlank(carName);
       });
       CarNameValidator.checkDuplicatedCarName(carNames);
       return carNames;
