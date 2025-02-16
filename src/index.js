@@ -1,4 +1,4 @@
-import Race from "./domain/Race.js";
+import App from "./App.js";
 
-const race = new Race();
-await race.play();
+const app = new App();
+app.run();
