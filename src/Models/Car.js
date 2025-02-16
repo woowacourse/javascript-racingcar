@@ -14,7 +14,7 @@ class Car {
     if (!isInRange(name.length, 1, 5)) throw new Error(`[ERROR] 자동차 이름은 1에서 5자 사이여야 합니다.`);
   }
 
-  updateHistory(isMove) {
+  move(isMove) {
     this.position += Number(isMove);
 
     this.history.push(this.position);

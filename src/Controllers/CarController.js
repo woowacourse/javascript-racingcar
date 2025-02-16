@@ -1,7 +1,6 @@
 import Race from '../Models/Race.js';
 import InputView from '../Views/InputView.js';
 import OutputView from '../Views/OutputView.js';
-import { getRandomNumber } from '../utils/randomNumber.js';
 import ValidateModule from '../validates/ValidatorModule.js';
 
 class CarController {
@@ -11,7 +10,7 @@ class CarController {
 
     const race = new Race(carNames, tryCount);
 
-    this.tryMove(race.cars, tryCount);
+    race.raceStart();
     this.outputResult(race.cars, tryCount);
 
     const winners = this.getWinner(race.cars);
@@ -30,20 +29,6 @@ class CarController {
     ValidateModule.validateTryCountInput(input);
     const tryCount = Number(input);
     return tryCount;
-  }
-
-  canMove() {
-    const randomNumber = getRandomNumber(0, 9);
-
-    return randomNumber >= 4;
-  }
-
-  tryMove(cars, tryCount) {
-    for (let i = 0; i < tryCount; i++) {
-      cars.forEach((car) => {
-        car.updateHistory(this.canMove());
-      });
-    }
   }
 
   outputResult(cars, tryCount) {

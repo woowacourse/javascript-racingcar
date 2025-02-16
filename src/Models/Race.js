@@ -1,16 +1,17 @@
+import { getRandomNumber } from '../utils/randomNumber.js';
 import { isDuplicated, isInRange, isLessThanMin } from '../utils/validations.js';
 import Car from './Car.js';
 
 class Race {
-  cars;
-  tryCount;
+  #cars;
+  #tryCount;
 
   constructor(carNames, tryCount) {
     this.#validateCarNames(carNames);
     this.#validateTryCount(tryCount);
 
-    this.cars = carNames.map((car) => new Car(car));
-    this.tryCount = tryCount;
+    this.#cars = carNames.map((car) => new Car(car));
+    this.#tryCount = tryCount;
   }
 
   #validateCarNames(carNames) {
@@ -20,6 +21,22 @@ class Race {
 
   #validateTryCount(tryCount) {
     if (!isInRange(tryCount, 1, 20)) throw new Error('[ERROR] 시도 횟수는 1 ~ 20 사이여야 합니다.');
+  }
+
+  raceStart() {
+    Array.from({ length: this.#tryCount }).forEach(() => {
+      this.#moveCars();
+    });
+  }
+
+  #moveCars() {
+    this.#cars.forEach((car) => {
+      car.move(this.#canCarMove());
+    });
+  }
+
+  #canCarMove() {
+    return getRandomNumber(0, 9) >= 4;
   }
 }
 
