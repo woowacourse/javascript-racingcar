@@ -1,32 +1,22 @@
-import Racing from './Racing.js';
-import readLineAsync from './utils/readLineAsync.js';
-import validator from './utils/validator.js';
-import Car from './Car.js';
+import Racing from './domain/Racing.js';
+import Car from './domain/Car.js';
 import loopWhileValid from './utils/retryUntilSuccess.js';
-import { GAME_MESSAGE, SEPARATOR } from './constants/systemMessages.js';
+import OutputView from './view/OutputView.js';
+import InputView from './view/InputView.js';
 
 class App {
   async run() {
-    const carList = await loopWhileValid(this.#enterCarNames);
-    const count = await loopWhileValid(this.#enterCount);
-    const racing = new Racing(carList, count);
+    const rawCarList = await loopWhileValid(InputView.enterCarNames);
+    const carList = rawCarList.map((name) => new Car(name, 0));
+    const count = await loopWhileValid(InputView.enterCount);
+    const racing = new Racing(carList);
 
-    racing.start();
-  }
-
-  async #enterCarNames() {
-    const inputName = await readLineAsync(GAME_MESSAGE.ENTER_CAR_NAMES);
-    const names = inputName.split(SEPARATOR);
-    validator.carNames(names);
-
-    return names.map((name) => new Car(name, 0));
-  }
-
-  async #enterCount() {
-    const count = await readLineAsync(GAME_MESSAGE.ENTER_COUNT);
-    validator.count(count);
-
-    return count;
+    OutputView.printResultMessage();
+    for (let i = 0; i < count; i++) {
+      racing.raceOnce().forEach((car) => OutputView.printCarState(car));
+      OutputView.printNewLine();
+    }
+    OutputView.printWinner(racing.getWinner());
   }
 }
 

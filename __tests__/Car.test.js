@@ -1,4 +1,4 @@
-import Car from '../src/Car.js';
+import Car from '../src/domain/Car.js';
 import { MOVE_THRESHOLD } from '../src/constants/configurations.js';
 
 const TEST_CAR_NAME = 'test';

@@ -1,11 +1,10 @@
-import Racing from '../src/Racing.js';
-import Car from '../src/Car.js';
+import Racing from '../src/domain/Racing.js';
+import Car from '../src/domain/Car.js';
 
 describe('자동차 경주 객체 테스트', () => {
   const carNames = ['abc', 'def', 'efg'];
   const carList = carNames.map((carName, i) => new Car(carName, i));
-  const count = 5;
-  const racing = new Racing(carList, count);
+  const racing = new Racing(carList);
 
   test('사용자가 입력한 자동차 이름을 가진 자동차 객체 배열을 생성한다.', () => {
     expect(racing.getCarList().map((car) => car.getName())).toEqual(carNames);
