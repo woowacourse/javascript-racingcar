@@ -4,7 +4,6 @@ const DEFINITION = {
   MIN_GAME: 1,
   MAX_GAME: 100,
   MOVE_CONDITION: 4,
-  STOP_CONDITION: 3,
 };
 
 export default DEFINITION;

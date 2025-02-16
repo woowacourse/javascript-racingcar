@@ -9,7 +9,7 @@ test('Car.js의 객체가 잘 생성되는가?', () => {
   expect(car).not.toBeUndefined();
 });
 
-test('자동차가 전진 조건을 만족하면 1만큼 전진 해야한다.', () => {
+test(`자동차가 ${DEFINITION.MOVE_CONDITION}을 만족하면 1만큼 전진 해야한다.`, () => {
   //given
   const car = new Car();
 
@@ -24,7 +24,7 @@ test('자동차가 전진 조건을 만족하지 못하면 멈춰야한다.', ()
   //given
   const car = new Car();
   //when
-  car.moveForward(DEFINITION.STOP_CONDITION);
+  car.moveForward(3);
   //then
   expect(car.position).toBe(0);
 });
