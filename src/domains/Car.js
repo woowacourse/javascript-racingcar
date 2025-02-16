@@ -1,5 +1,4 @@
-import { ERROR_MESSAGE } from "../constants/message.js";
-import { CAR_SETTING } from "../constants/setting.js";
+import CarNameValidator from "./CarNameValidator.js";
 import { generateRandomNumber } from "../utils/utils.js";
 
 export default class Car {
@@ -11,18 +10,9 @@ export default class Car {
   static MOVE_CONDITION = 4;
 
   constructor(name) {
-    this.#validateCarName(name);
+    CarNameValidator.validateCarName(name);
     this.#name = name;
     this.#position = Car.START_POSITION;
-  }
-
-  #validateCarName(name) {
-    if (
-      name.length < CAR_SETTING.minCarName ||
-      name.length > CAR_SETTING.maxCarName
-    ) {
-      throw new Error(ERROR_MESSAGE.carNameLength);
-    }
   }
 
   static isCanMove() {
