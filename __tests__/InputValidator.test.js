@@ -1,4 +1,4 @@
-import InputValidator from '../src/utils/InputValidator.js';
+import InputValidator from '../src/view/InputValidator.js';
 import { ERROR_MESSAGE } from '../src/constants/systemMessages.js';
 
 describe('경주에 참여하는 자동차의 이름들을 검증한다.', () => {
