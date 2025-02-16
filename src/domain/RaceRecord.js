@@ -13,8 +13,8 @@ class RaceRecord {
 
   toStringStep(step) {
     return Object.entries(this.#record)
-      .map(([raceCarName, result]) => {
-        return `${raceCarName} : ${result[step - 1]}`;
+      .map(([raceCarName, record]) => {
+        return `${raceCarName} : ${record[step - 1]}`;
       })
       .join("\n");
   }
