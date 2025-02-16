@@ -31,14 +31,10 @@ class CarManager {
     for (let i = CONFIG.ZERO; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
-        this.showRaceResult(car.name, car.position);
+        OutputView.printRaceResult(car.name, car.position);
       });
       console.log();
     }
-  }
-
-  showRaceResult(name, position) {
-    OutputView.printRaceResult(name, position);
   }
 
   determineWinners() {
