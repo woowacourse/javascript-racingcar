@@ -21,6 +21,10 @@ class Car {
   getName() {
     return this.#name;
   }
+
+  getInfo() {
+    return { name: this.#name, position: this.#position };
+  }
 }
 
 export default Car;
