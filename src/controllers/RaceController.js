@@ -1,7 +1,8 @@
-import Cars from "../models/Cars.js";
-import Winner from "../models/Winner.js";
-import CarNameValidator from "../validators/CarNameValidator.js";
-import TryCountValidator from "../validators/TryCountValidator.js";
+import Cars from '../domains/Cars.js';
+import Winner from '../domains/Winner.js';
+import CarNameValidator from '../validators/CarNameValidator.js';
+import TryCountValidator from '../validators/TryCountValidator.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
 
 class RaceController {
   #inputView;
@@ -13,61 +14,63 @@ class RaceController {
   }
 
   async race() {
-    const parseCarNames = await this.#initCarNames();
-    const parseTryCount = await this.#initTryCount();
+    const carNames = await this.#initCarNames();
+    const tryCount = await this.#initTryCount();
 
-    const cars = new Cars(parseCarNames);
+    const cars = new Cars(carNames, getRandomNumber);
 
-    this.#processRacing(cars, parseTryCount);
+    this.#processRacing(cars, tryCount);
     this.#processWinner(cars);
   }
 
   async #initCarNames() {
-    while(true) {
+    let isCarNamesValid = false;
+
+    while (!isCarNamesValid) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parseCarNames = carNames.split(",").map((carName) => carName.trim());
-        new CarNameValidator().valiateNames(parseCarNames);
-  
-        return parseCarNames;
+        const parsedCarNames = carNames.split(',').map((carName) => carName.trim());
+        new CarNameValidator().validateNames(parsedCarNames);
+        isCarNamesValid = true;
+        return parsedCarNames;
       } catch (error) {
-        console.log(error);
+        this.#outputView.printValue(error.message + '\n');
       }
     }
   }
 
   async #initTryCount() {
-    while(true) {
+    let isTryCountValid = false;
+
+    while (!isTryCountValid) {
       try {
         const tryCount = await this.#inputView.getTryCount();
-        const parseTryCount = Number(tryCount);
-        new TryCountValidator().validateNumber(parseTryCount);
-  
-        return parseTryCount;
+        const parsedTryCount = Number(tryCount);
+        new TryCountValidator().validateNumber(parsedTryCount);
+        isTryCountValid = true;
+        return parsedTryCount;
       } catch (error) {
-        console.log(error);
+        this.#outputView.printValue(error.message + '\n');
       }
     }
   }
 
-  #processRacing(cars, parseTryCount) {
+  #processRacing(cars, tryCount) {
     this.#outputView.printResultHeader();
-    const carList = cars.cars;
 
-    for (let i = 0; i < parseTryCount; i++) {
-      cars.moveCars();
-      this.#outputView.printRaceResult(carList);
-      this.#outputView.printNewLine();
-    }
+    Array.from({ length: tryCount }).forEach(() => {
+      this.#processRound(cars);
+    });
+  }
+
+  #processRound(cars) {
+    cars.moveCars();
+    this.#outputView.printRaceResult(cars.cars);
+    this.#outputView.printNewLine();
   }
 
   #processWinner(cars) {
-    const maxPosition = cars.getMaxPosition();
-    const carList = cars.cars;
-
-    this.#outputView.printWinners(
-      new Winner().getWinners(carList, maxPosition)
-    );
+    this.#outputView.printWinners(new Winner().getWinners(cars.cars, cars.getMaxPosition()));
   }
 }
 

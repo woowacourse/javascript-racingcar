@@ -1,5 +1,11 @@
 {
-  "rules": {},
+  "plugins": ["import"],
+  "rules": {
+    "import/extensions": ["error", "ignorePackages"],
+    "max-depth": ["error", 2],
+    "max-params": ["error", 3],
+    "max-lines-per-function": ["error", { "max": 15 }]
+  },
   "env": {
     "es6": true,
     "node": true
@@ -8,5 +14,6 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:import/recommended"],
+  "ignorePatterns": ["**/__tests__/**"]
 }
