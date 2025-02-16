@@ -1,13 +1,17 @@
-import { INPUT_MESSAGE, ERROR_MESSAGE } from "../constants/message.js";
-
+import { ERROR_MESSAGE } from "../constants/message.js";
 import readline from "readline";
 import { CAR_SETTING, TRY_NUMBER_SETTING } from "../constants/setting.js";
 
 export default class Input {
   static SEPARATOR = ",";
+  static INPUT_MESSAGE = {
+    carName:
+      "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).\n",
+    tryNumber: "시도할 횟수는 몇 회인가요?\n",
+  };
 
   static async carName() {
-    const names = await this.readLineAsync(INPUT_MESSAGE.carName);
+    const names = await this.readLineAsync(Input.INPUT_MESSAGE.carName);
     const parsedNames = names.split(Input.SEPARATOR);
     this.#validateCarCount(parsedNames);
     this.#validateDuplicateCarName(parsedNames);
@@ -30,7 +34,9 @@ export default class Input {
   }
 
   static async tryNumber() {
-    const tryNumber = Number(await this.readLineAsync(INPUT_MESSAGE.tryNumber));
+    const tryNumber = Number(
+      await this.readLineAsync(Input.INPUT_MESSAGE.tryNumber)
+    );
     this.#validateTryNumberSize(tryNumber);
     this.#validateTryNumberPositiveInteger(tryNumber);
     return tryNumber;

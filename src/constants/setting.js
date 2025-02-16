@@ -1,5 +1,3 @@
-export const SCORE_ICON = "-";
-
 export const CAR_SETTING = {
   maxCarName: 5,
   minCarName: 1,
