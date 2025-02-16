@@ -1,3 +1,7 @@
+import { ERROR_MESSAGE } from "../constants/message.js";
+import { createError } from "../utils/createError.js";
+import { CAR } from "../constants/constants";
+
 export default class Car {
   #name;
   #position;
@@ -5,6 +9,17 @@ export default class Car {
   constructor(name, position = 0) {
     this.#name = name;
     this.#position = position;
+
+    this.validateName();
+  }
+
+  validateName() {
+    if (
+      this.#name.length < CAR.NAME_LENGTH_MIN ||
+      this.#name.length > CAR.NAME_LENGTH_MAX
+    ) {
+      createError(ERROR_MESSAGE.INVALID_NAME_LENGTH);
+    }
   }
 
   move() {
