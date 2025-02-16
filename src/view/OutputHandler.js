@@ -1,6 +1,6 @@
 import { CONSOLE_MESSAGE } from '../constant/message.js';
 
-class OutputView {
+class OutputHandler {
   static printEachResult(carName, position) {
     const positionString = '-'.repeat(position);
 
@@ -20,4 +20,4 @@ class OutputView {
   }
 }
 
-export default OutputView;
+export default OutputHandler;

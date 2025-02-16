@@ -1,8 +1,7 @@
 import Race from '../domain/Race.js';
-import InputView from '../view/InputView.js';
-import OutputView from '../view/OutputView.js';
-import ValidateModule from '../validator/ValidatorModule.js';
 import WinnerSelector from '../domain/WinnerSelector.js';
+import InputHandler from '../view/InputHandler.js';
+import OutputHandler from '../view/OutputHandler.js';
 
 class GameController {
   #race;
@@ -25,7 +24,7 @@ class GameController {
 
   async initCarNamesInput() {
     try {
-      const carNames = await InputView.carNamesInput();
+      const carNames = await InputHandler.carNamesInput();
       this.#race.initCars(carNames);
     } catch (error) {
       console.log(error.message);
@@ -35,7 +34,7 @@ class GameController {
 
   async initTryCountInput() {
     try {
-      const tryCount = await InputView.tryCountInput();
+      const tryCount = await InputHandler.tryCountInput();
       this.#race.initTryCount(tryCount);
     } catch (error) {
       console.log(error.message);
@@ -47,21 +46,21 @@ class GameController {
     const raceHistory = this.#race.raceHistory;
     const maxRounds = Math.max(...Array.from(raceHistory.values()).map((arr) => arr.length));
 
-    OutputView.printResultStartMessage();
+    OutputHandler.printResultStartMessage();
     for (let round = 0; round < maxRounds; round++) {
       raceHistory.forEach((history, carName) => {
         if (round < history.length) {
-          OutputView.printEachResult(carName, history[round]);
+          OutputHandler.printEachResult(carName, history[round]);
         }
       });
-      OutputView.printEmptyLine();
+      OutputHandler.printEmptyLine();
     }
   }
 
   outputWinner() {
     const winnerNames = this.#winnerSelector.winners.map((winner) => winner.name);
 
-    OutputView.printWinner(winnerNames);
+    OutputHandler.printWinner(winnerNames);
   }
 }
 

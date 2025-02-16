@@ -2,7 +2,7 @@ import { CONSOLE_MESSAGE } from '../constant/message.js';
 import ValidateModule from '../validator/ValidatorModule.js';
 import { readLineAsync } from './readLineAsync.js';
 
-class InputView {
+class InputHandler {
   static async carNamesInput() {
     const input = await readLineAsync(CONSOLE_MESSAGE.carNamesInput);
     ValidateModule.validateCarInput(input);
@@ -18,4 +18,4 @@ class InputView {
   }
 }
 
-export default InputView;
+export default InputHandler;
