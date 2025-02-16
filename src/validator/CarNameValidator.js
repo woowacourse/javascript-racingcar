@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 import { CONFIG } from '../constants/config.js';
 import { ERROR } from '../constants/messages.js';
 import { _pipe } from '../utils/utils.js';
@@ -25,10 +24,6 @@ const checkDuplicatedCarName = (carNames) => {
   return carNames;
 };
 
-const carNameValidator = _pipe(
-  checkCarNameLength,
-  checkBlank,
-  checkDuplicatedCarName
-);
+const carNameValidator = _pipe(checkCarNameLength, checkBlank);
 
-export default carNameValidator;
+export { carNameValidator, checkDuplicatedCarName };

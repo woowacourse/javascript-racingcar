@@ -1,11 +1,14 @@
-/* eslint-disable no-constant-condition */
-/* eslint-disable no-continue */
+//@ts-check
 import { CONFIG } from '../constants/config.js';
 import { INPUT } from '../constants/messages.js';
 import { tryCatch } from '../utils/tryCatch.js';
-import splitStringToArray from '../utils/utils.js';
-import AttemptsValidator from '../validator/AttemptsValidator.js';
-import CarNameValidator from '../validator/CarNameValidator.js';
+import { splitStringToArray } from '../utils/utils.js';
+import attemptsValidator from '../validator/AttemptsValidator.js';
+import {
+  carNameValidator,
+  checkDuplicatedCarName,
+} from '../validator/CarNameValidator.js';
+
 import readLineAsync from '../views/InputView.js';
 import OutputView from '../views/OutputView.js';
 
@@ -27,10 +30,9 @@ class User {
     const input = await readLineAsync(INPUT.CAR_NAMES);
     const carNames = splitStringToArray(input, CONFIG.COMMA);
     carNames.forEach((carName) => {
-      CarNameValidator.checkCarNameLength(carName);
-      CarNameValidator.checkBlank(carName);
+      carNameValidator(carName);
     });
-    CarNameValidator.checkDuplicatedCarName(carNames);
+    checkDuplicatedCarName(carNames);
     return carNames;
   }
 
@@ -50,7 +52,7 @@ class User {
   async setAttempts() {
     try {
       const attempts = await readLineAsync(INPUT.ATTEMPTS);
-      AttemptsValidator.checkPositiveNumber(Number(attempts));
+      attemptsValidator(Number(attempts));
       return attempts;
     } catch (err) {
       console.log(err.message);
