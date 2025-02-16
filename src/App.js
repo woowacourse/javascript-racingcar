@@ -43,12 +43,14 @@ export default class App {
 
   async #readCarNames() {
     const carNames = await Input.carName();
-
+    this.#raceModel.validateInputCar(carNames);
     this.#cars = this.#raceModel.createCars(carNames);
   }
 
   async #readTryNumber() {
-    this.#tryNumber = await Input.tryNumber();
+    const tryNumber = await Input.tryNumber();
+    this.#raceModel.validateInputTryNumber(tryNumber);
+    this.#tryNumber = tryNumber;
   }
 
   #race() {
