@@ -9,7 +9,6 @@ export default class Controller {
         const inputName = await InputView.inputName();
         new Game(inputName, 1); // 검증을 위한 임시 값 1 입니다.
         return inputName;
-        break;
       } catch (error) {
         OutputView.printInput(error.message);
       }
@@ -21,7 +20,6 @@ export default class Controller {
         const inputTryNumber = await InputView.inputTryNumber();
         new Game(inputName, inputTryNumber); // tryNumber 검증
         return inputTryNumber;
-        break;
       } catch (error) {
         OutputView.printInput(error.message);
       }
