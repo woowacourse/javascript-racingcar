@@ -1,4 +1,4 @@
-import { readLineAsync } from '../util/readLineAsync.js';
+import { readLineAsync } from './readLineAsync.js';
 
 class InputView {
   static async inputCarName() {
