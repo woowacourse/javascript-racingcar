@@ -6,6 +6,8 @@
 
 ```
 │── src/
+│   ├── controller/
+│   │   ├── gameController.js          # 게임 로직과 UI 연결하여 전체 흐름 관리
 │   ├── domain/                        # 게임 핵심 로직
 │   │   ├── moveCar.js                 # 자동차 이동 로직
 │   │   ├── playRound.js               # 한 라운드 실행
@@ -13,12 +15,12 @@
 │   │   ├── findWinners.js             # 우승자 찾기
 │   ├── utils/                         # 유틸리티 함수
 │   │   ├── generateRandomNumber.js    # 랜덤 숫자 생성
+│   │   ├── pipe.js                    # 여러 함수를 조합하여 순차적으로 실행하는 유틸 함수
 │   │   ├── retryUntilValid.js         # 올바르게 입력할 때까지 반복
 │   │   ├── validateCarNames.js        # 자동차 입력 유효성 검사
 │   │   ├── validateMoveCount.js       # 이동 횟수 입력 유효성 검사
 │   │   ├── readLineAsync.js           # 입력 처리
 │   ├── view/                          # 입출력 관련 모듈
-│   │   ├── validation.js              # 입력 유효성 검사
 │   │   ├── input.js                   # 사용자 입력 처리
 │   │   ├── output.js                  # 결과 출력 처리
 │   ├── constants/
