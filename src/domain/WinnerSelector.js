@@ -9,14 +9,14 @@ class WinnerSelector {
   }
 
   #getMaxPosition(cars) {
-    const finalPosition = cars.map((car) => car.position);
-    return Math.max(...finalPosition);
+    const carPositions = cars.map((car) => car.position);
+    return Math.max(...carPositions);
   }
 
   #selectWinners(cars, maxPosition) {
-    const winner = cars.filter((car) => car.position === maxPosition).map((car) => car.name);
+    const winners = cars.filter((car) => car.position === maxPosition);
 
-    this.#winners = winner;
+    this.#winners = winners;
   }
 
   get winners() {

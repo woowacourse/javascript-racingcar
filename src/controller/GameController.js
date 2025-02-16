@@ -49,7 +49,9 @@ class GameController {
   }
 
   outputWinner(winners) {
-    OutputView.printWinner(winners);
+    const winnerNames = winners.map((winner) => winner.name);
+
+    OutputView.printWinner(winnerNames);
   }
 }
 

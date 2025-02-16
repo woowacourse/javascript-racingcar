@@ -13,8 +13,8 @@ class OutputView {
     console.log('');
   }
 
-  static printWinner(winners) {
-    console.log(`최종 우승자: ${winners.join(', ')}`);
+  static printWinner(winnerNames) {
+    console.log(`최종 우승자: ${winnerNames.join(', ')}`);
   }
 }
 
