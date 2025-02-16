@@ -1,8 +1,9 @@
 import Input from "../view/Input.js";
 import Car from "./Car.js";
-import Validator from "../Validator.js";
 import Output from "../view/Output.js";
 import { STEP } from "../constants/setting.js";
+import ValidateCar from "../validator/ValidateCar.js";
+import ValidateTryNumber from "../validator/ValidateTryNumber.js";
 
 export default class Race {
   #cars = [];
@@ -39,7 +40,7 @@ export default class Race {
     const carNames = await Input.carName();
     const parseCars = carNames.toString().split(",");
 
-    Validator.carNamesAndCount(parseCars);
+    ValidateCar.carNamesAndCount(parseCars);
 
     parseCars.forEach((carName) => {
       this.#cars.push(new Car(carName));
@@ -49,7 +50,7 @@ export default class Race {
     const tryNumber = await Input.tryNumber();
     this.#parseTryNumber = parseInt(tryNumber);
 
-    Validator.tryNumber(this.#parseTryNumber);
+    ValidateTryNumber.tryNumber(this.#parseTryNumber);
   }
 
   #racing() {
