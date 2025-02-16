@@ -1,18 +1,20 @@
-import Car from "../model/Car.js";
+import Car from "../domain/Car.js";
 import { InputView } from "../view/InputView.js";
 import { OutputView } from "../view/OutputView.js";
 import { parsingService } from "./parsingService.js";
-import randomNumberGenerator from "../model/RandomNumberGenerator.js";
+import getValidInput from "../util/GetValidInput.js";
+import randomNumberGenerator from "../util/RandomNumberGenerator.js";
 import { systemSetting } from "../constants/systemSetting.js";
+import { SystemMessage } from "../constants/SystemMessage.js";
 
 export async function raceInit() {
   const cars = [];
 
-  const carNames = await parsingService.parseInput(
+  const carNames = await getValidInput(
     InputView.getCarName,
     parsingService.parseNames
   );
-  const round = await parsingService.parseInput(
+  const round = await getValidInput(
     InputView.getRound,
     parsingService.parseRound
   );
@@ -28,6 +30,7 @@ export const raceManager = {
     return randomNumber >= systemSetting.MOVABLE_NUMBER;
   },
   startRace(cars, round) {
+    OutputView.printMessage(SystemMessage.RESULT_MESSAGE);
     for (let i = 0; i < round; i++) {
       this.moveCar(cars);
       OutputView.printMessage("\n");
@@ -42,7 +45,8 @@ export const raceManager = {
       if (this.isMovable(randomNumber)) {
         car.goForward();
       }
-      OutputView.printMessage(car.toString());
+      OutputView.printRound(car.name, car.position);
     }
+    OutputView.printMessage("\n");
   },
 };

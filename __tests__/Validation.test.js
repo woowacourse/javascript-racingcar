@@ -16,7 +16,7 @@ describe("input validation test", () => {
     const INPUT_VALUE = "abcdfe".split(",");
 
     //when
-    const RESULT = Validation.isNameTooLong(INPUT_VALUE);
+    const RESULT = Validation.isNameLengthValid(INPUT_VALUE);
 
     //then
     expect(RESULT).toBe(false);
@@ -26,7 +26,7 @@ describe("input validation test", () => {
     const INPUT_VALUE = "a,a,b,c".split(",");
 
     //when
-    const RESULT = Validation.isNameDuplicate(INPUT_VALUE);
+    const RESULT = Validation.isNameNotDuplicate(INPUT_VALUE);
 
     //then
     expect(RESULT).toBe(false);
@@ -56,7 +56,7 @@ describe("input validation test", () => {
     const INPUT_VALUE = "-1";
 
     //when
-    const RESULT = Validation.isNegative(INPUT_VALUE);
+    const RESULT = Validation.isPositive(INPUT_VALUE);
 
     //then
     expect(RESULT).toBe(false);
