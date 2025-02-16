@@ -1,3 +1,4 @@
+import { RACE } from '../constants/race.js';
 import Car from '../domains/Car.js';
 import getRandomNumber from '../utils/getRandomNumber.js';
 
@@ -15,7 +16,7 @@ class Cars {
   }
 
   #processMoveCars(car) {
-    if (getRandomNumber() >= 4) {
+    if (getRandomNumber() >= RACE.FOWARD_THRESHOLD) {
       car.move();
     }
   }

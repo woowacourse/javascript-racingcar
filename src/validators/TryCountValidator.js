@@ -1,11 +1,13 @@
+import { ERROR } from '../constants/message.js';
+
 class TryCountValidator {
   validateNumber(tryCount) {
     if (isNaN(tryCount) === true) {
-      throw new Error('시도 횟수는 숫자여야 합니다.');
+      throw new Error(ERROR.TRY_COUNT.INVALID_TYPE);
     }
 
     if (Number(tryCount) <= 0) {
-      throw new Error('시도 횟수는 양의 정수여야 합니다.');
+      throw new Error(ERROR.TRY_COUNT.INVALID_RANGE);
     }
   }
 }

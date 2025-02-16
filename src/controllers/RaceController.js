@@ -25,7 +25,7 @@ class RaceController {
   async #initCarNames() {
     let isCarNamesValid = false;
 
-    while (isCarNamesValid) {
+    while (!isCarNamesValid) {
       try {
         const carNames = await this.#inputView.getCarNames();
         const parsedCarNames = carNames.split(',').map((carName) => carName.trim());
@@ -41,7 +41,7 @@ class RaceController {
   async #initTryCount() {
     let isTryCountValid = false;
 
-    while (isTryCountValid) {
+    while (!isTryCountValid) {
       try {
         const tryCount = await this.#inputView.getTryCount();
         const parsedTryCount = Number(tryCount);

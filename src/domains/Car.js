@@ -1,3 +1,5 @@
+import { RACE } from '../constants/race.js';
+
 class Car {
   #name;
   #position;
@@ -8,8 +10,7 @@ class Car {
   }
 
   move() {
-    const FOWARD = 1;
-    this.#position += FOWARD;
+    this.#position += RACE.FOWARD_UNIT;
   }
 
   comparePosition(otherPosition) {
