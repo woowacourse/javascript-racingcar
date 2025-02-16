@@ -9,6 +9,7 @@ export default class Validator {
       if (name.length === 0)
         throw new Error('[ERROR] 자동차의 이름은 0자 초과여야 합니다.');
     }
+
   }
 
   static validateCount(rawCount) {

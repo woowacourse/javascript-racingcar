@@ -22,6 +22,7 @@ export async function run() {
   const winnerOutput = Winner.findWinners(cars);
 
   OutputView.printWinners(winnerOutput);
+
 }
 
 await run();
