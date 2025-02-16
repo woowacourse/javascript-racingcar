@@ -30,7 +30,6 @@ class RaceController {
           .split(",")
           .map((carName) => carName.trim());
         new CarNameValidator().valiateNames(parsedCarNames);
-
         return parsedCarNames;
       } catch (error) {
         console.log(error.message);
