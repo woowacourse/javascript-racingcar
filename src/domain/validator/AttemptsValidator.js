@@ -4,7 +4,7 @@ import { ERROR } from '../../constants/messages';
 const AttemptsValidator = {
   checkPositiveNumber(input) {
     const attempts = Number(input);
-    if (!Number.isInteger(attempts) || attempts <= CONFIG.INITIAL_NUMBER) {
+    if (!Number.isInteger(attempts) || attempts <= CONFIG.MINIMUM_ATTEMPTS_NUMBER) {
       throw new Error(ERROR.NOT_POSITIVE_NUMBER);
     }
 
