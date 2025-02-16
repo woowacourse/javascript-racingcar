@@ -9,8 +9,8 @@ class OutputView {
     this.#print(GAME_MESSAGE.RACING_RESULT);
   }
 
-  static printCarState(result) {
-    this.#print(result);
+  static printCarState(car) {
+    this.#print(car);
   }
 
   static printNewLine() {
