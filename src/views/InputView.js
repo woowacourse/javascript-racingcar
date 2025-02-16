@@ -1,4 +1,4 @@
-import readLineAsync from "../utils/readLineAsync.js";
+import readLineAsync from '../utils/readLineAsync.js';
 
 const InputView = {
   async readUserInput(message) {

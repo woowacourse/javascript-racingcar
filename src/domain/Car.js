@@ -1,6 +1,6 @@
-import throwError from "../utils/throwError.js";
-import validateCarName from "../validation/validate/validateCarName.js";
-import OutputView from "../views/OutputView.js";
+import throwError from '../utils/throwError.js';
+import validateCarName from '../validation/validate/validateCarName.js';
+import OutputView from '../views/OutputView.js';
 
 class Car {
   #name;
@@ -9,12 +9,12 @@ class Car {
   constructor(name) {
     this.#name = name;
     this.#position = 0;
-    this.#validate()
+    this.#validate();
   }
 
   #validate() {
     validateCarName(this.#name);
-   }
+  }
 
   move() {
     this.#position++;

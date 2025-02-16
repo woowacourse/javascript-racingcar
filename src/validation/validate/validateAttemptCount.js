@@ -1,7 +1,7 @@
-import runValidators from "../../utils/runValidators.js";
-import throwError from "../../utils/throwError.js";
-import { ATTEMPT_ERROR_MESSAGES } from "../../constants/Constants.js";
-import IsValidAttemptCount from "../isValid/isValidAttemptCount.js";
+import runValidators from '../../utils/runValidators.js';
+import throwError from '../../utils/throwError.js';
+import { ATTEMPT_ERROR_MESSAGES } from '../../constants/Constants.js';
+import IsValidAttemptCount from '../isValid/isValidAttemptCount.js';
 
 const validateInteger = (attemptCount) => {
   if (!IsValidAttemptCount.integer(attemptCount)) {
@@ -15,6 +15,7 @@ const validatePlus = (attemptCount) => {
   }
 };
 
-const validateAttemptCount = (attempt) => runValidators([validateInteger, validatePlus], attempt);
+const validateAttemptCount = (attempt) =>
+  runValidators([validateInteger, validatePlus], attempt);
 
 export default validateAttemptCount;

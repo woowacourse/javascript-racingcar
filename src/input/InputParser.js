@@ -1,4 +1,4 @@
-import { NAME_DELIMITER } from "../constants/Constants.js";
+import { NAME_DELIMITER } from '../constants/Constants.js';
 
 const InputParser = {
   car(carNameList) {
