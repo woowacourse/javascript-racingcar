@@ -23,7 +23,7 @@ export default class Controller {
   }
 
   runRace(cars, tryCount) {
-    console.log(OUTPUT_MESSAGE.RESULT);
+    this.outputView.printResultText();
     for (let i = 0; i < tryCount; i++) {
       this.runRound(cars);
     }
@@ -42,7 +42,7 @@ export default class Controller {
       }
       this.outputView.printProgressResult(car.name, car.position);
     });
-    console.log("");
+    this.outputView.printNewLine();
   }
 
   isMove(number) {

@@ -12,4 +12,12 @@ export default class OutputView {
       `최종 우승자: ${winners.map((winner) => winner.name).join(", ")}`,
     );
   }
+
+  printResultText() {
+    console.log(OUTPUT_MESSAGE.RESULT);
+  }
+
+  printNewLine() {
+    console.log("");
+  }
 }
