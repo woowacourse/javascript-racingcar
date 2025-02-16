@@ -2,9 +2,9 @@ export default class Car {
   #name;
   #position;
 
-  constructor(name) {
+  constructor(name, position = 0) {
     this.#name = name;
-    this.#position = 0;
+    this.#position = position;
   }
 
   move() {
