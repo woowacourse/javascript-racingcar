@@ -1,19 +1,30 @@
-import Car from "../src/Car.js";
+import Car from "../src/domains/Car.js";
 
-test("랜덤 숫자가 4 이상일 경우 자동차는 움직인다.", () => {
-  const car = new Car();
+test.each([
+  ["자동차는 움직인다.", true, 1, "pobi"],
+  ["자동차는 움직이지 않는다.", false, 0, "woni"],
+])("%s", (_, isCanMove, expectedPosition, carName) => {
+  const car = new Car(carName);
 
-  jest.spyOn(Math, "random").mockReturnValue(0.5);
-  car.move();
+  car.move(isCanMove);
 
-  expect(car.getPosition()).toBe(1);
+  expect(car.position).toBe(expectedPosition);
 });
 
-test("랜덤 숫자가 4 미만일 경우 자동차는 움직일 수 없다.", () => {
-  const car = new Car();
-
-  jest.spyOn(Math, "random").mockReturnValue(0.2);
-  car.move();
-
-  expect(car.getPosition()).toBe(0);
+test.each([
+  ["자동차의 이름은 1글자 이하인 경우 에러가 발생한다.", ""],
+  ["자동차 이름은 6글자 이상인 경우 에러가 발생한다.", "여섯글자임다"],
+])("%s", (_, carName) => {
+  expect(() => {
+    const car = new Car(carName);
+  }).toThrow();
 });
+
+test.each([["2자"], ["세글자"], ["pobi"], ["pobii"]])(
+  "자동차의 이름은 1글자 이상, 5글자 이하이어야 한다.",
+  (carName) => {
+    expect(() => {
+      const car = new Car(carName);
+    }).not.toThrow();
+  }
+);
