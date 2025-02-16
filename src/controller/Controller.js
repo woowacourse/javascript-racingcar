@@ -33,6 +33,7 @@ class Controller {
 
   announceWinners() {
     const raceResult = new RaceResult(this.carManager?.cars);
+
     const winners = raceResult.determineWinners();
     OutputView.printWinners(winners);
   }

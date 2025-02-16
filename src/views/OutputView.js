@@ -32,6 +32,6 @@ const OutputView = {
     });
     this.lineBreak();
   },
-};
+
 
 export default OutputView;

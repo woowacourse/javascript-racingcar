@@ -53,6 +53,7 @@ class User {
     try {
       const attempts = await readLineAsync(INPUT.ATTEMPTS);
       attemptsValidator(Number(attempts));
+
       return attempts;
     } catch (err) {
       console.log(err.message);

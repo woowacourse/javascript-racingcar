@@ -17,3 +17,4 @@ const _pipe =
     _reduce((v, f) => f(v), x, fns);
 
 export { _reduce, _pipe, splitStringToArray };
+

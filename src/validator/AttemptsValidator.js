@@ -13,3 +13,4 @@ const checkPositiveNumber = (attempts) => {
 const attemptsValidator = _pipe(checkPositiveNumber);
 
 export default attemptsValidator;
+

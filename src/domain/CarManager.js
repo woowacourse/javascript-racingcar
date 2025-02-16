@@ -1,5 +1,6 @@
 // @ts-check
 import pickRandomNumber from '../utils/pickRandomNumber.js';
+
 import { CONFIG } from '../constants/config.js';
 import Car from './Car.js';
 
@@ -32,6 +33,7 @@ class CarManager {
     this.cars.forEach((car) => {
       this.moveForwardCar(car, pickRandomNumber());
     });
+
   }
 }
 

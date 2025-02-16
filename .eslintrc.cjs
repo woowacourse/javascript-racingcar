@@ -4,8 +4,10 @@ module.exports = {
     es2021: true,
     jest: true,
   },
+
   extends: ['airbnb-base', 'prettier'],
   overrides: [],
+
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -22,10 +24,12 @@ module.exports = {
     'consistent-return': 'off',
     'guard-for-in': 'off',
     'no-unreachable-loop': 'off',
+
     indent: 'off',
     'implicit-arrow-linebreak': 'off',
     'operator-linebreak': 'off',
     'no-param-reassign': 'off',
     'no-underscore-dangle': 'off',
+
   },
 };
