@@ -1,4 +1,5 @@
-import { OUTPUT_MESSAGE } from "../constants/message.js";
+import { ERROR_MESSAGE } from "../constants/message.js";
+import { createError } from "../utils/createError.js";
 import { getRandomNumber } from "../utils/getRandomNumber.js";
 import { CAR } from "../constants/constants.js";
 
@@ -9,6 +10,19 @@ export default class Race {
   constructor(cars, tryCount) {
     this.#cars = cars;
     this.#tryCount = tryCount;
+
+    this.validateTryCount();
+  }
+
+  validateTryCount() {
+    if (this.#tryCount === "") createError(ERROR_MESSAGE.EMPTY_INPUT);
+
+    if (isNaN(Number(this.#tryCount))) {
+      createError(ERROR_MESSAGE.INVALID_TRY_COUNT);
+    }
+    if (this.#tryCount < 1) {
+      createError(ERROR_MESSAGE.INVALID_TRY_COUNT);
+    }
   }
 
   runRace() {
