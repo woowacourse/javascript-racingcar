@@ -3,7 +3,6 @@ import readLineAsync from '../views/InputView.js';
 import { INPUT } from '../constants/messages.js';
 import OutputView from '../views/OutputView.js';
 import CarNameValidator from '../validator/CarNameValidator.js';
-import splitStringToArray from '../utils/utils.js';
 import { CONFIG } from '../constants/config.js';
 import AttemptsValidator from '../validator/AttemptsValidator.js';
 
@@ -24,7 +23,7 @@ class Controller {
   async readCarNames() {
     try {
       const input = await readLineAsync(INPUT.CAR_NAMES);
-      const carNames = splitStringToArray(input, CONFIG.COMMA);
+      const carNames = input.split(CONFIG.COMMA);
       carNames.forEach((carName) => {
         CarNameValidator.checkCarNameLength(carName);
         CarNameValidator.checkBlank(carName);
