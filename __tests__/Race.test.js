@@ -10,6 +10,12 @@ describe("자동차 경주 한 라운드 테스트", () => {
       expect(() => new Race(CARS, tryCount)).toThrow("[ERROR]");
     }
   );
+  test("올바른 시도 횟수로 경주 객체를 생성할 경우 오류가 발생하지 않는다.", () => {
+    const CARS = [new Car("머핀")];
+    const TRY_COUNT = 1;
+
+    expect(() => new Race(CARS, TRY_COUNT)).not.toThrow("[ERROR]");
+  });
   test("자동차 한 라운드를 진행하면 자동차의 위치가 변경된다.", () => {
     const RANDOM_NUMBERS = [5, 3];
     const CARS = [new Car("머핀"), new Car("데이지")];
