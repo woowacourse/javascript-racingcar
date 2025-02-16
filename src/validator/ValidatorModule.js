@@ -1,4 +1,4 @@
-import { isInRange, isInteger, isNumber, isStringEmpty } from '../utils/validations.js';
+import { isInteger, isNumber, isStringEmpty } from '../util/validations.js';
 
 class ValidateModule {
   static validateCarInput(carNameInput) {

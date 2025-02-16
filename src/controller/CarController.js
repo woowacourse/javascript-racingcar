@@ -1,7 +1,7 @@
-import Race from '../Models/Race.js';
-import InputView from '../Views/InputView.js';
-import OutputView from '../Views/OutputView.js';
-import ValidateModule from '../validates/ValidatorModule.js';
+import Race from '../domain/Race.js';
+import InputView from '../view/InputView.js';
+import OutputView from '../view/OutputView.js';
+import ValidateModule from '../validator/ValidatorModule.js';
 
 class CarController {
   async run() {
