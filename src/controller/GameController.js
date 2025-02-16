@@ -13,11 +13,8 @@ class GameController {
     this.#winnerSelector = new WinnerSelector();
   }
   async run() {
-    const carNames = await this.getValidatedCarNames();
-    this.#race.initCars(carNames);
-
-    const tryCount = await this.getValidatedTryCount();
-    this.#race.initTryCount(tryCount);
+    await this.initCarNamesInput();
+    await this.initTryCountInput();
 
     this.#race.raceStart();
     this.outputRaceResult();
@@ -26,18 +23,24 @@ class GameController {
     this.outputWinner();
   }
 
-  async getValidatedCarNames() {
-    const input = await InputView.inputCarName();
-    ValidateModule.validateCarInput(input);
-    const carNames = input.split(',').map((str) => str.trim());
-    return carNames;
+  async initCarNamesInput() {
+    try {
+      const carNames = await InputView.carNamesInput();
+      this.#race.initCars(carNames);
+    } catch (error) {
+      console.log(error.message);
+      await this.initCarNamesInput();
+    }
   }
 
-  async getValidatedTryCount() {
-    const input = await InputView.inputTryCount();
-    ValidateModule.validateTryCountInput(input);
-    const tryCount = Number(input);
-    return tryCount;
+  async initTryCountInput() {
+    try {
+      const tryCount = await InputView.tryCountInput();
+      this.#race.initTryCount(tryCount);
+    } catch (error) {
+      console.log(error.message);
+      await this.initTryCountInput();
+    }
   }
 
   outputRaceResult() {
