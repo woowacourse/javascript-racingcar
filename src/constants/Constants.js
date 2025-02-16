@@ -19,12 +19,18 @@ export const NAME_DELIMITER = ",";
 
 export const LINE_BREAK = "";
 
-export const CAR_NAME_LENGTH_MAX = 5;
+export const CAR_NAME_CONDITION = {
+  LENGTH_MAX : 5,
+  LENGTH_MIN : 1,
+  COUNT_MIN : 2
+}
+
+export const ERROR_PREFIX = "[ERROR]"
+
 export const CAR_NAME_LIST_ERROR_MESSAGES = {
-  EMPTY_INPUT: "입력이 비어 있습니다.",
-  EMPTY_CAR_NAME: "자동차 이름에 빈 값이 포함되어 있습니다.",
-  NAME_LENGTH_EXCEEDED: `자동차 이름은 ${CAR_NAME_LENGTH_MAX}자를 넘을 수 없습니다.`,
-  SINGLE_CAR_NAME: "두 대 이상의 자동차 이름을 입력해 주세요.",
+  NAME_LENGTH_MIN: `자동차 이름은 ${CAR_NAME_CONDITION.LENGTH_MIN}자 이상 입력해주세요.`,
+  NAME_LENGTH_MAX:`${CAR_NAME_CONDITION.LENGTH_MAX}자 이하로 입력해주세요.`,
+  COUNT: `${CAR_NAME_CONDITION.COUNT_MIN}대 이상의 자동차 이름을 입력해 주세요.`,
   DUPLICATE_CAR_NAME: "자동차 이름이 중복되었습니다.",
 };
 

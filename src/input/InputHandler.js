@@ -1,7 +1,7 @@
 import InputView from "../views/InputView.js";
 import { INPUT_MESSAGE } from "../constants/Constants.js";
-import validateCarNameList from "../validation/validateCarNameList.js";
-import validateAttemptCount from "../validation/validateAttemptCount.js";
+import validateCarNameList from "../validation/validate/validateCarNameList.js";
+import validateAttemptCount from "../validation/validate/validateAttemptCount.js";
 import OutputView from "../views/OutputView.js";
 import InputParser from "./InputParser.js";
 
