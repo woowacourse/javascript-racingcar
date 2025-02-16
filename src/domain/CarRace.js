@@ -1,4 +1,3 @@
-import { CAR_MOVE_STANDARD } from '../lib/constants.js';
 import { getRandomInteger } from '../lib/utils.js';
 import { InputView, OutputView } from '../view/index.js';
 import Car from './Car.js';
@@ -6,6 +5,8 @@ import Car from './Car.js';
 export default class CarRace {
   #cars;
   #count;
+
+  static #CAR_MOVE_STANDARD = 4;
 
   async init() {
     const names = await InputView.getNames();
@@ -31,7 +32,7 @@ export default class CarRace {
     for (let round = 0; round < this.#count; round++) {
       this.#cars.forEach(car => {
         const randomNumber = getRandomInteger(9);
-        if (randomNumber >= CAR_MOVE_STANDARD) car.go();
+        if (randomNumber >= CarRace.#CAR_MOVE_STANDARD) car.go();
       });
 
       OutputView.printEachGame(this.#cars);

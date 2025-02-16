@@ -16,6 +16,4 @@ export const OUTPUT_MESSAGES = {
   winner: '최종 우승자: ',
 };
 
-export const CAR_MOVE_STANDARD = 4;
-export const POSITION_STRING = '-';
 export const SEPERATOR = ',';
