@@ -27,4 +27,4 @@ export const INVALID_MESSAGE = Object.freeze({
   ATTEMPT_COUNT: `시도 횟수는 ${RULE.MIN_ATTEMPT_COUNT} 이상 ${RULE.MAX_ATTEMPT_COUNT}이어야 합니다.`,
 });
 
-export const ERROR_PREFIX = "[ERROR] ";
+export const ERROR_PREFIX = "[ERROR]";
