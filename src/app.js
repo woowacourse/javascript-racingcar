@@ -75,14 +75,14 @@ class App {
   }
 
   #generateTotalRaceMoves(tryCount) {
-    const turns = Array.from({ length: tryCount });
     const totalCarNumbers = this.#cars.length;
-    return turns.map(() => App.generateIsMoveList(totalCarNumbers));
+    return Array.from({ length: tryCount }).map(() =>
+      App.generateIsMoveList(totalCarNumbers),
+    );
   }
 
   static generateIsMoveList(totalCarNumbers) {
-    const isMoveList = Array.from({ length: totalCarNumbers });
-    return isMoveList.map(() => {
+    return Array.from({ length: totalCarNumbers }).map(() => {
       const randomNumber = chooseRandomNumber(
         MIN_RANDOM_NUMBER,
         MAX_RANDOM_NUMBER,
