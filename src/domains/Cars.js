@@ -1,3 +1,4 @@
+import getRandomNumber from "../utils/getRandomNumber.js";
 import Car from "./Car.js";
 
 class Cars {
@@ -7,10 +8,6 @@ class Cars {
     this.#cars = carNames.map((carName) => new Car(carName));
   }
 
-  getRandomNumber() {
-    return Math.floor(Math.random() * 10);
-  }
-
   moveCars() {
     this.#cars.forEach((car) => {
       this.#processMoveCars(car);
@@ -18,7 +15,7 @@ class Cars {
   }
 
   #processMoveCars(car) {
-    if (this.getRandomNumber() >= 4) {
+    if (getRandomNumber() >= 4) {
       car.move();
     }
   }
