@@ -1,4 +1,4 @@
-import { MIN, MOVE_UNIT } from "../constant/constant.js";
+import { MOVE_UNIT } from '../constant/constant.js';
 
 class Car {
   #name;
@@ -17,10 +17,8 @@ class Car {
     return this.#position;
   }
 
-  move(randomNumber) {
-    if (randomNumber >= MIN.MOVE_CONDITION) {
-      this.#position += MOVE_UNIT;
-    }
+  moveForward() {
+    this.#position += MOVE_UNIT;
   }
 }
 

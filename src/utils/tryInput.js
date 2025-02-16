@@ -1,4 +1,4 @@
-import errorHandler from "./errorHandler.js";
+import errorHandler from './errorHandler.js';
 
 const tryInput = async (inputFn, validateFn) => {
   try {
