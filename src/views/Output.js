@@ -8,7 +8,7 @@ const Output = {
   printRace(name, count) {
     Console.print(`${name} : ${EXPRESSION_FLAG.repeat(count)}`);
   },
-  printWinner(winners) {
+  printWinners(winners) {
     Console.print(`${OUTPUT_PROMPT_MESSAGE.FINAL_WINNERS}: ${winners.join(", ")}`);
   },
 };

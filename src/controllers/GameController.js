@@ -15,7 +15,7 @@ class GameController {
     raceController.race();
 
     const winners = raceController.getWinners();
-    Output.printWinner(winners);
+    Output.printWinners(winners);
   }
 
   async #getValidatedInputs() {
