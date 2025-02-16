@@ -1,7 +1,6 @@
-/* eslint-disable operator-linebreak */
 // @ts-check
 import pickRandomNumber from '../utils/pickRandomNumber.js';
-import OutputView from '../views/OutputView.js';
+
 import { CONFIG } from '../constants/config.js';
 import Car from './Car.js';
 
@@ -30,14 +29,11 @@ class CarManager {
     return 0;
   }
 
-  race(attempts) {
-    for (let i = CONFIG.ZERO; i < attempts; i++) {
-      this.cars.forEach((car) => {
-        this.moveForwardCar(car, pickRandomNumber());
-        OutputView.printRaceResult(car.name, car.position);
-      });
-      console.log(); // 줄바꿈
-    }
+  race() {
+    this.cars.forEach((car) => {
+      this.moveForwardCar(car, pickRandomNumber());
+    });
+
   }
 }
 

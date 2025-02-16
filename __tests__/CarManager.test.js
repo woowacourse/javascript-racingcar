@@ -1,4 +1,4 @@
-/* eslint-disable comma-dangle */
+
 import Car from '../src/domain/Car.js';
 import CarManager from '../src/domain/CarManager.js';
 

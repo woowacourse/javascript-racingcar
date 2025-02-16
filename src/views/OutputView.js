@@ -17,6 +17,21 @@ const OutputView = {
   printWinners(winners) {
     console.log(`${OUTPUT.WINNERS} : ${normalize(winners)}`);
   },
-};
+
+  printErrorMessage(error) {
+    console.log(error.message);
+  },
+
+  lineBreak() {
+    console.log();
+  },
+
+  printRaceStatus(cars) {
+    cars.forEach((car) => {
+      this.printRaceResult(car.name, car.position);
+    });
+    this.lineBreak();
+  },
+
 
 export default OutputView;
