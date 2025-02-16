@@ -4,13 +4,27 @@ import InputView from '../views/InputView.js';
 
 export default class Controller {
   async start() {
-    const game = new Game();
-    const inputName = await InputView.inputName();
-    const inputTryNumber = await InputView.inputTryNumber();
+    let inputName, inputTryNumber;
+    while (true) {
+      try {
+        inputName = await InputView.inputName();
+        new Game(inputName, 1); // 검증을 위한 임시 값 1 입니다.
+        break;
+      } catch (error) {
+        OutputView.printInput(error.message);
+      }
+    }
+    while (true) {
+      try {
+        inputTryNumber = await InputView.inputTryNumber();
+        new Game(inputName, inputTryNumber); // tryNumber 검증
+        break;
+      } catch (error) {
+        OutputView.printInput(error.message);
+      }
+    }
 
-    game.createCarList(inputName);
-    game.setInputTryNumber(inputTryNumber);
-
+    const game = new Game(inputName, inputTryNumber);
     const { winners, roundResults } = game.race();
 
     // 결과 출력
@@ -22,5 +36,8 @@ export default class Controller {
       OutputView.printInput('');
     });
     OutputView.gameResult(winners);
+  }
+  catch(error) {
+    OutputView.printInput(error.message);
   }
 }

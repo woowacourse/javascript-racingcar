@@ -1,20 +1,18 @@
+import DEFINITION from '../constants/Definition.js';
 import { createRandom } from '../utils/Random.js';
+import { Validator } from '../utils/Validator.js';
 import Car from './Car.js';
 
 export default class Game {
   #carList;
   inputTryNumber;
 
-  constructor() {
+  constructor(inputName, inputTryNumber) {
+    Validator.validateName(inputName, DEFINITION.MAX_NAME_LENGTH);
+    Validator.validateTryNumber(inputTryNumber, DEFINITION.MIN_GAME, DEFINITION.MAX_GAME);
     this.#carList = [];
-  }
-
-  setInputTryNumber(number) {
-    this.inputTryNumber = number;
-  }
-
-  createCarList(names) {
-    this.#carList = names.map(name => new Car(name));
+    this.inputTryNumber = inputTryNumber;
+    this.#carList = inputName.map(name => new Car(name));
   }
 
   getMaxPosition() {
