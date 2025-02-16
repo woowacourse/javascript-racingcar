@@ -22,3 +22,8 @@ export const OUTPUT_MESSAGES = {
 };
 
 export const SEPERATOR = ',';
+export const CAR_POSITION_STRING = '-';
+
+export const MAX_CAR_NAME_LENGTH = 5;
+export const MIN_CAR_NAME_LENGTH = 1;
+export const CAR_MOVE_STANDARD = 4;

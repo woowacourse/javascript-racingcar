@@ -1,11 +1,11 @@
 import {
+  CAR_POSITION_STRING,
   DEFAULT_ERROR_MESSAGE,
   OUTPUT_MESSAGES,
   SEPERATOR,
 } from '../lib/constants.js';
 
 export default class OutputView {
-  static #POSITION_STRING = '-';
   static #print(message) {
     console.log(message);
   }
@@ -20,7 +20,7 @@ export default class OutputView {
 
   static printEachGame(cars) {
     cars.forEach(car => {
-      const carOutput = this.#POSITION_STRING.repeat(car.position);
+      const carOutput = CAR_POSITION_STRING.repeat(car.position);
       this.#print(`${car.name} : ${carOutput}`);
     });
 

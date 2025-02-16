@@ -1,8 +1,18 @@
-import { ERROR_MESSAGES, SEPERATOR } from '../lib/constants.js';
+import {
+  ERROR_MESSAGES,
+  MAX_CAR_NAME_LENGTH,
+  MIN_CAR_NAME_LENGTH,
+} from '../lib/constants.js';
 
 export default class Validator {
   static validateCarNames(carNames) {
-    if (!carNames.every(name => name.length <= 5 && name.length >= 1))
+    if (
+      !carNames.every(
+        name =>
+          name.length <= MAX_CAR_NAME_LENGTH &&
+          name.length >= MIN_CAR_NAME_LENGTH,
+      )
+    )
       throw new Error(ERROR_MESSAGES.carName.length);
 
     if (carNames.length !== new Set(carNames).size)
