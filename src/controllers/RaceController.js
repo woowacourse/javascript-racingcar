@@ -1,7 +1,7 @@
-import Cars from "../domains/Cars.js";
-import Winner from "../domains/Winner.js";
-import CarNameValidator from "../validators/CarNameValidator.js";
-import TryCountValidator from "../validators/TryCountValidator.js";
+import Cars from '../domains/Cars.js';
+import Winner from '../domains/Winner.js';
+import CarNameValidator from '../validators/CarNameValidator.js';
+import TryCountValidator from '../validators/TryCountValidator.js';
 
 class RaceController {
   #inputView;
@@ -23,31 +23,33 @@ class RaceController {
   }
 
   async #initCarNames() {
-    while (true) {
+    let isCarNamesValid = false;
+
+    while (isCarNamesValid) {
       try {
         const carNames = await this.#inputView.getCarNames();
-        const parsedCarNames = carNames
-          .split(",")
-          .map((carName) => carName.trim());
+        const parsedCarNames = carNames.split(',').map((carName) => carName.trim());
         new CarNameValidator().validateNames(parsedCarNames);
-
+        isCarNamesValid = true;
         return parsedCarNames;
       } catch (error) {
-        this.#outputView.printValue(error.message + "\n");
+        this.#outputView.printValue(error.message + '\n');
       }
     }
   }
 
   async #initTryCount() {
-    while (true) {
+    let isTryCountValid = false;
+
+    while (isTryCountValid) {
       try {
         const tryCount = await this.#inputView.getTryCount();
         const parsedTryCount = Number(tryCount);
         new TryCountValidator().validateNumber(parsedTryCount);
-
+        isTryCountValid = true;
         return parsedTryCount;
       } catch (error) {
-        this.#outputView.printValue(error.message + "\n");
+        this.#outputView.printValue(error.message + '\n');
       }
     }
   }
@@ -67,9 +69,7 @@ class RaceController {
     const maxPosition = cars.getMaxPosition();
     const carList = cars.cars;
 
-    this.#outputView.printWinners(
-      new Winner().getWinners(carList, maxPosition)
-    );
+    this.#outputView.printWinners(new Winner().getWinners(carList, maxPosition));
   }
 }
 

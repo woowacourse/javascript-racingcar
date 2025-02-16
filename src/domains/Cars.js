@@ -1,5 +1,5 @@
-import getRandomNumber from "../utils/getRandomNumber.js";
-import Car from "./Car.js";
+import Car from '../domains/Car.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
 
 class Cars {
   #cars;
