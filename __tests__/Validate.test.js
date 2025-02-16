@@ -1,43 +1,52 @@
-import Validate from '../src/Validate.js'
+import Validate from '../src/utils/Validate'
+import ERROR_MESSAGE from '../src/constants/RacingErrorMessage';
+import DEFINITION from '../src/constants/Definition';
 
-test("공백 입력 시 에러 발생", () => {
+test('공백 입력 시 에러 발생', () => {
   const validate = new Validate();
   expect(() => {
     validate.isEmpty('');
-  }).toThrow("[ERROR] 공백이 입력되었습니다.");
+  }).toThrow(ERROR_MESSAGE.IS_EMPTY);
 })
 
-test("',' 입력 시 에러 발생", () => {
+test('\',\' 입력 시 에러 발생', () => {
   const validate = new Validate();
   expect(() => {
     validate.isValidCarNames(',');
-  }).toThrow("[ERROR] 공백이 입력되었습니다.");
+  }).toThrow(ERROR_MESSAGE.IS_EMPTY);
 })
 
-test("자동차 이름 글자수 5자 초과시 에러 발생", () =>{
+test(`자동차 이름 글자수 ${DEFINITION.MAX_NAME_LENGTH}자 초과시 에러 발생`, () =>{
     const validate = new Validate();
     expect(() => {
         validate.isValidCarNames('ABCDEF');
-    }).toThrow("[ERROR] 이름 글자수가 5자를 초과하였습니다.");
+    }).toThrow(ERROR_MESSAGE.CAR_NAME_LENGTH);
 })
 
-test("숫자가 아닌 입력 시 에러 발생", () =>{
+test(`경주 자동차 ${DEFINITION.MIN_RACE_CAR}대 미만일 시 에러 발생`, () => {
+  const validate = new Validate();
+  expect(()=>{
+    validate.isEnoughCars(['car1']);
+  }).toThrow(ERROR_MESSAGE.NOT_ENOUGH_CARS);
+})
+
+test('숫자가 아닌 입력 시 에러 발생', () =>{
   const validate = new Validate();
   expect(() => {
       validate.isNumber(Number("ABCDEF"));
-  }).toThrow("[ERROR] 숫자가 아닙니다.");
+  }).toThrow(ERROR_MESSAGE.IS_NUMBER);
 })
 
-test("0 이하의 숫자 입력 시 에러 발생", () =>{
+test(`${DEFINITION.MIN_ATTEMPTS} 이하의 숫자 입력 시 에러 발생 `, () =>{
   const validate = new Validate();
   expect(() => {
-      validate.isPositiveNumber(0);
-  }).toThrow("[ERROR] 0 이하의 숫자 입니다.");
+      validate.isPositiveNumber(DEFINITION.MIN_ATTEMPTS-1);
+  }).toThrow(ERROR_MESSAGE.IS_POSITIVE_NUMBER);
 })
 
-test("정수가 아닌 입력 시 에러 발생", () =>{
+test('정수가 아닌 입력 시 에러 발생', () =>{
   const validate = new Validate();
   expect(() => {
       validate.isInteger(3.1);
-  }).toThrow("[ERROR] 정수가 아닙니다.");
+  }).toThrow(ERROR_MESSAGE.IS_INTEGER);
 })
