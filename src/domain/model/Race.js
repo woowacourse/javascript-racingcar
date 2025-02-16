@@ -4,7 +4,7 @@ import pickRandomNumber from '../../utils/pickRandomNumber.js';
 import OutputView from '../../views/OutputView.js';
 import { CONFIG } from '../../constants/config.js';
 
-class CarManager {
+class Race {
   constructor() {
     this.cars = [];
   }
@@ -19,7 +19,6 @@ class CarManager {
   }
 
   race(attempts) {
-    OutputView.printResultGreeting();
     for (let i = CONFIG.INITIAL_NUMBER; i < attempts; i++) {
       this.cars.forEach((car) => {
         this.moveForwardCar(car, pickRandomNumber());
@@ -49,4 +48,4 @@ class CarManager {
   }
 }
 
-export default CarManager;
+export default Race;
