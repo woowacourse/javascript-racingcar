@@ -1,6 +1,6 @@
-import Race from "./Race.js";
-import Input from "../views/Input.js";
-import Output from "../views/Output.js";
+import Race from "./domains/Race.js";
+import Input from "./views/Input.js";
+import Output from "./views/Output.js";
 
 export default class App {
   #raceModel = new Race();
