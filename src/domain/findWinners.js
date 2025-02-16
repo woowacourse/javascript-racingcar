@@ -1,9 +1,13 @@
-function findWinners(cars) {
-  const maxAdvanceCount = Math.max(...cars.map((cars) => cars.count));
+import { pipe } from "../utils/functional.js";
 
-  return cars
-    .filter((car) => car.count === maxAdvanceCount)
-    .map((car) => car.name);
-}
+const getMaxCount = (cars) => Math.max(...cars.map((cars) => cars.count));
+
+const findWinners = pipe(
+  (cars) => {
+    const maxCount = getMaxCount(cars);
+    return cars.filter((car) => car.count === maxCount);
+  },
+  (winners) => winners.map((car) => car.name)
+);
 
 export default findWinners;
