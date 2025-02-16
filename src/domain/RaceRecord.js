@@ -25,7 +25,6 @@ class RaceRecord {
 
   getWinner() {
     const longestString = getLongestString(...this.#getLastPositions());
-
     const winnerList = [];
 
     for (let raceCarName in this.#record) {
