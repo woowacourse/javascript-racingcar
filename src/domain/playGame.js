@@ -1,16 +1,21 @@
 import playRound from "./playRound.js";
 import { printResultHeader, printRoundScore } from "../view/output.js";
+import { pipe } from "../utils/functional.js";
+
+const initializeCars = (carNames) =>
+  carNames.map((name) => ({ name, count: 0 }));
+
+const runRounds = (rounds) => (cars) =>
+  Array.from({ length: rounds }).reduce((updatedCars, _) => {
+    const newCars = playRound(updatedCars);
+    printRoundScore(newCars);
+    return newCars;
+  }, cars);
 
 const playGame = (carNames, rounds) => {
   printResultHeader();
 
-  let cars = carNames.map((name) => ({ name, count: 0 }));
-  Array.from({ length: rounds }).forEach(() => {
-    cars = playRound(cars);
-    printRoundScore(cars);
-  });
-
-  return cars;
+  return pipe(initializeCars, runRounds(rounds))(carNames);
 };
 
 export default playGame;
