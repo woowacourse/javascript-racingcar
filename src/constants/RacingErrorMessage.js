@@ -4,6 +4,7 @@ const ERROR_MESSAGE = {
     IS_NUMBER:'[ERROR] 숫자가 아닙니다.',
     IS_POSITIVE_NUMBER:'[ERROR] 0 이하의 숫자 입니다.',
     IS_INTEGER:'[ERROR] 정수가 아닙니다.',
+    NOT_ENOUGH_CARS: "[ERROR] 경주에는 2대 이상의 자동차가 필요합니다.",
 };
 
 export default ERROR_MESSAGE;

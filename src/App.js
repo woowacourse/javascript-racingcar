@@ -37,7 +37,9 @@ class App {
       try {
         const carNamesInput = await this.#inputView.readCarNames();
         this.#validate.validateCarNames(carNamesInput);
-        return carNamesInput.split(',');
+        const carNames = carNamesInput.split(',');
+        this.#validate.isEnoughCars(carNames);
+        return carNames;
       } catch (error) {
         this.#outputView.printErrorMessage(error.message);
       }

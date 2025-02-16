@@ -16,6 +16,12 @@ class Validate {
         });
     }
 
+    isEnoughCars(carNames) {
+        if(carNames.length < 2) {
+            throw new Error(ERROR_MESSAGE.NOT_ENOUGH_CARS);
+        }
+    }
+
     isNumber(input) {
         if(Number.isNaN(input)) {
             throw new Error(ERROR_MESSAGE.IS_NUMBER);
@@ -37,6 +43,10 @@ class Validate {
     validateCarNames(carNamesInput) {
         this.isEmpty(carNamesInput);
         this.isValidCarNames(carNamesInput);
+    }
+
+    validateEnoughCars(carNames){
+        this.isEnoughCars(carNames);
     }
 
     validateAttempts(attempts) {
